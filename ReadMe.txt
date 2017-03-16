@@ -1,0 +1,124 @@
+
+
+
+
+
+DungeonRun is a UWP App created with MonoGame 3.6 to explore deploying UWP Apps to the XboxOne.
+	The compiled binaries are not included in the repo - to keep project size low. 
+	You'll need to clone and build the project yourself if you want to play the game.
+	DungeonRun uses a collection of sprites + sounds from various games, which are copyrighted.
+	Also, an unholy variety of design patterns are used throughout the codebase.
+	This is intentional as I'm exploring ways to keep codebase LOC low, clear, and fast.
+	The main patterns used are: ECS, OOP, MVC, with some Pure Functions.
+	
+	
+	
+
+	
+	
+
+Overview:
+	A dungeon is randomly generated, with enemies, chests, a key, and a boss.
+	The gameplay and dungeons are based on topdown Zelda games.
+	Player beats the dungeon or dies or exits, and is rewarded with loot.
+	Player spends this loot at a shop to upgrade stats, purchase weapons + items.
+	They may also unlock other characters and various other rewards.
+	Player repeatedly beats dungeons.
+
+	Player starts on an overworld map/screen, where they can choose to fast travel to different locations.
+	Locations include several dungeons and shops.
+	Dungeons vary in difficulty and size, with better rewards for harder dungeons.
+	Player chooses a location or opens the options screen.
+
+Main GameLoop:
+	Micro: Explore > Attack Enemy > Pick Up Loot
+	Macro: Choose a Dungeon > Beat/Die/Exit Dungeon > Shop 
+
+
+
+
+
+
+
+Notes
+
+Target ram useage is < 128mb
+	UWP apps vary in ram useage overtime by 2-5mb - usually at random intervals
+	they also create garbage and require collection
+	this means we don't have a full 128mb available
+	the framework takes up around 50mb too
+	we have around 73mb available for the game
+	
+Asset Planning:
+	only load and play 1 background music file at a time, which should be mono, compressed, and short (repeats)
+	this background music will vary per screen (dungeon, shop, etc..), so there will be variation
+	textures should be packed as tight as possible, and animations should use a list of frames
+	this allows animations to jump around a sprite sheet, and doesn't require the animations to be vertically aligned
+	all soundfx should be loaded into the main asset class, outside of screens (we'll never need to unload soundfx)
+	same for all the game's textures (reduces the loading time for dungeons, textures don't take up that much ram, a few mb)
+	
+Rendering:
+	the game renders to a 640x360 texture
+	this texture is then uniformly scaled up to match the display resolution
+	at x2, the game displays at 1280x720
+	at x3, the game displays at 1920x1080 (expected xbox one resolution)
+	this reduces the amount of sprites game draws to a 640x360 viewport
+	the draw loop is usually the most expensive loop, in ticks
+	
+Optimizations:
+	cull sprites from drawing based on camera viewing bounds (visible = false)
+	use pools for actors, gameobjects, sprites - never create an object outside of a constructor/load function
+	Ai is spread across frames, Ai never updates all actors at once
+
+Dungeon Generation/Structure:
+	dungeon are composed of rooms with shared openings (doors)
+	rooms are arranged on two critical paths - the boss path and the key path
+	player must have the key to open the boss door, so two paths must be explored 
+	these paths, or room arrangements, are done sequentially, so the path always connects
+	these paths are connected to a central hub room, to make the dungeon seem non-linear
+	additional rooms are connected to expand the dungeon and make it more interesting
+	additional secret rooms are then connected (bombable walls)
+	rooms each have a type (standard, boss, key, hub, exit)
+	each type has a specific size, this size is equal to or smaller than what the pools can display
+	dungeons are randomly generated each time they are loaded
+	
+Room Design
+	rooms are designed using an editor, which saves the room layout to an XML file
+	all the room XML files are loaded when the game is booted up
+	the dungeon generation algorithm then randomly copies a room dataSet when building the dungeon
+	room XML data is saved by the room type, room data is copied by the room type
+	so there can be a large number of different layouts for the same room type, like a hub room
+	when hero enters a room, the pools are rearranged to represent the room dataSet
+
+Hero Actions:
+	Move (in a direction)
+	Attack (with a weapon)
+	Use (an item)
+	Dash
+	Interact (pickup, throw, push/pull, activate, talk)
+	
+SoundFX
+	different weapons + items have different sounds
+	each actor has a hit + death sound (some are shared)
+	generic dash sound used by all actors
+	some gameobjects have specific sounds
+
+SaveData
+	no dungeon data/room data/enemy data is saved
+	only the player's data is saved...
+	a "best time" timespan for each dungeon
+	weapons, items, stats, gold, loadout
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
