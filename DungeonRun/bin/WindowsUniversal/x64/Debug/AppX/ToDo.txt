@@ -1,0 +1,102 @@
+﻿
+
+
+
+
+
+todo:
+
+
+we need collisionRecs (collisionComponents) on each actor
+
+
+actor + collisionComp
+obj + collisionComp
+CollisionManager.CheckCollisions(Actor)
+CollisionManager.CheckCollisions(GameObject) - projectiles are checked this way
+
+CheckCollisions()
+	matches collisionComp to movementComp.newPosition
+	DOES NOT clip to an integer value! keep the subpixel precision
+
+	checks collisionComp.rec against actors (except itself)
+	checks collisionComp.rec against gameObjs (except itself)
+	*we can flip the blocking boolean for the object, so it ignores itself (without having to check if the objects are the same)
+	**just make sure to flip the blocking boolean back on after collision checks complete
+
+HandleCollision(Actor, Actor)
+HandleCollision(GameObj, GameObj)
+HandleCollision(Actor, GameObj)
+
+
+
+
+we need to check collisions between actors, using collision recs
+	is this expensive? on the xbox?
+	we should check collisions per axis too
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+create gameObj + gameObjPool
+check collisions between actors and gameObjPool
+determine the max size of gameObjPool
+
+create floorObjPool (which is a pool of sprites)
+determine the max size for floorObjPool
+
+create projectilePool (which is a pool of gameObjs)
+set max size for projectilePool
+
+
+
+
+
+
+load in a background sound file (to determine how much space this will take up)
+this file should be loaded into the SCREEN's content manager
+a screen's content manager should be unloaded when the screen exits
+this allows us to load different music for different screens, without touching assets.cs
+
+this sound file should be a set number of bars long, at the standard length
+this should be mono, as compressed down as you can
+can we use mp3? that would be ideal
+does an mp3 get uncompressed when loaded into game? 
+
+re-export sound files aligned to specific bar requirements
+this will require some rewriting / restructuring of melodies and chords
+
+
+
+
+
+
+
+
+sound manager should be handled just like screen manager
+part of game, passed as ref to each screen
+so a screen can just say "soundManager.whatever()"
+

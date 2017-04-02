@@ -4,8 +4,8 @@
   <Platform>WindowsStoreApp</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Gx000000/Desktop/DungeonRun/DungeonRun/DungeonRun/Content/pixelFont.bmp</File>
-    <File>C:/Users/Gx000000/Desktop/DungeonRun/DungeonRun/DungeonRun/Content/Dungeon1.png</File>
-    <File>C:/Users/Gx000000/Desktop/DungeonRun/DungeonRun/DungeonRun/Content/ActorSheet.png</File>
+    <File>C:/Users/Gx000000/Desktop/REPOs/DungeonRun/DungeonRun/DungeonRun/Content/pixelFont.bmp</File>
+    <File>C:/Users/Gx000000/Desktop/REPOs/DungeonRun/DungeonRun/DungeonRun/Content/Dungeon1.png</File>
+    <File>C:/Users/Gx000000/Desktop/REPOs/DungeonRun/DungeonRun/DungeonRun/Content/ActorSheet.png</File>
   </SourceFiles>
 </SourceFileCollection>

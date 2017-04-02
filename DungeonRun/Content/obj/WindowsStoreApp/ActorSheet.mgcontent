@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Gx000000/Desktop/DungeonRun/DungeonRun/DungeonRun/Content/ActorSheet.png</SourceFile>
+  <SourceFile>C:/Users/Gx000000/Desktop/REPOs/DungeonRun/DungeonRun/DungeonRun/Content/ActorSheet.png</SourceFile>
   <SourceTime>2017-03-16T15:27:47.4428445-05:00</SourceTime>
-  <DestFile>C:/Users/Gx000000/Desktop/DungeonRun/DungeonRun/DungeonRun/Content/bin/WindowsStoreApp/ActorSheet.xnb</DestFile>
-  <DestTime>2017-03-16T15:27:54.6795202-05:00</DestTime>
+  <DestFile>C:/Users/Gx000000/Desktop/REPOs/DungeonRun/DungeonRun/DungeonRun/Content/bin/WindowsStoreApp/ActorSheet.xnb</DestFile>
+  <DestTime>2017-04-01T00:51:37.1398499-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T09:05:36-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

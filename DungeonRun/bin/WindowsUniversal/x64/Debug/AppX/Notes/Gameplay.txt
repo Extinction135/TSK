@@ -1,0 +1,55 @@
+﻿
+
+
+
+
+Dungeon Run
+
+
+
+Player battles through a dungeon collecting loot and items.
+Upon completion Player gets an overall score + additional loot.
+This loot is used to purchase upgrades + items from a shop.
+Player then chooses another dungeon to complete.
+
+
+There is no 'overworld' to explore.
+Player chooses the location to visit, either a dungeon or the shop.
+This choice is made from a "navigation" screen that resembles an overworld map.
+The shop isn't a level, it's a screen with a shop-like background + menu for purchasing.
+
+Dungeons are the only real 'levels' in the game.
+Dungeons and how the player controls the Hero are based on Zelda.
+Top down, action-adventure, with weapons + items + loadouts.
+Dungeons are composed of a series of rooms, culminating in a boss fight.
+Each room is composed of enemies + objects.
+In order to beat a dungeon, the hero must find the boss key, then open the boss door, then defeat the boss.
+Dungeons are "single servings" - randomly generated, not saved.
+Exiting the dungeon takes the player back to the navigation screen.
+Beating a dungeon (or dying) displays the score screen.
+
+The Score Screen displays how much time the player has spent in the dungeon,
+if the player was successful or failed (died), additional score bonuses based
+on enemies killed, completion time, loot found, damage taken, etc...
+Additional loot is rewarded based various factors.
+
+The Shop Screen displays a selection of items and upgrades the player can purchase.
+Some objects required gold, other items require different currency.
+Any upgrades or items purchased are included in the player's save file.
+Progress can never be lost - so there is only 1 save file for the game.
+
+The Title screen displays the Game Logo and basic menu options.
+The Options screen contains UI for managing sound, display, game input, etc...
+
+
+
+
+
+
+
+
+
+
+
+
+
