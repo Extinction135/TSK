@@ -19,14 +19,6 @@ X room.cs
 	rectangle (collisionRec)
 	type
 	
-gameObj.cs
-	collisionComp
-	sprite
-	animation component
-	type (describes every gameObj)
-	update (sets animationList, collisionComp based on type)
-	draw (draws the sprite)
-	
 objPool.cs
 	a pool of gameObjects
 	

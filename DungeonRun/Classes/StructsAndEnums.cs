@@ -27,7 +27,7 @@ namespace DungeonRun
         public byte x; //x frame
         public byte y; //y frame
         public byte flipHori; //>0 = flip horizontally
-        public byte flags; //represents various states
+        public byte flags; //represents various states (unused)
         public Byte4(byte X, byte Y, byte Flip, byte Flags)
         {
             x = X; y = Y;

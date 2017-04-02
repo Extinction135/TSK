@@ -15,13 +15,14 @@ namespace DungeonRun
     public class ComponentCollision
     {
         public Rectangle rec; //the rectangle used for checking collisions (using rec.Contains() and rec.Intersects())
-        public Byte2 offset; //offsets rec from sprite.position
+        public int offsetX; //offsets rec from sprite.position
+        public int offsetY; //offsets rec from sprite.position
         public Boolean blocking; //is this actor/obj impassable
 
-        public ComponentCollision(int X, int Y, int Width, int Height, Byte2 Offset, Boolean Blocking)
+        public ComponentCollision(int X, int Y, int Width, int Height, Boolean Blocking)
         {
             rec = new Rectangle(X, Y, Width, Height);
-            offset = Offset;
+            offsetX = 0; offsetY = 0;
             blocking = Blocking;
         }
     }

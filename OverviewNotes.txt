@@ -112,7 +112,11 @@ SaveData
 	
 	
 	
-	
+Design Goals
+	Do the most, with the least amount of code.
+	Never duplicate code
+	Use the design/programming pattern that best solves the problem
+	Dont be afraid of big functions
 	
 	
 	
