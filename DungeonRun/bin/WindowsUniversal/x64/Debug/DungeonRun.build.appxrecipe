@@ -388,15 +388,6 @@
     <AppxPackagedFile Include="C:\Program Files %28x86%29\MonoGame\v3.0\Assemblies\WindowsUniversal\SharpDX.Direct2D1.dll">
       <PackagePath>SharpDX.Direct2D1.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Notes\Architecture.txt">
-      <PackagePath>Notes\Architecture.txt</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Notes\Gameplay.txt">
-      <PackagePath>Notes\Gameplay.txt</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\ToDo.txt">
-      <PackagePath>ToDo.txt</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
     </AppxPackagedFile>
@@ -426,11 +417,20 @@
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\ActorSheet.xnb">
       <PackagePath>Content\ActorSheet.xnb</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\Dungeon1.xnb">
-      <PackagePath>Content\Dungeon1.xnb</PackagePath>
+    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\DungeonSheet.xnb">
+      <PackagePath>Content\DungeonSheet.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\ParticlesProjectilesSheet.xnb">
+      <PackagePath>Content\ParticlesProjectilesSheet.xnb</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\pixelFont.xnb">
       <PackagePath>Content\pixelFont.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\UISheet.xnb">
+      <PackagePath>Content\UISheet.xnb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\WeaponsSheet.xnb">
+      <PackagePath>Content\WeaponsSheet.xnb</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\DungeonRun.xr.xml">
       <PackagePath>DungeonRun.xr.xml</PackagePath>

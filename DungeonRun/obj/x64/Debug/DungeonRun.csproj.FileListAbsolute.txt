@@ -229,7 +229,6 @@ C:\Users\Gx000000\Desktop\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\
 C:\Users\Gx000000\Desktop\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\ActorSheet.xnb
 C:\Users\Gx000000\Desktop\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\DungeonRun.csprojResolveAssemblyReference.cache
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\ActorSheet.xnb
-C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\Dungeon1.xnb
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\pixelFont.xnb
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\App.xbf
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\GamePage.xbf
@@ -369,7 +368,6 @@ C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniv
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\SharpDX.Direct3D11.xml
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\SharpDX.MediaFoundation.xml
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\SharpDX.Direct2D1.xml
-C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\DungeonRun.csprojResolveAssemblyReference.cache
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\App.g.i.cs
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\App.g.cs
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\GamePage.g.i.cs
@@ -458,3 +456,8 @@ C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\q
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\qualifiers.txt.intermediate
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\ProjectArchitectures.txt
+C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\DungeonRun.csprojResolveAssemblyReference.cache
+C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\DungeonSheet.xnb
+C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\ParticlesProjectilesSheet.xnb
+C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\UISheet.xnb
+C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\WeaponsSheet.xnb

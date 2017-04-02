@@ -8,9 +8,9 @@ Assets\StoreLogo.png
 Assets\Wide310x150Logo.scale-200.png
 DungeonRun.xr.xml
 Content\ActorSheet.xnb
-Content\Dungeon1.xnb
+Content\DungeonSheet.xnb
+Content\ParticlesProjectilesSheet.xnb
 Content\pixelFont.xnb
-Notes\Architecture.txt
-Notes\Gameplay.txt
+Content\UISheet.xnb
+Content\WeaponsSheet.xnb
 Properties\Default.rd.xml
-ToDo.txt

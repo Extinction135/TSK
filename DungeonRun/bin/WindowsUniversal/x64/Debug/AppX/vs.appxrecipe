@@ -22,19 +22,19 @@
     <RegisteredPackageID>513a0791-d91c-402c-bb32-731dfc855cf7</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=Gx000000</RegisteredPackagePublisher>
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
-    <JitOptimizationSuppressed>False</JitOptimizationSuppressed>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-04-02T02:27:01.923</Modified>
+      <Modified>2017-04-02T05:02:17.453</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\DungeonRun.exe">
       <PackagePath>entrypoint\DungeonRun.exe</PackagePath>
-      <Modified>2017-04-02T02:27:01.335</Modified>
+      <Modified>2017-04-02T05:02:15.234</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -520,18 +520,6 @@
       <PackagePath>SharpDX.Direct2D1.dll</PackagePath>
       <Modified>2017-03-01T15:05:26.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Notes\Architecture.txt">
-      <PackagePath>Notes\Architecture.txt</PackagePath>
-      <Modified>2017-03-13T21:20:35.904</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Notes\Gameplay.txt">
-      <PackagePath>Notes\Gameplay.txt</PackagePath>
-      <Modified>2017-03-13T19:38:26.357</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\ToDo.txt">
-      <PackagePath>ToDo.txt</PackagePath>
-      <Modified>2017-03-16T23:57:28.250</Modified>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2017-03-13T19:13:55.981</Modified>
@@ -568,15 +556,27 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\ActorSheet.xnb">
       <PackagePath>Content\ActorSheet.xnb</PackagePath>
-      <Modified>2017-04-01T05:51:37.139</Modified>
+      <Modified>2017-04-02T04:59:48.456</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\Dungeon1.xnb">
-      <PackagePath>Content\Dungeon1.xnb</PackagePath>
-      <Modified>2017-04-01T05:51:37.108</Modified>
+    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\DungeonSheet.xnb">
+      <PackagePath>Content\DungeonSheet.xnb</PackagePath>
+      <Modified>2017-04-02T04:59:48.471</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\ParticlesProjectilesSheet.xnb">
+      <PackagePath>Content\ParticlesProjectilesSheet.xnb</PackagePath>
+      <Modified>2017-04-02T04:59:48.471</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\pixelFont.xnb">
       <PackagePath>Content\pixelFont.xnb</PackagePath>
-      <Modified>2017-04-02T02:26:58.853</Modified>
+      <Modified>2017-04-02T05:02:10.639</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\UISheet.xnb">
+      <PackagePath>Content\UISheet.xnb</PackagePath>
+      <Modified>2017-04-02T04:59:48.486</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\WeaponsSheet.xnb">
+      <PackagePath>Content\WeaponsSheet.xnb</PackagePath>
+      <Modified>2017-04-02T04:59:48.486</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\DungeonRun.xr.xml">
       <PackagePath>DungeonRun.xr.xml</PackagePath>
@@ -589,11 +589,11 @@
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-04-01T23:45:29.186</Modified>
+      <Modified>2017-04-02T05:02:17.088</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Core\DungeonRun.exe">
       <PackagePath>DungeonRun.exe</PackagePath>
-      <Modified>2017-04-02T02:27:01.919</Modified>
+      <Modified>2017-04-02T05:02:17.450</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
