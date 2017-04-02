@@ -13,8 +13,7 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
     public struct AnimationGroup
-    {
-        //represents an animation with Down, Up, Left, Right states
+    {   //represents an animation with Down, Up, Left, Right states
         public List<Byte4> down;
         public List<Byte4> up;
         public List<Byte4> right;
@@ -48,7 +47,7 @@ namespace DungeonRun
 
 
 
-    public static class AnimationListManager
+    public static class ActorAnimationListManager
     {
         //sets an actor's animationList based on the actor.type
         public static void SetAnimationList(Actor ActorRef)
@@ -100,7 +99,7 @@ namespace DungeonRun
 
 
         //populates the animation lists
-        static AnimationListManager()
+        static ActorAnimationListManager()
         {
 
             #region Create Hero's Animation List

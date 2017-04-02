@@ -100,8 +100,8 @@ namespace DungeonRun
             if (!stateLocked) { state = inputState; } //if actor can change state, sync state to inputState
 
             //update animations
-            AnimationListManager.SetAnimationGroup(this);
-            AnimationListManager.SetAnimationDirection(this);
+            ActorAnimationListManager.SetAnimationGroup(this);
+            ActorAnimationListManager.SetAnimationDirection(this);
 
 
 
@@ -138,9 +138,9 @@ namespace DungeonRun
             direction = Direction.Down;
 
             //set actor animations lists, group, direction
-            AnimationListManager.SetAnimationList(this);
-            AnimationListManager.SetAnimationGroup(this);
-            AnimationListManager.SetAnimationDirection(this);
+            ActorAnimationListManager.SetAnimationList(this);
+            ActorAnimationListManager.SetAnimationGroup(this);
+            ActorAnimationListManager.SetAnimationDirection(this);
 
             //set actor soundFX
         }

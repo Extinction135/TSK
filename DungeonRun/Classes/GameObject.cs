@@ -14,23 +14,166 @@ namespace DungeonRun
 {
     public class GameObject
     {
+
+
+
+
+
+        public enum ObjGroup
+        {
+            Wall,       //usually blocks hero from passing
+            Door,       //might block/change type upon collision
+            Inspectable,//hero can 'read' or 'inspect' with this obj
+            NPC,        //obj is an NPC hero can talk with
+
+            Object,     //standard object, might collide or interact with hero
+            Liftable,   //can the hero pick this object up, carry it, and throw it?
+            Draggable,  //can the hero push, pull, or drag this object?
+
+            Item,       //picked up off ground, deleted from objects list, held above hero's head
+            Consumable, //picked up off ground, deleted from objects list, not held above hero's head
+            Reward,     //spawned from chest, not actually on objects list, held above hero's head
+        }
+        public ObjGroup objGroup;
+
+
+
         public enum Type
         {
-            Wall,
+
+            #region Room Objects
+
+            Exit,
+            ExitPillar,
+            ExitLightFX,    //overlaid on top of DoorExit, looks like light shines ontop of hero
+
+            DoorOpen,
+            DoorBombable,   //a wall that looks like it's cracked
+            DoorBombed,
+            DoorBoss,
+            DoorTrap,       //an open door waiting for hero to stop colliding with it - becomes shut door
+            DoorShut,       //a closed door sprite
+            DoorFake,       //a wall tile that looks like a shut door, not actually connected to other rooms
+
+            WallStraight,
+            WallStraightCracked,
+            WallInteriorCorner,
+            WallExteriorCorner,
+            WallDecoration,
+            WallDecoration2,
+
+            PitTop,         //top teeth
+            PitBottom,      //bottom teeth
+            PitTrapReady,   //a cracked floor sprite, ready for hero to step on it
+            PitTrapOpening, //a cracked floor sprite, waiting for hero to step off of it - becomes a pitTopBottom
+
+            BossStatue,
+            BossDecal,      //the graphic in front of the boss door
+            WallPillar,     //pillars placed around doors/walls
+            WallTorch,      //torches placed around doors/walls
+
+            #endregion
+
+
+            #region Interactive Objects
+
+            Chest,
+            ChestEmpty,
+
+            BlockDraggable, //blocking, mobile
+            BlockDark,      //blocking, immobile
+            BlockLight,     //blocking, immobile
+            BlockSpikes,
+
+            Lever,          //used to cue room events
+            PotSkull,       //hero can pick and throw pot skulls
+
+            SpikesFloor,    //animated spikes popping in/out of floor
+            Bumper,         //pushes hero upon collision
+            Flamethrower,   //shoots fireballs towards the hero
+            Switch,         //used to cue room events
+            Bridge,         //made to fit between pit objects, allows passage over pits
+
+            SwitchBlockBtn, //toggles switch blocks up/down
+            SwitchBlockDown,//nonblocking
+            SwitchBlockUp,  //blocking
+
+            TorchUnlit,
+            TorchLit,
+            ConveyorBelt,   //moves hero upon collision
+
+            #endregion
+
+
+            //items can be picked up by Hero
+            ItemRupee,      //increases gold +1
+            ItemHeart,      //increases current HP +1
+            ItemHeartPiece, //increases maxHP +0.25
+            ItemGold50,     //increases gold +50
+            ItemMap,        //unhides the dungeon's rooms on map
+            ItemBigKey,     //unlocks the boss room
         }
         public Type type;
 
 
 
+
+
+
+
+
+
+
+
+
         public ComponentSprite compSprite;
         public ComponentCollision compCollision;
+        public ComponentAnimation compAnim;
+        public Direction direction;
 
+
+        public GameObject(SpriteBatch SpriteBatch, Texture2D DungeonSheet)
+        {   //initialize to default value - this data is changed in Update()
+            objGroup = ObjGroup.Object;
+            type = Type.WallStraight;
+            compSprite = new ComponentSprite(SpriteBatch, DungeonSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
+            compCollision = new ComponentCollision(0, 0, 0, 0, new Byte2(0, 0), false);
+            compAnim = new ComponentAnimation(compSprite);
+            direction = Direction.Down;
+        }
 
 
         public void Update()
         {
-            if (type == Type.Wall) { }
+            //all gameobjects exist on the dungeon sheet, so the texture never needs to be changed
+
+
+            //if (type == Type.Wall) { }
             //etc...
+
+            GameObjectAnimListManager.SetAnimationList(this);
+
+
+
+
+            //reduce the amount of code we're using right here
+            if (type == Type.Exit)
+            {
+                objGroup = ObjGroup.Door;
+                compSprite.cellSize.x = 16 * 1; compSprite.cellSize.y = 16 * 3; //nonstandard size
+                compCollision.rec.Width = 16; compCollision.rec.Height = 2;
+                compCollision.rec.X = (int)compSprite.position.X - 8;
+                compCollision.rec.Y = (int)compSprite.position.Y + 32 + 6;
+                //compSprite.zDepth = compSprite.screenManager.game.variables.backgroundLayer;
+                compCollision.blocking = false;
+            }
+
+
+
+
+
+
+
         }
     }
 }
