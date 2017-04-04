@@ -141,6 +141,7 @@ namespace DungeonRun
             compCollision = new ComponentCollision(0, 0, 0, 0, false);
             compAnim = new ComponentAnimation(compSprite);
             direction = Direction.Down;
+            Update();
         }
 
 

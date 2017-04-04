@@ -106,6 +106,7 @@
     <Compile Include="Classes\Camera2D.cs" />
     <Compile Include="Classes\DebugInfo.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
+    <Compile Include="Classes\GameObjectPool.cs" />
     <Compile Include="Classes\Room.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
     <Compile Include="Classes\StructsAndEnums.cs" />
@@ -118,7 +119,7 @@
     <Compile Include="Classes\ComponentAnimation.cs" />
     <Compile Include="Classes\ComponentMovement.cs" />
     <Compile Include="Classes\GameObject.cs" />
-    <Compile Include="Classes\PoolActor.cs" />
+    <Compile Include="Classes\ActorPool.cs" />
     <Compile Include="Classes\ManagerAi.cs" />
     <Compile Include="Classes\ActorAnimListManager.cs" />
     <Compile Include="GamePage.xaml.cs">

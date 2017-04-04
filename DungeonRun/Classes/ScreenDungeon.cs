@@ -38,7 +38,7 @@ namespace DungeonRun
 
 
         public Actor hero;
-        public PoolActor actorPool;
+        public ActorPool actorPool;
 
 
 
@@ -55,7 +55,7 @@ namespace DungeonRun
 
 
             hero = new Actor(this);
-            actorPool = new PoolActor(this);
+            actorPool = new ActorPool(this);
 
             hero.SetType(Actor.Type.Hero, 100, 100);
         }

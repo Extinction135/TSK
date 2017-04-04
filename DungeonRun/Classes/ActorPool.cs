@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class PoolActor
+    public class ActorPool
     {
         //manages the pool of actors
         public int poolSize = 60; //60 actors, 60 fps = 1 actor gets AI input each frame
@@ -22,7 +22,7 @@ namespace DungeonRun
         
 
 
-        public PoolActor(DungeonScreen Screen)
+        public ActorPool(DungeonScreen Screen)
         {
             pool = new List<Actor>();
             for (counter = 0; counter < poolSize; counter++)
