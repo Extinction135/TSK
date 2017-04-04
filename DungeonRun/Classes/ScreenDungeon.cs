@@ -39,6 +39,7 @@ namespace DungeonRun
 
         public Actor hero;
         public ActorPool actorPool;
+        public GameObjectPool objPool;
 
 
 
@@ -55,9 +56,10 @@ namespace DungeonRun
 
 
             hero = new Actor(this);
-            actorPool = new ActorPool(this);
-
             hero.SetType(Actor.Type.Hero, 100, 100);
+
+            actorPool = new ActorPool(this);
+            objPool = new GameObjectPool(this);
         }
 
 
@@ -78,6 +80,7 @@ namespace DungeonRun
             //update actors
             hero.Update();
             actorPool.Update();
+            objPool.Update();
 
             //track camera to hero
             camera.targetZoom = 1.0f;
@@ -110,7 +113,7 @@ namespace DungeonRun
 
             hero.Draw();
             actorPool.Draw();
-
+            objPool.Draw();
             screenManager.spriteBatch.End();
 
 

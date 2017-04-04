@@ -137,7 +137,7 @@ namespace DungeonRun
         {   //initialize to default value - this data is changed in Update()
             objGroup = ObjGroup.Object;
             type = Type.WallStraight;
-            compSprite = new ComponentSprite(SpriteBatch, DungeonSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
+            compSprite = new ComponentSprite(SpriteBatch, DungeonSheet, new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
             compCollision = new ComponentCollision(0, 0, 0, 0, false);
             compAnim = new ComponentAnimation(compSprite);
             direction = Direction.Down;
