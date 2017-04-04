@@ -19,9 +19,11 @@ X room.cs
 	rectangle (collisionRec)
 	type
 	
-objPool.cs
+x objPool.cs
 	a pool of gameObjects
-	
+
+
+
 spritePool.cs
 	a pool of sprites, used for room flooring
 	
