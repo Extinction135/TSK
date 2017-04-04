@@ -19,7 +19,6 @@ namespace DungeonRun
         public List<GameObject> pool;
         public int counter;
 
-
         public GameObjectPool(DungeonScreen Screen)
         {
             pool = new List<GameObject>();
@@ -29,21 +28,22 @@ namespace DungeonRun
             }
         }
 
-
         public void Update()
         {
             for (counter = 0; counter < poolSize; counter++)
             {
-                pool[counter].compAnim.Animate();
+                if (pool[counter].active)
+                { pool[counter].compAnim.Animate(); }
+                
             }
         }
-
 
         public void Draw()
         {
             for (counter = 0; counter < poolSize; counter++)
             {
-                pool[counter].compSprite.Draw();
+                if (pool[counter].active)
+                { pool[counter].compSprite.Draw(); }
             }
         }
     }

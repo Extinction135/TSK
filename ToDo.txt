@@ -11,6 +11,14 @@ make a testing room
 
 
 
+
+
+create a set of walls around the hero, using the gameobjs pool
+set the type to wall of each obj you move (using some kind of BuildRoom() function)
+hide the other gameObjs (flip a boolean)
+
+
+
 dungeon.cs
 	a collection of rooms (including an exit, hub, key, + boss room)
 	draws the current room

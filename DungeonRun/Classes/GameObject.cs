@@ -132,6 +132,7 @@ namespace DungeonRun
         public ComponentCollision compCollision;
         public ComponentAnimation compAnim;
         public Direction direction;
+        public Boolean active; //does this object draw, update?
 
         public GameObject(SpriteBatch SpriteBatch, Texture2D DungeonSheet)
         {   //initialize to default value - this data is changed in Update()
@@ -141,6 +142,7 @@ namespace DungeonRun
             compCollision = new ComponentCollision(0, 0, 0, 0, false);
             compAnim = new ComponentAnimation(compSprite);
             direction = Direction.Down;
+            active = true;
             Update();
         }
 
