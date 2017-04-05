@@ -14,9 +14,6 @@ namespace DungeonRun
 {
     public static class GameObjectFunctions
     {
-
-
-
         public static void SetType(GameObject Obj, GameObject.Type Type)
         {
             Obj.type = Type;

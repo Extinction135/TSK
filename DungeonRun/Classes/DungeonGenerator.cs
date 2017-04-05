@@ -64,25 +64,23 @@ namespace DungeonRun
                         obj.compSprite.position.X = i * 16;
                         obj.compSprite.position.Y = 0 * 16 - 16;
                         obj.direction = Direction.Down;
-                        obj.Update();
+                        GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
 
                         if (i == 0)
                         {   //topleft corner
                             GameObject corner = DungeonScreen.objPool.GetObj();
                             corner.compSprite.position.X = -16;
                             corner.compSprite.position.Y = -16;
-                            corner.type = GameObject.Type.WallInteriorCorner;
                             corner.direction = Direction.Down;
-                            corner.Update();
+                            GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
                         }
                         else if (i == width-1)
                         {   //topright corner
                             GameObject corner = DungeonScreen.objPool.GetObj();
                             corner.compSprite.position.X = width * 16;
                             corner.compSprite.position.Y = -16;
-                            corner.type = GameObject.Type.WallInteriorCorner;
                             corner.direction = Direction.Right;
-                            corner.Update();
+                            GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
                         }
                     }
 
@@ -96,25 +94,23 @@ namespace DungeonRun
                         obj.compSprite.position.X = i * 16;
                         obj.compSprite.position.Y = height * 16;
                         obj.direction = Direction.Up;
-                        obj.Update();
+                        GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
 
                         if (i == 0)
                         {   //topleft corner
                             GameObject corner = DungeonScreen.objPool.GetObj();
                             corner.compSprite.position.X = -16;
                             corner.compSprite.position.Y = height * 16;
-                            corner.type = GameObject.Type.WallInteriorCorner;
                             corner.direction = Direction.Left;
-                            corner.Update();
+                            GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
                         }
                         else if (i == width - 1)
                         {   //topright corner
                             GameObject corner = DungeonScreen.objPool.GetObj();
                             corner.compSprite.position.X = width * 16;
                             corner.compSprite.position.Y = height * 16;
-                            corner.type = GameObject.Type.WallInteriorCorner;
                             corner.direction = Direction.Up;
-                            corner.Update();
+                            GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
                         }
                     }
 
@@ -128,7 +124,7 @@ namespace DungeonRun
                         obj.compSprite.position.X = i * 16 - 16;
                         obj.compSprite.position.Y = j * 16;
                         obj.direction = Direction.Left;
-                        obj.Update();
+                        GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
                         DungeonScreen.objPool.counter++;
                     }
                     else if (i == width-1)
@@ -137,7 +133,7 @@ namespace DungeonRun
                         obj.compSprite.position.X = i * 16 + 16;
                         obj.compSprite.position.Y = j * 16;
                         obj.direction = Direction.Right;
-                        obj.Update();
+                        GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
                         DungeonScreen.objPool.counter++;
                     }
 

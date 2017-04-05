@@ -14,34 +14,8 @@ namespace DungeonRun
 {
     public static class ActorFunctions
     {
-
         //all the functions that operate on an actor class
-
-
-
-
-        //input functions
-
-        //collision functions
-
-        //movement functions
-
-        //draw functions
-
-
-
-        //set the actor's type
-
-
-
-
-        //to move an actor/obj: 
-        //1. projectMovement via move component
-        //2. update the collisionRec and check collisions (move or block)
-        //3. place the sprite at the collision recs position
-
-        //this requires collision, movement, and sprite components
-
+        //input
 
 
         public static void SetType(Actor Actor, Actor.Type Type)
@@ -55,24 +29,23 @@ namespace DungeonRun
             ActorAnimationListManager.SetAnimationList(Actor);
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
+            
             //set actor soundFX
+
+            //set the collisionRec parameters based on the Type
+            Actor.compCollision.rec.Width = 16;
+            Actor.compCollision.rec.Height = 16;
+            Actor.compCollision.offsetX = 0;
+            Actor.compCollision.offsetY = 0;
+
             //we may need to bring the actor back to life (based on their type)
         }
-
-
 
         public static void Teleport(Actor Actor, float X, float Y)
         {
             Actor.compMove.position.X = X;
             Actor.compMove.position.Y = Y;
         }
-
-
-
-
-        //match the actor's collrec to it's sprite, centering it and applying the collrec offset
-
-
 
         public static void Update(Actor Actor)
         {
@@ -86,28 +59,11 @@ namespace DungeonRun
             ActorAnimationListManager.SetAnimationDirection(Actor);
 
             //play the actor's animation
-            Actor.compAnim.Animate(); 
+            Actor.compAnim.Animate();
 
-            //project movement via move component
-            Actor.compMove.ProjectMovement();
-
-            //update the collision component's rectangle
-
-            //check for collisions between collRec + gameObjPool
-
-            //match collisionRec to projected position
-            Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X;
-            Actor.compCollision.rec.Y = (int)Actor.compMove.newPosition.Y;
-            //update to new position (no collision checking for now)
-            Actor.compMove.position = Actor.compMove.newPosition;
-
-            //update sprite position
-            Actor.compSprite.position = Actor.compMove.position;
-            Actor.compSprite.SetZdepth();
+            //move actor based on direction & check collisions
+            CollisionFunctions.Move(Actor.compMove, Actor.compCollision, Actor.compSprite);
         }
-
-
-
 
         public static void Draw(Actor Actor, ScreenManager ScreenManager)
         {
@@ -119,7 +75,5 @@ namespace DungeonRun
                 Actor.compCollision.rec,
                 ScreenManager.game.colorScheme.collisionActor);
         }
-
-
     }
 }

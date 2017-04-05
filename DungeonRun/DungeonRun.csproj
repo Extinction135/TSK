@@ -99,18 +99,19 @@
   <ItemGroup>
     <Compile Include="Classes\ActorFunctions.cs" />
     <Compile Include="Classes\Assets.cs" />
-    <Compile Include="Classes\ComponentCollision.cs" />
     <Compile Include="Classes\Actor.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Camera2D.cs" />
+    <Compile Include="Classes\Components.cs" />
     <Compile Include="Classes\DebugInfo.cs" />
     <Compile Include="Classes\DungeonGenerator.cs" />
     <Compile Include="Classes\FloorPool.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
     <Compile Include="Classes\GameObjectFunctions.cs" />
     <Compile Include="Classes\GameObjectPool.cs" />
+    <Compile Include="Classes\CollisionFunctions.cs" />
     <Compile Include="Classes\Room.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
     <Compile Include="Classes\StructsAndEnums.cs" />
@@ -121,7 +122,6 @@
     <Compile Include="Classes\ComponentSprite.cs" />
     <Compile Include="Classes\Text.cs" />
     <Compile Include="Classes\ComponentAnimation.cs" />
-    <Compile Include="Classes\ComponentMovement.cs" />
     <Compile Include="Classes\GameObject.cs" />
     <Compile Include="Classes\ActorPool.cs" />
     <Compile Include="Classes\AiManager.cs" />

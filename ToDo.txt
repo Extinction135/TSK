@@ -7,13 +7,37 @@
 todo:
 
 
-make a testing room
 
 
+collisions + movement
+	should be generalized for objects + actors, so they share the same codepath
+	this means the algorithm operates on components, not classes
+	it requires move, collision, and sprite components
+	this should be a static global class
+	
+	check against objPool
+	check against actorPool
+	
+	
+	
+	
+	
+	
+component animation needs to be fixed - shouldnt have a reference to spriteComp at all
+	instead we'll create a global class that handles the animation of these components
+	
+consolidate components into components.cs
 
 
-
-
+	
+	
+	
+	
+	
+	
+we could move sprite functions into a global class too, just like actor + gameObj
+	
+	
 
 
 
