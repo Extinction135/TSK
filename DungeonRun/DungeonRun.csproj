@@ -109,6 +109,7 @@
     <Compile Include="Classes\DungeonGenerator.cs" />
     <Compile Include="Classes\FloorPool.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
+    <Compile Include="Classes\GameObjectFunctions.cs" />
     <Compile Include="Classes\GameObjectPool.cs" />
     <Compile Include="Classes\Room.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />

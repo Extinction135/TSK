@@ -35,6 +35,13 @@ namespace DungeonRun
 
 
 
+        //to move an actor/obj: 
+        //1. projectMovement via move component
+        //2. update the collisionRec and check collisions (move or block)
+        //3. place the sprite at the collision recs position
+
+        //this requires collision, movement, and sprite components
+
 
 
         public static void SetType(Actor Actor, Actor.Type Type)
@@ -78,10 +85,16 @@ namespace DungeonRun
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
 
-            Actor.compAnim.Animate(); //play the actor's animation
+            //play the actor's animation
+            Actor.compAnim.Animate(); 
 
-            //project movement
+            //project movement via move component
             Actor.compMove.ProjectMovement();
+
+            //update the collision component's rectangle
+
+            //check for collisions between collRec + gameObjPool
+
             //match collisionRec to projected position
             Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X;
             Actor.compCollision.rec.Y = (int)Actor.compMove.newPosition.Y;

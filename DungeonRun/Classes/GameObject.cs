@@ -14,10 +14,6 @@ namespace DungeonRun
 {
     public class GameObject
     {
-
-
-
-
         public enum ObjGroup
         {
             Wall,       //usually blocks hero from passing
@@ -33,12 +29,6 @@ namespace DungeonRun
             Consumable, //picked up off ground, deleted from objects list, not held above hero's head
             Reward,     //spawned from chest, not actually on objects list, held above hero's head
         }
-        public ObjGroup objGroup;
-
-
-
-
-
         public enum Type
         {
 
@@ -107,6 +97,8 @@ namespace DungeonRun
             #endregion
 
 
+            #region Items
+
             //items can be picked up by Hero
             ItemRupee,      //increases gold +1
             ItemHeart,      //increases current HP +1
@@ -114,19 +106,15 @@ namespace DungeonRun
             ItemGold50,     //increases gold +50
             ItemMap,        //unhides the dungeon's rooms on map
             ItemBigKey,     //unlocks the boss room
+
+            #endregion
+
         }
+        
+
+
+        public ObjGroup objGroup;
         public Type type;
-
-
-
-
-
-
-
-
-
-
-
 
         public ComponentSprite compSprite;
         public ComponentCollision compCollision;
@@ -143,244 +131,7 @@ namespace DungeonRun
             compAnim = new ComponentAnimation(compSprite);
             direction = Direction.Down;
             active = true;
-            Update();
-        }
-
-
-        public void Update()
-        {
-            //all gameobjects exist on the dungeon sheet, so the texture never needs to be changed
-
-            //sprites are created facing Down, but we will need to set the spite rotation based on direction
-            compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
-            if (direction == Direction.Up) { compSprite.rotation = Rotation.Clockwise180; }
-            else if (direction == Direction.Right) { compSprite.rotation = Rotation.Clockwise90; }
-            else if (direction == Direction.Left) { compSprite.rotation = Rotation.Clockwise270; }
-
-            //update the object's current animation based on it's type
-            GameObjectAnimListManager.SetAnimationList(this);
-
-            //assume cell size is 16x16 (most are)
-            compSprite.cellSize.x = 16 * 1; compSprite.cellSize.y = 16 * 1;
-            compCollision.blocking = true; //assume the object is blocking (most are)
-            objGroup = ObjGroup.Object; //assume object is a generic object
-            compCollision.rec.Width = 16; //assume collisionRec is 16x16
-            compCollision.rec.Height = 16; //(most are)
-            compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
-            compCollision.offsetY = -8; //(most are)
-            compSprite.zOffset = 0;
-
-            //we'll need to apply the compColl.offset value to the collisionRec
-            //we'll need to do that because the object may be moving
-            //that should only happen if an object moves (dragging block, skull pot, spike block)
-            //we'll set the gameObj.sprite.zDepth elsewhere - not here
-
-
-
-
-            #region Room Objects
-
-            if (type == Type.Exit)
-            {
-                compSprite.cellSize.y = 16 * 3; //nonstandard size
-                objGroup = ObjGroup.Door;
-                compCollision.rec.Height = 2;
-                compCollision.offsetY = 32 + 6;
-                compCollision.blocking = false;
-                //sorts to floor layer (or has very positive zDepth)
-            }
-            else if (type == Type.ExitPillarLeft || type == Type.ExitPillarRight)
-            {
-                compSprite.cellSize.y = 16 * 3; //nonstandard size
-                compCollision.rec.Height = 32 - 5;
-                compCollision.offsetY = 14;
-            }
-            else if (type == Type.ExitLightFX)
-            {
-                compSprite.cellSize.y = 16 * 2; //nonstandard size
-                compCollision.offsetY = 0;
-                //sorts to roof layer (or has very negative zDepth)
-            }
-
-
-            else if (type == Type.DoorOpen || type == Type.DoorBombed || type == Type.DoorTrap)
-            {
-                compCollision.blocking = false;
-                if (direction == Direction.Down) { compSprite.zOffset = 4; } else { compSprite.zOffset = 16; }
-                objGroup = ObjGroup.Door;
-            }
-            else if (type == Type.DoorBombable || type == Type.DoorBoss || type == Type.DoorShut || type == Type.DoorFake)
-            {
-                objGroup = ObjGroup.Door;
-            }
-
-
-            else if (type == Type.WallStraight || type == Type.WallStraightCracked || type == Type.WallInteriorCorner ||
-                type == Type.WallExteriorCorner || type == Type.WallPillar || type == Type.WallDecoration)
-            {
-                objGroup = ObjGroup.Wall;
-            }
-
-
-            else if (type == Type.PitTop)
-            {
-                //pits dont collide with actors
-            }
-            else if (type == Type.PitBottom)
-            {
-                //instead we'll use an animated liquid obj for collision checking
-                //pits just sit ontop of this object as decoration
-            }
-            else if (type == Type.PitTrapReady || type == Type.PitTrapOpening)
-            {
-                compCollision.offsetX = -6; compCollision.offsetY = -6;
-            }
-
-
-            else if (type == Type.BossStatue)
-            {
-                objGroup = ObjGroup.Draggable;
-                compCollision.rec.Height = 8;
-                compCollision.offsetY = -1;
-            }
-            else if (type == Type.BossDecal)
-            {
-                compSprite.zOffset = -32;
-                compCollision.blocking = false;
-            }
-            else if (type == Type.Pillar)
-            {
-                compSprite.zOffset = 2;
-            }
-            else if (type == Type.WallTorch)
-            {
-                compCollision.blocking = false;
-            }
-
-            #endregion
-
-
-            #region Interactive Objects
-
-            else if (type == Type.Chest || type == Type.ChestEmpty)
-            {
-                compCollision.offsetX = -7; compCollision.offsetY = -3;
-                compCollision.rec.Width = 14; compCollision.rec.Height = 11;
-                compSprite.zOffset = -7;
-            }
-
-
-            else if (type == Type.BlockDraggable)
-            {
-                compCollision.rec.Height = 12;
-                compCollision.offsetY = -4;
-                compSprite.zOffset = -7;
-                objGroup = ObjGroup.Draggable;
-            }
-            else if (type == Type.BlockDark || type == Type.BlockLight)
-            {
-                compSprite.zOffset = -7;
-            }
-            else if (type == Type.BlockSpikes)
-            {
-                compCollision.offsetX = -7; compCollision.offsetY = -7;
-                compCollision.rec.Width = 14; compCollision.rec.Height = 14;
-                compSprite.zOffset = -7;
-                compCollision.blocking = false;
-            }
-
-            else if (type == Type.Lever)
-            {
-                compCollision.offsetX = -6; compCollision.offsetY = 1;
-                compCollision.rec.Width = 12; compCollision.rec.Height = 3;
-                compSprite.zOffset = -7;
-            }
-            else if (type == Type.PotSkull)
-            {
-                compCollision.offsetX = -5; compCollision.offsetY = -4;
-                compCollision.rec.Width = 10; compCollision.rec.Height = 12;
-                compSprite.zOffset = -7;
-                objGroup = ObjGroup.Liftable;
-            }
-
-
-            else if (type == Type.SpikesFloor || type == Type.Flamethrower || type == Type.Switch || type == Type.Bridge)
-            {
-                compSprite.zOffset = -32;
-                compCollision.blocking = false;
-            }
-            else if (type == Type.Bumper)
-            {
-                compCollision.blocking = false;
-            }
-
-
-            else if (type == Type.SwitchBlockBtn)
-            {
-                compCollision.offsetX = -5; compCollision.offsetY = -4;
-                compCollision.rec.Width = 10; compCollision.rec.Height = 12;
-                compSprite.zOffset = -7;
-            }
-            else if (type == Type.SwitchBlockDown)
-            {
-                compSprite.zOffset = -16;
-                compCollision.blocking = false;
-            }
-            else if (type == Type.SwitchBlockUp)
-            {
-                compCollision.offsetX = -7; compCollision.offsetY = -7;
-                compCollision.rec.Width = 14; compCollision.rec.Height = 14;
-                compSprite.zOffset = -7;
-            }
-
-
-            else if (type == Type.TorchUnlit || type == Type.TorchLit)
-            {
-                compCollision.offsetX = -7; compCollision.offsetY = -4;
-                compCollision.rec.Width = 14; compCollision.rec.Height = 12;
-                compSprite.zOffset = -7;
-            }
-            else if (type == Type.ConveyorBelt)
-            {
-                compSprite.zOffset = -32;
-                compCollision.blocking = false;
-                //directions are slightly different for this obj
-                if (direction == Direction.Right) { compSprite.rotation = Rotation.Clockwise270; }
-                else if (direction == Direction.Left) { compSprite.rotation = Rotation.Clockwise90; }
-            }
-
-            #endregion
-
-
-            else if (type == Type.ItemRupee)
-            {
-                compSprite.cellSize.x = 8; //non standard cellsize
-                compCollision.offsetX = -4; compCollision.offsetY = -5;
-                compCollision.rec.Width = 8; compCollision.rec.Height = 10;
-                compCollision.blocking = false;
-                objGroup = ObjGroup.Item;
-            }
-            else if (type == Type.ItemHeart)
-            {
-                compSprite.cellSize.x = 8; //non standard cellsize
-                compCollision.offsetX = -4; compCollision.offsetY = -3;
-                compCollision.rec.Width = 8; compCollision.rec.Height = 7;
-                compCollision.blocking = false;
-                objGroup = ObjGroup.Item;
-            }
-            else if (type == Type.ItemMap || type == Type.ItemBigKey)
-            {
-                compCollision.offsetX = -5; compCollision.offsetY = -4;
-                compCollision.rec.Width = 10; compCollision.rec.Height = 12;
-                compSprite.zOffset = -7;
-                compCollision.blocking = false;
-                objGroup = ObjGroup.Item;
-            }
-            else if (type == Type.ItemHeartPiece || type == Type.ItemGold50)
-            {
-                compCollision.blocking = false;
-                objGroup = ObjGroup.Reward;
-            }
+            GameObjectFunctions.SetType(this, type);
         }
     }
 }

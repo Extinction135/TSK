@@ -20,17 +20,8 @@ namespace DungeonRun
             Blob,
         }
         public enum State
-        {
-            Idle,
-            Move,
-            
-            Attack, //attacks with weapon
-            Use, //uses item
-            Dash, //moves quickly
-            Interact, //picks up, throws, opens a gameobject
-
-            Hit,
-            Dead,
+        {   //attacks with weapon, uses item, interacts with game object
+            Idle, Move, Attack,  Use,  Dash,  Interact,  Hit, Dead,
         }
 
         public DungeonScreen screen;
@@ -55,7 +46,6 @@ namespace DungeonRun
         public Actor(DungeonScreen DungeonScreen)
         {
             screen = DungeonScreen;
-
             //create the actor components
             compSprite = new ComponentSprite(screen.screenManager.spriteBatch, 
                 screen.assets.actorsSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
@@ -63,10 +53,7 @@ namespace DungeonRun
             compInput = new ComponentInput(this);
             compMove = new ComponentMovement();
             compCollision = new ComponentCollision(10, 10, 16, 16, true);
-
-            //initialize the actor to type hero
-            type = Type.Hero; //init to hero
-            active = true;
+            //set the actor type to hero, teleport to position
             ActorFunctions.SetType(this, Type.Hero);
             ActorFunctions.Teleport(this, compSprite.position.X, compSprite.position.Y);
         }
