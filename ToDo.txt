@@ -18,8 +18,6 @@ make a testing room
 
 
 
-write debug info on all the pools (floors, objects, actors)
-
 draw the collision recs for actors and objects
 
 add editor buttons to top of window: draw collisions

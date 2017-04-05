@@ -14,13 +14,11 @@ namespace DungeonRun
 {
     public class Actor
     {
-
         public enum Type
         {
             Hero,
             Blob,
         }
-
         public enum State
         {
             Idle,
@@ -35,20 +33,9 @@ namespace DungeonRun
             Dead,
         }
 
-
-
-
-
-
-
-
-
-
-
         public DungeonScreen screen;
 
         public Type type; //the type of actor this is
-
         public State state; //what actor is doing this frame
         public State inputState; //what input wants actor to do this frame
         public Boolean stateLocked; //can actor change state? else actor must wait for state to unlock
@@ -61,21 +48,8 @@ namespace DungeonRun
 
         public ActorAnimationList animList; 
         public AnimationGroup animGroup;
-
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?
-        
-
-
-
-
-
-
-
-
-
-
-
 
         //actor requires a reference to the various textures/sounds it may use - all the possible textures
         public Actor(DungeonScreen DungeonScreen)
@@ -88,64 +62,13 @@ namespace DungeonRun
             compAnim = new ComponentAnimation(compSprite);
             compInput = new ComponentInput(this);
             compMove = new ComponentMovement();
+            compCollision = new ComponentCollision(10, 10, 16, 16, true);
 
             //initialize the actor to type hero
             type = Type.Hero; //init to hero
             active = true;
-            SetType(type, compSprite.position.X, compSprite.position.Y);
-        }
-
-        public void Update()
-        {
-            compInput.SetInputState(); //get the input for this frame, set actor.direction
-            if (!stateLocked) { state = inputState; } //if actor can change state, sync state to inputState
-
-            //update animations
-            ActorAnimationListManager.SetAnimationGroup(this);
-            ActorAnimationListManager.SetAnimationDirection(this);
-
-
-
-
-            compAnim.Animate(); //play the actor's animation
-
-            //project movement
-            compMove.ProjectMovement();
-            compMove.position = compMove.newPosition; //update to new position (no collision checking for now)
-
-            //update sprite position
-            compSprite.position = compMove.position;
-            compSprite.SetZdepth();
-        }
-
-        public void Draw()
-        {
-            compSprite.Draw();
-            //draw actor weapon
-        }
-
-
-
-        
-
-        //this function needs to consider the current state of the actor
-        //we may need to bring an actor back to life, for example
-        public void SetType(Actor.Type Type, float X, float Y)
-        {
-            type = Type;
-            compMove.position.X = X;
-            compMove.position.Y = Y;
-            compMove.direction = Direction.None;
-            direction = Direction.Down;
-            state = State.Idle;
-            active = true;
-
-            //set actor animations lists, group, direction
-            ActorAnimationListManager.SetAnimationList(this);
-            ActorAnimationListManager.SetAnimationGroup(this);
-            ActorAnimationListManager.SetAnimationDirection(this);
-
-            //set actor soundFX
+            ActorFunctions.SetType(this, Type.Hero);
+            ActorFunctions.Teleport(this, compSprite.position.X, compSprite.position.Y);
         }
     }
 }

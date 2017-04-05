@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ActorFunctions.cs" />
     <Compile Include="Classes\Assets.cs" />
     <Compile Include="Classes\ComponentCollision.cs" />
     <Compile Include="Classes\Actor.cs" />
@@ -114,7 +115,7 @@
     <Compile Include="Classes\StructsAndEnums.cs" />
     <Compile Include="Classes\InputHelper.cs" />
     <Compile Include="Classes\Screen.cs" />
-    <Compile Include="Classes\ManagerScreen.cs" />
+    <Compile Include="Classes\ScreenManager.cs" />
     <Compile Include="Classes\ComponentInput.cs" />
     <Compile Include="Classes\ComponentSprite.cs" />
     <Compile Include="Classes\Text.cs" />
@@ -122,7 +123,7 @@
     <Compile Include="Classes\ComponentMovement.cs" />
     <Compile Include="Classes\GameObject.cs" />
     <Compile Include="Classes\ActorPool.cs" />
-    <Compile Include="Classes\ManagerAi.cs" />
+    <Compile Include="Classes\AiManager.cs" />
     <Compile Include="Classes\ActorAnimListManager.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>

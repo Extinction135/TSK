@@ -16,13 +16,19 @@ namespace DungeonRun
     {
         Actor actor;
         //InputData that an actor needs to know about
-        public Direction direction;
-        public Boolean attack;
-        public Boolean use;
-        public Boolean dash;
-        public Boolean interact;
+        public Direction direction = Direction.None;
+        public Boolean attack = false;
+        public Boolean use = false;
+        public Boolean dash = false;
+        public Boolean interact = false;
 
-        public ComponentInput(Actor Actor) { actor = Actor; ResetInputData(); }
+        public ComponentInput(Actor Actor) { actor = Actor; }
+
+
+
+
+
+
 
         public void ResetInputData()
         {

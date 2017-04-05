@@ -154,7 +154,8 @@ namespace DungeonRun
             {
                 //Actor actor = DungeonScreen.actorPool.pool[DungeonScreen.actorPool.counter];
                 Actor actor = DungeonScreen.actorPool.GetActor();
-                actor.SetType(Actor.Type.Blob, 100, 100);
+                ActorFunctions.SetType(actor, Actor.Type.Blob);
+                ActorFunctions.Teleport(actor, 100, 100);
             }
 
 

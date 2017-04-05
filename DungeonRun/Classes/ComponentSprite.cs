@@ -14,7 +14,7 @@ namespace DungeonRun
 {
     public class ComponentSprite
     {
-        SpriteBatch spriteBatch;
+        public SpriteBatch spriteBatch;
 
         public Texture2D texture;
         public Vector2 position;

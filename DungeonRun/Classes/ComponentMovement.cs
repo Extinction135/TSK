@@ -14,10 +14,10 @@ namespace DungeonRun
 {
     public class ComponentMovement
     {
-        public Vector2 position; //current position of actor/object
-        public Vector2 newPosition; //projected position
+        public Vector2 position = new Vector2(100,100); //current position of actor/object
+        public Vector2 newPosition = new Vector2(100, 100); //projected position
         
-        public Direction direction; //the direction actor/obj is moving
+        public Direction direction = Direction.Down; //the direction actor/obj is moving
         public Vector2 magnitude = new Vector2(0,0); //how much actor/obj moves each frames
         public float speed = 0.25f; //controls magnitude
         public float friction = 0.75f; //reduces magnitude each frame

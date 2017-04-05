@@ -55,7 +55,8 @@ namespace DungeonRun
 
 
             hero = new Actor(this);
-            hero.SetType(Actor.Type.Hero, 100, 100);
+            ActorFunctions.SetType(hero, Actor.Type.Hero);
+            ActorFunctions.Teleport(hero, 100, 100);
 
             actorPool = new ActorPool(this);
             objPool = new GameObjectPool(this);
@@ -80,7 +81,7 @@ namespace DungeonRun
             stopWatch.Reset(); stopWatch.Start();
 
             //update actors
-            hero.Update();
+            ActorFunctions.Update(hero);
             actorPool.Update();
             objPool.Update();
             
@@ -114,8 +115,8 @@ namespace DungeonRun
                         );
             floorPool.Draw();
             objPool.Draw();
-            actorPool.Draw();
-            hero.Draw();
+            actorPool.Draw(screenManager);
+            ActorFunctions.Draw(hero, screenManager);
             screenManager.spriteBatch.End();
 
 
