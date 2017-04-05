@@ -19,8 +19,9 @@ namespace DungeonRun
         public List<Actor> pool;
         public int counter;
         public int index;
-        public int activeActor = 0;
-        
+        public int activeActor = 1; //skip the 0th actor, that's HERO
+
+        public Actor hero;
 
         public ActorPool(DungeonScreen Screen)
         {
@@ -28,10 +29,11 @@ namespace DungeonRun
             for (counter = 0; counter < poolSize; counter++)
             {
                 pool.Add(new Actor(Screen));
-                ActorFunctions.SetType(pool[counter], Actor.Type.Blob);
-                ActorFunctions.Teleport(pool[counter], 100, 100);
+                ActorFunctions.SetType(pool[counter], Actor.Type.Hero);
+                ActorFunctions.Teleport(pool[counter], 0, 0);
             }
-            index = 0; Reset();
+            index = 1; Reset();
+            hero = pool[0]; //the hero exists at index 0 in the actorPool
         }
 
         public void Reset()
@@ -47,7 +49,7 @@ namespace DungeonRun
             Actor actor = pool[index];
             actor.active = true;
             index++;
-            if(index > poolSize) { index = 0; }
+            if(index > poolSize) { index = 1; } //skip 0th actor (HERO)
             return actor;
         }
 
@@ -68,7 +70,7 @@ namespace DungeonRun
             pool[activeActor].compInput.ResetInputData(); //clear input data for active actor
             AiManager.Think(pool[activeActor].compInput); //pass active actor to AiManager
             activeActor++;
-            if(activeActor >= poolSize) { activeActor = 0; }
+            if(activeActor >= poolSize) { activeActor = 1; } //skip 0th actor (HERO)
 
             for (counter = 0; counter < poolSize; counter++)
             {

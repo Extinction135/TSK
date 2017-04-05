@@ -8,17 +8,16 @@ todo:
 
 
 
-hero needs to be in the actor's pool
-he should always be [0], so we can refer to him easily
-
-this simplifies/reduces codepath necessary to check other actors against him and vice versa
 
 
 
+move the test room down 16 pixels, so the actors dont disappear when they reach the top
 
-
-
-
+define room.cs, which describes the width and height of a room, and has a .type enum
+	create a room instance, then pass that to the room creator routine
+	place enemies all around within the room, they should not overlap
+	place hero in the center of the room
+	
 
 
 	

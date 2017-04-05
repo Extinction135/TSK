@@ -33,11 +33,7 @@ namespace DungeonRun
 
         public Camera2D camera;
         public GameTime gameTime;
-
-
-
-
-        public Actor hero;
+        
         public ActorPool actorPool;
         public GameObjectPool objPool;
         public FloorPool floorPool;
@@ -52,12 +48,6 @@ namespace DungeonRun
             debugInfo = new DebugInfo(this);
             camera = new Camera2D(screenManager);
 
-
-
-            hero = new Actor(this);
-            ActorFunctions.SetType(hero, Actor.Type.Hero);
-            ActorFunctions.Teleport(hero, 100, 100);
-
             actorPool = new ActorPool(this);
             objPool = new GameObjectPool(this);
             floorPool = new FloorPool(this);
@@ -70,7 +60,7 @@ namespace DungeonRun
         public override void HandleInput(InputHelper Input, GameTime GameTime)
         {
             gameTime = GameTime;
-            hero.compInput.HandlePlayerInput(Input);
+            actorPool.hero.compInput.HandlePlayerInput(Input);
         }
 
 
@@ -81,18 +71,15 @@ namespace DungeonRun
             stopWatch.Reset(); stopWatch.Start();
 
             //update actors + objects
-            ActorFunctions.Update(hero);
             actorPool.Update();
             objPool.Update();
-
             //move actors + objects
-            CollisionFunctions.Move(hero, this);
             actorPool.Move(this);
             //objPool.Move(this);
 
             //track camera to hero
             camera.targetZoom = 1.0f;
-            camera.targetPosition = hero.compSprite.position;
+            camera.targetPosition = actorPool.hero.compSprite.position;
             camera.Update(GameTime);
 
             stopWatch.Stop(); updateTime = stopWatch.Elapsed;
@@ -105,9 +92,7 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             stopWatch.Reset(); stopWatch.Start();
-
-
-
+            
             //draw gameworld
             screenManager.spriteBatch.Begin(
                         SpriteSortMode.BackToFront,
@@ -121,18 +106,13 @@ namespace DungeonRun
             floorPool.Draw(screenManager);
             objPool.Draw(screenManager);
             actorPool.Draw(screenManager);
-            ActorFunctions.Draw(hero, screenManager);
             screenManager.spriteBatch.End();
-
-
-
+            
             //draw UI
             screenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             debugInfo.Draw();
             screenManager.spriteBatch.End();
-
             
-
             stopWatch.Stop(); drawTime = stopWatch.Elapsed;
             totalTime = updateTime + drawTime;
         }

@@ -65,16 +65,16 @@ namespace DungeonRun
             timingText.text += "\n" + MemoryManager.AppMemoryUsage / 1024 / 1024 + " mb";
 
             actorText.text = "actor: hero";
-            actorText.text += "\ninp: " + screen.hero.inputState;
-            actorText.text += "\ncur: " + screen.hero.state;
-            actorText.text += "\nlck: " + screen.hero.stateLocked;
-            actorText.text += "\ndir: " + screen.hero.direction;
+            actorText.text += "\ninp: " + screen.actorPool.hero.inputState;
+            actorText.text += "\ncur: " + screen.actorPool.hero.state;
+            actorText.text += "\nlck: " + screen.actorPool.hero.stateLocked;
+            actorText.text += "\ndir: " + screen.actorPool.hero.direction;
 
-            moveText.text = "pos x:" + screen.hero.compSprite.position.X + ", y:" + screen.hero.compSprite.position.Y;
-            moveText.text += "\nspd:" + screen.hero.compMove.speed + "  fric:" + screen.hero.compMove.friction;
-            moveText.text += "\nmag x:" + screen.hero.compMove.magnitude.X;
-            moveText.text += "\nmag y:" + screen.hero.compMove.magnitude.Y;
-            moveText.text += "\ndir: " + screen.hero.compMove.direction;
+            moveText.text = "pos x:" + screen.actorPool.hero.compSprite.position.X + ", y:" + screen.actorPool.hero.compSprite.position.Y;
+            moveText.text += "\nspd:" + screen.actorPool.hero.compMove.speed + "  fric:" + screen.actorPool.hero.compMove.friction;
+            moveText.text += "\nmag x:" + screen.actorPool.hero.compMove.magnitude.X;
+            moveText.text += "\nmag y:" + screen.actorPool.hero.compMove.magnitude.Y;
+            moveText.text += "\ndir: " + screen.actorPool.hero.compMove.direction;
 
             poolText.text = "floors: " + screen.floorPool.index + "/" + screen.floorPool.poolSize;
             poolText.text += "\nobjs: " + screen.objPool.index + "/" + screen.objPool.poolSize;

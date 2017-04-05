@@ -136,20 +136,14 @@ namespace DungeonRun
             //place enemies within the room
             for (int i = 0; i < enemyCount; i++)
             {
-                //Actor actor = DungeonScreen.actorPool.pool[DungeonScreen.actorPool.counter];
                 Actor actor = DungeonScreen.actorPool.GetActor();
                 ActorFunctions.SetType(actor, Actor.Type.Blob);
                 ActorFunctions.Teleport(actor, Global.Random.Next(20, 180), Global.Random.Next(20, 80));
             }
 
             //center hero to room
-            DungeonScreen.hero.compMove.position.X = 150;
-            DungeonScreen.hero.compMove.position.Y = 100;
+            ActorFunctions.SetType(DungeonScreen.actorPool.hero, Actor.Type.Hero);
+            ActorFunctions.Teleport(DungeonScreen.actorPool.hero, 150, 100);
         }
-
-
-
-
-
     }
 }
