@@ -28,13 +28,13 @@
     <AppXManifest Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-04-04T02:06:17.341</Modified>
+      <Modified>2017-04-05T06:04:22.710</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\DungeonRun.exe">
       <PackagePath>entrypoint\DungeonRun.exe</PackagePath>
-      <Modified>2017-04-04T02:06:16.971</Modified>
+      <Modified>2017-04-05T06:04:22.328</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -568,7 +568,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\pixelFont.xnb">
       <PackagePath>Content\pixelFont.xnb</PackagePath>
-      <Modified>2017-04-04T02:06:16.170</Modified>
+      <Modified>2017-04-05T06:04:21.563</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\UISheet.xnb">
       <PackagePath>Content\UISheet.xnb</PackagePath>
@@ -589,11 +589,11 @@
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-04-04T02:03:57.631</Modified>
+      <Modified>2017-04-05T05:42:33.809</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Core\DungeonRun.exe">
       <PackagePath>DungeonRun.exe</PackagePath>
-      <Modified>2017-04-04T02:06:17.333</Modified>
+      <Modified>2017-04-05T06:04:22.707</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

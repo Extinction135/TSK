@@ -19,6 +19,14 @@ hide the other gameObjs (flip a boolean)
 
 
 
+
+check collisions between actors + gameobjs (test on xbox)
+
+
+
+
+
+
 dungeon.cs
 	a collection of rooms (including an exit, hub, key, + boss room)
 	draws the current room

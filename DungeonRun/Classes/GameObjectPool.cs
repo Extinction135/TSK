@@ -28,6 +28,12 @@ namespace DungeonRun
             }
         }
 
+        public void Reset()
+        {
+            for (counter = 0; counter < poolSize; counter++)
+            { pool[counter].active = false; }
+        }
+
         public void Update()
         {
             for (counter = 0; counter < poolSize; counter++)

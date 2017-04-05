@@ -40,8 +40,7 @@ namespace DungeonRun
         public Actor hero;
         public ActorPool actorPool;
         public GameObjectPool objPool;
-
-
+        public FloorPool floorPool;
 
 
 
@@ -60,6 +59,9 @@ namespace DungeonRun
 
             actorPool = new ActorPool(this);
             objPool = new GameObjectPool(this);
+            floorPool = new FloorPool(this);
+
+            DungeonGenerator.CreateRoom(this);
         }
 
 
@@ -81,7 +83,7 @@ namespace DungeonRun
             hero.Update();
             actorPool.Update();
             objPool.Update();
-
+            
             //track camera to hero
             camera.targetZoom = 1.0f;
             camera.targetPosition = hero.compSprite.position;
@@ -110,10 +112,10 @@ namespace DungeonRun
                         null,
                         camera.view
                         );
-
-            hero.Draw();
-            actorPool.Draw();
+            floorPool.Draw();
             objPool.Draw();
+            actorPool.Draw();
+            hero.Draw();
             screenManager.spriteBatch.End();
 
 

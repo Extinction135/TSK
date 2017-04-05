@@ -105,6 +105,8 @@
     </Compile>
     <Compile Include="Classes\Camera2D.cs" />
     <Compile Include="Classes\DebugInfo.cs" />
+    <Compile Include="Classes\DungeonGenerator.cs" />
+    <Compile Include="Classes\FloorPool.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
     <Compile Include="Classes\GameObjectPool.cs" />
     <Compile Include="Classes\Room.cs" />
