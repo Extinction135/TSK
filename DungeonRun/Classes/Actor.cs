@@ -63,7 +63,7 @@ namespace DungeonRun
         public AnimationGroup animGroup;
 
         public Direction direction; //direction actor is facing
-
+        public Boolean active; //does actor input/update/draw?
         
 
 
@@ -91,6 +91,7 @@ namespace DungeonRun
 
             //initialize the actor to type hero
             type = Type.Hero; //init to hero
+            active = true;
             SetType(type, compSprite.position.X, compSprite.position.Y);
         }
 
@@ -136,6 +137,8 @@ namespace DungeonRun
             compMove.position.Y = Y;
             compMove.direction = Direction.None;
             direction = Direction.Down;
+            state = State.Idle;
+            active = true;
 
             //set actor animations lists, group, direction
             ActorAnimationListManager.SetAnimationList(this);
@@ -144,16 +147,5 @@ namespace DungeonRun
 
             //set actor soundFX
         }
-
-        
-
-        
-
-
-
-
-
-
-       
     }
 }

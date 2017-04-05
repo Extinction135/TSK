@@ -18,6 +18,7 @@ namespace DungeonRun
         public int poolSize = 60; //60 actors, 60 fps = 1 actor gets AI input each frame
         public List<Actor> pool;
         public int counter;
+        public int index;
         public int activeActor = 0;
         
 
@@ -30,7 +31,27 @@ namespace DungeonRun
                 pool.Add(new Actor(Screen));
                 pool[counter].SetType(Actor.Type.Blob, Global.Random.Next(0, 300), Global.Random.Next(0, 200));
             }
+            index = 0;
         }
+
+
+
+
+        public void Reset()
+        {
+            for (counter = 0; counter < poolSize; counter++)
+            { pool[counter].active = false; }
+        }
+        public Actor GetActor()
+        {
+            Actor actor = pool[index];
+            actor.active = true;
+            index++;
+            if(index > poolSize) { index = 0; }
+            return actor;
+        }
+
+
 
 
         public void Update()
@@ -42,18 +63,12 @@ namespace DungeonRun
             if(activeActor >= poolSize) { activeActor = 0; }
 
             for (counter = 0; counter < poolSize; counter++)
-            {
-                pool[counter].Update();
-            }
+            { if (pool[counter].active) { pool[counter].Update(); } }
         }
-
-
         public void Draw()
         {
             for (counter = 0; counter < poolSize; counter++)
-            {
-                pool[counter].Draw();
-            }
+            { if (pool[counter].active) { pool[counter].Draw(); } }
         }
     }
 }

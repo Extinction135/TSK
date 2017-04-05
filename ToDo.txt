@@ -20,6 +20,9 @@ hide the other gameObjs (flip a boolean)
 
 
 
+write debug info on all the pools (floors, objects, actors)
+
+
 check collisions between actors + gameobjs (test on xbox)
 
 

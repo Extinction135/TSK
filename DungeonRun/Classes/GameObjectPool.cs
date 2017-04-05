@@ -18,21 +18,34 @@ namespace DungeonRun
         public int poolSize = 100;
         public List<GameObject> pool;
         public int counter;
+        public int index;
 
         public GameObjectPool(DungeonScreen Screen)
         {
             pool = new List<GameObject>();
             for (counter = 0; counter < poolSize; counter++)
-            {
-                pool.Add(new GameObject(Screen.screenManager.spriteBatch, Screen.assets.dungeonSheet));
-            }
+            { pool.Add(new GameObject(Screen.screenManager.spriteBatch, Screen.assets.dungeonSheet)); }
+            index = 0;
         }
+
+
 
         public void Reset()
         {
             for (counter = 0; counter < poolSize; counter++)
             { pool[counter].active = false; }
         }
+        public GameObject GetObj()
+        {
+            GameObject obj = pool[index];
+            obj.active = true;
+            index++;
+            if (index > poolSize) { index = 0; }
+            return obj;
+        }
+
+
+
 
         public void Update()
         {
@@ -43,7 +56,6 @@ namespace DungeonRun
                 
             }
         }
-
         public void Draw()
         {
             for (counter = 0; counter < poolSize; counter++)
