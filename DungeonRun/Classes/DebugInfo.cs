@@ -27,7 +27,7 @@ namespace DungeonRun
         public Text timingText;
         public Text actorText;
         public Text moveText;
-
+        public Text poolText;
 
 
 
@@ -48,6 +48,9 @@ namespace DungeonRun
 
             moveText = new Text(screenManager, screen.assets.font, "", new Vector2(16 * 7, yPos + 00));
             textFields.Add(moveText);
+
+            poolText = new Text(screenManager, screen.assets.font, "", new Vector2(16 * 12, yPos + 00));
+            textFields.Add(poolText);
         }
 
 
@@ -71,7 +74,11 @@ namespace DungeonRun
             moveText.text += "\nmag y:" + screen.hero.compMove.magnitude.Y;
             moveText.text += "\ndir: " + screen.hero.compMove.direction;
 
-            //moveText.text += "\nfric:" 
+            poolText.text = "floors: " + screen.floorPool.index + "/" + screen.floorPool.poolSize;
+            poolText.text += "\nobjs: " + screen.objPool.index + "/" + screen.objPool.poolSize;
+            poolText.text += "\nactors: " + screen.actorPool.index + "/" + screen.actorPool.poolSize;
+            poolText.text += "\nprojectiles: 0/0";
+            poolText.text += "\nparticles: 0/0";
 
             //stateText.text += "\nstate: " + dungeonScreen.hero.state;
             //stateText.text += "\nlocked: " + dungeonScreen.hero.stateLocked;

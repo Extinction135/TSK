@@ -15,10 +15,10 @@ namespace DungeonRun
     public class FloorPool
     {
         //manages the pool of floor sprites
-        public int poolSize = 200;
+        public int poolSize = 500;
         public List<ComponentSprite> pool;
         public int counter;
-
+        public int index;
 
         public FloorPool(DungeonScreen Screen)
         {
@@ -30,12 +30,22 @@ namespace DungeonRun
                     Screen.screenManager.spriteBatch, Screen.assets.dungeonSheet, 
                     new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Byte2(16, 16)));
             }
+            index = 0;
         }
+
 
         public void Reset()
         {
             for (counter = 0; counter < poolSize; counter++)
             { pool[counter].visible = false; }
+        }
+        public ComponentSprite GetFloor()
+        {
+            ComponentSprite floor = pool[index];
+            floor.visible = true;
+            index++;
+            if (index > poolSize) { index = 0; }
+            return floor;
         }
 
         public void Draw()

@@ -46,11 +46,12 @@ namespace DungeonRun
                 for (int j = 0; j < height; j++)
                 {
                     //place the floors
-                    ComponentSprite floor = DungeonScreen.floorPool.pool[DungeonScreen.floorPool.counter];
+                    ComponentSprite floor = DungeonScreen.floorPool.GetFloor();
+                    //ComponentSprite floor = DungeonScreen.floorPool.pool[DungeonScreen.floorPool.counter];
                     floor.position.X = i * 16;
                     floor.position.Y = j * 16;
-                    floor.visible = true;
-                    DungeonScreen.floorPool.counter++;
+                    //floor.visible = true;
+                    //DungeonScreen.floorPool.counter++;
 
 
                     //place the walls

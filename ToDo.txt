@@ -13,17 +13,25 @@ make a testing room
 
 
 
-create a set of walls around the hero, using the gameobjs pool
-set the type to wall of each obj you move (using some kind of BuildRoom() function)
-hide the other gameObjs (flip a boolean)
+
 
 
 
 
 write debug info on all the pools (floors, objects, actors)
 
+draw the collision recs for actors and objects
 
-check collisions between actors + gameobjs (test on xbox)
+add editor buttons to top of window: draw collisions
+
+
+
+
+
+
+
+check collisions between actors + gameobjs
+	this should probably be done via a static class (manager)
 
 
 
