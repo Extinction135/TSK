@@ -14,20 +14,8 @@ namespace DungeonRun
 {
     public static class DungeonGenerator
     {
-
-
-
-        static DungeonGenerator()
-        { }
-
-
-
         public static void CreateRoom(DungeonScreen DungeonScreen)
         {
-
-
-
-
             //set the width and height of room
             byte width = 20;
             byte height = 10;
@@ -151,9 +139,8 @@ namespace DungeonRun
                 //Actor actor = DungeonScreen.actorPool.pool[DungeonScreen.actorPool.counter];
                 Actor actor = DungeonScreen.actorPool.GetActor();
                 ActorFunctions.SetType(actor, Actor.Type.Blob);
-                ActorFunctions.Teleport(actor, 100, 100);
+                ActorFunctions.Teleport(actor, Global.Random.Next(20, 180), Global.Random.Next(20, 80));
             }
-
 
             //center hero to room
             DungeonScreen.hero.compMove.position.X = 150;

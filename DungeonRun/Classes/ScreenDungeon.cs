@@ -80,11 +80,16 @@ namespace DungeonRun
         {
             stopWatch.Reset(); stopWatch.Start();
 
-            //update actors
+            //update actors + objects
             ActorFunctions.Update(hero);
             actorPool.Update();
             objPool.Update();
-            
+
+            //move actors + objects
+            CollisionFunctions.Move(hero, this);
+            actorPool.Move(this);
+            //objPool.Move(this);
+
             //track camera to hero
             camera.targetZoom = 1.0f;
             camera.targetPosition = hero.compSprite.position;
@@ -113,8 +118,8 @@ namespace DungeonRun
                         null,
                         camera.view
                         );
-            floorPool.Draw();
-            objPool.Draw();
+            floorPool.Draw(screenManager);
+            objPool.Draw(screenManager);
             actorPool.Draw(screenManager);
             ActorFunctions.Draw(hero, screenManager);
             screenManager.spriteBatch.End();

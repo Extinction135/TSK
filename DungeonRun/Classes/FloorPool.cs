@@ -48,10 +48,13 @@ namespace DungeonRun
             return floor;
         }
 
-        public void Draw()
+        public void Draw(ScreenManager ScreenManager)
         {
             for (counter = 0; counter < poolSize; counter++)
-            { if (pool[counter].visible) { pool[counter].Draw(); } }
+            {
+                if (pool[counter].visible)
+                { DrawFunctions.Draw(pool[counter], ScreenManager); }
+            }
         }
     }
 }

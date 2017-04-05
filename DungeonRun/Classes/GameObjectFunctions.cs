@@ -28,6 +28,8 @@ namespace DungeonRun
             //update the object's current animation based on it's type
             GameObjectAnimListManager.SetAnimationList(Obj);
 
+            #region Set Default Values (Assumptions)
+
             //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.x = 16 * 1;
             Obj.compSprite.cellSize.y = 16 * 1;
@@ -39,11 +41,7 @@ namespace DungeonRun
             Obj.compCollision.offsetY = -8; //(most are)
             Obj.compSprite.zOffset = 0;
 
-            //we'll need to apply the compColl.offset value to the collisionRec
-            //we'll need to do that because the object may be moving
-            //that should only happen if an object moves (dragging block, skull pot, spike block)
-            //we'll set the gameObj.sprite.zDepth elsewhere - not here
-
+            #endregion
 
             #region Room Objects
 
@@ -143,7 +141,6 @@ namespace DungeonRun
 
             #endregion
 
-
             #region Interactive Objects
 
             else if (Type == GameObject.Type.Chest || Type == GameObject.Type.ChestEmpty)
@@ -239,7 +236,6 @@ namespace DungeonRun
 
             #endregion
 
-
             #region Items
 
             else if (Type == GameObject.Type.ItemRupee)
@@ -274,7 +270,17 @@ namespace DungeonRun
 
             #endregion
 
+            CollisionFunctions.PlaceCollisionToSprite(Obj.compCollision, Obj.compSprite);
+        }
 
+
+        
+
+
+        public static void Draw(GameObject Obj, ScreenManager ScreenManager)
+        {
+            DrawFunctions.Draw(Obj.compSprite, ScreenManager);
+            DrawFunctions.Draw(Obj.compCollision, ScreenManager);
         }
     }
 }

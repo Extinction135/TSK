@@ -106,13 +106,13 @@
     <Compile Include="Classes\Camera2D.cs" />
     <Compile Include="Classes\Components.cs" />
     <Compile Include="Classes\DebugInfo.cs" />
+    <Compile Include="Classes\DrawFunctions.cs" />
     <Compile Include="Classes\DungeonGenerator.cs" />
     <Compile Include="Classes\FloorPool.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
     <Compile Include="Classes\GameObjectFunctions.cs" />
     <Compile Include="Classes\GameObjectPool.cs" />
     <Compile Include="Classes\CollisionFunctions.cs" />
-    <Compile Include="Classes\Room.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
     <Compile Include="Classes\StructsAndEnums.cs" />
     <Compile Include="Classes\InputHelper.cs" />

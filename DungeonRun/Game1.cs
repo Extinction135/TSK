@@ -29,6 +29,7 @@ namespace DungeonRun
         public Color windowBkg;
 
         public Color collisionActor;
+        public Color collisionObj;
     }
 
 
@@ -87,7 +88,8 @@ namespace DungeonRun
             colorScheme.background = new Color(100, 100, 100, 255);
             colorScheme.textSmall = new Color(255, 255, 255, 255);
             colorScheme.windowBkg = new Color(0, 0, 0, 200);
-            colorScheme.collisionActor = new Color(255, 0, 0, 100);
+            colorScheme.collisionActor = new Color(100, 0, 0, 0);
+            colorScheme.collisionObj = new Color(100, 0, 0, 0);
         }
 
 

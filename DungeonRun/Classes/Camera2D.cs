@@ -25,8 +25,6 @@ namespace DungeonRun
 
 
 
-
-
         public Matrix matRotation = Matrix.CreateRotationZ(0.0f);
         public Matrix matZoom;
         public Vector3 translateCenter;
@@ -133,12 +131,12 @@ namespace DungeonRun
             deadzoneY = 70;
             */
 
+            /*
+            //a responsive preset
+            speed = 5f;
+            deadzoneX = 50;
+            deadzoneY = 50;
 
-
-            //LAZY preset - allows hero an area of non-camera tracking
-            speed = 2f;
-            deadzoneX = 100;
-            deadzoneY = 80;
 
             //LAZY MATCHED CAMERA - waits for hero to move outside of deadzone before following
             distance = targetPosition - currentPosition; //get distance between current and target
@@ -151,9 +149,10 @@ namespace DungeonRun
             //if we are following, update current position based on distance and speed
             if (followX) { currentPosition.X += distance.X * speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
             if (followY) { currentPosition.Y += distance.Y * speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
+            */
 
             //FAST MATCHED CAMERA - instantly follows hero
-            //currentPosition = targetPosition;
+            currentPosition = targetPosition;
 
 
 

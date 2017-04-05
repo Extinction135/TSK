@@ -36,9 +36,6 @@ namespace DungeonRun
         public float rotationValue;
 
 
-
-
-
         public ComponentSprite(SpriteBatch SpriteBatch, Texture2D Texture, Vector2 Position, Byte4 CurrentFrame, Byte2 CellSize)
         {
             spriteBatch = SpriteBatch;
@@ -63,43 +60,10 @@ namespace DungeonRun
             rotationValue = 0.0f;
         }
 
-
-
         public void CenterOrigin() { origin.X = cellSize.x * 0.5f; origin.Y = cellSize.y * 0.5f; }
 
         public void SetZdepth() { zDepth = 0.999990f - ((position.Y + zOffset) * 0.000001f); }
 
         public void UpdateCellSize() { drawRec.Width = cellSize.x; drawRec.Height = cellSize.y; }
-
-
-        public void Draw()
-        {
-            if (visible)
-            {
-                //align position to nearest pixel
-                position.X = (int)position.X;
-                position.Y = (int)position.Y;
-
-                //set draw rec
-                drawRec.X = (int)(cellSize.x * currentFrame.x);
-                drawRec.Y = (int)(cellSize.y * currentFrame.y);
-
-                //update rotationValue based on rotation enum
-                if (rotation == Rotation.Clockwise90) { rotationValue = 1.575f; }
-                else if (rotation == Rotation.Clockwise180) { rotationValue = 3.15f; }
-                else if (rotation == Rotation.Clockwise270) { rotationValue = -1.575f; }
-                else { rotationValue = 0.0f; }
-
-                //set sprite effect
-                if (currentFrame.flipHori > 0)
-                { spriteEffect = SpriteEffects.FlipHorizontally; }
-                else { spriteEffect = SpriteEffects.None; }
-
-                //draw the sprite
-                spriteBatch.Draw(texture, position, drawRec,
-                    drawColor * alpha, rotationValue,
-                    origin, scale, spriteEffect, zDepth);
-            }
-        }
     }
 }

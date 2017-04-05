@@ -8,17 +8,19 @@ todo:
 
 
 
+hero needs to be in the actor's pool
+he should always be [0], so we can refer to him easily
 
-collisions + movement
-	should be generalized for objects + actors, so they share the same codepath
-	this means the algorithm operates on components, not classes
-	it requires move, collision, and sprite components
-	this should be a static global class
-	
-	check against objPool
-	check against actorPool
-	
-	
+this simplifies/reduces codepath necessary to check other actors against him and vice versa
+
+
+
+
+
+
+
+
+
 	
 	
 	

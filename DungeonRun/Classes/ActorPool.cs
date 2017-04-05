@@ -29,15 +29,18 @@ namespace DungeonRun
             {
                 pool.Add(new Actor(Screen));
                 ActorFunctions.SetType(pool[counter], Actor.Type.Blob);
-                ActorFunctions.Teleport(pool[counter], Global.Random.Next(0, 300), Global.Random.Next(0, 200));
+                ActorFunctions.Teleport(pool[counter], 100, 100);
             }
-            index = 0;
+            index = 0; Reset();
         }
 
         public void Reset()
         {
             for (counter = 0; counter < poolSize; counter++)
-            { pool[counter].active = false; }
+            {
+                pool[counter].active = false;
+                pool[counter].compCollision.rec.X = -1000;
+            }
         }
         public Actor GetActor()
         {
@@ -47,6 +50,17 @@ namespace DungeonRun
             if(index > poolSize) { index = 0; }
             return actor;
         }
+
+
+        public void Move(DungeonScreen DungeonScreen)
+        {
+            for (counter = 0; counter < poolSize; counter++)
+            {
+                if (pool[counter].active)
+                { CollisionFunctions.Move(pool[counter], DungeonScreen); }
+            }
+        }
+
 
         public void Update()
         {
