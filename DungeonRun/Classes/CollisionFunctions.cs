@@ -18,24 +18,15 @@ namespace DungeonRun
 
 
 
-
-        /*
-        public static void Move(ComponentMovement Move, ComponentCollision Coll, ComponentSprite Sprite, DungeonScreen DungeonScreen)
-        {
-            ProjectMovement(Move);
-            CheckCollisions(Move, Coll, DungeonScreen);
-            PlaceSpriteToCollision(Coll, Sprite);
-        }
-        */
-
+        
         public static void Move(Actor Actor, DungeonScreen DungeonScreen)
         {
             ProjectMovement(Actor.compMove);
             CheckCollisions(Actor.compMove, Actor.compCollision, DungeonScreen);
             PlaceSpriteToCollision(Actor.compCollision, Actor.compSprite);
         }
-
         /*
+        //gameObj needs a compMove to be able to move around and be projected
         public static void Move(GameObject Obj, DungeonScreen DungeonScreen)
         {
             ProjectMovement(Obj.compMove);
@@ -43,6 +34,8 @@ namespace DungeonRun
             PlaceSpriteToCollision(Obj.compCollision, Obj.compSprite);
         }
         */
+
+
 
 
 

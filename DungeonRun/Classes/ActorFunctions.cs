@@ -61,7 +61,7 @@ namespace DungeonRun
             //update + play animations
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
-            Actor.compAnim.Animate();
+            AnimationFunctions.Animate(Actor.compAnim, Actor.compSprite);
         }
 
         public static void Draw(Actor Actor, ScreenManager ScreenManager)

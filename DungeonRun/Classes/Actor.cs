@@ -49,7 +49,7 @@ namespace DungeonRun
             //create the actor components
             compSprite = new ComponentSprite(screen.screenManager.spriteBatch, 
                 screen.assets.actorsSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
-            compAnim = new ComponentAnimation(compSprite);
+            compAnim = new ComponentAnimation();
             compInput = new ComponentInput(this);
             compMove = new ComponentMovement();
             compCollision = new ComponentCollision();

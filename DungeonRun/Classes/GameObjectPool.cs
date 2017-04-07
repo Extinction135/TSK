@@ -52,7 +52,7 @@ namespace DungeonRun
             for (counter = 0; counter < poolSize; counter++)
             {
                 if (pool[counter].active)
-                { pool[counter].compAnim.Animate(); }
+                { AnimationFunctions.Animate(pool[counter].compAnim, pool[counter].compSprite); }
             }
         }
         public void Draw(ScreenManager ScreenManager)

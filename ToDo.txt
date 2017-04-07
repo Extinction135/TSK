@@ -4,12 +4,7 @@ todo:
 
 
 
-move the test room down 16 pixels, so the actors dont disappear when they reach the top
 
-define room.cs, which describes the width and height of a room, and has a .type enum
-	create a room instance, then pass that to the room creator routine
-	place enemies all around within the room, they should not overlap
-	place hero in the center of the room
 	
 
 
@@ -27,13 +22,23 @@ we'll need an InputFunctions class
 create sprite functions to hold centerOrigin(), setZdepth, updateCellsize() functions
 
 
-	
-	
-	
-	
-add optimization to collision checking that considers the .active boolean
 
 
+
+
+move the test room down 16 pixels, so the actors dont disappear when they reach the top
+
+define room.cs, which describes the width and height of a room, and has a .type enum
+	create a room instance, then pass that to the room creator routine
+	place enemies all around within the room, they should not overlap
+	place hero in the center of the room
+
+
+
+
+
+	
+	
 add editor buttons to top of window: draw collisions on/off
 
 

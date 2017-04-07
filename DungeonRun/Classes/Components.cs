@@ -13,16 +13,15 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
     public class ComponentCollision
-    {
-        //the rectangle used for checking collisions (using rec.Contains() and rec.Intersects())
-        public Rectangle rec = new Rectangle(100, 100, 16, 16);
+    {   //allows an object or actor to collide with other objects or actors
+        public Rectangle rec = new Rectangle(100, 100, 16, 16); //used in collision checking
         public int offsetX = 0; //offsets rec from sprite.position
         public int offsetY = 0; //offsets rec from sprite.position
         public Boolean blocking = true; //is this actor/obj impassable
     }
 
     public class ComponentMovement
-    {
+    {   //allows an object or actor to move, with speed and friction
         public Vector2 position = new Vector2(100, 100); //current position of actor/object
         public Vector2 newPosition = new Vector2(100, 100); //projected position
         public Direction direction = Direction.Down; //the direction actor/obj is moving
@@ -31,7 +30,14 @@ namespace DungeonRun
         public float friction = 0.75f; //reduces magnitude each frame
     }
 
+    public class ComponentAnimation
+    {   //allows an object or actor to animate through a sequence of frames on a timer
+        public List<Byte4> currentAnimation; //a list of byte4 representing frames of an animation
+        public byte index = 0; //where in the currentAnimation list the animation is (animation index)
+        public byte speed = 10; //how many frames should elapse before animation is updated (limits animation speed)
+        public byte timer = 0; //how many frames have elapsed since last animation update (counts frames) @ 60fps
+    }
+
     //input
-    //animation
     //sprite
 }

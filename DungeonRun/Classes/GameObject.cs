@@ -128,7 +128,7 @@ namespace DungeonRun
             type = Type.WallStraight;
             compSprite = new ComponentSprite(SpriteBatch, DungeonSheet, new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
             compCollision = new ComponentCollision();
-            compAnim = new ComponentAnimation(compSprite);
+            compAnim = new ComponentAnimation();
             direction = Direction.Down;
             active = true;
             GameObjectFunctions.SetType(this, type);
