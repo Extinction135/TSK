@@ -23,6 +23,12 @@ namespace DungeonRun
             //choose a random direction to move in
             Input.direction = (Direction)Global.Random.Next(0, 8);
 
+            //randomly dash
+            if (Global.Random.Next(0, 100) > 80) { Input.dash = true; }
+
+
+
+
             //choose an action to take
             /*
             if (Input.IsNewButtonPress(Buttons.X)) { attack = true; }

@@ -24,22 +24,6 @@ namespace DungeonRun
             Input.interact = false;
         }
 
-        public static void SetActorInputState(ComponentInput Input, Actor Actor)
-        {
-            Actor.inputState = Actor.State.Idle; //reset inputState
-            Actor.compMove.direction = Input.direction; //set move direction
-            if (Input.direction != Direction.None)
-            {
-                Actor.inputState = Actor.State.Move; //actor must be moving
-                Actor.direction = Input.direction; //set actor moving/facing direction
-            }
-            //determine + set button inputs
-            if (Input.attack) { Actor.inputState = Actor.State.Attack; }
-            else if (Input.use) { Actor.inputState = Actor.State.Use; }
-            else if (Input.dash) { Actor.inputState = Actor.State.Dash; }
-            else if (Input.interact) { Actor.inputState = Actor.State.Interact; }
-        }
-
         public static void MapPlayerInput(InputHelper Helper, ComponentInput Component)
         {   //maps input helper state to input component state
             //AI sets input component state directly, without using a controller/input helper abstraction

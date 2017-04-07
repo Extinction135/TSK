@@ -25,8 +25,8 @@ namespace DungeonRun
     {
         public AnimationGroup idle;
         public AnimationGroup move;
+        public AnimationGroup dash;
 
-        //dash
         //attack
         //use
         //interact
@@ -60,6 +60,7 @@ namespace DungeonRun
         {
             if (ActorRef.state == Actor.State.Idle) { ActorRef.animGroup = ActorRef.animList.idle; }
             else if (ActorRef.state == Actor.State.Move) { ActorRef.animGroup = ActorRef.animList.move; }
+            else if (ActorRef.state == Actor.State.Dash) { ActorRef.animGroup = ActorRef.animList.dash; }
         }
 
         public static void SetAnimationDirection(Actor ActorRef)
@@ -117,7 +118,12 @@ namespace DungeonRun
             heroAnims.move.up = new List<Byte4>     { new Byte4(1, 1, 0, 0), new Byte4(1, 1, 1, 0) };
             heroAnims.move.right = new List<Byte4>  { new Byte4(0, 2, 0, 0), new Byte4(1, 2, 0, 0) };
             heroAnims.move.left = new List<Byte4>   { new Byte4(0, 2, 1, 0), new Byte4(1, 2, 1, 0) };
-            
+
+            heroAnims.dash = new AnimationGroup();
+            heroAnims.dash.down = new List<Byte4>   { new Byte4(2, 0, 0, 0) };
+            heroAnims.dash.up = new List<Byte4>     { new Byte4(2, 1, 0, 0) };
+            heroAnims.dash.right = new List<Byte4>  { new Byte4(2, 2, 0, 0) };
+            heroAnims.dash.left = new List<Byte4>   { new Byte4(2, 2, 1, 0) };
 
             #endregion
 
@@ -137,6 +143,12 @@ namespace DungeonRun
             blobAnims.move.up = new List<Byte4>     { new Byte4(0, 4, 0, 0), new Byte4(1, 4, 0, 0), new Byte4(2, 4, 0, 0) };
             blobAnims.move.right = new List<Byte4>  { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0) };
             blobAnims.move.left = new List<Byte4>   { new Byte4(0, 5, 1, 0), new Byte4(1, 5, 1, 0), new Byte4(2, 5, 1, 0) };
+
+            blobAnims.dash = new AnimationGroup();
+            blobAnims.dash.down = new List<Byte4>   { new Byte4(2, 3, 0, 0) };
+            blobAnims.dash.up = new List<Byte4>     { new Byte4(2, 4, 0, 0) };
+            blobAnims.dash.right = new List<Byte4>  { new Byte4(2, 5, 0, 0) };
+            blobAnims.dash.left = new List<Byte4>   { new Byte4(2, 5, 1, 0) };
 
             #endregion
 

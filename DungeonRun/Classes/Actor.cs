@@ -21,7 +21,7 @@ namespace DungeonRun
         }
         public enum State
         {   //attacks with weapon, uses item, interacts with game object
-            Idle, Move, Attack,  Use,  Dash,  Interact,  Hit, Dead,
+            Idle, Move, Attack, Use, Dash, Interact, Hit, Dead
         }
 
         public DungeonScreen screen;
@@ -29,7 +29,10 @@ namespace DungeonRun
         public Type type; //the type of actor this is
         public State state; //what actor is doing this frame
         public State inputState; //what input wants actor to do this frame
+
         public Boolean stateLocked; //can actor change state? else actor must wait for state to unlock
+        public byte lockTotal = 0; //how many frames the actor statelocks for, based on state
+        public byte lockCounter = 0; //counts from 0 to lockTotal, then flips stateLocked false
 
         public ComponentSprite compSprite;
         public ComponentAnimation compAnim;
@@ -41,6 +44,9 @@ namespace DungeonRun
         public AnimationGroup animGroup;
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?
+
+        public float dashSpeed = 0.75f;
+        public float walkSpeed = 0.25f;
 
         //actor requires a reference to the various textures/sounds it may use - all the possible textures
         public Actor(DungeonScreen DungeonScreen)

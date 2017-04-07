@@ -64,14 +64,18 @@ namespace DungeonRun
         }
 
 
+        public void UpdateActiveActor(Actor Actor)
+        {
+            InputFunctions.ResetInputData(Actor.compInput);
+            AiManager.Think(Actor.compInput); //pass active actor to AiManager
+            activeActor++;
+            if (activeActor >= poolSize) { activeActor = 1; } //skip 0th actor (HERO)
+        }
+
         public void Update()
         {
-            //calculate AI input
-            InputFunctions.ResetInputData(pool[activeActor].compInput);
-            AiManager.Think(pool[activeActor].compInput); //pass active actor to AiManager
-
-            activeActor++;
-            if(activeActor >= poolSize) { activeActor = 1; } //skip 0th actor (HERO)
+            UpdateActiveActor(pool[activeActor]);
+            UpdateActiveActor(pool[activeActor]);
 
             for (counter = 0; counter < poolSize; counter++)
             {

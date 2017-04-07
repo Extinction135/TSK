@@ -15,8 +15,6 @@ namespace DungeonRun
     public static class ActorFunctions
     {
         //all the functions that operate on an actor class
-        //input
-
 
         public static void SetType(Actor Actor, Actor.Type Type)
         {   //set the type, direction, state, and active boolean
@@ -51,12 +49,54 @@ namespace DungeonRun
             Actor.compMove.position.Y = Y;
         }
 
+
+
+        public static void SetInputState(ComponentInput Input, Actor Actor)
+        {
+            Actor.inputState = Actor.State.Idle; //reset inputState
+            Actor.compMove.direction = Input.direction; //set move direction
+            if (Input.direction != Direction.None)
+            {
+                Actor.inputState = Actor.State.Move; //actor must be moving
+                Actor.direction = Input.direction; //set actor moving/facing direction
+            }
+            //determine + set button inputs
+            if (Input.attack) { Actor.inputState = Actor.State.Attack; }
+            else if (Input.use) { Actor.inputState = Actor.State.Use; }
+            else if (Input.dash) { Actor.inputState = Actor.State.Dash; }
+            else if (Input.interact) { Actor.inputState = Actor.State.Interact; }
+        }
+
         public static void Update(Actor Actor)
         {
             //get the input for this frame, set actor.direction
-            InputFunctions.SetActorInputState(Actor.compInput, Actor);
+            ActorFunctions.SetInputState(Actor.compInput, Actor);
+
             //if actor can change state, sync state to inputState
-            if (!Actor.stateLocked) { Actor.state = Actor.inputState; } 
+            if (!Actor.stateLocked)
+            {
+                Actor.state = Actor.inputState; //pass the input state
+                Actor.lockCounter = 0; //reset lock counter in case actor statelocks
+                Actor.lockTotal = 0; //reset lock total
+                Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
+
+                //based on state, lock and begin count
+                if (Actor.state == Actor.State.Dash)
+                {
+                    Actor.lockTotal = 10;
+                    Actor.stateLocked = true;
+                    Actor.compMove.speed = Actor.dashSpeed;
+                }
+            }
+            else
+            {   //actor is statelocked
+                Actor.lockCounter++; //increment the lock counter
+                if (Actor.lockCounter > Actor.lockTotal) //check against lock total
+                {
+                    Actor.stateLocked = false; //unlock actor
+                    InputFunctions.ResetInputData(Actor.compInput); //reset input component
+                } 
+            }
 
             //update + play animations
             ActorAnimationListManager.SetAnimationGroup(Actor);
@@ -69,5 +109,6 @@ namespace DungeonRun
             DrawFunctions.Draw(Actor.compSprite, ScreenManager);
             DrawFunctions.Draw(Actor.compCollision, ScreenManager);
         }
+
     }
 }
