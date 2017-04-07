@@ -114,13 +114,12 @@
     <Compile Include="Classes\GameObjectFunctions.cs" />
     <Compile Include="Classes\GameObjectPool.cs" />
     <Compile Include="Classes\CollisionFunctions.cs" />
+    <Compile Include="Classes\InputFunctions.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
     <Compile Include="Classes\StructsAndEnums.cs" />
     <Compile Include="Classes\InputHelper.cs" />
     <Compile Include="Classes\Screen.cs" />
     <Compile Include="Classes\ScreenManager.cs" />
-    <Compile Include="Classes\ComponentInput.cs" />
-    <Compile Include="Classes\ComponentSprite.cs" />
     <Compile Include="Classes\Text.cs" />
     <Compile Include="Classes\GameObject.cs" />
     <Compile Include="Classes\ActorPool.cs" />

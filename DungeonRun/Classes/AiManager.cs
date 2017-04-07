@@ -16,12 +16,12 @@ namespace DungeonRun
     {
         static AiManager() { }
 
-        public static void Think(ComponentInput InputComp)
+        public static void Think(ComponentInput Input)
         {
-            InputComp.ResetInputData();
+            InputFunctions.ResetInputData(Input);
 
             //choose a random direction to move in
-            InputComp.direction = (Direction)Global.Random.Next(0, 8);
+            Input.direction = (Direction)Global.Random.Next(0, 8);
 
             //choose an action to take
             /*

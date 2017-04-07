@@ -18,10 +18,6 @@ namespace DungeonRun
         {
             if (Sprite.visible)
             {
-                //align position to nearest pixel
-                //position.X = (int)position.X;
-                //position.Y = (int)position.Y;
-
                 //set draw rec
                 Sprite.drawRec.X = (int)(Sprite.cellSize.x * Sprite.currentFrame.x);
                 Sprite.drawRec.Y = (int)(Sprite.cellSize.y * Sprite.currentFrame.y);

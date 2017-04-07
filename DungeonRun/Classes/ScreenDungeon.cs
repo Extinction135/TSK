@@ -60,7 +60,8 @@ namespace DungeonRun
         public override void HandleInput(InputHelper Input, GameTime GameTime)
         {
             gameTime = GameTime;
-            actorPool.hero.compInput.HandlePlayerInput(Input);
+            //actorPool.hero.compInput.HandlePlayerInput(Input);
+            InputFunctions.MapPlayerInput(Input, actorPool.hero.compInput);
         }
 
 

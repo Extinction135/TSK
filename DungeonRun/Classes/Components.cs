@@ -38,6 +38,64 @@ namespace DungeonRun
         public byte timer = 0; //how many frames have elapsed since last animation update (counts frames) @ 60fps
     }
 
-    //input
-    //sprite
+    public class ComponentInput
+    {   //changes the actor's state + direction, which then sets animation list
+        //InputHelper is mapped to this component, AI sets this component's values directly
+        public Direction direction = Direction.None;
+        public Boolean attack = false;
+        public Boolean use = false;
+        public Boolean dash = false;
+        public Boolean interact = false;
+    }
+
+    public class ComponentSprite
+    {   //displays a visual representation for an object or actor, or anything else
+        public Texture2D texture;
+        public Vector2 position;
+        public Byte4 currentFrame;
+        public Byte2 cellSize;
+
+        public SpriteEffects spriteEffect; //flip vertically, flip horizontally, none
+        public Boolean visible;
+        public Vector2 origin;
+        public Rectangle drawRec;
+
+        public Color drawColor;
+        public float alpha;
+        public float scale;
+        public int zOffset;
+
+        public float zDepth;
+        public Rotation rotation;
+        public float rotationValue;
+
+        public ComponentSprite(Texture2D Texture, Vector2 Position, Byte4 CurrentFrame, Byte2 CellSize)
+        {
+            texture = Texture;
+            position = Position;
+            currentFrame = CurrentFrame;
+            cellSize = CellSize;
+
+            spriteEffect = SpriteEffects.None;
+            visible = true;
+            CenterOrigin();
+            drawRec = new Rectangle((int)Position.X, (int)Position.Y, (int)CellSize.x, (int)CellSize.y);
+
+            drawColor = new Color(255, 255, 255);
+            alpha = 1.0f;
+            scale = 1.0f;
+            zOffset = 0;
+
+            SetZdepth();
+            rotation = Rotation.None;
+            rotationValue = 0.0f;
+        }
+
+        public void CenterOrigin() { origin.X = cellSize.x * 0.5f; origin.Y = cellSize.y * 0.5f; }
+
+        public void SetZdepth() { zDepth = 0.999990f - ((position.Y + zOffset) * 0.000001f); }
+
+        public void UpdateCellSize() { drawRec.Width = cellSize.x; drawRec.Height = cellSize.y; }
+    }
+
 }

@@ -54,7 +54,7 @@ namespace DungeonRun
         public static void Update(Actor Actor)
         {
             //get the input for this frame, set actor.direction
-            Actor.compInput.SetInputState(); 
+            InputFunctions.SetActorInputState(Actor.compInput, Actor);
             //if actor can change state, sync state to inputState
             if (!Actor.stateLocked) { Actor.state = Actor.inputState; } 
 

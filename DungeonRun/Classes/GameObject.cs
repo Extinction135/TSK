@@ -122,11 +122,11 @@ namespace DungeonRun
         public Direction direction;
         public Boolean active; //does this object draw, update?
 
-        public GameObject(SpriteBatch SpriteBatch, Texture2D DungeonSheet)
+        public GameObject(Texture2D DungeonSheet)
         {   //initialize to default value - this data is changed in Update()
             objGroup = ObjGroup.Object;
             type = Type.WallStraight;
-            compSprite = new ComponentSprite(SpriteBatch, DungeonSheet, new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
+            compSprite = new ComponentSprite(DungeonSheet, new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
             compCollision = new ComponentCollision();
             compAnim = new ComponentAnimation();
             direction = Direction.Down;

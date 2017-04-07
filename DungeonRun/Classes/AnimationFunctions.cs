@@ -14,17 +14,12 @@ namespace DungeonRun
 {
     public static class AnimationFunctions
     {
-
-
-
         public static void Animate(ComponentAnimation Anim, ComponentSprite Sprite)
         {
             //perform bounds checking for index
             if (Anim.index >= Anim.currentAnimation.Count) { Anim.index = 0; }
-
             //update sprite's current frame to index value
             Sprite.currentFrame = Anim.currentAnimation[Anim.index];
-
             Anim.timer++;
             if (Anim.timer >= Anim.speed)
             {
@@ -32,8 +27,5 @@ namespace DungeonRun
                 Anim.index++; //increment index to next frame
             }
         }
-
-
-
     }
 }

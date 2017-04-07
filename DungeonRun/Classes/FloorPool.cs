@@ -25,9 +25,7 @@ namespace DungeonRun
             pool = new List<ComponentSprite>();
             for (counter = 0; counter < poolSize; counter++)
             {
-                //pool.Add(new GameObject(Screen.screenManager.spriteBatch, Screen.assets.dungeonSheet));
-                pool.Add(new ComponentSprite(
-                    Screen.screenManager.spriteBatch, Screen.assets.dungeonSheet, 
+                pool.Add(new ComponentSprite(Screen.assets.dungeonSheet, 
                     new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Byte2(16, 16)));
             }
             index = 0;

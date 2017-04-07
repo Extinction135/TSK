@@ -66,9 +66,10 @@ namespace DungeonRun
 
         public void Update()
         {
-            //calculate AI input for X actors per frame
-            pool[activeActor].compInput.ResetInputData(); //clear input data for active actor
+            //calculate AI input
+            InputFunctions.ResetInputData(pool[activeActor].compInput);
             AiManager.Think(pool[activeActor].compInput); //pass active actor to AiManager
+
             activeActor++;
             if(activeActor >= poolSize) { activeActor = 1; } //skip 0th actor (HERO)
 

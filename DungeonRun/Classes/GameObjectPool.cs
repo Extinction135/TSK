@@ -24,7 +24,7 @@ namespace DungeonRun
         {
             pool = new List<GameObject>();
             for (counter = 0; counter < poolSize; counter++)
-            { pool.Add(new GameObject(Screen.screenManager.spriteBatch, Screen.assets.dungeonSheet)); }
+            { pool.Add(new GameObject(Screen.assets.dungeonSheet)); }
             index = 0; Reset();
         }
 
