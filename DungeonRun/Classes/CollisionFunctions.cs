@@ -83,7 +83,9 @@ namespace DungeonRun
         static Boolean collisionY;
         public static void CheckCollisions(ComponentMovement Move, ComponentCollision Coll, DungeonScreen DungeonScreen)
         {
-            Coll.blocking = false; //this is to prevent the object from colliding with itself
+            //this is to prevent the obj/actor from colliding with itself
+            //the cheapest/fastest way to do this is to check a boolean
+            Coll.blocking = false; 
 
             #region Project collisionRec along X axis
 
@@ -92,9 +94,12 @@ namespace DungeonRun
             for (int i = 0; i < DungeonScreen.objPool.poolSize; i++)
             {   //check collisions against objects
                 if (DungeonScreen.objPool.pool[i].active)
-                {   //first, check to see if we should even consider this object for collision
-                    if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
-                    { collisionX = true; }
+                {   //bail if obj isn't active
+                    if (DungeonScreen.objPool.pool[i].compCollision.blocking)
+                    {   //bail if obj isn't blocking
+                        if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
+                        { collisionX = true; }
+                    }
                 }
             }
             for (int i = 0; i < DungeonScreen.actorPool.poolSize; i++)
@@ -121,9 +126,12 @@ namespace DungeonRun
             for (int i = 0; i < DungeonScreen.objPool.poolSize; i++)
             {   //check collisions against objects
                 if (DungeonScreen.objPool.pool[i].active)
-                {   //first, check to see if we should even consider this object for collision
-                    if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
-                    { collisionY = true; }
+                {   //bail if obj isn't active
+                    if (DungeonScreen.objPool.pool[i].compCollision.blocking)
+                    {   //bail if obj isn't blocking
+                        if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
+                        { collisionY = true; }
+                    }
                 }
             }
             for (int i = 0; i < DungeonScreen.actorPool.poolSize; i++)
