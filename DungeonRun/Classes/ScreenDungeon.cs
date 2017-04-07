@@ -10,20 +10,11 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 
-
-
-
 namespace DungeonRun
 {
     public class DungeonScreen : Screen
     {
-
-        
-        public DebugInfo debugInfo;
-
         public DungeonScreen() { this.name = "DungeonScreen"; }
-
-
 
         public Stopwatch stopWatch = new Stopwatch();  
         public Stopwatch total = new Stopwatch(); 
@@ -31,17 +22,13 @@ namespace DungeonRun
         public TimeSpan drawTime;
         public TimeSpan totalTime;
 
+        public DebugInfo debugInfo;
         public Camera2D camera;
         public GameTime gameTime;
         
         public ActorPool actorPool;
         public GameObjectPool objPool;
         public FloorPool floorPool;
-
-
-
-
-
 
         public override void LoadContent()
         {
@@ -55,17 +42,11 @@ namespace DungeonRun
             DungeonGenerator.CreateRoom(this);
         }
 
-
-
         public override void HandleInput(InputHelper Input, GameTime GameTime)
         {
             gameTime = GameTime;
-            //actorPool.hero.compInput.HandlePlayerInput(Input);
             InputFunctions.MapPlayerInput(Input, actorPool.hero.compInput);
         }
-
-
-
 
         public override void Update(GameTime GameTime)
         {
@@ -85,10 +66,6 @@ namespace DungeonRun
 
             stopWatch.Stop(); updateTime = stopWatch.Elapsed;
         }
-
-
-
-
 
         public override void Draw(GameTime GameTime)
         {

@@ -28,7 +28,13 @@ namespace DungeonRun
         public Text actorText;
         public Text moveText;
         public Text poolText;
-        
+
+        public byte framesTotal = 30; //how many frames to average over
+        public byte frameCounter = 0; //increments thru frames 0-framesTotal
+        public long updateTicks; //update tick times are added to this
+        public long drawTicks; //draw tick times are added to this
+        public long updateAvg; //stores the average update ticks
+        public long drawAvg; //stores the average draw ticks
 
 
         public DebugInfo(DungeonScreen DungeonScreen)
@@ -58,11 +64,38 @@ namespace DungeonRun
 
         public void Draw()
         {
-            timingText.text = "u: " + screen.updateTime.Ticks;
-            timingText.text += "\nd: " + screen.drawTime.Ticks;
+
+            #region Calculate Update + Draw Times, Frame Times, and Ram useage
+
+            frameCounter++;
+            if (frameCounter > framesTotal)
+            {   //reset the counter + total ticks
+                frameCounter = 0;
+                updateTicks = 0;
+                drawTicks = 0;
+            }
+            else if (frameCounter == framesTotal)
+            {   //calculate the average ticks
+                updateAvg = updateTicks / framesTotal;
+                drawAvg = drawTicks / framesTotal;
+            }
+            //collect tick times
+            updateTicks += screen.updateTime.Ticks;
+            drawTicks += screen.drawTime.Ticks;
+
+            //per frame
+            //timingText.text = "u: " + screen.updateTime.Ticks;
+            //timingText.text += "\nd: " + screen.drawTime.Ticks;
+            //timingText.text += "\nt: " + screen.totalTime.Milliseconds + " ms";
+            //average over framesTotal
+            timingText.text = "u: " + updateAvg;
+            timingText.text += "\nd: " + drawAvg;
             timingText.text += "\nt: " + screen.totalTime.Milliseconds + " ms";
             timingText.text += "\n" + screen.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
             timingText.text += "\n" + MemoryManager.AppMemoryUsage / 1024 / 1024 + " mb";
+
+            #endregion
+
 
             actorText.text = "actor: hero";
             actorText.text += "\ninp: " + screen.actorPool.hero.inputState;

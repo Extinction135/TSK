@@ -21,7 +21,6 @@ namespace DungeonRun
                 //set draw rec
                 Sprite.drawRec.X = (int)(Sprite.cellSize.x * Sprite.currentFrame.x);
                 Sprite.drawRec.Y = (int)(Sprite.cellSize.y * Sprite.currentFrame.y);
-
                 //update rotationValue based on rotation enum
                 if (Sprite.rotation == Rotation.Clockwise90)
                 { Sprite.rotationValue = 1.575f; }
@@ -30,12 +29,10 @@ namespace DungeonRun
                 else if (Sprite.rotation == Rotation.Clockwise270)
                 { Sprite.rotationValue = -1.575f; }
                 else { Sprite.rotationValue = 0.0f; }
-
                 //set sprite effect
                 if (Sprite.currentFrame.flipHori > 0)
                 { Sprite.spriteEffect = SpriteEffects.FlipHorizontally; }
                 else { Sprite.spriteEffect = SpriteEffects.None; }
-
                 //draw the sprite
                 ScreenManager.spriteBatch.Draw(
                     Sprite.texture, Sprite.position, Sprite.drawRec,

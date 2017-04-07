@@ -1,5 +1,9 @@
 ﻿
 
+
+CTRL + M, O = collapse functions/regions
+CTRL + M, P = expand functions/regions
+
 todo:
 
 
@@ -8,23 +12,13 @@ todo:
 	
 
 
-	
-	
-can we ut more animation functionality into AnimationFunctions?
-what else belongs here? obj animations? actor animations? it's pretty lean right now.
+add an average tick time for the last 60 frames for both update and draw
+this should be part of debug info
 
 
 
-
-consolidate ALL components into components.cs	
 
 	
-component input + input helper can be condensed
-we'll need an InputFunctions class
-
-create sprite functions to hold centerOrigin(), setZdepth, updateCellsize() functions
-
-
 
 
 

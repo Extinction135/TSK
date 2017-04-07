@@ -29,6 +29,7 @@ namespace DungeonRun
             Consumable, //picked up off ground, deleted from objects list, not held above hero's head
             Reward,     //spawned from chest, not actually on objects list, held above hero's head
         }
+
         public enum Type
         {
 
@@ -111,8 +112,6 @@ namespace DungeonRun
 
         }
         
-
-
         public ObjGroup objGroup;
         public Type type;
 
