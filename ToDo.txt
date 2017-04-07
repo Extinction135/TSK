@@ -11,18 +11,6 @@ todo:
 
 	
 
-
-add an average tick time for the last 60 frames for both update and draw
-this should be part of debug info
-
-
-
-
-	
-
-
-
-
 move the test room down 16 pixels, so the actors dont disappear when they reach the top
 
 define room.cs, which describes the width and height of a room, and has a .type enum
