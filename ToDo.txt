@@ -1,13 +1,6 @@
 ﻿
 
-
-
-
-
 todo:
-
-
-
 
 
 
@@ -23,38 +16,27 @@ define room.cs, which describes the width and height of a room, and has a .type 
 	
 	
 	
-	
+consolidate ALL components into components.cs	
+
 component animation needs to be fixed - shouldnt have a reference to spriteComp at all
 	instead we'll create a global class that handles the animation of these components
 	
-consolidate components into components.cs
+component input + input helper can be condensed
+we'll need an InputFunctions class
+
+create sprite functions to hold centerOrigin(), setZdepth, updateCellsize() functions
 
 
 	
 	
 	
 	
-	
-	
-we could move sprite functions into a global class too, just like actor + gameObj
-	
-	
+add optimization to collision checking that considers the .active boolean
 
 
+add editor buttons to top of window: draw collisions on/off
 
 
-draw the collision recs for actors and objects
-
-add editor buttons to top of window: draw collisions
-
-
-
-
-
-
-
-check collisions between actors + gameobjs
-	this should probably be done via a static class (manager)
 
 
 
@@ -65,145 +47,13 @@ dungeon.cs
 	a collection of rooms (including an exit, hub, key, + boss room)
 	draws the current room
 	
-X room.cs
-	rectangle (collisionRec)
+room.cs
+	rectangle (collisionRec) : size + position
 	type
 	
-x objPool.cs
-	a pool of gameObjects
 
 
-
-spritePool.cs
-	a pool of sprites, used for room flooring
 	
-collision component
-	rectangle - used for collision checking
-	boolean blocking - blocking = collides
-	offset - offsets from sprite position
-	
-	
-	
-PopulateRoom(Room room)
-	place walls around the room rectangle (using objPool)
-	place floor tiles inside rectangle (based on roomType) (using spritePool)
-	
-	
-	
-	
-	
-
-Actor.CheckCollisions(ObjPool pool)
-	checks each axis independently to see if actor has collided with any gameObjs
-	
-Actor.CheckCollisions(ActorPool pool)
-	checks each axis independently to see if actor has collided with any actors
-
-check collisions between actors and gameObjs
-check collisions between actors
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-we need collisionRecs (collisionComponents) on each actor
-
-
-actor + collisionComp
-obj + collisionComp
-CollisionManager.CheckCollisions(Actor)
-CollisionManager.CheckCollisions(GameObject) - projectiles are checked this way
-
-CheckCollisions()
-	matches collisionComp to movementComp.newPosition
-	DOES NOT clip to an integer value! keep the subpixel precision
-
-	checks collisionComp.rec against actors (except itself)
-	checks collisionComp.rec against gameObjs (except itself)
-	*we can flip the blocking boolean for the object, so it ignores itself (without having to check if the objects are the same)
-	**just make sure to flip the blocking boolean back on after collision checks complete
-
-HandleCollision(Actor, Actor)
-HandleCollision(GameObj, GameObj)
-HandleCollision(Actor, GameObj)
-
-
-
-
-we need to check collisions between actors, using collision recs
-	is this expensive? on the xbox?
-	we should check collisions per axis too
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-check collisions between actors and gameObjPool
-determine the max size of gameObjPool
-
-create floorObjPool (which is a pool of sprites)
-determine the max size for floorObjPool
-
-create projectilePool (which is a pool of gameObjs)
-set max size for projectilePool
 
 
 

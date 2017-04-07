@@ -35,7 +35,6 @@ namespace DungeonRun
         public Rotation rotation;
         public float rotationValue;
 
-
         public ComponentSprite(SpriteBatch SpriteBatch, Texture2D Texture, Vector2 Position, Byte4 CurrentFrame, Byte2 CellSize)
         {
             spriteBatch = SpriteBatch;

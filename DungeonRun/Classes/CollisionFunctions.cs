@@ -91,13 +91,22 @@ namespace DungeonRun
             Coll.rec.X = (int)Move.newPosition.X; //project collisionRec along X axis
             for (int i = 0; i < DungeonScreen.objPool.poolSize; i++)
             {   //check collisions against objects
-                if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
-                { collisionX = true; }
+                if (DungeonScreen.objPool.pool[i].active)
+                {   //first, check to see if we should even consider this object for collision
+                    if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
+                    { collisionX = true; }
+                }
             }
             for (int i = 0; i < DungeonScreen.actorPool.poolSize; i++)
             {   //check collisions against actors
-                if (Coll.rec.Intersects(DungeonScreen.actorPool.pool[i].compCollision.rec) & DungeonScreen.actorPool.pool[i].compCollision.blocking)
-                { collisionX = true; }
+                if (DungeonScreen.actorPool.pool[i].active)
+                {   //bail if actor isn't active
+                    if (DungeonScreen.actorPool.pool[i].compCollision.blocking)
+                    {   //bail if actor isn't blocking
+                        if (Coll.rec.Intersects(DungeonScreen.actorPool.pool[i].compCollision.rec))
+                        { collisionX = true; }
+                    }
+                }
             }
             if (collisionX) { Move.newPosition.X = Move.position.X; }
             Coll.rec.X = (int)Move.newPosition.X;
@@ -111,13 +120,22 @@ namespace DungeonRun
             Coll.rec.Y = (int)Move.newPosition.Y; //
             for (int i = 0; i < DungeonScreen.objPool.poolSize; i++)
             {   //check collisions against objects
-                if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
-                { collisionY = true; }
+                if (DungeonScreen.objPool.pool[i].active)
+                {   //first, check to see if we should even consider this object for collision
+                    if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
+                    { collisionY = true; }
+                }
             }
             for (int i = 0; i < DungeonScreen.actorPool.poolSize; i++)
             {   //check collisions against actors
-                if (Coll.rec.Intersects(DungeonScreen.actorPool.pool[i].compCollision.rec) & DungeonScreen.actorPool.pool[i].compCollision.blocking)
-                { collisionY = true; }
+                if (DungeonScreen.actorPool.pool[i].active)
+                {   //bail if actor isn't active
+                    if (DungeonScreen.actorPool.pool[i].compCollision.blocking)
+                    {   //bail if actor isn't blocking
+                        if (Coll.rec.Intersects(DungeonScreen.actorPool.pool[i].compCollision.rec))
+                        { collisionY = true; }
+                    }
+                }
             }
             if (collisionY) { Move.newPosition.Y = Move.position.Y; }
             Coll.rec.Y = (int)Move.newPosition.Y;
