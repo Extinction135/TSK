@@ -109,7 +109,7 @@ namespace DungeonRun
             moveText.text += "\nmag y:" + screen.pool.hero.compMove.magnitude.Y;
             moveText.text += "\ndir: " + screen.pool.hero.compMove.direction;
 
-            poolText.text = "floors: " + screen.floorPool.index + "/" + screen.floorPool.poolSize;
+            poolText.text = "floors: " + screen.pool.floorIndex + "/" + screen.pool.floorCount;
             poolText.text += "\nobjs: " + screen.pool.objIndex + "/" + screen.pool.objCount;
             poolText.text += "\nactors: " + screen.pool.actorIndex + "/" + screen.pool.actorCount;
             poolText.text += "\nprojectiles: 0/0";

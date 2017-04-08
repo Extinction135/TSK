@@ -26,7 +26,6 @@ namespace DungeonRun
         public Camera2D camera;
         public GameTime gameTime;
         
-        public FloorPool floorPool;
         public Pool pool;
 
         public override void LoadContent()
@@ -34,7 +33,6 @@ namespace DungeonRun
             debugInfo = new DebugInfo(this);
             camera = new Camera2D(screenManager);
 
-            floorPool = new FloorPool(this);
             pool = new Pool(this);
 
             DungeonGenerator.CreateRoom(this);
@@ -77,7 +75,6 @@ namespace DungeonRun
                         null,
                         camera.view
                         );
-            floorPool.Draw(screenManager);
             pool.Draw(screenManager);
             screenManager.spriteBatch.End();
             

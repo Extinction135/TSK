@@ -13,6 +13,18 @@ todo:
 i'd like to know how many collision checks are occurring each frame in the debug info panel
 
 
+we dont need to draw the unused floor tiles (we currently are)
+we could flip the sprite.visible bit to false initially (or in a floor pool reset)
+then flip visible to true when we place the floor tiles
+this should reduce the draw loop on the xbox one, which is around 36,000 ticks right now
+
+dropped draw tick from @36,000 to @16,000, a savings of almost 2ms per frame.
+
+
+
+we should be able to 'hide' the debug info using a boolean, so it doesn't affect performance
+we should be drawing the frame time outside of the debug info tho, so we still know how long a frame takes
+
 
 
 
@@ -23,19 +35,6 @@ this ensures there is only one correct way to return an unused obj/act/pro to th
 
 
 
-
-consolidating all pools into the pool.cs class
-	this will represent actor, obj, and projectile pools
-	projectiles are to be modeled as gameobjects
-	we want a sword obj to be placed at the hero's location when he attacks
-	then it should hide itself once it's animation/timer is complete
-
-
-
-
-
-
-
 consolidate floor pool into pool.cs
 
 
@@ -43,7 +42,12 @@ consolidate floor pool into pool.cs
 
 
 
-we're gonna implement the weapon as a projectile, without any speed
+
+
+
+
+
+implement weapon as a projectile, without any speed
 	projectile is pulled from projectile pool
 	placed at actor location, offset based on facing direction
 	weapon plays through it's animation, with collision recs

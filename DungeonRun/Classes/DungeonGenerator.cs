@@ -28,7 +28,6 @@ namespace DungeonRun
             byte height = 10;
             //reset the pools + counter
             DungeonScreen.pool.Reset();
-            DungeonScreen.floorPool.counter = 0;
             DungeonScreen.pool.counter = 0;
 
             //build a test room
@@ -37,7 +36,7 @@ namespace DungeonRun
                 for (int j = 0; j < height; j++)
                 {
                     //place the floors
-                    ComponentSprite floor = DungeonScreen.floorPool.GetFloor();
+                    ComponentSprite floor = DungeonScreen.pool.GetFloor();
                     floor.position.X = i * 16 + positionX;
                     floor.position.Y = j * 16 + positionY;
 

@@ -28,6 +28,10 @@ namespace DungeonRun
         public List<GameObject> projectilePool;
         public int projectileIndex;
 
+        public int floorCount;
+        public List<ComponentSprite> floorPool;
+        public int floorIndex;
+
         public int counter;
         public int activeActor = 1; //skip the 0th actor, that's HERO
         public Actor hero;
@@ -39,6 +43,7 @@ namespace DungeonRun
             actorCount = 60;
             objCount = 100;
             projectileCount = 100;
+            floorCount = 500;
 
             //actor pool
             actorPool = new List<Actor>();
@@ -61,6 +66,15 @@ namespace DungeonRun
             for (counter = 0; counter < projectileCount; counter++)
             { projectilePool.Add(new GameObject(Screen.assets.particleSheet)); }
             projectileIndex = 0;
+
+            //floor pool
+            floorPool = new List<ComponentSprite>();
+            for (counter = 0; counter < floorCount; counter++)
+            {
+                floorPool.Add(new ComponentSprite(Screen.assets.dungeonSheet,
+                    new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Byte2(16, 16)));
+            }
+            floorIndex = 0;
 
             //reset all the pools
             Reset();
@@ -100,7 +114,14 @@ namespace DungeonRun
             return projectile;
         }
 
-
+        public ComponentSprite GetFloor()
+        {
+            ComponentSprite floor = floorPool[floorIndex];
+            floor.visible = true;
+            floorIndex++;
+            if (floorIndex > floorCount) { floorIndex = 0; }
+            return floor;
+        }
 
 
 
@@ -110,6 +131,7 @@ namespace DungeonRun
             ResetActorPool();
             ResetObjPool();
             ResetProjectilePool();
+            ResetFloorPool();
         }
 
         public void ResetActorPool()
@@ -142,7 +164,13 @@ namespace DungeonRun
             }
         }
 
-
+        public void ResetFloorPool()
+        {
+            for (counter = 0; counter < floorCount; counter++)
+            {
+                floorPool[counter].visible = false;
+            }
+        }
 
 
 
@@ -203,11 +231,11 @@ namespace DungeonRun
 
         public void Draw(ScreenManager ScreenManager)
         {
-            //actor pool
-            for (counter = 0; counter < actorCount; counter++)
+            //floor pool
+            for (counter = 0; counter < floorCount; counter++)
             {
-                if (actorPool[counter].active)
-                { ActorFunctions.Draw(actorPool[counter], ScreenManager); }
+                if (floorPool[counter].visible)
+                { DrawFunctions.Draw(floorPool[counter], ScreenManager); }
             }
 
             //obj pool
@@ -222,6 +250,13 @@ namespace DungeonRun
             {
                 if (projectilePool[counter].active)
                 { GameObjectFunctions.Draw(projectilePool[counter], ScreenManager); }
+            }
+
+            //actor pool
+            for (counter = 0; counter < actorCount; counter++)
+            {
+                if (actorPool[counter].active)
+                { ActorFunctions.Draw(actorPool[counter], ScreenManager); }
             }
         }
     }
