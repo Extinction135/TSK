@@ -87,6 +87,12 @@ namespace DungeonRun
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
                 }
+                else if (Actor.state == Actor.State.Attack)
+                {
+                    Actor.lockTotal = 10;
+                    Actor.stateLocked = true;
+                    Actor.compMove.speed = 0.0f;
+                }
             }
             else
             {   //actor is statelocked

@@ -1,16 +1,73 @@
 ﻿
-
-
 CTRL + M, O = collapse functions/regions
 CTRL + M, P = expand functions/regions
 
+
+
+
+
+
 todo:
 
+write routines to handle actor states: attack
 
 
-
-write routines to handle actor states: attack, dash	
-	not really sure how to implement this right now..
+we're gonna implement the weapon as a projectile, without any speed
+	projectile is pulled from projectile pool
+	placed at actor location, offset based on facing direction
+	weapon plays through it's animation, with collision recs
+	if projectile is active, check collisions against objs/actor/projectiles, move/update projectile
+	once projectile reaches end of life, return it to the projectile pool, hide it offscreen
+	
+	each actor should have a weapon enum
+	weapons { none, sword, bow, staff, axe, net }
+	
+	a projectile has: sprite, move, animate, collision components
+	a particle has: sprite, move, animate components
+	
+	this means we'll have a projectile pool, and a particle pool
+	
+implement dash smoke as a particle (should spawn whenever an actor dashes)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -36,14 +93,7 @@ room.cs
 	type
 	
 
-
 	
-
-
-
-
-
-
 load in a background sound file (to determine how much space this will take up)
 this file should be loaded into the SCREEN's content manager
 a screen's content manager should be unloaded when the screen exits
@@ -56,12 +106,6 @@ does an mp3 get uncompressed when loaded into game?
 
 re-export sound files aligned to specific bar requirements
 this will require some rewriting / restructuring of melodies and chords
-
-
-
-
-
-
 
 
 sound manager should be handled just like screen manager

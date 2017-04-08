@@ -27,7 +27,7 @@ namespace DungeonRun
         public AnimationGroup move;
         public AnimationGroup dash;
 
-        //attack
+        public AnimationGroup attack;
         //use
         //interact
 
@@ -61,6 +61,7 @@ namespace DungeonRun
             if (ActorRef.state == Actor.State.Idle) { ActorRef.animGroup = ActorRef.animList.idle; }
             else if (ActorRef.state == Actor.State.Move) { ActorRef.animGroup = ActorRef.animList.move; }
             else if (ActorRef.state == Actor.State.Dash) { ActorRef.animGroup = ActorRef.animList.dash; }
+            else if (ActorRef.state == Actor.State.Attack) { ActorRef.animGroup = ActorRef.animList.attack; }
         }
 
         public static void SetAnimationDirection(Actor ActorRef)
@@ -125,6 +126,12 @@ namespace DungeonRun
             heroAnims.dash.right = new List<Byte4>  { new Byte4(2, 2, 0, 0) };
             heroAnims.dash.left = new List<Byte4>   { new Byte4(2, 2, 1, 0) };
 
+            heroAnims.attack = new AnimationGroup();
+            heroAnims.attack.down = new List<Byte4>     { new Byte4(3, 0, 0, 0) };
+            heroAnims.attack.up = new List<Byte4>       { new Byte4(3, 1, 0, 0) };
+            heroAnims.attack.right = new List<Byte4>    { new Byte4(3, 2, 0, 0) };
+            heroAnims.attack.left = new List<Byte4>     { new Byte4(3, 2, 1, 0) };
+
             #endregion
 
 
@@ -139,16 +146,18 @@ namespace DungeonRun
             blobAnims.idle.left = new List<Byte4>   { new Byte4(0, 5, 1, 0), new Byte4(1, 5, 1, 0) };
 
             blobAnims.move = new AnimationGroup();
-            blobAnims.move.down = new List<Byte4>   { new Byte4(0, 3, 0, 0), new Byte4(1, 3, 0, 0), new Byte4(2, 3, 0, 0) };
-            blobAnims.move.up = new List<Byte4>     { new Byte4(0, 4, 0, 0), new Byte4(1, 4, 0, 0), new Byte4(2, 4, 0, 0) };
-            blobAnims.move.right = new List<Byte4>  { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0) };
-            blobAnims.move.left = new List<Byte4>   { new Byte4(0, 5, 1, 0), new Byte4(1, 5, 1, 0), new Byte4(2, 5, 1, 0) };
+            blobAnims.move.down = new List<Byte4>   { new Byte4(0, 3, 0, 0), new Byte4(1, 3, 0, 0) };
+            blobAnims.move.up = new List<Byte4>     { new Byte4(0, 4, 0, 0), new Byte4(1, 4, 0, 0) };
+            blobAnims.move.right = new List<Byte4>  { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0) };
+            blobAnims.move.left = new List<Byte4>   { new Byte4(0, 5, 1, 0), new Byte4(1, 5, 1, 0) };
 
             blobAnims.dash = new AnimationGroup();
             blobAnims.dash.down = new List<Byte4>   { new Byte4(2, 3, 0, 0) };
             blobAnims.dash.up = new List<Byte4>     { new Byte4(2, 4, 0, 0) };
             blobAnims.dash.right = new List<Byte4>  { new Byte4(2, 5, 0, 0) };
             blobAnims.dash.left = new List<Byte4>   { new Byte4(2, 5, 1, 0) };
+
+            blobAnims.attack = blobAnims.dash;
 
             #endregion
 
