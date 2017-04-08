@@ -76,7 +76,7 @@ namespace DungeonRun
         public Actor GetActor()
         {
             Actor actor = actorPool[actorIndex];
-            actor.active = true;
+            ActorFunctions.SetType(actor, actor.type);
             actorIndex++;
             if (actorIndex > actorCount) { actorIndex = 1; } //skip 0th actor (HERO)
             return actor;
@@ -85,7 +85,7 @@ namespace DungeonRun
         public GameObject GetObj()
         {
             GameObject obj = objPool[objIndex];
-            obj.active = true;
+            GameObjectFunctions.SetType(obj, obj.type);
             objIndex++;
             if (objIndex > objCount) { objIndex = 0; }
             return obj;
@@ -94,7 +94,7 @@ namespace DungeonRun
         public GameObject GetProjectile()
         {
             GameObject projectile = projectilePool[projectileIndex];
-            projectile.active = true;
+            GameObjectFunctions.SetType(projectile, projectile.type);
             projectileIndex++;
             if (projectileIndex > projectileCount) { projectileIndex = 0; }
             return projectile;
@@ -117,6 +117,7 @@ namespace DungeonRun
             for (counter = 0; counter < actorCount; counter++)
             {
                 actorPool[counter].active = false;
+                actorPool[counter].compCollision.active = false;
                 actorPool[counter].compCollision.rec.X = -1000;
             }
         }
@@ -126,6 +127,7 @@ namespace DungeonRun
             for (counter = 0; counter < objCount; counter++)
             {
                 objPool[counter].active = false;
+                objPool[counter].compCollision.active = false;
                 objPool[counter].compCollision.rec.X = -1000;
             }
         }
@@ -135,6 +137,7 @@ namespace DungeonRun
             for (counter = 0; counter < projectileCount; counter++)
             {
                 projectilePool[counter].active = false;
+                projectilePool[counter].compCollision.active = false;
                 projectilePool[counter].compCollision.rec.X = -1000;
             }
         }

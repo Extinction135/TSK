@@ -23,6 +23,7 @@ namespace DungeonRun
             Actor.direction = Direction.Down;
             Actor.state = Actor.State.Idle;
             Actor.active = true;
+            Actor.compCollision.active = true;
             SetCollisionRec(Actor);
             //set actor animations lists, group, direction
             ActorAnimationListManager.SetAnimationList(Actor);

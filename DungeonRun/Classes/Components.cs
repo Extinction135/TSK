@@ -18,6 +18,7 @@ namespace DungeonRun
         public int offsetX = 0; //offsets rec from sprite.position
         public int offsetY = 0; //offsets rec from sprite.position
         public Boolean blocking = true; //is this actor/obj impassable
+        public Boolean active = false; //check to see if this component collides with other components?
     }
 
     public class ComponentMovement

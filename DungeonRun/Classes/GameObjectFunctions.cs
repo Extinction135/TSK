@@ -32,7 +32,11 @@ namespace DungeonRun
             //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.x = 16 * 1;
             Obj.compSprite.cellSize.y = 16 * 1;
+
+            Obj.active = true; //assume this object should draw / animate
+            Obj.compCollision.active = false; //assume this object doesn't move, shouldnt check itself for collisions vs objs
             Obj.compCollision.blocking = true; //assume the object is blocking (most are)
+
             Obj.objGroup = GameObject.ObjGroup.Object; //assume object is a generic object
             Obj.compCollision.rec.Width = 16; //assume collisionRec is 16x16
             Obj.compCollision.rec.Height = 16; //(most are)
@@ -284,7 +288,7 @@ namespace DungeonRun
             #endregion
 
 
-            CollisionFunctions.AlignSprite(Obj.compMove, Obj.compSprite);
+            CollisionFunctions.AlignComponents(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
 

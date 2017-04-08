@@ -10,10 +10,18 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
-where do we sync the collisionRec to the obj sprite>?
+i'd like to know how many collision checks are occurring each frame in the debug info panel
 
-the collision rec and the gameobj don't align
-we need them to align!
+
+
+
+
+
+we should be able to 'release' an actor or object or projectile from the pool
+by just calling a function / method like obj.release or Pool.Release(obj)
+this ensures there is only one correct way to return an unused obj/act/pro to the pool
+
+
 
 
 consolidating all pools into the pool.cs class
@@ -25,9 +33,7 @@ consolidating all pools into the pool.cs class
 
 
 
-small issue: we're checking collisions between walls, when walls dont move
-we can use a boolean to prevent collision checking with this obj as the source (vs others)
-should reduce the collision checks
+
 
 
 consolidate floor pool into pool.cs
