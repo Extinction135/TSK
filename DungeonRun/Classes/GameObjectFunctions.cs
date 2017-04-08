@@ -31,17 +31,22 @@ namespace DungeonRun
             //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.x = 16 * 1;
             Obj.compSprite.cellSize.y = 16 * 1;
+            Obj.objGroup = GameObject.ObjGroup.Object; //assume object is a generic object
+
             Obj.lifetime = 0; Obj.lifeCounter = 0; //assume obj exists forever (not projectile)
             Obj.active = true; //assume this object should draw / animate
+            Obj.compSprite.zOffset = 0;
+            Obj.compAnim.speed = 10; //set obj's animation speed
+            Obj.compAnim.loop = true; //assume obj's animation loops
+
             Obj.compCollision.active = false; //assume this object doesn't move, shouldnt check itself for collisions vs objs
             Obj.compCollision.blocking = true; //assume the object is blocking (most are)
-
-            Obj.objGroup = GameObject.ObjGroup.Object; //assume object is a generic object
             Obj.compCollision.rec.Width = 16; //assume collisionRec is 16x16
             Obj.compCollision.rec.Height = 16; //(most are)
             Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Obj.compCollision.offsetY = -8; //(most are)
-            Obj.compSprite.zOffset = 0;
+
+            
 
 
             #region Room Objects
@@ -282,7 +287,9 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Projectile;
-                Obj.lifetime = 60; //in frames
+                Obj.lifetime = 20; //in frames
+                Obj.compAnim.speed = 4;
+                Obj.compAnim.loop = false;
             }
 
             #endregion

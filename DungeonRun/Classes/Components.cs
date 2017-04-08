@@ -37,6 +37,7 @@ namespace DungeonRun
         public byte index = 0; //where in the currentAnimation list the animation is (animation index)
         public byte speed = 10; //how many frames should elapse before animation is updated (limits animation speed)
         public byte timer = 0; //how many frames have elapsed since last animation update (counts frames) @ 60fps
+        public Boolean loop = true; //should currentAnimation loop?
     }
 
     public class ComponentInput

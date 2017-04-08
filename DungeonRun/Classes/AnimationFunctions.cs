@@ -17,7 +17,12 @@ namespace DungeonRun
         public static void Animate(ComponentAnimation Anim, ComponentSprite Sprite)
         {
             //perform bounds checking for index
-            if (Anim.index >= Anim.currentAnimation.Count) { Anim.index = 0; }
+            if (Anim.index >= Anim.currentAnimation.Count)
+            {
+                if (Anim.loop) { Anim.index = 0; } //loop animation, or not
+                else { Anim.index = (byte)(Anim.currentAnimation.Count-1); }
+            }
+
             //update sprite's current frame to index value
             Sprite.currentFrame = Anim.currentAnimation[Anim.index];
             Anim.timer++;

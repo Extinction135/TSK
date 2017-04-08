@@ -98,6 +98,7 @@ namespace DungeonRun
             Obj.active = false;
             Obj.compCollision.active = false;
             Obj.compCollision.rec.X = -1000;
+            Obj.lifetime = 0;
         }
 
 
@@ -152,16 +153,21 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {
                 if (Pool.objPool[Pool.counter].active)
-                { AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim, 
-                    Pool.objPool[Pool.counter].compSprite); }
+                {
+                    AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim, 
+                        Pool.objPool[Pool.counter].compSprite);
+                }
             }
 
             //projectile pool
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             {
                 if (Pool.projectilePool[Pool.counter].active)
-                { AnimationFunctions.Animate(Pool.projectilePool[Pool.counter].compAnim, 
-                    Pool.projectilePool[Pool.counter].compSprite); }
+                {
+                    GameObjectFunctions.Update(Pool.projectilePool[Pool.counter]);
+                    AnimationFunctions.Animate(Pool.projectilePool[Pool.counter].compAnim, 
+                        Pool.projectilePool[Pool.counter].compSprite);
+                }
             }
         }
 
