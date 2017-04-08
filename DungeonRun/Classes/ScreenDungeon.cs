@@ -50,8 +50,8 @@ namespace DungeonRun
             stopWatch.Reset(); stopWatch.Start();
 
             //update and move actors, objects, and projectiles
-            pool.Update();
-            pool.Move(this);
+            PoolFunctions.Update(pool);
+            PoolFunctions.Move(this, pool);
 
             //track camera to hero
             camera.targetZoom = 1.0f;
@@ -75,7 +75,7 @@ namespace DungeonRun
                         null,
                         camera.view
                         );
-            pool.Draw(screenManager);
+            PoolFunctions.Draw(screenManager, pool);
             screenManager.spriteBatch.End();
             
             //draw UI

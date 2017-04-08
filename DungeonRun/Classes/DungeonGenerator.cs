@@ -27,7 +27,7 @@ namespace DungeonRun
             byte width = 20;
             byte height = 10;
             //reset the pools + counter
-            DungeonScreen.pool.Reset();
+            PoolFunctions.Reset(DungeonScreen.pool);
             DungeonScreen.pool.counter = 0;
 
             //build a test room
@@ -36,33 +36,32 @@ namespace DungeonRun
                 for (int j = 0; j < height; j++)
                 {
                     //place the floors
-                    ComponentSprite floor = DungeonScreen.pool.GetFloor();
+                    ComponentSprite floor = PoolFunctions.GetFloor(DungeonScreen.pool);
                     floor.position.X = i * 16 + positionX;
                     floor.position.Y = j * 16 + positionY;
+                    
 
-                    //place the walls
-
-                    #region Top Row
+                    #region Top Row Walls
 
                     if (j == 0)
                     {   
                         //top row
-                        GameObject obj = DungeonScreen.pool.GetObj();
+                        GameObject obj = PoolFunctions.GetObj(DungeonScreen.pool);
                         GameObjectFunctions.Teleport(obj, i * 16 + positionX, 0 * 16 - 16 + positionY);
                         obj.direction = Direction.Down;
                         GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
                         if (i == 0)
                         {   //topleft corner
-                            GameObject corner = DungeonScreen.pool.GetObj();
+                            GameObject corner = PoolFunctions.GetObj(DungeonScreen.pool);
                             GameObjectFunctions.Teleport(corner, -16 + positionX, -16 + positionY);
                             corner.direction = Direction.Down;
                             GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
                         }
                         else if (i == width-1)
                         {   //topright corner
-                            GameObject corner = DungeonScreen.pool.GetObj();
+                            GameObject corner = PoolFunctions.GetObj(DungeonScreen.pool);
                             GameObjectFunctions.Teleport(corner, width * 16 + positionX, -16 + positionY);
-                            corner.direction = Direction.Right;
+                            corner.direction = Direction.Left;
                             GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
                         }
                     }
@@ -70,24 +69,24 @@ namespace DungeonRun
                     #endregion
 
 
-                    #region Bottom Row
+                    #region Bottom Row Walls
 
                     else if (j == height-1)
                     {   //bottom row
-                        GameObject obj = DungeonScreen.pool.GetObj();
+                        GameObject obj = PoolFunctions.GetObj(DungeonScreen.pool);
                         GameObjectFunctions.Teleport(obj, i * 16 + positionX, height * 16 + positionY);
                         obj.direction = Direction.Up;
                         GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
                         if (i == 0)
-                        {   //topleft corner
-                            GameObject corner = DungeonScreen.pool.GetObj();
+                        {   //bottom left corner
+                            GameObject corner = PoolFunctions.GetObj(DungeonScreen.pool);
                             GameObjectFunctions.Teleport(corner, -16 + positionX, height * 16 + positionY);
-                            corner.direction = Direction.Left;
+                            corner.direction = Direction.Right;
                             GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
                         }
                         else if (i == width - 1)
-                        {   //topright corner
-                            GameObject corner = DungeonScreen.pool.GetObj();
+                        {   //bottom right corner
+                            GameObject corner = PoolFunctions.GetObj(DungeonScreen.pool);
                             GameObjectFunctions.Teleport(corner, width * 16 + positionX, height * 16 + positionY);
                             corner.direction = Direction.Up;
                             GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
@@ -97,20 +96,20 @@ namespace DungeonRun
                     #endregion
 
 
-                    #region Left & Right Columns
+                    #region Left & Right Column Walls
 
                     if (i == 0)
                     {   //left side
-                        GameObject obj = DungeonScreen.pool.GetObj();
+                        GameObject obj = PoolFunctions.GetObj(DungeonScreen.pool);
                         GameObjectFunctions.Teleport(obj, i * 16 - 16 + positionX, j * 16 + positionY);
-                        obj.direction = Direction.Left;
+                        obj.direction = Direction.Right;
                         GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
                     }
                     else if (i == width-1)
                     {   //right side
-                        GameObject obj = DungeonScreen.pool.GetObj();
+                        GameObject obj = PoolFunctions.GetObj(DungeonScreen.pool);
                         GameObjectFunctions.Teleport(obj, i * 16 + 16 + positionX, j * 16 + positionY);
-                        obj.direction = Direction.Right;
+                        obj.direction = Direction.Left;
                         GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
                     }
 
@@ -124,7 +123,7 @@ namespace DungeonRun
             //place enemies within the room
             for (int i = 0; i < enemyCount; i++)
             {
-                Actor actor = DungeonScreen.pool.GetActor();
+                Actor actor = PoolFunctions.GetActor(DungeonScreen.pool);
                 ActorFunctions.SetType(actor, Actor.Type.Blob);
                 ActorFunctions.Teleport(actor, Global.Random.Next(20, 180) + positionX, Global.Random.Next(20, 80) + positionY);
             }

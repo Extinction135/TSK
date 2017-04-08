@@ -52,6 +52,39 @@ namespace DungeonRun
 
 
 
+
+        public static Vector2 ProjectileOffset = new Vector2(0, 0);
+        public static void AlignProjectile(GameObject Projectile, Actor Actor)
+        {
+            ProjectileOffset.X = 0; ProjectileOffset.Y = 0;
+
+            //convert projectile's diagonal direction to a cardinal direction
+            if (Projectile.direction == Direction.UpRight) { Projectile.direction = Direction.Right; }
+            else if (Projectile.direction == Direction.DownRight) { Projectile.direction = Direction.Right; }
+            else if (Projectile.direction == Direction.UpLeft) { Projectile.direction = Direction.Left; }
+            else if (Projectile.direction == Direction.DownLeft) { Projectile.direction = Direction.Left; }
+
+            //aligns the projectile to the actor
+            if (Actor.direction == Direction.Down) { ProjectileOffset.X = 0; ProjectileOffset.Y = 8; }
+            else if (Actor.direction == Direction.Up) { ProjectileOffset.X = 0; ProjectileOffset.Y = -8; }
+            else if (Actor.direction == Direction.Right) { ProjectileOffset.X = 8; ProjectileOffset.Y = 0; }
+            else if (Actor.direction == Direction.Left) { ProjectileOffset.X = -8; ProjectileOffset.Y = 0; }
+
+            //different types of projectiles have different offsets
+
+            //teleport the projectile to the actor's position with the offset applied
+            GameObjectFunctions.Teleport(Projectile,
+                Actor.compSprite.position.X + ProjectileOffset.X,
+                Actor.compSprite.position.Y + ProjectileOffset.Y);
+        }
+
+
+
+
+
+
+
+
         public static void SetInputState(ComponentInput Input, Actor Actor)
         {
             Actor.inputState = Actor.State.Idle; //reset inputState
@@ -96,9 +129,10 @@ namespace DungeonRun
                     Actor.compMove.speed = 0.0f;
 
                     //create weapon projectile here
-                    //GameObject projectile = Actor.screen.projectilePool.GetObj();
-                    //GameObjectFunctions.SetType(projectile, GameObject.Type.ProjectileSword);
-                    //GameObjectFunctions.Teleport(projectile, Actor.compCollision.rec.X, Actor.compCollision.rec.Y);
+                    GameObject projectile = PoolFunctions.GetProjectile(Actor.screen.pool);
+                    projectile.direction = Actor.direction;
+                    GameObjectFunctions.SetType(projectile, GameObject.Type.ProjectileSword);
+                    AlignProjectile(projectile, Actor);
                 }
                 else if (Actor.state == Actor.State.Use)
                 {

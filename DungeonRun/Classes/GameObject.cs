@@ -132,6 +132,9 @@ namespace DungeonRun
         public Direction direction;
         public Boolean active; //does this object draw, update?
 
+        public Byte lifetime;   //how many frames this object exists for, 0 = forever/ignore
+        public Byte lifeCounter;//counts up to lifetime value
+
         public GameObject(Texture2D DungeonSheet)
         {   //initialize to default value - this data is changed in Update()
             objGroup = ObjGroup.Object;

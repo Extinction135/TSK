@@ -12,20 +12,8 @@ todo:
 
 
 
-
-we should be able to 'release' an actor or object or projectile from the pool
-by just calling a function / method like obj.release or Pool.Release(obj)
-this ensures there is only one correct way to return an unused obj/act/pro to the pool
-
-
-
-
-
-
-
-
-
-
+align the projectile to the actor
+let the projectile 'live' for a number of frames, then release it back to the projectile pool
 
 
 implement weapon as a projectile, without any speed
@@ -49,7 +37,10 @@ implement dash smoke as a particle (should spawn whenever an actor dashes)
 	
 	
 	
-	
+we should be counting the currently used actors, gameobjs, projectiles, floors
+this is just an int that gets incremented when Get() is called
+decremented when Release() is called
+reset when Reset() is called
 	
 	
 	

@@ -19,12 +19,11 @@ namespace DungeonRun
         {
             Obj.type = Type;
             //the objects texture is not set here, this is managed by the obj/projectile pools
-
             //sprites are created facing Down, but we will need to set the spite rotation based on direction
             Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
             if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
-            else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise90; }
-            else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise270; }
+            else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
+            else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
 
             //update the object's current animation based on it's type
             GameObjectAnimListManager.SetAnimationList(Obj);
@@ -32,7 +31,7 @@ namespace DungeonRun
             //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.x = 16 * 1;
             Obj.compSprite.cellSize.y = 16 * 1;
-
+            Obj.lifetime = 0; Obj.lifeCounter = 0; //assume obj exists forever (not projectile)
             Obj.active = true; //assume this object should draw / animate
             Obj.compCollision.active = false; //assume this object doesn't move, shouldnt check itself for collisions vs objs
             Obj.compCollision.blocking = true; //assume the object is blocking (most are)
@@ -283,6 +282,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Projectile;
+                Obj.lifetime = 60; //in frames
             }
 
             #endregion
@@ -293,12 +293,22 @@ namespace DungeonRun
 
 
 
-        public static void Teleport(GameObject Obj, int X, int Y)
+        public static void Teleport(GameObject Obj, float X, float Y)
         {
             Obj.compMove.position.X = X;
             Obj.compMove.position.Y = Y;
         }
 
+
+        public static void Update(GameObject Obj)
+        {
+            if(Obj.lifetime > 0)
+            {   //if the life counter is 0, ignore this object
+                Obj.lifeCounter++; //increment the life counter of the gameobject
+                //if the life counter reaches the total, release this object back to the pool
+                if (Obj.lifeCounter >= Obj.lifetime) { PoolFunctions.Release(Obj); }
+            }
+        }
 
         public static void Draw(GameObject Obj, ScreenManager ScreenManager)
         {
