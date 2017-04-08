@@ -125,6 +125,8 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Items
+
                 //ItemRupee
                 new List<Byte4> { new Byte4(1, 7, 0, 0), new Byte4(1, 7, 0, 0), new Byte4(2, 7, 0, 0), new Byte4(3, 7, 0, 0) },
                 //ItemHeart
@@ -137,6 +139,18 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(4, 3, 0, 0) },
                 //ItemBigKey
                 new List<Byte4> { new Byte4(5, 3, 0, 0) },
+
+                #endregion
+
+
+                #region Projectiles
+
+                //ProjectileSword
+                new List<Byte4> { new Byte4(0, 4, 0, 0), new Byte4(1, 4, 0, 0), new Byte4(2, 4, 0, 0), new Byte4(3, 4, 0, 0) },
+
+                #endregion
+
+
             };
         }
 

@@ -115,6 +115,7 @@
     <Compile Include="Classes\GameObjectPool.cs" />
     <Compile Include="Classes\CollisionFunctions.cs" />
     <Compile Include="Classes\InputFunctions.cs" />
+    <Compile Include="Classes\Pool.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
     <Compile Include="Classes\StructsAndEnums.cs" />
     <Compile Include="Classes\InputHelper.cs" />

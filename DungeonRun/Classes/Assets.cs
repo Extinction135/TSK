@@ -24,7 +24,6 @@ namespace DungeonRun
         public Texture2D dungeonSheet;
         public Texture2D particleSheet;
         public Texture2D uiSheet;
-        public Texture2D weaponSheet;
 
         //soundfx
 
@@ -42,7 +41,6 @@ namespace DungeonRun
             dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
             particleSheet = content.Load<Texture2D>(@"ParticlesProjectilesSheet");
             uiSheet = content.Load<Texture2D>(@"UISheet");
-            weaponSheet = content.Load<Texture2D>(@"WeaponsSheet");
 
             //soundfx
         }

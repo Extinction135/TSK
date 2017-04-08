@@ -19,33 +19,11 @@ namespace DungeonRun
         public List<GameObject> pool;
         public int counter;
         public int index;
+        
+        
+        
 
-        public GameObjectPool(DungeonScreen Screen)
-        {
-            pool = new List<GameObject>();
-            for (counter = 0; counter < poolSize; counter++)
-            { pool.Add(new GameObject(Screen.assets.dungeonSheet)); }
-            index = 0; Reset();
-        }
-
-
-        public void Reset()
-        {
-            for (counter = 0; counter < poolSize; counter++)
-            {
-                pool[counter].active = false;
-                pool[counter].compCollision.rec.X = -1000;
-            }
-        }
-        public GameObject GetObj()
-        {
-            GameObject obj = pool[index];
-            obj.active = true;
-            index++;
-            if (index > poolSize) { index = 0; }
-            return obj;
-        }
-
+        
 
         public void Update()
         {
@@ -55,6 +33,7 @@ namespace DungeonRun
                 { AnimationFunctions.Animate(pool[counter].compAnim, pool[counter].compSprite); }
             }
         }
+
         public void Draw(ScreenManager ScreenManager)
         {
             for (counter = 0; counter < poolSize; counter++)

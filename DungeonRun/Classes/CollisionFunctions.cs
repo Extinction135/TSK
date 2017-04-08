@@ -14,29 +14,19 @@ namespace DungeonRun
 {
     public static class CollisionFunctions
     {
-
-
-
-
-        
         public static void Move(Actor Actor, DungeonScreen DungeonScreen)
         {
             ProjectMovement(Actor.compMove);
             CheckCollisions(Actor.compMove, Actor.compCollision, DungeonScreen);
             PlaceSpriteToCollision(Actor.compCollision, Actor.compSprite);
         }
-        /*
-        //gameObj needs a compMove to be able to move around and be projected
         public static void Move(GameObject Obj, DungeonScreen DungeonScreen)
         {
             ProjectMovement(Obj.compMove);
-            CheckCollisions(Obj.compMove, Obj.compCollision);
+            CheckCollisions(Obj.compMove, Obj.compCollision, DungeonScreen);
             PlaceSpriteToCollision(Obj.compCollision, Obj.compSprite);
         }
-        */
-
-
-
+        
 
 
         public static void ProjectMovement(ComponentMovement Move)
@@ -67,9 +57,6 @@ namespace DungeonRun
             Move.newPosition.Y = Move.position.Y;
             Move.newPosition += Move.magnitude;
         }
-
-
-
 
 
         static Boolean collisionX;
@@ -146,11 +133,6 @@ namespace DungeonRun
 
             Coll.blocking = true; //turn this object's blocking back on
         }
-
-
-
-
-
 
 
 

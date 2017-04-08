@@ -9,7 +9,16 @@ CTRL + M, P = expand functions/regions
 
 todo:
 
-write routines to handle actor states: attack
+
+
+consolidating all pools into the pool.cs class
+	this will represent actor, obj, and projectile pools
+	projectiles are to be modeled as gameobjects
+	we want a sword obj to be placed at the hero's location when he attacks
+	then it should hide itself once it's animation/timer is complete
+
+
+
 
 
 we're gonna implement the weapon as a projectile, without any speed

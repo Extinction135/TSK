@@ -26,22 +26,23 @@ namespace DungeonRun
         public Camera2D camera;
         public GameTime gameTime;
         
-        public ActorPool actorPool;
-        public GameObjectPool objPool;
         public FloorPool floorPool;
+        public GameObjectPool objPool;
+        public GameObjectPool projectilePool;
+        public ActorPool actorPool;
 
         public override void LoadContent()
         {
             debugInfo = new DebugInfo(this);
             camera = new Camera2D(screenManager);
 
-            actorPool = new ActorPool(this);
-            objPool = new GameObjectPool(this);
             floorPool = new FloorPool(this);
+            objPool = new GameObjectPool(assets.dungeonSheet);
+            projectilePool = new GameObjectPool(assets.particleSheet);
+            actorPool = new ActorPool(this);
 
             DungeonGenerator.CreateRoom(this);
-
-            ActorFunctions.SetType(actorPool.hero, Actor.Type.Blob);
+            //ActorFunctions.SetType(actorPool.hero, Actor.Type.Blob);
         }
 
         public override void HandleInput(InputHelper Input, GameTime GameTime)
@@ -57,9 +58,12 @@ namespace DungeonRun
             //update actors + objects
             actorPool.Update();
             objPool.Update();
+            projectilePool.Update();
+
             //move actors + objects
             actorPool.Move(this);
-            //objPool.Move(this);
+            objPool.Move(this);
+            projectilePool.Move(this);
 
             //track camera to hero
             camera.targetZoom = 1.0f;
@@ -83,8 +87,10 @@ namespace DungeonRun
                         null,
                         camera.view
                         );
+
             floorPool.Draw(screenManager);
             objPool.Draw(screenManager);
+            projectilePool.Draw(screenManager);
             actorPool.Draw(screenManager);
             screenManager.spriteBatch.End();
             

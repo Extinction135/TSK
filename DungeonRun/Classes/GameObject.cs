@@ -28,6 +28,8 @@ namespace DungeonRun
             Item,       //picked up off ground, deleted from objects list, held above hero's head
             Consumable, //picked up off ground, deleted from objects list, not held above hero's head
             Reward,     //spawned from chest, not actually on objects list, held above hero's head
+
+            Projectile, //a colliding object (moving or stationary)
         }
 
         public enum Type
@@ -110,6 +112,13 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Projectiles
+
+            ProjectileSword,
+
+            #endregion
+
         }
         
         public ObjGroup objGroup;
@@ -118,6 +127,8 @@ namespace DungeonRun
         public ComponentSprite compSprite;
         public ComponentCollision compCollision;
         public ComponentAnimation compAnim;
+        public ComponentMovement compMove;
+
         public Direction direction;
         public Boolean active; //does this object draw, update?
 
@@ -128,6 +139,7 @@ namespace DungeonRun
             compSprite = new ComponentSprite(DungeonSheet, new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
             compCollision = new ComponentCollision();
             compAnim = new ComponentAnimation();
+            compMove = new ComponentMovement();
             direction = Direction.Down;
             active = true;
             GameObjectFunctions.SetType(this, type);

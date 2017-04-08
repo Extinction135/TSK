@@ -14,10 +14,11 @@ namespace DungeonRun
 {
     public static class GameObjectFunctions
     {
+
         public static void SetType(GameObject Obj, GameObject.Type Type)
         {
             Obj.type = Type;
-            //all gameobjects exist on the dungeon sheet, so the texture never needs to be changed
+            //the objects texture is not set here, this is managed by the obj/projectile pools
 
             //sprites are created facing Down, but we will need to set the spite rotation based on direction
             Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
@@ -270,11 +271,28 @@ namespace DungeonRun
 
             #endregion
 
+            #region Projectiles
+
+            else if (Type == GameObject.Type.ProjectileSword)
+            {
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
+                Obj.compCollision.blocking = false;
+                Obj.objGroup = GameObject.ObjGroup.Projectile;
+            }
+
+            #endregion
+
             CollisionFunctions.PlaceCollisionToSprite(Obj.compCollision, Obj.compSprite);
         }
 
 
-        
+
+        public static void Teleport(GameObject Obj, int X, int Y)
+        {
+            Obj.compMove.position.X = X;
+            Obj.compMove.position.Y = Y;
+        }
 
 
         public static void Draw(GameObject Obj, ScreenManager ScreenManager)

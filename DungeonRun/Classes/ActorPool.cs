@@ -19,50 +19,12 @@ namespace DungeonRun
         public List<Actor> pool;
         public int counter;
         public int index;
+
         public int activeActor = 1; //skip the 0th actor, that's HERO
-
         public Actor hero;
-
-        public ActorPool(DungeonScreen Screen)
-        {
-            pool = new List<Actor>();
-            for (counter = 0; counter < poolSize; counter++)
-            {
-                pool.Add(new Actor(Screen));
-                ActorFunctions.SetType(pool[counter], Actor.Type.Hero);
-                ActorFunctions.Teleport(pool[counter], 0, 0);
-            }
-            index = 1; Reset();
-            hero = pool[0]; //the hero exists at index 0 in the actorPool
-        }
-
-        public void Reset()
-        {
-            for (counter = 0; counter < poolSize; counter++)
-            {
-                pool[counter].active = false;
-                pool[counter].compCollision.rec.X = -1000;
-            }
-        }
-        public Actor GetActor()
-        {
-            Actor actor = pool[index];
-            actor.active = true;
-            index++;
-            if(index > poolSize) { index = 1; } //skip 0th actor (HERO)
-            return actor;
-        }
-
-
-        public void Move(DungeonScreen DungeonScreen)
-        {
-            for (counter = 0; counter < poolSize; counter++)
-            {
-                if (pool[counter].active)
-                { CollisionFunctions.Move(pool[counter], DungeonScreen); }
-            }
-        }
-
+        
+        
+        
 
         public void UpdateActiveActor(Actor Actor)
         {
@@ -83,6 +45,7 @@ namespace DungeonRun
                 { ActorFunctions.Update(pool[counter]); }
             }
         }
+
         public void Draw(ScreenManager ScreenManager)
         {
             for (counter = 0; counter < poolSize; counter++)
