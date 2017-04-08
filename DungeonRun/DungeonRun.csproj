@@ -112,7 +112,6 @@
     <Compile Include="Classes\FloorPool.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
     <Compile Include="Classes\GameObjectFunctions.cs" />
-    <Compile Include="Classes\GameObjectPool.cs" />
     <Compile Include="Classes\CollisionFunctions.cs" />
     <Compile Include="Classes\InputFunctions.cs" />
     <Compile Include="Classes\Pool.cs" />
@@ -123,7 +122,6 @@
     <Compile Include="Classes\ScreenManager.cs" />
     <Compile Include="Classes\Text.cs" />
     <Compile Include="Classes\GameObject.cs" />
-    <Compile Include="Classes\ActorPool.cs" />
     <Compile Include="Classes\AiManager.cs" />
     <Compile Include="Classes\ActorAnimListManager.cs" />
     <Compile Include="GamePage.xaml.cs">

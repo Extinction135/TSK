@@ -10,12 +10,28 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
+where do we sync the collisionRec to the obj sprite>?
+
+the collision rec and the gameobj don't align
+we need them to align!
+
 
 consolidating all pools into the pool.cs class
 	this will represent actor, obj, and projectile pools
 	projectiles are to be modeled as gameobjects
 	we want a sword obj to be placed at the hero's location when he attacks
 	then it should hide itself once it's animation/timer is complete
+
+
+
+
+small issue: we're checking collisions between walls, when walls dont move
+we can use a boolean to prevent collision checking with this obj as the source (vs others)
+should reduce the collision checks
+
+
+consolidate floor pool into pool.cs
+
 
 
 

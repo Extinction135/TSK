@@ -18,13 +18,13 @@ namespace DungeonRun
         {
             ProjectMovement(Actor.compMove);
             CheckCollisions(Actor.compMove, Actor.compCollision, DungeonScreen);
-            PlaceSpriteToCollision(Actor.compCollision, Actor.compSprite);
+            AlignSprite(Actor.compMove, Actor.compSprite);
         }
         public static void Move(GameObject Obj, DungeonScreen DungeonScreen)
         {
             ProjectMovement(Obj.compMove);
             CheckCollisions(Obj.compMove, Obj.compCollision, DungeonScreen);
-            PlaceSpriteToCollision(Obj.compCollision, Obj.compSprite);
+            AlignSprite(Obj.compMove, Obj.compSprite);
         }
         
 
@@ -70,31 +70,34 @@ namespace DungeonRun
             #region Project collisionRec along X axis
 
             collisionX = false;
-            Coll.rec.X = (int)Move.newPosition.X; //project collisionRec along X axis
-            for (int i = 0; i < DungeonScreen.objPool.poolSize; i++)
+            Coll.rec.X = (int)Move.newPosition.X + Coll.offsetX; //project collisionRec along X axis
+            for (int i = 0; i < DungeonScreen.pool.objCount; i++)
             {   //check collisions against objects
-                if (DungeonScreen.objPool.pool[i].active)
+                if (DungeonScreen.pool.objPool[i].active)
                 {   //bail if obj isn't active
-                    if (DungeonScreen.objPool.pool[i].compCollision.blocking)
+                    if (DungeonScreen.pool.objPool[i].compCollision.blocking)
                     {   //bail if obj isn't blocking
-                        if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
+                        if (Coll.rec.Intersects(DungeonScreen.pool.objPool[i].compCollision.rec))
                         { collisionX = true; }
                     }
                 }
             }
-            for (int i = 0; i < DungeonScreen.actorPool.poolSize; i++)
+            for (int i = 0; i < DungeonScreen.pool.actorCount; i++)
             {   //check collisions against actors
-                if (DungeonScreen.actorPool.pool[i].active)
+                if (DungeonScreen.pool.actorPool[i].active)
                 {   //bail if actor isn't active
-                    if (DungeonScreen.actorPool.pool[i].compCollision.blocking)
+                    if (DungeonScreen.pool.actorPool[i].compCollision.blocking)
                     {   //bail if actor isn't blocking
-                        if (Coll.rec.Intersects(DungeonScreen.actorPool.pool[i].compCollision.rec))
+                        if (Coll.rec.Intersects(DungeonScreen.pool.actorPool[i].compCollision.rec))
                         { collisionX = true; }
                     }
                 }
             }
+
+            //check against projectile collisions
+
             if (collisionX) { Move.newPosition.X = Move.position.X; }
-            Coll.rec.X = (int)Move.newPosition.X;
+            Coll.rec.X = (int)Move.newPosition.X + Coll.offsetX;
             Move.position.X = Move.newPosition.X;
 
             #endregion
@@ -102,31 +105,34 @@ namespace DungeonRun
             #region Project collisionRec along Y axis
 
             collisionY = false;
-            Coll.rec.Y = (int)Move.newPosition.Y; //
-            for (int i = 0; i < DungeonScreen.objPool.poolSize; i++)
+            Coll.rec.Y = (int)Move.newPosition.Y + Coll.offsetY;
+            for (int i = 0; i < DungeonScreen.pool.objCount; i++)
             {   //check collisions against objects
-                if (DungeonScreen.objPool.pool[i].active)
+                if (DungeonScreen.pool.objPool[i].active)
                 {   //bail if obj isn't active
-                    if (DungeonScreen.objPool.pool[i].compCollision.blocking)
+                    if (DungeonScreen.pool.objPool[i].compCollision.blocking)
                     {   //bail if obj isn't blocking
-                        if (Coll.rec.Intersects(DungeonScreen.objPool.pool[i].compCollision.rec))
+                        if (Coll.rec.Intersects(DungeonScreen.pool.objPool[i].compCollision.rec))
                         { collisionY = true; }
                     }
                 }
             }
-            for (int i = 0; i < DungeonScreen.actorPool.poolSize; i++)
+            for (int i = 0; i < DungeonScreen.pool.actorCount; i++)
             {   //check collisions against actors
-                if (DungeonScreen.actorPool.pool[i].active)
+                if (DungeonScreen.pool.actorPool[i].active)
                 {   //bail if actor isn't active
-                    if (DungeonScreen.actorPool.pool[i].compCollision.blocking)
+                    if (DungeonScreen.pool.actorPool[i].compCollision.blocking)
                     {   //bail if actor isn't blocking
-                        if (Coll.rec.Intersects(DungeonScreen.actorPool.pool[i].compCollision.rec))
+                        if (Coll.rec.Intersects(DungeonScreen.pool.actorPool[i].compCollision.rec))
                         { collisionY = true; }
                     }
                 }
             }
+
+            //check against projectile collisions
+
             if (collisionY) { Move.newPosition.Y = Move.position.Y; }
-            Coll.rec.Y = (int)Move.newPosition.Y;
+            Coll.rec.Y = (int)Move.newPosition.Y + Coll.offsetY;
             Move.position.Y = Move.newPosition.Y;
 
             #endregion
@@ -136,17 +142,15 @@ namespace DungeonRun
 
 
 
-        public static void PlaceSpriteToCollision(ComponentCollision Coll, ComponentSprite Sprite)
-        {   //set sprite.pos to collisionRec.pos
-            Sprite.position.X = (int)(Coll.rec.X + Coll.rec.Width / 2 - Coll.offsetX);
-            Sprite.position.Y = (int)(Coll.rec.Y + Coll.rec.Height / 2 - Coll.offsetY);
+
+
+        public static void AlignSprite(ComponentMovement Move, ComponentSprite Sprite)
+        {   //aligns the Collision.rec and Sprite to the Move.position
+            Sprite.position.X = (int)Move.newPosition.X;
+            Sprite.position.Y = (int)Move.newPosition.Y;
             Sprite.SetZdepth();
         }
 
-        public static void PlaceCollisionToSprite(ComponentCollision Coll, ComponentSprite Sprite)
-        {   //set collisionRec.pos to sprite.pos
-            Coll.rec.X = (int)Sprite.position.X - Sprite.cellSize.x / 2;// + Coll.offsetX;
-            Coll.rec.Y = (int)Sprite.position.Y - Sprite.cellSize.y / 2;// + Coll.offsetY;
-        }
+
     }
 }

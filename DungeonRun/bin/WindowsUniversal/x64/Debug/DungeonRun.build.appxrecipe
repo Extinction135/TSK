@@ -429,9 +429,6 @@
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\UISheet.xnb">
       <PackagePath>Content\UISheet.xnb</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\WeaponsSheet.xnb">
-      <PackagePath>Content\WeaponsSheet.xnb</PackagePath>
-    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\DungeonRun.xr.xml">
       <PackagePath>DungeonRun.xr.xml</PackagePath>
     </AppxPackagedFile>

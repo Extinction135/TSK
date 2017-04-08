@@ -460,4 +460,3 @@ C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\obj\x64\Debug\D
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\DungeonSheet.xnb
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\ParticlesProjectilesSheet.xnb
 C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\UISheet.xnb
-C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Content\WeaponsSheet.xnb

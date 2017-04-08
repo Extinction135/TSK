@@ -39,8 +39,8 @@ namespace DungeonRun
             //set the collisionRec parameters based on the Type
             Actor.compCollision.rec.Width = 12;
             Actor.compCollision.rec.Height = 8;
-            Actor.compCollision.offsetX = 0;
-            Actor.compCollision.offsetY = 4;
+            Actor.compCollision.offsetX = -6;
+            Actor.compCollision.offsetY = 0;
         }
 
         public static void Teleport(Actor Actor, float X, float Y)
@@ -117,10 +117,9 @@ namespace DungeonRun
                 } 
             }
 
-            //update + play animations
+            //set actor animation and direction
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
-            AnimationFunctions.Animate(Actor.compAnim, Actor.compSprite);
         }
 
         public static void Draw(Actor Actor, ScreenManager ScreenManager)

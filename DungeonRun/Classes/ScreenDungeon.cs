@@ -29,10 +29,6 @@ namespace DungeonRun
         public FloorPool floorPool;
         public Pool pool;
 
-        //public GameObjectPool objPool;
-        //public GameObjectPool projectilePool;
-        //public ActorPool actorPool;
-
         public override void LoadContent()
         {
             debugInfo = new DebugInfo(this);
@@ -40,9 +36,6 @@ namespace DungeonRun
 
             floorPool = new FloorPool(this);
             pool = new Pool(this);
-            //objPool = new GameObjectPool(assets.dungeonSheet);
-            //projectilePool = new GameObjectPool(assets.particleSheet);
-            //actorPool = new ActorPool(this);
 
             DungeonGenerator.CreateRoom(this);
             //ActorFunctions.SetType(actorPool.hero, Actor.Type.Blob);
@@ -58,17 +51,9 @@ namespace DungeonRun
         {
             stopWatch.Reset(); stopWatch.Start();
 
-            //update actors + objects
+            //update and move actors, objects, and projectiles
             pool.Update();
-            //actorPool.Update();
-            //objPool.Update();
-            //projectilePool.Update();
-
-            //move actors + objects
             pool.Move(this);
-            //actorPool.Move(this);
-            //objPool.Move(this);
-            //projectilePool.Move(this);
 
             //track camera to hero
             camera.targetZoom = 1.0f;
@@ -92,12 +77,8 @@ namespace DungeonRun
                         null,
                         camera.view
                         );
-
             floorPool.Draw(screenManager);
             pool.Draw(screenManager);
-            //objPool.Draw(screenManager);
-            //projectilePool.Draw(screenManager);
-            //actorPool.Draw(screenManager);
             screenManager.spriteBatch.End();
             
             //draw UI

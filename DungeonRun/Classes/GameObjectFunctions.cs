@@ -29,8 +29,6 @@ namespace DungeonRun
             //update the object's current animation based on it's type
             GameObjectAnimListManager.SetAnimationList(Obj);
 
-            #region Set Default Values (Assumptions)
-
             //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.x = 16 * 1;
             Obj.compSprite.cellSize.y = 16 * 1;
@@ -42,7 +40,6 @@ namespace DungeonRun
             Obj.compCollision.offsetY = -8; //(most are)
             Obj.compSprite.zOffset = 0;
 
-            #endregion
 
             #region Room Objects
 
@@ -142,6 +139,7 @@ namespace DungeonRun
 
             #endregion
 
+
             #region Interactive Objects
 
             else if (Type == GameObject.Type.Chest || Type == GameObject.Type.ChestEmpty)
@@ -237,6 +235,7 @@ namespace DungeonRun
 
             #endregion
 
+
             #region Items
 
             else if (Type == GameObject.Type.ItemRupee)
@@ -271,6 +270,7 @@ namespace DungeonRun
 
             #endregion
 
+
             #region Projectiles
 
             else if (Type == GameObject.Type.ProjectileSword)
@@ -283,7 +283,8 @@ namespace DungeonRun
 
             #endregion
 
-            CollisionFunctions.PlaceCollisionToSprite(Obj.compCollision, Obj.compSprite);
+
+            CollisionFunctions.AlignSprite(Obj.compMove, Obj.compSprite);
         }
 
 

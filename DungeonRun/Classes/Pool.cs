@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public class Pool
     {
+        //represents the actor's pool, obj's pool, and projectile's pool
 
         public int actorCount;
         public List<Actor> actorPool;
@@ -28,7 +29,6 @@ namespace DungeonRun
         public int projectileIndex;
 
         public int counter;
-
         public int activeActor = 1; //skip the 0th actor, that's HERO
         public Actor hero;
 
@@ -73,9 +73,6 @@ namespace DungeonRun
 
 
 
-
-
-
         public Actor GetActor()
         {
             Actor actor = actorPool[actorIndex];
@@ -102,7 +99,6 @@ namespace DungeonRun
             if (projectileIndex > projectileCount) { projectileIndex = 0; }
             return projectile;
         }
-
 
 
 
@@ -147,20 +143,17 @@ namespace DungeonRun
 
 
 
-
-
         public void Move(DungeonScreen DungeonScreen)
-        {
+        {   //actor pool
             for (counter = 0; counter < actorCount; counter++)
             { if (actorPool[counter].active) { CollisionFunctions.Move(actorPool[counter], DungeonScreen); } }
-
+            //obj pool
             for (counter = 0; counter < objCount; counter++)
             { if (objPool[counter].active) { CollisionFunctions.Move(objPool[counter], DungeonScreen); } }
-
+            //projectile pool
             for (counter = 0; counter < projectileCount; counter++)
             { if (projectilePool[counter].active) { CollisionFunctions.Move(projectilePool[counter], DungeonScreen); } }
         }
-
 
 
 
@@ -181,7 +174,10 @@ namespace DungeonRun
             for (counter = 0; counter < actorCount; counter++)
             {
                 if (actorPool[counter].active)
-                { ActorFunctions.Update(actorPool[counter]); }
+                {
+                    ActorFunctions.Update(actorPool[counter]);
+                    AnimationFunctions.Animate(actorPool[counter].compAnim, actorPool[counter].compSprite);
+                }
             }
 
             //obj pool
@@ -198,8 +194,6 @@ namespace DungeonRun
                 { AnimationFunctions.Animate(projectilePool[counter].compAnim, projectilePool[counter].compSprite); }
             }
         }
-
-
 
 
 
