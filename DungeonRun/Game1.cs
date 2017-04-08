@@ -16,7 +16,7 @@ namespace DungeonRun
     {
         //control booleans for game codepaths
         public Boolean DEPLOYED = false; //true = playing on xbox1
-        public Boolean drawCollisionRecs = false;
+        public Boolean drawCollisionRecs = true;
 
 
 
