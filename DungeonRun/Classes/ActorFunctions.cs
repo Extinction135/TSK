@@ -95,9 +95,9 @@ namespace DungeonRun
                     Actor.compMove.speed = 0.0f;
 
                     //create weapon projectile here
-                    GameObject projectile = Actor.screen.projectilePool.GetObj();
-                    GameObjectFunctions.SetType(projectile, GameObject.Type.ProjectileSword);
-                    GameObjectFunctions.Teleport(projectile, Actor.compCollision.rec.X, Actor.compCollision.rec.Y);
+                    //GameObject projectile = Actor.screen.projectilePool.GetObj();
+                    //GameObjectFunctions.SetType(projectile, GameObject.Type.ProjectileSword);
+                    //GameObjectFunctions.Teleport(projectile, Actor.compCollision.rec.X, Actor.compCollision.rec.Y);
                 }
                 else if (Actor.state == Actor.State.Use)
                 {

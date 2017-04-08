@@ -36,7 +36,7 @@ namespace DungeonRun
         public Pool(DungeonScreen Screen)
         {
             //set the pool sizes
-            actorCount = 100;
+            actorCount = 60;
             objCount = 100;
             projectileCount = 100;
 
@@ -164,11 +164,68 @@ namespace DungeonRun
 
 
 
-        //handle the drawing of each pool
+
+        public void UpdateActiveActor(Actor Actor)
+        {
+            InputFunctions.ResetInputData(Actor.compInput);
+            AiManager.Think(Actor.compInput); //pass active actor to AiManager
+            activeActor++;
+            if (activeActor >= actorCount) { activeActor = 1; } //skip 0th actor (HERO)
+        }
+
+        public void Update()
+        {
+            //actor pool
+            UpdateActiveActor(actorPool[activeActor]);
+            UpdateActiveActor(actorPool[activeActor]);
+            for (counter = 0; counter < actorCount; counter++)
+            {
+                if (actorPool[counter].active)
+                { ActorFunctions.Update(actorPool[counter]); }
+            }
+
+            //obj pool
+            for (counter = 0; counter < objCount; counter++)
+            {
+                if (objPool[counter].active)
+                { AnimationFunctions.Animate(objPool[counter].compAnim, objPool[counter].compSprite); }
+            }
+
+            //projectile pool
+            for (counter = 0; counter < projectileCount; counter++)
+            {
+                if (projectilePool[counter].active)
+                { AnimationFunctions.Animate(projectilePool[counter].compAnim, projectilePool[counter].compSprite); }
+            }
+        }
 
 
 
 
 
+
+        public void Draw(ScreenManager ScreenManager)
+        {
+            //actor pool
+            for (counter = 0; counter < actorCount; counter++)
+            {
+                if (actorPool[counter].active)
+                { ActorFunctions.Draw(actorPool[counter], ScreenManager); }
+            }
+
+            //obj pool
+            for (counter = 0; counter < objCount; counter++)
+            {
+                if (objPool[counter].active)
+                { GameObjectFunctions.Draw(objPool[counter], ScreenManager); }
+            }
+
+            //projectile pool
+            for (counter = 0; counter < projectileCount; counter++)
+            {
+                if (projectilePool[counter].active)
+                { GameObjectFunctions.Draw(projectilePool[counter], ScreenManager); }
+            }
+        }
     }
 }

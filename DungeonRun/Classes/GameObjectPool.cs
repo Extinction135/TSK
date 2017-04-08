@@ -22,17 +22,7 @@ namespace DungeonRun
         
         
         
-
         
-
-        public void Update()
-        {
-            for (counter = 0; counter < poolSize; counter++)
-            {
-                if (pool[counter].active)
-                { AnimationFunctions.Animate(pool[counter].compAnim, pool[counter].compSprite); }
-            }
-        }
 
         public void Draw(ScreenManager ScreenManager)
         {
@@ -42,5 +32,10 @@ namespace DungeonRun
                 { GameObjectFunctions.Draw(pool[counter], ScreenManager); }
             }
         }
+
+
+
+
+
     }
 }

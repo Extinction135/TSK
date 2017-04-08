@@ -27,9 +27,11 @@ namespace DungeonRun
         public GameTime gameTime;
         
         public FloorPool floorPool;
-        public GameObjectPool objPool;
-        public GameObjectPool projectilePool;
-        public ActorPool actorPool;
+        public Pool pool;
+
+        //public GameObjectPool objPool;
+        //public GameObjectPool projectilePool;
+        //public ActorPool actorPool;
 
         public override void LoadContent()
         {
@@ -37,9 +39,10 @@ namespace DungeonRun
             camera = new Camera2D(screenManager);
 
             floorPool = new FloorPool(this);
-            objPool = new GameObjectPool(assets.dungeonSheet);
-            projectilePool = new GameObjectPool(assets.particleSheet);
-            actorPool = new ActorPool(this);
+            pool = new Pool(this);
+            //objPool = new GameObjectPool(assets.dungeonSheet);
+            //projectilePool = new GameObjectPool(assets.particleSheet);
+            //actorPool = new ActorPool(this);
 
             DungeonGenerator.CreateRoom(this);
             //ActorFunctions.SetType(actorPool.hero, Actor.Type.Blob);
@@ -48,7 +51,7 @@ namespace DungeonRun
         public override void HandleInput(InputHelper Input, GameTime GameTime)
         {
             gameTime = GameTime;
-            InputFunctions.MapPlayerInput(Input, actorPool.hero.compInput);
+            InputFunctions.MapPlayerInput(Input, pool.hero.compInput);
         }
 
         public override void Update(GameTime GameTime)
@@ -56,18 +59,20 @@ namespace DungeonRun
             stopWatch.Reset(); stopWatch.Start();
 
             //update actors + objects
-            actorPool.Update();
-            objPool.Update();
-            projectilePool.Update();
+            pool.Update();
+            //actorPool.Update();
+            //objPool.Update();
+            //projectilePool.Update();
 
             //move actors + objects
-            actorPool.Move(this);
-            objPool.Move(this);
-            projectilePool.Move(this);
+            pool.Move(this);
+            //actorPool.Move(this);
+            //objPool.Move(this);
+            //projectilePool.Move(this);
 
             //track camera to hero
             camera.targetZoom = 1.0f;
-            camera.targetPosition = actorPool.hero.compSprite.position;
+            camera.targetPosition = pool.hero.compSprite.position;
             camera.Update(GameTime);
 
             stopWatch.Stop(); updateTime = stopWatch.Elapsed;
@@ -89,9 +94,10 @@ namespace DungeonRun
                         );
 
             floorPool.Draw(screenManager);
-            objPool.Draw(screenManager);
-            projectilePool.Draw(screenManager);
-            actorPool.Draw(screenManager);
+            pool.Draw(screenManager);
+            //objPool.Draw(screenManager);
+            //projectilePool.Draw(screenManager);
+            //actorPool.Draw(screenManager);
             screenManager.spriteBatch.End();
             
             //draw UI

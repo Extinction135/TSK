@@ -26,33 +26,20 @@ namespace DungeonRun
         
         
 
-        public void UpdateActiveActor(Actor Actor)
-        {
-            InputFunctions.ResetInputData(Actor.compInput);
-            AiManager.Think(Actor.compInput); //pass active actor to AiManager
-            activeActor++;
-            if (activeActor >= poolSize) { activeActor = 1; } //skip 0th actor (HERO)
-        }
+        
+        
 
-        public void Update()
-        {
-            UpdateActiveActor(pool[activeActor]);
-            UpdateActiveActor(pool[activeActor]);
 
-            for (counter = 0; counter < poolSize; counter++)
-            {
-                if (pool[counter].active)
-                { ActorFunctions.Update(pool[counter]); }
-            }
-        }
+
 
         public void Draw(ScreenManager ScreenManager)
         {
-            for (counter = 0; counter < poolSize; counter++)
-            {
-                if (pool[counter].active)
-                { ActorFunctions.Draw(pool[counter], ScreenManager); }
-            }
+            
         }
+
+
+
+
+
     }
 }
