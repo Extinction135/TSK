@@ -89,7 +89,13 @@ namespace DungeonRun
                 }
                 else if (Actor.state == Actor.State.Attack)
                 {
-                    Actor.lockTotal = 10;
+                    Actor.lockTotal = 15;
+                    Actor.stateLocked = true;
+                    Actor.compMove.speed = 0.0f;
+                }
+                else if (Actor.state == Actor.State.Use)
+                {
+                    Actor.lockTotal = 25;
                     Actor.stateLocked = true;
                     Actor.compMove.speed = 0.0f;
                 }

@@ -41,7 +41,7 @@ namespace DungeonRun
 
             DungeonGenerator.CreateRoom(this);
 
-            //ActorFunctions.SetType(actorPool.hero, Actor.Type.Blob);
+            ActorFunctions.SetType(actorPool.hero, Actor.Type.Blob);
         }
 
         public override void HandleInput(InputHelper Input, GameTime GameTime)

@@ -28,6 +28,7 @@ namespace DungeonRun
         public AnimationGroup dash;
 
         public AnimationGroup attack;
+        public AnimationGroup use;
         //use
         //interact
 
@@ -62,6 +63,7 @@ namespace DungeonRun
             else if (ActorRef.state == Actor.State.Move) { ActorRef.animGroup = ActorRef.animList.move; }
             else if (ActorRef.state == Actor.State.Dash) { ActorRef.animGroup = ActorRef.animList.dash; }
             else if (ActorRef.state == Actor.State.Attack) { ActorRef.animGroup = ActorRef.animList.attack; }
+            else if (ActorRef.state == Actor.State.Use) { ActorRef.animGroup = ActorRef.animList.use; }
         }
 
         public static void SetAnimationDirection(Actor ActorRef)
@@ -132,6 +134,12 @@ namespace DungeonRun
             heroAnims.attack.right = new List<Byte4>    { new Byte4(3, 2, 0, 0) };
             heroAnims.attack.left = new List<Byte4>     { new Byte4(3, 2, 1, 0) };
 
+            heroAnims.use = new AnimationGroup();
+            heroAnims.use.down = new List<Byte4>    { new Byte4(4, 1, 0, 0) };
+            heroAnims.use.up = heroAnims.use.down;
+            heroAnims.use.right = heroAnims.use.down;
+            heroAnims.use.left = heroAnims.use.down;
+
             #endregion
 
 
@@ -158,6 +166,13 @@ namespace DungeonRun
             blobAnims.dash.left = new List<Byte4>   { new Byte4(2, 5, 1, 0) };
 
             blobAnims.attack = blobAnims.dash;
+
+            blobAnims.use = new AnimationGroup();
+            blobAnims.use.down = new List<Byte4>    { new Byte4(2, 3, 0, 0) };
+            blobAnims.use.up = blobAnims.use.down;
+            blobAnims.use.right = blobAnims.use.down;
+            blobAnims.use.left = blobAnims.use.down;
+
 
             #endregion
 
