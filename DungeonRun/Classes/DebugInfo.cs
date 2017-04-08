@@ -28,6 +28,7 @@ namespace DungeonRun
         public Text actorText;
         public Text moveText;
         public Text poolText;
+        
 
         public byte framesTotal = 30; //how many frames to average over
         public byte frameCounter = 0; //increments thru frames 0-framesTotal
@@ -57,7 +58,6 @@ namespace DungeonRun
 
             poolText = new Text(screenManager, screen.assets.font, "", new Vector2(16 * 12, yPos + 00));
             textFields.Add(poolText);
-
             
         }
 
@@ -114,7 +114,7 @@ namespace DungeonRun
             poolText.text += "\nactors: " + screen.pool.actorIndex + "/" + screen.pool.actorCount;
             poolText.text += "\nprojectiles: 0/0";
             poolText.text += "\nparticles: 0/0";
-
+            
 
             //stateText.text += "\nstate: " + dungeonScreen.hero.state;
             //stateText.text += "\nlocked: " + dungeonScreen.hero.stateLocked;

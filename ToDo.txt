@@ -13,29 +13,14 @@ todo:
 i'd like to know how many collision checks are occurring each frame in the debug info panel
 
 
-we dont need to draw the unused floor tiles (we currently are)
-we could flip the sprite.visible bit to false initially (or in a floor pool reset)
-then flip visible to true when we place the floor tiles
-this should reduce the draw loop on the xbox one, which is around 36,000 ticks right now
-
-dropped draw tick from @36,000 to @16,000, a savings of almost 2ms per frame.
-
-
-
 we should be able to 'hide' the debug info using a boolean, so it doesn't affect performance
 we should be drawing the frame time outside of the debug info tho, so we still know how long a frame takes
-
-
-
 
 
 we should be able to 'release' an actor or object or projectile from the pool
 by just calling a function / method like obj.release or Pool.Release(obj)
 this ensures there is only one correct way to return an unused obj/act/pro to the pool
 
-
-
-consolidate floor pool into pool.cs
 
 
 

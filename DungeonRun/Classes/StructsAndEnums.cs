@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
@@ -35,12 +41,23 @@ namespace DungeonRun
             flags = Flags;
         }
     }
+    public struct ColorScheme
+    {
+        public Color background;
+        public Color textSmall;
+        public Color windowBkg;
+
+        public Color collisionActor;
+        public Color collisionObj;
+    }
+
 
 
     //common enums
- 
+
     public enum Direction { Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft, None }
 
     public enum Rotation { None, Clockwise90, Clockwise180, Clockwise270 }
 
+    public enum MouseButtons { LeftButton, RightButton }
 }

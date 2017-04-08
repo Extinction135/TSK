@@ -10,56 +10,21 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 
-
-
-
-
 namespace DungeonRun
 {
-    
-
-    
-
-    public enum MouseButtons { LeftButton, RightButton }
-
-    public struct ColorScheme
-    {
-        public Color background;
-        public Color textSmall;
-        public Color windowBkg;
-
-        public Color collisionActor;
-        public Color collisionObj;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
     public class Game1 : Game
     {
+        //control booleans for game codepaths
         public Boolean DEPLOYED = false; //true = playing on xbox1
-        public Boolean DEBUG = true; //toggles debug codepaths
+        public Boolean drawCollisionRecs = false;
+
 
 
 
         public GraphicsDeviceManager graphics;
         public ScreenManager screenManager;
         public Assets assets;
-
         public ColorScheme colorScheme;
-
-
-
-
-
 
         public Game1()
         {
@@ -68,21 +33,10 @@ namespace DungeonRun
             screenManager = new ScreenManager(this);
             assets = new Assets(Content);
 
-
             if(DEPLOYED) //playing on XBOX1
-            {
-                //3:1 resolution
-                graphics.PreferredBackBufferWidth = 1920;
-                graphics.PreferredBackBufferHeight = 1080;
-                this.IsMouseVisible = false;
-            }
+            { this.IsMouseVisible = false; }
             else //debugging on PC
-            {
-                //2:1 resolution
-                graphics.PreferredBackBufferWidth = 1280;
-                graphics.PreferredBackBufferHeight = 720;
-                this.IsMouseVisible = true;
-            }
+            { this.IsMouseVisible = true; }
 
             //setup default color scheme
             colorScheme.background = new Color(100, 100, 100, 255);
@@ -91,15 +45,6 @@ namespace DungeonRun
             colorScheme.collisionActor = new Color(100, 0, 0, 0);
             colorScheme.collisionObj = new Color(100, 0, 0, 0);
         }
-
-
-
-
-
-
-
-
-
         protected override void Initialize() { base.Initialize(); }
         protected override void LoadContent()
         {

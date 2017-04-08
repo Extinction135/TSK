@@ -22,19 +22,19 @@
     <RegisteredPackageID>513a0791-d91c-402c-bb32-731dfc855cf7</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=Gx000000</RegisteredPackagePublisher>
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
-    <JitOptimizationSuppressed>False</JitOptimizationSuppressed>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-04-08T06:58:40.208</Modified>
+      <Modified>2017-04-08T17:42:46.018</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\DungeonRun.exe">
       <PackagePath>entrypoint\DungeonRun.exe</PackagePath>
-      <Modified>2017-04-08T06:58:39.823</Modified>
+      <Modified>2017-04-08T17:42:45.634</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\.nuget\packages\Microsoft.CSharp\4.0.1\lib\netcore50\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
@@ -568,7 +568,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\pixelFont.xnb">
       <PackagePath>Content\pixelFont.xnb</PackagePath>
-      <Modified>2017-04-08T06:58:39.058</Modified>
+      <Modified>2017-04-08T17:42:43.953</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\Content\bin\WindowsStoreApp\UISheet.xnb">
       <PackagePath>Content\UISheet.xnb</PackagePath>
@@ -585,11 +585,11 @@
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2017-04-08T06:57:27.410</Modified>
+      <Modified>2017-04-08T07:02:41.373</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRun\bin\WindowsUniversal\x64\Debug\Core\DungeonRun.exe">
       <PackagePath>DungeonRun.exe</PackagePath>
-      <Modified>2017-04-08T06:58:40.205</Modified>
+      <Modified>2017-04-08T17:42:46.015</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

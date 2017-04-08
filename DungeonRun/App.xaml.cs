@@ -87,20 +87,14 @@ namespace DungeonRun
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
 
-
-
-                // ***** This UWP App should never run on a desktop ***** \\
                 if (!IsXbox())
-                {
-                    //this is for desktop launching/debugging ONLY
+                {   //deploying to xbox automatically sets the application to 1920x1080, or the available screen resolution
+                    //this is for desktop launching/debugging
                     rootFrame.Width = 1280;
                     rootFrame.Height = 720;
                     ApplicationView.PreferredLaunchViewSize = new Size(1280, 720);
                     ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
                 }
-                
-
-
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
