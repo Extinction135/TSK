@@ -19,25 +19,25 @@ namespace DungeonRun
             Actor actor = Pool.actorPool[Pool.actorIndex];
             ActorFunctions.SetType(actor, actor.type);
             Pool.actorIndex++;
-            if (Pool.actorIndex > Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
+            if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
             return actor;
         }
 
         public static GameObject GetObj(Pool Pool)
         {
             GameObject obj = Pool.objPool[Pool.objIndex];
-            GameObjectFunctions.SetType(obj, obj.type);
+            //GameObjectFunctions.SetType(obj, obj.type);
             Pool.objIndex++;
-            if (Pool.objIndex > Pool.objCount) { Pool.objIndex = 0; }
+            if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
             return obj;
         }
 
         public static GameObject GetProjectile(Pool Pool)
         {
             GameObject projectile = Pool.projectilePool[Pool.projectileIndex];
-            GameObjectFunctions.SetType(projectile, projectile.type);
+            //GameObjectFunctions.SetType(projectile, projectile.type);
             Pool.projectileIndex++;
-            if (Pool.projectileIndex > Pool.projectileCount) { Pool.projectileIndex = 0; }
+            if (Pool.projectileIndex == Pool.projectileCount) { Pool.projectileIndex = 0; }
             return projectile;
         }
 
@@ -46,7 +46,7 @@ namespace DungeonRun
             ComponentSprite floor = Pool.floorPool[Pool.floorIndex];
             floor.visible = true;
             Pool.floorIndex++;
-            if (Pool.floorIndex > Pool.floorCount) { Pool.floorIndex = 0; }
+            if (Pool.floorIndex == Pool.floorCount) { Pool.floorIndex = 0; }
             return floor;
         }
 
@@ -154,6 +154,7 @@ namespace DungeonRun
             {
                 if (Pool.objPool[Pool.counter].active)
                 {
+                    //we don't update the obj pool, because no objs move right now
                     AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim, 
                         Pool.objPool[Pool.counter].compSprite);
                 }

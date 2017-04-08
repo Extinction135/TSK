@@ -29,6 +29,7 @@ namespace DungeonRun
         public Vector2 magnitude = new Vector2(0, 0); //how much actor/obj moves each frames
         public float speed = 0.0f; //controls magnitude
         public float friction = 0.75f; //reduces magnitude each frame
+        public void StopMovement() { magnitude.X = 0; magnitude.Y = 0; speed = 0; }
     }
 
     public class ComponentAnimation

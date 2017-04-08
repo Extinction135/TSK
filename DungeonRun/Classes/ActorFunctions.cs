@@ -53,47 +53,12 @@ namespace DungeonRun
 
 
 
-        public static Vector2 ProjectileOffset = new Vector2(0, 0);
-        public static void AlignProjectile(GameObject Projectile, Actor Actor)
-        {
-            ProjectileOffset.X = 0; ProjectileOffset.Y = 0;
-
-            //convert projectile's diagonal direction to a cardinal direction
-            if (Projectile.direction == Direction.UpRight) { Projectile.direction = Direction.Right; }
-            else if (Projectile.direction == Direction.DownRight) { Projectile.direction = Direction.Right; }
-            else if (Projectile.direction == Direction.UpLeft) { Projectile.direction = Direction.Left; }
-            else if (Projectile.direction == Direction.DownLeft) { Projectile.direction = Direction.Left; }
-
-            //aligns the projectile to the actor
-            if (Actor.direction == Direction.Down) { ProjectileOffset.X = 0; ProjectileOffset.Y = 8; }
-            else if (Actor.direction == Direction.Up) { ProjectileOffset.X = 0; ProjectileOffset.Y = -8; }
-            else if (Actor.direction == Direction.Right) { ProjectileOffset.X = 8; ProjectileOffset.Y = 0; }
-            else if (Actor.direction == Direction.Left) { ProjectileOffset.X = -8; ProjectileOffset.Y = 0; }
-
-            //different types of projectiles have different offsets
-
-            //teleport the projectile to the actor's position with the offset applied
-            GameObjectFunctions.Teleport(Projectile,
-                Actor.compSprite.position.X + ProjectileOffset.X,
-                Actor.compSprite.position.Y + ProjectileOffset.Y);
-        }
-
-
-
-
-
-
-
-
         public static void SetInputState(ComponentInput Input, Actor Actor)
         {
             Actor.inputState = Actor.State.Idle; //reset inputState
             Actor.compMove.direction = Input.direction; //set move direction
-            if (Input.direction != Direction.None)
-            {
-                Actor.inputState = Actor.State.Move; //actor must be moving
-                Actor.direction = Input.direction; //set actor moving/facing direction
-            }
+            if (Input.direction != Direction.None) //actor must be moving
+            { Actor.inputState = Actor.State.Move; }
             //determine + set button inputs
             if (Input.attack) { Actor.inputState = Actor.State.Attack; }
             else if (Input.use) { Actor.inputState = Actor.State.Use; }
@@ -109,6 +74,10 @@ namespace DungeonRun
             //if actor can change state, sync state to inputState
             if (!Actor.stateLocked)
             {
+                //set actor moving/facing direction
+                if (Actor.compInput.direction != Direction.None)
+                { Actor.direction = Actor.compInput.direction; }
+
                 Actor.state = Actor.inputState; //pass the input state
                 Actor.lockCounter = 0; //reset lock counter in case actor statelocks
                 Actor.lockTotal = 0; //reset lock total
@@ -126,19 +95,19 @@ namespace DungeonRun
                 {
                     Actor.lockTotal = 15;
                     Actor.stateLocked = true;
-                    Actor.compMove.speed = 0.0f;
+                    Actor.compMove.StopMovement();
 
                     //create weapon projectile here
                     GameObject projectile = PoolFunctions.GetProjectile(Actor.screen.pool);
                     projectile.direction = Actor.direction;
                     GameObjectFunctions.SetType(projectile, GameObject.Type.ProjectileSword);
-                    AlignProjectile(projectile, Actor);
+                    ProjectileFunctions.AlignProjectile(projectile, Actor);
                 }
                 else if (Actor.state == Actor.State.Use)
                 {
                     Actor.lockTotal = 25;
                     Actor.stateLocked = true;
-                    Actor.compMove.speed = 0.0f;
+                    Actor.compMove.StopMovement();
                     //create item projectile here
                 }
             }

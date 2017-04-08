@@ -28,12 +28,14 @@ namespace DungeonRun
             //update the object's current animation based on it's type
             GameObjectAnimListManager.SetAnimationList(Obj);
 
-            //assume cell size is 16x16 (most are)
-            Obj.compSprite.cellSize.x = 16 * 1;
+
+            #region Assumptions
+
+            Obj.compSprite.cellSize.x = 16 * 1; //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.y = 16 * 1;
             Obj.objGroup = GameObject.ObjGroup.Object; //assume object is a generic object
 
-            Obj.lifetime = 0; Obj.lifeCounter = 0; //assume obj exists forever (not projectile)
+            Obj.lifetime = 0; //assume obj exists forever (not projectile)
             Obj.active = true; //assume this object should draw / animate
             Obj.compSprite.zOffset = 0;
             Obj.compAnim.speed = 10; //set obj's animation speed
@@ -46,7 +48,7 @@ namespace DungeonRun
             Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Obj.compCollision.offsetY = -8; //(most are)
 
-            
+            #endregion
 
 
             #region Room Objects
@@ -305,6 +307,9 @@ namespace DungeonRun
             Obj.compMove.position.X = X;
             Obj.compMove.position.Y = Y;
         }
+
+
+
 
 
         public static void Update(GameObject Obj)

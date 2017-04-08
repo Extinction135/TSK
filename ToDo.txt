@@ -11,10 +11,19 @@ todo:
 
 
 
+we're running into the spiderweb problem, regarding how a projectile is aligned to actors
+	it wont flip like it's supposed to, and I don't know why.
+	it doesn't convert it's diagonal direction to a cardinal direction properly
+	we need to untangle this web and simplify it
+	actor functions.update -> setType(obj) -> alignProjectile(obj)
 
-align the projectile to the actor
-let the projectile 'live' for a number of frames, then release it back to the projectile pool
+we'd like to be able to flip the sprite horizontally without having to use the animation list .flipHori value
 
+
+projectiles dissappear after we wrap the count
+	they just dont draw at all....
+	
+	
 
 implement weapon as a projectile, without any speed
 	projectile is pulled from projectile pool
