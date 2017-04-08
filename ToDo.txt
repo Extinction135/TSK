@@ -10,11 +10,7 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
-i'd like to know how many collision checks are occurring each frame in the debug info panel
 
-
-we should be able to 'hide' the debug info using a boolean, so it doesn't affect performance
-we should be drawing the frame time outside of the debug info tho, so we still know how long a frame takes
 
 
 we should be able to 'release' an actor or object or projectile from the pool
