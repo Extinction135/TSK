@@ -7,13 +7,15 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
-projectiles dissappear after we wrap the count
-	they just dont draw at all....
-	
-	Release() sets the Obj.active = false
-	this causes the projectiles to disappear compleltely once we wrap the count
-	WHY?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!!?!?!?
-	
+how to do better debugging:
+	click on a object / actor with cursor
+	a message box appears with all current properties of that obj/act listed
+	this way we can inspect something easily to reason about it's state
+	without taking up a ton of UI / window space
+	we should be able to open multiple message boxes too
+	and we should be able to pause the game via spacebar
+	game should automatically pause if we click to inspect something
+	the DEBUG boolean should control if the cursor even gets to check collisions against objs/acts
 	
 	
 	
