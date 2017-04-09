@@ -34,19 +34,19 @@ namespace DungeonRun
         public byte lockTotal = 0; //how many frames the actor statelocks for, based on state
         public byte lockCounter = 0; //counts from 0 to lockTotal, then flips stateLocked false
 
-        public ComponentSprite compSprite;
-        public ComponentAnimation compAnim;
-        public ComponentInput compInput;
-        public ComponentMovement compMove;
-        public ComponentCollision compCollision;
-
-        public ActorAnimationList animList; 
+        public ActorAnimationList animList;
         public AnimationGroup animGroup;
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?
 
         public float dashSpeed = 0.75f;
         public float walkSpeed = 0.25f;
+
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim;
+        public ComponentInput compInput;
+        public ComponentMovement compMove;
+        public ComponentCollision compCollision;
 
         //actor requires a reference to the various textures/sounds it may use - all the possible textures
         public Actor(DungeonScreen DungeonScreen)

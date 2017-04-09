@@ -7,6 +7,8 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
+
+
 how to do better debugging:
 	click on a object / actor with cursor
 	a message box appears with all current properties of that obj/act listed
@@ -17,7 +19,11 @@ how to do better debugging:
 	game should automatically pause if we click to inspect something
 	the DEBUG boolean should control if the cursor even gets to check collisions against objs/acts
 	
+	this wont work for sprites, but it will work for objs/acts/projs/particles
+	we'll have to figure out how to create message boxes in dot net core
 	
+	maybe we could just dump this info to the output panel when we click on an object
+	that way we wouldn't have to mess with messageboxes
 	
 	
 implement weapon as a projectile, without any speed

@@ -29,7 +29,6 @@ namespace DungeonRun
         public Text moveText;
         public Text poolText;
         
-
         public byte framesTotal = 30; //how many frames to average over
         public byte frameCounter = 0; //increments thru frames 0-framesTotal
         public long updateTicks; //update tick times are added to this
@@ -58,7 +57,6 @@ namespace DungeonRun
 
             poolText = new Text(screenManager, screen.assets.font, "", new Vector2(16 * 12, yPos + 00));
             textFields.Add(poolText);
-            
         }
 
 
@@ -113,9 +111,8 @@ namespace DungeonRun
             poolText.text += "\nobjs: " + screen.pool.objIndex + "/" + screen.pool.objCount;
             poolText.text += "\nactors: " + screen.pool.actorIndex + "/" + screen.pool.actorCount;
             poolText.text += "\nprojectiles: " + screen.pool.projectileIndex + " / " + screen.pool.projectileCount;
-
-            //poolText.text += "\nactive: " + screen.pool.projectilePool[screen.pool.projectileIndex].active;
-            //poolText.text += "\nparticles: 0/0";
+            poolText.text += "\nparticles: 0/0";
+            
 
 
             //stateText.text += "\nstate: " + dungeonScreen.hero.state;

@@ -85,8 +85,6 @@ namespace DungeonRun
                 Obj.compCollision.offsetY = 0;
                 //sorts to roof layer (or has very negative zDepth)
             }
-
-
             else if (
                 Type == GameObject.Type.DoorOpen ||
                 Type == GameObject.Type.DoorBombed ||
@@ -105,8 +103,6 @@ namespace DungeonRun
             {
                 Obj.objGroup = GameObject.ObjGroup.Door;
             }
-
-
             else if (
                 Type == GameObject.Type.WallStraight ||
                 Type == GameObject.Type.WallStraightCracked ||
@@ -117,8 +113,6 @@ namespace DungeonRun
             {
                 Obj.objGroup = GameObject.ObjGroup.Wall;
             }
-
-
             else if (Type == GameObject.Type.PitTop)
             {
                 //pits dont collide with actors
@@ -134,8 +128,6 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -6;
                 Obj.compCollision.offsetY = -6;
             }
-
-
             else if (Type == GameObject.Type.BossStatue)
             {
                 Obj.objGroup = GameObject.ObjGroup.Draggable;
@@ -167,8 +159,6 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
             }
-
-
             else if (Type == GameObject.Type.BlockDraggable)
             {
                 Obj.compCollision.rec.Height = 12;
@@ -187,7 +177,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -7;
                 Obj.compCollision.blocking = false;
             }
-
             else if (Type == GameObject.Type.Lever)
             {
                 Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = 1;
@@ -201,8 +190,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -7;
                 Obj.objGroup = GameObject.ObjGroup.Liftable;
             }
-
-
             else if (
                 Type == GameObject.Type.SpikesFloor ||
                 Type == GameObject.Type.Flamethrower ||
@@ -216,8 +203,6 @@ namespace DungeonRun
             {
                 Obj.compCollision.blocking = false;
             }
-
-
             else if (Type == GameObject.Type.SwitchBlockBtn)
             {
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
@@ -235,8 +220,6 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
                 Obj.compSprite.zOffset = -7;
             }
-
-
             else if (Type == GameObject.Type.TorchUnlit || Type == GameObject.Type.TorchLit)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -4;
