@@ -14,6 +14,25 @@ namespace DungeonRun
 {
     public static class ProjectileFunctions
     {
+
+
+        public static void Spawn(GameObject.Type Type, Actor Actor)
+        {
+
+            GameObject projectile = PoolFunctions.GetProjectile(Actor.screen.pool);
+            projectile.direction = Actor.direction;
+            projectile.type = Type;
+            projectile.active = true;
+
+            AlignProjectile(projectile, Actor);
+            GameObjectFunctions.SetType(projectile, projectile.type);
+        }
+
+
+
+
+
+
         static Vector2 ProjectileOffset = new Vector2(0, 0);
         public static void AlignProjectile(GameObject Projectile, Actor Actor)
         {
@@ -28,14 +47,15 @@ namespace DungeonRun
             //different types of projectiles have different offsets
             if (Projectile.type == GameObject.Type.ProjectileSword)
             {
-                if (Projectile.direction == Direction.Down)         { ProjectileOffset.X = 0; ProjectileOffset.Y = 12; }
-                else if (Projectile.direction == Direction.Up)      { ProjectileOffset.X = 0; ProjectileOffset.Y = -12; }
-                else if (Projectile.direction == Direction.Right)   { ProjectileOffset.X = 12; ProjectileOffset.Y = 0; }
-                else if (Projectile.direction == Direction.Left)    { ProjectileOffset.X = -14; ProjectileOffset.Y = 8; }
-                //this doesn't work
-                //Projectile.compSprite.currentFrame.flipHori = 1;
+                if (Projectile.direction == Direction.Down)
+                { ProjectileOffset.X = 0; ProjectileOffset.Y = 14; Projectile.compSprite.flipHorizontally = true; }
+                else if (Projectile.direction == Direction.Up)
+                { ProjectileOffset.X = 0; ProjectileOffset.Y = -14; Projectile.compSprite.flipHorizontally = false; }
+                else if (Projectile.direction == Direction.Right)
+                { ProjectileOffset.X = 14; ProjectileOffset.Y = 0; Projectile.compSprite.flipHorizontally = false; }
+                else if (Projectile.direction == Direction.Left)
+                { ProjectileOffset.X = -14; ProjectileOffset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
             }
-
 
             //teleport the projectile to the actor's position with the offset applied
             GameObjectFunctions.Teleport(Projectile,

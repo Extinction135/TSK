@@ -59,6 +59,8 @@ namespace DungeonRun
         public Byte2 cellSize;
 
         public SpriteEffects spriteEffect; //flip vertically, flip horizontally, none
+        public Boolean flipHorizontally;
+
         public Boolean visible;
         public Vector2 origin;
         public Rectangle drawRec;
@@ -80,6 +82,7 @@ namespace DungeonRun
             cellSize = CellSize;
 
             spriteEffect = SpriteEffects.None;
+            flipHorizontally = false;
             visible = true;
             CenterOrigin();
             drawRec = new Rectangle((int)Position.X, (int)Position.Y, (int)CellSize.x, (int)CellSize.y);

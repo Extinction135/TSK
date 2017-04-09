@@ -285,12 +285,12 @@ namespace DungeonRun
 
             else if (Type == GameObject.Type.ProjectileSword)
             {
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
-                Obj.compCollision.blocking = false;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compCollision.blocking = true;
                 Obj.objGroup = GameObject.ObjGroup.Projectile;
                 Obj.lifetime = 20; //in frames
-                Obj.compAnim.speed = 4;
+                Obj.compAnim.speed = 3; //in frames
                 Obj.compAnim.loop = false;
             }
 
@@ -306,6 +306,7 @@ namespace DungeonRun
         {
             Obj.compMove.position.X = X;
             Obj.compMove.position.Y = Y;
+            //CollisionFunctions.AlignComponents(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
 

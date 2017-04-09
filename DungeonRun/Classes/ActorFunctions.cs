@@ -98,10 +98,7 @@ namespace DungeonRun
                     Actor.compMove.StopMovement();
 
                     //create weapon projectile here
-                    GameObject projectile = PoolFunctions.GetProjectile(Actor.screen.pool);
-                    projectile.direction = Actor.direction;
-                    GameObjectFunctions.SetType(projectile, GameObject.Type.ProjectileSword);
-                    ProjectileFunctions.AlignProjectile(projectile, Actor);
+                    ProjectileFunctions.Spawn(GameObject.Type.ProjectileSword, Actor);
                 }
                 else if (Actor.state == Actor.State.Use)
                 {

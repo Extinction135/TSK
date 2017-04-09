@@ -33,6 +33,8 @@ namespace DungeonRun
                 if (Sprite.currentFrame.flipHori > 0)
                 { Sprite.spriteEffect = SpriteEffects.FlipHorizontally; }
                 else { Sprite.spriteEffect = SpriteEffects.None; }
+                if (Sprite.flipHorizontally)
+                { Sprite.spriteEffect = SpriteEffects.FlipHorizontally; }
                 //draw the sprite
                 ScreenManager.spriteBatch.Draw(
                     Sprite.texture, Sprite.position, Sprite.drawRec,

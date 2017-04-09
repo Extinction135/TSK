@@ -16,38 +16,30 @@ namespace DungeonRun
     {
         public static Actor GetActor(Pool Pool)
         {
-            Actor actor = Pool.actorPool[Pool.actorIndex];
-            ActorFunctions.SetType(actor, actor.type);
             Pool.actorIndex++;
             if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
-            return actor;
+            return Pool.actorPool[Pool.actorIndex];
         }
 
         public static GameObject GetObj(Pool Pool)
         {
-            GameObject obj = Pool.objPool[Pool.objIndex];
-            //GameObjectFunctions.SetType(obj, obj.type);
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
-            return obj;
+            return Pool.objPool[Pool.objIndex];
         }
 
         public static GameObject GetProjectile(Pool Pool)
         {
-            GameObject projectile = Pool.projectilePool[Pool.projectileIndex];
-            //GameObjectFunctions.SetType(projectile, projectile.type);
             Pool.projectileIndex++;
-            if (Pool.projectileIndex == Pool.projectileCount) { Pool.projectileIndex = 0; }
-            return projectile;
+            if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
+            return Pool.projectilePool[Pool.projectileIndex];
         }
 
         public static ComponentSprite GetFloor(Pool Pool)
         {
-            ComponentSprite floor = Pool.floorPool[Pool.floorIndex];
-            floor.visible = true;
             Pool.floorIndex++;
             if (Pool.floorIndex == Pool.floorCount) { Pool.floorIndex = 0; }
-            return floor;
+            return Pool.floorPool[Pool.floorIndex];
         }
 
 
@@ -90,14 +82,14 @@ namespace DungeonRun
         {
             Actor.active = false;
             Actor.compCollision.active = false;
-            Actor.compCollision.rec.X = -1000;
+            //Actor.compCollision.rec.X = -1000;
         }
 
         public static void Release(GameObject Obj)
         {
             Obj.active = false;
             Obj.compCollision.active = false;
-            Obj.compCollision.rec.X = -1000;
+            //Obj.compCollision.rec.X = -1000;
             Obj.lifetime = 0;
         }
 

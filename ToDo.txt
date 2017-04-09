@@ -4,27 +4,20 @@ CTRL + M, P = expand functions/regions
 
 
 
-
-
-
 todo:
-
-
-
-we're running into the spiderweb problem, regarding how a projectile is aligned to actors
-	it wont flip like it's supposed to, and I don't know why.
-	it doesn't convert it's diagonal direction to a cardinal direction properly
-	we need to untangle this web and simplify it
-	actor functions.update -> setType(obj) -> alignProjectile(obj)
-
-we'd like to be able to flip the sprite horizontally without having to use the animation list .flipHori value
 
 
 projectiles dissappear after we wrap the count
 	they just dont draw at all....
 	
+	Release() sets the Obj.active = false
+	this causes the projectiles to disappear compleltely once we wrap the count
+	WHY?!?!?!?!?!?!?!?!?!?!?!?!?!?!?!!?!?!?
 	
-
+	
+	
+	
+	
 implement weapon as a projectile, without any speed
 	projectile is pulled from projectile pool
 	placed at actor location, offset based on facing direction
@@ -42,14 +35,16 @@ implement weapon as a projectile, without any speed
 	
 implement dash smoke as a particle (should spawn whenever an actor dashes)
 	
-	
-	
-	
-	
 we should be counting the currently used actors, gameobjs, projectiles, floors
 this is just an int that gets incremented when Get() is called
 decremented when Release() is called
 reset when Reset() is called
+	
+	
+	
+	
+	
+	
 	
 	
 	

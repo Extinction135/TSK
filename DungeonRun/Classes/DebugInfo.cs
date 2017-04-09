@@ -112,9 +112,11 @@ namespace DungeonRun
             poolText.text = "floors: " + screen.pool.floorIndex + "/" + screen.pool.floorCount;
             poolText.text += "\nobjs: " + screen.pool.objIndex + "/" + screen.pool.objCount;
             poolText.text += "\nactors: " + screen.pool.actorIndex + "/" + screen.pool.actorCount;
-            poolText.text += "\nprojectiles: 0/0";
-            poolText.text += "\nparticles: 0/0";
-            
+            poolText.text += "\nprojectiles: " + screen.pool.projectileIndex + " / " + screen.pool.projectileCount;
+
+            poolText.text += "\nactive: " + screen.pool.projectilePool[screen.pool.projectileIndex].active;
+            //poolText.text += "\nparticles: 0/0";
+
 
             //stateText.text += "\nstate: " + dungeonScreen.hero.state;
             //stateText.text += "\nlocked: " + dungeonScreen.hero.stateLocked;
