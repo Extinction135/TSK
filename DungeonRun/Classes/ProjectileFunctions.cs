@@ -20,9 +20,10 @@ namespace DungeonRun
         {
 
             GameObject projectile = PoolFunctions.GetProjectile(Actor.screen.pool);
+
             projectile.direction = Actor.direction;
             projectile.type = Type;
-            projectile.active = true;
+            //projectile.active = true;
 
             AlignProjectile(projectile, Actor);
             GameObjectFunctions.SetType(projectile, projectile.type);

@@ -18,6 +18,7 @@ namespace DungeonRun
         {
             Pool.actorIndex++;
             if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
+            Pool.actorPool[Pool.actorIndex].active = true;
             return Pool.actorPool[Pool.actorIndex];
         }
 
@@ -25,6 +26,7 @@ namespace DungeonRun
         {
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
+            Pool.objPool[Pool.objIndex].active = true;
             return Pool.objPool[Pool.objIndex];
         }
 
@@ -32,6 +34,7 @@ namespace DungeonRun
         {
             Pool.projectileIndex++;
             if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
+            Pool.projectilePool[Pool.projectileIndex].active = true;
             return Pool.projectilePool[Pool.projectileIndex];
         }
 
@@ -39,6 +42,7 @@ namespace DungeonRun
         {
             Pool.floorIndex++;
             if (Pool.floorIndex == Pool.floorCount) { Pool.floorIndex = 0; }
+            Pool.floorPool[Pool.floorIndex].visible = true;
             return Pool.floorPool[Pool.floorIndex];
         }
 

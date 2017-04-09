@@ -165,7 +165,11 @@ namespace DungeonRun
             blobAnims.dash.right = new List<Byte4>  { new Byte4(2, 5, 0, 0) };
             blobAnims.dash.left = new List<Byte4>   { new Byte4(2, 5, 1, 0) };
 
-            blobAnims.attack = blobAnims.dash;
+            blobAnims.attack = new AnimationGroup();
+            blobAnims.attack.down = new List<Byte4> { new Byte4(3, 3, 0, 0) };
+            blobAnims.attack.up = new List<Byte4>   { new Byte4(3, 4, 0, 0) };
+            blobAnims.attack.right = new List<Byte4>{ new Byte4(3, 5, 0, 0) };
+            blobAnims.attack.left = new List<Byte4> { new Byte4(3, 5, 1, 0) };
 
             blobAnims.use = new AnimationGroup();
             blobAnims.use.down = new List<Byte4>    { new Byte4(2, 3, 0, 0) };

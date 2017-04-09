@@ -114,7 +114,7 @@ namespace DungeonRun
             poolText.text += "\nactors: " + screen.pool.actorIndex + "/" + screen.pool.actorCount;
             poolText.text += "\nprojectiles: " + screen.pool.projectileIndex + " / " + screen.pool.projectileCount;
 
-            poolText.text += "\nactive: " + screen.pool.projectilePool[screen.pool.projectileIndex].active;
+            //poolText.text += "\nactive: " + screen.pool.projectilePool[screen.pool.projectileIndex].active;
             //poolText.text += "\nparticles: 0/0";
 
 

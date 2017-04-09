@@ -15,6 +15,36 @@ namespace DungeonRun
     public static class GameObjectFunctions
     {
 
+        public static void ResetObject(GameObject Obj)
+        {
+            Obj.compSprite.cellSize.x = 16 * 1; //assume cell size is 16x16 (most are)
+            Obj.compSprite.cellSize.y = 16 * 1;
+            Obj.compSprite.zOffset = 0;
+
+            Obj.objGroup = GameObject.ObjGroup.Object; //assume object is a generic object
+            Obj.lifetime = 0; //assume obj exists forever (not projectile)
+            Obj.lifeCounter = 0; //reset counter
+            Obj.active = true; //assume this object should draw / animate
+
+            Obj.compAnim.speed = 10; //set obj's animation speed to default value
+            Obj.compAnim.loop = true; //assume obj's animation loops
+            Obj.compAnim.index = 0; //reset the current animation index/frame
+
+            Obj.compCollision.active = false; //assume this object doesn't move, shouldnt check itself for collisions vs objs
+            Obj.compCollision.blocking = true; //assume the object is blocking (most are)
+            Obj.compCollision.rec.Width = 16; //assume collisionRec is 16x16
+            Obj.compCollision.rec.Height = 16; //(most are)
+            Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
+            Obj.compCollision.offsetY = -8; //(most are)
+        }
+        
+
+
+
+
+
+
+
         public static void SetType(GameObject Obj, GameObject.Type Type)
         {
             Obj.type = Type;
@@ -27,28 +57,7 @@ namespace DungeonRun
 
             //update the object's current animation based on it's type
             GameObjectAnimListManager.SetAnimationList(Obj);
-
-
-            #region Assumptions
-
-            Obj.compSprite.cellSize.x = 16 * 1; //assume cell size is 16x16 (most are)
-            Obj.compSprite.cellSize.y = 16 * 1;
-            Obj.objGroup = GameObject.ObjGroup.Object; //assume object is a generic object
-
-            Obj.lifetime = 0; //assume obj exists forever (not projectile)
-            Obj.active = true; //assume this object should draw / animate
-            Obj.compSprite.zOffset = 0;
-            Obj.compAnim.speed = 10; //set obj's animation speed
-            Obj.compAnim.loop = true; //assume obj's animation loops
-
-            Obj.compCollision.active = false; //assume this object doesn't move, shouldnt check itself for collisions vs objs
-            Obj.compCollision.blocking = true; //assume the object is blocking (most are)
-            Obj.compCollision.rec.Width = 16; //assume collisionRec is 16x16
-            Obj.compCollision.rec.Height = 16; //(most are)
-            Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
-            Obj.compCollision.offsetY = -8; //(most are)
-
-            #endregion
+            ResetObject(Obj);
 
 
             #region Room Objects
@@ -287,7 +296,7 @@ namespace DungeonRun
             {
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compCollision.blocking = true;
+                Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Projectile;
                 Obj.lifetime = 20; //in frames
                 Obj.compAnim.speed = 3; //in frames
@@ -306,7 +315,6 @@ namespace DungeonRun
         {
             Obj.compMove.position.X = X;
             Obj.compMove.position.Y = Y;
-            //CollisionFunctions.AlignComponents(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
 
