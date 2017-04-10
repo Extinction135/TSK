@@ -17,7 +17,7 @@ namespace DungeonRun
 
         public static void Inspect(Actor Actor)
         {
-            Debug.WriteLine("---- Object ----");
+            Debug.WriteLine("---- Actor ----");
             Debug.WriteLine("\tobjGroup: " + Actor.type);
             Debug.WriteLine("\tstate: " + Actor.state);
             Debug.WriteLine("\tinputState: " + Actor.inputState);
@@ -123,27 +123,13 @@ namespace DungeonRun
 
 
 
-        //function
-        //check collisions between cursor.coll + objs/actors
-        //pass collision objs/acts to Inspect()
-
         public static void Inspect(DungeonScreen DungeonScreen)
-        {
-            Debug.WriteLine("beginning collision checks");
-
-            //Input.cursorColl.rec.X
-
+        {   //check if any object or actor collide with cursor collision component, pass to Inspect()
             GameObject gameObject = CollisionFunctions.CheckObjCollisions(Input.cursorColl, DungeonScreen);
-            Debug.WriteLine("result: " + gameObject);
-
-            //we need to convert the mouse screen position to the world position
-            //this should be done in Input
             if (gameObject != null) { Inspect(gameObject); }
-
+            Actor actor = CollisionFunctions.CheckActorCollisions(Input.cursorColl, DungeonScreen);
+            if (actor != null) { Inspect(actor); }
         }
-
-
-
 
     }
 }

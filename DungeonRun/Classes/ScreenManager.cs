@@ -106,6 +106,9 @@ namespace DungeonRun
         {
             //target the render surface + draw the sprites in the 640x360 texture
             game.GraphicsDevice.SetRenderTarget(renderSurface);
+            //or target the viewport like normal
+            //game.GraphicsDevice.SetRenderTarget(null);
+            //clear and set the background
             game.GraphicsDevice.Clear(game.colorScheme.background);
 
             //each screen handles opening and closing the spriteBatch for drawing
@@ -120,7 +123,7 @@ namespace DungeonRun
             spriteBatch.End();
             */
 
-
+            
             #region Draw the renderSurface to the window frame
 
             game.GraphicsDevice.SetRenderTarget(null);
@@ -136,12 +139,6 @@ namespace DungeonRun
 
             #endregion
             
-
-            /*
-            //just draw the screens to the viewport
-            game.GraphicsDevice.SetRenderTarget(null);
-            foreach (Screen screen in screens) { screen.Draw(gameTime); }
-            */
         }
 
     }

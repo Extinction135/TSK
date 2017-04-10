@@ -8,20 +8,13 @@ todo:
 
 
 
-we need to make camera2D a static class, so we have access to the convert() functions
+
+working for wall, but not working for actor
+collRec still isn't aligned
 
 
 
-
-
-refactoring how collisions are handled
-decomposed into smaller functions 
-so we can reuse it for checking collisions between cursor and actors/objects
-
-also fixed the hack where an object ignores itself
-now we ignore self-collisions via a comparison
-which, suprisingly, doesnt add much if any overhead at all
-
+why doesn't the collRec for cursor align?
 
 
 

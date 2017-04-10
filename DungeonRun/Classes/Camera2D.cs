@@ -17,9 +17,29 @@ namespace DungeonRun
         public static GraphicsDevice graphics;
         public static ScreenManager screenManager;
 
+        public static Boolean lazyMovement = false;
         public static float speed = 5f; //how fast the camera moves
-        public static int deadzoneX = 1;
-        public static int deadzoneY = 1;
+        public static int deadzoneX = 50;
+        public static int deadzoneY = 50;
+
+        //Lazy Camera Presets
+        /*
+        //the default preset (fast)
+        speed = 5f;
+        deadzoneX = 1;
+        deadzoneY = 1;
+
+        //a responsive preset
+        speed = 5f;
+        deadzoneX = 50;
+        deadzoneY = 50;
+
+        //a slow preset
+        speed = 3f;
+        deadzoneX = 100;
+        deadzoneY = 70;
+        */
+
         public static Matrix view;
         public static float targetZoom = 1.0f;
         public static float zoomSpeed = 0.05f;
@@ -34,25 +54,26 @@ namespace DungeonRun
         static Vector2 distance;
         static Boolean followX = true;
         static Boolean followY = true;
-
-        public static Matrix projection;
-        static Vector3 T;
-        static Point t;
+        static Point point; //used in conversion functions below
 
         public static Point ConvertScreenToWorld(int x, int y)
-        {   //converts screen position to world position
-            projection = Matrix.CreateOrthographicOffCenter(0f, graphics.Viewport.Width, graphics.Viewport.Height, 0f, 0f, 1f);
-            T.X = x; T.Y = y; T.Z = 0;
-            T = graphics.Viewport.Unproject(T, projection, view, Matrix.Identity);
-            t.X = (int)T.X; t.Y = (int)T.Y; return t;
+        {
+            //get the camera position minus half width/height of render surface
+            //this location is the world position of top left screen position
+            //add the x,y to this location
+            point.X = x + (int)currentPosition.X - 640 / 2;
+            point.Y = y + (int)currentPosition.Y - 360 / 2;
+            //this final value is the world position of the screen position
+            return point;
         }
 
         public static Point ConvertWorldToScreen(int x, int y)
-        {   //converts world position to screen position
-            projection = Matrix.CreateOrthographicOffCenter(0f, graphics.Viewport.Width, graphics.Viewport.Height, 0f, 0f, 1f);
-            T.X = x; T.Y = y; T.Z = 0;
-            T = graphics.Viewport.Project(T, projection, view, Matrix.Identity);
-            t.X = (int)T.X; t.Y = (int)T.Y; return t;
+        {
+            //subtract world position of top left screen position from x,y
+            point.X = x - (int)currentPosition.X - 640 / 2;
+            point.Y = y - (int)currentPosition.Y - 360 / 2;
+            //this final value is the screen position of the world position
+            return point;
         }
 
         public static void SetView()
@@ -90,45 +111,21 @@ namespace DungeonRun
             targetPosition.X = (int)targetPosition.X;
             targetPosition.Y = (int)targetPosition.Y;
 
-            //Lazy Camera Presets
-            /*
-            //the default preset (fast)
-            speed = 5f;
-            deadzoneX = 1;
-            deadzoneY = 1;
-
-            //a responsive preset
-            speed = 5f;
-            deadzoneX = 50;
-            deadzoneY = 50;
-
-            //a slow preset
-            speed = 3f;
-            deadzoneX = 100;
-            deadzoneY = 70;
-            */
-
-            /*
-            //a responsive preset
-            speed = 5f;
-            deadzoneX = 50;
-            deadzoneY = 50;
-
-            //LAZY MATCHED CAMERA - waits for hero to move outside of deadzone before following
-            distance = targetPosition - currentPosition; //get distance between current and target
-            //check to see if camera is close enough to snap positions
-            if (Math.Abs(distance.X) < 1) { currentPosition.X = targetPosition.X; followX = false; }
-            if (Math.Abs(distance.Y) < 1) { currentPosition.Y = targetPosition.Y; followY = false; }
-            //determine if we should track the hero, per axis (deadzone)
-            if (Math.Abs(distance.X) > deadzoneX) { followX = true; }
-            if (Math.Abs(distance.Y) > deadzoneY) { followY = true; }
-            //if we are following, update current position based on distance and speed
-            if (followX) { currentPosition.X += distance.X * speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
-            if (followY) { currentPosition.Y += distance.Y * speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
-            */
-
-            //FAST MATCHED CAMERA - instantly follows hero
-            currentPosition = targetPosition;
+            if(lazyMovement)
+            {   //LAZY MATCHED CAMERA - waits for hero to move outside of deadzone before following
+                distance = targetPosition - currentPosition; //get distance between current and target
+                //check to see if camera is close enough to snap positions
+                if (Math.Abs(distance.X) < 1) { currentPosition.X = targetPosition.X; followX = false; }
+                if (Math.Abs(distance.Y) < 1) { currentPosition.Y = targetPosition.Y; followY = false; }
+                //determine if we should track the hero, per axis (deadzone)
+                if (Math.Abs(distance.X) > deadzoneX) { followX = true; }
+                if (Math.Abs(distance.Y) > deadzoneY) { followY = true; }
+                //if we are following, update current position based on distance and speed
+                if (followX) { currentPosition.X += distance.X * speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
+                if (followY) { currentPosition.Y += distance.Y * speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
+            }
+            else //FAST MATCHED CAMERA - instantly follows hero
+            { currentPosition = targetPosition; }
 
             //discard sub-pixel values from position
             currentPosition.X = (int)currentPosition.X;
