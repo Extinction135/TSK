@@ -10,14 +10,28 @@ todo:
 
 
 
-there should be a better way to handle the global.random instance
+refactoring how collisions are handled
+decomposed into smaller functions 
+so we can reuse it for checking collisions between cursor and actors/objects
+
+also fixed the hack where an object ignores itself
+now we ignore self-collisions via a comparison
+which, suprisingly, doesnt add much if any overhead at all
+
+
 
 
 implement the user clicking on an object or actor
-this is done thru the collision rec
+this is done thru the collision rec of the obj/actor
 
-
-
+mouse cursor should have a compCollision
+	we would update this compColl to match cursor position
+	then pass this compColl to CollisionFunctions to check against actors/objs
+	
+	**how do we determine if the colliding entity is an object or actor?
+	**we have no reference to them
+	**we dont want the debug collision handling to be in the collisionFunctions
+	
 
 
 
