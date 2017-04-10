@@ -9,48 +9,31 @@ todo:
 
 
 
-working for wall, but not working for actor
-collRec still isn't aligned
+
+screen manager should become a static class (there is only one instance)
+this simplifies various functions, as they will no longer need to accept it as a parameter
+YAY!
 
 
 
-why doesn't the collRec for cursor align?
 
+we should be able to pause the update/input loops using a boolean
+we should be able to toggle this boolean via the spacebar
+this allows us to pause/unpause the game
 
-
-implement the user clicking on an object or actor
-this is done thru the collision rec of the obj/actor
-
-mouse cursor should have a compCollision
-	we would update this compColl to match cursor position
-	then pass this compColl to CollisionFunctions to check against actors/objs
-	
-	**how do we determine if the colliding entity is an object or actor?
-	**we have no reference to them
-	**we dont want the debug collision handling to be in the collisionFunctions
-	
+we should format the output/debug info dump better
+not so many vertical lines, use tabs
+write to a single string, then write line that string
 
 
 
 
 
-how to do better debugging:
-	click on a object / actor with cursor
-	a message box appears with all current properties of that obj/act listed
-	this way we can inspect something easily to reason about it's state
-	without taking up a ton of UI / window space
-	we should be able to open multiple message boxes too
-	and we should be able to pause the game via spacebar
-	game should automatically pause if we click to inspect something
-	the DEBUG boolean should control if the cursor even gets to check collisions against objs/acts
-	
-	this wont work for sprites, but it will work for objs/acts/projs/particles
-	we'll have to figure out how to create message boxes in dot net core
-	
-	maybe we could just dump this info to the output panel when we click on an object
-	that way we wouldn't have to mess with messageboxes
-	
-	
+
+
+
+
+
 implement weapon as a projectile, without any speed
 	projectile is pulled from projectile pool
 	placed at actor location, offset based on facing direction

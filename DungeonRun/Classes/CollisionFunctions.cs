@@ -15,12 +15,6 @@ namespace DungeonRun
     public static class CollisionFunctions
     {
 
-
-
-
-
-
-
         public static GameObject CheckObjCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
         {
             for (int i = 0; i < DungeonScreen.pool.objCount; i++)
@@ -52,14 +46,6 @@ namespace DungeonRun
             }
             return null; //no collision
         }
-
-
-
-
-
-
-
-
 
         static Boolean collisionX;
         static Boolean collisionY;

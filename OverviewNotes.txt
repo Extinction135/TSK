@@ -9,8 +9,30 @@ DungeonRun is a UWP App created with MonoGame 3.6 to explore deploying UWP Apps 
 	DungeonRun uses a collection of sprites + sounds from various games, which are copyrighted.
 	Also, an unholy variety of design patterns are used throughout the codebase.
 	This is intentional as I'm exploring ways to keep codebase LOC low, clear, and fast.
-	The main patterns used are: ECS, OOP, MVC, with some Pure Functions.
+	The main patterns used are: ECS, OOP, MVC, with Pure Functions.
 	
+	
+Architecture / Design Pattern Overview:
+	"use the pattern that best solves the problem."
+	"mix and overlap patterns when useful."
+	"traditional wisdom should be challenged, tested, and improved upon."
+	"dont use more than you need."
+	
+	structure / component classes: data, occasionally a constructor function
+	static (Global/Singleton) classes: many functions, very few fields
+	these static function classes accept structs/components as parameters
+	
+	for complex objects, traditional OOP classes are used
+	sometimes these classes are static (Global), with fields and methods
+	sometimes they aren't, like Actor.cs and GameObject.cs
+	effort has been made to seperate the functionality out of object classes and into static function classes
+	this makes it simpler to call methods from anywhere in the codebase
+	
+	MVC is strictly enforced, via the HandleInput(), Update(), and Draw() loops via Screen classes
+	
+	a variety of base structs are used, like Byte2 and Byte4
+	this is done for efficiency + cache coherence (where applicable)
+	bytes are preferred to ints, which are preferred over floats or larger data structs
 	
 	
 
@@ -90,7 +112,7 @@ Room Design
 	so there can be a large number of different layouts for the same room type, like a hub room
 	when hero enters a room, the pools are rearranged to represent the room dataSet
 
-Hero Actions:
+Actor Actions:
 	Move (in a direction)
 	Attack (with a weapon)
 	Use (an item)

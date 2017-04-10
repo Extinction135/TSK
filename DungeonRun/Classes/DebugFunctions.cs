@@ -15,6 +15,14 @@ namespace DungeonRun
     public static class DebugFunctions
     {
 
+        public static void Inspect(DungeonScreen DungeonScreen)
+        {   //check if any object or actor collide with cursor collision component, pass to Inspect()
+            GameObject gameObject = CollisionFunctions.CheckObjCollisions(Input.cursorColl, DungeonScreen);
+            if (gameObject != null) { Inspect(gameObject); }
+            Actor actor = CollisionFunctions.CheckActorCollisions(Input.cursorColl, DungeonScreen);
+            if (actor != null) { Inspect(actor); }
+        }
+
         public static void Inspect(Actor Actor)
         {
             Debug.WriteLine("---- Actor ----");
@@ -58,6 +66,8 @@ namespace DungeonRun
             Inspect(Obj.compAnim);
             Inspect(Obj.compSprite);
         }
+
+
 
         public static void Inspect(ComponentCollision Coll)
         {
@@ -118,17 +128,6 @@ namespace DungeonRun
             Debug.WriteLine("\tflipHorizontally: " + Sprite.flipHorizontally);
             Debug.WriteLine("\tvisible: " + Sprite.visible);
             Debug.WriteLine("\torigin: " + Sprite.origin.X + ", " + Sprite.origin.Y);
-        }
-
-
-
-
-        public static void Inspect(DungeonScreen DungeonScreen)
-        {   //check if any object or actor collide with cursor collision component, pass to Inspect()
-            GameObject gameObject = CollisionFunctions.CheckObjCollisions(Input.cursorColl, DungeonScreen);
-            if (gameObject != null) { Inspect(gameObject); }
-            Actor actor = CollisionFunctions.CheckActorCollisions(Input.cursorColl, DungeonScreen);
-            if (actor != null) { Inspect(actor); }
         }
 
     }
