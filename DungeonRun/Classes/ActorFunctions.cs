@@ -73,7 +73,7 @@ namespace DungeonRun
                 {
                     Actor.lockTotal = 15;
                     Actor.stateLocked = true;
-                    Actor.compMove.StopMovement();
+                    ComponentFunctions.StopMovement(Actor.compMove);
 
                     //create weapon projectile here
                     ProjectileFunctions.Spawn(GameObject.Type.ProjectileSword, Actor);
@@ -82,7 +82,7 @@ namespace DungeonRun
                 {
                     Actor.lockTotal = 25;
                     Actor.stateLocked = true;
-                    Actor.compMove.StopMovement();
+                    ComponentFunctions.StopMovement(Actor.compMove);
                     //create item projectile here
                 }
             }

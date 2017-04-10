@@ -100,16 +100,9 @@ namespace DungeonRun
         }
 
 
-
-        public static void AlignComponents(ComponentMovement Move, ComponentSprite Sprite, ComponentCollision Coll)
-        {   //aligns the Collision.rec and Sprite to the Move.position
-            Sprite.position.X = (int)Move.newPosition.X;
-            Sprite.position.Y = (int)Move.newPosition.Y;
-            Sprite.SetZdepth();
-            Coll.rec.X = (int)Move.newPosition.X + Coll.offsetX;
-            Coll.rec.Y = (int)Move.newPosition.Y + Coll.offsetY;
-        }
-
+        
+        
+        
 
     }
 }

@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class AnimationFunctions
     {
+
         public static void Animate(ComponentAnimation Anim, ComponentSprite Sprite)
         {
             //perform bounds checking for index
@@ -32,5 +33,6 @@ namespace DungeonRun
                 Anim.index++; //increment index to next frame
             }
         }
+
     }
 }

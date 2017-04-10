@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public static class AiManager
     {
-        static AiManager() { }
 
         public static void Think(ComponentInput Input)
         {
@@ -57,5 +56,6 @@ namespace DungeonRun
             //this would also make them harder to hit with projectiles :)
 
         }
+
     }
 }

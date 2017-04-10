@@ -105,6 +105,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Camera2D.cs" />
+    <Compile Include="Classes\ComponentFunctions.cs" />
     <Compile Include="Classes\Components.cs" />
     <Compile Include="Classes\DebugFunctions.cs" />
     <Compile Include="Classes\DebugInfo.cs" />

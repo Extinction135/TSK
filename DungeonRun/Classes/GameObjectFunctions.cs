@@ -282,7 +282,7 @@ namespace DungeonRun
             #endregion
 
 
-            CollisionFunctions.AlignComponents(Obj.compMove, Obj.compSprite, Obj.compCollision);
+            ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
         public static void Update(GameObject Obj)

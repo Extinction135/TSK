@@ -19,14 +19,14 @@ namespace DungeonRun
         {
             ProjectMovement(Actor.compMove);
             CollisionFunctions.CheckCollisions(Actor.compMove, Actor.compCollision, DungeonScreen);
-            CollisionFunctions.AlignComponents(Actor.compMove, Actor.compSprite, Actor.compCollision);
+            ComponentFunctions.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
         }
 
         public static void Move(GameObject Obj, DungeonScreen DungeonScreen)
         {
             ProjectMovement(Obj.compMove);
             CollisionFunctions.CheckCollisions(Obj.compMove, Obj.compCollision, DungeonScreen);
-            CollisionFunctions.AlignComponents(Obj.compMove, Obj.compSprite, Obj.compCollision);
+            ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
         public static void ProjectMovement(ComponentMovement Move)
