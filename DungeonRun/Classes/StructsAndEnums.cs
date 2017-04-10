@@ -12,13 +12,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    //the evil global instances
+
     public static class Global
     {
         public static Random Random = new Random();
     }
     
-    //common structs
+
+
     public struct Byte2
     {
         public byte x;
@@ -28,6 +29,7 @@ namespace DungeonRun
             x = X; y = Y;
         }
     }
+
     public struct Byte4 //used for animation
     {
         public byte x; //x frame
@@ -41,6 +43,7 @@ namespace DungeonRun
             flags = Flags;
         }
     }
+
     public struct ColorScheme
     {
         public Color background;
@@ -52,12 +55,12 @@ namespace DungeonRun
     }
 
 
-
-    //common enums
+    
 
     public enum Direction { Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft, None }
 
     public enum Rotation { None, Clockwise90, Clockwise180, Clockwise270 }
 
     public enum MouseButtons { LeftButton, RightButton }
+
 }

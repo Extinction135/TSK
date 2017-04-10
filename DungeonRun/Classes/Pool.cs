@@ -14,8 +14,6 @@ namespace DungeonRun
 {
     public class Pool
     {
-        //represents the actor's pool, obj's pool, and projectile's pool
-
         public int actorCount;
         public List<Actor> actorPool;
         public int actorIndex;

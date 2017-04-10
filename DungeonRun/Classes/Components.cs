@@ -92,4 +92,24 @@ namespace DungeonRun
         }
     }
 
+    public class ComponentText
+    {
+        public SpriteFont font;
+        public String text;             //the string of text to draw
+        public Vector2 position;        //the position of the text to draw
+        public Color color;             //the color of the text to draw
+        public float alpha = 1.0f;      //the opacity of the text
+        public float rotation = 0.0f;
+        public float scale = 1.0f;
+        public float zDepth = 0.001f;   //the layer to draw the text to
+
+        public ComponentText(SpriteFont Font, String Text, Vector2 Position, Color Color)
+        {
+            position = Position;
+            text = Text;
+            color = Color;
+            font = Font;
+        }
+    }
+
 }

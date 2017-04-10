@@ -20,14 +20,14 @@ namespace DungeonRun
 
         public Rectangle background;
 
-        public List<Text> textFields;
+        public List<ComponentText> textFields;
         public int counter = 0;
         public int size = 0;
 
-        public Text timingText;
-        public Text actorText;
-        public Text moveText;
-        public Text poolText;
+        public ComponentText timingText;
+        public ComponentText actorText;
+        public ComponentText moveText;
+        public ComponentText poolText;
         
         public byte framesTotal = 30; //how many frames to average over
         public byte frameCounter = 0; //increments thru frames 0-framesTotal
@@ -41,24 +41,27 @@ namespace DungeonRun
         {
             screen = DungeonScreen;
             screenManager = DungeonScreen.screenManager;
-            textFields = new List<Text>();
+            textFields = new List<ComponentText>();
 
             background = new Rectangle(0, 322 - 8, 640, 50);
             int yPos = background.Y - 2;
 
-            timingText = new Text(screenManager, screen.assets.font, "", new Vector2(2, yPos + 00));
+            timingText = new ComponentText(screen.assets.font, "", 
+                new Vector2(2, yPos + 00), screen.game.colorScheme.textSmall);
             textFields.Add(timingText);
 
-            actorText = new Text(screenManager, screen.assets.font, "", new Vector2(16 * 3, yPos + 00));
+            actorText = new ComponentText(screen.assets.font, "", 
+                new Vector2(16 * 3, yPos + 00), screen.game.colorScheme.textSmall);
             textFields.Add(actorText);
 
-            moveText = new Text(screenManager, screen.assets.font, "", new Vector2(16 * 7, yPos + 00));
+            moveText = new ComponentText(screen.assets.font, "", 
+                new Vector2(16 * 7, yPos + 00), screen.game.colorScheme.textSmall);
             textFields.Add(moveText);
 
-            poolText = new Text(screenManager, screen.assets.font, "", new Vector2(16 * 12, yPos + 00));
+            poolText = new ComponentText(screen.assets.font, "", 
+                new Vector2(16 * 12, yPos + 00), screen.game.colorScheme.textSmall);
             textFields.Add(poolText);
         }
-
 
         public void Draw()
         {
@@ -115,18 +118,10 @@ namespace DungeonRun
             
 
 
-            //stateText.text += "\nstate: " + dungeonScreen.hero.state;
-            //stateText.text += "\nlocked: " + dungeonScreen.hero.stateLocked;
-            //stateText.text += "\naTime: " + dungeonScreen.hero.animationFunctions.timer;
-            //stateText.text += "\nframe: " + dungeonScreen.hero.spriteData.currentFrame[0] + ", " + dungeonScreen.hero.spriteData.currentFrame[1];
-
-            //spriteText.text = "pos: " + dungeonScreen.hero.sprite.position.X + "," + dungeonScreen.hero.sprite.position.Y;
-            //spriteText.text += "\ncam: " + dungeonScreen.camera.currentPosition.X + "," + dungeonScreen.camera.currentPosition.Y;
-            //spriteText.text += "\nz: " + dungeonScreen.hero.sprite.zDepth;
-
             screenManager.spriteBatch.Draw(screen.assets.dummyTexture, background, screen.game.colorScheme.windowBkg);
             size = textFields.Count();
-            for (counter = 0; counter < size; counter++) { textFields[counter].Draw(); }
+            for (counter = 0; counter < size; counter++) { DrawFunctions.Draw(textFields[counter], screenManager); }
         }
+
     }
 }

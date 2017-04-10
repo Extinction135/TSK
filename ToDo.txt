@@ -9,12 +9,17 @@ todo:
 
 
 
-consolidate input helper into input functions
+
+
+
+should text be a component?
+we will probably have text functions, so signs point to YES
 
 
 
 
 
+there should be a better way to handle the global.random instance
 
 
 implement the user clicking on an object or actor

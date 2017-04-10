@@ -53,5 +53,13 @@ namespace DungeonRun
                 ScreenManager.game.colorScheme.collisionActor);
         }
 
+        public static void Draw(ComponentText Text, ScreenManager ScreenManager)
+        {
+            ScreenManager.spriteBatch.DrawString(
+                Text.font, Text.text, Text.position,
+                Text.color * Text.alpha, Text.rotation, Vector2.Zero,
+                Text.scale, SpriteEffects.None, Text.zDepth);
+        }
+
     }
 }

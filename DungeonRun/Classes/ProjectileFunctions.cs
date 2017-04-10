@@ -15,24 +15,14 @@ namespace DungeonRun
     public static class ProjectileFunctions
     {
 
-
         public static void Spawn(GameObject.Type Type, Actor Actor)
         {
-
             GameObject projectile = PoolFunctions.GetProjectile(Actor.screen.pool);
-
             projectile.direction = Actor.direction;
             projectile.type = Type;
-            //projectile.active = true;
-
             AlignProjectile(projectile, Actor);
             GameObjectFunctions.SetType(projectile, projectile.type);
         }
-
-
-
-
-
 
         static Vector2 ProjectileOffset = new Vector2(0, 0);
         public static void AlignProjectile(GameObject Projectile, Actor Actor)
@@ -63,5 +53,6 @@ namespace DungeonRun
                 Actor.compSprite.position.X + ProjectileOffset.X,
                 Actor.compSprite.position.Y + ProjectileOffset.Y);
         }
+
     }
 }

@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class PoolFunctions
     {
+
         public static Actor GetActor(Pool Pool)
         {
             Pool.actorIndex++;
@@ -198,5 +199,6 @@ namespace DungeonRun
                 { ActorFunctions.Draw(Pool.actorPool[Pool.counter], ScreenManager); }
             }
         }
+
     }
 }
