@@ -10,15 +10,6 @@ todo:
 
 
 
-
-
-should text be a component?
-we will probably have text functions, so signs point to YES
-
-
-
-
-
 there should be a better way to handle the global.random instance
 
 

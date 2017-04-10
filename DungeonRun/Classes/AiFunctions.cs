@@ -20,10 +20,10 @@ namespace DungeonRun
             Input.ResetInputData(CompInput);
 
             //choose a random direction to move in
-            CompInput.direction = (Direction)Global.Random.Next(0, 8);
+            CompInput.direction = (Direction)GetRandom.Int(0, 8);
 
             //randomly dash
-            if (Global.Random.Next(0, 100) > 80) { CompInput.dash = true; }
+            if (GetRandom.Int(0, 100) > 80) { CompInput.dash = true; }
 
 
 

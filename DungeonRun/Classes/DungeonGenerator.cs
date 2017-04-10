@@ -125,9 +125,9 @@ namespace DungeonRun
             {
                 Actor actor = PoolFunctions.GetActor(DungeonScreen.pool);
                 ActorFunctions.SetType(actor, Actor.Type.Blob);
-                MovementFunctions.Teleport(actor.compMove, 
-                    Global.Random.Next(20, 180) + positionX, 
-                    Global.Random.Next(20, 80) + positionY);
+                MovementFunctions.Teleport(actor.compMove,
+                    GetRandom.Int(20, 180) + positionX,
+                    GetRandom.Int(20, 80) + positionY);
             }
 
             //center hero to room

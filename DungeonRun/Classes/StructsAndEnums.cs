@@ -13,9 +13,11 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
 
-    public static class Global
+    public static class GetRandom
     {
-        public static Random Random = new Random();
+        static Random Random = new Random();
+        public static int Int(int Low, int High)
+        { return Random.Next(Low, High); }
     }
     
 
