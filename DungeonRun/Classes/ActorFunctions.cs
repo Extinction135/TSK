@@ -44,15 +44,6 @@ namespace DungeonRun
             Actor.compCollision.offsetY = 0;
         }
 
-        public static void Teleport(Actor Actor, float X, float Y)
-        {
-            Actor.compMove.position.X = X;
-            Actor.compMove.position.Y = Y;
-        }
-
-
-
-
         public static void SetInputState(ComponentInput Input, Actor Actor)
         {
             Actor.inputState = Actor.State.Idle; //reset inputState

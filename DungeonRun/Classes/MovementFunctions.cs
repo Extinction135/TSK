@@ -57,5 +57,11 @@ namespace DungeonRun
             Move.newPosition.Y = Move.position.Y;
             Move.newPosition += Move.magnitude;
         }
+
+        public static void Teleport(ComponentMovement Move, float X, float Y)
+        {
+            Move.position.X = X;
+            Move.position.Y = Y;
+        }
     }
 }

@@ -38,13 +38,6 @@ namespace DungeonRun
             Obj.compCollision.offsetY = -8; //(most are)
         }
         
-
-
-
-
-
-
-
         public static void SetType(GameObject Obj, GameObject.Type Type)
         {
             Obj.type = Type;
@@ -291,18 +284,6 @@ namespace DungeonRun
 
             CollisionFunctions.AlignComponents(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
-
-
-
-        public static void Teleport(GameObject Obj, float X, float Y)
-        {
-            Obj.compMove.position.X = X;
-            Obj.compMove.position.Y = Y;
-        }
-
-
-
-
 
         public static void Update(GameObject Obj)
         {

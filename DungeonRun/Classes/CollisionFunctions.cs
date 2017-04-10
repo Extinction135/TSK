@@ -109,5 +109,7 @@ namespace DungeonRun
             Coll.rec.X = (int)Move.newPosition.X + Coll.offsetX;
             Coll.rec.Y = (int)Move.newPosition.Y + Coll.offsetY;
         }
+
+
     }
 }

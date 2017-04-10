@@ -104,19 +104,19 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             {
                 if (Pool.actorPool[Pool.counter].active)
-                { CollisionFunctions.Move(Pool.actorPool[Pool.counter], DungeonScreen); }
+                { MovementFunctions.Move(Pool.actorPool[Pool.counter], DungeonScreen); }
             }
             //obj pool
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {
                 if (Pool.objPool[Pool.counter].active)
-                { CollisionFunctions.Move(Pool.objPool[Pool.counter], DungeonScreen); }
+                { MovementFunctions.Move(Pool.objPool[Pool.counter], DungeonScreen); }
             }
             //projectile pool
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             {
                 if (Pool.projectilePool[Pool.counter].active)
-                { CollisionFunctions.Move(Pool.projectilePool[Pool.counter], DungeonScreen); }
+                { MovementFunctions.Move(Pool.projectilePool[Pool.counter], DungeonScreen); }
             }
         }
 

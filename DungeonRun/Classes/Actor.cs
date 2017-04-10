@@ -60,7 +60,7 @@ namespace DungeonRun
             compCollision = new ComponentCollision();
             //set the actor type to hero, teleport to position
             ActorFunctions.SetType(this, Type.Hero);
-            ActorFunctions.Teleport(this, compSprite.position.X, compSprite.position.Y);
+            MovementFunctions.Teleport(this.compMove, compSprite.position.X, compSprite.position.Y);
         }
     }
 }

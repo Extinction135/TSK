@@ -20,7 +20,6 @@ namespace DungeonRun
         public List<Byte4> left;
     }
 
-
     public struct ActorAnimationList
     {
         public AnimationGroup idle;
@@ -36,16 +35,6 @@ namespace DungeonRun
         //death
         //etc...
     }
-
-
-
-
-
-
-
-
-
-
 
 
     public static class ActorAnimationListManager
@@ -81,26 +70,9 @@ namespace DungeonRun
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //the animationLists for all actors
         static ActorAnimationList heroAnims;
         static ActorAnimationList blobAnims;
-
 
         //populates the animation lists
         static ActorAnimationListManager()

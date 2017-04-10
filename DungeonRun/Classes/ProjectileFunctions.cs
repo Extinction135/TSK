@@ -59,7 +59,7 @@ namespace DungeonRun
             }
 
             //teleport the projectile to the actor's position with the offset applied
-            GameObjectFunctions.Teleport(Projectile,
+            MovementFunctions.Teleport(Projectile.compMove,
                 Actor.compSprite.position.X + ProjectileOffset.X,
                 Actor.compSprite.position.Y + ProjectileOffset.Y);
         }
