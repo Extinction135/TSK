@@ -14,63 +14,12 @@ namespace DungeonRun
 {
     public static class CollisionFunctions
     {
-
-        public static void Move(Actor Actor, DungeonScreen DungeonScreen)
-        {
-            ProjectMovement(Actor.compMove);
-            CheckCollisions(Actor.compMove, Actor.compCollision, DungeonScreen);
-            AlignComponents(Actor.compMove, Actor.compSprite, Actor.compCollision);
-        }
-
-        public static void Move(GameObject Obj, DungeonScreen DungeonScreen)
-        {
-            ProjectMovement(Obj.compMove);
-            CheckCollisions(Obj.compMove, Obj.compCollision, DungeonScreen);
-            AlignComponents(Obj.compMove, Obj.compSprite, Obj.compCollision);
-        }
-        
-
-
-
-        public static void ProjectMovement(ComponentMovement Move)
-        {
-            //calculate magnitude
-            if (Move.direction == Direction.Down)
-            { Move.magnitude.Y += Move.speed; }
-            else if (Move.direction == Direction.Left)
-            { Move.magnitude.X -= Move.speed; }
-            else if (Move.direction == Direction.Right)
-            { Move.magnitude.X += Move.speed; }
-            else if (Move.direction == Direction.Up)
-            { Move.magnitude.Y -= Move.speed; }
-            else if (Move.direction == Direction.DownLeft)
-            { Move.magnitude.Y += Move.speed * 0.75f; Move.magnitude.X -= Move.speed * 0.75f; }
-            else if (Move.direction == Direction.DownRight)
-            { Move.magnitude.Y += Move.speed * 0.75f; Move.magnitude.X += Move.speed * 0.75f; }
-            else if (Move.direction == Direction.UpLeft)
-            { Move.magnitude.Y -= Move.speed * 0.75f; Move.magnitude.X -= Move.speed * 0.75f; }
-            else if (Move.direction == Direction.UpRight)
-            { Move.magnitude.Y -= Move.speed * 0.75f; Move.magnitude.X += Move.speed * 0.75f; }
-            //apply friction to magnitude, clip magnitude to 0 when it gets very small
-            Move.magnitude = Move.magnitude * Move.friction;
-            if (Math.Abs(Move.magnitude.X) < 0.01f) { Move.magnitude.X = 0; }
-            if (Math.Abs(Move.magnitude.Y) < 0.01f) { Move.magnitude.Y = 0; }
-            //project newPosition based on current position + magnitude
-            Move.newPosition.X = Move.position.X;
-            Move.newPosition.Y = Move.position.Y;
-            Move.newPosition += Move.magnitude;
-        }
-
-
-
-
         static Boolean collisionX;
         static Boolean collisionY;
         public static void CheckCollisions(ComponentMovement Move, ComponentCollision Coll, DungeonScreen DungeonScreen)
         {
             //if the collision component isn't active, bail from collision checking
             if (!Coll.active) { return; }
-
             //this is to prevent the obj/actor from colliding with itself
             //the cheapest/fastest way to do this is to check a boolean
             Coll.blocking = false; 
@@ -146,8 +95,8 @@ namespace DungeonRun
             //the current position becomes the new position
             Move.position.X = Move.newPosition.X;
             Move.position.Y = Move.newPosition.Y;
-
-            Coll.blocking = true; //turn this object's blocking back on
+            //turn this object's blocking back on
+            Coll.blocking = true; 
         }
 
 

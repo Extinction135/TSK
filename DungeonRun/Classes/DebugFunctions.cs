@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class DebugFunctions
     {
+
         public static void Inspect(Actor Actor)
         {
             Debug.WriteLine("---- Object ----");

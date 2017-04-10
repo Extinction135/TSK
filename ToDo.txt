@@ -8,6 +8,11 @@ todo:
 
 
 
+implement the user clicking on an object or actor
+this is done thru the collision rec
+
+
+
 
 how to do better debugging:
 	click on a object / actor with cursor
