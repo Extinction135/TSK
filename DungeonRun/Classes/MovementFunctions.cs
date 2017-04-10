@@ -63,5 +63,6 @@ namespace DungeonRun
             Move.position.X = X;
             Move.position.Y = Y;
         }
+
     }
 }

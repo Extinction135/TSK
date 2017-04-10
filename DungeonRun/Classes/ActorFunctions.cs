@@ -44,23 +44,10 @@ namespace DungeonRun
             Actor.compCollision.offsetY = 0;
         }
 
-        public static void SetInputState(ComponentInput Input, Actor Actor)
-        {
-            Actor.inputState = Actor.State.Idle; //reset inputState
-            Actor.compMove.direction = Input.direction; //set move direction
-            if (Input.direction != Direction.None) //actor must be moving
-            { Actor.inputState = Actor.State.Move; }
-            //determine + set button inputs
-            if (Input.attack) { Actor.inputState = Actor.State.Attack; }
-            else if (Input.use) { Actor.inputState = Actor.State.Use; }
-            else if (Input.dash) { Actor.inputState = Actor.State.Dash; }
-            else if (Input.interact) { Actor.inputState = Actor.State.Interact; }
-        }
-
         public static void Update(Actor Actor)
         {
             //get the input for this frame, set actor.direction
-            ActorFunctions.SetInputState(Actor.compInput, Actor);
+            InputFunctions.SetInputState(Actor.compInput, Actor);
 
             //if actor can change state, sync state to inputState
             if (!Actor.stateLocked)
