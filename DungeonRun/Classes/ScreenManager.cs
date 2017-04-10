@@ -133,7 +133,6 @@ namespace DungeonRun
                     game.graphics.GraphicsDevice.Viewport.Width,      //match width of window frame
                     game.graphics.GraphicsDevice.Viewport.Height),    //match height of window frame
                 Color.White);
-            if (game.drawCollisionRecs) { DrawFunctions.Draw(Input.cursorColl, this); }
 
             spriteBatch.End();
 

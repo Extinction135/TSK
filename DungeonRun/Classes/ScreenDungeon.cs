@@ -79,6 +79,8 @@ namespace DungeonRun
                         Camera2D.view
                         );
             PoolFunctions.Draw(screenManager, pool);
+            if (game.drawCollisionRecs) { DrawFunctions.Draw(Input.cursorColl, screenManager); }
+
             screenManager.spriteBatch.End();
             
             //draw UI
