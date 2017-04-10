@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public static class ActorFunctions
     {
-        //all the functions that operate on an actor class
 
         public static void SetType(Actor Actor, Actor.Type Type)
         {   //set the type, direction, state, and active boolean
@@ -47,7 +46,7 @@ namespace DungeonRun
         public static void Update(Actor Actor)
         {
             //get the input for this frame, set actor.direction
-            InputFunctions.SetInputState(Actor.compInput, Actor);
+            Input.SetInputState(Actor.compInput, Actor);
 
             //if actor can change state, sync state to inputState
             if (!Actor.stateLocked)
@@ -92,7 +91,7 @@ namespace DungeonRun
                 if (Actor.lockCounter > Actor.lockTotal) //check against lock total
                 {
                     Actor.stateLocked = false; //unlock actor
-                    InputFunctions.ResetInputData(Actor.compInput); //reset input component
+                    Input.ResetInputData(Actor.compInput); //reset input component
                 } 
             }
 

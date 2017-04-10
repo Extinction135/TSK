@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class DrawFunctions
     {
+
         public static void Draw(ComponentSprite Sprite, ScreenManager ScreenManager)
         {
             if (Sprite.visible)
@@ -44,7 +45,6 @@ namespace DungeonRun
             }
         }
 
-        
         public static void Draw(ComponentCollision Coll, ScreenManager ScreenManager)
         {   //draw the collision rec of the collision component
             ScreenManager.spriteBatch.Draw(
@@ -52,5 +52,6 @@ namespace DungeonRun
                 Coll.rec,
                 ScreenManager.game.colorScheme.collisionActor);
         }
+
     }
 }

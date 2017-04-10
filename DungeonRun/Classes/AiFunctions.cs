@@ -12,18 +12,18 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class AiManager
+    public static class AiFunctions
     {
 
-        public static void Think(ComponentInput Input)
+        public static void Think(ComponentInput CompInput)
         {
-            InputFunctions.ResetInputData(Input);
+            Input.ResetInputData(CompInput);
 
             //choose a random direction to move in
-            Input.direction = (Direction)Global.Random.Next(0, 8);
+            CompInput.direction = (Direction)Global.Random.Next(0, 8);
 
             //randomly dash
-            if (Global.Random.Next(0, 100) > 80) { Input.dash = true; }
+            if (Global.Random.Next(0, 100) > 80) { CompInput.dash = true; }
 
 
 

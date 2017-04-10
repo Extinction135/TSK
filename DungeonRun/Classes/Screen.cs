@@ -18,12 +18,11 @@ namespace DungeonRun
         public ScreenManager screenManager;
         public Assets assets;
 
-
         public Screen() { }
         public string name = "New";
         public virtual void LoadContent() { }
         public virtual void UnloadContent() { }
-        public virtual void HandleInput(InputHelper input, GameTime gameTime) { }
+        public virtual void HandleInput(GameTime gameTime) { }
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(GameTime gameTime) { }
     }

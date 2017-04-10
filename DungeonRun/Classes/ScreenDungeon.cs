@@ -40,10 +40,10 @@ namespace DungeonRun
             DebugFunctions.Inspect(pool.hero);
         }
 
-        public override void HandleInput(InputHelper Input, GameTime GameTime)
+        public override void HandleInput(GameTime GameTime)
         {
             gameTime = GameTime;
-            InputFunctions.MapPlayerInput(Input, pool.hero.compInput);
+            Input.MapPlayerInput(pool.hero.compInput);
         }
 
         public override void Update(GameTime GameTime)

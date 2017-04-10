@@ -8,8 +8,21 @@ todo:
 
 
 
+
+consolidate input helper into input functions
+
+
+
+
+
+
+
 implement the user clicking on an object or actor
 this is done thru the collision rec
+
+
+
+
 
 
 
