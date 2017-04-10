@@ -74,6 +74,7 @@ namespace DungeonRun
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
             //gridRef = new Sprite(this, game.gridSheet, new Vector2(320, 320), new Point(640, 360), new Vector3(0, 0, 0));
             Input.Initialize();
+            Camera2D.Initialize(this);
         }
 
         public void Update(GameTime GameTime)

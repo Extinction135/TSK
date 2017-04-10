@@ -12,49 +12,42 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class Camera2D
+    public static class Camera2D
     {
         public static GraphicsDevice graphics;
-        public ScreenManager screenManager;
+        public static ScreenManager screenManager;
 
+        public static float speed = 5f; //how fast the camera moves
+        public static int deadzoneX = 1;
+        public static int deadzoneY = 1;
+        public static Matrix view;
+        public static float targetZoom = 1.0f;
+        public static float zoomSpeed = 0.05f;
+        public static Vector2 currentPosition;
+        public static Vector2 targetPosition;
 
-        //the important variables
-        public float speed = 5f; //how fast the camera moves
-        public int deadzoneX = 1;
-        public int deadzoneY = 1;
+        static Matrix matRotation = Matrix.CreateRotationZ(0.0f);
+        static Matrix matZoom;
+        static Vector3 translateCenter;
+        static Vector3 translateBody;
+        static float currentZoom = 1.0f;
+        static Vector2 distance;
+        static Boolean followX = true;
+        static Boolean followY = true;
 
+        public static Matrix projection;
+        static Vector3 T;
+        static Point t;
 
-
-        public Matrix matRotation = Matrix.CreateRotationZ(0.0f);
-        public Matrix matZoom;
-        public Vector3 translateCenter;
-        public Vector3 translateBody;
-        public Matrix view;
-
-        public Vector2 distance;
-
-        public float currentZoom = 1.0f;
-        public float targetZoom = 1.0f;
-        public float zoomSpeed = 0.05f;
-
-        public Boolean followX = true;
-        public Boolean followY = true;
-        public Vector2 currentPosition;
-        public Vector2 targetPosition;
-
-
-
-
-        public Matrix projection;
-        Vector3 T; Point t;
-        public Point ConvertScreenToWorld(int x, int y)
+        public static Point ConvertScreenToWorld(int x, int y)
         {   //converts screen position to world position
             projection = Matrix.CreateOrthographicOffCenter(0f, graphics.Viewport.Width, graphics.Viewport.Height, 0f, 0f, 1f);
             T.X = x; T.Y = y; T.Z = 0;
             T = graphics.Viewport.Unproject(T, projection, view, Matrix.Identity);
             t.X = (int)T.X; t.Y = (int)T.Y; return t;
         }
-        public Point ConvertWorldToScreen(int x, int y)
+
+        public static Point ConvertWorldToScreen(int x, int y)
         {   //converts world position to screen position
             projection = Matrix.CreateOrthographicOffCenter(0f, graphics.Viewport.Width, graphics.Viewport.Height, 0f, 0f, 1f);
             T.X = x; T.Y = y; T.Z = 0;
@@ -62,16 +55,8 @@ namespace DungeonRun
             t.X = (int)T.X; t.Y = (int)T.Y; return t;
         }
 
-
-
-
-
-        public void SetView()
+        public static void SetView()
         {
-            //this only works if viewport.size matches screenManager.renderSurface.size
-            //translateCenter.X = (int)graphics.Viewport.Width / 2f;
-            //translateCenter.Y = (int)graphics.Viewport.Height / 2f;
-
             //adapt the camera's center to the renderSurface.size
             translateCenter.X = screenManager.renderSurface.Width / 2;
             translateCenter.Y = screenManager.renderSurface.Height / 2;
@@ -86,8 +71,7 @@ namespace DungeonRun
                     Matrix.CreateTranslation(translateCenter);
         }
 
-
-        public Camera2D(ScreenManager ScreenManager)
+        public static void Initialize(ScreenManager ScreenManager)
         {
             screenManager = ScreenManager;
             graphics = screenManager.game.GraphicsDevice;
@@ -97,21 +81,14 @@ namespace DungeonRun
             translateBody.Z = 0;
             currentPosition = Vector2.Zero; //initially the camera is at 0,0
             targetPosition = Vector2.Zero;
-            SetView();
+            targetZoom = 1.0f;
         }
 
-
-
-
-        public void Update(GameTime GameTime)
+        public static void Update(GameTime GameTime)
         {
             //discard sub-pixel values from position
             targetPosition.X = (int)targetPosition.X;
             targetPosition.Y = (int)targetPosition.Y;
-
-
-
-
 
             //Lazy Camera Presets
             /*
@@ -137,7 +114,6 @@ namespace DungeonRun
             deadzoneX = 50;
             deadzoneY = 50;
 
-
             //LAZY MATCHED CAMERA - waits for hero to move outside of deadzone before following
             distance = targetPosition - currentPosition; //get distance between current and target
             //check to see if camera is close enough to snap positions
@@ -154,19 +130,9 @@ namespace DungeonRun
             //FAST MATCHED CAMERA - instantly follows hero
             currentPosition = targetPosition;
 
-
-
-
-
-
-
             //discard sub-pixel values from position
             currentPosition.X = (int)currentPosition.X;
             currentPosition.Y = (int)currentPosition.Y;
-
-
-
-
 
             if (currentZoom != targetZoom)
             {   //gradually match the zoom

@@ -23,7 +23,6 @@ namespace DungeonRun
         public TimeSpan totalTime;
 
         public DebugInfo debugInfo;
-        public Camera2D camera;
         public GameTime gameTime;
         
         public Pool pool;
@@ -31,8 +30,6 @@ namespace DungeonRun
         public override void LoadContent()
         {
             debugInfo = new DebugInfo(this);
-            camera = new Camera2D(screenManager);
-
             pool = new Pool(this);
 
             DungeonGenerator.CreateRoom(this);
@@ -61,9 +58,8 @@ namespace DungeonRun
             PoolFunctions.Move(this, pool);
 
             //track camera to hero
-            camera.targetZoom = 1.0f;
-            camera.targetPosition = pool.hero.compSprite.position;
-            camera.Update(GameTime);
+            Camera2D.targetPosition = pool.hero.compSprite.position;
+            Camera2D.Update(GameTime);
 
             stopWatch.Stop(); updateTime = stopWatch.Elapsed;
         }
@@ -80,7 +76,7 @@ namespace DungeonRun
                         null,
                         null,
                         null,
-                        camera.view
+                        Camera2D.view
                         );
             PoolFunctions.Draw(screenManager, pool);
             screenManager.spriteBatch.End();

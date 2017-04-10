@@ -49,8 +49,10 @@ namespace DungeonRun
             currentGamePadState = GamePad.GetState(PlayerIndex.One);
 
             //set cursor collision component pos to cursor pos
-            cursorColl.rec.X = (int)currentMouseState.X;
-            cursorColl.rec.Y = (int)currentMouseState.Y;
+            //cursorColl.rec.X = (int)currentMouseState.X;
+            //cursorColl.rec.Y = (int)currentMouseState.Y;
+            cursorColl.rec.Location = Camera2D.ConvertScreenToWorld(currentMouseState.X, currentMouseState.Y);
+
 
             //reset game pad direction
             gamePadDirection = Direction.None;
