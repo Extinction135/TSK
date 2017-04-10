@@ -8,6 +8,10 @@ todo:
 
 
 
+we need to make camera2D a static class, so we have access to the convert() functions
+
+
+
 
 
 refactoring how collisions are handled

@@ -44,6 +44,12 @@ namespace DungeonRun
         {
             gameTime = GameTime;
             Input.MapPlayerInput(pool.hero.compInput);
+
+            if (game.DEBUG)
+            {   //if the game is in debug mode, dump info on clicked actor/obj
+                if (Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                { DebugFunctions.Inspect(this); }
+            }
         }
 
         public override void Update(GameTime GameTime)

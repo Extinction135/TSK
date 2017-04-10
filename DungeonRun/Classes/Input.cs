@@ -20,8 +20,7 @@ namespace DungeonRun
         public static MouseState currentMouseState = new MouseState();
         public static MouseState lastMouseState = new MouseState();
 
-        public static Point lastCursorPosition = new Point(0, 0);
-        public static Point cursorPosition = new Point(0, 0);
+        public static ComponentCollision cursorColl = new ComponentCollision();
 
         public static GamePadState currentGamePadState = new GamePadState();
         public static GamePadState lastGamePadState = new GamePadState();
@@ -29,6 +28,15 @@ namespace DungeonRun
         public static float deadzone = 0.10f; //the amount of joystick movement classified as noise
         public static Direction gamePadDirection = Direction.None;
 
+
+
+        public static void Initialize()
+        {
+            cursorColl.rec.Width = 4;
+            cursorColl.rec.Height = 4;
+            cursorColl.blocking = false;
+            cursorColl.active = true;
+        }
 
         public static void Update(GameTime gameTime)
         {
@@ -40,25 +48,24 @@ namespace DungeonRun
             currentMouseState = Mouse.GetState();
             currentGamePadState = GamePad.GetState(PlayerIndex.One);
 
-            //track cursor position
-            lastCursorPosition = cursorPosition;
-            cursorPosition.X = (int)currentMouseState.X; //convert cursor position to int
-            cursorPosition.Y = (int)currentMouseState.Y; //we don't need cursor position as a float
+            //set cursor collision component pos to cursor pos
+            cursorColl.rec.X = (int)currentMouseState.X;
+            cursorColl.rec.Y = (int)currentMouseState.Y;
 
             //reset game pad direction
             gamePadDirection = Direction.None;
 
             //map gamepad left joystick to gamePadDirection
-            if (currentGamePadState.ThumbSticks.Left.X > deadzone & 
+            if (currentGamePadState.ThumbSticks.Left.X > deadzone &
                 currentGamePadState.ThumbSticks.Left.Y > deadzone)
             { gamePadDirection = Direction.UpRight; }
-            else if (currentGamePadState.ThumbSticks.Left.X < -deadzone & 
+            else if (currentGamePadState.ThumbSticks.Left.X < -deadzone &
                 currentGamePadState.ThumbSticks.Left.Y > deadzone)
             { gamePadDirection = Direction.UpLeft; }
-            else if (currentGamePadState.ThumbSticks.Left.X > deadzone & 
+            else if (currentGamePadState.ThumbSticks.Left.X > deadzone &
                 currentGamePadState.ThumbSticks.Left.Y < -deadzone)
             { gamePadDirection = Direction.DownRight; }
-            else if (currentGamePadState.ThumbSticks.Left.X < -deadzone & 
+            else if (currentGamePadState.ThumbSticks.Left.X < -deadzone &
                 currentGamePadState.ThumbSticks.Left.Y < -deadzone)
             { gamePadDirection = Direction.DownLeft; }
             else if (currentGamePadState.ThumbSticks.Left.X > deadzone)
@@ -71,16 +78,16 @@ namespace DungeonRun
             { gamePadDirection = Direction.Down; }
 
             //map gamepad Dpad to gamePadDirection
-            if (currentGamePadState.IsButtonDown(Buttons.DPadRight) & 
+            if (currentGamePadState.IsButtonDown(Buttons.DPadRight) &
                 currentGamePadState.IsButtonDown(Buttons.DPadUp))
             { gamePadDirection = Direction.UpRight; }
-            else if (currentGamePadState.IsButtonDown(Buttons.DPadLeft) & 
+            else if (currentGamePadState.IsButtonDown(Buttons.DPadLeft) &
                 currentGamePadState.IsButtonDown(Buttons.DPadUp))
             { gamePadDirection = Direction.UpLeft; }
-            else if (currentGamePadState.IsButtonDown(Buttons.DPadLeft) & 
+            else if (currentGamePadState.IsButtonDown(Buttons.DPadLeft) &
                 currentGamePadState.IsButtonDown(Buttons.DPadDown))
             { gamePadDirection = Direction.DownLeft; }
-            else if (currentGamePadState.IsButtonDown(Buttons.DPadRight) & 
+            else if (currentGamePadState.IsButtonDown(Buttons.DPadRight) &
                 currentGamePadState.IsButtonDown(Buttons.DPadDown))
             { gamePadDirection = Direction.DownRight; }
             else if (currentGamePadState.IsButtonDown(Buttons.DPadRight))
@@ -92,6 +99,8 @@ namespace DungeonRun
             else if (currentGamePadState.IsButtonDown(Buttons.DPadDown))
             { gamePadDirection = Direction.Down; }
         }
+
+
 
         public static bool IsNewKeyPress(Keys key)
         { return (currentKeyboardState.IsKeyDown(key) && lastKeyboardState.IsKeyUp(key)); }

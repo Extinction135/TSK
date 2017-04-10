@@ -15,7 +15,7 @@ namespace DungeonRun
     public class Game1 : Game
     {
         //control booleans for game codepaths
-        public Boolean DEPLOYED = false; //true = playing on xbox1
+        public Boolean DEBUG = true; //false = release mode
         public Boolean drawCollisionRecs = true;
 
 
@@ -33,10 +33,15 @@ namespace DungeonRun
             screenManager = new ScreenManager(this);
             assets = new Assets(Content);
 
+            if (DEBUG) { IsMouseVisible = true; }
+            else { IsMouseVisible = false; }
+
+            /*
             if(DEPLOYED) //playing on XBOX1
             { this.IsMouseVisible = false; }
             else //debugging on PC
             { this.IsMouseVisible = true; }
+            */
 
             //setup default color scheme
             colorScheme.background = new Color(100, 100, 100, 255);

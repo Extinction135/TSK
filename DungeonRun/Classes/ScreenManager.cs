@@ -73,6 +73,7 @@ namespace DungeonRun
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
             //gridRef = new Sprite(this, game.gridSheet, new Vector2(320, 320), new Point(640, 360), new Vector3(0, 0, 0));
+            Input.Initialize();
         }
 
         public void Update(GameTime GameTime)
@@ -128,6 +129,8 @@ namespace DungeonRun
                     game.graphics.GraphicsDevice.Viewport.Width,      //match width of window frame
                     game.graphics.GraphicsDevice.Viewport.Height),    //match height of window frame
                 Color.White);
+            if (game.drawCollisionRecs) { DrawFunctions.Draw(Input.cursorColl, this); }
+
             spriteBatch.End();
 
             #endregion

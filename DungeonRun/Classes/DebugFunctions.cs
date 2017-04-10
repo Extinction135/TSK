@@ -120,5 +120,30 @@ namespace DungeonRun
             Debug.WriteLine("\torigin: " + Sprite.origin.X + ", " + Sprite.origin.Y);
         }
 
+
+
+
+        //function
+        //check collisions between cursor.coll + objs/actors
+        //pass collision objs/acts to Inspect()
+
+        public static void Inspect(DungeonScreen DungeonScreen)
+        {
+            Debug.WriteLine("beginning collision checks");
+
+            //Input.cursorColl.rec.X
+
+            GameObject gameObject = CollisionFunctions.CheckObjCollisions(Input.cursorColl, DungeonScreen);
+            Debug.WriteLine("result: " + gameObject);
+
+            //we need to convert the mouse screen position to the world position
+            //this should be done in Input
+            if (gameObject != null) { Inspect(gameObject); }
+
+        }
+
+
+
+
     }
 }
