@@ -43,19 +43,19 @@ namespace DungeonRun
             int yPos = background.Y - 2;
 
             timingText = new ComponentText(Assets.font, "", 
-                new Vector2(2, yPos + 00), screen.game.colorScheme.textSmall);
+                new Vector2(2, yPos + 00), Assets.colorScheme.textSmall);
             textFields.Add(timingText);
 
             actorText = new ComponentText(Assets.font, "", 
-                new Vector2(16 * 3, yPos + 00), screen.game.colorScheme.textSmall);
+                new Vector2(16 * 3, yPos + 00), Assets.colorScheme.textSmall);
             textFields.Add(actorText);
 
             moveText = new ComponentText(Assets.font, "", 
-                new Vector2(16 * 7, yPos + 00), screen.game.colorScheme.textSmall);
+                new Vector2(16 * 7, yPos + 00), Assets.colorScheme.textSmall);
             textFields.Add(moveText);
 
             poolText = new ComponentText(Assets.font, "", 
-                new Vector2(16 * 12, yPos + 00), screen.game.colorScheme.textSmall);
+                new Vector2(16 * 12, yPos + 00), Assets.colorScheme.textSmall);
             textFields.Add(poolText);
         }
 
@@ -114,7 +114,7 @@ namespace DungeonRun
             poolText.text += "\nparticles: 0/0";
 
 
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, screen.game.colorScheme.windowBkg);
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.windowBkg);
             size = textFields.Count();
             for (counter = 0; counter < size; counter++) { DrawFunctions.Draw(textFields[counter]); }
         }

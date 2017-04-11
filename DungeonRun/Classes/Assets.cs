@@ -19,6 +19,9 @@ namespace DungeonRun
         public static Texture2D dummyTexture;
         public static SpriteFont font;
 
+        //the color scheme for the game
+        public static ColorScheme colorScheme;
+
         //the sprite sheets used in the game
         public static Texture2D actorsSheet;
         public static Texture2D dungeonSheet;
@@ -43,6 +46,24 @@ namespace DungeonRun
             uiSheet = content.Load<Texture2D>(@"UISheet");
 
             //soundfx
+        }
+
+
+        public static void SetDefaultColorScheme()
+        {
+            //setup default color scheme
+            colorScheme = new ColorScheme();
+
+            colorScheme.background = new Color(100, 100, 100, 255);
+            colorScheme.textSmall = new Color(255, 255, 255, 255);
+            colorScheme.windowBkg = new Color(0, 0, 0, 200);
+            colorScheme.collisionActor = new Color(100, 0, 0, 0);
+            colorScheme.collisionObj = new Color(100, 0, 0, 0);
+
+            colorScheme.buttonUp = new Color(44, 44, 44, 0);
+            colorScheme.buttonOver = new Color(66, 66, 66, 0);
+            colorScheme.buttonDown = new Color(100, 100, 100, 0);
+            colorScheme.buttonSelected = new Color(20, 20, 20, 0);
         }
     }
 }

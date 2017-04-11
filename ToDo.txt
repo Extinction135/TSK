@@ -7,10 +7,16 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
+moved color scheme into assets
+expanded color scheme to include button colors
+added function to setup default color scheme
 
-make character shadows completely black, so they read better
 
-made blob sprite's shadows darker, to read better
+created button component
+added CenterText() function to component functions
+
+
+
 
 
 implement an editor that sits at the top of the frame
@@ -18,6 +24,20 @@ should have button to toggle collisionRec draw on/off
 should have button to remake dungeon room too, for testing
 
 
+how do we implement the button class?
+	button has up, over, down colors, which should be defined in the game's color scheme struct
+	button is likely a component, could be part of the components class
+	button state enum - defined in the button class? simply as .state enum
+	its not really a component
+	the centerText function shouldn't be part of the button class
+	and the Draw() function shouldn't be part of it either
+	so it kinda is a component - ComponentButton
+
+
+
+
+hero should have a shadow (baked into sheet)
+blob shadows are TOO dark, should be around 60% opacity
 
 
 implement fireball magic item

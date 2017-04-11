@@ -17,9 +17,7 @@ namespace DungeonRun
         //control booleans for game codepaths
         public Boolean DEBUG = true; //false = release mode
         public Boolean drawCollisionRecs = true;
-        
         public GraphicsDeviceManager graphics;
-        public ColorScheme colorScheme;
 
         public Game1()
         {
@@ -28,19 +26,13 @@ namespace DungeonRun
 
             if (DEBUG) { IsMouseVisible = true; }
             else { IsMouseVisible = false; }
-
-            //setup default color scheme
-            colorScheme.background = new Color(100, 100, 100, 255);
-            colorScheme.textSmall = new Color(255, 255, 255, 255);
-            colorScheme.windowBkg = new Color(0, 0, 0, 200);
-            colorScheme.collisionActor = new Color(100, 0, 0, 0);
-            colorScheme.collisionObj = new Color(100, 0, 0, 0);
         }
         protected override void Initialize() { base.Initialize(); }
         protected override void LoadContent()
         {
             base.LoadContent();
             Assets.Load(GraphicsDevice, Content);
+            Assets.SetDefaultColorScheme();
             ScreenManager.Initialize(this);
             ScreenManager.AddScreen(new DungeonScreen());
         }

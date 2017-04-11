@@ -54,6 +54,11 @@ namespace DungeonRun
 
         public Color collisionActor;
         public Color collisionObj;
+
+        public Color buttonUp;
+        public Color buttonOver;
+        public Color buttonDown;
+        public Color buttonSelected;
     }
 
 
