@@ -19,16 +19,13 @@ namespace DungeonRun
             Wall,       //usually blocks hero from passing
             Door,       //might block/change type upon collision
             Inspectable,//hero can 'read' or 'inspect' with this obj
-            NPC,        //obj is an NPC hero can talk with
 
             Object,     //standard object, might collide or interact with hero
             Liftable,   //can the hero pick this object up, carry it, and throw it?
             Draggable,  //can the hero push, pull, or drag this object?
 
-            Item,       //picked up off ground, deleted from objects list, held above hero's head
-            Consumable, //picked up off ground, deleted from objects list, not held above hero's head
+            Item,       //picked up off ground, held above hero's head
             Reward,     //spawned from chest, not actually on objects list, held above hero's head
-
             Projectile, //a colliding object (moving or stationary)
         }
 
