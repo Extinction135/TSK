@@ -23,7 +23,7 @@ namespace DungeonRun
             CompInput.direction = (Direction)GetRandom.Int(0, 8);
 
             //randomly dash
-            if (GetRandom.Int(0, 100) > 80) { CompInput.dash = true; }
+            if (GetRandom.Int(0, 100) > 90) { CompInput.dash = true; }
 
 
 

@@ -37,7 +37,8 @@ namespace DungeonRun
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?
 
-        public float dashSpeed = 0.75f;
+        //type specific fields, changed by ActorFunctions.SetType()
+        public float dashSpeed = 0.75f; 
         public float walkSpeed = 0.25f;
 
         public ComponentSprite compSprite;

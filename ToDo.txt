@@ -9,12 +9,16 @@ todo:
 
 
 
-we should be counting the currently used actors, gameobjs, projectiles, floors
-this is just an int that gets incremented when Get() is called
-decremented when Release() is called
-reset when Reset() is called
+implemented different walk/dash speeds for actors in ActorFunctions.cs
 
 
+make character shadows completely black, so they read better
+
+
+
+implement an editor that sits at the top of the frame
+should have button to toggle collisionRec draw on/off
+should have button to remake dungeon room too, for testing
 
 
 
@@ -36,7 +40,7 @@ implement dash smoke as a particle (should spawn whenever an actor dashes)
 
 	
 	
-	
+
 	
 	
 	

@@ -29,9 +29,20 @@ namespace DungeonRun
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
 
-            //set actor soundFX
+            //set type specific fields
+            if (Type == Actor.Type.Hero)
+            {
+                Actor.walkSpeed = 0.30f;
+                Actor.dashSpeed = 0.80f;
+                //set actor soundFX
+            }
+            else if (Type == Actor.Type.Blob)
+            {
+                Actor.walkSpeed = 0.10f;
+                Actor.dashSpeed = 0.50f;
+                //set actor soundFX
+            }
 
-            //we may need to bring the actor back to life (based on their type)
         }
 
         public static void SetCollisionRec(Actor Actor)

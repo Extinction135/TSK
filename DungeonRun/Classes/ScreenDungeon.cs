@@ -29,8 +29,7 @@ namespace DungeonRun
             debugInfo = new DebugInfo(this);
             Pool.Initialize(this);
             DungeonGenerator.CreateRoom(this);
-            //ActorFunctions.SetType(pool.hero, Actor.Type.Blob);
-            //DebugFunctions.Inspect(pool.hero);
+            //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }
 
         public override void HandleInput(GameTime GameTime)
