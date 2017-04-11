@@ -88,7 +88,7 @@ namespace DungeonRun
             timingText.text = "u: " + updateAvg;
             timingText.text += "\nd: " + drawAvg;
             timingText.text += "\nt: " + screen.totalTime.Milliseconds + " ms";
-            timingText.text += "\n" + screen.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
+            timingText.text += "\n" + ScreenManager.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
             timingText.text += "\n" + MemoryManager.AppMemoryUsage / 1024 / 1024 + " mb";
 
             #endregion

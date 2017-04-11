@@ -21,7 +21,7 @@ namespace DungeonRun
         public static bool coveredByOtherScreen;
         public static int transitionCount;
         public static RenderTarget2D renderSurface;
-
+        public static GameTime gameTime;
 
 
         public static Screen[] GetScreens() { return screens.ToArray(); }
@@ -74,6 +74,7 @@ namespace DungeonRun
 
         public static void Update(GameTime GameTime)
         {
+            gameTime = GameTime;
             Input.Update(GameTime); //read the keyboard and gamepad
 
             //make a copy of the master screen list, to avoid confusion if

@@ -10,31 +10,21 @@ todo:
 
 
 
+
+
+
 we should be able to pause the update/input loops using a boolean
 we should be able to toggle this boolean via the spacebar
 this allows us to pause/unpause the game
 
-we should format the output/debug info dump better
-not so many vertical lines, use tabs
-write to a single string, then write line that string
 
 
+implement fireball magic item
+this is a projectile that moves
+created, placed, aligned the same as sword
 
-
-
-
-
-
-
-implement weapon as a projectile, without any speed
-	projectile is pulled from projectile pool
-	placed at actor location, offset based on facing direction
-	weapon plays through it's animation, with collision recs
-	if projectile is active, check collisions against objs/actor/projectiles, move/update projectile
-	once projectile reaches end of life, return it to the projectile pool, hide it offscreen
-	
-	each actor should have a weapon enum
-	weapons { none, sword, bow, staff, axe, net }
+each actor should have a weapon enum
+weapons { none, sword, bow, staff, axe, net }
 	
 	a projectile has: sprite, move, animate, collision components
 	a particle has: sprite, move, animate components
