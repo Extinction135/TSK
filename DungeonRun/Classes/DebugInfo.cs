@@ -16,10 +16,7 @@ namespace DungeonRun
     public class DebugInfo
     {
         public DungeonScreen screen;
-        public ScreenManager screenManager;
-
         public Rectangle background;
-
         public List<ComponentText> textFields;
         public int counter = 0;
         public int size = 0;
@@ -40,7 +37,6 @@ namespace DungeonRun
         public DebugInfo(DungeonScreen DungeonScreen)
         {
             screen = DungeonScreen;
-            screenManager = DungeonScreen.screenManager;
             textFields = new List<ComponentText>();
 
             background = new Rectangle(0, 322 - 8, 640, 50);
@@ -118,9 +114,9 @@ namespace DungeonRun
             
 
 
-            screenManager.spriteBatch.Draw(screen.assets.dummyTexture, background, screen.game.colorScheme.windowBkg);
+            ScreenManager.spriteBatch.Draw(screen.assets.dummyTexture, background, screen.game.colorScheme.windowBkg);
             size = textFields.Count();
-            for (counter = 0; counter < size; counter++) { DrawFunctions.Draw(textFields[counter], screenManager); }
+            for (counter = 0; counter < size; counter++) { DrawFunctions.Draw(textFields[counter]); }
         }
 
     }

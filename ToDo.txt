@@ -14,6 +14,32 @@ screen manager should become a static class (there is only one instance)
 this simplifies various functions, as they will no longer need to accept it as a parameter
 YAY!
 
+we will also be able to access all kinds of great stuff through the screen manager class
+like assets, or game, etc..
+meaning we can remove every instace of screen manager in the game!
+we can also remove the assets reference from screen.cs
+
+assets should be a global class as well, so we can get at them from anywhere!
+I LOVE GLOBAL CLASSES
+
+
+if we make assets global, then we can remove passing dungeon screen into actor's constructor
+instead it can just access assets.actorSheet directly
+I LOVE GLOBAL CLASSES
+
+
+
+in collision functions, move the GameObject and Actor instances out of CheckCollisions
+we're creating them each collision check, when we can just reuse them
+make sure to set them null when the CheckCollisions function runs
+
+
+
+in gameObj objGroup, we have consumable and item enums (+reward)
+the comments here discuss an objects list, which we aren't using right now
+we may not even be using consumable enum rn either
+
+
 
 
 

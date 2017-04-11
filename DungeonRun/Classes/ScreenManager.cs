@@ -12,37 +12,36 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class ScreenManager
+    public static class ScreenManager
     {
-        public Game1 game;
-        public List<Screen> screens;
-        public List<Screen> screensToUpdate;
-        public SpriteBatch spriteBatch;
-        public bool coveredByOtherScreen;
-        public int transitionCount;
-        public RenderTarget2D renderSurface;
+        public static Game1 game;
+        public static List<Screen> screens;
+        public static List<Screen> screensToUpdate;
+        public static SpriteBatch spriteBatch;
+        public static bool coveredByOtherScreen;
+        public static int transitionCount;
+        public static RenderTarget2D renderSurface;
 
 
 
-        public Screen[] GetScreens() { return screens.ToArray(); }
+        public static Screen[] GetScreens() { return screens.ToArray(); }
 
-        public void AddScreen(Screen screen)
+        public static void AddScreen(Screen screen)
         {   //set all of screen's references
             screen.game = game;
-            screen.screenManager = this;
             screen.assets = game.assets;
             screen.LoadContent();
             screens.Add(screen);
         }
 
-        public void RemoveScreen(Screen screen)
+        public static void RemoveScreen(Screen screen)
         {
             screen.UnloadContent();
             screens.Remove(screen);
             screensToUpdate.Remove(screen);
         }
 
-        public void ExitAndLoad(Screen screenToLoad)
+        public static void ExitAndLoad(Screen screenToLoad)
         {   //remove every screen on screens list
             while (screens.Count > 0)
             {
@@ -54,30 +53,27 @@ namespace DungeonRun
                 }
                 catch { }
             }
-            this.AddScreen(screenToLoad);
+            AddScreen(screenToLoad);
         }
 
-        public void UnloadContent() { foreach (Screen screen in screens) { screen.UnloadContent(); } }
+        public static void UnloadContent() { foreach (Screen screen in screens) { screen.UnloadContent(); } }
 
 
 
-        public ScreenManager(Game1 Game1)
+        public static void Initialize(Game1 Game1)
         {
             game = Game1;
             screens = new List<Screen>();
             screensToUpdate = new List<Screen>();
-        }
 
-        public void Initialize()
-        {
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
             //gridRef = new Sprite(this, game.gridSheet, new Vector2(320, 320), new Point(640, 360), new Vector3(0, 0, 0));
             Input.Initialize();
-            Camera2D.Initialize(this);
+            Camera2D.Initialize();
         }
 
-        public void Update(GameTime GameTime)
+        public static void Update(GameTime GameTime)
         {
             Input.Update(GameTime); //read the keyboard and gamepad
 
@@ -102,7 +98,7 @@ namespace DungeonRun
             }
         }
 
-        public void Draw(GameTime gameTime)
+        public static void Draw(GameTime gameTime)
         {
             //target the render surface + draw the sprites in the 640x360 texture
             game.GraphicsDevice.SetRenderTarget(renderSurface);

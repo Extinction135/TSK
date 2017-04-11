@@ -169,34 +169,34 @@ namespace DungeonRun
             }
         }
 
-        public static void Draw(ScreenManager ScreenManager, Pool Pool)
+        public static void Draw(Pool Pool)
         {
             //floor pool
             for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
             {
                 if (Pool.floorPool[Pool.counter].visible)
-                { DrawFunctions.Draw(Pool.floorPool[Pool.counter], ScreenManager); }
+                { DrawFunctions.Draw(Pool.floorPool[Pool.counter]); }
             }
 
             //obj pool
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {
                 if (Pool.objPool[Pool.counter].active)
-                { GameObjectFunctions.Draw(Pool.objPool[Pool.counter], ScreenManager); }
+                { GameObjectFunctions.Draw(Pool.objPool[Pool.counter]); }
             }
 
             //projectile pool
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             {
                 if (Pool.projectilePool[Pool.counter].active)
-                { GameObjectFunctions.Draw(Pool.projectilePool[Pool.counter], ScreenManager); }
+                { GameObjectFunctions.Draw(Pool.projectilePool[Pool.counter]); }
             }
 
             //actor pool
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             {
                 if (Pool.actorPool[Pool.counter].active)
-                { ActorFunctions.Draw(Pool.actorPool[Pool.counter], ScreenManager); }
+                { ActorFunctions.Draw(Pool.actorPool[Pool.counter]); }
             }
         }
 

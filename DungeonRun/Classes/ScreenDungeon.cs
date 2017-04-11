@@ -67,9 +67,9 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             stopWatch.Reset(); stopWatch.Start();
-            
+
             //draw gameworld
-            screenManager.spriteBatch.Begin(
+            ScreenManager.spriteBatch.Begin(
                         SpriteSortMode.BackToFront,
                         BlendState.AlphaBlend,
                         SamplerState.PointClamp,
@@ -78,15 +78,15 @@ namespace DungeonRun
                         null,
                         Camera2D.view
                         );
-            PoolFunctions.Draw(screenManager, pool);
-            if (game.drawCollisionRecs) { DrawFunctions.Draw(Input.cursorColl, screenManager); }
+            PoolFunctions.Draw(pool);
+            if (game.drawCollisionRecs) { DrawFunctions.Draw(Input.cursorColl); }
 
-            screenManager.spriteBatch.End();
-            
+            ScreenManager.spriteBatch.End();
+
             //draw UI
-            screenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             debugInfo.Draw();
-            screenManager.spriteBatch.End();
+            ScreenManager.spriteBatch.End();
             
             stopWatch.Stop(); drawTime = stopWatch.Elapsed;
             totalTime = updateTime + drawTime;

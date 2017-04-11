@@ -100,11 +100,11 @@ namespace DungeonRun
             ActorAnimationListManager.SetAnimationDirection(Actor);
         }
 
-        public static void Draw(Actor Actor, ScreenManager ScreenManager)
+        public static void Draw(Actor Actor)
         {
-            DrawFunctions.Draw(Actor.compSprite, ScreenManager);
+            DrawFunctions.Draw(Actor.compSprite);
             if (ScreenManager.game.drawCollisionRecs)
-            { DrawFunctions.Draw(Actor.compCollision, ScreenManager); }
+            { DrawFunctions.Draw(Actor.compCollision); }
         }
     }
 }

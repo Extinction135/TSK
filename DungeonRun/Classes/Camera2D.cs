@@ -15,7 +15,6 @@ namespace DungeonRun
     public static class Camera2D
     {
         public static GraphicsDevice graphics;
-        public static ScreenManager screenManager;
 
         public static Boolean lazyMovement = false;
         public static float speed = 5f; //how fast the camera moves
@@ -79,8 +78,8 @@ namespace DungeonRun
         public static void SetView()
         {
             //adapt the camera's center to the renderSurface.size
-            translateCenter.X = screenManager.renderSurface.Width / 2;
-            translateCenter.Y = screenManager.renderSurface.Height / 2;
+            translateCenter.X = ScreenManager.renderSurface.Width / 2;
+            translateCenter.Y = ScreenManager.renderSurface.Height / 2;
 
             translateBody.X = -currentPosition.X;
             translateBody.Y = -currentPosition.Y;
@@ -92,11 +91,9 @@ namespace DungeonRun
                     Matrix.CreateTranslation(translateCenter);
         }
 
-        public static void Initialize(ScreenManager ScreenManager)
+        public static void Initialize()
         {
-            screenManager = ScreenManager;
-            graphics = screenManager.game.GraphicsDevice;
-
+            graphics = ScreenManager.game.GraphicsDevice;
             view = Matrix.Identity;
             translateCenter.Z = 0; //these two values dont change on a 2D camera
             translateBody.Z = 0;

@@ -295,11 +295,11 @@ namespace DungeonRun
             }
         }
 
-        public static void Draw(GameObject Obj, ScreenManager ScreenManager)
+        public static void Draw(GameObject Obj)
         {
-            DrawFunctions.Draw(Obj.compSprite, ScreenManager);
+            DrawFunctions.Draw(Obj.compSprite);
             if (ScreenManager.game.drawCollisionRecs)
-            { DrawFunctions.Draw(Obj.compCollision, ScreenManager); }  
+            { DrawFunctions.Draw(Obj.compCollision); }  
         }
     }
 }

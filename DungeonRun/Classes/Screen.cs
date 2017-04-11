@@ -15,7 +15,6 @@ namespace DungeonRun
     public abstract class Screen
     {  
         public Game1 game;
-        public ScreenManager screenManager;
         public Assets assets;
 
         public Screen() { }

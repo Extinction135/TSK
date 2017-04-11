@@ -19,7 +19,6 @@ namespace DungeonRun
         public Boolean drawCollisionRecs = true;
         
         public GraphicsDeviceManager graphics;
-        public ScreenManager screenManager;
         public Assets assets;
         public ColorScheme colorScheme;
 
@@ -27,7 +26,6 @@ namespace DungeonRun
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            screenManager = new ScreenManager(this);
             assets = new Assets(Content);
 
             if (DEBUG) { IsMouseVisible = true; }
@@ -45,11 +43,11 @@ namespace DungeonRun
         {
             base.LoadContent();
             assets.Load(GraphicsDevice);
-            screenManager.Initialize();
-            screenManager.AddScreen(new DungeonScreen());
+            ScreenManager.Initialize(this);
+            ScreenManager.AddScreen(new DungeonScreen());
         }
         protected override void UnloadContent() { }
-        protected override void Update(GameTime gameTime) { screenManager.Update(gameTime); base.Update(gameTime); }
-        protected override void Draw(GameTime gameTime) { screenManager.Draw(gameTime); base.Draw(gameTime); }
+        protected override void Update(GameTime gameTime) { ScreenManager.Update(gameTime); base.Update(gameTime); }
+        protected override void Draw(GameTime gameTime) { ScreenManager.Draw(gameTime); base.Draw(gameTime); }
     }
 }
