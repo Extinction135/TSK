@@ -42,19 +42,19 @@ namespace DungeonRun
             background = new Rectangle(0, 322 - 8, 640, 50);
             int yPos = background.Y - 2;
 
-            timingText = new ComponentText(screen.assets.font, "", 
+            timingText = new ComponentText(Assets.font, "", 
                 new Vector2(2, yPos + 00), screen.game.colorScheme.textSmall);
             textFields.Add(timingText);
 
-            actorText = new ComponentText(screen.assets.font, "", 
+            actorText = new ComponentText(Assets.font, "", 
                 new Vector2(16 * 3, yPos + 00), screen.game.colorScheme.textSmall);
             textFields.Add(actorText);
 
-            moveText = new ComponentText(screen.assets.font, "", 
+            moveText = new ComponentText(Assets.font, "", 
                 new Vector2(16 * 7, yPos + 00), screen.game.colorScheme.textSmall);
             textFields.Add(moveText);
 
-            poolText = new ComponentText(screen.assets.font, "", 
+            poolText = new ComponentText(Assets.font, "", 
                 new Vector2(16 * 12, yPos + 00), screen.game.colorScheme.textSmall);
             textFields.Add(poolText);
         }
@@ -111,10 +111,9 @@ namespace DungeonRun
             poolText.text += "\nactors: " + screen.pool.actorIndex + "/" + screen.pool.actorCount;
             poolText.text += "\nprojectiles: " + screen.pool.projectileIndex + " / " + screen.pool.projectileCount;
             poolText.text += "\nparticles: 0/0";
-            
 
 
-            ScreenManager.spriteBatch.Draw(screen.assets.dummyTexture, background, screen.game.colorScheme.windowBkg);
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, screen.game.colorScheme.windowBkg);
             size = textFields.Count();
             for (counter = 0; counter < size; counter++) { DrawFunctions.Draw(textFields[counter]); }
         }

@@ -55,20 +55,20 @@ namespace DungeonRun
             //obj pool
             objPool = new List<GameObject>();
             for (counter = 0; counter < objCount; counter++)
-            { objPool.Add(new GameObject(Screen.assets.dungeonSheet)); }
+            { objPool.Add(new GameObject(Assets.dungeonSheet)); }
             objIndex = 0;
 
             //projectile pool
             projectilePool = new List<GameObject>();
             for (counter = 0; counter < projectileCount; counter++)
-            { projectilePool.Add(new GameObject(Screen.assets.particleSheet)); }
+            { projectilePool.Add(new GameObject(Assets.particleSheet)); }
             projectileIndex = 0;
 
             //floor pool
             floorPool = new List<ComponentSprite>();
             for (counter = 0; counter < floorCount; counter++)
             {
-                floorPool.Add(new ComponentSprite(Screen.assets.dungeonSheet,
+                floorPool.Add(new ComponentSprite(Assets.dungeonSheet,
                     new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Byte2(16, 16)));
             }
             floorIndex = 0;

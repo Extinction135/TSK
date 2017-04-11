@@ -19,14 +19,12 @@ namespace DungeonRun
         public Boolean drawCollisionRecs = true;
         
         public GraphicsDeviceManager graphics;
-        public Assets assets;
         public ColorScheme colorScheme;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            assets = new Assets(Content);
 
             if (DEBUG) { IsMouseVisible = true; }
             else { IsMouseVisible = false; }
@@ -42,7 +40,7 @@ namespace DungeonRun
         protected override void LoadContent()
         {
             base.LoadContent();
-            assets.Load(GraphicsDevice);
+            Assets.Load(GraphicsDevice, Content);
             ScreenManager.Initialize(this);
             ScreenManager.AddScreen(new DungeonScreen());
         }

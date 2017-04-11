@@ -48,8 +48,7 @@ namespace DungeonRun
         public static void Draw(ComponentCollision Coll)
         {   //draw the collision rec of the collision component
             ScreenManager.spriteBatch.Draw(
-                ScreenManager.game.assets.dummyTexture,
-                Coll.rec,
+                Assets.dummyTexture, Coll.rec,
                 ScreenManager.game.colorScheme.collisionActor);
         }
 

@@ -12,24 +12,24 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class Assets
+    public static class Assets
     {
-        ContentManager content;
+        static ContentManager content;
 
-        public Texture2D dummyTexture;
-        public SpriteFont font;
+        public static Texture2D dummyTexture;
+        public static SpriteFont font;
 
         //the sprite sheets used in the game
-        public Texture2D actorsSheet;
-        public Texture2D dungeonSheet;
-        public Texture2D particleSheet;
-        public Texture2D uiSheet;
+        public static Texture2D actorsSheet;
+        public static Texture2D dungeonSheet;
+        public static Texture2D particleSheet;
+        public static Texture2D uiSheet;
 
         //soundfx
 
-        public Assets(ContentManager ContentManager) { content = ContentManager; }
-        public void Load(GraphicsDevice GraphicsDevice)
+        public static void Load(GraphicsDevice GraphicsDevice, ContentManager ContentManager)
         {
+            content = ContentManager;
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] { Color.White });
 
