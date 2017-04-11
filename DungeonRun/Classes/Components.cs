@@ -123,7 +123,7 @@ namespace DungeonRun
 
         public ComponentButton(String Text, Point Position)
         {
-            rec = new Rectangle(Position, new Point(0, 16));
+            rec = new Rectangle(Position, new Point(0, 9));
             compText = new ComponentText(Assets.font, Text, new Vector2(0, 0), Assets.colorScheme.textSmall);
             state = State.Up;
             currentColor = Assets.colorScheme.buttonUp;

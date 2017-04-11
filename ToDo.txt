@@ -7,15 +7,8 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
+created DebugMenu.cs, drawing it from UI view of DungeonScreen.cs.
 
-created button component
-added CenterText() function to component functions
-
-
-
-
-create editor class, that exists in dungeon screen.cs
-should have a background rec, plus a list of button components
 
 
 
@@ -36,6 +29,12 @@ how do we implement the button class?
 
 
 
+	
+we can probably make the debugInfo class a static global class too	
+	
+	
+	
+	
 
 hero should have a shadow (baked into sheet)
 blob shadows are TOO dark, should be around 60% opacity

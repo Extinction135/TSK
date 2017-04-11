@@ -109,6 +109,7 @@
     <Compile Include="Classes\Components.cs" />
     <Compile Include="Classes\DebugFunctions.cs" />
     <Compile Include="Classes\DebugInfo.cs" />
+    <Compile Include="Classes\DebugMenu.cs" />
     <Compile Include="Classes\DrawFunctions.cs" />
     <Compile Include="Classes\DungeonGenerator.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />

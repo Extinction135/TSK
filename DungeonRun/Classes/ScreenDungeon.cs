@@ -27,6 +27,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             debugInfo = new DebugInfo(this);
+            DebugMenu.Initialize();
             Pool.Initialize(this);
             DungeonGenerator.CreateRoom(this);
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
@@ -85,6 +86,7 @@ namespace DungeonRun
             //draw UI
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             debugInfo.Draw();
+            DebugMenu.Draw();
             ScreenManager.spriteBatch.End();
             
             stopWatch.Stop(); drawTime = stopWatch.Elapsed;

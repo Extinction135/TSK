@@ -52,7 +52,7 @@ namespace DungeonRun
         {   //measure width of the button's text
             Button.textWidth = (int)Assets.font.MeasureString(Button.compText.text).X;
             //resize button to fit around the text
-            Button.rec.Width = Button.textWidth + 4;
+            Button.rec.Width = Button.textWidth + 6;
             //center text to button
             Button.compText.position.X = (Button.rec.Location.X + Button.rec.Width / 2) - (Button.textWidth / 2);
             //if the textWidth is odd, it blurs, so add half pixel to keep it sharp
