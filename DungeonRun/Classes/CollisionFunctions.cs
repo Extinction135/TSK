@@ -49,13 +49,14 @@ namespace DungeonRun
 
         static Boolean collisionX;
         static Boolean collisionY;
+        static GameObject objCollision;
+        static Actor actorCollision;
         public static void CheckCollisions(ComponentMovement Move, ComponentCollision Coll, DungeonScreen DungeonScreen)
         {
             //if the collision component isn't active, bail from collision checking
             if (!Coll.active) { return; }
-
-            GameObject objCollision;
-            Actor actorCollision;
+            objCollision = null;
+            actorCollision = null;
 
 
             #region Handle Collisions on X axis
