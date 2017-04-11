@@ -38,8 +38,8 @@ namespace DungeonRun
             }
             else if (Type == Actor.Type.Blob)
             {
-                Actor.walkSpeed = 0.10f;
-                Actor.dashSpeed = 0.50f;
+                Actor.walkSpeed = 0.05f;
+                Actor.dashSpeed = 0.30f;
                 //set actor soundFX
             }
 

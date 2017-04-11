@@ -8,12 +8,9 @@ todo:
 
 
 
-
-implemented different walk/dash speeds for actors in ActorFunctions.cs
-
-
 make character shadows completely black, so they read better
 
+made blob sprite's shadows darker, to read better
 
 
 implement an editor that sits at the top of the frame
