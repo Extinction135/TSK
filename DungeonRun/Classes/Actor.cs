@@ -24,8 +24,6 @@ namespace DungeonRun
             Idle, Move, Attack, Use, Dash, Interact, Hit, Dead
         }
 
-        public DungeonScreen screen;
-
         public Type type; //the type of actor this is
         public State state; //what actor is doing this frame
         public State inputState; //what input wants actor to do this frame
@@ -49,9 +47,8 @@ namespace DungeonRun
         public ComponentCollision compCollision;
 
         //actor requires a reference to the various textures/sounds it may use - all the possible textures
-        public Actor(DungeonScreen DungeonScreen)
+        public Actor()
         {
-            screen = DungeonScreen;
             //create the actor components
             compSprite = new ComponentSprite(Assets.actorsSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
             compAnim = new ComponentAnimation();

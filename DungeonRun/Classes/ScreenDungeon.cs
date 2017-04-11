@@ -24,14 +24,11 @@ namespace DungeonRun
 
         public DebugInfo debugInfo;
         public GameTime gameTime;
-        
-        public Pool pool;
 
         public override void LoadContent()
         {
             debugInfo = new DebugInfo(this);
-            pool = new Pool(this);
-
+            Pool.Initialize(this);
             DungeonGenerator.CreateRoom(this);
             //ActorFunctions.SetType(pool.hero, Actor.Type.Blob);
             //DebugFunctions.Inspect(pool.hero);
@@ -40,7 +37,7 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             gameTime = GameTime;
-            Input.MapPlayerInput(pool.hero.compInput);
+            Input.MapPlayerInput(Pool.hero.compInput);
 
             if (game.DEBUG)
             {   //if the game is in debug mode, dump info on clicked actor/obj
@@ -54,11 +51,11 @@ namespace DungeonRun
             stopWatch.Reset(); stopWatch.Start();
 
             //update and move actors, objects, and projectiles
-            PoolFunctions.Update(pool);
-            PoolFunctions.Move(this, pool);
+            PoolFunctions.Update();
+            PoolFunctions.Move(this);
 
             //track camera to hero
-            Camera2D.targetPosition = pool.hero.compSprite.position;
+            Camera2D.targetPosition = Pool.hero.compSprite.position;
             Camera2D.Update(GameTime);
 
             stopWatch.Stop(); updateTime = stopWatch.Elapsed;
@@ -78,7 +75,7 @@ namespace DungeonRun
                         null,
                         Camera2D.view
                         );
-            PoolFunctions.Draw(pool);
+            PoolFunctions.Draw();
             if (game.drawCollisionRecs) { DrawFunctions.Draw(Input.cursorColl); }
 
             ScreenManager.spriteBatch.End();

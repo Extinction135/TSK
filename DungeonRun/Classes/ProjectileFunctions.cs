@@ -17,7 +17,7 @@ namespace DungeonRun
 
         public static void Spawn(GameObject.Type Type, Actor Actor)
         {
-            GameObject projectile = PoolFunctions.GetProjectile(Actor.screen.pool);
+            GameObject projectile = PoolFunctions.GetProjectile();
             projectile.direction = Actor.direction;
             projectile.type = Type;
             AlignProjectile(projectile, Actor);

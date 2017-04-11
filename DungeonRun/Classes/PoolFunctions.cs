@@ -15,7 +15,7 @@ namespace DungeonRun
     public static class PoolFunctions
     {
 
-        public static Actor GetActor(Pool Pool)
+        public static Actor GetActor()
         {
             Pool.actorIndex++;
             if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
@@ -23,7 +23,7 @@ namespace DungeonRun
             return Pool.actorPool[Pool.actorIndex];
         }
 
-        public static GameObject GetObj(Pool Pool)
+        public static GameObject GetObj()
         {
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
@@ -31,7 +31,7 @@ namespace DungeonRun
             return Pool.objPool[Pool.objIndex];
         }
 
-        public static GameObject GetProjectile(Pool Pool)
+        public static GameObject GetProjectile()
         {
             Pool.projectileIndex++;
             if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
@@ -39,7 +39,7 @@ namespace DungeonRun
             return Pool.projectilePool[Pool.projectileIndex];
         }
 
-        public static ComponentSprite GetFloor(Pool Pool)
+        public static ComponentSprite GetFloor()
         {
             Pool.floorIndex++;
             if (Pool.floorIndex == Pool.floorCount) { Pool.floorIndex = 0; }
@@ -49,33 +49,33 @@ namespace DungeonRun
 
 
 
-        public static void Reset(Pool Pool)
+        public static void Reset()
         {
-            ResetActorPool(Pool);
-            ResetObjPool(Pool);
-            ResetProjectilePool(Pool);
-            ResetFloorPool(Pool);
+            ResetActorPool();
+            ResetObjPool();
+            ResetProjectilePool();
+            ResetFloorPool();
         }
 
-        public static void ResetActorPool(Pool Pool)
+        public static void ResetActorPool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             { Release(Pool.actorPool[Pool.counter]); }
         }
 
-        public static void ResetObjPool(Pool Pool)
+        public static void ResetObjPool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             { Release(Pool.objPool[Pool.counter]); }
         }
 
-        public static void ResetProjectilePool(Pool Pool)
+        public static void ResetProjectilePool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             { Release(Pool.projectilePool[Pool.counter]); }
         }
 
-        public static void ResetFloorPool(Pool Pool)
+        public static void ResetFloorPool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
             { Pool.floorPool[Pool.counter].visible = false; }
@@ -87,20 +87,18 @@ namespace DungeonRun
         {
             Actor.active = false;
             Actor.compCollision.active = false;
-            //Actor.compCollision.rec.X = -1000;
         }
 
         public static void Release(GameObject Obj)
         {
             Obj.active = false;
             Obj.compCollision.active = false;
-            //Obj.compCollision.rec.X = -1000;
             Obj.lifetime = 0;
         }
 
 
 
-        public static void Move(DungeonScreen DungeonScreen, Pool Pool)
+        public static void Move(DungeonScreen DungeonScreen)
         {   //actor pool
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             {
@@ -123,7 +121,7 @@ namespace DungeonRun
 
 
 
-        public static void UpdateActiveActor(Actor Actor, Pool Pool)
+        public static void UpdateActiveActor(Actor Actor)
         {
             Input.ResetInputData(Actor.compInput);
             AiFunctions.Think(Actor.compInput); //pass active actor to AiManager
@@ -131,11 +129,11 @@ namespace DungeonRun
             if (Pool.activeActor >= Pool.actorCount) { Pool.activeActor = 1; } //skip 0th actor (HERO)
         }
 
-        public static void Update(Pool Pool)
+        public static void Update()
         {
             //actor pool
-            UpdateActiveActor(Pool.actorPool[Pool.activeActor], Pool);
-            UpdateActiveActor(Pool.actorPool[Pool.activeActor], Pool);
+            UpdateActiveActor(Pool.actorPool[Pool.activeActor]);
+            UpdateActiveActor(Pool.actorPool[Pool.activeActor]);
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             {
                 if (Pool.actorPool[Pool.counter].active)
@@ -169,7 +167,7 @@ namespace DungeonRun
             }
         }
 
-        public static void Draw(Pool Pool)
+        public static void Draw()
         {
             //floor pool
             for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)

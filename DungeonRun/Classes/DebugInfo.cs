@@ -95,21 +95,21 @@ namespace DungeonRun
 
 
             actorText.text = "actor: hero";
-            actorText.text += "\ninp: " + screen.pool.hero.inputState;
-            actorText.text += "\ncur: " + screen.pool.hero.state;
-            actorText.text += "\nlck: " + screen.pool.hero.stateLocked;
-            actorText.text += "\ndir: " + screen.pool.hero.direction;
+            actorText.text += "\ninp: " + Pool.hero.inputState;
+            actorText.text += "\ncur: " + Pool.hero.state;
+            actorText.text += "\nlck: " + Pool.hero.stateLocked;
+            actorText.text += "\ndir: " + Pool.hero.direction;
 
-            moveText.text = "pos x:" + screen.pool.hero.compSprite.position.X + ", y:" + screen.pool.hero.compSprite.position.Y;
-            moveText.text += "\nspd:" + screen.pool.hero.compMove.speed + "  fric:" + screen.pool.hero.compMove.friction;
-            moveText.text += "\nmag x:" + screen.pool.hero.compMove.magnitude.X;
-            moveText.text += "\nmag y:" + screen.pool.hero.compMove.magnitude.Y;
-            moveText.text += "\ndir: " + screen.pool.hero.compMove.direction;
+            moveText.text = "pos x:" + Pool.hero.compSprite.position.X + ", y:" + Pool.hero.compSprite.position.Y;
+            moveText.text += "\nspd:" + Pool.hero.compMove.speed + "  fric:" + Pool.hero.compMove.friction;
+            moveText.text += "\nmag x:" + Pool.hero.compMove.magnitude.X;
+            moveText.text += "\nmag y:" + Pool.hero.compMove.magnitude.Y;
+            moveText.text += "\ndir: " + Pool.hero.compMove.direction;
 
-            poolText.text = "floors: " + screen.pool.floorIndex + "/" + screen.pool.floorCount;
-            poolText.text += "\nobjs: " + screen.pool.objIndex + "/" + screen.pool.objCount;
-            poolText.text += "\nactors: " + screen.pool.actorIndex + "/" + screen.pool.actorCount;
-            poolText.text += "\nprojectiles: " + screen.pool.projectileIndex + " / " + screen.pool.projectileCount;
+            poolText.text = "floors: " + Pool.floorIndex + "/" + Pool.floorCount;
+            poolText.text += "\nobjs: " + Pool.objIndex + "/" + Pool.objCount;
+            poolText.text += "\nactors: " + Pool.actorIndex + "/" + Pool.actorCount;
+            poolText.text += "\nprojectiles: " + Pool.projectileIndex + " / " + Pool.projectileCount;
             poolText.text += "\nparticles: 0/0";
 
 

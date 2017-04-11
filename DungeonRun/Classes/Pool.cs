@@ -12,29 +12,29 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class Pool
+    public static class Pool
     {
-        public int actorCount;
-        public List<Actor> actorPool;
-        public int actorIndex;
+        public static int actorCount;
+        public static List<Actor> actorPool;
+        public static int actorIndex;
 
-        public int objCount;
-        public List<GameObject> objPool;
-        public int objIndex;
+        public static int objCount;
+        public static List<GameObject> objPool;
+        public static int objIndex;
 
-        public int projectileCount;
-        public List<GameObject> projectilePool;
-        public int projectileIndex;
+        public static int projectileCount;
+        public static List<GameObject> projectilePool;
+        public static int projectileIndex;
 
-        public int floorCount;
-        public List<ComponentSprite> floorPool;
-        public int floorIndex;
+        public static int floorCount;
+        public static List<ComponentSprite> floorPool;
+        public static int floorIndex;
 
-        public int counter;
-        public int activeActor = 1; //skip the 0th actor, that's HERO
-        public Actor hero;
+        public static int counter;
+        public static int activeActor = 1; //skip the 0th actor, that's HERO
+        public static Actor hero;
 
-        public Pool(DungeonScreen Screen)
+        public static void Initialize(DungeonScreen Screen)
         {
             //set the pool sizes
             actorCount = 60;
@@ -46,7 +46,7 @@ namespace DungeonRun
             actorPool = new List<Actor>();
             for (counter = 0; counter < actorCount; counter++)
             {
-                actorPool.Add(new Actor(Screen));
+                actorPool.Add(new Actor());
                 ActorFunctions.SetType(actorPool[counter], Actor.Type.Hero);
                 MovementFunctions.Teleport(actorPool[counter].compMove, 0, 0);
             }
@@ -74,7 +74,7 @@ namespace DungeonRun
             floorIndex = 0;
 
             //reset all the pools
-            PoolFunctions.Reset(this);
+            PoolFunctions.Reset();
 
             //create an easy to remember reference to the player/hero actor
             hero = actorPool[0];

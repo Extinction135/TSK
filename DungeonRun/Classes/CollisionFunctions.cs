@@ -17,14 +17,14 @@ namespace DungeonRun
 
         public static GameObject CheckObjCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
         {
-            for (int i = 0; i < DungeonScreen.pool.objCount; i++)
+            for (int i = 0; i < Pool.objCount; i++)
             {
-                if (DungeonScreen.pool.objPool[i].active)
+                if (Pool.objPool[i].active)
                 {   //return object if active and collides with source collision rec
-                    if (Coll.rec.Intersects(DungeonScreen.pool.objPool[i].compCollision.rec))
+                    if (Coll.rec.Intersects(Pool.objPool[i].compCollision.rec))
                     {   //do not return the source object (it collides with itself)
-                        if (Coll != DungeonScreen.pool.objPool[i].compCollision)
-                        { return DungeonScreen.pool.objPool[i]; }
+                        if (Coll != Pool.objPool[i].compCollision)
+                        { return Pool.objPool[i]; }
                     }
                 }
             }
@@ -33,14 +33,14 @@ namespace DungeonRun
 
         public static Actor CheckActorCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
         {   
-            for (int i = 0; i < DungeonScreen.pool.actorCount; i++)
+            for (int i = 0; i < Pool.actorCount; i++)
             {
-                if (DungeonScreen.pool.actorPool[i].active)
+                if (Pool.actorPool[i].active)
                 {   //return actor if active and collides with source collision rec
-                    if (Coll.rec.Intersects(DungeonScreen.pool.actorPool[i].compCollision.rec))
+                    if (Coll.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                     {   //do not return the source actor (it collides with itself)
-                        if (Coll != DungeonScreen.pool.actorPool[i].compCollision)
-                        { return DungeonScreen.pool.actorPool[i]; }
+                        if (Coll != Pool.actorPool[i].compCollision)
+                        { return Pool.actorPool[i]; }
                     }
                 }
             }
