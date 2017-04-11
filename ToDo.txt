@@ -7,14 +7,15 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
-moved color scheme into assets
-expanded color scheme to include button colors
-added function to setup default color scheme
-
 
 created button component
 added CenterText() function to component functions
 
+
+
+
+create editor class, that exists in dungeon screen.cs
+should have a background rec, plus a list of button components
 
 
 

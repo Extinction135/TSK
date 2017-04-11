@@ -105,7 +105,7 @@ namespace DungeonRun
             //or target the viewport like normal
             //game.GraphicsDevice.SetRenderTarget(null);
             //clear and set the background
-            game.GraphicsDevice.Clear(game.colorScheme.background);
+            game.GraphicsDevice.Clear(Assets.colorScheme.background);
 
             //each screen handles opening and closing the spriteBatch for drawing
             //this allows screens to use camera matrices to draw world views

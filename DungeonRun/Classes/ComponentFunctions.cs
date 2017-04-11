@@ -48,7 +48,18 @@ namespace DungeonRun
             Sprite.drawRec.Height = Sprite.cellSize.y;
         }
 
-        
+        public static void CenterText(ComponentButton Button)
+        {   //measure width of the button's text
+            Button.textWidth = (int)Assets.font.MeasureString(Button.compText.text).X;
+            //resize button to fit around the text
+            Button.rec.Width = Button.textWidth + 4;
+            //center text to button
+            Button.compText.position.X = (Button.rec.Location.X + Button.rec.Width / 2) - (Button.textWidth / 2);
+            //if the textWidth is odd, it blurs, so add half pixel to keep it sharp
+            if (Button.textWidth % 2 != 0) { Button.compText.position.X += 0.5f; }
+            //center text vertically
+            Button.compText.position.Y = Button.rec.Location.Y - 3;
+        }
 
     }
 }

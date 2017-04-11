@@ -49,15 +49,23 @@ namespace DungeonRun
         {   //draw the collision rec of the collision component
             ScreenManager.spriteBatch.Draw(
                 Assets.dummyTexture, Coll.rec,
-                ScreenManager.game.colorScheme.collisionActor);
+                Assets.colorScheme.collisionActor);
         }
 
         public static void Draw(ComponentText Text)
-        {
+        {   
             ScreenManager.spriteBatch.DrawString(
                 Text.font, Text.text, Text.position,
                 Text.color * Text.alpha, Text.rotation, Vector2.Zero,
                 Text.scale, SpriteEffects.None, Text.zDepth);
+        }
+
+        public static void Draw(ComponentButton Button)
+        {   //draw buttons background rec, foreground text
+            ScreenManager.spriteBatch.Draw(
+                Assets.dummyTexture, Button.rec,
+                Button.currentColor);
+            Draw(Button.compText);
         }
 
     }
