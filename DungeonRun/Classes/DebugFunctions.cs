@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class DebugFunctions
     {
+        public static string output;
 
         public static void Inspect(DungeonScreen DungeonScreen)
         {   //check if any object or actor collide with cursor collision component, pass to Inspect()
@@ -25,22 +26,21 @@ namespace DungeonRun
 
         public static void Inspect(Actor Actor)
         {
-            Debug.WriteLine("---- Actor ----");
-            Debug.WriteLine("\tobjGroup: " + Actor.type);
-            Debug.WriteLine("\tstate: " + Actor.state);
-            Debug.WriteLine("\tinputState: " + Actor.inputState);
-
-            Debug.WriteLine("\tstateLocked: " + Actor.stateLocked);
-            Debug.WriteLine("\tlockTotal: " + Actor.lockTotal);
-            Debug.WriteLine("\tlockCounter: " + Actor.lockCounter);
-
-            Debug.WriteLine("\tanimList: " + Actor.animList);
-            Debug.WriteLine("\tanimGroup: " + Actor.animGroup);
-            Debug.WriteLine("\tdirection: " + Actor.direction);
-            Debug.WriteLine("\tactive: " + Actor.active);
-
-            Debug.WriteLine("\tdashSpeed: " + Actor.dashSpeed);
-            Debug.WriteLine("\twalkSpeed: " + Actor.walkSpeed);
+            output = "\n\n\n---- Actor (objGroup:" + Actor.type + ") ----\n";
+            output += "\tstate:" + Actor.state;
+            output += "\tinputState:" + Actor.inputState;
+            output += "\tstateLocked:" + Actor.stateLocked;
+            output += "\tlockTotal:" + Actor.lockTotal;
+            output += "\tlockCounter:" + Actor.lockCounter;
+            output += "\n";
+            output += "\tdirection:" + Actor.direction;
+            output += "\tactive:" + Actor.active;
+            output += "\tdashSpeed:" + Actor.dashSpeed;
+            output += "\twalkSpeed:" + Actor.walkSpeed;
+            //output += "\n";
+            //output += "\tanimList:" + Actor.animList;
+            //output += "\tanimGroup:" + Actor.animGroup;
+            Debug.WriteLine(output);
 
             //dump component info
             Inspect(Actor.compCollision);
@@ -52,13 +52,12 @@ namespace DungeonRun
 
         public static void Inspect(GameObject Obj)
         {
-            Debug.WriteLine("---- Object ----");
-            Debug.WriteLine("\tobjGroup: " + Obj.objGroup);
-            Debug.WriteLine("\ttype: " + Obj.type);
-            Debug.WriteLine("\tdirection: " + Obj.direction);
-            Debug.WriteLine("\tactive: " + Obj.active);
-            Debug.WriteLine("\tlifetime: " + Obj.lifetime);
-            Debug.WriteLine("\tlifeCounter: " + Obj.lifeCounter);
+            output = "\n\n\n---- Object (objGroup:" + Obj.objGroup + ") (type:" + Obj.type + ") ----\n";
+            output += "\tdirection:" + Obj.direction;
+            output += "\tactive:" + Obj.active;
+            output += "\tlifetime:" + Obj.lifetime;
+            output += "\tlifeCounter:" + Obj.lifeCounter;
+            Debug.WriteLine(output);
 
             //dump component info
             Inspect(Obj.compCollision);
@@ -71,63 +70,70 @@ namespace DungeonRun
 
         public static void Inspect(ComponentCollision Coll)
         {
-            Debug.WriteLine("Component: Collision");
-            Debug.WriteLine("\trecX: " + Coll.rec.X);
-            Debug.WriteLine("\trecY: " + Coll.rec.Y);
-            Debug.WriteLine("\trecWidth: " + Coll.rec.Width);
-            Debug.WriteLine("\trecHeight: " + Coll.rec.Height);
-            Debug.WriteLine("\toffsetX: " + Coll.offsetX);
-            Debug.WriteLine("\toffsetY: " + Coll.offsetY);
-            Debug.WriteLine("\tblocking: " + Coll.blocking);
-            Debug.WriteLine("\tactive: " + Coll.active);
+            output = "Component Collision\n";
+            output += "\trecX:" + Coll.rec.X;
+            output += "\trecY:" + Coll.rec.Y;
+            output += "\trecWidth:" + Coll.rec.Width;
+            output += "\t\trecHeight:" + Coll.rec.Height;
+            output += "\n";
+            output += "\toffsetX:" + Coll.offsetX;
+            output += "\toffsetY:" + Coll.offsetY;
+            output += "\tblocking:" + Coll.blocking;
+            output += "\tactive:" + Coll.active;
+            Debug.WriteLine(output);
         }
 
         public static void Inspect(ComponentMovement Move)
         {
-            Debug.WriteLine("Component: Movement");
-            Debug.WriteLine("\tposX: " + Move.position.X);
-            Debug.WriteLine("\tposY: " + Move.position.Y);
-            Debug.WriteLine("\tnewPosX: " + Move.newPosition.X);
-            Debug.WriteLine("\tnewPosY: " + Move.newPosition.Y);
-            Debug.WriteLine("\tdirection: " + Move.direction);
-            Debug.WriteLine("\tmagnitude: " + Move.magnitude);
-            Debug.WriteLine("\tspeed: " + Move.speed);
-            Debug.WriteLine("\tfriction: " + Move.friction);
+            output = "Component Movement (direction:" + Move.direction + ")\n";
+            output += "\tposX:" + Move.position.X;
+            output += "\tposY:" + Move.position.Y;
+            output += "\tnewPosX:" + Move.newPosition.X;
+            output += "\tnewPosY:" + Move.newPosition.Y;
+            output += "\n";
+            output += "\tmagnitudeX:" + Move.magnitude.X;
+            output += "\tmagnitudeY:" + Move.magnitude.Y;
+            output += "\tspeed:" + Move.speed;
+            output += "\tfriction:" + Move.friction;
+            Debug.WriteLine(output);
         }
 
         public static void Inspect(ComponentAnimation Anim)
         {
-            Debug.WriteLine("Component: Animation");
-            Debug.WriteLine("\tanim count: " + Anim.currentAnimation.Count);
-            Debug.WriteLine("\tindex: " + Anim.index);
-            Debug.WriteLine("\tspeed: " + Anim.speed);
-            Debug.WriteLine("\ttimer: " + Anim.timer);
-            Debug.WriteLine("\tloop: " + Anim.loop);
+            output = "Component Animation\n";
+            output += "\tanim count:" + Anim.currentAnimation.Count;
+            output += "\tindex:" + Anim.index;
+            output += "\tspeed:" + Anim.speed;
+            output += "\ttimer:" + Anim.timer;
+            output += "\tloop:" + Anim.loop;
+            Debug.WriteLine(output);
         }
 
         public static void Inspect(ComponentInput Input)
         {
-            Debug.WriteLine("Component: Input");
-            Debug.WriteLine("\tdirection: " + Input.direction);
-            Debug.WriteLine("\tattack: " + Input.attack);
-            Debug.WriteLine("\tuse: " + Input.use);
-            Debug.WriteLine("\tdash: " + Input.dash);
-            Debug.WriteLine("\tinteract: " + Input.interact);
+            output = "Component Input\n";
+            output += "\tdirection:" + Input.direction;
+            output += "\tattack:" + Input.attack;
+            output += "\tuse:" + Input.use;
+            output += "\tdash:" + Input.dash;
+            output += "\tinteract:" + Input.interact;
+            Debug.WriteLine(output);
         }
 
         public static void Inspect(ComponentSprite Sprite)
         {
-            Debug.WriteLine("Component: Sprite");
-            Debug.WriteLine("\ttexture: " + Sprite.texture.Name);
-            Debug.WriteLine("\tposX: " + Sprite.position.X);
-            Debug.WriteLine("\tposY: " + Sprite.position.Y);
+            output = "Component Sprite (texture:" + Sprite.texture.Name + ")\n";
 
-            Debug.WriteLine("\tcurrentFrame: " + Sprite.currentFrame.x + ", " + Sprite.currentFrame.y + ", " + Sprite.currentFrame.flipHori);
-            Debug.WriteLine("\tcellSize: " + Sprite.cellSize.x + ", " + Sprite.cellSize.y);
-            Debug.WriteLine("\tspriteEffect: " + Sprite.spriteEffect);
-            Debug.WriteLine("\tflipHorizontally: " + Sprite.flipHorizontally);
-            Debug.WriteLine("\tvisible: " + Sprite.visible);
-            Debug.WriteLine("\torigin: " + Sprite.origin.X + ", " + Sprite.origin.Y);
+            output += "\tposX:" + Sprite.position.X;
+            output += "\tposY:" + Sprite.position.Y;
+            output += "\tcurrentFrame:" + Sprite.currentFrame.x + ", " + Sprite.currentFrame.y + ", " + Sprite.currentFrame.flipHori;
+            output += "\tcellSize:" + Sprite.cellSize.x + ", " + Sprite.cellSize.y;
+            output += "\n";
+            output += "\tspriteEffect:" + Sprite.spriteEffect;
+            output += "\tflipHorizontally:" + Sprite.flipHorizontally;
+            output += "\tvisible:" + Sprite.visible;
+            output += "\torigin:" + Sprite.origin.X + ", " + Sprite.origin.Y;
+            Debug.WriteLine(output);
         }
 
     }
