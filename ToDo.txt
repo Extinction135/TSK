@@ -9,13 +9,13 @@ todo:
 
 
 
+we should be counting the currently used actors, gameobjs, projectiles, floors
+this is just an int that gets incremented when Get() is called
+decremented when Release() is called
+reset when Reset() is called
 
 
 
-
-we should be able to pause the update/input loops using a boolean
-we should be able to toggle this boolean via the spacebar
-this allows us to pause/unpause the game
 
 
 
@@ -33,10 +33,7 @@ weapons { none, sword, bow, staff, axe, net }
 	
 implement dash smoke as a particle (should spawn whenever an actor dashes)
 	
-we should be counting the currently used actors, gameobjs, projectiles, floors
-this is just an int that gets incremented when Get() is called
-decremented when Release() is called
-reset when Reset() is called
+
 	
 	
 	

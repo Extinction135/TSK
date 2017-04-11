@@ -20,6 +20,7 @@ namespace DungeonRun
             Pool.actorIndex++;
             if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
             Pool.actorPool[Pool.actorIndex].active = true;
+            Pool.actorsUsed++;
             return Pool.actorPool[Pool.actorIndex];
         }
 
@@ -28,6 +29,7 @@ namespace DungeonRun
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
             Pool.objPool[Pool.objIndex].active = true;
+            Pool.objsUsed++;
             return Pool.objPool[Pool.objIndex];
         }
 
@@ -36,6 +38,7 @@ namespace DungeonRun
             Pool.projectileIndex++;
             if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
             Pool.projectilePool[Pool.projectileIndex].active = true;
+            Pool.projectilesUsed++;
             return Pool.projectilePool[Pool.projectileIndex];
         }
 
@@ -61,18 +64,21 @@ namespace DungeonRun
         {
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             { Release(Pool.actorPool[Pool.counter]); }
+            Pool.actorsUsed = 0;
         }
 
         public static void ResetObjPool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             { Release(Pool.objPool[Pool.counter]); }
+            Pool.objsUsed = 0;
         }
 
         public static void ResetProjectilePool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             { Release(Pool.projectilePool[Pool.counter]); }
+            Pool.projectilesUsed = 0;
         }
 
         public static void ResetFloorPool()
@@ -87,6 +93,7 @@ namespace DungeonRun
         {
             Actor.active = false;
             Actor.compCollision.active = false;
+            Pool.actorsUsed--;
         }
 
         public static void Release(GameObject Obj)
@@ -94,6 +101,8 @@ namespace DungeonRun
             Obj.active = false;
             Obj.compCollision.active = false;
             Obj.lifetime = 0;
+            if (Obj.objGroup == GameObject.ObjGroup.Projectile)
+            { Pool.projectilesUsed--; } else { Pool.objsUsed--; }
         }
 
 

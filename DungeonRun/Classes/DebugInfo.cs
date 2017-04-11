@@ -107,9 +107,10 @@ namespace DungeonRun
             moveText.text += "\ndir: " + Pool.hero.compMove.direction;
 
             poolText.text = "floors: " + Pool.floorIndex + "/" + Pool.floorCount;
-            poolText.text += "\nobjs: " + Pool.objIndex + "/" + Pool.objCount;
-            poolText.text += "\nactors: " + Pool.actorIndex + "/" + Pool.actorCount;
-            poolText.text += "\nprojectiles: " + Pool.projectileIndex + " / " + Pool.projectileCount;
+
+            poolText.text += "\nobjs: " + Pool.objsUsed + "/" + Pool.objCount;
+            poolText.text += "\nactors: " + Pool.actorsUsed + "/" + Pool.actorCount;
+            poolText.text += "\nprojectiles: " + Pool.projectilesUsed + " / " + Pool.projectileCount;
             poolText.text += "\nparticles: 0/0";
 
 

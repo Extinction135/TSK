@@ -14,32 +14,37 @@ namespace DungeonRun
 {
     public static class Pool
     {
-        public static int actorCount;
-        public static List<Actor> actorPool;
-        public static int actorIndex;
+        public static int actorCount;           //total count of actors in pool
+        public static List<Actor> actorPool;    //the actual list of actors
+        public static int actorIndex;           //used to iterate thru the pool
+        public static int actorsUsed;           //tracks how many actors are used from the pool
 
         public static int objCount;
         public static List<GameObject> objPool;
         public static int objIndex;
+        public static int objsUsed;
 
         public static int projectileCount;
         public static List<GameObject> projectilePool;
         public static int projectileIndex;
+        public static int projectilesUsed;
 
         public static int floorCount;
         public static List<ComponentSprite> floorPool;
         public static int floorIndex;
 
         public static int counter;
-        public static int activeActor = 1; //skip the 0th actor, that's HERO
         public static Actor hero;
+
+        public static int activeActor = 1; //tracks the current actor being handled by AI
+        
 
         public static void Initialize(DungeonScreen Screen)
         {
             //set the pool sizes
-            actorCount = 60;
+            actorCount = 30;
             objCount = 100;
-            projectileCount = 5;
+            projectileCount = 20;
             floorCount = 500;
 
             //actor pool
@@ -51,7 +56,7 @@ namespace DungeonRun
                 MovementFunctions.Teleport(actorPool[counter].compMove, 0, 0);
             }
             actorIndex = 1;
-            
+
             //obj pool
             objPool = new List<GameObject>();
             for (counter = 0; counter < objCount; counter++)
