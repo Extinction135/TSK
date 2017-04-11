@@ -20,6 +20,7 @@ namespace DungeonRun
         public static MouseState currentMouseState = new MouseState();
         public static MouseState lastMouseState = new MouseState();
 
+        public static Point cursorPos = new Point(0,0);
         public static ComponentCollision cursorColl = new ComponentCollision();
 
         public static GamePadState currentGamePadState = new GamePadState();
@@ -48,9 +49,12 @@ namespace DungeonRun
             currentMouseState = Mouse.GetState();
             currentGamePadState = GamePad.GetState(PlayerIndex.One);
 
-            //set cursor collision component pos to cursor pos
-            //divide the cursor position by 2, because we are at 1280x720 on a 640x360 render surface
-            cursorColl.rec.Location = Camera2D.ConvertScreenToWorld(currentMouseState.X/2, currentMouseState.Y/2);
+            //the render surface is 640x360, the window size is 1280x720
+            //divide the mouse position in half to get render surface pos
+            cursorPos.X = currentMouseState.X / 2;
+            cursorPos.Y = currentMouseState.Y / 2;
+            //set cursor collision comp pos to world pos of the cursor's render surface pos
+            cursorColl.rec.Location = Camera2D.ConvertScreenToWorld(cursorPos.X, cursorPos.Y);
 
             //reset game pad direction
             gamePadDirection = Direction.None;

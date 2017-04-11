@@ -30,6 +30,13 @@ namespace DungeonRun
         {
             //check input for buttons
             //set button state
+
+            for (counter = 0; counter < buttons.Count; counter++)
+            {
+                if (buttons[counter].rec.Contains(Input.cursorPos))
+                { buttons[counter].currentColor = Assets.colorScheme.buttonOver; }
+                else { buttons[counter].currentColor = Assets.colorScheme.buttonUp; }
+            }
         }
 
         public static void Update()

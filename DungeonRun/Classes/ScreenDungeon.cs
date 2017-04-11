@@ -44,6 +44,8 @@ namespace DungeonRun
                 //toggle the paused boolean
                 if (Input.IsNewKeyPress(Keys.Space))
                 { if (paused) { paused = false; } else { paused = true; } }
+
+                DebugMenu.HandleInput();
             }
         }
 
