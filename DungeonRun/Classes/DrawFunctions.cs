@@ -68,7 +68,5 @@ namespace DungeonRun
             Draw(Button.compText);
         }
 
-
-
     }
 }

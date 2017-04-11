@@ -298,7 +298,7 @@ namespace DungeonRun
         public static void Draw(GameObject Obj)
         {
             DrawFunctions.Draw(Obj.compSprite);
-            if (ScreenManager.game.drawCollisionRecs)
+            if (Flags.DrawCollisions)
             { DrawFunctions.Draw(Obj.compCollision); }  
         }
     }

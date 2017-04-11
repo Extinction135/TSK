@@ -22,7 +22,6 @@ namespace DungeonRun
         public TimeSpan drawTime;
         public TimeSpan totalTime;
         public DebugInfo debugInfo;
-        public Boolean paused = false;
 
         public override void LoadContent()
         {
@@ -37,13 +36,16 @@ namespace DungeonRun
         {
             Input.MapPlayerInput(Pool.hero.compInput);
 
-            if (game.DEBUG)
+            if (Flags.Debug)
             {   //if the game is in debug mode, dump info on clicked actor/obj
                 if (Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 { DebugFunctions.Inspect(this); }
                 //toggle the paused boolean
                 if (Input.IsNewKeyPress(Keys.Space))
-                { if (paused) { paused = false; } else { paused = true; } }
+                {
+                    if (Flags.Paused) { Flags.Paused = false; }
+                    else { Flags.Paused = true; }
+                }
 
                 DebugMenu.HandleInput();
             }
@@ -53,7 +55,7 @@ namespace DungeonRun
         {
             stopWatch.Reset(); stopWatch.Start();
 
-            if(!paused)
+            if(!Flags.Paused)
             {   //update and move actors, objects, and projectiles
                 PoolFunctions.Update();
                 PoolFunctions.Move(this);
@@ -81,7 +83,7 @@ namespace DungeonRun
                         Camera2D.view
                         );
             PoolFunctions.Draw();
-            if (game.drawCollisionRecs) { DrawFunctions.Draw(Input.cursorColl); }
+            if (Flags.DrawCollisions) { DrawFunctions.Draw(Input.cursorColl); }
 
             ScreenManager.spriteBatch.End();
 

@@ -63,7 +63,6 @@ namespace DungeonRun
             colorScheme.buttonUp = new Color(44, 44, 44, 0);
             colorScheme.buttonOver = new Color(66, 66, 66, 0);
             colorScheme.buttonDown = new Color(100, 100, 100, 0);
-            colorScheme.buttonSelected = new Color(20, 20, 20, 0);
         }
     }
 }

@@ -28,14 +28,35 @@ namespace DungeonRun
 
         public static void HandleInput()
         {
-            //check input for buttons
-            //set button state
-
             for (counter = 0; counter < buttons.Count; counter++)
-            {
+            {   //check each button to see if it contains the cursor
                 if (buttons[counter].rec.Contains(Input.cursorPos))
-                { buttons[counter].currentColor = Assets.colorScheme.buttonOver; }
+                {   //any button containing the cursor draws with 'over' color
+                    buttons[counter].currentColor = Assets.colorScheme.buttonOver;
+                    if(Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                    {   //any button clicked on becomes selected
+                        buttons[counter].selected = true;
+
+
+                        #region Button Events
+
+                        if (counter == 0) //toggle draw collisions boolean
+                        {
+                            if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
+                            else { Flags.DrawCollisions = true; }
+                            //match the draw collisions boolean for the selected state
+                            buttons[counter].selected = Flags.DrawCollisions;
+                        }
+
+                        #endregion
+
+
+                    }
+                } //buttons not touching cursor return to button up color
                 else { buttons[counter].currentColor = Assets.colorScheme.buttonUp; }
+                //selected buttons get the button down color
+                if (buttons[counter].selected)
+                { buttons[counter].currentColor = Assets.colorScheme.buttonDown; }
             }
         }
 

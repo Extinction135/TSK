@@ -117,15 +117,14 @@ namespace DungeonRun
         public Rectangle rec;
         public ComponentText compText;
         public int textWidth;
-        public enum State { Up, Over, Down, Selected }
-        public State state;
+        public Boolean selected;
         public Color currentColor; //points to a button color in color scheme
 
         public ComponentButton(String Text, Point Position)
         {
             rec = new Rectangle(Position, new Point(0, 9));
             compText = new ComponentText(Assets.font, Text, new Vector2(0, 0), Assets.colorScheme.textSmall);
-            state = State.Up;
+            selected = false;
             currentColor = Assets.colorScheme.buttonUp;
             ComponentFunctions.CenterText(this);
         }

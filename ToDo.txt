@@ -8,19 +8,12 @@ todo:
 
 
 
+moved control booleans into global Flags class.
+updated all references to these control booleans.
+updated DebugMenu.HandleInput() to change button color + state based on cursor position + state.
+implemented 'draw collisions' button event: toggles Flags.DrawCollisions boolean.
+removed 'selected' color from colorScheme.
 
-updated Input to store cursor's render surface position in a Point instance.
-updated DebugMenu to check if cursor collides with any buttons on the buttons list.
-sets button.currentColor to Up or Over color defined in colorScheme.
-
-
-
-we need interaction occurring with DebugMenu's buttons
-	check if the button.rec contains input.cursor.pos
-	set the button state to up by default
-	if contains, set button state to over
-	if input.MouseButtonDown, set button state to selected
-	**we may not need a down state, since that is technically a selected state
 
 implement an editor that sits at the top of the frame
 should have button to toggle collisionRec draw on/off

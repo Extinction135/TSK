@@ -114,8 +114,7 @@ namespace DungeonRun
         public static void Draw(Actor Actor)
         {
             DrawFunctions.Draw(Actor.compSprite);
-            if (ScreenManager.game.drawCollisionRecs)
-            { DrawFunctions.Draw(Actor.compCollision); }
+            if (Flags.DrawCollisions) { DrawFunctions.Draw(Actor.compCollision); }
         }
     }
 }

@@ -14,9 +14,7 @@ namespace DungeonRun
 {
     public class Game1 : Game
     {
-        //control booleans for game codepaths
-        public Boolean DEBUG = true; //false = release mode
-        public Boolean drawCollisionRecs = true;
+
         public GraphicsDeviceManager graphics;
 
         public Game1()
@@ -24,7 +22,7 @@ namespace DungeonRun
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            if (DEBUG) { IsMouseVisible = true; }
+            if (Flags.Debug) { IsMouseVisible = true; }
             else { IsMouseVisible = false; }
         }
         protected override void Initialize() { base.Initialize(); }
@@ -39,5 +37,6 @@ namespace DungeonRun
         protected override void UnloadContent() { }
         protected override void Update(GameTime gameTime) { ScreenManager.Update(gameTime); base.Update(gameTime); }
         protected override void Draw(GameTime gameTime) { ScreenManager.Draw(gameTime); base.Draw(gameTime); }
+
     }
 }
