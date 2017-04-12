@@ -19,11 +19,14 @@ namespace DungeonRun
         public static int actorIndex;           //used to iterate thru the pool
         public static int actorsUsed;           //tracks how many actors are used from the pool
 
+        //obj pool handles gameobjects that don't move, & may(not) interact with actors
         public static int objCount;
         public static List<GameObject> objPool;
         public static int objIndex;
         public static int objsUsed;
 
+        //projectile pool handles projectiles that move or are stationary
+        //also handles 'particles', which may move or not, but don't collide
         public static int projectileCount;
         public static List<GameObject> projectilePool;
         public static int projectileIndex;

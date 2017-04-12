@@ -27,6 +27,7 @@ namespace DungeonRun
             Item,       //picked up off ground, held above hero's head
             Reward,     //spawned from chest, not actually on objects list, held above hero's head
             Projectile, //a colliding object (moving or stationary)
+            Particle    //doesn't collide, direction always faces down
         }
 
         public enum Type
@@ -116,8 +117,15 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Particles
+
+            ParticleDashPuff,
+
+            #endregion
+
         }
-        
+
         public ObjGroup objGroup;
         public Type type;
 

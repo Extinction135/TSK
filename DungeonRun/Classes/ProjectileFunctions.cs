@@ -18,8 +18,8 @@ namespace DungeonRun
         public static void Spawn(GameObject.Type Type, Actor Actor)
         {
             GameObject projectile = PoolFunctions.GetProjectile();
-            projectile.direction = Actor.direction;
             projectile.type = Type;
+            projectile.direction = Actor.direction;
             AlignProjectile(projectile, Actor);
             GameObjectFunctions.SetType(projectile, projectile.type);
         }
@@ -35,7 +35,8 @@ namespace DungeonRun
             else if (Projectile.direction == Direction.UpLeft)      { Projectile.direction = Direction.Left; }
             else if (Projectile.direction == Direction.DownLeft)    { Projectile.direction = Direction.Left; }
 
-            //different types of projectiles have different offsets
+            #region Set Position Offsets based on Projectile Type
+
             if (Projectile.type == GameObject.Type.ProjectileSword)
             {
                 if (Projectile.direction == Direction.Down)
@@ -47,6 +48,14 @@ namespace DungeonRun
                 else if (Projectile.direction == Direction.Left)
                 { ProjectileOffset.X = -14; ProjectileOffset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
             }
+
+            else if (Projectile.type == GameObject.Type.ParticleDashPuff)
+            {   //center horizontally, place near actor's feet
+                ProjectileOffset.X = 4; ProjectileOffset.Y = 8;
+            }
+
+            #endregion
+
 
             //teleport the projectile to the actor's position with the offset applied
             MovementFunctions.Teleport(Projectile.compMove,

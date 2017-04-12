@@ -38,19 +38,29 @@ namespace DungeonRun
             Obj.compCollision.offsetY = -8; //(most are)
         }
         
-        public static void SetType(GameObject Obj, GameObject.Type Type)
+        public static void SetRotation(GameObject Obj)
         {
-            Obj.type = Type;
             //the objects texture is not set here, this is managed by the obj/projectile pools
             //sprites are created facing Down, but we will need to set the spite rotation based on direction
             Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
             if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
             else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
             else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
+        }
 
-            //update the object's current animation based on it's type
-            GameObjectAnimListManager.SetAnimationList(Obj);
-            ResetObject(Obj);
+        public static void SetParticleRotation(GameObject Obj)
+        {   //particles cannot be rotated
+            Obj.compSprite.rotation = Rotation.None;
+            Obj.direction = Direction.Down;
+            Obj.compSprite.flipHorizontally = false;
+        }
+
+        public static void SetType(GameObject Obj, GameObject.Type Type)
+        {
+            Obj.type = Type;
+            GameObjectAnimListManager.SetAnimationList(Obj); //set obj animation list based on type
+            ResetObject(Obj); //set obj fields to most common values
+            SetRotation(Obj); //set the obj's sprite rotation
 
 
             #region Room Objects
@@ -282,6 +292,28 @@ namespace DungeonRun
             #endregion
 
 
+            #region Particles
+
+            else if (Type == GameObject.Type.ParticleDashPuff)
+            {
+                Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
+                Obj.compSprite.zOffset = 0;
+                Obj.compCollision.offsetX = 0; Obj.compCollision.offsetY = 0;
+                Obj.compCollision.rec.Width = 0; Obj.compCollision.rec.Height = 0;
+                Obj.compCollision.blocking = false;
+                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.lifetime = 20; //in frames
+                Obj.compAnim.speed = 5; //in frames
+                Obj.compAnim.loop = false;
+            }
+
+            #endregion
+
+            //particles do not rotate like other gameObjects
+            if (Obj.objGroup == GameObject.ObjGroup.Particle) { SetParticleRotation(Obj); }
+
+            ComponentFunctions.SetZdepth(Obj.compSprite);
+            ComponentFunctions.UpdateCellSize(Obj.compSprite);
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 

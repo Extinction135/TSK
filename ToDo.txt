@@ -7,35 +7,46 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
-created dungeon.cs, with defs for RoomType enum and Room struct.
-created stub for Dungeon struct.
-created DungeonGenerator.RandomizeRoom().
-created instance DungeonGenerator.room.
-changed name of CreateRoom() to BuildRoom().
-Moved randomization routines from BuildRoom() to RandomizeRoom().
-updated codepaths to call RandomizeRoom() then BuildRoom().
-extracted various fields from BuildRoom() loops to single instances in DungeonGenerator.
-this prevents needless garbage creation when BuildRoom() is called.
+
+added ParticleDashPuff GameObject.type enum.
+added animation list for ParticleDashPuff.
+added codepath to GameObj.SetType for ParticleDashPuff.
+
+extracted rotation routines into ObjFunctions.SetRotation(Obj).
+working on decomposing the larger SetType() function - which actually does more than setting the type.
+
+created SetParticleRotation in ObjFunctions, to fix the rotation/direction of particles.
+(particles don't rotate or have a direction other than Down).
+created codepath to handle particle rotation in a scaleable way.
+
+updated SetType() to set the Obj.sprite's zDepth + cellSize.
+updated ProjectileFunctions.AlignProjectile to place ParticleDashPuff at bottom of actors feet.
+Tested, looks great.
 
 
 
-create Room struct, that holds all the data that describes a room in the dungeon
-	position X, Y
-	size X, Y
-	type (normal, boss, key, hub)
-	
-seperate the randomize routines from the build routines in dungeon generator
-	call randomize, then build routines from debugMenu
-
-move all (new) fields out of CreateRoom() to explicitly prevent garbage creation/collection
-
-
+update sword projectile to have a higher zOffset so it draws over enemies it strikes
 
 
 
 
+we'll need to check all zOffsets for game objects to make sure they layer properly
 
-hero should have a shadow (baked into sheet)
+
+
+create dash particle upon actor dash
+this can be modeled as a projectile and integrated into the existing codebase easily
+this extends the complexity of the gameObject class
+but conceptually simplifies the codebase, since we only have actors vs. gameObjects
+
+
+
+
+create DungeonRun.gif with flashing logo for github - we need something visual on the repo..
+
+
+
+hero should have a shadow sprite
 blob shadows are TOO dark, should be around 60% opacity
 
 

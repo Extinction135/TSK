@@ -77,7 +77,9 @@ namespace DungeonRun
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
-                    //create a dash effect here
+
+                    //create a dash(smoke) particle here
+                    ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
                 }
                 else if (Actor.state == Actor.State.Attack)
                 {
