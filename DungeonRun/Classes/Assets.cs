@@ -23,7 +23,10 @@ namespace DungeonRun
         public static ColorScheme colorScheme;
 
         //the sprite sheets used in the game
-        public static Texture2D actorsSheet;
+        public static Texture2D heroSheet;
+        public static Texture2D blobSheet;
+
+
         public static Texture2D dungeonSheet;
         public static Texture2D particleSheet;
         public static Texture2D uiSheet;
@@ -39,8 +42,11 @@ namespace DungeonRun
             //fonts
             font = content.Load<SpriteFont>(@"pixelFont");
 
-            //textures
-            actorsSheet = content.Load<Texture2D>(@"ActorSheet");
+            //actor textures
+            heroSheet = content.Load<Texture2D>(@"HeroSheet");
+            blobSheet = content.Load<Texture2D>(@"BlobSheet");
+
+            //game textures
             dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
             particleSheet = content.Load<Texture2D>(@"ParticlesProjectilesSheet");
             uiSheet = content.Load<Texture2D>(@"UISheet");

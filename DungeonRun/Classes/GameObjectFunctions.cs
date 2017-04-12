@@ -301,13 +301,13 @@ namespace DungeonRun
             else if (Type == GameObject.Type.ParticleDashPuff)
             {
                 Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = -8;
                 Obj.compCollision.offsetX = 0; Obj.compCollision.offsetY = 0;
                 Obj.compCollision.rec.Width = 0; Obj.compCollision.rec.Height = 0;
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Particle;
-                Obj.lifetime = 20; //in frames
-                Obj.compAnim.speed = 5; //in frames
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = false;
             }
 

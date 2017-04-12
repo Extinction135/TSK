@@ -41,17 +41,22 @@ namespace DungeonRun
         public float dashSpeed = 0.75f; 
         public float walkSpeed = 0.25f;
 
+        //the components that actor requires to function
         public ComponentSprite compSprite;
         public ComponentAnimation compAnim;
         public ComponentInput compInput;
         public ComponentMovement compMove;
         public ComponentCollision compCollision;
 
+        //battle fields
+        public byte health;
+        public byte attack;
+
         //actor requires a reference to the various textures/sounds it may use - all the possible textures
         public Actor()
         {
             //create the actor components
-            compSprite = new ComponentSprite(Assets.actorsSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
+            compSprite = new ComponentSprite(Assets.heroSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
             compAnim = new ComponentAnimation();
             compInput = new ComponentInput();
             compMove = new ComponentMovement();
@@ -59,6 +64,7 @@ namespace DungeonRun
             //set the actor type to hero, teleport to position
             ActorFunctions.SetType(this, Type.Hero);
             MovementFunctions.Teleport(this.compMove, compSprite.position.X, compSprite.position.Y);
+            animList = ActorAnimationListManager.actorAnims;
         }
     }
 }

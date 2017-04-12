@@ -24,20 +24,25 @@ namespace DungeonRun
             Actor.active = true;
             Actor.compCollision.active = true;
             SetCollisionRec(Actor);
-            //set actor animations lists, group, direction
-            ActorAnimationListManager.SetAnimationList(Actor);
+            //set actor animations group, direction
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
 
             //set type specific fields
             if (Type == Actor.Type.Hero)
             {
+                Actor.compSprite.texture = Assets.heroSheet;
+                Actor.health = 3;
+                Actor.attack = 1;
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
                 //set actor soundFX
             }
             else if (Type == Actor.Type.Blob)
             {
+                Actor.compSprite.texture = Assets.blobSheet;
+                Actor.health = 1;
+                Actor.attack = 1;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
                 //set actor soundFX
