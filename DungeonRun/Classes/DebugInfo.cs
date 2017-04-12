@@ -15,7 +15,6 @@ namespace DungeonRun
 {
     public static class DebugInfo
     {
-        public static DungeonScreen screen;
         public static Rectangle background;
         public static List<ComponentText> textFields;
         public static int counter = 0;
@@ -37,9 +36,8 @@ namespace DungeonRun
         public static long updateAvg; //stores the average update ticks
         public static long drawAvg; //stores the average draw ticks
 
-        public static void Initialize(DungeonScreen DungeonScreen)
+        public static void Initialize()
         {
-            screen = DungeonScreen;
             textFields = new List<ComponentText>();
 
             background = new Rectangle(0, 322 - 8, 640, 50);
@@ -84,8 +82,8 @@ namespace DungeonRun
                 drawAvg = drawTicks / framesTotal;
             }
             //collect tick times
-            updateTicks += screen.updateTime.Ticks;
-            drawTicks += screen.drawTime.Ticks;
+            updateTicks += Timing.updateTime.Ticks;
+            drawTicks += Timing.drawTime.Ticks;
 
             //per frame
             //timingText.text = "u: " + screen.updateTime.Ticks;
@@ -94,7 +92,7 @@ namespace DungeonRun
             //average over framesTotal
             timingText.text = "u: " + updateAvg;
             timingText.text += "\nd: " + drawAvg;
-            timingText.text += "\nt: " + screen.totalTime.Milliseconds + " ms";
+            timingText.text += "\nt: " + Timing.totalTime.Milliseconds + " ms";
             timingText.text += "\n" + ScreenManager.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
             timingText.text += "\n" + MemoryManager.AppMemoryUsage / 1024 / 1024 + " mb";
 

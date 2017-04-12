@@ -69,6 +69,9 @@ namespace DungeonRun
             currentItem = new ComponentSprite(Assets.uiSheet, 
                 new Vector2(UIpos.X + 8 + 110, UIpos.Y + 8),
                 new Byte4(0, 4, 0, 0), new Byte2(16, 16));
+
+            //create the frametime text component
+            frametime = new ComponentText(Assets.font, "test", new Vector2(UIpos.X + 136, UIpos.Y - 8), Assets.colorScheme.textSmall);
         }
 
 
@@ -91,6 +94,13 @@ namespace DungeonRun
             }
             DrawFunctions.Draw(currentWeapon);
             DrawFunctions.Draw(currentItem);
+            if(!Flags.Release)
+            {
+                frametime.text = Timing.updateTime.Milliseconds + " ms\n";
+                frametime.text += Timing.drawTime.Milliseconds + " ms\n";
+                frametime.text += Timing.totalTime.Milliseconds + " ms";
+                DrawFunctions.Draw(frametime);
+            }
         }
 
     }

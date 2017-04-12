@@ -16,18 +16,15 @@ namespace DungeonRun
     {
         public DungeonScreen() { this.name = "DungeonScreen"; }
 
-        public Stopwatch stopWatch = new Stopwatch();  
-        public Stopwatch total = new Stopwatch(); 
-        public TimeSpan updateTime;
-        public TimeSpan drawTime;
-        public TimeSpan totalTime;
+        
 
         public override void LoadContent()
         {
-            DebugInfo.Initialize(this);
+            DebugInfo.Initialize();
             DebugMenu.Initialize();
             Pool.Initialize(this);
             WorldUI.Initialize();
+            Timing.Initialize();
             DungeonGenerator.BuildRoom();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }
@@ -52,7 +49,7 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            stopWatch.Reset(); stopWatch.Start();
+            Timing.Reset();
 
             if(!Flags.Paused)
             {   //update and move actors, objects, and projectiles
@@ -64,12 +61,13 @@ namespace DungeonRun
             Camera2D.targetPosition = Pool.hero.compSprite.position;
             Camera2D.Update(GameTime);
 
-            stopWatch.Stop(); updateTime = stopWatch.Elapsed;
+            Timing.stopWatch.Stop();
+            Timing.updateTime = Timing.stopWatch.Elapsed;
         }
 
         public override void Draw(GameTime GameTime)
         {
-            stopWatch.Reset(); stopWatch.Start();
+            Timing.Reset();
 
             //draw gameworld
             ScreenManager.spriteBatch.Begin(
@@ -90,9 +88,10 @@ namespace DungeonRun
             WorldUI.Draw();
             if (Flags.Debug) { DebugInfo.Draw(); DebugMenu.Draw(); }
             ScreenManager.spriteBatch.End();
-            
-            stopWatch.Stop(); drawTime = stopWatch.Elapsed;
-            totalTime = updateTime + drawTime;
+
+            Timing.stopWatch.Stop();
+            Timing.drawTime = Timing.stopWatch.Elapsed;
+            Timing.totalTime = Timing.updateTime + Timing.drawTime;
         }
     }
 }
