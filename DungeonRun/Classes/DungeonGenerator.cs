@@ -15,17 +15,22 @@ namespace DungeonRun
     public static class DungeonGenerator
     {
 
+        public static DungeonScreen Dungeon;
+        public static void Initialize(DungeonScreen DungeonScreen) { Dungeon = DungeonScreen; }
 
-
-        public static void CreateRoom(DungeonScreen DungeonScreen)
+        public static void CreateRoom()
         {
             //the room should have an overall position
             int positionX = 16 * 10;
             int positionY = 16 * 10;
 
-            //set the width and height of room
-            byte width = 20;
-            byte height = 10;
+            //randomize the width and height of room
+            byte width = (byte)GetRandom.Int(15, 30);
+            byte height = (byte)GetRandom.Int(7, 12);
+
+            //get the center position of the room
+            Point center = new Point(width / 2 * 16 + positionX, height / 2 * 16 + positionY);
+
             //reset the pools + counter
             PoolFunctions.Reset();
             Pool.counter = 0;
@@ -125,20 +130,27 @@ namespace DungeonRun
             {
                 Actor actor = PoolFunctions.GetActor();
                 ActorFunctions.SetType(actor, Actor.Type.Blob);
+                //get a random value between the min/max size of room
+                int randomX = GetRandom.Int(-width, width);
+                int randomY = GetRandom.Int(-height, height);
+                //divide random value in half
+                randomX = randomX / 2;
+                randomY = randomY / 2;
+                //ensure this value isn't 0
+                if (randomX == 0) { randomX = 1; }
+                if (randomY == 0) { randomY = 1; }
+                //randomX = 0; randomY = 0; //debugging
+                //actor.compCollision.blocking = false; //debugging
+                //teleport actor to center of room, apply random offset
                 MovementFunctions.Teleport(actor.compMove,
-                    GetRandom.Int(20, 180) + positionX,
-                    GetRandom.Int(20, 80) + positionY);
+                    center.X + 16 * randomX, 
+                    center.Y + 16 * randomY);
             }
 
             //center hero to room
             ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
-            MovementFunctions.Teleport(Pool.hero.compMove, 
-                150 + positionX, 100 + positionY);
+            MovementFunctions.Teleport(Pool.hero.compMove, center.X, center.Y);
         }
-
-
-
-
 
     }
 }

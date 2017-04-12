@@ -8,15 +8,23 @@ todo:
 
 
 
+randomized the size of the test room created.
+fixed the routines for placing the enemies within the room.
+added button to debugMenu that calls DungeonGenerator.CreateRoom().
+tested CreateRoom() function.
 
 
 
-	
-we can probably make the debugInfo class a static global class too	
-	
-	
-	
-debugMenu should have button to remake dungeon room too, for testing
+debugInfo displays the floor index, instead of the # of floor tiles used currently
+
+time the CreateRoom() function, dump to debugInfo text
+move all (new) fields out of CreateRoom() to explicitly prevent garbage creation/collection
+
+
+
+
+
+
 
 hero should have a shadow (baked into sheet)
 blob shadows are TOO dark, should be around 60% opacity

@@ -24,6 +24,7 @@ namespace DungeonRun
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton("draw collisions", new Point(2, 2)));
+            buttons.Add(new ComponentButton("build dungeon", new Point(70, 2)));
         }
 
         public static void HandleInput()
@@ -35,7 +36,7 @@ namespace DungeonRun
                     buttons[counter].currentColor = Assets.colorScheme.buttonOver;
                     if(Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                     {   //any button clicked on becomes selected
-                        buttons[counter].selected = true;
+                        //buttons[counter].selected = true;
 
 
                         #region Button Events
@@ -46,6 +47,11 @@ namespace DungeonRun
                             else { Flags.DrawCollisions = true; }
                             //match the draw collisions boolean for the selected state
                             buttons[counter].selected = Flags.DrawCollisions;
+                        }
+                        else if (counter == 1) //build the dungeon room again
+                        {
+                            DungeonGenerator.CreateRoom();
+                            //buttons[counter].selected = false;
                         }
 
                         #endregion
