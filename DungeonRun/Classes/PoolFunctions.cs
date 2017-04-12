@@ -155,6 +155,8 @@ namespace DungeonRun
                 }
             }
 
+            
+
             //obj pool
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {
@@ -207,6 +209,12 @@ namespace DungeonRun
                 if (Pool.actorPool[Pool.counter].active)
                 { ActorFunctions.Draw(Pool.actorPool[Pool.counter]); }
             }
+
+            //match hero shadow to hero position + offset, then draw it
+            Pool.heroShadow.position.X = Pool.hero.compSprite.position.X;
+            Pool.heroShadow.position.Y = Pool.hero.compSprite.position.Y + 5;
+            ComponentFunctions.SetZdepth(Pool.heroShadow);
+            DrawFunctions.Draw(Pool.heroShadow);
         }
 
     }

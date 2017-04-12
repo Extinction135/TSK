@@ -37,7 +37,9 @@ namespace DungeonRun
         public static int floorIndex;
 
         public static int counter;
+
         public static Actor hero;
+        public static ComponentSprite heroShadow;
 
         public static int activeActor = 1; //tracks the current actor being handled by AI
         
@@ -86,6 +88,8 @@ namespace DungeonRun
 
             //create an easy to remember reference to the player/hero actor
             hero = actorPool[0];
+            heroShadow = new ComponentSprite(Assets.particleSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Byte2(16, 8));
+            heroShadow.zOffset = -16;
         }
     }
 }

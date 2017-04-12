@@ -10,23 +10,12 @@ todo:
 
 
 
-fixed a bug where the pool.objUsed was decremented when a particle was Released().
-the projectile pool is decremented now instead.
-sped up the sword swipe animation and reduced it's overall lifetime.
-feels a bit snappier better now.
-
-
-
-
-
-
-
-
-
-
-
-consider adding a single frame of a crouch to the dash animation
-this would create some anticipation in the dash animation
+removed baked shadows from hero spritesheet
+created hero shadow sprite in pool.cs. integrated into Draw().
+applied offset to place shadow at hero's feet.
+blob shadows are now at 60% opacity.
+modified alignment of sword weapon to better fit into hero's hand.
+various pixel alteration on hero sprites to read better.
 
 
 
@@ -35,8 +24,7 @@ create DungeonRun.gif with flashing logo for github - we need something visual o
 
 
 
-hero should have a shadow sprite
-blob shadows are TOO dark, should be around 60% opacity
+
 
 
 implement fireball magic item
@@ -127,6 +115,13 @@ room.cs
 	rectangle (collisionRec) : size + position
 	type
 	
+
+	
+	
+consider adding a single frame of a crouch to the dash animation
+this would create some anticipation in the dash animation
+
+
 
 	
 load in a background sound file (to determine how much space this will take up)
