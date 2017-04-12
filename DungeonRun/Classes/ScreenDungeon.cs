@@ -27,6 +27,7 @@ namespace DungeonRun
             DebugInfo.Initialize(this);
             DebugMenu.Initialize();
             Pool.Initialize(this);
+            WorldUI.Initialize();
             DungeonGenerator.BuildRoom();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }
@@ -86,6 +87,7 @@ namespace DungeonRun
 
             //draw UI, debug info + debug menu
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            WorldUI.Draw();
             if (Flags.Debug) { DebugInfo.Draw(); DebugMenu.Draw(); }
             ScreenManager.spriteBatch.End();
             

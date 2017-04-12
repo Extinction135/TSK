@@ -14,7 +14,7 @@ namespace DungeonRun
 {
     public static class Flags
     {   //the master control booleans for various codepaths
-        public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
+        public static Boolean Debug = false; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean Paused = false;
     }

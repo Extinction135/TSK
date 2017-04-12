@@ -10,12 +10,26 @@ todo:
 
 
 
-removed baked shadows from hero spritesheet
-created hero shadow sprite in pool.cs. integrated into Draw().
-applied offset to place shadow at hero's feet.
-blob shadows are now at 60% opacity.
-modified alignment of sword weapon to better fit into hero's hand.
-various pixel alteration on hero sprites to read better.
+
+
+
+created world UI, with two rows of hearts, and visual representations for currently equipped weapon and item.
+
+
+
+
+
+we should move frame time out of debugInfo and draw it under the world UI
+this should be controlled by a seperate master flag, like showFrameTime
+this way we can get the game's codepath as close as possible to release, while still knowing frame times
+
+
+
+
+
+
+
+
 
 
 
@@ -57,11 +71,7 @@ implement dash smoke as a particle (should spawn whenever an actor dashes)
 	
 	
 	
-create world UI
 
-we should move frame time out of debugInfo and draw it under the world UI
-this should be controlled by a seperate master flag, like showFrameTime
-this way we can get the game's codepath as close as possible to release, while still knowing frame times
 	
 	
 	
