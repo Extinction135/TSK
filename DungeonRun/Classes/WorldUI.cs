@@ -49,7 +49,7 @@ namespace DungeonRun
             return background;
         }
 
-        public static void Initialize()
+        static WorldUI()
         {
             Point UIpos = new Point(255, 32); //center aligned
             UIpos.X = 32; //left aligned

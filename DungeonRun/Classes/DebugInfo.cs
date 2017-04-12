@@ -36,7 +36,7 @@ namespace DungeonRun
         public static long updateAvg; //stores the average update ticks
         public static long drawAvg; //stores the average draw ticks
 
-        public static void Initialize()
+        static DebugInfo()
         {
             textFields = new List<ComponentText>();
 

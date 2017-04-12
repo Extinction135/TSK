@@ -8,38 +8,10 @@ goal: 10 commits/day
 
 todo:
 
-tested on xbox one, frame times with debug=false & release=false are around 1ms.
-
-
-added health and attack fields to actor
-extended hero + blob sheets with hit, reward/use, death sprites
-
-removed actorSheet, replaced with heroSheet and blobSheet
-refactoring how actor animations are managed, simplifying and designing for scale
-now all actors share 1 universal animation list
 
 
 
-
-we dont need initialize functions, we can use constructors
-we just can't put 'public' infront of the constructor
-fix global classes to not use initialize
-
-
-
-
-
-
-we could condense the actor animations down into 1 sheet, per actor
-then we could reuse the actor anim list, instead of custom defining it
-this allows us to simply switch the texture, while keeping the animLists
-simplifys actor anims, scales really well
-
-
-
-
-you dont have to change the animation list at all
-just switch the actor texture to the correct asset.texture
+converted Initialize() functions to constructors for: DebugInfo, DebugMenu, WorldUI, + Timing classes.
 
 
 

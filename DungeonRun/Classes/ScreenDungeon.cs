@@ -16,15 +16,9 @@ namespace DungeonRun
     {
         public DungeonScreen() { this.name = "DungeonScreen"; }
 
-        
-
         public override void LoadContent()
         {
-            DebugInfo.Initialize();
-            DebugMenu.Initialize();
             Pool.Initialize(this);
-            WorldUI.Initialize();
-            Timing.Initialize();
             DungeonGenerator.BuildRoom();
             ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }

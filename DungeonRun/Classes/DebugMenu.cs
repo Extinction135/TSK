@@ -19,7 +19,7 @@ namespace DungeonRun
         public static List<ComponentButton> buttons;
         public static int counter;
 
-        public static void Initialize()
+        static DebugMenu()
         {
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
