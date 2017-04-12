@@ -68,11 +68,11 @@ namespace DungeonRun
             if (Type == GameObject.Type.Exit)
             {
                 Obj.compSprite.cellSize.y = 16 * 3; //nonstandard size
+                Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.objGroup = GameObject.ObjGroup.Door;
                 Obj.compCollision.rec.Height = 2;
                 Obj.compCollision.offsetY = 32 + 6;
                 Obj.compCollision.blocking = false;
-                //sorts to floor layer (or has very positive zDepth)
             }
             else if (
                 Type == GameObject.Type.ExitPillarLeft || 
@@ -86,7 +86,7 @@ namespace DungeonRun
             {
                 Obj.compSprite.cellSize.y = 16 * 2; //nonstandard size
                 Obj.compCollision.offsetY = 0;
-                //sorts to roof layer (or has very negative zDepth)
+                Obj.compSprite.zOffset = 256; //sort above everything
             }
             else if (
                 Type == GameObject.Type.DoorOpen ||
@@ -119,17 +119,20 @@ namespace DungeonRun
             else if (Type == GameObject.Type.PitTop)
             {
                 //pits dont collide with actors
+                Obj.compSprite.zOffset = -32; //sort to floor
             }
             else if (Type == GameObject.Type.PitBottom)
             {
                 //instead we'll use an animated liquid obj for collision checking
                 //pits just sit ontop of this object as decoration
+                Obj.compSprite.zOffset = -32; //sort to floor
             }
             else if (
                 Type == GameObject.Type.PitTrapReady || Type == GameObject.Type.PitTrapOpening)
             {
                 Obj.compCollision.offsetX = -6;
                 Obj.compCollision.offsetY = -6;
+                Obj.compSprite.zOffset = -32; //sort to floor
             }
             else if (Type == GameObject.Type.BossStatue)
             {
@@ -139,7 +142,7 @@ namespace DungeonRun
             }
             else if (Type == GameObject.Type.BossDecal)
             {
-                Obj.compSprite.zOffset = -32;
+                Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
             }
             else if (Type == GameObject.Type.Pillar)
@@ -199,7 +202,7 @@ namespace DungeonRun
                 Type == GameObject.Type.Switch ||
                 Type == GameObject.Type.Bridge)
             {
-                Obj.compSprite.zOffset = -32;
+                Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
             }
             else if (Type == GameObject.Type.Bumper)
@@ -214,7 +217,7 @@ namespace DungeonRun
             }
             else if (Type == GameObject.Type.SwitchBlockDown)
             {
-                Obj.compSprite.zOffset = -16;
+                Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
             }
             else if (Type == GameObject.Type.SwitchBlockUp)
@@ -231,7 +234,7 @@ namespace DungeonRun
             }
             else if (Type == GameObject.Type.ConveyorBelt)
             {
-                Obj.compSprite.zOffset = -32;
+                Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 //directions are slightly different for this obj
                 if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
@@ -280,6 +283,7 @@ namespace DungeonRun
 
             else if (Type == GameObject.Type.ProjectileSword)
             {
+                Obj.compSprite.zOffset = 16;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
@@ -308,6 +312,7 @@ namespace DungeonRun
             }
 
             #endregion
+
 
             //particles do not rotate like other gameObjects
             if (Obj.objGroup == GameObject.ObjGroup.Particle) { SetParticleRotation(Obj); }

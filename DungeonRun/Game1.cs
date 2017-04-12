@@ -12,6 +12,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
+    public static class Flags
+    {   //the master control booleans for various codepaths
+        public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
+        public static Boolean DrawCollisions = false; //draw/hide collision rec components
+        public static Boolean Paused = false;
+    }
+
     public class Game1 : Game
     {
 
@@ -25,7 +32,9 @@ namespace DungeonRun
             if (Flags.Debug) { IsMouseVisible = true; }
             else { IsMouseVisible = false; }
         }
+
         protected override void Initialize() { base.Initialize(); }
+
         protected override void LoadContent()
         {
             base.LoadContent();
@@ -34,8 +43,11 @@ namespace DungeonRun
             ScreenManager.Initialize(this);
             ScreenManager.AddScreen(new DungeonScreen());
         }
+
         protected override void UnloadContent() { }
+
         protected override void Update(GameTime gameTime) { ScreenManager.Update(gameTime); base.Update(gameTime); }
+
         protected override void Draw(GameTime gameTime) { ScreenManager.Draw(gameTime); base.Draw(gameTime); }
 
     }

@@ -12,12 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class Flags
-    {
-        public static Boolean Debug = true;
-        public static Boolean DrawCollisions = true;
-        public static Boolean Paused = false;
-    }
+    
 
     public static class GetRandom
     {

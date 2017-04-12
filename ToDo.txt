@@ -8,36 +8,34 @@ todo:
 
 
 
-added ParticleDashPuff GameObject.type enum.
-added animation list for ParticleDashPuff.
-added codepath to GameObj.SetType for ParticleDashPuff.
 
-extracted rotation routines into ObjFunctions.SetRotation(Obj).
-working on decomposing the larger SetType() function - which actually does more than setting the type.
-
-created SetParticleRotation in ObjFunctions, to fix the rotation/direction of particles.
-(particles don't rotate or have a direction other than Down).
-created codepath to handle particle rotation in a scaleable way.
-
-updated SetType() to set the Obj.sprite's zDepth + cellSize.
-updated ProjectileFunctions.AlignProjectile to place ParticleDashPuff at bottom of actors feet.
-Tested, looks great.
+update various gameObject's zOffsets to sort better.
+for example, the sword projectile now sorts over any actor it strikes.
 
 
-
-update sword projectile to have a higher zOffset so it draws over enemies it strikes
+updated sword projectile to have a higher zOffset so it draws over enemies it strikes
 
 
 
 
-we'll need to check all zOffsets for game objects to make sure they layer properly
+
+
+we need to make sure that the Debug flag is:
+	hiding debug info + menu
+	disabling debug info + menu
+	disabling debug input
+
+
+we should move frame time out of debugInfo and draw it under the game UI
+this should be controlled by a seperate master flag, like showFrameTime
+this way we can get the game's codepath as close as possible to release, while still knowing frame times
 
 
 
-create dash particle upon actor dash
-this can be modeled as a projectile and integrated into the existing codebase easily
-this extends the complexity of the gameObject class
-but conceptually simplifies the codebase, since we only have actors vs. gameObjects
+
+
+
+
 
 
 
