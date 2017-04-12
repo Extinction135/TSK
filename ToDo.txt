@@ -10,26 +10,10 @@ todo:
 
 
 
-
-updated DungeonScreen to check Flags.Debug to determine if DebugInfo + DebugMenu should draw.
-
-
-
-
-we should move frame time out of debugInfo and draw it under the game UI
-this should be controlled by a seperate master flag, like showFrameTime
-this way we can get the game's codepath as close as possible to release, while still knowing frame times
-
-
-
-
-
-objects and projectiles are not being counted correctly
-they increment from Get(), decrement from Release()
-theres something wonky going on with these routines or how they are called
-we're getting negative objects
-and projectiles index/count is exceeding the total
-wtf br3h?
+fixed a bug where the pool.objUsed was decremented when a particle was Released().
+the projectile pool is decremented now instead.
+sped up the sword swipe animation and reduced it's overall lifetime.
+feels a bit snappier better now.
 
 
 
@@ -37,6 +21,12 @@ wtf br3h?
 
 
 
+
+
+
+
+consider adding a single frame of a crouch to the dash animation
+this would create some anticipation in the dash animation
 
 
 
@@ -79,7 +69,11 @@ implement dash smoke as a particle (should spawn whenever an actor dashes)
 	
 	
 	
-	
+create world UI
+
+we should move frame time out of debugInfo and draw it under the world UI
+this should be controlled by a seperate master flag, like showFrameTime
+this way we can get the game's codepath as close as possible to release, while still knowing frame times
 	
 	
 	

@@ -101,8 +101,10 @@ namespace DungeonRun
             Obj.active = false;
             Obj.compCollision.active = false;
             Obj.lifetime = 0;
-            if (Obj.objGroup == GameObject.ObjGroup.Projectile)
-            { Pool.projectilesUsed--; } else { Pool.objsUsed--; }
+            if (Obj.objGroup == GameObject.ObjGroup.Projectile ||
+                Obj.objGroup == GameObject.ObjGroup.Particle)
+            { Pool.projectilesUsed--; }
+            else { Pool.objsUsed--; }
         }
 
 

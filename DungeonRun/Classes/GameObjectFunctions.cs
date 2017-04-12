@@ -288,8 +288,8 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Projectile;
-                Obj.lifetime = 20; //in frames
-                Obj.compAnim.speed = 3; //in frames
+                Obj.lifetime = 18; //in frames
+                Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
             }
 
