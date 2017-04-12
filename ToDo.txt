@@ -8,39 +8,94 @@ goal: 10 commits/day
 
 todo:
 
+tested on xbox one, frame times with debug=false & release=false are around 1ms.
+
+Version 0.1 Milestones
+
+	should be able to attack the blob enemies and destroy them
+	which means actors should have HP and attack values
+	should have hit + death animations and states
+	
+	when a blob is destroyed, a destroyed effect should happen, and loot should be dropped
+	which means we need a destruction particle effect
+	which means we need to create loot items
+	
+	hero should be able to pick up basic loot items (hearts, gold)
+	which means hero should have a gold int
+	and we'll need to check collisions between hero and projectiles (items)
+	
+	worldUI should set the visual heart display based on the hero's HP
+	this should be done each update
+	
+	implement a fireball projectile that moves across frames
+	rotate the fireball sprite to face down (all projectiles + weapons should face down by default)
+	this is spawned from the Y button press
+	visually display fire magic medallion for current item in worldUI
+	
+	worldUI current item/weapon should scale up when player presses X/Y button
+	should scale back down to 1.0 over update frames
+	
+	once all the enemies are destroyed (or hero dies), a 'won/lost' screen should appear
+	screen displays total enemies killed (need to track that)
+	displays total time spent in dungeon (need to track that too)
+	total damage taken (track that too)
+	additional gold rewarded (based on performance)
+	press start button to retry (gen random room, reset tracking/player data)
+	
+	when actor dashes, play dash sound
+	when actor attacks, play attack sound
+	when actor is hit, play hit sound
+	when actor dies, play destroyed sound
+	won state should have a happy jingle
+	lost state should have a sad/evil jingle
+	if hero has low health (<2 hearts), play drum track
+	play the dungeon background music (fade out and stop when won/lost screen appears)
+	fade in bkg music when dungeon is restarted/remade
+	
+	record .gif of playing through dungeon room for v0.1
+	add flashing dungeon run logo to beginning of .gif
 
 
 
+	
+	
+Version 0.2 Milestones
 
-+2
+	create pause screen, can select different weapons / items
+	also displays total gold
+	
+	create shop sreen, can purchase different weapons / items for gold
+	implement purchasing routines (gold)
+	
+	create overworld screen, with selectable dungeon / shop locations
+	these lead to DungeonScreen or ShopScreen
+	
+	play overworld music for overworld screen
+	play shop music for shop screen
+	
+	implement additional weapons / items
+	weapons : { bow, staff, axe }
+	items : { lightning, boomerang, arrow, bomb }
+	
+	
+	
+Version 0.3 Milestones
 
-
-we need to move the timers out of screenDungeon and into a global class
-so we can access them from anywhere
-
-
-
-
-we should move frame time out of debugInfo and draw it under the world UI
-this should be controlled by a seperate master flag, like showFrameTime
-this way we can get the game's codepath as close as possible to release, while still knowing frame times
-
-
-
-
-
-
-
-
-
-
-
-
-create DungeonRun.gif with flashing logo for github - we need something visual on the repo..
-
-
-
-
+	adopt CursedCastle's roomData approach (Editor -> XML -> Randomly Choose a Room)
+	update dungeon generation routines to build complete dungeons
+	create room editor, standardize room sizes
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 implement fireball magic item
@@ -50,48 +105,6 @@ created, placed, aligned the same as sword
 each actor should have a weapon enum
 weapons { none, sword, bow, staff, axe, net }
 	
-	a projectile has: sprite, move, animate, collision components
-	a particle has: sprite, move, animate components
-	
-	this means we'll have a projectile pool, and a particle pool
-	
-implement dash smoke as a particle (should spawn whenever an actor dashes)
-	
-
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 debugInfo displays the floor index, instead of the # of floor tiles used currently
 which isn't really a problem, cause we're going to optimize how floors are drawn later on
 
@@ -99,18 +112,6 @@ OPTIMIZATION
 if we don't draw the floor tiles, the draw loop is much faster
 so, we could standardize the room sizes, then create a floor sprite
 then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 define room.cs, which describes the width and height of a room, and has a .type enum
 	create a room instance, then pass that to the room creator routine
@@ -127,15 +128,9 @@ room.cs
 	rectangle (collisionRec) : size + position
 	type
 	
-
-	
-	
 consider adding a single frame of a crouch to the dash animation
 this would create some anticipation in the dash animation
 
-
-
-	
 load in a background sound file (to determine how much space this will take up)
 this file should be loaded into the SCREEN's content manager
 a screen's content manager should be unloaded when the screen exits
@@ -149,8 +144,12 @@ does an mp3 get uncompressed when loaded into game?
 re-export sound files aligned to specific bar requirements
 this will require some rewriting / restructuring of melodies and chords
 
-
 sound manager should be handled just like screen manager
 part of game, passed as ref to each screen
 so a screen can just say "soundManager.whatever()"
+
+
+
+
+
 

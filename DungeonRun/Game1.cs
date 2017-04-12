@@ -16,7 +16,7 @@ namespace DungeonRun
     {   //the master control booleans for various codepaths
         //puts the game in release mode, overwriting other control booleans
         public static Boolean Release = false; //the MASTER control boolean
-        public static Boolean Debug = false; //draw/enable debugging info/menu/dev input
+        public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean Paused = false;
     }

@@ -26,7 +26,7 @@ namespace DungeonRun
             WorldUI.Initialize();
             Timing.Initialize();
             DungeonGenerator.BuildRoom();
-            //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
+            ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }
 
         public override void HandleInput(GameTime GameTime)
