@@ -45,7 +45,6 @@ namespace DungeonRun
                     if (Flags.Paused) { Flags.Paused = false; }
                     else { Flags.Paused = true; }
                 }
-
                 DebugMenu.HandleInput();
             }
         }
@@ -83,13 +82,11 @@ namespace DungeonRun
                         );
             PoolFunctions.Draw();
             if (Flags.DrawCollisions) { DrawFunctions.Draw(Input.cursorColl); }
-
             ScreenManager.spriteBatch.End();
 
-            //draw UI
+            //draw UI, debug info + debug menu
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            DebugInfo.Draw();
-            DebugMenu.Draw();
+            if (Flags.Debug) { DebugInfo.Draw(); DebugMenu.Draw(); }
             ScreenManager.spriteBatch.End();
             
             stopWatch.Stop(); drawTime = stopWatch.Elapsed;

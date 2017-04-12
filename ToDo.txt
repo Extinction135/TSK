@@ -1,6 +1,8 @@
-﻿
-CTRL + M, O = collapse functions/regions
+﻿CTRL + M, O = collapse functions/regions
 CTRL + M, P = expand functions/regions
+
+goal: 10 commits/day
+
 
 
 
@@ -9,26 +11,25 @@ todo:
 
 
 
-update various gameObject's zOffsets to sort better.
-for example, the sword projectile now sorts over any actor it strikes.
+updated DungeonScreen to check Flags.Debug to determine if DebugInfo + DebugMenu should draw.
 
 
-updated sword projectile to have a higher zOffset so it draws over enemies it strikes
-
-
-
-
-
-
-we need to make sure that the Debug flag is:
-	hiding debug info + menu
-	disabling debug info + menu
-	disabling debug input
 
 
 we should move frame time out of debugInfo and draw it under the game UI
 this should be controlled by a seperate master flag, like showFrameTime
 this way we can get the game's codepath as close as possible to release, while still knowing frame times
+
+
+
+
+
+objects and projectiles are not being counted correctly
+they increment from Get(), decrement from Release()
+theres something wonky going on with these routines or how they are called
+we're getting negative objects
+and projectiles index/count is exceeding the total
+wtf br3h?
 
 
 
