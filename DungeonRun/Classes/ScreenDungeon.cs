@@ -27,7 +27,7 @@ namespace DungeonRun
             DebugInfo.Initialize(this);
             DebugMenu.Initialize();
             Pool.Initialize(this);
-            DungeonGenerator.CreateRoom();
+            DungeonGenerator.BuildRoom();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }
 

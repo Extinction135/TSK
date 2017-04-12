@@ -7,13 +7,25 @@ CTRL + M, P = expand functions/regions
 todo:
 
 
+created dungeon.cs, with defs for RoomType enum and Room struct.
+created stub for Dungeon struct.
+created DungeonGenerator.RandomizeRoom().
+created instance DungeonGenerator.room.
+changed name of CreateRoom() to BuildRoom().
+Moved randomization routines from BuildRoom() to RandomizeRoom().
+updated codepaths to call RandomizeRoom() then BuildRoom().
+extracted various fields from BuildRoom() loops to single instances in DungeonGenerator.
+this prevents needless garbage creation when BuildRoom() is called.
 
 
-completely removed dungeon screen reference from dungeon generator.
-added timespan and stopwatch, now timing the CreateRoom() function.
-updated DebugInfo with fields to draw CreateRoom timing data.
 
-
+create Room struct, that holds all the data that describes a room in the dungeon
+	position X, Y
+	size X, Y
+	type (normal, boss, key, hub)
+	
+seperate the randomize routines from the build routines in dungeon generator
+	call randomize, then build routines from debugMenu
 
 move all (new) fields out of CreateRoom() to explicitly prevent garbage creation/collection
 

@@ -120,7 +120,7 @@ namespace DungeonRun
             poolText.text += "\npros: " + Pool.projectilesUsed + " / " + Pool.projectileCount;
             poolText.text += "\nparts: 0/0";
 
-            creationText.text = "time (ticks)";
+            creationText.text = "timers";
             creationText.text += "\nroom: " + roomTime;
             creationText.text += "\ndung: " + dungeonTime;
 

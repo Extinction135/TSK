@@ -15,61 +15,76 @@ namespace DungeonRun
     public static class DungeonGenerator
     {
 
+        public static Room room;
         public static Stopwatch stopWatch = new Stopwatch();
         public static TimeSpan time;
+        public static int i;
+        public static int j;
 
-        public static void CreateRoom()
+        public static ComponentSprite floorRef;
+        public static GameObject objRef;
+        public static Actor actorRef;
+
+        public static void RandomizeRoom()
+        {
+            room.position.X = 16 * 10;
+            room.position.Y = 16 * 10;
+            room.size.x = (byte)GetRandom.Int(15, 30);
+            room.size.y = (byte)GetRandom.Int(7, 12);
+            room.center.X = room.size.x / 2 * 16 + room.position.X;
+            room.center.Y = room.size.y / 2 * 16 + room.position.Y;
+            room.enemyCount = (byte)GetRandom.Int(7, 12);
+            room.type = RoomType.Normal;
+        }
+
+        public static void BuildRoom()
         {
             stopWatch.Reset(); stopWatch.Start();
 
-            //the room should have an overall position
-            int positionX = 16 * 10;
-            int positionY = 16 * 10;
-
-            //randomize the width and height of room
-            byte width = (byte)GetRandom.Int(15, 30);
-            byte height = (byte)GetRandom.Int(7, 12);
-
-            //get the center position of the room
-            Point center = new Point(width / 2 * 16 + positionX, height / 2 * 16 + positionY);
-
+            RandomizeRoom();
             //reset the pools + counter
             PoolFunctions.Reset();
             Pool.counter = 0;
 
-            //build a test room
-            for (int i = 0; i < width; i++)
+            //build the room
+            for (i = 0; i < room.size.x; i++)
             {
-                for (int j = 0; j < height; j++)
+                for (j = 0; j < room.size.y; j++)
                 {
                     //place the floors
-                    ComponentSprite floor = PoolFunctions.GetFloor();
-                    floor.position.X = i * 16 + positionX;
-                    floor.position.Y = j * 16 + positionY;
+                    floorRef = PoolFunctions.GetFloor();
+                    floorRef.position.X = i * 16 + room.position.X;
+                    floorRef.position.Y = j * 16 + room.position.Y;
                     
 
                     #region Top Row Walls
 
                     if (j == 0)
-                    {   
+                    {
                         //top row
-                        GameObject obj = PoolFunctions.GetObj();
-                        MovementFunctions.Teleport(obj.compMove, i * 16 + positionX, 0 * 16 - 16 + positionY);
-                        obj.direction = Direction.Down;
-                        GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
+                        objRef = PoolFunctions.GetObj();
+                        MovementFunctions.Teleport(objRef.compMove, 
+                            i * 16 + room.position.X, 
+                            0 * 16 - 16 + room.position.Y);
+                        objRef.direction = Direction.Down;
+                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
                         if (i == 0)
                         {   //topleft corner
-                            GameObject corner = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(corner.compMove, -16 + positionX, -16 + positionY);
-                            corner.direction = Direction.Down;
-                            GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove, 
+                                -16 + room.position.X, 
+                                -16 + room.position.Y);
+                            objRef.direction = Direction.Down;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallInteriorCorner);
                         }
-                        else if (i == width-1)
+                        else if (i == room.size.x - 1)
                         {   //topright corner
-                            GameObject corner = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(corner.compMove, width * 16 + positionX, -16 + positionY);
-                            corner.direction = Direction.Left;
-                            GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                room.size.x * 16 + room.position.X, 
+                                -16 + room.position.Y);
+                            objRef.direction = Direction.Left;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallInteriorCorner);
                         }
                     }
 
@@ -78,25 +93,31 @@ namespace DungeonRun
 
                     #region Bottom Row Walls
 
-                    else if (j == height-1)
+                    else if (j == room.size.y - 1)
                     {   //bottom row
-                        GameObject obj = PoolFunctions.GetObj();
-                        MovementFunctions.Teleport(obj.compMove, i * 16 + positionX, height * 16 + positionY);
-                        obj.direction = Direction.Up;
-                        GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
+                        objRef = PoolFunctions.GetObj();
+                        MovementFunctions.Teleport(objRef.compMove, 
+                            i * 16 + room.position.X,
+                            room.size.y * 16 + room.position.Y);
+                        objRef.direction = Direction.Up;
+                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
                         if (i == 0)
                         {   //bottom left corner
-                            GameObject corner = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(corner.compMove, -16 + positionX, height * 16 + positionY);
-                            corner.direction = Direction.Right;
-                            GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove, 
+                                -16 + room.position.X,
+                                room.size.y * 16 + room.position.Y);
+                            objRef.direction = Direction.Right;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallInteriorCorner);
                         }
-                        else if (i == width - 1)
+                        else if (i == room.size.x - 1)
                         {   //bottom right corner
-                            GameObject corner = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(corner.compMove, width * 16 + positionX, height * 16 + positionY);
-                            corner.direction = Direction.Up;
-                            GameObjectFunctions.SetType(corner, GameObject.Type.WallInteriorCorner);
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                room.size.x * 16 + room.position.X,
+                                room.size.y * 16 + room.position.Y);
+                            objRef.direction = Direction.Up;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallInteriorCorner);
                         }
                     }
 
@@ -107,17 +128,21 @@ namespace DungeonRun
 
                     if (i == 0)
                     {   //left side
-                        GameObject obj = PoolFunctions.GetObj();
-                        MovementFunctions.Teleport(obj.compMove, i * 16 - 16 + positionX, j * 16 + positionY);
-                        obj.direction = Direction.Right;
-                        GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
+                        objRef = PoolFunctions.GetObj();
+                        MovementFunctions.Teleport(objRef.compMove, 
+                            i * 16 - 16 + room.position.X, 
+                            j * 16 + room.position.Y);
+                        objRef.direction = Direction.Right;
+                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
                     }
-                    else if (i == width-1)
+                    else if (i == room.size.x - 1)
                     {   //right side
-                        GameObject obj = PoolFunctions.GetObj();
-                        MovementFunctions.Teleport(obj.compMove, i * 16 + 16 + positionX, j * 16 + positionY);
-                        obj.direction = Direction.Left;
-                        GameObjectFunctions.SetType(obj, GameObject.Type.WallStraight);
+                        objRef = PoolFunctions.GetObj();
+                        MovementFunctions.Teleport(objRef.compMove, 
+                            i * 16 + 16 + room.position.X, 
+                            j * 16 + room.position.Y);
+                        objRef.direction = Direction.Left;
+                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
                     }
 
                     #endregion
@@ -128,15 +153,14 @@ namespace DungeonRun
 
             #region Set the Room Actors
 
-            byte enemyCount = 10; //set the room enemy count
             //place enemies within the room
-            for (int i = 0; i < enemyCount; i++)
+            for (i = 0; i < room.enemyCount; i++)
             {
-                Actor actor = PoolFunctions.GetActor();
-                ActorFunctions.SetType(actor, Actor.Type.Blob);
+                actorRef = PoolFunctions.GetActor();
+                ActorFunctions.SetType(actorRef, Actor.Type.Blob);
                 //get a random value between the min/max size of room
-                int randomX = GetRandom.Int(-width, width);
-                int randomY = GetRandom.Int(-height, height);
+                int randomX = GetRandom.Int(-room.size.x, room.size.x);
+                int randomY = GetRandom.Int(-room.size.y, room.size.y);
                 //divide random value in half
                 randomX = randomX / 2;
                 randomY = randomY / 2;
@@ -146,9 +170,9 @@ namespace DungeonRun
                 //randomX = 0; randomY = 0; //debugging
                 //actor.compCollision.blocking = false; //debugging
                 //teleport actor to center of room, apply random offset
-                MovementFunctions.Teleport(actor.compMove,
-                    center.X + 16 * randomX, 
-                    center.Y + 16 * randomY);
+                MovementFunctions.Teleport(actorRef.compMove,
+                    room.center.X + 16 * randomX, 
+                    room.center.Y + 16 * randomY);
             }
 
             #endregion
@@ -156,7 +180,7 @@ namespace DungeonRun
 
             //center hero to room
             ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
-            MovementFunctions.Teleport(Pool.hero.compMove, center.X, center.Y);
+            MovementFunctions.Teleport(Pool.hero.compMove, room.center.X, room.center.Y);
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;

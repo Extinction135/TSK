@@ -36,7 +36,6 @@ namespace DungeonRun
                     buttons[counter].currentColor = Assets.colorScheme.buttonOver;
                     if(Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                     {   //any button clicked on becomes selected
-                        //buttons[counter].selected = true;
 
 
                         #region Button Events
@@ -50,8 +49,7 @@ namespace DungeonRun
                         }
                         else if (counter == 1) //build the dungeon room again
                         {
-                            DungeonGenerator.CreateRoom();
-                            //buttons[counter].selected = false;
+                            DungeonGenerator.BuildRoom();
                         }
 
                         #endregion
