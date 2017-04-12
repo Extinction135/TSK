@@ -21,11 +21,10 @@ namespace DungeonRun
         public TimeSpan updateTime;
         public TimeSpan drawTime;
         public TimeSpan totalTime;
-        public DebugInfo debugInfo;
 
         public override void LoadContent()
         {
-            debugInfo = new DebugInfo(this);
+            DebugInfo.Initialize(this);
             DebugMenu.Initialize();
             Pool.Initialize(this);
             DungeonGenerator.CreateRoom(this);
@@ -89,7 +88,7 @@ namespace DungeonRun
 
             //draw UI
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            debugInfo.Draw();
+            DebugInfo.Draw();
             DebugMenu.Draw();
             ScreenManager.spriteBatch.End();
             

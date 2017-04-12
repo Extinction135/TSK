@@ -13,28 +13,27 @@ using Windows.System;
 
 namespace DungeonRun
 {
-    public class DebugInfo
+    public static class DebugInfo
     {
-        public DungeonScreen screen;
-        public Rectangle background;
-        public List<ComponentText> textFields;
-        public int counter = 0;
-        public int size = 0;
+        public static DungeonScreen screen;
+        public static Rectangle background;
+        public static List<ComponentText> textFields;
+        public static int counter = 0;
+        public static int size = 0;
 
-        public ComponentText timingText;
-        public ComponentText actorText;
-        public ComponentText moveText;
-        public ComponentText poolText;
+        public static ComponentText timingText;
+        public static ComponentText actorText;
+        public static ComponentText moveText;
+        public static ComponentText poolText;
         
-        public byte framesTotal = 30; //how many frames to average over
-        public byte frameCounter = 0; //increments thru frames 0-framesTotal
-        public long updateTicks; //update tick times are added to this
-        public long drawTicks; //draw tick times are added to this
-        public long updateAvg; //stores the average update ticks
-        public long drawAvg; //stores the average draw ticks
+        public static byte framesTotal = 30; //how many frames to average over
+        public static byte frameCounter = 0; //increments thru frames 0-framesTotal
+        public static long updateTicks; //update tick times are added to this
+        public static long drawTicks; //draw tick times are added to this
+        public static long updateAvg; //stores the average update ticks
+        public static long drawAvg; //stores the average draw ticks
 
-
-        public DebugInfo(DungeonScreen DungeonScreen)
+        public static void Initialize(DungeonScreen DungeonScreen)
         {
             screen = DungeonScreen;
             textFields = new List<ComponentText>();
@@ -59,7 +58,7 @@ namespace DungeonRun
             textFields.Add(poolText);
         }
 
-        public void Draw()
+        public static void Draw()
         {
 
             #region Calculate Update + Draw Times, Frame Times, and Ram useage

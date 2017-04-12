@@ -8,26 +8,6 @@ todo:
 
 
 
-moved control booleans into global Flags class.
-updated all references to these control booleans.
-updated DebugMenu.HandleInput() to change button color + state based on cursor position + state.
-implemented 'draw collisions' button event: toggles Flags.DrawCollisions boolean.
-removed 'selected' color from colorScheme.
-
-
-implement an editor that sits at the top of the frame
-should have button to toggle collisionRec draw on/off
-should have button to remake dungeon room too, for testing
-
-
-how do we implement the button class?
-	button has up, over, down colors, which should be defined in the game's color scheme struct
-	button is likely a component, could be part of the components class
-	button state enum - defined in the button class? simply as .state enum
-	its not really a component
-	the centerText function shouldn't be part of the button class
-	and the Draw() function shouldn't be part of it either
-	so it kinda is a component - ComponentButton
 
 
 
@@ -36,7 +16,7 @@ we can probably make the debugInfo class a static global class too
 	
 	
 	
-	
+debugMenu should have button to remake dungeon room too, for testing
 
 hero should have a shadow (baked into sheet)
 blob shadows are TOO dark, should be around 60% opacity

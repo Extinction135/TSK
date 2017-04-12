@@ -60,11 +60,6 @@ namespace DungeonRun
             }
         }
 
-        public static void Update()
-        {
-
-        }
-
         public static void Draw()
         {
             //draw the background rec with correct color
