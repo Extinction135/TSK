@@ -24,7 +24,7 @@ namespace DungeonRun
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton("draw collisions", new Point(2, 2)));
-            buttons.Add(new ComponentButton("build dungeon", new Point(70, 2)));
+            buttons.Add(new ComponentButton("build dungeon", new Point(68, 2)));
         }
 
         public static void HandleInput()

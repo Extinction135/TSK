@@ -25,7 +25,11 @@ namespace DungeonRun
         public static ComponentText actorText;
         public static ComponentText moveText;
         public static ComponentText poolText;
-        
+        public static ComponentText creationText;
+
+        public static long roomTime = 0;
+        public static long dungeonTime = 0;
+
         public static byte framesTotal = 30; //how many frames to average over
         public static byte frameCounter = 0; //increments thru frames 0-framesTotal
         public static long updateTicks; //update tick times are added to this
@@ -56,6 +60,10 @@ namespace DungeonRun
             poolText = new ComponentText(Assets.font, "", 
                 new Vector2(16 * 12, yPos + 00), Assets.colorScheme.textSmall);
             textFields.Add(poolText);
+
+            creationText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 17, yPos + 00), Assets.colorScheme.textSmall);
+            textFields.Add(creationText);
         }
 
         public static void Draw()
@@ -108,10 +116,13 @@ namespace DungeonRun
             poolText.text = "floors: " + Pool.floorIndex + "/" + Pool.floorCount;
 
             poolText.text += "\nobjs: " + Pool.objsUsed + "/" + Pool.objCount;
-            poolText.text += "\nactors: " + Pool.actorsUsed + "/" + Pool.actorCount;
-            poolText.text += "\nprojectiles: " + Pool.projectilesUsed + " / " + Pool.projectileCount;
-            poolText.text += "\nparticles: 0/0";
+            poolText.text += "\nactrs: " + Pool.actorsUsed + "/" + Pool.actorCount;
+            poolText.text += "\npros: " + Pool.projectilesUsed + " / " + Pool.projectileCount;
+            poolText.text += "\nparts: 0/0";
 
+            creationText.text = "time (ticks)";
+            creationText.text += "\nroom: " + roomTime;
+            creationText.text += "\ndung: " + dungeonTime;
 
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.windowBkg);
             size = textFields.Count();

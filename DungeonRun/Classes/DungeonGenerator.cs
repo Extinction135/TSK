@@ -15,11 +15,13 @@ namespace DungeonRun
     public static class DungeonGenerator
     {
 
-        public static DungeonScreen Dungeon;
-        public static void Initialize(DungeonScreen DungeonScreen) { Dungeon = DungeonScreen; }
+        public static Stopwatch stopWatch = new Stopwatch();
+        public static TimeSpan time;
 
         public static void CreateRoom()
         {
+            stopWatch.Reset(); stopWatch.Start();
+
             //the room should have an overall position
             int positionX = 16 * 10;
             int positionY = 16 * 10;
@@ -123,8 +125,10 @@ namespace DungeonRun
                 }
             }
 
-            //set the room enemy count
-            byte enemyCount = 10;
+
+            #region Set the Room Actors
+
+            byte enemyCount = 10; //set the room enemy count
             //place enemies within the room
             for (int i = 0; i < enemyCount; i++)
             {
@@ -147,9 +151,15 @@ namespace DungeonRun
                     center.Y + 16 * randomY);
             }
 
+            #endregion
+
+
             //center hero to room
             ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
             MovementFunctions.Teleport(Pool.hero.compMove, center.X, center.Y);
+
+            stopWatch.Stop(); time = stopWatch.Elapsed;
+            DebugInfo.roomTime = time.Ticks;
         }
 
     }
