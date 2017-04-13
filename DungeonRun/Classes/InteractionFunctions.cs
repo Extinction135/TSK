@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class InteractionFunctions
     {
+        public static byte damage;
 
         public static void Handle(Actor Actor, GameObject Obj)
         {
@@ -26,12 +27,16 @@ namespace DungeonRun
 
             //every projectile pushes an actor it collides with
             MovementFunctions.Push(Actor.compMove, Projectile.direction, 1.0f);
+            ActorFunctions.SetHitState(Actor);
+
             //we can modify the push amount based on the projectile type
             //some projectiles could push actors harder or softer
 
+            damage = 0; //reset the damage value
             if (Projectile.type == GameObject.Type.ProjectileSword)
             {
-                Actor.health -= 1;
+                //Actor.health -= 1;
+                damage = 1;
                 //create a hit particle
                 //swords always complete their animation
             }
@@ -40,6 +45,9 @@ namespace DungeonRun
             //deal more damage
             //create explosion particle
             //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
+
+            //only deal damage to actors that are not in a hit state
+            if (Actor.state != Actor.State.Hit) { Actor.health -= damage; }
         }
 
         public static void Handle(GameObject Projectile, GameObject Obj)

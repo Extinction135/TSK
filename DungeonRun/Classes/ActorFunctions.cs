@@ -15,6 +15,18 @@ namespace DungeonRun
     public static class ActorFunctions
     {
 
+        public static void SetHitState(Actor Actor)
+        {
+            Actor.state = Actor.State.Hit;
+            Actor.stateLocked = true;
+            Actor.lockTotal = 10;
+
+            //create a dash(smoke) particle here
+            ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
+        }
+
+
+
         public static void SetType(Actor Actor, Actor.Type Type)
         {   //set the type, direction, state, and active boolean
             Actor.type = Type;
@@ -63,30 +75,21 @@ namespace DungeonRun
             //get the input for this frame, set actor.direction
             Input.SetInputState(Actor.compInput, Actor);
 
-            //if actor can change state, sync state to inputState
+
+            #region Actor is not Statelocked
+
             if (!Actor.stateLocked)
-            {
+            {   
                 //set actor moving/facing direction
                 if (Actor.compInput.direction != Direction.None)
                 { Actor.direction = Actor.compInput.direction; }
-
-                Actor.state = Actor.inputState; //pass the input state
+                Actor.state = Actor.inputState; //sync state to input state
                 Actor.lockCounter = 0; //reset lock counter in case actor statelocks
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
-                //death check, then state checks
-                if (Actor.health <= 0)
-                {
-                    Actor.state = Actor.State.Dead;
-                    Actor.lockTotal = 255;
-                    Actor.stateLocked = true;
-
-                    Actor.compCollision.rec.X = -1000; //hide the collisionRec
-                    //this will only run once per death, then actor is trapped in dead state
-                    //play the death soundFX + spawn death effects
-                }
-                else if (Actor.state == Actor.State.Dash)
+                //check states
+                if (Actor.state == Actor.State.Dash)
                 {
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;
@@ -112,18 +115,33 @@ namespace DungeonRun
                     //create item projectile here
                 }
             }
+
+            #endregion
+
+
+            #region Actor is Statelocked
+
             else
-            {   //actor is statelocked, check to see if actor is dead
-                if (Actor.state != Actor.State.Dead)
-                {   //if actor is alive, increment lock counter
-                    Actor.lockCounter++;
-                    if (Actor.lockCounter > Actor.lockTotal) //check against lock total
-                    {
-                        Actor.stateLocked = false; //unlock actor
-                        Input.ResetInputData(Actor.compInput); //reset input component
-                    }
+            {
+                Actor.lockCounter++; //increment lock counter
+                if (Actor.lockCounter > Actor.lockTotal) //check against lock total
+                {
+                    Actor.stateLocked = false; //unlock actor
+                    Input.ResetInputData(Actor.compInput); //reset input component
+                    if (Actor.health <= 0) //check to see if the actor is dead
+                    { Actor.state = Actor.State.Dead; }
+                }
+                if (Actor.state == Actor.State.Dead)
+                {   //manage the death state
+                    Actor.lockCounter = 0;
+                    Actor.lockTotal = 255;
+                    Actor.stateLocked = true;
+                    Actor.compCollision.rec.X = -1000; 
                 }
             }
+
+            #endregion
+
 
             //set actor animation and direction
             ActorAnimationListManager.SetAnimationGroup(Actor);

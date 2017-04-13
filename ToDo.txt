@@ -9,37 +9,38 @@ goal: 13 commits/day
 todo:
 
 
-5
-
-
-modified poolFunctions.Update() to call PoolFunctions.Move()
-removed this call from DungeonScreen.Update().
-now checking for death state in PoolFunctions.Move() for every active actor.
-updated ActorFunctions.Update to move dead actor's collision rec offscreen upon death state.
-these modifications fix a bug where a dead actor was still able to move around (creepy).
+4
 
 
 
+created ActorFunctions.SetHitState().
+moved death check into the statelocked routines in ActorFunctions.Update().
+now calling SetHitState() from InteractionFunctions.Handle(projectile, actor).
+this causes projectiles to put actors into their hit state
 
+added damage byte to InteractionFunctions.cs.
+refactored how damage is applied in Handle() function.
+if the actor is in a hit state, no damage is applied.
 
-
-bug: sometimes hero can't kill a blob - it gets pushed but doesn't die
-
-bug: we should only check for death (0 health) from a HIT state
-this will allow the actor time to be pushed, and draw their hit animation
+organized ActorFunctions.Update() better.
 
 
 
 
+when actor dashes, they create multiple dash particles
+and they dash waaay too much
+they get put into the HIT state, but they never reach the death state
+
+dashing randomly puts the hero in the hit state too
+
+
+
+
+
+
+doing this in prep for hit state
 
 work hit state
-
-we'll need to check and see if an actor has <= 0 health
-if this happens, the actor is statelocked into the death state + animation
-we'll need a death animation + state
-once in the death animation state, the actor takes no input and never unlocks
-
-
 
 (	
 	we're going to run into an issue where the projectile's collisionRec overlaps an actor across multiple frames
@@ -56,16 +57,23 @@ this prevents the cross-frame damage mentioned above
 
 
 
+
+
+
+bug: sometimes hero can't kill a blob - it gets pushed but doesn't die
+
+bug: we should only check for death (0 health) from a HIT state
+this will allow the actor time to be pushed, and draw their hit animation
+
+
+
+
 on sword collision, create a hit particle
 create hit particle gameObject
 add to gameObjFunctions.SetType + ProjectileSpawn
 
-
-
-
 get worldUI updating the hearts based on pool.hero.health
 this should happen every update frame
-
 
 blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
 
