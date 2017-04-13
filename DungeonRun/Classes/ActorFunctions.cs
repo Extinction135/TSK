@@ -81,6 +81,8 @@ namespace DungeonRun
                     Actor.state = Actor.State.Dead;
                     Actor.lockTotal = 255;
                     Actor.stateLocked = true;
+
+                    Actor.compCollision.rec.X = -1000; //hide the collisionRec
                     //this will only run once per death, then actor is trapped in dead state
                     //play the death soundFX + spawn death effects
                 }

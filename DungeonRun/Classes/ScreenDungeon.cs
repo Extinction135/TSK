@@ -45,11 +45,8 @@ namespace DungeonRun
         {
             Timing.Reset();
 
-            if(!Flags.Paused)
-            {   //update and move actors, objects, and projectiles
-                PoolFunctions.Update();
-                PoolFunctions.Move(this);
-            }
+            if(!Flags.Paused) //update and move actors, objects, and projectiles
+            { PoolFunctions.Update(this); }
 
             //track camera to hero
             Camera2D.targetPosition = Pool.hero.compSprite.position;
