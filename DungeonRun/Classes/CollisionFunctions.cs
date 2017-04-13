@@ -15,9 +15,11 @@ namespace DungeonRun
     public static class CollisionFunctions
     {
 
-        public static GameObject CheckObjCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
+        static int i;
+
+        public static GameObject CheckObjPoolCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
         {
-            for (int i = 0; i < Pool.objCount; i++)
+            for (i = 0; i < Pool.objCount; i++)
             {
                 if (Pool.objPool[i].active)
                 {   //return object if active and collides with source collision rec
@@ -31,9 +33,9 @@ namespace DungeonRun
             return null; //no collision
         }
 
-        public static Actor CheckActorCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
+        public static Actor CheckActorPoolCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
         {   
-            for (int i = 0; i < Pool.actorCount; i++)
+            for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active)
                 {   //return actor if active and collides with source collision rec
@@ -46,6 +48,25 @@ namespace DungeonRun
             }
             return null; //no collision
         }
+
+        public static GameObject CheckProjectilePoolCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
+        {
+            for (i = 0; i < Pool.projectileCount; i++)
+            {
+                if (Pool.projectilePool[i].active)
+                {   //return actor if active and collides with source collision rec
+                    if (Coll.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
+                    {   //do not return the source actor (it collides with itself)
+                        if (Coll != Pool.projectilePool[i].compCollision)
+                        { return Pool.projectilePool[i]; }
+                    }
+                }
+            }
+            return null; //no collision
+        }
+
+
+
 
         static Boolean collisionX;
         static Boolean collisionY;
@@ -63,8 +84,8 @@ namespace DungeonRun
 
             //project collisionRec on X axis, get collisions
             Coll.rec.X = (int)Move.newPosition.X + Coll.offsetX; 
-            objCollision = CheckObjCollisions(Coll, DungeonScreen);
-            actorCollision = CheckActorCollisions(Coll, DungeonScreen);
+            objCollision = CheckObjPoolCollisions(Coll, DungeonScreen);
+            actorCollision = CheckActorPoolCollisions(Coll, DungeonScreen);
             //handle collisions
             collisionX = false;
             if (objCollision != null)
@@ -87,8 +108,8 @@ namespace DungeonRun
 
             //project collisionRec on X axis, get collisions
             Coll.rec.Y = (int)Move.newPosition.Y + Coll.offsetY;
-            objCollision = CheckObjCollisions(Coll, DungeonScreen);
-            actorCollision = CheckActorCollisions(Coll, DungeonScreen);
+            objCollision = CheckObjPoolCollisions(Coll, DungeonScreen);
+            actorCollision = CheckActorPoolCollisions(Coll, DungeonScreen);
             //handle collisions
             collisionY = false;
             if (objCollision != null)

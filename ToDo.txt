@@ -1,7 +1,7 @@
 ﻿CTRL + M, O = collapse functions/regions
 CTRL + M, P = expand functions/regions
 
-goal: 10 commits/day
+goal: 13 commits/day
 
 
 
@@ -10,8 +10,16 @@ todo:
 
 
 
+renamed CollisionFunctions methods to better describe their functionality
+added CheckProjectilePoolCollisions() function
 
-converted Initialize() functions to constructors for: DebugInfo, DebugMenu, WorldUI, + Timing classes.
+
+
+we aren't checking the projectiles against actors - we should
+if a projectile collides with an actor, dump the actor type to debug
+
+
+next, push the actor in the projectile's direction by a set amount
 
 
 
@@ -22,7 +30,7 @@ based on projectile type, deal damage to colliding actors
 
 blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
 
-
+collisions between actors should always be blocking, never damaging
 
 
 Version 0.1 Milestones
