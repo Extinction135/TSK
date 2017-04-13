@@ -21,12 +21,7 @@ namespace DungeonRun
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
-            
-            //create a dash(smoke) particle here
-            //ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
         }
-
-
 
         public static void SetType(Actor Actor, Actor.Type Type)
         {   //set the type, direction, state, and active boolean
@@ -96,8 +91,7 @@ namespace DungeonRun
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
-
-                    //create a dash(smoke) particle here
+                    //create a dash particle 
                     ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
                 }
                 else if (Actor.state == Actor.State.Attack)
@@ -105,8 +99,7 @@ namespace DungeonRun
                     Actor.lockTotal = 15;
                     Actor.stateLocked = true;
                     ComponentFunctions.StopMovement(Actor.compMove);
-
-                    //create weapon projectile here
+                    //create weapon projectile
                     ProjectileFunctions.Spawn(GameObject.Type.ProjectileSword, Actor);
                 }
                 else if (Actor.state == Actor.State.Use)
@@ -131,7 +124,10 @@ namespace DungeonRun
                     Actor.stateLocked = false; //unlock actor
                     Input.ResetInputData(Actor.compInput); //reset input component
                     if (Actor.health <= 0) //check to see if the actor is dead
-                    { Actor.state = Actor.State.Dead; }
+                    {
+                        Actor.state = Actor.State.Dead;
+                        ProjectileFunctions.Spawn(GameObject.Type.ParticleExplosion, Actor);
+                    }
                 }
                 if (Actor.state == Actor.State.Dead)
                 {   //manage the death state

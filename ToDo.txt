@@ -9,14 +9,18 @@ goal: 13 commits/day
 todo:
 
 
-2
+1
 
 
 
+added new gameObject type ParticleExplosion.
+added new gameObject animation list ParticleExplosion.
+added codepath for ParticleExplosion to GameObjectFunctions.SetType.
+added call to spawn ParticleExplosion when actor transitions to death state
+blob enemies now explode when they die - satisfying.
 
-changed parameter name in CheckCollisions() to Projectile, to better describe the gameObj.
-added a check to CheckCollisions() that bails from method if gameObj is a particle.
-this fixes a bug where actors were colliding with their dash particles
+
+finesse the explosion lifetime and animSpeed
 
 
 
@@ -25,8 +29,10 @@ Death++
 add explosion pop effect when an actor changes into their death state
 when a blob actor dies, set their sprite.zOffset value to -16
 
-Hit++
-add a hit effect when actor is set into hit state
+
+on sword collision, create a hit particle
+create hit particle gameObject
+add to gameObjFunctions.SetType + ProjectileSpawn
 
 
 
@@ -41,9 +47,7 @@ bug: sometimes hero can't kill a blob - it gets pushed but doesn't die
 
 
 
-on sword collision, create a hit particle
-create hit particle gameObject
-add to gameObjFunctions.SetType + ProjectileSpawn
+
 
 get worldUI updating the hearts based on pool.hero.health
 this should happen every update frame

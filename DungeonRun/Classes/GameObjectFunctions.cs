@@ -310,6 +310,17 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = false;
             }
+            else if (Type == GameObject.Type.ParticleExplosion)
+            {
+                Obj.compSprite.zOffset = 16;
+                Obj.compCollision.offsetX = 0; Obj.compCollision.offsetY = 0;
+                Obj.compCollision.rec.Width = 0; Obj.compCollision.rec.Height = 0;
+                Obj.compCollision.blocking = false;
+                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.loop = false;
+            }
 
             #endregion
 

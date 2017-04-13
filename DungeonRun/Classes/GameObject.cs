@@ -121,6 +121,7 @@ namespace DungeonRun
             #region Particles
 
             ParticleDashPuff,
+            ParticleExplosion,
 
             #endregion
 
