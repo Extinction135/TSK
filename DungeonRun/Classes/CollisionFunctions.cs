@@ -123,26 +123,29 @@ namespace DungeonRun
             Actor.compMove.position.Y = Actor.compMove.newPosition.Y;
         }
 
-        public static void CheckCollisions(GameObject Obj, DungeonScreen DungeonScreen)
+        public static void CheckCollisions(GameObject Projectile, DungeonScreen DungeonScreen)
         {
+            //do not check collisions for particles
+            if (Projectile.objGroup == GameObject.ObjGroup.Particle) { return; }
+
             PrepForCollisionChecking();
             //check projectile against gameObjs & other projectiles (blocking, might change state)
-            Obj.compCollision.rec.X = (int)Obj.compMove.newPosition.X + Obj.compCollision.offsetX;
-            Obj.compCollision.rec.Y = (int)Obj.compMove.newPosition.Y + Obj.compCollision.offsetY;
+            Projectile.compCollision.rec.X = (int)Projectile.compMove.newPosition.X + Projectile.compCollision.offsetX;
+            Projectile.compCollision.rec.Y = (int)Projectile.compMove.newPosition.Y + Projectile.compCollision.offsetY;
 
             //get actor, object, projectile collisions
-            actorCollision = CheckActorPoolCollisions(Obj.compCollision, DungeonScreen);
-            objCollision = CheckObjPoolCollisions(Obj.compCollision, DungeonScreen);
-            projectileCollision = CheckProjectilePoolCollisions(Obj.compCollision, DungeonScreen);
+            actorCollision = CheckActorPoolCollisions(Projectile.compCollision, DungeonScreen);
+            objCollision = CheckObjPoolCollisions(Projectile.compCollision, DungeonScreen);
+            projectileCollision = CheckProjectilePoolCollisions(Projectile.compCollision, DungeonScreen);
 
             //handle collision effects
-            if (actorCollision != null) { InteractionFunctions.Handle(Obj, actorCollision); }
-            if (objCollision != null) { InteractionFunctions.Handle(Obj, objCollision); }
-            if (projectileCollision != null) { InteractionFunctions.Handle(Obj, projectileCollision); }
+            if (actorCollision != null) { InteractionFunctions.Handle(Projectile, actorCollision); }
+            if (objCollision != null) { InteractionFunctions.Handle(Projectile, objCollision); }
+            if (projectileCollision != null) { InteractionFunctions.Handle(Projectile, projectileCollision); }
 
             //the current position becomes the new position
-            Obj.compMove.position.X = Obj.compMove.newPosition.X;
-            Obj.compMove.position.Y = Obj.compMove.newPosition.Y;
+            Projectile.compMove.position.X = Projectile.compMove.newPosition.X;
+            Projectile.compMove.position.Y = Projectile.compMove.newPosition.Y;
         }
 
     }

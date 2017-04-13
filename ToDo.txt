@@ -9,39 +9,29 @@ goal: 13 commits/day
 todo:
 
 
-3
-
-
-fixed a bug where actors didn't take damage because they were prematurely set into a hit state
-added force float to InteractionFunctions, refactored how projectiles push actors (using force value).
-force and damage values are now based on projectile type.
-changed hit state lifetime to be longer
-fixed a bug where actor.lockCounter was not being reset to 0 when actor was put into hit state
+2
 
 
 
 
-
-fix the bugs:
-
-	when actor dashes, they create multiple dash particles
-	and they dash waaay too much
-	they get put into the HIT state, but they never reach the death state
-
-	dashing randomly puts the hero in the hit state too
+changed parameter name in CheckCollisions() to Projectile, to better describe the gameObj.
+added a check to CheckCollisions() that bails from method if gameObj is a particle.
+this fixes a bug where actors were colliding with their dash particles
 
 
-	
 
-if actor down dashes, they are set into a hit state and move abnormally fast
+
+Death++
+add explosion pop effect when an actor changes into their death state
+when a blob actor dies, set their sprite.zOffset value to -16
+
+Hit++
+add a hit effect when actor is set into hit state
 
 
 
 
 bug: sometimes hero can't kill a blob - it gets pushed but doesn't die
-
-bug: we should only check for death (0 health) from a HIT state
-this will allow the actor time to be pushed, and draw their hit animation
 
 
 

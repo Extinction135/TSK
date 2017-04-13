@@ -40,7 +40,7 @@ namespace DungeonRun
         }
 
         public static void Move(GameObject Obj, DungeonScreen DungeonScreen)
-        {   //this is only used for projectiles, not room objects
+        {   //this is only used for projectiles + particles
             ProjectMovement(Obj.compMove);
             CollisionFunctions.CheckCollisions(Obj, DungeonScreen);
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
