@@ -34,7 +34,6 @@ namespace DungeonRun
             {
                 Actor.compSprite.texture = Assets.heroSheet;
                 Actor.health = 3;
-                Actor.attack = 1;
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
                 //set actor soundFX
@@ -43,7 +42,6 @@ namespace DungeonRun
             {
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.health = 1;
-                Actor.attack = 1;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
                 //set actor soundFX

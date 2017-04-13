@@ -24,10 +24,6 @@ namespace DungeonRun
         {
             //no blocking checks have been done yet, actors always block tho
 
-            //if a projectile collides with something, the projectile may get destroyed (end of lifetime)
-            //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
-            //create an explosion effect here
-
             //every projectile pushes an actor it collides with
             MovementFunctions.Push(Actor.compMove, Projectile.direction, 1.0f);
             //we can modify the push amount based on the projectile type
@@ -35,8 +31,15 @@ namespace DungeonRun
 
             if (Projectile.type == GameObject.Type.ProjectileSword)
             {
-
+                Actor.health -= 1;
+                //create a hit particle
+                //swords always complete their animation
             }
+
+            //else if projectile is fireball
+            //deal more damage
+            //create explosion particle
+            //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
         }
 
         public static void Handle(GameObject Projectile, GameObject Obj)

@@ -9,36 +9,54 @@ goal: 13 commits/day
 todo:
 
 
-8
+7
 
 
-
-added MovementFunctions.Push(), extracting functionality from ProjectMovement().
-refactored ProjectMovement() to use new Push() functionality.
-updated InteractionFunctions.Handle(projectile, actor) to use Push().
-projectiles now push actors in the projectile's direction upon a collision.
-
-
-
+updated Interactions.Handle() to deal damage to actors if they collide with sword projectile.
+cleaned up MovementFunctions.
+removed attack field from actor.cs - damage is calculated based on projectiles type.
+removed references to attack field from ActorFunctions.SetType.
 
 
 
 
 
+on sword collision:
+	create a hit particle
+	decrement actor's health by 1
+	
+	
+	
+we're going to run into an issue where the projectile's collisionRec overlaps an actor across multiple frames
+this will cause the actor to take damage multiple times
+we should have an invincible boolean for actor, so the actor doesn't take damage
+this boolean should automatically flip to false after a certain count
+so we'll need an invincibility counter and a invincibility time
+
+*** this should actually be the actor's HIT state
+while in the HIT state, actors should be invincible
+the HIT state is statelocked, and plays through its animation, then unlocks
+this prevents the cross-frame damage mentioned above
 
 
 
 
 
+we'll need to check and see if an actor has <= 0 health
+if this happens, the actor is statelocked into the death state + animation
+we'll need a death animation + state
+once in the death animation state, the actor takes no input and never unlocks
 
 
+get worldUI updating the hearts based on pool.hero.health
+this should happen every update frame
 
-check collisions between projectiles and actors
-based on projectile type, deal damage to colliding actors
 
 blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
 
-collisions between actors should always be blocking, never damaging
+
+
+
 
 
 Version 0.1 Milestones

@@ -15,7 +15,6 @@ namespace DungeonRun
     public static class MovementFunctions
     {
 
-
         public static void Push(ComponentMovement Move, Direction Direction, float Amount)
         {
             //modify move components magnitude based on direction by amount
@@ -32,9 +31,6 @@ namespace DungeonRun
             else if (Direction == Direction.UpRight)
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
         }
-
-
-
 
         public static void Move(Actor Actor, DungeonScreen DungeonScreen)
         {
@@ -53,28 +49,6 @@ namespace DungeonRun
         public static void ProjectMovement(ComponentMovement Move)
         {
             Push(Move, Move.direction, Move.speed);
-
-            /*
-            //calculate magnitude
-            if (Move.direction == Direction.Down)
-            { Move.magnitude.Y += Move.speed; }
-            else if (Move.direction == Direction.Left)
-            { Move.magnitude.X -= Move.speed; }
-            else if (Move.direction == Direction.Right)
-            { Move.magnitude.X += Move.speed; }
-            else if (Move.direction == Direction.Up)
-            { Move.magnitude.Y -= Move.speed; }
-            else if (Move.direction == Direction.DownLeft)
-            { Move.magnitude.Y += Move.speed * 0.75f; Move.magnitude.X -= Move.speed * 0.75f; }
-            else if (Move.direction == Direction.DownRight)
-            { Move.magnitude.Y += Move.speed * 0.75f; Move.magnitude.X += Move.speed * 0.75f; }
-            else if (Move.direction == Direction.UpLeft)
-            { Move.magnitude.Y -= Move.speed * 0.75f; Move.magnitude.X -= Move.speed * 0.75f; }
-            else if (Move.direction == Direction.UpRight)
-            { Move.magnitude.Y -= Move.speed * 0.75f; Move.magnitude.X += Move.speed * 0.75f; }
-            */
-
-
             //apply friction to magnitude, clip magnitude to 0 when it gets very small
             Move.magnitude = Move.magnitude * Move.friction;
             if (Math.Abs(Move.magnitude.X) < 0.01f) { Move.magnitude.X = 0; }

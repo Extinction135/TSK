@@ -50,7 +50,6 @@ namespace DungeonRun
 
         //battle fields
         public byte health;
-        public byte attack;
 
         //actor requires a reference to the various textures/sounds it may use - all the possible textures
         public Actor()
