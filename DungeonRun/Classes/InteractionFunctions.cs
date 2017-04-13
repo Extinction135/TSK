@@ -27,6 +27,16 @@ namespace DungeonRun
             //if a projectile collides with something, the projectile may get destroyed (end of lifetime)
             //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
             //create an explosion effect here
+
+            //every projectile pushes an actor it collides with
+            MovementFunctions.Push(Actor.compMove, Projectile.direction, 1.0f);
+            //we can modify the push amount based on the projectile type
+            //some projectiles could push actors harder or softer
+
+            if (Projectile.type == GameObject.Type.ProjectileSword)
+            {
+
+            }
         }
 
         public static void Handle(GameObject Projectile, GameObject Obj)

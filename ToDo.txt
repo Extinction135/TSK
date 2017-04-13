@@ -9,52 +9,14 @@ goal: 13 commits/day
 todo:
 
 
-9
-
-
-created InteractionFunctions.cs, with various Handle() functions.
-updated ActorFunctions.SetTyoe() to ensure an actor's collision component is always blocking.
-updated CollisionFunctions.CheckCollisions(Actor), removed codepaths for actor/actor interactions.
-actors will always block each other, without any type of interaction.
-interactions with actors are only possible from objects and projectiles.
-linked up collisions to interactions so correct Handle() functions are being called.
+8
 
 
 
-we need a class that handles the collision effects
-this will be a pretty big class, so it needs to be seperate from CollisionFunctions.cs
-
-
-InteractionFunctions.cs - handles collision effects between actors, objs
-	Handle(Actor, Obj)
-	Handle(Projectile, Actor)
-	Handle(Projectile, Obj)
-
-	Actor vs Actor simply blocks
-	so we dont really need to call a function to handle this interaction
-	an actor should always be blocking too
-
-
-	if an actor collides with a sword projectile, push actor in projectile's direction
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+added MovementFunctions.Push(), extracting functionality from ProjectMovement().
+refactored ProjectMovement() to use new Push() functionality.
+updated InteractionFunctions.Handle(projectile, actor) to use Push().
+projectiles now push actors in the projectile's direction upon a collision.
 
 
 

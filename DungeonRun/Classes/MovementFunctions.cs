@@ -15,6 +15,27 @@ namespace DungeonRun
     public static class MovementFunctions
     {
 
+
+        public static void Push(ComponentMovement Move, Direction Direction, float Amount)
+        {
+            //modify move components magnitude based on direction by amount
+            if (Direction == Direction.Down) { Move.magnitude.Y += Amount; }
+            else if (Direction == Direction.Left) { Move.magnitude.X -= Amount; }
+            else if (Direction == Direction.Right) { Move.magnitude.X += Amount; }
+            else if (Direction == Direction.Up) { Move.magnitude.Y -= Amount; }
+            else if (Direction == Direction.DownLeft)
+            { Move.magnitude.Y += Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
+            else if (Direction == Direction.DownRight)
+            { Move.magnitude.Y += Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
+            else if (Direction == Direction.UpLeft)
+            { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
+            else if (Direction == Direction.UpRight)
+            { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
+        }
+
+
+
+
         public static void Move(Actor Actor, DungeonScreen DungeonScreen)
         {
             ProjectMovement(Actor.compMove);
@@ -31,6 +52,9 @@ namespace DungeonRun
 
         public static void ProjectMovement(ComponentMovement Move)
         {
+            Push(Move, Move.direction, Move.speed);
+
+            /*
             //calculate magnitude
             if (Move.direction == Direction.Down)
             { Move.magnitude.Y += Move.speed; }
@@ -48,6 +72,9 @@ namespace DungeonRun
             { Move.magnitude.Y -= Move.speed * 0.75f; Move.magnitude.X -= Move.speed * 0.75f; }
             else if (Move.direction == Direction.UpRight)
             { Move.magnitude.Y -= Move.speed * 0.75f; Move.magnitude.X += Move.speed * 0.75f; }
+            */
+
+
             //apply friction to magnitude, clip magnitude to 0 when it gets very small
             Move.magnitude = Move.magnitude * Move.friction;
             if (Math.Abs(Move.magnitude.X) < 0.01f) { Move.magnitude.X = 0; }
