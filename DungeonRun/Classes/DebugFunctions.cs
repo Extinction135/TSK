@@ -18,9 +18,9 @@ namespace DungeonRun
 
         public static void Inspect(DungeonScreen DungeonScreen)
         {   //check if any object or actor collide with cursor collision component, pass to Inspect()
-            GameObject gameObject = CollisionFunctions.CheckObjCollisions(Input.cursorColl, DungeonScreen);
+            GameObject gameObject = CollisionFunctions.CheckObjPoolCollisions(Input.cursorColl, DungeonScreen);
             if (gameObject != null) { Inspect(gameObject); }
-            Actor actor = CollisionFunctions.CheckActorCollisions(Input.cursorColl, DungeonScreen);
+            Actor actor = CollisionFunctions.CheckActorPoolCollisions(Input.cursorColl, DungeonScreen);
             if (actor != null) { Inspect(actor); }
         }
 

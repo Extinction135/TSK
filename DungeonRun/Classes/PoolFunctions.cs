@@ -155,8 +155,6 @@ namespace DungeonRun
                 }
             }
 
-            
-
             //obj pool
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {

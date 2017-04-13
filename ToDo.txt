@@ -9,17 +9,74 @@ goal: 13 commits/day
 todo:
 
 
+12
 
-renamed CollisionFunctions methods to better describe their functionality
-added CheckProjectilePoolCollisions() function
-
-
-
-we aren't checking the projectiles against actors - we should
-if a projectile collides with an actor, dump the actor type to debug
+refactored collision checking to consider projectiles and collision effects
 
 
-next, push the actor in the projectile's direction by a set amount
+
+actors should still work
+
+do not duplicate code per axis, this doubles the overhead of collision checking
+we should still be able to slide
+
+
+reduce the duplicate code in collisionFunctions.checkCollisions
+
+we need a reference to the actor that is undergoing collision checking
+	he will collide with projectiles, which will cause him damage
+	
+we need a reference to the projectile that is undergoing collision checking too
+	it could collide with a gameObj and change that gameobjs state
+	
+so checkCollisions should really be accepting Actors or Projectiles as parameters
+
+
+Actors: actors, gameobjs, projectiles
+Projectiles: gameobjs
+*anything that moves is a projectile, if it isn't an actor
+*gameobjs are stationary
+
+
+if a projectile collides with an actor, push that actor in the projectiles direction
+and dump the actor.type to the debug panel
+
+
+we'll need to call Move() on the gameObjPool when the room is created
+this is in order to place the objects correctly
+we should probably be teleporting these gameObjs into place
+then aligning their components
+
+
+
+InteractionFunctions.cs - determine collision effects between actors, objs
+	Handle(Actor, Obj)
+	Handle(Actor, Actor)
+	Handle(Actor, Projectile)
+	Handle(Projectile, Obj)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
