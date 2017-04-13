@@ -9,53 +9,31 @@ goal: 13 commits/day
 todo:
 
 
-4
+3
 
 
-
-created ActorFunctions.SetHitState().
-moved death check into the statelocked routines in ActorFunctions.Update().
-now calling SetHitState() from InteractionFunctions.Handle(projectile, actor).
-this causes projectiles to put actors into their hit state
-
-added damage byte to InteractionFunctions.cs.
-refactored how damage is applied in Handle() function.
-if the actor is in a hit state, no damage is applied.
-
-organized ActorFunctions.Update() better.
-
-
-
-
-when actor dashes, they create multiple dash particles
-and they dash waaay too much
-they get put into the HIT state, but they never reach the death state
-
-dashing randomly puts the hero in the hit state too
+fixed a bug where actors didn't take damage because they were prematurely set into a hit state
+added force float to InteractionFunctions, refactored how projectiles push actors (using force value).
+force and damage values are now based on projectile type.
+changed hit state lifetime to be longer
+fixed a bug where actor.lockCounter was not being reset to 0 when actor was put into hit state
 
 
 
 
 
+fix the bugs:
 
-doing this in prep for hit state
+	when actor dashes, they create multiple dash particles
+	and they dash waaay too much
+	they get put into the HIT state, but they never reach the death state
 
-work hit state
-
-(	
-	we're going to run into an issue where the projectile's collisionRec overlaps an actor across multiple frames
-	this will cause the actor to take damage multiple times
-	we should have an invincible boolean for actor, so the actor doesn't take damage
-	this boolean should automatically flip to false after a certain count
-	so we'll need an invincibility counter and a invincibility time
-)
-*** this should actually be the actor's HIT state
-while in the HIT state, actors should be invincible
-the HIT state is statelocked, and plays through its animation, then unlocks
-this prevents the cross-frame damage mentioned above
+	dashing randomly puts the hero in the hit state too
 
 
+	
 
+if actor down dashes, they are set into a hit state and move abnormally fast
 
 
 
@@ -64,6 +42,11 @@ bug: sometimes hero can't kill a blob - it gets pushed but doesn't die
 
 bug: we should only check for death (0 health) from a HIT state
 this will allow the actor time to be pushed, and draw their hit animation
+
+
+
+
+
 
 
 

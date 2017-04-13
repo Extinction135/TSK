@@ -19,10 +19,11 @@ namespace DungeonRun
         {
             Actor.state = Actor.State.Hit;
             Actor.stateLocked = true;
-            Actor.lockTotal = 10;
-
+            Actor.lockCounter = 0;
+            Actor.lockTotal = 15;
+            
             //create a dash(smoke) particle here
-            ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
+            //ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
         }
 
 
@@ -83,6 +84,7 @@ namespace DungeonRun
                 //set actor moving/facing direction
                 if (Actor.compInput.direction != Direction.None)
                 { Actor.direction = Actor.compInput.direction; }
+
                 Actor.state = Actor.inputState; //sync state to input state
                 Actor.lockCounter = 0; //reset lock counter in case actor statelocks
                 Actor.lockTotal = 0; //reset lock total
