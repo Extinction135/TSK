@@ -86,52 +86,35 @@ namespace DungeonRun
         public static void CheckCollisions(Actor Actor, DungeonScreen DungeonScreen)
         {
             PrepForCollisionChecking();
-            //check actor against other actors (blocking, possible damage)
-            //check actor against gameObjs (blocking, possible damage)
-            //check actor against projectiles (blocking, possible damage)
-            //this is done per axis
-
-
-
             //project collisionRec on X axis
             Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X + Actor.compCollision.offsetX;
             //get actor, object, projectile collisions
             objCollision = CheckObjPoolCollisions(Actor.compCollision, DungeonScreen);
             actorCollision = CheckActorPoolCollisions(Actor.compCollision, DungeonScreen);
-            projectileCollision = CheckProjectilePoolCollisions(Actor.compCollision, DungeonScreen);
+            
             //handle collisions
             if (objCollision != null && objCollision.compCollision.blocking) { collisionX = true; } 
             if (actorCollision != null && actorCollision.compCollision.blocking) { collisionX = true; } 
-            if (projectileCollision != null && projectileCollision.compCollision.blocking) { collisionX = true; } 
             //unproject collisionRec on X axis
             Actor.compCollision.rec.X = (int)Actor.compMove.position.X + Actor.compCollision.offsetX;
-
-
-
+            
             //project collisionRec on Y axis
             Actor.compCollision.rec.Y = (int)Actor.compMove.newPosition.Y + Actor.compCollision.offsetY;
             //get actor, object, projectile collisions
             objCollision = CheckObjPoolCollisions(Actor.compCollision, DungeonScreen);
             actorCollision = CheckActorPoolCollisions(Actor.compCollision, DungeonScreen);
-            projectileCollision = CheckProjectilePoolCollisions(Actor.compCollision, DungeonScreen);
+
             //handle collisions
             if (objCollision != null && objCollision.compCollision.blocking) { collisionY = true; }
             if (actorCollision != null && actorCollision.compCollision.blocking) { collisionY = true; }
-            if (projectileCollision != null && projectileCollision.compCollision.blocking) { collisionY = true; }
             //unproject collisionRec on Y axis
             Actor.compCollision.rec.Y = (int)Actor.compMove.position.Y + Actor.compCollision.offsetY;
-
-
-
+            
             //handle collision effects
             if (objCollision != null && !objCollision.compCollision.blocking)
             { }//pass this to another function that determines effect (Actor, Obj)
             if (actorCollision != null && !actorCollision.compCollision.blocking)
             { }//pass this to another function that determines effect (Actor, Actor)
-            if (projectileCollision != null && !projectileCollision.compCollision.blocking)
-            { }//pass this to another function that determines effect (Actor, Projectile)
-
-
 
             //resolve movement
             //if there was a collision, the new position reverts to the old position
@@ -140,18 +123,32 @@ namespace DungeonRun
             //the current position becomes the new position
             Actor.compMove.position.X = Actor.compMove.newPosition.X;
             Actor.compMove.position.Y = Actor.compMove.newPosition.Y;
-
-
-
         }
 
         public static void CheckCollisions(GameObject Obj, DungeonScreen DungeonScreen)
         {
             PrepForCollisionChecking();
-            //check projectile against gameObjs (blocking, might change state)
+            //check projectile against gameObjs & other projectiles (blocking, might change state)
+            Obj.compCollision.rec.X = (int)Obj.compMove.newPosition.X + Obj.compCollision.offsetX;
+            Obj.compCollision.rec.Y = (int)Obj.compMove.newPosition.Y + Obj.compCollision.offsetY;
 
-            //we don't need to check collisions per axis here, we can just project on both axis
-            //simplifies the code a little bit
+            //get actor, object, projectile collisions
+            actorCollision = CheckActorPoolCollisions(Obj.compCollision, DungeonScreen);
+            objCollision = CheckObjPoolCollisions(Obj.compCollision, DungeonScreen);
+            projectileCollision = CheckProjectilePoolCollisions(Obj.compCollision, DungeonScreen);
+
+            //handle collision effects
+            if (actorCollision != null)
+            { }//pass this to another function that determines effect (Projectile, Actor)
+            if (objCollision != null)
+            { }//pass this to another function that determines effect (Projectile, Obj)
+            if (projectileCollision != null)
+            { }//pass this to another function that determines effect (Projectile, Projectile)
+
+            //if a projectile collides with something, the projectile may get destroyed (end of lifetime)
+            //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
+            //create an explosion effect here
+            //additional projectile death effects here
 
             //the current position becomes the new position
             Obj.compMove.position.X = Obj.compMove.newPosition.X;

@@ -123,41 +123,6 @@ namespace DungeonRun
             }
         }
 
-
-
-        public static void Move(DungeonScreen DungeonScreen)
-        {   //actor pool
-            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
-            {
-                if (Pool.actorPool[Pool.counter].active)
-                { MovementFunctions.Move(Pool.actorPool[Pool.counter], DungeonScreen); }
-            }
-
-            /*
-            //obj pool
-            for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
-            {
-                if (Pool.objPool[Pool.counter].active)
-                { MovementFunctions.Move(Pool.objPool[Pool.counter], DungeonScreen); }
-            }
-            */
-
-            //projectile pool
-            for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
-            {
-                if (Pool.projectilePool[Pool.counter].active)
-                { MovementFunctions.Move(Pool.projectilePool[Pool.counter], DungeonScreen); }
-            }
-        }
-
-
-
-
-
-
-
-
-
         public static void UpdateActiveActor(Actor Actor)
         {
             Input.ResetInputData(Actor.compInput);
@@ -186,7 +151,7 @@ namespace DungeonRun
             {
                 if (Pool.objPool[Pool.counter].active)
                 {
-                    //we don't update the obj pool, because no objs move right now
+                    GameObjectFunctions.Update(Pool.objPool[Pool.counter]);
                     AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim, 
                         Pool.objPool[Pool.counter].compSprite);
                 }
@@ -202,6 +167,23 @@ namespace DungeonRun
                         Pool.projectilePool[Pool.counter].compSprite);
                 }
             }
+        }
+
+
+
+        public static void Move(DungeonScreen DungeonScreen)
+        {
+            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+            {   //move actors in actor pool
+                if (Pool.actorPool[Pool.counter].active)
+                { MovementFunctions.Move(Pool.actorPool[Pool.counter], DungeonScreen); }
+            }
+            for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
+            {   //move projectiles in projectile pool
+                if (Pool.projectilePool[Pool.counter].active)
+                { MovementFunctions.Move(Pool.projectilePool[Pool.counter], DungeonScreen); }
+            }
+            //objects in the objPool dont move
         }
 
         public static void Draw()
