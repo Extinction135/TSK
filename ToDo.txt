@@ -9,30 +9,44 @@ goal: 13 commits/day
 todo:
 
 
-7
-
-
-updated Interactions.Handle() to deal damage to actors if they collide with sword projectile.
-cleaned up MovementFunctions.
-removed attack field from actor.cs - damage is calculated based on projectiles type.
-removed references to attack field from ActorFunctions.SetType.
+6
 
 
 
 
+added hit and dead animationGroups to ActorAnimListManager.cs
+updated SetAnimationGroup() to set hit and dead animGroup to actor.state.
+defined the byte4 list for actor's hit + dead animations.
+updated ActorFunctions.Update() to check actor's health and set into death state.
+modified how actor.lockCounter + unlock codepath is managed, now checks for death state.
 
-on sword collision:
-	create a hit particle
-	decrement actor's health by 1
-	
-	
-	
-we're going to run into an issue where the projectile's collisionRec overlaps an actor across multiple frames
-this will cause the actor to take damage multiple times
-we should have an invincible boolean for actor, so the actor doesn't take damage
-this boolean should automatically flip to false after a certain count
-so we'll need an invincibility counter and a invincibility time
 
+
+** bug: when actor is set into dead state, the AI still updates it
+(but it doesn't dash?) it still moves around
+
+also, the actor collision rec should be disabled or moved offscreen when actor dies
+
+
+
+
+
+work hit state
+
+we'll need to check and see if an actor has <= 0 health
+if this happens, the actor is statelocked into the death state + animation
+we'll need a death animation + state
+once in the death animation state, the actor takes no input and never unlocks
+
+
+
+(	
+	we're going to run into an issue where the projectile's collisionRec overlaps an actor across multiple frames
+	this will cause the actor to take damage multiple times
+	we should have an invincible boolean for actor, so the actor doesn't take damage
+	this boolean should automatically flip to false after a certain count
+	so we'll need an invincibility counter and a invincibility time
+)
 *** this should actually be the actor's HIT state
 while in the HIT state, actors should be invincible
 the HIT state is statelocked, and plays through its animation, then unlocks
@@ -41,11 +55,11 @@ this prevents the cross-frame damage mentioned above
 
 
 
+on sword collision, create a hit particle
+create hit particle gameObject
+add to gameObjFunctions.SetType + ProjectileSpawn
 
-we'll need to check and see if an actor has <= 0 health
-if this happens, the actor is statelocked into the death state + animation
-we'll need a death animation + state
-once in the death animation state, the actor takes no input and never unlocks
+
 
 
 get worldUI updating the hearts based on pool.hero.health

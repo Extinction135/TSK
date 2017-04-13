@@ -28,12 +28,11 @@ namespace DungeonRun
 
         public AnimationGroup attack;
         public AnimationGroup use;
-        //use
-        //interact
+        public AnimationGroup hit;
+        public AnimationGroup dead;
 
-        //hit
-        //death
-        //etc...
+        //interact
+        //pickup, hold, carry, drag, etc...
     }
 
     public static class ActorAnimationListManager
@@ -46,8 +45,11 @@ namespace DungeonRun
             if (ActorRef.state == Actor.State.Idle) { ActorRef.animGroup = ActorRef.animList.idle; }
             else if (ActorRef.state == Actor.State.Move) { ActorRef.animGroup = ActorRef.animList.move; }
             else if (ActorRef.state == Actor.State.Dash) { ActorRef.animGroup = ActorRef.animList.dash; }
+            //
             else if (ActorRef.state == Actor.State.Attack) { ActorRef.animGroup = ActorRef.animList.attack; }
             else if (ActorRef.state == Actor.State.Use) { ActorRef.animGroup = ActorRef.animList.use; }
+            else if (ActorRef.state == Actor.State.Hit) { ActorRef.animGroup = ActorRef.animList.hit; }
+            else if (ActorRef.state == Actor.State.Dead) { ActorRef.animGroup = ActorRef.animList.dead; }
         }
 
         public static void SetAnimationDirection(Actor ActorRef)
@@ -98,6 +100,18 @@ namespace DungeonRun
             actorAnims.use.up = actorAnims.use.down;
             actorAnims.use.right = actorAnims.use.down;
             actorAnims.use.left = actorAnims.use.down;
+
+            actorAnims.hit = new AnimationGroup();
+            actorAnims.hit.down = new List<Byte4> { new Byte4(4, 0, 0, 0) };
+            actorAnims.hit.up = actorAnims.hit.down;
+            actorAnims.hit.right = actorAnims.hit.down;
+            actorAnims.hit.left = actorAnims.hit.down;
+
+            actorAnims.dead = new AnimationGroup();
+            actorAnims.dead.down = new List<Byte4> { new Byte4(4, 2, 0, 0) };
+            actorAnims.dead.up = actorAnims.dead.down;
+            actorAnims.dead.right = actorAnims.dead.down;
+            actorAnims.dead.left = actorAnims.dead.down;
         }
     }
 }

@@ -75,8 +75,16 @@ namespace DungeonRun
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
-                //based on state, lock and begin count
-                if (Actor.state == Actor.State.Dash)
+                //death check, then state checks
+                if (Actor.health <= 0)
+                {
+                    Actor.state = Actor.State.Dead;
+                    Actor.lockTotal = 255;
+                    Actor.stateLocked = true;
+                    //this will only run once per death, then actor is trapped in dead state
+                    //play the death soundFX + spawn death effects
+                }
+                else if (Actor.state == Actor.State.Dash)
                 {
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;
@@ -103,13 +111,16 @@ namespace DungeonRun
                 }
             }
             else
-            {   //actor is statelocked
-                Actor.lockCounter++; //increment the lock counter
-                if (Actor.lockCounter > Actor.lockTotal) //check against lock total
-                {
-                    Actor.stateLocked = false; //unlock actor
-                    Input.ResetInputData(Actor.compInput); //reset input component
-                } 
+            {   //actor is statelocked, check to see if actor is dead
+                if (Actor.state != Actor.State.Dead)
+                {   //if actor is alive, increment lock counter
+                    Actor.lockCounter++;
+                    if (Actor.lockCounter > Actor.lockTotal) //check against lock total
+                    {
+                        Actor.stateLocked = false; //unlock actor
+                        Input.ResetInputData(Actor.compInput); //reset input component
+                    }
+                }
             }
 
             //set actor animation and direction
