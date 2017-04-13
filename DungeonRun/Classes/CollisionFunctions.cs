@@ -103,9 +103,6 @@ namespace DungeonRun
             if (objCollision != null && objCollision.compCollision.blocking) { collisionX = true; } 
             if (actorCollision != null && actorCollision.compCollision.blocking) { collisionX = true; } 
             if (projectileCollision != null && projectileCollision.compCollision.blocking) { collisionX = true; } 
-            //if (objCollision != null) { if (objCollision.compCollision.blocking) { collisionX = true; } }
-            //if (actorCollision != null) { if (actorCollision.compCollision.blocking) { collisionX = true; } }
-            //if (projectileCollision != null) { if (projectileCollision.compCollision.blocking) { collisionX = true; } }
             //unproject collisionRec on X axis
             Actor.compCollision.rec.X = (int)Actor.compMove.position.X + Actor.compCollision.offsetX;
 
@@ -160,88 +157,6 @@ namespace DungeonRun
             Obj.compMove.position.X = Obj.compMove.newPosition.X;
             Obj.compMove.position.Y = Obj.compMove.newPosition.Y;
         }
-
-
-
-
-
-        //this is to be removed
-        public static void CheckCollisions(ComponentMovement Move, ComponentCollision Coll, DungeonScreen DungeonScreen)
-        {
-
-            #region Handle Collisions on X axis
-
-            //project collisionRec on X axis, get collisions
-            Coll.rec.X = (int)Move.newPosition.X + Coll.offsetX; 
-            objCollision = CheckObjPoolCollisions(Coll, DungeonScreen);
-            actorCollision = CheckActorPoolCollisions(Coll, DungeonScreen);
-            projectileCollision = CheckProjectilePoolCollisions(Coll, DungeonScreen);
-
-            //handle collisions
-            collisionX = false;
-            if (objCollision != null)
-            {
-                if (objCollision.compCollision.blocking) { collisionX = true; }
-                else { } //pass this to another function that determines effect
-            }
-            if (actorCollision != null)
-            {
-                if (actorCollision.compCollision.blocking) { collisionX = true; }
-                else { } //pass this to another function that determines effect
-            }
-            if (projectileCollision != null)
-            {
-                if (projectileCollision.compCollision.blocking) { collisionX = true; }
-                else { } //pass this to another function that determines effect
-            }
-            //unproject collisionRec on X axis
-            Coll.rec.X = (int)Move.position.X + Coll.offsetX;
-
-            #endregion
-
-
-            #region Handle Collisions on Y axis
-
-            //project collisionRec on X axis, get collisions
-            Coll.rec.Y = (int)Move.newPosition.Y + Coll.offsetY;
-            objCollision = CheckObjPoolCollisions(Coll, DungeonScreen);
-            actorCollision = CheckActorPoolCollisions(Coll, DungeonScreen);
-            projectileCollision = CheckProjectilePoolCollisions(Coll, DungeonScreen);
-            //handle collisions
-            collisionY = false;
-            if (objCollision != null)
-            {
-                if (objCollision.compCollision.blocking) { collisionY = true; }
-                else { } //pass this to another function that determines effect
-            }
-            if (actorCollision != null)
-            {
-                if (actorCollision.compCollision.blocking) { collisionY = true; }
-                else { } //pass this to another function that determines effect
-            }
-            if (projectileCollision != null)
-            {
-                if (projectileCollision.compCollision.blocking) { collisionY = true; }
-                else { } //pass this to another function that determines effect
-            }
-            //unproject collisionRec on Y axis
-            Coll.rec.Y = (int)Move.position.Y + Coll.offsetY;
-
-            #endregion
-
-
-            //resolve movement
-            //if there was a collision, the new position reverts to the old position
-            if (collisionX) { Move.newPosition.X = Move.position.X; }
-            if (collisionY) { Move.newPosition.Y = Move.position.Y; }
-            //the current position becomes the new position
-            Move.position.X = Move.newPosition.X;
-            Move.position.Y = Move.newPosition.Y;
-        }
-
-
-
-
 
     }
 }

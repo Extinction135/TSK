@@ -109,6 +109,22 @@ namespace DungeonRun
 
 
 
+        public static void UpdateObjectPool()
+        {   //align sprite + collision comps to move comp of all active objs
+            for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
+            {
+                if (Pool.objPool[Pool.counter].active)
+                {
+                    ComponentFunctions.Align(
+                        Pool.objPool[Pool.counter].compMove, 
+                        Pool.objPool[Pool.counter].compSprite, 
+                        Pool.objPool[Pool.counter].compCollision);
+                }
+            }
+        }
+
+
+
         public static void Move(DungeonScreen DungeonScreen)
         {   //actor pool
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
@@ -116,12 +132,16 @@ namespace DungeonRun
                 if (Pool.actorPool[Pool.counter].active)
                 { MovementFunctions.Move(Pool.actorPool[Pool.counter], DungeonScreen); }
             }
+
+            /*
             //obj pool
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {
                 if (Pool.objPool[Pool.counter].active)
                 { MovementFunctions.Move(Pool.objPool[Pool.counter], DungeonScreen); }
             }
+            */
+
             //projectile pool
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             {
@@ -129,6 +149,12 @@ namespace DungeonRun
                 { MovementFunctions.Move(Pool.projectilePool[Pool.counter], DungeonScreen); }
             }
         }
+
+
+
+
+
+
 
 
 

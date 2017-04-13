@@ -150,6 +150,9 @@ namespace DungeonRun
                 }
             }
 
+            //update the object pool, since we teleported objects around
+            PoolFunctions.UpdateObjectPool();
+
 
             #region Set the Room Actors
 

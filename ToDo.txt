@@ -9,19 +9,28 @@ goal: 13 commits/day
 todo:
 
 
-12
-
-refactored collision checking to consider projectiles and collision effects
+11
 
 
 
-actors should still work
+stopped calling Move() on the object pool, because objects DONT MOVE.
+removed unnecessary collision checking + movement calculation for objects.
+added PoolFunctions.UpdateObjectPool(), which aligns all active object components.
+updated DungeonGenerator.BuildRoom() to use new function above.
+this updates the room object's sprite + collision comps to their move positions.
+updated MovementFunctions.Teleport() to set Move.newPosition to passed parameter value.
+room objects are now placed correctly upon room construction.
 
-do not duplicate code per axis, this doubles the overhead of collision checking
-we should still be able to slide
 
 
-reduce the duplicate code in collisionFunctions.checkCollisions
+
+
+
+
+
+
+
+
 
 we need a reference to the actor that is undergoing collision checking
 	he will collide with projectiles, which will cause him damage
@@ -42,10 +51,7 @@ if a projectile collides with an actor, push that actor in the projectiles direc
 and dump the actor.type to the debug panel
 
 
-we'll need to call Move() on the gameObjPool when the room is created
-this is in order to place the objects correctly
-we should probably be teleporting these gameObjs into place
-then aligning their components
+
 
 
 
