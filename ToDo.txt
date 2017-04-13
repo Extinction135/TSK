@@ -9,60 +9,40 @@ goal: 13 commits/day
 todo:
 
 
-10
+9
 
 
-completed CheckCollision() function for GameObjects(Projectiles).
-complete implementation requires a class that handles collision effects (up next).
-reorganized PoolFunctions.cs.
-altered how collisions are checked for actors, reducing the checks each frame.
-passes playtesting.
-
-
-we need to check collisions between projectiles and objs
-
-actor should check against objs and actors
-projectiles should check against actors, objs, and pros
+created InteractionFunctions.cs, with various Handle() functions.
+updated ActorFunctions.SetTyoe() to ensure an actor's collision component is always blocking.
+updated CollisionFunctions.CheckCollisions(Actor), removed codepaths for actor/actor interactions.
+actors will always block each other, without any type of interaction.
+interactions with actors are only possible from objects and projectiles.
+linked up collisions to interactions so correct Handle() functions are being called.
 
 
 
+we need a class that handles the collision effects
+this will be a pretty big class, so it needs to be seperate from CollisionFunctions.cs
 
-we need to handle collision effects between actors and everything else
+
+InteractionFunctions.cs - handles collision effects between actors, objs
+	Handle(Actor, Obj)
+	Handle(Projectile, Actor)
+	Handle(Projectile, Obj)
+
+	Actor vs Actor simply blocks
+	so we dont really need to call a function to handle this interaction
+	an actor should always be blocking too
+
+
 	if an actor collides with a sword projectile, push actor in projectile's direction
 	
 
-remember that we are ignoring collisions effects if the colliding entity is blocking
-
-
-
-we need a reference to the actor that is undergoing collision checking
-	he will collide with projectiles, which will cause him damage
-	
-we need a reference to the projectile that is undergoing collision checking too
-	it could collide with a gameObj and change that gameobjs state
-	
-so checkCollisions should really be accepting Actors or Projectiles as parameters
-
-
-Actors: actors, gameobjs, projectiles
-Projectiles: gameobjs
-*anything that moves is a projectile, if it isn't an actor
-*gameobjs are stationary
-
-
-if a projectile collides with an actor, push that actor in the projectiles direction
-and dump the actor.type to the debug panel
 
 
 
 
 
-
-InteractionFunctions.cs - determine collision effects between actors, objs
-	Handle(Actor, Obj)
-	Handle(Actor, Actor)
-	Handle(Actor, Projectile)
-	Handle(Projectile, Obj)
 
 
 

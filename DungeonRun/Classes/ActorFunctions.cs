@@ -23,6 +23,7 @@ namespace DungeonRun
             Actor.state = Actor.State.Idle;
             Actor.active = true;
             Actor.compCollision.active = true;
+            Actor.compCollision.blocking = true; //actors always block
             SetCollisionRec(Actor);
             //set actor animations group, direction
             ActorAnimationListManager.SetAnimationGroup(Actor);

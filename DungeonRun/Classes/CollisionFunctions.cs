@@ -94,7 +94,7 @@ namespace DungeonRun
             
             //handle collisions
             if (objCollision != null && objCollision.compCollision.blocking) { collisionX = true; } 
-            if (actorCollision != null && actorCollision.compCollision.blocking) { collisionX = true; } 
+            if (actorCollision != null) { collisionX = true; } 
             //unproject collisionRec on X axis
             Actor.compCollision.rec.X = (int)Actor.compMove.position.X + Actor.compCollision.offsetX;
             
@@ -106,15 +106,13 @@ namespace DungeonRun
 
             //handle collisions
             if (objCollision != null && objCollision.compCollision.blocking) { collisionY = true; }
-            if (actorCollision != null && actorCollision.compCollision.blocking) { collisionY = true; }
+            if (actorCollision != null) { collisionY = true; }
             //unproject collisionRec on Y axis
             Actor.compCollision.rec.Y = (int)Actor.compMove.position.Y + Actor.compCollision.offsetY;
             
-            //handle collision effects
+            //handle collision effects (interaction)
             if (objCollision != null && !objCollision.compCollision.blocking)
-            { }//pass this to another function that determines effect (Actor, Obj)
-            if (actorCollision != null && !actorCollision.compCollision.blocking)
-            { }//pass this to another function that determines effect (Actor, Actor)
+            { InteractionFunctions.Handle(Actor, objCollision); }
 
             //resolve movement
             //if there was a collision, the new position reverts to the old position
@@ -138,17 +136,9 @@ namespace DungeonRun
             projectileCollision = CheckProjectilePoolCollisions(Obj.compCollision, DungeonScreen);
 
             //handle collision effects
-            if (actorCollision != null)
-            { }//pass this to another function that determines effect (Projectile, Actor)
-            if (objCollision != null)
-            { }//pass this to another function that determines effect (Projectile, Obj)
-            if (projectileCollision != null)
-            { }//pass this to another function that determines effect (Projectile, Projectile)
-
-            //if a projectile collides with something, the projectile may get destroyed (end of lifetime)
-            //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
-            //create an explosion effect here
-            //additional projectile death effects here
+            if (actorCollision != null) { InteractionFunctions.Handle(Obj, actorCollision); }
+            if (objCollision != null) { InteractionFunctions.Handle(Obj, objCollision); }
+            if (projectileCollision != null) { InteractionFunctions.Handle(Obj, projectileCollision); }
 
             //the current position becomes the new position
             Obj.compMove.position.X = Obj.compMove.newPosition.X;
