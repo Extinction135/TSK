@@ -17,16 +17,14 @@ adding a new particle/projectile:
 todo:
 
 
-11
+10
 
 
+bug: hero doesn't set animation lists post death, until hit.
+updated ActorFunctions.SetType() to fix a bug related to actor state post death.
+we weren't unlocking state, or reseting the lock counters.
+better organized ActorFunctions.SetType().
 
-
-updated the AI to randomly attack or dash.
-as a result, the AI controlled blobs can destroy each other - hilarious.
-
-hero is successfully set into a hit state upon projectile collision.
-hero is successfully set into death state upon health depletion.
 
 
 

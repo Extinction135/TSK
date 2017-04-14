@@ -61,12 +61,18 @@ namespace DungeonRun
 
 
         public static void SetType(Actor Actor, Actor.Type Type)
-        {   //set the type, direction, state, and active boolean
+        {
             Actor.type = Type;
-            Actor.compMove.direction = Direction.None;
-            Actor.direction = Direction.Down;
-            Actor.state = Actor.State.Idle;
+            //bring actor back to life
+            Actor.stateLocked = false;
             Actor.active = true;
+            Actor.lockCounter = 0;
+            Actor.lockTotal = 0;
+            //reset actor's state and direction
+            Actor.state = Actor.State.Idle;
+            Actor.direction = Direction.Down;
+            Actor.compMove.direction = Direction.None;
+            //reset actor's collisions
             Actor.compCollision.active = true;
             Actor.compCollision.blocking = true; //actors always block
             SetCollisionRec(Actor);
