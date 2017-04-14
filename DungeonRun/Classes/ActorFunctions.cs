@@ -52,6 +52,12 @@ namespace DungeonRun
 
 
 
+        public static void UseWeapon(Actor Actor)
+        {
+            if (Actor.weapon == Weapon.Sword) { ProjectileFunctions.Spawn(GameObject.Type.ProjectileSword, Actor); }
+            
+        }
+
 
 
         public static void SetType(Actor Actor, Actor.Type Type)
@@ -73,6 +79,7 @@ namespace DungeonRun
             {
                 Actor.compSprite.texture = Assets.heroSheet;
                 Actor.health = 3;
+                Actor.weapon = Weapon.Sword;
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
                 //set actor soundFX
@@ -81,12 +88,15 @@ namespace DungeonRun
             {
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.health = 1;
+                Actor.weapon = Weapon.Sword;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
                 //set actor soundFX
             }
 
         }
+
+
 
         public static void SetCollisionRec(Actor Actor)
         {
@@ -130,15 +140,14 @@ namespace DungeonRun
                     Actor.lockTotal = 15;
                     Actor.stateLocked = true;
                     ComponentFunctions.StopMovement(Actor.compMove);
-                    //create weapon projectile
-                    ProjectileFunctions.Spawn(GameObject.Type.ProjectileSword, Actor);
+                    UseWeapon(Actor);
                 }
                 else if (Actor.state == Actor.State.Use)
                 {
                     Actor.lockTotal = 25;
                     Actor.stateLocked = true;
                     ComponentFunctions.StopMovement(Actor.compMove);
-                    //create item projectile here
+                    //call useItem() - creates a projectile just like useWeapon()
                 }
             }
 

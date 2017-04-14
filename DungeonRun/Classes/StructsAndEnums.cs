@@ -70,4 +70,6 @@ namespace DungeonRun
 
     public enum MouseButtons { LeftButton, RightButton }
 
+    public enum Weapon { Sword }
+
 }

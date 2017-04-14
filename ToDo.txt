@@ -17,19 +17,27 @@ adding a new particle/projectile:
 todo:
 
 
-13
+12
 
 
 
-added ActorFunctions.SetDeathState().
-refactored how actor death is managed in ActorFunctions.Update().
-updated SetDeathState() to sort blob sprite to the floor, so actors can walk over their corpse.
-refactoring of SetDeathState() to allow actor specific death events.
+added Weapon enum to StructsAndEnums.cs.
+updated Actor.cs to have a weapon enum instance.
+updated ActorFunctions.SetType() to set actor's weapon instance to 'sword'.
+created ActorFunctions.UseWeapon(), which spawns projectiles based on Actor.weapon type.
 
 
 
 
-when a blob actor dies, set their sprite.zOffset value to -16
+we need to check the actor.weapon enum to determine what type of projectile to spawn when they attack
+
+update the AI to randomly attack
+
+
+
+how do we model the weapon an actor is using?
+with an enum, obviously
+
 
 blobs cant damage hero yet
 blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
@@ -44,7 +52,8 @@ add to gameObjFunctions.SetType + ProjectileSpawn
 
 
 
-
+actors shouldn't be able to dash if they aren't moving
+this mostly applies to hero, as AI will set the state properly prior to dashing
 
 
 
