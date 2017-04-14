@@ -123,6 +123,7 @@
     <Compile Include="Classes\PoolFunctions.cs" />
     <Compile Include="Classes\ProjectileFunctions.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
+    <Compile Include="Classes\ScreenSummary.cs" />
     <Compile Include="Classes\StructsAndEnums.cs" />
     <Compile Include="Classes\Screen.cs" />
     <Compile Include="Classes\ScreenManager.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Classes\AiFunctions.cs" />
     <Compile Include="Classes\ActorAnimListManager.cs" />
     <Compile Include="Classes\Timing.cs" />
+    <Compile Include="Classes\WinLoseFunctions.cs" />
     <Compile Include="Classes\WorldUI.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>

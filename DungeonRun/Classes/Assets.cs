@@ -17,19 +17,23 @@ namespace DungeonRun
         static ContentManager content;
 
         public static Texture2D dummyTexture;
+
+        //fonts
         public static SpriteFont font;
+        public static SpriteFont medFont;
 
         //the color scheme for the game
         public static ColorScheme colorScheme;
 
-        //the sprite sheets used in the game
+        //actor sheets
         public static Texture2D heroSheet;
         public static Texture2D blobSheet;
 
-
+        //world/ui sheets
         public static Texture2D dungeonSheet;
         public static Texture2D particleSheet;
         public static Texture2D uiSheet;
+        public static Texture2D bigTextSheet;
 
         //soundfx
 
@@ -41,6 +45,7 @@ namespace DungeonRun
 
             //fonts
             font = content.Load<SpriteFont>(@"pixelFont");
+            medFont = content.Load<SpriteFont>(@"mediumFont");
 
             //actor textures
             heroSheet = content.Load<Texture2D>(@"HeroSheet");
@@ -50,10 +55,10 @@ namespace DungeonRun
             dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
             particleSheet = content.Load<Texture2D>(@"ParticlesProjectilesSheet");
             uiSheet = content.Load<Texture2D>(@"UISheet");
+            bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
 
             //soundfx
         }
-
 
         public static void SetDefaultColorScheme()
         {
@@ -61,6 +66,8 @@ namespace DungeonRun
             colorScheme = new ColorScheme();
 
             colorScheme.background = new Color(100, 100, 100, 255);
+            colorScheme.overlay = new Color(0, 0, 0, 255);
+
             colorScheme.textSmall = new Color(255, 255, 255, 255);
             colorScheme.windowBkg = new Color(0, 0, 0, 200);
             colorScheme.collisionActor = new Color(100, 0, 0, 0);
@@ -70,5 +77,20 @@ namespace DungeonRun
             colorScheme.buttonOver = new Color(66, 66, 66, 0);
             colorScheme.buttonDown = new Color(100, 100, 100, 0);
         }
+    }
+
+    public struct ColorScheme
+    {
+        public Color background;
+        public Color overlay;
+
+        public Color textSmall;
+        public Color windowBkg;
+        public Color collisionActor;
+        public Color collisionObj;
+
+        public Color buttonUp;
+        public Color buttonOver;
+        public Color buttonDown;
     }
 }

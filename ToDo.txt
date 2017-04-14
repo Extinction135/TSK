@@ -19,16 +19,50 @@ todo:
 
 13
 
+designed mockups for the summary screen.
+created BigTextSheet, mediumFont.bmp, added both to MGCB content project.
+now loading the font and big text sheet into assets.cs.
+
+created, implemented, and tested ScreenSummary.cs.
+
+created WinLoseFunctions.cs, to handle checking of win/lose state.
+integrated WinLose.Check into DungeonScreen.Update().
+reorganized DungeonScreen.Update() to handle pause/play states better.
+wrote routines to check for Win/Lose states in WinLoseFunctions.Check().
+
+
+
+bug: won state isn't triggering
 
 
 
 
-added counters for previous and current hearts to WorldUI.
-updated WorldUI.Update() to scale hearts up and down, when hero takes damage.
-added in codepath for scaling of current item too, but it's unused right now.
+
+
+work on transition when summary screen does it's final exit
+after it exits, the dungeon screen builds a new room
+
+ideally, we want the dungeon screen hidden by a black rec at full opacity
+then fade that overlay rec to 0, exposing the new dungeon
+
+when the win/lose function triggers, the black overlay rec should fade in
+this covers the dungeon screen, and provides the background color for the summary screen
+the summary screen should not have a background rec at all
+
+
+refactor the WinLostFunctions - we're creating a boolean each check()
 
 
 
+
+
+
+
+
+
+	
+	
+	
 
 
 on sword collision, create a hit particle
@@ -40,40 +74,8 @@ add to gameObjFunctions.SetType + ProjectileSpawn
 
 
 
-
-
-we need to handle hero death state better
-	it needs an effect
-	we need a 'you died' screen, which is also the 'dungeon complete' screen
-	it displays various data about the player's experience
-	so it should be called something like SummaryScreen
-	
-	
-
-
-
-need summary screen - should appear if hero dies, or all enemies are dead
-	hero dies is a special case we'll have to check for
-	all enemies dead, we can flip a boolean if any actor is not dead state
-	if boolean is false, then create the summary screen
-	sumamry screen displays data, allows player to restart the dungeon
-	
-	if hero dies, pop up 'you died' text 
-	if enemies defeated, pop up 'you won' text
-	
-	
-	
-	
-
-
-
-
-
 Version 0.1 Milestones
 
-	worldUI current item/weapon should scale up when player presses X/Y button
-	should scale back down to 1.0 over update frames
-	
 	once all the enemies are destroyed (or hero dies), a 'won/lost' screen should appear
 	screen displays total enemies killed (need to track that)
 	displays total time spent in dungeon (need to track that too)

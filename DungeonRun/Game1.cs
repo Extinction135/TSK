@@ -44,6 +44,7 @@ namespace DungeonRun
             Assets.Load(GraphicsDevice, Content);
             Assets.SetDefaultColorScheme();
             ScreenManager.Initialize(this);
+
             ScreenManager.AddScreen(new DungeonScreen());
         }
 

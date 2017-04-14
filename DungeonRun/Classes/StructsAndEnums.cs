@@ -13,15 +13,12 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
     
-
     public static class GetRandom
     {
         static Random Random = new Random();
         public static int Int(int Low, int High)
         { return Random.Next(Low, High); }
     }
-    
-
 
     public struct Byte2
     {
@@ -47,19 +44,7 @@ namespace DungeonRun
         }
     }
 
-    public struct ColorScheme
-    {
-        public Color background;
-        public Color textSmall;
-        public Color windowBkg;
-
-        public Color collisionActor;
-        public Color collisionObj;
-
-        public Color buttonUp;
-        public Color buttonOver;
-        public Color buttonDown;
-    }
+    
 
 
     
