@@ -17,23 +17,22 @@ adding a new particle/projectile:
 todo:
 
 
-9
-
-removed redundant code from PoolFunctions.UpdateActiveActor()
-modified parameters of AiFunctions.Think() to accept an Actor instance.
-refactored AiFunctions.Think() to chase + attack hero.
-updated GameObjectFuntions.SetType() to modify the collision rec of Sword, based on sword direction.
-this fixes a bug where the sword wouldn't collide with actors very close by.
+8
 
 
+bug: hero can hit himself with the sword, if he attacks down
+solution: collision recs on swords need to be better aligned based on direction
+updated ProjetileFuntions.AlignProjectile() to better place the sword in the actor's hand.
+updated GameObjectFunctions.SetType() to better align sword's collision rec to sprite.
+extracted this functionality into GameObjectFunctions.SetWeaponCollisions();
 
-the collision recs on sword projectile need to better fit the sprite
-they need to be vertically larger when sword is up/down
-horizontally larger when left/right
 
 
-bug: collision recs on swords need to be better aligned based on their direction
-hero can hit himself with the sword, if he attacks down
+
+
+
+
+
 
 bug: actors can get locked into a HIT state 
 if they are colliding when they unlock they will be reset into hit state
@@ -41,8 +40,26 @@ if they are colliding when they unlock they will be reset into hit state
 
 
 
-the AI should be updated to attack in the direction the hero is relative to them
-and the AI should only attack if hero is nearby
+bug: hero should keep his collision rec when he dies 
+
+
+the collision recs on sword projectile need to better fit the sprite
+they need to be vertically larger when sword is up/down
+horizontally larger when left/right
+
+
+
+
+
+the AI should only chase hero if the hero is within a radius
+this is calculated just like the attack radius
+begin optimizing the AI.think function - we can cache the values instead of getting them each time
+
+
+
+
+
+
 
 get worldUI updating the hearts based on pool.hero.health
 this should happen every update frame

@@ -155,7 +155,7 @@ namespace DungeonRun
 
 
             #region Set the Room Actors
-
+            
             //place enemies within the room
             for (i = 0; i < room.enemyCount; i++)
             {
@@ -177,7 +177,7 @@ namespace DungeonRun
                     room.center.X + 16 * randomX, 
                     room.center.Y + 16 * randomY);
             }
-
+            
             #endregion
 
 

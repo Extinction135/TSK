@@ -55,6 +55,33 @@ namespace DungeonRun
             Obj.compSprite.flipHorizontally = false;
         }
 
+        public static void SetWeaponCollisions(GameObject Obj)
+        {   //set the weapons's collision rec + offsets to the sprite's dimensions
+            //these values are based off the sword sprite's dimentions
+            if (Obj.direction == Direction.Up)
+            {
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 15;
+            }
+            else if (Obj.direction == Direction.Down)
+            {
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+            }
+            else if (Obj.direction == Direction.Left)
+            {
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
+            }
+            else //right
+            {
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
+            }
+        }
+
+
+
         public static void SetType(GameObject Obj, GameObject.Type Type)
         {
             Obj.type = Type;
@@ -284,23 +311,8 @@ namespace DungeonRun
             else if (Type == GameObject.Type.ProjectileSword)
             {
                 Obj.compSprite.zOffset = 16;
-                //Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-
-                //set the collision rec to better match the sword's sprite
-                //will become preset for weapons, since weapons have similar sprite dimensions
-                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
-                {
-                    Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -8;
-                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 16;
-                }
-                else
-                {
-                    Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
-                    Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 10;
-                }
-                
-
-
+                //stationary weapons share similar sprite dimensions
+                SetWeaponCollisions(Obj); //collision recs + offsets are similar
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Projectile;
                 Obj.lifetime = 18; //in frames

@@ -40,9 +40,9 @@ namespace DungeonRun
             if (Projectile.type == GameObject.Type.ProjectileSword)
             {
                 if (Projectile.direction == Direction.Down)
-                { ProjectileOffset.X = -1; ProjectileOffset.Y = 14; Projectile.compSprite.flipHorizontally = true; }
+                { ProjectileOffset.X = -1; ProjectileOffset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
                 else if (Projectile.direction == Direction.Up)
-                { ProjectileOffset.X = 1; ProjectileOffset.Y = -14; Projectile.compSprite.flipHorizontally = false; }
+                { ProjectileOffset.X = 1; ProjectileOffset.Y = -12; Projectile.compSprite.flipHorizontally = false; }
                 else if (Projectile.direction == Direction.Right)
                 { ProjectileOffset.X = 14; ProjectileOffset.Y = 0; Projectile.compSprite.flipHorizontally = false; }
                 else if (Projectile.direction == Direction.Left)
