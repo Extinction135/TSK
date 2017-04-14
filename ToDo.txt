@@ -17,19 +17,21 @@ adding a new particle/projectile:
 todo:
 
 
-7
+6
 
 
-bug: actors can get locked into a HIT state.
-cause: we're setting actor into hit state everytime a projectile collides with actor.
-this is causing the lock counter to reset to 0, perpetuating the hit state.
-solution: moved SetHitState() into check for actor's hit state, in InteractionFunctions.Handle(projectile, actor).
-also moved the push routine into the state check, so we cant continuously push hit actors.
-this also means a projectile can hit multiple actors over it's lifetime.
-the first actor it hits becomes 'invisible' to the projectile collision on the next frame.
-so a projectile overlapping multiple actors will deal damage to all of them, eventually.
-this wasn't the case before - a projectile could only damage 1 enemy it collided with.
+bug: actors are not being pushed enough.
+cause: we were applying the push across frames. now we're only applying it once.
+solution: increase the value of the InteractionFunctions.Handle.force x8.
 
+
+
+
+if we put the push() call into the state check, push doesn't happen
+if we do it outside of the state check, it works great
+
+it may actually be working, we just aren't applying the magnitude across frames
+so increase the force of the push
 
 
 

@@ -34,7 +34,7 @@ namespace DungeonRun
             if (Projectile.type == GameObject.Type.ProjectileSword)
             {
                 damage = 1;
-                force = 1.0f;
+                force = 8.0f;
                 //create a hit particle
                 //swords always complete their animation
             }
@@ -45,6 +45,7 @@ namespace DungeonRun
 
             #endregion
 
+            
 
             //only damage/hit/push actors not in the hit state
             if (Actor.state != Actor.State.Hit)
