@@ -47,6 +47,7 @@ namespace DungeonRun
 
             if(!Flags.Paused) //update and move actors, objects, and projectiles
             { PoolFunctions.Update(this); }
+            WorldUI.Update();
 
             //track camera to hero
             Camera2D.targetPosition = Pool.hero.compSprite.position;

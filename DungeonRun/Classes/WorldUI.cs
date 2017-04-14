@@ -74,10 +74,17 @@ namespace DungeonRun
             frametime = new ComponentText(Assets.font, "test", new Vector2(UIpos.X + 136, UIpos.Y - 8), Assets.colorScheme.textSmall);
         }
 
-
         public static void Update()
         {
-            //set the hearts based on the player's HP value
+            //clip hero's health to 14 hearts
+            if (Pool.hero.health > 14) { Pool.hero.health = 14; }
+            //set the hearts based on the hero's health
+            for (counter = 0; counter < hearts.Count; counter++)
+            {
+                if (counter <= Pool.hero.health-1)
+                { hearts[counter].currentFrame.x = 0; } //full heart
+                else { hearts[counter].currentFrame.x = 1; } //empty heart
+            }
         }
 
         public static void Draw()

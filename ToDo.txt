@@ -17,25 +17,33 @@ adding a new particle/projectile:
 todo:
 
 
-4
+3
 
 
-extended AiFunctions to use a chaseRadius int.
-created chase routines that either set the direction towards hero or randomly set the direction.
-this allows an actor to move towards the hero, or move randomly, based on their distance to hero.
-changed attackArea to attackRadius in AiFunctions.Think() to better fit with chaseRadius value.
-slight reorganization of AiFunctions.Think().
-created class fields for actorPos and heroPos in AiFunctions.
-done to increase readability of code, and reduce the traversal of classes/objects fields.
+added call to WorldUI.Update() to DungeonScreen.Update().
+extended WorldUI.Update() to clip the hero's health to 14.
+wrote routine to set the WorldUI's heart sprites based on the hero.health value.
+WorldUI now displays the hero's health properly on screen to the player.
 
 
 
 
+bug: underflow can occur when we damage an actor
+cause:
+solution:
+we should be bound checking the actor's health and setting it to 0 if we underflow
 
 
 
-get worldUI updating the hearts based on pool.hero.health
-this should happen every update frame
+scale the weapon sprite up in WorldUI when player attacks
+gradually scale the weapon sprite down to 1.0 over update frames
+
+if the hero takes damage, scale the lost hearts up
+gradually scale the heart sprites down to 1.0 over update frames
+
+
+
+
 
 on sword collision, create a hit particle
 create hit particle gameObject
@@ -49,13 +57,13 @@ this mostly applies to hero, as AI will set the state properly prior to dashing
 
 
 
-
-
-blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
-or they can use a weapon, like a stick or gooey hand, idunno
-
-
-
+we need to handle hero death state better
+	it needs an effect
+	we need a 'you died' screen, which is also the 'dungeon complete' screen
+	it displays various data about the player's experience
+	so it should be called something like SummaryScreen
+	
+	
 
 
 
@@ -66,10 +74,6 @@ or they can use a weapon, like a stick or gooey hand, idunno
 
 
 Version 0.1 Milestones
-
-	should be able to attack the blob enemies and destroy them
-	which means actors should have HP and attack values
-	should have hit + death animations and states
 	
 	when a blob is destroyed, a destroyed effect should happen, and loot should be dropped
 	which means we need a destruction particle effect
@@ -150,8 +154,12 @@ Version 0.3 Milestones
 	
 	
 	
+Maybes / Ideas	
 	
-
+	
+	
+blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
+or they can use a weapon, like a stick or gooey hand, idunno
 
 implement fireball magic item
 this is a projectile that moves
