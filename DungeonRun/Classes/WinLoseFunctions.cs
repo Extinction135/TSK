@@ -23,8 +23,9 @@ namespace DungeonRun
 
             //check won state
             Boolean won = true;
-            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
-            {   //check to see if any active actors are alive
+            for (Pool.counter = 1; Pool.counter < Pool.actorCount; Pool.counter++)
+            {   //skip the hero, thus counter starts with 1 instead of 0
+                //check to see if any active enemies are alive
                 if (Pool.actorPool[Pool.counter].active)
                 {   //if the actor is visible/drawable & not dead, then game hasn't been won
                     if (Pool.actorPool[Pool.counter].state != Actor.State.Dead)

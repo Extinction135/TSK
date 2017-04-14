@@ -19,20 +19,13 @@ todo:
 
 13
 
-designed mockups for the summary screen.
-created BigTextSheet, mediumFont.bmp, added both to MGCB content project.
-now loading the font and big text sheet into assets.cs.
 
-created, implemented, and tested ScreenSummary.cs.
-
-created WinLoseFunctions.cs, to handle checking of win/lose state.
-integrated WinLose.Check into DungeonScreen.Update().
-reorganized DungeonScreen.Update() to handle pause/play states better.
-wrote routines to check for Win/Lose states in WinLoseFunctions.Check().
 
 
 
 bug: won state isn't triggering
+cause: we're considering the hero in the won check, and of course he would be alive.
+solution: don't consider the hero in the won check, simply skip actorPool[0].
 
 
 
@@ -54,7 +47,9 @@ refactor the WinLostFunctions - we're creating a boolean each check()
 
 
 
-
+the dungeon screen should continue updating for a number of frames
+this allows the player time to complete the attack/death animation that causes end of game
+right now, the summary screen just instantly popsup
 
 
 

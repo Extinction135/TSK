@@ -39,6 +39,23 @@ namespace DungeonRun
                 }
                 DebugMenu.HandleInput();
             }
+
+
+
+            //dump the states for every active actor
+            if (Input.IsNewKeyPress(Keys.Enter))
+            {
+                for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+                {
+                    if (Pool.actorPool[Pool.counter].active)
+                    { DebugFunctions.Inspect(Pool.actorPool[Pool.counter]); }
+                    
+                }
+            }
+
+
+
+
         }
 
         public override void Update(GameTime GameTime)
