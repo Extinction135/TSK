@@ -17,25 +17,16 @@ adding a new particle/projectile:
 todo:
 
 
-5
+4
 
 
-
-bug: hero should keep his collision rec when he dies 
-cause: we're moving ALL actor's collisions offscreen when they die
-solution: migrated the code that hides the collisionRec into the section for actor specific death effects.
-only the blob actor hides their collisionRec offscreen now.
-
-
-
-
-
-
-we need to better organize AiFunctions + it's imperative structure
-
-the AI should only chase hero if the hero is within a radius
-this is calculated just like the attack radius
-begin optimizing the AI.think function - we can cache the values instead of getting them each time
+extended AiFunctions to use a chaseRadius int.
+created chase routines that either set the direction towards hero or randomly set the direction.
+this allows an actor to move towards the hero, or move randomly, based on their distance to hero.
+changed attackArea to attackRadius in AiFunctions.Think() to better fit with chaseRadius value.
+slight reorganization of AiFunctions.Think().
+created class fields for actorPos and heroPos in AiFunctions.
+done to increase readability of code, and reduce the traversal of classes/objects fields.
 
 
 

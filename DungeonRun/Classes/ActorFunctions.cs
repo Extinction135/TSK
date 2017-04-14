@@ -45,8 +45,6 @@ namespace DungeonRun
 
             //additional death effects
             ComponentFunctions.SetZdepth(Actor.compSprite); //sort actor for last time
-            
-
             //call spawn loot function, passing actor
             //play death sound effect
         }

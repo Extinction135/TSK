@@ -15,14 +15,9 @@ namespace DungeonRun
     public static class AiFunctions
     {
 
-
-
-
-
-
-
-
         public static Direction directionToHero;
+        public static Vector2 actorPos;
+        public static Vector2 heroPos;
 
         public static void Think(Actor Actor)
         {
@@ -31,63 +26,57 @@ namespace DungeonRun
             //reset the direction to hero
             directionToHero = Direction.None;
 
-
+            //collect the actor and hero sprite positions
+            actorPos = Actor.compSprite.position;
+            heroPos = Pool.hero.compSprite.position;
 
             //get the x and y distances between the actor and hero
-            int xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Actor.compSprite.position.X);
-            int yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Actor.compSprite.position.Y);
+            int xDistance = (int)Math.Abs(heroPos.X - actorPos.X);
+            int yDistance = (int)Math.Abs(heroPos.Y - actorPos.Y);
 
             //determine the axis hero is closest on
             if (xDistance < yDistance)
             {   //hero is closer on xAxis, actor should move on yAxis
-                if (Pool.hero.compSprite.position.Y > Actor.compSprite.position.Y)
+                if (heroPos.Y > actorPos.Y)
                 { directionToHero = Direction.Down; }
                 else { directionToHero = Direction.Up; }
             }
             else
             {   //hero is closer on yAxis, actor should move on xAxis
-                if (Pool.hero.compSprite.position.X > Actor.compSprite.position.X)
+                if (heroPos.X > actorPos.X)
                 { directionToHero = Direction.Right; }
                 else { directionToHero = Direction.Left; }
             }
-            
 
-
-            //move randomly or move towards the hero
-            if (directionToHero == Direction.None)
+            //determine if actor is close enough to hero to chase
+            int chaseRadius = 16 * 6;
+            if (yDistance < chaseRadius && xDistance < chaseRadius)
+            {   //actor is close enough to hero to chase, move towards the hero
+                Actor.compInput.direction = directionToHero;
+            }
+            else
             {   //choose a random direction to move in
                 Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
             }
-            else
-            {   //move towards the hero
-                Actor.compInput.direction = directionToHero;
-            }
-
-
-            
-
-            //determine if actor can see hero (so actor can chase)
-
-
 
             //determine if actor is close enough to hero to attack
-            int attackArea = 14;
-            if (yDistance < attackArea && xDistance < attackArea)
+            int attackRadius = 14;
+            if (yDistance < attackRadius && xDistance < attackRadius)
             {   //actor is close enough to hero to attack
                 if (GetRandom.Int(0, 100) > 50) //randomly attack
                 { Actor.compInput.attack = true; }
             }
 
+            //determine if the actor can dash
             if(!Actor.compInput.attack)
             {   //if the actor isn't attacking, then randomly dash
                 if (GetRandom.Int(0, 100) > 90)
                 { Actor.compInput.dash = true; }
             }
 
-
-
+            //handle the state where the hero is dead
             if (Pool.hero.state == Actor.State.Dead)
-            {   //if hero is dead, reset AI input, randomly move + dash
+            {   //reset AI input, randomly move + dash
                 Input.ResetInputData(Actor.compInput);
                 Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
                 if (GetRandom.Int(0, 100) > 90) { Actor.compInput.dash = true; }
@@ -95,16 +84,7 @@ namespace DungeonRun
 
 
 
-
-
-
-            
-
-
-
-
-
-            //choose an action to take
+            //slightly more advanced AI
 
             //if wounded, try to heal
             //else...
@@ -119,10 +99,7 @@ namespace DungeonRun
             //if very close or nearby, move away from hero
             //if in visibility range, ranged attack hero
             //else, wander around
-
-
-            //idea: AI could move only diagonally, that way they would slide around any blocking actors/objs
-            //this would also make them harder to hit with projectiles :)
+            
 
 
         }
