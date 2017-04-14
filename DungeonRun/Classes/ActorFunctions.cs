@@ -37,6 +37,7 @@ namespace DungeonRun
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
                 ProjectileFunctions.Spawn(GameObject.Type.ParticleExplosion, Actor);
+                Actor.compCollision.rec.X = -1000; //hide actor collisionRec
             }
 
             #endregion
@@ -44,7 +45,7 @@ namespace DungeonRun
 
             //additional death effects
             ComponentFunctions.SetZdepth(Actor.compSprite); //sort actor for last time
-            Actor.compCollision.rec.X = -1000; //move actor collisions offscreen
+            
 
             //call spawn loot function, passing actor
             //play death sound effect

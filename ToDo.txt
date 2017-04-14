@@ -17,38 +17,21 @@ adding a new particle/projectile:
 todo:
 
 
-6
-
-
-bug: actors are not being pushed enough.
-cause: we were applying the push across frames. now we're only applying it once.
-solution: increase the value of the InteractionFunctions.Handle.force x8.
+5
 
 
 
+bug: hero should keep his collision rec when he dies 
+cause: we're moving ALL actor's collisions offscreen when they die
+solution: migrated the code that hides the collisionRec into the section for actor specific death effects.
+only the blob actor hides their collisionRec offscreen now.
 
-if we put the push() call into the state check, push doesn't happen
-if we do it outside of the state check, it works great
-
-it may actually be working, we just aren't applying the magnitude across frames
-so increase the force of the push
 
 
 
 
 
 we need to better organize AiFunctions + it's imperative structure
-
-bug: hero should keep his collision rec when he dies 
-
-
-the collision recs on sword projectile need to better fit the sprite
-they need to be vertically larger when sword is up/down
-horizontally larger when left/right
-
-
-
-
 
 the AI should only chase hero if the hero is within a radius
 this is calculated just like the attack radius
