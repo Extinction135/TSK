@@ -17,20 +17,29 @@ adding a new particle/projectile:
 todo:
 
 
-10
+9
+
+removed redundant code from PoolFunctions.UpdateActiveActor()
+modified parameters of AiFunctions.Think() to accept an Actor instance.
+refactored AiFunctions.Think() to chase + attack hero.
+updated GameObjectFuntions.SetType() to modify the collision rec of Sword, based on sword direction.
+this fixes a bug where the sword wouldn't collide with actors very close by.
 
 
-bug: hero doesn't set animation lists post death, until hit.
-updated ActorFunctions.SetType() to fix a bug related to actor state post death.
-we weren't unlocking state, or reseting the lock counters.
-better organized ActorFunctions.SetType().
+
+the collision recs on sword projectile need to better fit the sprite
+they need to be vertically larger when sword is up/down
+horizontally larger when left/right
+
+
+bug: collision recs on swords need to be better aligned based on their direction
+hero can hit himself with the sword, if he attacks down
+
+bug: actors can get locked into a HIT state 
+if they are colliding when they unlock they will be reset into hit state
 
 
 
-
-bug:
-when we build dungeon after hero dies, his animation list is no longer set???
-but then once he's hit, he goes back to normal..
 
 the AI should be updated to attack in the direction the hero is relative to them
 and the AI should only attack if hero is nearby

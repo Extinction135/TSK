@@ -15,32 +15,97 @@ namespace DungeonRun
     public static class AiFunctions
     {
 
-        public static void Think(ComponentInput CompInput)
+
+
+
+
+
+
+
+        public static Direction directionToHero;
+
+        public static void Think(Actor Actor)
         {
-            Input.ResetInputData(CompInput);
+            //reset the actor's input component
+            Input.ResetInputData(Actor.compInput);
+            //reset the direction to hero
+            directionToHero = Direction.None;
 
-            //choose a random direction to move in
-            CompInput.direction = (Direction)GetRandom.Int(0, 8);
 
-            //sometimes perform an action
-            if (GetRandom.Int(0, 100) > 90)
-            {
-                //split between dashing or attacking
-                if (GetRandom.Int(0, 100) > 50) { CompInput.dash = true; }
-                else { CompInput.attack = true; }
+
+            //get the x and y distances between the actor and hero
+            int xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Actor.compSprite.position.X);
+            int yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Actor.compSprite.position.Y);
+
+            //determine the axis hero is closest on
+            if (xDistance < yDistance)
+            {   //hero is closer on xAxis, actor should move on yAxis
+                if (Pool.hero.compSprite.position.Y > Actor.compSprite.position.Y)
+                { directionToHero = Direction.Down; }
+                else { directionToHero = Direction.Up; }
+            }
+            else
+            {   //hero is closer on yAxis, actor should move on xAxis
+                if (Pool.hero.compSprite.position.X > Actor.compSprite.position.X)
+                { directionToHero = Direction.Right; }
+                else { directionToHero = Direction.Left; }
+            }
+            
+
+
+            //move randomly or move towards the hero
+            if (directionToHero == Direction.None)
+            {   //choose a random direction to move in
+                Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
+            }
+            else
+            {   //move towards the hero
+                Actor.compInput.direction = directionToHero;
+            }
+
+
+            
+
+            //determine if actor can see hero (so actor can chase)
+
+
+
+            //determine if actor is close enough to hero to attack
+            int attackArea = 14;
+            if (yDistance < attackArea && xDistance < attackArea)
+            {   //actor is close enough to hero to attack
+                if (GetRandom.Int(0, 100) > 50) //randomly attack
+                { Actor.compInput.attack = true; }
+            }
+
+            if(!Actor.compInput.attack)
+            {   //if the actor isn't attacking, then randomly dash
+                if (GetRandom.Int(0, 100) > 90)
+                { Actor.compInput.dash = true; }
             }
 
 
 
-            //choose an action to take
-            /*
-            if (Input.IsNewButtonPress(Buttons.X)) { attack = true; }
-            else if (Input.IsNewButtonPress(Buttons.Y)) { use = true; }
-            else if (Input.IsNewButtonPress(Buttons.B)) { dash = true; }
-            else if (Input.IsNewButtonPress(Buttons.A)) { interact = true; }
-            */
+            if (Pool.hero.state == Actor.State.Dead)
+            {   //if hero is dead, reset AI input, randomly move + dash
+                Input.ResetInputData(Actor.compInput);
+                Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
+                if (GetRandom.Int(0, 100) > 90) { Actor.compInput.dash = true; }
+            }
 
-            //(we'll need to have a reference to the hero AND actor)
+
+
+
+
+
+            
+
+
+
+
+
+            //choose an action to take
+
             //if wounded, try to heal
             //else...
 
@@ -58,6 +123,7 @@ namespace DungeonRun
 
             //idea: AI could move only diagonally, that way they would slide around any blocking actors/objs
             //this would also make them harder to hit with projectiles :)
+
 
         }
 

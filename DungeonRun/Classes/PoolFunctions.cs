@@ -125,8 +125,7 @@ namespace DungeonRun
 
         public static void UpdateActiveActor(Actor Actor)
         {
-            Input.ResetInputData(Actor.compInput);
-            AiFunctions.Think(Actor.compInput); //pass active actor to AiManager
+            AiFunctions.Think(Actor);
             Pool.activeActor++;
             if (Pool.activeActor >= Pool.actorCount) { Pool.activeActor = 1; } //skip 0th actor (HERO)
         }

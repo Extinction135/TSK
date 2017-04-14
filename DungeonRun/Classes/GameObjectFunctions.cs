@@ -284,8 +284,23 @@ namespace DungeonRun
             else if (Type == GameObject.Type.ProjectileSword)
             {
                 Obj.compSprite.zOffset = 16;
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                //Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+
+                //set the collision rec to better match the sword's sprite
+                //will become preset for weapons, since weapons have similar sprite dimensions
+                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
+                {
+                    Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -8;
+                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 16;
+                }
+                else
+                {
+                    Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
+                    Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 10;
+                }
+                
+
+
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Projectile;
                 Obj.lifetime = 18; //in frames
