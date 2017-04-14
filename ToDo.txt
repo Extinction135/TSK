@@ -17,39 +17,16 @@ adding a new particle/projectile:
 todo:
 
 
-1
-
-
-
-bug: actor can dash while standing still.
-cause: code doens't check to make sure their is an input direction prior to setting dash state.
-solution: only allow dash when input direction is a valid cardinal or diagonal direction.
-updated Input.SetInputState() to only set Actor.InputState to dash if input.direction is a valid direction.
-renamed ComponentInput parameter in Input.MapPlayerInput() + SetInputState() + ResetInputData().
-this makes it a bit clearer what the parameter is, in the context of Input.cs.
+13
 
 
 
 
 
 
-
-why can the actor still set into dash animation for a single frame?
-
-actors shouldn't be able to dash if they aren't moving
-this mostly applies to hero, as AI will set the state properly prior to dashing
-
-
-
-
-test on xbox one
-do code analysis
-
-
-
-
-
-
+updated ActorFunctions.UseWeapon() to scale up the world ui's current weapon sprite.
+updated WorldUI to gradually scale the current weapon sprite back down to 1.0.
+this makes the current weapon sprite 'jump' when the player presses the X button.
 
 
 
@@ -85,30 +62,25 @@ we need to handle hero death state better
 
 
 
-
+need summary screen - should appear if hero dies, or all enemies are dead
+	hero dies is a special case we'll have to check for
+	all enemies dead, we can flip a boolean if any actor is not dead state
+	if boolean is false, then create the summary screen
+	sumamry screen displays data, allows player to restart the dungeon
+	
+	if hero dies, pop up 'you died' text 
+	if enemies defeated, pop up 'you won' text
+	
+	
+	
+	
 
 
 
 
 
 Version 0.1 Milestones
-	
-	when a blob is destroyed, a destroyed effect should happen, and loot should be dropped
-	which means we need a destruction particle effect
-	which means we need to create loot items
-	
-	hero should be able to pick up basic loot items (hearts, gold)
-	which means hero should have a gold int
-	and we'll need to check collisions between hero and projectiles (items)
-	
-	worldUI should set the visual heart display based on the hero's HP
-	this should be done each update
-	
-	implement a fireball projectile that moves across frames
-	rotate the fireball sprite to face down (all projectiles + weapons should face down by default)
-	this is spawned from the Y button press
-	visually display fire magic medallion for current item in worldUI
-	
+
 	worldUI current item/weapon should scale up when player presses X/Y button
 	should scale back down to 1.0 over update frames
 	
@@ -138,6 +110,19 @@ Version 0.1 Milestones
 	
 Version 0.2 Milestones
 
+	implement a fireball projectile that moves across frames
+	rotate the fireball sprite to face down (all projectiles + weapons should face down by default)
+	this is spawned from the Y button press
+	visually display fire magic medallion for current item in worldUI
+	
+	when a blob is destroyed, a destroyed effect should happen, and loot should be dropped
+	which means we need a destruction particle effect
+	which means we need to create loot items
+	
+	hero should be able to pick up basic loot items (hearts, gold)
+	which means hero should have a gold int
+	and we'll need to check collisions between hero and projectiles (items)
+	
 	create pause screen, can select different weapons / items
 	also displays total gold
 	

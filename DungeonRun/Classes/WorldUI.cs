@@ -85,6 +85,9 @@ namespace DungeonRun
                 { hearts[counter].currentFrame.x = 0; } //full heart
                 else { hearts[counter].currentFrame.x = 1; } //empty heart
             }
+
+            //scale current weapon and item back down to 1.0
+            if (currentWeapon.scale > 1.0f) { currentWeapon.scale -= 0.05f; }
         }
 
         public static void Draw()
