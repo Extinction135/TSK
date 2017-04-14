@@ -46,12 +46,13 @@ namespace DungeonRun
             #endregion
 
 
-            //every projectile pushes an actor it collides with
-            MovementFunctions.Push(Actor.compMove, Projectile.direction, force);
-            //only deal damage to actors that are not in a hit state
-            if (Actor.state != Actor.State.Hit) { Actor.health -= damage; }
-            //set the actor into a hit state
-            ActorFunctions.SetHitState(Actor);
+            //only damage/hit/push actors not in the hit state
+            if (Actor.state != Actor.State.Hit)
+            {
+                Actor.health -= damage;
+                ActorFunctions.SetHitState(Actor);
+                MovementFunctions.Push(Actor.compMove, Projectile.direction, force);
+            }
         }
 
         public static void Handle(GameObject Projectile, GameObject Obj)
