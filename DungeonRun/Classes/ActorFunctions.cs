@@ -23,6 +23,37 @@ namespace DungeonRun
             Actor.lockTotal = 15;
         }
 
+        public static void SetDeathState(Actor Actor)
+        {
+            Actor.state = Actor.State.Dead;
+            Actor.stateLocked = true;
+            Actor.lockCounter = 0;
+            Actor.lockTotal = 255;
+
+
+            #region Actor Specific Death Effects
+
+            if (Actor.type == Actor.Type.Blob)
+            {
+                Actor.compSprite.zOffset = -16; //sort to floor
+                ProjectileFunctions.Spawn(GameObject.Type.ParticleExplosion, Actor);
+            }
+
+            #endregion
+
+
+            //additional death effects
+            ComponentFunctions.SetZdepth(Actor.compSprite); //sort actor for last time
+            Actor.compCollision.rec.X = -1000; //move actor collisions offscreen
+
+            //call spawn loot function, passing actor
+            //play death sound effect
+        }
+
+
+
+
+
         public static void SetType(Actor Actor, Actor.Type Type)
         {   //set the type, direction, state, and active boolean
             Actor.type = Type;
@@ -123,19 +154,11 @@ namespace DungeonRun
                 {
                     Actor.stateLocked = false; //unlock actor
                     Input.ResetInputData(Actor.compInput); //reset input component
-                    if (Actor.health <= 0) //check to see if the actor is dead
-                    {
-                        Actor.state = Actor.State.Dead;
-                        ProjectileFunctions.Spawn(GameObject.Type.ParticleExplosion, Actor);
-                    }
+                    //check to see if the actor is dead
+                    if (Actor.health <= 0) { SetDeathState(Actor); }
                 }
-                if (Actor.state == Actor.State.Dead)
-                {   //manage the death state
-                    Actor.lockCounter = 0;
-                    Actor.lockTotal = 255;
-                    Actor.stateLocked = true;
-                    Actor.compCollision.rec.X = -1000; 
-                }
+                //lock actor into the death state
+                if (Actor.state == Actor.State.Dead) { Actor.lockCounter = 0; }
             }
 
             #endregion

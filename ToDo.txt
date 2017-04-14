@@ -3,56 +3,46 @@ CTRL + M, P = expand functions/regions
 
 goal: 13 commits/day
 
-
-
-
+adding a new particle/projectile:
+	add new gameObject type for PP
+	add new gameObject animation list for PP
+	add codepath for PP to GameObjectFunctions.SetType.
+	add call to spawn PP somewhere
+	maybe set the alignment of PP in ProjetileFunctions.AlignProjectile()
+	maybe PP interacts with Actor/Obj in InteractionFunctions.Handle()
+	
+	
+	
+	
 todo:
 
 
-1
+13
 
 
 
-added new gameObject type ParticleExplosion.
-added new gameObject animation list ParticleExplosion.
-added codepath for ParticleExplosion to GameObjectFunctions.SetType.
-added call to spawn ParticleExplosion when actor transitions to death state
-blob enemies now explode when they die - satisfying.
-
-
-finesse the explosion lifetime and animSpeed
+added ActorFunctions.SetDeathState().
+refactored how actor death is managed in ActorFunctions.Update().
+updated SetDeathState() to sort blob sprite to the floor, so actors can walk over their corpse.
+refactoring of SetDeathState() to allow actor specific death events.
 
 
 
 
-Death++
-add explosion pop effect when an actor changes into their death state
 when a blob actor dies, set their sprite.zOffset value to -16
 
+blobs cant damage hero yet
+blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
+or they can use a weapon, like a stick or gooey hand, idunno
+
+get worldUI updating the hearts based on pool.hero.health
+this should happen every update frame
 
 on sword collision, create a hit particle
 create hit particle gameObject
 add to gameObjFunctions.SetType + ProjectileSpawn
 
 
-
-
-bug: sometimes hero can't kill a blob - it gets pushed but doesn't die
-
-
-
-
-
-
-
-
-
-
-
-get worldUI updating the hearts based on pool.hero.health
-this should happen every update frame
-
-blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
 
 
 
