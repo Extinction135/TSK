@@ -17,14 +17,40 @@ adding a new particle/projectile:
 todo:
 
 
-2
+1
 
 
-bug: underflow can occur when we damage an actor.
-cause: we're not bounds checking the actor.health byte prior to decrementing it.
-solution: ensure that damag byte is less than actor.health byte before subtracting it.
-if it's greater than, just set actor.health to 0.
-updated InteractionFunctions.Handle(Projectile, Actor) with this fix.
+
+bug: actor can dash while standing still.
+cause: code doens't check to make sure their is an input direction prior to setting dash state.
+solution: only allow dash when input direction is a valid cardinal or diagonal direction.
+updated Input.SetInputState() to only set Actor.InputState to dash if input.direction is a valid direction.
+renamed ComponentInput parameter in Input.MapPlayerInput() + SetInputState() + ResetInputData().
+this makes it a bit clearer what the parameter is, in the context of Input.cs.
+
+
+
+
+
+
+
+why can the actor still set into dash animation for a single frame?
+
+actors shouldn't be able to dash if they aren't moving
+this mostly applies to hero, as AI will set the state properly prior to dashing
+
+
+
+
+test on xbox one
+do code analysis
+
+
+
+
+
+
+
 
 
 
@@ -42,8 +68,7 @@ on sword collision, create a hit particle
 create hit particle gameObject
 add to gameObjFunctions.SetType + ProjectileSpawn
 
-actors shouldn't be able to dash if they aren't moving
-this mostly applies to hero, as AI will set the state properly prior to dashing
+
 
 
 
