@@ -17,21 +17,14 @@ adding a new particle/projectile:
 todo:
 
 
-3
+2
 
 
-added call to WorldUI.Update() to DungeonScreen.Update().
-extended WorldUI.Update() to clip the hero's health to 14.
-wrote routine to set the WorldUI's heart sprites based on the hero.health value.
-WorldUI now displays the hero's health properly on screen to the player.
-
-
-
-
-bug: underflow can occur when we damage an actor
-cause:
-solution:
-we should be bound checking the actor's health and setting it to 0 if we underflow
+bug: underflow can occur when we damage an actor.
+cause: we're not bounds checking the actor.health byte prior to decrementing it.
+solution: ensure that damag byte is less than actor.health byte before subtracting it.
+if it's greater than, just set actor.health to 0.
+updated InteractionFunctions.Handle(Projectile, Actor) with this fix.
 
 
 

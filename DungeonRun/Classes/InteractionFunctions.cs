@@ -50,7 +50,11 @@ namespace DungeonRun
             //only damage/hit/push actors not in the hit state
             if (Actor.state != Actor.State.Hit)
             {
-                Actor.health -= damage;
+                //deal damage to the actor
+                //but prevent the damage byte from underflowing the Actor.health byte
+                if (damage > Actor.health) { Actor.health = 0; }
+                else { Actor.health -= damage; }
+
                 ActorFunctions.SetHitState(Actor);
                 MovementFunctions.Push(Actor.compMove, Projectile.direction, force);
             }
