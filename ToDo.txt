@@ -23,19 +23,9 @@ todo:
 
 
 
-
-updated ActorFunctions.UseWeapon() to scale up the world ui's current weapon sprite.
-updated WorldUI to gradually scale the current weapon sprite back down to 1.0.
-this makes the current weapon sprite 'jump' when the player presses the X button.
-
-
-
-
-scale the weapon sprite up in WorldUI when player attacks
-gradually scale the weapon sprite down to 1.0 over update frames
-
-if the hero takes damage, scale the lost hearts up
-gradually scale the heart sprites down to 1.0 over update frames
+added counters for previous and current hearts to WorldUI.
+updated WorldUI.Update() to scale hearts up and down, when hero takes damage.
+added in codepath for scaling of current item too, but it's unused right now.
 
 
 

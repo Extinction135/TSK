@@ -16,6 +16,9 @@ namespace DungeonRun
     {
 
         public static List<ComponentSprite> hearts;
+        public static int lastHeartCount;
+        public static int currentHeartCount;
+
         public static List<ComponentSprite> weaponBkg;
         public static List<ComponentSprite> itemBkg;
         public static ComponentSprite currentWeapon;
@@ -72,22 +75,38 @@ namespace DungeonRun
 
             //create the frametime text component
             frametime = new ComponentText(Assets.font, "test", new Vector2(UIpos.X + 136, UIpos.Y - 8), Assets.colorScheme.textSmall);
+
+            currentHeartCount = 3;
+            lastHeartCount = 3;
         }
 
         public static void Update()
         {
             //clip hero's health to 14 hearts
             if (Pool.hero.health > 14) { Pool.hero.health = 14; }
+
+            //get the current heart count, compare it to the last heart count
+            currentHeartCount = Pool.hero.health;
+            if (currentHeartCount < lastHeartCount)
+            {   //if damage has been done to hero, scale up the remaining hearts
+                for (counter = 0; counter < currentHeartCount; counter++)
+                { hearts[counter].scale = 1.5f; }
+            }
+            lastHeartCount = Pool.hero.health; //set the last heart count to current
+
             //set the hearts based on the hero's health
             for (counter = 0; counter < hearts.Count; counter++)
-            {
+            {   
                 if (counter <= Pool.hero.health-1)
                 { hearts[counter].currentFrame.x = 0; } //full heart
                 else { hearts[counter].currentFrame.x = 1; } //empty heart
+                //scale each heart back down to 1.0
+                if (hearts[counter].scale > 1.0f) { hearts[counter].scale -= 0.05f; }
             }
 
             //scale current weapon and item back down to 1.0
             if (currentWeapon.scale > 1.0f) { currentWeapon.scale -= 0.05f; }
+            if (currentItem.scale > 1.0f) { currentItem.scale -= 0.05f; }
         }
 
         public static void Draw()
