@@ -22,9 +22,13 @@ namespace DungeonRun
             //choose a random direction to move in
             CompInput.direction = (Direction)GetRandom.Int(0, 8);
 
-            //randomly dash
-            if (GetRandom.Int(0, 100) > 90) { CompInput.dash = true; }
-
+            //sometimes perform an action
+            if (GetRandom.Int(0, 100) > 90)
+            {
+                //split between dashing or attacking
+                if (GetRandom.Int(0, 100) > 50) { CompInput.dash = true; }
+                else { CompInput.attack = true; }
+            }
 
 
 

@@ -17,31 +17,25 @@ adding a new particle/projectile:
 todo:
 
 
-12
-
-
-
-added Weapon enum to StructsAndEnums.cs.
-updated Actor.cs to have a weapon enum instance.
-updated ActorFunctions.SetType() to set actor's weapon instance to 'sword'.
-created ActorFunctions.UseWeapon(), which spawns projectiles based on Actor.weapon type.
+11
 
 
 
 
-we need to check the actor.weapon enum to determine what type of projectile to spawn when they attack
+updated the AI to randomly attack or dash.
+as a result, the AI controlled blobs can destroy each other - hilarious.
 
-update the AI to randomly attack
-
-
-
-how do we model the weapon an actor is using?
-with an enum, obviously
+hero is successfully set into a hit state upon projectile collision.
+hero is successfully set into death state upon health depletion.
 
 
-blobs cant damage hero yet
-blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
-or they can use a weapon, like a stick or gooey hand, idunno
+
+bug:
+when we build dungeon after hero dies, his animation list is no longer set???
+but then once he's hit, he goes back to normal..
+
+the AI should be updated to attack in the direction the hero is relative to them
+and the AI should only attack if hero is nearby
 
 get worldUI updating the hearts based on pool.hero.health
 this should happen every update frame
@@ -50,10 +44,26 @@ on sword collision, create a hit particle
 create hit particle gameObject
 add to gameObjFunctions.SetType + ProjectileSpawn
 
-
-
 actors shouldn't be able to dash if they aren't moving
 this mostly applies to hero, as AI will set the state properly prior to dashing
+
+
+
+
+
+
+
+
+blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
+or they can use a weapon, like a stick or gooey hand, idunno
+
+
+
+
+
+
+
+
 
 
 
