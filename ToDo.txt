@@ -17,17 +17,11 @@ adding a new particle/projectile:
 todo:
 
 
-8
+7
 
-
-split overlayFadeSpeed into fadeInSpeed and fadeOutSpeed.
-allows dungeonScreen to have seperate speeds for fading in/out overlay rec.
-modified the fadeIn fadeOut speed values to personal preference.
-
-
-
-
-double check that the text components on summary screen are fading in/out properly
+bug: sumamry text doesn't complete it's fade out.
+cause: we're checking the alpha of the continue text, which isn't sync'd with other text components.
+solution: check to summary text's alpha, base state transition on it instead.
 
 
 

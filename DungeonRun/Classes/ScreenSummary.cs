@@ -161,13 +161,11 @@ namespace DungeonRun
                 summaryText.alpha += fadeSpeed;
                 summaryData.alpha += fadeSpeed;
 
-                //check components position + opacity, transition to display state
+                //check components position + opacity, transition state
                 if (rightTitle.position.X == rightTitleEndPos.X && 
                     leftTitle.position.X == leftTitleEndPos.X &&
                     continueText.alpha >= 1.0f)
                 { continueText.alpha = 1.0f; screenState = ScreenState.Display; }
-                //once continue text hits 100% opacity, transition to display state
-                //if (continueText.alpha >= 1.0f) { }
             }
             else if (screenState == ScreenState.AnimateOut)
             {
@@ -187,9 +185,9 @@ namespace DungeonRun
                 continueText.alpha -= fadeSpeed;
                 summaryText.alpha -= fadeSpeed;
                 summaryData.alpha -= fadeSpeed;
-                //once continue text hits 100% opacity, transition to display state
-                if (continueText.alpha <= 0.0f)
-                { continueText.alpha = 0.0f; screenState = ScreenState.Exit; }
+                //check components opacity, transition state
+                if (summaryText.alpha <= 0.0f)
+                { summaryText.alpha = 0.0f; screenState = ScreenState.Exit; }
             }
 
             #endregion
