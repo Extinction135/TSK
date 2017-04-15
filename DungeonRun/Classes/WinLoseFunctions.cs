@@ -21,7 +21,7 @@ namespace DungeonRun
             //check lost state
             if (Pool.hero.state == Actor.State.Dead)
             {
-                DungeonScreen.record.beatDungeon = false;
+                DungeonRecord.beatDungeon = false;
                 DungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
             }
 
@@ -38,7 +38,7 @@ namespace DungeonRun
             }
             if (won)
             {
-                DungeonScreen.record.beatDungeon = true;
+                DungeonRecord.beatDungeon = true;
                 DungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
             }
 

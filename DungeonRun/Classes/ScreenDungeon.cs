@@ -30,7 +30,6 @@ namespace DungeonRun
         public GameState gameState = GameState.Playing;
 
         //the dungeon record
-        public DungeonRecord record;
         public Stopwatch recordTimer;
 
         public override void LoadContent()
@@ -107,8 +106,8 @@ namespace DungeonRun
                     if (gameState == GameState.Summary)
                     {
                         recordTimer.Stop();
-                        record.totalTime = recordTimer.Elapsed.ToString(@"hh\:mm\:ss");
-                        ScreenManager.AddScreen(new SummaryScreen(record));
+                        DungeonRecord.totalTime = recordTimer.Elapsed.ToString(@"hh\:mm\:ss");
+                        ScreenManager.AddScreen(new SummaryScreen());
                         gameState = GameState.Playing;
                     }
                     else

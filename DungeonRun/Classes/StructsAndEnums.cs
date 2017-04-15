@@ -44,25 +44,6 @@ namespace DungeonRun
         }
     }
 
-    public struct DungeonRecord
-    {
-        public int dungeonID;
-        public Boolean beatDungeon;
-        public int enemyCount;
-        public string totalTime;
-        public int totalDamage;
-        public DungeonRecord(int DungeonID)
-        {
-            dungeonID = DungeonID;
-            beatDungeon = false;
-            enemyCount = 0;
-            totalTime = "";
-            totalDamage = 0;
-        }
-    }
-
-
-
     
 
     public enum Direction { Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft, None }

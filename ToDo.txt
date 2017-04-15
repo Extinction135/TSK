@@ -17,26 +17,24 @@ adding a new particle/projectile:
 todo:
 
 
-3
+2
+
+
+updated summary screen to display all record data, tho we don't have accurate enemy or damage counts yet.
+changed DungeonRecord from being a struct to a static public class, so it's accessible from everywhere.
+added a Reset() function to DungeonRecord, which is called from DungeonGenerator.BuildRoom().
+updated all references to DungeonRecord across multiple files.
+removed the DungeonRecord parameter from SummaryScreen constructor.
+updated ActorFunctions.SetDeathState() to track the deaths of all non-hero actors that die.
+tested, tracking death of enemies correctly.
+
+
+//if projectile damaged hero, track the damage dealt
+if (Actor == Pool.hero) { DungeonRecord.totalDamage += damage; }
 
 
 
-
-created dungeon record struct, to hold data to be displayed on the summary screen.
-created instance of dungeon record in dungeon screen.
-created instance of stopwatch named recordTimer in dungeon screen.
-updated dungeonGenerator.BuildRoom() to reset record and recordTimer.
-changed DungeonScreen.gameState enum to { Playing, Summary } to better describe it's nature.
-refactored DungeonScreen.Update() to use the new enum, which also sets the elapsed time in the dungeon.
-also creates the summary screen and passes the dungeon record into it.
-summary screen now displays the passed record's totalTime string value.
-
-
-
-
-
-
-push 'died' +5 for end pos
+where can we determine/track where an actor (not hero) has died?
 
 
 
@@ -45,6 +43,15 @@ populate the dungeon record with data
 	enemies killed
 	damage taken
 
+where should we track actor deaths?
+and how do we not track the hero's death?
+
+
+where do we track when an actor takes damage?
+we could use WorldIUI to set the dungeon.record.	
+	
+	
+	
 do we need to dump any additional info to the debug panel?
 the summary data that we are tracking should appear in the debug panel
 this is so we can make sure it's accurate
@@ -52,8 +59,12 @@ this is so we can make sure it's accurate
 
 
 
-
-
+whats the reward formula?
+	time bonus + enemies killed - damage taken
+	time bonus is based on how many rooms are in the dungeon.
+	total dungeon rooms - total minutes = gold multiplier * 100.
+	this expects the player to clear a room a minute.
+	
 
 
 

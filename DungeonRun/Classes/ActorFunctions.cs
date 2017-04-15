@@ -47,6 +47,9 @@ namespace DungeonRun
             ComponentFunctions.SetZdepth(Actor.compSprite); //sort actor for last time
             //call spawn loot function, passing actor
             //play death sound effect
+
+            //track non-hero actor deaths
+            if (Actor.type != Actor.Type.Hero) { DungeonRecord.enemyCount++; }
         }
 
 

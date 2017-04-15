@@ -14,12 +14,7 @@ namespace DungeonRun
 {
     public class SummaryScreen : Screen
     {
-        DungeonRecord record;
-        public SummaryScreen(DungeonRecord Record)
-        {
-            this.name = "SummaryScreen";
-            record = Record;
-        }
+        public SummaryScreen() { this.name = "SummaryScreen"; }
 
         enum ScreenState { AnimateIn, Display, AnimateOut, Exit }
         ScreenState screenState = ScreenState.AnimateIn;
@@ -77,15 +72,15 @@ namespace DungeonRun
 
 
             //populate the summary data text with record data
-            summaryData.text = "" + 0; //enemies
-            summaryData.text += "\n" + record.totalTime;
-            summaryData.text += "\n" + 0; //damage
+            summaryData.text = "" + DungeonRecord.enemyCount; //enemies
+            summaryData.text += "\n" + DungeonRecord.totalTime;
+            summaryData.text += "\n" + DungeonRecord.totalDamage; //damage
             summaryData.text += "\n" + 0; //reward
 
 
             #region Setup the Title Text Sprite Components
 
-            if (record.beatDungeon)
+            if (DungeonRecord.beatDungeon)
             {   //"dungoen complete"
                 leftTitle.currentFrame = new Byte4(0, 0, 0, 0);
                 leftTitle.cellSize = new Byte2(16 * 13, 16 * 4);
@@ -110,7 +105,7 @@ namespace DungeonRun
                 rightTitleStartPos = new Vector2(640, yPos);
 
                 leftTitleEndPos = new Vector2(200-10, yPos);
-                rightTitleEndPos = new Vector2(285+15, yPos);
+                rightTitleEndPos = new Vector2(285+20, yPos);
                 animSpeed = 8; //lower is faster
             }
 

@@ -49,12 +49,15 @@ namespace DungeonRun
 
             //only damage/hit/push actors not in the hit state
             if (Actor.state != Actor.State.Hit)
-            {
-                //deal damage to the actor
+            {   //deal damage to the actor
                 //but prevent the damage byte from underflowing the Actor.health byte
                 if (damage > Actor.health) { Actor.health = 0; }
                 else { Actor.health -= damage; }
 
+                //if projectile damaged hero, track the damage dealt
+                if (Actor == Pool.hero) { DungeonRecord.totalDamage += damage; }
+
+                //set actor into hit state, push actor the projectile's direction
                 ActorFunctions.SetHitState(Actor);
                 MovementFunctions.Push(Actor.compMove, Projectile.direction, force);
             }
