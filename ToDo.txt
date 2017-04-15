@@ -19,33 +19,11 @@ adding a new particle/projectile:
 todo:
 
 
-1
+13
 
 
 
-
-updated InteractionFunctions.Handle(Projectile, Actor) to track damage done to the hero.
-tested that hero damage is being tracked properly.
-moved the total time to the top of the summary data in sumamry screen.
-updated summary screen to animate the summary data, incrementing to final value.
-modified how quickly the summary and continue text components fade out.
-refactored DungeonRecord to have a stopwatch timer instead of a string for totalTime.
-removed dungeonScreen.recordTimer.
-added text field to DebugInfo that displays the DungeonRecord data.
-updated summary screen to use the new stopwatch timer in DungeonRecord.
-cleaned up and reorganized dungeon screen.
-created .gif of gameplay for display on the repo page.
-created /gifs/ directory in repo, where gifs of different versions of the game will live.
-
-
-
-
-update the readme to display the .gif
-discuss the game, gameplay, architecture, etc... in readme
-
-layout the roadmap & milestones for the game
-consolidate gameplay, overview notes into readme
-
+updated the readme to display the .gif, discuss the game, gameplay, architecture, etc
 
 
 	
@@ -68,21 +46,6 @@ SOUND AND MUSIC
 	if hero has low health (<2 hearts), play drum track
 	play the dungeon background music (fade out and stop when won/lost screen appears)
 	fade in bkg music when dungeon is restarted/remade
-	
-RELEASE v0.1
-	record .gif of playing through dungeon room for v0.1
-	show summary screen, should be a 'dungeon complete' state
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
 
 
 
