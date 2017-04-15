@@ -77,6 +77,8 @@ namespace DungeonRun
             Actor.compCollision.active = true;
             Actor.compCollision.blocking = true; //actors always block
             SetCollisionRec(Actor);
+            //reset actor's sprite zDepth
+            Actor.compSprite.zOffset = 0;
             //set actor animations group, direction
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
