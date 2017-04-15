@@ -1,4 +1,6 @@
-﻿CTRL + M, O = collapse functions/regions
+﻿GIF 32 Dithered, Quality: NearestNeighbor @ 50% size
+
+CTRL + M, O = collapse functions/regions
 CTRL + M, P = expand functions/regions
 
 goal: 13 commits/day
@@ -17,53 +19,35 @@ adding a new particle/projectile:
 todo:
 
 
-2
-
-
-updated summary screen to display all record data, tho we don't have accurate enemy or damage counts yet.
-changed DungeonRecord from being a struct to a static public class, so it's accessible from everywhere.
-added a Reset() function to DungeonRecord, which is called from DungeonGenerator.BuildRoom().
-updated all references to DungeonRecord across multiple files.
-removed the DungeonRecord parameter from SummaryScreen constructor.
-updated ActorFunctions.SetDeathState() to track the deaths of all non-hero actors that die.
-tested, tracking death of enemies correctly.
-
-
-//if projectile damaged hero, track the damage dealt
-if (Actor == Pool.hero) { DungeonRecord.totalDamage += damage; }
-
-
-
-where can we determine/track where an actor (not hero) has died?
+1
 
 
 
 
-populate the dungeon record with data
-	enemies killed
-	damage taken
-
-where should we track actor deaths?
-and how do we not track the hero's death?
-
-
-where do we track when an actor takes damage?
-we could use WorldIUI to set the dungeon.record.	
-	
-	
-	
-do we need to dump any additional info to the debug panel?
-the summary data that we are tracking should appear in the debug panel
-this is so we can make sure it's accurate
+updated InteractionFunctions.Handle(Projectile, Actor) to track damage done to the hero.
+tested that hero damage is being tracked properly.
+moved the total time to the top of the summary data in sumamry screen.
+updated summary screen to animate the summary data, incrementing to final value.
+modified how quickly the summary and continue text components fade out.
+refactored DungeonRecord to have a stopwatch timer instead of a string for totalTime.
+removed dungeonScreen.recordTimer.
+added text field to DebugInfo that displays the DungeonRecord data.
+updated summary screen to use the new stopwatch timer in DungeonRecord.
+cleaned up and reorganized dungeon screen.
+created .gif of gameplay for display on the repo page.
+created /gifs/ directory in repo, where gifs of different versions of the game will live.
 
 
 
 
-whats the reward formula?
-	time bonus + enemies killed - damage taken
-	time bonus is based on how many rooms are in the dungeon.
-	total dungeon rooms - total minutes = gold multiplier * 100.
-	this expects the player to clear a room a minute.
+update the readme to display the .gif
+discuss the game, gameplay, architecture, etc... in readme
+
+layout the roadmap & milestones for the game
+consolidate gameplay, overview notes into readme
+
+
+
 	
 
 
@@ -112,7 +96,17 @@ Version 0.2 Milestones
 	create a boss actor (this is just x2 spriteSheet with same actor anim layout)
 	actor is processed just like other actors
 
+	get the totalTime value counting up to the dungeonRecord's totalTime value.
+	we can get the indivdual hours, minutes, seconds
+	so we can create ints that represent those in summary screen
+	then count those ints up to the values of hours, minutes, seconds
+	and concat them all onto the same summary data string
 
+	whats the reward formula?
+	time bonus + enemies killed - damage taken
+	time bonus is based on how many rooms are in the dungeon.
+	total dungeon rooms - total minutes = gold multiplier * 100.
+	this expects the player to clear a room a minute.
 
 	on sword collision, create a hit particle
 	create hit particle gameObject

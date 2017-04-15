@@ -35,6 +35,10 @@ namespace DungeonRun
         ComponentText continueText;
         float fadeSpeed = 0.05f;
 
+        int enemyCount = 0;
+        int totalDamage = 0;
+        int reward = 0;
+
         public override void LoadContent()
         {
 
@@ -52,13 +56,13 @@ namespace DungeonRun
             rightTitle.alpha = 0.0f;
 
             //create the summary + data + continue text fields
-            summaryText = new ComponentText(Assets.medFont,
-                "enemies\ntime\ndamage\nreward",
+            summaryText = new ComponentText(Assets.medFont, 
+                "time \nenemies \ndamage \nreward",
                 new Vector2(220, 150),
                 Assets.colorScheme.textSmall);
             summaryText.alpha = 0.0f;
-            summaryData = new ComponentText(Assets.medFont,
-                "13\n00:10:31\n14\n100",
+            summaryData = new ComponentText(Assets.medFont, 
+                "00:00:00 \n0 \n0 \n0",
                 new Vector2(330, 150),
                 Assets.colorScheme.textSmall);
             summaryData.alpha = 0.0f;
@@ -69,13 +73,6 @@ namespace DungeonRun
             continueText.alpha = 0.0f;
 
             #endregion
-
-
-            //populate the summary data text with record data
-            summaryData.text = "" + DungeonRecord.enemyCount; //enemies
-            summaryData.text += "\n" + DungeonRecord.totalTime;
-            summaryData.text += "\n" + DungeonRecord.totalDamage; //damage
-            summaryData.text += "\n" + 0; //reward
 
 
             #region Setup the Title Text Sprite Components
@@ -126,13 +123,16 @@ namespace DungeonRun
         {
             if (screenState == ScreenState.Display)
             {
-                if(
+                if (
                     Input.IsNewButtonPress(Buttons.Start) ||
                     Input.IsNewButtonPress(Buttons.A) ||
                     Input.IsNewButtonPress(Buttons.B) ||
                     Input.IsNewButtonPress(Buttons.X) ||
                     Input.IsNewButtonPress(Buttons.Y))
-                { screenState = ScreenState.AnimateOut; }
+                {
+                    screenState = ScreenState.AnimateOut;
+                    continueText.alpha = 1.0f;
+                }
             }
         }
 
@@ -159,14 +159,12 @@ namespace DungeonRun
                 }
                 if (rightTitle.position.X < rightTitleEndPos.X)
                 { rightTitle.position.X = rightTitleEndPos.X; }
-
                 //fade in components
                 leftTitle.alpha += fadeSpeed;
                 rightTitle.alpha += fadeSpeed;
                 continueText.alpha += fadeSpeed;
                 summaryText.alpha += fadeSpeed;
                 summaryData.alpha += fadeSpeed;
-
                 //check components position + opacity, transition state
                 if (rightTitle.position.X == rightTitleEndPos.X && 
                     leftTitle.position.X == leftTitleEndPos.X &&
@@ -188,12 +186,12 @@ namespace DungeonRun
                 //fade out components
                 leftTitle.alpha -= fadeSpeed * 1.5f;
                 rightTitle.alpha -= fadeSpeed * 1.5f;
-                continueText.alpha -= fadeSpeed;
-                summaryText.alpha -= fadeSpeed;
-                summaryData.alpha -= fadeSpeed;
+                summaryText.alpha -= fadeSpeed * 1.5f;
+                summaryData.alpha -= fadeSpeed * 1.5f;
+                continueText.alpha -= fadeSpeed * 0.9f;
                 //check components opacity, transition state
-                if (summaryText.alpha <= 0.0f)
-                { summaryText.alpha = 0.0f; screenState = ScreenState.Exit; }
+                if (continueText.alpha <= 0.0f)
+                { continueText.alpha = 0.0f; screenState = ScreenState.Exit; }
             }
 
             #endregion
@@ -210,6 +208,17 @@ namespace DungeonRun
                 leftTitle.alpha += 0.004f;
                 rightTitle.alpha += 0.004f;
                 continueText.alpha += 0.01f;
+
+                //animate the summary data
+                if (enemyCount < DungeonRecord.enemyCount) { enemyCount++; }
+                if (totalDamage < DungeonRecord.totalDamage) { totalDamage++; }
+                if (reward < 100) { reward++; }
+
+                //set the summary data text component
+                summaryData.text = "" + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
+                summaryData.text += "\n" + enemyCount; //enemies
+                summaryData.text += "\n" + totalDamage; //damage
+                summaryData.text += "\n" + reward; //reward
             }
 
             #endregion

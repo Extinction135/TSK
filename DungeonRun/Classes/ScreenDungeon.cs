@@ -14,28 +14,26 @@ namespace DungeonRun
 {
     public class DungeonScreen : Screen
     {
-        public DungeonScreen() { this.name = "DungeonScreen"; }
 
-        //the state of the dungeon screen
+        //the various states the dungeon screen can be in
         public enum ScreenState { FadeOut, Playing, FadeIn, Waiting }
         public ScreenState screenState = ScreenState.FadeOut;
-
-        Rectangle overlay; //foreground black rectangle
+        //the foreground black rectangle, overlays and hides game content
+        Rectangle overlay; 
         public float overlayAlpha = 1.0f;
         float fadeInSpeed = 0.05f;
         float fadeOutSpeed = 0.03f;
-
-        //game state
+        //the various states the game can be in
         public enum GameState { Playing, Summary }
         public GameState gameState = GameState.Playing;
 
-        //the dungeon record
-        public Stopwatch recordTimer;
+
+
+        public DungeonScreen() { this.name = "DungeonScreen"; }
 
         public override void LoadContent()
         {
             overlay = new Rectangle(0, 0, 640, 360);
-            recordTimer = new Stopwatch();
 
             Pool.Initialize();
             DungeonGenerator.Initialize(this);
@@ -105,8 +103,7 @@ namespace DungeonRun
                 {
                     if (gameState == GameState.Summary)
                     {
-                        recordTimer.Stop();
-                        DungeonRecord.totalTime = recordTimer.Elapsed.ToString(@"hh\:mm\:ss");
+                        DungeonRecord.timer.Stop();
                         ScreenManager.AddScreen(new SummaryScreen());
                         gameState = GameState.Playing;
                     }
@@ -160,5 +157,6 @@ namespace DungeonRun
             Timing.drawTime = Timing.stopWatch.Elapsed;
             Timing.totalTime = Timing.updateTime + Timing.drawTime;
         }
+
     }
 }

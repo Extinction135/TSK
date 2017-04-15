@@ -17,16 +17,19 @@ namespace DungeonRun
 
         public static int dungeonID;
         public static Boolean beatDungeon;
+
+        public static Stopwatch timer;
         public static int enemyCount;
-        public static string totalTime;
         public static int totalDamage;
 
         public static void Reset()
         {
             dungeonID = 0;
             beatDungeon = false;
+
+            timer = new Stopwatch();
+            timer.Reset();
             enemyCount = 0;
-            totalTime = "";
             totalDamage = 0;
         }
 

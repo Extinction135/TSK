@@ -197,9 +197,7 @@ namespace DungeonRun
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();
             DungeonRecord.dungeonID = 0; //ID = 0 for now
-            //reset and start the dungeon screen's record timer
-            dungeonScreen.recordTimer.Reset();
-            dungeonScreen.recordTimer.Start();
+            DungeonRecord.timer.Start(); //start the record timer
 
             //fade the dungeon screen out from black, revealing the new level
             dungeonScreen.overlayAlpha = 1.0f;

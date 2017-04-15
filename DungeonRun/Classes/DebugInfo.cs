@@ -25,6 +25,7 @@ namespace DungeonRun
         public static ComponentText moveText;
         public static ComponentText poolText;
         public static ComponentText creationText;
+        public static ComponentText recordText;
 
         public static long roomTime = 0;
         public static long dungeonTime = 0;
@@ -62,6 +63,10 @@ namespace DungeonRun
             creationText = new ComponentText(Assets.font, "",
                 new Vector2(16 * 17, yPos + 00), Assets.colorScheme.textSmall);
             textFields.Add(creationText);
+
+            recordText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 21, yPos + 00), Assets.colorScheme.textSmall);
+            textFields.Add(recordText);
         }
 
         public static void Draw()
@@ -121,6 +126,11 @@ namespace DungeonRun
             creationText.text = "timers";
             creationText.text += "\nroom: " + roomTime;
             creationText.text += "\ndung: " + dungeonTime;
+
+            recordText.text = "record";
+            recordText.text += "\ntime: " + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
+            recordText.text += "\nenemies: " + DungeonRecord.enemyCount;
+            recordText.text += "\ndamage: " + DungeonRecord.totalDamage;
 
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.windowBkg);
             size = textFields.Count();

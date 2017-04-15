@@ -46,7 +46,6 @@ namespace DungeonRun
             #endregion
 
             
-
             //only damage/hit/push actors not in the hit state
             if (Actor.state != Actor.State.Hit)
             {   //deal damage to the actor
