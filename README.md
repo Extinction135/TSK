@@ -14,6 +14,7 @@ However, functionality is grouped into logical global classes.
 Data is passed to these classes methods, from anywhere in the codebase.  
 I found this approach reduced the number of instances in the program.  
 Subjectively, I think it also makes it easier to reason about program state.  
+A great deal of effort has been made to keep the codebase small, clear, and fast.
 
 
 ## Design Patterns
@@ -28,8 +29,7 @@ For example, the idea of components (from ECS) are implemented in the codebase.
 An actor is composed of sprite, movement, collision, and input components.  
 A gameobject is composed of sprite, movement, and collision components.  
 These components are then passed to global classes with functions.  
-Sometimes actors or gameobjects are passed to these global classes functions too. 
-A great deal of effort has been made to keep the codebase small, clear, and fast.  
+Sometimes actors or gameobjects are passed to these global classes functions too.  
 
 
 MVC is also strictly enforced, via the HandleInput(), Update(), and Draw() methods.  
