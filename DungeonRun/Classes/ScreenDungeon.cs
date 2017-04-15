@@ -16,17 +16,12 @@ namespace DungeonRun
     {
         public DungeonScreen() { this.name = "DungeonScreen"; }
 
-
-
-
-
-        //screen state
         //the state of the dungeon screen
         public enum ScreenState { FadeOut, Playing, FadeIn, Waiting }
         public ScreenState screenState = ScreenState.FadeOut;
 
         Rectangle overlay; //foreground black rectangle
-        float overlayAlpha = 1.0f;
+        public float overlayAlpha = 1.0f;
         float fadeInSpeed = 0.05f;
         float fadeOutSpeed = 0.03f;
 
@@ -63,25 +58,9 @@ namespace DungeonRun
                 { DebugFunctions.Inspect(this); }
                 //toggle the paused boolean
                 if (Input.IsNewKeyPress(Keys.Space))
-                {
-                    if (Flags.Paused) { Flags.Paused = false; }
-                    else { Flags.Paused = true; }
-                }
+                { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
                 DebugMenu.HandleInput();
             }
-
-            /*
-            //dump the states for every active actor
-            if (Input.IsNewKeyPress(Keys.Enter))
-            {
-                for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
-                {
-                    if (Pool.actorPool[Pool.counter].active)
-                    { DebugFunctions.Inspect(Pool.actorPool[Pool.counter]); }
-                    
-                }
-            }
-            */
         }
 
         public override void Update(GameTime GameTime)

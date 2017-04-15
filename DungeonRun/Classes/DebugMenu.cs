@@ -29,6 +29,18 @@ namespace DungeonRun
 
         public static void HandleInput()
         {
+            //dump the states for every active actor if Enter key is pressed
+            if (Input.IsNewKeyPress(Keys.Enter))
+            {
+                for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+                {
+                    if (Pool.actorPool[Pool.counter].active)
+                    { DebugFunctions.Inspect(Pool.actorPool[Pool.counter]); }
+                }
+            }
+
+
+            //check each button for user mouse button input (click + hover states)
             for (counter = 0; counter < buttons.Count; counter++)
             {   //check each button to see if it contains the cursor
                 if (buttons[counter].rec.Contains(Input.cursorPos))

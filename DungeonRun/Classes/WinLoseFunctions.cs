@@ -20,7 +20,6 @@ namespace DungeonRun
             //check lost state
             if (Pool.hero.state == Actor.State.Dead)
             {
-                //ScreenManager.AddScreen(new SummaryScreen(false));
                 DungeonScreen.gameState = DungeonScreen.GameState.Lost;
                 DungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
             }
@@ -38,7 +37,6 @@ namespace DungeonRun
             }
             if (won)
             {
-                //ScreenManager.AddScreen(new SummaryScreen(true));
                 DungeonScreen.gameState = DungeonScreen.GameState.Won;
                 DungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
             }

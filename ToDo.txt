@@ -17,27 +17,27 @@ adding a new particle/projectile:
 todo:
 
 
-7
-
-bug: sumamry text doesn't complete it's fade out.
-cause: we're checking the alpha of the continue text, which isn't sync'd with other text components.
-solution: check to summary text's alpha, base state transition on it instead.
+6
 
 
 
-we could probably consolidate the winLose functions into a function inside of dungeonScreen
-however it's nice to have it seperate...
+cleaned up WinLoseFunctions.cs a little bit.
+moved a debug routine into DebugMenu, which dumps all the active actor states if Enter key is pressed.
+updated DungeonGenerator.BuildRoom() to set dungeon screen's overlay alpha to 1.0 at end of function.
+this simply ensures that the fadeOut state evaluates properly, as the alpha will always start at 1.0.
 
-move the dump state for all actors into a debug class
+
+
+
+
+
+we'd like to update more than 1 actor per frame, if possible...
 
 we need to be actually tracking summary screen data
 where does this data live? global class? instance per room?
 for now it can be a global class
 
-refactor the WinLostFunctions - we're creating a boolean each check()
-
-
-
+do we need to dump any additional info to the debug panel?
 
 
 

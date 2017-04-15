@@ -194,6 +194,7 @@ namespace DungeonRun
             ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
             MovementFunctions.Teleport(Pool.hero.compMove, room.center.X, room.center.Y);
             //fade the dungeon screen out from black, revealing the new level
+            dungeonScreen.overlayAlpha = 1.0f;
             dungeonScreen.screenState = DungeonScreen.ScreenState.FadeOut;
             dungeonScreen.gameState = DungeonScreen.GameState.Playing;
 
