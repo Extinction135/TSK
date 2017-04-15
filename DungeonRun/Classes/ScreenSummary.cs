@@ -15,32 +15,23 @@ namespace DungeonRun
     public class SummaryScreen : Screen
     {
         Boolean won = true; //false means player died
-        public SummaryScreen(Boolean Won)
-        {
-            this.name = "SummaryScreen";
-            won = Won;
-        }
+        public SummaryScreen(Boolean Won) { this.name = "SummaryScreen"; won = Won; }
 
-        enum State { FadeIn, Display, FadeOut, Exit }
-        State state = State.FadeIn;
-
-        Rectangle blackground; //the background black rectangle
-        float alpha = 0.0f; //fades blackground in/out
-        float fadeSpeed = 0.05f;
+        enum State { AnimateIn, Display, AnimateOut, Exit }
+        State state = State.AnimateIn;
 
         ComponentSprite leftTitle;
         Vector2 leftTitleEndPos;
-        
         ComponentSprite rightTitle;
         Vector2 rightTitleEndPos;
 
         ComponentText summaryText;
         ComponentText summaryData;
         ComponentText continueText;
+        float fadeSpeed = 0.05f;
 
         public override void LoadContent()
         {
-            blackground = new Rectangle(0, 0, 640, 360);
 
 
             #region Create the various sprites and text components
@@ -112,7 +103,7 @@ namespace DungeonRun
                     Input.IsNewButtonPress(Buttons.B) ||
                     Input.IsNewButtonPress(Buttons.X) ||
                     Input.IsNewButtonPress(Buttons.Y))
-                { state = State.FadeOut; }
+                { state = State.AnimateOut; }
             }
         }
 
@@ -120,57 +111,47 @@ namespace DungeonRun
         {
 
 
-            #region Animate Title Sprites into center of screen
+            #region Animate Title Sprites in / out
 
-            if (leftTitle.position.X < leftTitleEndPos.X)
-            {   //move left title to the right
-                leftTitle.position.X += (leftTitleEndPos.X - leftTitle.position.X) / 10;
-                leftTitle.position.X += 1; //fixes delayed movement
-            }
-            if (rightTitle.position.X > rightTitleEndPos.X)
-            {   //move right title to the left
-                rightTitle.position.X -= (rightTitle.position.X -rightTitleEndPos.X) / 10;
-                rightTitle.position.X -= 1; //fixes delayed movement
-            }
-
-            #endregion
-
-
-            #region Handle FadeIn State
-
-            if (state == State.FadeIn)
+            if (state == State.AnimateIn)
             {
-                alpha += fadeSpeed;
-                if (alpha >= 0.8f)
-                {
-                    alpha = 0.8f;
-                    state = State.Display;
-                    continueText.alpha = 1.0f;
-                    summaryText.alpha = 1.0f;
-                    summaryData.alpha = 1.0f;
+                if (leftTitle.position.X < leftTitleEndPos.X)
+                {   //move left title to the right
+                    leftTitle.position.X += (leftTitleEndPos.X - leftTitle.position.X) / 10;
+                    leftTitle.position.X += 1; //fixes delayed movement
                 }
+                if (rightTitle.position.X > rightTitleEndPos.X)
+                {   //move right title to the left
+                    rightTitle.position.X -= (rightTitle.position.X - rightTitleEndPos.X) / 10;
+                    rightTitle.position.X -= 1; //fixes delayed movement
+                }
+                //fade in other text components
+                continueText.alpha += fadeSpeed;
+                summaryText.alpha += fadeSpeed;
+                summaryData.alpha += fadeSpeed;
+                //once continue text hits 100% opacity, transition to display state
+                if (continueText.alpha >= 1.0f)
+                { continueText.alpha = 1.0f; state = State.Display; }
             }
-
-            #endregion
-
-
-            #region Handle FadeOut State
-
-            else if (state == State.FadeOut)
+            else if (state == State.AnimateOut)
             {
-                //fade all screen elements to 0
-                alpha -= fadeSpeed;
-                leftTitle.alpha -= fadeSpeed;
-                rightTitle.alpha -= fadeSpeed;
+                if (leftTitle.position.X > -200)
+                {   //move left title to the left offscreen
+                    leftTitle.position.X -= (leftTitle.position.X - 200) / 10;
+                    leftTitle.position.X -= 1; //fixes delayed movement
+                }
+                if (rightTitle.position.X < 650)
+                {   //move right title to the left
+                    rightTitle.position.X += (650 - rightTitle.position.X) / 10;
+                    rightTitle.position.X += 1; //fixes delayed movement
+                }
+                //fade out other text components
                 continueText.alpha -= fadeSpeed;
                 summaryText.alpha -= fadeSpeed;
                 summaryData.alpha -= fadeSpeed;
-
-                if (alpha <= 0.0f)
-                {
-                    alpha = 0.0f;
-                    state = State.Exit;
-                }
+                //once continue text hits 100% opacity, transition to display state
+                if (continueText.alpha <= 0.0f)
+                { continueText.alpha = 0.0f; state = State.Exit; }
             }
 
             #endregion
@@ -181,15 +162,12 @@ namespace DungeonRun
             else if (state == State.Display)
             {
                 //pulse the alpha of the left and right title sprites
-                //leftTitle.alpha = 1.0f - (GetRandom.Int(0, 2) * 0.1f);
-                //rightTitle.alpha = 1.0f - (GetRandom.Int(0, 2) * 0.1f);
                 if (leftTitle.alpha >= 1.0f) { leftTitle.alpha = 0.85f; }
                 if (rightTitle.alpha >= 1.0f) { rightTitle.alpha = 0.85f; }
                 if (continueText.alpha >= 1.0f) { continueText.alpha = 0.85f; }
-
                 leftTitle.alpha += 0.004f;
                 rightTitle.alpha += 0.004f;
-                continueText.alpha += 0.010f;
+                continueText.alpha += 0.01f;
             }
 
             #endregion
@@ -211,18 +189,11 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-
-            ScreenManager.spriteBatch.Draw(
-                Assets.dummyTexture, blackground,
-                Assets.colorScheme.overlay * alpha);
-
             DrawFunctions.Draw(leftTitle);
             DrawFunctions.Draw(rightTitle);
-
             DrawFunctions.Draw(summaryData);
             DrawFunctions.Draw(summaryText);
             DrawFunctions.Draw(continueText);
-
             ScreenManager.spriteBatch.End();
         }
 

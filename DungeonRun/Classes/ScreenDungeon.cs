@@ -16,16 +16,44 @@ namespace DungeonRun
     {
         public DungeonScreen() { this.name = "DungeonScreen"; }
 
+
+
+
+
+        //screen state
+        //the state of the dungeon screen
+        public enum ScreenState { FadeOut, Playing, FadeIn, Waiting }
+        public ScreenState state = ScreenState.FadeOut;
+
+        Rectangle overlay; //foreground black rectangle
+        float overlayAlpha = 1.0f;
+        float overlayFadeSpeed = 0.05f;
+
+        //game state
+        public enum GameState { Playing, Won, Lost }
+        public GameState gameState = GameState.Playing;
+
+
+
         public override void LoadContent()
         {
-            Pool.Initialize(this);
+            Pool.Initialize();
+            DungeonGenerator.Initialize(this);
             DungeonGenerator.BuildRoom();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }
 
         public override void HandleInput(GameTime GameTime)
         {
-            Input.MapPlayerInput(Pool.hero.compInput);
+            //reset the input for hero and the active actor
+            Input.ResetInputData(Pool.hero.compInput);
+            Input.ResetInputData(Pool.actorPool[Pool.activeActor].compInput);
+            //if screen is playing, allow input for player + active actor
+            if (state == ScreenState.Playing) 
+            {
+                Input.MapPlayerInput(Pool.hero.compInput);
+                AiFunctions.SetActorInput(); //process one actor per frame
+            }
 
             if (Flags.Debug)
             {   //if the game is in debug mode, dump info on clicked actor/obj
@@ -40,8 +68,7 @@ namespace DungeonRun
                 DebugMenu.HandleInput();
             }
 
-
-
+            /*
             //dump the states for every active actor
             if (Input.IsNewKeyPress(Keys.Enter))
             {
@@ -52,10 +79,7 @@ namespace DungeonRun
                     
                 }
             }
-
-
-
-
+            */
         }
 
         public override void Update(GameTime GameTime)
@@ -63,10 +87,45 @@ namespace DungeonRun
             Timing.Reset();
 
             if(!Flags.Paused)
-            {   //update and move actors, objects, and projectiles
+            {   
+                if(state == ScreenState.FadeOut) //fade overlay to 0
+                {
+                    overlayAlpha -= overlayFadeSpeed;
+                    if (overlayAlpha <= 0.0f)
+                    { overlayAlpha = 0.0f; state = ScreenState.Playing;  }
+                }
+                else if (state == ScreenState.Playing) //update 
+                {
+                    WinLoseFunctions.Check(this);
+                }
+                else if (state == ScreenState.FadeIn) //fade overlay to 1.0
+                {
+                    overlayAlpha += overlayFadeSpeed;
+                    if (overlayAlpha >= 1.0f)
+                    { overlayAlpha = 1.0f; state = ScreenState.Waiting; }
+                }
+                else if (state == ScreenState.Waiting)
+                {
+                    if (gameState == GameState.Lost)
+                    {
+                        ScreenManager.AddScreen(new SummaryScreen(false));
+                        gameState = GameState.Playing;
+                    }
+                    else if (gameState == GameState.Won)
+                    {
+                        ScreenManager.AddScreen(new SummaryScreen(true));
+                        gameState = GameState.Playing;
+                    }
+                    else if (gameState == GameState.Playing)
+                    {
+                        //wait for fadeOut call from DungeonGenerator
+                        //this happens when a new dungeon is built.
+                    }
+                }
+
+                //update and move actors, objects, and projectiles
                 PoolFunctions.Update(this);
                 WorldUI.Update();
-                WinLoseFunctions.Check();
                 //track camera to hero
                 Camera2D.targetPosition = Pool.hero.compSprite.position;
                 Camera2D.Update(GameTime);
@@ -80,7 +139,7 @@ namespace DungeonRun
         {
             Timing.Reset();
 
-            //draw gameworld
+            //draw gameworld from camera's view
             ScreenManager.spriteBatch.Begin(
                         SpriteSortMode.BackToFront,
                         BlendState.AlphaBlend,
@@ -98,6 +157,9 @@ namespace DungeonRun
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             WorldUI.Draw();
             if (Flags.Debug) { DebugInfo.Draw(); DebugMenu.Draw(); }
+            //draw the overlay rec last
+            ScreenManager.spriteBatch.Draw( Assets.dummyTexture, 
+                overlay, Assets.colorScheme.overlay * overlayAlpha);
             ScreenManager.spriteBatch.End();
 
             Timing.stopWatch.Stop();

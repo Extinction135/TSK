@@ -15,6 +15,8 @@ namespace DungeonRun
     public static class DungeonGenerator
     {
 
+        public static DungeonScreen dungeonScreen;
+
         public static Room room;
         public static Stopwatch stopWatch = new Stopwatch();
         public static TimeSpan time;
@@ -24,6 +26,9 @@ namespace DungeonRun
         public static ComponentSprite floorRef;
         public static GameObject objRef;
         public static Actor actorRef;
+
+        public static void Initialize(DungeonScreen DungeonScreen)
+        { dungeonScreen = DungeonScreen; }
 
         public static void RandomizeRoom()
         {
@@ -46,7 +51,9 @@ namespace DungeonRun
             PoolFunctions.Reset();
             Pool.counter = 0;
 
-            //build the room
+
+            #region Build the room
+
             for (i = 0; i < room.size.x; i++)
             {
                 for (j = 0; j < room.size.y; j++)
@@ -153,9 +160,11 @@ namespace DungeonRun
             //update the object pool, since we teleported objects around
             PoolFunctions.UpdateObjectPool();
 
+            #endregion
+
 
             #region Set the Room Actors
-            
+
             //place enemies within the room
             for (i = 0; i < room.enemyCount; i++)
             {
@@ -184,6 +193,9 @@ namespace DungeonRun
             //center hero to room
             ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
             MovementFunctions.Teleport(Pool.hero.compMove, room.center.X, room.center.Y);
+            //fade the dungeon screen out from black, revealing the new level
+            dungeonScreen.state = DungeonScreen.ScreenState.FadeOut;
+            dungeonScreen.gameState = DungeonScreen.GameState.Playing;
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;

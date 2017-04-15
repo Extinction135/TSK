@@ -123,18 +123,9 @@ namespace DungeonRun
             }
         }
 
-        public static void UpdateActiveActor(Actor Actor)
-        {
-            AiFunctions.Think(Actor);
-            Pool.activeActor++;
-            if (Pool.activeActor >= Pool.actorCount) { Pool.activeActor = 1; } //skip 0th actor (HERO)
-        }
-
         public static void Update(DungeonScreen DungeonScreen)
         {
             //actor pool
-            UpdateActiveActor(Pool.actorPool[Pool.activeActor]);
-            UpdateActiveActor(Pool.actorPool[Pool.activeActor]);
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             {
                 if (Pool.actorPool[Pool.counter].active)
@@ -164,7 +155,6 @@ namespace DungeonRun
                         Pool.projectilePool[Pool.counter].compSprite);
                 }
             }
-
             Move(DungeonScreen);
         }
 
@@ -185,7 +175,6 @@ namespace DungeonRun
             }
             //objects in the objPool dont move
         }
-
 
 
 

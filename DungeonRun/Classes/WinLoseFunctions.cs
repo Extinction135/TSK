@@ -14,15 +14,18 @@ namespace DungeonRun
 {
     public static class WinLoseFunctions
     {
-
-        public static void Check()
+        public static Boolean won;
+        public static void Check(DungeonScreen DungeonScreen)
         {
             //check lost state
             if (Pool.hero.state == Actor.State.Dead)
-            { ScreenManager.AddScreen(new SummaryScreen(false)); }
+            {
+                //ScreenManager.AddScreen(new SummaryScreen(false));
+                DungeonScreen.gameState = DungeonScreen.GameState.Lost;
+            }
 
             //check won state
-            Boolean won = true;
+            won = true;
             for (Pool.counter = 1; Pool.counter < Pool.actorCount; Pool.counter++)
             {   //skip the hero, thus counter starts with 1 instead of 0
                 //check to see if any active enemies are alive
@@ -32,7 +35,11 @@ namespace DungeonRun
                     { won = false; }
                 }
             }
-            if (won) { ScreenManager.AddScreen(new SummaryScreen(true)); }
+            if (won)
+            {
+                //ScreenManager.AddScreen(new SummaryScreen(true));
+                DungeonScreen.gameState = DungeonScreen.GameState.Won;
+            }
 
             //later this will simply be a check to see if the dungeon boss is dead
         }

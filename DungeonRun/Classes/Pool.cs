@@ -43,7 +43,7 @@ namespace DungeonRun
 
         public static int activeActor = 1; //tracks the current actor being handled by AI
         
-        public static void Initialize(DungeonScreen Screen)
+        public static void Initialize()
         {
             //set the pool sizes
             actorCount = 30;

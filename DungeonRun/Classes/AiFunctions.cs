@@ -18,11 +18,16 @@ namespace DungeonRun
         public static Direction directionToHero;
         public static Vector2 actorPos;
         public static Vector2 heroPos;
-
-        public static void Think(Actor Actor)
+        static Actor Actor;
+        public static void SetActorInput()
         {
-            //reset the actor's input component
-            Input.ResetInputData(Actor.compInput);
+            //target the active actor from the actor's pool
+            Actor = Pool.actorPool[Pool.activeActor];
+
+
+
+            #region AI Routines
+
             //reset the direction to hero
             directionToHero = Direction.None;
 
@@ -82,6 +87,8 @@ namespace DungeonRun
                 if (GetRandom.Int(0, 100) > 90) { Actor.compInput.dash = true; }
             }
 
+            #endregion
+
 
 
             //slightly more advanced AI
@@ -99,9 +106,12 @@ namespace DungeonRun
             //if very close or nearby, move away from hero
             //if in visibility range, ranged attack hero
             //else, wander around
-            
 
 
+
+            //increment the active actor
+            Pool.activeActor++;
+            if (Pool.activeActor >= Pool.actorCount) { Pool.activeActor = 1; } //skip 0th actor (HERO)
         }
 
     }
