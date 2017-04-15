@@ -17,80 +17,36 @@ adding a new particle/projectile:
 todo:
 
 
-12
-
-
-
-removed background from summary screen.
-moved this fading rectangle idea into dungeon screen, renamed to overlay.
-migrated the alpha + fade speed to dungeon screen too.
-created state enum for dungeon screen, with fadeOut, playing, fadeIn, waiting states.
-this is in prep for better interactions with the summary screen.
-
-changed AiFunctions.Think() to SetActorInput() to better reflect what it's actually doing.
-consolidated UpdateActiveActor's functionality into AiFunctions.SetActorInput().
-removed UpdateActiveActor() from PoolFunctions.cs.
-
-AiFunctions.SetActorInput() now manages the active actor count + active actor reference. 
-Moved calls to SetActorInput() to DungeonScreen.HandleInput().
-This groups all the input calls into one function, making it easier to understand / manage.
-Updated HandleInput() to only allow player + AI input to actors if screen is in 'playing' state.
-
-Changed summary screen's state enums to {AnimateIn, Display, AnimateOut, Exit }.
-This better reflects each states purpose, as the screen is no longer fading in/out.
-Updated SummaryScreen.HandleInput() to set state to AnimateOut upon button press.
-
-Update SummaryScreen.Update() to manage the screens components with respect to screen.state enums.
-Title sprites now animate in and out, while text components fade in and out.
-
-moved the call to reset the input out of Input.MapPlayerInput, into DungeonScreen.HandleInput().
-this allows us to reset the hero's input, then prevent additional input if the screen isn't in playing state.
-
-now processing only 1 enemy per frame for AI. 
-now properly resetting that enemies input prior to DungeonScreen.state.playing check.
-this means that when there are less actors on screen, they get updated with AI more frequently.
-this should make them harder to beat, which scales the difficulty up or down depending on enemy population.
-
-updated dungeonScreen.Update() to manage the screen's states (fadeOut, playing, fadeIn).
-Waiting state literally does nothing. It just waits.
-updated dungeonScreen.Draw() to draw the screen's overlay rec last, over everything else.
-
-removed DungeonScreen parameter from Pool.Initialize - it's unused!
-created DugneonGenerator.Initialize(DungeonScreen).
-DungeonGenerator now stores a reference to DungeonScreen.
-this allows DungeonGenerator.BuildRoom() to set the screen.state to FadeOut.
-slight reorganization of DungeonGenerator.BuildRoom().
-
-
-created GameState enum in DungeonScreen to represent Playing, Won, and Lost game states.
-renamed Screen.State enum to ScreenState to better describe it's purpose, fixed references.
-updated DungeonScreen.Update screen state waiting check to create summary screen based on GameState enum.
-updated WinLoseFunctions.Check() to accept DungeonScreen as a parameter.
-Check() now sets the gameState enum and does not create a SummaryScreen.
-updated DungeonGenerator.BuildRoom() to set gameState to playing upon room creation.
-updated WinLoseFunctions.Check() to use a one instance of won boolean.
-Previously, it was creating a boolean each time Check() was called.
-
-
-
-
-this commit should of been broken up into about 10 smaller commits...
-but doing so would of left the codebased in a broken state.
-i prefer to push commits that don't break the program, y'know.
-
-
----------------------------------------------------------------------------------------------
+11
 
 
 
 
 
+now actually creating the overlay rectangle in DungeonScreen.cs.
+updated DungeonScreen.state name to screenState, to better describe it's purpose.
+fixed all references to screenState.
+updated WinLoseFunctions.Check to set the DungeonScreen.screenState to fadeOut.
+this should trigger then summary screen evaluation.
 
-bug: nothing happened when we killed all the enemies
 
 
 
 
+bug: nothing happens when all enemies die
+cause:
+solution:
+
+
+bug: nothing happens when the hero dies
+cause:
+solution:
+
+
+bug: the summary screen's left title sprite moved to the right when the screen exited.
+
+
+overlay rec doesn't appear to be displayed
 
 
 
@@ -100,21 +56,6 @@ bug: nothing happened when we killed all the enemies
 we could probably consolidate the winLose functions into a function inside of dungeonScreen
 however it's nice to have it seperate...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 move the dump state for all actors into a debug class
 
 we need to be actually tracking summary screen data
@@ -122,6 +63,11 @@ where does this data live? global class? instance per room?
 for now it can be a global class
 
 refactor the WinLostFunctions - we're creating a boolean each check()
+
+
+
+
+
 
 
 

@@ -23,7 +23,7 @@ namespace DungeonRun
         //screen state
         //the state of the dungeon screen
         public enum ScreenState { FadeOut, Playing, FadeIn, Waiting }
-        public ScreenState state = ScreenState.FadeOut;
+        public ScreenState screenState = ScreenState.FadeOut;
 
         Rectangle overlay; //foreground black rectangle
         float overlayAlpha = 1.0f;
@@ -37,6 +37,7 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            overlay = new Rectangle(0, 0, 640, 360);
             Pool.Initialize();
             DungeonGenerator.Initialize(this);
             DungeonGenerator.BuildRoom();
@@ -49,7 +50,7 @@ namespace DungeonRun
             Input.ResetInputData(Pool.hero.compInput);
             Input.ResetInputData(Pool.actorPool[Pool.activeActor].compInput);
             //if screen is playing, allow input for player + active actor
-            if (state == ScreenState.Playing) 
+            if (screenState == ScreenState.Playing) 
             {
                 Input.MapPlayerInput(Pool.hero.compInput);
                 AiFunctions.SetActorInput(); //process one actor per frame
@@ -88,23 +89,23 @@ namespace DungeonRun
 
             if(!Flags.Paused)
             {   
-                if(state == ScreenState.FadeOut) //fade overlay to 0
+                if(screenState == ScreenState.FadeOut) //fade overlay to 0
                 {
                     overlayAlpha -= overlayFadeSpeed;
                     if (overlayAlpha <= 0.0f)
-                    { overlayAlpha = 0.0f; state = ScreenState.Playing;  }
+                    { overlayAlpha = 0.0f; screenState = ScreenState.Playing;  }
                 }
-                else if (state == ScreenState.Playing) //update 
+                else if (screenState == ScreenState.Playing) //update 
                 {
                     WinLoseFunctions.Check(this);
                 }
-                else if (state == ScreenState.FadeIn) //fade overlay to 1.0
+                else if (screenState == ScreenState.FadeIn) //fade overlay to 1.0
                 {
                     overlayAlpha += overlayFadeSpeed;
                     if (overlayAlpha >= 1.0f)
-                    { overlayAlpha = 1.0f; state = ScreenState.Waiting; }
+                    { overlayAlpha = 1.0f; screenState = ScreenState.Waiting; }
                 }
-                else if (state == ScreenState.Waiting)
+                else if (screenState == ScreenState.Waiting)
                 {
                     if (gameState == GameState.Lost)
                     {

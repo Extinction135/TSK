@@ -22,6 +22,7 @@ namespace DungeonRun
             {
                 //ScreenManager.AddScreen(new SummaryScreen(false));
                 DungeonScreen.gameState = DungeonScreen.GameState.Lost;
+                DungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
             }
 
             //check won state
@@ -39,6 +40,7 @@ namespace DungeonRun
             {
                 //ScreenManager.AddScreen(new SummaryScreen(true));
                 DungeonScreen.gameState = DungeonScreen.GameState.Won;
+                DungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
             }
 
             //later this will simply be a check to see if the dungeon boss is dead
