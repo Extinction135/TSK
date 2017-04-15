@@ -135,9 +135,9 @@ namespace DungeonRun
             }
             else if (state == State.AnimateOut)
             {
-                if (leftTitle.position.X > -200)
+                if (leftTitle.position.X > -300)
                 {   //move left title to the left offscreen
-                    leftTitle.position.X -= (leftTitle.position.X - 200) / 10;
+                    leftTitle.position.X -= (300 - leftTitle.position.X) / 10;
                     leftTitle.position.X -= 1; //fixes delayed movement
                 }
                 if (rightTitle.position.X < 650)

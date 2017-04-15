@@ -21,33 +21,40 @@ todo:
 
 
 
-
-
-now actually creating the overlay rectangle in DungeonScreen.cs.
-updated DungeonScreen.state name to screenState, to better describe it's purpose.
-fixed all references to screenState.
-updated WinLoseFunctions.Check to set the DungeonScreen.screenState to fadeOut.
-this should trigger then summary screen evaluation.
-
-
-
-
-
-bug: nothing happens when all enemies die
-cause:
-solution:
-
-
-bug: nothing happens when the hero dies
-cause:
-solution:
-
-
 bug: the summary screen's left title sprite moved to the right when the screen exited.
+cause: some bad maths, causing the opposite movement intended.
+solution: better maths, flipped the position of two variables.
+worked on finessing the movement of the title sprites in animateOut state.
 
 
-overlay rec doesn't appear to be displayed
 
+BUGS:
+"you" doesn't align to center
+"dungeon" doesn't align to center either
+
+"complete" doesn't align to center
+"died" doesn't align to center
+
+additionally, the movement of the title sprites is different based on their size
+we need to set a starting vector position for these sprites
+then animate from start to end position
+then animate from end position to start position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+slow down the fadeout of the dungeon screen rec
+the fade in speed is fine
 
 
 
