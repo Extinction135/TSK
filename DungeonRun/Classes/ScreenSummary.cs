@@ -43,11 +43,14 @@ namespace DungeonRun
             #region Create the various sprites and text components
 
             float yPos = 60;
+
             //create the left and right title sprites
             leftTitle = new ComponentSprite(Assets.bigTextSheet, 
                 new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(1, 1));
+            leftTitle.alpha = 0.0f;
             rightTitle = new ComponentSprite(Assets.bigTextSheet, 
                 new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(1, 1));
+            rightTitle.alpha = 0.0f;
 
             //create the summary + data + continue text fields
             summaryText = new ComponentText(Assets.medFont,
@@ -83,7 +86,7 @@ namespace DungeonRun
 
                 leftTitleEndPos = new Vector2(130-15, yPos);
                 rightTitleEndPos = new Vector2(305+15, yPos);
-                animSpeed = 8; //normal speed
+                animSpeed = 8; //lower is faster
             }
             else
             {   //"you died"
@@ -97,10 +100,11 @@ namespace DungeonRun
 
                 leftTitleEndPos = new Vector2(200-10, yPos);
                 rightTitleEndPos = new Vector2(285+15, yPos);
-                animSpeed = 6; //faster
+                animSpeed = 8; //lower is faster
             }
 
             #endregion
+
 
             //set the title sprites into their starting positions
             leftTitle.position.X = leftTitleStartPos.X;
@@ -129,7 +133,6 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
 
-            
 
             #region Animate Title Sprites in / out
 
@@ -151,7 +154,9 @@ namespace DungeonRun
                 if (rightTitle.position.X < rightTitleEndPos.X)
                 { rightTitle.position.X = rightTitleEndPos.X; }
 
-                //fade in other text components
+                //fade in components
+                leftTitle.alpha += fadeSpeed;
+                rightTitle.alpha += fadeSpeed;
                 continueText.alpha += fadeSpeed;
                 summaryText.alpha += fadeSpeed;
                 summaryData.alpha += fadeSpeed;
@@ -176,7 +181,9 @@ namespace DungeonRun
                     rightTitle.position.X += (rightTitleStartPos.X - rightTitle.position.X) / animSpeed;
                     rightTitle.position.X += 1; //fixes delayed movement
                 }
-                //fade out other text components
+                //fade out components
+                leftTitle.alpha -= fadeSpeed * 1.5f;
+                rightTitle.alpha -= fadeSpeed * 1.5f;
                 continueText.alpha -= fadeSpeed;
                 summaryText.alpha -= fadeSpeed;
                 summaryData.alpha -= fadeSpeed;

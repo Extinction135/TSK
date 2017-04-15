@@ -17,28 +17,13 @@ adding a new particle/projectile:
 todo:
 
 
-10
-
-
-
-added left and right start positions to summary screen for title sprites.
-updated SummaryScreen to move title sprites from startPos to endPos and back to startPos.
-updated SummaryScreen.state to ScreenState to better reflect it's purpose.
-SummaryScreen title sprites animation/movement is based on the screenState.
-better aligned title sprite components, for both win and lose states
+9
 
 
 
 
-
-fade the title sprites in/out as they animate in/out
-
-
-
-
-
-
-
+updated SummaryScreen to fade the title sprites in/out as they animate in/out.
+Finessed the speed and placement of title sprites for win/lose states.
 
 
 
