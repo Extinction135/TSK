@@ -14,8 +14,12 @@ namespace DungeonRun
 {
     public class SummaryScreen : Screen
     {
-        Boolean won = true; //false means player died
-        public SummaryScreen(Boolean Won) { this.name = "SummaryScreen"; won = Won; }
+        DungeonRecord record;
+        public SummaryScreen(DungeonRecord Record)
+        {
+            this.name = "SummaryScreen";
+            record = Record;
+        }
 
         enum ScreenState { AnimateIn, Display, AnimateOut, Exit }
         ScreenState screenState = ScreenState.AnimateIn;
@@ -63,18 +67,25 @@ namespace DungeonRun
                 new Vector2(330, 150),
                 Assets.colorScheme.textSmall);
             summaryData.alpha = 0.0f;
-            continueText = new ComponentText(Assets.medFont, 
-                "press any button\n    to play again", 
-                new Vector2(220, 260), 
+            continueText = new ComponentText(Assets.medFont,
+                "press any button\n    to play again",
+                new Vector2(220, 260),
                 Assets.colorScheme.textSmall);
             continueText.alpha = 0.0f;
 
             #endregion
 
 
+            //populate the summary data text with record data
+            summaryData.text = "" + 0; //enemies
+            summaryData.text += "\n" + record.totalTime;
+            summaryData.text += "\n" + 0; //damage
+            summaryData.text += "\n" + 0; //reward
+
+
             #region Setup the Title Text Sprite Components
 
-            if (won)
+            if (record.beatDungeon)
             {   //"dungoen complete"
                 leftTitle.currentFrame = new Byte4(0, 0, 0, 0);
                 leftTitle.cellSize = new Byte2(16 * 13, 16 * 4);

@@ -26,14 +26,18 @@ namespace DungeonRun
         float fadeOutSpeed = 0.03f;
 
         //game state
-        public enum GameState { Playing, Won, Lost }
+        public enum GameState { Playing, Summary }
         public GameState gameState = GameState.Playing;
 
-
+        //the dungeon record
+        public DungeonRecord record;
+        public Stopwatch recordTimer;
 
         public override void LoadContent()
         {
             overlay = new Rectangle(0, 0, 640, 360);
+            recordTimer = new Stopwatch();
+
             Pool.Initialize();
             DungeonGenerator.Initialize(this);
             DungeonGenerator.BuildRoom();
@@ -79,7 +83,10 @@ namespace DungeonRun
                 {
                     overlayAlpha -= fadeOutSpeed;
                     if (overlayAlpha <= 0.0f)
-                    { overlayAlpha = 0.0f; screenState = ScreenState.Playing;  }
+                    {
+                        overlayAlpha = 0.0f; screenState = 
+                            ScreenState.Playing;
+                    }
                 }
                 else if (screenState == ScreenState.Playing) //update 
                 {
@@ -89,24 +96,25 @@ namespace DungeonRun
                 {
                     overlayAlpha += fadeInSpeed;
                     if (overlayAlpha >= 1.0f)
-                    { overlayAlpha = 1.0f; screenState = ScreenState.Waiting; }
+                    {
+                        overlayAlpha = 1.0f;
+                        screenState = ScreenState.Waiting;
+                        gameState = GameState.Summary;
+                    }
                 }
                 else if (screenState == ScreenState.Waiting)
                 {
-                    if (gameState == GameState.Lost)
+                    if (gameState == GameState.Summary)
                     {
-                        ScreenManager.AddScreen(new SummaryScreen(false));
+                        recordTimer.Stop();
+                        record.totalTime = recordTimer.Elapsed.ToString(@"hh\:mm\:ss");
+                        ScreenManager.AddScreen(new SummaryScreen(record));
                         gameState = GameState.Playing;
                     }
-                    else if (gameState == GameState.Won)
-                    {
-                        ScreenManager.AddScreen(new SummaryScreen(true));
-                        gameState = GameState.Playing;
-                    }
-                    else if (gameState == GameState.Playing)
+                    else
                     {
                         //wait for fadeOut call from DungeonGenerator
-                        //this happens when a new dungeon is built.
+                        //this happens when a new dungeon is built
                     }
                 }
 

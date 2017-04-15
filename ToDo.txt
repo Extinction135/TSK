@@ -17,28 +17,40 @@ adding a new particle/projectile:
 todo:
 
 
-5
-
-
-created PoolFunctions.ResetActorPoolInput(), resets all input components in actor pool.
-refactored how input is handled, with relation to dungeonScreen.screenState.
-AI now processes 3 actors per frame, which makes the enemies more responsive.
-reorganized Input.cs. updated AiFunctions.SetActorInput() to reset the active actor's input.
+3
 
 
 
 
-let's reduce the max opacity for dungeon screen's overlay, so we can still kinda see the background sprites
-the issue is that we want it to be compeletely black when we build a new room
+created dungeon record struct, to hold data to be displayed on the summary screen.
+created instance of dungeon record in dungeon screen.
+created instance of stopwatch named recordTimer in dungeon screen.
+updated dungeonGenerator.BuildRoom() to reset record and recordTimer.
+changed DungeonScreen.gameState enum to { Playing, Summary } to better describe it's nature.
+refactored DungeonScreen.Update() to use the new enum, which also sets the elapsed time in the dungeon.
+also creates the summary screen and passes the dungeon record into it.
+summary screen now displays the passed record's totalTime string value.
 
 
 
 
-we need to be actually tracking summary screen data
-where does this data live? global class? instance per room?
-for now it can be a global class
+
+
+push 'died' +5 for end pos
+
+
+
+
+populate the dungeon record with data
+	enemies killed
+	damage taken
 
 do we need to dump any additional info to the debug panel?
+the summary data that we are tracking should appear in the debug panel
+this is so we can make sure it's accurate
+
+
+
 
 
 
@@ -83,6 +95,13 @@ RELEASE v0.1
 	
 	
 Version 0.2 Milestones
+
+	build an actual dungeon, with multiple rooms, a key, boss door/room
+	
+	create a boss actor (this is just x2 spriteSheet with same actor anim layout)
+	actor is processed just like other actors
+
+
 
 	on sword collision, create a hit particle
 	create hit particle gameObject

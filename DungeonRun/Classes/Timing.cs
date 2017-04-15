@@ -20,6 +20,5 @@ namespace DungeonRun
         public static TimeSpan drawTime = new TimeSpan();
         public static TimeSpan totalTime = new TimeSpan();
         public static void Reset() { stopWatch.Reset(); stopWatch.Start(); }
-
     }
 }

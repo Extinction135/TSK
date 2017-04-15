@@ -14,13 +14,14 @@ namespace DungeonRun
 {
     public static class WinLoseFunctions
     {
+
         public static Boolean won;
         public static void Check(DungeonScreen DungeonScreen)
         {
             //check lost state
             if (Pool.hero.state == Actor.State.Dead)
             {
-                DungeonScreen.gameState = DungeonScreen.GameState.Lost;
+                DungeonScreen.record.beatDungeon = false;
                 DungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
             }
 
@@ -37,7 +38,7 @@ namespace DungeonRun
             }
             if (won)
             {
-                DungeonScreen.gameState = DungeonScreen.GameState.Won;
+                DungeonScreen.record.beatDungeon = true;
                 DungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
             }
 

@@ -193,10 +193,16 @@ namespace DungeonRun
             //center hero to room
             ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
             MovementFunctions.Teleport(Pool.hero.compMove, room.center.X, room.center.Y);
+
+            //reset the dungeon screen's dungeon record, passing dungeonID
+            dungeonScreen.record = new DungeonRecord(0); //ID = 0 for now
+            //reset and start the dungeon screen's record timer
+            dungeonScreen.recordTimer.Reset();
+            dungeonScreen.recordTimer.Start();
+
             //fade the dungeon screen out from black, revealing the new level
             dungeonScreen.overlayAlpha = 1.0f;
             dungeonScreen.screenState = DungeonScreen.ScreenState.FadeOut;
-            dungeonScreen.gameState = DungeonScreen.GameState.Playing;
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
