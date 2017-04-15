@@ -27,7 +27,8 @@ namespace DungeonRun
 
         Rectangle overlay; //foreground black rectangle
         float overlayAlpha = 1.0f;
-        float overlayFadeSpeed = 0.05f;
+        float fadeInSpeed = 0.05f;
+        float fadeOutSpeed = 0.03f;
 
         //game state
         public enum GameState { Playing, Won, Lost }
@@ -91,7 +92,7 @@ namespace DungeonRun
             {   
                 if(screenState == ScreenState.FadeOut) //fade overlay to 0
                 {
-                    overlayAlpha -= overlayFadeSpeed;
+                    overlayAlpha -= fadeOutSpeed;
                     if (overlayAlpha <= 0.0f)
                     { overlayAlpha = 0.0f; screenState = ScreenState.Playing;  }
                 }
@@ -101,7 +102,7 @@ namespace DungeonRun
                 }
                 else if (screenState == ScreenState.FadeIn) //fade overlay to 1.0
                 {
-                    overlayAlpha += overlayFadeSpeed;
+                    overlayAlpha += fadeInSpeed;
                     if (overlayAlpha >= 1.0f)
                     { overlayAlpha = 1.0f; screenState = ScreenState.Waiting; }
                 }

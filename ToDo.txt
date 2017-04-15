@@ -17,21 +17,17 @@ adding a new particle/projectile:
 todo:
 
 
-9
+8
+
+
+split overlayFadeSpeed into fadeInSpeed and fadeOutSpeed.
+allows dungeonScreen to have seperate speeds for fading in/out overlay rec.
+modified the fadeIn fadeOut speed values to personal preference.
 
 
 
 
-updated SummaryScreen to fade the title sprites in/out as they animate in/out.
-Finessed the speed and placement of title sprites for win/lose states.
-
-
-
-
-slow down the fadeout of the dungeon screen rec
-the fade in speed is fine
-
-
+double check that the text components on summary screen are fading in/out properly
 
 
 
