@@ -23,7 +23,8 @@ namespace DungeonRun
         {
             //target the active actor from the actor's pool
             Actor = Pool.actorPool[Pool.activeActor];
-
+            //reset the target actor's input
+            Input.ResetInputData(Actor.compInput);
 
 
             #region AI Routines

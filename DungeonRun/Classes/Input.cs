@@ -106,6 +106,43 @@ namespace DungeonRun
 
 
 
+        public static void ResetInputData(ComponentInput CompInput)
+        {
+            CompInput.direction = Direction.None;
+            CompInput.attack = false;
+            CompInput.use = false;
+            CompInput.dash = false;
+            CompInput.interact = false;
+        }
+
+        public static void MapPlayerInput(ComponentInput CompInput)
+        {   //maps input helper state to input component state
+            //AI sets input component state directly, without using a controller/input helper abstraction
+            CompInput.direction = gamePadDirection;
+            if (IsNewButtonPress(Buttons.X)) { CompInput.attack = true; }
+            else if (IsNewButtonPress(Buttons.Y)) { CompInput.use = true; }
+            else if (IsNewButtonPress(Buttons.B)) { CompInput.dash = true; }
+            else if (IsNewButtonPress(Buttons.A)) { CompInput.interact = true; }
+        }
+
+        public static void SetInputState(ComponentInput CompInput, Actor Actor)
+        {
+            Actor.inputState = Actor.State.Idle; //reset inputState
+            Actor.compMove.direction = CompInput.direction; //set move direction
+            if (CompInput.direction != Direction.None)
+            {   //if there is directional input, then the actor is moving
+                Actor.inputState = Actor.State.Move;
+                //the actor can only dash while moving
+                if (CompInput.dash) { Actor.inputState = Actor.State.Dash; }
+            }
+            //determine + set button inputs
+            if (CompInput.attack) { Actor.inputState = Actor.State.Attack; }
+            else if (CompInput.use) { Actor.inputState = Actor.State.Use; }
+            else if (CompInput.interact) { Actor.inputState = Actor.State.Interact; }
+        }
+
+
+
         public static bool IsNewKeyPress(Keys key)
         { return (currentKeyboardState.IsKeyDown(key) && lastKeyboardState.IsKeyUp(key)); }
 
@@ -152,41 +189,6 @@ namespace DungeonRun
             else if (button == MouseButtons.RightButton)
             { return (currentMouseState.RightButton == ButtonState.Pressed); }
             else { return false; }
-        }
-
-        public static void ResetInputData(ComponentInput CompInput)
-        {
-            CompInput.direction = Direction.None;
-            CompInput.attack = false;
-            CompInput.use = false;
-            CompInput.dash = false;
-            CompInput.interact = false;
-        }
-
-        public static void MapPlayerInput(ComponentInput CompInput)
-        {   //maps input helper state to input component state
-            //AI sets input component state directly, without using a controller/input helper abstraction
-            CompInput.direction = gamePadDirection;
-            if (IsNewButtonPress(Buttons.X)) { CompInput.attack = true; }
-            else if (IsNewButtonPress(Buttons.Y)) { CompInput.use = true; }
-            else if (IsNewButtonPress(Buttons.B)) { CompInput.dash = true; }
-            else if (IsNewButtonPress(Buttons.A)) { CompInput.interact = true; }
-        }
-
-        public static void SetInputState(ComponentInput CompInput, Actor Actor)
-        {
-            Actor.inputState = Actor.State.Idle; //reset inputState
-            Actor.compMove.direction = CompInput.direction; //set move direction
-            if (CompInput.direction != Direction.None)
-            {   //if there is directional input, then the actor is moving
-                Actor.inputState = Actor.State.Move;
-                //the actor can only dash while moving
-                if (CompInput.dash) { Actor.inputState = Actor.State.Dash; }
-            }
-            //determine + set button inputs
-            if (CompInput.attack) { Actor.inputState = Actor.State.Attack; }
-            else if (CompInput.use) { Actor.inputState = Actor.State.Use; }
-            else if (CompInput.interact) { Actor.inputState = Actor.State.Interact; }
         }
 
     }

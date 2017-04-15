@@ -42,14 +42,20 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
-            //reset the input for hero and the active actor
-            Input.ResetInputData(Pool.hero.compInput);
-            Input.ResetInputData(Pool.actorPool[Pool.activeActor].compInput);
             //if screen is playing, allow input for player + active actor
             if (screenState == ScreenState.Playing) 
             {
+                //reset the input for hero, map player input to hero
+                Input.ResetInputData(Pool.hero.compInput);
                 Input.MapPlayerInput(Pool.hero.compInput);
-                AiFunctions.SetActorInput(); //process one actor per frame
+                AiFunctions.SetActorInput(); //set AI for actor
+                AiFunctions.SetActorInput(); //set AI for actor
+                AiFunctions.SetActorInput(); //set AI for actor
+            }
+            else//dungeonScreen is not in playing state..
+            {   //reset all input for hero + actors
+                Input.ResetInputData(Pool.hero.compInput);
+                PoolFunctions.ResetActorPoolInput();
             }
 
             if (Flags.Debug)

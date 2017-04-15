@@ -89,6 +89,14 @@ namespace DungeonRun
 
 
 
+        public static void ResetActorPoolInput()
+        {
+            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+            { Input.ResetInputData(Pool.actorPool[Pool.counter].compInput); }
+        }
+
+
+
         public static void Release(Actor Actor)
         {
             Actor.active = false;

@@ -17,21 +17,22 @@ adding a new particle/projectile:
 todo:
 
 
-6
+5
 
 
-
-cleaned up WinLoseFunctions.cs a little bit.
-moved a debug routine into DebugMenu, which dumps all the active actor states if Enter key is pressed.
-updated DungeonGenerator.BuildRoom() to set dungeon screen's overlay alpha to 1.0 at end of function.
-this simply ensures that the fadeOut state evaluates properly, as the alpha will always start at 1.0.
-
+created PoolFunctions.ResetActorPoolInput(), resets all input components in actor pool.
+refactored how input is handled, with relation to dungeonScreen.screenState.
+AI now processes 3 actors per frame, which makes the enemies more responsive.
+reorganized Input.cs. updated AiFunctions.SetActorInput() to reset the active actor's input.
 
 
 
 
+let's reduce the max opacity for dungeon screen's overlay, so we can still kinda see the background sprites
+the issue is that we want it to be compeletely black when we build a new room
 
-we'd like to update more than 1 actor per frame, if possible...
+
+
 
 we need to be actually tracking summary screen data
 where does this data live? global class? instance per room?

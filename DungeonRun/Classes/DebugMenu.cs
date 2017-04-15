@@ -38,7 +38,7 @@ namespace DungeonRun
                     { DebugFunctions.Inspect(Pool.actorPool[Pool.counter]); }
                 }
             }
-
+            
 
             //check each button for user mouse button input (click + hover states)
             for (counter = 0; counter < buttons.Count; counter++)
