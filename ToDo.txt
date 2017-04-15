@@ -17,31 +17,21 @@ adding a new particle/projectile:
 todo:
 
 
-11
+10
 
 
 
-bug: the summary screen's left title sprite moved to the right when the screen exited.
-cause: some bad maths, causing the opposite movement intended.
-solution: better maths, flipped the position of two variables.
-worked on finessing the movement of the title sprites in animateOut state.
+added left and right start positions to summary screen for title sprites.
+updated SummaryScreen to move title sprites from startPos to endPos and back to startPos.
+updated SummaryScreen.state to ScreenState to better reflect it's purpose.
+SummaryScreen title sprites animation/movement is based on the screenState.
+better aligned title sprite components, for both win and lose states
 
 
 
-BUGS:
-"you" doesn't align to center
-"dungeon" doesn't align to center either
-
-"complete" doesn't align to center
-"died" doesn't align to center
-
-additionally, the movement of the title sprites is different based on their size
-we need to set a starting vector position for these sprites
-then animate from start to end position
-then animate from end position to start position
 
 
-
+fade the title sprites in/out as they animate in/out
 
 
 

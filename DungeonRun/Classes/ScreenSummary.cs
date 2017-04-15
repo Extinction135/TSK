@@ -17,12 +17,18 @@ namespace DungeonRun
         Boolean won = true; //false means player died
         public SummaryScreen(Boolean Won) { this.name = "SummaryScreen"; won = Won; }
 
-        enum State { AnimateIn, Display, AnimateOut, Exit }
-        State state = State.AnimateIn;
+        enum ScreenState { AnimateIn, Display, AnimateOut, Exit }
+        ScreenState screenState = ScreenState.AnimateIn;
+
+        //how fast title sprites move, lower is faster
+        int animSpeed; 
 
         ComponentSprite leftTitle;
+        Vector2 leftTitleStartPos;
         Vector2 leftTitleEndPos;
+
         ComponentSprite rightTitle;
+        Vector2 rightTitleStartPos;
         Vector2 rightTitleEndPos;
 
         ComponentText summaryText;
@@ -37,11 +43,11 @@ namespace DungeonRun
             #region Create the various sprites and text components
 
             float yPos = 60;
-            //create the left and right title sprites offscreen
+            //create the left and right title sprites
             leftTitle = new ComponentSprite(Assets.bigTextSheet, 
-                new Vector2(-200, yPos), new Byte4(0, 0, 0, 0), new Byte2(1, 1));
+                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(1, 1));
             rightTitle = new ComponentSprite(Assets.bigTextSheet, 
-                new Vector2(640 + 10, yPos), new Byte4(0, 1, 0, 0), new Byte2(1, 1));
+                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(1, 1));
 
             //create the summary + data + continue text fields
             summaryText = new ComponentText(Assets.medFont,
@@ -63,39 +69,52 @@ namespace DungeonRun
             #endregion
 
 
-            #region Determine text to display for title sprites, and ending positions
+            #region Setup the Title Text Sprite Components
 
             if (won)
-            {
+            {   //"dungoen complete"
                 leftTitle.currentFrame = new Byte4(0, 0, 0, 0);
                 leftTitle.cellSize = new Byte2(16 * 13, 16 * 4);
-                leftTitleEndPos = new Vector2(125, yPos);
-
+                leftTitleStartPos = new Vector2(-200, yPos);
+                
                 rightTitle.currentFrame = new Byte4(0, 1, 0, 0);
                 rightTitle.cellSize = new Byte2(16 * 13, 16 * 4);
-                rightTitleEndPos = new Vector2(325, yPos);
+                rightTitleStartPos = new Vector2(640, yPos);
+
+                leftTitleEndPos = new Vector2(130-15, yPos);
+                rightTitleEndPos = new Vector2(305+15, yPos);
+                animSpeed = 8; //normal speed
             }
             else
-            {
+            {   //"you died"
                 leftTitle.currentFrame = new Byte4(0, 2, 0, 0);
                 leftTitle.cellSize = new Byte2(16 * 8, 16 * 4);
-                leftTitleEndPos = new Vector2(200 - 10, yPos);
-
+                leftTitleStartPos = new Vector2(-100, yPos);
+                
                 rightTitle.currentFrame = new Byte4(1, 2, 0, 0);
                 rightTitle.cellSize = new Byte2(16 * 8, 16 * 4);
-                rightTitleEndPos = new Vector2(300 - 0, yPos);
+                rightTitleStartPos = new Vector2(640, yPos);
+
+                leftTitleEndPos = new Vector2(200-10, yPos);
+                rightTitleEndPos = new Vector2(285+15, yPos);
+                animSpeed = 6; //faster
             }
 
             #endregion
 
-
+            //set the title sprites into their starting positions
+            leftTitle.position.X = leftTitleStartPos.X;
+            leftTitle.position.Y = leftTitleStartPos.Y;
+            rightTitle.position.X = rightTitleStartPos.X;
+            rightTitle.position.Y = rightTitleStartPos.Y;
+            //update the cellsize for the title components, since we changed them
             ComponentFunctions.UpdateCellSize(leftTitle);
             ComponentFunctions.UpdateCellSize(rightTitle);
         }
 
         public override void HandleInput(GameTime GameTime)
         {
-            if (state == State.Display)
+            if (screenState == ScreenState.Display)
             {
                 if(
                     Input.IsNewButtonPress(Buttons.Start) ||
@@ -103,46 +122,58 @@ namespace DungeonRun
                     Input.IsNewButtonPress(Buttons.B) ||
                     Input.IsNewButtonPress(Buttons.X) ||
                     Input.IsNewButtonPress(Buttons.Y))
-                { state = State.AnimateOut; }
+                { screenState = ScreenState.AnimateOut; }
             }
         }
 
         public override void Update(GameTime GameTime)
         {
 
+            
 
             #region Animate Title Sprites in / out
 
-            if (state == State.AnimateIn)
+            if (screenState == ScreenState.AnimateIn)
             {
                 if (leftTitle.position.X < leftTitleEndPos.X)
-                {   //move left title to the right
-                    leftTitle.position.X += (leftTitleEndPos.X - leftTitle.position.X) / 10;
+                {   //move left title to endPos
+                    leftTitle.position.X += (leftTitleEndPos.X - leftTitle.position.X) / animSpeed;
                     leftTitle.position.X += 1; //fixes delayed movement
                 }
+                if (leftTitle.position.X > leftTitleEndPos.X)
+                { leftTitle.position.X = leftTitleEndPos.X; }
+
                 if (rightTitle.position.X > rightTitleEndPos.X)
-                {   //move right title to the left
-                    rightTitle.position.X -= (rightTitle.position.X - rightTitleEndPos.X) / 10;
+                {   //move right title to endPos
+                    rightTitle.position.X -= (rightTitle.position.X - rightTitleEndPos.X) / animSpeed;
                     rightTitle.position.X -= 1; //fixes delayed movement
                 }
+                if (rightTitle.position.X < rightTitleEndPos.X)
+                { rightTitle.position.X = rightTitleEndPos.X; }
+
                 //fade in other text components
                 continueText.alpha += fadeSpeed;
                 summaryText.alpha += fadeSpeed;
                 summaryData.alpha += fadeSpeed;
+
+                //check components position + opacity, transition to display state
+                if (rightTitle.position.X == rightTitleEndPos.X && 
+                    leftTitle.position.X == leftTitleEndPos.X &&
+                    continueText.alpha >= 1.0f)
+                { continueText.alpha = 1.0f; screenState = ScreenState.Display; }
                 //once continue text hits 100% opacity, transition to display state
-                if (continueText.alpha >= 1.0f)
-                { continueText.alpha = 1.0f; state = State.Display; }
+                //if (continueText.alpha >= 1.0f) { }
             }
-            else if (state == State.AnimateOut)
+            else if (screenState == ScreenState.AnimateOut)
             {
-                if (leftTitle.position.X > -300)
-                {   //move left title to the left offscreen
-                    leftTitle.position.X -= (300 - leftTitle.position.X) / 10;
+                if (leftTitle.position.X > leftTitleStartPos.X)
+                {   //move left title to startPos
+                    leftTitle.position.X -= (leftTitle.position.X - leftTitleStartPos.X) / animSpeed;
                     leftTitle.position.X -= 1; //fixes delayed movement
                 }
-                if (rightTitle.position.X < 650)
-                {   //move right title to the left
-                    rightTitle.position.X += (650 - rightTitle.position.X) / 10;
+                if (rightTitle.position.X < rightTitleStartPos.X)
+                {   //move right title to startPos
+                    rightTitle.position.X += (rightTitleStartPos.X - rightTitle.position.X) / animSpeed;
                     rightTitle.position.X += 1; //fixes delayed movement
                 }
                 //fade out other text components
@@ -151,7 +182,7 @@ namespace DungeonRun
                 summaryData.alpha -= fadeSpeed;
                 //once continue text hits 100% opacity, transition to display state
                 if (continueText.alpha <= 0.0f)
-                { continueText.alpha = 0.0f; state = State.Exit; }
+                { continueText.alpha = 0.0f; screenState = ScreenState.Exit; }
             }
 
             #endregion
@@ -159,7 +190,7 @@ namespace DungeonRun
 
             #region Handle Display State
 
-            else if (state == State.Display)
+            else if (screenState == ScreenState.Display)
             {
                 //pulse the alpha of the left and right title sprites
                 if (leftTitle.alpha >= 1.0f) { leftTitle.alpha = 0.85f; }
@@ -175,7 +206,7 @@ namespace DungeonRun
 
             #region Handle Exit State
 
-            else if (state == State.Exit)
+            else if (screenState == ScreenState.Exit)
             {
                 DungeonGenerator.BuildRoom();
                 ScreenManager.RemoveScreen(this);
