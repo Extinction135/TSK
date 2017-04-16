@@ -199,6 +199,9 @@ namespace DungeonRun
             DungeonRecord.dungeonID = 0; //ID = 0 for now
             DungeonRecord.timer.Start(); //start the record timer
 
+            //load the dungeon's music track
+            MusicFunctions.LoadMusic();
+
             //fade the dungeon screen out from black, revealing the new level
             dungeonScreen.overlayAlpha = 1.0f;
             dungeonScreen.screenState = DungeonScreen.ScreenState.FadeOut;

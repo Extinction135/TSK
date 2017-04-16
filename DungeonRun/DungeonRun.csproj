@@ -120,6 +120,7 @@
     <Compile Include="Classes\Input.cs" />
     <Compile Include="Classes\InteractionFunctions.cs" />
     <Compile Include="Classes\MovementFunctions.cs" />
+    <Compile Include="Classes\MusicFunctions.cs" />
     <Compile Include="Classes\Pool.cs" />
     <Compile Include="Classes\PoolFunctions.cs" />
     <Compile Include="Classes\ProjectileFunctions.cs" />

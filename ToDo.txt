@@ -19,49 +19,57 @@ adding a new particle/projectile:
 todo:
 
 
-13
+11
+
+
+created MusicFunctions.cs, which will handle background music.
+moved loading of music track into MusicFunctions.LoadMusic().
+added codepath to dispose of music track and instance prior to loading.
+added codepath to update the volume of music instance based on a fadeState enum.
+added codepaths to ensure music instance has completely faded out prior to disposal/loading.
+added call to MusicFunctions.Update() from Game1.Update().
+added call to MusicFunctions.LoadMusic() from DungeonGenerator.BuildRoom().
+each time a dungeon is created, the music track is disposed, reloaded, then faded in.
+updated summary screen to fade out the music track upon screen load.
+tested that this approach works, with a small bug..
+
+
+
+bug: program throws an exception if user exits from the dungeon screen.
+additional: no exception if player exits while viewing summary screen.
 
 
 
 
 
 
-Profiling on Win10 & XboxOne.
-There's significant differences between the game's RAM use on Win10 vs. XboxOne.
-Win10:55mb. XboxOne:63mb. (no bkg music)
-Win10:79mb. XboxOne:86mb. (with bkg music)
-Frame times did not increase noticeably on XboxOne when playing bkg music.
-XboxOne RAM use showed 94mb when the program initally booted (reproducible).
-We'll have to consider that 94mb when thinking about total RAM use.
-The program will fail to allocate memory if we exceed 128mb limit for UWP apps.
-So right now the game uses 94mb total on XboxOne, even tho it drops to 86mb after a second.
-We have a remaining budget of 32mb left (for soundFX and whatever else).
-It's likely this budget will be smaller if we load a larger music file.
+where do we update music functions from? screen manager? game?
+
+
+where do we call MusicFunctions.LoadMusic from?
+
+
+how do we manage the ram usege?
+	we can only load 1 music file at a time
+	we shouldn't load a music file while the music instance is playing
+	the music instance should fade out, then we should dispose of the file
+	then we should load a new file, and fade the new music in
+
+
+the music will be loaded into asset fields
+but the music file will change dynamically with game state
+
+
+MusicFunctions.cs should handle music loading/unloading, fading, playing
+it will just operate on the Asset.music fields
+
+
+we probably shouldn't even load anything in assets.
+just create the music instances and let MusicFunctions do everything else.
 
 
 
 
-
-
-implement the music manager
-
-add dungeon music background to content, build, load into game
-note the ram useage
-
-play this track, loop it, 
-fade it in upon dungeon build
-fade it out when summary screen opens
-
-test on xbox one, make sure it's not killing the frame times
-
-
-
-
-
-we can bring this in as an OGG file, which is trivial to convert to
-we can also do various kinds of compression to the OGG file
-
-does this affect the ram useage?
 
 
 

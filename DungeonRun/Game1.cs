@@ -50,7 +50,12 @@ namespace DungeonRun
 
         protected override void UnloadContent() { }
 
-        protected override void Update(GameTime gameTime) { ScreenManager.Update(gameTime); base.Update(gameTime); }
+        protected override void Update(GameTime gameTime)
+        {
+            ScreenManager.Update(gameTime);
+            MusicFunctions.Update();
+            base.Update(gameTime);
+        }
 
         protected override void Draw(GameTime gameTime) { ScreenManager.Draw(gameTime); base.Draw(gameTime); }
 

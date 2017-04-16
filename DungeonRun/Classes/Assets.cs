@@ -14,8 +14,7 @@ namespace DungeonRun
 {
     public static class Assets
     {
-        static ContentManager content;
-
+        public static ContentManager content;
         public static Texture2D dummyTexture;
 
         //fonts
@@ -35,11 +34,11 @@ namespace DungeonRun
         public static Texture2D uiSheet;
         public static Texture2D bigTextSheet;
 
+        //music
+        public static SoundEffect musicTrack;
+        public static SoundEffectInstance musicIns;
+
         //soundfx
-        static SoundEffect musicTrack;
-        public static SoundEffectInstance music;
-
-
 
 
 
@@ -64,20 +63,7 @@ namespace DungeonRun
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
 
             //soundfx
-            
-            musicTrack = content.Load<SoundEffect>(@"MusicDungeonA");
-            music = musicTrack.CreateInstance();
-            music.IsLooped = true;
-            music.Play();
-            
         }
-
-
-        
-
-
-
-
 
         public static void SetDefaultColorScheme()
         {

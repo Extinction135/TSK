@@ -117,6 +117,9 @@ namespace DungeonRun
             //update the cellsize for the title components, since we changed them
             ComponentFunctions.UpdateCellSize(leftTitle);
             ComponentFunctions.UpdateCellSize(rightTitle);
+
+            //fade out the dungeon music
+            MusicFunctions.fadeState = MusicFunctions.FadeState.FadeOut;
         }
 
         public override void HandleInput(GameTime GameTime)
