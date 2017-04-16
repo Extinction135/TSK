@@ -13,6 +13,12 @@ adding a new particle/projectile:
 	maybe set the alignment of PP in ProjetileFunctions.AlignProjectile()
 	maybe PP interacts with Actor/Obj in InteractionFunctions.Handle()
 	
+adding soundFX
+	added ___Src and ___Ins soundFX to Assets.cs.
+	added "_____" sound effect to project.
+	updated Assets.Load() to load Sound into ____Src + ____Ins.
+	call Assets.____Ins.Play() from somewhere in the codebase
+
 known bugs: 
 	MusicFunctions.LoadMusic() can't dispose of the music track without randomly causing a win32 unhandled exception.
 	Can't reliably reproduce the exception either. 
@@ -24,34 +30,36 @@ known bugs:
 todo:
 
 
-8
+7
+
+
+added SwordSwipeSrc and swordSwipe soundFX to Assets.cs.
+added "SoundSwordSwipe" sound effect to project.
+updated Assets.Load() to load SoundSwordSwipe into SwordSwipeSrc + swordSwipe.
+updated ActorFunctions.Update() to play sword swipe soundfx only when hero attacks.
 
 
 
 
-added dashSrc and dash soundFX to Assets.cs.
-added "SoundDash" sound effect to project.
-updated Assets.Load() to load SoundDash into dashSrc + instance.
-updated ActorFunctions.Update() to play dash soundFX only when hero dashes.
+when actor attacks, play attack sound
+when actor is hit, play hit sound
+when actor dies, play destroyed sound
+	
 
 
-
-
-
-
-SOUNDFX
-	when actor dashes, play dash sound
-	when actor attacks, play attack sound
-	when actor is hit, play hit sound
-	when actor dies, play destroyed sound
-	won state should have a happy jingle
-	lost state should have a sad/evil jingle
-	if hero has low health (<2 hearts), play drum track
-
-
+when enemy attacks, play attack sound
+when enemy is hit, play hit sound
+when enemy dies, play explode sound	
 	
 	
-	
+won state should have a happy jingle
+lost state should have a sad/evil jingle
+if hero has low health (<2 hearts), play drum track
+
+
+
+
+
 
 
 

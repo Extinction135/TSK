@@ -42,6 +42,9 @@ namespace DungeonRun
         static SoundEffect dashSrc;
         public static SoundEffectInstance dash;
 
+        static SoundEffect swordSwipeSrc;
+        public static SoundEffectInstance swordSwipe;
+
 
         public static void Load(GraphicsDevice GraphicsDevice, ContentManager ContentManager)
         {
@@ -66,6 +69,9 @@ namespace DungeonRun
             //soundfx
             dashSrc = content.Load<SoundEffect>(@"SoundDash");
             dash = dashSrc.CreateInstance();
+
+            swordSwipeSrc = content.Load<SoundEffect>(@"SoundSwordSwipe");
+            swordSwipe = swordSwipeSrc.CreateInstance();
         }
 
         public static void SetDefaultColorScheme()

@@ -154,6 +154,7 @@ namespace DungeonRun
                     Actor.stateLocked = true;
                     ComponentFunctions.StopMovement(Actor.compMove);
                     UseWeapon(Actor);
+                    if (Actor == Pool.hero) { Assets.swordSwipe.Play(); }
                 }
                 else if (Actor.state == Actor.State.Use)
                 {

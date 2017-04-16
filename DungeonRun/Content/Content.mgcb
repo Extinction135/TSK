@@ -113,3 +113,9 @@
 /processorParam:Quality=Best
 /build:SoundDash.wav
 
+#begin SoundSwordSwipe.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSwordSwipe.wav
+
