@@ -146,6 +146,7 @@ namespace DungeonRun
                     Actor.compMove.speed = Actor.dashSpeed;
                     //create a dash particle 
                     ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
+                    if (Actor == Pool.hero) { Assets.dash.Play(); }
                 }
                 else if (Actor.state == Actor.State.Attack)
                 {

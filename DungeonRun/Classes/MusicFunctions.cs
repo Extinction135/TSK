@@ -31,10 +31,6 @@ namespace DungeonRun
             }
             if (fadeState == FadeState.Silent)
             {
-
-
-
-
                 /*
                 ////// CRASHES PROGRAM randomly
                 //if music is silent, then we can switch tracks
@@ -47,8 +43,6 @@ namespace DungeonRun
                 if (Music == Music.DungeonA) { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
                 //additional codepaths...
                 */
-
-
 
                 /*
                 ////// CRASHES PROGRAM randomly
@@ -70,13 +64,9 @@ namespace DungeonRun
 
                 //reload the music track, recreate the instance
                 if (Assets.musicTrack == null)
-                {
-                    Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA");
-                }
+                { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
                 if (Assets.musicIns == null)
-                {
-                    Assets.musicIns = Assets.musicTrack.CreateInstance();
-                }
+                { Assets.musicIns = Assets.musicTrack.CreateInstance(); }
 
                 //if we have a music instance, loop play it, fade it in
                 if (Assets.musicIns != null)

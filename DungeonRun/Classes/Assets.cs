@@ -39,7 +39,8 @@ namespace DungeonRun
         public static SoundEffectInstance musicIns;
 
         //soundfx
-
+        static SoundEffect dashSrc;
+        public static SoundEffectInstance dash;
 
 
         public static void Load(GraphicsDevice GraphicsDevice, ContentManager ContentManager)
@@ -63,6 +64,8 @@ namespace DungeonRun
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
 
             //soundfx
+            dashSrc = content.Load<SoundEffect>(@"SoundDash");
+            dash = dashSrc.CreateInstance();
         }
 
         public static void SetDefaultColorScheme()

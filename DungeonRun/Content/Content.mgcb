@@ -107,3 +107,9 @@
 /processorParam:Quality=Best
 /build:MusicDungeonA.ogg
 
+#begin SoundDash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundDash.wav
+
