@@ -17,32 +17,43 @@ namespace DungeonRun
 
         public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
         public static FadeState fadeState = FadeState.Silent;
-        public static float fadeSpeed = 0.003f;
+        public static float fadeInSpeed = 0.003f;
+        public static float fadeOutSpeed = 0.01f;
         public static float maxVolume = 1.0f;
 
         public static void LoadMusic(Music Music)
         {
 
-
+            if (fadeState == FadeState.FadeOut)
+            {
+                Assets.musicIns.Volume = 0.0f;
+                fadeState = FadeState.Silent;
+            }
             if (fadeState == FadeState.Silent)
-            {   
+            {
+                
+                /*
                 //if music is silent, then we can switch tracks
                 //dispose old music instance + track
-                if (Assets.musicIns != null) { Assets.musicIns.Dispose(); }
+                if (Assets.musicIns != null) { Assets.musicIns.Stop(); Assets.musicIns.Dispose(); }
                 if (Assets.musicTrack != null) { Assets.musicTrack.Dispose(); }
 
 
                 //load the new music track, based on passed enum
                 if (Music == Music.DungeonA) { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
                 //additional codepaths...
-                
+                */
 
-                //create the music instance
-                Assets.musicIns = Assets.musicTrack.CreateInstance();
+
+                if (Assets.musicTrack == null) { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
+                if (Assets.musicIns == null) { Assets.musicIns = Assets.musicTrack.CreateInstance(); } 
                 //loop instance and play it
                 Assets.musicIns.IsLooped = true;
                 Assets.musicIns.Volume = 0.0f;
                 Assets.musicIns.Play();
+
+
+
                 fadeState = FadeState.FadeIn;
             }
             else
@@ -60,9 +71,9 @@ namespace DungeonRun
             if (fadeState == FadeState.FadeIn)
             {
                 //music volume CANNOT exceed 1.0f, else program error
-                if (Assets.musicIns.Volume + fadeSpeed >= maxVolume)
+                if (Assets.musicIns.Volume + fadeInSpeed >= maxVolume)
                 { Assets.musicIns.Volume = maxVolume; }
-                else { Assets.musicIns.Volume += fadeSpeed; }
+                else { Assets.musicIns.Volume += fadeInSpeed; }
                 //check to see if music has reached maxVolume
                 if (Assets.musicIns.Volume == maxVolume)
                 { fadeState = FadeState.FadeComplete; }
@@ -71,9 +82,9 @@ namespace DungeonRun
             else if (fadeState == FadeState.FadeOut)
             {
                 //music volume CANNOT be negative, else program error
-                if (Assets.musicIns.Volume - fadeSpeed <= 0.0f)
+                if (Assets.musicIns.Volume - fadeOutSpeed <= 0.0f)
                 { Assets.musicIns.Volume = 0.0f; }
-                else { Assets.musicIns.Volume -= fadeSpeed; }
+                else { Assets.musicIns.Volume -= fadeOutSpeed; }
                 //check to see if music has reached maxVolume
                 if (Assets.musicIns.Volume == 0.0f)
                 { fadeState = FadeState.Silent; }

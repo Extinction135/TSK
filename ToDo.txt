@@ -19,14 +19,14 @@ adding a new particle/projectile:
 todo:
 
 
-10
+9
 
 
 
-added Music enum to StructsAndEnums.cs.
-now passing enum into MusicFunctions.LoadMusic() to control the music file loaded.
-updated DungeonGenerator.BuildRoom() to load Music.DungeonA's music track.
-still experiencing sporadic, irreproducible unhandled exceptions related to playing music...
+refactored MusicFunctions.LoadMusic() to a non-crashable state.
+trying to figure out where the exception comes from, since the attached debugger can't catch it.
+right now, they game doesn't unload the music file, or reload it.
+fixed a state where the music could be muted until another summary screen was created.
 
 
 
