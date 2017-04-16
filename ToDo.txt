@@ -24,21 +24,19 @@ todo:
 
 
 
-collected and mastered a handful of core music files for the game.
-added an .ogg sound file to the project content and built it into an XNB.
-it went from a 2mb OGG to an 8mb XNB.
-updated assets.cs to load the dungeon music XNB into a soundEffect instance.
-setup Assets.Load() to automatically loop play the background music.
-working, background music plays and loops perfectly.
+
 
 Profiling on Win10 & XboxOne.
-55mb on PC Win10 - no bkg music. 63mb on XboxOne - no bkg music.
-79mb on PC Win10 - with bkg music. 94 dropped ot 86mb on XboxOne - with bkg music.
+There's significant differences between the game's RAM use on Win10 vs. XboxOne.
+Win10:55mb. XboxOne:63mb. (no bkg music)
+Win10:79mb. XboxOne:86mb. (with bkg music)
 Frame times did not increase noticeably on XboxOne when playing bkg music.
-
-Playing an 8mb XNB adds about 20mb overhead (on Win10).
-
-
+XboxOne RAM use showed 94mb when the program initally booted (reproducible).
+We'll have to consider that 94mb when thinking about total RAM use.
+The program will fail to allocate memory if we exceed 128mb limit for UWP apps.
+So right now the game uses 94mb total on XboxOne, even tho it drops to 86mb after a second.
+We have a remaining budget of 32mb left (for soundFX and whatever else).
+It's likely this budget will be smaller if we load a larger music file.
 
 
 
