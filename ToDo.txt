@@ -22,11 +22,12 @@ todo:
 9
 
 
+bug: win32 unhandled exception throws randomly, related to disposing of music track file.
+cause: no clue, because the debugger can't catch it. thanks microsoft.
+solution: refactoring of MusicFunctions.LoadMusic() to prevent disposal of music track.
+this basically means the game can't load a different backgorund music track.
+until i can figure out what's throwing the exception, i can't fix it.
 
-refactored MusicFunctions.LoadMusic() to a non-crashable state.
-trying to figure out where the exception comes from, since the attached debugger can't catch it.
-right now, they game doesn't unload the music file, or reload it.
-fixed a state where the music could be muted until another summary screen was created.
 
 
 

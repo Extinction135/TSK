@@ -31,8 +31,12 @@ namespace DungeonRun
             }
             if (fadeState == FadeState.Silent)
             {
-                
+
+
+
+
                 /*
+                ////// CRASHES PROGRAM randomly
                 //if music is silent, then we can switch tracks
                 //dispose old music instance + track
                 if (Assets.musicIns != null) { Assets.musicIns.Stop(); Assets.musicIns.Dispose(); }
@@ -45,16 +49,43 @@ namespace DungeonRun
                 */
 
 
-                if (Assets.musicTrack == null) { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
-                if (Assets.musicIns == null) { Assets.musicIns = Assets.musicTrack.CreateInstance(); } 
-                //loop instance and play it
-                Assets.musicIns.IsLooped = true;
-                Assets.musicIns.Volume = 0.0f;
-                Assets.musicIns.Play();
+
+                /*
+                ////// CRASHES PROGRAM randomly
+                //stop and dispose of the music track + instance
+                if (Assets.musicIns != null)
+                {
+                    Assets.musicIns.Stop();
+                    Assets.musicIns.Dispose();
+                    Assets.musicIns = null;
+                }
+                if (Assets.musicTrack != null)
+                {
+                    Assets.musicTrack.Dispose();
+                    Assets.musicTrack = null;
+                }
+                */
 
 
 
-                fadeState = FadeState.FadeIn;
+                //reload the music track, recreate the instance
+                if (Assets.musicTrack == null)
+                {
+                    Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA");
+                }
+                if (Assets.musicIns == null)
+                {
+                    Assets.musicIns = Assets.musicTrack.CreateInstance();
+                }
+
+                //if we have a music instance, loop play it, fade it in
+                if (Assets.musicIns != null)
+                {
+                    Assets.musicIns.IsLooped = true;
+                    Assets.musicIns.Volume = 0.0f;
+                    Assets.musicIns.Play();
+                    fadeState = FadeState.FadeIn;
+                }
             }
             else
             {
