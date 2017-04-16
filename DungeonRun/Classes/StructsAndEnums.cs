@@ -52,6 +52,12 @@ namespace DungeonRun
 
     public enum MouseButtons { LeftButton, RightButton }
 
+
+
+    public enum Music { DungeonA, DungeonB, Boss, Overworld, Shop, Title }
+
+
+
     public enum Weapon { Sword }
 
 }

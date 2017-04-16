@@ -17,18 +17,27 @@ namespace DungeonRun
 
         public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
         public static FadeState fadeState = FadeState.Silent;
-        public static float fadeSpeed = 0.005f;
+        public static float fadeSpeed = 0.003f;
         public static float maxVolume = 1.0f;
 
-        public static void LoadMusic()
+        public static void LoadMusic(Music Music)
         {
+
+
             if (fadeState == FadeState.Silent)
-            {   //if music is silent, then we can switch tracks
+            {   
+                //if music is silent, then we can switch tracks
                 //dispose old music instance + track
                 if (Assets.musicIns != null) { Assets.musicIns.Dispose(); }
                 if (Assets.musicTrack != null) { Assets.musicTrack.Dispose(); }
-                //load the new music track + instance
-                Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA");
+
+
+                //load the new music track, based on passed enum
+                if (Music == Music.DungeonA) { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
+                //additional codepaths...
+                
+
+                //create the music instance
                 Assets.musicIns = Assets.musicTrack.CreateInstance();
                 //loop instance and play it
                 Assets.musicIns.IsLooped = true;
@@ -41,6 +50,8 @@ namespace DungeonRun
                 //if the music isn't silent, fade the music out
                 fadeState = FadeState.FadeOut;
             }
+
+
         }
 
         public static void Update()

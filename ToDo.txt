@@ -19,26 +19,26 @@ adding a new particle/projectile:
 todo:
 
 
-11
-
-
-created MusicFunctions.cs, which will handle background music.
-moved loading of music track into MusicFunctions.LoadMusic().
-added codepath to dispose of music track and instance prior to loading.
-added codepath to update the volume of music instance based on a fadeState enum.
-added codepaths to ensure music instance has completely faded out prior to disposal/loading.
-added call to MusicFunctions.Update() from Game1.Update().
-added call to MusicFunctions.LoadMusic() from DungeonGenerator.BuildRoom().
-each time a dungeon is created, the music track is disposed, reloaded, then faded in.
-updated summary screen to fade out the music track upon screen load.
-tested that this approach works, with a small bug..
+10
 
 
 
-bug: program throws an exception if user exits from the dungeon screen.
+added Music enum to StructsAndEnums.cs.
+now passing enum into MusicFunctions.LoadMusic() to control the music file loaded.
+updated DungeonGenerator.BuildRoom() to load Music.DungeonA's music track.
+still experiencing sporadic, irreproducible unhandled exceptions related to playing music...
+
+
+
+we need to add additional music tracks: DungeonB, Boss, Overworld, Shop, Title.
+expand the code path in LoadMusic() to handle all these states.
+
+
+
+bug: program sometimes throws an exception if user exits from the dungeon screen.
 additional: no exception if player exits while viewing summary screen.
-
-
+additional: no exception if game exit is soon after game boot
+additional: cant reliably reproduce the exception...
 
 
 
