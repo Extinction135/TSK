@@ -23,10 +23,47 @@ todo:
 
 
 
-updated the readme to display the .gif, discuss the game, gameplay, architecture, etc
+
+collected and mastered a handful of core music files for the game.
+added an .ogg sound file to the project content and built it into an XNB.
+it went from a 2mb OGG to an 8mb XNB.
+updated assets.cs to load the dungeon music XNB into a soundEffect instance.
+setup Assets.Load() to automatically loop play the background music.
+working, background music plays and loops perfectly.
+
+Profiling on Win10 & XboxOne.
+55mb on PC Win10 - no bkg music. 63mb on XboxOne - no bkg music.
+79mb on PC Win10 - with bkg music. 94 dropped ot 86mb on XboxOne - with bkg music.
+Frame times did not increase noticeably on XboxOne when playing bkg music.
+
+Playing an 8mb XNB adds about 20mb overhead (on Win10).
 
 
-	
+
+
+
+
+
+
+implement the music manager
+
+add dungeon music background to content, build, load into game
+note the ram useage
+
+play this track, loop it, 
+fade it in upon dungeon build
+fade it out when summary screen opens
+
+test on xbox one, make sure it's not killing the frame times
+
+
+
+
+
+we can bring this in as an OGG file, which is trivial to convert to
+we can also do various kinds of compression to the OGG file
+
+does this affect the ram useage?
 
 
 
@@ -34,7 +71,10 @@ updated the readme to display the .gif, discuss the game, gameplay, architecture
 
 
 
-Version 0.1 Milestones
+
+
+
+Version 0.2 Milestones
 
 SOUND AND MUSIC
 	when actor dashes, play dash sound
@@ -47,12 +87,9 @@ SOUND AND MUSIC
 	play the dungeon background music (fade out and stop when won/lost screen appears)
 	fade in bkg music when dungeon is restarted/remade
 
-
-
-
+TEST ON XBOX ONE
+	how does sound affect frame times? whats the overhead to playing music + soundFX?
 	
-	
-Version 0.2 Milestones
 
 	build an actual dungeon, with multiple rooms, a key, boss door/room
 	

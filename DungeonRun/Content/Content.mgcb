@@ -101,3 +101,9 @@
 /processorParam:TextureFormat=Color
 /build:mediumFont.bmp
 
+#begin MusicDungeonA.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicDungeonA.ogg
+

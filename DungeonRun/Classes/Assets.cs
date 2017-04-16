@@ -36,6 +36,12 @@ namespace DungeonRun
         public static Texture2D bigTextSheet;
 
         //soundfx
+        static SoundEffect musicTrack;
+        public static SoundEffectInstance music;
+
+
+
+
 
         public static void Load(GraphicsDevice GraphicsDevice, ContentManager ContentManager)
         {
@@ -58,7 +64,20 @@ namespace DungeonRun
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
 
             //soundfx
+            
+            musicTrack = content.Load<SoundEffect>(@"MusicDungeonA");
+            music = musicTrack.CreateInstance();
+            music.IsLooped = true;
+            music.Play();
+            
         }
+
+
+        
+
+
+
+
 
         public static void SetDefaultColorScheme()
         {
@@ -77,6 +96,7 @@ namespace DungeonRun
             colorScheme.buttonOver = new Color(66, 66, 66, 0);
             colorScheme.buttonDown = new Color(100, 100, 100, 0);
         }
+
     }
 
     public struct ColorScheme
