@@ -143,3 +143,9 @@
 /processorParam:Quality=Best
 /build:SoundHeroKill.wav
 
+#begin SoundBeatDungeon.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBeatDungeon.wav
+

@@ -59,6 +59,9 @@ namespace DungeonRun
         static SoundEffect heroKillSrc;
         public static SoundEffectInstance heroKill;
 
+        static SoundEffect beatDungeonSrc;
+        public static SoundEffectInstance beatDungeon;
+
         #endregion
 
 
@@ -103,6 +106,9 @@ namespace DungeonRun
 
             heroKillSrc = content.Load<SoundEffect>(@"SoundHeroKill");
             heroKill = heroKillSrc.CreateInstance();
+
+            beatDungeonSrc = content.Load<SoundEffect>(@"SoundBeatDungeon");
+            beatDungeon = beatDungeonSrc.CreateInstance();
 
             #endregion
 

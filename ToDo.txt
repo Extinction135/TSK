@@ -30,24 +30,20 @@ known bugs:
 todo:
 
 
-2
+1
 
 
-added heroKillSrc and heroKill soundFX to Assets.cs.
-added "SoundHeroKill" sound effect to project, updated Assets.Load().
-updated ActorFunctions.SetDeathState() to play soundfx when hero is killed.
-
-
-
-
-
-	
-2. when enemy attacks, play attack sound
-
-1. if hero 'wins' the game, play the happy jingle sound
+added beatDungeonSrc and beatDungeon soundFX to Assets.cs.
+added "SoundBeatDungeon" sound effect to project, updated Assets.Load().
+updated SummaryScreen.LoadContent() to play soundfx if dungeon was beat.
 
 
 
+
+
+
+
+we need an enemy attack sound
 
 enemy kill sound should be quieter
 

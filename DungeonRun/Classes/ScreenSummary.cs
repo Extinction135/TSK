@@ -90,6 +90,7 @@ namespace DungeonRun
                 leftTitleEndPos = new Vector2(130-15, yPos);
                 rightTitleEndPos = new Vector2(305+15, yPos);
                 animSpeed = 8; //lower is faster
+                Assets.beatDungeon.Play();
             }
             else
             {   //"you died"
