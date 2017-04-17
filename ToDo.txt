@@ -36,20 +36,19 @@ ram useage:
 todo:
 
 
-8
+7
+
+
+added shop music to content project, at 22k mono.
+updated MusicFunctions.Update() to handle the new shop music.
+updated DungeonGenerator.BuildRoom() to randomly play one of the 3 available songs.
 
 
 
-added overworld music to content project, at 22k mono.
-added soundEffect instances to assets.cs to handle loading of overworld music.
-average ram useage displays as 75mb.
-updated MusicFunctions.Update() to handle playing/referencing the overworld music track.
-updated DungeonGenerator.BuildRoom() to randomly choose between the two available music tracks.
-passes playtesting, both tracks play.
 
 
-whats the ram useage at rn?
 
+update random routine to load shop music too
 
 
 lets add in the alternate dungeon music track (B)

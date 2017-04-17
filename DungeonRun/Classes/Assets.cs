@@ -46,6 +46,9 @@ namespace DungeonRun
         static SoundEffect musicOverworldSrc;
         public static SoundEffectInstance musicOverworld;
 
+        static SoundEffect musicShopSrc;
+        public static SoundEffectInstance musicShop;
+
         #endregion
 
 
@@ -110,6 +113,10 @@ namespace DungeonRun
             musicOverworldSrc = content.Load<SoundEffect>(@"MusicOverworld");
             musicOverworld = musicOverworldSrc.CreateInstance();
             musicOverworld.IsLooped = true;
+
+            musicShopSrc = content.Load<SoundEffect>(@"MusicShop");
+            musicShop = musicShopSrc.CreateInstance();
+            musicShop.IsLooped = true;
 
             #endregion
 

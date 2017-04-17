@@ -161,3 +161,9 @@
 /processorParam:Quality=Best
 /build:MusicOverworld.ogg
 
+#begin MusicShop.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicShop.ogg
+

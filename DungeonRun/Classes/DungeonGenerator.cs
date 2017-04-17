@@ -199,14 +199,12 @@ namespace DungeonRun
             DungeonRecord.dungeonID = 0; //ID = 0 for now
             DungeonRecord.timer.Start(); //start the record timer
 
-
-
             //load the dungeon's music track
-            //MusicFunctions.trackToLoad = Music.DungeonA;
-            if (GetRandom.Int(0, 100) > 50)
-            { MusicFunctions.trackToLoad = Music.DungeonA; }
-            else
-            { MusicFunctions.trackToLoad = Music.Overworld; }
+            i = GetRandom.Int(0, 100);
+            if (i > 60) { MusicFunctions.trackToLoad = Music.DungeonA; }
+            else if (i > 30) { MusicFunctions.trackToLoad = Music.Overworld; }
+            else { MusicFunctions.trackToLoad = Music.Shop; }
+
             //tell music functions to play the loaded music track
             MusicFunctions.fadeState = MusicFunctions.FadeState.Silent;
 
