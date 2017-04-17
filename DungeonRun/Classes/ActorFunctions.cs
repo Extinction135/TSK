@@ -50,7 +50,12 @@ namespace DungeonRun
             ComponentFunctions.SetZdepth(Actor.compSprite);
 
             //additional death effects
-            if (Actor.type != Actor.Type.Hero)
+            if(Actor == Pool.hero)
+            {
+                //we could track hero deaths here
+                Assets.heroKill.Play();
+            }
+            else
             {
                 DungeonRecord.enemyCount++; //track non-hero actor deaths
                 Assets.enemyKill.Play(); //play enemy kill soundFX

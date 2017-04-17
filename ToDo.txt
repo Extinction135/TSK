@@ -30,22 +30,17 @@ known bugs:
 todo:
 
 
-3
+2
 
 
-added enemyKillSrc and enemyKill soundFX to Assets.cs.
-added "SoundHEnemyKill" sound effect to project, updated Assets.Load().
-updated ActorFunctions.SetDeathState() to play soundfx when a non-hero actor is killed.
-
-
-updated all audio files volume levels to better fit together.
+added heroKillSrc and heroKill soundFX to Assets.cs.
+added "SoundHeroKill" sound effect to project, updated Assets.Load().
+updated ActorFunctions.SetDeathState() to play soundfx when hero is killed.
 
 
 
 
-4. when enemy dies, play destroyed sound
 
-3. when hero dies, play the 'lost' sound
 	
 2. when enemy attacks, play attack sound
 
@@ -56,10 +51,10 @@ updated all audio files volume levels to better fit together.
 
 enemy kill sound should be quieter
 
-
-	
 if hero has low health (<2 hearts), play drum track
 
+hero should spin around prior to dying
+other actors should not do this, they should die immediately
 
 
 

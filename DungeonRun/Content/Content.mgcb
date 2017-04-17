@@ -137,3 +137,9 @@
 /processorParam:Quality=Best
 /build:SoundEnemyKill.wav
 
+#begin SoundHeroKill.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundHeroKill.wav
+
