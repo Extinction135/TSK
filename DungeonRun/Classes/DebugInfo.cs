@@ -26,6 +26,7 @@ namespace DungeonRun
         public static ComponentText poolText;
         public static ComponentText creationText;
         public static ComponentText recordText;
+        public static ComponentText musicText;
 
         public static long roomTime = 0;
         public static long dungeonTime = 0;
@@ -67,6 +68,10 @@ namespace DungeonRun
             recordText = new ComponentText(Assets.font, "",
                 new Vector2(16 * 21, yPos + 00), Assets.colorScheme.textSmall);
             textFields.Add(recordText);
+
+            musicText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 25, yPos + 00), Assets.colorScheme.textSmall);
+            textFields.Add(musicText);
         }
 
         public static void Draw()
@@ -131,6 +136,12 @@ namespace DungeonRun
             recordText.text += "\ntime: " + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
             recordText.text += "\nenemies: " + DungeonRecord.enemyCount;
             recordText.text += "\ndamage: " + DungeonRecord.totalDamage;
+
+            musicText.text = "bkg music";
+            musicText.text += "\n" + MusicFunctions.trackToLoad;
+            musicText.text += "\n" + MusicFunctions.currentMusic.State;
+            musicText.text += "\nvol: " + MusicFunctions.currentMusic.Volume;
+            musicText.text += "\nd vol: " + Assets.musicDrums.Volume;
 
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.windowBkg);
             size = textFields.Count();

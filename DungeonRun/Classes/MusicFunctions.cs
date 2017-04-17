@@ -77,18 +77,16 @@ namespace DungeonRun
                     if (trackToLoad == Music.DungeonA) { currentMusic = Assets.musicDungeonA; }
                     //additional track ref setting here
 
-                    //sync the music track with the drum track
-                    currentMusic.Stop(); Assets.musicDrums.Stop();
-                    currentMusic.Play(); Assets.musicDrums.Play();
                     //prep for music + drums to fade back in
                     currentMusic.Volume = 0.0f;
                     Assets.musicDrums.Volume = 0.0f;
                     //loop the music track and the drum track
                     currentMusic.IsLooped = true;
                     Assets.musicDrums.IsLooped = true;
+                    //start playing the music and drum tracks
+                    currentMusic.Play(); Assets.musicDrums.Play();
                     //fade music + drums back in
                     fadeState = FadeState.FadeIn;
-                    //drums will only fade back in if hero's health is low
                 }
             }
         }

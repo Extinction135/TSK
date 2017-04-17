@@ -36,30 +36,28 @@ ram useage:
 todo:
 
 
-10
+9
 
 
 
 
-made the drum track louder, and yep - it's outta sync rhythmically with the music track.
-reverted back to the full bar audio of the drum track.
-resampled it to 22k, converted it to mono, rebuilt it thru the pipeline.
-bug: music + drum track doesn't come back after summary screen exits.
-additional: comes back the second time.
-cause: unknown, we'll need to expand debug info to view music track state.
-
-
-
+updated debugInfo.cs to display data about music & drum tracks.
+modified MusicFunctions.Update() to correctly play and sync the music and drum tracks.
+i think this solution will work when we load additional music tracks in...
+we'll need to make sure that we're only playing one music file at a time tho.
+if we're playing multiple music files in the bkg, it will likely use up CPU.
+that's unnecessary and should be avoided, but stopping() an audio file is what caused the bug.
+we'll need to stop all other music instances that aren't the current one playing (in the future).
 
 
 dump music track info to debug panel
-	what track are we playing? what is it's volume
+	what track are we playing? what is it's volume?
 	same for drum track
+	does the volume not change correctly when we exit summary screen?>
+	are the tracks playing, stopped? 
+	
 
 
-
-
-the music should start at full volume once it's loaded
 
 
 
