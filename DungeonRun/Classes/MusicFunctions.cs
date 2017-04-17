@@ -75,6 +75,7 @@ namespace DungeonRun
                     Debug.WriteLine("track to load: " + trackToLoad);
 
                     if (trackToLoad == Music.DungeonA) { currentMusic = Assets.musicDungeonA; }
+                    else if (trackToLoad == Music.Overworld) { currentMusic = Assets.musicOverworld; }
                     //additional track ref setting here
 
                     //prep for music + drums to fade back in

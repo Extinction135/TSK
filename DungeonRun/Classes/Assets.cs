@@ -43,6 +43,9 @@ namespace DungeonRun
         static SoundEffect musicDrumsSrc;
         public static SoundEffectInstance musicDrums;
 
+        static SoundEffect musicOverworldSrc;
+        public static SoundEffectInstance musicOverworld;
+
         #endregion
 
 
@@ -103,6 +106,10 @@ namespace DungeonRun
             musicDrumsSrc = content.Load<SoundEffect>(@"MusicLowHealthDrums");
             musicDrums = musicDrumsSrc.CreateInstance();
             musicDrums.IsLooped = true;
+
+            musicOverworldSrc = content.Load<SoundEffect>(@"MusicOverworld");
+            musicOverworld = musicOverworldSrc.CreateInstance();
+            musicOverworld.IsLooped = true;
 
             #endregion
 

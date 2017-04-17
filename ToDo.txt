@@ -36,30 +36,42 @@ ram useage:
 todo:
 
 
-9
+8
+
+
+
+added overworld music to content project, at 22k mono.
+added soundEffect instances to assets.cs to handle loading of overworld music.
+average ram useage displays as 75mb.
+updated MusicFunctions.Update() to handle playing/referencing the overworld music track.
+updated DungeonGenerator.BuildRoom() to randomly choose between the two available music tracks.
+passes playtesting, both tracks play.
+
+
+whats the ram useage at rn?
+
+
+
+lets add in the alternate dungeon music track (B)
+
+convert to mono @ 22k, add to pipeline, build it
+update assets to load it
+
+update music functions with codepath to reference it
+update dungeon generator to randomly choose track A or track B
+
+write code that stops() the other music tracks from playing
+do we really need to do this?
+
+
+add overworld, shop music tracks too
+check ram useage
 
 
 
 
-updated debugInfo.cs to display data about music & drum tracks.
-modified MusicFunctions.Update() to correctly play and sync the music and drum tracks.
-i think this solution will work when we load additional music tracks in...
-we'll need to make sure that we're only playing one music file at a time tho.
-if we're playing multiple music files in the bkg, it will likely use up CPU.
-that's unnecessary and should be avoided, but stopping() an audio file is what caused the bug.
-we'll need to stop all other music instances that aren't the current one playing (in the future).
 
-
-dump music track info to debug panel
-	what track are we playing? what is it's volume?
-	same for drum track
-	does the volume not change correctly when we exit summary screen?>
-	are the tracks playing, stopped? 
-	
-
-
-
-
+make sure that the dungeon complete musical cue is mono and 22k
 
 
 
@@ -70,12 +82,6 @@ the dungeon screen should only start it's fadeIn if the hero is in his final sit
 it should remain 'playing' while hero spins around
 
 
-
-fixing the music problem:
-instead of disposing of the music files, we're just going to load more of them
-and we're going to compress them as much as possible so we can fit more into memory
-we'll need: dungeon music, overworld music, shop music
-* overworld music will double as title / new game setup music
 
 for the boss fight, we'll just use a musical cue to tell the player they're about to fight the boss
 we don't need to switch music tracks, tho we would like to
