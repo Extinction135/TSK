@@ -17,7 +17,7 @@ namespace DungeonRun
 
         public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
         public static FadeState fadeState = FadeState.Silent;
-        public static float fadeInSpeed = 0.003f;
+        public static float fadeInSpeed = 0.01f;
         public static float fadeOutSpeed = 0.01f;
         public static float maxVolume = 1.0f;
 
@@ -72,6 +72,8 @@ namespace DungeonRun
                 if (trackToLoad == Music.None) { }
                 else
                 {
+                    Debug.WriteLine("track to load: " + trackToLoad);
+
                     if (trackToLoad == Music.DungeonA) { currentMusic = Assets.musicDungeonA; }
                     //additional track ref setting here
 

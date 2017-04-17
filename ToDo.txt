@@ -36,32 +36,30 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
-edited down the low health drums to a single beat, exported to 22K mono ogg.
-added to content pipeline and built.
-changed how the music track is loaded, and it's name, in assets.cs.
-expanded assets.cs to have a drum track, which will play when hero's health is low.
-now loading the audio files into the music instances from Assets.Load().
-updated MusicFunctions to use a SoundEffectInstance reference.
-this allows us to keep the code generic, and switch what instance the reference points to.
-removed LoadMusic() from MusicFuntions.cs.
-expanded Music enum to include 'none'.
-updated MusicFunctions.Update() to handle the swapping/stopping/playing of bkg music files.
-also syncs the music file being played with the background drum track.
-updated MusicFunctions.Update() to check if drum track should play, based on hero's health.
+
+made the drum track louder, and yep - it's outta sync rhythmically with the music track.
+reverted back to the full bar audio of the drum track.
+resampled it to 22k, converted it to mono, rebuilt it thru the pipeline.
+bug: music + drum track doesn't come back after summary screen exits.
+additional: comes back the second time.
+cause: unknown, we'll need to expand debug info to view music track state.
 
 
 
 
 
-drum track is too quiet, and it sounds like it's not in sync with the audio track
-we can use the full bar of drum beats instead of the single beat for now
-just to make sure it's syncing...
+dump music track info to debug panel
+	what track are we playing? what is it's volume
+	same for drum track
 
 
+
+
+the music should start at full volume once it's loaded
 
 
 
