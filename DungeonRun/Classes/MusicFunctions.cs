@@ -33,19 +33,12 @@ namespace DungeonRun
             {
                 /*
                 ////// CRASHES PROGRAM randomly
-                //if music is silent, then we can switch tracks
-                //dispose old music instance + track
-                if (Assets.musicIns != null) { Assets.musicIns.Stop(); Assets.musicIns.Dispose(); }
-                if (Assets.musicTrack != null) { Assets.musicTrack.Dispose(); }
+                // i suspect that disposing of the sound file is causing an issue in the UWP or Monogame framework
+                // this issue can't be reliably reproduced, and happens randomly
+                // sometimes it happens during the course of the game, sometimes it happens when user closes the program
+                // the debugger can't catch the exception, because it's a win32 unhandled exception without an error code
+                // or rather the error code i'm getting is random each time, so it has no searchable value
 
-
-                //load the new music track, based on passed enum
-                if (Music == Music.DungeonA) { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
-                //additional codepaths...
-                */
-
-                /*
-                ////// CRASHES PROGRAM randomly
                 //stop and dispose of the music track + instance
                 if (Assets.musicIns != null)
                 {
@@ -58,6 +51,9 @@ namespace DungeonRun
                     Assets.musicTrack.Dispose();
                     Assets.musicTrack = null;
                 }
+                //load the new music track, based on passed enum
+                if (Music == Music.DungeonA) { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
+                //additional codepaths...
                 */
 
 

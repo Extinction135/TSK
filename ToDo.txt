@@ -30,31 +30,48 @@ known bugs:
 todo:
 
 
-1
-
-
-added beatDungeonSrc and beatDungeon soundFX to Assets.cs.
-added "SoundBeatDungeon" sound effect to project, updated Assets.Load().
-updated SummaryScreen.LoadContent() to play soundfx if dungeon was beat.
+13
 
 
 
 
+made enemy kill sound quieter.
+reduced the quality of background music to low, XNB filesize is 1mb instead of 8 mb now.
+however, program throws a SharpDXException if quality is set to low for music file.
+same for quality set to medium. we can only compile with quality set to high. of course.
+
+Does this reduce the amount of memory the file takes up in ram?
 
 
 
-we need an enemy attack sound
+
+
+
+
+
+we need an enemy attack sound, should be fast and quiet
 
 enemy kill sound should be quieter
 
 if hero has low health (<2 hearts), play drum track
+shorten the drum track too - as much as possible
 
 hero should spin around prior to dying
 other actors should not do this, they should die immediately
+the dungeon screen should only start it's fadeIn if the hero is in his final sitting death state
+it should remain 'playing' while hero spins around
 
 
 
+fixing the music problem:
+instead of disposing of the music files, we're just going to load more of them
+and we're going to compress them as much as possible so we can fit more into memory
+we'll need: dungeon music, overworld music, shop music
+* overworld music will double as title / new game setup music
 
+for the boss fight, we'll just use a musical cue to tell the player they're about to fight the boss
+we don't need to switch music tracks, tho we would like to
+if we can compress the audio enough, we might have room for this track - it would be nice
 
 
 
@@ -64,41 +81,55 @@ other actors should not do this, they should die immediately
 
 Version 0.2 Milestones
 
-
-
-	build an actual dungeon, with multiple rooms, a key, boss door/room
+	build a second room, randomly place it around the spawn room
+	this second room is a boss room
+	connect the two rooms using a boss door - this door is locked
+	one of the enemies in the spawn room should drop the boss key
 	
+	in the second room, place a boss actor, with some mobs
 	create a boss actor (this is just x2 spriteSheet with same actor anim layout)
 	actor is processed just like other actors
-
+	boss should be able to 'spawn' mobs (pull from actor pool)
+	when hero enters boss room, door should shut behind him
+	musical cue should play that hero is in boss fight now
+	
+	when a blob is destroyed, it should drop a heart consumable sometimes
+	we'll need a gameobject of type consumable
+	and hero will need to check collisions with it
+	
+	summary screen should play the text counting sound while tallying up the numbers
+	once the numbers are tallied, summary screen should play the text complete sound
 	get the totalTime value counting up to the dungeonRecord's totalTime value.
 	we can get the indivdual hours, minutes, seconds
 	so we can create ints that represent those in summary screen
 	then count those ints up to the values of hours, minutes, seconds
 	and concat them all onto the same summary data string
-
+	
+	we need a particle/hit effect for when an actor is hit
+	this should apply to blobs, hero, and boss
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Stuff that needs to be done, but it's not terribly important rn	
+	
+	build an actual dungeon, with multiple rooms, a key, boss door/room
+	
 	whats the reward formula?
 	time bonus + enemies killed - damage taken
 	time bonus is based on how many rooms are in the dungeon.
 	total dungeon rooms - total minutes = gold multiplier * 100.
 	this expects the player to clear a room a minute.
 
-	on sword collision, create a hit particle
-	create hit particle gameObject
-	add to gameObjFunctions.SetType + ProjectileSpawn
-
 	implement a fireball projectile that moves across frames
 	rotate the fireball sprite to face down (all projectiles + weapons should face down by default)
 	this is spawned from the Y button press
 	visually display fire magic medallion for current item in worldUI
-	
-	when a blob is destroyed, a destroyed effect should happen, and loot should be dropped
-	which means we need a destruction particle effect
-	which means we need to create loot items
-	
-	hero should be able to pick up basic loot items (hearts, gold)
-	which means hero should have a gold int
-	and we'll need to check collisions between hero and projectiles (items)
 	
 	create pause screen, can select different weapons / items
 	also displays total gold
@@ -119,24 +150,6 @@ Version 0.2 Milestones
 	weapons : { bow, staff, axe }
 	items : { lightning, boomerang, arrow, bomb }
 	
-	
-	
-	
-	
-	
-we need to add additional music tracks: DungeonB, Boss, Overworld, Shop, Title.
-expand the code path in LoadMusic() to handle all these states.
-figure out how to dispose + reload music tracks (beware the unhandled win32 exception)	
-	
-	
-	
-	
-	
-	
-	
-	
-Version 0.3 Milestones
-
 	adopt CursedCastle's roomData approach (Editor -> XML -> Randomly Choose a Room)
 	update dungeon generation routines to build complete dungeons
 	create room editor, standardize room sizes
@@ -151,17 +164,14 @@ Version 0.3 Milestones
 	
 	
 	
+	
+	
+	
 Maybes / Ideas	
 	
-	
-	
 blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
-or they can use a weapon, like a stick or gooey hand, idunno
+or they can use a weapon, like a stick or gooey hand, iunno
 
-
-each actor should have a weapon enum
-
-	
 debugInfo displays the floor index, instead of the # of floor tiles used currently
 which isn't really a problem, cause we're going to optimize how floors are drawn later on
 
@@ -184,26 +194,6 @@ dungeon.cs
 room.cs
 	rectangle (collisionRec) : size + position
 	type
-	
-consider adding a single frame of a crouch to the dash animation
-this would create some anticipation in the dash animation
-
-load in a background sound file (to determine how much space this will take up)
-this file should be loaded into the SCREEN's content manager
-a screen's content manager should be unloaded when the screen exits
-this allows us to load different music for different screens, without touching assets.cs
-
-this sound file should be a set number of bars long, at the standard length
-this should be mono, as compressed down as you can
-can we use mp3? that would be ideal
-does an mp3 get uncompressed when loaded into game? 
-
-re-export sound files aligned to specific bar requirements
-this will require some rewriting / restructuring of melodies and chords
-
-sound manager should be handled just like screen manager
-part of game, passed as ref to each screen
-so a screen can just say "soundManager.whatever()"
 
 
 
