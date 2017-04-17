@@ -19,39 +19,42 @@ adding soundFX
 	updated Assets.Load() to load Sound into ____Src + ____Ins.
 	call Assets.____Ins.Play() from somewhere in the codebase
 
+adding music:
+	music should be compressed down to 22K sample rate, mono.
+	files are then saved to .ogg and added to content pipeline, built on high quality.
+	
 known bugs: 
 	MusicFunctions.LoadMusic() can't dispose of the music track without randomly causing a win32 unhandled exception.
 	Can't reliably reproduce the exception either. 
 	Can't get exception info "the attached debugger isn't configured to handle this type of exception."
 	
+ram useage:
+	82mb on Win10.  94mb on XboxOne.
 	
 	
 	
 todo:
 
 
-13
+12
+
+
+
+converted background music to mono, rebuilt XNB, now at 4mb.
+dropped game ram footprint to 71mb, down from 82mb.
+so the conversion to mono will allow us to load multiple music files in the ram budget.
+reduced the volume of the dash sound.
+updated ActorFunctions.Update() to play sword swipe sound for all actors.
+this means all actors have an attack sound now, not just hero.
+later on, the sound player will be based on their actor.weapon enum value.
+added slight delay to hero hit audio file, so enemy's attack sound doesn't overlap it
+reduced sample rate on bkg dungeon music to @22K.
+dropped game ram footprint to 69-70mb, down from 71mb.
+i can't really tell a big difference in audio quality, so we'll just use 22K mono from now on.
 
 
 
 
-made enemy kill sound quieter.
-reduced the quality of background music to low, XNB filesize is 1mb instead of 8 mb now.
-however, program throws a SharpDXException if quality is set to low for music file.
-same for quality set to medium. we can only compile with quality set to high. of course.
-
-Does this reduce the amount of memory the file takes up in ram?
-
-
-
-
-
-
-
-
-we need an enemy attack sound, should be fast and quiet
-
-enemy kill sound should be quieter
 
 if hero has low health (<2 hearts), play drum track
 shorten the drum track too - as much as possible
@@ -197,6 +200,8 @@ room.cs
 
 
 
-
+OPTIMIZATIONS
+	drop the sample rate down to 32k to save even more space on bkg music files
+	the soundfx are already at 32k, so we know lower sampled audio builds and loads correctly
 
 
