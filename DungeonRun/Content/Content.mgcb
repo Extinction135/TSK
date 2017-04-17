@@ -119,3 +119,9 @@
 /processorParam:Quality=Best
 /build:SoundSwordSwipe.wav
 
+#begin SoundEnemyHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEnemyHit.wav
+

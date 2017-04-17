@@ -21,6 +21,9 @@ namespace DungeonRun
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
+
+            if (Actor == Pool.hero) { }
+            else { Assets.enemyHit.Play(); }
         }
 
         public static void SetDeathState(Actor Actor)

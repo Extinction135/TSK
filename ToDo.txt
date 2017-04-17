@@ -30,30 +30,35 @@ known bugs:
 todo:
 
 
-7
+5
 
 
-added SwordSwipeSrc and swordSwipe soundFX to Assets.cs.
-added "SoundSwordSwipe" sound effect to project.
-updated Assets.Load() to load SoundSwordSwipe into SwordSwipeSrc + swordSwipe.
-updated ActorFunctions.Update() to play sword swipe soundfx only when hero attacks.
+added enemyHitSrc and enemyHit soundFX to Assets.cs.
+added "SoundEnemyHit" sound effect to project.
+updated Assets.Load() to load SoundSwordSwipe into enemyHitSrc + enemyHit.
+
+updated ActorFunctions.SetHitState() to play enemy hit soundfx when a non-hero actor is hit.
 
 
 
 
-when actor attacks, play attack sound
-when actor is hit, play hit sound
-when actor dies, play destroyed sound
+
+5. when actor is hit, play hit sound
+
+4. when enemy dies, play destroyed sound
+
+3. when hero dies, play the 'lost' sound
 	
+2. when enemy attacks, play attack sound
+
+1. if hero 'wins' the game, play the happy jingle sound
 
 
-when enemy attacks, play attack sound
-when enemy is hit, play hit sound
-when enemy dies, play explode sound	
+
+
+
+
 	
-	
-won state should have a happy jingle
-lost state should have a sad/evil jingle
 if hero has low health (<2 hearts), play drum track
 
 
