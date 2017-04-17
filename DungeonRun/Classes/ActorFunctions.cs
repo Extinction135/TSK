@@ -46,13 +46,16 @@ namespace DungeonRun
             #endregion
 
 
-            //additional death effects
-            ComponentFunctions.SetZdepth(Actor.compSprite); //sort actor for last time
-            //call spawn loot function, passing actor
-            //play death sound effect
+            //sort actor for last time
+            ComponentFunctions.SetZdepth(Actor.compSprite);
 
-            //track non-hero actor deaths
-            if (Actor.type != Actor.Type.Hero) { DungeonRecord.enemyCount++; }
+            //additional death effects
+            if (Actor.type != Actor.Type.Hero)
+            {
+                DungeonRecord.enemyCount++; //track non-hero actor deaths
+                Assets.enemyKill.Play(); //play enemy kill soundFX
+                //call spawn loot function, passing actor
+            }
         }
 
 

@@ -30,15 +30,15 @@ known bugs:
 todo:
 
 
-4
+3
 
 
-added heroHitSrc and heroHit soundFX to Assets.cs.
-added "SoundHeroHit" sound effect to project, updated Assets.Load().
-updated ActorFunctions.SetHitState() to play soundfx when a non-hero actor is hit.
+added enemyKillSrc and enemyKill soundFX to Assets.cs.
+added "SoundHEnemyKill" sound effect to project, updated Assets.Load().
+updated ActorFunctions.SetDeathState() to play soundfx when a non-hero actor is killed.
 
 
-
+updated all audio files volume levels to better fit together.
 
 
 
@@ -54,10 +54,7 @@ updated ActorFunctions.SetHitState() to play soundfx when a non-hero actor is hi
 
 
 
-make sword sound quieter
-make eneme hit sound louder
-
-
+enemy kill sound should be quieter
 
 
 	

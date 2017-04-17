@@ -38,7 +38,9 @@ namespace DungeonRun
         public static SoundEffect musicTrack;
         public static SoundEffectInstance musicIns;
 
-        //soundfx
+
+        #region Soundfx
+
         static SoundEffect dashSrc;
         public static SoundEffectInstance dash;
 
@@ -51,6 +53,10 @@ namespace DungeonRun
         static SoundEffect heroHitSrc;
         public static SoundEffectInstance heroHit;
 
+        static SoundEffect enemyKillSrc;
+        public static SoundEffectInstance enemyKill;
+
+        #endregion
 
 
 
@@ -74,7 +80,9 @@ namespace DungeonRun
             uiSheet = content.Load<Texture2D>(@"UISheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
 
-            //soundfx
+
+            #region Soundfx
+
             dashSrc = content.Load<SoundEffect>(@"SoundDash");
             dash = dashSrc.CreateInstance();
 
@@ -86,6 +94,13 @@ namespace DungeonRun
 
             heroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
             heroHit = heroHitSrc.CreateInstance();
+
+            enemyKillSrc = content.Load<SoundEffect>(@"SoundEnemyKill");
+            enemyKill = enemyKillSrc.CreateInstance();
+
+            #endregion
+
+
         }
 
         public static void SetDefaultColorScheme()
