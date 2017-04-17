@@ -30,20 +30,18 @@ known bugs:
 todo:
 
 
-5
+4
 
 
-added enemyHitSrc and enemyHit soundFX to Assets.cs.
-added "SoundEnemyHit" sound effect to project.
-updated Assets.Load() to load SoundSwordSwipe into enemyHitSrc + enemyHit.
-
-updated ActorFunctions.SetHitState() to play enemy hit soundfx when a non-hero actor is hit.
-
+added heroHitSrc and heroHit soundFX to Assets.cs.
+added "SoundHeroHit" sound effect to project, updated Assets.Load().
+updated ActorFunctions.SetHitState() to play soundfx when a non-hero actor is hit.
 
 
 
 
-5. when actor is hit, play hit sound
+
+
 
 4. when enemy dies, play destroyed sound
 
@@ -54,6 +52,10 @@ updated ActorFunctions.SetHitState() to play enemy hit soundfx when a non-hero a
 1. if hero 'wins' the game, play the happy jingle sound
 
 
+
+
+make sword sound quieter
+make eneme hit sound louder
 
 
 

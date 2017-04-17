@@ -48,7 +48,8 @@ namespace DungeonRun
         static SoundEffect enemyHitSrc;
         public static SoundEffectInstance enemyHit;
 
-
+        static SoundEffect heroHitSrc;
+        public static SoundEffectInstance heroHit;
 
 
 
@@ -82,6 +83,9 @@ namespace DungeonRun
 
             enemyHitSrc = content.Load<SoundEffect>(@"SoundEnemyHit");
             enemyHit = enemyHitSrc.CreateInstance();
+
+            heroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
+            heroHit = heroHitSrc.CreateInstance();
         }
 
         public static void SetDefaultColorScheme()

@@ -22,7 +22,7 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
 
-            if (Actor == Pool.hero) { }
+            if (Actor == Pool.hero) { Assets.heroHit.Play(); }
             else { Assets.enemyHit.Play(); }
         }
 
