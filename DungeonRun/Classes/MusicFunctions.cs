@@ -21,90 +21,73 @@ namespace DungeonRun
         public static float fadeOutSpeed = 0.01f;
         public static float maxVolume = 1.0f;
 
-        public static void LoadMusic(Music Music)
-        {
-
-            if (fadeState == FadeState.FadeOut)
-            {
-                Assets.musicIns.Volume = 0.0f;
-                fadeState = FadeState.Silent;
-            }
-            if (fadeState == FadeState.Silent)
-            {
-                /*
-                ////// CRASHES PROGRAM randomly
-                // i suspect that disposing of the sound file is causing an issue in the UWP or Monogame framework
-                // this issue can't be reliably reproduced, and happens randomly
-                // sometimes it happens during the course of the game, sometimes it happens when user closes the program
-                // the debugger can't catch the exception, because it's a win32 unhandled exception without an error code
-                // or rather the error code i'm getting is random each time, so it has no searchable value
-
-                //stop and dispose of the music track + instance
-                if (Assets.musicIns != null)
-                {
-                    Assets.musicIns.Stop();
-                    Assets.musicIns.Dispose();
-                    Assets.musicIns = null;
-                }
-                if (Assets.musicTrack != null)
-                {
-                    Assets.musicTrack.Dispose();
-                    Assets.musicTrack = null;
-                }
-                //load the new music track, based on passed enum
-                if (Music == Music.DungeonA) { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
-                //additional codepaths...
-                */
-
-
-
-                //reload the music track, recreate the instance
-                if (Assets.musicTrack == null)
-                { Assets.musicTrack = Assets.content.Load<SoundEffect>(@"MusicDungeonA"); }
-                if (Assets.musicIns == null)
-                { Assets.musicIns = Assets.musicTrack.CreateInstance(); }
-
-                //if we have a music instance, loop play it, fade it in
-                if (Assets.musicIns != null)
-                {
-                    Assets.musicIns.IsLooped = true;
-                    Assets.musicIns.Volume = 0.0f;
-                    Assets.musicIns.Play();
-                    fadeState = FadeState.FadeIn;
-                }
-            }
-            else
-            {
-                //if the music isn't silent, fade the music out
-                fadeState = FadeState.FadeOut;
-            }
-
-
-        }
+        //store reference to current music playing
+        public static SoundEffectInstance currentMusic = Assets.musicDungeonA; 
+        public static Music trackToLoad = Music.None;
 
         public static void Update()
         {
-            //fade in/out
+
+
+            #region Fade in/out, play
+
             if (fadeState == FadeState.FadeIn)
             {
                 //music volume CANNOT exceed 1.0f, else program error
-                if (Assets.musicIns.Volume + fadeInSpeed >= maxVolume)
-                { Assets.musicIns.Volume = maxVolume; }
-                else { Assets.musicIns.Volume += fadeInSpeed; }
+                if (currentMusic.Volume + fadeInSpeed >= maxVolume)
+                { currentMusic.Volume = maxVolume; }
+                else { currentMusic.Volume += fadeInSpeed; }
                 //check to see if music has reached maxVolume
-                if (Assets.musicIns.Volume == maxVolume)
+                if (currentMusic.Volume == maxVolume)
                 { fadeState = FadeState.FadeComplete; }
             }
-            else if (fadeState == FadeState.FadeComplete) { }
+            else if (fadeState == FadeState.FadeComplete)
+            {   //check to see if we should fade in the drum track
+                if(Pool.hero.health < 3)
+                {
+                    if (Assets.musicDrums.Volume + fadeInSpeed >= maxVolume)
+                    { Assets.musicDrums.Volume = maxVolume; }
+                    else { Assets.musicDrums.Volume += fadeInSpeed; }
+                }
+            }
             else if (fadeState == FadeState.FadeOut)
             {
                 //music volume CANNOT be negative, else program error
-                if (Assets.musicIns.Volume - fadeOutSpeed <= 0.0f)
-                { Assets.musicIns.Volume = 0.0f; }
-                else { Assets.musicIns.Volume -= fadeOutSpeed; }
-                //check to see if music has reached maxVolume
-                if (Assets.musicIns.Volume == 0.0f)
+                if (currentMusic.Volume - fadeOutSpeed <= 0.0f)
+                { currentMusic.Volume = 0.0f;}
+                else { currentMusic.Volume -= fadeOutSpeed; }
+                //match drum volume to current music volume
+                Assets.musicDrums.Volume = currentMusic.Volume;
+                //check to see if music has reached 0
+                if (currentMusic.Volume == 0.0f)
                 { fadeState = FadeState.Silent; }
+            }
+
+            #endregion
+
+
+            else if (fadeState == FadeState.Silent)
+            {
+                //if there is no track to load, do nothing and wait
+                if (trackToLoad == Music.None) { }
+                else
+                {
+                    if (trackToLoad == Music.DungeonA) { currentMusic = Assets.musicDungeonA; }
+                    //additional track ref setting here
+
+                    //sync the music track with the drum track
+                    currentMusic.Stop(); Assets.musicDrums.Stop();
+                    currentMusic.Play(); Assets.musicDrums.Play();
+                    //prep for music + drums to fade back in
+                    currentMusic.Volume = 0.0f;
+                    Assets.musicDrums.Volume = 0.0f;
+                    //loop the music track and the drum track
+                    currentMusic.IsLooped = true;
+                    Assets.musicDrums.IsLooped = true;
+                    //fade music + drums back in
+                    fadeState = FadeState.FadeIn;
+                    //drums will only fade back in if hero's health is low
+                }
             }
         }
 

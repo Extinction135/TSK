@@ -54,7 +54,7 @@ namespace DungeonRun
 
 
 
-    public enum Music { DungeonA, DungeonB, Boss, Overworld, Shop, Title }
+    public enum Music { DungeonA, DungeonB, Boss, Overworld, Shop, Title, None }
 
 
 

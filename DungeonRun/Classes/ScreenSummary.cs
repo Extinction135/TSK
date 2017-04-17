@@ -120,6 +120,7 @@ namespace DungeonRun
             ComponentFunctions.UpdateCellSize(rightTitle);
 
             //fade out the dungeon music
+            MusicFunctions.trackToLoad = Music.None;
             MusicFunctions.fadeState = MusicFunctions.FadeState.FadeOut;
         }
 

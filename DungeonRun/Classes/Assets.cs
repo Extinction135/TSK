@@ -34,9 +34,16 @@ namespace DungeonRun
         public static Texture2D uiSheet;
         public static Texture2D bigTextSheet;
 
-        //music
-        public static SoundEffect musicTrack;
-        public static SoundEffectInstance musicIns;
+
+        #region Music
+
+        static SoundEffect musicDungeonASrc;
+        public static SoundEffectInstance musicDungeonA;
+
+        static SoundEffect musicDrumsSrc;
+        public static SoundEffectInstance musicDrums;
+
+        #endregion
 
 
         #region Soundfx
@@ -85,6 +92,19 @@ namespace DungeonRun
             particleSheet = content.Load<Texture2D>(@"ParticlesProjectilesSheet");
             uiSheet = content.Load<Texture2D>(@"UISheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
+
+
+            #region Music
+
+            musicDungeonASrc = content.Load<SoundEffect>(@"MusicDungeonA");
+            musicDungeonA = musicDungeonASrc.CreateInstance();
+            musicDungeonA.IsLooped = true;
+
+            musicDrumsSrc = content.Load<SoundEffect>(@"MusicLowHealthDrums");
+            musicDrums = musicDrumsSrc.CreateInstance();
+            musicDrums.IsLooped = true;
+
+            #endregion
 
 
             #region Soundfx

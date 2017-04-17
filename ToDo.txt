@@ -36,28 +36,37 @@ ram useage:
 todo:
 
 
-12
+11
 
 
 
-converted background music to mono, rebuilt XNB, now at 4mb.
-dropped game ram footprint to 71mb, down from 82mb.
-so the conversion to mono will allow us to load multiple music files in the ram budget.
-reduced the volume of the dash sound.
-updated ActorFunctions.Update() to play sword swipe sound for all actors.
-this means all actors have an attack sound now, not just hero.
-later on, the sound player will be based on their actor.weapon enum value.
-added slight delay to hero hit audio file, so enemy's attack sound doesn't overlap it
-reduced sample rate on bkg dungeon music to @22K.
-dropped game ram footprint to 69-70mb, down from 71mb.
-i can't really tell a big difference in audio quality, so we'll just use 22K mono from now on.
+edited down the low health drums to a single beat, exported to 22K mono ogg.
+added to content pipeline and built.
+changed how the music track is loaded, and it's name, in assets.cs.
+expanded assets.cs to have a drum track, which will play when hero's health is low.
+now loading the audio files into the music instances from Assets.Load().
+updated MusicFunctions to use a SoundEffectInstance reference.
+this allows us to keep the code generic, and switch what instance the reference points to.
+removed LoadMusic() from MusicFuntions.cs.
+expanded Music enum to include 'none'.
+updated MusicFunctions.Update() to handle the swapping/stopping/playing of bkg music files.
+also syncs the music file being played with the background drum track.
+updated MusicFunctions.Update() to check if drum track should play, based on hero's health.
 
 
 
 
 
-if hero has low health (<2 hearts), play drum track
-shorten the drum track too - as much as possible
+drum track is too quiet, and it sounds like it's not in sync with the audio track
+we can use the full bar of drum beats instead of the single beat for now
+just to make sure it's syncing...
+
+
+
+
+
+
+
 
 hero should spin around prior to dying
 other actors should not do this, they should die immediately

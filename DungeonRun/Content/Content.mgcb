@@ -149,3 +149,9 @@
 /processorParam:Quality=Best
 /build:SoundBeatDungeon.wav
 
+#begin MusicLowHealthDrums.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicLowHealthDrums.ogg
+
