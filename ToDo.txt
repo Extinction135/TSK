@@ -36,24 +36,17 @@ ram useage:
 todo:
 
 
-13
+12
 
 
 
 
-organized DungeonScreen a little bit.
-wrote DungeonGenerator.BuildDungeon().
-completed the basic Dungeon data structure.
-updated the Room data structure.
-added a dungeon instance, populated it with 2 rooms.
-updated BuildRoom() to accept a Room parameter.
-this commit prepares the dungeon for traversal by hero
 
-
-
-
-we dont want the build room () to place the hero
-we should only place the hero once, in the spawn room
+moved the placement of hero, and 'finalizing' of the dungeon into BuildDungeon().
+this prevents BuildRoom() from placing the hero during it's evaluation.
+current plans dictate that when hero transitions between rooms, BuildRoom() will be called.
+we would not want to hero to be teleported to room center, when he entered a new room.
+nor would we want the dungeon record to be reset, etc...
 
 
 

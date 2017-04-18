@@ -39,32 +39,39 @@ namespace DungeonRun
             dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Normal, 10));
         }
 
-        /*
-        public static void RandomizeRoom()
-        {
-            room.position.X = 16 * 10;
-            room.position.Y = 16 * 10;
-            room.size.x = (byte)GetRandom.Int(15, 30);
-            room.size.y = (byte)GetRandom.Int(7, 12);
-            room.center.X = room.size.x / 2 * 16 + room.position.X;
-            room.center.Y = room.size.y / 2 * 16 + room.position.Y;
-            room.enemyCount = (byte)GetRandom.Int(7, 12);
-            room.type = RoomType.Normal;
-        }
-        */
-
-
-
         public static void BuildDungeon()
         {
             BuildRoom(dungeon.rooms[0]);
+
+            //center hero to spawn room
+            ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
+            MovementFunctions.Teleport(Pool.hero.compMove, 
+                dungeon.rooms[0].center.X, 
+                dungeon.rooms[0].center.Y);
+
+            //reset the dungeon screen's dungeon record, passing dungeonID
+            DungeonRecord.Reset();
+            DungeonRecord.dungeonID = 0; //ID = 0 for now
+            DungeonRecord.timer.Start(); //start the record timer
+
+            //load the dungeon's music track
+            i = GetRandom.Int(0, 100);
+            if (i > 60) { MusicFunctions.trackToLoad = Music.DungeonA; }
+            else if (i > 30) { MusicFunctions.trackToLoad = Music.Overworld; }
+            else { MusicFunctions.trackToLoad = Music.Shop; }
+
+            //tell music functions to play the loaded music track
+            MusicFunctions.fadeState = MusicFunctions.FadeState.Silent;
+
+            //fade the dungeon screen out from black, revealing the new level
+            dungeonScreen.overlayAlpha = 1.0f;
+            dungeonScreen.screenState = DungeonScreen.ScreenState.FadeOut;
         }
   
         public static void BuildRoom(Room Room)
         {
             stopWatch.Reset(); stopWatch.Start();
 
-            //RandomizeRoom();
             //reset the pools + counter
             PoolFunctions.Reset();
             Pool.counter = 0;
@@ -234,8 +241,6 @@ namespace DungeonRun
                 //ensure this value isn't 0
                 if (randomX == 0) { randomX = 1; }
                 if (randomY == 0) { randomY = 1; }
-                //randomX = 0; randomY = 0; //debugging
-                //actor.compCollision.blocking = false; //debugging
                 //teleport actor to center of room, apply random offset
                 MovementFunctions.Teleport(actorRef.compMove,
                     Room.center.X + 16 * randomX,
@@ -244,28 +249,6 @@ namespace DungeonRun
             
             #endregion
 
-
-            //center hero to room
-            ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
-            MovementFunctions.Teleport(Pool.hero.compMove, Room.center.X, Room.center.Y);
-
-            //reset the dungeon screen's dungeon record, passing dungeonID
-            DungeonRecord.Reset();
-            DungeonRecord.dungeonID = 0; //ID = 0 for now
-            DungeonRecord.timer.Start(); //start the record timer
-
-            //load the dungeon's music track
-            i = GetRandom.Int(0, 100);
-            if (i > 60) { MusicFunctions.trackToLoad = Music.DungeonA; }
-            else if (i > 30) { MusicFunctions.trackToLoad = Music.Overworld; }
-            else { MusicFunctions.trackToLoad = Music.Shop; }
-
-            //tell music functions to play the loaded music track
-            MusicFunctions.fadeState = MusicFunctions.FadeState.Silent;
-
-            //fade the dungeon screen out from black, revealing the new level
-            dungeonScreen.overlayAlpha = 1.0f;
-            dungeonScreen.screenState = DungeonScreen.ScreenState.FadeOut;
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
