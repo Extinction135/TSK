@@ -19,11 +19,10 @@ namespace DungeonRun
 
 
 
-
         static Boolean collision = false;
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
-            collision = false;
+            collision = false; //assume no collision
             for (i = 0; i < Pool.objCount; i++)
             {
                 if (Pool.objPool[i].active)
@@ -35,7 +34,21 @@ namespace DungeonRun
                     }
                 }
             }
-            return collision; //no collision
+            return collision;
+        }
+
+        public static Boolean CheckActorPoolCollisions(Actor Actor)
+        {
+            collision = false; //assume no collision
+            for (i = 0; i < Pool.actorCount; i++)
+            {
+                if (Pool.actorPool[i].active)
+                {
+                    if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
+                    { if (Actor != Pool.actorPool[i]) { collision = true; } }
+                }
+            }
+            return collision; 
         }
 
 
@@ -43,110 +56,74 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-        public static GameObject CheckObjPoolCollisions(ComponentCollision Coll)
+        public static void CheckObjPoolCollisions(GameObject Projectile)
         {
             for (i = 0; i < Pool.objCount; i++)
             {
                 if (Pool.objPool[i].active)
-                {   //return object if active and collides with source collision rec
-                    if (Coll.rec.Intersects(Pool.objPool[i].compCollision.rec))
-                    {   //do not return the source object (it collides with itself)
-                        if (Coll != Pool.objPool[i].compCollision)
-                        { return Pool.objPool[i]; }
-                    }
+                {
+                    if (Projectile.compCollision.rec.Intersects(Pool.objPool[i].compCollision.rec))
+                    { InteractionFunctions.Handle(Projectile, Pool.objPool[i]); }
                 }
             }
-            return null; //no collision
         }
 
-        public static Actor CheckActorPoolCollisions(ComponentCollision Coll)
-        {   
+        public static void CheckActorPoolCollisions(GameObject Projectile)
+        {
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active)
-                {   //return actor if active and collides with source collision rec
-                    if (Coll.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    {   //do not return the source actor (it collides with itself)
-                        if (Coll != Pool.actorPool[i].compCollision)
-                        { return Pool.actorPool[i]; }
-                    }
+                {
+                    if (Projectile.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
+                    { InteractionFunctions.Handle(Projectile, Pool.actorPool[i]); }
                 }
             }
-            return null; //no collision
         }
 
-        public static GameObject CheckProjectilePoolCollisions(ComponentCollision Coll)
+        public static void CheckProjectilePoolCollisions(GameObject Projectile)
         {
             for (i = 0; i < Pool.projectileCount; i++)
             {
                 if (Pool.projectilePool[i].active)
-                {   //return actor if active and collides with source collision rec
-                    if (Coll.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
-                    {   //do not return the source actor (it collides with itself)
-                        if (Coll != Pool.projectilePool[i].compCollision)
-                        { return Pool.projectilePool[i]; }
+                {
+                    if (Projectile.compCollision.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
+                    {   //projectiles shouldn't be allowed to collide with themselves
+                        if (Projectile != Pool.projectilePool[i])
+                        { InteractionFunctions.Handle(Projectile, Pool.projectilePool[i]); }
                     }
                 }
             }
-            return null; //no collision
         }
+        
 
 
+
+        
 
 
         static Boolean collisionX;
         static Boolean collisionY;
-        static GameObject objCollision;
-        static Actor actorCollision;
-        static GameObject projectileCollision;
-
-        public static void PrepForCollisionChecking()
+        public static void CheckCollisions(Actor Actor)
         {
-            collisionX = false;
-            collisionY = false;
-            objCollision = null;
-            actorCollision = null;
-            projectileCollision = null;
-        }
+            collisionX = false; collisionY = false;
 
-        public static void CheckCollisions(Actor Actor, DungeonScreen DungeonScreen)
-        {
-            PrepForCollisionChecking();
             //project collisionRec on X axis
             Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X + Actor.compCollision.offsetX;
-            //get actor, object, projectile collisions
-            objCollision = CheckObjPoolCollisions(Actor.compCollision);
-            actorCollision = CheckActorPoolCollisions(Actor.compCollision);
-            
-            //handle collisions
-            if (objCollision != null && objCollision.compCollision.blocking) { collisionX = true; } 
-            if (actorCollision != null) { collisionX = true; } 
+            //check object and actor collisions/interactions
+            if (CheckObjPoolCollisions(Actor)) { collisionX = true; }
+            if (CheckActorPoolCollisions(Actor)) { collisionX = true; }
             //unproject collisionRec on X axis
             Actor.compCollision.rec.X = (int)Actor.compMove.position.X + Actor.compCollision.offsetX;
             
             //project collisionRec on Y axis
             Actor.compCollision.rec.Y = (int)Actor.compMove.newPosition.Y + Actor.compCollision.offsetY;
             //get actor, object, projectile collisions
-            objCollision = CheckObjPoolCollisions(Actor.compCollision);
-            actorCollision = CheckActorPoolCollisions(Actor.compCollision);
-
-            //handle collisions
-            if (objCollision != null && objCollision.compCollision.blocking) { collisionY = true; }
-            if (actorCollision != null) { collisionY = true; }
+            //check object and actor collisions/interactions
+            if (CheckObjPoolCollisions(Actor)) { collisionY = true; }
+            if (CheckActorPoolCollisions(Actor)) { collisionY = true; }
             //unproject collisionRec on Y axis
             Actor.compCollision.rec.Y = (int)Actor.compMove.position.Y + Actor.compCollision.offsetY;
-            
-            //handle collision effects (interaction)
-            if (objCollision != null && !objCollision.compCollision.blocking)
-            { InteractionFunctions.Handle(Actor, objCollision); }
 
-            //resolve movement
             //if there was a collision, the new position reverts to the old position
             if (collisionX) { Actor.compMove.newPosition.X = Actor.compMove.position.X; }
             if (collisionY) { Actor.compMove.newPosition.Y = Actor.compMove.position.Y; }
@@ -155,25 +132,21 @@ namespace DungeonRun
             Actor.compMove.position.Y = Actor.compMove.newPosition.Y;
         }
 
-        public static void CheckCollisions(GameObject Projectile, DungeonScreen DungeonScreen)
+        public static void CheckCollisions(GameObject Projectile)
         {
             //do not check collisions for particles
             if (Projectile.objGroup == GameObject.ObjGroup.Particle) { return; }
 
-            PrepForCollisionChecking();
-            //check projectile against gameObjs & other projectiles (blocking, might change state)
+            collisionX = false; collisionY = false;
+
+            //project collisionRec on X & Y axis
             Projectile.compCollision.rec.X = (int)Projectile.compMove.newPosition.X + Projectile.compCollision.offsetX;
             Projectile.compCollision.rec.Y = (int)Projectile.compMove.newPosition.Y + Projectile.compCollision.offsetY;
 
-            //get actor, object, projectile collisions
-            actorCollision = CheckActorPoolCollisions(Projectile.compCollision);
-            objCollision = CheckObjPoolCollisions(Projectile.compCollision);
-            projectileCollision = CheckProjectilePoolCollisions(Projectile.compCollision);
-
-            //handle collision effects
-            if (actorCollision != null) { InteractionFunctions.Handle(Projectile, actorCollision); }
-            if (objCollision != null) { InteractionFunctions.Handle(Projectile, objCollision); }
-            if (projectileCollision != null) { InteractionFunctions.Handle(Projectile, projectileCollision); }
+            //handle actor, object, projectile collisions/interactions
+            CheckObjPoolCollisions(Projectile);
+            CheckActorPoolCollisions(Projectile);
+            CheckProjectilePoolCollisions(Projectile);
 
             //the current position becomes the new position
             Projectile.compMove.position.X = Projectile.compMove.newPosition.X;

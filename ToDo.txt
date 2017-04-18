@@ -36,21 +36,26 @@ ram useage:
 todo:
 
 
-4
+3
+
+
+
+removed various collision functions from CollisionFunctions that were causing a bug.
+this bug allowed the hero to move into a wall to the right of an open door.
+this was due to bailing from collision checking after any collision with a game object.
+the hero collided with the open door first, then ignored all other collisions.
+so we'll have to change how we handle collisions + collision checking.
+wrote collision function to handle actor vs actor pool.
+updated CollisionFunctions.CheckCollisions(Actor) to use the new collision routines.
+wrote collision functions for projectiles vs (actors, objs, projectiles).
+updated CollisionFunctions.CheckCollisions(Projectile) to use the new collision routines.
+play tested, new collision routines work perfectly, but we had to disable DebugFunctions.Inspect(DungeonScreen).
+we'll have to write routines specific to inspect objs + actors for DebugFunctions.
 
 
 
 
 
-
-
-
-rewrite collision checking to continue checking collisions with other gameobjects
-
-
-
-check gameobj collisions, return a boolean that determines if the actor was blocked or not
-inside of collision check, pass the obj and actor to the interaction functions, per collision
 
 
 

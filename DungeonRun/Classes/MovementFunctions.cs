@@ -35,14 +35,14 @@ namespace DungeonRun
         public static void Move(Actor Actor, DungeonScreen DungeonScreen)
         {
             ProjectMovement(Actor.compMove);
-            CollisionFunctions.CheckCollisions(Actor, DungeonScreen);
+            CollisionFunctions.CheckCollisions(Actor);
             ComponentFunctions.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
         }
 
         public static void Move(GameObject Obj, DungeonScreen DungeonScreen)
         {   //this is only used for projectiles + particles
             ProjectMovement(Obj.compMove);
-            CollisionFunctions.CheckCollisions(Obj, DungeonScreen);
+            CollisionFunctions.CheckCollisions(Obj);
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
