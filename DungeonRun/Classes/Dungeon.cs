@@ -25,14 +25,18 @@ namespace DungeonRun
 
     public struct Room
     {
-        public Point position;
+        public ComponentCollision collision;
         public Byte2 size;
         public Point center;
         public RoomType type;
         public byte enemyCount;
         public Room(Point Pos, Byte2 Size, RoomType Type, byte EnemyCount)
         {
-            position = Pos;
+            collision = new ComponentCollision();
+            collision.rec.X = Pos.X;
+            collision.rec.Y = Pos.Y;
+            collision.rec.Width = Size.x * 16;
+            collision.rec.Height = Size.y * 16;
             size = Size;
             center = new Point(Pos.X + (Size.x / 2) * 16, Pos.Y + (Size.y / 2) * 16);
             type = Type;

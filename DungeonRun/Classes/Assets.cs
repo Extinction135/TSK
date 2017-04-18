@@ -159,8 +159,7 @@ namespace DungeonRun
 
             colorScheme.textSmall = new Color(255, 255, 255, 255);
             colorScheme.windowBkg = new Color(0, 0, 0, 200);
-            colorScheme.collisionActor = new Color(100, 0, 0, 0);
-            colorScheme.collisionObj = new Color(100, 0, 0, 0);
+            colorScheme.collision = new Color(100, 0, 0, 0);
 
             colorScheme.buttonUp = new Color(44, 44, 44, 0);
             colorScheme.buttonOver = new Color(66, 66, 66, 0);
@@ -176,8 +175,7 @@ namespace DungeonRun
 
         public Color textSmall;
         public Color windowBkg;
-        public Color collisionActor;
-        public Color collisionObj;
+        public Color collision;
 
         public Color buttonUp;
         public Color buttonOver;

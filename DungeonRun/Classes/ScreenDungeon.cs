@@ -148,7 +148,11 @@ namespace DungeonRun
                         Camera2D.view
                         );
             PoolFunctions.Draw();
-            if (Flags.DrawCollisions) { DrawFunctions.Draw(Input.cursorColl); }
+            if (Flags.DrawCollisions)
+            {
+                DrawFunctions.Draw(Input.cursorColl);
+                DrawFunctions.Draw(DungeonGenerator.dungeon);
+            }
             ScreenManager.spriteBatch.End();
 
             //draw UI, debug info + debug menu

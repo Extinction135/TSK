@@ -15,6 +15,15 @@ namespace DungeonRun
     public static class DrawFunctions
     {
 
+
+        public static void Draw(Dungeon Dungeon)
+        {   //draw the dungeon's room collision recs
+            for (int i = 0; i < Dungeon.rooms.Count; i++)
+            { Draw(Dungeon.rooms[i].collision); }
+        }
+
+
+
         public static void Draw(ComponentSprite Sprite)
         {
             if (Sprite.visible)
@@ -49,7 +58,7 @@ namespace DungeonRun
         {   //draw the collision rec of the collision component
             ScreenManager.spriteBatch.Draw(
                 Assets.dummyTexture, Coll.rec,
-                Assets.colorScheme.collisionActor);
+                Assets.colorScheme.collision);
         }
 
         public static void Draw(ComponentText Text)

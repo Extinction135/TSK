@@ -36,18 +36,48 @@ ram useage:
 todo:
 
 
-12
+11
+
+
+updated Room struct to have a collision component.
+removed position field from Room, because collision component includes such data.
+added Draw(Dungeon) to DrawFunctions, which draws all the dungeon's room collision recs.
+updated color scheme struct to just have one collision color, not actor/obj colors.
+updated Draw(ComponentCollision) to use the new colorScheme.collision color.
+
+plugged in the new Draw(Dungeon) function to DungeonScreen.Draw().
+
+
+
+bug: the room objects + floors are not aligned to the room collision recs.
+cause: the positions that we use align to the center of the sprites.
+solution: we should be applying a +8 pixel offset to the placement of the room objects.
 
 
 
 
 
-moved the placement of hero, and 'finalizing' of the dungeon into BuildDungeon().
-this prevents BuildRoom() from placing the hero during it's evaluation.
-current plans dictate that when hero transitions between rooms, BuildRoom() will be called.
-we would not want to hero to be teleported to room center, when he entered a new room.
-nor would we want the dungeon record to be reset, etc...
 
+
+draw the room collision recs - where do we start this draw from?
+
+
+
+DungeonGenerator should be DungeonFunctions.cs
+then we can include a Draw() function for the Dungeon
+
+
+
+
+we have a second room built, but we can't see it or interact with it
+
+we need rooms to have collision recs, and we need to draw them
+
+then we need to check collisions between hero and the room collision recs
+
+if hero collides with a room collision rec, buildRoom() that room
+
+hero should never be able to collide with more than one room rec
 
 
 
