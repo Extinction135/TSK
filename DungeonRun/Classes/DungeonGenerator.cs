@@ -68,6 +68,7 @@ namespace DungeonRun
 
                     if (j == 0)
                     {
+
                         
 
                         //build a test door
@@ -79,6 +80,22 @@ namespace DungeonRun
                                 0 * 16 - 16 + room.position.Y);
                             objRef.direction = Direction.Down;
                             GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+
+                            //build left wall torch
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                (i - 1) * 16 + room.position.X,
+                                0 * 16 - 16 + room.position.Y);
+                            objRef.direction = Direction.Down;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+
+                            //build right wall torch
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                (i + 1) * 16 + room.position.X,
+                                0 * 16 - 16 + room.position.Y);
+                            objRef.direction = Direction.Down;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
                         }
                         else
                         {
@@ -89,10 +106,9 @@ namespace DungeonRun
                                 0 * 16 - 16 + room.position.Y);
                             objRef.direction = Direction.Down;
                             GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+
+                            
                         }
-
-
-
 
 
 

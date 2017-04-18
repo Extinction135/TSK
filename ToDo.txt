@@ -36,15 +36,13 @@ ram useage:
 todo:
 
 
-2
+1
 
 
 
-refactored how DeugFunctions.Inspect(DungeonScreen) to dump info on any clicked objects or actors.
-this fixes the breakage introduced with the previous commit.
-passes testing.
-
-
+added code to test wall torch gameobjects to buildRoom().
+added code to properly set zOffset value for WallTorch to GameObjectFunctions.SetType().
+tested, passed.
 
 
 

@@ -53,9 +53,6 @@ namespace DungeonRun
 
 
 
-
-
-
         public static void CheckObjPoolCollisions(GameObject Projectile)
         {
             for (i = 0; i < Pool.objCount; i++)
@@ -94,10 +91,6 @@ namespace DungeonRun
                 }
             }
         }
-        
-
-
-
         
 
 

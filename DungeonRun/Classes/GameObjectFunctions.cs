@@ -179,6 +179,7 @@ namespace DungeonRun
             else if (Type == GameObject.Type.WallTorch)
             {
                 Obj.compCollision.blocking = false;
+                Obj.compSprite.zOffset = 2;
             }
 
             #endregion
