@@ -61,8 +61,8 @@ namespace DungeonRun
         }
 
         public static void ResetActorPool()
-        {
-            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+        {   //we skip resetting the hero
+            for (Pool.counter = 1; Pool.counter < Pool.actorCount; Pool.counter++)
             { Release(Pool.actorPool[Pool.counter]); }
             Pool.actorsUsed = 0;
         }
