@@ -16,17 +16,28 @@ namespace DungeonRun
     {
         public static string output;
 
+        static int i;
         public static void Inspect(DungeonScreen DungeonScreen)
         {   //check if any object or actor collide with cursor collision component, pass to Inspect()
+            //check mouse click position for any objects
+            for (i = 0; i < Pool.objCount; i++)
+            {
+                if (Pool.objPool[i].active)
+                {
+                    if (Input.cursorColl.rec.Intersects(Pool.objPool[i].compCollision.rec))
+                    { Inspect(Pool.objPool[i]); }
+                }
+            }
 
-            //using the new routines, we can't get the debug info the way we used to
-            /*
-            GameObject gameObject = CollisionFunctions.CheckObjPoolCollisions(Input.cursorColl);
-            if (gameObject != null) { Inspect(gameObject); }
-            Actor actor = CollisionFunctions.CheckActorPoolCollisions(Input.cursorColl);
-            if (actor != null) { Inspect(actor); }
-            */
-
+            //check mouse click position for any actors
+            for (i = 0; i < Pool.actorCount; i++)
+            {
+                if (Pool.actorPool[i].active)
+                {
+                    if (Input.cursorColl.rec.Intersects(Pool.actorPool[i].compCollision.rec))
+                    { Inspect(Pool.actorPool[i]); }
+                }
+            }
         }
 
         public static void Inspect(Actor Actor)
