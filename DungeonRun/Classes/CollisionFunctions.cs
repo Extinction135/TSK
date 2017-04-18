@@ -17,7 +17,39 @@ namespace DungeonRun
 
         static int i;
 
-        public static GameObject CheckObjPoolCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
+
+
+
+        static Boolean collision = false;
+        public static Boolean CheckObjPoolCollisions(Actor Actor)
+        {
+            collision = false;
+            for (i = 0; i < Pool.objCount; i++)
+            {
+                if (Pool.objPool[i].active)
+                {
+                    if (Actor.compCollision.rec.Intersects(Pool.objPool[i].compCollision.rec))
+                    {
+                        InteractionFunctions.Handle(Actor, Pool.objPool[i]);
+                        if (Pool.objPool[i].compCollision.blocking) { collision = true; }
+                    }
+                }
+            }
+            return collision; //no collision
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public static GameObject CheckObjPoolCollisions(ComponentCollision Coll)
         {
             for (i = 0; i < Pool.objCount; i++)
             {
@@ -33,7 +65,7 @@ namespace DungeonRun
             return null; //no collision
         }
 
-        public static Actor CheckActorPoolCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
+        public static Actor CheckActorPoolCollisions(ComponentCollision Coll)
         {   
             for (i = 0; i < Pool.actorCount; i++)
             {
@@ -49,7 +81,7 @@ namespace DungeonRun
             return null; //no collision
         }
 
-        public static GameObject CheckProjectilePoolCollisions(ComponentCollision Coll, DungeonScreen DungeonScreen)
+        public static GameObject CheckProjectilePoolCollisions(ComponentCollision Coll)
         {
             for (i = 0; i < Pool.projectileCount; i++)
             {
@@ -89,8 +121,8 @@ namespace DungeonRun
             //project collisionRec on X axis
             Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X + Actor.compCollision.offsetX;
             //get actor, object, projectile collisions
-            objCollision = CheckObjPoolCollisions(Actor.compCollision, DungeonScreen);
-            actorCollision = CheckActorPoolCollisions(Actor.compCollision, DungeonScreen);
+            objCollision = CheckObjPoolCollisions(Actor.compCollision);
+            actorCollision = CheckActorPoolCollisions(Actor.compCollision);
             
             //handle collisions
             if (objCollision != null && objCollision.compCollision.blocking) { collisionX = true; } 
@@ -101,8 +133,8 @@ namespace DungeonRun
             //project collisionRec on Y axis
             Actor.compCollision.rec.Y = (int)Actor.compMove.newPosition.Y + Actor.compCollision.offsetY;
             //get actor, object, projectile collisions
-            objCollision = CheckObjPoolCollisions(Actor.compCollision, DungeonScreen);
-            actorCollision = CheckActorPoolCollisions(Actor.compCollision, DungeonScreen);
+            objCollision = CheckObjPoolCollisions(Actor.compCollision);
+            actorCollision = CheckActorPoolCollisions(Actor.compCollision);
 
             //handle collisions
             if (objCollision != null && objCollision.compCollision.blocking) { collisionY = true; }
@@ -134,9 +166,9 @@ namespace DungeonRun
             Projectile.compCollision.rec.Y = (int)Projectile.compMove.newPosition.Y + Projectile.compCollision.offsetY;
 
             //get actor, object, projectile collisions
-            actorCollision = CheckActorPoolCollisions(Projectile.compCollision, DungeonScreen);
-            objCollision = CheckObjPoolCollisions(Projectile.compCollision, DungeonScreen);
-            projectileCollision = CheckProjectilePoolCollisions(Projectile.compCollision, DungeonScreen);
+            actorCollision = CheckActorPoolCollisions(Projectile.compCollision);
+            objCollision = CheckObjPoolCollisions(Projectile.compCollision);
+            projectileCollision = CheckProjectilePoolCollisions(Projectile.compCollision);
 
             //handle collision effects
             if (actorCollision != null) { InteractionFunctions.Handle(Projectile, actorCollision); }

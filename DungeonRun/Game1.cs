@@ -18,9 +18,8 @@ namespace DungeonRun
         public static Boolean Release = false; //the MASTER control boolean
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
-        public static Boolean Paused = false;
-
-        public static Boolean PlayMusic = false;
+        public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
+        public static Boolean PlayMusic = false; //turns music on/off (but not soundFX)
     }
 
     public class Game1 : Game

@@ -36,23 +36,24 @@ ram useage:
 todo:
 
 
-5
+4
 
 
 
 
-modified DunGen.BuildRoom() to test out construction of open doors.
-bug: once we collide with the door, we can walk through the wall to the right.
-cause: we're ending the collision check upon the first collision.
-solution: continue checking collisions with other game objects.
-additional: this will require additional codepaths/refactoring of collision checking to handle multiple obj collisions.
 
-added a boolean to mute the game's music to flags.
-implemented this mute check in game1.Update().
 
 
 
 rewrite collision checking to continue checking collisions with other gameobjects
+
+
+
+check gameobj collisions, return a boolean that determines if the actor was blocked or not
+inside of collision check, pass the obj and actor to the interaction functions, per collision
+
+
+
 
 
 
