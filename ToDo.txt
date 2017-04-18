@@ -36,13 +36,26 @@ ram useage:
 todo:
 
 
-1
+13
 
 
 
-added code to test wall torch gameobjects to buildRoom().
-added code to properly set zOffset value for WallTorch to GameObjectFunctions.SetType().
-tested, passed.
+
+organized DungeonScreen a little bit.
+wrote DungeonGenerator.BuildDungeon().
+completed the basic Dungeon data structure.
+updated the Room data structure.
+added a dungeon instance, populated it with 2 rooms.
+updated BuildRoom() to accept a Room parameter.
+this commit prepares the dungeon for traversal by hero
+
+
+
+
+we dont want the build room () to place the hero
+we should only place the hero once, in the spawn room
+
+
 
 
 
@@ -63,7 +76,7 @@ so we're gonna need a dungeon class
 	
 	
 	
-	
+get the total ram use on xbox one.	
 	
 	
 	

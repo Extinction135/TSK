@@ -37,7 +37,7 @@ namespace DungeonRun
 
             Pool.Initialize();
             DungeonGenerator.Initialize(this);
-            DungeonGenerator.BuildRoom();
+            DungeonGenerator.BuildDungeon();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }
 
@@ -75,7 +75,11 @@ namespace DungeonRun
             Timing.Reset();
 
             if(!Flags.Paused)
-            {   
+            {
+
+
+                #region Handle Screen State
+
                 if(screenState == ScreenState.FadeOut) //fade overlay to 0
                 {
                     overlayAlpha -= fadeOutSpeed;
@@ -113,6 +117,9 @@ namespace DungeonRun
                         //this happens when a new dungeon is built
                     }
                 }
+
+                #endregion
+
 
                 //update and move actors, objects, and projectiles
                 PoolFunctions.Update(this);

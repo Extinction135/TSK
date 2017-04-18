@@ -61,7 +61,7 @@ namespace DungeonRun
                         }
                         else if (counter == 1) //build the dungeon room again
                         {
-                            DungeonGenerator.BuildRoom();
+                            DungeonGenerator.BuildDungeon();
                         }
 
                         #endregion

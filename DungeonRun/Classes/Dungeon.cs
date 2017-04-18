@@ -30,14 +30,24 @@ namespace DungeonRun
         public Point center;
         public RoomType type;
         public byte enemyCount;
+        public Room(Point Pos, Byte2 Size, RoomType Type, byte EnemyCount)
+        {
+            position = Pos;
+            size = Size;
+            center = new Point(Pos.X + (Size.x / 2) * 16, Pos.Y + (Size.y / 2) * 16);
+            type = Type;
+            enemyCount = EnemyCount;
+        }
     }
 
     public struct Dungeon
     {
-        //a list of rooms
-        //a timespan
-        //a string name
-
-
+        public List<Room> rooms;
+        public String name;
+        public Dungeon(String Name)
+        {
+            rooms = new List<Room>();
+            name = Name;
+        }
     }
 }
