@@ -12,12 +12,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class DungeonGenerator
+    public static class DungeonFunctions
     {
 
         public static DungeonScreen dungeonScreen;
         public static Dungeon dungeon;
-
+        public static Room currentRoom; //points to a room on the dungeon's room list
 
 
         public static Stopwatch stopWatch = new Stopwatch();
@@ -37,11 +37,12 @@ namespace DungeonRun
         {
             //create a new dungeon
             dungeon = new Dungeon("test");
-            dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Normal, 10));
-            dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Normal, 10));
+            dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Normal, 10, 0));
+            dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Normal, 10, 1));
 
             //build the first room in the dungeon (the spawn room)
             BuildRoom(dungeon.rooms[0]);
+            currentRoom = dungeon.rooms[0];
 
             //center hero to spawn room
             ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
@@ -92,7 +93,12 @@ namespace DungeonRun
                     floorRef = PoolFunctions.GetFloor();
                     floorRef.position.X = i * 16 + pos.X + 8;
                     floorRef.position.Y = j * 16 + pos.Y + 8;
+
+
+
+
                     
+
 
                     #region Top Row Walls
 
@@ -168,13 +174,50 @@ namespace DungeonRun
                     #region Bottom Row Walls
 
                     else if (j == Room.size.y - 1)
-                    {   //bottom row
-                        objRef = PoolFunctions.GetObj();
-                        MovementFunctions.Teleport(objRef.compMove, 
-                            i * 16 + pos.X + 8,
-                            Room.size.y * 16 + pos.Y + 8);
-                        objRef.direction = Direction.Up;
-                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+                    {
+
+
+                        //build a test door
+                        if (i == 5)
+                        {
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                i * 16 + pos.X + 8,
+                                Room.size.y * 16 + pos.Y + 8);
+                            objRef.direction = Direction.Up;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+
+                            //build left wall torch
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                (i - 1) * 16 + pos.X + 8,
+                                Room.size.y * 16 + pos.Y + 8);
+                            objRef.direction = Direction.Up;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+
+                            //build right wall torch
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                (i + 1) * 16 + pos.X + 8,
+                                Room.size.y * 16 + pos.Y + 8);
+                            objRef.direction = Direction.Up;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+                        }
+                        else
+                        {
+                            //bottom row
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                i * 16 + pos.X + 8,
+                                Room.size.y * 16 + pos.Y + 8);
+                            objRef.direction = Direction.Up;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+                        }
+
+
+
+
+                        
                         if (i == 0)
                         {   //bottom left corner
                             objRef = PoolFunctions.GetObj();

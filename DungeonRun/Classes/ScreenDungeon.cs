@@ -36,8 +36,8 @@ namespace DungeonRun
             overlay = new Rectangle(0, 0, 640, 360);
 
             Pool.Initialize();
-            DungeonGenerator.Initialize(this);
-            DungeonGenerator.BuildDungeon();
+            DungeonFunctions.Initialize(this);
+            DungeonFunctions.BuildDungeon();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
         }
 
@@ -123,6 +123,7 @@ namespace DungeonRun
 
                 //update and move actors, objects, and projectiles
                 PoolFunctions.Update(this);
+                CollisionFunctions.CheckDungeonRoomCollisions();
                 WorldUI.Update();
                 //track camera to hero
                 Camera2D.targetPosition = Pool.hero.compSprite.position;
@@ -151,7 +152,7 @@ namespace DungeonRun
             if (Flags.DrawCollisions)
             {
                 DrawFunctions.Draw(Input.cursorColl);
-                DrawFunctions.Draw(DungeonGenerator.dungeon);
+                DrawFunctions.Draw(DungeonFunctions.dungeon);
             }
             ScreenManager.spriteBatch.End();
 

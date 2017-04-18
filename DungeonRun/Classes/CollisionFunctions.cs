@@ -16,10 +16,29 @@ namespace DungeonRun
     {
 
         static int i;
-
-
-
         static Boolean collision = false;
+        static Boolean collisionX;
+        static Boolean collisionY;
+
+
+
+        public static void CheckDungeonRoomCollisions()
+        {
+            for (i = 0; i < DungeonFunctions.dungeon.rooms.Count; i++)
+            {   //if the current room is not the room we are checking against, then continue
+                if (DungeonFunctions.currentRoom.id != DungeonFunctions.dungeon.rooms[i].id)
+                {   //if hero collides with this room rec, set it to be currentRoom, build the room
+                    if (Pool.hero.compCollision.rec.Intersects(DungeonFunctions.dungeon.rooms[i].collision.rec))
+                    {
+                        DungeonFunctions.currentRoom = DungeonFunctions.dungeon.rooms[i];
+                        DungeonFunctions.BuildRoom(DungeonFunctions.dungeon.rooms[i]);
+                    }
+                }
+            }
+        }
+
+
+
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
             collision = false; //assume no collision
@@ -91,11 +110,9 @@ namespace DungeonRun
                 }
             }
         }
+
+
         
-
-
-        static Boolean collisionX;
-        static Boolean collisionY;
         public static void CheckCollisions(Actor Actor)
         {
             collisionX = false; collisionY = false;

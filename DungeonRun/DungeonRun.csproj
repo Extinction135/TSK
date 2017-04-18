@@ -112,7 +112,7 @@
     <Compile Include="Classes\DebugMenu.cs" />
     <Compile Include="Classes\DrawFunctions.cs" />
     <Compile Include="Classes\Dungeon.cs" />
-    <Compile Include="Classes\DungeonGenerator.cs" />
+    <Compile Include="Classes\DungeonFunctions.cs" />
     <Compile Include="Classes\DungeonRecord.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
     <Compile Include="Classes\GameObjectFunctions.cs" />

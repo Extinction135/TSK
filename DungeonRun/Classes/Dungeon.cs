@@ -30,7 +30,8 @@ namespace DungeonRun
         public Point center;
         public RoomType type;
         public byte enemyCount;
-        public Room(Point Pos, Byte2 Size, RoomType Type, byte EnemyCount)
+        public int id;
+        public Room(Point Pos, Byte2 Size, RoomType Type, byte EnemyCount, int ID)
         {
             collision = new ComponentCollision();
             collision.rec.X = Pos.X;
@@ -41,6 +42,7 @@ namespace DungeonRun
             center = new Point(Pos.X + (Size.x / 2) * 16, Pos.Y + (Size.y / 2) * 16);
             type = Type;
             enemyCount = EnemyCount;
+            id = ID;
         }
     }
 

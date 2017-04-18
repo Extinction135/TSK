@@ -233,7 +233,7 @@ namespace DungeonRun
 
             else if (screenState == ScreenState.Exit)
             {
-                DungeonGenerator.BuildDungeon();
+                DungeonFunctions.BuildDungeon();
                 ScreenManager.RemoveScreen(this);
             }
 

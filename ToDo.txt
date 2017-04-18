@@ -36,14 +36,31 @@ ram useage:
 todo:
 
 
-10
+9
 
 
-bug: the room objects + floors are not aligned to the room collision recs.
-cause: the sprites center themselves to the position we're currently using.
-solution: now applying an +8 pixel offset to the placement of room objects, in BuildRoom().
+renamed DungeonGenerator to DungeonFunctions.
+added current room to DungeonFunctions.
+updated BuildDungeon() to set the spawn room as the current room.
+added CheckDungeonRoomCollisions() to CollisionFunctions.
+calling CollisionFunctions.CheckDungeonRoomCollisions() from DungeonScreen.Update().
+updated BuildRoom() to create top row and bottom row aligned doors.
 
 
+
+bug: hero gets stuck/can't move/disappears when transitioning between rooms
+
+this is likely due to the pool being reset, we should skip resetting the hero
+
+
+
+
+
+bug: the bottom row door isn't being placed properly
+
+
+
+we do need to add an offset to actor positions, otherwise they can get stuck in the walls
 
 
 
@@ -56,9 +73,18 @@ if hero collides with a room collision rec, buildRoom() that room
 
 hero should never be able to collide with more than one room rec
 
+we should be creating a north and south door at the same horizontal position
+this is to test if we can transition between rooms properly
 
 
 
+
+
+if(currentRoom != room that hero collided with) { Build room that hero collided with }
+
+
+
+S
 
 build a second room, randomly place it around the spawn room (NSEW)
 the original room and the 2nd room should share a door gameobject
