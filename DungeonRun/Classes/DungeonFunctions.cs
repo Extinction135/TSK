@@ -95,11 +95,6 @@ namespace DungeonRun
                     floorRef.position.Y = j * 16 + pos.Y + 8;
 
 
-
-
-                    
-
-
                     #region Top Row Walls
 
                     if (j == 0)
@@ -291,8 +286,8 @@ namespace DungeonRun
                 if (randomY == 0) { randomY = 1; }
                 //teleport actor to center of room, apply random offset
                 MovementFunctions.Teleport(actorRef.compMove,
-                    Room.center.X + 16 * randomX,
-                    Room.center.Y + 16 * randomY);
+                    Room.center.X + 16 * randomX + 8,
+                    Room.center.Y + 16 * randomY + 8);
             }
             
             #endregion

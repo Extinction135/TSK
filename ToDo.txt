@@ -31,17 +31,16 @@ ram useage:
 todo:
 
 
-9
+8
 
 
 
-bug: hero gets stuck/can't move/disappears when transitioning between rooms
-cause: we're resetting the hero data when we call PoolFunctions.ResetActorPool().
-solution: skip resetting the hero, simply set the counter to 1 instead of 0.
+bug: sometimes the enemies can spawn stuck in the walls.
+cause: enemies center to the positions we pass them in BuildRoom().
+solution: apply an +8 pixel offset, just like we did with gameobjects, in BuildRoom().
 
 
 
-bug: the bottom row door isn't being placed properly
 
 
 
