@@ -36,47 +36,63 @@ ram useage:
 todo:
 
 
-6
-
-
-
-updated MusicFunctions.Update() to stop the other music tracks from playing.
-this is to (hopefully) reduce the CPU load when playing bkg music.
-i'm assuming that playing a sound effect requires a thread, or at least some cpu resources.
-so, not playing 2 extra music tracks that the player can't hear is probably good.
-anyway, it passes playtesting and doesn't crash/break, so i'm happy.
-
-
-
-do we really need the shop music? its too long and not really that important.
-it's also bloating up to 10mb.
+5
 
 
 
 
+modified DunGen.BuildRoom() to test out construction of open doors.
+bug: once we collide with the door, we can walk through the wall to the right.
+cause: we're ending the collision check upon the first collision.
+solution: continue checking collisions with other game objects.
+additional: this will require additional codepaths/refactoring of collision checking to handle multiple obj collisions.
 
-write code that stops() the other music tracks from playing
-do we really need to do this?
+added a boolean to mute the game's music to flags.
+implemented this mute check in game1.Update().
+
+
+
+rewrite collision checking to continue checking collisions with other gameobjects
 
 
 
 
 
-make sure that the dungeon complete musical cue is mono and 22k
+
+build a second room, randomly place it around the spawn room (NSEW)
+the original room and the 2nd room should share a door gameobject
+hero should be able to transition between room 1 and room 2
+the data of rooms should be persistent for now (enemies don't respawn)
 
 
 
+so we're gonna need a dungeon class
+	list of rooms
+	each room has a collision rec
+	if hero collides with the collision rec, then that room is active
+	
+	when a room becomes active, the pool objects are rearranged to represent that room
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-hero should spin around prior to dying
-other actors should not do this, they should die immediately
-the dungeon screen should only start it's fadeIn if the hero is in his final sitting death state
-it should remain 'playing' while hero spins around
+
+
+this second room is a boss room
+connect the two rooms using a boss door - this door is locked
+
+
+build rooms based on a passed room parameter
 
 
 
-for the boss fight, we'll just use a musical cue to tell the player they're about to fight the boss
-we don't need to switch music tracks, tho we would like to
-if we can compress the audio enough, we might have room for this track - it would be nice
 
 
 
@@ -123,8 +139,18 @@ Version 0.2 Milestones
 	
 Stuff that needs to be done, but it's not terribly important rn	
 	
-	build an actual dungeon, with multiple rooms, a key, boss door/room
 	
+	make sure that the dungeon complete musical cue is mono and 22k
+
+	hero should spin around prior to dying
+	other actors should not do this, they should die immediately
+	the dungeon screen should only start it's fadeIn if the hero is in his final sitting death state
+	it should remain 'playing' while hero spins around
+
+	for the boss fight, we'll just use a musical cue to tell the player they're about to fight the boss
+	we don't need to switch music tracks, tho we would like to
+	if we can compress the audio enough, we might have room for this track - it would be nice
+
 	whats the reward formula?
 	time bonus + enemies killed - damage taken
 	time bonus is based on how many rooms are in the dungeon.

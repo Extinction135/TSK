@@ -28,7 +28,6 @@ namespace DungeonRun
         public static void Update()
         {
 
-
             #region Fade in/out, play
 
             if (fadeState == FadeState.FadeIn)

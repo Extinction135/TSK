@@ -19,6 +19,8 @@ namespace DungeonRun
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean Paused = false;
+
+        public static Boolean PlayMusic = false;
     }
 
     public class Game1 : Game
@@ -53,7 +55,7 @@ namespace DungeonRun
         protected override void Update(GameTime gameTime)
         {
             ScreenManager.Update(gameTime);
-            MusicFunctions.Update();
+            if (Flags.PlayMusic) { MusicFunctions.Update(); }
             base.Update(gameTime);
         }
 

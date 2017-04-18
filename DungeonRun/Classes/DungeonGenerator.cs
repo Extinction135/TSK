@@ -68,13 +68,34 @@ namespace DungeonRun
 
                     if (j == 0)
                     {
-                        //top row
-                        objRef = PoolFunctions.GetObj();
-                        MovementFunctions.Teleport(objRef.compMove, 
-                            i * 16 + room.position.X, 
-                            0 * 16 - 16 + room.position.Y);
-                        objRef.direction = Direction.Down;
-                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+                        
+
+                        //build a test door
+                        if (i == 5)
+                        {
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                i * 16 + room.position.X,
+                                0 * 16 - 16 + room.position.Y);
+                            objRef.direction = Direction.Down;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+                        }
+                        else
+                        {
+                            //top row
+                            objRef = PoolFunctions.GetObj();
+                            MovementFunctions.Teleport(objRef.compMove,
+                                i * 16 + room.position.X,
+                                0 * 16 - 16 + room.position.Y);
+                            objRef.direction = Direction.Down;
+                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+                        }
+
+
+
+
+
+
                         if (i == 0)
                         {   //topleft corner
                             objRef = PoolFunctions.GetObj();
