@@ -29,42 +29,34 @@ known bugs:
 	Can't get exception info "the attached debugger isn't configured to handle this type of exception."
 	
 ram useage:
-	82mb on Win10.  94mb on XboxOne.
+	86mb on Win10.  94mb on XboxOne.
 	
 	
 	
 todo:
 
 
-7
-
-
-added shop music to content project, at 22k mono.
-updated MusicFunctions.Update() to handle the new shop music.
-updated DungeonGenerator.BuildRoom() to randomly play one of the 3 available songs.
+6
 
 
 
+updated MusicFunctions.Update() to stop the other music tracks from playing.
+this is to (hopefully) reduce the CPU load when playing bkg music.
+i'm assuming that playing a sound effect requires a thread, or at least some cpu resources.
+so, not playing 2 extra music tracks that the player can't hear is probably good.
+anyway, it passes playtesting and doesn't crash/break, so i'm happy.
 
 
 
-update random routine to load shop music too
+do we really need the shop music? its too long and not really that important.
+it's also bloating up to 10mb.
 
 
-lets add in the alternate dungeon music track (B)
 
-convert to mono @ 22k, add to pipeline, build it
-update assets to load it
 
-update music functions with codepath to reference it
-update dungeon generator to randomly choose track A or track B
 
 write code that stops() the other music tracks from playing
 do we really need to do this?
-
-
-add overworld, shop music tracks too
-check ram useage
 
 
 

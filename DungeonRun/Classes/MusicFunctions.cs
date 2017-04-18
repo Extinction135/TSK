@@ -71,10 +71,15 @@ namespace DungeonRun
                 //if there is no track to load, do nothing and wait
                 if (trackToLoad == Music.None) { }
                 else
-                {   //dtermine the track to load based on the enum
+                {   //determine the track to load based on the enum
                     if (trackToLoad == Music.DungeonA) { currentMusic = Assets.musicDungeonA; }
                     else if (trackToLoad == Music.Overworld) { currentMusic = Assets.musicOverworld; }
                     else if (trackToLoad == Music.Shop) { currentMusic = Assets.musicShop; }
+
+                    //stop the other music tracks from playing, to reduce CPU load
+                    if (currentMusic != Assets.musicDungeonA) { Assets.musicDungeonA.Stop(); }
+                    else if (currentMusic != Assets.musicOverworld) { Assets.musicOverworld.Stop(); }
+                    else if (currentMusic != Assets.musicShop) { Assets.musicShop.Stop(); }
 
                     //prep for music + drums to fade back in
                     currentMusic.Volume = 0.0f;
