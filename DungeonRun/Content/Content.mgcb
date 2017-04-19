@@ -167,3 +167,15 @@
 /processorParam:Quality=Best
 /build:MusicShop.ogg
 
+#begin SoundDoorOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundDoorOpen.wav
+
+#begin SoundKeyPickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundKeyPickup.wav
+

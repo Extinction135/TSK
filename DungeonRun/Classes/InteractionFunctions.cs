@@ -22,24 +22,38 @@ namespace DungeonRun
         public static void Handle(Actor Actor, GameObject Obj)
         {
             //Obj is non-blocking
+
+
+            #region Handle Hero specific object interactions
+
             if(Actor == Pool.hero)
             {
-
                 if (Obj.type == GameObject.Type.DoorBoss)
                 {
                     if (DungeonFunctions.dungeon.bigKey)
-                    { GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen); }
+                    {
+                        GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen);
+                        Assets.doorOpen.Play();
+                    }
                 }
                 else if(Obj.type == GameObject.Type.DoorTrap)
                 {
                     MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);
                 }
-
+                else if(Obj.type == GameObject.Type.ItemBigKey)
+                {
+                    PoolFunctions.Release(Obj);
+                    DungeonFunctions.dungeon.bigKey = true;
+                    Assets.keyPickup.Play();
+                }
             }
+
+            #endregion
+
+
+            //non-hero actors may interact with certain objects as well
+
         }
-
-
-
 
         public static void Handle(GameObject Projectile, Actor Actor)
         {

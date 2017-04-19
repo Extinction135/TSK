@@ -55,7 +55,7 @@ namespace DungeonRun
         {
             rooms = new List<Room>();
             name = Name;
-            bigKey = true; //hero has not found the big key yet
+            bigKey = false; //hero has not found the big key yet
         }
     }
 }

@@ -239,7 +239,6 @@ namespace DungeonRun
         public static void FinishRoom(Room Room)
         {
 
-
             #region Normal Room (spawn room)
 
             if (Room.type == RoomType.Normal)
@@ -267,6 +266,14 @@ namespace DungeonRun
                     0 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+
+                //place bigKey gameObj in bottom right corner
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    (Room.size.y - 1) * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.ItemBigKey);
             }
 
             #endregion
@@ -302,7 +309,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
         }
 

@@ -31,28 +31,26 @@ ram useage:
 todo:
 
 
-2
-
-
-updated InteractionFunctions.Handle(Actor, Obj) to push hero in direction of trap door.
-this means hero can't escape the boss room, and must fight the boss to the death.
-updated the sprite for the trap door, it now looks like a shut door.
-playtested.
-
-
-
-get the trap door working
+1
 
 
 
 
-we need the idea of a boss key, which should be a boolean
-this will only flip once per dungeon, and be reset each time a dungeon is created
-this data will never be saved, so we can put it in with dungeon
+added an open door soundfx for when hero opens the boss door.
+updated Interaction.Handle(Actor, Obj) to play door open sfx when boss door opens.
+updated Interaction.Handle(Actor, Obj) to set bigKey boolean true upon hero collision with bigKey obj.
+also the bigKey obj is Released() back to the objPool.
+added soundfx for key pickup, called from codepath above.
+updated DungeonFunctions.FinishRoom() to place a bigKey obj in the bottom right corner of spawnn room.
+tested that hero can pickup key, open boss door.
 
-but the boss door is blocking, so hero can't pass thru it
-we could still call the interaction() function on the obj, if hero's projection collides with it
-this way it could open when hero 'touches' it.
+
+
+
+
+
+
+
 
 we need to make the dungeon key / big key game object
 this object should be randomly placed in the spawn room
@@ -69,8 +67,9 @@ hero cannot pass thru shutdoors
 
 
 
-add an open door soundfx for when hero opens the boss door
 
+rename all soundFX in assets to have a "sfx" beginning string
+this will make it easier to code complete them later on..
 
 
 

@@ -75,6 +75,12 @@ namespace DungeonRun
         static SoundEffect beatDungeonSrc;
         public static SoundEffectInstance beatDungeon;
 
+        static SoundEffect doorOpenSrc;
+        public static SoundEffectInstance doorOpen;
+
+        static SoundEffect keyPickupSrc;
+        public static SoundEffectInstance keyPickup;
+
         #endregion
 
 
@@ -143,6 +149,12 @@ namespace DungeonRun
 
             beatDungeonSrc = content.Load<SoundEffect>(@"SoundBeatDungeon");
             beatDungeon = beatDungeonSrc.CreateInstance();
+
+            doorOpenSrc = content.Load<SoundEffect>(@"SoundDoorOpen");
+            doorOpen = doorOpenSrc.CreateInstance();
+
+            keyPickupSrc = content.Load<SoundEffect>(@"SoundKeyPickup");
+            keyPickup = keyPickupSrc.CreateInstance();
 
             #endregion
 
