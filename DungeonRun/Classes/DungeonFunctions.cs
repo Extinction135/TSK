@@ -38,7 +38,7 @@ namespace DungeonRun
             //create a new dungeon
             dungeon = new Dungeon("test");
             dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Normal, 10, 0));
-            dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Normal, 10, 1));
+            dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));
 
             //build the first room in the dungeon (the spawn room)
             BuildRoom(dungeon.rooms[0]);
@@ -93,6 +93,9 @@ namespace DungeonRun
                     floorRef = PoolFunctions.GetFloor();
                     floorRef.position.X = i * 16 + pos.X + 8;
                     floorRef.position.Y = j * 16 + pos.Y + 8;
+
+                    if (Room.type == RoomType.Normal) { floorRef.currentFrame.y = 0; }
+                    else if (Room.type == RoomType.Boss) { floorRef.currentFrame.y = 1; }
 
 
                     #region Top Row Walls

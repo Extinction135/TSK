@@ -31,82 +31,37 @@ ram useage:
 todo:
 
 
-8
+6
 
 
-
-bug: sometimes the enemies can spawn stuck in the walls.
-cause: enemies center to the positions we pass them in BuildRoom().
-solution: apply an +8 pixel offset, just like we did with gameobjects, in BuildRoom().
-
-
-
-
-
-
-we do need to add an offset to actor positions, otherwise they can get stuck in the walls
+updated BuildDungeon() to make second room a boss room, via Room.Type enum.
+updated BuildRoom() to make floors visually different for normal and boss rooms.
 
 
 
 
 
-
-check collisions between hero and the room collision recs
-
-if hero collides with a room collision rec, buildRoom() that room
-
-hero should never be able to collide with more than one room rec
-
-we should be creating a north and south door at the same horizontal position
-this is to test if we can transition between rooms properly
-
-
-
-
-
-if(currentRoom != room that hero collided with) { Build room that hero collided with }
-
-
-
-S
-
-build a second room, randomly place it around the spawn room (NSEW)
-the original room and the 2nd room should share a door gameobject
-hero should be able to transition between room 1 and room 2
-the data of rooms should be persistent for now (enemies don't respawn)
-
-
-
-so we're gonna need a dungeon class
-	list of rooms
-	each room has a collision rec
-	if hero collides with the collision rec, then that room is active
 	
-	when a room becomes active, the pool objects are rearranged to represent that room
-	
-	
-	
-get the total ram use on xbox one.	
-	
-	
-	
-	
-	
-	
-
-
-
-this second room is a boss room
+make second room a boss room
 connect the two rooms using a boss door - this door is locked
 
 
-build rooms based on a passed room parameter
+spawn room has door to north that is boss door
+north room has south door that is trap door
+
+
+we'll need to change how we are creating the doors
 
 
 
 
 
 
+
+
+
+
+get the total ram use on xbox one.	
 
 
 
