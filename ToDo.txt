@@ -31,60 +31,68 @@ ram useage:
 todo:
 
 
-10
+9
+
+
+standardized the parameter names for SetAnimationGroup() and SetAnimationDirection().
+update ActorFunctions.SetType to set the actor's animationList.
+removed the default setting of actor's animationList from actor constructor.
+this was a redundant call, since SetType was called, and it sets the animList now.
+added some comments that explain how i'm going to approach doing boss actors, and their sprite sheets.
 
 
 
 
-added a global flag named SpawnMobs.
-updated DungeonFunctions.BuildRoom() to check Flags.SpawnMobs boolean.
-this check determines if the room enemies are placed or not.
-organized the pretty-fied the master control booleans (Flags).
+we could make the boss sheet the same size as the actor sheet
+and just reduce the animation list
+bosses aren't player playable, so they dont need the full range of animations
+bosses could never pickup, carry, throw, or fall
+they would have idle, move, dash, attack, use, hit, death states tho
 
 
 
-
-it would be nice to have a global flag to disable mobs
-this would make it easier to test certain things, without having to constantly fight with mobs
-
-
-
-get the total ram use on xbox one.	
-
-
-
-
-
- 
-
+ITS BOSS TIME, BOYS
 
 create a boss sprite sheet (should be double the size of a normal actor sheet)
 should have the same layout as actor sheet
 use the floating eye sprite
-
 spawn the boss in the boss room, centered to it
+test battling the boss
+
 update the win/lose functions to only win if the boss actor is defeated
 this will probably be a boolean in the dungeon struct, just like bigKey boolean
 play a sound when hero enters boss room
 play a sound when boss dies
 
+when the boss is hit, it should have a visual effect on him
+or a white blinking effect? or a black blink? we can set the color of the sprite for this.
+
+
+mobs should spawn more centered to the room, not on the room's edges
+(for now)
 
 
 
 
 Version 0.2 Milestones
 
-	build a second room, randomly place it around the spawn room
-	this second room is a boss room
-	connect the two rooms using a boss door - this door is locked
-	one of the enemies in the spawn room should drop the boss key
-	
+
 	in the second room, place a boss actor, with some mobs
 	create a boss actor (this is just x2 spriteSheet with same actor anim layout)
 	actor is processed just like other actors
 	boss should be able to 'spawn' mobs (pull from actor pool)
 	when hero enters boss room, door should shut behind him
 	musical cue should play that hero is in boss fight now
+	
+	
+	the boss key should come from a chest gameobject
+	hero should be able to open the chest by pressing A button on it
+	this will create the collision rec, place it based on hero's direction
+	then check collisions with gameobjects
+	then pass any collisions to the InteractionFunctions class, to a Handle() function
+	
+	
+	
 	
 	when a blob is destroyed, it should drop a heart consumable sometimes
 	we'll need a gameobject of type consumable
@@ -103,7 +111,8 @@ Version 0.2 Milestones
 	
 	
 	
-	
+get the total ram use on xbox one.	
+we should probably drop or modify the shop music, since it adds so much to the ram useage.	
 	
 	
 	

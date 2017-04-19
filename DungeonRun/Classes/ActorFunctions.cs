@@ -106,6 +106,9 @@ namespace DungeonRun
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
                 //set actor soundFX
+
+                //set the actor's animation list, actor could be a boss
+                Actor.animList = ActorAnimationListManager.actorAnims;
             }
             else if (Type == Actor.Type.Blob)
             {
@@ -115,8 +118,14 @@ namespace DungeonRun
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
                 //set actor soundFX
-            }
 
+                //set the actor's animation list, actor could be a boss
+                Actor.animList = ActorAnimationListManager.actorAnims;
+            }
+            //else if actor is a boss,
+            //set the animationList to bossAnims
+            //we can do this based on actor.type
+            //this means the boss sprite sheet has a different layout that an actor sheet
         }
 
 

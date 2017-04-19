@@ -64,7 +64,6 @@ namespace DungeonRun
             //set the actor type to hero, teleport to position
             ActorFunctions.SetType(this, Type.Hero);
             MovementFunctions.Teleport(this.compMove, compSprite.position.X, compSprite.position.Y);
-            animList = ActorAnimationListManager.actorAnims;
         }
     }
 }

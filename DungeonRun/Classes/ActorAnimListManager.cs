@@ -40,30 +40,30 @@ namespace DungeonRun
         //the animationList used by all actors
         public static ActorAnimationList actorAnims;
 
-        public static void SetAnimationGroup(Actor ActorRef)
+        public static void SetAnimationGroup(Actor Actor)
         {
-            if (ActorRef.state == Actor.State.Idle) { ActorRef.animGroup = ActorRef.animList.idle; }
-            else if (ActorRef.state == Actor.State.Move) { ActorRef.animGroup = ActorRef.animList.move; }
-            else if (ActorRef.state == Actor.State.Dash) { ActorRef.animGroup = ActorRef.animList.dash; }
+            if (Actor.state == Actor.State.Idle) { Actor.animGroup = Actor.animList.idle; }
+            else if (Actor.state == Actor.State.Move) { Actor.animGroup = Actor.animList.move; }
+            else if (Actor.state == Actor.State.Dash) { Actor.animGroup = Actor.animList.dash; }
             //
-            else if (ActorRef.state == Actor.State.Attack) { ActorRef.animGroup = ActorRef.animList.attack; }
-            else if (ActorRef.state == Actor.State.Use) { ActorRef.animGroup = ActorRef.animList.use; }
-            else if (ActorRef.state == Actor.State.Hit) { ActorRef.animGroup = ActorRef.animList.hit; }
-            else if (ActorRef.state == Actor.State.Dead) { ActorRef.animGroup = ActorRef.animList.dead; }
+            else if (Actor.state == Actor.State.Attack) { Actor.animGroup = Actor.animList.attack; }
+            else if (Actor.state == Actor.State.Use) { Actor.animGroup = Actor.animList.use; }
+            else if (Actor.state == Actor.State.Hit) { Actor.animGroup = Actor.animList.hit; }
+            else if (Actor.state == Actor.State.Dead) { Actor.animGroup = Actor.animList.dead; }
         }
 
-        public static void SetAnimationDirection(Actor ActorRef)
+        public static void SetAnimationDirection(Actor Actor)
         {
             //set cardinal directions
-            if (ActorRef.direction == Direction.Down) { ActorRef.compAnim.currentAnimation = ActorRef.animGroup.down; }
-            else if (ActorRef.direction == Direction.Up) { ActorRef.compAnim.currentAnimation = ActorRef.animGroup.up; }
-            else if (ActorRef.direction == Direction.Right) { ActorRef.compAnim.currentAnimation = ActorRef.animGroup.right; }
-            else if (ActorRef.direction == Direction.Left) { ActorRef.compAnim.currentAnimation = ActorRef.animGroup.left; }
+            if (Actor.direction == Direction.Down) { Actor.compAnim.currentAnimation = Actor.animGroup.down; }
+            else if (Actor.direction == Direction.Up) { Actor.compAnim.currentAnimation = Actor.animGroup.up; }
+            else if (Actor.direction == Direction.Right) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.Left) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
             //set diagonal directions
-            else if (ActorRef.direction == Direction.DownRight) { ActorRef.compAnim.currentAnimation = ActorRef.animGroup.right; }
-            else if (ActorRef.direction == Direction.DownLeft) { ActorRef.compAnim.currentAnimation = ActorRef.animGroup.left; }
-            else if (ActorRef.direction == Direction.UpRight) { ActorRef.compAnim.currentAnimation = ActorRef.animGroup.right; }
-            else if (ActorRef.direction == Direction.UpLeft) { ActorRef.compAnim.currentAnimation = ActorRef.animGroup.left; }
+            else if (Actor.direction == Direction.DownRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.DownLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
+            else if (Actor.direction == Direction.UpRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.UpLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
         }
 
         static ActorAnimationListManager()
@@ -113,5 +113,6 @@ namespace DungeonRun
             actorAnims.dead.right = actorAnims.dead.down;
             actorAnims.dead.left = actorAnims.dead.down;
         }
+
     }
 }
