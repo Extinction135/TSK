@@ -31,26 +31,19 @@ ram useage:
 todo:
 
 
-5
+4
 
 
-added FinishRoom(Room) to DungeonFunctions.
-this function creates doors based on the room type.
-the 'dungeon' is now properly sealed and connected, between the boss room and the spawn room.
-any walls that overlap doors are also removed, per room now.
+moved the routines to remove walls that overlap doors into the CleanUpRoom(Room) function.
+now calling that function after FinishRoom().
+changed spawn room's door to a boss door.
+changed boss room's door to a trap door.
 
 
 
-connect the two rooms using a boss door - this door is locked
-
-
-spawn room has door to north that is boss door
-north room has south door that is trap door
-
-
-we'll need to change how we are creating the doors
-
-
+we need the idea of a boss key, which should be a boolean
+this will only flip once per dungeon, and be reset each time a dungeon is created
+this data will never be saved, so we can put it in with dungeon
 
 
 

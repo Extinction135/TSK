@@ -194,7 +194,8 @@ namespace DungeonRun
                 }
             }
 
-            FinishRoom(Room);
+            FinishRoom(Room); //add type specific room objs
+            CleanupRoom(Room); //remove overlapping objs
 
             //update the object pool, since we teleported objects around
             PoolFunctions.UpdateObjectPool();
@@ -239,7 +240,7 @@ namespace DungeonRun
         {
 
 
-            #region Based on the room.type, add doors at specific places
+            #region Normal Room (spawn room)
 
             if (Room.type == RoomType.Normal)
             {
@@ -248,7 +249,8 @@ namespace DungeonRun
                     5 * 16 + pos.X + 8,
                     0 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+                //GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+                GameObjectFunctions.SetType(objRef, GameObject.Type.DoorBoss);
 
                 //build left wall torch
                 objRef = PoolFunctions.GetObj();
@@ -266,6 +268,12 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
             }
+
+            #endregion
+
+
+            #region Boss Room
+
             else if (Room.type == RoomType.Boss)
             {
                 objRef = PoolFunctions.GetObj();
@@ -273,7 +281,8 @@ namespace DungeonRun
                     5 * 16 + pos.X + 8,
                     Room.size.y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+                //GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+                GameObjectFunctions.SetType(objRef, GameObject.Type.DoorTrap);
 
                 //build left wall torch
                 objRef = PoolFunctions.GetObj();
@@ -295,6 +304,11 @@ namespace DungeonRun
             #endregion
 
 
+        }
+
+
+        public static void CleanupRoom(Room Room)
+        {
             //remove any walls that overlap doors
             for (i = 0; i < Pool.objCount; i++)
             {
@@ -312,11 +326,7 @@ namespace DungeonRun
                     }
                 }
             }
-
-
-
         }
-
 
 
 
