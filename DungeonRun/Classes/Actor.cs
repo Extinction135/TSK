@@ -18,6 +18,7 @@ namespace DungeonRun
         {
             Hero,
             Blob,
+            Boss,
         }
         public enum State
         {   //attacks with weapon, uses item, interacts with game object

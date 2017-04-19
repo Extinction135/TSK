@@ -194,18 +194,18 @@ namespace DungeonRun
                 }
             }
 
+            #endregion
+
+
             FinishRoom(Room); //add type specific room objs
             CleanupRoom(Room); //remove overlapping objs
-
             //update the object pool, since we teleported objects around
             PoolFunctions.UpdateObjectPool();
-
-            #endregion
 
 
             #region Spawn the Room Actors
 
-            if(Flags.SpawnMobs)
+            if (Flags.SpawnMobs)
             {
                 //place enemies within the room
                 for (i = 0; i < Room.enemyCount; i++)
@@ -310,6 +310,15 @@ namespace DungeonRun
                     Room.size.y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+
+
+                //spawn a boss actor
+                actorRef = PoolFunctions.GetActor();
+                ActorFunctions.SetType(actorRef, Actor.Type.Boss);
+                //teleport boss to center of room
+                MovementFunctions.Teleport(actorRef.compMove,
+                    Room.center.X + 8,
+                    Room.center.Y + 8);
             }
 
             #endregion

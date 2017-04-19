@@ -132,7 +132,6 @@
     <Compile Include="Classes\AiFunctions.cs" />
     <Compile Include="Classes\ActorAnimListManager.cs" />
     <Compile Include="Classes\Timing.cs" />
-    <Compile Include="Classes\WinLoseFunctions.cs" />
     <Compile Include="Classes\WorldUI.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>

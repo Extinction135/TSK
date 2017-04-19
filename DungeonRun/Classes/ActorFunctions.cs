@@ -36,11 +36,30 @@ namespace DungeonRun
 
             #region Actor Specific Death Effects
 
-            if (Actor.type == Actor.Type.Blob)
+            if (Actor == Pool.hero)
+            {
+                //player has died, failed the dungeon
+                DungeonRecord.beatDungeon = false;
+                DungeonFunctions.dungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
+                //Actor.compSprite.zOffset = -16; //sort to floor
+                //GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
+                //Actor.compCollision.rec.X = -1000; //hide actor collisionRec
+            }
+
+            else if (Actor.type == Actor.Type.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
                 GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
+            }
+            else if (Actor.type == Actor.Type.Boss)
+            {
+                //player has beat the dungeon
+                DungeonRecord.beatDungeon = true;
+                DungeonFunctions.dungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
+                //Actor.compSprite.zOffset = -16; //sort to floor
+                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
+                //Actor.compCollision.rec.X = -1000; //hide actor collisionRec
             }
 
             #endregion
@@ -63,7 +82,24 @@ namespace DungeonRun
             }
         }
 
-
+        public static void SetCollisionRec(Actor Actor)
+        {
+            //set the collisionRec parameters based on the Type
+            if (Actor.type == Actor.Type.Boss)
+            {
+                Actor.compCollision.rec.Width = 24;
+                Actor.compCollision.rec.Height = 16;
+                Actor.compCollision.offsetX = -12;
+                Actor.compCollision.offsetY = -2;
+            }
+            else
+            {
+                Actor.compCollision.rec.Width = 12;
+                Actor.compCollision.rec.Height = 8;
+                Actor.compCollision.offsetX = -6;
+                Actor.compCollision.offsetY = 0;
+            }
+        }
 
         public static void UseWeapon(Actor Actor)
         {
@@ -97,6 +133,10 @@ namespace DungeonRun
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
 
+            
+
+
+
             //set type specific fields
             if (Type == Actor.Type.Hero)
             {
@@ -107,8 +147,14 @@ namespace DungeonRun
                 Actor.dashSpeed = 0.80f;
                 //set actor soundFX
 
+                //standard actor
+                Actor.compSprite.cellSize.x = 16;
+                Actor.compSprite.cellSize.y = 16;
+                ComponentFunctions.UpdateCellSize(Actor.compSprite);
+                ComponentFunctions.CenterOrigin(Actor.compSprite);
+
                 //set the actor's animation list, actor could be a boss
-                Actor.animList = ActorAnimationListManager.actorAnims;
+                //Actor.animList = ActorAnimationListManager.actorAnims;
             }
             else if (Type == Actor.Type.Blob)
             {
@@ -119,25 +165,46 @@ namespace DungeonRun
                 Actor.dashSpeed = 0.30f;
                 //set the actor soundFX
 
+                //standard actor
+                Actor.compSprite.cellSize.x = 16;
+                Actor.compSprite.cellSize.y = 16;
+                ComponentFunctions.UpdateCellSize(Actor.compSprite);
+                ComponentFunctions.CenterOrigin(Actor.compSprite);
+
                 //set the actor's animation list, actor could be a boss
-                Actor.animList = ActorAnimationListManager.actorAnims;
+                //Actor.animList = ActorAnimationListManager.actorAnims;
             }
+
+
             //else if actor is a boss,
             //set the animationList to bossAnims
             //we can do this based on actor.type
             //this means the boss sprite sheet has a different layout that an actor sheet
+            else if (Type == Actor.Type.Boss)
+            {
+                Actor.compSprite.texture = Assets.bossSheet;
+                Actor.health = 10;
+                Actor.weapon = Weapon.Sword;
+                Actor.walkSpeed = 0.30f;
+                Actor.dashSpeed = 0.80f;
+                //set the actor soundFX
+
+                //this actor is a boss (double size)
+                Actor.compSprite.cellSize.x = 32;
+                Actor.compSprite.cellSize.y = 32;
+                ComponentFunctions.UpdateCellSize(Actor.compSprite);
+                ComponentFunctions.CenterOrigin(Actor.compSprite);
+
+                //set the actor's animation list, actor could be a boss
+                //Actor.animList = ActorAnimationListManager.actorAnims;
+            }
+
+            Actor.animList = ActorAnimationListManager.actorAnims;
         }
 
 
 
-        public static void SetCollisionRec(Actor Actor)
-        {
-            //set the collisionRec parameters based on the Type
-            Actor.compCollision.rec.Width = 12;
-            Actor.compCollision.rec.Height = 8;
-            Actor.compCollision.offsetX = -6;
-            Actor.compCollision.offsetY = 0;
-        }
+        
 
         public static void Update(Actor Actor)
         {

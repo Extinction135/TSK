@@ -31,32 +31,51 @@ ram useage:
 todo:
 
 
-8
-
-
-
-created a very rough 'boss sheet' for use with a boss actor.
-added boss sheet instance to Assets.cs
-added boss sheet to content project, built.
+7
 
 
 
 
-we could make the boss sheet the same size as the actor sheet
-and just reduce the animation list
-bosses aren't player playable, so they dont need the full range of animations
-bosses could never pickup, carry, throw, or fall
-they would have idle, move, dash, attack, use, hit, death states tho
+added 'Boss' type to Actor.type enum.
+updated ActorFunctions.SetType() to handle boss enum.
+moved win/lost checks out of WinLoseFunctions and into ActorFunctions.SetDeathState().
+SetDeathState() sets the beatDungeon boolean based on boss or hero's death.
+removed WinLoseFunctions.cs from project.
+remade the boss sheet to just be a double sized blob.
+updated SetCollisionRec() to handle the new boss type.
+updated DungeonFunctions.FinishRoom() to spawn a boss actor in the center of the boss room.
+finessed the collision recs for the boss, lines up perfectly now.
+WE HAVE A BOSS, and basically a complete (but very simple) dungeon.
+playtested, approved.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bosses will have different animation lists than hero and blob
+this is due to bosses having less animation frames, and not being able to do certain things
+bosses only have: idle, move, dash, attack, use, hit, death states
+
+which means we'll need additional codepaths to handle the boss actor, in various locations
+
+
+
 
 
 
 ITS BOSS TIME, BOYS
 
-create a boss sprite sheet (should be double the size of a normal actor sheet)
-should have the same layout as actor sheet
-use the floating eye sprite
-spawn the boss in the boss room, centered to it
-test battling the boss
+
+
 
 update the win/lose functions to only win if the boss actor is defeated
 this will probably be a boolean in the dungeon struct, just like bigKey boolean

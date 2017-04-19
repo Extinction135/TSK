@@ -89,10 +89,7 @@ namespace DungeonRun
                             ScreenState.Playing;
                     }
                 }
-                else if (screenState == ScreenState.Playing) //update 
-                {
-                    WinLoseFunctions.Check(this);
-                }
+                else if (screenState == ScreenState.Playing) { } //update 
                 else if (screenState == ScreenState.FadeIn) //fade overlay to 1.0
                 {
                     overlayAlpha += fadeInSpeed;

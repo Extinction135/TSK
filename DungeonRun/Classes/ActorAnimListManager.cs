@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
+
     public struct AnimationGroup
     {   //represents an animation with Down, Up, Left, Right states
         public List<Byte4> down;
