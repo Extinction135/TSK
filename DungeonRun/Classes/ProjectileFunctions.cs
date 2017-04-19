@@ -35,6 +35,7 @@ namespace DungeonRun
             else if (Projectile.direction == Direction.UpLeft)      { Projectile.direction = Direction.Left; }
             else if (Projectile.direction == Direction.DownLeft)    { Projectile.direction = Direction.Left; }
 
+
             #region Set Position Offsets based on Projectile Type
 
             if (Projectile.type == GameObject.Type.ProjectileSword)

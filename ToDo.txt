@@ -11,7 +11,7 @@ adding a new particle/projectile:
 	add codepath for PP to GameObjectFunctions.SetType.
 	add call to spawn PP somewhere
 	maybe set the alignment of PP in ProjetileFunctions.AlignProjectile()
-	maybe PP interacts with Actor/Obj in InteractionFunctions.Handle()
+	maybe projectile interacts with Actor/Obj in InteractionFunctions.Handle()
 	
 adding soundFX
 	added ___Src and ___Ins soundFX to Assets.cs.
@@ -34,26 +34,45 @@ todo:
 13
 
 
+add a particle effect poof when hero opens the boss door
 
 
-renamed all soundFX in assets to have a "sfx" prefix.
-better organization.
+
+
+added ParticleSmokePuff type to Gameobject.cs.
+added animation list for ParticleSmokePuff.
+updated GameObjFunctions.SetType() with codepath for ParticleSmokePuff.
+reduced redundant code for particles in GameObjFunctions.SetType.
+
+
+
+
+
+
+we need to spawn the smoke puffs when hero opens boss door
+
+
+
+minor issue with how we are aligning projectiles and particles
+we're stuffing particles into the align projectiles function, which betrays it's purpose
+we should be aligning particles seperately from projectiles
+
+if we split into seperate classes, there will be redundant code
+keep it in one class, seperate functions out
+
+
+
+
+it would be nice to have a global flag to disable mobs
+this would make it easier to test certain things, without having to constantly fight with mobs
+
+
 
 get the total ram use on xbox one.	
 
 
 
 
-
-
-
-
-
-
-
-
-
-add a particle effect poof when hero opens the boss door
 
  
 

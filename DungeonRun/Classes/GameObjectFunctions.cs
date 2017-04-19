@@ -55,6 +55,13 @@ namespace DungeonRun
             Obj.compSprite.flipHorizontally = false;
         }
 
+        public static void SetParticleFields(GameObject Obj)
+        {   //all particles do not block, and don't use collision recs
+            Obj.compCollision.blocking = false;
+            Obj.compCollision.offsetX = 0; Obj.compCollision.offsetY = 0;
+            Obj.compCollision.rec.Width = 0; Obj.compCollision.rec.Height = 0;
+        }
+
         public static void SetWeaponCollisions(GameObject Obj)
         {   //set the weapons's collision rec + offsets to the sprite's dimensions
             //these values are based off the sword sprite's dimentions
@@ -330,9 +337,6 @@ namespace DungeonRun
             {
                 Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
                 Obj.compSprite.zOffset = -8;
-                Obj.compCollision.offsetX = 0; Obj.compCollision.offsetY = 0;
-                Obj.compCollision.rec.Width = 0; Obj.compCollision.rec.Height = 0;
-                Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
@@ -341,9 +345,15 @@ namespace DungeonRun
             else if (Type == GameObject.Type.ParticleExplosion)
             {
                 Obj.compSprite.zOffset = 16;
-                Obj.compCollision.offsetX = 0; Obj.compCollision.offsetY = 0;
-                Obj.compCollision.rec.Width = 0; Obj.compCollision.rec.Height = 0;
-                Obj.compCollision.blocking = false;
+                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.loop = false;
+            }
+            else if (Type == GameObject.Type.ParticleSmokePuff)
+            {
+                Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
+                Obj.compSprite.zOffset = 16;
                 Obj.objGroup = GameObject.ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
@@ -354,12 +364,18 @@ namespace DungeonRun
 
 
             //particles do not rotate like other gameObjects
-            if (Obj.objGroup == GameObject.ObjGroup.Particle) { SetParticleRotation(Obj); }
+            if (Obj.objGroup == GameObject.ObjGroup.Particle)
+            { SetParticleRotation(Obj); SetParticleFields(Obj); }
 
             ComponentFunctions.SetZdepth(Obj.compSprite);
             ComponentFunctions.UpdateCellSize(Obj.compSprite);
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
+
+
+        
+
+
 
         public static void Update(GameObject Obj)
         {
