@@ -102,49 +102,13 @@ namespace DungeonRun
 
                     if (j == 0)
                     {
-
-                        
-
-                        //build a test door
-                        if (i == 5)
-                        {
-                            objRef = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(objRef.compMove,
-                                i * 16 + pos.X + 8,
-                                0 * 16 - 16 + pos.Y + 8);
-                            objRef.direction = Direction.Down;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
-
-                            //build left wall torch
-                            objRef = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(objRef.compMove,
-                                (i - 1) * 16 + pos.X + 8,
-                                0 * 16 - 16 + pos.Y + 8);
-                            objRef.direction = Direction.Down;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
-
-                            //build right wall torch
-                            objRef = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(objRef.compMove,
-                                (i + 1) * 16 + pos.X + 8,
-                                0 * 16 - 16 + pos.Y + 8);
-                            objRef.direction = Direction.Down;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
-                        }
-                        else
-                        {
-                            //top row
-                            objRef = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(objRef.compMove,
-                                i * 16 + pos.X + 8,
-                                0 * 16 - 16 + pos.Y + 8);
-                            objRef.direction = Direction.Down;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
-
-                            
-                        }
-
-
+                        //top row
+                        objRef = PoolFunctions.GetObj();
+                        MovementFunctions.Teleport(objRef.compMove,
+                            i * 16 + pos.X + 8,
+                            0 * 16 - 16 + pos.Y + 8);
+                        objRef.direction = Direction.Down;
+                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
 
                         if (i == 0)
                         {   //topleft corner
@@ -173,49 +137,14 @@ namespace DungeonRun
 
                     else if (j == Room.size.y - 1)
                     {
+                        //bottom row
+                        objRef = PoolFunctions.GetObj();
+                        MovementFunctions.Teleport(objRef.compMove,
+                            i * 16 + pos.X + 8,
+                            Room.size.y * 16 + pos.Y + 8);
+                        objRef.direction = Direction.Up;
+                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
 
-
-                        //build a test door
-                        if (i == 5)
-                        {
-                            objRef = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(objRef.compMove,
-                                i * 16 + pos.X + 8,
-                                Room.size.y * 16 + pos.Y + 8);
-                            objRef.direction = Direction.Up;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
-
-                            //build left wall torch
-                            objRef = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(objRef.compMove,
-                                (i - 1) * 16 + pos.X + 8,
-                                Room.size.y * 16 + pos.Y + 8);
-                            objRef.direction = Direction.Up;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
-
-                            //build right wall torch
-                            objRef = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(objRef.compMove,
-                                (i + 1) * 16 + pos.X + 8,
-                                Room.size.y * 16 + pos.Y + 8);
-                            objRef.direction = Direction.Up;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
-                        }
-                        else
-                        {
-                            //bottom row
-                            objRef = PoolFunctions.GetObj();
-                            MovementFunctions.Teleport(objRef.compMove,
-                                i * 16 + pos.X + 8,
-                                Room.size.y * 16 + pos.Y + 8);
-                            objRef.direction = Direction.Up;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
-                        }
-
-
-
-
-                        
                         if (i == 0)
                         {   //bottom left corner
                             objRef = PoolFunctions.GetObj();
@@ -265,6 +194,8 @@ namespace DungeonRun
                 }
             }
 
+            FinishRoom(Room);
+
             //update the object pool, since we teleported objects around
             PoolFunctions.UpdateObjectPool();
 
@@ -299,6 +230,97 @@ namespace DungeonRun
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
         }
+
+
+
+
+
+        public static void FinishRoom(Room Room)
+        {
+
+
+            #region Based on the room.type, add doors at specific places
+
+            if (Room.type == RoomType.Normal)
+            {
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    5 * 16 + pos.X + 8,
+                    0 * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+
+                //build left wall torch
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (5 - 1) * 16 + pos.X + 8,
+                    0 * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+
+                //build right wall torch
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (5 + 1) * 16 + pos.X + 8,
+                    0 * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+            }
+            else if (Room.type == RoomType.Boss)
+            {
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    5 * 16 + pos.X + 8,
+                    Room.size.y * 16 + pos.Y + 8);
+                objRef.direction = Direction.Up;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
+
+                //build left wall torch
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (5 - 1) * 16 + pos.X + 8,
+                    Room.size.y * 16 + pos.Y + 8);
+                objRef.direction = Direction.Up;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+
+                //build right wall torch
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (5 + 1) * 16 + pos.X + 8,
+                    Room.size.y * 16 + pos.Y + 8);
+                objRef.direction = Direction.Up;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+            }
+
+            #endregion
+
+
+            //remove any walls that overlap doors
+            for (i = 0; i < Pool.objCount; i++)
+            {
+                if (Pool.objPool[i].objGroup == GameObject.ObjGroup.Door)
+                {
+                    for (j = 0; j < Pool.objCount; j++)
+                    {
+                        if (Pool.objPool[j].objGroup == GameObject.ObjGroup.Wall)
+                        {
+                            if (Pool.objPool[i].compCollision.rec.Intersects(Pool.objPool[j].compCollision.rec))
+                            {
+                                PoolFunctions.Release(Pool.objPool[j]);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+
+        }
+
+
+
+
+
 
     }
 }

@@ -31,18 +31,16 @@ ram useage:
 todo:
 
 
-6
+5
 
 
-updated BuildDungeon() to make second room a boss room, via Room.Type enum.
-updated BuildRoom() to make floors visually different for normal and boss rooms.
+added FinishRoom(Room) to DungeonFunctions.
+this function creates doors based on the room type.
+the 'dungeon' is now properly sealed and connected, between the boss room and the spawn room.
+any walls that overlap doors are also removed, per room now.
 
 
 
-
-
-	
-make second room a boss room
 connect the two rooms using a boss door - this door is locked
 
 
