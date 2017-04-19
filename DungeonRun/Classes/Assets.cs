@@ -54,32 +54,32 @@ namespace DungeonRun
 
         #region Soundfx
 
-        static SoundEffect dashSrc;
-        public static SoundEffectInstance dash;
+        static SoundEffect sfxDashSrc;
+        public static SoundEffectInstance sfxDash;
 
-        static SoundEffect swordSwipeSrc;
-        public static SoundEffectInstance swordSwipe;
+        static SoundEffect sfxSwordSwipeSrc;
+        public static SoundEffectInstance sfxSwordSwipe;
 
-        static SoundEffect enemyHitSrc;
-        public static SoundEffectInstance enemyHit;
+        static SoundEffect sfxEnemyHitSrc;
+        public static SoundEffectInstance sfxEnemyHit;
 
-        static SoundEffect heroHitSrc;
-        public static SoundEffectInstance heroHit;
+        static SoundEffect sfxHeroHitSrc;
+        public static SoundEffectInstance sfxHeroHit;
 
-        static SoundEffect enemyKillSrc;
-        public static SoundEffectInstance enemyKill;
+        static SoundEffect sfxEnemyKillSrc;
+        public static SoundEffectInstance sfxEnemyKill;
 
-        static SoundEffect heroKillSrc;
-        public static SoundEffectInstance heroKill;
+        static SoundEffect sfxHeroKillSrc;
+        public static SoundEffectInstance sfxHeroKill;
 
-        static SoundEffect beatDungeonSrc;
-        public static SoundEffectInstance beatDungeon;
+        static SoundEffect sfxBeatDungeonSrc;
+        public static SoundEffectInstance sfxBeatDungeon;
 
-        static SoundEffect doorOpenSrc;
-        public static SoundEffectInstance doorOpen;
+        static SoundEffect sfxDoorOpenSrc;
+        public static SoundEffectInstance sfxDoorOpen;
 
-        static SoundEffect keyPickupSrc;
-        public static SoundEffectInstance keyPickup;
+        static SoundEffect sfxKeyPickupSrc;
+        public static SoundEffectInstance sfxKeyPickup;
 
         #endregion
 
@@ -129,32 +129,32 @@ namespace DungeonRun
 
             #region Soundfx
 
-            dashSrc = content.Load<SoundEffect>(@"SoundDash");
-            dash = dashSrc.CreateInstance();
+            sfxDashSrc = content.Load<SoundEffect>(@"SoundDash");
+            sfxDash = sfxDashSrc.CreateInstance();
 
-            swordSwipeSrc = content.Load<SoundEffect>(@"SoundSwordSwipe");
-            swordSwipe = swordSwipeSrc.CreateInstance();
+            sfxSwordSwipeSrc = content.Load<SoundEffect>(@"SoundSwordSwipe");
+            sfxSwordSwipe = sfxSwordSwipeSrc.CreateInstance();
 
-            enemyHitSrc = content.Load<SoundEffect>(@"SoundEnemyHit");
-            enemyHit = enemyHitSrc.CreateInstance();
+            sfxEnemyHitSrc = content.Load<SoundEffect>(@"SoundEnemyHit");
+            sfxEnemyHit = sfxEnemyHitSrc.CreateInstance();
 
-            heroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
-            heroHit = heroHitSrc.CreateInstance();
+            sfxHeroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
+            sfxHeroHit = sfxHeroHitSrc.CreateInstance();
 
-            enemyKillSrc = content.Load<SoundEffect>(@"SoundEnemyKill");
-            enemyKill = enemyKillSrc.CreateInstance();
+            sfxEnemyKillSrc = content.Load<SoundEffect>(@"SoundEnemyKill");
+            sfxEnemyKill = sfxEnemyKillSrc.CreateInstance();
 
-            heroKillSrc = content.Load<SoundEffect>(@"SoundHeroKill");
-            heroKill = heroKillSrc.CreateInstance();
+            sfxHeroKillSrc = content.Load<SoundEffect>(@"SoundHeroKill");
+            sfxHeroKill = sfxHeroKillSrc.CreateInstance();
 
-            beatDungeonSrc = content.Load<SoundEffect>(@"SoundBeatDungeon");
-            beatDungeon = beatDungeonSrc.CreateInstance();
+            sfxBeatDungeonSrc = content.Load<SoundEffect>(@"SoundBeatDungeon");
+            sfxBeatDungeon = sfxBeatDungeonSrc.CreateInstance();
 
-            doorOpenSrc = content.Load<SoundEffect>(@"SoundDoorOpen");
-            doorOpen = doorOpenSrc.CreateInstance();
+            sfxDoorOpenSrc = content.Load<SoundEffect>(@"SoundDoorOpen");
+            sfxDoorOpen = sfxDoorOpenSrc.CreateInstance();
 
-            keyPickupSrc = content.Load<SoundEffect>(@"SoundKeyPickup");
-            keyPickup = keyPickupSrc.CreateInstance();
+            sfxKeyPickupSrc = content.Load<SoundEffect>(@"SoundKeyPickup");
+            sfxKeyPickup = sfxKeyPickupSrc.CreateInstance();
 
             #endregion
 

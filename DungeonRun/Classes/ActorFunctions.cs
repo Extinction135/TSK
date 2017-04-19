@@ -22,8 +22,8 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
 
-            if (Actor == Pool.hero) { Assets.heroHit.Play(); }
-            else { Assets.enemyHit.Play(); }
+            if (Actor == Pool.hero) { Assets.sfxHeroHit.Play(); }
+            else { Assets.sfxEnemyHit.Play(); }
         }
 
         public static void SetDeathState(Actor Actor)
@@ -53,12 +53,12 @@ namespace DungeonRun
             if(Actor == Pool.hero)
             {
                 //we could track hero deaths here
-                Assets.heroKill.Play();
+                Assets.sfxHeroKill.Play();
             }
             else
             {
                 DungeonRecord.enemyCount++; //track non-hero actor deaths
-                Assets.enemyKill.Play(); //play enemy kill soundFX
+                Assets.sfxEnemyKill.Play(); //play enemy kill soundFX
                 //call spawn loot function, passing actor
             }
         }
@@ -157,7 +157,7 @@ namespace DungeonRun
                     Actor.compMove.speed = Actor.dashSpeed;
                     //create a dash particle 
                     ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
-                    if (Actor == Pool.hero) { Assets.dash.Play(); }
+                    if (Actor == Pool.hero) { Assets.sfxDash.Play(); }
                 }
                 else if (Actor.state == Actor.State.Attack)
                 {
@@ -166,7 +166,7 @@ namespace DungeonRun
                     ComponentFunctions.StopMovement(Actor.compMove);
                     UseWeapon(Actor);
 
-                    Assets.swordSwipe.Play();
+                    Assets.sfxSwordSwipe.Play();
                     //if (Actor == Pool.hero) { Assets.swordSwipe.Play(); }
                 }
                 else if (Actor.state == Actor.State.Use)

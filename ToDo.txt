@@ -31,59 +31,42 @@ ram useage:
 todo:
 
 
-1
+13
 
 
 
 
-added an open door soundfx for when hero opens the boss door.
-updated Interaction.Handle(Actor, Obj) to play door open sfx when boss door opens.
-updated Interaction.Handle(Actor, Obj) to set bigKey boolean true upon hero collision with bigKey obj.
-also the bigKey obj is Released() back to the objPool.
-added soundfx for key pickup, called from codepath above.
-updated DungeonFunctions.FinishRoom() to place a bigKey obj in the bottom right corner of spawnn room.
-tested that hero can pickup key, open boss door.
-
-
-
-
-
-
-
-
-
-we need to make the dungeon key / big key game object
-this object should be randomly placed in the spawn room
-
-then we need to check collisions between hero and the big key
-if he collides with it, play the dungeon won soundfx and flip the dungeon.bigKey boolean
-then later when hero collides with boss door, we check the dungeon.bigKey boolean
-
-implement functionlity for the trap door
-should check for collisions with hero
-when it no longer collides, it should become a shutdoor
-hero cannot pass thru shutdoors
-
-
-
-
-
-rename all soundFX in assets to have a "sfx" beginning string
-this will make it easier to code complete them later on..
-
-
-
-
-
-
-
-
-
+renamed all soundFX in assets to have a "sfx" prefix.
+better organization.
 
 get the total ram use on xbox one.	
 
 
 
+
+
+
+
+
+
+
+
+
+
+add a particle effect poof when hero opens the boss door
+
+ 
+
+
+create a boss sprite sheet (should be double the size of a normal actor sheet)
+should have the same layout as actor sheet
+use the floating eye sprite
+
+spawn the boss in the boss room, centered to it
+update the win/lose functions to only win if the boss actor is defeated
+this will probably be a boolean in the dungeon struct, just like bigKey boolean
+play a sound when hero enters boss room
+play a sound when boss dies
 
 
 

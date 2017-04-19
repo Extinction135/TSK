@@ -33,7 +33,7 @@ namespace DungeonRun
                     if (DungeonFunctions.dungeon.bigKey)
                     {
                         GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen);
-                        Assets.doorOpen.Play();
+                        Assets.sfxDoorOpen.Play();
                     }
                 }
                 else if(Obj.type == GameObject.Type.DoorTrap)
@@ -44,7 +44,7 @@ namespace DungeonRun
                 {
                     PoolFunctions.Release(Obj);
                     DungeonFunctions.dungeon.bigKey = true;
-                    Assets.keyPickup.Play();
+                    Assets.sfxKeyPickup.Play();
                 }
             }
 
