@@ -31,40 +31,15 @@ ram useage:
 todo:
 
 
-12
+11
 
 
 
 
-consolidated ProjectileFunctions.cs into GameObjectFunctions.cs.
-this was done because projectile functions was handling projectiles AND particles.
-the name of the class was misleading, and would certainly cause confusion later on.
-projectiles and particles are both gameobjects, so it makes sense to have those functions in GameObjectFunctions.
+spawned particle smoke puff when hero opens the boss door, but it looks bad.
+instead tried spawning an explosion particle, and it looks much better.
+so we don't really need to use particle smoke puff right now, but it's been added.
 
-
-
-
-
-
-
-
-we could move the projectile functions into game object functions, since they are more fitting there
-
-
-
-we need to spawn the smoke puffs when hero opens boss door
-
-
-
-there is messy-ness with particles + projectiles
-they overlap in their nature, and should be more seperated
-
-minor issue with how we are aligning projectiles and particles
-we're stuffing particles into the align projectiles function, which betrays it's purpose
-we should be aligning particles seperately from projectiles
-
-if we split into seperate classes, there will be redundant code
-keep it in one class, seperate functions out
 
 
 

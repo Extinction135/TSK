@@ -34,6 +34,7 @@ namespace DungeonRun
                     {
                         GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen);
                         Assets.sfxDoorOpen.Play();
+                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
                     }
                 }
                 else if(Obj.type == GameObject.Type.DoorTrap)
