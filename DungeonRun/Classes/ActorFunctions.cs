@@ -117,7 +117,7 @@ namespace DungeonRun
                 Actor.weapon = Weapon.Sword;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
-                //set actor soundFX
+                //set the actor soundFX
 
                 //set the actor's animation list, actor could be a boss
                 Actor.animList = ActorAnimationListManager.actorAnims;

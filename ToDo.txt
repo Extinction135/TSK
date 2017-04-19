@@ -31,14 +31,13 @@ ram useage:
 todo:
 
 
-9
+8
 
 
-standardized the parameter names for SetAnimationGroup() and SetAnimationDirection().
-update ActorFunctions.SetType to set the actor's animationList.
-removed the default setting of actor's animationList from actor constructor.
-this was a redundant call, since SetType was called, and it sets the animList now.
-added some comments that explain how i'm going to approach doing boss actors, and their sprite sheets.
+
+created a very rough 'boss sheet' for use with a boss actor.
+added boss sheet instance to Assets.cs
+added boss sheet to content project, built.
 
 
 
@@ -70,6 +69,21 @@ or a white blinking effect? or a black blink? we can set the color of the sprite
 
 mobs should spawn more centered to the room, not on the room's edges
 (for now)
+
+
+
+
+
+
+we should include a soundFXinstance on actors that points to one of the soundFX in assets
+then we can set this instance in ActorFunctions.SetType()
+then later just call it generically, like Actor.AttackSound.Play().
+same with hit sound, death sound, use sound.
+
+
+
+
+
 
 
 
