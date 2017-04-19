@@ -31,16 +31,18 @@ ram useage:
 todo:
 
 
-13
+12
 
 
 
 
-created GameObjFunctions.ConvertDiagonalDirections().
-this moves functionality out of ProjectileFunctions.AlignProjectile().
-created ProjectileFunctions.AlignParticle(), moving particle alignment out of AlignProjectile().
-this makes it a bit clearer what each function is doing.
-cleaned up GameObjectFunctions, migrated particle rotation routines into SpawnParticle().
+consolidated ProjectileFunctions.cs into GameObjectFunctions.cs.
+this was done because projectile functions was handling projectiles AND particles.
+the name of the class was misleading, and would certainly cause confusion later on.
+projectiles and particles are both gameobjects, so it makes sense to have those functions in GameObjectFunctions.
+
+
+
 
 
 
