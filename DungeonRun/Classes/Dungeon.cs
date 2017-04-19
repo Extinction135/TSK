@@ -50,10 +50,12 @@ namespace DungeonRun
     {
         public List<Room> rooms;
         public String name;
+        public Boolean bigKey;
         public Dungeon(String Name)
         {
             rooms = new List<Room>();
             name = Name;
+            bigKey = true; //hero has not found the big key yet
         }
     }
 }

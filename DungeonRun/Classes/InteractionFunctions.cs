@@ -17,10 +17,25 @@ namespace DungeonRun
         public static byte damage;
         public static float force;
 
+
+
         public static void Handle(Actor Actor, GameObject Obj)
         {
             //Obj is non-blocking
+            if(Actor == Pool.hero)
+            {
+                if (Obj.type == GameObject.Type.DoorBoss)
+                {
+                    if (DungeonFunctions.dungeon.bigKey)
+                    {
+                        GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen);
+                    }
+                }
+            }
         }
+
+
+
 
         public static void Handle(GameObject Projectile, Actor Actor)
         {

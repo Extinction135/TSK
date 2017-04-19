@@ -31,19 +31,43 @@ ram useage:
 todo:
 
 
-4
+3
 
 
-moved the routines to remove walls that overlap doors into the CleanUpRoom(Room) function.
-now calling that function after FinishRoom().
-changed spawn room's door to a boss door.
-changed boss room's door to a trap door.
+added bigKey boolean to Dungeon struct, defaults to false.
+updated InteractionFunctions.Handle(Actor, Obj) to open a boss door if hero collides and bigKey is true.
+playtested, working.
+
 
 
 
 we need the idea of a boss key, which should be a boolean
 this will only flip once per dungeon, and be reset each time a dungeon is created
 this data will never be saved, so we can put it in with dungeon
+
+but the boss door is blocking, so hero can't pass thru it
+we could still call the interaction() function on the obj, if hero's projection collides with it
+this way it could open when hero 'touches' it.
+
+we need to make the dungeon key / big key game object
+this object should be randomly placed in the spawn room
+
+then we need to check collisions between hero and the big key
+if he collides with it, play the dungeon won soundfx and flip the dungeon.bigKey boolean
+then later when hero collides with boss door, we check the dungeon.bigKey boolean
+
+implement functionlity for the trap door
+should check for collisions with hero
+when it no longer collides, it should become a shutdoor
+hero cannot pass thru shutdoors
+
+
+
+
+add an open door soundfx for when hero opens the boss door
+
+
+
 
 
 
@@ -53,6 +77,10 @@ this data will never be saved, so we can put it in with dungeon
 
 
 get the total ram use on xbox one.	
+
+
+
+
 
 
 
