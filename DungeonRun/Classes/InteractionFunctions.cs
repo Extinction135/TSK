@@ -24,13 +24,17 @@ namespace DungeonRun
             //Obj is non-blocking
             if(Actor == Pool.hero)
             {
+
                 if (Obj.type == GameObject.Type.DoorBoss)
                 {
                     if (DungeonFunctions.dungeon.bigKey)
-                    {
-                        GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen);
-                    }
+                    { GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen); }
                 }
+                else if(Obj.type == GameObject.Type.DoorTrap)
+                {
+                    MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);
+                }
+
             }
         }
 

@@ -31,12 +31,17 @@ ram useage:
 todo:
 
 
-3
+2
 
 
-added bigKey boolean to Dungeon struct, defaults to false.
-updated InteractionFunctions.Handle(Actor, Obj) to open a boss door if hero collides and bigKey is true.
-playtested, working.
+updated InteractionFunctions.Handle(Actor, Obj) to push hero in direction of trap door.
+this means hero can't escape the boss room, and must fight the boss to the death.
+updated the sprite for the trap door, it now looks like a shut door.
+playtested.
+
+
+
+get the trap door working
 
 
 

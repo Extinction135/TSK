@@ -41,7 +41,7 @@ namespace DungeonRun
                 //DoorBoss
                 new List<Byte4> { new Byte4(3, 3, 0, 0) },
                 //DoorTrap
-                new List<Byte4> { new Byte4(3, 0, 0, 0) },
+                new List<Byte4> { new Byte4(3, 1, 0, 0) },
                 //DoorShut
                 new List<Byte4> { new Byte4(3, 1, 0, 0) },
                 //DoorFake
