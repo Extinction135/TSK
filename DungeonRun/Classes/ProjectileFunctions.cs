@@ -15,54 +15,73 @@ namespace DungeonRun
     public static class ProjectileFunctions
     {
 
-        public static void Spawn(GameObject.Type Type, Actor Actor)
+
+
+        //a projectile always has a direction, so it inherit's actor's direction
+        public static void SpawnProjectile(GameObject.Type Type, Actor Actor)
         {
             GameObject projectile = PoolFunctions.GetProjectile();
             projectile.type = Type;
             projectile.direction = Actor.direction;
-            AlignProjectile(projectile, Actor);
+            AlignProjectile(projectile, Actor.compSprite.position);
             GameObjectFunctions.SetType(projectile, projectile.type);
         }
 
-        static Vector2 ProjectileOffset = new Vector2(0, 0);
-        public static void AlignProjectile(GameObject Projectile, Actor Actor)
+        //a particle doesn't have a direction, so it doesn't need actor's direction
+        public static void SpawnParticle(GameObject.Type Type, Vector2 Pos)
         {
-            ProjectileOffset.X = 0; ProjectileOffset.Y = 0;
+            GameObject particle = PoolFunctions.GetProjectile();
+            particle.type = Type;
+            particle.compSprite.rotation = Rotation.None;
+            particle.compSprite.flipHorizontally = false;
+            particle.direction = Direction.Down;
+            AlignParticle(particle, Pos);
+            GameObjectFunctions.SetType(particle, particle.type);
+        }
 
-            //convert projectile's diagonal direction to a cardinal direction
-            if (Projectile.direction == Direction.UpRight)          { Projectile.direction = Direction.Right; }
-            else if (Projectile.direction == Direction.DownRight)   { Projectile.direction = Direction.Right; }
-            else if (Projectile.direction == Direction.UpLeft)      { Projectile.direction = Direction.Left; }
-            else if (Projectile.direction == Direction.DownLeft)    { Projectile.direction = Direction.Left; }
 
 
-            #region Set Position Offsets based on Projectile Type
+        
 
+
+
+
+        static Vector2 offset = new Vector2(0, 0);
+        public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
+        {
+            offset.X = 0; offset.Y = 0;
+            GameObjectFunctions.ConvertDiagonalDirections(Projectile);
+            //place the sword based on it's inherited direction
             if (Projectile.type == GameObject.Type.ProjectileSword)
             {
                 if (Projectile.direction == Direction.Down)
-                { ProjectileOffset.X = -1; ProjectileOffset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
+                { offset.X = -1; offset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
                 else if (Projectile.direction == Direction.Up)
-                { ProjectileOffset.X = 1; ProjectileOffset.Y = -12; Projectile.compSprite.flipHorizontally = false; }
+                { offset.X = 1; offset.Y = -12; Projectile.compSprite.flipHorizontally = false; }
                 else if (Projectile.direction == Direction.Right)
-                { ProjectileOffset.X = 14; ProjectileOffset.Y = 0; Projectile.compSprite.flipHorizontally = false; }
+                { offset.X = 14; offset.Y = 0; Projectile.compSprite.flipHorizontally = false; }
                 else if (Projectile.direction == Direction.Left)
-                { ProjectileOffset.X = -14; ProjectileOffset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
+                { offset.X = -14; offset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
             }
-
-            else if (Projectile.type == GameObject.Type.ParticleDashPuff)
-            {   //center horizontally, place near actor's feet
-                ProjectileOffset.X = 4; ProjectileOffset.Y = 8;
-            }
-
-            #endregion
-
-
-            //teleport the projectile to the actor's position with the offset applied
-            MovementFunctions.Teleport(Projectile.compMove,
-                Actor.compSprite.position.X + ProjectileOffset.X,
-                Actor.compSprite.position.Y + ProjectileOffset.Y);
+            //teleport the projectile to the position with the offset
+            MovementFunctions.Teleport(Projectile.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
+
+        public static void AlignParticle(GameObject Particle, Vector2 Pos)
+        {
+            offset.X = 0; offset.Y = 0;
+            GameObjectFunctions.ConvertDiagonalDirections(Particle);
+
+            //center horizontally, place near actor's feet
+            if (Particle.type == GameObject.Type.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
+
+            //teleport the projectile to the position with the offset
+            MovementFunctions.Teleport(Particle.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
+        }
+
+
+
+
 
     }
 }

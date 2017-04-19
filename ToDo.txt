@@ -34,24 +34,28 @@ todo:
 13
 
 
-add a particle effect poof when hero opens the boss door
+
+
+created GameObjFunctions.ConvertDiagonalDirections().
+this moves functionality out of ProjectileFunctions.AlignProjectile().
+created ProjectileFunctions.AlignParticle(), moving particle alignment out of AlignProjectile().
+this makes it a bit clearer what each function is doing.
+cleaned up GameObjectFunctions, migrated particle rotation routines into SpawnParticle().
 
 
 
 
-added ParticleSmokePuff type to Gameobject.cs.
-added animation list for ParticleSmokePuff.
-updated GameObjFunctions.SetType() with codepath for ParticleSmokePuff.
-reduced redundant code for particles in GameObjFunctions.SetType.
 
-
-
+we could move the projectile functions into game object functions, since they are more fitting there
 
 
 
 we need to spawn the smoke puffs when hero opens boss door
 
 
+
+there is messy-ness with particles + projectiles
+they overlap in their nature, and should be more seperated
 
 minor issue with how we are aligning projectiles and particles
 we're stuffing particles into the align projectiles function, which betrays it's purpose

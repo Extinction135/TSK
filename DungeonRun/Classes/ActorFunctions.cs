@@ -39,7 +39,7 @@ namespace DungeonRun
             if (Actor.type == Actor.Type.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
-                ProjectileFunctions.Spawn(GameObject.Type.ParticleExplosion, Actor);
+                ProjectileFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
             }
 
@@ -67,7 +67,7 @@ namespace DungeonRun
 
         public static void UseWeapon(Actor Actor)
         {
-            if (Actor.weapon == Weapon.Sword) { ProjectileFunctions.Spawn(GameObject.Type.ProjectileSword, Actor); }
+            if (Actor.weapon == Weapon.Sword) { ProjectileFunctions.SpawnProjectile(GameObject.Type.ProjectileSword, Actor); }
 
             //scale up the current weapon in world ui
             if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }
@@ -156,7 +156,7 @@ namespace DungeonRun
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
                     //create a dash particle 
-                    ProjectileFunctions.Spawn(GameObject.Type.ParticleDashPuff, Actor);
+                    ProjectileFunctions.SpawnParticle(GameObject.Type.ParticleDashPuff, Actor.compSprite.position);
                     if (Actor == Pool.hero) { Assets.sfxDash.Play(); }
                 }
                 else if (Actor.state == Actor.State.Attack)

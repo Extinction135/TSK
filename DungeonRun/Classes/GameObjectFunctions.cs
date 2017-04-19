@@ -38,21 +38,14 @@ namespace DungeonRun
             Obj.compCollision.offsetY = -8; //(most are)
         }
         
+
+
         public static void SetRotation(GameObject Obj)
-        {
-            //the objects texture is not set here, this is managed by the obj/projectile pools
-            //sprites are created facing Down, but we will need to set the spite rotation based on direction
+        {   //sprites are created facing Down, but we will need to set the spite rotation based on direction
             Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
             if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
             else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
             else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
-        }
-
-        public static void SetParticleRotation(GameObject Obj)
-        {   //particles cannot be rotated
-            Obj.compSprite.rotation = Rotation.None;
-            Obj.direction = Direction.Down;
-            Obj.compSprite.flipHorizontally = false;
         }
 
         public static void SetParticleFields(GameObject Obj)
@@ -85,6 +78,14 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
             }
+        }
+
+        public static void ConvertDiagonalDirections(GameObject Obj)
+        {   //converts objs's diagonal direction to a cardinal direction
+            if (Obj.direction == Direction.UpRight) { Obj.direction = Direction.Right; }
+            else if (Obj.direction == Direction.DownRight) { Obj.direction = Direction.Right; }
+            else if (Obj.direction == Direction.UpLeft) { Obj.direction = Direction.Left; }
+            else if (Obj.direction == Direction.DownLeft) { Obj.direction = Direction.Left; }
         }
 
 
@@ -364,16 +365,12 @@ namespace DungeonRun
 
 
             //particles do not rotate like other gameObjects
-            if (Obj.objGroup == GameObject.ObjGroup.Particle)
-            { SetParticleRotation(Obj); SetParticleFields(Obj); }
+            if (Obj.objGroup == GameObject.ObjGroup.Particle) { SetParticleFields(Obj); }
 
             ComponentFunctions.SetZdepth(Obj.compSprite);
             ComponentFunctions.UpdateCellSize(Obj.compSprite);
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
-
-
-        
 
 
 
