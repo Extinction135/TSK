@@ -31,15 +31,15 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
 
-spawned particle smoke puff when hero opens the boss door, but it looks bad.
-instead tried spawning an explosion particle, and it looks much better.
-so we don't really need to use particle smoke puff right now, but it's been added.
-
+added a global flag named SpawnMobs.
+updated DungeonFunctions.BuildRoom() to check Flags.SpawnMobs boolean.
+this check determines if the room enemies are placed or not.
+organized the pretty-fied the master control booleans (Flags).
 
 
 

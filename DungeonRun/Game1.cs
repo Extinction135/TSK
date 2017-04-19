@@ -14,12 +14,16 @@ namespace DungeonRun
 {
     public static class Flags
     {   //the master control booleans for various codepaths
-        //puts the game in release mode, overwriting other control booleans
-        public static Boolean Release = false; //the MASTER control boolean
+
+        // ******************************************************************
+        public static Boolean Release = false; //puts the game in release mode, overwrites other flags
+        // ******************************************************************
+
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
         public static Boolean PlayMusic = false; //turns music on/off (but not soundFX)
+        public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
     }
 
     public class Game1 : Game
@@ -31,8 +35,16 @@ namespace DungeonRun
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            //if game is in release mode, all other control flags get set to false
-            if (Flags.Release) { Flags.Debug = Flags.DrawCollisions = Flags.Paused = false; }
+
+            if (Flags.Release)
+            {   //set the game's flags for release mode
+                Flags.Debug = false;
+                Flags.DrawCollisions = false;
+                Flags.Paused = false;
+                Flags.PlayMusic = true;
+                Flags.SpawnMobs = true;
+            }
+
             //hide/show the cursor based on Debug flag
             if (Flags.Debug) { IsMouseVisible = true; } else { IsMouseVisible = false; }
         }

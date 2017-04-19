@@ -203,27 +203,31 @@ namespace DungeonRun
             #endregion
 
 
-            #region Set the Room Actors
+            #region Spawn the Room Actors
 
-            //place enemies within the room
-            for (i = 0; i < Room.enemyCount; i++)
+            if(Flags.SpawnMobs)
             {
-                actorRef = PoolFunctions.GetActor();
-                ActorFunctions.SetType(actorRef, Actor.Type.Blob);
-                //get a random value between the min/max size of room
-                int randomX = GetRandom.Int(-Room.size.x, Room.size.x);
-                int randomY = GetRandom.Int(-Room.size.y, Room.size.y);
-                //divide random value in half
-                randomX = randomX / 2;
-                randomY = randomY / 2;
-                //ensure this value isn't 0
-                if (randomX == 0) { randomX = 1; }
-                if (randomY == 0) { randomY = 1; }
-                //teleport actor to center of room, apply random offset
-                MovementFunctions.Teleport(actorRef.compMove,
-                    Room.center.X + 16 * randomX + 8,
-                    Room.center.Y + 16 * randomY + 8);
+                //place enemies within the room
+                for (i = 0; i < Room.enemyCount; i++)
+                {
+                    actorRef = PoolFunctions.GetActor();
+                    ActorFunctions.SetType(actorRef, Actor.Type.Blob);
+                    //get a random value between the min/max size of room
+                    int randomX = GetRandom.Int(-Room.size.x, Room.size.x);
+                    int randomY = GetRandom.Int(-Room.size.y, Room.size.y);
+                    //divide random value in half
+                    randomX = randomX / 2;
+                    randomY = randomY / 2;
+                    //ensure this value isn't 0
+                    if (randomX == 0) { randomX = 1; }
+                    if (randomY == 0) { randomY = 1; }
+                    //teleport actor to center of room, apply random offset
+                    MovementFunctions.Teleport(actorRef.compMove,
+                        Room.center.X + 16 * randomX + 8,
+                        Room.center.Y + 16 * randomY + 8);
+                }
             }
+
             
             #endregion
 
