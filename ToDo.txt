@@ -31,16 +31,11 @@ ram useage:
 todo:
 
 
-10
+9
 
-
-
-
-repacked the actor sheets, moving the hit, use, and death states to lower 4th row.
-this allows us to consolidate the boss sheet into the actor sheet.
-bosses now take up 1/4th the space they used to.
-updated the actor anim list to reflect this change.
-this is in prep for a redrawing of the boss sheet.
+remade the boss spritesheet (like 2 hours of work).
+playtested. boss looks much better.
+this is an 'art commit'.
 
 
 
