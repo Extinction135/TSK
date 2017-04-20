@@ -97,19 +97,19 @@ namespace DungeonRun
             actorAnims.attack.left = new List<Byte4>     { new Byte4(3, 2, 1, 0) };
 
             actorAnims.use = new AnimationGroup();
-            actorAnims.use.down = new List<Byte4>    { new Byte4(4, 1, 0, 0) };
+            actorAnims.use.down = new List<Byte4>    { new Byte4(3, 3, 0, 0) };
             actorAnims.use.up = actorAnims.use.down;
             actorAnims.use.right = actorAnims.use.down;
             actorAnims.use.left = actorAnims.use.down;
 
             actorAnims.hit = new AnimationGroup();
-            actorAnims.hit.down = new List<Byte4> { new Byte4(4, 0, 0, 0) };
+            actorAnims.hit.down = new List<Byte4> { new Byte4(0, 3, 0, 0) };
             actorAnims.hit.up = actorAnims.hit.down;
             actorAnims.hit.right = actorAnims.hit.down;
             actorAnims.hit.left = actorAnims.hit.down;
 
             actorAnims.dead = new AnimationGroup();
-            actorAnims.dead.down = new List<Byte4> { new Byte4(4, 2, 0, 0) };
+            actorAnims.dead.down = new List<Byte4> { new Byte4(1, 3, 0, 0) };
             actorAnims.dead.up = actorAnims.dead.down;
             actorAnims.dead.right = actorAnims.dead.down;
             actorAnims.dead.left = actorAnims.dead.down;

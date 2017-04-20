@@ -31,14 +31,16 @@ ram useage:
 todo:
 
 
-11
+10
 
 
-replaced the boss intro with the "!" sound from metal gear solid.
-it's just a better fit for now, will be replaced again later on.
-playtested, i like it better than the zelda boss intro.
 
 
+repacked the actor sheets, moving the hit, use, and death states to lower 4th row.
+this allows us to consolidate the boss sheet into the actor sheet.
+bosses now take up 1/4th the space they used to.
+updated the actor anim list to reflect this change.
+this is in prep for a redrawing of the boss sheet.
 
 
 
