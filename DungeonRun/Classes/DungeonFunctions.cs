@@ -278,7 +278,6 @@ namespace DungeonRun
                 MovementFunctions.Teleport(actorRef.compMove,
                     Room.center.X + 8,
                     Room.center.Y + 8);
-
                 //dont spawn any mobs in this room
             }
 
@@ -290,6 +289,8 @@ namespace DungeonRun
         {
             if (Flags.SpawnMobs)
             {
+
+                /*
                 //place enemies within the room
                 for (i = 0; i < Room.enemyCount; i++)
                 {
@@ -313,6 +314,8 @@ namespace DungeonRun
                         Room.center.X + 16 * randomX + 8,
                         Room.center.Y + 16 * randomY + 8);
                 }
+                */
+
             }
         }
 

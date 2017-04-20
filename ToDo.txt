@@ -31,41 +31,66 @@ ram useage:
 todo:
 
 
-1
+13
 
 
 
 
-removed shop music to save on ram useage - for now.
-drops ram useage to 78mb. around 10 mb difference. which is huge.
-bug: get to boss room, die, upon restart in spawn room there are several actors piled up outside of room.
-cause: not sure why this is happening, the pool is reset early in BuildRoom().
-we'll figure it out tomorrow.
+bug: get to boss room, die, upon restart actors pile up outside of room.
+cause: AiFunctions.SetActorInput() was setting input for inactive actors.
+thus, the boss was still spawning mobs, even tho he was inactive.
+solution: added a check into SetActorInput() to see if the actor was active.
+however, this caused a bug where the activeActor counter wasn't incremented.
+so i had to reorganize the SetActorInput() routines a little...
+to make sure the activeActor counter was incremented prior to evaluation.
 
 
 
 
 
 
-bug: get to boss room, die, upon restart in spawn room there are several actors piled up outside of room.
+
+
 
 
 GetActor() - should return dead actors as well...
 we want to get 'dead' actors, so we dont run out of actors in a prolonged boss fight
 
-
-
-
+remake the boss spritesheet, instead of just scaling the blob sheet up x2
+boss should be pixel perfect, so you'll have to kinda remake him
 
 we should use the solid snake 'suprise' ! sound for the boss room intro for now...
 instead of the current boss intro, we should have a drum fill that matches the song tempo
 a fill that goes high to low
 and ideally, we would like to have boss music
 
-
-
 play multiple explosions when boss dies
 
+
+
+
+add wall pillar decorations when room is built
+doors should have decorations around them as well
+
+place boss welcome mat in front of door
+
+
+
+
+
+
+
+
+the boss key should come from a chest gameobject
+hero should be able to open the chest by pressing A button on it
+this will create the interaction collision rec, place it based on hero's direction
+then check collisions with gameobjects
+then pass any collisions to the InteractionFunctions class, to a Handle() function
+
+hero should have a reward state, where he holds an item above his head
+he should statelock into reward for a moment
+the item he picked up should display over his head during that time
+then it should be Released() back to the pool
 
 
 
@@ -91,20 +116,9 @@ same with hit sound, death sound, use sound.
 
 Version 0.2 Milestones
 
-
-	in the second room, place a boss actor, with some mobs
-	create a boss actor (this is just x2 spriteSheet with same actor anim layout)
-	actor is processed just like other actors
-	boss should be able to 'spawn' mobs (pull from actor pool)
-	when hero enters boss room, door should shut behind him
-	musical cue should play that hero is in boss fight now
 	
 	
-	the boss key should come from a chest gameobject
-	hero should be able to open the chest by pressing A button on it
-	this will create the collision rec, place it based on hero's direction
-	then check collisions with gameobjects
-	then pass any collisions to the InteractionFunctions class, to a Handle() function
+	
 	
 	
 	

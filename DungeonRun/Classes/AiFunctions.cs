@@ -21,8 +21,14 @@ namespace DungeonRun
         static Actor Actor;
         public static void SetActorInput()
         {
+            //increment the active actor
+            Pool.activeActor++;
+            if (Pool.activeActor >= Pool.actorCount) { Pool.activeActor = 1; } //skip 0th actor (HERO)
             //target the active actor from the actor's pool
             Actor = Pool.actorPool[Pool.activeActor];
+            //if this actor isn't active, don't pass AI to it
+            if (Actor.active == false) { return; }
+
             //reset the target actor's input
             Input.ResetInputData(Actor.compInput);
             //reset the direction to hero
@@ -129,12 +135,6 @@ namespace DungeonRun
             //if very close or nearby, move away from hero
             //if in visibility range, ranged attack hero
             //else, wander around
-
-
-
-            //increment the active actor
-            Pool.activeActor++;
-            if (Pool.activeActor >= Pool.actorCount) { Pool.activeActor = 1; } //skip 0th actor (HERO)
         }
 
     }
