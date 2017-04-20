@@ -43,15 +43,13 @@ namespace DungeonRun
                 Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
                 if (GetRandom.Int(0, 100) > 80) { Actor.compInput.dash = true; }
                 //randomly spawn a blob mob at boss location
-                if (GetRandom.Int(0, 100) > 90)
+                if (GetRandom.Int(0, 100) > 85)
                 {
                     Actor actorRef = PoolFunctions.GetActor();
                     if(actorRef != null)
-                    {
+                    {   //actorRef can never be an actor already active in room
                         ActorFunctions.SetType(actorRef, Actor.Type.Blob);
                         MovementFunctions.Teleport(actorRef.compMove, actorPos.X, actorPos.Y);
-                        //we'll never get back an active actor
-                        //if (actorRef != Actor) { } //the boss should never modify itself
                     }
                 }
             }

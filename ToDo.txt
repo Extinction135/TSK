@@ -31,23 +31,12 @@ ram useage:
 todo:
 
 
-3
+2
 
 
+updated ActorFunctions.SetType() to increase boss' move and dash value.
+updated AIFunctions.Think() to make boss dash more, and spawn mobs more often.
 
-updated GetActor() to only return actors that are not active.
-this prevents getting() an actor that is already active in the room.
-same update applied to GetObj().
-updated various GetActor() and GetObj() calls to check for null results.
-moved routines to spawn mobs into their own function, DungeonFunctions.SpawnEnemies().
-updated FinishRoom() to not spawn mobs in the boss room.
-the boss will spawn the mobs himself.
-
-
-
-
-boss needs to move + dash faster
-and dash more often
 
 
 

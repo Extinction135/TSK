@@ -177,8 +177,8 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.bossSheet;
                 Actor.health = 10;
                 Actor.weapon = Weapon.Sword;
-                Actor.walkSpeed = 0.30f;
-                Actor.dashSpeed = 0.80f;
+                Actor.walkSpeed = 0.50f;
+                Actor.dashSpeed = 1.00f;
                 //set the actor soundFX
 
                 //this actor is a boss (double size)
