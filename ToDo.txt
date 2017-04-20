@@ -31,21 +31,30 @@ ram useage:
 todo:
 
 
-5
-
-enemies are now more centered to the room upon spawn.
+4
 
 
-updated AIFunctions.Think() to have routines specifically for boss.
-boss now randomly moves in a direction, and randomly spawns blob mobs.
-boss makes sure to not change it's own type, by checking the result of Pool.GetActor().
-blobs ignore collisions with boss. boss ignores collisions with blobs.
+updated the zOffset of the boss so the larger sprite sorts better in the room.
+catalogued a few bugs that came up during playtesting.
 
 
 
 
-boss should sort better, have a larger zOffset value
-this is something we can set in actor functions.SetType
+
+bug: boss sometimes appears twice?
+
+bug: the actor count/index exceeds the total actors
+so we're counting this wrong
+
+we should be getting an inactive actor from GetActor()
+same with GetObj()
+
+if we get an active actor/obj, then we're pulling from the room's actors/objs
+thats bad, and will cause objs/actors to disappear randomly, and reappear elsewhere
+
+BUT we also want to get 'dead' actors, so we dont run out of actors in a prolonged boss fight
+
+
 
 
 

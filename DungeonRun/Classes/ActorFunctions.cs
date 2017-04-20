@@ -189,6 +189,9 @@ namespace DungeonRun
 
                 //set the actor's animation list, actor could be a boss
                 //Actor.animList = ActorAnimationListManager.actorAnims;
+
+                //the boss actor has a lower sorting point that normal actors
+                Actor.compSprite.zOffset = 12;
             }
 
             #endregion
