@@ -46,10 +46,12 @@ namespace DungeonRun
                 if (GetRandom.Int(0, 100) > 90)
                 {
                     Actor actorRef = PoolFunctions.GetActor();
-                    if (actorRef != Actor) //the boss should never modify itself
+                    if(actorRef != null)
                     {
                         ActorFunctions.SetType(actorRef, Actor.Type.Blob);
                         MovementFunctions.Teleport(actorRef.compMove, actorPos.X, actorPos.Y);
+                        //we'll never get back an active actor
+                        //if (actorRef != Actor) { } //the boss should never modify itself
                     }
                 }
             }

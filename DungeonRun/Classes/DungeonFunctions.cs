@@ -19,7 +19,6 @@ namespace DungeonRun
         public static Dungeon dungeon;
         public static Room currentRoom; //points to a room on the dungeon's room list
 
-
         public static Stopwatch stopWatch = new Stopwatch();
         public static TimeSpan time;
         public static int i;
@@ -28,10 +27,11 @@ namespace DungeonRun
         public static ComponentSprite floorRef;
         public static GameObject objRef;
         public static Actor actorRef;
+        public static Point pos;
+
+
 
         public static void Initialize(DungeonScreen DungeonScreen) { dungeonScreen = DungeonScreen; }
-
-
 
         public static void BuildDungeon()
         {
@@ -69,9 +69,6 @@ namespace DungeonRun
             dungeonScreen.screenState = DungeonScreen.ScreenState.FadeOut;
         }
 
-
-
-        public static Point pos;
         public static void BuildRoom(Room Room)
         {
             stopWatch.Reset(); stopWatch.Start();
@@ -202,43 +199,9 @@ namespace DungeonRun
             //update the object pool, since we teleported objects around
             PoolFunctions.UpdateObjectPool();
 
-
-            #region Spawn the Room Actors
-
-            if (Flags.SpawnMobs)
-            {
-                //place enemies within the room
-                for (i = 0; i < Room.enemyCount; i++)
-                {
-                    actorRef = PoolFunctions.GetActor();
-                    ActorFunctions.SetType(actorRef, Actor.Type.Blob);
-                    //get a random value between the min/max size of room
-                    int randomX = GetRandom.Int(-Room.size.x+2, Room.size.x-2);
-                    int randomY = GetRandom.Int(-Room.size.y+2, Room.size.y-2);
-                    //divide random value in half
-                    randomX = randomX / 2;
-                    randomY = randomY / 2;
-                    //ensure this value isn't 0
-                    if (randomX == 0) { randomX = 1; }
-                    if (randomY == 0) { randomY = 1; }
-                    //teleport actor to center of room, apply random offset
-                    MovementFunctions.Teleport(actorRef.compMove,
-                        Room.center.X + 16 * randomX + 8,
-                        Room.center.Y + 16 * randomY + 8);
-                }
-            }
-
-            
-            #endregion
-
-
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
         }
-
-
-
-
 
         public static void FinishRoom(Room Room)
         {
@@ -275,6 +238,9 @@ namespace DungeonRun
                     (Room.size.y - 1) * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.ItemBigKey);
+
+                //spawn enemies inside of this room
+                SpawnEnemies(Room);
             }
 
             #endregion
@@ -305,7 +271,6 @@ namespace DungeonRun
                 objRef.direction = Direction.Up;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
 
-
                 //spawn a boss actor
                 actorRef = PoolFunctions.GetActor();
                 ActorFunctions.SetType(actorRef, Actor.Type.Boss);
@@ -313,13 +278,43 @@ namespace DungeonRun
                 MovementFunctions.Teleport(actorRef.compMove,
                     Room.center.X + 8,
                     Room.center.Y + 8);
+
+                //dont spawn any mobs in this room
             }
 
             #endregion
 
         }
 
-
+        public static void SpawnEnemies(Room Room)
+        {
+            if (Flags.SpawnMobs)
+            {
+                //place enemies within the room
+                for (i = 0; i < Room.enemyCount; i++)
+                {
+                    actorRef = PoolFunctions.GetActor();
+                    //we SHOULD be checking to see if actorRef is null..
+                    //but because we reset the pool earlier in this function,
+                    //and the room's enemy count will never be larger than the total actors
+                    //we'll never get a null result from GetActor() right here
+                    ActorFunctions.SetType(actorRef, Actor.Type.Blob);
+                    //get a random value between the min/max size of room
+                    int randomX = GetRandom.Int(-Room.size.x + 2, Room.size.x - 2);
+                    int randomY = GetRandom.Int(-Room.size.y + 2, Room.size.y - 2);
+                    //divide random value in half
+                    randomX = randomX / 2;
+                    randomY = randomY / 2;
+                    //ensure this value isn't 0
+                    if (randomX == 0) { randomX = 1; }
+                    if (randomY == 0) { randomY = 1; }
+                    //teleport actor to center of room, apply random offset
+                    MovementFunctions.Teleport(actorRef.compMove,
+                        Room.center.X + 16 * randomX + 8,
+                        Room.center.Y + 16 * randomY + 8);
+                }
+            }
+        }
 
         public static void CleanupRoom(Room Room)
         {

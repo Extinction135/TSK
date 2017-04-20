@@ -19,18 +19,28 @@ namespace DungeonRun
         {
             Pool.actorIndex++;
             if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
-            Pool.actorPool[Pool.actorIndex].active = true;
-            Pool.actorsUsed++;
-            return Pool.actorPool[Pool.actorIndex];
+            //only return inactive actors
+            if (!Pool.actorPool[Pool.actorIndex].active)
+            {
+                Pool.actorPool[Pool.actorIndex].active = true;
+                Pool.actorsUsed++;
+                return Pool.actorPool[Pool.actorIndex];
+            }
+            return null;
         }
 
         public static GameObject GetObj()
         {
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
-            Pool.objPool[Pool.objIndex].active = true;
-            Pool.objsUsed++;
-            return Pool.objPool[Pool.objIndex];
+            //only return inactive objects
+            if(!Pool.objPool[Pool.objIndex].active)
+            {
+                Pool.objPool[Pool.objIndex].active = true;
+                Pool.objsUsed++;
+                return Pool.objPool[Pool.objIndex];
+            }
+            return null;
         }
 
         public static GameObject GetProjectile()
