@@ -213,8 +213,8 @@ namespace DungeonRun
                     actorRef = PoolFunctions.GetActor();
                     ActorFunctions.SetType(actorRef, Actor.Type.Blob);
                     //get a random value between the min/max size of room
-                    int randomX = GetRandom.Int(-Room.size.x, Room.size.x);
-                    int randomY = GetRandom.Int(-Room.size.y, Room.size.y);
+                    int randomX = GetRandom.Int(-Room.size.x+2, Room.size.x-2);
+                    int randomY = GetRandom.Int(-Room.size.y+2, Room.size.y-2);
                     //divide random value in half
                     randomX = randomX / 2;
                     randomY = randomY / 2;

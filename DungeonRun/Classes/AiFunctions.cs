@@ -25,67 +25,89 @@ namespace DungeonRun
             Actor = Pool.actorPool[Pool.activeActor];
             //reset the target actor's input
             Input.ResetInputData(Actor.compInput);
-
-
-            #region AI Routines
-
             //reset the direction to hero
             directionToHero = Direction.None;
-
             //collect the actor and hero sprite positions
             actorPos = Actor.compSprite.position;
             heroPos = Pool.hero.compSprite.position;
-
             //get the x and y distances between the actor and hero
             int xDistance = (int)Math.Abs(heroPos.X - actorPos.X);
             int yDistance = (int)Math.Abs(heroPos.Y - actorPos.Y);
 
-            //determine the axis hero is closest on
-            if (xDistance < yDistance)
-            {   //hero is closer on xAxis, actor should move on yAxis
-                if (heroPos.Y > actorPos.Y)
-                { directionToHero = Direction.Down; }
-                else { directionToHero = Direction.Up; }
-            }
-            else
-            {   //hero is closer on yAxis, actor should move on xAxis
-                if (heroPos.X > actorPos.X)
-                { directionToHero = Direction.Right; }
-                else { directionToHero = Direction.Left; }
-            }
 
-            //determine if actor is close enough to hero to chase
-            int chaseRadius = 16 * 6;
-            if (yDistance < chaseRadius && xDistance < chaseRadius)
-            {   //actor is close enough to hero to chase, move towards the hero
-                Actor.compInput.direction = directionToHero;
-            }
-            else
-            {   //choose a random direction to move in
+            #region Boss AI
+
+            if (Actor.type == Actor.Type.Boss)
+            {
+                //randomly move in a direction + dash
                 Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
-            }
-
-            //determine if actor is close enough to hero to attack
-            int attackRadius = 14;
-            if (yDistance < attackRadius && xDistance < attackRadius)
-            {   //actor is close enough to hero to attack
-                if (GetRandom.Int(0, 100) > 50) //randomly attack
-                { Actor.compInput.attack = true; }
-            }
-
-            //determine if the actor can dash
-            if(!Actor.compInput.attack)
-            {   //if the actor isn't attacking, then randomly dash
+                if (GetRandom.Int(0, 100) > 80) { Actor.compInput.dash = true; }
+                //randomly spawn a blob mob at boss location
                 if (GetRandom.Int(0, 100) > 90)
-                { Actor.compInput.dash = true; }
+                {
+                    Actor actorRef = PoolFunctions.GetActor();
+                    if (actorRef != Actor) //the boss should never modify itself
+                    {
+                        ActorFunctions.SetType(actorRef, Actor.Type.Blob);
+                        MovementFunctions.Teleport(actorRef.compMove, actorPos.X, actorPos.Y);
+                    }
+                }
             }
 
-            //handle the state where the hero is dead
-            if (Pool.hero.state == Actor.State.Dead)
-            {   //reset AI input, randomly move + dash
-                Input.ResetInputData(Actor.compInput);
-                Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
-                if (GetRandom.Int(0, 100) > 90) { Actor.compInput.dash = true; }
+            #endregion
+
+
+            #region Blob AI
+
+            else //blob
+            {
+                //determine the axis hero is closest on
+                if (xDistance < yDistance)
+                {   //hero is closer on xAxis, actor should move on yAxis
+                    if (heroPos.Y > actorPos.Y)
+                    { directionToHero = Direction.Down; }
+                    else { directionToHero = Direction.Up; }
+                }
+                else
+                {   //hero is closer on yAxis, actor should move on xAxis
+                    if (heroPos.X > actorPos.X)
+                    { directionToHero = Direction.Right; }
+                    else { directionToHero = Direction.Left; }
+                }
+
+                //determine if actor is close enough to hero to chase
+                int chaseRadius = 16 * 6;
+                if (yDistance < chaseRadius && xDistance < chaseRadius)
+                {   //actor is close enough to hero to chase, move towards the hero
+                    Actor.compInput.direction = directionToHero;
+                }
+                else
+                {   //choose a random direction to move in
+                    Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
+                }
+
+                //determine if actor is close enough to hero to attack
+                int attackRadius = 14;
+                if (yDistance < attackRadius && xDistance < attackRadius)
+                {   //actor is close enough to hero to attack
+                    if (GetRandom.Int(0, 100) > 50) //randomly attack
+                    { Actor.compInput.attack = true; }
+                }
+
+                //determine if the actor can dash
+                if (!Actor.compInput.attack)
+                {   //if the actor isn't attacking, then randomly dash
+                    if (GetRandom.Int(0, 100) > 90)
+                    { Actor.compInput.dash = true; }
+                }
+
+                //handle the state where the hero is dead
+                if (Pool.hero.state == Actor.State.Dead)
+                {   //reset AI input, randomly move + dash
+                    Input.ResetInputData(Actor.compInput);
+                    Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
+                    if (GetRandom.Int(0, 100) > 90) { Actor.compInput.dash = true; }
+                }
             }
 
             #endregion

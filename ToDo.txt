@@ -31,37 +31,34 @@ ram useage:
 todo:
 
 
-6
+5
+
+enemies are now more centered to the room upon spawn.
 
 
-
-acquired intro boss sound, compressed to 22k mono, added to content project, built.
-added intances for boss intro soundfx to assets.
-updated CollisionFunctions.CheckDungeonRoomCollisions() to play boss intro when hero enters boss room.
-
-
-
-
-
-
-bosses will have different animation lists than hero and blob
-this is due to bosses having less animation frames, and not being able to do certain things
-bosses only have: idle, move, dash, attack, use, hit, death states
-
-which means we'll need additional codepaths to handle the boss actor, in various locations
+updated AIFunctions.Think() to have routines specifically for boss.
+boss now randomly moves in a direction, and randomly spawns blob mobs.
+boss makes sure to not change it's own type, by checking the result of Pool.GetActor().
+blobs ignore collisions with boss. boss ignores collisions with blobs.
 
 
 
 
-play a sound when hero enters boss room
-play a sound when boss dies
-
-when the boss is hit, it should have a visual effect on him
-or a white blinking effect? or a black blink? we can set the color of the sprite for this.
+boss should sort better, have a larger zOffset value
+this is something we can set in actor functions.SetType
 
 
-mobs should spawn more centered to the room, not on the room's edges
-(for now)
+
+instead of the current boss intro, we should have a drum fill that matches the song tempo
+a fill that goes high to low
+and ideally, we would like to have boss music
+
+
+
+play multiple explosions when boss dies
+
+
+
 
 
 

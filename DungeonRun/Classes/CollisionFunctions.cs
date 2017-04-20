@@ -65,9 +65,16 @@ namespace DungeonRun
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active)
-                {
+                {   //ignore actor collisions with the boss actor
                     if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                     { if (Actor != Pool.actorPool[i]) { collision = true; } }
+
+                    //if this was a collision between a blob and the boss, ignore it
+                    if (Actor.type == Actor.Type.Blob && Pool.actorPool[i].type == Actor.Type.Boss)
+                    { collision = false; }
+                    //if this was a collision between the boss and a blob, ignore it
+                    else if (Actor.type == Actor.Type.Boss && Pool.actorPool[i].type == Actor.Type.Blob)
+                    { collision = false; }
                 }
             }
             return collision; 
