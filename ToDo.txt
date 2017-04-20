@@ -31,21 +31,17 @@ ram useage:
 todo:
 
 
-8
+7
 
 
-slowed down how quickly the dungeon screen transitions to the summary screen.
-this gives the player enough time to understand what happened (lost or won).
-simplified SetDeathState(), removed redundant codepaths.
-updated SetDeathState() to create a series of explosions when boss dies.
-this makes the death seem more important.
+added code to DungeonFunctions.FinishRoom() to create a boss decal on the floor of spawn room.
+this decal is placed in front of the boss door ("the welcome mat").
 
 
 
-add wall pillar decorations when room is built
-doors should have decorations around them as well
 
-place boss welcome mat in front of door
+
+
 
 
 
@@ -99,7 +95,8 @@ same with hit sound, death sound, use sound.
 
 
 
-
+add wall pillar decorations when room is built
+doors should have decorations around them as well
 
 
 

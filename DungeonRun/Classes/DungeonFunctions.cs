@@ -231,6 +231,23 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
 
+
+                //build the boss welcome mat (left)
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    5 * 16 + pos.X + 0,
+                    1 * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.BossDecal);
+                //build the right welcome mat
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    6 * 16 + pos.X + 0,
+                    1 * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.BossDecal);
+                objRef.compSprite.flipHorizontally = true;
+
                 //place bigKey gameObj in bottom right corner
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
