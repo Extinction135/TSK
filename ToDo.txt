@@ -31,25 +31,14 @@ ram useage:
 todo:
 
 
-13
+12
 
 
 
-
-bug: get to boss room, die, upon restart actors pile up outside of room.
-cause: AiFunctions.SetActorInput() was setting input for inactive actors.
-thus, the boss was still spawning mobs, even tho he was inactive.
-solution: added a check into SetActorInput() to see if the actor was active.
-however, this caused a bug where the activeActor counter wasn't incremented.
-so i had to reorganize the SetActorInput() routines a little...
-to make sure the activeActor counter was incremented prior to evaluation.
-
-
-
-
-
-
-
+updated GetActor() to return dead actors as well.
+this is done by Releasing() dead actors in GetActor().
+this means we won't run out of actors in a prolonged boss fight where mobs are being spawned.
+they will essentially be 'recycled'. playtested, passed.
 
 
 

@@ -19,7 +19,10 @@ namespace DungeonRun
         {
             Pool.actorIndex++;
             if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
-            //only return inactive actors
+            //if the target actor is dead, set it to be inactive
+            if(Pool.actorPool[Pool.actorIndex].state == Actor.State.Dead)
+            { Release(Pool.actorPool[Pool.actorIndex]); }
+            //only return inactive actors (dead actors became inactive above)
             if (!Pool.actorPool[Pool.actorIndex].active)
             {
                 Pool.actorPool[Pool.actorIndex].active = true;
