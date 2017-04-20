@@ -252,9 +252,7 @@ namespace DungeonRun
                     5 * 16 + pos.X + 8,
                     0 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                //GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
                 GameObjectFunctions.SetType(objRef, GameObject.Type.DoorBoss);
-
                 //build left wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
@@ -262,7 +260,6 @@ namespace DungeonRun
                     0 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
-
                 //build right wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
@@ -292,9 +289,7 @@ namespace DungeonRun
                     5 * 16 + pos.X + 8,
                     Room.size.y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
-                //GameObjectFunctions.SetType(objRef, GameObject.Type.DoorOpen);
                 GameObjectFunctions.SetType(objRef, GameObject.Type.DoorTrap);
-
                 //build left wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
@@ -302,7 +297,6 @@ namespace DungeonRun
                     Room.size.y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
-
                 //build right wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
@@ -326,6 +320,7 @@ namespace DungeonRun
         }
 
 
+
         public static void CleanupRoom(Room Room)
         {
             //remove any walls that overlap doors
@@ -346,10 +341,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
-
 
     }
 }

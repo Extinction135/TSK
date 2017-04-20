@@ -191,3 +191,9 @@
 /processorParam:TextureFormat=Color
 /build:BossSheet.png
 
+#begin SoundBossIntro.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBossIntro.wav
+

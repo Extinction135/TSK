@@ -31,30 +31,13 @@ ram useage:
 todo:
 
 
-7
+6
 
 
 
-
-added 'Boss' type to Actor.type enum.
-updated ActorFunctions.SetType() to handle boss enum.
-moved win/lost checks out of WinLoseFunctions and into ActorFunctions.SetDeathState().
-SetDeathState() sets the beatDungeon boolean based on boss or hero's death.
-removed WinLoseFunctions.cs from project.
-remade the boss sheet to just be a double sized blob.
-updated SetCollisionRec() to handle the new boss type.
-updated DungeonFunctions.FinishRoom() to spawn a boss actor in the center of the boss room.
-finessed the collision recs for the boss, lines up perfectly now.
-WE HAVE A BOSS, and basically a complete (but very simple) dungeon.
-playtested, approved.
-
-
-
-
-
-
-
-
+acquired intro boss sound, compressed to 22k mono, added to content project, built.
+added intances for boss intro soundfx to assets.
+updated CollisionFunctions.CheckDungeonRoomCollisions() to play boss intro when hero enters boss room.
 
 
 
@@ -70,15 +53,6 @@ which means we'll need additional codepaths to handle the boss actor, in various
 
 
 
-
-
-ITS BOSS TIME, BOYS
-
-
-
-
-update the win/lose functions to only win if the boss actor is defeated
-this will probably be a boolean in the dungeon struct, just like bigKey boolean
 play a sound when hero enters boss room
 play a sound when boss dies
 
@@ -91,13 +65,15 @@ mobs should spawn more centered to the room, not on the room's edges
 
 
 
-
-
-
 we should include a soundFXinstance on actors that points to one of the soundFX in assets
 then we can set this instance in ActorFunctions.SetType()
 then later just call it generically, like Actor.AttackSound.Play().
 same with hit sound, death sound, use sound.
+
+
+
+
+
 
 
 

@@ -82,6 +82,9 @@ namespace DungeonRun
         static SoundEffect sfxKeyPickupSrc;
         public static SoundEffectInstance sfxKeyPickup;
 
+        static SoundEffect sfxBossIntroSrc;
+        public static SoundEffectInstance sfxBossIntro;
+
         #endregion
 
 
@@ -157,6 +160,9 @@ namespace DungeonRun
 
             sfxKeyPickupSrc = content.Load<SoundEffect>(@"SoundKeyPickup");
             sfxKeyPickup = sfxKeyPickupSrc.CreateInstance();
+
+            sfxBossIntroSrc = content.Load<SoundEffect>(@"SoundBossIntro");
+            sfxBossIntro = sfxBossIntroSrc.CreateInstance();
 
             #endregion
 

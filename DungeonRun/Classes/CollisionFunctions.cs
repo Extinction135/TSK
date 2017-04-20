@@ -32,6 +32,9 @@ namespace DungeonRun
                     {
                         DungeonFunctions.currentRoom = DungeonFunctions.dungeon.rooms[i];
                         DungeonFunctions.BuildRoom(DungeonFunctions.dungeon.rooms[i]);
+                        //if hero just entered the boss room, play the boss intro theme
+                        if (DungeonFunctions.currentRoom.type == RoomType.Boss)
+                        { Assets.sfxBossIntro.Play(); }
                     }
                 }
             }

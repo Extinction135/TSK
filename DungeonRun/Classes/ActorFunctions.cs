@@ -133,11 +133,9 @@ namespace DungeonRun
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);
 
-            
 
+            #region Actor Specific Fields
 
-
-            //set type specific fields
             if (Type == Actor.Type.Hero)
             {
                 Actor.compSprite.texture = Assets.heroSheet;
@@ -174,12 +172,6 @@ namespace DungeonRun
                 //set the actor's animation list, actor could be a boss
                 //Actor.animList = ActorAnimationListManager.actorAnims;
             }
-
-
-            //else if actor is a boss,
-            //set the animationList to bossAnims
-            //we can do this based on actor.type
-            //this means the boss sprite sheet has a different layout that an actor sheet
             else if (Type == Actor.Type.Boss)
             {
                 Actor.compSprite.texture = Assets.bossSheet;
@@ -198,6 +190,9 @@ namespace DungeonRun
                 //set the actor's animation list, actor could be a boss
                 //Actor.animList = ActorAnimationListManager.actorAnims;
             }
+
+            #endregion
+
 
             Actor.animList = ActorAnimationListManager.actorAnims;
         }
