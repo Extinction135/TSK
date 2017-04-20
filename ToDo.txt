@@ -31,16 +31,14 @@ ram useage:
 todo:
 
 
-7
+6
 
 
-added code to DungeonFunctions.FinishRoom() to create a boss decal on the floor of spawn room.
-this decal is placed in front of the boss door ("the welcome mat").
-
-
-
-
-
+added ParticleHitSparkle to GameObject.type enums.
+updated GameObjAnimListManager to have a anim list for new particle.
+updated SetHitState(Actor) to spawn the hit particle whenever an actor is hit.
+playtested, hit particles appear whenever an actor is hit, including hero and boss.
+it's actually looking pretty good.
 
 
 

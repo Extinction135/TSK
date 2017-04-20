@@ -419,6 +419,15 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = false;
             }
+            else if (Type == GameObject.Type.ParticleHitSparkle)
+            {
+                Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
+                Obj.compSprite.zOffset = 16;
+                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.loop = true;
+            }
 
             #endregion
 

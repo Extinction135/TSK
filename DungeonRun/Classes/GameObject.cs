@@ -123,6 +123,7 @@ namespace DungeonRun
             ParticleDashPuff,
             ParticleExplosion,
             ParticleSmokePuff,
+            ParticleHitSparkle,
 
             #endregion
 

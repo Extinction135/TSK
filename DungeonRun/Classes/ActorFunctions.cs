@@ -24,6 +24,9 @@ namespace DungeonRun
 
             if (Actor == Pool.hero) { Assets.sfxHeroHit.Play(); }
             else { Assets.sfxEnemyHit.Play(); }
+
+            //display the hit effect particle
+            GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleHitSparkle, Actor.compSprite.position);
         }
 
         public static void SetDeathState(Actor Actor)
