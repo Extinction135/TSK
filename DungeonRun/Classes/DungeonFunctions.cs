@@ -289,8 +289,6 @@ namespace DungeonRun
         {
             if (Flags.SpawnMobs)
             {
-
-                /*
                 //place enemies within the room
                 for (i = 0; i < Room.enemyCount; i++)
                 {
@@ -314,8 +312,6 @@ namespace DungeonRun
                         Room.center.X + 16 * randomX + 8,
                         Room.center.Y + 16 * randomY + 8);
                 }
-                */
-
             }
         }
 

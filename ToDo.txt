@@ -31,37 +31,29 @@ ram useage:
 todo:
 
 
-12
+11
+
+
+replaced the boss intro with the "!" sound from metal gear solid.
+it's just a better fit for now, will be replaced again later on.
+playtested, i like it better than the zelda boss intro.
 
 
 
-updated GetActor() to return dead actors as well.
-this is done by Releasing() dead actors in GetActor().
-this means we won't run out of actors in a prolonged boss fight where mobs are being spawned.
-they will essentially be 'recycled'. playtested, passed.
 
-
-
-GetActor() - should return dead actors as well...
-we want to get 'dead' actors, so we dont run out of actors in a prolonged boss fight
 
 remake the boss spritesheet, instead of just scaling the blob sheet up x2
 boss should be pixel perfect, so you'll have to kinda remake him
 
-we should use the solid snake 'suprise' ! sound for the boss room intro for now...
-instead of the current boss intro, we should have a drum fill that matches the song tempo
-a fill that goes high to low
-and ideally, we would like to have boss music
-
 play multiple explosions when boss dies
-
-
-
 
 add wall pillar decorations when room is built
 doors should have decorations around them as well
 
 place boss welcome mat in front of door
+
+
+
 
 
 
@@ -199,6 +191,11 @@ Stuff that needs to be done, but it's not terribly important rn
 	
 Maybes / Ideas	
 	
+	
+instead of the current boss intro, we should have a drum fill that matches the song tempo
+a fill that goes high to low
+and ideally, we would like to have boss music
+
 blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
 or they can use a weapon, like a stick or gooey hand, iunno
 
