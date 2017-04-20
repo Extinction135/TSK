@@ -24,25 +24,23 @@ adding music:
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 	
 ram useage:
-	86mb on Win10.  94mb on XboxOne.
+	76mb on Win10.  94mb on XboxOne.
 	
 	
 	
 todo:
 
 
-9
-
-remade the boss spritesheet (like 2 hours of work).
-playtested. boss looks much better.
-this is an 'art commit'.
+8
 
 
+slowed down how quickly the dungeon screen transitions to the summary screen.
+this gives the player enough time to understand what happened (lost or won).
+simplified SetDeathState(), removed redundant codepaths.
+updated SetDeathState() to create a series of explosions when boss dies.
+this makes the death seem more important.
 
-remake the boss spritesheet, instead of just scaling the blob sheet up x2
-boss should be pixel perfect, so you'll have to kinda remake him
 
-play multiple explosions when boss dies
 
 add wall pillar decorations when room is built
 doors should have decorations around them as well
@@ -51,7 +49,25 @@ place boss welcome mat in front of door
 
 
 
+we really need a hit effect
+this is a particle that draws over the actor being hit
+this would visually show player that boss has been hit
 
+
+
+increase the rate at which a blob attacks (its random)
+increase the distance a blob can attack from
+
+
+
+
+interaction rec thoughts
+should be part of interaction functions class
+call something like CheckHeroInteractionRec()
+which would set the interaction rec via SetHeroInteractionRec()
+then check to see if it collides with any room objects
+then pass those objects to a Handle() function
+the actual interactionRec would exist in the interaction functions class
 
 
 

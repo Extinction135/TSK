@@ -19,6 +19,9 @@ namespace DungeonRun
         public static Vector2 actorPos;
         public static Vector2 heroPos;
         static Actor Actor;
+
+
+
         public static void SetActorInput()
         {
             //increment the active actor
@@ -117,7 +120,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
 
             //slightly more advanced AI

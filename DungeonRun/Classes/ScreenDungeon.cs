@@ -21,7 +21,7 @@ namespace DungeonRun
         //the foreground black rectangle, overlays and hides game content
         Rectangle overlay; 
         public float overlayAlpha = 1.0f;
-        float fadeInSpeed = 0.05f;
+        float fadeInSpeed = 0.015f;
         float fadeOutSpeed = 0.03f;
         //the various states the game can be in
         public enum GameState { Playing, Summary }

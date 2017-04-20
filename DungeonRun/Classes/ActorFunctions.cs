@@ -34,43 +34,13 @@ namespace DungeonRun
             Actor.lockTotal = 255;
 
 
-            #region Actor Specific Death Effects
+            #region Hero Specific Death Effects
 
             if (Actor == Pool.hero)
             {
                 //player has died, failed the dungeon
                 DungeonRecord.beatDungeon = false;
                 DungeonFunctions.dungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
-                //Actor.compSprite.zOffset = -16; //sort to floor
-                //GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
-                //Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-            }
-
-            else if (Actor.type == Actor.Type.Blob)
-            {
-                Actor.compSprite.zOffset = -16; //sort to floor
-                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
-                Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-            }
-            else if (Actor.type == Actor.Type.Boss)
-            {
-                //player has beat the dungeon
-                DungeonRecord.beatDungeon = true;
-                DungeonFunctions.dungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
-                //Actor.compSprite.zOffset = -16; //sort to floor
-                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
-                //Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-            }
-
-            #endregion
-
-
-            //sort actor for last time
-            ComponentFunctions.SetZdepth(Actor.compSprite);
-
-            //additional death effects
-            if(Actor == Pool.hero)
-            {
                 //we could track hero deaths here
                 Assets.sfxHeroKill.Play();
             }
@@ -78,9 +48,48 @@ namespace DungeonRun
             {
                 DungeonRecord.enemyCount++; //track non-hero actor deaths
                 Assets.sfxEnemyKill.Play(); //play enemy kill soundFX
+            }
+
+            #endregion
+
+
+            #region Enemy Specific Death Effects
+
+            if (Actor.type == Actor.Type.Blob)
+            {
+                Actor.compSprite.zOffset = -16; //sort to floor
+                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
+                Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 //call spawn loot function, passing actor
             }
+            else if (Actor.type == Actor.Type.Boss)
+            {
+                //player has beat the dungeon
+                DungeonRecord.beatDungeon = true;
+                DungeonFunctions.dungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
+                Actor.compSprite.zOffset = -16; //sort to floor
+                Actor.compCollision.rec.X = -1000; //hide actor collisionRec
+                //create boss explosion
+                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
+                //create a series of explosions around boss
+                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion,
+                    Actor.compSprite.position + new Vector2(10, 10));
+                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion,
+                    Actor.compSprite.position + new Vector2(10, -10));
+                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion,
+                    Actor.compSprite.position + new Vector2(-10, 10));
+                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion,
+                    Actor.compSprite.position + new Vector2(-10, -10));
+            }
+
+            #endregion
+
+
+            //sort actor for last time
+            ComponentFunctions.SetZdepth(Actor.compSprite);
         }
+
+
 
         public static void SetCollisionRec(Actor Actor)
         {
