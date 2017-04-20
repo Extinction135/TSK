@@ -202,8 +202,6 @@ namespace DungeonRun
 
 
 
-        
-
         public static void Update(Actor Actor)
         {
             //get the input for this frame, set actor.direction

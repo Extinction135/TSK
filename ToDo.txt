@@ -31,33 +31,33 @@ ram useage:
 todo:
 
 
-2
-
-
-updated ActorFunctions.SetType() to increase boss' move and dash value.
-updated AIFunctions.Think() to make boss dash more, and spawn mobs more often.
+1
 
 
 
 
-
-bug: boss sometimes appears twice?
-
-bug: the actor count/index exceeds the total actors
-so we're counting this wrong
-
-we should be getting an inactive actor from GetActor()
-same with GetObj()
-
-if we get an active actor/obj, then we're pulling from the room's actors/objs
-thats bad, and will cause objs/actors to disappear randomly, and reappear elsewhere
-
-BUT we also want to get 'dead' actors, so we dont run out of actors in a prolonged boss fight
+removed shop music to save on ram useage - for now.
+drops ram useage to 78mb. around 10 mb difference. which is huge.
+bug: get to boss room, die, upon restart in spawn room there are several actors piled up outside of room.
+cause: not sure why this is happening, the pool is reset early in BuildRoom().
+we'll figure it out tomorrow.
 
 
 
 
 
+
+bug: get to boss room, die, upon restart in spawn room there are several actors piled up outside of room.
+
+
+GetActor() - should return dead actors as well...
+we want to get 'dead' actors, so we dont run out of actors in a prolonged boss fight
+
+
+
+
+
+we should use the solid snake 'suprise' ! sound for the boss room intro for now...
 instead of the current boss intro, we should have a drum fill that matches the song tempo
 a fill that goes high to low
 and ideally, we would like to have boss music

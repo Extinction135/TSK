@@ -57,9 +57,9 @@ namespace DungeonRun
 
             //load the dungeon's music track
             i = GetRandom.Int(0, 100);
-            if (i > 60) { MusicFunctions.trackToLoad = Music.DungeonA; }
-            else if (i > 30) { MusicFunctions.trackToLoad = Music.Overworld; }
-            else { MusicFunctions.trackToLoad = Music.Shop; }
+            if (i > 50) { MusicFunctions.trackToLoad = Music.DungeonA; }
+            else { MusicFunctions.trackToLoad = Music.Overworld; }
+            //else { MusicFunctions.trackToLoad = Music.Shop; }
 
             //tell music functions to play the loaded music track
             MusicFunctions.fadeState = MusicFunctions.FadeState.Silent;
