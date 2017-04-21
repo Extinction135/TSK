@@ -31,40 +31,44 @@ ram useage:
 todo:
 
 
-5
+
+screenshot the next commit total, because it's unsigned byte.maxValue
 
 
 
-created SaveData struct + PlayerData static class.
-playerData creates an instance of SaveData, and provides global access to it.
-added Save() and Load() functions to PlayerData class. Functions untested for now.
-we'll be serializing & deserializing SaveData to XML.
-
-updated InteractionFunctions.Handle() to increase the saveData.gold amount by 50, for opening gold chest.
-updated SummaryScreen to add it's reward amount to SaveData.gold.
-
-updated DebugInfo to display the PlayerData.SaveData.gold amount.
-playtested, working. gold amount is persistent across screens & dungeons.
-
-organizedd DebugInfo.Draw() a bit.
+GitHub.MrGrak.Commits.Total = Byte.MaxValue;
 
 
 
 
+4
+
+
+
+added SoundTextLetter and SoundTextDone to content project.
+added instances for these sounds to Assets.
+updated summary screen to count each summary value individually, sequentially.
+added call to SoundTextLetter when incrementing a summary value.
+added call to SoundTextDone when summary value counting is complete.
+added SoundExitSummary to content project, built.
+added instances to Assets.cs for SoundExitSummary sound effect.
+updated SummaryScreen.Update() to call Assets.sfxExitSummary.Play() upon screen exit.
+increased the volume of SoundTextLetter and SoundTextDone.
+playtested, summary screen sound effect is playing a little too late.
+
+moved call to play() into SummaryScreen.HandleInput().
+call happens when player presses button to continue.
+playtested, everything is working perfectly.
 
 
 
 
 
-GOLD
 
-add a gold counter somewhere (for hero)
-increment this gold counter when hero opens gold chest
-increment this gold counter when summary screen completes / exits
-this means the gold counter should exist outside of dungeon screen
-should probably be a static class called player data or something
 
-this would be data that is saved, so it needs to be serializable.
+
+
+
 
 
 
@@ -85,9 +89,6 @@ and this fits nicely into the Handle(Actor, Projectile) function
 
 
 SUMMARY SCREEN
-
-summary screen should play the text counting sound while tallying up the numbers
-which means we need to add the text counting, and text done sounds
 
 once the numbers are tallied, summary screen should play the text complete sound
 get the totalTime value counting up to the dungeonRecord's totalTime value.

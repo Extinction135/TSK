@@ -209,3 +209,21 @@
 /processorParam:Quality=Best
 /build:SoundReward.wav
 
+#begin SoundTextDone.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTextDone.wav
+
+#begin SoundTextLetter.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTextLetter.wav
+
+#begin SoundExitSummary.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundExitSummary.wav
+

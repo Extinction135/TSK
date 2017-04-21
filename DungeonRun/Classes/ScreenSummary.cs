@@ -38,6 +38,7 @@ namespace DungeonRun
         int enemyCount = 0;
         int totalDamage = 0;
         int reward = 0;
+        Boolean countingComplete = false;
 
         public override void LoadContent()
         {
@@ -137,6 +138,8 @@ namespace DungeonRun
                 {
                     screenState = ScreenState.AnimateOut;
                     continueText.alpha = 1.0f;
+                    //play the summary exit sound effect immediately
+                    Assets.sfxExitSummary.Play();
                 }
             }
         }
@@ -214,10 +217,24 @@ namespace DungeonRun
                 rightTitle.alpha += 0.004f;
                 continueText.alpha += 0.01f;
 
-                //animate the summary data
-                if (enemyCount < DungeonRecord.enemyCount) { enemyCount++; }
-                if (totalDamage < DungeonRecord.totalDamage) { totalDamage++; }
-                if (reward < 100) { reward++; }
+                if(!countingComplete)
+                {   //if the screen should count the summary values
+                    //animate the summary data up to it's proper amount
+                    if (enemyCount < DungeonRecord.enemyCount)
+                    { enemyCount++; Assets.sfxTextLetter.Play(); }
+                    else
+                    {
+                        if (totalDamage < DungeonRecord.totalDamage)
+                        { totalDamage++; Assets.sfxTextLetter.Play(); }
+                        else
+                        {
+                            if (reward < 100)
+                            { reward++; Assets.sfxTextLetter.Play(); }
+                            else //we've counted everything, exit the count routine
+                            { Assets.sfxTextDone.Play(); countingComplete = true; }
+                        }
+                    }
+                }
 
                 //set the summary data text component
                 summaryData.text = "" + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");

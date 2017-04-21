@@ -91,6 +91,15 @@ namespace DungeonRun
         static SoundEffect sfxRewardSrc;
         public static SoundEffectInstance sfxReward;
 
+        static SoundEffect sfxTextLetterSrc;
+        public static SoundEffectInstance sfxTextLetter;
+
+        static SoundEffect sfxTextDoneSrc;
+        public static SoundEffectInstance sfxTextDone;
+
+        static SoundEffect sfxExitSummarySrc;
+        public static SoundEffectInstance sfxExitSummary;
+
         #endregion
 
 
@@ -175,6 +184,15 @@ namespace DungeonRun
 
             sfxRewardSrc = content.Load<SoundEffect>(@"SoundReward");
             sfxReward = sfxRewardSrc.CreateInstance();
+
+            sfxTextLetterSrc = content.Load<SoundEffect>(@"SoundTextLetter");
+            sfxTextLetter = sfxTextLetterSrc.CreateInstance();
+
+            sfxTextDoneSrc = content.Load<SoundEffect>(@"SoundTextDone");
+            sfxTextDone = sfxTextDoneSrc.CreateInstance();
+
+            sfxExitSummarySrc = content.Load<SoundEffect>(@"SoundExitSummary");
+            sfxExitSummary = sfxExitSummarySrc.CreateInstance();
 
             #endregion
 
