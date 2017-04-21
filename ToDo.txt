@@ -31,20 +31,25 @@ ram useage:
 todo:
 
 
-3
+2
 
 
-updated ActorFunctions.Update() to stop the movement of the actor when he transitions into interact state.
-updated hero spritesheet with interact/pickup state sprites
-updated ActorAnimListManager with interact animation list.
-updated ActorAnimListManager to set animation list when actor is in interact state.
-playtested, hero plays the pickup/interact animation when A button is pressed.
+added a chest in the spawn room along the right wall.
+added ClearHeroInteractionRec() to InteractionFunctions.
+add codepath to Handle() Hero & Chest interaction, sets chest to empty chest.
+updated ActorFunctions.Update() to only lock actor if an interaction should actually happen.
+
+AND GUESS WHAT? we don't even need to press the A button to open the chest!
+the hero's collision component rec overlaps the chest for a moment, and the interaction (Handle()) happens.
+BUT we will need the interaction rec for when hero wants to pick up a pot or liftable object.
+we'll also need it when hero wants to drag/push/pull and object.
 
 
 
 
 
 
+make skull pot objects along the left wall
 
 we need interact/pickup sprite for blob
 

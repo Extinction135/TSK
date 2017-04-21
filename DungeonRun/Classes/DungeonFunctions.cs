@@ -256,6 +256,14 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.ItemBigKey);
 
+                //place chest gameObj in bottom right corner
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    1 * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.Chest);
+
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);
             }

@@ -18,10 +18,14 @@ namespace DungeonRun
         public static float force;
 
         public static ComponentCollision interactionRec = new ComponentCollision();
-        //public static Rectangle interactionRec = new Rectangle(0, 0, 8, 8);
 
 
 
+        public static void ClearHeroInteractionRec()
+        {   //move the interaction rec offscreen
+            interactionRec.rec.X = -1000;
+            interactionRec.rec.Y = -1000;
+        }
 
         public static void SetHeroInteractionRec()
         {
@@ -87,6 +91,14 @@ namespace DungeonRun
                 {
                     PoolFunctions.Release(Obj);
                     DungeonFunctions.dungeon.bigKey = true;
+                    Assets.sfxKeyPickup.Play();
+                }
+                else if (Obj.type == GameObject.Type.Chest)
+                {
+                    //Obj.type = GameObject.Type.ChestEmpty;
+                    GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
+                    //PoolFunctions.Release(Obj);
+                    //DungeonFunctions.dungeon.bigKey = true;
                     Assets.sfxKeyPickup.Play();
                 }
             }
