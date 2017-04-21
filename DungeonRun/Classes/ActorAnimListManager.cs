@@ -26,13 +26,13 @@ namespace DungeonRun
         public AnimationGroup idle;
         public AnimationGroup move;
         public AnimationGroup dash;
+        public AnimationGroup interact;
 
         public AnimationGroup attack;
         public AnimationGroup use;
         public AnimationGroup hit;
         public AnimationGroup dead;
 
-        //interact
         //pickup, hold, carry, drag, etc...
     }
 
@@ -46,6 +46,7 @@ namespace DungeonRun
             if (Actor.state == Actor.State.Idle) { Actor.animGroup = Actor.animList.idle; }
             else if (Actor.state == Actor.State.Move) { Actor.animGroup = Actor.animList.move; }
             else if (Actor.state == Actor.State.Dash) { Actor.animGroup = Actor.animList.dash; }
+            else if (Actor.state == Actor.State.Interact) { Actor.animGroup = Actor.animList.interact; }
             //
             else if (Actor.state == Actor.State.Attack) { Actor.animGroup = Actor.animList.attack; }
             else if (Actor.state == Actor.State.Use) { Actor.animGroup = Actor.animList.use; }
@@ -90,6 +91,14 @@ namespace DungeonRun
             actorAnims.dash.right = new List<Byte4>  { new Byte4(2, 2, 0, 0) };
             actorAnims.dash.left = new List<Byte4>   { new Byte4(2, 2, 1, 0) };
 
+            actorAnims.interact = new AnimationGroup();
+            actorAnims.interact.down = new List<Byte4>  { new Byte4(4, 0, 0, 0) };
+            actorAnims.interact.up = new List<Byte4>    { new Byte4(4, 1, 0, 0) };
+            actorAnims.interact.right = new List<Byte4> { new Byte4(4, 2, 0, 0) };
+            actorAnims.interact.left = new List<Byte4>  { new Byte4(4, 2, 1, 0) };
+
+
+
             actorAnims.attack = new AnimationGroup();
             actorAnims.attack.down = new List<Byte4>     { new Byte4(3, 0, 0, 0) };
             actorAnims.attack.up = new List<Byte4>       { new Byte4(3, 1, 0, 0) };
@@ -97,22 +106,23 @@ namespace DungeonRun
             actorAnims.attack.left = new List<Byte4>     { new Byte4(3, 2, 1, 0) };
 
             actorAnims.use = new AnimationGroup();
-            actorAnims.use.down = new List<Byte4>    { new Byte4(3, 3, 0, 0) };
+            actorAnims.use.down = new List<Byte4>   { new Byte4(3, 3, 0, 0) };
             actorAnims.use.up = actorAnims.use.down;
             actorAnims.use.right = actorAnims.use.down;
             actorAnims.use.left = actorAnims.use.down;
 
             actorAnims.hit = new AnimationGroup();
-            actorAnims.hit.down = new List<Byte4> { new Byte4(0, 3, 0, 0) };
+            actorAnims.hit.down = new List<Byte4>   { new Byte4(0, 3, 0, 0) };
             actorAnims.hit.up = actorAnims.hit.down;
             actorAnims.hit.right = actorAnims.hit.down;
             actorAnims.hit.left = actorAnims.hit.down;
 
             actorAnims.dead = new AnimationGroup();
-            actorAnims.dead.down = new List<Byte4> { new Byte4(1, 3, 0, 0) };
+            actorAnims.dead.down = new List<Byte4>  { new Byte4(1, 3, 0, 0) };
             actorAnims.dead.up = actorAnims.dead.down;
             actorAnims.dead.right = actorAnims.dead.down;
             actorAnims.dead.left = actorAnims.dead.down;
+
         }
 
     }

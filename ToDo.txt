@@ -31,20 +31,14 @@ ram useage:
 todo:
 
 
-4
+3
 
 
-
-
-added a ComponentCollision instance named interactionRec to InteractionFunctions.
-added SetHeroInteractionRec() to InteractionFunctions.
-added CheckInteractionRecCollisions() to CollisionFunctions.
-now drawing interactionRec from DungeonScreen if drawCollisions flag is true.
-extended ActorFunctions.Update to handle interact actor state.
-this codepath calls the new CheckInteractionRecCollisions() function.
-finessed the offset values to get the interactionRec placed just right around hero.
-this offset is based on the hero's facing direction.
-playtested & approved.
+updated ActorFunctions.Update() to stop the movement of the actor when he transitions into interact state.
+updated hero spritesheet with interact/pickup state sprites
+updated ActorAnimListManager with interact animation list.
+updated ActorAnimListManager to set animation list when actor is in interact state.
+playtested, hero plays the pickup/interact animation when A button is pressed.
 
 
 
@@ -52,14 +46,10 @@ playtested & approved.
 
 
 
-do we have an interact animation? do we need one?
+we need interact/pickup sprite for blob
 
 
-we have the interaction state, that only hero will use
-(AI will never set the input to interaction)
 
-
-we need to set this based on the player input
 
 
 

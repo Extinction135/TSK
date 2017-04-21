@@ -236,13 +236,10 @@ namespace DungeonRun
                 //check states
                 if (Actor.state == Actor.State.Interact)
                 {
-                    //
-                    
-                    Actor.lockTotal = 5;
+                    Actor.lockTotal = 10;
                     Actor.stateLocked = true;
+                    ComponentFunctions.StopMovement(Actor.compMove);
                     CollisionFunctions.CheckInteractionRecCollisions();
-
-
                 }
                 else if (Actor.state == Actor.State.Dash)
                 {
