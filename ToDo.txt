@@ -31,15 +31,32 @@ ram useage:
 todo:
 
 
-6
+5
 
 
-updated InteractionFunctions.Handle() to call the pickup key soundFX when hero opens key chest.
-planning how to implement heart objects (that restore the hero's health).
-planning how to implement player data (gold count).
-further playtesting.
+
+created SaveData struct + PlayerData static class.
+playerData creates an instance of SaveData, and provides global access to it.
+added Save() and Load() functions to PlayerData class. Functions untested for now.
+we'll be serializing & deserializing SaveData to XML.
+
+updated InteractionFunctions.Handle() to increase the saveData.gold amount by 50, for opening gold chest.
+updated SummaryScreen to add it's reward amount to SaveData.gold.
+
+updated DebugInfo to display the PlayerData.SaveData.gold amount.
+playtested, working. gold amount is persistent across screens & dungeons.
+
+organizedd DebugInfo.Draw() a bit.
 
 
+
+
+
+
+
+
+
+GOLD
 
 add a gold counter somewhere (for hero)
 increment this gold counter when hero opens gold chest
@@ -52,10 +69,7 @@ this would be data that is saved, so it needs to be serializable.
 
 
 
-
-
 CONSUMABLES
-
 
 when a blob is destroyed, it should drop a heart consumable 20% of the time
 20% of the time it should drop a gold piece
@@ -70,6 +84,21 @@ and this fits nicely into the Handle(Actor, Projectile) function
 
 
 
+SUMMARY SCREEN
+
+summary screen should play the text counting sound while tallying up the numbers
+which means we need to add the text counting, and text done sounds
+
+once the numbers are tallied, summary screen should play the text complete sound
+get the totalTime value counting up to the dungeonRecord's totalTime value.
+we can get the indivdual hours, minutes, seconds
+so we can create ints that represent those in summary screen
+then count those ints up to the values of hours, minutes, seconds
+and concat them all onto the same summary data string
+
+
+
+
 
 
 
@@ -78,22 +107,7 @@ and this fits nicely into the Handle(Actor, Projectile) function
 
 Version 0.2 Milestones
 
-	summary screen should play the text counting sound while tallying up the numbers
-	once the numbers are tallied, summary screen should play the text complete sound
-	get the totalTime value counting up to the dungeonRecord's totalTime value.
-	we can get the indivdual hours, minutes, seconds
-	so we can create ints that represent those in summary screen
-	then count those ints up to the values of hours, minutes, seconds
-	and concat them all onto the same summary data string
-
-
-	
-	
-	
-	
-	
-	
-	
+	???
 	
 	
 	

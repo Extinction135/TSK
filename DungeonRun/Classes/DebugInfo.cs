@@ -15,6 +15,7 @@ namespace DungeonRun
 {
     public static class DebugInfo
     {
+
         public static Rectangle background;
         public static List<ComponentText> textFields;
         public static int counter = 0;
@@ -27,6 +28,7 @@ namespace DungeonRun
         public static ComponentText creationText;
         public static ComponentText recordText;
         public static ComponentText musicText;
+        public static ComponentText saveDataText;
 
         public static long roomTime = 0;
         public static long dungeonTime = 0;
@@ -37,6 +39,8 @@ namespace DungeonRun
         public static long drawTicks; //draw tick times are added to this
         public static long updateAvg; //stores the average update ticks
         public static long drawAvg; //stores the average draw ticks
+
+
 
         static DebugInfo()
         {
@@ -70,9 +74,16 @@ namespace DungeonRun
             textFields.Add(recordText);
 
             musicText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 25, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(16 * 26, yPos + 00), Assets.colorScheme.textSmall);
             textFields.Add(musicText);
+
+            saveDataText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textSmall);
+            textFields.Add(saveDataText);
+
         }
+
+
 
         public static void Draw()
         {
@@ -109,6 +120,8 @@ namespace DungeonRun
             #endregion
 
 
+            #region Actor + Movement Components
+
             actorText.text = "actor: hero";
             actorText.text += "\ninp: " + Pool.hero.inputState;
             actorText.text += "\ncur: " + Pool.hero.state;
@@ -120,6 +133,11 @@ namespace DungeonRun
             moveText.text += "\nmag x:" + Pool.hero.compMove.magnitude.X;
             moveText.text += "\nmag y:" + Pool.hero.compMove.magnitude.Y;
             moveText.text += "\ndir: " + Pool.hero.compMove.direction;
+
+            #endregion
+
+
+            #region Pool, Creation Time, and Record Components
 
             poolText.text = "floors: " + Pool.floorIndex + "/" + Pool.floorCount;
 
@@ -137,11 +155,22 @@ namespace DungeonRun
             recordText.text += "\nenemies: " + DungeonRecord.enemyCount;
             recordText.text += "\ndamage: " + DungeonRecord.totalDamage;
 
+            #endregion
+
+
+            #region Music + SaveData Components
+
             musicText.text = "bkg music";
             musicText.text += "\n" + MusicFunctions.trackToLoad;
             musicText.text += "\n" + MusicFunctions.currentMusic.State;
             musicText.text += "\nvol: " + MusicFunctions.currentMusic.Volume;
             musicText.text += "\nd vol: " + Assets.musicDrums.Volume;
+
+            saveDataText.text = "save data";
+            saveDataText.text += "\ngold: " + PlayerData.saveData.gold;
+
+            #endregion
+
 
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.windowBkg);
             size = textFields.Count();

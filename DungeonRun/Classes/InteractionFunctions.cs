@@ -83,24 +83,24 @@ namespace DungeonRun
                             GameObjectFunctions.SpawnParticle(
                                 GameObject.Type.ParticleReward50Gold, 
                                 Actor.compSprite.position + new Vector2(0, -14));
-                            //modify hero's gold amount
                             Assets.sfxReward.Play();
+                            PlayerData.saveData.gold += 50; //give the hero 50 gold
                         }
                         else if (Obj.type == GameObject.Type.ChestKey)
                         {
                             GameObjectFunctions.SpawnParticle(
                                 GameObject.Type.ParticleRewardKey, 
                                 Actor.compSprite.position + new Vector2(0, -14));
-                            DungeonFunctions.dungeon.bigKey = true;
                             Assets.sfxKeyPickup.Play();
+                            DungeonFunctions.dungeon.bigKey = true;
                         }
                         else if (Obj.type == GameObject.Type.ChestMap)
                         {
                             GameObjectFunctions.SpawnParticle(
                                 GameObject.Type.ParticleRewardMap, 
                                 Actor.compSprite.position + new Vector2(0, -14));
-                            //set map boolean true, just like bigKey boolean
                             Assets.sfxReward.Play();
+                            //set map boolean true, just like bigKey boolean
                         }
 
                         Assets.sfxChestOpen.Play();

@@ -233,6 +233,9 @@ namespace DungeonRun
 
             else if (screenState == ScreenState.Exit)
             {
+                //award the gold bonus to player data
+                PlayerData.saveData.gold += reward;
+                //rebuild the dungeon and exit this screen
                 DungeonFunctions.BuildDungeon();
                 ScreenManager.RemoveScreen(this);
             }
