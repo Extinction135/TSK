@@ -24,36 +24,26 @@ adding music:
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 	
 ram useage:
-	76mb on Win10.  94mb on XboxOne.
+	76mb on Win10.  82mb on XboxOne.
 	
 	
 	
 todo:
 
 
-6
+5
 
 
-added ParticleHitSparkle to GameObject.type enums.
-updated GameObjAnimListManager to have a anim list for new particle.
-updated SetHitState(Actor) to spawn the hit particle whenever an actor is hit.
-playtested, hit particles appear whenever an actor is hit, including hero and boss.
-it's actually looking pretty good.
+
+thoroughly playtested on xbox one, ram down to 82mb. no bugs.
 
 
 
 
-we really need a hit effect
-this is a particle that draws over the actor being hit
-this would visually show player that boss has been hit
 
 
 
-increase the rate at which a blob attacks (its random)
-increase the distance a blob can attack from
-
-
-
+A BUTTON INTERACTIONS
 
 interaction rec thoughts
 should be part of interaction functions class
@@ -62,12 +52,6 @@ which would set the interaction rec via SetHeroInteractionRec()
 then check to see if it collides with any room objects
 then pass those objects to a Handle() function
 the actual interactionRec would exist in the interaction functions class
-
-
-
-
-
-
 
 the boss key should come from a chest gameobject
 hero should be able to open the chest by pressing A button on it
@@ -84,6 +68,9 @@ then it should be Released() back to the pool
 
 
 
+
+
+
 we should include a soundFXinstance on actors that points to one of the soundFX in assets
 then we can set this instance in ActorFunctions.SetType()
 then later just call it generically, like Actor.AttackSound.Play().
@@ -93,8 +80,7 @@ same with hit sound, death sound, use sound.
 
 
 
-add wall pillar decorations when room is built
-doors should have decorations around them as well
+
 
 
 
@@ -105,13 +91,6 @@ doors should have decorations around them as well
 
 Version 0.2 Milestones
 
-	
-	
-	
-	
-	
-	
-	
 	when a blob is destroyed, it should drop a heart consumable sometimes
 	we'll need a gameobject of type consumable
 	and hero will need to check collisions with it
@@ -124,13 +103,8 @@ Version 0.2 Milestones
 	then count those ints up to the values of hours, minutes, seconds
 	and concat them all onto the same summary data string
 	
-	we need a particle/hit effect for when an actor is hit
-	this should apply to blobs, hero, and boss
-	
-	
-	
-get the total ram use on xbox one.	
-we should probably drop or modify the shop music, since it adds so much to the ram useage.	
+	get the total ram use on xbox one, test.
+
 	
 	
 	
@@ -138,7 +112,9 @@ we should probably drop or modify the shop music, since it adds so much to the r
 	
 Stuff that needs to be done, but it's not terribly important rn	
 	
-	
+	add wall pillar decorations when room is built
+	doors should have decorations around them as well
+
 	make sure that the dungeon complete musical cue is mono and 22k
 
 	hero should spin around prior to dying
