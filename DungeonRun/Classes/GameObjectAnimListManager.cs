@@ -136,12 +136,6 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(1, 7, 0, 0), new Byte4(1, 7, 0, 0), new Byte4(2, 7, 0, 0), new Byte4(3, 7, 0, 0) },
                 //ItemHeart
                 new List<Byte4> { new Byte4(4, 7, 0, 0), new Byte4(5, 7, 0, 0), new Byte4(6, 7, 0, 0), new Byte4(7, 7, 0, 0) },
-                //ItemHeartPiece
-                new List<Byte4> { new Byte4(4, 7, 0, 0) },
-                //ItemMap
-                new List<Byte4> { new Byte4(4, 3, 0, 0) },
-                //ItemBigKey
-                new List<Byte4> { new Byte4(5, 3, 0, 0) },
 
                 #endregion
 

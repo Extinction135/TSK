@@ -31,23 +31,23 @@ ram useage:
 todo:
 
 
-9
+8
+
+
+removed big key, map, and heart piece from gameobject, gameObjAnimManager, and gameObjFunctions.
+removed codepath for bigkey collision interaction from Handle().
+removed reward value from GameObject.ObjGroup enum.
+
+added 'chest' value to GameObject.ObjGroup enum.
+updated GameObjFunctions.SetType() to set chest objGroups to chest, except for opened chests.
+they are just room objects.
+
+updated Handle(), reducing the codepaths necessary to check for chests and their rewards/effects.
+updated DungeonFunctions.FinishRoom() to create all 3 flavors of chest in spawn room.
 
 
 
-moved key and map sprites into projectiles sheet, out of dungeon sheet.
-updated gameObject.type to include chestGold, chestKey, chestMap.
-updated GameObjAnimListManager to handle chestGold, chestKey, chestMap sprites.
-updated GameObjFunctions.SetType to handle new chest cases.
 
-updated interactionFunctions.handle() to work with the new chest cases.
-updated dungeonFunctions.FinishRoom() to create a Gold Chest in the spawn room.
-
-
-
-
-
-remove big key from gameobjects
 
 add particle bigkey to particles section
 add particle map to particles section
@@ -56,13 +56,11 @@ update gameObj anims for bigKey and map
 
 update GameObjFuns.SetType for bigKey and map particles
 
+updated interactions.handle to create the proper particles based on chest type
 
 
 
 
-it would be nice to have an objGroup just for chests
-
-this would simplify code in the Handle() function
 
 
 

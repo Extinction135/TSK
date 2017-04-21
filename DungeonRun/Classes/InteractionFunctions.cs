@@ -75,46 +75,38 @@ namespace DungeonRun
 
                 if(Actor.state == Actor.State.Interact)
                 {
-
-
-
-                    if (Obj.type == GameObject.Type.ChestGold)
+                    if(Obj.objGroup == GameObject.ObjGroup.Chest)
                     {
-                        GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
+                        //reward the hero with the chests contents
+                        if (Obj.type == GameObject.Type.ChestGold)
+                        {
+                            GameObjectFunctions.SpawnParticle(
+                                GameObject.Type.ParticleReward50Gold, 
+                                Actor.compSprite.position + new Vector2(0, -14));
+                            //modify hero's gold amount
+                        }
+                        else if (Obj.type == GameObject.Type.ChestKey)
+                        {
+                            GameObjectFunctions.SpawnParticle(
+                                GameObject.Type.ParticleReward50Gold, 
+                                Actor.compSprite.position + new Vector2(0, -14));
+                            DungeonFunctions.dungeon.bigKey = true;
+                        }
+                        else if (Obj.type == GameObject.Type.ChestMap)
+                        {
+                            GameObjectFunctions.SpawnParticle(
+                                GameObject.Type.ParticleReward50Gold, 
+                                Actor.compSprite.position + new Vector2(0, -14));
+                            //set map boolean true, just like bigKey boolean
+                        }
+
                         Assets.sfxChestOpen.Play();
-                        //reward hero here with chest's contents
-                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleReward50Gold, Actor.compSprite.position + new Vector2(0, -14));
+                        GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
                         //set actor into reward state
                         Actor.state = Actor.State.Reward;
                         //play an explosion particle to show the chest was opened
                         GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
                     }
-                    else if (Obj.type == GameObject.Type.ChestKey)
-                    {
-                        GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
-                        Assets.sfxChestOpen.Play();
-                        //reward hero here with chest's contents
-                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleReward50Gold, Actor.compSprite.position + new Vector2(0, -14));
-                        //set actor into reward state
-                        Actor.state = Actor.State.Reward;
-                        //play an explosion particle to show the chest was opened
-                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
-                    }
-                    else if (Obj.type == GameObject.Type.ChestMap)
-                    {
-                        GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
-                        Assets.sfxChestOpen.Play();
-                        //reward hero here with chest's contents
-                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleReward50Gold, Actor.compSprite.position + new Vector2(0, -14));
-                        //set actor into reward state
-                        Actor.state = Actor.State.Reward;
-                        //play an explosion particle to show the chest was opened
-                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
-                    }
-
-
-
-
                 }
 
                 #endregion
@@ -137,12 +129,9 @@ namespace DungeonRun
                     {
                         MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);
                     }
-                    else if (Obj.type == GameObject.Type.ItemBigKey)
-                    {
-                        PoolFunctions.Release(Obj);
-                        DungeonFunctions.dungeon.bigKey = true;
-                        Assets.sfxKeyPickup.Play();
-                    }
+
+                    //if hero collides with a rupee or heart, we'll need to Release() it
+
                 }
 
                 #endregion

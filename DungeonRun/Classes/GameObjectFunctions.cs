@@ -261,6 +261,9 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
+                //unopened chests get the objGroup of Chest
+                if (Type != GameObject.Type.ChestEmpty)
+                { Obj.objGroup = GameObject.ObjGroup.Chest; }
             }
             else if (Type == GameObject.Type.BlockDraggable)
             {
@@ -358,19 +361,6 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 7;
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Item;
-            }
-            else if (Type == GameObject.Type.ItemMap || Type == GameObject.Type.ItemBigKey)
-            {
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
-                Obj.compSprite.zOffset = -7;
-                Obj.compCollision.blocking = false;
-                Obj.objGroup = GameObject.ObjGroup.Item;
-            }
-            else if (Type == GameObject.Type.ItemHeartPiece)
-            {
-                Obj.compCollision.blocking = false;
-                Obj.objGroup = GameObject.ObjGroup.Reward;
             }
 
             #endregion

@@ -247,15 +247,7 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.BossDecal);
                 objRef.compSprite.flipHorizontally = true;
-
-                //place bigKey gameObj in bottom right corner
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x - 1) * 16 + pos.X + 8,
-                    (Room.size.y - 1) * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.ItemBigKey);
-
+                
                 //place chest gameObj in bottom right corner
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
@@ -265,9 +257,20 @@ namespace DungeonRun
                 GameObjectFunctions.SetType(objRef, GameObject.Type.ChestGold);
 
                 //create a big key chest
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    5 * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.ChestKey);
 
                 //create a map chest
-
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    8 * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, GameObject.Type.ChestMap);
 
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);

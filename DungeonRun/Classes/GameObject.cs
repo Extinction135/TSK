@@ -18,16 +18,17 @@ namespace DungeonRun
         {
             Wall,       //usually blocks hero from passing
             Door,       //might block/change type upon collision
-            Inspectable,//hero can 'read' or 'inspect' with this obj
+            Chest,      //object that hero can 'open' for a reward
 
             Object,     //standard object, might collide or interact with hero
             Liftable,   //can the hero pick this object up, carry it, and throw it?
             Draggable,  //can the hero push, pull, or drag this object?
 
             Item,       //picked up off ground, held above hero's head
-            Reward,     //spawned from chest, not actually on objects list, held above hero's head
             Projectile, //a colliding object (moving or stationary)
-            Particle    //doesn't collide, direction always faces down
+            Particle    //doesn't collide, direction always faces down, used as a visual cue
+                        //the rewards from chests are particles
+            //Inspectable,//hero can 'read' or 'inspect' with this obj
         }
 
         public enum Type
@@ -105,9 +106,6 @@ namespace DungeonRun
             //items can be picked up by Hero
             ItemRupee,      //increases gold +1
             ItemHeart,      //increases current HP +1
-            ItemHeartPiece, //increases maxHP +0.25
-            ItemMap,        //unhides the dungeon's rooms on map
-            ItemBigKey,     //unlocks the boss room
 
             #endregion
 
