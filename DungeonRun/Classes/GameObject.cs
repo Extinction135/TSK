@@ -125,6 +125,8 @@ namespace DungeonRun
             ParticleHitSparkle,
 
             ParticleReward50Gold,
+            ParticleRewardKey,
+            ParticleRewardMap,
 
             #endregion
 

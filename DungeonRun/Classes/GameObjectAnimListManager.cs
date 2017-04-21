@@ -161,6 +161,10 @@ namespace DungeonRun
 
                 //ParticleReward50Gold
                 new List<Byte4> { new Byte4(6, 2, 0, 0) },
+                //ParticleRewardKey,
+                new List<Byte4> { new Byte4(7, 2, 0, 0) },
+                //ParticleRewardMap,
+                new List<Byte4> { new Byte4(5, 2, 0, 0) },
 
                 #endregion
 

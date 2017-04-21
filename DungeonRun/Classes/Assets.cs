@@ -88,6 +88,9 @@ namespace DungeonRun
         static SoundEffect sfxChestOpenSrc;
         public static SoundEffectInstance sfxChestOpen;
 
+        static SoundEffect sfxRewardSrc;
+        public static SoundEffectInstance sfxReward;
+
         #endregion
 
 
@@ -169,6 +172,9 @@ namespace DungeonRun
 
             sfxChestOpenSrc = content.Load<SoundEffect>(@"SoundChestOpen");
             sfxChestOpen = sfxChestOpenSrc.CreateInstance();
+
+            sfxRewardSrc = content.Load<SoundEffect>(@"SoundReward");
+            sfxReward = sfxRewardSrc.CreateInstance();
 
             #endregion
 

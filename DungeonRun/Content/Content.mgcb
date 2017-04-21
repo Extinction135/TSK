@@ -203,3 +203,9 @@
 /processorParam:Quality=Best
 /build:SoundChestOpen.wav
 
+#begin SoundReward.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundReward.wav
+

@@ -420,7 +420,9 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;
             }
-            else if (Type == GameObject.Type.ParticleReward50Gold)
+            else if (Type == GameObject.Type.ParticleReward50Gold ||
+                Type == GameObject.Type.ParticleRewardKey ||
+                Type == GameObject.Type.ParticleRewardMap)
             {
                 Obj.compSprite.zOffset = 32;
                 Obj.objGroup = GameObject.ObjGroup.Particle;

@@ -31,32 +31,30 @@ ram useage:
 todo:
 
 
-8
-
-
-removed big key, map, and heart piece from gameobject, gameObjAnimManager, and gameObjFunctions.
-removed codepath for bigkey collision interaction from Handle().
-removed reward value from GameObject.ObjGroup enum.
-
-added 'chest' value to GameObject.ObjGroup enum.
-updated GameObjFunctions.SetType() to set chest objGroups to chest, except for opened chests.
-they are just room objects.
-
-updated Handle(), reducing the codepaths necessary to check for chests and their rewards/effects.
-updated DungeonFunctions.FinishRoom() to create all 3 flavors of chest in spawn room.
+7
 
 
 
+added gameObj.type enums for reward particles Key, and Map.
+added animation lists for Key and Map types to GameObjAnimListManager.
+updated GameObjFunctions.SetType to handle Key and Map types.
+updated interactionFunctions.Handle() to spawn the correct particles based on the chest type being interacted with.
+playtested, working perfectly.
+
+added reward sound to content project.
+added instances for reward sound to Assets.
+now calling Assets.sfxReward.Play() for all chests.
 
 
-add particle bigkey to particles section
-add particle map to particles section
 
-update gameObj anims for bigKey and map
 
-update GameObjFuns.SetType for bigKey and map particles
 
-updated interactions.handle to create the proper particles based on chest type
+
+
+
+we should only call the reward sound for gold chests.
+the map and key chests should call the secret sound.
+so, we'll need to add the secret sound.
 
 
 
@@ -66,35 +64,6 @@ updated interactions.handle to create the proper particles based on chest type
 
 
 
-should play reward sound when actor opens a chest
-
-
-
-
-
-when hero picks up the key, he should be 'rewarded' with it
-
-the key should come from the chest
-this means the key should be on the projectiles sheet
-and we'll need a particle that represents the big key
-
-
-we'll need two versions of the chest, one for gold reward and one for big key reward
-is there a better way we can represent this?
-
-
-
-
-
-
-hero should be put into reward state
-the contents of the chest should appear over the hero's head
-for now that's going to be 50 rupees
-
-hero should have a reward state, where he holds an item above his head
-he should statelock into reward for a moment
-the item he picked up should display over his head during that time
-then it should be Released() back to the pool
 
 make skull pot objects along the left wall
 
