@@ -69,42 +69,55 @@ namespace DungeonRun
         {
             //Obj is non-blocking
 
-
-            #region Handle Hero specific object interactions
-
+            //Handle Hero specific object interactions
             if(Actor == Pool.hero)
             {
-                if (Obj.type == GameObject.Type.DoorBoss)
+
+                #region Objects that Hero interacts with via InteractionRec (A Button Press)
+
+                if(Actor.state == Actor.State.Interact)
                 {
-                    if (DungeonFunctions.dungeon.bigKey)
+                    if (Obj.type == GameObject.Type.Chest)
                     {
-                        GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen);
-                        Assets.sfxDoorOpen.Play();
-                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
+                        //Obj.type = GameObject.Type.ChestEmpty;
+                        GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
+                        //PoolFunctions.Release(Obj);
+                        //DungeonFunctions.dungeon.bigKey = true;
+                        Assets.sfxKeyPickup.Play();
                     }
                 }
-                else if(Obj.type == GameObject.Type.DoorTrap)
+
+                #endregion
+
+
+                #region Objects that Hero interacts with simply by colliding/touching them
+
+                else
                 {
-                    MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);
+                    if (Obj.type == GameObject.Type.DoorBoss)
+                    {
+                        if (DungeonFunctions.dungeon.bigKey)
+                        {
+                            GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen);
+                            Assets.sfxDoorOpen.Play();
+                            GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
+                        }
+                    }
+                    else if (Obj.type == GameObject.Type.DoorTrap)
+                    {
+                        MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);
+                    }
+                    else if (Obj.type == GameObject.Type.ItemBigKey)
+                    {
+                        PoolFunctions.Release(Obj);
+                        DungeonFunctions.dungeon.bigKey = true;
+                        Assets.sfxKeyPickup.Play();
+                    }
                 }
-                else if(Obj.type == GameObject.Type.ItemBigKey)
-                {
-                    PoolFunctions.Release(Obj);
-                    DungeonFunctions.dungeon.bigKey = true;
-                    Assets.sfxKeyPickup.Play();
-                }
-                else if (Obj.type == GameObject.Type.Chest)
-                {
-                    //Obj.type = GameObject.Type.ChestEmpty;
-                    GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
-                    //PoolFunctions.Release(Obj);
-                    //DungeonFunctions.dungeon.bigKey = true;
-                    Assets.sfxKeyPickup.Play();
-                }
+
+                #endregion
+
             }
-
-            #endregion
-
 
             //non-hero actors may interact with certain objects as well
 

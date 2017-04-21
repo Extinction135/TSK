@@ -243,6 +243,8 @@ namespace DungeonRun
                         Actor.stateLocked = true;
                         ComponentFunctions.StopMovement(Actor.compMove);
                     }
+                    else //if there isn't an obj to interact with, just revert to idle
+                    { Actor.state = Actor.State.Idle; }
                 }
                 else if (Actor.state == Actor.State.Dash)
                 {

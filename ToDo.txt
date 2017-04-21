@@ -31,18 +31,45 @@ ram useage:
 todo:
 
 
-2
+1
 
 
-added a chest in the spawn room along the right wall.
-added ClearHeroInteractionRec() to InteractionFunctions.
-add codepath to Handle() Hero & Chest interaction, sets chest to empty chest.
-updated ActorFunctions.Update() to only lock actor if an interaction should actually happen.
+bug: hero is set into interact animation for a single frame when A button is pressed.
+cause: the animation list manager is checking the actor's state, and the state is interact.
+solution: set the frame to idle if there isn't an object to interact with, after we check for interations.
+done, fixed, & tested.
 
-AND GUESS WHAT? we don't even need to press the A button to open the chest!
-the hero's collision component rec overlaps the chest for a moment, and the interaction (Handle()) happens.
-BUT we will need the interaction rec for when hero wants to pick up a pot or liftable object.
-we'll also need it when hero wants to drag/push/pull and object.
+bug: the hero shouldn't open the chest automatically, player should have to press A button.
+cause: hero's collision component rec overlaps the chest, automatically calling interaction Handle().
+solution: a somewhat involved rewrite to Handle(Actor, Obj) which checks if the hero is in an interact state.
+
+updated CheckInteractionRecCollisions() to hide the interaction rec after collision check completes.
+
+
+
+
+
+
+need a chest opening sound effect, should play when chest is opened
+when we open a chest, a smoke poof should appear over it
+
+hero should be put into reward state
+the contents of the chest should appear over the hero's head
+for now that's going to be 50 rupees
+
+hero should have a reward state, where he holds an item above his head
+he should statelock into reward for a moment
+the item he picked up should display over his head during that time
+then it should be Released() back to the pool
+
+we need interact/pickup sprite for blob
+check to make sure blob can do all the things hero can do
+
+
+
+
+
+
 
 
 
@@ -50,42 +77,6 @@ we'll also need it when hero wants to drag/push/pull and object.
 
 
 make skull pot objects along the left wall
-
-we need interact/pickup sprite for blob
-
-
-
-
-
-
-
-A BUTTON INTERACTIONS
-
-interaction rec thoughts
-should be part of interaction functions class
-call something like CheckHeroInteractionRec()
-which would set the interaction rec via SetHeroInteractionRec()
-then check to see if it collides with any room objects
-then pass those objects to a Handle() function
-the actual interactionRec would exist in the interaction functions class
-
-the boss key should come from a chest gameobject
-hero should be able to open the chest by pressing A button on it
-this will create the interaction collision rec, place it based on hero's direction
-then check collisions with gameobjects
-then pass any collisions to the InteractionFunctions class, to a Handle() function
-
-hero should have a reward state, where he holds an item above his head
-he should statelock into reward for a moment
-the item he picked up should display over his head during that time
-then it should be Released() back to the pool
-
-
-
-
-
-
-
 
 we should include a soundFXinstance on actors that points to one of the soundFX in assets
 then we can set this instance in ActorFunctions.SetType()

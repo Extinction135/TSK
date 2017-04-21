@@ -59,7 +59,7 @@ namespace DungeonRun
                 }
             }
             //move the interaction rec offscreen
-            //InteractionFunctions.ClearHeroInteractionRec();
+            InteractionFunctions.ClearHeroInteractionRec();
             return collision;
         }
 
