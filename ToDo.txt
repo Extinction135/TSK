@@ -31,19 +31,18 @@ ram useage:
 todo:
 
 
-13
-
-
-added chest opening sound.
-added chest opening instances to assets.cs.
-updated InteractionFunctions.Handle(actor, obj) to play chest opening soundfx.
-this happens only when hero interacts with a chest via A button (interaction rec).
+12
 
 
 
+spawning particle smoke puff over chest when it opens.
+doesn't look very good, so switched to explosion particle, which looks better.
+the game is beginning to suffer from 'michael bay syndrome' (too many explosions).
 
-need a chest opening sound effect, should play when chest is opened
-when we open a chest, a smoke poof should appear over it
+
+
+
+
 
 hero should be put into reward state
 the contents of the chest should appear over the hero's head

@@ -82,6 +82,7 @@ namespace DungeonRun
                         GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
                         //reward hero here with chest's contents
                         Assets.sfxChestOpen.Play();
+                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
                     }
                 }
 
