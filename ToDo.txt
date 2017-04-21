@@ -31,21 +31,13 @@ ram useage:
 todo:
 
 
-1
+13
 
 
-bug: hero is set into interact animation for a single frame when A button is pressed.
-cause: the animation list manager is checking the actor's state, and the state is interact.
-solution: set the frame to idle if there isn't an object to interact with, after we check for interations.
-done, fixed, & tested.
-
-bug: the hero shouldn't open the chest automatically, player should have to press A button.
-cause: hero's collision component rec overlaps the chest, automatically calling interaction Handle().
-solution: a somewhat involved rewrite to Handle(Actor, Obj) which checks if the hero is in an interact state.
-
-updated CheckInteractionRecCollisions() to hide the interaction rec after collision check completes.
-
-
+added chest opening sound.
+added chest opening instances to assets.cs.
+updated InteractionFunctions.Handle(actor, obj) to play chest opening soundfx.
+this happens only when hero interacts with a chest via A button (interaction rec).
 
 
 

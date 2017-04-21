@@ -79,11 +79,9 @@ namespace DungeonRun
                 {
                     if (Obj.type == GameObject.Type.Chest)
                     {
-                        //Obj.type = GameObject.Type.ChestEmpty;
                         GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
-                        //PoolFunctions.Release(Obj);
-                        //DungeonFunctions.dungeon.bigKey = true;
-                        Assets.sfxKeyPickup.Play();
+                        //reward hero here with chest's contents
+                        Assets.sfxChestOpen.Play();
                     }
                 }
 

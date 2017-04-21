@@ -197,3 +197,9 @@
 /processorParam:Quality=Best
 /build:SoundBossIntro.wav
 
+#begin SoundChestOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundChestOpen.wav
+
