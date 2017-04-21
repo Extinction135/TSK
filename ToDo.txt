@@ -31,16 +31,14 @@ ram useage:
 todo:
 
 
-12
+11
 
 
-
-spawning particle smoke puff over chest when it opens.
-doesn't look very good, so switched to explosion particle, which looks better.
-the game is beginning to suffer from 'michael bay syndrome' (too many explosions).
-
-
-
+updated the blob sheet to have interact/pickup sprites.
+tested that blob's animations look right and blob can perform all actions that link (hero) can.
+we *could* swap the hero's actor.type dynamically, as a magic effect.
+this would allow the hero to become various enemies, without sacrificing functionality.
+then perhaps the hero could find/purchase an item that will turn them back into the link actor.
 
 
 
@@ -52,20 +50,6 @@ hero should have a reward state, where he holds an item above his head
 he should statelock into reward for a moment
 the item he picked up should display over his head during that time
 then it should be Released() back to the pool
-
-we need interact/pickup sprite for blob
-check to make sure blob can do all the things hero can do
-
-
-
-
-
-
-
-
-
-
-
 
 make skull pot objects along the left wall
 
