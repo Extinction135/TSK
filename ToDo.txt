@@ -31,51 +31,42 @@ ram useage:
 todo:
 
 
-7
+6
+
+
+updated InteractionFunctions.Handle() to call the pickup key soundFX when hero opens key chest.
+planning how to implement heart objects (that restore the hero's health).
+planning how to implement player data (gold count).
+further playtesting.
 
 
 
-added gameObj.type enums for reward particles Key, and Map.
-added animation lists for Key and Map types to GameObjAnimListManager.
-updated GameObjFunctions.SetType to handle Key and Map types.
-updated interactionFunctions.Handle() to spawn the correct particles based on the chest type being interacted with.
-playtested, working perfectly.
+add a gold counter somewhere (for hero)
+increment this gold counter when hero opens gold chest
+increment this gold counter when summary screen completes / exits
+this means the gold counter should exist outside of dungeon screen
+should probably be a static class called player data or something
 
-added reward sound to content project.
-added instances for reward sound to Assets.
-now calling Assets.sfxReward.Play() for all chests.
-
-
-
-
-
-
-
-
-we should only call the reward sound for gold chests.
-the map and key chests should call the secret sound.
-so, we'll need to add the secret sound.
+this would be data that is saved, so it needs to be serializable.
 
 
 
 
 
 
+CONSUMABLES
 
 
+when a blob is destroyed, it should drop a heart consumable 20% of the time
+20% of the time it should drop a gold piece
 
+we'll need a gameobject of type consumable
+and hero will need to check collisions with it
 
-make skull pot objects along the left wall
-
-we should include a soundFXinstance on actors that points to one of the soundFX in assets
-then we can set this instance in ActorFunctions.SetType()
-then later just call it generically, like Actor.AttackSound.Play().
-same with hit sound, death sound, use sound.
-
-
-
-
-
+whats the easiest way to model this?
+these hearts COULD BE projectiles with no movement
+this would give them a lifetime, where they would be Released() afterwards
+and this fits nicely into the Handle(Actor, Projectile) function
 
 
 
@@ -87,10 +78,6 @@ same with hit sound, death sound, use sound.
 
 Version 0.2 Milestones
 
-	when a blob is destroyed, it should drop a heart consumable sometimes
-	we'll need a gameobject of type consumable
-	and hero will need to check collisions with it
-	
 	summary screen should play the text counting sound while tallying up the numbers
 	once the numbers are tallied, summary screen should play the text complete sound
 	get the totalTime value counting up to the dungeonRecord's totalTime value.
@@ -98,9 +85,18 @@ Version 0.2 Milestones
 	so we can create ints that represent those in summary screen
 	then count those ints up to the values of hours, minutes, seconds
 	and concat them all onto the same summary data string
-	
-	get the total ram use on xbox one, test.
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -108,6 +104,13 @@ Version 0.2 Milestones
 	
 Stuff that needs to be done, but it's not terribly important rn	
 	
+	make skull pot objects along the left wall
+	
+	we should include a soundFXinstance on actors that points to one of the soundFX in assets
+	then we can set this instance in ActorFunctions.SetType()
+	then later just call it generically, like Actor.AttackSound.Play().
+	same with hit sound, death sound, use sound.
+
 	add wall pillar decorations when room is built
 	doors should have decorations around them as well
 

@@ -92,7 +92,7 @@ namespace DungeonRun
                                 GameObject.Type.ParticleRewardKey, 
                                 Actor.compSprite.position + new Vector2(0, -14));
                             DungeonFunctions.dungeon.bigKey = true;
-                            Assets.sfxReward.Play();
+                            Assets.sfxKeyPickup.Play();
                         }
                         else if (Obj.type == GameObject.Type.ChestMap)
                         {
