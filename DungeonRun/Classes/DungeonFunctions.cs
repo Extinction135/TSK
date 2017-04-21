@@ -262,7 +262,12 @@ namespace DungeonRun
                     (Room.size.x - 1) * 16 + pos.X + 8,
                     1 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.Chest);
+                GameObjectFunctions.SetType(objRef, GameObject.Type.ChestGold);
+
+                //create a big key chest
+
+                //create a map chest
+
 
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);

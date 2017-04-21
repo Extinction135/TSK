@@ -70,7 +70,9 @@ namespace DungeonRun
 
             #region Interactive Objects
 
-            Chest,
+            ChestGold,
+            ChestKey,
+            ChestMap,
             ChestEmpty,
 
             BlockDraggable, //blocking, mobile
@@ -123,6 +125,7 @@ namespace DungeonRun
             ParticleExplosion,
             ParticleSmokePuff,
             ParticleHitSparkle,
+
             ParticleReward50Gold,
 
             #endregion

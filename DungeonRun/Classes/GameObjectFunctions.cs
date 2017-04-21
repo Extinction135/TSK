@@ -93,7 +93,6 @@ namespace DungeonRun
         }
 
 
-
         
         public static void SpawnProjectile(GameObject.Type Type, Actor Actor)
         {   //a projectile always has a direction, so it inherit's actor's direction
@@ -254,7 +253,10 @@ namespace DungeonRun
 
             #region Interactive Objects
 
-            else if (Type == GameObject.Type.Chest || Type == GameObject.Type.ChestEmpty)
+            else if (Type == GameObject.Type.ChestGold ||
+                Type == GameObject.Type.ChestKey ||
+                Type == GameObject.Type.ChestMap ||
+                Type == GameObject.Type.ChestEmpty)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;

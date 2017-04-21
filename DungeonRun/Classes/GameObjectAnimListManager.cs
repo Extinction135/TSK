@@ -83,10 +83,15 @@ namespace DungeonRun
 
                 #region Interactive Objects
 
-                //Chest
+                //ChestGold,
+                new List<Byte4> { new Byte4(1, 6, 0, 0) },
+                //ChestKey,
+                new List<Byte4> { new Byte4(1, 6, 0, 0) },
+                //ChestMap,
                 new List<Byte4> { new Byte4(1, 6, 0, 0) },
                 //ChestEmpty
                 new List<Byte4> { new Byte4(2, 6, 0, 0) },
+
                 //BlockDraggable
                 new List<Byte4> { new Byte4(2, 4, 0, 0) },
                 //BlockDark
@@ -159,6 +164,7 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(5, 0, 0, 0), new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0) },
                 //ParticleHitSparkle
                 new List<Byte4> { new Byte4(8, 1, 0, 0), new Byte4(9, 1, 0, 0) },
+
                 //ParticleReward50Gold
                 new List<Byte4> { new Byte4(6, 2, 0, 0) },
 

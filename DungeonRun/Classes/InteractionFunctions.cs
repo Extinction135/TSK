@@ -75,7 +75,10 @@ namespace DungeonRun
 
                 if(Actor.state == Actor.State.Interact)
                 {
-                    if (Obj.type == GameObject.Type.Chest)
+
+
+
+                    if (Obj.type == GameObject.Type.ChestGold)
                     {
                         GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
                         Assets.sfxChestOpen.Play();
@@ -86,6 +89,32 @@ namespace DungeonRun
                         //play an explosion particle to show the chest was opened
                         GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
                     }
+                    else if (Obj.type == GameObject.Type.ChestKey)
+                    {
+                        GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
+                        Assets.sfxChestOpen.Play();
+                        //reward hero here with chest's contents
+                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleReward50Gold, Actor.compSprite.position + new Vector2(0, -14));
+                        //set actor into reward state
+                        Actor.state = Actor.State.Reward;
+                        //play an explosion particle to show the chest was opened
+                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
+                    }
+                    else if (Obj.type == GameObject.Type.ChestMap)
+                    {
+                        GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
+                        Assets.sfxChestOpen.Play();
+                        //reward hero here with chest's contents
+                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleReward50Gold, Actor.compSprite.position + new Vector2(0, -14));
+                        //set actor into reward state
+                        Actor.state = Actor.State.Reward;
+                        //play an explosion particle to show the chest was opened
+                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
+                    }
+
+
+
+
                 }
 
                 #endregion
