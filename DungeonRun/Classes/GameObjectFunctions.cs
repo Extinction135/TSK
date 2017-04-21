@@ -365,7 +365,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Item;
             }
-            else if (Type == GameObject.Type.ItemHeartPiece || Type == GameObject.Type.ItemGold50)
+            else if (Type == GameObject.Type.ItemHeartPiece)
             {
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Reward;
@@ -426,6 +426,14 @@ namespace DungeonRun
                 Obj.objGroup = GameObject.ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.loop = true;
+            }
+            else if (Type == GameObject.Type.ParticleReward50Gold)
+            {
+                Obj.compSprite.zOffset = 32;
+                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.lifetime = 50; //in frames
+                Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = true;
             }
 

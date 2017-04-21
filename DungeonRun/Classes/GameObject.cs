@@ -104,7 +104,6 @@ namespace DungeonRun
             ItemRupee,      //increases gold +1
             ItemHeart,      //increases current HP +1
             ItemHeartPiece, //increases maxHP +0.25
-            ItemGold50,     //increases gold +50
             ItemMap,        //unhides the dungeon's rooms on map
             ItemBigKey,     //unlocks the boss room
 
@@ -124,6 +123,7 @@ namespace DungeonRun
             ParticleExplosion,
             ParticleSmokePuff,
             ParticleHitSparkle,
+            ParticleReward50Gold,
 
             #endregion
 

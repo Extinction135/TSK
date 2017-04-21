@@ -272,6 +272,10 @@ namespace DungeonRun
                     ComponentFunctions.StopMovement(Actor.compMove);
                     //call useItem() - creates a projectile just like useWeapon()
                 }
+
+
+                //if actor opened a chest, they will be set into the reward state
+                if (Actor.state == Actor.State.Reward) { Actor.lockTotal = 50; }
             }
 
             #endregion

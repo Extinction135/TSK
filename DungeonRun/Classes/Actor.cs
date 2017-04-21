@@ -22,7 +22,9 @@ namespace DungeonRun
         }
         public enum State
         {   //attacks with weapon, uses item, interacts with game object
-            Idle, Move, Attack, Use, Dash, Interact, Hit, Dead
+            Idle, Move, Dash, Interact,
+            Attack, Use,  Hit, Dead,
+            Reward,
         }
 
         public Type type; //the type of actor this is

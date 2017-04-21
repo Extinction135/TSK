@@ -63,8 +63,6 @@ namespace DungeonRun
 
 
 
-
-
         public static void Handle(Actor Actor, GameObject Obj)
         {
             //Obj is non-blocking
@@ -80,8 +78,12 @@ namespace DungeonRun
                     if (Obj.type == GameObject.Type.Chest)
                     {
                         GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
-                        //reward hero here with chest's contents
                         Assets.sfxChestOpen.Play();
+                        //reward hero here with chest's contents
+                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleReward50Gold, Actor.compSprite.position + new Vector2(0, -14));
+                        //set actor into reward state
+                        Actor.state = Actor.State.Reward;
+                        //play an explosion particle to show the chest was opened
                         GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
                     }
                 }

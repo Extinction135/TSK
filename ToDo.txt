@@ -31,14 +31,43 @@ ram useage:
 todo:
 
 
-11
+10
 
 
-updated the blob sheet to have interact/pickup sprites.
-tested that blob's animations look right and blob can perform all actions that link (hero) can.
-we *could* swap the hero's actor.type dynamically, as a magic effect.
-this would allow the hero to become various enemies, without sacrificing functionality.
-then perhaps the hero could find/purchase an item that will turn them back into the link actor.
+
+added reward value to actor.state enum.
+added reward animation group to actor animation list, pointed it to use animation.
+updated actorFunctions.Update() with codepath to handle state.Reward.
+this state duplicates the state of use.
+moved 50 gold reward sprite into particles/projectile sheet, out of dungeon sheet.
+added codepath for 50 gold reward to GameObjectFunctions.SetType().
+
+added call to spawn a reward particle over the actor that opened the chest.
+extended the lifetime of the reward particle so player has longer to 'read' it.
+
+playtested, noted some changes i'd like to make.
+moved the reward particle to spawn over the chest instead of the player.
+
+playtested, reward state not locking upon chest interaction.
+removed codepath from ActorFunctions.Update() for reward state.
+expanded code for setting reward state in interactionFunctions.Handle().
+playtested, nah fam it's still not working. reward animation doesn't display.
+
+cause: there isn't a codepath for setting the animation group in SetAnimationGroup().
+fixed it by adding in that codepath to SetAnimationGroup().
+cleaned up the implementation of reward state across various classes (the mess created above).
+finessed the placement of the reward particle to be over the actor's head.
+
+
+
+
+should play reward sound when actor opens a chest
+
+
+
+
+
+
 
 
 

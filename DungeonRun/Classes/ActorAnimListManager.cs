@@ -33,6 +33,7 @@ namespace DungeonRun
         public AnimationGroup hit;
         public AnimationGroup dead;
 
+        public AnimationGroup reward;
         //pickup, hold, carry, drag, etc...
     }
 
@@ -52,6 +53,8 @@ namespace DungeonRun
             else if (Actor.state == Actor.State.Use) { Actor.animGroup = Actor.animList.use; }
             else if (Actor.state == Actor.State.Hit) { Actor.animGroup = Actor.animList.hit; }
             else if (Actor.state == Actor.State.Dead) { Actor.animGroup = Actor.animList.dead; }
+            //
+            else if (Actor.state == Actor.State.Reward) { Actor.animGroup = Actor.animList.reward; }
         }
 
         public static void SetAnimationDirection(Actor Actor)
@@ -73,6 +76,7 @@ namespace DungeonRun
             //create/populate Actor's AnimationList
             actorAnims = new ActorAnimationList();
 
+            //idle move dash interact lists
             actorAnims.idle = new AnimationGroup();
             actorAnims.idle.down = new List<Byte4>   { new Byte4(0, 0, 0, 0) };
             actorAnims.idle.up = new List<Byte4>     { new Byte4(0, 1, 0, 0) };
@@ -97,8 +101,7 @@ namespace DungeonRun
             actorAnims.interact.right = new List<Byte4> { new Byte4(4, 2, 0, 0) };
             actorAnims.interact.left = new List<Byte4>  { new Byte4(4, 2, 1, 0) };
 
-
-
+            //attack use hit dead lists
             actorAnims.attack = new AnimationGroup();
             actorAnims.attack.down = new List<Byte4>     { new Byte4(3, 0, 0, 0) };
             actorAnims.attack.up = new List<Byte4>       { new Byte4(3, 1, 0, 0) };
@@ -122,6 +125,9 @@ namespace DungeonRun
             actorAnims.dead.up = actorAnims.dead.down;
             actorAnims.dead.right = actorAnims.dead.down;
             actorAnims.dead.left = actorAnims.dead.down;
+
+            //reward list
+            actorAnims.reward = actorAnims.use;
 
         }
 

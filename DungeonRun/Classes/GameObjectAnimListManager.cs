@@ -133,8 +133,6 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(4, 7, 0, 0), new Byte4(5, 7, 0, 0), new Byte4(6, 7, 0, 0), new Byte4(7, 7, 0, 0) },
                 //ItemHeartPiece
                 new List<Byte4> { new Byte4(4, 7, 0, 0) },
-                //ItemGold50
-                new List<Byte4> { new Byte4(5, 7, 0, 0) },
                 //ItemMap
                 new List<Byte4> { new Byte4(4, 3, 0, 0) },
                 //ItemBigKey
@@ -155,15 +153,14 @@ namespace DungeonRun
 
                 //ParticleSmokeSmall
                 new List<Byte4> { new Byte4(2, 0, 0, 0), new Byte4(3, 0, 0, 0), new Byte4(4, 0, 0, 0), new Byte4(5, 0, 0, 0) },
-
                 //ParticleExplosion
                 new List<Byte4> { new Byte4(5, 0, 0, 0), new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0) },
-
                 //ParticleSmokePuff
                 new List<Byte4> { new Byte4(5, 0, 0, 0), new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0) },
-
                 //ParticleHitSparkle
                 new List<Byte4> { new Byte4(8, 1, 0, 0), new Byte4(9, 1, 0, 0) },
+                //ParticleReward50Gold
+                new List<Byte4> { new Byte4(6, 2, 0, 0) },
 
                 #endregion
 
