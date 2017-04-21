@@ -150,6 +150,7 @@ namespace DungeonRun
             {
                 DrawFunctions.Draw(Input.cursorColl);
                 DrawFunctions.Draw(DungeonFunctions.dungeon);
+                DrawFunctions.Draw(InteractionFunctions.interactionRec);
             }
             ScreenManager.spriteBatch.End();
 

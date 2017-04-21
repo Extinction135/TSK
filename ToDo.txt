@@ -31,14 +31,35 @@ ram useage:
 todo:
 
 
-5
+4
 
 
 
-thoroughly playtested on xbox one, ram down to 82mb. no bugs.
+
+added a ComponentCollision instance named interactionRec to InteractionFunctions.
+added SetHeroInteractionRec() to InteractionFunctions.
+added CheckInteractionRecCollisions() to CollisionFunctions.
+now drawing interactionRec from DungeonScreen if drawCollisions flag is true.
+extended ActorFunctions.Update to handle interact actor state.
+this codepath calls the new CheckInteractionRecCollisions() function.
+finessed the offset values to get the interactionRec placed just right around hero.
+this offset is based on the hero's facing direction.
+playtested & approved.
 
 
 
+
+
+
+
+do we have an interact animation? do we need one?
+
+
+we have the interaction state, that only hero will use
+(AI will never set the input to interaction)
+
+
+we need to set this based on the player input
 
 
 

@@ -234,7 +234,17 @@ namespace DungeonRun
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
                 //check states
-                if (Actor.state == Actor.State.Dash)
+                if (Actor.state == Actor.State.Interact)
+                {
+                    //
+                    
+                    Actor.lockTotal = 5;
+                    Actor.stateLocked = true;
+                    CollisionFunctions.CheckInteractionRecCollisions();
+
+
+                }
+                else if (Actor.state == Actor.State.Dash)
                 {
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;

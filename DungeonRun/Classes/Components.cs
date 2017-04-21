@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
+
     public class ComponentCollision
     {   //allows an object or actor to collide with other objects or actors
         public Rectangle rec = new Rectangle(100, 100, 16, 16); //used in collision checking

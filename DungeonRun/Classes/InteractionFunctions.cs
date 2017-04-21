@@ -17,6 +17,48 @@ namespace DungeonRun
         public static byte damage;
         public static float force;
 
+        public static ComponentCollision interactionRec = new ComponentCollision();
+        //public static Rectangle interactionRec = new Rectangle(0, 0, 8, 8);
+
+
+
+
+        public static void SetHeroInteractionRec()
+        {
+            //set the interaction rec to the hero's position
+            interactionRec.rec.X = (int)Pool.hero.compSprite.position.X - 4;
+            interactionRec.rec.Y = (int)Pool.hero.compSprite.position.Y - 4;
+            //offset the rec based on the direction hero is facing
+            if (Pool.hero.direction == Direction.Up)
+            {
+                interactionRec.rec.Width = 8; interactionRec.rec.Height = 4;
+                interactionRec.rec.Y -= 1;
+            }
+            else if (Pool.hero.direction == Direction.Down)
+            {
+                interactionRec.rec.Width = 8; interactionRec.rec.Height = 4;
+                interactionRec.rec.Y += 14;
+            }
+            else if (
+                Pool.hero.direction == Direction.Left || 
+                Pool.hero.direction == Direction.UpLeft || 
+                Pool.hero.direction == Direction.DownLeft) 
+            {
+                interactionRec.rec.Width = 4; interactionRec.rec.Height = 8;
+                interactionRec.rec.Y += 4; interactionRec.rec.X -= 7;
+            }
+            else if (
+                Pool.hero.direction == Direction.Right || 
+                Pool.hero.direction == Direction.UpRight || 
+                Pool.hero.direction == Direction.DownRight)
+            {
+                interactionRec.rec.Width = 4; interactionRec.rec.Height = 8;
+                interactionRec.rec.Y += 4; interactionRec.rec.X += 11;
+            }
+        }
+
+
+
 
 
         public static void Handle(Actor Actor, GameObject Obj)

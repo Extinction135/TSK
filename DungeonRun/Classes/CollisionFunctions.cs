@@ -42,6 +42,20 @@ namespace DungeonRun
 
 
 
+        public static void CheckInteractionRecCollisions()
+        {
+            InteractionFunctions.SetHeroInteractionRec();
+
+            //checks to see if the interactionRec collides with any gameObjects
+            //passes these collisions to a Handle() function
+
+            //move the interaction rec offscreen
+        }
+
+
+
+
+
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
             collision = false; //assume no collision
