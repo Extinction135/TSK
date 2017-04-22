@@ -31,15 +31,24 @@ ram useage:
 todo:
 
 
-11
+10
 
 
-
-renamed the ParticlesProjectilesSheet to ProjectileSheet.
-made the ProjectileSheet.psd file x2, so we can fit more into it.
-updated codepaths that referenced the particleProjectile sheet.
-this is in prep for creation of items/consumables, since they will need to be on projectile sheet.
+moved rupee, heart, heart piece sprites into ProjectilesSheet from DungeonSheet.
+repacked ProjectileSheet.
+updated GameObjAnimListManager to reflect new packing for various objs.
 playtested, working.
+
+
+
+
+
+we could condense the UI sheet into the ProjectileSheet, since we have the space now.
+
+if we did this, we should probably change the name of the projectile sheet to something like GameSheet.
+because it has more that just projectiles in it..
+
+
 
 
 
