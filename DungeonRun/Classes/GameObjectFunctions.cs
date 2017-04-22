@@ -247,6 +247,11 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = 2;
             }
+            else if (Type == GameObject.Type.DebrisFloor)
+            {
+                Obj.compCollision.blocking = false;
+                Obj.compSprite.zOffset = -32;
+            }
 
             #endregion
 

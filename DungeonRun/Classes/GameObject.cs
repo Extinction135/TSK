@@ -66,6 +66,8 @@ namespace DungeonRun
             Pillar,         //pillars placed around doors/walls
             WallTorch,      //torches placed around doors/walls
 
+            DebrisFloor,
+
             #endregion
 
 

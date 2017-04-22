@@ -78,6 +78,9 @@ namespace DungeonRun
                 //WallTorch
                 new List<Byte4> { new Byte4(7, 0, 0, 0), new Byte4(7, 1, 0, 0), new Byte4(7, 2, 0, 0) },
 
+                //DebrisFloor
+                new List<Byte4> { new Byte4(7, 7, 0, 0) },
+
                 #endregion
 
 

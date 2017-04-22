@@ -31,40 +31,37 @@ ram useage:
 todo:
 
 
-
-screenshot the next commit total, because it's unsigned byte.maxValue
-
-
-
-GitHub.MrGrak.Commits.Total = Byte.MaxValue;
+3
 
 
 
-
-4
-
-
-
-added SoundTextLetter and SoundTextDone to content project.
-added instances for these sounds to Assets.
-updated summary screen to count each summary value individually, sequentially.
-added call to SoundTextLetter when incrementing a summary value.
-added call to SoundTextDone when summary value counting is complete.
-added SoundExitSummary to content project, built.
-added instances to Assets.cs for SoundExitSummary sound effect.
-updated SummaryScreen.Update() to call Assets.sfxExitSummary.Play() upon screen exit.
-increased the volume of SoundTextLetter and SoundTextDone.
-playtested, summary screen sound effect is playing a little too late.
-
-moved call to play() into SummaryScreen.HandleInput().
-call happens when player presses button to continue.
-playtested, everything is working perfectly.
+added floor debris to dungeon sheet.
+updated GameObject.type enum with DebrisFloor value.
+updated GameObjAnimListManager with animation list for DebrisFloor.
+updated GameObj.SetType() to handle DebrisFloor type.
+updated DungeonFunctions.FinishRoom() to scatter DebrisFloor objs around room.
+increased objPool count to 150 instances.
 
 
 
 
 
 
+whats the reward formula?
+time bonus + enemies killed - damage taken
+time bonus is based on how many rooms are in the dungeon.
+total dungeon rooms - total minutes = gold multiplier * 100.
+this expects the player to clear a room a minute.
+
+
+
+
+
+add skull pot objects along the left wall of spawn room
+
+
+
+add skeleton debris randomly around the boss room
 
 
 
@@ -88,24 +85,6 @@ and this fits nicely into the Handle(Actor, Projectile) function
 
 
 
-SUMMARY SCREEN
-
-once the numbers are tallied, summary screen should play the text complete sound
-get the totalTime value counting up to the dungeonRecord's totalTime value.
-we can get the indivdual hours, minutes, seconds
-so we can create ints that represent those in summary screen
-then count those ints up to the values of hours, minutes, seconds
-and concat them all onto the same summary data string
-
-
-
-
-
-
-
-
-
-
 Version 0.2 Milestones
 
 	???
@@ -119,7 +98,7 @@ Version 0.2 Milestones
 	
 Stuff that needs to be done, but it's not terribly important rn	
 	
-	make skull pot objects along the left wall
+	
 	
 	we should include a soundFXinstance on actors that points to one of the soundFX in assets
 	then we can set this instance in ActorFunctions.SetType()
@@ -129,22 +108,16 @@ Stuff that needs to be done, but it's not terribly important rn
 	add wall pillar decorations when room is built
 	doors should have decorations around them as well
 
-	make sure that the dungeon complete musical cue is mono and 22k
-
 	hero should spin around prior to dying
 	other actors should not do this, they should die immediately
 	the dungeon screen should only start it's fadeIn if the hero is in his final sitting death state
 	it should remain 'playing' while hero spins around
 
-	for the boss fight, we'll just use a musical cue to tell the player they're about to fight the boss
+	add a boss music track, play it when hero enters the boss room
 	we don't need to switch music tracks, tho we would like to
 	if we can compress the audio enough, we might have room for this track - it would be nice
 
-	whats the reward formula?
-	time bonus + enemies killed - damage taken
-	time bonus is based on how many rooms are in the dungeon.
-	total dungeon rooms - total minutes = gold multiplier * 100.
-	this expects the player to clear a room a minute.
+	
 
 	implement a fireball projectile that moves across frames
 	rotate the fireball sprite to face down (all projectiles + weapons should face down by default)
@@ -188,11 +161,6 @@ Stuff that needs to be done, but it's not terribly important rn
 	
 	
 Maybes / Ideas	
-	
-	
-instead of the current boss intro, we should have a drum fill that matches the song tempo
-a fill that goes high to low
-and ideally, we would like to have boss music
 
 blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
 or they can use a weapon, like a stick or gooey hand, iunno
@@ -204,26 +172,9 @@ OPTIMIZATION
 if we don't draw the floor tiles, the draw loop is much faster
 so, we could standardize the room sizes, then create a floor sprite
 then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
-	
-define room.cs, which describes the width and height of a room, and has a .type enum
-	create a room instance, then pass that to the room creator routine
-	place enemies all around within the room, they should not overlap
-	place hero in the center of the room
-	
-add editor buttons to top of window: draw collisions on/off
-
-dungeon.cs
-	a collection of rooms (including an exit, hub, key, + boss room)
-	draws the current room
-	
-room.cs
-	rectangle (collisionRec) : size + position
-	type
-
-
 
 OPTIMIZATIONS
-	drop the sample rate down to 32k to save even more space on bkg music files
+	drop the sample rate down to 22k to save even more space on bkg music files
 	the soundfx are already at 32k, so we know lower sampled audio builds and loads correctly
 
 

@@ -312,6 +312,17 @@ namespace DungeonRun
                     Room.center.X + 8,
                     Room.center.Y + 8);
                 //dont spawn any mobs in this room
+
+                //randomly place skeleton debris around room
+                for (i = 0; i < 30; i++)
+                {
+                    objRef = PoolFunctions.GetObj();
+                    MovementFunctions.Teleport(objRef.compMove,
+                        GetRandom.Int(0, Room.size.x) * 16 + pos.X + 8,
+                        GetRandom.Int(0, Room.size.y) * 16 + pos.Y + 8);
+                    objRef.direction = Direction.Down;
+                    GameObjectFunctions.SetType(objRef, GameObject.Type.DebrisFloor);
+                }
             }
 
             #endregion
