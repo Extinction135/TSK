@@ -55,9 +55,9 @@ namespace DungeonRun
         static WorldUI()
         {
             Point UIpos = new Point(255, 32); //center aligned
-            UIpos.X = 32; //left aligned
+            UIpos.X = 50; UIpos.Y = 50; //left top aligned (traditional)
+
             hearts = new List<ComponentSprite>();
-            
             weaponBkg = CreateBkg(UIpos.X, UIpos.Y);
             CreateRow(UIpos.X + 30, UIpos.Y + 01);
             CreateRow(UIpos.X + 30, UIpos.Y + 14);
@@ -85,10 +85,10 @@ namespace DungeonRun
             //clip hero's health to 14 hearts
             if (Pool.hero.health > 14) { Pool.hero.health = 14; }
 
-            //get the current heart count, compare it to the last heart count
-            currentHeartCount = Pool.hero.health;
-            if (currentHeartCount < lastHeartCount)
-            {   //if damage has been done to hero, scale up the remaining hearts
+            //animate (scale) the hero's hearts
+            currentHeartCount = Pool.hero.health; //get the current heart count
+            if (currentHeartCount != lastHeartCount) //if current does not equal last
+            {   //scale up the current hearts, hero's health changed from last frame
                 for (counter = 0; counter < currentHeartCount; counter++)
                 { hearts[counter].scale = 1.5f; }
             }

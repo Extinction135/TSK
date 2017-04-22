@@ -31,15 +31,11 @@ ram useage:
 todo:
 
 
-2
+1
 
 
-updated SummaryScreen to set the base reward to 100 if dungeon's boss was defeated.
-else, the base reward is set to 0 - no reward.
-then we apply the enemies killed minus the damage taken to get the total reward.
-playtested, works.
-
-
+worldUI now scales up the hero's remaining hearts upon any change, positive or negative.
+playtested, working.
 
 
 
@@ -48,10 +44,24 @@ this is just like when hero loses a heart, but the opposite
 
 
 
+boss should collide with hero - right now he doesn't
+this means the boss 'locks' the hero when he collides with him - the hero can't move
+this also leads to a state where the boss can spawn a blob ON TOP of hero, locking them both
+
+simply check collisions with hero + boss
+
+we need boss music, and that music should play when hero enters boss room
 
 
 
 
+
+
+
+
+
+we could display the dungeon key and map sprites on the worldUI to indicate those have been found
+we should also be displaying the gold total on the world UI
 
 
 
@@ -100,7 +110,12 @@ Stuff that needs to be done, but it's not terribly important rn
 	if we can compress the audio enough, we might have room for this track - it would be nice
 
 	
-
+	alternatively, we could have the boss drop an EGG projectile, which takes a few frames to 'hatch'
+	when the egg hatches, a blob actor could be placed there
+	this would prevent the blobs from overlapping each other
+	well, actually no - because an actor could overlap the egg as it hatches.. hmmmm
+	
+	
 	implement a fireball projectile that moves across frames
 	rotate the fireball sprite to face down (all projectiles + weapons should face down by default)
 	this is spawned from the Y button press
