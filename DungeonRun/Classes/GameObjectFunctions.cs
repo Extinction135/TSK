@@ -360,7 +360,7 @@ namespace DungeonRun
                 Obj.objGroup = GameObject.ObjGroup.Item;
 
                 Obj.lifetime = 255; //in frames
-                Obj.compAnim.speed = 5; //in frames
+                Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;
             }
             else if (Type == GameObject.Type.ItemHeart)
@@ -372,7 +372,7 @@ namespace DungeonRun
                 Obj.objGroup = GameObject.ObjGroup.Item;
 
                 Obj.lifetime = 255; //in frames
-                Obj.compAnim.speed = 5; //in frames
+                Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;
             }
 
@@ -459,8 +459,8 @@ namespace DungeonRun
 
         public static void Update(GameObject Obj)
         {
-            if(Obj.lifetime > 0)
-            {   //if the life counter is 0, ignore this object
+            if(Obj.lifetime > 0) //if the obj has a lifetime, count it
+            {  
                 Obj.lifeCounter++; //increment the life counter of the gameobject
                 //if the life counter reaches the total, release this object back to the pool
                 if (Obj.lifeCounter >= Obj.lifetime) { PoolFunctions.Release(Obj); }

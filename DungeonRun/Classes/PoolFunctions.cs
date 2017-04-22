@@ -147,7 +147,7 @@ namespace DungeonRun
             }
         }
 
-        public static void Update(DungeonScreen DungeonScreen)
+        public static void Update()
         {
             //actor pool
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
@@ -179,10 +179,10 @@ namespace DungeonRun
                         Pool.projectilePool[Pool.counter].compSprite);
                 }
             }
-            Move(DungeonScreen);
+            Move();
         }
 
-        public static void Move(DungeonScreen DungeonScreen)
+        public static void Move()
         {
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             {   //move actors in actor pool that are active and alive
@@ -190,12 +190,12 @@ namespace DungeonRun
                     Pool.actorPool[Pool.counter].active && 
                     Pool.actorPool[Pool.counter].state != Actor.State.Dead
                     )
-                { MovementFunctions.Move(Pool.actorPool[Pool.counter], DungeonScreen); }
+                { MovementFunctions.Move(Pool.actorPool[Pool.counter]); }
             }
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             {   //move projectiles in projectile pool that are active
                 if (Pool.projectilePool[Pool.counter].active)
-                { MovementFunctions.Move(Pool.projectilePool[Pool.counter], DungeonScreen); }
+                { MovementFunctions.Move(Pool.projectilePool[Pool.counter]); }
             }
             //objects in the objPool dont move
         }

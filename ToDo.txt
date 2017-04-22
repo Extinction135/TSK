@@ -31,19 +31,23 @@ ram useage:
 todo:
 
 
-7
+6
 
 
 
-added a basic routine for spawning heart items to SetDeathState().blob.
-a heart will spawn 40% of the time.
-updated GameObjFunctions.SetType() to handle items as projectiles, with a lifetime + animation speed.
-updated InteractionFunctions.Handle() with codepaths for Items.
-tested, noticed bug.
+removed DungeonScreeen parameter from Move() & PoolFunctions.Update() & MovementFunctions.Move().
+we weren't even using the parameter! i hate instances. i'm a global kinda guy.
+
+bug: only the hero should be able to pick up rupees or hearts.
+solution: updated InteractionFunctions.Handle() to check if actor picking up rupees or hearts is the hero.
+
 bug: hearts and rupees don't disappear when hero collides with them.
-
-
-
+cause: the hearts & rupees were using a byte value of 255 as their lifetime total.
+when we set the lifeCounter, it set to 255. then next frame it incremented.
+thus overflowing to 0, resetting the total lifetime the item was alive for.
+solution: upon interaction, we set the lifetime to 1 and the lifeCounter to 2.
+this Releases() the item on the next frame, prior to collision/interaction.
+play tested, working perfectly. 
 
 
 

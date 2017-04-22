@@ -32,15 +32,15 @@ namespace DungeonRun
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
         }
 
-        public static void Move(Actor Actor, DungeonScreen DungeonScreen)
+        public static void Move(Actor Actor)
         {
             ProjectMovement(Actor.compMove);
             CollisionFunctions.CheckCollisions(Actor);
             ComponentFunctions.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
         }
 
-        public static void Move(GameObject Obj, DungeonScreen DungeonScreen)
-        {   //this is only used for projectiles + particles
+        public static void Move(GameObject Obj)
+        {   //this is only used for projectiles + particles, never room objects
             ProjectMovement(Obj.compMove);
             CollisionFunctions.CheckCollisions(Obj);
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);

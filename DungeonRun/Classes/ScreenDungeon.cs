@@ -77,7 +77,6 @@ namespace DungeonRun
             if(!Flags.Paused)
             {
 
-
                 #region Handle Screen State
 
                 if(screenState == ScreenState.FadeOut) //fade overlay to 0
@@ -119,7 +118,7 @@ namespace DungeonRun
 
 
                 //update and move actors, objects, and projectiles
-                PoolFunctions.Update(this);
+                PoolFunctions.Update();
                 CollisionFunctions.CheckDungeonRoomCollisions();
                 WorldUI.Update();
                 //track camera to hero
