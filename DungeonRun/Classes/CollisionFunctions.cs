@@ -126,7 +126,7 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active)
                 {
                     if (Projectile.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    { InteractionFunctions.Handle(Projectile, Pool.actorPool[i]); }
+                    { InteractionFunctions.Handle(Pool.actorPool[i], Projectile); }
                 }
             }
         }

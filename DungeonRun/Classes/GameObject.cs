@@ -24,11 +24,10 @@ namespace DungeonRun
             Liftable,   //can the hero pick this object up, carry it, and throw it?
             Draggable,  //can the hero push, pull, or drag this object?
 
-            Item,       //picked up off ground, held above hero's head
+            Item,       //picked up off ground, a heart or rupee
             Projectile, //a colliding object (moving or stationary)
             Particle    //doesn't collide, direction always faces down, used as a visual cue
                         //the rewards from chests are particles
-            //Inspectable,//hero can 'read' or 'inspect' with this obj
         }
 
         public enum Type
