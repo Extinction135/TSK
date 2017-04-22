@@ -31,13 +31,31 @@ ram useage:
 todo:
 
 
-10
+9
 
 
-moved rupee, heart, heart piece sprites into ProjectilesSheet from DungeonSheet.
-repacked ProjectileSheet.
-updated GameObjAnimListManager to reflect new packing for various objs.
+
+consolidated UI sheet into projectileSheet.
+changed projectile sheet to 'MainSheet'.
+removed projectile sheet & UI sheet from project & assets.
+converted all codepaths to use MainSheet texture asset.
 playtested, working.
+cleaned up art folder, removed unused PSDs.
+
+
+
+S
+
+what the ram useage rn?
+
+
+
+update frames for hearts + item/weapon background sprites
+this is in WorldUI class.
+
+
+
+
 
 
 
@@ -45,7 +63,7 @@ playtested, working.
 
 we could condense the UI sheet into the ProjectileSheet, since we have the space now.
 
-if we did this, we should probably change the name of the projectile sheet to something like GameSheet.
+if we did this, we should probably change the name of the projectile sheet to something like MainSheet.
 because it has more that just projectiles in it..
 
 

@@ -30,23 +30,23 @@ namespace DungeonRun
         {
             for (counter = 0; counter < 7; counter++)
             {
-                hearts.Add(new ComponentSprite(Assets.uiSheet,
+                hearts.Add(new ComponentSprite(Assets.mainSheet,
                     new Vector2(Xpos + 11 * counter, Ypos),
-                    new Byte4(0, 0, 0, 0), new Byte2(16, 16)));
+                    new Byte4(15, 1, 0, 0), new Byte2(16, 16)));
             }
         }
 
         public static List<ComponentSprite> CreateBkg(int Xpos, int Ypos)
         {
             List<ComponentSprite> background = new List<ComponentSprite>();
-            background.Add(new ComponentSprite(Assets.uiSheet, new Vector2(Xpos, Ypos),
-                new Byte4(4, 0, 0, 0), new Byte2(16, 16)));
-            background.Add(new ComponentSprite(Assets.uiSheet, new Vector2(Xpos + 16, Ypos),
-                new Byte4(4, 0, 1, 0), new Byte2(16, 16)));
-            background.Add(new ComponentSprite(Assets.uiSheet, new Vector2(Xpos, Ypos + 16),
-                new Byte4(4, 0, 1, 0), new Byte2(16, 16)));
-            background.Add(new ComponentSprite(Assets.uiSheet, new Vector2(Xpos + 16, Ypos + 16),
-                new Byte4(4, 0, 0, 0), new Byte2(16, 16)));
+            background.Add(new ComponentSprite(Assets.mainSheet, new Vector2(Xpos, Ypos),
+                new Byte4(15, 4, 0, 0), new Byte2(16, 16)));
+            background.Add(new ComponentSprite(Assets.mainSheet, new Vector2(Xpos + 16, Ypos),
+                new Byte4(15, 4, 1, 0), new Byte2(16, 16)));
+            background.Add(new ComponentSprite(Assets.mainSheet, new Vector2(Xpos, Ypos + 16),
+                new Byte4(15, 4, 1, 0), new Byte2(16, 16)));
+            background.Add(new ComponentSprite(Assets.mainSheet, new Vector2(Xpos + 16, Ypos + 16),
+                new Byte4(15, 4, 0, 0), new Byte2(16, 16)));
             background[2].rotation = Rotation.Clockwise180;
             background[3].rotation = Rotation.Clockwise180;
             return background;
@@ -64,14 +64,14 @@ namespace DungeonRun
             itemBkg = CreateBkg(UIpos.X + 110, UIpos.Y);
 
             //create the current weapon sprite
-            currentWeapon = new ComponentSprite(Assets.uiSheet,
+            currentWeapon = new ComponentSprite(Assets.mainSheet,
                 new Vector2(UIpos.X + 8, UIpos.Y + 8),
-                new Byte4(0, 5, 0, 0), new Byte2(16, 16));
+                new Byte4(5, 7, 0, 0), new Byte2(16, 16));
 
             //create the current item sprite
-            currentItem = new ComponentSprite(Assets.uiSheet, 
+            currentItem = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(UIpos.X + 8 + 110, UIpos.Y + 8),
-                new Byte4(0, 4, 0, 0), new Byte2(16, 16));
+                new Byte4(5, 6, 0, 0), new Byte2(16, 16));
 
             //create the frametime text component
             frametime = new ComponentText(Assets.font, "test", new Vector2(UIpos.X + 136, UIpos.Y - 8), Assets.colorScheme.textSmall);
@@ -98,8 +98,8 @@ namespace DungeonRun
             for (counter = 0; counter < hearts.Count; counter++)
             {   
                 if (counter <= Pool.hero.health-1)
-                { hearts[counter].currentFrame.x = 0; } //full heart
-                else { hearts[counter].currentFrame.x = 1; } //empty heart
+                { hearts[counter].currentFrame.y = 0; } //full heart
+                else { hearts[counter].currentFrame.y = 1; } //empty heart
                 //scale each heart back down to 1.0
                 if (hearts[counter].scale > 1.0f) { hearts[counter].scale -= 0.05f; }
             }

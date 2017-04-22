@@ -30,10 +30,9 @@ namespace DungeonRun
         public static Texture2D bossSheet;
 
         //world/ui sheets
-        public static Texture2D dungeonSheet;
-        public static Texture2D projectileSheet;
-        public static Texture2D uiSheet;
+        public static Texture2D mainSheet;
         public static Texture2D bigTextSheet;
+        public static Texture2D dungeonSheet;
 
 
         #region Music
@@ -120,10 +119,9 @@ namespace DungeonRun
             bossSheet = content.Load<Texture2D>(@"BossSheet");
 
             //game textures
-            dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
-            projectileSheet = content.Load<Texture2D>(@"ProjectileSheet");
-            uiSheet = content.Load<Texture2D>(@"UISheet");
+            mainSheet = content.Load<Texture2D>(@"MainSheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
+            dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
 
 
             #region Music

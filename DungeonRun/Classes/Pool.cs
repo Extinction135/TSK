@@ -70,7 +70,7 @@ namespace DungeonRun
             //projectile pool
             projectilePool = new List<GameObject>();
             for (counter = 0; counter < projectileCount; counter++)
-            { projectilePool.Add(new GameObject(Assets.projectileSheet)); }
+            { projectilePool.Add(new GameObject(Assets.mainSheet)); }
             projectileIndex = 0;
 
             //floor pool
@@ -87,7 +87,7 @@ namespace DungeonRun
 
             //create an easy to remember reference to the player/hero actor
             hero = actorPool[0];
-            heroShadow = new ComponentSprite(Assets.projectileSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Byte2(16, 8));
+            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Byte2(16, 8));
             heroShadow.zOffset = -16;
         }
     }

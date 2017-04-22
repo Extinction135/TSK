@@ -33,18 +33,6 @@
 /processorParam:TextureFormat=Color
 /build:DungeonSheet.png
 
-#begin UISheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:UISheet.png
-
 #begin BlobSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -215,7 +203,7 @@
 /processorParam:Quality=Best
 /build:SoundExitSummary.wav
 
-#begin ProjectileSheet.png
+#begin MainSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -225,5 +213,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:ProjectileSheet.png
+/build:MainSheet.png
 
