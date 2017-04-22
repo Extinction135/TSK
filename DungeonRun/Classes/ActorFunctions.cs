@@ -115,7 +115,12 @@ namespace DungeonRun
 
         public static void UseWeapon(Actor Actor)
         {
-            if (Actor.weapon == Weapon.Sword) { GameObjectFunctions.SpawnProjectile(GameObject.Type.ProjectileSword, Actor); }
+            if (Actor.weapon == Weapon.Sword)
+            {
+                GameObjectFunctions.SpawnProjectile(
+                    GameObject.Type.ProjectileSword, 
+                    Actor.compSprite.position, Actor.direction);
+            }
 
             //scale up the current weapon in world ui
             if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }

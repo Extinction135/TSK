@@ -94,12 +94,12 @@ namespace DungeonRun
 
 
         
-        public static void SpawnProjectile(GameObject.Type Type, Actor Actor)
+        public static void SpawnProjectile(GameObject.Type Type, Vector2 Pos, Direction Direction)
         {   //a projectile always has a direction, so it inherit's actor's direction
             GameObject projectile = PoolFunctions.GetProjectile();
             projectile.type = Type;
-            projectile.direction = Actor.direction;
-            AlignProjectile(projectile, Actor.compSprite.position);
+            projectile.direction = Direction;
+            AlignProjectile(projectile, Pos);
             GameObjectFunctions.SetType(projectile, projectile.type);
         }
 
