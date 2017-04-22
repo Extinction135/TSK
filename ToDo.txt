@@ -31,25 +31,14 @@ ram useage:
 todo:
 
 
-1
-
-
-updated SummaryScreen with rewardTotal int field.
-added code to Update() to check if reward is > rewardTotal, instead of hard coded value of 100.
-added a basic reward formula of 100 + enemies killed - damage taken.
-added negative value check for rewardTotal - we dont want the player to lose gold!
-fixed a potential bug where player could exit summary screen without getting the full reward.
-this could only occur if player exited screen prior to summary value count completion.
-
-bug: when the boss room initially builds, the debris objs have wall sprites
-the objects fix themselves on the first call to AnimationFunctions.Animate().
-cause: we set the obj type and teleport them, but we never set the animation frame.
-fix: simply call AnimFunctions.Animate() from PoolFunctions.UpdateObjectPool().
-playtested, working. bug fixed.
+13
 
 
 
 
+updated TrapDoor interaction to create a dash smoke particle on actor when they are push
+actually, trap door should push ALL actors, not just hero.
+modified codepaths in Handle() to reflect this.
 
 
 
@@ -59,19 +48,47 @@ CONSUMABLES
 when a blob is destroyed, it should drop a heart consumable 20% of the time
 20% of the time it should drop a gold piece
 
-we'll need a gameobject of type consumable
-and hero will need to check collisions with it
-
 whats the easiest way to model this?
 these hearts COULD BE projectiles with no movement
 this would give them a lifetime, where they would be Released() afterwards
 and this fits nicely into the Handle(Actor, Projectile) function
+projectiles don't always have to do damage...
+
+this is how we are modeling objs/projs/parts:
+gameObj - stationary, changeable, but not removeable from room
+projectile - mobile/stationary, unchangeable, removed from room after a lifetime
+particle = projectile, but without any kind of interaction/collision checking
+
+so, heart + rupee objects fit into projectile system
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 Version 0.2 Milestones
+	
+	mostly done.
+	record GIFs of spawn room + boss room
+	create a markdown file for the repo that shows version 0.1 + features
+	then it should show the progression to v0.2 + features
+	include GIFs for v0.1 + v0.2
+	
+	
+	
+Version 0.3 Milestones
 
-	???
+	pickup and throw
 	
 	
 	
