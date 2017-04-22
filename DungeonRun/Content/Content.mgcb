@@ -215,9 +215,15 @@
 /processorParam:TextureFormat=Color
 /build:MainSheet.png
 
-#begin SoundItemPickup.wav
+#begin SoundHeartPickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundItemPickup.wav
+/build:SoundHeartPickup.wav
+
+#begin SoundGoldPickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundGoldPickup.wav
 

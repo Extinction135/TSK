@@ -31,22 +31,16 @@ ram useage:
 todo:
 
 
-5
+4
 
 
-added SoundItemPickup to content project.
-added instances to Assets to handle SoundItemPickup effect.
-updated InteractionFunctions.Handle() to play ItemPickup soundFX.
-playtested, working, but i'd like to seperate the rupee and heart pickup sound fx.
-
-
-
+changed the ItemPickup soundFX to be HeartPickup soundFX.
+added SoundGoldPickup to content project, assets.
+updated InteractionFunctions.Handle() to call the new GoldPickup sound effect.
+playtested, working perfectly, actually feels like a zelda game now.
 
 
 
-we need a rupee pickup sound effect
-we need to change the item pickup sound effect to be a heart pickup sound effect
-cause thats what it really is...
 
 
 world UI should scale up all the hearts when hero picks up a heart/increments health

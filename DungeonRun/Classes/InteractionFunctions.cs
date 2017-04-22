@@ -118,12 +118,12 @@ namespace DungeonRun
             {
                 if(Actor == Pool.hero) //only the hero can pickup hearts or rupees
                 {
-                    //hearts + rupees
-                    if (Obj.type == GameObject.Type.ItemHeart) { Actor.health++; }
-                    else if (Obj.type == GameObject.Type.ItemRupee) { PlayerData.saveData.gold++; }
-
-                    Assets.sfxItemPickup.Play(); //play the item pickup soundFX
-                    Obj.lifetime = 1; Obj.lifeCounter = 2; //end the items life
+                    if (Obj.type == GameObject.Type.ItemHeart)
+                    { Actor.health++; Assets.sfxHeartPickup.Play(); }
+                    else if (Obj.type == GameObject.Type.ItemRupee)
+                    { PlayerData.saveData.gold++; Assets.sfxGoldPickup.Play(); }
+                    //end the items life
+                    Obj.lifetime = 1; Obj.lifeCounter = 2; 
                     
                 }
             }
