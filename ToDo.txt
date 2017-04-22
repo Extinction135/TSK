@@ -31,17 +31,10 @@ ram useage:
 todo:
 
 
-3
+2
 
 
-
-added floor debris to dungeon sheet.
-updated GameObject.type enum with DebrisFloor value.
-updated GameObjAnimListManager with animation list for DebrisFloor.
-updated GameObj.SetType() to handle DebrisFloor type.
-updated DungeonFunctions.FinishRoom() to scatter DebrisFloor objs around room.
-increased objPool count to 150 instances.
-
+added skull pot objects along the left wall of spawn room
 
 
 
@@ -57,11 +50,7 @@ this expects the player to clear a room a minute.
 
 
 
-add skull pot objects along the left wall of spawn room
 
-
-
-add skeleton debris randomly around the boss room
 
 
 

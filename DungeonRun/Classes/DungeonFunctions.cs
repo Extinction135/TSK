@@ -231,7 +231,6 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
 
-
                 //build the boss welcome mat (left)
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
@@ -272,6 +271,17 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, GameObject.Type.ChestMap);
 
+                //randomly place skeleton pots around room
+                for (i = 0; i < Room.size.y; i++)
+                {
+                    objRef = PoolFunctions.GetObj();
+                    MovementFunctions.Teleport(objRef.compMove,
+                        0 * 16 + pos.X + 8,
+                        i * 16 + pos.Y + 8);
+                    objRef.direction = Direction.Down;
+                    GameObjectFunctions.SetType(objRef, GameObject.Type.PotSkull);
+                }
+
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);
             }
@@ -311,9 +321,8 @@ namespace DungeonRun
                 MovementFunctions.Teleport(actorRef.compMove,
                     Room.center.X + 8,
                     Room.center.Y + 8);
-                //dont spawn any mobs in this room
 
-                //randomly place skeleton debris around room
+                //randomly place debris around room
                 for (i = 0; i < 30; i++)
                 {
                     objRef = PoolFunctions.GetObj();
@@ -323,6 +332,8 @@ namespace DungeonRun
                     objRef.direction = Direction.Down;
                     GameObjectFunctions.SetType(objRef, GameObject.Type.DebrisFloor);
                 }
+
+                //dont spawn any mobs in this room
             }
 
             #endregion
