@@ -125,8 +125,10 @@ namespace DungeonRun
             MusicFunctions.trackToLoad = Music.None;
             MusicFunctions.fadeState = MusicFunctions.FadeState.FadeOut;
 
-            //calculate the reward
-            rewardTotal = (100) + DungeonRecord.enemyCount - DungeonRecord.totalDamage;
+            //if the player beat the boss, the base reward is 100
+            if (DungeonRecord.beatDungeon) { rewardTotal = 100; }
+            //calculate additional rewards
+            rewardTotal += (DungeonRecord.enemyCount - DungeonRecord.totalDamage);
             //clip the rewardTotal to 0, if it goes negative
             if (rewardTotal < 0) { rewardTotal = 0; }
         }
