@@ -65,8 +65,6 @@ namespace DungeonRun
 
 
 
-
-
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
             collision = false; //assume no collision

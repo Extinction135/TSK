@@ -358,6 +358,10 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Item;
+
+                Obj.lifetime = 255; //in frames
+                Obj.compAnim.speed = 5; //in frames
+                Obj.compAnim.loop = true;
             }
             else if (Type == GameObject.Type.ItemHeart)
             {
@@ -366,6 +370,10 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 7;
                 Obj.compCollision.blocking = false;
                 Obj.objGroup = GameObject.ObjGroup.Item;
+
+                Obj.lifetime = 255; //in frames
+                Obj.compAnim.speed = 5; //in frames
+                Obj.compAnim.loop = true;
             }
 
             #endregion

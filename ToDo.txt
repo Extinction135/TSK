@@ -31,23 +31,16 @@ ram useage:
 todo:
 
 
-8
+7
 
 
-updated frames for hearts + item/weapon background sprites in WorldUI class.
 
-updated SpawnProjectile() to accept a Direction parameter.
-this lets us set a projectile's direction upon spawn, instead of always inheriting actor's direction.
-updated UseWeapon() to pass Actor.Direction as parameter to SpawnProjectile().
-
-updated SpawnProjectile() to accept a Vector2 Position parameter instead of Actor parameter.
-this removes the dependence on an actor, and allows us to spawn projectiles without an actor reference.
-this will cause a problem later tho, when we want to spawn a boomerang projectile.
-the boomerang projectile will want to return to the actor that spawned it.
-we could limit the boomerang projectile to only the hero, then track the hero's position via Pool.hero.
-but that means other actors could never spawn a boomerang projectile.
-
-playtested, working.
+added a basic routine for spawning heart items to SetDeathState().blob.
+a heart will spawn 40% of the time.
+updated GameObjFunctions.SetType() to handle items as projectiles, with a lifetime + animation speed.
+updated InteractionFunctions.Handle() with codepaths for Items.
+tested, noticed bug.
+bug: hearts and rupees don't disappear when hero collides with them.
 
 
 
@@ -56,15 +49,13 @@ playtested, working.
 
 
 
-
-we have obj.type enums for rupees and hearts
-we have animLists for rupees and hearts
-we have setType paths for rupees and hearts
+* add an item pickup soundFX
+* play this when hero collides with item obj
 
 
-if we model items as projectiles..
-does hero collide with them properly?
-can we spawn them properly?
+* move loot spawning into it's own function inside of ActorFunctions.cs
+
+
 
 
 
@@ -111,7 +102,8 @@ so, heart + rupee objects fit into projectile system
 
 
 
-
+summary screen should give a bonus for defeating the boss
+this should be the base amount (100)
 
 
 

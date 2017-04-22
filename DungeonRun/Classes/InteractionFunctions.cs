@@ -117,6 +117,11 @@ namespace DungeonRun
             else if (Obj.objGroup == GameObject.ObjGroup.Item)
             {
                 //hearts + rupees
+                if (Obj.type == GameObject.Type.ItemHeart) { Actor.health++; }
+                else if (Obj.type == GameObject.Type.ItemRupee) { PlayerData.saveData.gold++; }
+
+                //Assets.sfxReward.Play(); //play the item pickup soundFX
+                Obj.lifeCounter = Obj.lifetime; //end the items life
             }
 
             #endregion
