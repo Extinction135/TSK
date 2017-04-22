@@ -31,15 +31,11 @@ ram useage:
 todo:
 
 
-4
+3
 
 
-changed the ItemPickup soundFX to be HeartPickup soundFX.
-added SoundGoldPickup to content project, assets.
-updated InteractionFunctions.Handle() to call the new GoldPickup sound effect.
-playtested, working perfectly, actually feels like a zelda game now.
-
-
+moved loot routines from ActorFunctions to GameObjectFunctions.SpawnLoot(Vector2 Pos).
+playtested, working.
 
 
 
@@ -50,18 +46,15 @@ this is just like when hero loses a heart, but the opposite
 
 
 
-
-
-
-* move loot spawning into it's own function inside of ActorFunctions.cs
-
-
-
-
-
-
 summary screen should give a bonus for defeating the boss
 this should be the base amount (100)
+we know if the boss has been defeated if beatDungeon is true (win condition)
+else don't apply the base reward value
+
+
+
+
+
 
 
 

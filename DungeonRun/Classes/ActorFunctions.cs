@@ -15,9 +15,6 @@ namespace DungeonRun
     public static class ActorFunctions
     {
 
-
-
-
         public static void SetHitState(Actor Actor)
         {
             Actor.state = Actor.State.Hit;
@@ -66,28 +63,8 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -16; //sort to floor
                 GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-
-
-                //spawn heart loot
-                if (GetRandom.Int(0, 100) > 60)
-                {
-                    if(GetRandom.Int(0,100) > 50)
-                    {
-                        GameObjectFunctions.SpawnProjectile(
-                            GameObject.Type.ItemRupee,
-                            Actor.compSprite.position, 
-                            Direction.Down);
-                    }
-                    else
-                    {
-                        GameObjectFunctions.SpawnProjectile(
-                            GameObject.Type.ItemHeart,
-                            Actor.compSprite.position, 
-                            Direction.Down);
-                    }
-                }
-
-
+                if (GetRandom.Int(0, 100) > 60) //spawn loot 40% of the time
+                { GameObjectFunctions.SpawnLoot(Actor.compSprite.position); } 
             }
             else if (Actor.type == Actor.Type.Boss)
             {

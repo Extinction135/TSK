@@ -114,6 +114,16 @@ namespace DungeonRun
             GameObjectFunctions.SetType(particle, particle.type);
         }
 
+        public static void SpawnLoot(Vector2 Pos)
+        {   //either spawn a rupee or a heart item
+            if (GetRandom.Int(0, 100) > 50)
+            { GameObjectFunctions.SpawnProjectile(GameObject.Type.ItemRupee, Pos, Direction.Down); }
+            else
+            { GameObjectFunctions.SpawnProjectile(GameObject.Type.ItemHeart, Pos, Direction.Down); }
+        }
+
+
+
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
             offset.X = 0; offset.Y = 0;

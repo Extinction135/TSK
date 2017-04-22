@@ -124,7 +124,6 @@ namespace DungeonRun
                     { PlayerData.saveData.gold++; Assets.sfxGoldPickup.Play(); }
                     //end the items life
                     Obj.lifetime = 1; Obj.lifeCounter = 2; 
-                    
                 }
             }
 
