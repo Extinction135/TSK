@@ -31,26 +31,21 @@ ram useage:
 todo:
 
 
-2
+1
 
 
-added skull pot objects along the left wall of spawn room
+updated SummaryScreen with rewardTotal int field.
+added code to Update() to check if reward is > rewardTotal, instead of hard coded value of 100.
+added a basic reward formula of 100 + enemies killed - damage taken.
+added negative value check for rewardTotal - we dont want the player to lose gold!
+fixed a potential bug where player could exit summary screen without getting the full reward.
+this could only occur if player exited screen prior to summary value count completion.
 
-
-
-
-
-whats the reward formula?
-time bonus + enemies killed - damage taken
-time bonus is based on how many rooms are in the dungeon.
-total dungeon rooms - total minutes = gold multiplier * 100.
-this expects the player to clear a room a minute.
-
-
-
-
-
-
+bug: when the boss room initially builds, the debris objs have wall sprites
+the objects fix themselves on the first call to AnimationFunctions.Animate().
+cause: we set the obj type and teleport them, but we never set the animation frame.
+fix: simply call AnimFunctions.Animate() from PoolFunctions.UpdateObjectPool().
+playtested, working. bug fixed.
 
 
 

@@ -135,11 +135,14 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {
                 if (Pool.objPool[Pool.counter].active)
-                {
+                {   //align the sprite and collision components to the move component
                     ComponentFunctions.Align(
                         Pool.objPool[Pool.counter].compMove, 
                         Pool.objPool[Pool.counter].compSprite, 
                         Pool.objPool[Pool.counter].compCollision);
+                    //set the current animation frame, check the animation counter
+                    AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim,
+                        Pool.objPool[Pool.counter].compSprite);
                 }
             }
         }

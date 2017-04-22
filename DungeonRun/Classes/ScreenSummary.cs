@@ -38,6 +38,7 @@ namespace DungeonRun
         int enemyCount = 0;
         int totalDamage = 0;
         int reward = 0;
+        int rewardTotal = 0;
         Boolean countingComplete = false;
 
         public override void LoadContent()
@@ -123,6 +124,11 @@ namespace DungeonRun
             //fade out the dungeon music
             MusicFunctions.trackToLoad = Music.None;
             MusicFunctions.fadeState = MusicFunctions.FadeState.FadeOut;
+
+            //calculate the reward
+            rewardTotal = (100) + DungeonRecord.enemyCount - DungeonRecord.totalDamage;
+            //clip the rewardTotal to 0, if it goes negative
+            if (rewardTotal < 0) { rewardTotal = 0; }
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -228,7 +234,7 @@ namespace DungeonRun
                         { totalDamage++; Assets.sfxTextLetter.Play(); }
                         else
                         {
-                            if (reward < 100)
+                            if (reward < rewardTotal)
                             { reward++; Assets.sfxTextLetter.Play(); }
                             else //we've counted everything, exit the count routine
                             { Assets.sfxTextDone.Play(); countingComplete = true; }
@@ -251,7 +257,7 @@ namespace DungeonRun
             else if (screenState == ScreenState.Exit)
             {
                 //award the gold bonus to player data
-                PlayerData.saveData.gold += reward;
+                PlayerData.saveData.gold += rewardTotal;
                 //rebuild the dungeon and exit this screen
                 DungeonFunctions.BuildDungeon();
                 ScreenManager.RemoveScreen(this);
