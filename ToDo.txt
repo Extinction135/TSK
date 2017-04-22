@@ -31,33 +31,40 @@ ram useage:
 todo:
 
 
-12
+11
 
 
-design bug: the Handle(Actor, Obj) and Handle(Obj, Actor) functions are confusing in their signatures.
-they need to be consolidated into one Handle(Actor, Obj) function that handles all cases.
 
-cause: we desiged the functions seperately thinking about the difference between gameobjects and projectiles.
-but, we  don't need seperate functions. this can be done simply by checking the objGroup type.
-
-solution: wrote a new Handle(Actor, Obj) function that handles all codepaths for all objGroup types.
-the structure of this function also makes it much easier to understand interactions between actors and objects.
-updated codepaths that used the previous Handle() functions.
-playtested, working perfectly.
+renamed the ParticlesProjectilesSheet to ProjectileSheet.
+made the ProjectileSheet.psd file x2, so we can fit more into it.
+updated codepaths that referenced the particleProjectile sheet.
+this is in prep for creation of items/consumables, since they will need to be on projectile sheet.
+playtested, working.
 
 
 
 
 
+we have obj.type enums for rupees and hearts
+we have animLists for rupees and hearts too...
+BUT, they're going to have lifetimes and they're going to be from the projectile pool
+
+
+
+so we need to put them on the particle sheet
+the particle sheet is likely to grow too, so we need to make it bigger
 
 
 
 
 
+ITEMS
+
+do we have objects/anim/setType paths for rupees and hearts?
+
+blobs should create these items upon death
 
 
-
-CONSUMABLES
 
 when a blob is destroyed, it should drop a heart consumable 20% of the time
 20% of the time it should drop a gold piece

@@ -31,7 +31,7 @@ namespace DungeonRun
 
         //world/ui sheets
         public static Texture2D dungeonSheet;
-        public static Texture2D particleSheet;
+        public static Texture2D projectileSheet;
         public static Texture2D uiSheet;
         public static Texture2D bigTextSheet;
 
@@ -121,7 +121,7 @@ namespace DungeonRun
 
             //game textures
             dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
-            particleSheet = content.Load<Texture2D>(@"ParticlesProjectilesSheet");
+            projectileSheet = content.Load<Texture2D>(@"ProjectileSheet");
             uiSheet = content.Load<Texture2D>(@"UISheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
 
