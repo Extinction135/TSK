@@ -99,6 +99,9 @@ namespace DungeonRun
         static SoundEffect sfxExitSummarySrc;
         public static SoundEffectInstance sfxExitSummary;
 
+        static SoundEffect sfxItemPickupSrc;
+        public static SoundEffectInstance sfxItemPickup;
+
         #endregion
 
 
@@ -191,6 +194,10 @@ namespace DungeonRun
 
             sfxExitSummarySrc = content.Load<SoundEffect>(@"SoundExitSummary");
             sfxExitSummary = sfxExitSummarySrc.CreateInstance();
+
+            sfxItemPickupSrc = content.Load<SoundEffect>(@"SoundItemPickup");
+            sfxItemPickup = sfxItemPickupSrc.CreateInstance();
+
 
             #endregion
 

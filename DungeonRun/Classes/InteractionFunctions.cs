@@ -122,7 +122,7 @@ namespace DungeonRun
                     if (Obj.type == GameObject.Type.ItemHeart) { Actor.health++; }
                     else if (Obj.type == GameObject.Type.ItemRupee) { PlayerData.saveData.gold++; }
 
-                    Assets.sfxReward.Play(); //play the item pickup soundFX
+                    Assets.sfxItemPickup.Play(); //play the item pickup soundFX
                     Obj.lifetime = 1; Obj.lifeCounter = 2; //end the items life
                     
                 }

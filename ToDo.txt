@@ -31,75 +31,35 @@ ram useage:
 todo:
 
 
-6
+5
 
 
-
-removed DungeonScreeen parameter from Move() & PoolFunctions.Update() & MovementFunctions.Move().
-we weren't even using the parameter! i hate instances. i'm a global kinda guy.
-
-bug: only the hero should be able to pick up rupees or hearts.
-solution: updated InteractionFunctions.Handle() to check if actor picking up rupees or hearts is the hero.
-
-bug: hearts and rupees don't disappear when hero collides with them.
-cause: the hearts & rupees were using a byte value of 255 as their lifetime total.
-when we set the lifeCounter, it set to 255. then next frame it incremented.
-thus overflowing to 0, resetting the total lifetime the item was alive for.
-solution: upon interaction, we set the lifetime to 1 and the lifeCounter to 2.
-this Releases() the item on the next frame, prior to collision/interaction.
-play tested, working perfectly. 
+added SoundItemPickup to content project.
+added instances to Assets to handle SoundItemPickup effect.
+updated InteractionFunctions.Handle() to play ItemPickup soundFX.
+playtested, working, but i'd like to seperate the rupee and heart pickup sound fx.
 
 
 
 
 
-* add an item pickup soundFX
-* play this when hero collides with item obj
+
+we need a rupee pickup sound effect
+we need to change the item pickup sound effect to be a heart pickup sound effect
+cause thats what it really is...
+
+
+world UI should scale up all the hearts when hero picks up a heart/increments health
+this is just like when hero loses a heart, but the opposite
+
+
+
+
+
+
 
 
 * move loot spawning into it's own function inside of ActorFunctions.cs
-
-
-
-
-
-
-
-ITEMS
-
-do we have objects/anim/setType paths for rupees and hearts?
-
-blobs should create these items upon death
-
-
-
-when a blob is destroyed, it should drop a heart consumable 20% of the time
-20% of the time it should drop a gold piece
-
-consumables should actually be of objGroup type ITEMS
-
-
-
-
-
-whats the easiest way to model this?
-these hearts COULD BE projectiles with no movement
-this would give them a lifetime, where they would be Released() afterwards
-and this fits nicely into the Handle(Actor, Projectile) function
-projectiles don't always have to do damage...
-
-this is how we are modeling objs/projs/parts:
-gameObj - stationary, changeable, but not removeable from room
-projectile - mobile/stationary, unchangeable, removed from room after a lifetime
-particle = projectile, but without any kind of interaction/collision checking
-
-so, heart + rupee objects fit into projectile system
-
-
-
-
-
-
 
 
 
