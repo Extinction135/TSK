@@ -52,6 +52,12 @@ namespace DungeonRun
                 AiFunctions.SetActorInput(); //set AI for actor
                 AiFunctions.SetActorInput(); //set AI for actor
                 AiFunctions.SetActorInput(); //set AI for actor
+
+                //open the inventory screen if player presses start button
+                if (Input.IsNewButtonPress(Buttons.Start))
+                {
+                    ScreenManager.AddScreen(new ScreenInventory());
+                }
             }
             else//dungeonScreen is not in playing state..
             {   //reset all input for hero + actors

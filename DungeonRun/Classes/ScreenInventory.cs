@@ -17,12 +17,46 @@ namespace DungeonRun
 
         //fields
 
+        //hero window
+        //inventory window
+        //description window
+        //options window
 
 
-        //methods
+
         public ScreenInventory() { this.name = "InventoryScreen"; }
 
+        public override void LoadContent()
+        {
+            screenState = ScreenState.Opening;
+        }
 
+        public override void HandleInput(GameTime GameTime)
+        {
+            //exit this screen upon start or b button press
+            //if (screenState == ScreenState.Opened)
+            {
+                if (
+                    Input.IsNewButtonPress(Buttons.Start) ||
+                    Input.IsNewButtonPress(Buttons.B))
+                {
+                    //screenState = ScreenState.Closing;
+                    //play the summary exit sound effect immediately
+                    //Assets.sfxExitSummary.Play();
+                    ScreenManager.RemoveScreen(this);
+                }
+            }
+        }
+
+        public override void Update(GameTime GameTime)
+        {
+            
+        }
+
+        public override void Draw(GameTime GameTime)
+        {
+
+        }
 
     }
 }

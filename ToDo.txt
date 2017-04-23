@@ -35,22 +35,26 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
 
-created a global enum called ScreenState to address a design issue with Screens.
-each screen is currently implementing it's own concept of ScreenState
-that's bad, and needs to be consolidated into one universal approach.
-this approach will be: ScreenState { Opening, Opened, Closing, Closed }.
-added a ScreenState field to the base class Screen.
-refactored dungeon screen to use new screenState enum.
-refactored summary screen to use new screenState enum.
-play tested, working.
 
-created InventoryScreen stub, which i'll complete in future commits.
 
+
+
+updated InventoryScreen with overridden methods specific to Screens.
+updated InventoryScreen.HandleInput() to close the screen upon Start or B button press.
+added code to create an InventoryScreen upon Start button press, from DungeonScreen.HandleInput.
+for now, this just pauses the game (inventory screen has no visuals rn).
+playtested, working.
+
+
+
+
+added a /Mockups directory to repo. 
+created the inventory screen mockup, saved it to /Mockups.
 
 
 
@@ -60,6 +64,11 @@ build a basic pause screen, based on CC designs
 just the menu windows for now
 should be triggered from start button press from dungeon screen
 exits the window via start or b button press
+
+
+
+all window positions in inventory screen should be relative to the inventory window
+
 
 
 
