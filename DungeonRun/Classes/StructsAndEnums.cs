@@ -52,11 +52,9 @@ namespace DungeonRun
 
     public enum MouseButtons { LeftButton, RightButton }
 
-
+    public enum ScreenState { Opening, Opened, Closing, Closed }
 
     public enum Music { DungeonA, DungeonB, Boss, Overworld, Shop, Title, None }
-
-
 
     public enum Weapon { Sword }
 

@@ -15,9 +15,6 @@ namespace DungeonRun
     public class DungeonScreen : Screen
     {
 
-        //the various states the dungeon screen can be in
-        public enum ScreenState { FadeOut, Playing, FadeIn, Waiting }
-        public ScreenState screenState = ScreenState.FadeOut;
         //the foreground black rectangle, overlays and hides game content
         Rectangle overlay; 
         public float overlayAlpha = 1.0f;
@@ -39,12 +36,15 @@ namespace DungeonRun
             DungeonFunctions.Initialize(this);
             DungeonFunctions.BuildDungeon();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
+
+            //open the screen
+            screenState = ScreenState.Opening;
         }
 
         public override void HandleInput(GameTime GameTime)
         {
             //if screen is playing, allow input for player + active actor
-            if (screenState == ScreenState.Playing) 
+            if (screenState == ScreenState.Opened) 
             {
                 //reset the input for hero, map player input to hero
                 Input.ResetInputData(Pool.hero.compInput);
@@ -79,27 +79,27 @@ namespace DungeonRun
 
                 #region Handle Screen State
 
-                if(screenState == ScreenState.FadeOut) //fade overlay to 0
+                if(screenState == ScreenState.Opening) //fade overlay to 0
                 {
                     overlayAlpha -= fadeOutSpeed;
                     if (overlayAlpha <= 0.0f)
                     {
-                        overlayAlpha = 0.0f; screenState = 
-                            ScreenState.Playing;
+                        overlayAlpha = 0.0f;
+                        screenState = ScreenState.Opened;
                     }
                 }
-                else if (screenState == ScreenState.Playing) { } //update 
-                else if (screenState == ScreenState.FadeIn) //fade overlay to 1.0
+                else if (screenState == ScreenState.Opened) { } //update 
+                else if (screenState == ScreenState.Closing) //fade overlay to 1.0
                 {
                     overlayAlpha += fadeInSpeed;
                     if (overlayAlpha >= 1.0f)
                     {
                         overlayAlpha = 1.0f;
-                        screenState = ScreenState.Waiting;
+                        screenState = ScreenState.Closed;
                         gameState = GameState.Summary;
                     }
                 }
-                else if (screenState == ScreenState.Waiting)
+                else if (screenState == ScreenState.Closed)
                 {
                     if (gameState == GameState.Summary)
                     {
@@ -109,7 +109,7 @@ namespace DungeonRun
                     }
                     else
                     {
-                        //wait for fadeOut call from DungeonGenerator
+                        //wait for ScreenState.Opening call from DungeonGenerator
                         //this happens when a new dungeon is built
                     }
                 }

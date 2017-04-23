@@ -43,7 +43,7 @@ namespace DungeonRun
             {
                 //player has died, failed the dungeon
                 DungeonRecord.beatDungeon = false;
-                DungeonFunctions.dungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
+                DungeonFunctions.dungeonScreen.screenState = ScreenState.Closing;
                 //we could track hero deaths here
                 Assets.sfxHeroKill.Play();
             }
@@ -70,7 +70,7 @@ namespace DungeonRun
             {
                 //player has beat the dungeon
                 DungeonRecord.beatDungeon = true;
-                DungeonFunctions.dungeonScreen.screenState = DungeonScreen.ScreenState.FadeIn;
+                DungeonFunctions.dungeonScreen.screenState = ScreenState.Closing;
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 //create boss explosion
