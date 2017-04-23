@@ -55,9 +55,7 @@ namespace DungeonRun
 
                 //open the inventory screen if player presses start button
                 if (Input.IsNewButtonPress(Buttons.Start))
-                {
-                    ScreenManager.AddScreen(new ScreenInventory());
-                }
+                { ScreenManager.AddScreen(new ScreenInventory()); }
             }
             else//dungeonScreen is not in playing state..
             {   //reset all input for hero + actors

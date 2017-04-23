@@ -35,15 +35,7 @@ ram useage:
 todo:
 
 
-9
-
-
-
-added /Mockups folder to repo. 
-created inventory screen mockup V1, saved it to /Mockups.
-it's a good idea to mockup what you're going to make, prior to building it.
-this way you can identify and fix problems prior to implementation.
-
+8
 
 
 
@@ -52,6 +44,24 @@ build a basic pause screen, based on CC designs
 just the menu windows for now
 should be triggered from start button press from dungeon screen
 exits the window via start or b button press
+
+
+
+created the inventory window in InventoryScreen, playtested, working.
+
+window title should use black text color, which we'll need to add to color scheme
+and we should rename the textSmall field to textLight.
+update codepaths that ref that color scheme field
+
+the header line isn't drawing
+and the window will always have a footer line
+which sohuld be implemented just like the header line
+
+
+
+
+
+
 
 
 

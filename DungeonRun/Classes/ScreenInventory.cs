@@ -15,13 +15,12 @@ namespace DungeonRun
     public class ScreenInventory : Screen
     {
 
-        //fields
-
-        //hero window
         //inventory window
-        //description window
+        //stats window
+        //selection window
+        //info window
         //options window
-
+        public MenuWindow inventoryWindow;
 
 
         public ScreenInventory() { this.name = "InventoryScreen"; }
@@ -29,6 +28,13 @@ namespace DungeonRun
         public override void LoadContent()
         {
             screenState = ScreenState.Opening;
+
+            //play the menu opening soundFX
+
+            inventoryWindow = new MenuWindow(
+                new Point(16 * 9, 16 * 4), 
+                new Point(16 * 6 + 8, 16 * 5 + 8), 
+                "Current Inventory");
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -41,7 +47,7 @@ namespace DungeonRun
                     Input.IsNewButtonPress(Buttons.B))
                 {
                     //screenState = ScreenState.Closing;
-                    //play the summary exit sound effect immediately
+                    //play the menu close soundFX
                     //Assets.sfxExitSummary.Play();
                     ScreenManager.RemoveScreen(this);
                 }
@@ -50,12 +56,14 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            
+            inventoryWindow.Update();
         }
 
         public override void Draw(GameTime GameTime)
         {
-
+            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            DrawFunctions.Draw(inventoryWindow);
+            ScreenManager.spriteBatch.End();
         }
 
     }
