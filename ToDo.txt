@@ -35,27 +35,38 @@ ram useage:
 todo:
 
 
-13
+12
 
 
-moved xboxone timer to right hand side of screen
-created MenuRectanngle.cs, which represents an animated rectangle for a menu system, like the pause screen.
-created DrawFunctions.Draw(MenuRectangle), to handle drawing of the new MenuRectangle class.
-this is in prep for creating MenuWindow.cs, which will use 3 MenuRectangles.
-
-
-
-
-
-
-
-
+created MenuWindow.cs, which represents an animated series of menu rectangles with a title.
+renamed Assets.ColorScheme.windowBkg to DebugBkg, to better represent it's purpose.
+extended the color scheme to include colors for windowBkg, windowBorder, windowInset, windowInterior.
+updated MenuWindow to use the new ColorScheme fields.
+added DrawFunctions.Draw(MenuWindow).
+this is all in prep for the InventoryScreen, coming up next.
 
 
 
 
 
 build a basic pause screen, based on CC designs
+
+
+
+move DebugMenu.Draw() into DrawFunctions, cause that's where it belongs.
+
+
+seperate the Drawing and Updating of DebugInfo fields from Draw().
+the drawing should occur in DrawFunctions.
+the update should occur in an update() function that is called from dungeonScreen's Update.
+
+
+
+
+menu rectangle could have a closing + closed state
+however, we may want the menu system to disappear faster than an outro animation could play
+at least that was the preferre way for CC
+
 
 
 

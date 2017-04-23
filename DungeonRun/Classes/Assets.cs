@@ -218,12 +218,17 @@ namespace DungeonRun
             colorScheme.overlay = new Color(0, 0, 0, 255);
 
             colorScheme.textSmall = new Color(255, 255, 255, 255);
-            colorScheme.windowBkg = new Color(0, 0, 0, 200);
-            colorScheme.collision = new Color(100, 0, 0, 0);
+            colorScheme.debugBkg = new Color(0, 0, 0, 200);
+            colorScheme.collision = new Color(100, 0, 0);
 
-            colorScheme.buttonUp = new Color(44, 44, 44, 0);
-            colorScheme.buttonOver = new Color(66, 66, 66, 0);
-            colorScheme.buttonDown = new Color(100, 100, 100, 0);
+            colorScheme.buttonUp = new Color(44, 44, 44);
+            colorScheme.buttonOver = new Color(66, 66, 66);
+            colorScheme.buttonDown = new Color(100, 100, 100);
+
+            colorScheme.windowBkg = new Color(0, 0, 0);
+            colorScheme.windowBorder = new Color(180, 180, 180);
+            colorScheme.windowInset = new Color(145, 145, 145);
+            colorScheme.windowInterior = new Color(156, 156, 156);
         }
 
     }
@@ -234,11 +239,16 @@ namespace DungeonRun
         public Color overlay;
 
         public Color textSmall;
-        public Color windowBkg;
+        public Color debugBkg;
         public Color collision;
 
         public Color buttonUp;
         public Color buttonOver;
         public Color buttonDown;
+
+        public Color windowBkg;
+        public Color windowBorder;
+        public Color windowInset;
+        public Color windowInterior;
     }
 }

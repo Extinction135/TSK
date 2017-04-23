@@ -172,7 +172,7 @@ namespace DungeonRun
             #endregion
 
 
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.windowBkg);
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.debugBkg);
             size = textFields.Count();
             for (counter = 0; counter < size; counter++) { DrawFunctions.Draw(textFields[counter]); }
         }

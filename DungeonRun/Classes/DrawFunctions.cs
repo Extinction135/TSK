@@ -82,5 +82,19 @@ namespace DungeonRun
                 MenuRec.color);
         }
 
+        public static void Draw(MenuWindow MenuWindow)
+        {
+            Draw(MenuWindow.background);
+            Draw(MenuWindow.border);
+            Draw(MenuWindow.inset);
+            Draw(MenuWindow.interior);
+
+            if (MenuWindow.interior.displayState == MenuRectangle.DisplayState.Open)
+            {   //only draw the interior sprites if the window is completely open
+                Draw(MenuWindow.title);
+                Draw(MenuWindow.headerLine);
+            }
+        }
+
     }
 }

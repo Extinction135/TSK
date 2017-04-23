@@ -81,7 +81,7 @@ namespace DungeonRun
             //draw the background rec with correct color
             ScreenManager.spriteBatch.Draw(
                 Assets.dummyTexture, rec,
-                Assets.colorScheme.windowBkg);
+                Assets.colorScheme.debugBkg);
             //loop draw all the buttons
             for (counter = 0; counter < buttons.Count; counter++)
             { DrawFunctions.Draw(buttons[counter]); }
