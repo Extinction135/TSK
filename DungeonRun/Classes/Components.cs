@@ -124,7 +124,7 @@ namespace DungeonRun
         public ComponentButton(String Text, Point Position)
         {
             rec = new Rectangle(Position, new Point(0, 9));
-            compText = new ComponentText(Assets.font, Text, new Vector2(0, 0), Assets.colorScheme.textSmall);
+            compText = new ComponentText(Assets.font, Text, new Vector2(0, 0), Assets.colorScheme.textLight);
             selected = false;
             currentColor = Assets.colorScheme.buttonUp;
             ComponentFunctions.CenterText(this);

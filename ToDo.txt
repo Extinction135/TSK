@@ -35,23 +35,23 @@ ram useage:
 todo:
 
 
-8
+7
+
+
+
+updated ColorScheme struct with fields for textLight and textDark.
+removed textSmall field from ColorScheme.
+updated various references to textSmall field -> now textLight.
+updated SetDefaultColorScheme() to create colors for textLight and textDark.
+updated MenuWindow.title to use textDark color.
+changed colorScheme.windowBorder color to 210.
+changed colorScheme.windowBorder color to 130.
+playtested, working.
 
 
 
 
-build a basic pause screen, based on CC designs
-just the menu windows for now
-should be triggered from start button press from dungeon screen
-exits the window via start or b button press
 
-
-
-created the inventory window in InventoryScreen, playtested, working.
-
-window title should use black text color, which we'll need to add to color scheme
-and we should rename the textSmall field to textLight.
-update codepaths that ref that color scheme field
 
 the header line isn't drawing
 and the window will always have a footer line

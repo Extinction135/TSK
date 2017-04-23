@@ -53,7 +53,7 @@ namespace DungeonRun
             title = new ComponentText(
                 Assets.font, Title, 
                 new Vector2(Position.X + 8, Position.Y + 2), 
-                Assets.colorScheme.textSmall);
+                Assets.colorScheme.textDark);
 
             headerLine = new MenuRectangle(
                 new Point(Position.X + 8, Position.Y + 16),

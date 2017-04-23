@@ -77,7 +77,7 @@ namespace DungeonRun
 
             //create the frametime text component
             frametime = new ComponentText(Assets.font, "test", 
-                new Vector2(640 - 55, UIpos.Y - 9), Assets.colorScheme.textSmall);
+                new Vector2(640 - 55, UIpos.Y - 9), Assets.colorScheme.textLight);
 
             currentHeartCount = 3;
             lastHeartCount = 3;

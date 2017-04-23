@@ -50,35 +50,35 @@ namespace DungeonRun
             int yPos = background.Y - 2;
 
             timingText = new ComponentText(Assets.font, "", 
-                new Vector2(2, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(2, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(timingText);
 
             actorText = new ComponentText(Assets.font, "", 
-                new Vector2(16 * 3, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(16 * 3, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(actorText);
 
             moveText = new ComponentText(Assets.font, "", 
-                new Vector2(16 * 7, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(16 * 7, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(moveText);
 
             poolText = new ComponentText(Assets.font, "", 
-                new Vector2(16 * 12, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(16 * 12, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(poolText);
 
             creationText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 17, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(16 * 17, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(creationText);
 
             recordText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 21, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(16 * 21, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(recordText);
 
             musicText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 26, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(16 * 26, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(musicText);
 
             saveDataText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textSmall);
+                new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(saveDataText);
 
         }
