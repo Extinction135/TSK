@@ -35,19 +35,16 @@ ram useage:
 todo:
 
 
-7
+6
 
 
 
-updated ColorScheme struct with fields for textLight and textDark.
-removed textSmall field from ColorScheme.
-updated various references to textSmall field -> now textLight.
-updated SetDefaultColorScheme() to create colors for textLight and textDark.
-updated MenuWindow.title to use textDark color.
-changed colorScheme.windowBorder color to 210.
-changed colorScheme.windowBorder color to 130.
+
+bug: the header line in MenuWindow isn't being displayed.
+cause: the headerline wasn't being updated, so it never grew into it's opened size.
+solution: now calling Update() on the headerline from MenuWindow.Update().
+updated DrawFunctions.Draw() to draw the headerline for MenuWindows while window is opening.
 playtested, working.
-
 
 
 

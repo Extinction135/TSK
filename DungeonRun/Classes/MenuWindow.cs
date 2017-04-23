@@ -44,21 +44,21 @@ namespace DungeonRun
                 new Point(Position.X + 3, Position.Y + 3), 
                 new Point(size.X - 6, size.Y - 6),
                 Assets.colorScheme.windowInterior);
-
-            background.openDelay = 0;
-            border.openDelay = 2;
-            inset.openDelay = 2;
-            interior.openDelay = 8;
-
             title = new ComponentText(
                 Assets.font, Title, 
                 new Vector2(Position.X + 8, Position.Y + 2), 
                 Assets.colorScheme.textDark);
-
             headerLine = new MenuRectangle(
                 new Point(Position.X + 8, Position.Y + 16),
                 new Point(size.X - 16, 1),
                 Assets.colorScheme.windowInset);
+
+            //set the openDelay to cascade in all the MenuRectangles
+            background.openDelay = 0;
+            border.openDelay = 2;
+            inset.openDelay = 2;
+            interior.openDelay = 8;
+            headerLine.openDelay = 12;
         }
 
         public void Update()
@@ -70,6 +70,7 @@ namespace DungeonRun
                 border.Update();
                 inset.Update();
                 interior.Update();
+                headerLine.Update();
             }
         }
 
