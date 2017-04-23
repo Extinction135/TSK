@@ -88,7 +88,7 @@ namespace DungeonRun
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active)
-                {   //ignore actor collisions with the boss actor
+                {   //actors always block/collide with each other, but not with themselves
                     if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                     { if (Actor != Pool.actorPool[i]) { collision = true; } }
 

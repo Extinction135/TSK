@@ -74,5 +74,13 @@ namespace DungeonRun
             Draw(Button.compText);
         }
 
+        public static void Draw(MenuRectangle MenuRec)
+        {
+            ScreenManager.spriteBatch.Draw(
+                Assets.dummyTexture, 
+                MenuRec.rec, 
+                MenuRec.color);
+        }
+
     }
 }

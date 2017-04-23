@@ -26,6 +26,8 @@ namespace DungeonRun
         public static ComponentText frametime;
         public static int counter;
 
+
+
         public static void CreateRow(int Xpos, int Ypos)
         {
             for (counter = 0; counter < 7; counter++)
@@ -74,7 +76,8 @@ namespace DungeonRun
                 new Byte4(5, 6, 0, 0), new Byte2(16, 16));
 
             //create the frametime text component
-            frametime = new ComponentText(Assets.font, "test", new Vector2(UIpos.X + 136, UIpos.Y - 8), Assets.colorScheme.textSmall);
+            frametime = new ComponentText(Assets.font, "test", 
+                new Vector2(640 - 55, UIpos.Y - 9), Assets.colorScheme.textSmall);
 
             currentHeartCount = 3;
             lastHeartCount = 3;
@@ -123,11 +126,11 @@ namespace DungeonRun
             }
             DrawFunctions.Draw(currentWeapon);
             DrawFunctions.Draw(currentItem);
-            if(!Flags.Release)
+            if (!Flags.Release)
             {
-                frametime.text = Timing.updateTime.Milliseconds + " ms\n";
-                frametime.text += Timing.drawTime.Milliseconds + " ms\n";
-                frametime.text += Timing.totalTime.Milliseconds + " ms";
+                frametime.text = "U:" + Timing.updateTime.Milliseconds;
+                frametime.text += "\nD:" + Timing.drawTime.Milliseconds;
+                frametime.text += "\nT:" + Timing.totalTime.Milliseconds;
                 DrawFunctions.Draw(frametime);
             }
         }

@@ -28,46 +28,52 @@ ram useage:
 	
 	
 	
+	
+	
+	
+	
 todo:
 
 
-1
+13
 
 
-worldUI now scales up the hero's remaining hearts upon any change, positive or negative.
-playtested, working.
-
-
-
-world UI should scale up all the hearts when hero picks up a heart/increments health
-this is just like when hero loses a heart, but the opposite
+moved xboxone timer to right hand side of screen
+created MenuRectanngle.cs, which represents an animated rectangle for a menu system, like the pause screen.
+created DrawFunctions.Draw(MenuRectangle), to handle drawing of the new MenuRectangle class.
+this is in prep for creating MenuWindow.cs, which will use 3 MenuRectangles.
 
 
 
-boss should collide with hero - right now he doesn't
-this means the boss 'locks' the hero when he collides with him - the hero can't move
-this also leads to a state where the boss can spawn a blob ON TOP of hero, locking them both
 
-simply check collisions with hero + boss
+
+
+
+
+
+
+
+
+
+build a basic pause screen, based on CC designs
+
+
+
+
+
+
 
 we need boss music, and that music should play when hero enters boss room
 
+what else do we need to do to prep for v0.2 release?
+theoretically we could 'rollback' to v0.1 and record a short video.
+then record a video for v0.2.
 
 
 
 
 
-
-
-
-we could display the dungeon key and map sprites on the worldUI to indicate those have been found
-we should also be displaying the gold total on the world UI
-
-
-
-
-
-Version 0.2 Milestones
+Version 0.2 Release
 	
 	mostly done.
 	record GIFs of spawn room + boss room
@@ -76,10 +82,99 @@ Version 0.2 Milestones
 	include GIFs for v0.1 + v0.2
 	
 	
+BUG?
+boss should collide with hero - right now he doesn't
+this means the boss 'locks' the hero when he collides with him - the hero can't move
+this also leads to a state where the boss can spawn a blob ON TOP of hero, locking them both
+** actually, the codepath in collisionFunctions.CheckActorPoolCollisions only ignores collisions..
+between blob and boss. Boss + Hero collisions should still be valid/true..
+but i've noticed that the boss overlaps/locks the hero still. at least it feels that way.
+so... not sure what the issue is: either i'm imagining the lock, or it's actually locking....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 Version 0.3 Milestones
 
 	pickup and throw
+	hero should be able to pickup the skull pot objects
+	hero should be able to carry the skull pot objects around
+	hero should be able to throw the pots in a direction
+	pots should travel for a bit, with a shadow, before colliding with ground
+	pots should also collide with room objects
+	pot should have sound for pickup, throw, explode/death
+	pots should randomly spawn loot too, when they are picked up
+	
+	dragging/pushing/pulling
+	hero should be able to 'grab' objects
+	if the object is draggable, then hero should be able to push and pull on it
+	this 'grabbing' state should last until player releases the A button
+	objects should inherit the movement of hero, and check collisions with all objs & actors
+	if a draggable object would collide, it doesn't move
+	
+	fireball projectile
+	hero should be able to spawn a fireball projectile with Y button press
+	this should move in the direction the hero is facing at the time
+	projectile should collide with objs + actors
+	fireball should deal 1 damage to actors it collides with
+	fireball should 'die' upon collision
+	fireball should have a cooldown so hero can't spam it
+	fireball should have a soundfx for spawn, collision/death
+	
+	overworld screen
+	use the background from hyper light drifter for now
+	use the approach of moving the background image against the cursor movement (from destiny)
+	there should be a spining/pulsing cursor icon, like destiny
+	player should be able to select from a few 'locations' on the map
+	the cursor should be 'sticky' like in destiny
+	clicking on a location exits the overworld screen and builds a dungeon
+	
+	exiting dungeons
+	the spawn room should have a set of exit objects that resemble an exit door
+	if hero collides with the inner most part of the exit door, then the screen exits
+	and the overworld screen is created, which lets player choose which dungeon to go to next
+	
+
+	
+	
+Version 0.4 Milestones	
+	
+	ROOM EDITOR + ROOM DATA
+	build the room editor screen
+	standardize all room types + sizes
+	create the room data folder, update cs project to copy room data to output folder
+	basically the same approach as CC, but we'll be storing the room data in a slightly diff format
+	we'll only store room objects + enemy spawn locations - no floors, projectiles, etc..
+	and we'll only need to store the object's enum value
+	this will be stored in a 2d list of Column{Rows}.
+	so row1 = {0,0,0,0,0,10,10,10,0,0,0,0,0} for example, where 10 is an object type and 0 isn't.
+	this was we don't have to store position data, we just correlate rows to room width, and columns to room height
+	width and height is set based on room type, so we'll need to save room type.
+	but thats it. room type + the 2d array of int values.
+	pretty compact and efficient.
+	
+	COMPELTE DUNGEONS
+	we'll be using room editor to build up the room data folders.
+	then when we build the dungeon, we'll load all the room data into the game at once.
+	when we need a specific type of room, we just copy the necessary room data.
+	then we place the room where we need it, and build it.
+	this is done over and over again, until the complete dungeon is built.
+	we'll use the same routines from CC to build the Exit -> Hub -> KeyPath -> BossPath layout.
 	
 	
 	
@@ -89,8 +184,6 @@ Version 0.3 Milestones
 	
 	
 Stuff that needs to be done, but it's not terribly important rn	
-	
-	
 	
 	we should include a soundFXinstance on actors that points to one of the soundFX in assets
 	then we can set this instance in ActorFunctions.SetType()
@@ -104,22 +197,11 @@ Stuff that needs to be done, but it's not terribly important rn
 	other actors should not do this, they should die immediately
 	the dungeon screen should only start it's fadeIn if the hero is in his final sitting death state
 	it should remain 'playing' while hero spins around
-
-	add a boss music track, play it when hero enters the boss room
-	we don't need to switch music tracks, tho we would like to
-	if we can compress the audio enough, we might have room for this track - it would be nice
-
 	
-	alternatively, we could have the boss drop an EGG projectile, which takes a few frames to 'hatch'
+	we could have the boss drop an EGG projectile, which takes a few frames to 'hatch'
 	when the egg hatches, a blob actor could be placed there
 	this would prevent the blobs from overlapping each other
 	well, actually no - because an actor could overlap the egg as it hatches.. hmmmm
-	
-	
-	implement a fireball projectile that moves across frames
-	rotate the fireball sprite to face down (all projectiles + weapons should face down by default)
-	this is spawned from the Y button press
-	visually display fire magic medallion for current item in worldUI
 	
 	create pause screen, can select different weapons / items
 	also displays total gold
@@ -129,9 +211,6 @@ Stuff that needs to be done, but it's not terribly important rn
 	
 	create shop sreen, can purchase different weapons / items for gold
 	implement purchasing routines (gold)
-	
-	create overworld screen, with selectable dungeon / shop locations
-	these lead to DungeonScreen or ShopScreen
 	
 	play overworld music for overworld screen
 	play shop music for shop screen
@@ -159,18 +238,18 @@ Stuff that needs to be done, but it's not terribly important rn
 	
 Maybes / Ideas	
 
-blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
-or they can use a weapon, like a stick or gooey hand, iunno
+	blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
+	or they can use a weapon, like a stick or gooey hand, iunno
 
-debugInfo displays the floor index, instead of the # of floor tiles used currently
-which isn't really a problem, cause we're going to optimize how floors are drawn later on
+	debugInfo displays the floor index, instead of the # of floor tiles used currently
+	which isn't really a problem, cause we're going to optimize how floors are drawn later on
 
-OPTIMIZATION
-if we don't draw the floor tiles, the draw loop is much faster
-so, we could standardize the room sizes, then create a floor sprite
-then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
+	OPTIMIZATION
+	if we don't draw the floor tiles, the draw loop is much faster
+	so, we could standardize the room sizes, then create a floor sprite
+	then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
 
-OPTIMIZATIONS
+	OPTIMIZATIONS
 	drop the sample rate down to 22k to save even more space on bkg music files
 	the soundfx are already at 32k, so we know lower sampled audio builds and loads correctly
 
