@@ -20,6 +20,7 @@ namespace DungeonRun
         public float bkgAlpha = 0.0f;
         public float maxAlpha = 0.7f;
         float fadeInSpeed = 0.03f;
+        float fadeOutSpeed = 0.1f;
 
         public MenuWindow inventoryWindow;
         public MenuWindow statsWindow;
@@ -86,7 +87,14 @@ namespace DungeonRun
                 Input.IsNewButtonPress(Buttons.B))
             {
                 Assets.sfxInventoryClose.Play();
-                ScreenManager.RemoveScreen(this);
+                //ScreenManager.RemoveScreen(this);
+                screenState = ScreenState.Closing;
+            }
+
+            else if(Input.IsNewButtonPress(Buttons.A))
+            {
+                currentlySelected.compSprite.scale = 2.0f;
+                Assets.sfxSelectMenuItem.Play();
             }
 
             //get the previouslySelected menuItem
@@ -109,6 +117,8 @@ namespace DungeonRun
                 {
                     MenuWidgetInfo.Display(currentlySelected);
                     Assets.sfxSelectMenuItem.Play();
+                    //don't leave any menuItems scaled up beyond 1.0f
+                    previouslySelected.compSprite.scale = 1.0f;
                 }
             }
 
@@ -126,6 +136,16 @@ namespace DungeonRun
                     screenState = ScreenState.Opened;
                 }
             }
+            //fade background out
+            else if (screenState == ScreenState.Closing)
+            {
+                bkgAlpha -= fadeOutSpeed;
+                if (bkgAlpha <= 0.0f)
+                {
+                    bkgAlpha = 0.0f;
+                    ScreenManager.RemoveScreen(this);
+                }
+            }
 
             inventoryWindow.Update();
             statsWindow.Update();
@@ -140,6 +160,11 @@ namespace DungeonRun
             else { selectionBox.alpha += 0.025f; }
             //match the position of the selectionBox to the currently selected menuItem
             selectionBox.position = currentlySelected.compSprite.position;
+
+            //scale the currently selected item down to 1.0f
+            if (currentlySelected.compSprite.scale > 1.0f)
+            { currentlySelected.compSprite.scale -= 0.07f; }
+            else { currentlySelected.compSprite.scale = 1.0f; }
         }
 
         public override void Draw(GameTime GameTime)

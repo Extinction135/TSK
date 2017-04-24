@@ -35,30 +35,16 @@ ram useage:
 todo:
 
 
-11
-
-repacked main sheet to allow for future expansion of sprites.
-updated inventory widget to use new boomerang frame.
-updated WorldUI to use new sword and magic medallion frames.
-
-updated inventory screen with a background rec that fades in when screen is created.
-added sound files for inventory screen opening and closing.
-updated Assets with instances for inventory opening and closing.
-added call to play the opening soundFX from InventoryScreen.LoadContent().
-added call to play the closing soundFX from InventoryScreen.HandleInput().
-
-playtested, working.
-
-
-with the exit soundFX, i want there to be an outro animation
-or the sound needs to be faster / shorter...
+10
 
 
 
+shortened the inventory close sound effect.
+updated InventoryScreen.HandleInput() to scale the currently selected menuItem up to 2.0 on A button press.
+updated selected menuItem routines to ensure no menuItems are abandoned with their scale greater than 1.0.
+modified InventoryScreen.Update() to quickly scale the selected menuItem down to 1.0.
+added call to MenuItemSelect sound effect when player presses A button on a menuItem.
 
-we'll need a sound for when the inventory screen opens and closes
-
-we'll need something to happen on an A button press (sound and scale / visual effect)
 
 
 

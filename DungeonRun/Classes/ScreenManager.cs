@@ -119,9 +119,7 @@ namespace DungeonRun
             spriteBatch.End();
             */
 
-            
-            #region Draw the renderSurface to the window frame
-
+            //Draw the renderSurface to the window frame
             game.GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             spriteBatch.Draw(
@@ -129,11 +127,7 @@ namespace DungeonRun
                     game.graphics.GraphicsDevice.Viewport.Width,      //match width of window frame
                     game.graphics.GraphicsDevice.Viewport.Height),    //match height of window frame
                 Color.White);
-
             spriteBatch.End();
-
-            #endregion
-            
         }
 
     }
