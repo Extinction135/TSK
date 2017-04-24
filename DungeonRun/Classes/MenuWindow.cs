@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+
+
 namespace DungeonRun
 {
     public class MenuWindow
@@ -30,37 +32,17 @@ namespace DungeonRun
         public MenuWindow(Point Position, Point Size, String Title)
         {
             size = Size;
-
-            background = new MenuRectangle(
-                new Point(Position.X + 0, Position.Y + 0), 
-                new Point(size.X - 0, size.Y - 0), 
-                Assets.colorScheme.windowBkg);
-            border = new MenuRectangle(
-                new Point(Position.X + 1, Position.Y + 1), 
-                new Point(size.X - 2, size.Y - 2),
-                Assets.colorScheme.windowBorder);
-            inset = new MenuRectangle(
-                new Point(Position.X + 2, Position.Y + 2), 
-                new Point(size.X - 4, size.Y - 4),
-                Assets.colorScheme.windowInset);
-            interior = new MenuRectangle(
-                new Point(Position.X + 3, Position.Y + 3), 
-                new Point(size.X - 6, size.Y - 6),
-                Assets.colorScheme.windowInterior);
-            title = new ComponentText(
-                Assets.font, Title, 
-                new Vector2(Position.X + 8, Position.Y + 2), 
-                Assets.colorScheme.textDark);
-            headerLine = new MenuRectangle(
-                new Point(Position.X + 8, Position.Y + 16),
-                new Point(size.X - 16, 1),
-                Assets.colorScheme.windowInset);
-            footerLine = new MenuRectangle(
-                new Point(Position.X + 8, Position.Y + size.Y - 16),
-                new Point(size.X - 16, 1),
-                Assets.colorScheme.windowInset);
-
-            //set the openDelay to cascade in all the MenuRectangles
+            //create the window components
+            background = new MenuRectangle(new Point(0,0), new Point(0,0), Assets.colorScheme.windowBkg);
+            border = new MenuRectangle(new Point(0,0), new Point(0,0), Assets.colorScheme.windowBorder);
+            inset = new MenuRectangle(new Point(0,0), new Point(0,0), Assets.colorScheme.windowInset);
+            interior = new MenuRectangle(new Point(0,0), new Point(0,0), Assets.colorScheme.windowInterior);
+            headerLine = new MenuRectangle(new Point(0,0), new Point(0,0), Assets.colorScheme.windowInset);
+            footerLine = new MenuRectangle(new Point(0,0), new Point(0,0), Assets.colorScheme.windowInset);
+            title = new ComponentText(Assets.font, "", new Vector2(0,0), Assets.colorScheme.textDark);
+            //align all the window components
+            ResetAndMoveWindow(Position, Size, Title);
+            //set the openDelay to cascade in all the components
             background.openDelay = 0;
             border.openDelay = 2;
             inset.openDelay = 2;
@@ -81,6 +63,62 @@ namespace DungeonRun
                 headerLine.Update();
                 footerLine.Update();
             }
+        }
+
+        public void ResetAndMoveWindow(Point Position, Point Size, String Title)
+        {
+            //set the new title, move into position
+            title.text = Title;
+            title.position.X = Position.X + 8;
+            title.position.Y = Position.Y + 2;
+
+
+            #region Reset all the MenuRectangles, and update them to the passed Position + Size
+
+            background.position.X = Position.X + 0;
+            background.position.Y = Position.Y + 0;
+            background.size.X = Size.X + 0;
+            background.size.Y = Size.Y + 0;
+            background.Reset();
+
+            border.position.X = Position.X + 1;
+            border.position.Y = Position.Y + 1;
+            border.size.X = Size.X - 2;
+            border.size.Y = Size.Y - 2;
+            border.Reset();
+
+            inset.position.X = Position.X + 2;
+            inset.position.Y = Position.Y + 2;
+            inset.size.X = Size.X - 4;
+            inset.size.Y = Size.Y - 4;
+            inset.Reset();
+
+            interior.position.X = Position.X + 3;
+            interior.position.Y = Position.Y + 3;
+            interior.size.X = Size.X - 6;
+            interior.size.Y = Size.Y - 6;
+            interior.Reset();
+
+            #endregion
+
+
+            #region Reset the header and footer lines, update with Position + Size
+
+            headerLine.position.X = Position.X + 8;
+            headerLine.position.Y = Position.Y + 16;
+            headerLine.size.X = Size.X - 16;
+            headerLine.size.Y = 1;
+            headerLine.Reset();
+
+            footerLine.position.X = Position.X + 8;
+            footerLine.position.Y = Position.Y + size.Y - 16;
+            footerLine.size.X = Size.X - 16;
+            footerLine.size.Y = 1;
+            footerLine.Reset();
+
+            #endregion
+            
+
         }
 
     }

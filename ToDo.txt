@@ -35,10 +35,37 @@ ram useage:
 todo:
 
 
-4
+3
 
-created MenuItem.cs.
-planning out how to handle MenuWindows + MenuItems.
+
+
+
+added Reset() to MenuRectangle.
+added ResetAndMoveWindow() to MenuWindow.cs.
+allows us to reset the window and move it to a different position.
+this function affects all the MenuWindow's MenuRectangles.
+this will allow us to move the static menu window classes later, when needed.
+added a call to ResetAndMoveWindow() from the constructor of MenuWindow.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
+
+create info window static class
+
+create selection window static class
+
+connect the selection window to the info window via inventory screen
+
 
 
 

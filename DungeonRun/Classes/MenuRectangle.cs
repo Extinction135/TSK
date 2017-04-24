@@ -32,7 +32,7 @@ namespace DungeonRun
             size = Size;
             rec = new Rectangle(0, 0, 0, 0);
             color = Color;
-            rec.Location = position;
+            Reset();
         }
 
         public void Update()
@@ -48,6 +48,15 @@ namespace DungeonRun
                     if (rec.Width == size.X) { displayState = DisplayState.Open; animationCounter = 0; } //open complete
                 }
             }
+        }
+
+        public void Reset()
+        {
+            rec.Width = 0;
+            rec.Height = 0;
+            rec.Location = position;
+            animationCounter = 0;
+            displayState = DisplayState.Opening;
         }
 
     }
