@@ -35,28 +35,16 @@ ram useage:
 todo:
 
 
-13
+12
 
 
-updated Input to store the last frame's gamePadDirection in an instance called LastGamePadDirection.
-created MenuWidgetInventory.cs, filled with basic methods taken from MenuWidgetInfo.
-added calls to MenuWidgetInventory from InventoryScreen.
-playtested, working as expected.
+updated InventoryScreen.HandleInput() to pass the currentlySelected menuItem to the InfoWidget.
+this in turn displays the menuItem's name, sprite, and description in InfoWidget.
 
-added a list of dividers to MenuWidgetInventory.
-added a list of text components to MenuWidgetInventory, to hold the 'weapons, armor, equipment' labels.
-added a list of menuItems to MenuWidgetInventory, to hold all the menuItems.
-updated Reset() to place and align dividers, labels, and menuItems.
-created PlaceRow(), and PlaceMenuItem() to simplify the placement of menuItems in InventoryWidget.
-
-created MenuItemFunctions.cs.
-created SetNeighbors(List<MenuItem>, int RowLength).
-calling SetNeighbors() from InventoryWidget.
-SetNeighbors() is a beautiful function that sets the neighbors of menuItems based on a rowLength parameter.
-this function saves me HUNDREDS of lines of code, and work generically on any list of menuItems.
-
-added selectionBox component sprite to InventoryScreen.
-updated InventoryScreen.HandleInput() to move the selectionBox between menuItems for the InventoryWidget.
+added SoundSelectMenuItem to content project, built.
+added sound effect instances to Assets for SelectMenuItem.
+updated InventoryScreen.HandleInput() to play the SelectMenuItem sound effect upon menuItem change.
+playtested, working perfectly.
 
 
 
@@ -67,7 +55,10 @@ updated InventoryScreen.HandleInput() to move the selectionBox between menuItems
 
 
 
-we should be passing the menuItem to the info window, when we complete a movement between menuItems
+
+
+
+
 
 we need to populate all the menuItems with data
 

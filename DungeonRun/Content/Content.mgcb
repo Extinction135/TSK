@@ -227,3 +227,9 @@
 /processorParam:Quality=Best
 /build:SoundGoldPickup.wav
 
+#begin SoundSelectMenuItem.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSelectMenuItem.wav
+

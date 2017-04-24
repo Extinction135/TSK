@@ -81,38 +81,29 @@ namespace DungeonRun
                 //Assets.sfxExitSummary.Play();
                 ScreenManager.RemoveScreen(this);
             }
-            
 
-
-            if(Input.gamePadDirection != Input.lastGamePadDirection)
+            //get the previouslySelected menuItem
+            previouslySelected = currentlySelected;
+            //check to see if the gamePad direction is a new direction - prevents rapid scrolling
+            if (Input.gamePadDirection != Input.lastGamePadDirection)
             {
                 //this is a new direction, allow movement between menuItems
                 if (Input.gamePadDirection == Direction.Right)
                 { currentlySelected = currentlySelected.neighborRight; }
-
                 else if (Input.gamePadDirection == Direction.Left)
                 { currentlySelected = currentlySelected.neighborLeft; }
-
                 else if (Input.gamePadDirection == Direction.Down)
                 { currentlySelected = currentlySelected.neighborDown; }
-
                 else if (Input.gamePadDirection == Direction.Up)
                 { currentlySelected = currentlySelected.neighborUp; }
+
+                //check to see if we changed menuItems
+                if (previouslySelected != currentlySelected)
+                {
+                    MenuWidgetInfo.Display(currentlySelected);
+                    Assets.sfxSelectMenuItem.Play();
+                }
             }
-
-
-            /*
-            //move between menu items one at a time
-            if (Input.SNEScontroller.IsNewDpadDirection()) //this prevents fast menuItem scrolling
-            {
-                //if this is new directional input, update the currentlySelected menuItem based on it's neighbors
-                if (Input.SNEScontroller.currentDpadDirection == Direction.Right) { currentlySelected = currentlySelected.neighborRight; }
-                else if (Input.SNEScontroller.currentDpadDirection == Direction.Left) { currentlySelected = currentlySelected.neighborLeft; }
-                else if (Input.SNEScontroller.currentDpadDirection == Direction.Up) { currentlySelected = currentlySelected.neighborUp; }
-                else if (Input.SNEScontroller.currentDpadDirection == Direction.Down) { currentlySelected = currentlySelected.neighborDown; }
-            }
-            */
-
 
         }
 

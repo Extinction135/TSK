@@ -105,6 +105,9 @@ namespace DungeonRun
         static SoundEffect sfxGoldPickupSrc;
         public static SoundEffectInstance sfxGoldPickup;
 
+        static SoundEffect sfxSelectMenuItemSrc;
+        public static SoundEffectInstance sfxSelectMenuItem;
+
         #endregion
 
 
@@ -203,6 +206,9 @@ namespace DungeonRun
 
             sfxGoldPickupSrc = content.Load<SoundEffect>(@"SoundGoldPickup");
             sfxGoldPickup = sfxGoldPickupSrc.CreateInstance();
+
+            sfxSelectMenuItemSrc = content.Load<SoundEffect>(@"SoundSelectMenuItem");
+            sfxSelectMenuItem = sfxSelectMenuItemSrc.CreateInstance();
 
             #endregion
 
