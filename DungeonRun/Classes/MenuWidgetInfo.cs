@@ -38,7 +38,7 @@ namespace DungeonRun
         {   //align this widgets component to Position + Size
             window.ResetAndMoveWindow(Position, Size, "Info Window");
             compSprite.position.X = Position.X + 16 * 3 + 4;
-            compSprite.position.Y = Position.Y + 16 + 16;
+            compSprite.position.Y = Position.Y + 16 * 2;
             description.position.X = Position.X + 8;
             description.position.Y = Position.Y + 16 * 3;
             //reset and align the divider line

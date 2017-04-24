@@ -28,7 +28,7 @@ namespace DungeonRun
 
         public static float deadzone = 0.10f; //the amount of joystick movement classified as noise
         public static Direction gamePadDirection = Direction.None;
-
+        public static Direction lastGamePadDirection = Direction.None;
 
 
         public static void Initialize()
@@ -56,7 +56,9 @@ namespace DungeonRun
             //set cursor collision comp pos to world pos of the cursor's render surface pos
             cursorColl.rec.Location = Camera2D.ConvertScreenToWorld(cursorPos.X, cursorPos.Y);
 
-            //reset game pad direction
+            //save the last gamePadDirection
+            lastGamePadDirection = gamePadDirection;
+            //reset the current game pad direction
             gamePadDirection = Direction.None;
 
             //map gamepad left joystick to gamePadDirection

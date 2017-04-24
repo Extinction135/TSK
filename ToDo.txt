@@ -35,36 +35,79 @@ ram useage:
 todo:
 
 
-1
+13
 
 
-fixed a future bug that would cause the MenuItem sprite to be hidden.
-cause: the sprite was being created offscreen at -100 on Y axis.
-this would of set the sprite's zOffset to a negative value, and thus wouldn't draw.
-solution: it's created at +1000 on the Y axis instead.
+updated Input to store the last frame's gamePadDirection in an instance called LastGamePadDirection.
+created MenuWidgetInventory.cs, filled with basic methods taken from MenuWidgetInfo.
+added calls to MenuWidgetInventory from InventoryScreen.
+playtested, working as expected.
 
-updated InventoryScreen with currentlySelected and previouslySelected menuItem instances.
-added reference code to handle selecting/moving between menuItem instances.
-additional planning related to how menuItems will be selected via gamepad input.
+added a list of dividers to MenuWidgetInventory.
+added a list of text components to MenuWidgetInventory, to hold the 'weapons, armor, equipment' labels.
+added a list of menuItems to MenuWidgetInventory, to hold all the menuItems.
+updated Reset() to place and align dividers, labels, and menuItems.
+created PlaceRow(), and PlaceMenuItem() to simplify the placement of menuItems in InventoryWidget.
 
+created MenuItemFunctions.cs.
+created SetNeighbors(List<MenuItem>, int RowLength).
+calling SetNeighbors() from InventoryWidget.
+SetNeighbors() is a beautiful function that sets the neighbors of menuItems based on a rowLength parameter.
+this function saves me HUNDREDS of lines of code, and work generically on any list of menuItems.
 
-
-
-
-
-
-
-extend INPUT with the instance PreviousGamePadDirection
-we should be trackin the last frames game pad direction, so we can tell if we this is a new direction button press
-this will prevent rapid scrolling across menuItems
-
-create selection window static class
-
-connect the selection window to the info window via inventory screen
+added selectionBox component sprite to InventoryScreen.
+updated InventoryScreen.HandleInput() to move the selectionBox between menuItems for the InventoryWidget.
 
 
 
 
+
+
+
+
+
+
+we should be passing the menuItem to the info window, when we complete a movement between menuItems
+
+we need to populate all the menuItems with data
+
+we need a background rec for the inventory screen, and it should fade in
+when the screen closes, it should fade out
+which means that inventory screen will need to consider the closing screen state (it currently doesn't)
+
+
+
+we'll need something to happen on an A button press (sound and scale / visual effect)
+we'll need a sound for when the inventory screen opens and closes
+we'll need a sound for when the player moves between menuItems
+
+
+
+
+
+
+
+
+
+
+we could move the labeling functionality for menuItems into a MenuItemFunctions class
+MenuItemFunctions.SetMenuItem(MenuItemType enum)
+-> sets the name, current frame, and description based on passed enum
+
+MenuItemFunctions.SyncInventoryWidget()
+-> sets the Inventory Widget's menuItems based on the player's inventory int list
+
+
+
+
+
+
+
+
+
+
+inventory screen stitches together the various widget's menuItems, so user can scroll across widgets
+the widgets menuItem's neighbors will be set by MenuItemFunctions.SetNeighbors(List<MenuItem>, RowDivider).
 
 
 
@@ -78,10 +121,6 @@ inventory screen can be called from overworld screen as well
 
 
 
-
-
-	
-	
 	
 
 
@@ -142,7 +181,7 @@ we'll need to initialize all menuItems as unselected.
 
 
 
-
+a special explosion sound should play when the boss is defeated
 
 
 
