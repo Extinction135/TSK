@@ -21,7 +21,10 @@ namespace DungeonRun
         //info window
         //options window
         public MenuWindow inventoryWindow;
-
+        public MenuWindow statsWindow;
+        public MenuWindow selectionWindow;
+        public MenuWindow infoWindow;
+        public MenuWindow optionsWindow;
 
         public ScreenInventory() { this.name = "InventoryScreen"; }
 
@@ -35,6 +38,22 @@ namespace DungeonRun
                 new Point(16 * 9, 16 * 4), 
                 new Point(16 * 6 + 8, 16 * 5 + 8), 
                 "Current Inventory");
+            statsWindow = new MenuWindow(
+                new Point(16 * 9, 16 * 10),
+                new Point(16 * 6 + 8, 16 * 8 + 8),
+                "Stats");
+            selectionWindow = new MenuWindow(
+                new Point(16 * 16, 16 * 4),
+                new Point(16 * 8, 16 * 14 + 8),
+                "Item");
+            infoWindow = new MenuWindow(
+                new Point(16 * 24 + 8, 16 * 4),
+                new Point(16 * 6 + 8, 16 * 5 + 8),
+                "Info");
+            optionsWindow = new MenuWindow(
+                new Point(16 * 24 + 8, 16 * 10),
+                new Point(16 * 6 + 8, 16 * 8 + 8),
+                "Game Options");
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -57,12 +76,20 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             inventoryWindow.Update();
+            statsWindow.Update();
+            selectionWindow.Update();
+            infoWindow.Update();
+            optionsWindow.Update();
         }
 
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             DrawFunctions.Draw(inventoryWindow);
+            DrawFunctions.Draw(statsWindow);
+            DrawFunctions.Draw(selectionWindow);
+            DrawFunctions.Draw(infoWindow);
+            DrawFunctions.Draw(optionsWindow);
             ScreenManager.spriteBatch.End();
         }
 

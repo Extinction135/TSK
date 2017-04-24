@@ -35,24 +35,24 @@ ram useage:
 todo:
 
 
-6
+5
 
 
 
-
-bug: the header line in MenuWindow isn't being displayed.
-cause: the headerline wasn't being updated, so it never grew into it's opened size.
-solution: now calling Update() on the headerline from MenuWindow.Update().
-updated DrawFunctions.Draw() to draw the headerline for MenuWindows while window is opening.
+added footerLine to MenuWindow, implemented just like headerline.
 playtested, working.
 
+added stats, selection, info, and game options windows to InventoryScreen.
+aligned them to mockups.
+however, i'll probably make them unique static classes instead of having them as MenuWindow instances.
+only one of them will exist at a time, and they'll need to communicate with each other.
+if we use instances, then InventoryScreen is going to become very complicated with many codepaths.
+i'd prefer to keep these codepaths local to a handful of static classes.
+so, thats coming up next...
 
 
 
 
-the header line isn't drawing
-and the window will always have a footer line
-which sohuld be implemented just like the header line
 
 
 

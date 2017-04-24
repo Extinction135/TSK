@@ -89,6 +89,7 @@ namespace DungeonRun
             Draw(MenuWindow.inset);
             Draw(MenuWindow.interior);
             Draw(MenuWindow.headerLine);
+            Draw(MenuWindow.footerLine);
             //only draw the title if the window is completely open
             if (MenuWindow.interior.displayState == MenuRectangle.DisplayState.Open)
             { Draw(MenuWindow.title); }

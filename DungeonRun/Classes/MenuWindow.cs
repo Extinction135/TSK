@@ -17,12 +17,15 @@ namespace DungeonRun
         public Point size;
         public int animationCounter = 0;        //counts up to delay value
         public int openDelay = 0;               //how many updates are ignored before open occurs
+
         public MenuRectangle background; 
         public MenuRectangle border; 
         public MenuRectangle inset;
         public MenuRectangle interior; 
+
         public ComponentText title;
         public MenuRectangle headerLine;
+        public MenuRectangle footerLine;
 
         public MenuWindow(Point Position, Point Size, String Title)
         {
@@ -52,6 +55,10 @@ namespace DungeonRun
                 new Point(Position.X + 8, Position.Y + 16),
                 new Point(size.X - 16, 1),
                 Assets.colorScheme.windowInset);
+            footerLine = new MenuRectangle(
+                new Point(Position.X + 8, Position.Y + size.Y - 16),
+                new Point(size.X - 16, 1),
+                Assets.colorScheme.windowInset);
 
             //set the openDelay to cascade in all the MenuRectangles
             background.openDelay = 0;
@@ -59,6 +66,7 @@ namespace DungeonRun
             inset.openDelay = 2;
             interior.openDelay = 8;
             headerLine.openDelay = 12;
+            footerLine.openDelay = 12;
         }
 
         public void Update()
@@ -71,6 +79,7 @@ namespace DungeonRun
                 inset.Update();
                 interior.Update();
                 headerLine.Update();
+                footerLine.Update();
             }
         }
 
