@@ -35,25 +35,69 @@ ram useage:
 todo:
 
 
-5
+4
 
-
-
-added footerLine to MenuWindow, implemented just like headerline.
-playtested, working.
-
-added stats, selection, info, and game options windows to InventoryScreen.
-aligned them to mockups.
-however, i'll probably make them unique static classes instead of having them as MenuWindow instances.
-only one of them will exist at a time, and they'll need to communicate with each other.
-if we use instances, then InventoryScreen is going to become very complicated with many codepaths.
-i'd prefer to keep these codepaths local to a handful of static classes.
-so, thats coming up next...
+created MenuItem.cs.
+planning out how to handle MenuWindows + MenuItems.
 
 
 
 
 
+create static classes for each MenuWindow instance: inventory, stats, selection, info, options
+we'll never have more than one instance of each of these windows, ever.
+
+we'll reuse options window on the title screen, and info window
+inventory screen can be called from overworld screen as well
+
+
+
+
+MenuItem.cs
+	has a sprite
+	a 'title' or name
+	a description of what this menuItem is
+	NSEW references to other menuItems, null = no neighbor in that direction
+	all menuItem sprites will be located on the MainSheet.
+	defaults to the empty/unknown sprite
+	
+MenuInfoWindow
+	info window should target a menuItem.
+	info window will display the menuItem's sprite, name, and description.
+
+MenuInventoryWindow
+	sets it's sprites based on the hero's current loadout/inventory
+	tracks the player's total gold
+	tracks the dungeon booleans map and key
+	tracks how many heart pieces the hero has collected so far
+	this window sets the neighbors of it's menuItems upon construction
+
+MenuStatsWindow
+	4 empty menuItems, rn
+	this window sets the neighbors of it's menuItems upon construction
+	
+MenuSelectionWindow
+	has a TON of menuItems, based on the hero's available inventory
+	this window sets the neighbors of it's menuItems upon construction
+	
+MenuOptionsWindow
+	8 menuItems, with no functionality rn
+	this window sets the neighbors of it's menuItems upon construction
+	
+MenuInventoryScreen
+	sets the neighbors of the windows.menuItems it uses
+	this allows menuItems to 'connect' to other menuItems across windows
+	
+	
+	
+we'll need to be able to track the selected menuItem.
+we'll need to set the initially selected menuItem.
+we'll need to initialize all menuItems as unselected.
+	
+	
+	
+	
+	
 
 
 
@@ -62,7 +106,7 @@ so, thats coming up next...
 
 
 
-all window positions in inventory screen should be relative to the inventory window
+
 
 
 
@@ -77,9 +121,6 @@ the update should occur in an update() function that is called from dungeonScree
 
 
 
-menu rectangle could have a closing + closed state
-however, we may want the menu system to disappear faster than an outro animation could play
-at least that was the preferre way for CC
 
 
 

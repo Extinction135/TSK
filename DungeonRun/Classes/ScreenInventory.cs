@@ -15,16 +15,13 @@ namespace DungeonRun
     public class ScreenInventory : Screen
     {
 
-        //inventory window
-        //stats window
-        //selection window
-        //info window
-        //options window
         public MenuWindow inventoryWindow;
         public MenuWindow statsWindow;
         public MenuWindow selectionWindow;
         public MenuWindow infoWindow;
         public MenuWindow optionsWindow;
+
+
 
         public ScreenInventory() { this.name = "InventoryScreen"; }
 
