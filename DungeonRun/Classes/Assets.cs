@@ -108,6 +108,12 @@ namespace DungeonRun
         static SoundEffect sfxSelectMenuItemSrc;
         public static SoundEffectInstance sfxSelectMenuItem;
 
+        static SoundEffect sfxInventoryOpenSrc;
+        public static SoundEffectInstance sfxInventoryOpen;
+
+        static SoundEffect sfxInventoryCloseSrc;
+        public static SoundEffectInstance sfxInventoryClose;
+
         #endregion
 
 
@@ -209,6 +215,12 @@ namespace DungeonRun
 
             sfxSelectMenuItemSrc = content.Load<SoundEffect>(@"SoundSelectMenuItem");
             sfxSelectMenuItem = sfxSelectMenuItemSrc.CreateInstance();
+
+            sfxInventoryOpenSrc = content.Load<SoundEffect>(@"SoundInventoryOpen");
+            sfxInventoryOpen = sfxInventoryOpenSrc.CreateInstance();
+
+            sfxInventoryCloseSrc = content.Load<SoundEffect>(@"SoundInventoryClose");
+            sfxInventoryClose = sfxInventoryCloseSrc.CreateInstance();
 
             #endregion
 

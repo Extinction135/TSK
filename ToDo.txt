@@ -35,24 +35,30 @@ ram useage:
 todo:
 
 
-12
+11
+
+repacked main sheet to allow for future expansion of sprites.
+updated inventory widget to use new boomerang frame.
+updated WorldUI to use new sword and magic medallion frames.
+
+updated inventory screen with a background rec that fades in when screen is created.
+added sound files for inventory screen opening and closing.
+updated Assets with instances for inventory opening and closing.
+added call to play the opening soundFX from InventoryScreen.LoadContent().
+added call to play the closing soundFX from InventoryScreen.HandleInput().
+
+playtested, working.
 
 
-updated InventoryScreen.HandleInput() to pass the currentlySelected menuItem to the InfoWidget.
-this in turn displays the menuItem's name, sprite, and description in InfoWidget.
-
-added SoundSelectMenuItem to content project, built.
-added sound effect instances to Assets for SelectMenuItem.
-updated InventoryScreen.HandleInput() to play the SelectMenuItem sound effect upon menuItem change.
-playtested, working perfectly.
+with the exit soundFX, i want there to be an outro animation
+or the sound needs to be faster / shorter...
 
 
 
 
+we'll need a sound for when the inventory screen opens and closes
 
-
-
-
+we'll need something to happen on an A button press (sound and scale / visual effect)
 
 
 
@@ -61,56 +67,23 @@ playtested, working perfectly.
 
 
 we need to populate all the menuItems with data
-
-we need a background rec for the inventory screen, and it should fade in
-when the screen closes, it should fade out
-which means that inventory screen will need to consider the closing screen state (it currently doesn't)
-
-
-
-we'll need something to happen on an A button press (sound and scale / visual effect)
-we'll need a sound for when the inventory screen opens and closes
-we'll need a sound for when the player moves between menuItems
-
-
-
-
-
-
-
-
-
-
-we could move the labeling functionality for menuItems into a MenuItemFunctions class
-MenuItemFunctions.SetMenuItem(MenuItemType enum)
+this will be done through the MenuItemFunctions.SetMenuItem(MenuItemType enum)
 -> sets the name, current frame, and description based on passed enum
+
+
 
 MenuItemFunctions.SyncInventoryWidget()
 -> sets the Inventory Widget's menuItems based on the player's inventory int list
 
 
 
-
-
-
-
-
-
-
 inventory screen stitches together the various widget's menuItems, so user can scroll across widgets
-the widgets menuItem's neighbors will be set by MenuItemFunctions.SetNeighbors(List<MenuItem>, RowDivider).
-
-
-
-
 
 create static classes for each MenuWindow instance: inventory, stats, selection, info, options
 we'll never have more than one instance of each of these windows, ever.
 
 we'll reuse options window on the title screen, and info window
 inventory screen can be called from overworld screen as well
-
-
 
 	
 
@@ -127,13 +100,13 @@ MenuStatsWindow
 	
 	
 	
-MenuSelectionWindow
+X MenuSelectionWindow
 	has a TON of menuItems, based on the hero's available inventory
 	this window sets the neighbors of it's menuItems upon construction
 	
 	
 	
-MenuInfoWindow (could be repositioned)
+X MenuInfoWindow (could be repositioned)
 	info window should target a menuItem.
 	info window will display the menuItem's sprite, name, and description.
 MenuOptionsWindow (could be repositioned)
@@ -144,7 +117,7 @@ MenuOptionsWindow (could be repositioned)
 	
 	
 	
-MenuItem.cs
+X MenuItem.cs
 	has a sprite
 	a 'title' or name
 	a description of what this menuItem is
@@ -154,7 +127,7 @@ MenuItem.cs
 
 
 	
-MenuInventoryScreen
+X MenuInventoryScreen
 	sets the neighbors of the windows.menuItems it uses
 	this allows menuItems to 'connect' to other menuItems across windows
 	
@@ -168,15 +141,26 @@ we'll need to initialize all menuItems as unselected.
 	
 	
 	
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 a special explosion sound should play when the boss is defeated
-
-
-
-
 
 
 
@@ -190,20 +174,17 @@ the update should occur in an update() function that is called from dungeonScree
 
 
 
-
-
-
-
-
-
-
-
-
 we need boss music, and that music should play when hero enters boss room
 
 what else do we need to do to prep for v0.2 release?
 theoretically we could 'rollback' to v0.1 and record a short video.
 then record a video for v0.2.
+
+
+
+
+
+
 
 
 
@@ -320,6 +301,10 @@ Version 0.4 Milestones
 	
 	
 Stuff that needs to be done, but it's not terribly important rn	
+	
+	we need to implement the empty heart idea in the worldUI
+	this means hero should have values for current hearts, and maximum hearts
+	maximum hearts can never exceed 14
 	
 	we should include a soundFXinstance on actors that points to one of the soundFX in assets
 	then we can set this instance in ActorFunctions.SetType()

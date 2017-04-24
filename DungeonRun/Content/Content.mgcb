@@ -233,3 +233,15 @@
 /processorParam:Quality=Best
 /build:SoundSelectMenuItem.wav
 
+#begin SoundInventoryClose.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundInventoryClose.wav
+
+#begin SoundInventoryOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundInventoryOpen.wav
+

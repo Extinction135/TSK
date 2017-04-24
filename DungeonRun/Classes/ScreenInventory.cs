@@ -15,10 +15,15 @@ namespace DungeonRun
     public class ScreenInventory : Screen
     {
 
+        //the foreground black rectangle, overlays and hides game content
+        Rectangle background;
+        public float bkgAlpha = 0.0f;
+        public float maxAlpha = 0.7f;
+        float fadeInSpeed = 0.03f;
+
         public MenuWindow inventoryWindow;
         public MenuWindow statsWindow;
         public MenuWindow optionsWindow;
-
 
         //these point to a menuItem that is part of a widget
         public MenuItem currentlySelected;
@@ -26,7 +31,6 @@ namespace DungeonRun
 
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
-
 
 
 
@@ -67,6 +71,11 @@ namespace DungeonRun
             selectionBox = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(0, 0), new Byte4(15, 6, 0, 0), 
                 new Byte2(16, 16));
+
+            //create the background rec
+            background = new Rectangle(0, 0, 640, 360);
+            //play the opening soundFX
+            Assets.sfxInventoryOpen.Play();
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -76,9 +85,7 @@ namespace DungeonRun
             if (Input.IsNewButtonPress(Buttons.Start) ||
                 Input.IsNewButtonPress(Buttons.B))
             {
-                //screenState = ScreenState.Closing;
-                //play the menu close soundFX
-                //Assets.sfxExitSummary.Play();
+                Assets.sfxInventoryClose.Play();
                 ScreenManager.RemoveScreen(this);
             }
 
@@ -109,6 +116,17 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
+            //fade background in
+            if (screenState == ScreenState.Opening)
+            {   
+                bkgAlpha += fadeInSpeed;
+                if (bkgAlpha >= maxAlpha)
+                {
+                    bkgAlpha = maxAlpha;
+                    screenState = ScreenState.Opened;
+                }
+            }
+
             inventoryWindow.Update();
             statsWindow.Update();
             optionsWindow.Update();
@@ -128,14 +146,14 @@ namespace DungeonRun
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.overlay * bkgAlpha);
+
             DrawFunctions.Draw(inventoryWindow);
             DrawFunctions.Draw(statsWindow);
             DrawFunctions.Draw(optionsWindow);
 
-
             MenuWidgetInfo.Draw();
             MenuWidgetInventory.Draw();
-
 
             DrawFunctions.Draw(selectionBox);
             ScreenManager.spriteBatch.End();

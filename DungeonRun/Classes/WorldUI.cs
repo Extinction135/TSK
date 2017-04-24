@@ -68,12 +68,12 @@ namespace DungeonRun
             //create the current weapon sprite
             currentWeapon = new ComponentSprite(Assets.mainSheet,
                 new Vector2(UIpos.X + 8, UIpos.Y + 8),
-                new Byte4(5, 7, 0, 0), new Byte2(16, 16));
+                new Byte4(8, 5, 0, 0), new Byte2(16, 16));
 
             //create the current item sprite
             currentItem = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(UIpos.X + 8 + 110, UIpos.Y + 8),
-                new Byte4(5, 6, 0, 0), new Byte2(16, 16));
+                new Byte4(7, 5, 0, 0), new Byte2(16, 16));
 
             //create the frametime text component
             frametime = new ComponentText(Assets.font, "test", 

@@ -52,7 +52,7 @@ namespace DungeonRun
             //throw some junk data into the items for checking
             menuItems[0].name = "Boomerang";
             menuItems[0].description = "a magical boomerang\nthat always returns";
-            menuItems[0].compSprite.currentFrame = new Byte4(10, 5, 0, 0);
+            menuItems[0].compSprite.currentFrame = new Byte4(5, 5, 0, 0);
         }
 
 
