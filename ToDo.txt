@@ -35,24 +35,15 @@ ram useage:
 todo:
 
 
-3
+2
 
 
-
-
-added Reset() to MenuRectangle.
-added ResetAndMoveWindow() to MenuWindow.cs.
-allows us to reset the window and move it to a different position.
-this function affects all the MenuWindow's MenuRectangles.
-this will allow us to move the static menu window classes later, when needed.
-added a call to ResetAndMoveWindow() from the constructor of MenuWindow.
+changed MenuInfoWindow to MenuInfoWidget, since it's a bit more than just a window.
+updated MenuWidgetInfo with functions: Reset(), Update(), Display(), Draw().
+added calls to MenuWidgetInfo.cs from InventoryScreen.
+completed routines for MenuWidgetInfo, so it opens/closes/displays properly in InventoryScreen.
+removed instance for infoWindow from InventoryScreen, now using MenuWidgetInfo static class instead.
 playtested, working as expected.
-
-
-
-
-
-
 
 
 

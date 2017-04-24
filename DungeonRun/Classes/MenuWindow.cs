@@ -67,6 +67,7 @@ namespace DungeonRun
 
         public void ResetAndMoveWindow(Point Position, Point Size, String Title)
         {
+            size = Size;
             //set the new title, move into position
             title.text = Title;
             title.position.X = Position.X + 8;
@@ -111,7 +112,7 @@ namespace DungeonRun
             headerLine.Reset();
 
             footerLine.position.X = Position.X + 8;
-            footerLine.position.Y = Position.Y + size.Y - 16;
+            footerLine.position.Y = Position.Y + Size.Y - 16;
             footerLine.size.X = Size.X - 16;
             footerLine.size.Y = 1;
             footerLine.Reset();
