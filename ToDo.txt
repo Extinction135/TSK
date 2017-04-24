@@ -35,15 +35,17 @@ ram useage:
 todo:
 
 
-2
+1
 
 
-changed MenuInfoWindow to MenuInfoWidget, since it's a bit more than just a window.
-updated MenuWidgetInfo with functions: Reset(), Update(), Display(), Draw().
-added calls to MenuWidgetInfo.cs from InventoryScreen.
-completed routines for MenuWidgetInfo, so it opens/closes/displays properly in InventoryScreen.
-removed instance for infoWindow from InventoryScreen, now using MenuWidgetInfo static class instead.
-playtested, working as expected.
+fixed a future bug that would cause the MenuItem sprite to be hidden.
+cause: the sprite was being created offscreen at -100 on Y axis.
+this would of set the sprite's zOffset to a negative value, and thus wouldn't draw.
+solution: it's created at +1000 on the Y axis instead.
+
+updated InventoryScreen with currentlySelected and previouslySelected menuItem instances.
+added reference code to handle selecting/moving between menuItem instances.
+additional planning related to how menuItems will be selected via gamepad input.
 
 
 
@@ -51,11 +53,17 @@ playtested, working as expected.
 
 
 
-create info window static class
+
+extend INPUT with the instance PreviousGamePadDirection
+we should be trackin the last frames game pad direction, so we can tell if we this is a new direction button press
+this will prevent rapid scrolling across menuItems
 
 create selection window static class
 
 connect the selection window to the info window via inventory screen
+
+
+
 
 
 
@@ -71,17 +79,11 @@ inventory screen can be called from overworld screen as well
 
 
 
-MenuItem.cs
-	has a sprite
-	a 'title' or name
-	a description of what this menuItem is
-	NSEW references to other menuItems, null = no neighbor in that direction
-	all menuItem sprites will be located on the MainSheet.
-	defaults to the empty/unknown sprite
+
 	
-MenuInfoWindow
-	info window should target a menuItem.
-	info window will display the menuItem's sprite, name, and description.
+	
+	
+
 
 MenuInventoryWindow
 	sets it's sprites based on the hero's current loadout/inventory
@@ -89,18 +91,38 @@ MenuInventoryWindow
 	tracks the dungeon booleans map and key
 	tracks how many heart pieces the hero has collected so far
 	this window sets the neighbors of it's menuItems upon construction
-
 MenuStatsWindow
 	4 empty menuItems, rn
 	this window sets the neighbors of it's menuItems upon construction
+	
+	
 	
 MenuSelectionWindow
 	has a TON of menuItems, based on the hero's available inventory
 	this window sets the neighbors of it's menuItems upon construction
 	
-MenuOptionsWindow
+	
+	
+MenuInfoWindow (could be repositioned)
+	info window should target a menuItem.
+	info window will display the menuItem's sprite, name, and description.
+MenuOptionsWindow (could be repositioned)
 	8 menuItems, with no functionality rn
 	this window sets the neighbors of it's menuItems upon construction
+	
+	
+	
+	
+	
+MenuItem.cs
+	has a sprite
+	a 'title' or name
+	a description of what this menuItem is
+	NSEW references to other menuItems, null = no neighbor in that direction
+	all menuItem sprites will be located on the MainSheet.
+	defaults to the empty/unknown sprite
+
+
 	
 MenuInventoryScreen
 	sets the neighbors of the windows.menuItems it uses

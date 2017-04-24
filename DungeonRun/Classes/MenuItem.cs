@@ -21,17 +21,21 @@ namespace DungeonRun
         public Boolean selected = false;
 
         //the cardinal neighbors this menuItem links with
-        public MenuItem neighborUp = null;
-        public MenuItem neighborDown = null;
-        public MenuItem neighborLeft = null;
-        public MenuItem neighborRight = null;
+        public MenuItem neighborUp;
+        public MenuItem neighborDown;
+        public MenuItem neighborLeft;
+        public MenuItem neighborRight;
 
         public MenuItem()
         {   //default to ? sprite, hidden offscreen
             compSprite = new ComponentSprite(Assets.mainSheet, 
-                new Vector2(-100, -100), 
+                new Vector2(-100, 1000), 
                 new Byte4(15, 5, 0, 0), 
                 new Byte2(16, 16));
+            neighborUp = this;
+            neighborDown = this;
+            neighborLeft = this;
+            neighborRight = this;
         }
 
     }
