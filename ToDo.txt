@@ -35,80 +35,74 @@ ram useage:
 todo:
 
 
-1
+13
 
-	
-created MenuItemType enum, with values for all possible menuItems.	
-created MenuItemFunctions.SetMenuItemData(MenuItemType Type, MenuItem MenuItem).
-this function sets menuItem data (name, description, frame) based on the passed Type.
-extended MenuItem to have a MenuItemType enum field.
-this instance is set in the SetMenuItemData().
-limited MenuItemType to a very barebones implementation for now.
-we'll fill it out as we develop the game.
-
-updated MenuWidgetStats.Reset() to call SetMenuItemData() on it's menuItems.
-updated MenuWidgetLoadout.Reset() to call SetMenuItemData() on it's menuItems.
-updated MenuWidgetOptions.Reset() to call SetMenuItemData() on it's menuItems.
-updated MenuWidgetInventory.Reset() to call SetMenuItemData() on it's menuItems.
-playtested, working perfectly.
+added code to App.xaml.cs to change the game's window title.
+added sound effect boss hit to content project, built.
+added instances to Assets for boss hit sound effect.
+updated ActorFunctions.SetHitState to play boss hit sound effect upon boss being hit.
+this is in addition to the normal enemy hit sound effect.
 
 
 
 
-we'll need menuItem sprites for all stats
 
 
-later in development, when we have a game options screen,
-the options widget will need to reset it's neighbors, so it doesn't connect to widgets not visible
-these menuItem neighbors will be set when the inventory screen is created
-	
-we'll reuse options window on the title screen, and info window
-inventory screen can be called from overworld screen as well
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+special boss hit sound should play when boss is hit
 a special explosion sound should play when the boss is defeated
 
 
 
 
-move DebugMenu.Draw() into DrawFunctions, cause that's where it belongs.
-
-seperate the Drawing and Updating of DebugInfo fields from Draw().
-the drawing should occur in DrawFunctions.
-the update should occur in an update() function that is called from dungeonScreen's Update.
+test on xbox one.
 
 
+record GIF of playing thru spawn room, opening chests to get key
+record GIF of entering boss room, fighting boss
+record GIF of opening inventory screen, moving/selecting menuItems 
 
-we need boss music, and that music should play when hero enters boss room
+create a Versions.md document, detailing what each version does/has
+this will show how the game's progressed over time
+each version's section should have corresponding GIFs.
 
-what else do we need to do to prep for v0.2 release?
-theoretically we could 'rollback' to v0.1 and record a short video.
-then record a video for v0.2.
+include section about how easily it is to port the game to DirectX + OpenGL.
+simply create a new project, copy over the class files, copy + build the content project.
 
+update the readme to include more information about the game
+change the repo description:
+"A 2D Zelda clone for UWP/Windows10 + Xbox. DirectX + OpenGL ports coming soon."
 
+create a /Releases folder
+zip up a release version of the game from the bin folder
+label this DungeonRunDemoV0P2
 
-
-
-
-
-
-
-
-
-Version 0.2 Release
+Release Version 0.2
 	
-	mostly done.
-	record GIFs of spawn room + boss room
-	create a markdown file for the repo that shows version 0.1 + features
-	then it should show the progression to v0.2 + features
-	include GIFs for v0.1 + v0.2
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 BUG?
@@ -120,8 +114,13 @@ between blob and boss. Boss + Hero collisions should still be valid/true..
 but i've noticed that the boss overlaps/locks the hero still. at least it feels that way.
 so... not sure what the issue is: either i'm imagining the lock, or it's actually locking....
 
+move DebugMenu.Draw() into DrawFunctions, cause that's where it belongs.
 
+seperate the Drawing and Updating of DebugInfo fields from Draw().
+the drawing should occur in DrawFunctions.
+the update should occur in an update() function that is called from dungeonScreen's Update.
 
+we need boss music, and that music should play when hero enters boss room
 
 
 
@@ -214,6 +213,20 @@ Version 0.4 Milestones
 	
 Stuff that needs to be done, but it's not terribly important rn	
 	
+	we'll need menuItem sprites for all stats - health, magic, agility, ???
+	we need to finish designing this - what is the 4th stat?
+		health = number of hearts hero has
+		magic = amount of damage magic projectiles do
+		agility = how quickly hero moves + dashes
+		??? = ???
+
+	later in development, when we have a game options screen,
+	the options widget will need to reset it's neighbors, so it doesn't connect to widgets not visible
+	these menuItem neighbors will be set when the inventory screen is created
+	
+	we'll reuse options window on the title screen, and info window
+	inventory screen can be called from overworld screen as well
+
 	we need to implement the empty heart idea in the worldUI
 	this means hero should have values for current hearts, and maximum hearts
 	maximum hearts can never exceed 14
@@ -255,18 +268,6 @@ Stuff that needs to be done, but it's not terribly important rn
 	adopt CursedCastle's roomData approach (Editor -> XML -> Randomly Choose a Room)
 	update dungeon generation routines to build complete dungeons
 	create room editor, standardize room sizes
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 Maybes / Ideas	

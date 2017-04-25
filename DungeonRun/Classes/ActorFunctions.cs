@@ -22,8 +22,12 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
 
+            //play the correct hit sound effect based on the actor type
             if (Actor == Pool.hero) { Assets.sfxHeroHit.Play(); }
             else { Assets.sfxEnemyHit.Play(); }
+            //if the actor hit was the boss, also play the boss hit sound
+            if (Actor.type == ActorType.Boss) { Assets.sfxBossHit.Play(); }
+            
 
             //display the hit effect particle
             GameObjectFunctions.SpawnParticle(ObjType.ParticleHitSparkle, Actor.compSprite.position);

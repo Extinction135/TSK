@@ -114,6 +114,9 @@ namespace DungeonRun
         static SoundEffect sfxInventoryCloseSrc;
         public static SoundEffectInstance sfxInventoryClose;
 
+        static SoundEffect sfxBossHitSrc;
+        public static SoundEffectInstance sfxBossHit;
+
         #endregion
 
 
@@ -221,6 +224,9 @@ namespace DungeonRun
 
             sfxInventoryCloseSrc = content.Load<SoundEffect>(@"SoundInventoryClose");
             sfxInventoryClose = sfxInventoryCloseSrc.CreateInstance();
+
+            sfxBossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
+            sfxBossHit = sfxBossHitSrc.CreateInstance();
 
             #endregion
 

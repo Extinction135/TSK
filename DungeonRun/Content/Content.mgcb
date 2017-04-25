@@ -245,3 +245,9 @@
 /processorParam:Quality=Best
 /build:SoundInventoryOpen.wav
 
+#begin SoundBossHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBossHit.wav
+

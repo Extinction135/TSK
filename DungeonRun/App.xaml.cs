@@ -68,18 +68,7 @@ namespace DungeonRun
         {
             // By default we want to fill the entire core window.
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-
-            /*
-            #if DEBUG
-                if (System.Diagnostics.Debugger.IsAttached)
-                {
-                    this.DebugSettings.EnableFrameRateCounter = true;
-                }
-             #endif
-            */
-
             Frame rootFrame = Window.Current.Content as Frame;
-
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -116,6 +105,9 @@ namespace DungeonRun
             }
             // Ensure the current window is active
             Window.Current.Activate();
+            //set the window title
+            ApplicationView appView = ApplicationView.GetForCurrentView();
+            appView.Title = "Demo v0.2";
         }
 
         /// <summary>
