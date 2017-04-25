@@ -137,7 +137,7 @@ namespace DungeonRun
         {
             DrawFunctions.Draw(window);
             for (i = 0; i < dividers.Count; i++) { DrawFunctions.Draw(dividers[i]); }
-            if (window.interior.displayState == MenuRectangle.DisplayState.Open)
+            if (window.interior.displayState == DisplayState.Opened)
             {
                 for (i = 0; i < labels.Count; i++)
                 { DrawFunctions.Draw(labels[i]); }

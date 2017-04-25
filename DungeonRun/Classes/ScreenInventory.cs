@@ -35,7 +35,7 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            screenState = ScreenState.Opening;
+            displayState = DisplayState.Opening;
 
             MenuWidgetLoadout.Reset(
                 new Point(16 * 9, 16 * 4),
@@ -132,7 +132,7 @@ namespace DungeonRun
             {
                 Assets.sfxInventoryClose.Play();
                 //ScreenManager.RemoveScreen(this);
-                screenState = ScreenState.Closing;
+                displayState = DisplayState.Closing;
             }
 
             else if(Input.IsNewButtonPress(Buttons.A))
@@ -171,17 +171,17 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             //fade background in
-            if (screenState == ScreenState.Opening)
+            if (displayState == DisplayState.Opening)
             {   
                 bkgAlpha += fadeInSpeed;
                 if (bkgAlpha >= maxAlpha)
                 {
                     bkgAlpha = maxAlpha;
-                    screenState = ScreenState.Opened;
+                    displayState = DisplayState.Opened;
                 }
             }
             //fade background out
-            else if (screenState == ScreenState.Closing)
+            else if (displayState == DisplayState.Closing)
             {
                 bkgAlpha -= fadeOutSpeed;
                 if (bkgAlpha <= 0.0f)

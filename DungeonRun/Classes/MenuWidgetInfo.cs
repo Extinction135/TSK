@@ -69,7 +69,7 @@ namespace DungeonRun
         {
             DrawFunctions.Draw(window);
             DrawFunctions.Draw(divider1);
-            if(window.interior.displayState == MenuRectangle.DisplayState.Open)
+            if(window.interior.displayState == DisplayState.Opened)
             {
                 DrawFunctions.Draw(compSprite);
                 DrawFunctions.Draw(description);

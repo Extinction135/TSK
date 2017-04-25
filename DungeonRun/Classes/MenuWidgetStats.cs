@@ -65,7 +65,7 @@ namespace DungeonRun
         public static void Draw()
         {
             DrawFunctions.Draw(window);
-            if (window.interior.displayState == MenuRectangle.DisplayState.Open)
+            if (window.interior.displayState == DisplayState.Opened)
             {
                 for (i = 0; i < menuItems.Count; i++)
                 { DrawFunctions.Draw(menuItems[i].compSprite); }

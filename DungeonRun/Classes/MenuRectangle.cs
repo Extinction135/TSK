@@ -15,9 +15,7 @@ namespace DungeonRun
     public class MenuRectangle
     {
 
-        public enum DisplayState { Opening, Open }
-        public DisplayState displayState = DisplayState.Opening;
-
+        public DisplayState displayState;
         public int animationSpeed = 5;      //how quickly the UI element animates in/out
         public int animationCounter = 0;    //counts up to delay value
         public int openDelay = 0;           //how many updates are ignored before open animation occurs
@@ -45,7 +43,7 @@ namespace DungeonRun
                     rec.Height = size.Y;
                     if (rec.Width < size.X) { rec.Width += ((size.X - rec.Width) / animationSpeed) + 1; } //easeIn 
                     if (rec.Width > size.X) { rec.Width = size.X; }
-                    if (rec.Width == size.X) { displayState = DisplayState.Open; animationCounter = 0; } //open complete
+                    if (rec.Width == size.X) { displayState = DisplayState.Opened; animationCounter = 0; } //open complete
                 }
             }
         }

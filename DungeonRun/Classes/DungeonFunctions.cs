@@ -66,7 +66,7 @@ namespace DungeonRun
 
             //fade the dungeon screen out from black, revealing the new level
             dungeonScreen.overlayAlpha = 1.0f;
-            dungeonScreen.screenState = ScreenState.Opening;
+            dungeonScreen.displayState = DisplayState.Opening;
         }
 
         public static void BuildRoom(Room Room)

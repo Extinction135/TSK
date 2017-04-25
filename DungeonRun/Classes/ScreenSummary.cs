@@ -134,7 +134,7 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
-            if (screenState == ScreenState.Opened)
+            if (displayState == DisplayState.Opened)
             {
                 if (
                     Input.IsNewButtonPress(Buttons.Start) ||
@@ -143,7 +143,7 @@ namespace DungeonRun
                     Input.IsNewButtonPress(Buttons.X) ||
                     Input.IsNewButtonPress(Buttons.Y))
                 {
-                    screenState = ScreenState.Closing;
+                    displayState = DisplayState.Closing;
                     continueText.alpha = 1.0f;
                     //play the summary exit sound effect immediately
                     Assets.sfxExitSummary.Play();
@@ -157,7 +157,7 @@ namespace DungeonRun
 
             #region Animate Title Sprites in / out
 
-            if (screenState == ScreenState.Opening)
+            if (displayState == DisplayState.Opening)
             {
                 if (leftTitle.position.X < leftTitleEndPos.X)
                 {   //move left title to endPos
@@ -184,9 +184,9 @@ namespace DungeonRun
                 if (rightTitle.position.X == rightTitleEndPos.X && 
                     leftTitle.position.X == leftTitleEndPos.X &&
                     continueText.alpha >= 1.0f)
-                { continueText.alpha = 1.0f; screenState = ScreenState.Opened; }
+                { continueText.alpha = 1.0f; displayState = DisplayState.Opened; }
             }
-            else if (screenState == ScreenState.Closing)
+            else if (displayState == DisplayState.Closing)
             {
                 if (leftTitle.position.X > leftTitleStartPos.X)
                 {   //move left title to startPos
@@ -206,7 +206,7 @@ namespace DungeonRun
                 continueText.alpha -= fadeSpeed * 0.9f;
                 //check components opacity, transition state
                 if (continueText.alpha <= 0.0f)
-                { continueText.alpha = 0.0f; screenState = ScreenState.Closed; }
+                { continueText.alpha = 0.0f; displayState = DisplayState.Closed; }
             }
 
             #endregion
@@ -214,7 +214,7 @@ namespace DungeonRun
 
             #region Handle Display State
 
-            else if (screenState == ScreenState.Opened)
+            else if (displayState == DisplayState.Opened)
             {
                 //pulse the alpha of the left and right title sprites
                 if (leftTitle.alpha >= 1.0f) { leftTitle.alpha = 0.85f; }
@@ -255,7 +255,7 @@ namespace DungeonRun
 
             #region Handle Exit State
 
-            else if (screenState == ScreenState.Closed)
+            else if (displayState == DisplayState.Closed)
             {
                 //award the gold bonus to player data
                 PlayerData.saveData.gold += rewardTotal;

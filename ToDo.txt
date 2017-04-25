@@ -35,17 +35,16 @@ ram useage:
 todo:
 
 
-6
+5
 
 
-moved Actor.State into Enumerators, renamed to ActorState.
-updated various codepaths that referenced Actor.State.
-moved RoomType out of Dungeon.cs and into Enumerators.cs.
-moved ObjGroup from GameObject.cs into Enumerators.cs.
-moved GameObject.type into Enumerators, renamed to ObjType.
-condensed the ObjType enums.
-renamed objGroup to group.
-replaced several hundred references to GameObject.Type & GameObject.objGroup.
+
+renamed ScreenState enum to DisplayState.
+this is in prep for sharing this enum with MenuRectangles, removing their unique enum.
+renamed Screen.screenState to Screen.displayState.
+updated various codepaths that referenced Screen.screenState.
+removed MenuRectangle.DisplayState enum, now just using the common DisplayState enum.
+updated various codepaths that referenced MenuRec.DisplayState.
 playtested, working as expected.
 
 

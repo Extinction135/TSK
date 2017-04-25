@@ -38,13 +38,13 @@ namespace DungeonRun
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
 
             //open the screen
-            screenState = ScreenState.Opening;
+            displayState = DisplayState.Opening;
         }
 
         public override void HandleInput(GameTime GameTime)
         {
             //if screen is playing, allow input for player + active actor
-            if (screenState == ScreenState.Opened) 
+            if (displayState == DisplayState.Opened) 
             {
                 //reset the input for hero, map player input to hero
                 Input.ResetInputData(Pool.hero.compInput);
@@ -83,27 +83,27 @@ namespace DungeonRun
 
                 #region Handle Screen State
 
-                if(screenState == ScreenState.Opening) //fade overlay to 0
+                if(displayState == DisplayState.Opening) //fade overlay to 0
                 {
                     overlayAlpha -= fadeOutSpeed;
                     if (overlayAlpha <= 0.0f)
                     {
                         overlayAlpha = 0.0f;
-                        screenState = ScreenState.Opened;
+                        displayState = DisplayState.Opened;
                     }
                 }
-                else if (screenState == ScreenState.Opened) { } //update 
-                else if (screenState == ScreenState.Closing) //fade overlay to 1.0
+                else if (displayState == DisplayState.Opened) { } //update 
+                else if (displayState == DisplayState.Closing) //fade overlay to 1.0
                 {
                     overlayAlpha += fadeInSpeed;
                     if (overlayAlpha >= 1.0f)
                     {
                         overlayAlpha = 1.0f;
-                        screenState = ScreenState.Closed;
+                        displayState = DisplayState.Closed;
                         gameState = GameState.Summary;
                     }
                 }
-                else if (screenState == ScreenState.Closed)
+                else if (displayState == DisplayState.Closed)
                 {
                     if (gameState == GameState.Summary)
                     {

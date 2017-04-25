@@ -16,7 +16,7 @@ namespace DungeonRun
     {  
 
         public Game1 game;
-        public ScreenState screenState;
+        public DisplayState displayState;
         public Screen() { }
         public string name = "New";
         public virtual void LoadContent() { }

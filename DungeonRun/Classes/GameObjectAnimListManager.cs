@@ -16,6 +16,10 @@ namespace DungeonRun
     {
         //a list of byte4 lists that describe all game object animations
         static List<List<Byte4>> GameObjAnims;
+        static int index;
+
+
+
         static GameObjectAnimListManager()
         {
             GameObjAnims = new List<List<Byte4>>
@@ -174,9 +178,6 @@ namespace DungeonRun
             };
         }
 
-
-
-        static int index;
         public static void SetAnimationList(GameObject Obj)
         {
             //we could do this by checking the obj.type, but that doesn't scale well
@@ -185,5 +186,6 @@ namespace DungeonRun
             index = (int)Obj.type; //get the type int value
             Obj.compAnim.currentAnimation = GameObjAnims[index]; //set animation based on index
         }
+
     }
 }
