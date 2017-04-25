@@ -83,6 +83,8 @@ namespace DungeonRun
             lastHeartCount = 3;
         }
 
+
+
         public static void Update()
         {
             //clip hero's health to 14 hearts

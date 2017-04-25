@@ -41,8 +41,6 @@ namespace DungeonRun
             Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Obj.compCollision.offsetY = -8; //(most are)
         }
-        
-
 
         public static void SetRotation(GameObject Obj)
         {   //sprites are created facing Down, but we will need to set the spite rotation based on direction
@@ -92,8 +90,6 @@ namespace DungeonRun
             else if (Obj.direction == Direction.DownLeft) { Obj.direction = Direction.Left; }
         }
 
-
-        
         public static void SpawnProjectile(ObjType Type, Vector2 Pos, Direction Direction)
         {   //a projectile always has a direction, so it inherit's actor's direction
             GameObject projectile = PoolFunctions.GetProjectile();
@@ -121,8 +117,6 @@ namespace DungeonRun
             else
             { GameObjectFunctions.SpawnProjectile(ObjType.ItemHeart, Pos, Direction.Down); }
         }
-
-
 
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
@@ -155,8 +149,6 @@ namespace DungeonRun
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Particle.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
-
-
 
         public static void SetType(GameObject Obj, ObjType Type)
         {

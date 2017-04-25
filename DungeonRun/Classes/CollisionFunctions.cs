@@ -40,8 +40,6 @@ namespace DungeonRun
             }
         }
 
-
-
         public static Boolean CheckInteractionRecCollisions()
         {   //set the interaction rec to the hero's position + direction
             InteractionFunctions.SetHeroInteractionRec();
@@ -62,8 +60,6 @@ namespace DungeonRun
             InteractionFunctions.ClearHeroInteractionRec();
             return collision;
         }
-
-
 
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
@@ -102,8 +98,6 @@ namespace DungeonRun
             }
             return collision; 
         }
-
-
 
         public static void CheckObjPoolCollisions(GameObject Projectile)
         {
@@ -144,8 +138,6 @@ namespace DungeonRun
             }
         }
 
-
-        
         public static void CheckCollisions(Actor Actor)
         {
             collisionX = false; collisionY = false;

@@ -93,8 +93,6 @@ namespace DungeonRun
             ComponentFunctions.SetZdepth(Actor.compSprite);
         }
 
-
-
         public static void SetCollisionRec(Actor Actor)
         {
             //set the collisionRec parameters based on the Type
@@ -126,8 +124,6 @@ namespace DungeonRun
             //scale up the current weapon in world ui
             if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }
         }
-
-
 
         public static void SetType(Actor Actor, ActorType Type)
         {

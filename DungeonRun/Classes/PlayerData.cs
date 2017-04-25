@@ -15,17 +15,8 @@ using System.Xml.Serialization;
 
 namespace DungeonRun
 {
-
-    public struct SaveData
-    {   //data that will be saved/loaded from game session to session
-        public int gold;
-    }
-
-
-
     public static class PlayerData
     {   
-        
         //'wraps' saveData and provides global access to this instance
         public static SaveData saveData;
         static PlayerData()

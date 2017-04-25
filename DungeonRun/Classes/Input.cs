@@ -39,6 +39,91 @@ namespace DungeonRun
             cursorColl.active = true;
         }
 
+        public static void ResetInputData(ComponentInput CompInput)
+        {
+            CompInput.direction = Direction.None;
+            CompInput.attack = false;
+            CompInput.use = false;
+            CompInput.dash = false;
+            CompInput.interact = false;
+        }
+
+        public static void MapPlayerInput(ComponentInput CompInput)
+        {   //maps input helper state to input component state
+            //AI sets input component state directly, without using a controller/input helper abstraction
+            CompInput.direction = gamePadDirection;
+            if (IsNewButtonPress(Buttons.X)) { CompInput.attack = true; }
+            else if (IsNewButtonPress(Buttons.Y)) { CompInput.use = true; }
+            else if (IsNewButtonPress(Buttons.B)) { CompInput.dash = true; }
+            else if (IsNewButtonPress(Buttons.A)) { CompInput.interact = true; }
+        }
+
+        public static void SetInputState(ComponentInput CompInput, Actor Actor)
+        {
+            Actor.inputState = ActorState.Idle; //reset inputState
+            Actor.compMove.direction = CompInput.direction; //set move direction
+            if (CompInput.direction != Direction.None)
+            {   //if there is directional input, then the actor is moving
+                Actor.inputState = ActorState.Move;
+                //the actor can only dash while moving
+                if (CompInput.dash) { Actor.inputState = ActorState.Dash; }
+            }
+            //determine + set button inputs
+            if (CompInput.attack) { Actor.inputState = ActorState.Attack; }
+            else if (CompInput.use) { Actor.inputState = ActorState.Use; }
+            else if (CompInput.interact) { Actor.inputState = ActorState.Interact; }
+        }
+
+        public static bool IsNewKeyPress(Keys key)
+        { return (currentKeyboardState.IsKeyDown(key) && lastKeyboardState.IsKeyUp(key)); }
+
+        public static bool IsKeyDown(Keys key)
+        { return (currentKeyboardState.IsKeyDown(key)); }
+
+        public static bool IsNewKeyRelease(Keys key)
+        { return (lastKeyboardState.IsKeyDown(key) && currentKeyboardState.IsKeyUp(key)); }
+        
+        public static bool IsNewButtonPress(Buttons button)
+        { return (currentGamePadState.IsButtonDown(button) && lastGamePadState.IsButtonUp(button)); }
+
+        public static bool IsNewButtonRelease(Buttons button)
+        { return (lastGamePadState.IsButtonDown(button) && currentGamePadState.IsButtonUp(button)); }
+        
+        public static bool IsButtonDown(Buttons button)
+        { return (currentGamePadState.IsButtonDown(button)); }
+
+        public static bool IsButtonUp(Buttons button)
+        { return (currentGamePadState.IsButtonUp(button)); }
+
+        public static bool IsNewMouseButtonPress(MouseButtons button)
+        {
+            if (button == MouseButtons.LeftButton)
+            { return (currentMouseState.LeftButton == ButtonState.Pressed && lastMouseState.LeftButton == ButtonState.Released); }
+            else if (button == MouseButtons.RightButton)
+            { return (currentMouseState.RightButton == ButtonState.Pressed && lastMouseState.RightButton == ButtonState.Released); }
+            else { return false; }
+        }
+
+        public static bool IsNewMouseButtonRelease(MouseButtons button)
+        {
+            if (button == MouseButtons.LeftButton)
+            { return (lastMouseState.LeftButton == ButtonState.Pressed && currentMouseState.LeftButton == ButtonState.Released); }
+            else if (button == MouseButtons.RightButton)
+            { return (lastMouseState.RightButton == ButtonState.Pressed && currentMouseState.RightButton == ButtonState.Released); }
+            else { return false; }
+        }
+
+        public static bool IsMouseButtonDown(MouseButtons button)
+        {
+            if (button == MouseButtons.LeftButton)
+            { return (currentMouseState.LeftButton == ButtonState.Pressed); }
+            else if (button == MouseButtons.RightButton)
+            { return (currentMouseState.RightButton == ButtonState.Pressed); }
+            else { return false; }
+        }
+
+
+
         public static void Update(GameTime gameTime)
         {
             lastKeyboardState = currentKeyboardState;
@@ -104,93 +189,6 @@ namespace DungeonRun
             { gamePadDirection = Direction.Up; }
             else if (currentGamePadState.IsButtonDown(Buttons.DPadDown))
             { gamePadDirection = Direction.Down; }
-        }
-
-
-
-        public static void ResetInputData(ComponentInput CompInput)
-        {
-            CompInput.direction = Direction.None;
-            CompInput.attack = false;
-            CompInput.use = false;
-            CompInput.dash = false;
-            CompInput.interact = false;
-        }
-
-        public static void MapPlayerInput(ComponentInput CompInput)
-        {   //maps input helper state to input component state
-            //AI sets input component state directly, without using a controller/input helper abstraction
-            CompInput.direction = gamePadDirection;
-            if (IsNewButtonPress(Buttons.X)) { CompInput.attack = true; }
-            else if (IsNewButtonPress(Buttons.Y)) { CompInput.use = true; }
-            else if (IsNewButtonPress(Buttons.B)) { CompInput.dash = true; }
-            else if (IsNewButtonPress(Buttons.A)) { CompInput.interact = true; }
-        }
-
-        public static void SetInputState(ComponentInput CompInput, Actor Actor)
-        {
-            Actor.inputState = ActorState.Idle; //reset inputState
-            Actor.compMove.direction = CompInput.direction; //set move direction
-            if (CompInput.direction != Direction.None)
-            {   //if there is directional input, then the actor is moving
-                Actor.inputState = ActorState.Move;
-                //the actor can only dash while moving
-                if (CompInput.dash) { Actor.inputState = ActorState.Dash; }
-            }
-            //determine + set button inputs
-            if (CompInput.attack) { Actor.inputState = ActorState.Attack; }
-            else if (CompInput.use) { Actor.inputState = ActorState.Use; }
-            else if (CompInput.interact) { Actor.inputState = ActorState.Interact; }
-        }
-
-
-
-        public static bool IsNewKeyPress(Keys key)
-        { return (currentKeyboardState.IsKeyDown(key) && lastKeyboardState.IsKeyUp(key)); }
-
-        public static bool IsKeyDown(Keys key)
-        { return (currentKeyboardState.IsKeyDown(key)); }
-
-        public static bool IsNewKeyRelease(Keys key)
-        { return (lastKeyboardState.IsKeyDown(key) && currentKeyboardState.IsKeyUp(key)); }
-        
-        public static bool IsNewButtonPress(Buttons button)
-        { return (currentGamePadState.IsButtonDown(button) && lastGamePadState.IsButtonUp(button)); }
-
-        public static bool IsNewButtonRelease(Buttons button)
-        { return (lastGamePadState.IsButtonDown(button) && currentGamePadState.IsButtonUp(button)); }
-        
-        public static bool IsButtonDown(Buttons button)
-        { return (currentGamePadState.IsButtonDown(button)); }
-
-        public static bool IsButtonUp(Buttons button)
-        { return (currentGamePadState.IsButtonUp(button)); }
-
-        public static bool IsNewMouseButtonPress(MouseButtons button)
-        {
-            if (button == MouseButtons.LeftButton)
-            { return (currentMouseState.LeftButton == ButtonState.Pressed && lastMouseState.LeftButton == ButtonState.Released); }
-            else if (button == MouseButtons.RightButton)
-            { return (currentMouseState.RightButton == ButtonState.Pressed && lastMouseState.RightButton == ButtonState.Released); }
-            else { return false; }
-        }
-
-        public static bool IsNewMouseButtonRelease(MouseButtons button)
-        {
-            if (button == MouseButtons.LeftButton)
-            { return (lastMouseState.LeftButton == ButtonState.Pressed && currentMouseState.LeftButton == ButtonState.Released); }
-            else if (button == MouseButtons.RightButton)
-            { return (lastMouseState.RightButton == ButtonState.Pressed && currentMouseState.RightButton == ButtonState.Released); }
-            else { return false; }
-        }
-
-        public static bool IsMouseButtonDown(MouseButtons button)
-        {
-            if (button == MouseButtons.LeftButton)
-            { return (currentMouseState.LeftButton == ButtonState.Pressed); }
-            else if (button == MouseButtons.RightButton)
-            { return (currentMouseState.RightButton == ButtonState.Pressed); }
-            else { return false; }
         }
 
     }

@@ -12,31 +12,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-
-    public struct AnimationGroup
-    {   //represents an animation with Down, Up, Left, Right states
-        public List<Byte4> down;
-        public List<Byte4> up;
-        public List<Byte4> right;
-        public List<Byte4> left;
-    }
-
-    public struct ActorAnimationList
-    {
-        public AnimationGroup idle;
-        public AnimationGroup move;
-        public AnimationGroup dash;
-        public AnimationGroup interact;
-
-        public AnimationGroup attack;
-        public AnimationGroup use;
-        public AnimationGroup hit;
-        public AnimationGroup dead;
-
-        public AnimationGroup reward;
-        //pickup, hold, carry, drag, etc...
-    }
-
     public static class ActorAnimationListManager
     {
         //the animationList used by all actors

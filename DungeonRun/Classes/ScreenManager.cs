@@ -57,8 +57,6 @@ namespace DungeonRun
 
         public static void UnloadContent() { foreach (Screen screen in screens) { screen.UnloadContent(); } }
 
-
-
         public static void Initialize(Game1 Game1)
         {
             game = Game1;
@@ -71,6 +69,8 @@ namespace DungeonRun
             Input.Initialize();
             Camera2D.Initialize();
         }
+
+
 
         public static void Update(GameTime GameTime)
         {

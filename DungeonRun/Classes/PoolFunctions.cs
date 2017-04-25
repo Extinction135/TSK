@@ -63,8 +63,6 @@ namespace DungeonRun
             return Pool.floorPool[Pool.floorIndex];
         }
 
-
-
         public static void Reset()
         {
             ResetActorPool();
@@ -100,15 +98,11 @@ namespace DungeonRun
             { Pool.floorPool[Pool.counter].visible = false; }
         }
 
-
-
         public static void ResetActorPoolInput()
         {
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             { Input.ResetInputData(Pool.actorPool[Pool.counter].compInput); }
         }
-
-
 
         public static void Release(Actor Actor)
         {
@@ -128,8 +122,6 @@ namespace DungeonRun
             else { Pool.objsUsed--; }
         }
 
-
-
         public static void UpdateObjectPool()
         {   //align sprite + collision comps to move comp of all active objs
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
@@ -146,6 +138,26 @@ namespace DungeonRun
                 }
             }
         }
+
+        public static void Move()
+        {
+            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+            {   //move actors in actor pool that are active and alive
+                if (
+                    Pool.actorPool[Pool.counter].active &&
+                    Pool.actorPool[Pool.counter].state != ActorState.Dead
+                    )
+                { MovementFunctions.Move(Pool.actorPool[Pool.counter]); }
+            }
+            for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
+            {   //move projectiles in projectile pool that are active
+                if (Pool.projectilePool[Pool.counter].active)
+                { MovementFunctions.Move(Pool.projectilePool[Pool.counter]); }
+            }
+            //objects in the objPool dont move
+        }
+
+
 
         public static void Update()
         {
@@ -181,26 +193,6 @@ namespace DungeonRun
             }
             Move();
         }
-
-        public static void Move()
-        {
-            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
-            {   //move actors in actor pool that are active and alive
-                if (
-                    Pool.actorPool[Pool.counter].active && 
-                    Pool.actorPool[Pool.counter].state != ActorState.Dead
-                    )
-                { MovementFunctions.Move(Pool.actorPool[Pool.counter]); }
-            }
-            for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
-            {   //move projectiles in projectile pool that are active
-                if (Pool.projectilePool[Pool.counter].active)
-                { MovementFunctions.Move(Pool.projectilePool[Pool.counter]); }
-            }
-            //objects in the objPool dont move
-        }
-
-
 
         public static void Draw()
         {

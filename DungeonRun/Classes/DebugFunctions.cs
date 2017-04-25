@@ -15,8 +15,8 @@ namespace DungeonRun
     public static class DebugFunctions
     {
         public static string output;
-
         static int i;
+
         public static void Inspect(DungeonScreen DungeonScreen)
         {   //check if any object or actor collide with cursor collision component, pass to Inspect()
             //check mouse click position for any objects
@@ -81,8 +81,6 @@ namespace DungeonRun
             Inspect(Obj.compAnim);
             Inspect(Obj.compSprite);
         }
-
-
 
         public static void Inspect(ComponentCollision Coll)
         {

@@ -13,6 +13,54 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
 
+    public struct Byte2
+    {
+        public byte x;
+        public byte y;
+        public Byte2(byte X, byte Y)
+        {
+            x = X; y = Y;
+        }
+    }
+
+    public struct Byte4
+    {   //used for animation
+        public byte x; //x frame
+        public byte y; //y frame
+        public byte flipHori; //>0 = flip horizontally
+        public byte flags; //represents various states (unused)
+        public Byte4(byte X, byte Y, byte Flip, byte Flags)
+        {
+            x = X; y = Y;
+            flipHori = Flip;
+            flags = Flags;
+        }
+    }
+
+    public struct AnimationGroup
+    {   //represents an animation with Down, Up, Left, Right states
+        public List<Byte4> down;
+        public List<Byte4> up;
+        public List<Byte4> right;
+        public List<Byte4> left;
+    }
+
+    public struct ActorAnimationList
+    {
+        public AnimationGroup idle;
+        public AnimationGroup move;
+        public AnimationGroup dash;
+        public AnimationGroup interact;
+
+        public AnimationGroup attack;
+        public AnimationGroup use;
+        public AnimationGroup hit;
+        public AnimationGroup dead;
+
+        public AnimationGroup reward;
+        //pickup, hold, carry, drag, etc...
+    }
+
     public struct Room
     {
         public ComponentCollision collision;
@@ -48,4 +96,10 @@ namespace DungeonRun
             bigKey = false; //hero has not found the big key yet
         }
     }
+
+    public struct SaveData
+    {   //data that will be saved/loaded from game session to session
+        public int gold;
+    }
+
 }

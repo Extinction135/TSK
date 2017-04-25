@@ -14,12 +14,11 @@ namespace DungeonRun
 {
     public static class InteractionFunctions
     {
+
         public static byte damage;
         public static float force;
 
         public static ComponentCollision interactionRec = new ComponentCollision();
-
-
 
         public static void ClearHeroInteractionRec()
         {   //move the interaction rec offscreen
@@ -60,8 +59,6 @@ namespace DungeonRun
                 interactionRec.rec.Y += 4; interactionRec.rec.X += 11;
             }
         }
-
-
 
         public static void Handle(Actor Actor, GameObject Obj)
         {
@@ -231,8 +228,6 @@ namespace DungeonRun
 
 
         }
-
-
 
         public static void Handle(GameObject Projectile, GameObject Obj)
         {

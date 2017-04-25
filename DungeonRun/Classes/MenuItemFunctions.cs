@@ -18,8 +18,6 @@ namespace DungeonRun
         static int i;
         static int rowCounter;
 
-
-
         public static void SetNeighbors(List<MenuItem> MenuItems, int rowLength)
         {
             rowCounter = 0;

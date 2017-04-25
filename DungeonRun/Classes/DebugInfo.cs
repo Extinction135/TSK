@@ -83,8 +83,6 @@ namespace DungeonRun
 
         }
 
-
-
         public static void Draw()
         {
 

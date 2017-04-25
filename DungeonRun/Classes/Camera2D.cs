@@ -22,6 +22,7 @@ namespace DungeonRun
         public static int deadzoneY = 50;
 
         //Lazy Camera Presets
+
         /*
         //the default preset (fast)
         speed = 5f;

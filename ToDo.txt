@@ -35,28 +35,37 @@ ram useage:
 todo:
 
 
-4
+3
+
+
+created Structs.cs, which will hold all the game's structs in one easy to find file.
+moved Byte2 and Byte4 structs into Structs.cs
+moved the GetRandom class into it's own file, for now. Future organization pending...
+removed the StructsAndEnums class.
+moved AnimationGroup and ActorAnimationList structs out of ActorAnimListManager.
+moved Room and Dungeon structs otu of Dungeon. 
+removed Dungeon.cs from project.
+moved SaveData struct out of PlayerData.
+various borderline OCD formatting...
 
 
 
 
-moved FadeState enum out of MusicFunctions and into Enumerators.
-updated references to MusicFunctions.FadeState.
-removed ScreenManager.transisionCount - wasn't being used.
-completed moving all enumerators into the enumerators class.
-up next, moving structs into Structs.cs.
+
+
+	
+	
+WHY do we have an Initialize() function in INput?
+this should be a constructor function, please!	
+	
+why do we have an Initialize() in ScreenManager???
+should be a CONSTRUCTOR FUNCTION - BE CONSISTENT FFS!
 
 
 
 
 
-
-
-do the same thing for structs
-look at dungeon.cs - its simply 2 structs, and we don't need the class file wrapper
-
-
-
+ 
 	
 menuItems should have an enum field in them
 then we pass the menuItem to MenuItemFunctions.SetMenuItem(menuItemEnum).
