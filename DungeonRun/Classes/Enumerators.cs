@@ -23,13 +23,15 @@ namespace DungeonRun
 
     public enum Music { DungeonA, DungeonB, Boss, Overworld, Shop, Title, None }
 
+    public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
+
+    public enum RoomType { Normal, Key, Boss, Hub, Exit, Secret }
+
     public enum Weapon { Sword }
 
     public enum ActorType { Hero, Blob, Boss, }
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
-
-    public enum RoomType { Normal, Key, Boss, Hub, Exit, Secret }
 
     public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Item, Projectile, Particle }
 

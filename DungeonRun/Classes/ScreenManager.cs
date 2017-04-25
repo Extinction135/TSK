@@ -14,12 +14,12 @@ namespace DungeonRun
 {
     public static class ScreenManager
     {
+
         public static Game1 game;
         public static List<Screen> screens;
         public static List<Screen> screensToUpdate;
         public static SpriteBatch spriteBatch;
         public static bool coveredByOtherScreen;
-        public static int transitionCount;
         public static RenderTarget2D renderSurface;
         public static GameTime gameTime;
 

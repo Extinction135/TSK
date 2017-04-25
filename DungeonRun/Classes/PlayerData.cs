@@ -24,7 +24,9 @@ namespace DungeonRun
 
 
     public static class PlayerData
-    {   //'wraps' saveData and provides global access to this instance
+    {   
+        
+        //'wraps' saveData and provides global access to this instance
         public static SaveData saveData;
         static PlayerData()
         {
@@ -50,5 +52,6 @@ namespace DungeonRun
                 saveData = (SaveData)serializer.Deserialize(stream);
             }
         }
+
     }
 }

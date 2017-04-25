@@ -35,28 +35,16 @@ ram useage:
 todo:
 
 
-5
-
-
-
-renamed ScreenState enum to DisplayState.
-this is in prep for sharing this enum with MenuRectangles, removing their unique enum.
-renamed Screen.screenState to Screen.displayState.
-updated various codepaths that referenced Screen.screenState.
-removed MenuRectangle.DisplayState enum, now just using the common DisplayState enum.
-updated various codepaths that referenced MenuRec.DisplayState.
-playtested, working as expected.
+4
 
 
 
 
-
-
-moved all Enums into Enumerators class.
-this makes it easier to locate an enum when we need to.
-
-we're going to need to locate all enums in the project, move them into enumerators
-and we'll have to rename some of them too
+moved FadeState enum out of MusicFunctions and into Enumerators.
+updated references to MusicFunctions.FadeState.
+removed ScreenManager.transisionCount - wasn't being used.
+completed moving all enumerators into the enumerators class.
+up next, moving structs into Structs.cs.
 
 
 

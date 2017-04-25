@@ -15,7 +15,6 @@ namespace DungeonRun
     public static class MusicFunctions
     {
 
-        public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
         public static FadeState fadeState = FadeState.Silent;
         public static float fadeInSpeed = 0.01f;
         public static float fadeOutSpeed = 0.01f;

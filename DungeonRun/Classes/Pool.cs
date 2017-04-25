@@ -25,8 +25,7 @@ namespace DungeonRun
         public static int objIndex;
         public static int objsUsed;
 
-        //projectile pool handles projectiles that move or are stationary
-        //also handles 'particles', which may move or not, but don't collide
+        //projectile pool handles projectiles/particles that move or are stationary
         public static int projectileCount;
         public static List<GameObject> projectilePool;
         public static int projectileIndex;

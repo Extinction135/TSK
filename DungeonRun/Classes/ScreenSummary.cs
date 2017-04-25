@@ -122,7 +122,7 @@ namespace DungeonRun
 
             //fade out the dungeon music
             MusicFunctions.trackToLoad = Music.None;
-            MusicFunctions.fadeState = MusicFunctions.FadeState.FadeOut;
+            MusicFunctions.fadeState = FadeState.FadeOut;
 
             //if the player beat the boss, the base reward is 100
             if (DungeonRecord.beatDungeon) { rewardTotal = 100; }
