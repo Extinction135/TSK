@@ -53,6 +53,61 @@ namespace DungeonRun
                 new Point(16 * 24 + 8, 16 * 10),
                 new Point(16 * 6 + 8, 16 * 8 + 8));
 
+
+            #region Connect loadout widget's menuItems to stats widget's menuItems
+
+            MenuWidgetLoadout.menuItems[4].neighborDown = MenuWidgetStats.menuItems[0];
+            MenuWidgetLoadout.menuItems[5].neighborDown = MenuWidgetStats.menuItems[0];
+            MenuWidgetLoadout.menuItems[6].neighborDown = MenuWidgetStats.menuItems[0];
+            MenuWidgetLoadout.menuItems[7].neighborDown = MenuWidgetStats.menuItems[0];
+            MenuWidgetStats.menuItems[0].neighborUp = MenuWidgetLoadout.menuItems[4];
+
+            #endregion
+
+
+            #region Connect loadout widget's menuItems to inventory widget's menuItems
+
+            MenuWidgetLoadout.menuItems[3].neighborRight = MenuWidgetInventory.menuItems[0];
+            MenuWidgetInventory.menuItems[0].neighborLeft = MenuWidgetLoadout.menuItems[3];
+
+            MenuWidgetLoadout.menuItems[7].neighborRight = MenuWidgetInventory.menuItems[5];
+            MenuWidgetInventory.menuItems[5].neighborLeft = MenuWidgetLoadout.menuItems[7];
+
+            #endregion
+
+
+            #region Connect stat widget's menuItems to inventory widget's menuItems
+
+            MenuWidgetStats.menuItems[0].neighborRight = MenuWidgetInventory.menuItems[10];
+            MenuWidgetInventory.menuItems[10].neighborLeft = MenuWidgetStats.menuItems[0];
+
+            MenuWidgetStats.menuItems[1].neighborRight = MenuWidgetInventory.menuItems[15];
+            MenuWidgetInventory.menuItems[15].neighborLeft = MenuWidgetStats.menuItems[1];
+
+            MenuWidgetStats.menuItems[2].neighborRight = MenuWidgetInventory.menuItems[15];
+
+            MenuWidgetStats.menuItems[3].neighborRight = MenuWidgetInventory.menuItems[20];
+            MenuWidgetInventory.menuItems[20].neighborLeft = MenuWidgetStats.menuItems[3];
+
+            #endregion
+
+
+            #region Connect options widget's menuItems to inventory widget's menuItems
+
+            MenuWidgetOptions.menuItems[0].neighborLeft = MenuWidgetInventory.menuItems[14];
+            MenuWidgetInventory.menuItems[14].neighborRight = MenuWidgetOptions.menuItems[0];
+
+            MenuWidgetOptions.menuItems[2].neighborLeft = MenuWidgetInventory.menuItems[19];
+            MenuWidgetInventory.menuItems[19].neighborRight = MenuWidgetOptions.menuItems[2];
+
+            MenuWidgetOptions.menuItems[4].neighborLeft = MenuWidgetInventory.menuItems[19];
+
+            MenuWidgetOptions.menuItems[6].neighborLeft = MenuWidgetInventory.menuItems[24];
+            MenuWidgetInventory.menuItems[24].neighborRight = MenuWidgetOptions.menuItems[6];
+
+            #endregion
+
+
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetInventory.menuItems[0];
             previouslySelected = MenuWidgetInventory.menuItems[0];
@@ -105,7 +160,7 @@ namespace DungeonRun
                 if (previouslySelected != currentlySelected)
                 {
                     MenuWidgetInfo.Display(currentlySelected);
-                    Assets.sfxSelectMenuItem.Play();
+                    Assets.sfxTextLetter.Play();
                     //don't leave any menuItems scaled up beyond 1.0f
                     previouslySelected.compSprite.scale = 1.0f;
                 }

@@ -35,22 +35,15 @@ ram useage:
 todo:
 
 
-9
-
-updated MenuWidgetLoadout.Reset() to call MenuItemFunctions.SetNeighbors().
-updated MenuWidgetStats.Reset() to call MenuItemFunctions.SetNeighbors().
-updated MenuWidgetOptions.Reset() to call MenuItemFunctions.SetNeighbors().
-changed how the menuItems in OptionsWidget were being arranged to work with SetNeighbors().
-tested each widget's menuItems individually, working as expected.
+8
 
 
-
-
-
-
-stitch together the menuItem neighbors on the inventory screen.
-we should be setting the neighbors for each widget when inventory screen is created.
+updated InventoryScreen to logically connect each widget's menuItems with other widget menuItems.
+this allows the player to move the selection box across various menuItems belonging to different widgets.
+playtested, working as expected.
+changed the sound effect played when player moves between menuItems to the TextLetter sfx.
 	
+
 	
 	
 	
@@ -65,10 +58,27 @@ this will be done through the MenuItemFunctions.SetMenuItem(MenuItemType enum)
 -> sets the name, current frame, and description based on passed enum
 
 
+we really do need a different sound effect for when the user presses A button on menuItem
+
+
+
+
+
+
+
 
 seperate structs and enums, into their own classes
 move ALL structs into structs class
 move ALL enums into enums class
+
+
+
+
+
+
+
+
+
 
 
 
