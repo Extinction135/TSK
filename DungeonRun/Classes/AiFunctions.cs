@@ -46,7 +46,7 @@ namespace DungeonRun
 
             #region Boss AI
 
-            if (Actor.type == Actor.Type.Boss)
+            if (Actor.type == ActorType.Boss)
             {
                 //randomly move in a direction + dash
                 Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
@@ -57,7 +57,7 @@ namespace DungeonRun
                     Actor actorRef = PoolFunctions.GetActor();
                     if(actorRef != null)
                     {   //actorRef can never be an actor already active in room
-                        ActorFunctions.SetType(actorRef, Actor.Type.Blob);
+                        ActorFunctions.SetType(actorRef, ActorType.Blob);
                         MovementFunctions.Teleport(actorRef.compMove, actorPos.X, actorPos.Y);
                     }
                 }

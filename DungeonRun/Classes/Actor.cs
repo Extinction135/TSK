@@ -14,12 +14,7 @@ namespace DungeonRun
 {
     public class Actor
     {
-        public enum Type
-        {
-            Hero,
-            Blob,
-            Boss,
-        }
+        
         public enum State
         {   //attacks with weapon, uses item, interacts with game object
             Idle, Move, Dash, Interact,
@@ -27,7 +22,7 @@ namespace DungeonRun
             Reward,
         }
 
-        public Type type; //the type of actor this is
+        public ActorType type; //the type of actor this is
         public State state; //what actor is doing this frame
         public State inputState; //what input wants actor to do this frame
 
@@ -65,7 +60,7 @@ namespace DungeonRun
             compMove = new ComponentMovement();
             compCollision = new ComponentCollision();
             //set the actor type to hero, teleport to position
-            ActorFunctions.SetType(this, Type.Hero);
+            ActorFunctions.SetType(this, ActorType.Hero);
             MovementFunctions.Teleport(this.compMove, compSprite.position.X, compSprite.position.Y);
         }
     }

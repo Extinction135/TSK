@@ -58,7 +58,7 @@ namespace DungeonRun
 
             #region Enemy Specific Death Effects
 
-            if (Actor.type == Actor.Type.Blob)
+            if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
                 GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
@@ -66,7 +66,7 @@ namespace DungeonRun
                 if (GetRandom.Int(0, 100) > 60) //spawn loot 40% of the time
                 { GameObjectFunctions.SpawnLoot(Actor.compSprite.position); } 
             }
-            else if (Actor.type == Actor.Type.Boss)
+            else if (Actor.type == ActorType.Boss)
             {
                 //player has beat the dungeon
                 DungeonRecord.beatDungeon = true;
@@ -98,7 +98,7 @@ namespace DungeonRun
         public static void SetCollisionRec(Actor Actor)
         {
             //set the collisionRec parameters based on the Type
-            if (Actor.type == Actor.Type.Boss)
+            if (Actor.type == ActorType.Boss)
             {
                 Actor.compCollision.rec.Width = 24;
                 Actor.compCollision.rec.Height = 16;
@@ -129,7 +129,7 @@ namespace DungeonRun
 
 
 
-        public static void SetType(Actor Actor, Actor.Type Type)
+        public static void SetType(Actor Actor, ActorType Type)
         {
             Actor.type = Type;
             //bring actor back to life
@@ -154,7 +154,7 @@ namespace DungeonRun
 
             #region Actor Specific Fields
 
-            if (Type == Actor.Type.Hero)
+            if (Type == ActorType.Hero)
             {
                 Actor.compSprite.texture = Assets.heroSheet;
                 Actor.health = 3;
@@ -172,7 +172,7 @@ namespace DungeonRun
                 //set the actor's animation list, actor could be a boss
                 //Actor.animList = ActorAnimationListManager.actorAnims;
             }
-            else if (Type == Actor.Type.Blob)
+            else if (Type == ActorType.Blob)
             {
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.health = 1;
@@ -190,7 +190,7 @@ namespace DungeonRun
                 //set the actor's animation list, actor could be a boss
                 //Actor.animList = ActorAnimationListManager.actorAnims;
             }
-            else if (Type == Actor.Type.Boss)
+            else if (Type == ActorType.Boss)
             {
                 Actor.compSprite.texture = Assets.bossSheet;
                 Actor.health = 10;

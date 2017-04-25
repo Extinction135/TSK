@@ -114,6 +114,7 @@
     <Compile Include="Classes\Dungeon.cs" />
     <Compile Include="Classes\DungeonFunctions.cs" />
     <Compile Include="Classes\DungeonRecord.cs" />
+    <Compile Include="Classes\Enumerators.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
     <Compile Include="Classes\GameObjectFunctions.cs" />
     <Compile Include="Classes\CollisionFunctions.cs" />

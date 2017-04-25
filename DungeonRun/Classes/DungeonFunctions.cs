@@ -45,7 +45,7 @@ namespace DungeonRun
             currentRoom = dungeon.rooms[0];
 
             //center hero to spawn room
-            ActorFunctions.SetType(Pool.hero, Actor.Type.Hero);
+            ActorFunctions.SetType(Pool.hero, ActorType.Hero);
             MovementFunctions.Teleport(Pool.hero.compMove, 
                 dungeon.rooms[0].center.X, 
                 dungeon.rooms[0].center.Y);
@@ -316,7 +316,7 @@ namespace DungeonRun
 
                 //spawn a boss actor
                 actorRef = PoolFunctions.GetActor();
-                ActorFunctions.SetType(actorRef, Actor.Type.Boss);
+                ActorFunctions.SetType(actorRef, ActorType.Boss);
                 //teleport boss to center of room
                 MovementFunctions.Teleport(actorRef.compMove,
                     Room.center.X + 8,
@@ -352,7 +352,7 @@ namespace DungeonRun
                     //but because we reset the pool earlier in this function,
                     //and the room's enemy count will never be larger than the total actors
                     //we'll never get a null result from GetActor() right here
-                    ActorFunctions.SetType(actorRef, Actor.Type.Blob);
+                    ActorFunctions.SetType(actorRef, ActorType.Blob);
                     //get a random value between the min/max size of room
                     int randomX = GetRandom.Int(-Room.size.x + 2, Room.size.x - 2);
                     int randomY = GetRandom.Int(-Room.size.y + 2, Room.size.y - 2);

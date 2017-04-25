@@ -93,10 +93,10 @@ namespace DungeonRun
                     { if (Actor != Pool.actorPool[i]) { collision = true; } }
 
                     //if this was a collision between a blob and the boss, ignore it
-                    if (Actor.type == Actor.Type.Blob && Pool.actorPool[i].type == Actor.Type.Boss)
+                    if (Actor.type == ActorType.Blob && Pool.actorPool[i].type == ActorType.Boss)
                     { collision = false; }
                     //if this was a collision between the boss and a blob, ignore it
-                    else if (Actor.type == Actor.Type.Boss && Pool.actorPool[i].type == Actor.Type.Blob)
+                    else if (Actor.type == ActorType.Boss && Pool.actorPool[i].type == ActorType.Blob)
                     { collision = false; }
                 }
             }

@@ -35,18 +35,39 @@ ram useage:
 todo:
 
 
-8
+7
 
 
-updated InventoryScreen to logically connect each widget's menuItems with other widget menuItems.
-this allows the player to move the selection box across various menuItems belonging to different widgets.
-playtested, working as expected.
-changed the sound effect played when player moves between menuItems to the TextLetter sfx.
-	
+created Enumerators class.
+moved Actor.Type enum into Enumerators class, renamed to ActorType enum.
+updated various codepaths that referenced Actor.Type.
+playtested, working.
 
-	
-	
-	
+
+
+
+
+
+
+moved all Enums into Enumerators class.
+this makes it easier to locate an enum when we need to.
+
+
+
+
+we're going to need to locate all enums in the project, move them into enumerators
+and we'll have to rename some of them too
+
+
+
+do the same thing for structs
+
+
+seperate structs and enums, into their own classes
+move ALL structs into structs class
+move ALL enums into enums class
+
+
 	
 menuItems should have an enum field in them
 then we pass the menuItem to MenuItemFunctions.SetMenuItem(menuItemEnum).
@@ -67,9 +88,7 @@ we really do need a different sound effect for when the user presses A button on
 
 
 
-seperate structs and enums, into their own classes
-move ALL structs into structs class
-move ALL enums into enums class
+
 
 
 

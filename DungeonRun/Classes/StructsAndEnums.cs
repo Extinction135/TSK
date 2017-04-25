@@ -46,16 +46,6 @@ namespace DungeonRun
 
     
 
-    public enum Direction { Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft, None }
-
-    public enum Rotation { None, Clockwise90, Clockwise180, Clockwise270 }
-
-    public enum MouseButtons { LeftButton, RightButton }
-
-    public enum ScreenState { Opening, Opened, Closing, Closed }
-
-    public enum Music { DungeonA, DungeonB, Boss, Overworld, Shop, Title, None }
-
-    public enum Weapon { Sword }
+    
 
 }
