@@ -22,7 +22,6 @@ namespace DungeonRun
         float fadeInSpeed = 0.03f;
         float fadeOutSpeed = 0.1f;
 
-        public MenuWindow inventoryWindow;
         public MenuWindow statsWindow;
         public MenuWindow optionsWindow;
 
@@ -43,10 +42,7 @@ namespace DungeonRun
 
             //play the menu opening soundFX
 
-            inventoryWindow = new MenuWindow(
-                new Point(16 * 9, 16 * 4), 
-                new Point(16 * 6 + 8, 16 * 5 + 8), 
-                "Current Inventory");
+
             statsWindow = new MenuWindow(
                 new Point(16 * 9, 16 * 10),
                 new Point(16 * 6 + 8, 16 * 8 + 8),
@@ -56,11 +52,12 @@ namespace DungeonRun
                 new Point(16 * 6 + 8, 16 * 8 + 8),
                 "Game Options");
 
-
+            MenuWidgetLoadout.Reset(
+                new Point(16 * 9, 16 * 4),
+                new Point(16 * 6 + 8, 16 * 5 + 8));
             MenuWidgetInventory.Reset(
                 new Point(16 * 16, 16 * 4),
-                new Point(16 * 8, 16 * 14 + 8)
-                );
+                new Point(16 * 8, 16 * 14 + 8));
             MenuWidgetInfo.Reset(
                 new Point(16 * 24 + 8, 16 * 4),
                 new Point(16 * 6 + 8, 16 * 5 + 8));
@@ -147,10 +144,10 @@ namespace DungeonRun
                 }
             }
 
-            inventoryWindow.Update();
+
             statsWindow.Update();
             optionsWindow.Update();
-
+            MenuWidgetLoadout.Update();
             MenuWidgetInfo.Update();
             MenuWidgetInventory.Update();
 
@@ -173,10 +170,10 @@ namespace DungeonRun
 
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.overlay * bkgAlpha);
 
-            DrawFunctions.Draw(inventoryWindow);
             DrawFunctions.Draw(statsWindow);
             DrawFunctions.Draw(optionsWindow);
 
+            MenuWidgetLoadout.Draw();
             MenuWidgetInfo.Draw();
             MenuWidgetInventory.Draw();
 

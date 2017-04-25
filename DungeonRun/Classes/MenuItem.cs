@@ -18,8 +18,6 @@ namespace DungeonRun
         public ComponentSprite compSprite;
         public String name = "unknown";
         public String description = "no description available\nfor this item.";
-        public Boolean selected = false;
-
         //the cardinal neighbors this menuItem links with
         public MenuItem neighborUp;
         public MenuItem neighborDown;

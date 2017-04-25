@@ -20,6 +20,8 @@ namespace DungeonRun
         public static ComponentText description;
         public static MenuRectangle divider1;
 
+
+
         static MenuWidgetInfo()
         {
             window = new MenuWindow(new Point(-100, -100), 

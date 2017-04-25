@@ -55,8 +55,6 @@ namespace DungeonRun
             menuItems[0].compSprite.currentFrame = new Byte4(5, 5, 0, 0);
         }
 
-
-
         public static void ResetDivider(MenuRectangle Divider, int X, int Y, int Width)
         {
             Divider.openDelay = window.headerLine.openDelay;
@@ -66,8 +64,6 @@ namespace DungeonRun
             Divider.size.Y = 1;
             Divider.Reset();
         }
-
-
 
         public static void PlaceRow(int index, int X, int Y)
         {   //place the menuItem index at X, Y
@@ -85,8 +81,6 @@ namespace DungeonRun
             Child.compSprite.position.X = Parent.compSprite.position.X + 24;
             Child.compSprite.position.Y = Parent.compSprite.position.Y;
         }
-        
-
 
         public static void Reset(Point Position, Point Size)
         {   //align this widgets component to Position + Size
@@ -132,8 +126,6 @@ namespace DungeonRun
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
         }
-
-
 
         public static void Update()
         {
