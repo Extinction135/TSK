@@ -22,7 +22,6 @@ namespace DungeonRun
         float fadeInSpeed = 0.03f;
         float fadeOutSpeed = 0.1f;
 
-        public MenuWindow statsWindow;
         public MenuWindow optionsWindow;
 
         //these point to a menuItem that is part of a widget
@@ -40,13 +39,6 @@ namespace DungeonRun
         {
             screenState = ScreenState.Opening;
 
-            //play the menu opening soundFX
-
-
-            statsWindow = new MenuWindow(
-                new Point(16 * 9, 16 * 10),
-                new Point(16 * 6 + 8, 16 * 8 + 8),
-                "Stats");
             optionsWindow = new MenuWindow(
                 new Point(16 * 24 + 8, 16 * 10),
                 new Point(16 * 6 + 8, 16 * 8 + 8),
@@ -55,6 +47,9 @@ namespace DungeonRun
             MenuWidgetLoadout.Reset(
                 new Point(16 * 9, 16 * 4),
                 new Point(16 * 6 + 8, 16 * 5 + 8));
+            MenuWidgetStats.Reset(
+                new Point(16 * 9, 16 * 10),
+                new Point(16 * 6 + 8, 16 * 8 + 8));
             MenuWidgetInventory.Reset(
                 new Point(16 * 16, 16 * 4),
                 new Point(16 * 8, 16 * 14 + 8));
@@ -144,10 +139,9 @@ namespace DungeonRun
                 }
             }
 
-
-            statsWindow.Update();
             optionsWindow.Update();
             MenuWidgetLoadout.Update();
+            MenuWidgetStats.Update();
             MenuWidgetInfo.Update();
             MenuWidgetInventory.Update();
 
@@ -167,13 +161,12 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.overlay * bkgAlpha);
 
-            DrawFunctions.Draw(statsWindow);
             DrawFunctions.Draw(optionsWindow);
 
             MenuWidgetLoadout.Draw();
+            MenuWidgetStats.Draw();
             MenuWidgetInfo.Draw();
             MenuWidgetInventory.Draw();
 

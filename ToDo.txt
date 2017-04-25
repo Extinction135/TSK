@@ -35,16 +35,15 @@ ram useage:
 todo:
 
 
-9
+8
 
 
-removed MenuItem.selected boolean, since we aren't using it anymore/ever.
-created MenuWidgetLoadout.cs, integrated it into InventoryScreen.
+created MenuWidgetStats. integrated into InventoryScreen.
 playtested, working as expected.
 
 
 
-build menu widget loadout
+
 build menu widget stats
 build menu widget options
 (each of these will be filled with default menuItems)
