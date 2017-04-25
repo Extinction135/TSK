@@ -24,6 +24,17 @@ namespace DungeonRun
         public static GameTime gameTime;
 
 
+
+        public static void Initialize(Game1 Game1)
+        {
+            game = Game1;
+            screens = new List<Screen>();
+            screensToUpdate = new List<Screen>();
+            spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
+            //gridRef = new Sprite(this, game.gridSheet, new Vector2(320, 320), new Point(640, 360), new Vector3(0, 0, 0));
+        }
+
         public static Screen[] GetScreens() { return screens.ToArray(); }
 
         public static void AddScreen(Screen screen)
@@ -57,21 +68,8 @@ namespace DungeonRun
 
         public static void UnloadContent() { foreach (Screen screen in screens) { screen.UnloadContent(); } }
 
-        public static void Initialize(Game1 Game1)
-        {
-            game = Game1;
-            screens = new List<Screen>();
-            screensToUpdate = new List<Screen>();
 
-            spriteBatch = new SpriteBatch(game.GraphicsDevice);
-            renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
-            //gridRef = new Sprite(this, game.gridSheet, new Vector2(320, 320), new Point(640, 360), new Vector3(0, 0, 0));
-            Input.Initialize();
-            Camera2D.Initialize();
-        }
-
-
-
+  
         public static void Update(GameTime GameTime)
         {
             gameTime = GameTime;

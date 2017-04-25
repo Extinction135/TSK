@@ -56,6 +56,17 @@ namespace DungeonRun
         static Boolean followY = true;
         static Point point; //used in conversion functions below
 
+        static Camera2D()
+        {
+            graphics = ScreenManager.game.GraphicsDevice;
+            view = Matrix.Identity;
+            translateCenter.Z = 0; //these two values dont change on a 2D camera
+            translateBody.Z = 0;
+            currentPosition = Vector2.Zero; //initially the camera is at 0,0
+            targetPosition = Vector2.Zero;
+            targetZoom = 1.0f;
+        }
+
         public static Point ConvertScreenToWorld(int x, int y)
         {
             //get the camera position minus half width/height of render surface
@@ -92,16 +103,7 @@ namespace DungeonRun
                     Matrix.CreateTranslation(translateCenter);
         }
 
-        public static void Initialize()
-        {
-            graphics = ScreenManager.game.GraphicsDevice;
-            view = Matrix.Identity;
-            translateCenter.Z = 0; //these two values dont change on a 2D camera
-            translateBody.Z = 0;
-            currentPosition = Vector2.Zero; //initially the camera is at 0,0
-            targetPosition = Vector2.Zero;
-            targetZoom = 1.0f;
-        }
+        
 
         public static void Update(GameTime GameTime)
         {
@@ -137,5 +139,6 @@ namespace DungeonRun
             }
             SetView();
         }
+
     }
 }

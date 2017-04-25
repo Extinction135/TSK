@@ -35,34 +35,16 @@ ram useage:
 todo:
 
 
-3
+2
 
 
-created Structs.cs, which will hold all the game's structs in one easy to find file.
-moved Byte2 and Byte4 structs into Structs.cs
-moved the GetRandom class into it's own file, for now. Future organization pending...
-removed the StructsAndEnums class.
-moved AnimationGroup and ActorAnimationList structs out of ActorAnimListManager.
-moved Room and Dungeon structs otu of Dungeon. 
-removed Dungeon.cs from project.
-moved SaveData struct out of PlayerData.
-various borderline OCD formatting...
-
-
-
-
+removed Initialize() functions from Input, and Camera2D.
+it makes no sense to use an Initialize method when it can be done automatically with the constructor.
+slight reorganization of ScreenManager.
+playtested, working as expected.
 
 
 	
-	
-WHY do we have an Initialize() function in INput?
-this should be a constructor function, please!	
-	
-why do we have an Initialize() in ScreenManager???
-should be a CONSTRUCTOR FUNCTION - BE CONSISTENT FFS!
-
-
-
 
 
  

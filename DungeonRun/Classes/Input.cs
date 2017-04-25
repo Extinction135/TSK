@@ -31,7 +31,7 @@ namespace DungeonRun
         public static Direction lastGamePadDirection = Direction.None;
 
 
-        public static void Initialize()
+        static Input()
         {
             cursorColl.rec.Width = 4;
             cursorColl.rec.Height = 4;
