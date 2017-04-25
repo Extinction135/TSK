@@ -35,16 +35,16 @@ ram useage:
 todo:
 
 
-8
+7
 
 
-created MenuWidgetStats. integrated into InventoryScreen.
-playtested, working as expected.
+created MenuWidgetOptions class. 
+Integrated it into InventoryScreen.cs
 
 
 
 
-build menu widget stats
+
 build menu widget options
 (each of these will be filled with default menuItems)
 static classes for each 

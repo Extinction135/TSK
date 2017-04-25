@@ -22,8 +22,6 @@ namespace DungeonRun
         float fadeInSpeed = 0.03f;
         float fadeOutSpeed = 0.1f;
 
-        public MenuWindow optionsWindow;
-
         //these point to a menuItem that is part of a widget
         public MenuItem currentlySelected;
         public MenuItem previouslySelected;
@@ -39,11 +37,6 @@ namespace DungeonRun
         {
             screenState = ScreenState.Opening;
 
-            optionsWindow = new MenuWindow(
-                new Point(16 * 24 + 8, 16 * 10),
-                new Point(16 * 6 + 8, 16 * 8 + 8),
-                "Game Options");
-
             MenuWidgetLoadout.Reset(
                 new Point(16 * 9, 16 * 4),
                 new Point(16 * 6 + 8, 16 * 5 + 8));
@@ -56,6 +49,9 @@ namespace DungeonRun
             MenuWidgetInfo.Reset(
                 new Point(16 * 24 + 8, 16 * 4),
                 new Point(16 * 6 + 8, 16 * 5 + 8));
+            MenuWidgetOptions.Reset(
+                new Point(16 * 24 + 8, 16 * 10),
+                new Point(16 * 6 + 8, 16 * 8 + 8));
 
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetInventory.menuItems[0];
@@ -139,11 +135,11 @@ namespace DungeonRun
                 }
             }
 
-            optionsWindow.Update();
             MenuWidgetLoadout.Update();
             MenuWidgetStats.Update();
             MenuWidgetInfo.Update();
             MenuWidgetInventory.Update();
+            MenuWidgetOptions.Update();
 
             //pulse the selectionBox alpha
             if (selectionBox.alpha >= 1.0f)
@@ -163,12 +159,11 @@ namespace DungeonRun
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.overlay * bkgAlpha);
 
-            DrawFunctions.Draw(optionsWindow);
-
             MenuWidgetLoadout.Draw();
             MenuWidgetStats.Draw();
             MenuWidgetInfo.Draw();
             MenuWidgetInventory.Draw();
+            MenuWidgetOptions.Draw();
 
             DrawFunctions.Draw(selectionBox);
             ScreenManager.spriteBatch.End();

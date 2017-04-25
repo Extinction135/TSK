@@ -74,7 +74,6 @@ namespace DungeonRun
 
             #endregion
 
-
         }
 
         public static void Update()

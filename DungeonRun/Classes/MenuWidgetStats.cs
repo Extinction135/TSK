@@ -35,7 +35,9 @@ namespace DungeonRun
         {   //align this widgets component to Position + Size
             window.ResetAndMoveWindow(Position, Size, "Stats");
 
-            //place menuItems
+
+            #region Place menuItems
+
             menuItems[0].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[0].compSprite.position.Y = window.background.position.Y + 16 * 2;
 
@@ -47,6 +49,9 @@ namespace DungeonRun
 
             menuItems[3].compSprite.position.X = menuItems[2].compSprite.position.X;
             menuItems[3].compSprite.position.Y = menuItems[2].compSprite.position.Y + 24;
+
+            #endregion
+
         }
 
         public static void Update()
