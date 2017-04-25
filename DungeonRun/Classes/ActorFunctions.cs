@@ -88,6 +88,8 @@ namespace DungeonRun
                     Actor.compSprite.position + new Vector2(-10, 10));
                 GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
                     Actor.compSprite.position + new Vector2(-10, -10));
+                //spam the explosion sound
+                Assets.sfxExplosion.Play();
             }
 
             #endregion
@@ -193,7 +195,7 @@ namespace DungeonRun
             else if (Type == ActorType.Boss)
             {
                 Actor.compSprite.texture = Assets.bossSheet;
-                Actor.health = 10;
+                Actor.health = 2;
                 Actor.weapon = Weapon.Sword;
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;

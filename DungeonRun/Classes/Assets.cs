@@ -117,6 +117,9 @@ namespace DungeonRun
         static SoundEffect sfxBossHitSrc;
         public static SoundEffectInstance sfxBossHit;
 
+        static SoundEffect sfxExplosionSrc;
+        public static SoundEffectInstance sfxExplosion;
+
         #endregion
 
 
@@ -227,6 +230,9 @@ namespace DungeonRun
 
             sfxBossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
             sfxBossHit = sfxBossHitSrc.CreateInstance();
+
+            sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
+            sfxExplosion = sfxExplosionSrc.CreateInstance();
 
             #endregion
 

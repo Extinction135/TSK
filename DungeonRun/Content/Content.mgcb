@@ -251,3 +251,9 @@
 /processorParam:Quality=Best
 /build:SoundBossHit.wav
 
+#begin SoundExplosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundExplosion.wav
+

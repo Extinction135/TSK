@@ -35,17 +35,31 @@ ram useage:
 todo:
 
 
-13
-
-added code to App.xaml.cs to change the game's window title.
-added sound effect boss hit to content project, built.
-added instances to Assets for boss hit sound effect.
-updated ActorFunctions.SetHitState to play boss hit sound effect upon boss being hit.
-this is in addition to the normal enemy hit sound effect.
+12
 
 
 
 
+added sound explosion to content project, built.
+added instances to Assets for the explosion sound effect.
+added call to play the explosion sound effect when boss dies.
+playtested, working.
+however, it can be done better, or closer to LttP's boss deaths.
+
+
+
+we want the boss explosions to happen sequentially
+we want each explosion to call the explosion sound effect
+so we only have to create the explosion effects
+
+
+
+
+we need to be able to spam the explosion sound effect when the boss dies
+at 60 fps, we can spam the explosion sound every 6 frames
+
+
+pull all the sound effects from links awakening
 
 
 
