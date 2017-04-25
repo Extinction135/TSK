@@ -74,6 +74,9 @@ namespace DungeonRun
 
             #endregion
 
+
+            //set the menuItem's neighbors
+            MenuItemFunctions.SetNeighbors(menuItems, 4);
         }
 
         public static void Update()

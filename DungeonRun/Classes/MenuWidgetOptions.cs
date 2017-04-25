@@ -45,38 +45,27 @@ namespace DungeonRun
             window.ResetAndMoveWindow(Position, Size, "Options");
 
 
-            #region Place first column menuItems
+            //these should be arranged by ROW, not column, due to how neighbors are set
 
             menuItems[0].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[0].compSprite.position.Y = window.background.position.Y + 16 * 2;
+            menuItems[1].compSprite.position.X = menuItems[0].compSprite.position.X + 16 * 3;
+            menuItems[1].compSprite.position.Y = menuItems[0].compSprite.position.Y;
 
-            menuItems[1].compSprite.position.X = menuItems[0].compSprite.position.X;
-            menuItems[1].compSprite.position.Y = menuItems[0].compSprite.position.Y + 24;
+            menuItems[2].compSprite.position.X = menuItems[0].compSprite.position.X;
+            menuItems[2].compSprite.position.Y = menuItems[0].compSprite.position.Y + 24;
+            menuItems[3].compSprite.position.X = menuItems[2].compSprite.position.X + 16 * 3;
+            menuItems[3].compSprite.position.Y = menuItems[2].compSprite.position.Y;
 
-            menuItems[2].compSprite.position.X = menuItems[1].compSprite.position.X;
-            menuItems[2].compSprite.position.Y = menuItems[1].compSprite.position.Y + 24;
+            menuItems[4].compSprite.position.X = menuItems[2].compSprite.position.X;
+            menuItems[4].compSprite.position.Y = menuItems[2].compSprite.position.Y + 24;
+            menuItems[5].compSprite.position.X = menuItems[4].compSprite.position.X + 16 * 3;
+            menuItems[5].compSprite.position.Y = menuItems[4].compSprite.position.Y;
 
-            menuItems[3].compSprite.position.X = menuItems[2].compSprite.position.X;
-            menuItems[3].compSprite.position.Y = menuItems[2].compSprite.position.Y + 24;
-
-            #endregion
-
-
-            #region Place second column menuItems
-
-            menuItems[4].compSprite.position.X = window.background.position.X + 16 * 4;
-            menuItems[4].compSprite.position.Y = window.background.position.Y + 16 * 2;
-
-            menuItems[5].compSprite.position.X = menuItems[4].compSprite.position.X;
-            menuItems[5].compSprite.position.Y = menuItems[4].compSprite.position.Y + 24;
-
-            menuItems[6].compSprite.position.X = menuItems[5].compSprite.position.X;
-            menuItems[6].compSprite.position.Y = menuItems[5].compSprite.position.Y + 24;
-
-            menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X;
-            menuItems[7].compSprite.position.Y = menuItems[6].compSprite.position.Y + 24;
-
-            #endregion
+            menuItems[6].compSprite.position.X = menuItems[4].compSprite.position.X;
+            menuItems[6].compSprite.position.Y = menuItems[4].compSprite.position.Y + 24;
+            menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X + 16 * 3;
+            menuItems[7].compSprite.position.Y = menuItems[6].compSprite.position.Y;
 
 
             #region Place Labels and set their text strings
@@ -88,17 +77,22 @@ namespace DungeonRun
             }
 
             labels[0].text = "save\ngame";
-            labels[1].text = "video\nctrls";
-            labels[2].text = "audio\nctrls";
-            labels[3].text = "";
+            labels[1].text = "load\ngame";
 
-            labels[4].text = "load\ngame";
-            labels[5].text = "input\nctrls";
+            labels[2].text = "video\nctrls";
+            labels[3].text = "input\nctrls";
+
+            labels[4].text = "audio\nctrls";
+            labels[5].text = "";
+
             labels[6].text = "";
             labels[7].text = "";
 
             #endregion
 
+
+            //set the menuItem's neighbors
+            MenuItemFunctions.SetNeighbors(menuItems, 2);
         }
 
         public static void Update()

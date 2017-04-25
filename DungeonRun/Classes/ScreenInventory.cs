@@ -56,6 +56,7 @@ namespace DungeonRun
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetInventory.menuItems[0];
             previouslySelected = MenuWidgetInventory.menuItems[0];
+
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(0, 0), new Byte4(15, 6, 0, 0), 

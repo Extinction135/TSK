@@ -35,47 +35,23 @@ ram useage:
 todo:
 
 
-7
+9
+
+updated MenuWidgetLoadout.Reset() to call MenuItemFunctions.SetNeighbors().
+updated MenuWidgetStats.Reset() to call MenuItemFunctions.SetNeighbors().
+updated MenuWidgetOptions.Reset() to call MenuItemFunctions.SetNeighbors().
+changed how the menuItems in OptionsWidget were being arranged to work with SetNeighbors().
+tested each widget's menuItems individually, working as expected.
 
 
-created MenuWidgetOptions class. 
-Integrated it into InventoryScreen.cs
 
 
 
 
-
-build menu widget options
-(each of these will be filled with default menuItems)
-static classes for each 
-
-we'll reuse options window on the title screen, and info window
-inventory screen can be called from overworld screen as well
-
-MenuWidgetLoadout
-	sets it's sprites based on the hero's current loadout/inventory
-	tracks the player's total gold
-	tracks the dungeon booleans map and key
-	tracks how many heart pieces the hero has collected so far
-	this window sets the neighbors of it's menuItems upon construction
-MennuWidgetStats
-	4 empty menuItems, rn
-	this window sets the neighbors of it's menuItems upon construction
-X MenuWidgetInventory
-	has a TON of menuItems, based on the hero's available inventory
-	this window sets the neighbors of it's menuItems upon construction
-X MenuWidgetInfo (could be repositioned)
-	info window should target a menuItem.
-	info window will display the menuItem's sprite, name, and description.
-MenuWidgetOptions (could be repositioned)
-	8 menuItems, with no functionality rn
-	this window sets the neighbors of it's menuItems upon construction
+stitch together the menuItem neighbors on the inventory screen.
+we should be setting the neighbors for each widget when inventory screen is created.
 	
 	
-	
-	
-we'll need to be able to track the selected menuItem.
-we'll need to set the initially selected menuItem.
 	
 	
 	
@@ -84,28 +60,26 @@ then we pass the menuItem to MenuItemFunctions.SetMenuItem(menuItemEnum).
 this function sets the current frame, name, and description based on the enum passed.
 this localizes all the menu item data to the MenuItemFunctions class.
 
-
-
-	
-	
-	
-inventory screen stitches together the various widget's menuItems, so user can scroll across widgets
-
 we need to populate all the menuItems with data
 this will be done through the MenuItemFunctions.SetMenuItem(MenuItemType enum)
 -> sets the name, current frame, and description based on passed enum
 
-MenuItemFunctions.SyncInventoryWidget()
--> sets the Inventory Widget's menuItems based on the player's inventory int list
+
+
+seperate structs and enums, into their own classes
+move ALL structs into structs class
+move ALL enums into enums class
+
+
+
+
+
+later in development, when we have a game options screen,
+the options widget will need to reset it's neighbors, so it doesn't connect to widgets not visible
+these menuItem neighbors will be set when the inventory screen is created
 	
-	
-	
-	
-	
-	
-	
-	
-	
+we'll reuse options window on the title screen, and info window
+inventory screen can be called from overworld screen as well
 	
 	
 	
