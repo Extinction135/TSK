@@ -25,7 +25,7 @@ namespace DungeonRun
             Obj.compSprite.cellSize.y = 16 * 1;
             Obj.compSprite.zOffset = 0;
 
-            Obj.objGroup = GameObject.ObjGroup.Object; //assume object is a generic object
+            Obj.group = ObjGroup.Object; //assume object is a generic object
             Obj.lifetime = 0; //assume obj exists forever (not projectile)
             Obj.lifeCounter = 0; //reset counter
             Obj.active = true; //assume this object should draw / animate
@@ -94,7 +94,7 @@ namespace DungeonRun
 
 
         
-        public static void SpawnProjectile(GameObject.Type Type, Vector2 Pos, Direction Direction)
+        public static void SpawnProjectile(ObjType Type, Vector2 Pos, Direction Direction)
         {   //a projectile always has a direction, so it inherit's actor's direction
             GameObject projectile = PoolFunctions.GetProjectile();
             projectile.type = Type;
@@ -103,7 +103,7 @@ namespace DungeonRun
             GameObjectFunctions.SetType(projectile, projectile.type);
         }
 
-        public static void SpawnParticle(GameObject.Type Type, Vector2 Pos)
+        public static void SpawnParticle(ObjType Type, Vector2 Pos)
         {   //a particle doesn't have a direction, so it doesn't need actor's direction
             GameObject particle = PoolFunctions.GetProjectile();
             particle.type = Type;
@@ -117,9 +117,9 @@ namespace DungeonRun
         public static void SpawnLoot(Vector2 Pos)
         {   //either spawn a rupee or a heart item
             if (GetRandom.Int(0, 100) > 50)
-            { GameObjectFunctions.SpawnProjectile(GameObject.Type.ItemRupee, Pos, Direction.Down); }
+            { GameObjectFunctions.SpawnProjectile(ObjType.ItemRupee, Pos, Direction.Down); }
             else
-            { GameObjectFunctions.SpawnProjectile(GameObject.Type.ItemHeart, Pos, Direction.Down); }
+            { GameObjectFunctions.SpawnProjectile(ObjType.ItemHeart, Pos, Direction.Down); }
         }
 
 
@@ -129,7 +129,7 @@ namespace DungeonRun
             offset.X = 0; offset.Y = 0;
             GameObjectFunctions.ConvertDiagonalDirections(Projectile);
             //place the sword based on it's inherited direction
-            if (Projectile.type == GameObject.Type.ProjectileSword)
+            if (Projectile.type == ObjType.ProjectileSword)
             {
                 if (Projectile.direction == Direction.Down)
                 { offset.X = -1; offset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
@@ -150,7 +150,7 @@ namespace DungeonRun
             GameObjectFunctions.ConvertDiagonalDirections(Particle);
 
             //center horizontally, place near actor's feet
-            if (Particle.type == GameObject.Type.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
+            if (Particle.type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
 
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Particle.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
@@ -158,7 +158,7 @@ namespace DungeonRun
 
 
 
-        public static void SetType(GameObject Obj, GameObject.Type Type)
+        public static void SetType(GameObject Obj, ObjType Type)
         {
             Obj.type = Type;
             GameObjectAnimListManager.SetAnimationList(Obj); //set obj animation list based on type
@@ -168,96 +168,94 @@ namespace DungeonRun
 
             #region Room Objects
 
-            if (Type == GameObject.Type.Exit)
+            if (Type == ObjType.Exit)
             {
                 Obj.compSprite.cellSize.y = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.objGroup = GameObject.ObjGroup.Door;
+                Obj.group = ObjGroup.Door;
                 Obj.compCollision.rec.Height = 2;
                 Obj.compCollision.offsetY = 32 + 6;
                 Obj.compCollision.blocking = false;
             }
-            else if (
-                Type == GameObject.Type.ExitPillarLeft || 
-                Type == GameObject.Type.ExitPillarRight)
+            else if (Type == ObjType.ExitPillarLeft || 
+                Type == ObjType.ExitPillarRight)
             {
                 Obj.compSprite.cellSize.y = 16 * 3; //nonstandard size
                 Obj.compCollision.rec.Height = 32 - 5;
                 Obj.compCollision.offsetY = 14;
             }
-            else if (Type == GameObject.Type.ExitLightFX)
+            else if (Type == ObjType.ExitLightFX)
             {
                 Obj.compSprite.cellSize.y = 16 * 2; //nonstandard size
                 Obj.compCollision.offsetY = 0;
                 Obj.compSprite.zOffset = 256; //sort above everything
             }
-            else if (
-                Type == GameObject.Type.DoorOpen ||
-                Type == GameObject.Type.DoorBombed ||
-                Type == GameObject.Type.DoorTrap)
+            else if (Type == ObjType.DoorOpen ||
+                Type == ObjType.DoorBombed ||
+                Type == ObjType.DoorTrap)
             {
                 Obj.compCollision.blocking = false;
                 if (Obj.direction == Direction.Down)
                 { Obj.compSprite.zOffset = 4; } else { Obj.compSprite.zOffset = 16; }
-                Obj.objGroup = GameObject.ObjGroup.Door;
+                Obj.group = ObjGroup.Door;
             }
             else if (
-                Type == GameObject.Type.DoorBombable ||
-                Type == GameObject.Type.DoorBoss ||
-                Type == GameObject.Type.DoorShut ||
-                Type == GameObject.Type.DoorFake)
+                Type == ObjType.DoorBombable ||
+                Type == ObjType.DoorBoss ||
+                Type == ObjType.DoorShut ||
+                Type == ObjType.DoorFake)
             {
-                Obj.objGroup = GameObject.ObjGroup.Door;
+                Obj.group = ObjGroup.Door;
             }
             else if (
-                Type == GameObject.Type.WallStraight ||
-                Type == GameObject.Type.WallStraightCracked ||
-                Type == GameObject.Type.WallInteriorCorner ||
-                Type == GameObject.Type.WallExteriorCorner ||
-                Type == GameObject.Type.WallPillar ||
-                Type == GameObject.Type.WallDecoration)
+                Type == ObjType.WallStraight ||
+                Type == ObjType.WallStraightCracked ||
+                Type == ObjType.WallInteriorCorner ||
+                Type == ObjType.WallExteriorCorner ||
+                Type == ObjType.WallPillar ||
+                Type == ObjType.WallDecoration)
             {
-                Obj.objGroup = GameObject.ObjGroup.Wall;
+                Obj.group = ObjGroup.Wall;
             }
-            else if (Type == GameObject.Type.PitTop)
+            else if (Type == ObjType.PitTop)
             {
                 //pits dont collide with actors
                 Obj.compSprite.zOffset = -32; //sort to floor
             }
-            else if (Type == GameObject.Type.PitBottom)
+            else if (Type == ObjType.PitBottom)
             {
                 //instead we'll use an animated liquid obj for collision checking
                 //pits just sit ontop of this object as decoration
                 Obj.compSprite.zOffset = -32; //sort to floor
             }
             else if (
-                Type == GameObject.Type.PitTrapReady || Type == GameObject.Type.PitTrapOpening)
+                Type == ObjType.PitTrapReady || Type == ObjType.PitTrapOpening)
             {
                 Obj.compCollision.offsetX = -6;
                 Obj.compCollision.offsetY = -6;
                 Obj.compSprite.zOffset = -32; //sort to floor
             }
-            else if (Type == GameObject.Type.BossStatue)
+            else if (Type == ObjType.BossStatue)
             {
-                Obj.objGroup = GameObject.ObjGroup.Draggable;
+                Obj.group = ObjGroup.Draggable;
                 Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.offsetY = -1;
             }
-            else if (Type == GameObject.Type.BossDecal)
+            else if (Type == ObjType.BossDecal)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
             }
-            else if (Type == GameObject.Type.Pillar)
+            else if (Type == ObjType.Pillar)
             {
                 Obj.compSprite.zOffset = 2;
             }
-            else if (Type == GameObject.Type.WallTorch)
+            else if (Type == ObjType.WallTorch)
             {
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = 2;
             }
-            else if (Type == GameObject.Type.DebrisFloor)
+            else if (Type == ObjType.DebrisFloor)
             {
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = -32;
@@ -268,86 +266,86 @@ namespace DungeonRun
 
             #region Interactive Objects
 
-            else if (Type == GameObject.Type.ChestGold ||
-                Type == GameObject.Type.ChestKey ||
-                Type == GameObject.Type.ChestMap ||
-                Type == GameObject.Type.ChestEmpty)
+            else if (Type == ObjType.ChestGold ||
+                Type == ObjType.ChestKey ||
+                Type == ObjType.ChestMap ||
+                Type == ObjType.ChestEmpty)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
                 //unopened chests get the objGroup of Chest
-                if (Type != GameObject.Type.ChestEmpty)
-                { Obj.objGroup = GameObject.ObjGroup.Chest; }
+                if (Type != ObjType.ChestEmpty)
+                { Obj.group = ObjGroup.Chest; }
             }
-            else if (Type == GameObject.Type.BlockDraggable)
+            else if (Type == ObjType.BlockDraggable)
             {
                 Obj.compCollision.rec.Height = 12;
                 Obj.compCollision.offsetY = -4;
                 Obj.compSprite.zOffset = -7;
-                Obj.objGroup = GameObject.ObjGroup.Draggable;
+                Obj.group = ObjGroup.Draggable;
             }
-            else if (Type == GameObject.Type.BlockDark || Type == GameObject.Type.BlockLight)
+            else if (Type == ObjType.BlockDark || Type == ObjType.BlockLight)
             {
                 Obj.compSprite.zOffset = -7;
             }
-            else if (Type == GameObject.Type.BlockSpikes)
+            else if (Type == ObjType.BlockSpikes)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
                 Obj.compSprite.zOffset = -7;
                 Obj.compCollision.blocking = false;
             }
-            else if (Type == GameObject.Type.Lever)
+            else if (Type == ObjType.Lever)
             {
                 Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = 1;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 3;
                 Obj.compSprite.zOffset = -7;
             }
-            else if (Type == GameObject.Type.PotSkull)
+            else if (Type == ObjType.PotSkull)
             {
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
-                Obj.objGroup = GameObject.ObjGroup.Liftable;
+                Obj.group = ObjGroup.Liftable;
             }
             else if (
-                Type == GameObject.Type.SpikesFloor ||
-                Type == GameObject.Type.Flamethrower ||
-                Type == GameObject.Type.Switch ||
-                Type == GameObject.Type.Bridge)
+                Type == ObjType.SpikesFloor ||
+                Type == ObjType.Flamethrower ||
+                Type == ObjType.Switch ||
+                Type == ObjType.Bridge)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
             }
-            else if (Type == GameObject.Type.Bumper)
+            else if (Type == ObjType.Bumper)
             {
                 Obj.compCollision.blocking = false;
             }
-            else if (Type == GameObject.Type.SwitchBlockBtn)
+            else if (Type == ObjType.SwitchBlockBtn)
             {
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
             }
-            else if (Type == GameObject.Type.SwitchBlockDown)
+            else if (Type == ObjType.SwitchBlockDown)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
             }
-            else if (Type == GameObject.Type.SwitchBlockUp)
+            else if (Type == ObjType.SwitchBlockUp)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
                 Obj.compSprite.zOffset = -7;
             }
-            else if (Type == GameObject.Type.TorchUnlit || Type == GameObject.Type.TorchLit)
+            else if (Type == ObjType.TorchUnlit || Type == ObjType.TorchLit)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
             }
-            else if (Type == GameObject.Type.ConveyorBelt)
+            else if (Type == ObjType.ConveyorBelt)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
@@ -361,25 +359,25 @@ namespace DungeonRun
 
             #region Items
 
-            else if (Type == GameObject.Type.ItemRupee)
+            else if (Type == ObjType.ItemRupee)
             {
                 Obj.compSprite.cellSize.x = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
-                Obj.objGroup = GameObject.ObjGroup.Item;
+                Obj.group = ObjGroup.Item;
 
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;
             }
-            else if (Type == GameObject.Type.ItemHeart)
+            else if (Type == ObjType.ItemHeart)
             {
                 Obj.compSprite.cellSize.x = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 7;
                 Obj.compCollision.blocking = false;
-                Obj.objGroup = GameObject.ObjGroup.Item;
+                Obj.group = ObjGroup.Item;
 
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
@@ -391,13 +389,13 @@ namespace DungeonRun
 
             #region Projectiles
 
-            else if (Type == GameObject.Type.ProjectileSword)
+            else if (Type == ObjType.ProjectileSword)
             {
                 Obj.compSprite.zOffset = 16;
                 //stationary weapons share similar sprite dimensions
                 SetWeaponCollisions(Obj); //collision recs + offsets are similar
                 Obj.compCollision.blocking = false;
-                Obj.objGroup = GameObject.ObjGroup.Projectile;
+                Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
@@ -408,47 +406,47 @@ namespace DungeonRun
 
             #region Particles
 
-            else if (Type == GameObject.Type.ParticleDashPuff)
+            else if (Type == ObjType.ParticleDashPuff)
             {
                 Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
                 Obj.compSprite.zOffset = -8;
-                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = false;
             }
-            else if (Type == GameObject.Type.ParticleExplosion)
+            else if (Type == ObjType.ParticleExplosion)
             {
                 Obj.compSprite.zOffset = 16;
-                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = false;
             }
-            else if (Type == GameObject.Type.ParticleSmokePuff)
-            {
-                Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
-                Obj.compSprite.zOffset = 16;
-                Obj.objGroup = GameObject.ObjGroup.Particle;
-                Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.loop = false;
-            }
-            else if (Type == GameObject.Type.ParticleHitSparkle)
+            else if (Type == ObjType.ParticleSmokePuff)
             {
                 Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
                 Obj.compSprite.zOffset = 16;
-                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.loop = false;
+            }
+            else if (Type == ObjType.ParticleHitSparkle)
+            {
+                Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
+                Obj.compSprite.zOffset = 16;
+                Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;
             }
-            else if (Type == GameObject.Type.ParticleReward50Gold ||
-                Type == GameObject.Type.ParticleRewardKey ||
-                Type == GameObject.Type.ParticleRewardMap)
+            else if (Type == ObjType.ParticleReward50Gold ||
+                Type == ObjType.ParticleRewardKey ||
+                Type == ObjType.ParticleRewardMap)
             {
                 Obj.compSprite.zOffset = 32;
-                Obj.objGroup = GameObject.ObjGroup.Particle;
+                Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 50; //in frames
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = true;
@@ -458,7 +456,7 @@ namespace DungeonRun
 
 
             //particles do not rotate like other gameObjects
-            if (Obj.objGroup == GameObject.ObjGroup.Particle) { SetParticleFields(Obj); }
+            if (Obj.group == ObjGroup.Particle) { SetParticleFields(Obj); }
 
             ComponentFunctions.SetZdepth(Obj.compSprite);
             ComponentFunctions.UpdateCellSize(Obj.compSprite);

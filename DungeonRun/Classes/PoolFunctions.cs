@@ -20,7 +20,7 @@ namespace DungeonRun
             Pool.actorIndex++;
             if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
             //if the target actor is dead, set it to be inactive
-            if(Pool.actorPool[Pool.actorIndex].state == Actor.State.Dead)
+            if(Pool.actorPool[Pool.actorIndex].state == ActorState.Dead)
             { Release(Pool.actorPool[Pool.actorIndex]); }
             //only return inactive actors (dead actors became inactive above)
             if (!Pool.actorPool[Pool.actorIndex].active)
@@ -122,8 +122,8 @@ namespace DungeonRun
             Obj.active = false;
             Obj.compCollision.active = false;
             Obj.lifetime = 0;
-            if (Obj.objGroup == GameObject.ObjGroup.Projectile ||
-                Obj.objGroup == GameObject.ObjGroup.Particle)
+            if (Obj.group == ObjGroup.Projectile ||
+                Obj.group == ObjGroup.Particle)
             { Pool.projectilesUsed--; }
             else { Pool.objsUsed--; }
         }
@@ -188,7 +188,7 @@ namespace DungeonRun
             {   //move actors in actor pool that are active and alive
                 if (
                     Pool.actorPool[Pool.counter].active && 
-                    Pool.actorPool[Pool.counter].state != Actor.State.Dead
+                    Pool.actorPool[Pool.counter].state != ActorState.Dead
                     )
                 { MovementFunctions.Move(Pool.actorPool[Pool.counter]); }
             }

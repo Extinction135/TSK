@@ -14,17 +14,10 @@ namespace DungeonRun
 {
     public class Actor
     {
-        
-        public enum State
-        {   //attacks with weapon, uses item, interacts with game object
-            Idle, Move, Dash, Interact,
-            Attack, Use,  Hit, Dead,
-            Reward,
-        }
 
         public ActorType type; //the type of actor this is
-        public State state; //what actor is doing this frame
-        public State inputState; //what input wants actor to do this frame
+        public ActorState state; //what actor is doing this frame
+        public ActorState inputState; //what input wants actor to do this frame
 
         public Boolean stateLocked; //can actor change state? else actor must wait for state to unlock
         public byte lockTotal = 0; //how many frames the actor statelocks for, based on state

@@ -129,18 +129,18 @@ namespace DungeonRun
 
         public static void SetInputState(ComponentInput CompInput, Actor Actor)
         {
-            Actor.inputState = Actor.State.Idle; //reset inputState
+            Actor.inputState = ActorState.Idle; //reset inputState
             Actor.compMove.direction = CompInput.direction; //set move direction
             if (CompInput.direction != Direction.None)
             {   //if there is directional input, then the actor is moving
-                Actor.inputState = Actor.State.Move;
+                Actor.inputState = ActorState.Move;
                 //the actor can only dash while moving
-                if (CompInput.dash) { Actor.inputState = Actor.State.Dash; }
+                if (CompInput.dash) { Actor.inputState = ActorState.Dash; }
             }
             //determine + set button inputs
-            if (CompInput.attack) { Actor.inputState = Actor.State.Attack; }
-            else if (CompInput.use) { Actor.inputState = Actor.State.Use; }
-            else if (CompInput.interact) { Actor.inputState = Actor.State.Interact; }
+            if (CompInput.attack) { Actor.inputState = ActorState.Attack; }
+            else if (CompInput.use) { Actor.inputState = ActorState.Use; }
+            else if (CompInput.interact) { Actor.inputState = ActorState.Interact; }
         }
 
 

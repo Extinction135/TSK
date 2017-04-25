@@ -27,9 +27,33 @@ namespace DungeonRun
 
     public enum ActorType { Hero, Blob, Boss, }
 
+    public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 
+    public enum RoomType { Normal, Key, Boss, Hub, Exit, Secret }
 
+    public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Item, Projectile, Particle }
 
-
+    public enum ObjType
+    {
+        //Room Objects
+        Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
+        DoorOpen, DoorBombable, DoorBombed, DoorBoss, DoorTrap, DoorShut, DoorFake,
+        WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallDecoration,
+        PitTop, PitBottom, PitTrapReady, PitTrapOpening,
+        BossStatue, BossDecal, Pillar, WallTorch, DebrisFloor,
+        //Interactive Objects
+        ChestGold, ChestKey, ChestMap, ChestEmpty,
+        BlockDraggable, BlockDark, BlockLight, BlockSpikes,
+        Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
+        SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
+        TorchUnlit, TorchLit, ConveyorBelt,
+        //Items - picked up by hero
+        ItemRupee, ItemHeart,
+        //Projectiles
+        ProjectileSword,
+        //Particles
+        ParticleDashPuff, ParticleExplosion, ParticleSmokePuff, ParticleHitSparkle,
+        ParticleReward50Gold, ParticleRewardKey, ParticleRewardMap,
+    }
 
 }

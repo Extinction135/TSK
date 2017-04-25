@@ -105,7 +105,7 @@ namespace DungeonRun
                             i * 16 + pos.X + 8,
                             0 * 16 - 16 + pos.Y + 8);
                         objRef.direction = Direction.Down;
-                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+                        GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
 
                         if (i == 0)
                         {   //topleft corner
@@ -114,7 +114,7 @@ namespace DungeonRun
                                 -16 + pos.X + 8, 
                                 -16 + pos.Y + 8);
                             objRef.direction = Direction.Down;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallInteriorCorner);
+                            GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
                         }
                         else if (i == Room.size.x - 1)
                         {   //topright corner
@@ -123,7 +123,7 @@ namespace DungeonRun
                                 Room.size.x * 16 + pos.X + 8, 
                                 -16 + pos.Y + 8);
                             objRef.direction = Direction.Left;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallInteriorCorner);
+                            GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
                         }
                     }
 
@@ -140,7 +140,7 @@ namespace DungeonRun
                             i * 16 + pos.X + 8,
                             Room.size.y * 16 + pos.Y + 8);
                         objRef.direction = Direction.Up;
-                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+                        GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
 
                         if (i == 0)
                         {   //bottom left corner
@@ -149,7 +149,7 @@ namespace DungeonRun
                                 -16 + pos.X + 8,
                                 Room.size.y * 16 + pos.Y + 8);
                             objRef.direction = Direction.Right;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallInteriorCorner);
+                            GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
                         }
                         else if (i == Room.size.x - 1)
                         {   //bottom right corner
@@ -158,7 +158,7 @@ namespace DungeonRun
                                 Room.size.x * 16 + pos.X + 8,
                                 Room.size.y * 16 + pos.Y + 8);
                             objRef.direction = Direction.Up;
-                            GameObjectFunctions.SetType(objRef, GameObject.Type.WallInteriorCorner);
+                            GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
                         }
                     }
 
@@ -174,7 +174,7 @@ namespace DungeonRun
                             i * 16 - 16 + pos.X + 8, 
                             j * 16 + pos.Y + 8);
                         objRef.direction = Direction.Right;
-                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+                        GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
                     }
                     else if (i == Room.size.x - 1)
                     {   //right side
@@ -183,7 +183,7 @@ namespace DungeonRun
                             i * 16 + 16 + pos.X + 8, 
                             j * 16 + pos.Y + 8);
                         objRef.direction = Direction.Left;
-                        GameObjectFunctions.SetType(objRef, GameObject.Type.WallStraight);
+                        GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
                     }
 
                     #endregion
@@ -215,21 +215,21 @@ namespace DungeonRun
                     5 * 16 + pos.X + 8,
                     0 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.DoorBoss);
+                GameObjectFunctions.SetType(objRef, ObjType.DoorBoss);
                 //build left wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     (5 - 1) * 16 + pos.X + 8,
                     0 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+                GameObjectFunctions.SetType(objRef, ObjType.WallTorch);
                 //build right wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     (5 + 1) * 16 + pos.X + 8,
                     0 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+                GameObjectFunctions.SetType(objRef, ObjType.WallTorch);
 
                 //build the boss welcome mat (left)
                 objRef = PoolFunctions.GetObj();
@@ -237,14 +237,14 @@ namespace DungeonRun
                     5 * 16 + pos.X + 0,
                     1 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.BossDecal);
+                GameObjectFunctions.SetType(objRef, ObjType.BossDecal);
                 //build the right welcome mat
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     6 * 16 + pos.X + 0,
                     1 * 16 - 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.BossDecal);
+                GameObjectFunctions.SetType(objRef, ObjType.BossDecal);
                 objRef.compSprite.flipHorizontally = true;
                 
                 //place chest gameObj in bottom right corner
@@ -253,7 +253,7 @@ namespace DungeonRun
                     (Room.size.x - 1) * 16 + pos.X + 8,
                     1 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.ChestGold);
+                GameObjectFunctions.SetType(objRef, ObjType.ChestGold);
 
                 //create a big key chest
                 objRef = PoolFunctions.GetObj();
@@ -261,7 +261,7 @@ namespace DungeonRun
                     (Room.size.x - 1) * 16 + pos.X + 8,
                     5 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.ChestKey);
+                GameObjectFunctions.SetType(objRef, ObjType.ChestKey);
 
                 //create a map chest
                 objRef = PoolFunctions.GetObj();
@@ -269,7 +269,7 @@ namespace DungeonRun
                     (Room.size.x - 1) * 16 + pos.X + 8,
                     8 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.ChestMap);
+                GameObjectFunctions.SetType(objRef, ObjType.ChestMap);
 
                 //randomly place skeleton pots around room
                 for (i = 0; i < Room.size.y; i++)
@@ -279,7 +279,7 @@ namespace DungeonRun
                         0 * 16 + pos.X + 8,
                         i * 16 + pos.Y + 8);
                     objRef.direction = Direction.Down;
-                    GameObjectFunctions.SetType(objRef, GameObject.Type.PotSkull);
+                    GameObjectFunctions.SetType(objRef, ObjType.PotSkull);
                 }
 
                 //spawn enemies inside of this room
@@ -298,21 +298,21 @@ namespace DungeonRun
                     5 * 16 + pos.X + 8,
                     Room.size.y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.DoorTrap);
+                GameObjectFunctions.SetType(objRef, ObjType.DoorTrap);
                 //build left wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     (5 - 1) * 16 + pos.X + 8,
                     Room.size.y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+                GameObjectFunctions.SetType(objRef, ObjType.WallTorch);
                 //build right wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     (5 + 1) * 16 + pos.X + 8,
                     Room.size.y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
-                GameObjectFunctions.SetType(objRef, GameObject.Type.WallTorch);
+                GameObjectFunctions.SetType(objRef, ObjType.WallTorch);
 
                 //spawn a boss actor
                 actorRef = PoolFunctions.GetActor();
@@ -330,7 +330,7 @@ namespace DungeonRun
                         GetRandom.Int(0, Room.size.x) * 16 + pos.X + 8,
                         GetRandom.Int(0, Room.size.y) * 16 + pos.Y + 8);
                     objRef.direction = Direction.Down;
-                    GameObjectFunctions.SetType(objRef, GameObject.Type.DebrisFloor);
+                    GameObjectFunctions.SetType(objRef, ObjType.DebrisFloor);
                 }
 
                 //dont spawn any mobs in this room
@@ -375,11 +375,11 @@ namespace DungeonRun
             //remove any walls that overlap doors
             for (i = 0; i < Pool.objCount; i++)
             {
-                if (Pool.objPool[i].objGroup == GameObject.ObjGroup.Door)
+                if (Pool.objPool[i].group == ObjGroup.Door)
                 {
                     for (j = 0; j < Pool.objCount; j++)
                     {
-                        if (Pool.objPool[j].objGroup == GameObject.ObjGroup.Wall)
+                        if (Pool.objPool[j].group == ObjGroup.Wall)
                         {
                             if (Pool.objPool[i].compCollision.rec.Intersects(Pool.objPool[j].compCollision.rec))
                             {

@@ -72,14 +72,14 @@ namespace DungeonRun
 
             #region Projectiles
 
-            if(Obj.objGroup == GameObject.ObjGroup.Projectile)
+            if(Obj.group == ObjGroup.Projectile)
             {
                 //all damage inducing projectiles
                 damage = 0; //reset the damage value
                 force = 0.0f; //reset the force amount (how much actor is pushed)
 
 
-                if (Obj.type == GameObject.Type.ProjectileSword)
+                if (Obj.type == ObjType.ProjectileSword)
                 {
                     damage = 1;
                     force = 8.0f;
@@ -92,7 +92,7 @@ namespace DungeonRun
                 //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
 
                 //only damage/hit/push actors not in the hit state
-                if (Actor.state != Actor.State.Hit)
+                if (Actor.state != ActorState.Hit)
                 {   //deal damage to the actor
                     //but prevent the damage byte from underflowing the Actor.health byte
                     if (damage > Actor.health) { Actor.health = 0; }
@@ -114,13 +114,13 @@ namespace DungeonRun
 
             #region Items
 
-            else if (Obj.objGroup == GameObject.ObjGroup.Item)
+            else if (Obj.group == ObjGroup.Item)
             {
                 if(Actor == Pool.hero) //only the hero can pickup hearts or rupees
                 {
-                    if (Obj.type == GameObject.Type.ItemHeart)
+                    if (Obj.type == ObjType.ItemHeart)
                     { Actor.health++; Assets.sfxHeartPickup.Play(); }
-                    else if (Obj.type == GameObject.Type.ItemRupee)
+                    else if (Obj.type == ObjType.ItemRupee)
                     { PlayerData.saveData.gold++; Assets.sfxGoldPickup.Play(); }
                     //end the items life
                     Obj.lifetime = 1; Obj.lifeCounter = 2; 
@@ -132,7 +132,7 @@ namespace DungeonRun
 
             #region Liftable objects
 
-            else if (Obj.objGroup == GameObject.ObjGroup.Liftable)
+            else if (Obj.group == ObjGroup.Liftable)
             {
                 //pot skulls
             }
@@ -142,7 +142,7 @@ namespace DungeonRun
 
             #region Draggable objects
 
-            else if (Obj.objGroup == GameObject.ObjGroup.Draggable)
+            else if (Obj.group == ObjGroup.Draggable)
             {
                 //BlockDraggable
             }
@@ -152,43 +152,43 @@ namespace DungeonRun
 
             #region Chests
 
-            else if (Obj.objGroup == GameObject.ObjGroup.Chest)
+            else if (Obj.group == ObjGroup.Chest)
             {
                 //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
-                if (Actor == Pool.hero && Actor.state == Actor.State.Interact)
+                if (Actor == Pool.hero && Actor.state == ActorState.Interact)
                 {
                     //reward the hero with the chests contents
-                    if (Obj.type == GameObject.Type.ChestGold)
+                    if (Obj.type == ObjType.ChestGold)
                     {
                         GameObjectFunctions.SpawnParticle(
-                            GameObject.Type.ParticleReward50Gold,
+                            ObjType.ParticleReward50Gold,
                             Actor.compSprite.position + new Vector2(0, -14));
                         Assets.sfxReward.Play();
                         PlayerData.saveData.gold += 50; //give the hero 50 gold
                     }
-                    else if (Obj.type == GameObject.Type.ChestKey)
+                    else if (Obj.type == ObjType.ChestKey)
                     {
                         GameObjectFunctions.SpawnParticle(
-                            GameObject.Type.ParticleRewardKey,
+                            ObjType.ParticleRewardKey,
                             Actor.compSprite.position + new Vector2(0, -14));
                         Assets.sfxKeyPickup.Play();
                         DungeonFunctions.dungeon.bigKey = true;
                     }
-                    else if (Obj.type == GameObject.Type.ChestMap)
+                    else if (Obj.type == ObjType.ChestMap)
                     {
                         GameObjectFunctions.SpawnParticle(
-                            GameObject.Type.ParticleRewardMap,
+                            ObjType.ParticleRewardMap,
                             Actor.compSprite.position + new Vector2(0, -14));
                         Assets.sfxReward.Play();
                         //set map boolean true, just like bigKey boolean
                     }
 
                     Assets.sfxChestOpen.Play();
-                    GameObjectFunctions.SetType(Obj, GameObject.Type.ChestEmpty);
+                    GameObjectFunctions.SetType(Obj, ObjType.ChestEmpty);
                     //set actor into reward state
-                    Actor.state = Actor.State.Reward;
+                    Actor.state = ActorState.Reward;
                     //play an explosion particle to show the chest was opened
-                    GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
+                    GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position);
                 }
             }
 
@@ -197,21 +197,21 @@ namespace DungeonRun
 
             #region Doors
 
-            else if (Obj.objGroup == GameObject.ObjGroup.Door)
+            else if (Obj.group == ObjGroup.Door)
             {
-                if (Obj.type == GameObject.Type.DoorBoss)
+                if (Obj.type == ObjType.DoorBoss)
                 {   //only hero can open boss door, and must have dungeon key
                     if (DungeonFunctions.dungeon.bigKey && Actor == Pool.hero)
                     {
-                        GameObjectFunctions.SetType(Obj, GameObject.Type.DoorOpen);
+                        GameObjectFunctions.SetType(Obj, ObjType.DoorOpen);
                         Assets.sfxDoorOpen.Play();
-                        GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Obj.compSprite.position);
+                        GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position);
                     }
                 }
-                else if (Obj.type == GameObject.Type.DoorTrap)
+                else if (Obj.type == ObjType.DoorTrap)
                 {   //trap doors push ALL actors
                     MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);
-                    GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleDashPuff, Actor.compSprite.position);
+                    GameObjectFunctions.SpawnParticle(ObjType.ParticleDashPuff, Actor.compSprite.position);
                 }
             }
 
@@ -220,7 +220,7 @@ namespace DungeonRun
 
             #region Other Interactive Objects
 
-            else if(Obj.objGroup == GameObject.ObjGroup.Object)
+            else if(Obj.group == ObjGroup.Object)
             {
                 //nothing yet, but objs like pits would be handled here
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,

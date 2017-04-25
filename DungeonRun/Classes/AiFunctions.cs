@@ -111,7 +111,7 @@ namespace DungeonRun
                 }
 
                 //handle the state where the hero is dead
-                if (Pool.hero.state == Actor.State.Dead)
+                if (Pool.hero.state == ActorState.Dead)
                 {   //reset AI input, randomly move + dash
                     Input.ResetInputData(Actor.compInput);
                     Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);

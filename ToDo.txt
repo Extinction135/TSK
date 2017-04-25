@@ -35,14 +35,18 @@ ram useage:
 todo:
 
 
-7
+6
 
 
-created Enumerators class.
-moved Actor.Type enum into Enumerators class, renamed to ActorType enum.
-updated various codepaths that referenced Actor.Type.
-playtested, working.
-
+moved Actor.State into Enumerators, renamed to ActorState.
+updated various codepaths that referenced Actor.State.
+moved RoomType out of Dungeon.cs and into Enumerators.cs.
+moved ObjGroup from GameObject.cs into Enumerators.cs.
+moved GameObject.type into Enumerators, renamed to ObjType.
+condensed the ObjType enums.
+renamed objGroup to group.
+replaced several hundred references to GameObject.Type & GameObject.objGroup.
+playtested, working as expected.
 
 
 
@@ -52,20 +56,18 @@ playtested, working.
 moved all Enums into Enumerators class.
 this makes it easier to locate an enum when we need to.
 
-
-
-
 we're going to need to locate all enums in the project, move them into enumerators
 and we'll have to rename some of them too
 
 
 
+
+
+
+
 do the same thing for structs
+look at dungeon.cs - its simply 2 structs, and we don't need the class file wrapper
 
-
-seperate structs and enums, into their own classes
-move ALL structs into structs class
-move ALL enums into enums class
 
 
 	

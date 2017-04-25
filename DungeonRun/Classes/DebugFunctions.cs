@@ -68,7 +68,7 @@ namespace DungeonRun
 
         public static void Inspect(GameObject Obj)
         {
-            output = "\n\n\n---- Object (objGroup:" + Obj.objGroup + ") (type:" + Obj.type + ") ----\n";
+            output = "\n\n\n---- Object (objGroup:" + Obj.group + ") (type:" + Obj.type + ") ----\n";
             output += "\tdirection:" + Obj.direction;
             output += "\tactive:" + Obj.active;
             output += "\tlifetime:" + Obj.lifetime;

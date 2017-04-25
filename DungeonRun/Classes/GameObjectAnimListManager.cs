@@ -181,7 +181,7 @@ namespace DungeonRun
         {
             //we could do this by checking the obj.type, but that doesn't scale well
             //instead we extract the enum type value and set the animation using that int
-            //this requires that the GameObjAnims list match the GameObject.type definition exactly
+            //this requires that the GameObjAnims list match the ObjType definition exactly
             index = (int)Obj.type; //get the type int value
             Obj.compAnim.currentAnimation = GameObjAnims[index]; //set animation based on index
         }

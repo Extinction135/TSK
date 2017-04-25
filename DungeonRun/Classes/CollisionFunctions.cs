@@ -178,7 +178,7 @@ namespace DungeonRun
         public static void CheckCollisions(GameObject Projectile)
         {
             //do not check collisions for particles
-            if (Projectile.objGroup == GameObject.ObjGroup.Particle) { return; }
+            if (Projectile.group == ObjGroup.Particle) { return; }
 
             collisionX = false; collisionY = false;
 

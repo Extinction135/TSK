@@ -44,17 +44,17 @@ namespace DungeonRun
 
         public static void SetAnimationGroup(Actor Actor)
         {
-            if (Actor.state == Actor.State.Idle) { Actor.animGroup = Actor.animList.idle; }
-            else if (Actor.state == Actor.State.Move) { Actor.animGroup = Actor.animList.move; }
-            else if (Actor.state == Actor.State.Dash) { Actor.animGroup = Actor.animList.dash; }
-            else if (Actor.state == Actor.State.Interact) { Actor.animGroup = Actor.animList.interact; }
+            if (Actor.state == ActorState.Idle) { Actor.animGroup = Actor.animList.idle; }
+            else if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.move; }
+            else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.dash; }
+            else if (Actor.state == ActorState.Interact) { Actor.animGroup = Actor.animList.interact; }
             //
-            else if (Actor.state == Actor.State.Attack) { Actor.animGroup = Actor.animList.attack; }
-            else if (Actor.state == Actor.State.Use) { Actor.animGroup = Actor.animList.use; }
-            else if (Actor.state == Actor.State.Hit) { Actor.animGroup = Actor.animList.hit; }
-            else if (Actor.state == Actor.State.Dead) { Actor.animGroup = Actor.animList.dead; }
+            else if (Actor.state == ActorState.Attack) { Actor.animGroup = Actor.animList.attack; }
+            else if (Actor.state == ActorState.Use) { Actor.animGroup = Actor.animList.use; }
+            else if (Actor.state == ActorState.Hit) { Actor.animGroup = Actor.animList.hit; }
+            else if (Actor.state == ActorState.Dead) { Actor.animGroup = Actor.animList.dead; }
             //
-            else if (Actor.state == Actor.State.Reward) { Actor.animGroup = Actor.animList.reward; }
+            else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
         }
 
         public static void SetAnimationDirection(Actor Actor)

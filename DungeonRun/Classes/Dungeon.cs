@@ -13,16 +13,6 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
 
-    public enum RoomType
-    {
-        Normal,
-        Key,
-        Boss,
-        Hub,
-        Exit,
-        Secret
-    }
-
     public struct Room
     {
         public ComponentCollision collision;

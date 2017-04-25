@@ -17,7 +17,7 @@ namespace DungeonRun
 
         public static void SetHitState(Actor Actor)
         {
-            Actor.state = Actor.State.Hit;
+            Actor.state = ActorState.Hit;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
@@ -26,12 +26,12 @@ namespace DungeonRun
             else { Assets.sfxEnemyHit.Play(); }
 
             //display the hit effect particle
-            GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleHitSparkle, Actor.compSprite.position);
+            GameObjectFunctions.SpawnParticle(ObjType.ParticleHitSparkle, Actor.compSprite.position);
         }
 
         public static void SetDeathState(Actor Actor)
         {
-            Actor.state = Actor.State.Dead;
+            Actor.state = ActorState.Dead;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 255;
@@ -61,7 +61,7 @@ namespace DungeonRun
             if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
-                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
+                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Actor.compSprite.position);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 if (GetRandom.Int(0, 100) > 60) //spawn loot 40% of the time
                 { GameObjectFunctions.SpawnLoot(Actor.compSprite.position); } 
@@ -74,15 +74,15 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 //create boss explosion
-                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion, Actor.compSprite.position);
+                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Actor.compSprite.position);
                 //create a series of explosions around boss
-                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion,
+                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
                     Actor.compSprite.position + new Vector2(10, 10));
-                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion,
+                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
                     Actor.compSprite.position + new Vector2(10, -10));
-                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion,
+                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
                     Actor.compSprite.position + new Vector2(-10, 10));
-                GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleExplosion,
+                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
                     Actor.compSprite.position + new Vector2(-10, -10));
             }
 
@@ -119,7 +119,7 @@ namespace DungeonRun
             if (Actor.weapon == Weapon.Sword)
             {
                 GameObjectFunctions.SpawnProjectile(
-                    GameObject.Type.ProjectileSword, 
+                    ObjType.ProjectileSword, 
                     Actor.compSprite.position, Actor.direction);
             }
 
@@ -138,7 +138,7 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 0;
             //reset actor's state and direction
-            Actor.state = Actor.State.Idle;
+            Actor.state = ActorState.Idle;
             Actor.direction = Direction.Down;
             Actor.compMove.direction = Direction.None;
             //reset actor's collisions
@@ -240,7 +240,7 @@ namespace DungeonRun
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
                 //check states
-                if (Actor.state == Actor.State.Interact)
+                if (Actor.state == ActorState.Interact)
                 {
                     //if there is an object to interact with, pause the actor for a moment
                     if (CollisionFunctions.CheckInteractionRecCollisions())
@@ -250,18 +250,18 @@ namespace DungeonRun
                         ComponentFunctions.StopMovement(Actor.compMove);
                     }
                     else //if there isn't an obj to interact with, just revert to idle
-                    { Actor.state = Actor.State.Idle; }
+                    { Actor.state = ActorState.Idle; }
                 }
-                else if (Actor.state == Actor.State.Dash)
+                else if (Actor.state == ActorState.Dash)
                 {
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
                     //create a dash particle 
-                    GameObjectFunctions.SpawnParticle(GameObject.Type.ParticleDashPuff, Actor.compSprite.position);
+                    GameObjectFunctions.SpawnParticle(ObjType.ParticleDashPuff, Actor.compSprite.position);
                     if (Actor == Pool.hero) { Assets.sfxDash.Play(); }
                 }
-                else if (Actor.state == Actor.State.Attack)
+                else if (Actor.state == ActorState.Attack)
                 {
                     Actor.lockTotal = 15;
                     Actor.stateLocked = true;
@@ -271,7 +271,7 @@ namespace DungeonRun
                     Assets.sfxSwordSwipe.Play();
                     //if (Actor == Pool.hero) { Assets.swordSwipe.Play(); }
                 }
-                else if (Actor.state == Actor.State.Use)
+                else if (Actor.state == ActorState.Use)
                 {
                     Actor.lockTotal = 25;
                     Actor.stateLocked = true;
@@ -281,7 +281,7 @@ namespace DungeonRun
 
 
                 //if actor opened a chest, they will be set into the reward state
-                if (Actor.state == Actor.State.Reward) { Actor.lockTotal = 50; }
+                if (Actor.state == ActorState.Reward) { Actor.lockTotal = 50; }
             }
 
             #endregion
@@ -300,7 +300,7 @@ namespace DungeonRun
                     if (Actor.health <= 0) { SetDeathState(Actor); }
                 }
                 //lock actor into the death state
-                if (Actor.state == Actor.State.Dead) { Actor.lockCounter = 0; }
+                if (Actor.state == ActorState.Dead) { Actor.lockCounter = 0; }
             }
 
             #endregion
