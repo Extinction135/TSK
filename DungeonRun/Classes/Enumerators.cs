@@ -27,8 +27,6 @@ namespace DungeonRun
 
     public enum RoomType { Normal, Key, Boss, Hub, Exit, Secret }
 
-    public enum Weapon { Sword }
-
     public enum ActorType { Hero, Blob, Boss, }
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
@@ -57,5 +55,23 @@ namespace DungeonRun
         ParticleDashPuff, ParticleExplosion, ParticleSmokePuff, ParticleHitSparkle,
         ParticleReward50Gold, ParticleRewardKey, ParticleRewardMap,
     }
+
+    public enum MenuItemType
+    {
+        Unknown,
+        InventoryGold, InventoryHeartPieces, InventoryMap, InventoryKey,
+        StatsHealth, StatsMagic, StatsAgility, Stats4,
+        OptionsSaveGame, OptionsLoadGame, OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls,
+
+        ItemBoomerang, //ItemBomb, 
+        BottleEmpty, //BottleMagic, BottleHealth, BottleSpecial, BottleFairy,
+        MagicFireball,
+        WeaponSword, //WeaponBow, WeaponStaff, WeaponAxe, WeaponNet,
+        ArmorCloth, //ArmorChest, ArmorCape, ArmorRobe, Armor5,
+        EquipmentRing, //EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
+    }
+
+    //this kinda duplicates the MenuItemType enum, and we could that instead...
+    public enum Weapon { Sword }
 
 }

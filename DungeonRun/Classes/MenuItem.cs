@@ -16,8 +16,9 @@ namespace DungeonRun
     {
 
         public ComponentSprite compSprite;
-        public String name = "unknown";
-        public String description = "no description available\nfor this item.";
+        public MenuItemType type;
+        public String name = "";
+        public String description = "";
         //the cardinal neighbors this menuItem links with
         public MenuItem neighborUp;
         public MenuItem neighborDown;
@@ -30,6 +31,7 @@ namespace DungeonRun
                 new Vector2(-100, 1000), 
                 new Byte4(15, 5, 0, 0), 
                 new Byte2(16, 16));
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, this);
             neighborUp = this;
             neighborDown = this;
             neighborLeft = this;

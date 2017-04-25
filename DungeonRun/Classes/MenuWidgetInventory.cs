@@ -125,6 +125,41 @@ namespace DungeonRun
             
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
+
+            #region Set the menuItem data (based on the hero's inventory - later)
+
+            MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[1]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[3]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[4]);
+
+            MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[6]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[7]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[8]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[9]);
+
+            MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[10]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[11]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[12]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[13]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[14]);
+
+            MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[15]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[16]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[17]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[18]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[19]);
+
+            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[20]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[21]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[22]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[23]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[24]);
+
+            #endregion
+
         }
 
         public static void Update()

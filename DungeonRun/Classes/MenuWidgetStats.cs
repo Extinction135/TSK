@@ -36,7 +36,7 @@ namespace DungeonRun
             window.ResetAndMoveWindow(Position, Size, "Stats");
 
 
-            #region Place menuItems
+            #region Place the menuItems
 
             menuItems[0].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[0].compSprite.position.Y = window.background.position.Y + 16 * 2;
@@ -55,6 +55,11 @@ namespace DungeonRun
 
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 1);
+            //set the menuItem's data
+            MenuItemFunctions.SetMenuItemData(MenuItemType.StatsHealth, menuItems[0]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.StatsMagic, menuItems[1]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.StatsAgility, menuItems[2]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Stats4, menuItems[3]);
         }
 
         public static void Update()

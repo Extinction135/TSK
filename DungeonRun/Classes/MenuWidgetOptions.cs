@@ -45,7 +45,7 @@ namespace DungeonRun
             window.ResetAndMoveWindow(Position, Size, "Options");
 
 
-            //these should be arranged by ROW, not column, due to how neighbors are set
+            #region Place the menuItems
 
             menuItems[0].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[0].compSprite.position.Y = window.background.position.Y + 16 * 2;
@@ -66,6 +66,8 @@ namespace DungeonRun
             menuItems[6].compSprite.position.Y = menuItems[4].compSprite.position.Y + 24;
             menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X + 16 * 3;
             menuItems[7].compSprite.position.Y = menuItems[6].compSprite.position.Y;
+
+            #endregion
 
 
             #region Place Labels and set their text strings
@@ -93,6 +95,15 @@ namespace DungeonRun
 
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 2);
+            //set the menuItem's data
+            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsSaveGame, menuItems[0]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsLoadGame, menuItems[1]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsVideoCtrls, menuItems[2]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsInputCtrls, menuItems[3]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsAudioCtrls, menuItems[4]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[5]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]);
         }
 
         public static void Update()

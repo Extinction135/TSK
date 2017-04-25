@@ -52,5 +52,207 @@ namespace DungeonRun
             }
         }
 
+        public static void SetMenuItemData(MenuItemType Type, MenuItem MenuItem)
+        {
+            //set the MenuItem data based on the passed Type
+            MenuItem.type = Type;
+
+
+            #region Item menuItems
+
+            if (Type == MenuItemType.ItemBoomerang)
+            {
+                MenuItem.name = "Magic Boomerang";
+                MenuItem.description = "A magical boomerang.";
+                MenuItem.compSprite.currentFrame.x = 5;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+
+            #endregion
+
+
+            #region Bottle menuItems
+
+            else if (Type == MenuItemType.BottleEmpty)
+            {
+                MenuItem.name = "Empty Bottle";
+                MenuItem.description = "An empty bottle.";
+                MenuItem.compSprite.currentFrame.x = 6;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+
+            #endregion
+
+
+            #region Magic medallion menuItems
+
+            else if (Type == MenuItemType.MagicFireball)
+            {
+                MenuItem.name = "Fireball Magic";
+                MenuItem.description = "Shoots a fireball\nin the facing direction.";
+                MenuItem.compSprite.currentFrame.x = 7;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+
+            #endregion
+
+
+            #region Weapon menuItems
+
+            else if (Type == MenuItemType.WeaponSword)
+            {
+                MenuItem.name = "Magic Sword";
+                MenuItem.description = "A magic sword.";
+                MenuItem.compSprite.currentFrame.x = 8;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+
+            #endregion
+
+
+            #region Armor menuItems
+
+            else if (Type == MenuItemType.ArmorCloth)
+            {
+                MenuItem.name = "Basic Cloth";
+                MenuItem.description = "A basic tshirt.";
+                MenuItem.compSprite.currentFrame.x = 9;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+
+            #endregion
+
+
+            #region Equipment menuItems
+
+            else if (Type == MenuItemType.EquipmentRing)
+            {
+                MenuItem.name = "Magic Ring";
+                MenuItem.description = "A magic ring.";
+                MenuItem.compSprite.currentFrame.x = 10;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+
+            #endregion
+
+
+            #region Player inventory/loadout menuItems
+
+            else if (Type == MenuItemType.InventoryGold)
+            {
+                MenuItem.name = "Total Gold";
+                MenuItem.description = "The total amount\nof gold collected.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 3;
+            }
+            else if (Type == MenuItemType.InventoryHeartPieces)
+            {
+                MenuItem.name = "Heart Pieces";
+                MenuItem.description = "The number of heart\npieces you've collected.";
+                MenuItem.compSprite.currentFrame.x = 10;
+                MenuItem.compSprite.currentFrame.y = 1;
+            }
+            else if (Type == MenuItemType.InventoryKey)
+            {
+                MenuItem.name = "Dungeon Key";
+                MenuItem.description = "This key unlocks\nthe boss door.";
+                MenuItem.compSprite.currentFrame.x = 11;
+                MenuItem.compSprite.currentFrame.y = 2;
+            }
+            else if (Type == MenuItemType.InventoryMap)
+            {
+                MenuItem.name = "Dungeon Map";
+                MenuItem.description = "This map displays\nthe dungeon's rooms.";
+                MenuItem.compSprite.currentFrame.x = 10;
+                MenuItem.compSprite.currentFrame.y = 2;
+            }
+
+            #endregion
+
+
+            #region Option menuItems
+
+            else if (Type == MenuItemType.OptionsSaveGame)
+            {
+                MenuItem.name = "Save Game";
+                MenuItem.description = "Saves the current\ngame.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 7;
+            }
+            else if (Type == MenuItemType.OptionsLoadGame)
+            {
+                MenuItem.name = "Load Game";
+                MenuItem.description = "Loads a saved\ngame.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 7;
+            }
+            else if (Type == MenuItemType.OptionsAudioCtrls)
+            {
+                MenuItem.name = "Audio Controls";
+                MenuItem.description = "Changes the volume\nof soundfx and music.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 10;
+            }
+            else if (Type == MenuItemType.OptionsInputCtrls)
+            {
+                MenuItem.name = "Input Controls";
+                MenuItem.description = "Changes the mapping\nof input buttons.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 9;
+            }
+            else if (Type == MenuItemType.OptionsVideoCtrls)
+            {
+                MenuItem.name = "Video Controls";
+                MenuItem.description = "Changes the size\nof the game window.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 8;
+            }
+
+            #endregion
+
+
+            #region Stat menuItems
+
+            else if (Type == MenuItemType.StatsHealth)
+            {
+                MenuItem.name = "Health Stat";
+                MenuItem.description = "How many hearts\nyou have.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+            else if (Type == MenuItemType.StatsMagic)
+            {
+                MenuItem.name = "Magic Stat";
+                MenuItem.description = "How powerful\nyour magic is.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+            else if (Type == MenuItemType.StatsAgility)
+            {
+                MenuItem.name = "Agility Stat";
+                MenuItem.description = "How quickly you\nmove and dash.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+            else if (Type == MenuItemType.Stats4)
+            {
+                MenuItem.name = "??? Stat";
+                MenuItem.description = "TBD later...";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+
+            #endregion
+
+
+            else
+            {   //if the type was unhandled, default to unknown
+                MenuItem.name = "Uknown";
+                MenuItem.description = "No description available\nfor this item.";
+                MenuItem.compSprite.currentFrame.x = 15;
+                MenuItem.compSprite.currentFrame.y = 5;
+            }
+        }
+
     }
 }

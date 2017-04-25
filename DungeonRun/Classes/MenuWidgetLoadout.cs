@@ -77,6 +77,15 @@ namespace DungeonRun
 
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 4);
+            //set the menuItem's data
+            MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[1]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[2]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[3]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]);
         }
 
         public static void Update()

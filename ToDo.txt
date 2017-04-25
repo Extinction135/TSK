@@ -35,52 +35,27 @@ ram useage:
 todo:
 
 
-2
-
-
-removed Initialize() functions from Input, and Camera2D.
-it makes no sense to use an Initialize method when it can be done automatically with the constructor.
-slight reorganization of ScreenManager.
-playtested, working as expected.
-
+1
 
 	
+created MenuItemType enum, with values for all possible menuItems.	
+created MenuItemFunctions.SetMenuItemData(MenuItemType Type, MenuItem MenuItem).
+this function sets menuItem data (name, description, frame) based on the passed Type.
+extended MenuItem to have a MenuItemType enum field.
+this instance is set in the SetMenuItemData().
+limited MenuItemType to a very barebones implementation for now.
+we'll fill it out as we develop the game.
 
-
- 
-	
-menuItems should have an enum field in them
-then we pass the menuItem to MenuItemFunctions.SetMenuItem(menuItemEnum).
-this function sets the current frame, name, and description based on the enum passed.
-this localizes all the menu item data to the MenuItemFunctions class.
-
-we need to populate all the menuItems with data
-this will be done through the MenuItemFunctions.SetMenuItem(MenuItemType enum)
--> sets the name, current frame, and description based on passed enum
-
-
-we really do need a different sound effect for when the user presses A button on menuItem
-
+updated MenuWidgetStats.Reset() to call SetMenuItemData() on it's menuItems.
+updated MenuWidgetLoadout.Reset() to call SetMenuItemData() on it's menuItems.
+updated MenuWidgetOptions.Reset() to call SetMenuItemData() on it's menuItems.
+updated MenuWidgetInventory.Reset() to call SetMenuItemData() on it's menuItems.
+playtested, working perfectly.
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+we'll need menuItem sprites for all stats
 
 
 later in development, when we have a game options screen,
@@ -104,7 +79,6 @@ a special explosion sound should play when the boss is defeated
 
 
 move DebugMenu.Draw() into DrawFunctions, cause that's where it belongs.
-
 
 seperate the Drawing and Updating of DebugInfo fields from Draw().
 the drawing should occur in DrawFunctions.
