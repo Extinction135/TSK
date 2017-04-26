@@ -28,7 +28,6 @@ namespace DungeonRun
             //if the actor hit was the boss, also play the boss hit sound
             if (Actor.type == ActorType.Boss) { Assets.sfxBossHit.Play(); }
             
-
             //display the hit effect particle
             GameObjectFunctions.SpawnParticle(ObjType.ParticleHitSparkle, Actor.compSprite.position);
         }
@@ -72,24 +71,15 @@ namespace DungeonRun
             }
             else if (Actor.type == ActorType.Boss)
             {
-                //player has beat the dungeon
-                DungeonRecord.beatDungeon = true;
+                DungeonRecord.beatDungeon = true; //player has beat the dungeon
                 DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-                //create boss explosion
-                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Actor.compSprite.position);
-                //create a series of explosions around boss
-                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
-                    Actor.compSprite.position + new Vector2(10, 10));
-                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
-                    Actor.compSprite.position + new Vector2(10, -10));
-                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
-                    Actor.compSprite.position + new Vector2(-10, 10));
-                GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
-                    Actor.compSprite.position + new Vector2(-10, -10));
-                //spam the explosion sound
-                Assets.sfxExplosion.Play();
+
+                //boss explosions are handled in Update()
+                //explosions are called perpetually across frames
+                //this makes the explosions appear to be sequential
+                //this is closer to the original LttP implementation
             }
 
             #endregion
@@ -302,7 +292,29 @@ namespace DungeonRun
                     if (Actor.health <= 0) { SetDeathState(Actor); }
                 }
                 //lock actor into the death state
-                if (Actor.state == ActorState.Dead) { Actor.lockCounter = 0; }
+                if (Actor.state == ActorState.Dead)
+                {
+                    Actor.lockCounter = 0;
+
+
+                    #region Dead Bosses perpetually explode
+
+                    if(Actor.type == ActorType.Boss)
+                    {
+                        if(GetRandom.Int(0,100) > 80) //randomly create explosions
+                        {   //randomly place explosion around boss
+                            GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
+                                Actor.compSprite.position +
+                                new Vector2(GetRandom.Int(-16, 16), GetRandom.Int(-16, 16)));
+                            //play corresponding explosion sound effect too
+                            Assets.PlayExplosionSoundEffect();
+                        }
+                    }
+
+                    #endregion
+
+
+                }
             }
 
             #endregion
@@ -318,5 +330,6 @@ namespace DungeonRun
             DrawFunctions.Draw(Actor.compSprite);
             if (Flags.DrawCollisions) { DrawFunctions.Draw(Actor.compCollision); }
         }
+
     }
 }

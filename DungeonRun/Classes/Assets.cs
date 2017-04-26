@@ -118,7 +118,10 @@ namespace DungeonRun
         public static SoundEffectInstance sfxBossHit;
 
         static SoundEffect sfxExplosionSrc;
-        public static SoundEffectInstance sfxExplosion;
+        //multiple explosions can be playing simultaneously
+        static List<SoundEffectInstance> explosionInstances;
+        static int explosionsCount = 20;
+        static int i;
 
         #endregion
 
@@ -232,7 +235,10 @@ namespace DungeonRun
             sfxBossHit = sfxBossHitSrc.CreateInstance();
 
             sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
-            sfxExplosion = sfxExplosionSrc.CreateInstance();
+            //create the explosion instances list, populate it
+            explosionInstances = new List<SoundEffectInstance>();
+            for (i = 0; i < explosionsCount; i++)
+            { explosionInstances.Add(sfxExplosionSrc.CreateInstance()); }
 
             #endregion
 
@@ -261,6 +267,26 @@ namespace DungeonRun
             colorScheme.textLight = new Color(255, 255, 255);
             colorScheme.textDark = new Color(0, 0, 0);
         }
+
+        public static void PlayExplosionSoundEffect()
+        {   //find an explosion instances not playing, play it & bail
+            for (i = 0; i < explosionsCount; i++)
+            {
+                if (explosionInstances[i].State == SoundState.Stopped)
+                {
+                    explosionInstances[i].Play();
+                    i = explosionsCount; //end the loop
+                }
+                //else { explosionInstances[i].Stop(); }
+                //we could stop the previous instances from playing
+                //this prevents the 'echo' effect
+            }
+        }
+
+
+
+
+
 
     }
 

@@ -35,36 +35,37 @@ ram useage:
 todo:
 
 
-12
+11
+
+
+
+changed how the bosses death is handled in ActorFunctions.
+it's been moved into the Update() function, where the death state is checked.
+bosses now perpetually create explosion particles and call the explosion sound effect.
+each explosion is randomly placed near/around the bosses sprite.
+
+updated Assets to use a list of explosion instances.
+created Assets.PlayExplosionSoundEffect() to handle which explosion instance is played.
+added a call to PlayExplosionSoundEffect() from boss death routine.
+this lets us play multiple explosion sound effects simultaneously.
+playtested - many explosions are created upon boss death now.
+very satisfying, much wow.
 
 
 
 
-added sound explosion to content project, built.
-added instances to Assets for the explosion sound effect.
-added call to play the explosion sound effect when boss dies.
-playtested, working.
-however, it can be done better, or closer to LttP's boss deaths.
-
-
-
-we want the boss explosions to happen sequentially
-we want each explosion to call the explosion sound effect
-so we only have to create the explosion effects
 
 
 
 
-we need to be able to spam the explosion sound effect when the boss dies
-at 60 fps, we can spam the explosion sound every 6 frames
+
+
+
+
 
 
 pull all the sound effects from links awakening
 
-
-
-special boss hit sound should play when boss is hit
-a special explosion sound should play when the boss is defeated
 
 
 
