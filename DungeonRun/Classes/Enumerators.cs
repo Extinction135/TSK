@@ -64,7 +64,7 @@ namespace DungeonRun
         OptionsSaveGame, OptionsLoadGame, OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls,
 
         ItemBoomerang, ItemBomb, 
-        BottleEmpty, //BottleMagic, BottleHealth, BottleSpecial, BottleFairy,
+        BottleEmpty, BottleHealth, //BottleSpecial, BottleFairy,
         MagicFireball,
         WeaponSword, //WeaponBow, WeaponStaff, WeaponAxe, WeaponNet,
         ArmorCloth, //ArmorChest, ArmorCape, ArmorRobe, Armor5,

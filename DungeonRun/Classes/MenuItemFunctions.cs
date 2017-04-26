@@ -87,6 +87,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 6;
                 MenuItem.compSprite.currentFrame.y = 5;
             }
+            else if (Type == MenuItemType.BottleHealth)
+            {
+                MenuItem.name = "Health Potion";
+                MenuItem.description = "Fully restores all\navailable hearts.";
+                MenuItem.compSprite.currentFrame.x = 6;
+                MenuItem.compSprite.currentFrame.y = 6;
+            }
 
             #endregion
 

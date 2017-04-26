@@ -131,7 +131,7 @@ namespace DungeonRun
             MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[3]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, menuItems[3]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[4]);
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]);
