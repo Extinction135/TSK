@@ -48,21 +48,10 @@ todo:
 
 
 
-created routine that sets the goldAmount based on PlayerData.saveData.gold.
-properly pads the goldAmount.text to always be 3 digits.
-limits the maximum value for saveData.gold to 3 digits (999).
 
-
-
-bug: we don't reset the key or map booleans when a new dungeon is created...
-
-
-
-
-we need to get the gold amount being displayed in the inventory screen - loadout widget
-rn we're just displaying the gold sprite
-we need a black rec bkg, that matches the size/width of the total gold collected value
-this won't affect the info widget at all, it will still just display the gold sprite
+updated MenuWidgetLoadout.Reset() to set the key and map menuItems to unknown if corresponding booleans are false.
+this fixes a bug where the map and key menuItems would display upon dungeon reset.
+playtested, working as expected.
 
 
 
