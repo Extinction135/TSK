@@ -120,6 +120,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 8;
                 MenuItem.compSprite.currentFrame.y = 5;
             }
+            else if (Type == MenuItemType.WeaponBow)
+            {
+                MenuItem.name = "Magic Bow";
+                MenuItem.description = "A magic bow.";
+                MenuItem.compSprite.currentFrame.x = 8;
+                MenuItem.compSprite.currentFrame.y = 6;
+            }
 
             #endregion
 

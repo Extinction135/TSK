@@ -66,7 +66,7 @@ namespace DungeonRun
         ItemBoomerang, ItemBomb, 
         BottleEmpty, BottleHealth, //BottleSpecial, BottleFairy,
         MagicFireball,
-        WeaponSword, //WeaponBow, WeaponStaff, WeaponAxe, WeaponNet,
+        WeaponSword, WeaponBow, //WeaponStaff, WeaponAxe, WeaponNet,
         ArmorCloth, //ArmorChest, ArmorCape, ArmorRobe, Armor5,
         EquipmentRing, //EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
     }

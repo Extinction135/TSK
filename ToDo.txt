@@ -43,13 +43,13 @@ ram useage:
 todo:
 
 
-5
+3
 
 
 
-added enum value for MenuItemType.ItemBomb
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.ItemBomb.
-updated MenuWidgetInventory.Reset() to make 2nd menuItem a Bomb.
+added enum value for MenuItemType.WeaponBow
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.WeaponBow.
+updated MenuWidgetInventory.Reset() to make 12th menuItem a Magic Bow.
 playtested, working.
 
 
