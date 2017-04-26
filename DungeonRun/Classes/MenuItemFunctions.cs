@@ -140,6 +140,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 9;
                 MenuItem.compSprite.currentFrame.y = 5;
             }
+            else if (Type == MenuItemType.ArmorChest)
+            {
+                MenuItem.name = "Plate Armor";
+                MenuItem.description = "Heavy plate armor.";
+                MenuItem.compSprite.currentFrame.x = 9;
+                MenuItem.compSprite.currentFrame.y = 6;
+            }
 
             #endregion
 

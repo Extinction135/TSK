@@ -43,13 +43,13 @@ ram useage:
 todo:
 
 
-3
+2
 
 
 
-added enum value for MenuItemType.WeaponBow
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.WeaponBow.
-updated MenuWidgetInventory.Reset() to make 12th menuItem a Magic Bow.
+added enum value for MenuItemType.ArmorChest
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.ArmorChest.
+updated MenuWidgetInventory.Reset() to make 17th menuItem Heavy Plate Armor.
 playtested, working.
 
 
