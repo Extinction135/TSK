@@ -43,18 +43,28 @@ ram useage:
 todo:
 
 
-2
+1
 
-
-added enum value for MenuItemType.EquipmentGlove
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.EquipmentGlove.
-updated MenuWidgetInventory.Reset() to make 23rd menuItem a EquipmentGlove.
-playtested, working.
-
-
+bug: when hero's health drops below 3 the drums play. this is correct.
+BUT when the hero's health rises above 2, the drums continue to play.
+cause: we dont have a codepath to handle fading the drumtrack out based on hero's health.
+solution: added codepath to MusicFunctions.Update() to fade drum track out of hero's health is above 2.
+playtested, working as expected.
 
 
 
+the drums should fade out if the hero's health is above 2.
+this bug was noticed first on the xbox. 
+check to make sure this bug exists on pc version.
+
+
+
+
+
+
+
+we should be setting the loadout menuItems based on what the player selects/chooses
+this is related to the hero's loadout data, which we haven't planned out yet
 
 we should be using a heart pieces sprite that has empty, quarter, half, 3 quarters, and full sprite states
 the full sprite state would only appear as a reward for the hero when he finds a 4th heart piece
@@ -84,11 +94,7 @@ that would be better.
 
 
 
-bug: when hero's health drops below 3 the drums play. this is correct.
-BUT when the hero's health rises above 2, the drums continue to play.
-the drums should fade out if the hero's health is above 2.
-this bug was noticed first on the xbox. 
-check to make sure this bug exists on pc version.
+
 
 
 
