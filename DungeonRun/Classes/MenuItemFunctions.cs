@@ -94,6 +94,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 6;
                 MenuItem.compSprite.currentFrame.y = 6;
             }
+            else if (Type == MenuItemType.BottleFairy)
+            {
+                MenuItem.name = "Fairy in a Bottle";
+                MenuItem.description = "Revives hero upon\ndeath.";
+                MenuItem.compSprite.currentFrame.x = 6;
+                MenuItem.compSprite.currentFrame.y = 9;
+            }
 
             #endregion
 

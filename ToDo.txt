@@ -43,15 +43,13 @@ ram useage:
 todo:
 
 
-10
+8
 
 
-
-
-
-updated MenuWidgetLoadout.Reset() to set the key and map menuItems to unknown if corresponding booleans are false.
-this fixes a bug where the map and key menuItems would display upon dungeon reset.
-playtested, working as expected.
+added enum value for MenuItemType.BottleFairy
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.BottleFairy.
+updated MenuWidgetInventory.Reset() to make 4th menuItem a BottleFairy.
+playtested, working.
 
 
 
