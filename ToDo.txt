@@ -43,7 +43,7 @@ ram useage:
 todo:
 
 
-7
+6
 
 
 update the readme.md file in the repo to show the new gifs
