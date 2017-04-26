@@ -18,7 +18,8 @@ namespace DungeonRun
         static int i;
         public static MenuWindow window;
         public static List<MenuItem> menuItems;
-
+        public static ComponentText goldAmount;
+        public static Rectangle goldBkg;
 
 
         static MenuWidgetLoadout()
@@ -34,6 +35,11 @@ namespace DungeonRun
             menuItems[0].name = "Boomerang";
             menuItems[0].description = "a magical boomerang\nthat always returns";
             menuItems[0].compSprite.currentFrame = new Byte4(5, 5, 0, 0);
+
+            //create the gold amount text and background
+            goldAmount = new ComponentText(Assets.font, "999", 
+                new Vector2(0, 0), Assets.colorScheme.textLight);
+            goldBkg = new Rectangle(0, 0, 13, 7);
         }
 
         public static void Reset(Point Position, Point Size)
@@ -88,6 +94,12 @@ namespace DungeonRun
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
             if (DungeonFunctions.dungeon.bigKey) //if player found the key, display it
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
+
+            //place the goldAmount text component & bkg to the gold menuItem
+            goldAmount.position.X = menuItems[4].compSprite.position.X - 5;
+            goldAmount.position.Y = menuItems[4].compSprite.position.Y - 3;
+            goldBkg.X = (int)goldAmount.position.X - 1;
+            goldBkg.Y = (int)goldAmount.position.Y + 4;
         }
 
         public static void Update()
@@ -102,6 +114,11 @@ namespace DungeonRun
             {
                 for (i = 0; i < menuItems.Count; i++)
                 { DrawFunctions.Draw(menuItems[i].compSprite); }
+                //draw gold amount with background
+                ScreenManager.spriteBatch.Draw(
+                    Assets.dummyTexture, goldBkg,
+                    Assets.colorScheme.textDark);
+                DrawFunctions.Draw(goldAmount);
             }
         }
 
