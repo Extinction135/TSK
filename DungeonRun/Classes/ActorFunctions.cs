@@ -301,7 +301,7 @@ namespace DungeonRun
 
                     if(Actor.type == ActorType.Boss)
                     {
-                        if(GetRandom.Int(0,100) > 80) //randomly create explosions
+                        if(GetRandom.Int(0,100) > 75) //randomly create explosions
                         {   //randomly place explosion around boss
                             GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion,
                                 Actor.compSprite.position +

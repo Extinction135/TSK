@@ -19,7 +19,7 @@ namespace DungeonRun
         Rectangle overlay; 
         public float overlayAlpha = 1.0f;
         float fadeInSpeed = 0.015f;
-        float fadeOutSpeed = 0.03f;
+        float fadeOutSpeed = 0.025f;
         //the various states the game can be in
         public enum GameState { Playing, Summary }
         public GameState gameState = GameState.Playing;

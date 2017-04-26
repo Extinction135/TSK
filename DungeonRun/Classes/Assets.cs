@@ -120,7 +120,7 @@ namespace DungeonRun
         static SoundEffect sfxExplosionSrc;
         //multiple explosions can be playing simultaneously
         static List<SoundEffectInstance> explosionInstances;
-        static int explosionsCount = 20;
+        static int explosionsCount = 5;
         static int i;
 
         #endregion
@@ -277,16 +277,12 @@ namespace DungeonRun
                     explosionInstances[i].Play();
                     i = explosionsCount; //end the loop
                 }
-                //else { explosionInstances[i].Stop(); }
-                //we could stop the previous instances from playing
-                //this prevents the 'echo' effect
+                //stop previous instances from playing
+                //this prevents the 'echo/overlap' effect
+                else { explosionInstances[i].Stop(); }
+                //but this causes a 'clipping' effect
             }
         }
-
-
-
-
-
 
     }
 

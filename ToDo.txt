@@ -35,37 +35,18 @@ ram useage:
 todo:
 
 
-11
-
-
-
-changed how the bosses death is handled in ActorFunctions.
-it's been moved into the Update() function, where the death state is checked.
-bosses now perpetually create explosion particles and call the explosion sound effect.
-each explosion is randomly placed near/around the bosses sprite.
-
-updated Assets to use a list of explosion instances.
-created Assets.PlayExplosionSoundEffect() to handle which explosion instance is played.
-added a call to PlayExplosionSoundEffect() from boss death routine.
-this lets us play multiple explosion sound effects simultaneously.
-playtested - many explosions are created upon boss death now.
-very satisfying, much wow.
+9
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-pull all the sound effects from links awakening
-
+updated PlayExplosionSoundEffect() to stop previous instances from playing.
+this prevents the overlapping 'echo' effect from happening.
+but it causes a 'clipping' effect to occur, which i'll fix in the future.
+reduce the explosion instance count to 5, down from 20.
+slowed down how fast the dungeon screen fades out.
+playtested, working as intended.
 
 
 
@@ -101,6 +82,9 @@ Release Version 0.2
 	
 	
 	
+we need better looking explosions for the boss death
+these should be larger? 32x32?
+animate longer? have more frames?	
 	
 	
 	
@@ -115,7 +99,7 @@ Release Version 0.2
 	
 	
 	
-	
+pull all the sound effects from links awakening
 	
 	
 	
