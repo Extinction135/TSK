@@ -43,16 +43,16 @@ ram useage:
 todo:
 
 
-8
+7
 
 
+update the readme.md file in the repo to show the new gifs
+should explain the game/program a bit better too
+
+seperate the info about the architecture/structure into a different .md file
 
 
-recorded gif of gameplay, edited to 3 seperate gifs.
-each gif shows new features of the latest version, at proper fps.
-refined and documented the gameplay capture process.
-added gifs to gifs directory, in prep for update/creation of various repo files.
-
+move the gameplay/architecture info in a single MD file
 
 
 
