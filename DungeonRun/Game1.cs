@@ -16,7 +16,7 @@ namespace DungeonRun
     {   //the master control booleans for various codepaths
 
         // ******************************************************************
-        public static Boolean Release = true; //puts the game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts the game in release mode, overwrites other flags
         // ******************************************************************
 
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input

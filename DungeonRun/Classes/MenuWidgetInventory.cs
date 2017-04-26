@@ -129,7 +129,7 @@ namespace DungeonRun
             #region Set the menuItem data (based on the hero's inventory - later)
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[1]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[3]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[4]);

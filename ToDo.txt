@@ -43,40 +43,54 @@ ram useage:
 todo:
 
 
-6
-
-
-update the readme.md file in the repo to show the new gifs
-should explain the game/program a bit better too
-
-seperate the info about the architecture/structure into a different .md file
-
-
-move the gameplay/architecture info in a single MD file
+5
 
 
 
+added enum value for MenuItemType.ItemBomb
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.ItemBomb.
+updated MenuWidgetInventory.Reset() to make 2nd menuItem a Bomb.
+playtested, working.
 
-record GIF of playing thru spawn room, opening chests to get key
-record GIF of entering boss room, fighting boss
-record GIF of opening inventory screen, moving/selecting menuItems 
 
-create a Versions.md document, detailing what each version does/has
-this will show how the game's progressed over time
-each version's section should have corresponding GIFs.
 
-include section about how easily it is to port the game to DirectX + OpenGL.
-simply create a new project, copy over the class files, copy + build the content project.
 
-update the readme to include more information about the game
-change the repo description:
-"A 2D Zelda clone for UWP/Windows10 + Xbox. DirectX + OpenGL ports coming soon."
 
-create a /Releases folder
-zip up a release version of the game from the bin folder
-label this DungeonRunDemoV0P2
 
-Release Version 0.2
+
+
+
+
+it would be nice if we didn't have to line break the menuItem descriptions by hand
+what if InfoWidget did the line breaks automatically?
+that would be better.
+
+
+
+
+expand the versions.md descriptions for what each version has in it
+
+
+expand the menuItem descriptions
+
+
+bug: when hero's health drops below 3 the drums play. this is correct.
+BUT when the hero's health rises above 2, the drums continue to play.
+the drums should fade out if the hero's health is above 2.
+this bug was noticed first on the xbox. 
+check to make sure this bug exists on pc version.
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -90,27 +104,9 @@ these should be larger? 32x32?
 animate longer? have more frames?	
 	
 	
-	
-	
-	
-	
-bug: when hero's health drops below 3 the drums play. this is correct.
-BUT when the hero's health rises above 2, the drums continue to play.
-the drums should fade out if the hero's health is above 2.
-this bug was noticed first on the xbox. 
-check to make sure this bug exists on pc version.
-	
-	
-	
-	
-	
-	
-	
 pull all the sound effects from links awakening
 	
-	
-	
-	
+		
 BUG?
 boss should collide with hero - right now he doesn't
 this means the boss 'locks' the hero when he collides with him - the hero can't move
@@ -127,15 +123,6 @@ the drawing should occur in DrawFunctions.
 the update should occur in an update() function that is called from dungeonScreen's Update.
 
 we need boss music, and that music should play when hero enters boss room
-
-
-
-
-
-
-
-
-
 
 
 

@@ -67,6 +67,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 5;
                 MenuItem.compSprite.currentFrame.y = 5;
             }
+            else if (Type == MenuItemType.ItemBomb)
+            {
+                MenuItem.name = "Explosive Bomb";
+                MenuItem.description = "An explosive bomb.";
+                MenuItem.compSprite.currentFrame.x = 5;
+                MenuItem.compSprite.currentFrame.y = 6;
+            }
 
             #endregion
 
