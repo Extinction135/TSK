@@ -195,6 +195,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 10;
                 MenuItem.compSprite.currentFrame.y = 6;
             }
+            else if (Type == MenuItemType.EquipmentNecklace)
+            {
+                MenuItem.name = "Magic Necklace";
+                MenuItem.description = "A magic necklace.";
+                MenuItem.compSprite.currentFrame.x = 10;
+                MenuItem.compSprite.currentFrame.y = 7;
+            }
 
             #endregion
 
