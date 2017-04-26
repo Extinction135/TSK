@@ -43,14 +43,20 @@ ram useage:
 todo:
 
 
-13
+12
 
 
 
 
-
-updated MenuWidgetLoadout() to set the key menuItem only if it's been found.
+added 'map' boolean to Dungeon struct.
+expanded Dungeon constructor to set map to false.
+extended InteractionFunctions.Handle(Actor, Obj) to set the map boolean true, when hero opens the map chest.
+updated MenuWidgetLoadout() to set the map menuItem only if it's been found.
 playtested, working as expected.
+
+
+
+
 
 
 we need to get the gold amount being displayed in the inventory screen - loadout widget

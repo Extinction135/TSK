@@ -84,9 +84,8 @@ namespace DungeonRun
             MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[3]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
-
-            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]);
-
+            if (DungeonFunctions.dungeon.map) //if player found the map, display it
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
             if (DungeonFunctions.dungeon.bigKey) //if player found the key, display it
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
         }

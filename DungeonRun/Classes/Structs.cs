@@ -89,11 +89,13 @@ namespace DungeonRun
         public List<Room> rooms;
         public String name;
         public Boolean bigKey;
+        public Boolean map;
         public Dungeon(String Name)
-        {
+        {   //initially, the map and key have not been found
             rooms = new List<Room>();
             name = Name;
-            bigKey = false; //hero has not found the big key yet
+            bigKey = false;
+            map = false;
         }
     }
 

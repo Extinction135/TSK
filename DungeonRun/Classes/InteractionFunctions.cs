@@ -177,7 +177,7 @@ namespace DungeonRun
                             ObjType.ParticleRewardMap,
                             Actor.compSprite.position + new Vector2(0, -14));
                         Assets.sfxReward.Play();
-                        //set map boolean true, just like bigKey boolean
+                        DungeonFunctions.dungeon.map = true;
                     }
 
                     Assets.sfxChestOpen.Play();
