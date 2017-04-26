@@ -134,6 +134,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 8;
                 MenuItem.compSprite.currentFrame.y = 6;
             }
+            else if (Type == MenuItemType.WeaponStaff)
+            {
+                MenuItem.name = "Magic Staff";
+                MenuItem.description = "A magic staff.";
+                MenuItem.compSprite.currentFrame.x = 8;
+                MenuItem.compSprite.currentFrame.y = 7;
+            }
 
             #endregion
 

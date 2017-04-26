@@ -142,7 +142,7 @@ namespace DungeonRun
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[10]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[12]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, menuItems[12]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[13]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[14]);
 

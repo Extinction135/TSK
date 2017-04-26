@@ -43,12 +43,12 @@ ram useage:
 todo:
 
 
-8
+7
 
 
-added enum value for MenuItemType.BottleFairy
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.BottleFairy.
-updated MenuWidgetInventory.Reset() to make 4th menuItem a BottleFairy.
+added enum value for MenuItemType.WeaponStaff
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.WeaponStaff.
+updated MenuWidgetInventory.Reset() to make 12th menuItem a WeaponStaff.
 playtested, working.
 
 
