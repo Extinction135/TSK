@@ -43,18 +43,18 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
 
-created a 'goldAmount' text component in MenuWidgetLoadout.
-updated Reset() to position this goldAmount component relative to the gold menuItem.
-added a rectangle instance that draws underneath the gold amount text component.
-updated the placement of the gold sprite in the main sheet.
-aligned the goldAmount text and background to the gold menuItem.
-playtested, working.
+created routine that sets the goldAmount based on PlayerData.saveData.gold.
+properly pads the goldAmount.text to always be 3 digits.
+limits the maximum value for saveData.gold to 3 digits (999).
 
+
+
+bug: we don't reset the key or map booleans when a new dungeon is created...
 
 
 

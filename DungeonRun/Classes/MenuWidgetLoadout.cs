@@ -100,6 +100,13 @@ namespace DungeonRun
             goldAmount.position.Y = menuItems[4].compSprite.position.Y - 3;
             goldBkg.X = (int)goldAmount.position.X - 1;
             goldBkg.Y = (int)goldAmount.position.Y + 4;
+
+            //apply padding so goldAmount is always 3 digits, limit to 999
+            goldAmount.text = "";
+            if (PlayerData.saveData.gold < 10) { goldAmount.text += "00"; }
+            else if (PlayerData.saveData.gold < 100) { goldAmount.text += "0"; }
+            else if (PlayerData.saveData.gold > 999) { PlayerData.saveData.gold = 999; }
+            goldAmount.text += PlayerData.saveData.gold;
         }
 
         public static void Update()
