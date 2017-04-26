@@ -43,35 +43,62 @@ ram useage:
 todo:
 
 
-1
-
-
-
-added enum value for MenuItemType.EquipmentPearl
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.EquipmentPearl.
-updated MenuWidgetInventory.Reset() to make 22nd menuItem a magic pearl.
-playtested, working.
+13
 
 
 
 
 
+updated MenuWidgetLoadout() to set the key menuItem only if it's been found.
+playtested, working as expected.
+
+
+we need to get the gold amount being displayed in the inventory screen - loadout widget
+rn we're just displaying the gold sprite
+we need a black rec bkg, that matches the size/width of the total gold collected value
+this won't affect the info widget at all, it will still just display the gold sprite
 
 
 
 
 
-it would be nice if we didn't have to line break the menuItem descriptions by hand
-what if InfoWidget did the line breaks automatically?
-that would be better.
 
+
+if the dungeon.key boolean is false, then we shouldn't set the dungeon key menuItem in loadout widget
+same goes for the dungeon map boolean + menuItem
+
+
+
+
+
+
+
+we should be using a heart pieces sprite that has empty, quarter, half, 3 quarters, and full sprite states
+the full sprite state would only appear as a reward for the hero when he finds a 4th heart piece
+these heart pieces should come from chests in dungeons
+expand the chest enums to include a heart piece chest
+expand reward/collision routines to handle this heart piece reward
+we need to be handling how the hero's health is limited too
+hero should have a current health value, and a max health value.
+heart pieces increase his max health, up to 14.
 
 
 
 expand the versions.md descriptions for what each version has in it
 
 
+
 expand the menuItem descriptions
+commit template:
+added enum value for MenuItemType.EquipmentPearl
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.EquipmentPearl.
+updated MenuWidgetInventory.Reset() to make 22nd menuItem a magic pearl.
+playtested, working.
+
+it would be nice if we didn't have to line break the menuItem descriptions by hand
+what if InfoWidget did the line breaks automatically?
+that would be better.
+
 
 
 bug: when hero's health drops below 3 the drums play. this is correct.
@@ -87,8 +114,11 @@ check to make sure this bug exists on pc version.
 	
 	
 	
-	
-	
+we need menuItem sprites for the various stats
+	strength - increases amount of physical damage weapon does
+	magic = increases amount of magical damage magic does
+	agility = how quickly hero moves + dashes
+	luck = increases amount of gold found + rewarded
 	
 	
 	
@@ -106,7 +136,7 @@ animate longer? have more frames?
 	
 pull all the sound effects from links awakening
 	
-		
+	
 BUG?
 boss should collide with hero - right now he doesn't
 this means the boss 'locks' the hero when he collides with him - the hero can't move
@@ -206,12 +236,7 @@ Version 0.4 Milestones
 	
 Stuff that needs to be done, but it's not terribly important rn	
 	
-	we'll need menuItem sprites for all stats - health, magic, agility, ???
-	we need to finish designing this - what is the 4th stat?
-		health = number of hearts hero has
-		magic = amount of damage magic projectiles do
-		agility = how quickly hero moves + dashes
-		??? = ???
+	
 
 	later in development, when we have a game options screen,
 	the options widget will need to reset it's neighbors, so it doesn't connect to widgets not visible
