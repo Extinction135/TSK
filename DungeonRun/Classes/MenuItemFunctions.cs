@@ -209,6 +209,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 10;
                 MenuItem.compSprite.currentFrame.y = 8;
             }
+            else if (Type == MenuItemType.EquipmentPin)
+            {
+                MenuItem.name = "Magic Pin";
+                MenuItem.description = "A magic pin.";
+                MenuItem.compSprite.currentFrame.x = 10;
+                MenuItem.compSprite.currentFrame.y = 9;
+            }
 
             #endregion
 

@@ -43,7 +43,7 @@ ram useage:
 todo:
 
 
-3
+2
 
 
 added enum value for MenuItemType.EquipmentGlove

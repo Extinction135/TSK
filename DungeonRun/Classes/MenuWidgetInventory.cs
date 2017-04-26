@@ -156,7 +156,7 @@ namespace DungeonRun
             MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[22]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[23]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[24]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, menuItems[24]);
 
             #endregion
 

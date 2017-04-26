@@ -68,7 +68,7 @@ namespace DungeonRun
         MagicFireball,
         WeaponSword, WeaponBow, WeaponStaff, //WeaponAxe, //WeaponNet,
         ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
-        EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, //EquipmentPin,
+        EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
     }
 
     //this kinda duplicates the MenuItemType enum, and we could that instead...
