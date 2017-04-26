@@ -43,12 +43,12 @@ ram useage:
 todo:
 
 
-4
+3
 
 
-added enum value for MenuItemType.EquipmentNecklace
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.EquipmentNecklace.
-updated MenuWidgetInventory.Reset() to make 22nd menuItem a EquipmentNecklace.
+added enum value for MenuItemType.EquipmentGlove
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.EquipmentGlove.
+updated MenuWidgetInventory.Reset() to make 23rd menuItem a EquipmentGlove.
 playtested, working.
 
 

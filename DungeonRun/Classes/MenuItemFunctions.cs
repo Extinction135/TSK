@@ -202,6 +202,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 10;
                 MenuItem.compSprite.currentFrame.y = 7;
             }
+            else if (Type == MenuItemType.EquipmentGlove)
+            {
+                MenuItem.name = "Magic Glove";
+                MenuItem.description = "A magic glove.";
+                MenuItem.compSprite.currentFrame.x = 10;
+                MenuItem.compSprite.currentFrame.y = 8;
+            }
 
             #endregion
 
