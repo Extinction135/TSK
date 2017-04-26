@@ -161,6 +161,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 9;
                 MenuItem.compSprite.currentFrame.y = 6;
             }
+            else if (Type == MenuItemType.ArmorCape)
+            {
+                MenuItem.name = "Magic Cape";
+                MenuItem.description = "A magical cape.";
+                MenuItem.compSprite.currentFrame.x = 9;
+                MenuItem.compSprite.currentFrame.y = 7;
+            }
 
             #endregion
 

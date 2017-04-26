@@ -43,12 +43,12 @@ ram useage:
 todo:
 
 
-7
+6
 
 
-added enum value for MenuItemType.WeaponStaff
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.WeaponStaff.
-updated MenuWidgetInventory.Reset() to make 12th menuItem a WeaponStaff.
+added enum value for MenuItemType.ArmorCape
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.ArmorCape.
+updated MenuWidgetInventory.Reset() to make 17th menuItem a ArmorCape.
 playtested, working.
 
 
