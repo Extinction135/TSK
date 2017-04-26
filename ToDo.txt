@@ -39,19 +39,17 @@ todo:
 
 
 
+tested on xbox one.
+ram profile: 92mb initially, dropping to 83mb after a few seconds.
+average frame time with full debug info drawing: 2-3ms.
+average frame time without debug info (release): 0-1ms.
+this is with bkg music playing and all sound effects/mobs working.
+so, as close to release as i can get it, while still getting frame times.
+pretty happy with these test results.
 
 
-updated PlayExplosionSoundEffect() to stop previous instances from playing.
-this prevents the overlapping 'echo' effect from happening.
-but it causes a 'clipping' effect to occur, which i'll fix in the future.
-reduce the explosion instance count to 5, down from 20.
-slowed down how fast the dungeon screen fades out.
-playtested, working as intended.
 
 
-
-
-test on xbox one.
 
 
 record GIF of playing thru spawn room, opening chests to get key
@@ -91,7 +89,11 @@ animate longer? have more frames?
 	
 	
 	
-	
+bug: when hero's health drops below 3 the drums play. this is correct.
+BUT when the hero's health rises above 2, the drums continue to play.
+the drums should fade out if the hero's health is above 2.
+this bug was noticed first on the xbox. 
+check to make sure this bug exists on pc version.
 	
 	
 	
