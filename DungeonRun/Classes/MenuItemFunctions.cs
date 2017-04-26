@@ -160,6 +160,13 @@ namespace DungeonRun
                 MenuItem.compSprite.currentFrame.x = 10;
                 MenuItem.compSprite.currentFrame.y = 5;
             }
+            else if (Type == MenuItemType.EquipmentPearl)
+            {
+                MenuItem.name = "Magic Pearl";
+                MenuItem.description = "A magic pearl.";
+                MenuItem.compSprite.currentFrame.x = 10;
+                MenuItem.compSprite.currentFrame.y = 6;
+            }
 
             #endregion
 

@@ -43,13 +43,13 @@ ram useage:
 todo:
 
 
-2
+1
 
 
 
-added enum value for MenuItemType.ArmorChest
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.ArmorChest.
-updated MenuWidgetInventory.Reset() to make 17th menuItem Heavy Plate Armor.
+added enum value for MenuItemType.EquipmentPearl
+updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.EquipmentPearl.
+updated MenuWidgetInventory.Reset() to make 22nd menuItem a magic pearl.
 playtested, working.
 
 

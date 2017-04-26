@@ -153,7 +153,7 @@ namespace DungeonRun
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[19]);
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[20]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[21]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[22]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[23]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[24]);
