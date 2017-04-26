@@ -1,4 +1,12 @@
-﻿GIF 32 Dithered, Quality: NearestNeighbor @ 50% size
+﻿Gif Capture process:
+	run game in release mode
+	run LiceCap, expand capture area past program window about 10 pixels on each side
+	record at 30fps, open in photoshop and crop the frame down to just the game view (minus window title)
+	reduce image size by half, down to original size so pixels are 1:1 ratio
+	save as PSD master, then begin cutting out sections/edits
+	the default time per frame (set by licecap) is perfect, do not change this
+	save for web ->  GIF 32 Dithered, filesize should be under 3mb, loop forever
+	test in browser to ensure proper fps
 
 CTRL + M, O = collapse functions/regions
 CTRL + M, P = expand functions/regions
@@ -35,18 +43,15 @@ ram useage:
 todo:
 
 
-9
+8
 
 
 
-tested on xbox one.
-ram profile: 92mb initially, dropping to 83mb after a few seconds.
-average frame time with full debug info drawing: 2-3ms.
-average frame time without debug info (release): 0-1ms.
-this is with bkg music playing and all sound effects/mobs working.
-so, as close to release as i can get it, while still getting frame times.
-pretty happy with these test results.
 
+recorded gif of gameplay, edited to 3 seperate gifs.
+each gif shows new features of the latest version, at proper fps.
+refined and documented the gameplay capture process.
+added gifs to gifs directory, in prep for update/creation of various repo files.
 
 
 
