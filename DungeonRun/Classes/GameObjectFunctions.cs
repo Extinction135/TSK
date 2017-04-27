@@ -40,6 +40,10 @@ namespace DungeonRun
             Obj.compCollision.rec.Height = 16; //(most are)
             Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Obj.compCollision.offsetY = -8; //(most are)
+
+            Obj.compMove.magnitude.X = 0; //discard any previous magnitude
+            Obj.compMove.magnitude.Y = 0; //
+            Obj.compMove.speed = 0.0f; //assume this object doesn't move
         }
 
         public static void SetRotation(GameObject Obj)
@@ -404,7 +408,6 @@ namespace DungeonRun
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
-                Obj.compMove.speed = 0.0f; //sword doesn't move
             }
             else if (Type == ObjType.ProjectileFireball)
             {

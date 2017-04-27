@@ -43,27 +43,21 @@ ram useage:
 todo:
 
 
-5
-
-
-
-
-bug: if hero is moving diagonally, then the fireball hits him. so the alignment is off.
-cause: the projectile's direction was not being converted to a cardinal direction.
-as a result, it wasn't getting the proper offset, and was spawning at hero locations.
-this was causing the projectile to immediately collide with hero.
-solution: rewrote how MovementFunctions.ConvertDiagonalDirection() worked, to return a direction value.
-updated how the projectile's direction and movementComponent direction was set.
-in the process, refactored how AlignProjectile() was working as well.
-playtested, working.
-
+4
 
 
 
 
 
 bug: fireballs sometimes curve into their direction
-cause: i think this is related to their magnitude. we don't reset their magnitude, and we should, upon a spawn
+cause: i think this is related to their magnitude. we don't reset their magnitude, and we should, upon a spawn.
+why this is happening: a projectile is pulled from the pool. 
+it still has a magnitude from it's previous use/life.
+this magnitude is being carried over into the projectile's new 'life'.
+solution: update GameObjFunctions.ResetObj() to clear any previous magnitude + speed values.
+playtested, working.
+
+
 
 
 bug: fireball doesn't align properly to hero's body
