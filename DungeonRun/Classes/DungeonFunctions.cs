@@ -246,7 +246,21 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.BossDecal);
                 objRef.compSprite.flipHorizontally = true;
-                
+
+                //place skeleton pots along left wall
+                for (i = 0; i < Room.size.y; i++)
+                {
+                    objRef = PoolFunctions.GetObj();
+                    MovementFunctions.Teleport(objRef.compMove,
+                        0 * 16 + pos.X + 8,
+                        i * 16 + pos.Y + 8);
+                    objRef.direction = Direction.Down;
+                    GameObjectFunctions.SetType(objRef, ObjType.PotSkull);
+                }
+
+
+                #region Test Chests
+
                 //place chest gameObj in bottom right corner
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
@@ -259,7 +273,7 @@ namespace DungeonRun
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     (Room.size.x - 1) * 16 + pos.X + 8,
-                    5 * 16 + pos.Y + 8);
+                    3 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.ChestKey);
 
@@ -267,20 +281,20 @@ namespace DungeonRun
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     (Room.size.x - 1) * 16 + pos.X + 8,
-                    8 * 16 + pos.Y + 8);
+                    5 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.ChestMap);
 
-                //randomly place skeleton pots around room
-                for (i = 0; i < Room.size.y; i++)
-                {
-                    objRef = PoolFunctions.GetObj();
-                    MovementFunctions.Teleport(objRef.compMove,
-                        0 * 16 + pos.X + 8,
-                        i * 16 + pos.Y + 8);
-                    objRef.direction = Direction.Down;
-                    GameObjectFunctions.SetType(objRef, ObjType.PotSkull);
-                }
+                //create a heart piece chest
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    7 * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, ObjType.ChestHeartPiece);
+
+                #endregion
+
 
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);

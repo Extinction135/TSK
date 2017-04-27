@@ -436,7 +436,8 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleReward50Gold ||
                 Type == ObjType.ParticleRewardKey ||
-                Type == ObjType.ParticleRewardMap)
+                Type == ObjType.ParticleRewardMap ||
+                Type == ObjType.ParticleRewardHeartPiece)
             {
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;

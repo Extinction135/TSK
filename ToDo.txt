@@ -43,34 +43,19 @@ ram useage:
 todo:
 
 
-10
-
-
-
-extended ObjType enum with ChestHeartPiece.
-extended GameObjectAnimListManager with anim list for ChestHeartPiece.
-added check for ChestHeartPiece into GameObjFunctions.SetType().
-extended InteractionFunctions.Handle(Actor, Obj) with path for ChestHeartPiece.
-opening a ChestHeartPiece increments PlayerData.saveData.heartPieces by 1.
-reduced some garbage creation in Handle(Actor, Obj).
-i need to do several more things before i can really test tho.
+9
 
 
 
 
+extended ObjType enum with ParticleRewardHeartPiece value.
+extended GameObjAnimListManager with anim list for ParticleRewardHeartPiece.
+extended GameObjFunctions.SetType() with path for ParticleRewardHeartPiece.
+updated InteractionFunctions.Handle(Actor, Obj) to create ParticleRewardHeartPiece for ChestHeartPiece interaction.
 
-
-** we need the heart piece particle for chest
-
-
-** check that this is working
-
-** we'll need to build additional chests in spawn room
-
-
-we shouldn't be creating new vectors in interaction function
-create an instance, and reset it upon handle() start
-then set the offset as needed and apply it
+updated DungeonFunction.FinishRoom() to create a heart piece chest.
+slightly compacted the arrangement of testing chests in spawn room.
+playtested: heart piece chests working, max hearts increment properly, heart pieces display properly in menu.
 
 
 
@@ -79,40 +64,7 @@ then set the offset as needed and apply it
 
 
 
-
-
-we would increment the heart pieces value when hero opens a heart piece chest 
-
-for the loadout widget, we divide the saveData.heartPieces by 4
-the remainder then determines the heart pieces sprite we display
-
-
-the full heart pieces sprite appears when the hero opens a chest that rewards him the 4th piece needed
-
-these heart pieces should come from chests in dungeons
-expand the chest enums to include a heart piece chest
-expand reward/collision routines to handle this heart piece reward
-
-
-
-
-
-
-
-
-
-we need to be handling how the hero's health is limited too
-hero should have a current health value, and a max health value.
-heart pieces increase his max health, up to 14.
-
-
-
-
-
-
-
-
-
+the full heart pieces sprite should appear when the hero opens a chest that rewards him the 4th piece
 
 
 

@@ -183,9 +183,8 @@ namespace DungeonRun
                     }
                     else if (Obj.type == ObjType.ChestHeartPiece)
                     {
-                        //////// this should be a heart reward particle
                         GameObjectFunctions.SpawnParticle(
-                            ObjType.ParticleRewardMap,
+                            ObjType.ParticleRewardHeartPiece,
                             Actor.compSprite.position + offset);
                         Assets.sfxReward.Play();
                         PlayerData.saveData.heartPieces++;

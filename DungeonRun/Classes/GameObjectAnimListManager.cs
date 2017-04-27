@@ -174,6 +174,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(11, 2, 0, 0) },
                 //ParticleRewardMap,
                 new List<Byte4> { new Byte4(10, 2, 0, 0) },
+                //ParticleRewardHeartPiece
+                new List<Byte4> { new Byte4(13, 2, 0, 0) },
 
                 #endregion
 
