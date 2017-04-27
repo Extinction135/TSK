@@ -257,3 +257,15 @@
 /processorParam:Quality=Best
 /build:SoundExplosion.wav
 
+#begin SoundFireballCast.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundFireballCast.wav
+
+#begin SoundFireballDeath.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundFireballDeath.wav
+

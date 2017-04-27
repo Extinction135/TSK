@@ -406,7 +406,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 30; //in frames
+                Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = true;
                 Obj.compMove.speed = 1.5f; //fireballs move
@@ -490,7 +490,10 @@ namespace DungeonRun
                     #region Handle Object specific death states
 
                     if (Obj.type == ObjType.ProjectileFireball)
-                    { GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position); }
+                    {
+                        GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position);
+                        Assets.sfxFireballDeath.Play();
+                    }
 
                     #endregion
 

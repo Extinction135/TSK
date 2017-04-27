@@ -123,6 +123,12 @@ namespace DungeonRun
         static int explosionsCount = 5;
         static int i;
 
+        static SoundEffect sfxFireballCastSrc;
+        public static SoundEffectInstance sfxFireballCast;
+
+        static SoundEffect sfxFireballDeathSrc;
+        public static SoundEffectInstance sfxFireballDeath;
+
         #endregion
 
 
@@ -239,6 +245,12 @@ namespace DungeonRun
             explosionInstances = new List<SoundEffectInstance>();
             for (i = 0; i < explosionsCount; i++)
             { explosionInstances.Add(sfxExplosionSrc.CreateInstance()); }
+
+            sfxFireballCastSrc = content.Load<SoundEffect>(@"SoundFireballCast");
+            sfxFireballCast = sfxFireballCastSrc.CreateInstance();
+
+            sfxFireballDeathSrc = content.Load<SoundEffect>(@"SoundFireballDeath");
+            sfxFireballDeath = sfxFireballDeathSrc.CreateInstance();
 
             #endregion
 

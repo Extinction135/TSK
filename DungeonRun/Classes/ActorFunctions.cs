@@ -127,7 +127,7 @@ namespace DungeonRun
                 GameObjectFunctions.SpawnProjectile(
                     ObjType.ProjectileFireball,
                     Actor.compSprite.position, Actor.direction);
-                Assets.sfxSwordSwipe.Play(); //need fireball soundfx
+                Assets.sfxFireballCast.Play(); //need fireball soundfx
                 Actor.lockTotal = 15;
             }
         }

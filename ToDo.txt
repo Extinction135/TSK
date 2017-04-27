@@ -43,32 +43,29 @@ ram useage:
 todo:
 
 
-2
-
-
-bug: fireballs don't collide with room objects
-cause: we were checking the Obj.type, instead of the Projectile.type in Handle(Projectile, Obj).
-solution: switched the instances checked, AKA fixed code I should of double-checked. DUH.
-playtested, working. checked interaction/collisions with actors too, working.
+1
 
 
 
+added SoundFireballCast file to content project, built.
+added instances to Assets to handle loading of SoundFireballCast file.
+updated ActorFunctions.UseItem() to play fireball cast sound when fireball is spawned.
 
+added SoundFireballDeath to content project, built.
+added instances to Assets to handle loading of SoundFireballDeath file.
+switched GameObjectFunctions.Update() to play the SoundFireballDeath upon fireball death.
 
-
-
-
-we need to check fireball collisions against room gameObjects
-we are checking them against actor tho. so thats good.
+increased the lifetime of fireball to 200 frames.
+reduced overall size/length of fireball cast sound.
 
 
 
 
-when we end the life of the fireball projectile, we should create an explosion + fire particle
-
-this is done from an update somewhere....
 
 
+
+when we end the life of the fireball projectile, we should create a fire particle
+which means we need a fire particle
 
 
 
@@ -77,27 +74,22 @@ this is done from an update somewhere....
 
 bug: hero should be put into the attack anim instead of reward/use anim for this item
 
-check: does fireball collide with obj/actors properly
 we need a fireball cast sound
 we need a fireball death sound
-fireball should create explosion upon collision
-fireball should create fire particle upon death
 
 fireball should have a cooldown, so hero can't spam them..
 
 
-	
-	
-	
-	
 it would be useful to move projectile functions into ProjectileFunctions
 same with ParticleFunctions
+these functions add about 100 lines of code to gameObjFunctions, which is already almost 500 lines
 	
-	
 
 
 
-
+make the gold sprite in loadout widget animate, just like the gold consumables
+the info window should have the animated gold as well
+this SHOULD be as simple as setting the animation list of the sprite...
 
 
 
