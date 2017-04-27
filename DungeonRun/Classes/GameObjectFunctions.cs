@@ -95,6 +95,7 @@ namespace DungeonRun
             GameObject projectile = PoolFunctions.GetProjectile();
             projectile.type = Type;
             projectile.direction = Direction;
+            projectile.compMove.direction = Direction;
             AlignProjectile(projectile, Pos);
             GameObjectFunctions.SetType(projectile, projectile.type);
         }
@@ -122,18 +123,27 @@ namespace DungeonRun
         {
             offset.X = 0; offset.Y = 0;
             GameObjectFunctions.ConvertDiagonalDirections(Projectile);
+
+            //place projectile outside of actor's collisionRec, otherwise they will hit themself
+            if (Projectile.direction == Direction.Down) { offset.X = -1; offset.Y = 15; }
+            else if (Projectile.direction == Direction.Up) { offset.X = 1; offset.Y = -12; }
+            else if (Projectile.direction == Direction.Right) { offset.X = 14; offset.Y = 0; }
+            else if (Projectile.direction == Direction.Left) { offset.X = -14; offset.Y = 0; }
+
+            //assume the projectile shouldn't be flipped
+            Projectile.compSprite.flipHorizontally = false;
+
             //place the sword based on it's inherited direction
             if (Projectile.type == ObjType.ProjectileSword)
             {
                 if (Projectile.direction == Direction.Down)
-                { offset.X = -1; offset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
-                else if (Projectile.direction == Direction.Up)
-                { offset.X = 1; offset.Y = -12; Projectile.compSprite.flipHorizontally = false; }
-                else if (Projectile.direction == Direction.Right)
-                { offset.X = 14; offset.Y = 0; Projectile.compSprite.flipHorizontally = false; }
+                { Projectile.compSprite.flipHorizontally = true; }
+                else if (Projectile.direction == Direction.Up) { }
+                else if (Projectile.direction == Direction.Right) { }
                 else if (Projectile.direction == Direction.Left)
-                { offset.X = -14; offset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
+                { Projectile.compSprite.flipHorizontally = true; }
             }
+            
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Projectile.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
@@ -392,6 +402,23 @@ namespace DungeonRun
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
+
+                Obj.compMove.speed = 0.0f; //set projectile speed
+            }
+            else if (Type == ObjType.ProjectileFireball)
+            {
+                Obj.compSprite.zOffset = 16;
+                //set collision rec + offset
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                //
+                Obj.compCollision.blocking = false;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 25; //in frames
+                Obj.compAnim.speed = 4; //in frames
+                Obj.compAnim.loop = true;
+
+                Obj.compMove.speed = 1.0f; //set projectile speed
             }
 
             #endregion

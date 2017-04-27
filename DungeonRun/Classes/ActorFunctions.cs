@@ -115,10 +115,27 @@ namespace DungeonRun
                 GameObjectFunctions.SpawnProjectile(
                     ObjType.ProjectileSword, 
                     Actor.compSprite.position, Actor.direction);
+                Assets.sfxSwordSwipe.Play();
+                Actor.lockTotal = 15;
             }
 
             //scale up the current weapon in world ui
             if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }
+        }
+
+        public static void UseItem(Actor Actor)
+        {
+            if (Actor.item == Item.FireMagic)
+            {
+                GameObjectFunctions.SpawnProjectile(
+                    ObjType.ProjectileFireball,
+                    Actor.compSprite.position, Actor.direction);
+                //Assets.sfxSwordSwipe.Play(); //need fireball soundfx
+                Actor.lockTotal = 15;
+            }
+
+            //scale up the current item in world ui
+            if (Actor == Pool.hero) { WorldUI.currentItem.scale = 1.4f; }
         }
 
         public static void SetType(Actor Actor, ActorType Type)
@@ -151,6 +168,7 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.heroSheet;
                 Actor.health = 3;
                 Actor.weapon = Weapon.Sword;
+                Actor.item = Item.FireMagic;
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
                 //set actor soundFX
@@ -160,15 +178,13 @@ namespace DungeonRun
                 Actor.compSprite.cellSize.y = 16;
                 ComponentFunctions.UpdateCellSize(Actor.compSprite);
                 ComponentFunctions.CenterOrigin(Actor.compSprite);
-
-                //set the actor's animation list, actor could be a boss
-                //Actor.animList = ActorAnimationListManager.actorAnims;
             }
             else if (Type == ActorType.Blob)
             {
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.health = 1;
                 Actor.weapon = Weapon.Sword;
+                Actor.item = Item.None;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
                 //set the actor soundFX
@@ -178,15 +194,13 @@ namespace DungeonRun
                 Actor.compSprite.cellSize.y = 16;
                 ComponentFunctions.UpdateCellSize(Actor.compSprite);
                 ComponentFunctions.CenterOrigin(Actor.compSprite);
-
-                //set the actor's animation list, actor could be a boss
-                //Actor.animList = ActorAnimationListManager.actorAnims;
             }
             else if (Type == ActorType.Boss)
             {
                 Actor.compSprite.texture = Assets.bossSheet;
                 Actor.health = 2;
-                Actor.weapon = Weapon.Sword;
+                Actor.weapon = Weapon.None;
+                Actor.item = Item.None;
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
                 //set the actor soundFX
@@ -196,9 +210,6 @@ namespace DungeonRun
                 Actor.compSprite.cellSize.y = 32;
                 ComponentFunctions.UpdateCellSize(Actor.compSprite);
                 ComponentFunctions.CenterOrigin(Actor.compSprite);
-
-                //set the actor's animation list, actor could be a boss
-                //Actor.animList = ActorAnimationListManager.actorAnims;
 
                 //the boss actor has a lower sorting point that normal actors
                 Actor.compSprite.zOffset = 12;
@@ -255,22 +266,16 @@ namespace DungeonRun
                 }
                 else if (Actor.state == ActorState.Attack)
                 {
-                    Actor.lockTotal = 15;
                     Actor.stateLocked = true;
                     ComponentFunctions.StopMovement(Actor.compMove);
                     UseWeapon(Actor);
-
-                    Assets.sfxSwordSwipe.Play();
-                    //if (Actor == Pool.hero) { Assets.swordSwipe.Play(); }
                 }
                 else if (Actor.state == ActorState.Use)
                 {
-                    Actor.lockTotal = 25;
                     Actor.stateLocked = true;
                     ComponentFunctions.StopMovement(Actor.compMove);
-                    //call useItem() - creates a projectile just like useWeapon()
+                    UseItem(Actor);
                 }
-
 
                 //if actor opened a chest, they will be set into the reward state
                 if (Actor.state == ActorState.Reward) { Actor.lockTotal = 50; }

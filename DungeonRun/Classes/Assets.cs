@@ -253,7 +253,7 @@ namespace DungeonRun
             colorScheme.background = new Color(100, 100, 100, 255);
             colorScheme.overlay = new Color(0, 0, 0, 255);
             colorScheme.debugBkg = new Color(0, 0, 0, 200);
-            colorScheme.collision = new Color(100, 0, 0);
+            colorScheme.collision = new Color(100, 0, 0, 50);
 
             colorScheme.buttonUp = new Color(44, 44, 44);
             colorScheme.buttonOver = new Color(66, 66, 66);

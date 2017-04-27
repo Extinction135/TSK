@@ -85,6 +85,13 @@ namespace DungeonRun
                     //create a hit particle
                     //swords always complete their animation
                 }
+                else if (Obj.type == ObjType.ProjectileFireball)
+                {
+                    damage = 1;
+                    force = 8.0f;
+                    //create explosion particle
+                    Obj.lifeCounter = Obj.lifetime;
+                }
                 //else if projectile is fireball
                 //deal more damage
                 //create explosion particle

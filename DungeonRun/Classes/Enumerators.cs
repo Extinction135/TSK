@@ -50,9 +50,10 @@ namespace DungeonRun
         //Items - picked up by hero
         ItemRupee, ItemHeart,
         //Projectiles
-        ProjectileSword,
+        ProjectileSword, ProjectileFireball,
         //Particles
         ParticleDashPuff, ParticleExplosion, ParticleSmokePuff, ParticleHitSparkle,
+        //Reward Particles
         ParticleReward50Gold, ParticleRewardKey, ParticleRewardMap,
         ParticleRewardHeartPiece, ParticleRewardHeartFull,
     }
@@ -65,7 +66,7 @@ namespace DungeonRun
         OptionsSaveGame, OptionsLoadGame, OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls,
 
         ItemBoomerang, ItemBomb, 
-        BottleEmpty, BottleHealth, BottleFairy, //BottleSpecial, ,
+        BottleEmpty, BottleHealth, BottleFairy, //BottleSpecial,
         MagicFireball,
         WeaponSword, WeaponBow, WeaponStaff, //WeaponAxe, //WeaponNet,
         ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
@@ -73,6 +74,8 @@ namespace DungeonRun
     }
 
     //this kinda duplicates the MenuItemType enum, and we could that instead...
-    public enum Weapon { Sword }
+    public enum Weapon { None, Sword }
+
+    public enum Item { None, FireMagic }
 
 }

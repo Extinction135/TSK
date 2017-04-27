@@ -43,36 +43,66 @@ ram useage:
 todo:
 
 
-8
+7
+
+
+created Item enum with FireMagic value.
+added Item instance to Actor.
+added ProjectileFireball value to ObjType enums.
+extended GameObjAnimListManager with anim list for ProjectileFireball.
+updated GameObjFunctions.SetType() with path for ProjectileFireball.
+
+added 'None' values to Weapon and Item enums.
+updated ActorFunctions.SetType() to set the weapon + item enums per ActorType.
+hero is the only actor that can 'cast' a fireball right now.
+created ActorFunctions.UseItem(), similar to UseWeapon().
+updated ActorFunctions.Update() to call UseItem(Actor) when actor is set into Use state.
+
+updated InteractionFunctions.Handle(Actor, Obj) with path for ProjectileFireball.
+movement speed defaults to 0, so we never set the speed of a sword projectile.
+we should be doing so, and now we need to set the speed for the fireball projectile too.
+updated GameObjFunctions.SetType to set the speed for all projectiles.
+
+added an alpha value of 100 back to colorScheme.collision color.
+now we can see through the collision recs again.
+
+updated GameObjFunctions.AlignProjectile() to place all projectiles outside of actor's collision rec.
+updated ActorFunctions.UseItem() to scale up the current item in WorldUI.
+updated GameObjFunctions.SpawnProjectile() to set the projectile's compMove direction.
+playtested, working... but with some bugs.
 
 
 
-updated MainSheet with placement for a Full Heart Piece reward particle sprite.
-extended ObjType enum with ParticleRewardHeartFull value.
-extended GameObjAnimListManager with anim list for ParticleRewardHeartFull.
-updated GameObjFunctions.SetType() with path for ParticleRewardHeartFull.
-updated InteractionFunctions.Handle(Actor, Obj) to spawn a full heart, if reward completes a heart.
-playtested, working as intended.
+
+bug: fireball projectile can move diagonally
+bug: fireball doesn't align properly to hero's body
+bug: hero should be put into the attack anim instead of reward/use anim for this item
+
+
+
+
+check: does fireball collide with obj/actors properly
+we need a fireball cast sound
+we need a fireball death sound
+fireball should create explosion upon collision
+fireball should create fire particle upon death
+
+fireball should have a cooldown, so hero can't spam them..
+
+
+
+	
+	
+	
+	
+	
+	
+	
 
 
 
 
 
-the full heart pieces sprite should appear when the hero opens a chest that rewards him the 4th piece
-
-
-we would need to create a full heart piece reward particle
-
-
-
-
-
-we should be setting the loadout menuItems based on what the player selects/chooses
-this is related to the hero's loadout data, which we haven't planned out yet
-
-
-
-expand the versions.md descriptions for what each version has in it
 
 
 
@@ -113,11 +143,6 @@ we need menuItem sprites for the various stats
 	
 	
 	
-we need better looking explosions for the boss death
-these should be larger? 32x32?
-animate longer? have more frames?	
-	
-	
 pull all the sound effects from links awakening
 	
 	
@@ -137,6 +162,11 @@ the drawing should occur in DrawFunctions.
 the update should occur in an update() function that is called from dungeonScreen's Update.
 
 we need boss music, and that music should play when hero enters boss room
+
+
+
+we should be setting the loadout menuItems based on what the player selects/chooses
+this is related to the hero's loadout data, which we haven't planned out yet
 
 
 
@@ -162,14 +192,7 @@ Version 0.3 Milestones
 	objects should inherit the movement of hero, and check collisions with all objs & actors
 	if a draggable object would collide, it doesn't move
 	
-	fireball projectile
-	hero should be able to spawn a fireball projectile with Y button press
-	this should move in the direction the hero is facing at the time
-	projectile should collide with objs + actors
-	fireball should deal 1 damage to actors it collides with
-	fireball should 'die' upon collision
-	fireball should have a cooldown so hero can't spam it
-	fireball should have a soundfx for spawn, collision/death
+	
 	
 	overworld screen
 	use the background from hyper light drifter for now
