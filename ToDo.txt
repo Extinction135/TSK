@@ -43,22 +43,16 @@ ram useage:
 todo:
 
 
-9
+8
 
 
 
-
-extended ObjType enum with ParticleRewardHeartPiece value.
-extended GameObjAnimListManager with anim list for ParticleRewardHeartPiece.
-extended GameObjFunctions.SetType() with path for ParticleRewardHeartPiece.
-updated InteractionFunctions.Handle(Actor, Obj) to create ParticleRewardHeartPiece for ChestHeartPiece interaction.
-
-updated DungeonFunction.FinishRoom() to create a heart piece chest.
-slightly compacted the arrangement of testing chests in spawn room.
-playtested: heart piece chests working, max hearts increment properly, heart pieces display properly in menu.
-
-
-
+updated MainSheet with placement for a Full Heart Piece reward particle sprite.
+extended ObjType enum with ParticleRewardHeartFull value.
+extended GameObjAnimListManager with anim list for ParticleRewardHeartFull.
+updated GameObjFunctions.SetType() with path for ParticleRewardHeartFull.
+updated InteractionFunctions.Handle(Actor, Obj) to spawn a full heart, if reward completes a heart.
+playtested, working as intended.
 
 
 
@@ -67,12 +61,7 @@ playtested: heart piece chests working, max hearts increment properly, heart pie
 the full heart pieces sprite should appear when the hero opens a chest that rewards him the 4th piece
 
 
-
-
-
-
-
-
+we would need to create a full heart piece reward particle
 
 
 
@@ -80,13 +69,6 @@ the full heart pieces sprite should appear when the hero opens a chest that rewa
 
 we should be setting the loadout menuItems based on what the player selects/chooses
 this is related to the hero's loadout data, which we haven't planned out yet
-
-
-
-
-
-
-
 
 
 

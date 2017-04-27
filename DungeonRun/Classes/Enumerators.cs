@@ -53,7 +53,8 @@ namespace DungeonRun
         ProjectileSword,
         //Particles
         ParticleDashPuff, ParticleExplosion, ParticleSmokePuff, ParticleHitSparkle,
-        ParticleReward50Gold, ParticleRewardKey, ParticleRewardMap, ParticleRewardHeartPiece,
+        ParticleReward50Gold, ParticleRewardKey, ParticleRewardMap,
+        ParticleRewardHeartPiece, ParticleRewardHeartFull,
     }
 
     public enum MenuItemType

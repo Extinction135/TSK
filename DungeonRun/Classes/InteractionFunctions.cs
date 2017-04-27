@@ -183,9 +183,18 @@ namespace DungeonRun
                     }
                     else if (Obj.type == ObjType.ChestHeartPiece)
                     {
-                        GameObjectFunctions.SpawnParticle(
-                            ObjType.ParticleRewardHeartPiece,
-                            Actor.compSprite.position + offset);
+                        if (WorldUI.pieceCounter == 3)
+                        {   //if this completes a heart, display the full heart reward
+                            GameObjectFunctions.SpawnParticle(
+                                ObjType.ParticleRewardHeartFull,
+                                Actor.compSprite.position + offset);
+                        }
+                        else
+                        {   //this does not complete a heart, display the heart piece reward
+                            GameObjectFunctions.SpawnParticle(
+                                 ObjType.ParticleRewardHeartPiece,
+                                 Actor.compSprite.position + offset);
+                        }
                         Assets.sfxReward.Play();
                         PlayerData.saveData.heartPieces++;
                     }
