@@ -43,28 +43,73 @@ ram useage:
 todo:
 
 
-13
+12
 
 
-add heart piece sprites to main sheet, repacked sheet
-updated MenuWidgetLoadout to set the hero's current heart pieces to new empty sprite.
-playtested, working.
+extended SaveData struct with a heartPieces byte.
+updated PlayerData constructor to set saveData heartPieces to 4 * 3.
+this is because the hero always starts with 3 hearts, in a new game.
+planning how to implement heart pieces.
+
+updated WorldUI to count saveData.heartPieces and set maxHearts.
+refactored WorldUI.Update() to set outline, empty, and full hearts.
+playtested, working as expected.
 
 
 
-before we can build out the routine to set the heart properly,
-we need to plan out how the heart pieces are going to be represented in memory
 
 
-we should be using a heart pieces sprite that has empty, quarter, half, 3 quarters, and full sprite states
-the full sprite state would only appear as a reward for the hero when he finds a 4th heart piece
+
+
+
+bug: the outline heart sprite has pixels in the bottom left interior that shouldn't exist.
+
+
+we can get the heartPiece count from WorldUI.
+
+
+
+
+
+
+
+
+we need to check how many heart pieces the hero has in world UI, and set max hearts properly
+current hearts can never exceed max hearts
+
+we would increment the heart pieces value when hero opens a heart piece chest 
+
+for the loadout widget, we divide the saveData.heartPieces by 4
+the remainder then determines the heart pieces sprite we display
+
+
+the full heart pieces sprite appears when the hero opens a chest that rewards him the 4th piece needed
 
 these heart pieces should come from chests in dungeons
 expand the chest enums to include a heart piece chest
 expand reward/collision routines to handle this heart piece reward
+
+
+
+
+
+
+
+
+
 we need to be handling how the hero's health is limited too
 hero should have a current health value, and a max health value.
 heart pieces increase his max health, up to 14.
+
+
+
+
+
+
+
+
+
+
 
 
 

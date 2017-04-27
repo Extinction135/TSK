@@ -18,6 +18,8 @@ namespace DungeonRun
         public static List<ComponentSprite> hearts;
         public static int lastHeartCount;
         public static int currentHeartCount;
+        public static byte maxHearts = 0;
+        public static int pieceCounter = 0;
 
         public static List<ComponentSprite> weaponBkg;
         public static List<ComponentSprite> itemBkg;
@@ -34,7 +36,7 @@ namespace DungeonRun
             {
                 hearts.Add(new ComponentSprite(Assets.mainSheet,
                     new Vector2(Xpos + 11 * counter, Ypos),
-                    new Byte4(15, 1, 0, 0), new Byte2(16, 16)));
+                    new Byte4(15, 2, 0, 0), new Byte2(16, 16)));
             }
         }
 
@@ -86,9 +88,18 @@ namespace DungeonRun
 
 
         public static void Update()
-        {
-            //clip hero's health to 14 hearts
-            if (Pool.hero.health > 14) { Pool.hero.health = 14; }
+        {   //reset maxHearts and pieceCounter, we will calculate them for this frame
+            maxHearts = 0; pieceCounter = 0;
+            //determine the max hearts that hero has, based on heart pieces
+            for (counter = 0; counter < PlayerData.saveData.heartPieces; counter++)
+            {
+                pieceCounter++; //hearts are groups of 4 pieces
+                if(pieceCounter == 4) { maxHearts++; pieceCounter = 0; }
+            }
+
+            //clip maxHearts to 14, match hero's health
+            if(maxHearts > 14) { maxHearts = 14; }
+            if (Pool.hero.health > maxHearts) { Pool.hero.health = maxHearts; }
 
             //animate (scale) the hero's hearts
             currentHeartCount = Pool.hero.health; //get the current heart count
@@ -99,14 +110,21 @@ namespace DungeonRun
             }
             lastHeartCount = Pool.hero.health; //set the last heart count to current
 
-            //set the hearts based on the hero's health
+            //set heart sprites to outline or empty, based on maxHearts
             for (counter = 0; counter < hearts.Count; counter++)
-            {   
-                if (counter <= Pool.hero.health-1)
-                { hearts[counter].currentFrame.y = 0; } //full heart
-                else { hearts[counter].currentFrame.y = 1; } //empty heart
+            {
+                if (counter < maxHearts) 
+                //set the empty (unlocked) hearts
+                { hearts[counter].currentFrame.y = 1; }
+                //set the outline (locked) hearts
+                else { hearts[counter].currentFrame.y = 2; }
+
+                //set the full hearts
+                if (counter <= Pool.hero.health - 1)
+                { hearts[counter].currentFrame.y = 0; }
                 //scale each heart back down to 1.0
-                if (hearts[counter].scale > 1.0f) { hearts[counter].scale -= 0.05f; }
+                if (hearts[counter].scale > 1.0f)
+                { hearts[counter].scale -= 0.05f; }
             }
 
             //scale current weapon and item back down to 1.0

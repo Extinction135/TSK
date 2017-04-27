@@ -102,6 +102,7 @@ namespace DungeonRun
     public struct SaveData
     {   //data that will be saved/loaded from game session to session
         public int gold;
+        public byte heartPieces; //sets max health
     }
 
 }
