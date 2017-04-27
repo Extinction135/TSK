@@ -82,20 +82,13 @@ namespace DungeonRun
             }
         }
 
-        public static void ConvertDiagonalDirections(GameObject Obj)
-        {   //converts objs's diagonal direction to a cardinal direction
-            if (Obj.direction == Direction.UpRight) { Obj.direction = Direction.Right; }
-            else if (Obj.direction == Direction.DownRight) { Obj.direction = Direction.Right; }
-            else if (Obj.direction == Direction.UpLeft) { Obj.direction = Direction.Left; }
-            else if (Obj.direction == Direction.DownLeft) { Obj.direction = Direction.Left; }
-        }
-
         public static void SpawnProjectile(ObjType Type, Vector2 Pos, Direction Direction)
         {   //a projectile always has a direction, so it inherit's actor's direction
             GameObject projectile = PoolFunctions.GetProjectile();
             projectile.type = Type;
             projectile.direction = Direction;
-            projectile.compMove.direction = Direction;
+            MovementFunctions.ConvertDiagonalDirections(projectile.direction);
+            projectile.compMove.direction = projectile.direction;
             AlignProjectile(projectile, Pos);
             GameObjectFunctions.SetType(projectile, projectile.type);
         }
@@ -104,9 +97,9 @@ namespace DungeonRun
         {   //a particle doesn't have a direction, so it doesn't need actor's direction
             GameObject particle = PoolFunctions.GetProjectile();
             particle.type = Type;
-            particle.compSprite.rotation = Rotation.None;
-            particle.compSprite.flipHorizontally = false;
             particle.direction = Direction.Down;
+            MovementFunctions.ConvertDiagonalDirections(particle.direction);
+            particle.compMove.direction = Direction.None; //particles dont move
             AlignParticle(particle, Pos);
             GameObjectFunctions.SetType(particle, particle.type);
         }
@@ -122,17 +115,14 @@ namespace DungeonRun
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
             offset.X = 0; offset.Y = 0;
-            GameObjectFunctions.ConvertDiagonalDirections(Projectile);
-
             //place projectile outside of actor's collisionRec, otherwise they will hit themself
             if (Projectile.direction == Direction.Down) { offset.X = -1; offset.Y = 15; }
             else if (Projectile.direction == Direction.Up) { offset.X = 1; offset.Y = -12; }
             else if (Projectile.direction == Direction.Right) { offset.X = 14; offset.Y = 0; }
             else if (Projectile.direction == Direction.Left) { offset.X = -14; offset.Y = 0; }
-
             //assume the projectile shouldn't be flipped
             Projectile.compSprite.flipHorizontally = false;
-
+            //this should be done generically for all WEAPONS, not just sword
             //place the sword based on it's inherited direction
             if (Projectile.type == ObjType.ProjectileSword)
             {
@@ -143,7 +133,6 @@ namespace DungeonRun
                 else if (Projectile.direction == Direction.Left)
                 { Projectile.compSprite.flipHorizontally = true; }
             }
-            
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Projectile.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
@@ -151,11 +140,10 @@ namespace DungeonRun
         public static void AlignParticle(GameObject Particle, Vector2 Pos)
         {
             offset.X = 0; offset.Y = 0;
-            GameObjectFunctions.ConvertDiagonalDirections(Particle);
-
+            Particle.compSprite.rotation = Rotation.None;
+            Particle.compSprite.flipHorizontally = false;
             //center horizontally, place near actor's feet
             if (Particle.type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
-
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Particle.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
