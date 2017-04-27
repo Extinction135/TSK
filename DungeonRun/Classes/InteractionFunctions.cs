@@ -265,9 +265,9 @@ namespace DungeonRun
 
             if(Obj.compCollision.blocking) //is the colliding object blocking?
             {
-                if (Obj.type == ObjType.ProjectileFireball)
+                if (Projectile.type == ObjType.ProjectileFireball)
                 {
-                    Obj.lifeCounter = Obj.lifetime; //kill fireball
+                    Projectile.lifeCounter = Projectile.lifetime; //kill fireball
                 }
             }
             

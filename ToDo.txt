@@ -43,17 +43,15 @@ ram useage:
 todo:
 
 
-3
+2
 
 
+bug: fireballs don't collide with room objects
+cause: we were checking the Obj.type, instead of the Projectile.type in Handle(Projectile, Obj).
+solution: switched the instances checked, AKA fixed code I should of double-checked. DUH.
+playtested, working. checked interaction/collisions with actors too, working.
 
 
-updated InteractionFunctions.Handle(Projectile, Obj) to kill fireballs that collide with blocking room objects.
-updated GameObjFunctions.Update with codepaths to handle end of life events for fireball projectile.
-when fireballs die, they now create an explosion particle.
-
-playtested, fireballs create explosion particle upon death. 
-but fireballs don't collide with any room objects, so theres a bug...
 
 
 
