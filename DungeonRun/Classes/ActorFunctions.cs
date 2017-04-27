@@ -118,9 +118,6 @@ namespace DungeonRun
                 Assets.sfxSwordSwipe.Play();
                 Actor.lockTotal = 15;
             }
-
-            //scale up the current weapon in world ui
-            if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }
         }
 
         public static void UseItem(Actor Actor)
@@ -130,12 +127,9 @@ namespace DungeonRun
                 GameObjectFunctions.SpawnProjectile(
                     ObjType.ProjectileFireball,
                     Actor.compSprite.position, Actor.direction);
-                //Assets.sfxSwordSwipe.Play(); //need fireball soundfx
+                Assets.sfxSwordSwipe.Play(); //need fireball soundfx
                 Actor.lockTotal = 15;
             }
-
-            //scale up the current item in world ui
-            if (Actor == Pool.hero) { WorldUI.currentItem.scale = 1.4f; }
         }
 
         public static void SetType(Actor Actor, ActorType Type)
@@ -269,12 +263,16 @@ namespace DungeonRun
                     Actor.stateLocked = true;
                     ComponentFunctions.StopMovement(Actor.compMove);
                     UseWeapon(Actor);
+                    //scale up the current weapon in world ui
+                    if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }
                 }
                 else if (Actor.state == ActorState.Use)
                 {
                     Actor.stateLocked = true;
                     ComponentFunctions.StopMovement(Actor.compMove);
                     UseItem(Actor);
+                    //scale up the current item in world ui
+                    if (Actor == Pool.hero) { WorldUI.currentItem.scale = 1.4f; }
                 }
 
                 //if actor opened a chest, they will be set into the reward state

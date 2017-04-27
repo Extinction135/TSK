@@ -43,26 +43,29 @@ ram useage:
 todo:
 
 
-6
-
-
-
-bug: fireball projectile can move diagonally.
-cause: we are setting the projectile direction to the actor's direction, which could be diagonal.
-solution: set the projectile's move component direction after we convert the diagonal directions to cardinal directions.
-
-refactored ConvertDiagonalDirections(GameObj) to ConvertDiagonalDirections(Direction).
-ConvertDiagonalDirections(Direction) now only modifies the Direction parameter.
-this makes it more generic, so we could use it for Actors as well.
-moved ConvertDiagonalDirections() into MovementFunctions.
-cleaned up SpawnParticle() & AlignParticle().
-playtested, fireballs can no longer move diagonally, but with bugs...
-
+5
 
 
 
 
 bug: if hero is moving diagonally, then the fireball hits him. so the alignment is off.
+cause: the projectile's direction was not being converted to a cardinal direction.
+as a result, it wasn't getting the proper offset, and was spawning at hero locations.
+this was causing the projectile to immediately collide with hero.
+solution: rewrote how MovementFunctions.ConvertDiagonalDirection() worked, to return a direction value.
+updated how the projectile's direction and movementComponent direction was set.
+in the process, refactored how AlignProjectile() was working as well.
+playtested, working.
+
+
+
+
+
+
+bug: fireballs sometimes curve into their direction
+cause: i think this is related to their magnitude. we don't reset their magnitude, and we should, upon a spawn
+
+
 bug: fireball doesn't align properly to hero's body
 bug: hero should be put into the attack anim instead of reward/use anim for this item
 
@@ -74,12 +77,14 @@ fireball should create fire particle upon death
 
 fireball should have a cooldown, so hero can't spam them..
 
-check fireballs collision rec
+we need to check fireball collisions against room gameObjects
+we are checking them against actor tho. so thats good.
 	
 	
 	
 	
-	
+it would be useful to move projectile functions into ProjectileFunctions
+same with ParticleFunctions
 	
 	
 

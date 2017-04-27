@@ -57,6 +57,18 @@ namespace DungeonRun
             Obj.compCollision.rec.Width = 0; Obj.compCollision.rec.Height = 0;
         }
 
+        public static void SpawnLoot(Vector2 Pos)
+        {   //either spawn a rupee or a heart item
+            if (GetRandom.Int(0, 100) > 50)
+            { GameObjectFunctions.SpawnProjectile(ObjType.ItemRupee, Pos, Direction.Down); }
+            else
+            { GameObjectFunctions.SpawnProjectile(ObjType.ItemHeart, Pos, Direction.Down); }
+        }
+
+
+
+
+
         public static void SetWeaponCollisions(GameObject Obj)
         {   //set the weapons's collision rec + offsets to the sprite's dimensions
             //these values are based off the sword sprite's dimentions
@@ -86,11 +98,13 @@ namespace DungeonRun
         {   //a projectile always has a direction, so it inherit's actor's direction
             GameObject projectile = PoolFunctions.GetProjectile();
             projectile.type = Type;
-            projectile.direction = Direction;
-            MovementFunctions.ConvertDiagonalDirections(projectile.direction);
-            projectile.compMove.direction = projectile.direction;
+
+            //convert projectile's directions to cardinal
+            projectile.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
+            projectile.compMove.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
+
             AlignProjectile(projectile, Pos);
-            GameObjectFunctions.SetType(projectile, projectile.type);
+            SetType(projectile, projectile.type);
         }
 
         public static void SpawnParticle(ObjType Type, Vector2 Pos)
@@ -98,41 +112,35 @@ namespace DungeonRun
             GameObject particle = PoolFunctions.GetProjectile();
             particle.type = Type;
             particle.direction = Direction.Down;
-            MovementFunctions.ConvertDiagonalDirections(particle.direction);
             particle.compMove.direction = Direction.None; //particles dont move
             AlignParticle(particle, Pos);
-            GameObjectFunctions.SetType(particle, particle.type);
-        }
-
-        public static void SpawnLoot(Vector2 Pos)
-        {   //either spawn a rupee or a heart item
-            if (GetRandom.Int(0, 100) > 50)
-            { GameObjectFunctions.SpawnProjectile(ObjType.ItemRupee, Pos, Direction.Down); }
-            else
-            { GameObjectFunctions.SpawnProjectile(ObjType.ItemHeart, Pos, Direction.Down); }
+            SetType(particle, particle.type);
         }
 
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
             offset.X = 0; offset.Y = 0;
-            //place projectile outside of actor's collisionRec, otherwise they will hit themself
-            if (Projectile.direction == Direction.Down) { offset.X = -1; offset.Y = 15; }
-            else if (Projectile.direction == Direction.Up) { offset.X = 1; offset.Y = -12; }
-            else if (Projectile.direction == Direction.Right) { offset.X = 14; offset.Y = 0; }
-            else if (Projectile.direction == Direction.Left) { offset.X = -14; offset.Y = 0; }
-            //assume the projectile shouldn't be flipped
-            Projectile.compSprite.flipHorizontally = false;
-            //this should be done generically for all WEAPONS, not just sword
-            //place the sword based on it's inherited direction
-            if (Projectile.type == ObjType.ProjectileSword)
-            {
-                if (Projectile.direction == Direction.Down)
-                { Projectile.compSprite.flipHorizontally = true; }
-                else if (Projectile.direction == Direction.Up) { }
-                else if (Projectile.direction == Direction.Right) { }
-                else if (Projectile.direction == Direction.Left)
-                { Projectile.compSprite.flipHorizontally = true; }
+
+            if (Projectile.compMove.speed > 0.0f)
+            {   //moving projectiles have the same offsets
+                if (Projectile.direction == Direction.Down) { offset.Y = 16; }
+                else if (Projectile.direction == Direction.Up) { offset.Y = -16; }
+                else if (Projectile.direction == Direction.Right) { offset.X = 16; }
+                else if (Projectile.direction == Direction.Left) { offset.X = -16; }
+                Projectile.compSprite.flipHorizontally = false;
             }
+            else
+            {   //stationary (weapon) projectiles have the same offsets
+                if (Projectile.direction == Direction.Down)
+                { offset.X = -1; offset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
+                else if (Projectile.direction == Direction.Up)
+                { offset.X = 1; offset.Y = -12; Projectile.compSprite.flipHorizontally = false; }
+                else if (Projectile.direction == Direction.Right)
+                { offset.X = 14; offset.Y = 0; Projectile.compSprite.flipHorizontally = false; }
+                else if (Projectile.direction == Direction.Left)
+                { offset.X = -14; offset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
+            }
+
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Projectile.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
@@ -147,6 +155,12 @@ namespace DungeonRun
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Particle.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
+
+
+
+
+
+
 
         public static void SetType(GameObject Obj, ObjType Type)
         {
@@ -390,8 +404,7 @@ namespace DungeonRun
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
-
-                Obj.compMove.speed = 0.0f; //set projectile speed
+                Obj.compMove.speed = 0.0f; //sword doesn't move
             }
             else if (Type == ObjType.ProjectileFireball)
             {
@@ -399,14 +412,12 @@ namespace DungeonRun
                 //set collision rec + offset
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                //
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 25; //in frames
-                Obj.compAnim.speed = 4; //in frames
+                Obj.lifetime = 30; //in frames
+                Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = true;
-
-                Obj.compMove.speed = 1.0f; //set projectile speed
+                Obj.compMove.speed = 1.5f; //fireballs move
             }
 
             #endregion

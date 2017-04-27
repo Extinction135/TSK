@@ -92,10 +92,6 @@ namespace DungeonRun
                     //create explosion particle
                     Obj.lifeCounter = Obj.lifetime;
                 }
-                //else if projectile is fireball
-                //deal more damage
-                //create explosion particle
-                //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
 
                 //only damage/hit/push actors not in the hit state
                 if (Actor.state != ActorState.Hit)
