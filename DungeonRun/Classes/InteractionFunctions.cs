@@ -82,17 +82,20 @@ namespace DungeonRun
                 {
                     damage = 1;
                     force = 8.0f;
-                    //create a hit particle
+                    //we could create a specific hit particle here, just for swords
                     //swords always complete their animation
                 }
                 else if (Obj.type == ObjType.ProjectileFireball)
                 {
                     damage = 1;
                     force = 8.0f;
-                    //create explosion particle
-                    Obj.lifeCounter = Obj.lifetime;
+                    //we could create a specific hit particle here, just for fireballs
+                    Obj.lifeCounter = Obj.lifetime; //kill fireball
                 }
 
+
+                //THIS should be moved into it's own function
+                //so far, only projectiles deal damage to actors, so it could go into the projectile functions class
                 //only damage/hit/push actors not in the hit state
                 if (Actor.state != ActorState.Hit)
                 {   //deal damage to the actor
@@ -107,7 +110,6 @@ namespace DungeonRun
                     ActorFunctions.SetHitState(Actor);
                     MovementFunctions.Push(Actor.compMove, Obj.direction, force);
                 }
-
 
             }
 
@@ -254,11 +256,24 @@ namespace DungeonRun
         public static void Handle(GameObject Projectile, GameObject Obj)
         {
             //Obj could be a projectile!
+            //Projectile could = Obj!, if comparing Projectile to Obj in ProjectilePool
             //no blocking checks have been done yet
 
             //if a projectile collides with something, the projectile may get destroyed (end of lifetime)
             //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
             //create an explosion effect here
+
+            if(Obj.compCollision.blocking) //is the colliding object blocking?
+            {
+                if (Obj.type == ObjType.ProjectileFireball)
+                {
+                    Obj.lifeCounter = Obj.lifetime; //kill fireball
+                }
+            }
+            
+
+
+
         }
 
     }

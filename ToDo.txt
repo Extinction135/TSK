@@ -43,24 +43,40 @@ ram useage:
 todo:
 
 
-4
+3
+
+
+
+
+updated InteractionFunctions.Handle(Projectile, Obj) to kill fireballs that collide with blocking room objects.
+updated GameObjFunctions.Update with codepaths to handle end of life events for fireball projectile.
+when fireballs die, they now create an explosion particle.
+
+playtested, fireballs create explosion particle upon death. 
+but fireballs don't collide with any room objects, so theres a bug...
 
 
 
 
 
-bug: fireballs sometimes curve into their direction
-cause: i think this is related to their magnitude. we don't reset their magnitude, and we should, upon a spawn.
-why this is happening: a projectile is pulled from the pool. 
-it still has a magnitude from it's previous use/life.
-this magnitude is being carried over into the projectile's new 'life'.
-solution: update GameObjFunctions.ResetObj() to clear any previous magnitude + speed values.
-playtested, working.
+
+we need to check fireball collisions against room gameObjects
+we are checking them against actor tho. so thats good.
 
 
 
 
-bug: fireball doesn't align properly to hero's body
+when we end the life of the fireball projectile, we should create an explosion + fire particle
+
+this is done from an update somewhere....
+
+
+
+
+
+
+
+
 bug: hero should be put into the attack anim instead of reward/use anim for this item
 
 check: does fireball collide with obj/actors properly
@@ -71,8 +87,7 @@ fireball should create fire particle upon death
 
 fireball should have a cooldown, so hero can't spam them..
 
-we need to check fireball collisions against room gameObjects
-we are checking them against actor tho. so thats good.
+
 	
 	
 	

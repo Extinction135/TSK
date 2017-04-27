@@ -207,21 +207,14 @@ namespace DungeonRun
                 { Obj.compSprite.zOffset = 4; } else { Obj.compSprite.zOffset = 16; }
                 Obj.group = ObjGroup.Door;
             }
-            else if (
-                Type == ObjType.DoorBombable ||
-                Type == ObjType.DoorBoss ||
-                Type == ObjType.DoorShut ||
-                Type == ObjType.DoorFake)
+            else if (Type == ObjType.DoorBombable || Type == ObjType.DoorBoss ||
+                Type == ObjType.DoorShut || Type == ObjType.DoorFake)
             {
                 Obj.group = ObjGroup.Door;
             }
-            else if (
-                Type == ObjType.WallStraight ||
-                Type == ObjType.WallStraightCracked ||
-                Type == ObjType.WallInteriorCorner ||
-                Type == ObjType.WallExteriorCorner ||
-                Type == ObjType.WallPillar ||
-                Type == ObjType.WallDecoration)
+            else if (Type == ObjType.WallStraight || Type == ObjType.WallStraightCracked ||
+                Type == ObjType.WallInteriorCorner || Type == ObjType.WallExteriorCorner ||
+                Type == ObjType.WallPillar || Type == ObjType.WallDecoration)
             {
                 Obj.group = ObjGroup.Wall;
             }
@@ -274,10 +267,8 @@ namespace DungeonRun
 
             #region Interactive Objects
 
-            else if (Type == ObjType.ChestGold ||
-                Type == ObjType.ChestKey ||
-                Type == ObjType.ChestMap ||
-                Type == ObjType.ChestHeartPiece ||
+            else if (Type == ObjType.ChestGold || Type == ObjType.ChestKey ||
+                Type == ObjType.ChestMap || Type == ObjType.ChestHeartPiece ||
                 Type == ObjType.ChestEmpty)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
@@ -319,10 +310,8 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Liftable;
             }
             else if (
-                Type == ObjType.SpikesFloor ||
-                Type == ObjType.Flamethrower ||
-                Type == ObjType.Switch ||
-                Type == ObjType.Bridge)
+                Type == ObjType.SpikesFloor || Type == ObjType.Flamethrower ||
+                Type == ObjType.Switch || Type == ObjType.Bridge)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
@@ -495,7 +484,19 @@ namespace DungeonRun
             {  
                 Obj.lifeCounter++; //increment the life counter of the gameobject
                 //if the life counter reaches the total, release this object back to the pool
-                if (Obj.lifeCounter >= Obj.lifetime) { PoolFunctions.Release(Obj); }
+                if (Obj.lifeCounter >= Obj.lifetime)
+                {
+
+                    #region Handle Object specific death states
+
+                    if (Obj.type == ObjType.ProjectileFireball)
+                    { GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position); }
+
+                    #endregion
+
+
+                    PoolFunctions.Release(Obj);
+                }
             }
         }
 

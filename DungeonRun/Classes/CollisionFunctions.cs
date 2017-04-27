@@ -61,6 +61,8 @@ namespace DungeonRun
             return collision;
         }
 
+
+
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
             collision = false; //assume no collision
@@ -98,6 +100,8 @@ namespace DungeonRun
             }
             return collision; 
         }
+
+
 
         public static void CheckObjPoolCollisions(GameObject Projectile)
         {
@@ -137,6 +141,8 @@ namespace DungeonRun
                 }
             }
         }
+
+
 
         public static void CheckCollisions(Actor Actor)
         {
