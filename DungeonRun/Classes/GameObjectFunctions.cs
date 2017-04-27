@@ -261,6 +261,7 @@ namespace DungeonRun
             else if (Type == ObjType.ChestGold ||
                 Type == ObjType.ChestKey ||
                 Type == ObjType.ChestMap ||
+                Type == ObjType.ChestHeartPiece ||
                 Type == ObjType.ChestEmpty)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;

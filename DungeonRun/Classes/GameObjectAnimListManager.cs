@@ -96,6 +96,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(1, 6, 0, 0) },
                 //ChestMap,
                 new List<Byte4> { new Byte4(1, 6, 0, 0) },
+                //ChestHeartPiece
+                new List<Byte4> { new Byte4(1, 6, 0, 0) },
                 //ChestEmpty
                 new List<Byte4> { new Byte4(2, 6, 0, 0) },
 

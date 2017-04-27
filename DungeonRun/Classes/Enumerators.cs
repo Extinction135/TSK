@@ -42,7 +42,7 @@ namespace DungeonRun
         PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, BossDecal, Pillar, WallTorch, DebrisFloor,
         //Interactive Objects
-        ChestGold, ChestKey, ChestMap, ChestEmpty,
+        ChestGold, ChestKey, ChestMap, ChestHeartPiece, ChestEmpty,
         BlockDraggable, BlockDark, BlockLight, BlockSpikes,
         Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,

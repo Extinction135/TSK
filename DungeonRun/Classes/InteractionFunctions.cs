@@ -17,6 +17,7 @@ namespace DungeonRun
 
         public static byte damage;
         public static float force;
+        static Vector2 offset = new Vector2(0, 0);
 
         public static ComponentCollision interactionRec = new ComponentCollision();
 
@@ -65,11 +66,12 @@ namespace DungeonRun
             //the Obj is non-blocking
             //particle Objs never interact with actors or reach this function
             //objectGroups are checked in order of most commonly interacted with
+            offset.X = 0; offset.Y = 0;
 
 
             #region Projectiles
 
-            if(Obj.group == ObjGroup.Projectile)
+            if (Obj.group == ObjGroup.Projectile)
             {
                 //all damage inducing projectiles
                 damage = 0; //reset the damage value
@@ -150,16 +152,16 @@ namespace DungeonRun
             #region Chests
 
             else if (Obj.group == ObjGroup.Chest)
-            {
-                //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
+            {   //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
                 if (Actor == Pool.hero && Actor.state == ActorState.Interact)
                 {
+                    offset.Y = -14; //place reward above hero's head
                     //reward the hero with the chests contents
                     if (Obj.type == ObjType.ChestGold)
                     {
                         GameObjectFunctions.SpawnParticle(
                             ObjType.ParticleReward50Gold,
-                            Actor.compSprite.position + new Vector2(0, -14));
+                            Actor.compSprite.position + offset);
                         Assets.sfxReward.Play();
                         PlayerData.saveData.gold += 50; //give the hero 50 gold
                     }
@@ -167,7 +169,7 @@ namespace DungeonRun
                     {
                         GameObjectFunctions.SpawnParticle(
                             ObjType.ParticleRewardKey,
-                            Actor.compSprite.position + new Vector2(0, -14));
+                            Actor.compSprite.position + offset);
                         Assets.sfxKeyPickup.Play();
                         DungeonFunctions.dungeon.bigKey = true;
                     }
@@ -175,9 +177,18 @@ namespace DungeonRun
                     {
                         GameObjectFunctions.SpawnParticle(
                             ObjType.ParticleRewardMap,
-                            Actor.compSprite.position + new Vector2(0, -14));
+                            Actor.compSprite.position + offset);
                         Assets.sfxReward.Play();
                         DungeonFunctions.dungeon.map = true;
+                    }
+                    else if (Obj.type == ObjType.ChestHeartPiece)
+                    {
+                        //////// this should be a heart reward particle
+                        GameObjectFunctions.SpawnParticle(
+                            ObjType.ParticleRewardMap,
+                            Actor.compSprite.position + offset);
+                        Assets.sfxReward.Play();
+                        PlayerData.saveData.heartPieces++;
                     }
 
                     Assets.sfxChestOpen.Play();

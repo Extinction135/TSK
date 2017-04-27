@@ -43,36 +43,43 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
-cleaned up the outline heart sprite, removed unneeded pixels. reduced opacity.
-rearranged how the heart piece sprites were laid out in the main sheet.
-
-updated MenuWidgetLoadout.Reset() to set the heart piece sprite based on WorldUI.pieceCounter.
-this pieceCounter is updated each frame, so it will always have the proper value.
-best of all, this is done without using the modulo (%) operator, which is a very expensive operation.
-instead it's done using addition and two counters, in WorldUI.Update().
-playtested, working.
-
-
-
-
-
-
-
-we can get the heartPiece count from WorldUI.
+extended ObjType enum with ChestHeartPiece.
+extended GameObjectAnimListManager with anim list for ChestHeartPiece.
+added check for ChestHeartPiece into GameObjFunctions.SetType().
+extended InteractionFunctions.Handle(Actor, Obj) with path for ChestHeartPiece.
+opening a ChestHeartPiece increments PlayerData.saveData.heartPieces by 1.
+reduced some garbage creation in Handle(Actor, Obj).
+i need to do several more things before i can really test tho.
 
 
 
 
 
 
+** we need the heart piece particle for chest
 
 
-we need to check how many heart pieces the hero has in world UI, and set max hearts properly
-current hearts can never exceed max hearts
+** check that this is working
+
+** we'll need to build additional chests in spawn room
+
+
+we shouldn't be creating new vectors in interaction function
+create an instance, and reset it upon handle() start
+then set the offset as needed and apply it
+
+
+
+
+
+
+
+
+
 
 we would increment the heart pieces value when hero opens a heart piece chest 
 
