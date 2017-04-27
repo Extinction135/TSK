@@ -91,6 +91,9 @@ namespace DungeonRun
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
 
+            //set the inventory heart pieces frame, based on the number of heart pieces hero has
+            menuItems[5].compSprite.currentFrame.x = 14; //empty for now
+
             if (DungeonFunctions.dungeon.map) //if player found the map, display it
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
             else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }

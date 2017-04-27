@@ -126,7 +126,7 @@ namespace DungeonRun
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
 
-            #region Set the menuItem data (based on the hero's inventory - later)
+            #region Set the menuItem data (based on the hero's inventory)
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
