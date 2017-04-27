@@ -43,26 +43,23 @@ ram useage:
 todo:
 
 
-12
-
-
-extended SaveData struct with a heartPieces byte.
-updated PlayerData constructor to set saveData heartPieces to 4 * 3.
-this is because the hero always starts with 3 hearts, in a new game.
-planning how to implement heart pieces.
-
-updated WorldUI to count saveData.heartPieces and set maxHearts.
-refactored WorldUI.Update() to set outline, empty, and full hearts.
-playtested, working as expected.
+11
 
 
 
+cleaned up the outline heart sprite, removed unneeded pixels. reduced opacity.
+rearranged how the heart piece sprites were laid out in the main sheet.
+
+updated MenuWidgetLoadout.Reset() to set the heart piece sprite based on WorldUI.pieceCounter.
+this pieceCounter is updated each frame, so it will always have the proper value.
+best of all, this is done without using the modulo (%) operator, which is a very expensive operation.
+instead it's done using addition and two counters, in WorldUI.Update().
+playtested, working.
 
 
 
 
 
-bug: the outline heart sprite has pixels in the bottom left interior that shouldn't exist.
 
 
 we can get the heartPiece count from WorldUI.

@@ -24,6 +24,8 @@ namespace DungeonRun
             saveData = new SaveData();
             saveData.gold = 0;
             saveData.heartPieces = 4 * 3; //player starts with 3 hearts
+
+            saveData.heartPieces += 4;
         }
 
         public static void Save(string FileAddress)
