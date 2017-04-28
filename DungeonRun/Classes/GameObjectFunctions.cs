@@ -452,6 +452,14 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;
             }
+            else if (Type == ObjType.ParticleFire)
+            {
+                Obj.compSprite.zOffset = 0;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.loop = true;
+            }
             else if (Type == ObjType.ParticleReward50Gold ||
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
@@ -491,7 +499,8 @@ namespace DungeonRun
 
                     if (Obj.type == ObjType.ProjectileFireball)
                     {
-                        GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position);
+                        SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position);
+                        SpawnParticle(ObjType.ParticleFire, Obj.compSprite.position);
                         Assets.sfxFireballDeath.Play();
                     }
 

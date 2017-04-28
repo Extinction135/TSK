@@ -43,53 +43,74 @@ ram useage:
 todo:
 
 
-1
+13
 
 
 
-added SoundFireballCast file to content project, built.
-added instances to Assets to handle loading of SoundFireballCast file.
-updated ActorFunctions.UseItem() to play fireball cast sound when fireball is spawned.
-
-added SoundFireballDeath to content project, built.
-added instances to Assets to handle loading of SoundFireballDeath file.
-switched GameObjectFunctions.Update() to play the SoundFireballDeath upon fireball death.
-
-increased the lifetime of fireball to 200 frames.
-reduced overall size/length of fireball cast sound.
+moved the ground fire particle sprites around in the main sheet.
+added ParticleFire to ObjType enum.
+updated GameObjAnimListManager with anim list for ParticleFire.
+updated GameObjFunctions.SetType with path for ParticleFire.
+added call to spawn FireParticle from death state of fireball projectile.
+playtested, working.
 
 
 
 
+fireball should have a longer lifetime
+fireball should have a larger zoffset value..
 
 
+
+
+
+Fireball polish
 
 when we end the life of the fireball projectile, we should create a fire particle
 which means we need a fire particle
-
-
-
-
-
+this already exists in the sprite sheet
 
 bug: hero should be put into the attack anim instead of reward/use anim for this item
 
-we need a fireball cast sound
-we need a fireball death sound
+the fireball death sound could be better
+the fireball cast sound should always trigger, sometimes it doesn't cause the last Play() hasn't finished.
 
 fireball should have a cooldown, so hero can't spam them..
 
+
+
+
+
+Structure++
 
 it would be useful to move projectile functions into ProjectileFunctions
 same with ParticleFunctions
 these functions add about 100 lines of code to gameObjFunctions, which is already almost 500 lines
 	
+	
+Structure++
 
-
+we deal damage to actors from InteractionFunctions.Handle(Projectile, Actor).
+which makes sense, but is a little buried in the codebase.
+it would be better if we had a BattleFunctions class that contained a DealDamage() function.
+we would need to pass various parameters into this function, but it would make it easier to find later on.	
+	
+	
+Inventory Menu++
 
 make the gold sprite in loadout widget animate, just like the gold consumables
 the info window should have the animated gold as well
 this SHOULD be as simple as setting the animation list of the sprite...
+
+
+
+
+
+
+
+
+
+
 
 
 

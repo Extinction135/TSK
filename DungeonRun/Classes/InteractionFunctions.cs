@@ -259,10 +259,6 @@ namespace DungeonRun
             //Projectile could = Obj!, if comparing Projectile to Obj in ProjectilePool
             //no blocking checks have been done yet
 
-            //if a projectile collides with something, the projectile may get destroyed (end of lifetime)
-            //Obj.lifeCounter = Obj.lifetime; //end the projectiles life
-            //create an explosion effect here
-
             if(Obj.compCollision.blocking) //is the colliding object blocking?
             {
                 if (Projectile.type == ObjType.ProjectileFireball)
@@ -270,10 +266,6 @@ namespace DungeonRun
                     Projectile.lifeCounter = Projectile.lifetime; //kill fireball
                 }
             }
-            
-
-
-
         }
 
     }

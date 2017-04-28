@@ -53,6 +53,7 @@ namespace DungeonRun
         ProjectileSword, ProjectileFireball,
         //Particles
         ParticleDashPuff, ParticleExplosion, ParticleSmokePuff, ParticleHitSparkle,
+        ParticleFire,
         //Reward Particles
         ParticleReward50Gold, ParticleRewardKey, ParticleRewardMap,
         ParticleRewardHeartPiece, ParticleRewardHeartFull,
