@@ -43,20 +43,42 @@ ram useage:
 todo:
 
 
-7
+6
 
 
 
-consolidated SpawnProjectile() and SpawnParticle() into SpawnProjectile().
-updated various codepaths that referenced SpawnParticle().
-slightly changed how SpawnProjectile() works.
-playtested, working.
+added codepath to handle object birth events into GameObjFunctions.Update().
+added check for ProjectileFireball birth event, spawns a smoke puff.
+playtested, fireball now spawns a smoke puff as soon as it's created.
+
+modified projectile spawn offsets so moving projectiles spawn closer to actor.
+playtested, fireballs spawn much closer to hero, and the smokepuff looks better.
 
 
 
 
-what about if fireball creates a puff particle on it's first frame?
-if it's lifetime == 1, create puff at position
+
+
+
+
+
+
+we shouldn't be using AlignProjectile() or AlignParticle.
+this is because those functions assume the projectile or particle is being used in one specific context
+BUT it could be being used in many different contexts
+
+instead we should pass the alignment into SpawnProjectile
+
+
+
+
+
+
+
+
+
+
+
 
 
 

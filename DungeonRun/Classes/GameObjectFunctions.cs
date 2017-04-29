@@ -130,16 +130,17 @@ namespace DungeonRun
 
 
 
+
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
             offset.X = 0; offset.Y = 0;
 
             if (Projectile.compMove.speed > 0.0f)
             {   //moving projectiles have the same offsets
-                if (Projectile.direction == Direction.Down) { offset.Y = 16; }
-                else if (Projectile.direction == Direction.Up) { offset.Y = -16; }
-                else if (Projectile.direction == Direction.Right) { offset.X = 16; }
-                else if (Projectile.direction == Direction.Left) { offset.X = -16; }
+                if (Projectile.direction == Direction.Down) { offset.Y = 13; }
+                else if (Projectile.direction == Direction.Up) { offset.Y = -8; }
+                else if (Projectile.direction == Direction.Right) { offset.X = 10; offset.Y = 2; }
+                else if (Projectile.direction == Direction.Left) { offset.X = -10; offset.Y = 2; }
                 Projectile.compSprite.flipHorizontally = false;
             }
             else
@@ -513,12 +514,27 @@ namespace DungeonRun
             if(Obj.lifetime > 0) //if the obj has a lifetime, count it
             {  
                 Obj.lifeCounter++; //increment the life counter of the gameobject
+
+
+                #region Handle Object birth events
+
+                if(Obj.lifeCounter == 2)
+                {
+                    if (Obj.type == ObjType.ProjectileFireball)
+                    {
+                        SpawnProjectile(ObjType.ParticleSmokePuff,
+                            Obj.compSprite.position, Direction.None);
+                    }
+                }
+
+                #endregion
+
+
+                #region Handle Object death events
+
                 //if the life counter reaches the total, release this object back to the pool
                 if (Obj.lifeCounter >= Obj.lifetime)
                 {
-
-                    #region Handle Object specific death states
-
                     if (Obj.type == ObjType.ProjectileFireball)
                     {
                         SpawnProjectile(ObjType.ParticleExplosion, 
@@ -527,12 +543,12 @@ namespace DungeonRun
                             Obj.compSprite.position, Direction.None);
                         Assets.sfxFireballDeath.Play();
                     }
-
-                    #endregion
-
-
-                    PoolFunctions.Release(Obj);
+                    PoolFunctions.Release(Obj); //any dead object is released
                 }
+
+                #endregion
+
+
             }
         }
 
