@@ -104,6 +104,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\BattleFunctions.cs" />
     <Compile Include="Classes\Camera2D.cs" />
     <Compile Include="Classes\ComponentFunctions.cs" />
     <Compile Include="Classes\Components.cs" />

@@ -43,19 +43,24 @@ ram useage:
 todo:
 
 
-3
+2
 
 
-removed SetParticleFields() from GameObjectFunctions.
-reduced that functions work to setting a single boolean, which is done from SetType() now.
-slightly modified the alignment of fireball projectile upon spawn.
-added the offset back into AlignProjectile -> particleSmokPuff, for now.
 
-we'll still need to address how the alignment is being handled for particles and projectiles.
-it's not well structured and relies upon several assumptions and specific contexts.
-i'd like the align function to be able to handle more than one context.
+created BattleFunctions. added Damage() method.
+migrated the damage routines from InteractionFunctions.Handle() into BattleFunctions.Damage().
+this makes it a bit easier to locate, rather than digging into InteractionFunctions.
+plus, implementing the damage routines is beyond the scope of an interaction function.
+added call to Damage() from InteractionFunctions.Handle(), where old damage routines were defined.
 playtested, working.
 
+
+
+
+
+Optimization++
+we should be checking if the projectile is a particle in collision functions, or in pool functions
+and we should bail before calling any method (collision or interaction)
 
 
 
@@ -74,17 +79,12 @@ it needs to be flexible and handle all the different contexts
 Fireball polish
 
 the fireball cast sound should always trigger, sometimes it doesn't cause the last Play() hasn't finished.
-fireball should have a longer lock time.
+fireball should have a longer actor lock time.
 
 
 
 	
-Structure++
 
-we deal damage to actors from InteractionFunctions.Handle(Projectile, Actor).
-which makes sense, but is a little buried in the codebase.
-it would be better if we had a BattleFunctions class that contained a DealDamage() function.
-we would need to pass various parameters into this function, but it would make it easier to find later on.	
 	
 	
 Inventory Menu++

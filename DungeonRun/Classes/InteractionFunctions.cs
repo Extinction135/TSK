@@ -77,40 +77,17 @@ namespace DungeonRun
                 damage = 0; //reset the damage value
                 force = 0.0f; //reset the force amount (how much actor is pushed)
 
-
                 if (Obj.type == ObjType.ProjectileSword)
-                {
-                    damage = 1;
-                    force = 8.0f;
-                    //we could create a specific hit particle here, just for swords
-                    //swords always complete their animation
+                {   //swords always complete their animation
+                    damage = 1; force = 8.0f;
                 }
                 else if (Obj.type == ObjType.ProjectileFireball)
-                {
-                    damage = 1;
-                    force = 8.0f;
-                    //we could create a specific hit particle here, just for fireballs
-                    Obj.lifeCounter = Obj.lifetime; //kill fireball
+                {   //fireballs destruct upon collision/interaction
+                    Obj.lifeCounter = Obj.lifetime;
+                    damage = 1; force = 8.0f;
                 }
 
-
-                //THIS should be moved into it's own function
-                //so far, only projectiles deal damage to actors, so it could go into the projectile functions class
-                //only damage/hit/push actors not in the hit state
-                if (Actor.state != ActorState.Hit)
-                {   //deal damage to the actor
-                    //but prevent the damage byte from underflowing the Actor.health byte
-                    if (damage > Actor.health) { Actor.health = 0; }
-                    else { Actor.health -= damage; }
-
-                    //if projectile damaged hero, track the damage dealt
-                    if (Actor == Pool.hero) { DungeonRecord.totalDamage += damage; }
-
-                    //set actor into hit state, push actor the projectile's direction
-                    ActorFunctions.SetHitState(Actor);
-                    MovementFunctions.Push(Actor.compMove, Obj.direction, force);
-                }
-
+                BattleFunctions.Damage(Actor, damage, force, Obj.direction);
             }
 
             #endregion

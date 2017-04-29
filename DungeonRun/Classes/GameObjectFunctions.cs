@@ -117,10 +117,10 @@ namespace DungeonRun
             {
                 if (Projectile.compMove.speed > 0.0f)
                 {   //moving projectiles have the same offsets
-                    if (Projectile.direction == Direction.Down) { offset.Y = 13; }
-                    else if (Projectile.direction == Direction.Up) { offset.Y = -8; }
-                    else if (Projectile.direction == Direction.Right) { offset.X = 10; offset.Y = 2; }
-                    else if (Projectile.direction == Direction.Left) { offset.X = -10; offset.Y = 2; }
+                    if (Projectile.direction == Direction.Down) { offset.Y = 14; }
+                    else if (Projectile.direction == Direction.Up) { offset.Y = -9; }
+                    else if (Projectile.direction == Direction.Right) { offset.X = 11; offset.Y = 2; }
+                    else if (Projectile.direction == Direction.Left) { offset.X = -11; offset.Y = 2; }
                 }
                 else
                 {   //stationary (weapon) projectiles have the same offsets
