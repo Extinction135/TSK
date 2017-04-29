@@ -43,25 +43,17 @@ ram useage:
 todo:
 
 
-13
+12
 
 
-
-moved the ground fire particle sprites around in the main sheet.
-added ParticleFire to ObjType enum.
-updated GameObjAnimListManager with anim list for ParticleFire.
-updated GameObjFunctions.SetType with path for ParticleFire.
-added call to spawn FireParticle from death state of fireball projectile.
-playtested, working.
+extended fire particle's lifetime value.
+slowed down fire particle's animation speed.
+increased fire particle's zoffset to +16.
 
 
 
 
-fireball should have a longer lifetime
-fireball should have a larger zoffset value..
-
-
-
+double up on the explosion's first frame, so the initial impact reads better
 
 
 Fireball polish
