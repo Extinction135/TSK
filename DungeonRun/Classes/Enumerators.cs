@@ -51,10 +51,12 @@ namespace DungeonRun
         ItemRupee, ItemHeart,
         //Projectiles
         ProjectileSword, ProjectileFireball,
-        //Particles
-        ParticleDashPuff, ParticleExplosion, ParticleSmokePuff, ParticleHitSparkle,
+        //Particles - small
+        ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,
+        //Particles - normal size
+        ParticleExplosion, ParticleAttention,
         ParticleFire,
-        //Reward Particles
+        //Particles - rewards
         ParticleReward50Gold, ParticleRewardKey, ParticleRewardMap,
         ParticleRewardHeartPiece, ParticleRewardHeartFull,
     }

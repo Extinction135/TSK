@@ -417,18 +417,11 @@ namespace DungeonRun
 
             #region Particles
 
+            //Particles - small
             else if (Type == ObjType.ParticleDashPuff)
             {
                 Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
                 Obj.compSprite.zOffset = -8;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.loop = false;
-            }
-            else if (Type == ObjType.ParticleExplosion)
-            {
-                Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
@@ -452,6 +445,23 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;
             }
+            //Particles - normal size
+            else if (Type == ObjType.ParticleExplosion)
+            {
+                Obj.compSprite.zOffset = 16;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.loop = false;
+            }
+            else if (Type == ObjType.ParticleAttention)
+            {
+                Obj.compSprite.zOffset = 32;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.loop = false;
+            }
             else if (Type == ObjType.ParticleFire)
             {
                 Obj.compSprite.zOffset = 12;
@@ -460,6 +470,7 @@ namespace DungeonRun
                 Obj.compAnim.speed = 7; //in frames
                 Obj.compAnim.loop = true;
             }
+            //Particles - rewards
             else if (Type == ObjType.ParticleReward50Gold ||
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||

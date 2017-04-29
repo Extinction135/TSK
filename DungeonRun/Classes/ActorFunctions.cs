@@ -112,8 +112,7 @@ namespace DungeonRun
         {
             if (Actor.weapon == Weapon.Sword)
             {
-                GameObjectFunctions.SpawnProjectile(
-                    ObjType.ProjectileSword, 
+                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileSword, 
                     Actor.compSprite.position, Actor.direction);
                 Assets.sfxSwordSwipe.Play();
                 Actor.lockTotal = 15;
@@ -124,10 +123,11 @@ namespace DungeonRun
         {
             if (Actor.item == Item.FireMagic)
             {
-                GameObjectFunctions.SpawnProjectile(
-                    ObjType.ProjectileFireball,
+                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball,
                     Actor.compSprite.position, Actor.direction);
                 Assets.sfxFireballCast.Play(); //need fireball soundfx
+                GameObjectFunctions.SpawnParticle(ObjType.ParticleAttention,
+                    Actor.compSprite.position);
                 Actor.lockTotal = 15;
             }
         }

@@ -53,11 +53,10 @@ namespace DungeonRun
         public AnimationGroup interact;
 
         public AnimationGroup attack;
-        public AnimationGroup use;
         public AnimationGroup hit;
         public AnimationGroup dead;
-
         public AnimationGroup reward;
+
         //pickup, hold, carry, drag, etc...
     }
 

@@ -43,19 +43,42 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
-doubled up on the explosion's first frame, so the initial impact reads better.
-playtested, it's much more satisfying when you destroy an enemy now.
-reduced the sorting offset for fire particle just a bit, to sort better with actors.
+removed 'use' animation group from ActorAnimationList.
+this has been replaced with a reference to attack animation, since they are the same frames.
 
-changed how the reward animation list for actors is defined.
-it no longer points to the use animation, it defines it's own frames to use.
-the actor.use animation now points to the attack animation.
-this fixes a bug where hero was set into the 'reward' animation upon a use state.
-playtested, looking MUCH better and natural.
+reorganized particles across Enumerators, GameObjAnimListManager, and GameObjFuntions.SetType.
+added "ParticleAttention" to ObjType enum. Simply draws the player's attention to it's location.
+updated GameObjAnimListManager with anim list for AttentionParticle.
+updated GameObjFunctions.SetType() with path for AttentionParticle.
+
+
+updated ActorFunctions.UseItem() to spawn an attention particle when fireball is cast.
+playtested, and i don't really like the attention particle being spawned upon a fireball cast.
+however, the attention particle will look good for opening chests, and doors.
+
+
+
+
+
+
+sometimes when the hero attacks left, the sword flips vertically
+this is related to the horizontal flip boolean
+we should be setting this boolean explicity, like we used to
+
+
+
+
+
+let's add a particle to represent a change/creation effect
+this is the sprite sequence below the explosion sprites
+
+create the change particle
+
+
 
 
 
@@ -63,6 +86,9 @@ playtested, looking MUCH better and natural.
 we need some kind of cast particle when hero creates a fireball
 this could be as simple as an explosion particle
 
+
+update the boss door to use the changeParticle
+update the chest opening routine to use the changeParticle
 
 
 

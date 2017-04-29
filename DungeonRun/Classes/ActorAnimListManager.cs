@@ -25,7 +25,7 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Interact) { Actor.animGroup = Actor.animList.interact; }
             //
             else if (Actor.state == ActorState.Attack) { Actor.animGroup = Actor.animList.attack; }
-            else if (Actor.state == ActorState.Use) { Actor.animGroup = Actor.animList.use; }
+            else if (Actor.state == ActorState.Use) { Actor.animGroup = Actor.animList.attack; }
             else if (Actor.state == ActorState.Hit) { Actor.animGroup = Actor.animList.hit; }
             else if (Actor.state == ActorState.Dead) { Actor.animGroup = Actor.animList.dead; }
             //
@@ -76,15 +76,12 @@ namespace DungeonRun
             actorAnims.interact.right = new List<Byte4> { new Byte4(4, 2, 0, 0) };
             actorAnims.interact.left = new List<Byte4>  { new Byte4(4, 2, 1, 0) };
 
-            //attack, use, hit, & dead lists
+            //attack, hit, dead, reward lists
             actorAnims.attack = new AnimationGroup();
             actorAnims.attack.down = new List<Byte4>     { new Byte4(3, 0, 0, 0) };
             actorAnims.attack.up = new List<Byte4>       { new Byte4(3, 1, 0, 0) };
             actorAnims.attack.right = new List<Byte4>    { new Byte4(3, 2, 0, 0) };
             actorAnims.attack.left = new List<Byte4>     { new Byte4(3, 2, 1, 0) };
-
-            //use anim just points to attack anim
-            actorAnims.use = actorAnims.attack;
 
             actorAnims.hit = new AnimationGroup();
             actorAnims.hit.down = new List<Byte4>   { new Byte4(0, 3, 0, 0) };
@@ -98,7 +95,6 @@ namespace DungeonRun
             actorAnims.dead.right = actorAnims.dead.down;
             actorAnims.dead.left = actorAnims.dead.down;
 
-            //reward list
             actorAnims.reward = new AnimationGroup();
             actorAnims.reward.down = new List<Byte4> { new Byte4(3, 3, 0, 0) };
             actorAnims.reward.up = actorAnims.reward.down;
