@@ -46,14 +46,7 @@ namespace DungeonRun
             Obj.compMove.speed = 0.0f; //assume this object doesn't move
         }
 
-        public static void SetRotation(GameObject Obj)
-        {   //sprites are created facing Down, but we will need to set the spite rotation based on direction
-            Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
-            if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
-            else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
-            else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
-        }
-
+        
         public static void SetParticleFields(GameObject Obj)
         {   //all particles do not block, and don't use collision recs
             Obj.compCollision.blocking = false;
@@ -64,9 +57,9 @@ namespace DungeonRun
         public static void SpawnLoot(Vector2 Pos)
         {   //either spawn a rupee or a heart item
             if (GetRandom.Int(0, 100) > 50)
-            { GameObjectFunctions.SpawnProjectile(ObjType.ItemRupee, Pos, Direction.Down); }
+            { SpawnProjectile(ObjType.ItemRupee, Pos, Direction.Down); }
             else
-            { GameObjectFunctions.SpawnProjectile(ObjType.ItemHeart, Pos, Direction.Down); }
+            { SpawnProjectile(ObjType.ItemHeart, Pos, Direction.Down); }
         }
 
         public static void SetWeaponCollisions(GameObject Obj)
@@ -109,59 +102,62 @@ namespace DungeonRun
             {   //convert projectile's directions to cardinal
                 projectile.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
                 projectile.compMove.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
-                AlignProjectile(projectile, Pos);
             }
-            else if (projectile.group == ObjGroup.Particle)
-            {   //particles dont move
+            else//particles, items (consumable loot)
+            {   //these objects don't move
                 projectile.direction = Direction.Down;
-                projectile.compMove.direction = Direction.None;
-                AlignParticle(projectile, Pos);
+                projectile.compMove.direction = Direction.Down;
             }
 
+            AlignProjectile(projectile, Pos);
             SetRotation(projectile); //set the projectile's rotation 
         }
+
+
 
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
             offset.X = 0; offset.Y = 0;
+            Projectile.compSprite.flipHorizontally = false;
 
-            if (Projectile.compMove.speed > 0.0f)
-            {   //moving projectiles have the same offsets
-                if (Projectile.direction == Direction.Down) { offset.Y = 13; }
-                else if (Projectile.direction == Direction.Up) { offset.Y = -8; }
-                else if (Projectile.direction == Direction.Right) { offset.X = 10; offset.Y = 2; }
-                else if (Projectile.direction == Direction.Left) { offset.X = -10; offset.Y = 2; }
-                Projectile.compSprite.flipHorizontally = false;
+            if (Projectile.group == ObjGroup.Particle)
+            {
+                //center horizontally, place near actor's feet
+                if (Projectile.type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
+                //center horizontally, place near actor's head
+                //else if (Projectile.type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
             }
-            else
-            {   //stationary (weapon) projectiles have the same offsets
-                if (Projectile.direction == Direction.Down)
-                { offset.X = -1; offset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
-                else if (Projectile.direction == Direction.Up)
-                { offset.X = 1; offset.Y = -12; Projectile.compSprite.flipHorizontally = false; }
-                else if (Projectile.direction == Direction.Right)
-                { offset.X = 14; offset.Y = 0; Projectile.compSprite.flipHorizontally = false; }
-                else if (Projectile.direction == Direction.Left)
-                { offset.X = -14; offset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
+            else if(Projectile.group == ObjGroup.Projectile)
+            {
+                if (Projectile.compMove.speed > 0.0f)
+                {   //moving projectiles have the same offsets
+                    if (Projectile.direction == Direction.Down) { offset.Y = 13; }
+                    else if (Projectile.direction == Direction.Up) { offset.Y = -8; }
+                    else if (Projectile.direction == Direction.Right) { offset.X = 10; offset.Y = 2; }
+                    else if (Projectile.direction == Direction.Left) { offset.X = -10; offset.Y = 2; }
+                }
+                else
+                {   //stationary (weapon) projectiles have the same offsets
+                    if (Projectile.direction == Direction.Down)
+                    { offset.X = -1; offset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
+                    else if (Projectile.direction == Direction.Up) { offset.X = 1; offset.Y = -12; }
+                    else if (Projectile.direction == Direction.Right) { offset.X = 14; offset.Y = 0; }
+                    else if (Projectile.direction == Direction.Left)
+                    { offset.X = -14; offset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
+                }
             }
 
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Projectile.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
 
-        public static void AlignParticle(GameObject Particle, Vector2 Pos)
-        {
-            offset.X = 0; offset.Y = 0;
-            Particle.compSprite.rotation = Rotation.None;
-            Particle.compSprite.flipHorizontally = false;
-            //center horizontally, place near actor's feet
-            if (Particle.type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
-            //center horizontally, place near actor's head
-            else if (Particle.type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
-            //teleport the projectile to the position with the offset
-            MovementFunctions.Teleport(Particle.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
+        public static void SetRotation(GameObject Obj)
+        {   //sprites are created facing Down, but we will need to set the spite rotation based on direction
+            Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
+            if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
+            else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
+            else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
         }
-
 
 
 

@@ -128,10 +128,6 @@ namespace DungeonRun
                 GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball,
                     Actor.compSprite.position, Actor.direction);
                 Assets.sfxFireballCast.Play(); //need fireball soundfx
-
-                //GameObjectFunctions.SpawnProjectile(ObjType.ParticleSmokePuff, 
-                //    Actor.compSprite.position, Direction.None);
-
                 Actor.lockTotal = 15;
             }
         }
@@ -196,7 +192,7 @@ namespace DungeonRun
             else if (Type == ActorType.Boss)
             {
                 Actor.compSprite.texture = Assets.bossSheet;
-                Actor.health = 2;
+                Actor.health = 10;
                 Actor.weapon = Weapon.None;
                 Actor.item = Item.None;
                 Actor.walkSpeed = 0.50f;

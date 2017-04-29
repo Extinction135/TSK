@@ -43,75 +43,28 @@ ram useage:
 todo:
 
 
-5
+4
 
 
 
+cleaning up the codepaths and function chain for SpawnProjectile().
+consolidated AlignParticle() into AlignProjectile().
 
-created HandleBirthEvent() & HandleDeathEvent() functions for GameObjectFunctions.
-updated GameObjFunctions.Update() to call Birth and Death event methods based on Obj lifeCounter.
-this makes it a bit easier to locate where the Birth and Death events take place for projectiles.
-
-removed call to update the Pool.ObjPool. no room objects have a lifetime value greater than 0.
-so, they never need to be updated, reducing the ticks used in the update() loop.
-
-
-
-
-
-
-
-do we need to update the obj pool
-
-
-
-move the birth and death routines out of update
-we should call BirthEvent() and DeathEvent() functions from update
-
-
-bug: a heart item was spawned facing the wrong direction
-it should of been facing down....
+bug: heart items could be spawned with incorrect rotations.
+cause: newer codepaths did not set item rotation.
+solution: changed codepath to always set item and particle direction to down.
+playtested, working as expected.
 
 
 
 
 
+we still need to address how we are aligning particles and projectiles
+the smoke puff should be aligning to the fireball, but it's not...
 
-
-we shouldn't be using AlignProjectile() or AlignParticle.
-this is because those functions assume the projectile or particle is being used in one specific context
+AlignProjectile() assumes the projectile or particle is being used in one specific context
 BUT it could be being used in many different contexts
 
-instead we should pass the alignment into SpawnProjectile
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-we want to be able to align a projectile AND a particle to an actor
-
-
-
-so, smokePuff spawns on the hero when he cast's fireball.
-but i really want it to spawn at the location of the fireball.
-this way it looks like it's the smoke from the fireball's creation.
-
-
-BUT, particles don't align like projectiles do to the actor that creates them
-we could change this...
 
 
 
@@ -139,18 +92,7 @@ right now, this is done in game object functions, but this should be done in poo
 
 
 
-
-
-we need some kind of cast particle when hero creates a fireball
-
-
-what about the puff smoke particle?
-
-
-
 Fireball polish
-
-bug: hero should be put into the attack anim instead of reward/use anim for this item
 
 the fireball death sound could be better
 the fireball cast sound should always trigger, sometimes it doesn't cause the last Play() hasn't finished.
@@ -160,13 +102,6 @@ fireball should have a cooldown, so hero can't spam them..
 
 
 
-
-Structure++
-
-it would be useful to move projectile functions into ProjectileFunctions
-same with ParticleFunctions
-these functions add about 100 lines of code to gameObjFunctions, which is already almost 500 lines
-	
 	
 Structure++
 
