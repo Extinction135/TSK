@@ -43,50 +43,29 @@ ram useage:
 todo:
 
 
-4
+3
 
 
+removed SetParticleFields() from GameObjectFunctions.
+reduced that functions work to setting a single boolean, which is done from SetType() now.
+slightly modified the alignment of fireball projectile upon spawn.
+added the offset back into AlignProjectile -> particleSmokPuff, for now.
 
-cleaning up the codepaths and function chain for SpawnProjectile().
-consolidated AlignParticle() into AlignProjectile().
+we'll still need to address how the alignment is being handled for particles and projectiles.
+it's not well structured and relies upon several assumptions and specific contexts.
+i'd like the align function to be able to handle more than one context.
+playtested, working.
 
-bug: heart items could be spawned with incorrect rotations.
-cause: newer codepaths did not set item rotation.
-solution: changed codepath to always set item and particle direction to down.
-playtested, working as expected.
+
 
 
 
 
 
 we still need to address how we are aligning particles and projectiles
-the smoke puff should be aligning to the fireball, but it's not...
-
 AlignProjectile() assumes the projectile or particle is being used in one specific context
 BUT it could be being used in many different contexts
-
-
-
-
-
-
-
-
-
-
-i think that the sword projectile is somehow inheriting the previous life's speed or magnitude
-we need to make sure we are in no way inheriting, and clearing, that data
-
-
-
-sometimes when the hero attacks left, the sword flips vertically
-this is related to the horizontal flip boolean
-we should be setting this boolean explicity, like we used to
-BUT we are...!
-when we Release() a projectile, we should be resetting all of the object's components and fields
-this ensures the projectile is 'ready' for the next use
-right now, this is done in game object functions, but this should be done in pool functions, in release
-
+it needs to be flexible and handle all the different contexts
 
 
 
@@ -94,11 +73,8 @@ right now, this is done in game object functions, but this should be done in poo
 
 Fireball polish
 
-the fireball death sound could be better
 the fireball cast sound should always trigger, sometimes it doesn't cause the last Play() hasn't finished.
-
-fireball should have a cooldown, so hero can't spam them..
-
+fireball should have a longer lock time.
 
 
 
@@ -267,7 +243,7 @@ Version 0.4 Milestones
 	
 Stuff that needs to be done, but it's not terribly important rn	
 	
-	
+	fireball should have a cooldown, so hero can't spam them..
 
 	later in development, when we have a game options screen,
 	the options widget will need to reset it's neighbors, so it doesn't connect to widgets not visible

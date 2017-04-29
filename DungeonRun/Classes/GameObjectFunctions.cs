@@ -46,14 +46,6 @@ namespace DungeonRun
             Obj.compMove.speed = 0.0f; //assume this object doesn't move
         }
 
-        
-        public static void SetParticleFields(GameObject Obj)
-        {   //all particles do not block, and don't use collision recs
-            Obj.compCollision.blocking = false;
-            Obj.compCollision.offsetX = 0; Obj.compCollision.offsetY = 0;
-            Obj.compCollision.rec.Width = 0; Obj.compCollision.rec.Height = 0;
-        }
-
         public static void SpawnLoot(Vector2 Pos)
         {   //either spawn a rupee or a heart item
             if (GetRandom.Int(0, 100) > 50)
@@ -89,10 +81,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
         public static void SpawnProjectile(ObjType Type, Vector2 Pos, Direction Direction)
         {
             GameObject projectile = PoolFunctions.GetProjectile();
@@ -113,8 +101,6 @@ namespace DungeonRun
             SetRotation(projectile); //set the projectile's rotation 
         }
 
-
-
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
             offset.X = 0; offset.Y = 0;
@@ -125,7 +111,7 @@ namespace DungeonRun
                 //center horizontally, place near actor's feet
                 if (Projectile.type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
                 //center horizontally, place near actor's head
-                //else if (Projectile.type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
+                else if (Projectile.type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
             }
             else if(Projectile.group == ObjGroup.Projectile)
             {
@@ -161,7 +147,6 @@ namespace DungeonRun
 
 
 
-
         public static void HandleBirthEvent(GameObject Obj)
         {   //this targets projectiles/particles only
             if (Obj.type == ObjType.ProjectileFireball)
@@ -183,8 +168,6 @@ namespace DungeonRun
             }
             PoolFunctions.Release(Obj); //any dead object is released
         }
-
-
 
 
 
@@ -509,8 +492,8 @@ namespace DungeonRun
             #endregion
 
 
-            //particles do not rotate like other gameObjects
-            if (Obj.group == ObjGroup.Particle) { SetParticleFields(Obj); }
+            //particles do not block upon collision
+            if (Obj.group == ObjGroup.Particle) { Obj.compCollision.blocking = false; }
 
             ComponentFunctions.SetZdepth(Obj.compSprite);
             ComponentFunctions.UpdateCellSize(Obj.compSprite);
