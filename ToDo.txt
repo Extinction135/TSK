@@ -43,27 +43,46 @@ ram useage:
 todo:
 
 
-2
+1
 
 
 
-created BattleFunctions. added Damage() method.
-migrated the damage routines from InteractionFunctions.Handle() into BattleFunctions.Damage().
-this makes it a bit easier to locate, rather than digging into InteractionFunctions.
-plus, implementing the damage routines is beyond the scope of an interaction function.
-added call to Damage() from InteractionFunctions.Handle(), where old damage routines were defined.
-playtested, working.
+updated MovementFunctions.Move(Obj) to only move and collision check non-particle objects.
+particles never move or get collision checked.
+this is in prep for moving gameobjects.
+planning on how to implement the first moving room object, the spike block.
 
 
 
 
 
-Optimization++
-we should be checking if the projectile is a particle in collision functions, or in pool functions
-and we should bail before calling any method (collision or interaction)
+
+
+implement the first moving room object - the spike block
+
+it needs to get it's movement projected, and collision checked
+if it collides with an object, it reverses its direction
+so moving left, collision, now moving right.. for all directional cases
+
+if it collides with an actor, it deals that actor damage + switches directions
+if it collides with an object, it just changes directions
+
+this means the projectile pool AND obj pool needs to be moved() and collisionChecked()
+we can only optimize out the particles from movement and collision checks
 
 
 
+
+
+
+
+
+
+
+can we set the dungeon screen's fadeIn value to a negative number?
+this would give the screen enough time to show the boss death or player death
+without a fade in occurring
+then after it hits 0, the fade in would start....
 
 
 
@@ -76,14 +95,12 @@ it needs to be flexible and handle all the different contexts
 
 
 
+
 Fireball polish
 
 the fireball cast sound should always trigger, sometimes it doesn't cause the last Play() hasn't finished.
 fireball should have a longer actor lock time.
 
-
-
-	
 
 	
 	
@@ -92,15 +109,6 @@ Inventory Menu++
 make the gold sprite in loadout widget animate, just like the gold consumables
 the info window should have the animated gold as well
 this SHOULD be as simple as setting the animation list of the sprite...
-
-
-
-
-
-
-
-
-
 
 
 
@@ -118,14 +126,6 @@ what if InfoWidget did the line breaks automatically?
 that would be better.
 
 
-
-
-
-
-
-	
-	
-	
 	
 	
 we need menuItem sprites for the various stats
@@ -133,10 +133,6 @@ we need menuItem sprites for the various stats
 	magic = increases amount of magical damage magic does
 	agility = how quickly hero moves + dashes
 	luck = increases amount of gold found + rewarded
-	
-	
-	
-	
 	
 	
 	

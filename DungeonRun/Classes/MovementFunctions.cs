@@ -40,10 +40,17 @@ namespace DungeonRun
         }
 
         public static void Move(GameObject Obj)
-        {   //this is only used for projectiles + particles, never room objects
-            ProjectMovement(Obj.compMove);
-            CollisionFunctions.CheckCollisions(Obj);
+        {   
+
+            //particles never move or check collisions
+            if (Obj.group != ObjGroup.Particle)
+            {
+                ProjectMovement(Obj.compMove);
+                CollisionFunctions.CheckCollisions(Obj);
+            }
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
+
+
         }
 
         public static void ProjectMovement(ComponentMovement Move)
