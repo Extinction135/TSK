@@ -43,40 +43,31 @@ ram useage:
 todo:
 
 
-10
+9
 
-
-
-removed 'use' animation group from ActorAnimationList.
-this has been replaced with a reference to attack animation, since they are the same frames.
-
-reorganized particles across Enumerators, GameObjAnimListManager, and GameObjFuntions.SetType.
-added "ParticleAttention" to ObjType enum. Simply draws the player's attention to it's location.
-updated GameObjAnimListManager with anim list for AttentionParticle.
-updated GameObjFunctions.SetType() with path for AttentionParticle.
-
-
-updated ActorFunctions.UseItem() to spawn an attention particle when fireball is cast.
-playtested, and i don't really like the attention particle being spawned upon a fireball cast.
-however, the attention particle will look good for opening chests, and doors.
-
-
-
+updated InteractionFunctions.Handle(Actor, Obj) to spawn AttentionParticles instead of ExplosionParticles.
+this happens when hero opens a chest, or opens the boss door.
+removed call to spawn AttentionParticle when hero casts a fireball.
+playtested, looks great.
 
 
 
 sometimes when the hero attacks left, the sword flips vertically
 this is related to the horizontal flip boolean
 we should be setting this boolean explicity, like we used to
+BUT we are...!
+when we Release() a projectile, we should be resetting all of the object's components and fields
+this ensures the projectile is 'ready' for the next use
+right now, this is done in game object functions, but this should be done in pool functions, in release
 
 
 
 
 
-let's add a particle to represent a change/creation effect
-this is the sprite sequence below the explosion sprites
 
-create the change particle
+
+update the boss door to use the changeParticle
+update the chest opening routine to use the changeParticle
 
 
 
@@ -84,12 +75,6 @@ create the change particle
 
 
 we need some kind of cast particle when hero creates a fireball
-this could be as simple as an explosion particle
-
-
-update the boss door to use the changeParticle
-update the chest opening routine to use the changeParticle
-
 
 
 

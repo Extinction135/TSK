@@ -209,7 +209,7 @@ namespace DungeonRun
                     //set actor into reward state
                     Actor.state = ActorState.Reward;
                     //play an explosion particle to show the chest was opened
-                    GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position);
+                    GameObjectFunctions.SpawnParticle(ObjType.ParticleAttention, Obj.compSprite.position);
                 }
             }
 
@@ -226,7 +226,7 @@ namespace DungeonRun
                     {
                         GameObjectFunctions.SetType(Obj, ObjType.DoorOpen);
                         Assets.sfxDoorOpen.Play();
-                        GameObjectFunctions.SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position);
+                        GameObjectFunctions.SpawnParticle(ObjType.ParticleAttention, Obj.compSprite.position);
                     }
                 }
                 else if (Obj.type == ObjType.DoorTrap)

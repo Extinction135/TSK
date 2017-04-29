@@ -126,8 +126,7 @@ namespace DungeonRun
                 GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball,
                     Actor.compSprite.position, Actor.direction);
                 Assets.sfxFireballCast.Play(); //need fireball soundfx
-                GameObjectFunctions.SpawnParticle(ObjType.ParticleAttention,
-                    Actor.compSprite.position);
+                //GameObjectFunctions.SpawnParticle(ObjType.ParticleAttention, Actor.compSprite.position);
                 Actor.lockTotal = 15;
             }
         }
