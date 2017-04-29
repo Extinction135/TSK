@@ -175,8 +175,8 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {
                 if (Pool.objPool[Pool.counter].active)
-                {
-                    GameObjectFunctions.Update(Pool.objPool[Pool.counter]);
+                {   //update only counts the object's lifetime, & no obj's have a lifetime
+                    //GameObjectFunctions.Update(Pool.objPool[Pool.counter]);
                     AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim, 
                         Pool.objPool[Pool.counter].compSprite);
                 }
@@ -185,7 +185,7 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             {
                 if (Pool.projectilePool[Pool.counter].active)
-                {
+                {   //all projectiles have a lifetime, so pass them to update
                     GameObjectFunctions.Update(Pool.projectilePool[Pool.counter]);
                     AnimationFunctions.Animate(Pool.projectilePool[Pool.counter].compAnim, 
                         Pool.projectilePool[Pool.counter].compSprite);

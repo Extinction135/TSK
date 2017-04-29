@@ -69,10 +69,6 @@ namespace DungeonRun
             { GameObjectFunctions.SpawnProjectile(ObjType.ItemHeart, Pos, Direction.Down); }
         }
 
-
-
-
-
         public static void SetWeaponCollisions(GameObject Obj)
         {   //set the weapons's collision rec + offsets to the sprite's dimensions
             //these values are based off the sword sprite's dimentions
@@ -125,12 +121,6 @@ namespace DungeonRun
             SetRotation(projectile); //set the projectile's rotation 
         }
 
-
-        
-
-
-
-
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
             offset.X = 0; offset.Y = 0;
@@ -173,6 +163,30 @@ namespace DungeonRun
         }
 
 
+
+
+
+        public static void HandleBirthEvent(GameObject Obj)
+        {   //this targets projectiles/particles only
+            if (Obj.type == ObjType.ProjectileFireball)
+            {
+                SpawnProjectile(ObjType.ParticleSmokePuff,
+                    Obj.compSprite.position, Direction.None);
+            }
+        }
+
+        public static void HandleDeathEvent(GameObject Obj)
+        {   //this targets projectiles/particles only
+            if (Obj.type == ObjType.ProjectileFireball)
+            {
+                SpawnProjectile(ObjType.ParticleExplosion,
+                    Obj.compSprite.position, Direction.None);
+                SpawnProjectile(ObjType.ParticleFire,
+                    Obj.compSprite.position, Direction.None);
+                Assets.sfxFireballDeath.Play();
+            }
+            PoolFunctions.Release(Obj); //any dead object is released
+        }
 
 
 
@@ -514,41 +528,9 @@ namespace DungeonRun
             if(Obj.lifetime > 0) //if the obj has a lifetime, count it
             {  
                 Obj.lifeCounter++; //increment the life counter of the gameobject
-
-
-                #region Handle Object birth events
-
-                if(Obj.lifeCounter == 2)
-                {
-                    if (Obj.type == ObjType.ProjectileFireball)
-                    {
-                        SpawnProjectile(ObjType.ParticleSmokePuff,
-                            Obj.compSprite.position, Direction.None);
-                    }
-                }
-
-                #endregion
-
-
-                #region Handle Object death events
-
-                //if the life counter reaches the total, release this object back to the pool
-                if (Obj.lifeCounter >= Obj.lifetime)
-                {
-                    if (Obj.type == ObjType.ProjectileFireball)
-                    {
-                        SpawnProjectile(ObjType.ParticleExplosion, 
-                            Obj.compSprite.position, Direction.None);
-                        SpawnProjectile(ObjType.ParticleFire,
-                            Obj.compSprite.position, Direction.None);
-                        Assets.sfxFireballDeath.Play();
-                    }
-                    PoolFunctions.Release(Obj); //any dead object is released
-                }
-
-                #endregion
-
-
+                //handle the object's birth & death events
+                if (Obj.lifeCounter == 2) { HandleBirthEvent(Obj); }
+                if (Obj.lifeCounter >= Obj.lifetime) { HandleDeathEvent(Obj); }
             }
         }
 
@@ -558,5 +540,6 @@ namespace DungeonRun
             if (Flags.DrawCollisions)
             { DrawFunctions.Draw(Obj.compCollision); }  
         }
+
     }
 }

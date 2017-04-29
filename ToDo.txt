@@ -43,19 +43,34 @@ ram useage:
 todo:
 
 
-6
+5
 
 
 
-added codepath to handle object birth events into GameObjFunctions.Update().
-added check for ProjectileFireball birth event, spawns a smoke puff.
-playtested, fireball now spawns a smoke puff as soon as it's created.
 
-modified projectile spawn offsets so moving projectiles spawn closer to actor.
-playtested, fireballs spawn much closer to hero, and the smokepuff looks better.
+created HandleBirthEvent() & HandleDeathEvent() functions for GameObjectFunctions.
+updated GameObjFunctions.Update() to call Birth and Death event methods based on Obj lifeCounter.
+this makes it a bit easier to locate where the Birth and Death events take place for projectiles.
+
+removed call to update the Pool.ObjPool. no room objects have a lifetime value greater than 0.
+so, they never need to be updated, reducing the ticks used in the update() loop.
 
 
 
+
+
+
+
+do we need to update the obj pool
+
+
+
+move the birth and death routines out of update
+we should call BirthEvent() and DeathEvent() functions from update
+
+
+bug: a heart item was spawned facing the wrong direction
+it should of been facing down....
 
 
 
