@@ -164,25 +164,28 @@ namespace DungeonRun
                     //reward the hero with the chests contents
                     if (Obj.type == ObjType.ChestGold)
                     {
-                        GameObjectFunctions.SpawnParticle(
+                        GameObjectFunctions.SpawnProjectile(
                             ObjType.ParticleReward50Gold,
-                            Actor.compSprite.position + offset);
+                            Actor.compSprite.position + offset, 
+                            Direction.None);
                         Assets.sfxReward.Play();
                         PlayerData.saveData.gold += 50; //give the hero 50 gold
                     }
                     else if (Obj.type == ObjType.ChestKey)
                     {
-                        GameObjectFunctions.SpawnParticle(
+                        GameObjectFunctions.SpawnProjectile(
                             ObjType.ParticleRewardKey,
-                            Actor.compSprite.position + offset);
+                            Actor.compSprite.position + offset,
+                            Direction.None);
                         Assets.sfxKeyPickup.Play();
                         DungeonFunctions.dungeon.bigKey = true;
                     }
                     else if (Obj.type == ObjType.ChestMap)
                     {
-                        GameObjectFunctions.SpawnParticle(
+                        GameObjectFunctions.SpawnProjectile(
                             ObjType.ParticleRewardMap,
-                            Actor.compSprite.position + offset);
+                            Actor.compSprite.position + offset,
+                            Direction.None);
                         Assets.sfxReward.Play();
                         DungeonFunctions.dungeon.map = true;
                     }
@@ -190,15 +193,17 @@ namespace DungeonRun
                     {
                         if (WorldUI.pieceCounter == 3)
                         {   //if this completes a heart, display the full heart reward
-                            GameObjectFunctions.SpawnParticle(
+                            GameObjectFunctions.SpawnProjectile(
                                 ObjType.ParticleRewardHeartFull,
-                                Actor.compSprite.position + offset);
+                                Actor.compSprite.position + offset,
+                                Direction.None);
                         }
                         else
                         {   //this does not complete a heart, display the heart piece reward
-                            GameObjectFunctions.SpawnParticle(
-                                 ObjType.ParticleRewardHeartPiece,
-                                 Actor.compSprite.position + offset);
+                            GameObjectFunctions.SpawnProjectile(
+                                ObjType.ParticleRewardHeartPiece,
+                                Actor.compSprite.position + offset,
+                                Direction.None);
                         }
                         Assets.sfxReward.Play();
                         PlayerData.saveData.heartPieces++;
@@ -209,7 +214,10 @@ namespace DungeonRun
                     //set actor into reward state
                     Actor.state = ActorState.Reward;
                     //play an explosion particle to show the chest was opened
-                    GameObjectFunctions.SpawnParticle(ObjType.ParticleAttention, Obj.compSprite.position);
+                    GameObjectFunctions.SpawnProjectile(
+                        ObjType.ParticleAttention,
+                        Obj.compSprite.position,
+                        Direction.None);
                 }
             }
 
@@ -226,13 +234,19 @@ namespace DungeonRun
                     {
                         GameObjectFunctions.SetType(Obj, ObjType.DoorOpen);
                         Assets.sfxDoorOpen.Play();
-                        GameObjectFunctions.SpawnParticle(ObjType.ParticleAttention, Obj.compSprite.position);
+                        GameObjectFunctions.SpawnProjectile(
+                            ObjType.ParticleAttention, 
+                            Obj.compSprite.position,
+                            Direction.None);
                     }
                 }
                 else if (Obj.type == ObjType.DoorTrap)
                 {   //trap doors push ALL actors
                     MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);
-                    GameObjectFunctions.SpawnParticle(ObjType.ParticleDashPuff, Actor.compSprite.position);
+                    GameObjectFunctions.SpawnProjectile(
+                        ObjType.ParticleDashPuff, 
+                        Actor.compSprite.position,
+                        Direction.None);
                 }
             }
 

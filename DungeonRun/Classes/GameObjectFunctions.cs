@@ -98,28 +98,37 @@ namespace DungeonRun
             }
         }
 
+
+
+
+
+
+
         public static void SpawnProjectile(ObjType Type, Vector2 Pos, Direction Direction)
-        {   //a projectile always has a direction, so it inherit's actor's direction
+        {
             GameObject projectile = PoolFunctions.GetProjectile();
-            projectile.type = Type;
+            SetType(projectile, Type);
 
-            //convert projectile's directions to cardinal
-            projectile.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
-            projectile.compMove.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
+            if (projectile.group == ObjGroup.Projectile)
+            {   //convert projectile's directions to cardinal
+                projectile.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
+                projectile.compMove.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
+                AlignProjectile(projectile, Pos);
+            }
+            else if (projectile.group == ObjGroup.Particle)
+            {   //particles dont move
+                projectile.direction = Direction.Down;
+                projectile.compMove.direction = Direction.None;
+                AlignParticle(projectile, Pos);
+            }
 
-            AlignProjectile(projectile, Pos);
-            SetType(projectile, projectile.type);
+            SetRotation(projectile); //set the projectile's rotation 
         }
 
-        public static void SpawnParticle(ObjType Type, Vector2 Pos)
-        {   //a particle doesn't have a direction, so it doesn't need actor's direction
-            GameObject particle = PoolFunctions.GetProjectile();
-            particle.type = Type;
-            particle.direction = Direction.Down;
-            particle.compMove.direction = Direction.None; //particles dont move
-            AlignParticle(particle, Pos);
-            SetType(particle, particle.type);
-        }
+
+        
+
+
 
         public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
         {
@@ -512,8 +521,10 @@ namespace DungeonRun
 
                     if (Obj.type == ObjType.ProjectileFireball)
                     {
-                        SpawnParticle(ObjType.ParticleExplosion, Obj.compSprite.position);
-                        SpawnParticle(ObjType.ParticleFire, Obj.compSprite.position);
+                        SpawnProjectile(ObjType.ParticleExplosion, 
+                            Obj.compSprite.position, Direction.None);
+                        SpawnProjectile(ObjType.ParticleFire,
+                            Obj.compSprite.position, Direction.None);
                         Assets.sfxFireballDeath.Play();
                     }
 

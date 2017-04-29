@@ -43,22 +43,43 @@ ram useage:
 todo:
 
 
-8
+7
 
 
 
-doubled up the initial frame of the ParticleSmokePuff anim list.
-now calling spawn for a SmokePuff particle when hero casts fireball.
-updated AlignParticle() to better place SmokePuff.
-fixed a bug where SmokePuff's anim list was using the wrong row.
-playtested, working, but it's not quite right yet...
+consolidated SpawnProjectile() and SpawnParticle() into SpawnProjectile().
+updated various codepaths that referenced SpawnParticle().
+slightly changed how SpawnProjectile() works.
+playtested, working.
 
+
+
+
+what about if fireball creates a puff particle on it's first frame?
+if it's lifetime == 1, create puff at position
+
+
+
+
+
+
+
+we want to be able to align a projectile AND a particle to an actor
 
 
 
 so, smokePuff spawns on the hero when he cast's fireball.
 but i really want it to spawn at the location of the fireball.
 this way it looks like it's the smoke from the fireball's creation.
+
+
+BUT, particles don't align like projectiles do to the actor that creates them
+we could change this...
+
+
+
+
+
 
 
 
