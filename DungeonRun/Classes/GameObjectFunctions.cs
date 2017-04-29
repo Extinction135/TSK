@@ -454,7 +454,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleFire)
             {
-                Obj.compSprite.zOffset = 16;
+                Obj.compSprite.zOffset = 12;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames

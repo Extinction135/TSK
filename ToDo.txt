@@ -43,24 +43,34 @@ ram useage:
 todo:
 
 
-12
-
-
-extended fire particle's lifetime value.
-slowed down fire particle's animation speed.
-increased fire particle's zoffset to +16.
+11
 
 
 
+doubled up on the explosion's first frame, so the initial impact reads better.
+playtested, it's much more satisfying when you destroy an enemy now.
+reduced the sorting offset for fire particle just a bit, to sort better with actors.
 
-double up on the explosion's first frame, so the initial impact reads better
+changed how the reward animation list for actors is defined.
+it no longer points to the use animation, it defines it's own frames to use.
+the actor.use animation now points to the attack animation.
+this fixes a bug where hero was set into the 'reward' animation upon a use state.
+playtested, looking MUCH better and natural.
+
+
+
+
+we need some kind of cast particle when hero creates a fireball
+this could be as simple as an explosion particle
+
+
+
+
+
+
 
 
 Fireball polish
-
-when we end the life of the fireball projectile, we should create a fire particle
-which means we need a fire particle
-this already exists in the sprite sheet
 
 bug: hero should be put into the attack anim instead of reward/use anim for this item
 

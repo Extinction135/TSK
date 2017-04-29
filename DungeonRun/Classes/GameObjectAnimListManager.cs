@@ -164,7 +164,7 @@ namespace DungeonRun
                 //ParticleSmokeSmall
                 new List<Byte4> { new Byte4(2, 0, 0, 0), new Byte4(3, 0, 0, 0), new Byte4(4, 0, 0, 0), new Byte4(5, 0, 0, 0) },
                 //ParticleExplosion
-                new List<Byte4> { new Byte4(5, 0, 0, 0), new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0) },
+                new List<Byte4> { new Byte4(5, 0, 0, 0), new Byte4(5, 0, 0, 0), new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0) },
                 //ParticleSmokePuff
                 new List<Byte4> { new Byte4(5, 0, 0, 0), new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0) },
                 //ParticleHitSparkle

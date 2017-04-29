@@ -51,7 +51,7 @@ namespace DungeonRun
             //create/populate Actor's AnimationList
             actorAnims = new ActorAnimationList();
 
-            //idle move dash interact lists
+            //idle, move, dash, & interact lists
             actorAnims.idle = new AnimationGroup();
             actorAnims.idle.down = new List<Byte4>   { new Byte4(0, 0, 0, 0) };
             actorAnims.idle.up = new List<Byte4>     { new Byte4(0, 1, 0, 0) };
@@ -76,18 +76,15 @@ namespace DungeonRun
             actorAnims.interact.right = new List<Byte4> { new Byte4(4, 2, 0, 0) };
             actorAnims.interact.left = new List<Byte4>  { new Byte4(4, 2, 1, 0) };
 
-            //attack use hit dead lists
+            //attack, use, hit, & dead lists
             actorAnims.attack = new AnimationGroup();
             actorAnims.attack.down = new List<Byte4>     { new Byte4(3, 0, 0, 0) };
             actorAnims.attack.up = new List<Byte4>       { new Byte4(3, 1, 0, 0) };
             actorAnims.attack.right = new List<Byte4>    { new Byte4(3, 2, 0, 0) };
             actorAnims.attack.left = new List<Byte4>     { new Byte4(3, 2, 1, 0) };
 
-            actorAnims.use = new AnimationGroup();
-            actorAnims.use.down = new List<Byte4>   { new Byte4(3, 3, 0, 0) };
-            actorAnims.use.up = actorAnims.use.down;
-            actorAnims.use.right = actorAnims.use.down;
-            actorAnims.use.left = actorAnims.use.down;
+            //use anim just points to attack anim
+            actorAnims.use = actorAnims.attack;
 
             actorAnims.hit = new AnimationGroup();
             actorAnims.hit.down = new List<Byte4>   { new Byte4(0, 3, 0, 0) };
@@ -102,7 +99,11 @@ namespace DungeonRun
             actorAnims.dead.left = actorAnims.dead.down;
 
             //reward list
-            actorAnims.reward = actorAnims.use;
+            actorAnims.reward = new AnimationGroup();
+            actorAnims.reward.down = new List<Byte4> { new Byte4(3, 3, 0, 0) };
+            actorAnims.reward.up = actorAnims.reward.down;
+            actorAnims.reward.right = actorAnims.reward.down;
+            actorAnims.reward.left = actorAnims.reward.down;
 
         }
 
