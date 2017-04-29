@@ -43,12 +43,28 @@ ram useage:
 todo:
 
 
-9
+8
 
-updated InteractionFunctions.Handle(Actor, Obj) to spawn AttentionParticles instead of ExplosionParticles.
-this happens when hero opens a chest, or opens the boss door.
-removed call to spawn AttentionParticle when hero casts a fireball.
-playtested, looks great.
+
+
+doubled up the initial frame of the ParticleSmokePuff anim list.
+now calling spawn for a SmokePuff particle when hero casts fireball.
+updated AlignParticle() to better place SmokePuff.
+fixed a bug where SmokePuff's anim list was using the wrong row.
+playtested, working, but it's not quite right yet...
+
+
+
+
+so, smokePuff spawns on the hero when he cast's fireball.
+but i really want it to spawn at the location of the fireball.
+this way it looks like it's the smoke from the fireball's creation.
+
+
+
+
+i think that the sword projectile is somehow inheriting the previous life's speed or magnitude
+we need to make sure we are in no way inheriting, and clearing, that data
 
 
 
@@ -66,18 +82,11 @@ right now, this is done in game object functions, but this should be done in poo
 
 
 
-update the boss door to use the changeParticle
-update the chest opening routine to use the changeParticle
-
-
-
-
-
 
 we need some kind of cast particle when hero creates a fireball
 
 
-
+what about the puff smoke particle?
 
 
 

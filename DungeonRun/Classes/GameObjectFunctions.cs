@@ -156,6 +156,8 @@ namespace DungeonRun
             Particle.compSprite.flipHorizontally = false;
             //center horizontally, place near actor's feet
             if (Particle.type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
+            //center horizontally, place near actor's head
+            else if (Particle.type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
             //teleport the projectile to the position with the offset
             MovementFunctions.Teleport(Particle.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
         }
@@ -433,7 +435,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = false;
             }
             else if (Type == ObjType.ParticleHitSparkle)
