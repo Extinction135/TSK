@@ -251,9 +251,10 @@ namespace DungeonRun
 
                     //limit the magnitude of the actor being pushed
                     //Actor.compMove.magnitude.X
+                    Assets.sfxBounce.Play(); //play the bounce sound fx
 
                     //make a puff particle
-                    //play the bumper sound fx
+
                 }
 
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,

@@ -43,14 +43,15 @@ ram useage:
 todo:
 
 
-6
+5
 
 
 
-added a bumper to spawn room.
-updated InteractionFunctions.Handle(Obj, Obj) to push actor in opposite direction upon collision with bumper.
-playtested, refined the push value for bumper.
 
+added SoundBounce to content project, built.
+added instances to Assets to handle loading of SoundBounce file.
+added call to play SoundBounce from InteractionFunctions.Handle(Obj, Obj).
+playtested, working.
 
 
 bumpers - easy to do
