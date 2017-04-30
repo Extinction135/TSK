@@ -43,16 +43,21 @@ ram useage:
 todo:
 
 
-1
+13
 
 
 
-updated MovementFunctions.Move(Obj) to only move and collision check non-particle objects.
-particles never move or get collision checked.
-this is in prep for moving gameobjects.
-planning on how to implement the first moving room object, the spike block.
 
 
+created a spike block in spawn room for testing.
+added codepath for spikeblock into InteractionFunctions.Handle(Actor, Obj).
+created ComponentFunctions.GetOppositeDirection(Direction).
+added call to Damage() from the Handle() codepath.
+playtested, spike block properly pushing hero and damaging him.
+
+
+
+should push hero upon collision
 
 
 
@@ -76,16 +81,6 @@ we can only optimize out the particles from movement and collision checks
 
 
 
-
-
-
-can we set the dungeon screen's fadeIn value to a negative number?
-this would give the screen enough time to show the boss death or player death
-without a fade in occurring
-then after it hits 0, the fade in would start....
-
-
-
 we still need to address how we are aligning particles and projectiles
 AlignProjectile() assumes the projectile or particle is being used in one specific context
 BUT it could be being used in many different contexts
@@ -96,14 +91,37 @@ it needs to be flexible and handle all the different contexts
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+can we set the dungeon screen's fadeIn value to a negative number?
+this would give the screen enough time to show the boss death or player death
+without a fade in occurring
+then after it hits 0, the fade in would start....
+
+
+
 Fireball polish
 
 the fireball cast sound should always trigger, sometimes it doesn't cause the last Play() hasn't finished.
 fireball should have a longer actor lock time.
 
 
-	
-	
+
 Inventory Menu++
 
 make the gold sprite in loadout widget animate, just like the gold consumables
@@ -111,19 +129,6 @@ the info window should have the animated gold as well
 this SHOULD be as simple as setting the animation list of the sprite...
 
 
-
-
-
-expand the menuItem descriptions
-commit template:
-added enum value for MenuItemType.EquipmentPearl
-updated MenuItemFunctions.SetMenuItemData() with codepath for MenuItemType.EquipmentPearl.
-updated MenuWidgetInventory.Reset() to make 22nd menuItem a magic pearl.
-playtested, working.
-
-it would be nice if we didn't have to line break the menuItem descriptions by hand
-what if InfoWidget did the line breaks automatically?
-that would be better.
 
 
 	
@@ -140,6 +145,8 @@ we need menuItem sprites for the various stats
 	
 	
 pull all the sound effects from links awakening
+	
+	
 	
 	
 BUG?

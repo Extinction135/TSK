@@ -237,6 +237,27 @@ namespace DungeonRun
                 //nothing yet, but objs like pits would be handled here
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,
                 //torch unlit, torch lit, conveyor belt, 
+
+                if(Obj.type == ObjType.BlockSpikes)
+                {
+
+                    //get opposite direction of actor
+                    //need a function to get the opposite direction
+                    //Damage(Actor Actor, byte Damage, float Force, Direction Direction)
+                    BattleFunctions.Damage(Actor, 1, 10.0f,
+                        ComponentFunctions.GetOppositeDirection(Actor.direction));
+                    /*
+                    MovementFunctions.Push(Actor.compMove,
+                        ComponentFunctions.GetOppositeDirection(Actor.direction),
+                        1.0f);
+                    
+                    GameObjectFunctions.SpawnProjectile(
+                        ObjType.ParticleAttention,
+                        Actor.compSprite.position,
+                        Direction.None);
+                    */
+
+                }
             }
 
             #endregion
