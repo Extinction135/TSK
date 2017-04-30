@@ -51,6 +51,8 @@ namespace DungeonRun
             Pool.projectileIndex++;
             if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
             Pool.projectilePool[Pool.projectileIndex].active = true;
+            //tell the projectile to hide offscreen, intially
+            Pool.projectilePool[Pool.projectileIndex].compMove.newPosition.X = -1000;
             Pool.projectilesUsed++;
             return Pool.projectilePool[Pool.projectileIndex];
         }
