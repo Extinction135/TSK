@@ -14,6 +14,9 @@ namespace DungeonRun
 {
     public static class MovementFunctions
     {
+        static float maxMagnitude = 7.0f;
+
+
 
         public static void Push(ComponentMovement Move, Direction Direction, float Amount)
         {
@@ -56,10 +59,16 @@ namespace DungeonRun
         public static void ProjectMovement(ComponentMovement Move)
         {
             Push(Move, Move.direction, Move.speed);
-            //apply friction to magnitude, clip magnitude to 0 when it gets very small
+            //apply friction to magnitude
             Move.magnitude = Move.magnitude * Move.friction;
+            //clip magnitude to 0 when it gets very small
             if (Math.Abs(Move.magnitude.X) < 0.01f) { Move.magnitude.X = 0; }
             if (Math.Abs(Move.magnitude.Y) < 0.01f) { Move.magnitude.Y = 0; }
+            //clip magnitude's maximum values
+            if (Move.magnitude.X > maxMagnitude) { Move.magnitude.X = maxMagnitude; }
+            else if (Move.magnitude.X < -maxMagnitude) { Move.magnitude.X = -maxMagnitude; }
+            if (Move.magnitude.Y > maxMagnitude) { Move.magnitude.Y = maxMagnitude; }
+            else if (Move.magnitude.Y < -maxMagnitude) { Move.magnitude.Y = -maxMagnitude; }
             //project newPosition based on current position + magnitude
             Move.newPosition.X = Move.position.X;
             Move.newPosition.Y = Move.position.Y;

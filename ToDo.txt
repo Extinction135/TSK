@@ -43,25 +43,19 @@ ram useage:
 todo:
 
 
-3
+2
 
 
 
-added codepath to AnimationFunctions.Animate() to scale sprites up or down to 1.0f.
-now scaling the bumper up to x1.25 upon a collision/interaction with actor.
+updated MovementFunctions.ProjectMovement() to limit the maxium value for magnitude.
+this is limited for both negative and positive values, per axis.
+increased amount of push from bumper interaction, to test the magnitude limit.
 playtested, working as expected.
+small bug: sometimes the actor can hit the bumper multiple times, producing several dash particles.
+this doesn't affect gameplay or break anything.
 
 
 
-when hero hits bumper, scale the bumper up
-gradually scale the bumper down overtime
-the bumper bounce sound should play
-
-
-
-we should limit the max magnitude that an actor can have
-so they can't fly through walls or be accelerated to some insae value
-this is something that should happen in MovementFunctions, tho.
 
 
 

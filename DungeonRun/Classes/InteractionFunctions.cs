@@ -244,10 +244,11 @@ namespace DungeonRun
                     MovementFunctions.Push(Actor.compMove, Obj.direction, 0.1f);
                 }
                 else if (Obj.type == ObjType.Bumper)
-                {   //push actor in opposite direction
+                {   
+                    //push actor in opposite direction
                     MovementFunctions.Push(Actor.compMove,
                         ComponentFunctions.GetOppositeDirection(Actor.direction),
-                        5.0f);
+                        10.0f);
                     //scale the bumper up
                     Obj.compSprite.scale = 1.25f;
                     //play the bounce sound fx
@@ -256,12 +257,6 @@ namespace DungeonRun
                         ObjType.ParticleDashPuff,
                         Actor.compSprite.position,
                         Direction.None);
-
-
-                    //limit the magnitude of the actor being pushed
-                    //Actor.compMove.magnitude.X
-
-
                 }
 
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,
