@@ -43,13 +43,13 @@ ram useage:
 todo:
 
 
-4
+3
 
 
-added call to spawn a dash puff particle upon collision with bumper.
-this particle spawns at colliding actor's position.
-playtested, looking good.
 
+added codepath to AnimationFunctions.Animate() to scale sprites up or down to 1.0f.
+now scaling the bumper up to x1.25 upon a collision/interaction with actor.
+playtested, working as expected.
 
 
 

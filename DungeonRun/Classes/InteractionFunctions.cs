@@ -248,15 +248,20 @@ namespace DungeonRun
                     MovementFunctions.Push(Actor.compMove,
                         ComponentFunctions.GetOppositeDirection(Actor.direction),
                         5.0f);
+                    //scale the bumper up
+                    Obj.compSprite.scale = 1.25f;
+                    //play the bounce sound fx
+                    Assets.sfxBounce.Play(); 
+                    GameObjectFunctions.SpawnProjectile(
+                        ObjType.ParticleDashPuff,
+                        Actor.compSprite.position,
+                        Direction.None);
+
 
                     //limit the magnitude of the actor being pushed
                     //Actor.compMove.magnitude.X
 
-                    Assets.sfxBounce.Play(); //play the bounce sound fx
-                    GameObjectFunctions.SpawnProjectile(
-                        ObjType.ParticleDashPuff,
-                        Actor.compSprite.position, 
-                        Direction.None);
+
                 }
 
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,
