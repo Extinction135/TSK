@@ -43,18 +43,37 @@ ram useage:
 todo:
 
 
-10
+8
 
 
-bug: the spikeblock gets stuck in the skullpot.
-cause: the GetOppositeDirection() function was returning diagonal values.
-which is correct, but a spike block doesn't know how to move diagonally.
-solution: changed GetOppositeDirection() to only return cardinal values.
-playtested, working as expected.
 
 
-bug: the particles seem to flicker at their old position before moving to their new position.
-when we release an object, we should move it's sprite off screen
+added a test conveyor belt to spawn room.
+updated InteractionFunctions.Handle(Obj, Obj) with codepath for conveyor belt.
+belt simply pushes actor in the direction of the belt.
+playtested and refined the amount of push the belt applies.
+
+
+
+conveyor belts - easy to do
+
+bumpers - easy to do
+
+
+
+
+
+
+
+
+
+
+
+the metallic sound effect could be played simultaneously..
+
+it would seem that any sound effect could be played simultaneously.
+we need a better solution that scales.
+
 
 
 

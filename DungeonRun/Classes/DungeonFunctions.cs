@@ -316,6 +316,21 @@ namespace DungeonRun
                 #endregion
 
 
+                //place test conveyor belt
+                for (i = 0; i < Room.size.y; i++)
+                {
+                    objRef = PoolFunctions.GetObj();
+                    MovementFunctions.Teleport(objRef.compMove,
+                        11 * 16 + pos.X + 8,
+                        i * 16 + pos.Y + 8);
+                    objRef.direction = Direction.Down;
+                    GameObjectFunctions.SetType(objRef, ObjType.ConveyorBelt);
+                }
+
+
+
+
+
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);
             }

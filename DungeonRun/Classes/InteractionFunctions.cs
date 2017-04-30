@@ -239,6 +239,10 @@ namespace DungeonRun
                     BattleFunctions.Damage(Actor, 1, 10.0f,
                         ComponentFunctions.GetOppositeDirection(Actor.direction));
                 }
+                else if (Obj.type == ObjType.ConveyorBelt)
+                {   //push actor in belt's direction
+                    MovementFunctions.Push(Actor.compMove, Obj.direction, 0.1f);
+                }
 
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,
                 //torch unlit, torch lit, conveyor belt, 
