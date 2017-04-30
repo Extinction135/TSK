@@ -157,9 +157,12 @@ namespace DungeonRun
                 { MovementFunctions.Move(Pool.projectilePool[Pool.counter]); }
             }
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
-            {   //move projectiles in projectile pool that are active
+            {   //if this object is active, and it isn't blocking, then move it
                 if (Pool.objPool[Pool.counter].active)
-                { MovementFunctions.Move(Pool.objPool[Pool.counter]); }
+                {   //only non-blocking objects get moved, collision checked, and interaction handled
+                    if (!Pool.objPool[Pool.counter].compCollision.blocking)
+                    { MovementFunctions.Move(Pool.objPool[Pool.counter]); }
+                }
             }
         }
 

@@ -43,27 +43,46 @@ ram useage:
 todo:
 
 
-8
+7
+
+
+optimization: don't move, collision check, or handle interactions for non-blocking room objects.
+these objects will never collide/interact with other objects.
+other objects WILL collide & interact with them. 
+but there's no need to do this checking/interaction twice.
+
+change: added a check into PoolFunctions.Move() to only Move() non-blocking objects in the objPool.
+this dropped the Update loop from around 2200 ticks to around 600 ticks (for spawn room, sans mobs).
+so, a savings of about 1600 ticks, or a reduction in time of 73%.
+an optimization that reduces each frame's total time by 73% isn't bad.
 
 
 
 
-added a test conveyor belt to spawn room.
-updated InteractionFunctions.Handle(Obj, Obj) with codepath for conveyor belt.
-belt simply pushes actor in the direction of the belt.
-playtested and refined the amount of push the belt applies.
 
 
-
-conveyor belts - easy to do
 
 bumpers - easy to do
 
+bumpers simply push actor in opposite direction
+
+when hero hits bumper, scale the bumper up
+gradually scale the bumper down overtime
+the bumper bounce sound should play
+
+
+
+
+test mob interaction with spike blocks, conveyor belt, bumper
 
 
 
 
 
+
+
+bug: hero's magnitude /speed should be zero'd out (stop movement) upon dungeon build
+we died on a conveyor belt, and when the dungeon rebuilt, hero was being pushed down.
 
 
 
