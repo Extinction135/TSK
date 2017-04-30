@@ -43,24 +43,18 @@ ram useage:
 todo:
 
 
-11
+10
 
 
+bug: the spikeblock gets stuck in the skullpot.
+cause: the GetOppositeDirection() function was returning diagonal values.
+which is correct, but a spike block doesn't know how to move diagonally.
+solution: changed GetOppositeDirection() to only return cardinal values.
+playtested, working as expected.
 
 
-added SoundMetallicTap to content project, built.
-added instances into Assets to handle loading of MetallicTap.
-added call to play MetallicTap when spike block interacts with object, via InteractionFunctions.Handle(Obj, Obj).
-playtested, working.
-
-added call to spawn a hit particle upon spike block interaction.
-added a second spike block to spawn room, this one moves right initially.
-playtested, bug: the spikeblock gets stuck in the skull pot.
-
-
-
-
-bug: the spikeblock gets stuck in the skullpot. why?
+bug: the particles seem to flicker at their old position before moving to their new position.
+when we release an object, we should move it's sprite off screen
 
 
 

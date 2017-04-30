@@ -267,7 +267,7 @@ namespace DungeonRun
                 {   //flip the object's direction to the opposite direction
                     ObjA.compMove.direction = ComponentFunctions.GetOppositeDirection(ObjA.compMove.direction);
                     //push the object in it's new direction, out of this collision
-                    MovementFunctions.Push(ObjA.compMove, ObjA.compMove.direction, 4.0f);
+                    MovementFunctions.Push(ObjA.compMove, ObjA.compMove.direction, 5.0f);
                     Assets.sfxMetallicTap.Play(); //play the 'clink' sound effect
                     //show that the object has been hit
                     GameObjectFunctions.SpawnProjectile(
