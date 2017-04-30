@@ -296,7 +296,8 @@ namespace DungeonRun
                 #endregion
 
 
-                //create a spike block for testing
+                #region Create testing spike blocks
+
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     7 * 16 + pos.X + 8,
@@ -304,8 +305,15 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.BlockSpikes);
 
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    7 * 16 + pos.X + 8,
+                    7 * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, ObjType.BlockSpikes);
+                objRef.compMove.direction = Direction.Right;
 
-
+                #endregion
 
 
                 //spawn enemies inside of this room

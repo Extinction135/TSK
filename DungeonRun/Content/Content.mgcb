@@ -269,3 +269,9 @@
 /processorParam:Quality=Best
 /build:SoundFireballDeath.wav
 
+#begin SoundMetallicTap.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundMetallicTap.wav
+

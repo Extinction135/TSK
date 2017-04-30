@@ -43,26 +43,24 @@ ram useage:
 todo:
 
 
-12
+11
 
 
 
 
-renamed the parameters for Handle(Projectile, Obj) to Handle(ObjA, ObjB).
-this better describes the functions nature, which is interaction between objects.
+added SoundMetallicTap to content project, built.
+added instances into Assets to handle loading of MetallicTap.
+added call to play MetallicTap when spike block interacts with object, via InteractionFunctions.Handle(Obj, Obj).
+playtested, working.
 
-updated Handle(Obj, Obj) with codepath for spike block.
-upon collision, spike block reverses / flips it's direction.
-updated PoolFunctions.Move() to move all objects in the object pool.
-updated GameObjectFunctions.SetType() to give spike block a speed value.
-updated InteractionFunctions.Handle(Obj, Obj) to Push() object post collision.
-this completes the moving funtionality for SpikeBlock.
-playtested, working as expected. SpikeBlock bounces off of walls, damages player.
+added call to spawn a hit particle upon spike block interaction.
+added a second spike block to spawn room, this one moves right initially.
+playtested, bug: the spikeblock gets stuck in the skull pot.
 
-however, we'd like spike block to push player in a direction that won't cause sequential collisions.
-if the block is moving down, and the hero is facing up, the block pushes hero down, and then hits them again.
-which leads to a perpetual cycle of being hit, instakilling the hero.
 
+
+
+bug: the spikeblock gets stuck in the skullpot. why?
 
 
 

@@ -129,6 +129,9 @@ namespace DungeonRun
         static SoundEffect sfxFireballDeathSrc;
         public static SoundEffectInstance sfxFireballDeath;
 
+        static SoundEffect sfxMetallicTapSrc;
+        public static SoundEffectInstance sfxMetallicTap;
+
         #endregion
 
 
@@ -251,6 +254,9 @@ namespace DungeonRun
 
             sfxFireballDeathSrc = content.Load<SoundEffect>(@"SoundFireballDeath");
             sfxFireballDeath = sfxFireballDeathSrc.CreateInstance();
+
+            sfxMetallicTapSrc = content.Load<SoundEffect>(@"SoundMetallicTap");
+            sfxMetallicTap = sfxMetallicTapSrc.CreateInstance();
 
             #endregion
 
