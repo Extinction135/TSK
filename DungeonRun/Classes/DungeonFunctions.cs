@@ -299,8 +299,8 @@ namespace DungeonRun
                 //create a spike block for testing
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    5 * 16 + pos.X + 8,
-                    5 * 16 + pos.Y + 8);
+                    7 * 16 + pos.X + 8,
+                    3 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.BlockSpikes);
 

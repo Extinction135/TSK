@@ -234,30 +234,15 @@ namespace DungeonRun
 
             else if(Obj.group == ObjGroup.Object)
             {
-                //nothing yet, but objs like pits would be handled here
+                if (Obj.type == ObjType.BlockSpikes)
+                {   //damage actor and push in actor's opposite direction
+                    BattleFunctions.Damage(Actor, 1, 10.0f,
+                        ComponentFunctions.GetOppositeDirection(Actor.direction));
+                }
+
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,
                 //torch unlit, torch lit, conveyor belt, 
 
-                if(Obj.type == ObjType.BlockSpikes)
-                {
-
-                    //get opposite direction of actor
-                    //need a function to get the opposite direction
-                    //Damage(Actor Actor, byte Damage, float Force, Direction Direction)
-                    BattleFunctions.Damage(Actor, 1, 10.0f,
-                        ComponentFunctions.GetOppositeDirection(Actor.direction));
-                    /*
-                    MovementFunctions.Push(Actor.compMove,
-                        ComponentFunctions.GetOppositeDirection(Actor.direction),
-                        1.0f);
-                    
-                    GameObjectFunctions.SpawnProjectile(
-                        ObjType.ParticleAttention,
-                        Actor.compSprite.position,
-                        Direction.None);
-                    */
-
-                }
             }
 
             #endregion
@@ -265,17 +250,25 @@ namespace DungeonRun
 
         }
 
-        public static void Handle(GameObject Projectile, GameObject Obj)
+        public static void Handle(GameObject ObjA, GameObject ObjB)
         {
             //Obj could be a projectile!
             //Projectile could = Obj!, if comparing Projectile to Obj in ProjectilePool
             //no blocking checks have been done yet
 
-            if(Obj.compCollision.blocking) //is the colliding object blocking?
+            if(ObjB.compCollision.blocking) //is the colliding object blocking?
             {
-                if (Projectile.type == ObjType.ProjectileFireball)
+                if (ObjA.type == ObjType.ProjectileFireball)
                 {
-                    Projectile.lifeCounter = Projectile.lifetime; //kill fireball
+                    ObjA.lifeCounter = ObjA.lifetime; //kill fireball
+                }
+
+                else if (ObjA.type == ObjType.BlockSpikes)
+                {   //flip the object's direction to the opposite direction
+                    ObjA.compMove.direction = ComponentFunctions.GetOppositeDirection(ObjA.compMove.direction);
+                    //push the object in it's new direction, out of this collision
+                    MovementFunctions.Push(ObjA.compMove, ObjA.compMove.direction, 4.0f);
+                    //play the 'clink' sound effect
                 }
             }
         }

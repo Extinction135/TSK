@@ -154,7 +154,11 @@ namespace DungeonRun
                 if (Pool.projectilePool[Pool.counter].active)
                 { MovementFunctions.Move(Pool.projectilePool[Pool.counter]); }
             }
-            //objects in the objPool dont move
+            for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
+            {   //move projectiles in projectile pool that are active
+                if (Pool.objPool[Pool.counter].active)
+                { MovementFunctions.Move(Pool.objPool[Pool.counter]); }
+            }
         }
 
 

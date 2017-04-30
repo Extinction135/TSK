@@ -43,37 +43,39 @@ ram useage:
 todo:
 
 
-13
+12
+
+
+
+
+renamed the parameters for Handle(Projectile, Obj) to Handle(ObjA, ObjB).
+this better describes the functions nature, which is interaction between objects.
+
+updated Handle(Obj, Obj) with codepath for spike block.
+upon collision, spike block reverses / flips it's direction.
+updated PoolFunctions.Move() to move all objects in the object pool.
+updated GameObjectFunctions.SetType() to give spike block a speed value.
+updated InteractionFunctions.Handle(Obj, Obj) to Push() object post collision.
+this completes the moving funtionality for SpikeBlock.
+playtested, working as expected. SpikeBlock bounces off of walls, damages player.
+
+however, we'd like spike block to push player in a direction that won't cause sequential collisions.
+if the block is moving down, and the hero is facing up, the block pushes hero down, and then hits them again.
+which leads to a perpetual cycle of being hit, instakilling the hero.
 
 
 
 
 
-created a spike block in spawn room for testing.
-added codepath for spikeblock into InteractionFunctions.Handle(Actor, Obj).
-created ComponentFunctions.GetOppositeDirection(Direction).
-added call to Damage() from the Handle() codepath.
-playtested, spike block properly pushing hero and damaging him.
+
+however, we'd like spike block to push player in a direction that won't cause sequential collisions.
+if the block is moving down, and the hero is facing up, the block pushes hero down, and then hits them again.
+which leads to a perpetual cycle of being hit, instakilling the hero.
 
 
 
-should push hero upon collision
+we also need the 'clink' sound effect for when a spike block collides with something else
 
-
-
-
-
-implement the first moving room object - the spike block
-
-it needs to get it's movement projected, and collision checked
-if it collides with an object, it reverses its direction
-so moving left, collision, now moving right.. for all directional cases
-
-if it collides with an actor, it deals that actor damage + switches directions
-if it collides with an object, it just changes directions
-
-this means the projectile pool AND obj pool needs to be moved() and collisionChecked()
-we can only optimize out the particles from movement and collision checks
 
 
 
