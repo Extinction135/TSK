@@ -49,6 +49,7 @@ namespace DungeonRun
             MovementFunctions.Teleport(Pool.hero.compMove, 
                 dungeon.rooms[0].center.X, 
                 dungeon.rooms[0].center.Y);
+            MovementFunctions.StopMovement(Pool.hero.compMove);
 
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();

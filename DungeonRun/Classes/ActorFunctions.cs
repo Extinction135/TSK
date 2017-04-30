@@ -244,7 +244,7 @@ namespace DungeonRun
                     {
                         Actor.lockTotal = 10;
                         Actor.stateLocked = true;
-                        ComponentFunctions.StopMovement(Actor.compMove);
+                        MovementFunctions.StopMovement(Actor.compMove);
                     }
                     else //if there isn't an obj to interact with, just revert to idle
                     { Actor.state = ActorState.Idle; }
@@ -262,7 +262,7 @@ namespace DungeonRun
                 else if (Actor.state == ActorState.Attack)
                 {
                     Actor.stateLocked = true;
-                    ComponentFunctions.StopMovement(Actor.compMove);
+                    MovementFunctions.StopMovement(Actor.compMove);
                     UseWeapon(Actor);
                     //scale up the current weapon in world ui
                     if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }
@@ -270,7 +270,7 @@ namespace DungeonRun
                 else if (Actor.state == ActorState.Use)
                 {
                     Actor.stateLocked = true;
-                    ComponentFunctions.StopMovement(Actor.compMove);
+                    MovementFunctions.StopMovement(Actor.compMove);
                     UseItem(Actor);
                     //scale up the current item in world ui
                     if (Actor == Pool.hero) { WorldUI.currentItem.scale = 1.4f; }

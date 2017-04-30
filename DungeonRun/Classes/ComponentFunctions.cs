@@ -24,13 +24,6 @@ namespace DungeonRun
             Coll.rec.Y = (int)Move.newPosition.Y + Coll.offsetY;
         }
 
-        public static void StopMovement(ComponentMovement Move)
-        {
-            Move.magnitude.X = 0;
-            Move.magnitude.Y = 0;
-            Move.speed = 0;
-        }
-
         public static void CenterOrigin(ComponentSprite Sprite)
         {
             Sprite.origin.X = Sprite.cellSize.x * 0.5f;

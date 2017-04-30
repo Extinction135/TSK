@@ -92,5 +92,12 @@ namespace DungeonRun
             else { return Direction; } //Direction parameter is already Cardinal
         }
 
+        public static void StopMovement(ComponentMovement Move)
+        {
+            Move.magnitude.X = 0;
+            Move.magnitude.Y = 0;
+            Move.speed = 0;
+        }
+
     }
 }

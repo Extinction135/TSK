@@ -43,16 +43,18 @@ ram useage:
 todo:
 
 
-2
+1
 
 
+tested mob interaction with spike blocks, conveyor belt, & bumper.
+EVERYTHING IS WORKING PERFECTLY AND I AM HAPPY.
 
-updated MovementFunctions.ProjectMovement() to limit the maxium value for magnitude.
-this is limited for both negative and positive values, per axis.
-increased amount of push from bumper interaction, to test the magnitude limit.
+moved StopMovement() into MovementFunctions.
+added call to StopMovement() for hero upon a new dungeon build.
+this fixes a bug where hero's magnitude wasn't reset upon a dungeon build.
+if hero died on a conveyor belt, he would respawn moving in the direction of the belt he died on.
+updated various codepaths that referenced ComponentFunctions.StopMovement().
 playtested, working as expected.
-small bug: sometimes the actor can hit the bumper multiple times, producing several dash particles.
-this doesn't affect gameplay or break anything.
 
 
 
@@ -62,17 +64,6 @@ this doesn't affect gameplay or break anything.
 
 
 
-
-test mob interaction with spike blocks, conveyor belt, bumper
-
-
-
-
-
-
-
-bug: hero's magnitude /speed should be zero'd out (stop movement) upon dungeon build
-we died on a conveyor belt, and when the dungeon rebuilt, hero was being pushed down.
 
 
 
@@ -84,49 +75,15 @@ it would seem that any sound effect could be played simultaneously.
 we need a better solution that scales.
 
 
-
-
-
-
 however, we'd like spike block to push player in a direction that won't cause sequential collisions.
 if the block is moving down, and the hero is facing up, the block pushes hero down, and then hits them again.
 which leads to a perpetual cycle of being hit, instakilling the hero.
-
-
-
-we also need the 'clink' sound effect for when a spike block collides with something else
-
-
-
-
-
-
 
 
 we still need to address how we are aligning particles and projectiles
 AlignProjectile() assumes the projectile or particle is being used in one specific context
 BUT it could be being used in many different contexts
 it needs to be flexible and handle all the different contexts
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
