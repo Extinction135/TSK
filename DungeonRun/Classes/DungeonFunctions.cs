@@ -328,6 +328,13 @@ namespace DungeonRun
                 }
 
 
+                //place a test bumper
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    13 * 16 + pos.X + 8,
+                    3 * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                GameObjectFunctions.SetType(objRef, ObjType.Bumper);
 
 
 

@@ -243,9 +243,21 @@ namespace DungeonRun
                 {   //push actor in belt's direction
                     MovementFunctions.Push(Actor.compMove, Obj.direction, 0.1f);
                 }
+                else if (Obj.type == ObjType.Bumper)
+                {   //push actor in opposite direction
+                    MovementFunctions.Push(Actor.compMove,
+                        ComponentFunctions.GetOppositeDirection(Actor.direction),
+                        5.0f);
+
+                    //limit the magnitude of the actor being pushed
+                    //Actor.compMove.magnitude.X
+
+                    //make a puff particle
+                    //play the bumper sound fx
+                }
 
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,
-                //torch unlit, torch lit, conveyor belt, 
+                //torch unlit, torch lit, 
 
             }
 

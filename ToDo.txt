@@ -43,22 +43,13 @@ ram useage:
 todo:
 
 
-7
-
-
-optimization: don't move, collision check, or handle interactions for non-blocking room objects.
-these objects will never collide/interact with other objects.
-other objects WILL collide & interact with them. 
-but there's no need to do this checking/interaction twice.
-
-change: added a check into PoolFunctions.Move() to only Move() non-blocking objects in the objPool.
-this dropped the Update loop from around 2200 ticks to around 600 ticks (for spawn room, sans mobs).
-so, a savings of about 1600 ticks, or a reduction in time of 73%.
-an optimization that reduces each frame's total time by 73% isn't bad.
+6
 
 
 
-
+added a bumper to spawn room.
+updated InteractionFunctions.Handle(Obj, Obj) to push actor in opposite direction upon collision with bumper.
+playtested, refined the push value for bumper.
 
 
 
@@ -69,6 +60,15 @@ bumpers simply push actor in opposite direction
 when hero hits bumper, scale the bumper up
 gradually scale the bumper down overtime
 the bumper bounce sound should play
+
+
+
+we should limit the max magnitude that an actor can have
+so they can't fly through walls or be accelerated to some insae value
+this is something that should happen in MovementFunctions, tho.
+
+
+
 
 
 
