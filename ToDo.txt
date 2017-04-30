@@ -43,20 +43,15 @@ ram useage:
 todo:
 
 
-5
+4
+
+
+added call to spawn a dash puff particle upon collision with bumper.
+this particle spawns at colliding actor's position.
+playtested, looking good.
 
 
 
-
-added SoundBounce to content project, built.
-added instances to Assets to handle loading of SoundBounce file.
-added call to play SoundBounce from InteractionFunctions.Handle(Obj, Obj).
-playtested, working.
-
-
-bumpers - easy to do
-
-bumpers simply push actor in opposite direction
 
 when hero hits bumper, scale the bumper up
 gradually scale the bumper down overtime
