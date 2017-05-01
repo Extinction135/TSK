@@ -154,7 +154,7 @@ namespace DungeonRun
                             ObjType.ParticleRewardKey,
                             Actor.compSprite.position + offset,
                             Direction.None);
-                        Assets.sfxKeyPickup.Play();
+                        Assets.Play(Assets.sfxKeyPickup);
                         DungeonFunctions.dungeon.bigKey = true;
                     }
                     else if (Obj.type == ObjType.ChestMap)
@@ -210,7 +210,7 @@ namespace DungeonRun
                     if (DungeonFunctions.dungeon.bigKey && Actor == Pool.hero)
                     {
                         GameObjectFunctions.SetType(Obj, ObjType.DoorOpen);
-                        Assets.sfxDoorOpen.Play();
+                        Assets.Play(Assets.sfxDoorOpen);
                         GameObjectFunctions.SpawnProjectile(
                             ObjType.ParticleAttention, 
                             Obj.compSprite.position,
