@@ -111,6 +111,7 @@ namespace DungeonRun
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetInventory.menuItems[0];
             previouslySelected = MenuWidgetInventory.menuItems[0];
+            MenuWidgetInfo.Display(currentlySelected);
 
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet, 
@@ -161,6 +162,7 @@ namespace DungeonRun
                 {
                     MenuWidgetInfo.Display(currentlySelected);
                     Assets.Play(Assets.sfxTextLetter);
+                    previouslySelected.compSprite.scale = 1.0f;
                 }
             }
 
@@ -196,16 +198,11 @@ namespace DungeonRun
             MenuWidgetOptions.Update();
 
             //pulse the selectionBox alpha
-            if (selectionBox.alpha >= 1.0f)
-            { selectionBox.alpha = 0.1f; }
+            if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
             else { selectionBox.alpha += 0.025f; }
             //match the position of the selectionBox to the currently selected menuItem
             selectionBox.position = currentlySelected.compSprite.position;
-
-            //scale the currently selected item down to 1.0f
-            if (currentlySelected.compSprite.scale > 1.0f)
-            { currentlySelected.compSprite.scale -= 0.07f; }
-            else { currentlySelected.compSprite.scale = 1.0f; }
+            AnimationFunctions.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
         }
 
         public override void Draw(GameTime GameTime)

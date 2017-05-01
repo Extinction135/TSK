@@ -27,7 +27,6 @@ namespace DungeonRun
             window = new MenuWindow(new Point(-100, -100), 
                 new Point(100, 100), "Info Window");
             infoItem = new MenuItem();
-            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, infoItem);
             description = new ComponentText(Assets.font, 
                 "default description \ntext here...", new Vector2(-100, -100), 
                 Assets.colorScheme.textDark);
@@ -38,10 +37,12 @@ namespace DungeonRun
         public static void Reset(Point Position, Point Size)
         {   //align this widgets component to Position + Size
             window.ResetAndMoveWindow(Position, Size, "Info Window");
-            infoItem.compSprite.position.X = Position.X + 16 * 3 + 4;
-            infoItem.compSprite.position.Y = Position.Y + 16 * 2;
             description.position.X = Position.X + 8;
             description.position.Y = Position.Y + 16 * 3;
+            //reset the infoItem to unknown, align it
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, infoItem);
+            infoItem.compSprite.position.X = Position.X + 16 * 3 + 4;
+            infoItem.compSprite.position.Y = Position.Y + 16 * 2;
             //reset and align the divider line
             divider1.openDelay = window.headerLine.openDelay;
             divider1.position.X = Position.X + 8;
@@ -53,11 +54,7 @@ namespace DungeonRun
 
         public static void Display(MenuItem MenuItem)
         {   //set the widget's components based on the MenuItem's fields
-
-            //infoItem = MenuItem;
             infoItem.compAnim.currentAnimation = MenuItem.compAnim.currentAnimation;
-
-
             window.title.text = MenuItem.name;
             description.text = MenuItem.description;
         }

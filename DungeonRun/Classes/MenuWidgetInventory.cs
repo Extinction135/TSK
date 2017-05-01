@@ -126,6 +126,7 @@ namespace DungeonRun
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
 
+
             #region Set the menuItem data (based on the hero's inventory)
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
@@ -160,14 +161,13 @@ namespace DungeonRun
 
             #endregion
 
+
         }
 
         public static void Update()
         {
             window.Update();
             for (i = 0; i < dividers.Count; i++) { dividers[i].Update(); }
-            for (i = 0; i < menuItems.Count; i++)
-            { AnimationFunctions.Animate(menuItems[i].compAnim, menuItems[i].compSprite); }
         }
 
         public static void Draw()

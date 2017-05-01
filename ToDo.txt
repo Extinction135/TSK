@@ -43,34 +43,23 @@ ram useage:
 todo:
 
 
-4
+3
 
 
 
-created gold UI animated sprites in MainSheet.
-updated menuItem to have animation component.
-updated SetMenuItemData() to set menuItem.compAnim.currentAnimation lists.
+removed all codepaths in widgets that Updated() / Animated() lists of menuItems.
+the inventory menu was very distracting with menuItems animating all the time.
+updated InventoryScreen to animate the currently selected menuItem.
+now only the currently selected menuItem is animated on Inventory Screen. looks better.
+increased the amount by which a sprite is scaled down to 1.0, in AnimationFunctions.
 
-updated MenuWidgetInfo to use a MenuItem instead of a component sprite.
-this is because MenuItems animate now, so it's just easier to use a menuItem here, instead of two components.
+added a call to Animate() from MenuItemFunctions.SetMenuItemData().
+this fixes a bug where MenuItem sprites weren't being correctly displayed upon creation.
 
-updated MenuWidgetInfo to animate it's infoItem.
-updated MenuWidgetLoadout to animate it's menuItems.
-updated MenuWidgetInventory to animate it's menuItems.
-updated MenuWidgetOptions to animate it's menuItems.
-updated MenuWidgetStats to animate it's menuItems.
+added code to display the currently selected menuItem from inventoryScreen upon creation.
+playtested, working as expected. 
+moving onto additional bugs.
 
-since Animate() scales sprites down to 1.0, we no longer need to scale menuItems from InventoryScreen.
-removed that section of code from InventoryScreen.
-playtested, working, with some minor bugs and alignment issues.
-
-
-
-let's only animate the currently selected menuItem
-this way we don't have to update/animate each widget's menuItems
-this prevents the menuitems from ccompeting with players attention
-also, we dont have animations for the main inventory items
-it would look better if everything was still, until selected.
 
 
 
@@ -84,6 +73,15 @@ Animate() should scale sprites down faster (0.2?)
 
 we need the save game menuItem to rotate the arrow 180
 we can probably set/update the direction of the sprite
+
+scale bumper up to 2.0f upon collision
+
+
+bug: pick up a piece of heart, open menu, select heart piece
+it resets to empty heart piece
+
+
+
 
 
 audio ctrls sprite could be animated (sound waves growing)

@@ -305,6 +305,9 @@ namespace DungeonRun
                 MenuItem.description = "No description available\nfor this item.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 5, 0, 0) };
             }
+
+            //update the sprite's current frame to the animation list set above
+            AnimationFunctions.Animate(MenuItem.compAnim, MenuItem.compSprite);
         }
 
     }

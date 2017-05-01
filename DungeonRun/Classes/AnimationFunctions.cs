@@ -31,7 +31,7 @@ namespace DungeonRun
                 Anim.index++; //increment index to next frame
             }
             //animate the scale back to 1.0f
-            if (Sprite.scale > 1.0f) { Sprite.scale -= 0.01f; }
+            if (Sprite.scale > 1.0f) { Sprite.scale -= 0.07f; }
             else if (Sprite.scale < 1.0f) { Sprite.scale = 1.0f; }
         }
 
