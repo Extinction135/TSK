@@ -32,7 +32,7 @@ adding music:
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 	
 ram useage:
-	80mb on Win10.  82mb on XboxOne.
+	81mb on Win10.  82mb on XboxOne.
 	
 	
 	
@@ -43,31 +43,24 @@ ram useage:
 todo:
 
 
-2
+1
 
 
 
-remade UI gold sprite to match the chest reward sprite, but without the background and text.
-i've made a design decision to limit the total gold to 99.
-aligned the goldAmount text in loadout widget to new gold amount sprite.
-updated the info widget with a goldAmount text component & bkg, so it can more accurately reproduce the loadout widget.
-updated InfoWidget.Display() to show gold + bkg only if currently selected menuItem is inventory gold.
+turned off collisions between enemies.
+but, kept collisions between hero and enemies.
+this fixes a bug where enemies could spawn on top of each other and get stuck.
+it also fixes a bug where the boss could 'dash' onto the hero, locking him.
+this was very annoying and cheap when fighting him up close with a sword.
+playtested, working, feels better. 
+i'd still like to check collisions between enemies, but this works for now.
+it also reduces the update loop time.
 
-reduced reward gold to 20 in sprite sheet.
-changed ObjType enum ParticleReward50Gold to ParticleRewardGold.
-updated various codepaths to use the more generic enum value ParticleRewardGold.
-reduced the chance of an enemy dropping gold to 30% (in SpawnLoot()).
-now limiting the hero's max gold amount to 99 in WorldUI.Update().
+drastically increased the frequency with which the boss spawns mobs.
+playtested, SUPER FUN to fight tons of blobs in boss room.
+he spawns around 2 per second, up to 30 total.
+update loop still less than the draw loop, so estimated 4ms per frame on xbox one.
 
-updated InteractionFunctions.Interact(Actor, Obj) to scale Bumper obj up to 1.5.
-playtested, working as expected.
-
-moved heart piece sprites +2 on Y axis in sprite sheet, for better alignment in loadout widget.
-
-bug: pick up a piece of heart, open menu, select heart piece, resets to empty heart piece.
-cause: loadout widget was setting the sprite's current frame, which was then overwritten by the component animation's list.
-solution: set the component animation's list, then call Animate(HeartPiece MenuItem) from LoadoutWidget.Reset().
-playtested, working as expected.
 
 
 
@@ -85,56 +78,22 @@ we need menuItem sprites for the various stats
 	agility = how quickly hero moves + dashes
 	luck = increases amount of gold found + rewarded
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 pull all the sound effects from links awakening
 	
-	
-	
-	
-BUG?
-boss should collide with hero - right now he doesn't
-this means the boss 'locks' the hero when he collides with him - the hero can't move
-this also leads to a state where the boss can spawn a blob ON TOP of hero, locking them both
-** actually, the codepath in collisionFunctions.CheckActorPoolCollisions only ignores collisions..
-between blob and boss. Boss + Hero collisions should still be valid/true..
-but i've noticed that the boss overlaps/locks the hero still. at least it feels that way.
-so... not sure what the issue is: either i'm imagining the lock, or it's actually locking....
-
-
-
-
-
-
-
-
 we need boss music, and that music should play when hero enters boss room
+
+
+
+
 
 
 
 we should be setting the loadout menuItems based on what the player selects/chooses
 this is related to the hero's loadout data, which we haven't planned out yet
+
+weapons = [1,1,0,0,0] - something like this, a byte list
+items, magic, armor, equipment
+
 
 
 

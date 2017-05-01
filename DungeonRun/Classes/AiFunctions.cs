@@ -52,7 +52,7 @@ namespace DungeonRun
                 Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
                 if (GetRandom.Int(0, 100) > 80) { Actor.compInput.dash = true; }
                 //randomly spawn a blob mob at boss location
-                if (GetRandom.Int(0, 100) > 85)
+                if (GetRandom.Int(0, 100) > 50)
                 {
                     Actor actorRef = PoolFunctions.GetActor();
                     if(actorRef != null)

@@ -86,16 +86,24 @@ namespace DungeonRun
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active)
-                {   //actors always block/collide with each other, but not with themselves
+                {   //only check collisions with hero
+                    if (Actor.type == ActorType.Hero || Pool.actorPool[i].type == ActorType.Hero)
+                    {   //check for overlap, actors cannot collide with themselves
+                        if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
+                        { if (Actor != Pool.actorPool[i]) { collision = true; } }
+                    }
+
+                    /* THE OLD WAY
+                    //actors always block/collide with each other, but not with themselves
                     if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                     { if (Actor != Pool.actorPool[i]) { collision = true; } }
-
                     //if this was a collision between a blob and the boss, ignore it
                     if (Actor.type == ActorType.Blob && Pool.actorPool[i].type == ActorType.Boss)
                     { collision = false; }
                     //if this was a collision between the boss and a blob, ignore it
                     else if (Actor.type == ActorType.Boss && Pool.actorPool[i].type == ActorType.Blob)
                     { collision = false; }
+                    */
                 }
             }
             return collision; 
