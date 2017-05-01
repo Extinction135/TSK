@@ -281,10 +281,10 @@ namespace DungeonRun
                     Actor.lockCounter = 0;
 
 
-                    #region Dead Bosses perpetually explode
+                    #region Boss & Hero Death Effects
 
-                    if(Actor.type == ActorType.Boss)
-                    {
+                    if (Actor.type == ActorType.Boss)
+                    {   //dead bosses perpetually explode
                         if(GetRandom.Int(0,100) > 75) //randomly create explosions
                         {   //randomly place explosion around boss
                             GameObjectFunctions.SpawnProjectile(
@@ -294,6 +294,17 @@ namespace DungeonRun
                                 Direction.None);
                             //play corresponding explosion sound effect too
                             Assets.Play(Assets.sfxExplosion);
+                        }
+                    }
+                    else if(Actor.type == ActorType.Hero)
+                    {   //near the last frame of hero's death, create attention particles
+                        if (Actor.compAnim.index == Actor.compAnim.currentAnimation.Count-2)
+                        {   //this will happen multiple times, until anim.index increments
+                            GameObjectFunctions.SpawnProjectile(
+                                    ObjType.ParticleAttention,
+                                    Actor.compSprite.position.X,
+                                    Actor.compSprite.position.Y,
+                                    Direction.None);
                         }
                     }
 

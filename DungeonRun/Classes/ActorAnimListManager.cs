@@ -19,32 +19,27 @@ namespace DungeonRun
 
         public static void SetAnimationGroup(Actor Actor)
         {
-
-            //we need to be setting speed and loop here
+            //assume default animation speed and looping
             Actor.compAnim.speed = 10;
             Actor.compAnim.loop = true;
-
+            //set animation group based on actor state
             if (Actor.state == ActorState.Idle) { Actor.animGroup = Actor.animList.idle; }
             else if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.move; }
             else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.dash; }
             else if (Actor.state == ActorState.Interact) { Actor.animGroup = Actor.animList.interact; }
-            //
             else if (Actor.state == ActorState.Attack) { Actor.animGroup = Actor.animList.attack; }
             else if (Actor.state == ActorState.Use) { Actor.animGroup = Actor.animList.attack; }
             else if (Actor.state == ActorState.Hit) { Actor.animGroup = Actor.animList.hit; }
             else if (Actor.state == ActorState.Dead)
-            {   //play a special animation for the hero's death
+            {   
                 if (Actor.type == ActorType.Hero)
-                {
+                {   //play hero's death animation
                     Actor.animGroup = Actor.animList.heroDeath;
-                    //speed up anim speed
-                    Actor.compAnim.speed = 6;
-                    //do not loop this animation
-                    Actor.compAnim.loop = false;
+                    Actor.compAnim.speed = 6; //speed up animation
+                    Actor.compAnim.loop = false; //stop looping
                 }
                 else { Actor.animGroup = Actor.animList.death; }
             }
-            //
             else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
         }
 

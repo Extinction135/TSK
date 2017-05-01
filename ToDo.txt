@@ -43,23 +43,15 @@ ram useage:
 todo:
 
 
-6
+5
 
 
 
-updated ActorAnimationList struct with an animation group instance for heroDeath.
-rename animGroup 'Dead' to 'Death'.
-updated codepaths that used 'Dead' anim group.
-added a check into ActorAnimListManager.SetAnimGroup() to check actor.type for dead state.
-if actor is hero, then the heroDeath anim group is used, instead of the normal death anim group.
-defined the hero death anim to be a sprite sequence where hero spins around, then falls to ground.
-moved the setting of Actor.animList into the Actor class.
-this reference is only set once and will never change, there's no other list to set it to!
-updated ActorFunctions.SetType() to logically group 'ending' functions together.
-updated ActorAnimListManager.SetAnimGroup() to set the animation speed and loop boolean.
-updated the 'dead' state check for hero, to speed up animation and stop looping.
-this is polish to the hero's death state, which was animating too slowly and repeating.
-playtested, now the animation and the sound line up perfectly.
+
+added check to ActorFunctions.Update() -> death routines for hero death.
+upon hero death, attention particles are spawned just as hero falls to the ground.
+this adds emphasis to the hero's fall & death.
+playtested, looking MUCH better and more satisfying.
 
 
 
