@@ -104,4 +104,46 @@ namespace DungeonRun
         public byte heartPieces; //sets max health
     }
 
+    public struct ColorScheme
+    {
+        public String name;
+        public Color background;
+        public Color overlay;
+        public Color debugBkg;
+        public Color collision;
+
+        public Color buttonUp;
+        public Color buttonOver;
+        public Color buttonDown;
+
+        public Color windowBkg;
+        public Color windowBorder;
+        public Color windowInset;
+        public Color windowInterior;
+
+        public Color textLight;
+        public Color textDark;
+
+        public ColorScheme(String Name)
+        {
+            name = Name;
+            background = new Color(100, 100, 100, 255);
+            overlay = new Color(0, 0, 0, 255);
+            debugBkg = new Color(0, 0, 0, 200);
+            collision = new Color(100, 0, 0, 50);
+
+            buttonUp = new Color(44, 44, 44);
+            buttonOver = new Color(66, 66, 66);
+            buttonDown = new Color(100, 100, 100);
+
+            windowBkg = new Color(0, 0, 0);
+            windowBorder = new Color(210, 210, 210);
+            windowInset = new Color(130, 130, 130);
+            windowInterior = new Color(156, 156, 156);
+
+            textLight = new Color(255, 255, 255);
+            textDark = new Color(0, 0, 0);
+        }
+    }
+
 }

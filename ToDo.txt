@@ -43,28 +43,16 @@ ram useage:
 todo:
 
 
-1
+13
 
 
-tested mob interaction with spike blocks, conveyor belt, & bumper.
-EVERYTHING IS WORKING PERFECTLY AND I AM HAPPY.
 
-moved StopMovement() into MovementFunctions.
-added call to StopMovement() for hero upon a new dungeon build.
-this fixes a bug where hero's magnitude wasn't reset upon a dungeon build.
-if hero died on a conveyor belt, he would respawn moving in the direction of the belt he died on.
-updated various codepaths that referenced ComponentFunctions.StopMovement().
+moved ColorScheme struct into Structs.cs.
+added a String Name instance to ColorScheme.
+moved the assignment of default color scheme values into ColorSchemes constructor.
+removed Assets.SetDefaultColorScheme().
+removed reference to SetDefaultColorScheme() from Game1.
 playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -73,6 +61,12 @@ the metallic sound effect could be played simultaneously..
 
 it would seem that any sound effect could be played simultaneously.
 we need a better solution that scales.
+
+
+
+
+
+
 
 
 however, we'd like spike block to push player in a direction that won't cause sequential collisions.
