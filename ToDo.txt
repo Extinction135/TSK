@@ -43,24 +43,20 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
-migrated dash sound effect into new soundFX format / system.
-did a little research on how Monogame handles sound effect instances + instance pool.
-it would appear that the system i'm moving the sound effects to should work fine.
-if the total number of sfx instances exceeds 1024, Monogame will try to allocate more based on the platform.
-for pc, this isn't a problem. for xbox one, i fully expect the console to explode into a house fire.
-we'll see what happens when it's time to test on the console.
+
+migrated following sound effects to new system: SwordSwipe, EnemyHit, HeroHit
+updated various codepaths to use Assets.Play() method.
+playtested, working.
 
 
 
 
 
 
-
-refactor Assets to use only instance lists
 
 
 

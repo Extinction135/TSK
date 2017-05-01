@@ -23,8 +23,8 @@ namespace DungeonRun
             Actor.lockTotal = 15;
 
             //play the correct hit sound effect based on the actor type
-            if (Actor == Pool.hero) { Assets.sfxHeroHit.Play(); }
-            else { Assets.sfxEnemyHit.Play(); }
+            if (Actor == Pool.hero) { Assets.Play(Assets.sfxHeroHit); }
+            else { Assets.Play(Assets.sfxEnemyHit); }
             //if the actor hit was the boss, also play the boss hit sound
             if (Actor.type == ActorType.Boss) { Assets.sfxBossHit.Play(); }
 
@@ -116,7 +116,7 @@ namespace DungeonRun
             {
                 GameObjectFunctions.SpawnProjectile(ObjType.ProjectileSword, 
                     Actor.compSprite.position, Actor.direction);
-                Assets.sfxSwordSwipe.Play();
+                Assets.Play(Assets.sfxSwordSwipe);
                 Actor.lockTotal = 15;
             }
         }

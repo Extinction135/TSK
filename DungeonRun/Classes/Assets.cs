@@ -60,15 +60,10 @@ namespace DungeonRun
         //the number of lists * listSize SHOULD be less than 1024
 
         public static List<SoundEffectInstance> sfxDash;
+        public static List<SoundEffectInstance> sfxSwordSwipe;
+        public static List<SoundEffectInstance> sfxEnemyHit;
+        public static List<SoundEffectInstance> sfxHeroHit;
 
-        static SoundEffect sfxSwordSwipeSrc;
-        public static SoundEffectInstance sfxSwordSwipe;
-
-        static SoundEffect sfxEnemyHitSrc;
-        public static SoundEffectInstance sfxEnemyHit;
-
-        static SoundEffect sfxHeroHitSrc;
-        public static SoundEffectInstance sfxHeroHit;
 
         static SoundEffect sfxEnemyKillSrc;
         public static SoundEffectInstance sfxEnemyKill;
@@ -199,14 +194,15 @@ namespace DungeonRun
             sfxDash = new List<SoundEffectInstance>();
             SoundEffect dashSrc = content.Load<SoundEffect>(@"SoundDash");
 
-            sfxSwordSwipeSrc = content.Load<SoundEffect>(@"SoundSwordSwipe");
-            sfxSwordSwipe = sfxSwordSwipeSrc.CreateInstance();
+            sfxSwordSwipe = new List<SoundEffectInstance>();
+            SoundEffect swordSwipeSrc = content.Load<SoundEffect>(@"SoundSwordSwipe");
 
-            sfxEnemyHitSrc = content.Load<SoundEffect>(@"SoundEnemyHit");
-            sfxEnemyHit = sfxEnemyHitSrc.CreateInstance();
+            sfxEnemyHit = new List<SoundEffectInstance>();
+            SoundEffect enemyHitSrc = content.Load<SoundEffect>(@"SoundEnemyHit");
 
-            sfxHeroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
-            sfxHeroHit = sfxHeroHitSrc.CreateInstance();
+            sfxHeroHit = new List<SoundEffectInstance>();
+            SoundEffect heroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
+
 
             sfxEnemyKillSrc = content.Load<SoundEffect>(@"SoundEnemyKill");
             sfxEnemyKill = sfxEnemyKillSrc.CreateInstance();
@@ -281,6 +277,9 @@ namespace DungeonRun
             for (i = 0; i < listSize; i++)
             {
                 sfxDash.Add(dashSrc.CreateInstance());
+                sfxSwordSwipe.Add(swordSwipeSrc.CreateInstance());
+                sfxEnemyHit.Add(enemyHitSrc.CreateInstance());
+                sfxHeroHit.Add(heroHitSrc.CreateInstance());
 
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
             }
