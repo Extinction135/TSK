@@ -160,7 +160,7 @@ namespace DungeonRun
                 if (previouslySelected != currentlySelected)
                 {
                     MenuWidgetInfo.Display(currentlySelected);
-                    Assets.sfxTextLetter.Play();
+                    Assets.Play(Assets.sfxTextLetter);
                     //don't leave any menuItems scaled up beyond 1.0f
                     previouslySelected.compSprite.scale = 1.0f;
                 }

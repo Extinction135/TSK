@@ -145,7 +145,7 @@ namespace DungeonRun
                             ObjType.ParticleReward50Gold,
                             Actor.compSprite.position + offset, 
                             Direction.None);
-                        Assets.sfxReward.Play();
+                        Assets.Play(Assets.sfxReward);
                         PlayerData.saveData.gold += 50; //give the hero 50 gold
                     }
                     else if (Obj.type == ObjType.ChestKey)
@@ -163,7 +163,7 @@ namespace DungeonRun
                             ObjType.ParticleRewardMap,
                             Actor.compSprite.position + offset,
                             Direction.None);
-                        Assets.sfxReward.Play();
+                        Assets.Play(Assets.sfxReward);
                         DungeonFunctions.dungeon.map = true;
                     }
                     else if (Obj.type == ObjType.ChestHeartPiece)
@@ -182,11 +182,11 @@ namespace DungeonRun
                                 Actor.compSprite.position + offset,
                                 Direction.None);
                         }
-                        Assets.sfxReward.Play();
+                        Assets.Play(Assets.sfxReward);
                         PlayerData.saveData.heartPieces++;
                     }
 
-                    Assets.sfxChestOpen.Play();
+                    Assets.Play(Assets.sfxChestOpen);
                     GameObjectFunctions.SetType(Obj, ObjType.ChestEmpty);
                     //set actor into reward state
                     Actor.state = ActorState.Reward;

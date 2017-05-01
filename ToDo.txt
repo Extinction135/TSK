@@ -32,7 +32,7 @@ adding music:
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 	
 ram useage:
-	76mb on Win10.  82mb on XboxOne.
+	80mb on Win10.  82mb on XboxOne.
 	
 	
 	
@@ -43,7 +43,7 @@ ram useage:
 todo:
 
 
-9
+8
 
 
 

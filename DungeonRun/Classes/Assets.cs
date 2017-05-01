@@ -70,15 +70,11 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxKeyPickup;
         public static List<SoundEffectInstance> sfxBossIntro;
         //
+        public static List<SoundEffectInstance> sfxChestOpen;
+        public static List<SoundEffectInstance> sfxReward;
+        public static List<SoundEffectInstance> sfxTextLetter;
 
-        static SoundEffect sfxChestOpenSrc;
-        public static SoundEffectInstance sfxChestOpen;
-
-        static SoundEffect sfxRewardSrc;
-        public static SoundEffectInstance sfxReward;
-
-        static SoundEffect sfxTextLetterSrc;
-        public static SoundEffectInstance sfxTextLetter;
+        
 
         static SoundEffect sfxTextDoneSrc;
         public static SoundEffectInstance sfxTextDone;
@@ -202,15 +198,13 @@ namespace DungeonRun
             sfxBossIntro = new List<SoundEffectInstance>();
             SoundEffect bossIntroSrc = content.Load<SoundEffect>(@"SoundBossIntro");
             //
-
-            sfxChestOpenSrc = content.Load<SoundEffect>(@"SoundChestOpen");
-            sfxChestOpen = sfxChestOpenSrc.CreateInstance();
-
-            sfxRewardSrc = content.Load<SoundEffect>(@"SoundReward");
-            sfxReward = sfxRewardSrc.CreateInstance();
-
-            sfxTextLetterSrc = content.Load<SoundEffect>(@"SoundTextLetter");
-            sfxTextLetter = sfxTextLetterSrc.CreateInstance();
+            sfxChestOpen = new List<SoundEffectInstance>();
+            SoundEffect chestOpenSrc = content.Load<SoundEffect>(@"SoundChestOpen");
+            sfxReward = new List<SoundEffectInstance>();
+            SoundEffect rewardSrc = content.Load<SoundEffect>(@"SoundReward");
+            sfxTextLetter = new List<SoundEffectInstance>();
+            SoundEffect textLetterSrc = content.Load<SoundEffect>(@"SoundTextLetter");
+            
 
             sfxTextDoneSrc = content.Load<SoundEffect>(@"SoundTextDone");
             sfxTextDone = sfxTextDoneSrc.CreateInstance();
@@ -269,9 +263,9 @@ namespace DungeonRun
                 sfxKeyPickup.Add(keyPickupSrc.CreateInstance());
                 sfxBossIntro.Add(bossIntroSrc.CreateInstance());
                 //
-
-
-
+                sfxChestOpen.Add(chestOpenSrc.CreateInstance());
+                sfxReward.Add(rewardSrc.CreateInstance());
+                sfxTextLetter.Add(textLetterSrc.CreateInstance());
 
                 //
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());

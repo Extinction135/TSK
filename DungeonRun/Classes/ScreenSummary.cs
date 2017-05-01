@@ -228,15 +228,15 @@ namespace DungeonRun
                 {   //if the screen should count the summary values
                     //animate the summary data up to it's proper amount
                     if (enemyCount < DungeonRecord.enemyCount)
-                    { enemyCount++; Assets.sfxTextLetter.Play(); }
+                    { enemyCount++; Assets.Play(Assets.sfxTextLetter); }
                     else
                     {
                         if (totalDamage < DungeonRecord.totalDamage)
-                        { totalDamage++; Assets.sfxTextLetter.Play(); }
+                        { totalDamage++; Assets.Play(Assets.sfxTextLetter); }
                         else
                         {
                             if (reward < rewardTotal)
-                            { reward++; Assets.sfxTextLetter.Play(); }
+                            { reward++; Assets.Play(Assets.sfxTextLetter); }
                             else //we've counted everything, exit the count routine
                             { Assets.sfxTextDone.Play(); countingComplete = true; }
                         }
