@@ -14,40 +14,37 @@ namespace DungeonRun
 {
     public static class Pool
     {
+
+        //actor pool handles all actors in the room including hero
         public static int actorCount;           //total count of actors in pool
         public static List<Actor> actorPool;    //the actual list of actors
         public static int actorIndex;           //used to iterate thru the pool
-        public static int actorsUsed;           //tracks how many actors are used from the pool
 
         //obj pool handles gameobjects that don't move, & may(not) interact with actors
         public static int objCount;
         public static List<GameObject> objPool;
         public static int objIndex;
-        public static int objsUsed;
 
         //projectile pool handles projectiles/particles that move or are stationary
         public static int projectileCount;
         public static List<GameObject> projectilePool;
         public static int projectileIndex;
-        public static int projectilesUsed;
 
         public static int floorCount;
         public static List<ComponentSprite> floorPool;
         public static int floorIndex;
 
         public static int counter;
-
+        public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero;
         public static ComponentSprite heroShadow;
-
-        public static int activeActor = 1; //tracks the current actor being handled by AI
         
         public static void Initialize()
         {
             //set the pool sizes
             actorCount = 30;
             objCount = 150;
-            projectileCount = 20;
+            projectileCount = 50;
             floorCount = 500;
 
             //actor pool
@@ -89,5 +86,6 @@ namespace DungeonRun
             heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Byte2(16, 8));
             heroShadow.zOffset = -16;
         }
+
     }
 }

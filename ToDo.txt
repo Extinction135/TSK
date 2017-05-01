@@ -43,66 +43,22 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
-
-renamed Handle() methods in InteractionFunctions to Interact().
-updated various functions in CollisionFunctions to use the renamed Interact() methods.
-updated Release(Obj) to check for ObjGroup.Item.
-this means we weren't counting Items as Projectiles, when they were.
-consolidated SetType().ItemHeart into SetType().ItemRupee codepath.
-discovered a massive flaw in how Pool handles the Get() and Release() of objs and projectiles.
-working on a fix to this system.
-
-
-
-
+removed Pool.actorsUsed, objsUsed, projectileUsed fields.
+deleted and updated various codepaths that referenced those fields.
+updated debug info to use index fields instead of deleted 'used' fields.
+updated GetObj() to return the next object in the object pool, regardless of active boolean.
+GetObj() also hides fresh objects offscreen, initially.
+playtested, working as expected. wasn't that big of a deal, actually.
+increased size of projectile pool to 50 instances.
 
 
 
 
 
-
-there are some serious problems with the counting / indexing of objPool and projectilePool
-
-we increment the index upon a GetObj()
-we bounds check and reset to 0 on overflow
-if the next pool obj is active, then we return null
-we dont check for a null return value IN ANY CODE ANYWHERE
-which means this will crash the program if we ever get a null value
-
-when we Release() and obj, we don't decrement the objIndex. 
-we decrement the objsUsed int.
-which only tracks objs used, and isn't used for indexing...
-
-
-
-
-
-
-
-
-
-
-
-
-projectile count is incrementing before it can release / decrement
-
-
-
-there is still a bug with fireballs
-
-
-
-why is the projectile count wrong?
-
-it's likely we're not releasing projectiles properly
-
-
-
-its related to fireball
 
 
 

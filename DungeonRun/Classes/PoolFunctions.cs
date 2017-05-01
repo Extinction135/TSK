@@ -26,38 +26,29 @@ namespace DungeonRun
             if (!Pool.actorPool[Pool.actorIndex].active)
             {
                 Pool.actorPool[Pool.actorIndex].active = true;
-                Pool.actorsUsed++;
                 return Pool.actorPool[Pool.actorIndex];
             }
             return null;
         }
-
+        
         public static GameObject GetObj()
-        {
+        {   //only class that calls GetObj() is DungeonFunctions, during room building
+            //should NEVER loop / reset
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
-
-
-            //only return inactive objects
-            if(!Pool.objPool[Pool.objIndex].active)
-            {
-                Pool.objPool[Pool.objIndex].active = true;
-                Pool.objsUsed++;
-                return Pool.objPool[Pool.objIndex];
-            }
-            return null; //this could cause a crash in the future
+            Pool.objPool[Pool.objIndex].active = true;
+            //tell the obj to hide offscreen, intially
+            Pool.objPool[Pool.objIndex].compMove.newPosition.X = -1000;
+            return Pool.objPool[Pool.objIndex];
         }
 
         public static GameObject GetProjectile()
-        {
+        {   //this is called throughout room gameplay, and will loop/reset
             Pool.projectileIndex++;
             if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
-
-
             Pool.projectilePool[Pool.projectileIndex].active = true;
             //tell the projectile to hide offscreen, intially
             Pool.projectilePool[Pool.projectileIndex].compMove.newPosition.X = -1000;
-            Pool.projectilesUsed++;
             return Pool.projectilePool[Pool.projectileIndex];
         }
 
@@ -68,6 +59,8 @@ namespace DungeonRun
             Pool.floorPool[Pool.floorIndex].visible = true;
             return Pool.floorPool[Pool.floorIndex];
         }
+
+
 
         public static void Reset()
         {
@@ -81,21 +74,21 @@ namespace DungeonRun
         {   //we skip resetting the hero
             for (Pool.counter = 1; Pool.counter < Pool.actorCount; Pool.counter++)
             { Release(Pool.actorPool[Pool.counter]); }
-            Pool.actorsUsed = 0;
+            Pool.actorIndex = 1;
         }
 
         public static void ResetObjPool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             { Release(Pool.objPool[Pool.counter]); }
-            Pool.objsUsed = 0;
+            Pool.objIndex = 0;
         }
 
         public static void ResetProjectilePool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             { Release(Pool.projectilePool[Pool.counter]); }
-            Pool.projectilesUsed = 0;
+            Pool.projectileIndex = 0;
         }
 
         public static void ResetFloorPool()
@@ -110,13 +103,10 @@ namespace DungeonRun
             { Input.ResetInputData(Pool.actorPool[Pool.counter].compInput); }
         }
 
-
-
         public static void Release(Actor Actor)
         {
             Actor.active = false;
             Actor.compCollision.active = false;
-            Pool.actorsUsed--;
         }
 
         public static void Release(GameObject Obj)
@@ -124,11 +114,6 @@ namespace DungeonRun
             Obj.active = false;
             Obj.compCollision.active = false;
             Obj.lifetime = 0;
-            if (Obj.group == ObjGroup.Projectile ||
-                Obj.group == ObjGroup.Particle ||
-                Obj.group == ObjGroup.Item)
-            { Pool.projectilesUsed--; }
-            else { Pool.objsUsed--; }
         }
 
 

@@ -139,10 +139,9 @@ namespace DungeonRun
 
             poolText.text = "floors: " + Pool.floorIndex + "/" + Pool.floorCount;
 
-            poolText.text += "\nobjs: " + Pool.objsUsed + "/" + Pool.objCount;
-            poolText.text += "\nactrs: " + Pool.actorsUsed + "/" + Pool.actorCount;
-            poolText.text += "\npros: " + Pool.projectilesUsed + "/" + Pool.projectileCount;
-            poolText.text += "\nparts: 0/0";
+            poolText.text += "\nobjs: " + Pool.objIndex + "/" + Pool.objCount;
+            poolText.text += "\nactrs: " + Pool.actorIndex + "/" + Pool.actorCount;
+            poolText.text += "\npros: " + Pool.projectileIndex + "/" + Pool.projectileCount;
 
             creationText.text = "timers";
             creationText.text += "\nroom: " + roomTime;
