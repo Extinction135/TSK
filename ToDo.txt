@@ -43,29 +43,48 @@ ram useage:
 todo:
 
 
-1
+13
 
 
 
-
-migrated following sound effects to new system: sfxMetallicTap, sfxBounce
-updated various codepaths to use Assets.Play() method.
-playtested, working. some housekeeping and organization in Assets.
-today's commits were cheap, yes, but the new sfx system was badly needed.
-the generic solution written in Assets also scales.
-
-
-
+refactored SpawnProjectile(ObjType Type, Vector2 Pos, Direction Direction).
+split into two seperate SpawnProjectile functions.
+SpawnProjectile(ObjType Type, Actor Actor) - handles projectile offsets relative to Actor.
+SpawnProjectile(ObjType Type, float X, float Y, Direction Direction) - places projectile at location with direction & rotation.
+this decomposition allows the SpawnProjectile() more flexibility for future development/useage.
+updated various codepaths to use the new SpawnProjectile() functions.
+playtested, working, but with a few bugs...
 
 
 
 
 
+changes:
+the smoke puff needs a +4,+4 offset, when hero casts fireball
 
-the metallic sound effect could be played simultaneously..
 
-it would seem that any sound effect could be played simultaneously.
-we need a better solution that scales.
+there are multiple calls to bounce when hero collides with bumper
+we should not be calling this multiple times...
+
+
+hero is able to hit himself with fireballs, and swords
+this is likely due to an offset issue
+
+
+why is the projectile count wrong?
+do we have active projectiles in the room?
+or are we not releasing projectiles properly?
+
+
+
+
+
+
+bug: spikeblock hit hero when he was dead, put him into hit state again
+set hit state() should check to see if actor is in death state, bail if true
+
+
+
 
 
 
@@ -77,13 +96,6 @@ we need a better solution that scales.
 however, we'd like spike block to push player in a direction that won't cause sequential collisions.
 if the block is moving down, and the hero is facing up, the block pushes hero down, and then hits them again.
 which leads to a perpetual cycle of being hit, instakilling the hero.
-
-
-we still need to address how we are aligning particles and projectiles
-AlignProjectile() assumes the projectile or particle is being used in one specific context
-BUT it could be being used in many different contexts
-it needs to be flexible and handle all the different contexts
-
 
 
 can we set the dungeon screen's fadeIn value to a negative number?

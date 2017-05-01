@@ -17,7 +17,6 @@ namespace DungeonRun
 
         public static byte damage;
         public static float force;
-        static Vector2 offset = new Vector2(0, 0);
 
         public static ComponentCollision interactionRec = new ComponentCollision();
 
@@ -66,7 +65,6 @@ namespace DungeonRun
             //the Obj is non-blocking
             //particle Objs never interact with actors or reach this function
             //objectGroups are checked in order of most commonly interacted with
-            offset.X = 0; offset.Y = 0;
 
 
             #region Projectiles
@@ -136,64 +134,42 @@ namespace DungeonRun
             else if (Obj.group == ObjGroup.Chest)
             {   //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
                 if (Actor == Pool.hero && Actor.state == ActorState.Interact)
-                {
-                    offset.Y = -14; //place reward above hero's head
-                    //reward the hero with the chests contents
+                {   //reward the hero with the chests contents
                     if (Obj.type == ObjType.ChestGold)
                     {
-                        GameObjectFunctions.SpawnProjectile(
-                            ObjType.ParticleReward50Gold,
-                            Actor.compSprite.position + offset, 
-                            Direction.None);
+                        GameObjectFunctions.SpawnProjectile(ObjType.ParticleReward50Gold, Actor);
                         Assets.Play(Assets.sfxReward);
                         PlayerData.saveData.gold += 50; //give the hero 50 gold
                     }
                     else if (Obj.type == ObjType.ChestKey)
                     {
-                        GameObjectFunctions.SpawnProjectile(
-                            ObjType.ParticleRewardKey,
-                            Actor.compSprite.position + offset,
-                            Direction.None);
+                        GameObjectFunctions.SpawnProjectile(ObjType.ParticleRewardKey, Actor);
                         Assets.Play(Assets.sfxKeyPickup);
                         DungeonFunctions.dungeon.bigKey = true;
                     }
                     else if (Obj.type == ObjType.ChestMap)
                     {
-                        GameObjectFunctions.SpawnProjectile(
-                            ObjType.ParticleRewardMap,
-                            Actor.compSprite.position + offset,
-                            Direction.None);
+                        GameObjectFunctions.SpawnProjectile(ObjType.ParticleRewardMap, Actor);
                         Assets.Play(Assets.sfxReward);
                         DungeonFunctions.dungeon.map = true;
                     }
                     else if (Obj.type == ObjType.ChestHeartPiece)
                     {
-                        if (WorldUI.pieceCounter == 3)
-                        {   //if this completes a heart, display the full heart reward
-                            GameObjectFunctions.SpawnProjectile(
-                                ObjType.ParticleRewardHeartFull,
-                                Actor.compSprite.position + offset,
-                                Direction.None);
-                        }
-                        else
-                        {   //this does not complete a heart, display the heart piece reward
-                            GameObjectFunctions.SpawnProjectile(
-                                ObjType.ParticleRewardHeartPiece,
-                                Actor.compSprite.position + offset,
-                                Direction.None);
-                        }
+                        if (WorldUI.pieceCounter == 3) //if this completes a heart, display the full heart reward
+                        { GameObjectFunctions.SpawnProjectile(ObjType.ParticleRewardHeartFull, Actor); }
+                        else //this does not complete a heart, display the heart piece reward
+                        { GameObjectFunctions.SpawnProjectile( ObjType.ParticleRewardHeartPiece, Actor); }
                         Assets.Play(Assets.sfxReward);
                         PlayerData.saveData.heartPieces++;
                     }
-
                     Assets.Play(Assets.sfxChestOpen);
                     GameObjectFunctions.SetType(Obj, ObjType.ChestEmpty);
-                    //set actor into reward state
-                    Actor.state = ActorState.Reward;
+                    Actor.state = ActorState.Reward; //set actor into reward state
                     //play an explosion particle to show the chest was opened
                     GameObjectFunctions.SpawnProjectile(
                         ObjType.ParticleAttention,
-                        Obj.compSprite.position,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
                         Direction.None);
                 }
             }
@@ -213,7 +189,8 @@ namespace DungeonRun
                         Assets.Play(Assets.sfxDoorOpen);
                         GameObjectFunctions.SpawnProjectile(
                             ObjType.ParticleAttention, 
-                            Obj.compSprite.position,
+                            Obj.compSprite.position.X,
+                            Obj.compSprite.position.Y,
                             Direction.None);
                     }
                 }
@@ -221,8 +198,9 @@ namespace DungeonRun
                 {   //trap doors push ALL actors
                     MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);
                     GameObjectFunctions.SpawnProjectile(
-                        ObjType.ParticleDashPuff, 
-                        Actor.compSprite.position,
+                        ObjType.ParticleDashPuff,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
                         Direction.None);
                 }
             }
@@ -253,10 +231,7 @@ namespace DungeonRun
                     Obj.compSprite.scale = 1.25f;
                     //play the bounce sound fx
                     Assets.Play(Assets.sfxBounce); 
-                    GameObjectFunctions.SpawnProjectile(
-                        ObjType.ParticleDashPuff,
-                        Actor.compSprite.position,
-                        Direction.None);
+                    GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
                 }
 
                 //block spikes, lever, floor spikes, switch, bridge, flamethrower,
@@ -291,7 +266,8 @@ namespace DungeonRun
                     //show that the object has been hit
                     GameObjectFunctions.SpawnProjectile(
                         ObjType.ParticleHitSparkle, 
-                        ObjA.compSprite.position, 
+                        ObjA.compSprite.position.X,
+                        ObjA.compSprite.position.Y,
                         Direction.None);
                 }
             }

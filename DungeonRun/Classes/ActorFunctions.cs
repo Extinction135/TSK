@@ -29,8 +29,7 @@ namespace DungeonRun
             if (Actor.type == ActorType.Boss) { Assets.Play(Assets.sfxBossHit); }
 
             //display the hit effect particle
-            GameObjectFunctions.SpawnProjectile(ObjType.ParticleHitSparkle,
-                Actor.compSprite.position, Direction.None);
+            GameObjectFunctions.SpawnProjectile(ObjType.ParticleHitSparkle, Actor);
         }
 
         public static void SetDeathState(Actor Actor)
@@ -65,8 +64,7 @@ namespace DungeonRun
             if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
-                GameObjectFunctions.SpawnProjectile(ObjType.ParticleExplosion, 
-                    Actor.compSprite.position, Direction.None);
+                GameObjectFunctions.SpawnProjectile(ObjType.ParticleExplosion, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 if (GetRandom.Int(0, 100) > 60) //spawn loot 40% of the time
                 { GameObjectFunctions.SpawnLoot(Actor.compSprite.position); } 
@@ -114,8 +112,7 @@ namespace DungeonRun
         {
             if (Actor.weapon == Weapon.Sword)
             {
-                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileSword, 
-                    Actor.compSprite.position, Actor.direction);
+                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileSword, Actor);
                 Assets.Play(Assets.sfxSwordSwipe);
                 Actor.lockTotal = 15;
             }
@@ -125,8 +122,7 @@ namespace DungeonRun
         {
             if (Actor.item == Item.FireMagic)
             {
-                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball,
-                    Actor.compSprite.position, Actor.direction);
+                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball, Actor);
                 Assets.Play(Assets.sfxFireballCast); //need fireball soundfx
                 Actor.lockTotal = 15;
             }
@@ -255,8 +251,7 @@ namespace DungeonRun
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
                     //create a dash particle 
-                    GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, 
-                        Actor.compSprite.position, Direction.None);
+                    GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
                     if (Actor == Pool.hero) { Assets.Play(Assets.sfxDash); }
                 }
                 else if (Actor.state == ActorState.Attack)
@@ -307,9 +302,10 @@ namespace DungeonRun
                     {
                         if(GetRandom.Int(0,100) > 75) //randomly create explosions
                         {   //randomly place explosion around boss
-                            GameObjectFunctions.SpawnProjectile(ObjType.ParticleExplosion,
-                                Actor.compSprite.position +
-                                new Vector2(GetRandom.Int(-16, 16), GetRandom.Int(-16, 16)), 
+                            GameObjectFunctions.SpawnProjectile(
+                                ObjType.ParticleExplosion,
+                                Actor.compSprite.position.X + GetRandom.Int(-16, 16),
+                                Actor.compSprite.position.Y + GetRandom.Int(-16, 16),
                                 Direction.None);
                             //play corresponding explosion sound effect too
                             Assets.Play(Assets.sfxExplosion);

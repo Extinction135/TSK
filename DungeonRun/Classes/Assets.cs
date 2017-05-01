@@ -37,7 +37,7 @@ namespace DungeonRun
         public static Texture2D dungeonSheet;
 
 
-        #region Music
+        #region Music Instances
 
         static SoundEffect musicDungeonASrc;
         public static SoundEffectInstance musicDungeonA;
@@ -54,7 +54,7 @@ namespace DungeonRun
         #endregion
 
 
-        #region Soundfx
+        #region Soundfx Instance Lists
 
         //monogame defaults to 1024 max sound effect instances in sound effect instance pool
         //the number of lists * listSize SHOULD be less than 1024
@@ -127,7 +127,7 @@ namespace DungeonRun
             dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
 
 
-            #region Music
+            #region Create Music instances
 
             musicDungeonASrc = content.Load<SoundEffect>(@"MusicDungeonA");
             musicDungeonA = musicDungeonASrc.CreateInstance();
@@ -148,7 +148,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Soundfx instance lists + sources
+            #region Create the soundfx instance lists + sources
 
             sfxDash = new List<SoundEffectInstance>();
             SoundEffect dashSrc = content.Load<SoundEffect>(@"SoundDash");

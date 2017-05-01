@@ -49,9 +49,9 @@ namespace DungeonRun
         public static void SpawnLoot(Vector2 Pos)
         {   //either spawn a rupee or a heart item
             if (GetRandom.Int(0, 100) > 50)
-            { SpawnProjectile(ObjType.ItemRupee, Pos, Direction.Down); }
+            { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
             else
-            { SpawnProjectile(ObjType.ItemHeart, Pos, Direction.Down); }
+            { SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
         }
 
         public static void SetWeaponCollisions(GameObject Obj)
@@ -81,60 +81,76 @@ namespace DungeonRun
 
 
 
-        public static void SpawnProjectile(ObjType Type, Vector2 Pos, Direction Direction)
+
+
+
+
+
+
+
+
+
+
+        public static void SpawnProjectile(ObjType Type, Actor Actor)
+        {
+            //wraps the SpawnProjectile() method below
+            //applies projectile offset relative to Actor based on Type
+            offset.X = 0; offset.Y = 0;
+
+            //center horizontally, place near actor's feet
+            if (Type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
+            //center horizontally, place near actor's body
+            else if (Type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
+            //place fireballs relative to direction actor is facing
+            else if (Type == ObjType.ProjectileFireball)
+            {
+                if (Actor.direction == Direction.Down) { offset.Y = 14; }
+                else if (Actor.direction == Direction.Up) { offset.Y = -9; }
+                else if (Actor.direction == Direction.Right) { offset.X = 11; offset.Y = 2; }
+                else if (Actor.direction == Direction.Left) { offset.X = -11; offset.Y = 2; }
+            }
+            //place swords relative to direction actor is facing
+            else if (Type == ObjType.ProjectileSword)
+            {
+                if (Actor.direction == Direction.Down) { offset.X = -1; offset.Y = 15; }
+                else if (Actor.direction == Direction.Up) { offset.X = 1; offset.Y = -12; }
+                else if (Actor.direction == Direction.Right) { offset.X = 14; offset.Y = 0; }
+                else if (Actor.direction == Direction.Left) { offset.X = -14; offset.Y = 0; }
+                //need to flip the projectile sprite based on it's direction
+            }
+            //place reward particles above actor's head
+            else if (Type == ObjType.ParticleReward50Gold ||
+                Type == ObjType.ParticleRewardKey ||
+                Type == ObjType.ParticleRewardMap ||
+                Type == ObjType.ParticleRewardHeartFull ||
+                Type == ObjType.ParticleRewardHeartPiece)
+            { offset.Y = -14; }
+
+            //call the real SpawnProjectile method
+            SpawnProjectile(Type, 
+                Actor.compSprite.position.X + offset.X, 
+                Actor.compSprite.position.Y + offset.Y, 
+                Actor.direction);
+        }
+
+        public static void SpawnProjectile(ObjType Type, float X, float Y, Direction Direction)
         {
             GameObject projectile = PoolFunctions.GetProjectile();
             SetType(projectile, Type);
 
             if (projectile.group == ObjGroup.Projectile)
-            {   //convert projectile's directions to cardinal
+            {   //convert projectile's directions to cardinal, projectiles move
                 projectile.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
                 projectile.compMove.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
             }
             else//particles, items (consumable loot)
-            {   //these objects don't move
+            {   //particles always face Down, particles dont move
                 projectile.direction = Direction.Down;
                 projectile.compMove.direction = Direction.Down;
             }
 
-            AlignProjectile(projectile, Pos);
-            SetRotation(projectile); //set the projectile's rotation 
-        }
-
-        public static void AlignProjectile(GameObject Projectile, Vector2 Pos)
-        {
-            offset.X = 0; offset.Y = 0;
-            Projectile.compSprite.flipHorizontally = false;
-
-            if (Projectile.group == ObjGroup.Particle)
-            {
-                //center horizontally, place near actor's feet
-                if (Projectile.type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
-                //center horizontally, place near actor's head
-                else if (Projectile.type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
-            }
-            else if(Projectile.group == ObjGroup.Projectile)
-            {
-                if (Projectile.compMove.speed > 0.0f)
-                {   //moving projectiles have the same offsets
-                    if (Projectile.direction == Direction.Down) { offset.Y = 14; }
-                    else if (Projectile.direction == Direction.Up) { offset.Y = -9; }
-                    else if (Projectile.direction == Direction.Right) { offset.X = 11; offset.Y = 2; }
-                    else if (Projectile.direction == Direction.Left) { offset.X = -11; offset.Y = 2; }
-                }
-                else
-                {   //stationary (weapon) projectiles have the same offsets
-                    if (Projectile.direction == Direction.Down)
-                    { offset.X = -1; offset.Y = 15; Projectile.compSprite.flipHorizontally = true; }
-                    else if (Projectile.direction == Direction.Up) { offset.X = 1; offset.Y = -12; }
-                    else if (Projectile.direction == Direction.Right) { offset.X = 14; offset.Y = 0; }
-                    else if (Projectile.direction == Direction.Left)
-                    { offset.X = -14; offset.Y = 0; Projectile.compSprite.flipHorizontally = true; }
-                }
-            }
-
-            //teleport the projectile to the position with the offset
-            MovementFunctions.Teleport(Projectile.compMove, Pos.X + offset.X, Pos.Y + offset.Y);
+            MovementFunctions.Teleport(projectile.compMove, X, Y);
+            SetRotation(projectile); //set the projectile's rotation
         }
 
         public static void SetRotation(GameObject Obj)
@@ -143,7 +159,22 @@ namespace DungeonRun
             if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
             else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
             else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
+
+            //default the obj sprite to not flip
+            Obj.compSprite.flipHorizontally = false;
+            //some objects flip based on their direction
+            if (Obj.type == ObjType.ProjectileSword)
+            {
+                if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
+                { Obj.compSprite.flipHorizontally = true; }
+            }
         }
+
+
+
+
+
+
 
 
 
@@ -152,7 +183,9 @@ namespace DungeonRun
             if (Obj.type == ObjType.ProjectileFireball)
             {
                 SpawnProjectile(ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position, Direction.None);
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
             }
         }
 
@@ -161,9 +194,13 @@ namespace DungeonRun
             if (Obj.type == ObjType.ProjectileFireball)
             {
                 SpawnProjectile(ObjType.ParticleExplosion,
-                    Obj.compSprite.position, Direction.None);
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
                 SpawnProjectile(ObjType.ParticleFire,
-                    Obj.compSprite.position, Direction.None);
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0, 
+                    Direction.None);
                 Assets.Play(Assets.sfxFireballDeath);
             }
             PoolFunctions.Release(Obj); //any dead object is released
