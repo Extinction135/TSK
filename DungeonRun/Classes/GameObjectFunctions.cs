@@ -164,7 +164,7 @@ namespace DungeonRun
                     Obj.compSprite.position, Direction.None);
                 SpawnProjectile(ObjType.ParticleFire,
                     Obj.compSprite.position, Direction.None);
-                Assets.sfxFireballDeath.Play();
+                Assets.Play(Assets.sfxFireballDeath);
             }
             PoolFunctions.Release(Obj); //any dead object is released
         }

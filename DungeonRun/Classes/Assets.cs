@@ -84,12 +84,9 @@ namespace DungeonRun
         //
         public static List<SoundEffectInstance> sfxBossHit;
         public static List<SoundEffectInstance> sfxExplosion;
-
-        static SoundEffect sfxFireballCastSrc;
-        public static SoundEffectInstance sfxFireballCast;
-
-        static SoundEffect sfxFireballDeathSrc;
-        public static SoundEffectInstance sfxFireballDeath;
+        public static List<SoundEffectInstance> sfxFireballCast;
+        public static List<SoundEffectInstance> sfxFireballDeath;
+        
 
         static SoundEffect sfxMetallicTapSrc;
         public static SoundEffectInstance sfxMetallicTap;
@@ -168,7 +165,6 @@ namespace DungeonRun
             SoundEffect heroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
             sfxEnemyKill = new List<SoundEffectInstance>();
             SoundEffect enemyKillSrc = content.Load<SoundEffect>(@"SoundEnemyKill");
-
             //
             sfxHeroKill = new List<SoundEffectInstance>();
             SoundEffect heroKillSrc = content.Load<SoundEffect>(@"SoundHeroKill");
@@ -207,14 +203,11 @@ namespace DungeonRun
             SoundEffect bossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
             sfxExplosion = new List<SoundEffectInstance>();
             SoundEffect sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
-
-
-
-            sfxFireballCastSrc = content.Load<SoundEffect>(@"SoundFireballCast");
-            sfxFireballCast = sfxFireballCastSrc.CreateInstance();
-
-            sfxFireballDeathSrc = content.Load<SoundEffect>(@"SoundFireballDeath");
-            sfxFireballDeath = sfxFireballDeathSrc.CreateInstance();
+            sfxFireballCast = new List<SoundEffectInstance>();
+            SoundEffect fireballCastSrc = content.Load<SoundEffect>(@"SoundFireballCast");
+            sfxFireballDeath = new List<SoundEffectInstance>();
+            SoundEffect fireballDeathSrc = content.Load<SoundEffect>(@"SoundFireballDeath");
+            
 
             sfxMetallicTapSrc = content.Load<SoundEffect>(@"SoundMetallicTap");
             sfxMetallicTap = sfxMetallicTapSrc.CreateInstance();
@@ -254,6 +247,11 @@ namespace DungeonRun
                 //
                 sfxBossHit.Add(bossHitSrc.CreateInstance());
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
+                sfxFireballCast.Add(fireballCastSrc.CreateInstance());
+                sfxFireballDeath.Add(fireballDeathSrc.CreateInstance());
+
+
+
             }
         }
 
