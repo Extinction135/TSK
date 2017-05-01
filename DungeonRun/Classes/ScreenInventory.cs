@@ -130,7 +130,7 @@ namespace DungeonRun
             if (Input.IsNewButtonPress(Buttons.Start) ||
                 Input.IsNewButtonPress(Buttons.B))
             {
-                Assets.sfxInventoryClose.Play();
+                Assets.Play(Assets.sfxInventoryClose);
                 //ScreenManager.RemoveScreen(this);
                 displayState = DisplayState.Closing;
             }

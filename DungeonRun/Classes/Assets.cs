@@ -80,11 +80,8 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxGoldPickup;
         public static List<SoundEffectInstance> sfxMenuItem;
         public static List<SoundEffectInstance> sfxInventoryOpen;
-
-        
-
-        static SoundEffect sfxInventoryCloseSrc;
-        public static SoundEffectInstance sfxInventoryClose;
+        public static List<SoundEffectInstance> sfxInventoryClose;
+        //
 
         static SoundEffect sfxBossHitSrc;
         public static SoundEffectInstance sfxBossHit;
@@ -206,10 +203,9 @@ namespace DungeonRun
             SoundEffect menuItemSrc = content.Load<SoundEffect>(@"SoundSelectMenuItem");
             sfxInventoryOpen = new List<SoundEffectInstance>();
             SoundEffect inventoryOpenSrc = content.Load<SoundEffect>(@"SoundInventoryOpen");
-            
-
-            sfxInventoryCloseSrc = content.Load<SoundEffect>(@"SoundInventoryClose");
-            sfxInventoryClose = sfxInventoryCloseSrc.CreateInstance();
+            sfxInventoryClose = new List<SoundEffectInstance>();
+            SoundEffect inventoryCloseSrc = content.Load<SoundEffect>(@"SoundInventoryClose");
+            //
 
             sfxBossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
             sfxBossHit = sfxBossHitSrc.CreateInstance();
@@ -257,7 +253,7 @@ namespace DungeonRun
                 sfxGoldPickup.Add(goldPickupSrc.CreateInstance());
                 sfxMenuItem.Add(menuItemSrc.CreateInstance());
                 sfxInventoryOpen.Add(inventoryOpenSrc.CreateInstance());
-
+                sfxInventoryClose.Add(inventoryCloseSrc.CreateInstance());
                 //
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
             }
