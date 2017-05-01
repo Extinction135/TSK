@@ -222,15 +222,16 @@ namespace DungeonRun
                     MovementFunctions.Push(Actor.compMove, Obj.direction, 0.1f);
                 }
                 else if (Obj.type == ObjType.Bumper)
-                {   
-                    //push actor in opposite direction
-                    MovementFunctions.Push(Actor.compMove,
-                        DirectionFunctions.GetOppositeDirection(Actor.direction),
+                {
+                    MovementFunctions.Push(Actor.compMove, 
+                        DirectionFunctions.GetRelativeDirection(Obj, Actor), 
                         10.0f);
-                    //scale the bumper up
+
+                    //actors can collide with bumper twice per frame, due to per axis collision checks
+                    //only play the bounce sound effect if the bumper hasn't been hit this frame
+                    if (Obj.compSprite.scale < 1.25f) { Assets.Play(Assets.sfxBounce); } 
+                    //if the bumper was hit this frame, scale it up
                     Obj.compSprite.scale = 1.25f;
-                    //play the bounce sound fx
-                    Assets.Play(Assets.sfxBounce); 
                     GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
                 }
 

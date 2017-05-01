@@ -40,5 +40,19 @@ namespace DungeonRun
             return Direction.None;
         }
 
+        public static Direction GetRelativeDirection(GameObject Obj, Actor Actor)
+        {   //return the direction from obj to actor
+            if (Actor.compSprite.position.Y > Obj.compSprite.position.Y)
+            {   //actor below obj, return down right or down left
+                if (Actor.compSprite.position.X > Obj.compSprite.position.X)
+                { return Direction.DownRight; } else { return Direction.DownLeft; }
+            }
+            else
+            {   //actor above obj, return up right or up left
+                if (Actor.compSprite.position.X > Obj.compSprite.position.X)
+                { return Direction.UpRight; } else { return Direction.UpLeft; }
+            }
+        }
+
     }
 }

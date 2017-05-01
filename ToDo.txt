@@ -43,28 +43,19 @@ ram useage:
 todo:
 
 
-10
+9
 
 
-
-removed Pool.actorsUsed, objsUsed, projectileUsed fields.
-deleted and updated various codepaths that referenced those fields.
-updated debug info to use index fields instead of deleted 'used' fields.
-updated GetObj() to return the next object in the object pool, regardless of active boolean.
-GetObj() also hides fresh objects offscreen, initially.
-playtested, working as expected. wasn't that big of a deal, actually.
-increased size of projectile pool to 50 instances.
-
-
+created DirectionFunctions.GetRelativeDirection().
+updated InteractionFunctions.Interact(Actor, Obj).Bumper to only play bounce sound when bumper is initially hit.
+this fixes a bug where the bounce sound could be played twice on the same frame.
+this created an echo effect, and amplified the bounce sound effect to be overly loud.
+also updated InteractionFunctions.Interact(Actor, Obj).Bumper to use GetRelativeDirection().
+this pushes the colliding actor in a diagonal direction away from the bumper.
+this makes the push direction a bit more unpredictable, and fun.
+playtested, working as expected.
 
 
-
-
-
-
-
-there are multiple calls to bounce when hero collides with bumper
-we should not be calling this multiple times...
 
 
 
