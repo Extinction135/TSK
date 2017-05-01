@@ -43,23 +43,12 @@ ram useage:
 todo:
 
 
-8
+7
 
-
-
-updated Interact(Actor, Obj).BlockSpikes to push actor in opposite direction relative to obj.
-this is using DirectionFunctions.GetRelativeDirection(Obj, Actor).
-this fixes a bug where an actor could be sequentially hit, and locked into a hit state.
-once hit in this manner, there was nothing a player could do to prevent the hero's death.
-this was NOT FUN and felt CHEAP. 
-playtested, working and very fun.
-
-updated ActorFunctions.SetHitState() to bail from method if actor is dead.
-this fixes a bug where a dead actor could be hit and pushed.
-playtested, working.
-
-
-
+updated DungeonScreen.Update() to set the overlayAlpha value to -2 when displayState is Opened.
+this delays the closing display state for a bit, allowing the player time to understand what happened.
+the player either beat the boss (explosions) or the player died.
+playtested, working as expected.
 
 
 
@@ -69,6 +58,15 @@ can we set the dungeon screen's fadeIn value to a negative number?
 this would give the screen enough time to show the boss death or player death
 without a fade in occurring
 then after it hits 0, the fade in would start....
+
+
+
+
+player should spin around and fall upon death
+when they 'fall' an attention particle should be created
+this is basically polishing the death animation
+this should only happen for hero, not for any other actor
+so we'll need a codepath that checks actor.type when actor dies
 
 
 

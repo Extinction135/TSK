@@ -92,7 +92,10 @@ namespace DungeonRun
                         displayState = DisplayState.Opened;
                     }
                 }
-                else if (displayState == DisplayState.Opened) { } //update 
+                else if (displayState == DisplayState.Opened)
+                {   //set overlay alpha to a negative value
+                    overlayAlpha = -2.0f; //delays closing state a bit
+                }   //delay gives player time to understand what's happening
                 else if (displayState == DisplayState.Closing) //fade overlay to 1.0
                 {
                     overlayAlpha += fadeInSpeed;
