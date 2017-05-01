@@ -16,20 +16,21 @@ namespace DungeonRun
     {
 
         public static void SetHitState(Actor Actor)
-        {
+        {   //bail if actor is already dead (dont hit dead actors)
+            if (Actor.state == ActorState.Dead) { return; }
+            //else lock actor into hit state
             Actor.state = ActorState.Hit;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
+            //display the hit effect particle
+            GameObjectFunctions.SpawnProjectile(ObjType.ParticleHitSparkle, Actor);
 
             //play the correct hit sound effect based on the actor type
             if (Actor == Pool.hero) { Assets.Play(Assets.sfxHeroHit); }
             else { Assets.Play(Assets.sfxEnemyHit); }
             //if the actor hit was the boss, also play the boss hit sound
             if (Actor.type == ActorType.Boss) { Assets.Play(Assets.sfxBossHit); }
-
-            //display the hit effect particle
-            GameObjectFunctions.SpawnProjectile(ObjType.ParticleHitSparkle, Actor);
         }
 
         public static void SetDeathState(Actor Actor)

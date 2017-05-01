@@ -213,9 +213,9 @@ namespace DungeonRun
             else if(Obj.group == ObjGroup.Object)
             {
                 if (Obj.type == ObjType.BlockSpikes)
-                {   //damage actor and push in actor's opposite direction
+                {   //damage actor and push in opposite direction relative to spike block
                     BattleFunctions.Damage(Actor, 1, 10.0f,
-                        DirectionFunctions.GetOppositeDirection(Actor.direction));
+                        DirectionFunctions.GetRelativeDirection(Obj, Actor));
                 }
                 else if (Obj.type == ObjType.ConveyorBelt)
                 {   //push actor in belt's direction
@@ -235,8 +235,8 @@ namespace DungeonRun
                     GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
                 }
 
-                //block spikes, lever, floor spikes, switch, bridge, flamethrower,
-                //torch unlit, torch lit, 
+                //lever, floor spikes, switch, bridge, flamethrower,
+                //torch unlit, torch lit
 
             }
 
