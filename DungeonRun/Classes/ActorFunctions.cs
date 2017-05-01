@@ -26,7 +26,7 @@ namespace DungeonRun
             if (Actor == Pool.hero) { Assets.Play(Assets.sfxHeroHit); }
             else { Assets.Play(Assets.sfxEnemyHit); }
             //if the actor hit was the boss, also play the boss hit sound
-            if (Actor.type == ActorType.Boss) { Assets.sfxBossHit.Play(); }
+            if (Actor.type == ActorType.Boss) { Assets.Play(Assets.sfxBossHit); }
 
             //display the hit effect particle
             GameObjectFunctions.SpawnProjectile(ObjType.ParticleHitSparkle,

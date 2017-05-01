@@ -82,10 +82,7 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxInventoryOpen;
         public static List<SoundEffectInstance> sfxInventoryClose;
         //
-
-        static SoundEffect sfxBossHitSrc;
-        public static SoundEffectInstance sfxBossHit;
-
+        public static List<SoundEffectInstance> sfxBossHit;
         public static List<SoundEffectInstance> sfxExplosion;
 
         static SoundEffect sfxFireballCastSrc;
@@ -206,12 +203,12 @@ namespace DungeonRun
             sfxInventoryClose = new List<SoundEffectInstance>();
             SoundEffect inventoryCloseSrc = content.Load<SoundEffect>(@"SoundInventoryClose");
             //
-
-            sfxBossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
-            sfxBossHit = sfxBossHitSrc.CreateInstance();
-
+            sfxBossHit = new List<SoundEffectInstance>();
+            SoundEffect bossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
             sfxExplosion = new List<SoundEffectInstance>();
             SoundEffect sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
+
+
 
             sfxFireballCastSrc = content.Load<SoundEffect>(@"SoundFireballCast");
             sfxFireballCast = sfxFireballCastSrc.CreateInstance();
@@ -255,6 +252,7 @@ namespace DungeonRun
                 sfxInventoryOpen.Add(inventoryOpenSrc.CreateInstance());
                 sfxInventoryClose.Add(inventoryCloseSrc.CreateInstance());
                 //
+                sfxBossHit.Add(bossHitSrc.CreateInstance());
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
             }
         }
