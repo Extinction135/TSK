@@ -100,9 +100,9 @@ namespace DungeonRun
                 if(Actor == Pool.hero) //only the hero can pickup hearts or rupees
                 {
                     if (Obj.type == ObjType.ItemHeart)
-                    { Actor.health++; Assets.sfxHeartPickup.Play(); }
+                    { Actor.health++; Assets.Play(Assets.sfxHeartPickup); }
                     else if (Obj.type == ObjType.ItemRupee)
-                    { PlayerData.saveData.gold++; Assets.sfxGoldPickup.Play(); }
+                    { PlayerData.saveData.gold++; Assets.Play(Assets.sfxGoldPickup); }
                     //end the items life
                     Obj.lifetime = 1; Obj.lifeCounter = 2; 
                 }

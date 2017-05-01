@@ -76,12 +76,10 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxTextDone;
         public static List<SoundEffectInstance> sfxExitSummary;
         //
+        public static List<SoundEffectInstance> sfxHeartPickup;
+        public static List<SoundEffectInstance> sfxGoldPickup;
 
-        static SoundEffect sfxHeartPickupSrc;
-        public static SoundEffectInstance sfxHeartPickup;
-
-        static SoundEffect sfxGoldPickupSrc;
-        public static SoundEffectInstance sfxGoldPickup;
+        
 
         static SoundEffect sfxSelectMenuItemSrc;
         public static SoundEffectInstance sfxSelectMenuItem;
@@ -204,12 +202,11 @@ namespace DungeonRun
             sfxExitSummary = new List<SoundEffectInstance>();
             SoundEffect exitSummarySrc = content.Load<SoundEffect>(@"SoundExitSummary");
             //
+            sfxHeartPickup = new List<SoundEffectInstance>();
+            SoundEffect heartPickupSrc = content.Load<SoundEffect>(@"SoundHeartPickup");
+            sfxGoldPickup = new List<SoundEffectInstance>();
+            SoundEffect goldPickupSrc = content.Load<SoundEffect>(@"SoundGoldPickup");
 
-            sfxHeartPickupSrc = content.Load<SoundEffect>(@"SoundHeartPickup");
-            sfxHeartPickup = sfxHeartPickupSrc.CreateInstance();
-
-            sfxGoldPickupSrc = content.Load<SoundEffect>(@"SoundGoldPickup");
-            sfxGoldPickup = sfxGoldPickupSrc.CreateInstance();
 
             sfxSelectMenuItemSrc = content.Load<SoundEffect>(@"SoundSelectMenuItem");
             sfxSelectMenuItem = sfxSelectMenuItemSrc.CreateInstance();
@@ -261,6 +258,9 @@ namespace DungeonRun
                 sfxTextLetter.Add(textLetterSrc.CreateInstance());
                 sfxTextDone.Add(textDoneSrc.CreateInstance());
                 sfxExitSummary.Add(exitSummarySrc.CreateInstance());
+                //
+                sfxHeartPickup.Add(heartPickupSrc.CreateInstance());
+                sfxGoldPickup.Add(goldPickupSrc.CreateInstance());
                 //
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
             }
