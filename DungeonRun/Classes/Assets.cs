@@ -16,6 +16,8 @@ namespace DungeonRun
     {
         public static ContentManager content;
         public static Texture2D dummyTexture;
+        static int listSize = 5;
+        static int i;
 
         //fonts
         public static SpriteFont font;
@@ -53,6 +55,14 @@ namespace DungeonRun
 
 
         #region Soundfx
+
+
+
+        //multiple explosions can be playing simultaneously
+        public static List<SoundEffectInstance> explosions;
+        
+        
+
 
         static SoundEffect sfxDashSrc;
         public static SoundEffectInstance sfxDash;
@@ -117,11 +127,7 @@ namespace DungeonRun
         static SoundEffect sfxBossHitSrc;
         public static SoundEffectInstance sfxBossHit;
 
-        static SoundEffect sfxExplosionSrc;
-        //multiple explosions can be playing simultaneously
-        static List<SoundEffectInstance> explosionInstances;
-        static int explosionsCount = 5;
-        static int i;
+        //
 
         static SoundEffect sfxFireballCastSrc;
         public static SoundEffectInstance sfxFireballCast;
@@ -139,12 +145,40 @@ namespace DungeonRun
 
 
 
+        public static void Play(List<SoundEffectInstance> List)
+        {
+            for (i = 0; i < listSize; i++)
+            {   //find a sfx instance not playing, play it, exit loop
+                if (List[i].State == SoundState.Stopped)
+                { List[i].Play(); i = listSize; }
+                else { List[i].Stop(); }
+            }
+        }
+
+
+
         public static void Load(GraphicsDevice GraphicsDevice, ContentManager ContentManager)
         {
             content = ContentManager;
             colorScheme = new ColorScheme("default");
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] { Color.White });
+
+
+
+
+
+            //create explosion instances
+            explosions = new List<SoundEffectInstance>();
+            SoundEffect sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
+            for (i = 0; i < listSize; i++) { explosions.Add(sfxExplosionSrc.CreateInstance()); }
+
+
+
+
+
+
+            
 
             //fonts
             font = content.Load<SpriteFont>(@"pixelFont");
@@ -247,11 +281,7 @@ namespace DungeonRun
             sfxBossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
             sfxBossHit = sfxBossHitSrc.CreateInstance();
 
-            sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
-            //create the explosion instances list, populate it
-            explosionInstances = new List<SoundEffectInstance>();
-            for (i = 0; i < explosionsCount; i++)
-            { explosionInstances.Add(sfxExplosionSrc.CreateInstance()); }
+            //
 
             sfxFireballCastSrc = content.Load<SoundEffect>(@"SoundFireballCast");
             sfxFireballCast = sfxFireballCastSrc.CreateInstance();
@@ -270,23 +300,5 @@ namespace DungeonRun
 
         }
 
-
-        public static void PlayExplosionSoundEffect()
-        {   //find an explosion instances not playing, play it & bail
-            for (i = 0; i < explosionsCount; i++)
-            {
-                if (explosionInstances[i].State == SoundState.Stopped)
-                {
-                    explosionInstances[i].Play();
-                    i = explosionsCount; //end the loop
-                }
-                //stop previous instances from playing
-                //this prevents the 'echo/overlap' effect
-                else { explosionInstances[i].Stop(); }
-                //but this causes a 'clipping' effect
-            }
-        }
-
     }
-
 }

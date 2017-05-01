@@ -43,16 +43,18 @@ ram useage:
 todo:
 
 
-13
+12
 
 
 
-moved ColorScheme struct into Structs.cs.
-added a String Name instance to ColorScheme.
-moved the assignment of default color scheme values into ColorSchemes constructor.
-removed Assets.SetDefaultColorScheme().
-removed reference to SetDefaultColorScheme() from Game1.
-playtested, working as expected.
+removed PlayExplosions() method from Assets.
+replaced with a generic Play() method to play an instance from a list of instances.
+refactored how the explosion soundEffect source and instances were created.
+this is in prep for moving all soundfx into this new generic format.
+this is being done so that a single soundeffect can be played simultaneously...
+instead of having to wait for the single instance to finish.
+playtested, working perfectly.
+
 
 
 
