@@ -43,17 +43,24 @@ ram useage:
 todo:
 
 
-12
+11
 
 
 
-removed PlayExplosions() method from Assets.
-replaced with a generic Play() method to play an instance from a list of instances.
-refactored how the explosion soundEffect source and instances were created.
-this is in prep for moving all soundfx into this new generic format.
-this is being done so that a single soundeffect can be played simultaneously...
-instead of having to wait for the single instance to finish.
-playtested, working perfectly.
+migrated dash sound effect into new soundFX format / system.
+did a little research on how Monogame handles sound effect instances + instance pool.
+it would appear that the system i'm moving the sound effects to should work fine.
+if the total number of sfx instances exceeds 1024, Monogame will try to allocate more based on the platform.
+for pc, this isn't a problem. for xbox one, i fully expect the console to explode into a house fire.
+we'll see what happens when it's time to test on the console.
+
+
+
+
+
+
+
+refactor Assets to use only instance lists
 
 
 

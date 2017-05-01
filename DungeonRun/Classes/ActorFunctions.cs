@@ -257,7 +257,7 @@ namespace DungeonRun
                     //create a dash particle 
                     GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, 
                         Actor.compSprite.position, Direction.None);
-                    if (Actor == Pool.hero) { Assets.sfxDash.Play(); }
+                    if (Actor == Pool.hero) { Assets.Play(Assets.sfxDash); }
                 }
                 else if (Actor.state == ActorState.Attack)
                 {
@@ -312,7 +312,7 @@ namespace DungeonRun
                                 new Vector2(GetRandom.Int(-16, 16), GetRandom.Int(-16, 16)), 
                                 Direction.None);
                             //play corresponding explosion sound effect too
-                            Assets.Play(Assets.explosions);
+                            Assets.Play(Assets.sfxExplosion);
                         }
                     }
 

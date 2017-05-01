@@ -56,16 +56,10 @@ namespace DungeonRun
 
         #region Soundfx
 
+        //monogame defaults to 1024 max sound effect instances in sound effect instance pool
+        //the number of lists * listSize SHOULD be less than 1024
 
-
-        //multiple explosions can be playing simultaneously
-        public static List<SoundEffectInstance> explosions;
-        
-        
-
-
-        static SoundEffect sfxDashSrc;
-        public static SoundEffectInstance sfxDash;
+        public static List<SoundEffectInstance> sfxDash;
 
         static SoundEffect sfxSwordSwipeSrc;
         public static SoundEffectInstance sfxSwordSwipe;
@@ -127,7 +121,7 @@ namespace DungeonRun
         static SoundEffect sfxBossHitSrc;
         public static SoundEffectInstance sfxBossHit;
 
-        //
+        public static List<SoundEffectInstance> sfxExplosion;
 
         static SoundEffect sfxFireballCastSrc;
         public static SoundEffectInstance sfxFireballCast;
@@ -163,22 +157,6 @@ namespace DungeonRun
             colorScheme = new ColorScheme("default");
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] { Color.White });
-
-
-
-
-
-            //create explosion instances
-            explosions = new List<SoundEffectInstance>();
-            SoundEffect sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
-            for (i = 0; i < listSize; i++) { explosions.Add(sfxExplosionSrc.CreateInstance()); }
-
-
-
-
-
-
-            
 
             //fonts
             font = content.Load<SpriteFont>(@"pixelFont");
@@ -218,8 +196,8 @@ namespace DungeonRun
 
             #region Soundfx
 
-            sfxDashSrc = content.Load<SoundEffect>(@"SoundDash");
-            sfxDash = sfxDashSrc.CreateInstance();
+            sfxDash = new List<SoundEffectInstance>();
+            SoundEffect dashSrc = content.Load<SoundEffect>(@"SoundDash");
 
             sfxSwordSwipeSrc = content.Load<SoundEffect>(@"SoundSwordSwipe");
             sfxSwordSwipe = sfxSwordSwipeSrc.CreateInstance();
@@ -281,7 +259,8 @@ namespace DungeonRun
             sfxBossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
             sfxBossHit = sfxBossHitSrc.CreateInstance();
 
-            //
+            sfxExplosion = new List<SoundEffectInstance>();
+            SoundEffect sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
 
             sfxFireballCastSrc = content.Load<SoundEffect>(@"SoundFireballCast");
             sfxFireballCast = sfxFireballCastSrc.CreateInstance();
@@ -298,6 +277,13 @@ namespace DungeonRun
             #endregion
 
 
+            //populate the instance lists
+            for (i = 0; i < listSize; i++)
+            {
+                sfxDash.Add(dashSrc.CreateInstance());
+
+                sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
+            }
         }
 
     }
