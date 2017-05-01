@@ -19,6 +19,11 @@ namespace DungeonRun
 
         public static void SetAnimationGroup(Actor Actor)
         {
+
+            //we need to be setting speed and loop here
+            Actor.compAnim.speed = 10;
+            Actor.compAnim.loop = true;
+
             if (Actor.state == ActorState.Idle) { Actor.animGroup = Actor.animList.idle; }
             else if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.move; }
             else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.dash; }
@@ -27,7 +32,18 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Attack) { Actor.animGroup = Actor.animList.attack; }
             else if (Actor.state == ActorState.Use) { Actor.animGroup = Actor.animList.attack; }
             else if (Actor.state == ActorState.Hit) { Actor.animGroup = Actor.animList.hit; }
-            else if (Actor.state == ActorState.Dead) { Actor.animGroup = Actor.animList.dead; }
+            else if (Actor.state == ActorState.Dead)
+            {   //play a special animation for the hero's death
+                if (Actor.type == ActorType.Hero)
+                {
+                    Actor.animGroup = Actor.animList.heroDeath;
+                    //speed up anim speed
+                    Actor.compAnim.speed = 6;
+                    //do not loop this animation
+                    Actor.compAnim.loop = false;
+                }
+                else { Actor.animGroup = Actor.animList.death; }
+            }
             //
             else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
         }
@@ -76,7 +92,7 @@ namespace DungeonRun
             actorAnims.interact.right = new List<Byte4> { new Byte4(4, 2, 0, 0) };
             actorAnims.interact.left = new List<Byte4>  { new Byte4(4, 2, 1, 0) };
 
-            //attack, hit, dead, reward lists
+            //attack, hit, death lists
             actorAnims.attack = new AnimationGroup();
             actorAnims.attack.down = new List<Byte4>     { new Byte4(3, 0, 0, 0) };
             actorAnims.attack.up = new List<Byte4>       { new Byte4(3, 1, 0, 0) };
@@ -89,12 +105,23 @@ namespace DungeonRun
             actorAnims.hit.right = actorAnims.hit.down;
             actorAnims.hit.left = actorAnims.hit.down;
 
-            actorAnims.dead = new AnimationGroup();
-            actorAnims.dead.down = new List<Byte4>  { new Byte4(1, 3, 0, 0) };
-            actorAnims.dead.up = actorAnims.dead.down;
-            actorAnims.dead.right = actorAnims.dead.down;
-            actorAnims.dead.left = actorAnims.dead.down;
+            actorAnims.death = new AnimationGroup();
+            actorAnims.death.down = new List<Byte4>  { new Byte4(1, 3, 0, 0) };
+            actorAnims.death.up = actorAnims.death.down;
+            actorAnims.death.right = actorAnims.death.down;
+            actorAnims.death.left = actorAnims.death.down;
 
+            actorAnims.heroDeath = new AnimationGroup();
+            actorAnims.heroDeath.down = new List<Byte4>
+            {   //spin clockwise twice, then fall
+                new Byte4(0, 0, 0, 0), new Byte4(0, 2, 1, 0), new Byte4(0, 1, 0, 0), new Byte4(0, 2, 0, 0),
+                new Byte4(0, 0, 0, 0), new Byte4(0, 2, 1, 0), new Byte4(0, 1, 0, 0), new Byte4(1, 3, 0, 0)
+            };
+            actorAnims.heroDeath.up = actorAnims.heroDeath.down;
+            actorAnims.heroDeath.right = actorAnims.heroDeath.down;
+            actorAnims.heroDeath.left = actorAnims.heroDeath.down;
+
+            //reward list
             actorAnims.reward = new AnimationGroup();
             actorAnims.reward.down = new List<Byte4> { new Byte4(3, 3, 0, 0) };
             actorAnims.reward.up = actorAnims.reward.down;

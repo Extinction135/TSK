@@ -147,9 +147,9 @@ namespace DungeonRun
             SetCollisionRec(Actor);
             //reset actor's sprite zDepth
             Actor.compSprite.zOffset = 0;
-            //set actor animations group, direction
-            ActorAnimationListManager.SetAnimationGroup(Actor);
-            ActorAnimationListManager.SetAnimationDirection(Actor);
+            //assume standard actor
+            Actor.compSprite.cellSize.x = 16;
+            Actor.compSprite.cellSize.y = 16;
 
 
             #region Actor Specific Fields
@@ -162,13 +162,6 @@ namespace DungeonRun
                 Actor.item = Item.FireMagic;
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
-                //set actor soundFX
-
-                //standard actor
-                Actor.compSprite.cellSize.x = 16;
-                Actor.compSprite.cellSize.y = 16;
-                ComponentFunctions.UpdateCellSize(Actor.compSprite);
-                ComponentFunctions.CenterOrigin(Actor.compSprite);
             }
             else if (Type == ActorType.Blob)
             {
@@ -178,13 +171,6 @@ namespace DungeonRun
                 Actor.item = Item.None;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
-                //set the actor soundFX
-
-                //standard actor
-                Actor.compSprite.cellSize.x = 16;
-                Actor.compSprite.cellSize.y = 16;
-                ComponentFunctions.UpdateCellSize(Actor.compSprite);
-                ComponentFunctions.CenterOrigin(Actor.compSprite);
             }
             else if (Type == ActorType.Boss)
             {
@@ -194,14 +180,9 @@ namespace DungeonRun
                 Actor.item = Item.None;
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
-                //set the actor soundFX
-
                 //this actor is a boss (double size)
                 Actor.compSprite.cellSize.x = 32;
                 Actor.compSprite.cellSize.y = 32;
-                ComponentFunctions.UpdateCellSize(Actor.compSprite);
-                ComponentFunctions.CenterOrigin(Actor.compSprite);
-
                 //the boss actor has a lower sorting point that normal actors
                 Actor.compSprite.zOffset = 12;
             }
@@ -209,7 +190,10 @@ namespace DungeonRun
             #endregion
 
 
-            Actor.animList = ActorAnimationListManager.actorAnims;
+            ActorAnimationListManager.SetAnimationGroup(Actor);
+            ActorAnimationListManager.SetAnimationDirection(Actor);
+            ComponentFunctions.UpdateCellSize(Actor.compSprite);
+            ComponentFunctions.CenterOrigin(Actor.compSprite);
         }
 
 

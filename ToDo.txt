@@ -43,30 +43,37 @@ ram useage:
 todo:
 
 
-7
-
-updated DungeonScreen.Update() to set the overlayAlpha value to -2 when displayState is Opened.
-this delays the closing display state for a bit, allowing the player time to understand what happened.
-the player either beat the boss (explosions) or the player died.
-playtested, working as expected.
+6
 
 
 
+updated ActorAnimationList struct with an animation group instance for heroDeath.
+rename animGroup 'Dead' to 'Death'.
+updated codepaths that used 'Dead' anim group.
+added a check into ActorAnimListManager.SetAnimGroup() to check actor.type for dead state.
+if actor is hero, then the heroDeath anim group is used, instead of the normal death anim group.
+defined the hero death anim to be a sprite sequence where hero spins around, then falls to ground.
+moved the setting of Actor.animList into the Actor class.
+this reference is only set once and will never change, there's no other list to set it to!
+updated ActorFunctions.SetType() to logically group 'ending' functions together.
+updated ActorAnimListManager.SetAnimGroup() to set the animation speed and loop boolean.
+updated the 'dead' state check for hero, to speed up animation and stop looping.
+this is polish to the hero's death state, which was animating too slowly and repeating.
+playtested, now the animation and the sound line up perfectly.
 
 
-can we set the dungeon screen's fadeIn value to a negative number?
-this would give the screen enough time to show the boss death or player death
-without a fade in occurring
-then after it hits 0, the fade in would start....
+
+
+
+we want to create an attention particle when the hero 'falls' upon death....
 
 
 
 
-player should spin around and fall upon death
-when they 'fall' an attention particle should be created
-this is basically polishing the death animation
-this should only happen for hero, not for any other actor
-so we'll need a codepath that checks actor.type when actor dies
+
+
+
+
 
 
 

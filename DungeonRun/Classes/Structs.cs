@@ -54,9 +54,10 @@ namespace DungeonRun
 
         public AnimationGroup attack;
         public AnimationGroup hit;
-        public AnimationGroup dead;
-        public AnimationGroup reward;
+        public AnimationGroup death;
+        public AnimationGroup heroDeath;
 
+        public AnimationGroup reward;
         //pickup, hold, carry, drag, etc...
     }
 

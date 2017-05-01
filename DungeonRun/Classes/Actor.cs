@@ -23,7 +23,7 @@ namespace DungeonRun
         public byte lockTotal = 0; //how many frames the actor statelocks for, based on state
         public byte lockCounter = 0; //counts from 0 to lockTotal, then flips stateLocked false
 
-        public ActorAnimationList animList;
+        public ActorAnimationList animList = ActorAnimationListManager.actorAnims; //this never changes
         public AnimationGroup animGroup;
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?
