@@ -146,7 +146,7 @@ namespace DungeonRun
                     displayState = DisplayState.Closing;
                     continueText.alpha = 1.0f;
                     //play the summary exit sound effect immediately
-                    Assets.sfxExitSummary.Play();
+                    Assets.Play(Assets.sfxExitSummary);
                 }
             }
         }
@@ -238,7 +238,7 @@ namespace DungeonRun
                             if (reward < rewardTotal)
                             { reward++; Assets.Play(Assets.sfxTextLetter); }
                             else //we've counted everything, exit the count routine
-                            { Assets.sfxTextDone.Play(); countingComplete = true; }
+                            { Assets.Play(Assets.sfxTextDone); countingComplete = true; }
                         }
                     }
                 }

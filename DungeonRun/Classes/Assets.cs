@@ -73,14 +73,9 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxChestOpen;
         public static List<SoundEffectInstance> sfxReward;
         public static List<SoundEffectInstance> sfxTextLetter;
-
-        
-
-        static SoundEffect sfxTextDoneSrc;
-        public static SoundEffectInstance sfxTextDone;
-
-        static SoundEffect sfxExitSummarySrc;
-        public static SoundEffectInstance sfxExitSummary;
+        public static List<SoundEffectInstance> sfxTextDone;
+        public static List<SoundEffectInstance> sfxExitSummary;
+        //
 
         static SoundEffect sfxHeartPickupSrc;
         public static SoundEffectInstance sfxHeartPickup;
@@ -204,13 +199,11 @@ namespace DungeonRun
             SoundEffect rewardSrc = content.Load<SoundEffect>(@"SoundReward");
             sfxTextLetter = new List<SoundEffectInstance>();
             SoundEffect textLetterSrc = content.Load<SoundEffect>(@"SoundTextLetter");
-            
-
-            sfxTextDoneSrc = content.Load<SoundEffect>(@"SoundTextDone");
-            sfxTextDone = sfxTextDoneSrc.CreateInstance();
-
-            sfxExitSummarySrc = content.Load<SoundEffect>(@"SoundExitSummary");
-            sfxExitSummary = sfxExitSummarySrc.CreateInstance();
+            sfxTextDone = new List<SoundEffectInstance>();
+            SoundEffect textDoneSrc = content.Load<SoundEffect>(@"SoundTextDone");
+            sfxExitSummary = new List<SoundEffectInstance>();
+            SoundEffect exitSummarySrc = content.Load<SoundEffect>(@"SoundExitSummary");
+            //
 
             sfxHeartPickupSrc = content.Load<SoundEffect>(@"SoundHeartPickup");
             sfxHeartPickup = sfxHeartPickupSrc.CreateInstance();
@@ -266,7 +259,8 @@ namespace DungeonRun
                 sfxChestOpen.Add(chestOpenSrc.CreateInstance());
                 sfxReward.Add(rewardSrc.CreateInstance());
                 sfxTextLetter.Add(textLetterSrc.CreateInstance());
-
+                sfxTextDone.Add(textDoneSrc.CreateInstance());
+                sfxExitSummary.Add(exitSummarySrc.CreateInstance());
                 //
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
             }
