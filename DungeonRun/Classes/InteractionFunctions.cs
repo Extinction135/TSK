@@ -60,7 +60,7 @@ namespace DungeonRun
             }
         }
 
-        public static void Handle(Actor Actor, GameObject Obj)
+        public static void Interact(Actor Actor, GameObject Obj)
         {
             //the Obj is non-blocking
             //particle Objs never interact with actors or reach this function
@@ -244,7 +244,7 @@ namespace DungeonRun
 
         }
 
-        public static void Handle(GameObject ObjA, GameObject ObjB)
+        public static void Interact(GameObject ObjA, GameObject ObjB)
         {
             //Obj could be a projectile!
             //Projectile could = Obj!, if comparing Projectile to Obj in ProjectilePool

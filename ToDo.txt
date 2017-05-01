@@ -43,25 +43,66 @@ ram useage:
 todo:
 
 
-12
+11
+
+
+
+
+renamed Handle() methods in InteractionFunctions to Interact().
+updated various functions in CollisionFunctions to use the renamed Interact() methods.
+updated Release(Obj) to check for ObjGroup.Item.
+this means we weren't counting Items as Projectiles, when they were.
+consolidated SetType().ItemHeart into SetType().ItemRupee codepath.
+discovered a massive flaw in how Pool handles the Get() and Release() of objs and projectiles.
+working on a fix to this system.
 
 
 
 
 
-added class DirectionFunctions.
-moved ConvertDiagonalDirection() and GetOppositeDirection() into DirectionFunctions.
-this is a logical association, and consolidates direction related functions into one file.
-updated various codepaths to use the new class and relocated methods.
-refactored SpawnProjectile() to convert the actor's direction to a cardinal one.
-this is to address a bug where an actor facing diagonally spawned a projectile directly on top of them.
-this immediately caused the actor damage.
-
-
-updated the birth event for the fireball projectile to properly place the smoke puff particle.
 
 
 
+
+
+there are some serious problems with the counting / indexing of objPool and projectilePool
+
+we increment the index upon a GetObj()
+we bounds check and reset to 0 on overflow
+if the next pool obj is active, then we return null
+we dont check for a null return value IN ANY CODE ANYWHERE
+which means this will crash the program if we ever get a null value
+
+when we Release() and obj, we don't decrement the objIndex. 
+we decrement the objsUsed int.
+which only tracks objs used, and isn't used for indexing...
+
+
+
+
+
+
+
+
+
+
+
+
+projectile count is incrementing before it can release / decrement
+
+
+
+there is still a bug with fireballs
+
+
+
+why is the projectile count wrong?
+
+it's likely we're not releasing projectiles properly
+
+
+
+its related to fireball
 
 
 
@@ -71,9 +112,7 @@ we should not be calling this multiple times...
 
 
 
-why is the projectile count wrong?
-do we have active projectiles in the room?
-or are we not releasing projectiles properly?
+
 
 
 bug: spikeblock hit hero when he was dead, put him into hit state again

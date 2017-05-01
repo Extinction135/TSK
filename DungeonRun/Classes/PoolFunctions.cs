@@ -36,6 +36,8 @@ namespace DungeonRun
         {
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
+
+
             //only return inactive objects
             if(!Pool.objPool[Pool.objIndex].active)
             {
@@ -43,13 +45,15 @@ namespace DungeonRun
                 Pool.objsUsed++;
                 return Pool.objPool[Pool.objIndex];
             }
-            return null;
+            return null; //this could cause a crash in the future
         }
 
         public static GameObject GetProjectile()
         {
             Pool.projectileIndex++;
             if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
+
+
             Pool.projectilePool[Pool.projectileIndex].active = true;
             //tell the projectile to hide offscreen, intially
             Pool.projectilePool[Pool.projectileIndex].compMove.newPosition.X = -1000;
@@ -106,6 +110,8 @@ namespace DungeonRun
             { Input.ResetInputData(Pool.actorPool[Pool.counter].compInput); }
         }
 
+
+
         public static void Release(Actor Actor)
         {
             Actor.active = false;
@@ -119,10 +125,13 @@ namespace DungeonRun
             Obj.compCollision.active = false;
             Obj.lifetime = 0;
             if (Obj.group == ObjGroup.Projectile ||
-                Obj.group == ObjGroup.Particle)
+                Obj.group == ObjGroup.Particle ||
+                Obj.group == ObjGroup.Item)
             { Pool.projectilesUsed--; }
             else { Pool.objsUsed--; }
         }
+
+
 
         public static void UpdateObjectPool()
         {   //align sprite + collision comps to move comp of all active objs

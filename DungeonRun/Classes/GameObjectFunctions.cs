@@ -16,7 +16,7 @@ namespace DungeonRun
     {
 
         static Vector2 offset = new Vector2(0, 0);
-
+        static Direction cardinal; //a cardinal direction used by SpawnProjectile()
 
 
         public static void ResetObject(GameObject Obj)
@@ -79,16 +79,6 @@ namespace DungeonRun
             }
         }
 
-
-
-
-
-
-
-
-
-
-        static Direction cardinal;
 
 
         public static void SpawnProjectile(ObjType Type, Actor Actor)
@@ -173,12 +163,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
         public static void HandleBirthEvent(GameObject Obj)
         {   //this targets projectiles/particles only
             if (Obj.type == ObjType.ProjectileFireball)
@@ -204,7 +188,6 @@ namespace DungeonRun
                     Direction.None);
                 Assets.Play(Assets.sfxFireballDeath);
             }
-            PoolFunctions.Release(Obj); //any dead object is released
         }
 
 
@@ -401,26 +384,13 @@ namespace DungeonRun
 
             #region Items
 
-            else if (Type == ObjType.ItemRupee)
+            else if (Type == ObjType.ItemRupee || Type == ObjType.ItemHeart)
             {
                 Obj.compSprite.cellSize.x = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Item;
-
-                Obj.lifetime = 255; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.loop = true;
-            }
-            else if (Type == ObjType.ItemHeart)
-            {
-                Obj.compSprite.cellSize.x = 8; //non standard cellsize
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
-                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 7;
-                Obj.compCollision.blocking = false;
-                Obj.group = ObjGroup.Item;
-
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;
@@ -548,7 +518,11 @@ namespace DungeonRun
                 Obj.lifeCounter++; //increment the life counter of the gameobject
                 //handle the object's birth & death events
                 if (Obj.lifeCounter == 2) { HandleBirthEvent(Obj); }
-                if (Obj.lifeCounter >= Obj.lifetime) { HandleDeathEvent(Obj); }
+                if (Obj.lifeCounter >= Obj.lifetime)
+                {   //any dead object is released
+                    HandleDeathEvent(Obj);
+                    PoolFunctions.Release(Obj);
+                }
             }
         }
 

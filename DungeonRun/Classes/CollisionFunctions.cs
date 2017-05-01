@@ -51,7 +51,7 @@ namespace DungeonRun
                 {   //passes any collisions to a Handle() function
                     if (InteractionFunctions.interactionRec.rec.Intersects(Pool.objPool[i].compCollision.rec))
                     {
-                        InteractionFunctions.Handle(Pool.hero, Pool.objPool[i]);
+                        InteractionFunctions.Interact(Pool.hero, Pool.objPool[i]);
                         collision = true;
                     }
                 }
@@ -72,7 +72,7 @@ namespace DungeonRun
                 {
                     if (Actor.compCollision.rec.Intersects(Pool.objPool[i].compCollision.rec))
                     {
-                        InteractionFunctions.Handle(Actor, Pool.objPool[i]);
+                        InteractionFunctions.Interact(Actor, Pool.objPool[i]);
                         if (Pool.objPool[i].compCollision.blocking) { collision = true; }
                     }
                 }
@@ -110,7 +110,7 @@ namespace DungeonRun
                 if (Pool.objPool[i].active)
                 {
                     if (Projectile.compCollision.rec.Intersects(Pool.objPool[i].compCollision.rec))
-                    { InteractionFunctions.Handle(Projectile, Pool.objPool[i]); }
+                    { InteractionFunctions.Interact(Projectile, Pool.objPool[i]); }
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active)
                 {
                     if (Projectile.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    { InteractionFunctions.Handle(Pool.actorPool[i], Projectile); }
+                    { InteractionFunctions.Interact(Pool.actorPool[i], Projectile); }
                 }
             }
         }
@@ -136,7 +136,7 @@ namespace DungeonRun
                     if (Projectile.compCollision.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
                     {   //projectiles shouldn't be allowed to collide with themselves
                         if (Projectile != Pool.projectilePool[i])
-                        { InteractionFunctions.Handle(Projectile, Pool.projectilePool[i]); }
+                        { InteractionFunctions.Interact(Projectile, Pool.projectilePool[i]); }
                     }
                 }
             }
