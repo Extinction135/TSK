@@ -91,7 +91,7 @@ namespace DungeonRun
                 leftTitleEndPos = new Vector2(130-15, yPos);
                 rightTitleEndPos = new Vector2(305+15, yPos);
                 animSpeed = 8; //lower is faster
-                Assets.sfxBeatDungeon.Play();
+                Assets.Play(Assets.sfxBeatDungeon);
             }
             else
             {   //"you died"

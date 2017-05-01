@@ -49,12 +49,12 @@ namespace DungeonRun
                 DungeonRecord.beatDungeon = false;
                 DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
                 //we could track hero deaths here
-                Assets.sfxHeroKill.Play();
+                Assets.Play(Assets.sfxHeroKill);
             }
             else
             {
                 DungeonRecord.enemyCount++; //track non-hero actor deaths
-                Assets.sfxEnemyKill.Play(); //play enemy kill soundFX
+                Assets.Play(Assets.sfxEnemyKill);
             }
 
             #endregion

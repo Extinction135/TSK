@@ -48,7 +48,7 @@ todo:
 
 
 
-migrated following sound effects to new system: SwordSwipe, EnemyHit, HeroHit
+migrated following sound effects to new system: sfxEnemyKill, sfxHeroKill, sfxBeatDungeon
 updated various codepaths to use Assets.Play() method.
 playtested, working.
 

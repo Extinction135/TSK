@@ -58,21 +58,15 @@ namespace DungeonRun
 
         //monogame defaults to 1024 max sound effect instances in sound effect instance pool
         //the number of lists * listSize SHOULD be less than 1024
-
         public static List<SoundEffectInstance> sfxDash;
         public static List<SoundEffectInstance> sfxSwordSwipe;
         public static List<SoundEffectInstance> sfxEnemyHit;
         public static List<SoundEffectInstance> sfxHeroHit;
+        public static List<SoundEffectInstance> sfxEnemyKill;
+        //
+        public static List<SoundEffectInstance> sfxHeroKill;
+        public static List<SoundEffectInstance> sfxBeatDungeon;
 
-
-        static SoundEffect sfxEnemyKillSrc;
-        public static SoundEffectInstance sfxEnemyKill;
-
-        static SoundEffect sfxHeroKillSrc;
-        public static SoundEffectInstance sfxHeroKill;
-
-        static SoundEffect sfxBeatDungeonSrc;
-        public static SoundEffectInstance sfxBeatDungeon;
 
         static SoundEffect sfxDoorOpenSrc;
         public static SoundEffectInstance sfxDoorOpen;
@@ -203,15 +197,16 @@ namespace DungeonRun
             sfxHeroHit = new List<SoundEffectInstance>();
             SoundEffect heroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
 
+            sfxEnemyKill = new List<SoundEffectInstance>();
+            SoundEffect enemyKillSrc = content.Load<SoundEffect>(@"SoundEnemyKill");
 
-            sfxEnemyKillSrc = content.Load<SoundEffect>(@"SoundEnemyKill");
-            sfxEnemyKill = sfxEnemyKillSrc.CreateInstance();
+            //
+            sfxHeroKill = new List<SoundEffectInstance>();
+            SoundEffect heroKillSrc = content.Load<SoundEffect>(@"SoundHeroKill");
 
-            sfxHeroKillSrc = content.Load<SoundEffect>(@"SoundHeroKill");
-            sfxHeroKill = sfxHeroKillSrc.CreateInstance();
+            sfxBeatDungeon = new List<SoundEffectInstance>();
+            SoundEffect beatDuneonSrc = content.Load<SoundEffect>(@"SoundBeatDungeon");
 
-            sfxBeatDungeonSrc = content.Load<SoundEffect>(@"SoundBeatDungeon");
-            sfxBeatDungeon = sfxBeatDungeonSrc.CreateInstance();
 
             sfxDoorOpenSrc = content.Load<SoundEffect>(@"SoundDoorOpen");
             sfxDoorOpen = sfxDoorOpenSrc.CreateInstance();
@@ -280,7 +275,13 @@ namespace DungeonRun
                 sfxSwordSwipe.Add(swordSwipeSrc.CreateInstance());
                 sfxEnemyHit.Add(enemyHitSrc.CreateInstance());
                 sfxHeroHit.Add(heroHitSrc.CreateInstance());
+                sfxEnemyKill.Add(enemyKillSrc.CreateInstance());
+                //
+                sfxHeroKill.Add(heroKillSrc.CreateInstance());
+                sfxBeatDungeon.Add(beatDuneonSrc.CreateInstance());
 
+
+                //
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
             }
         }
