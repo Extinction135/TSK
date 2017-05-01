@@ -83,15 +83,6 @@ namespace DungeonRun
             Move.newPosition.Y = Y;
         }
 
-        public static Direction ConvertDiagonalDirection(Direction Direction)
-        {   //converts a diagonal direction to a cardinal direction
-            if (Direction == Direction.UpRight) { return Direction.Right; }
-            else if (Direction == Direction.DownRight) { return Direction.Right; }
-            else if (Direction == Direction.UpLeft) { return Direction.Left; }
-            else if (Direction == Direction.DownLeft) { return Direction.Left; }
-            else { return Direction; } //Direction parameter is already Cardinal
-        }
-
         public static void StopMovement(ComponentMovement Move)
         {
             Move.magnitude.X = 0;

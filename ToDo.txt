@@ -43,32 +43,32 @@ ram useage:
 todo:
 
 
-13
-
-
-
-refactored SpawnProjectile(ObjType Type, Vector2 Pos, Direction Direction).
-split into two seperate SpawnProjectile functions.
-SpawnProjectile(ObjType Type, Actor Actor) - handles projectile offsets relative to Actor.
-SpawnProjectile(ObjType Type, float X, float Y, Direction Direction) - places projectile at location with direction & rotation.
-this decomposition allows the SpawnProjectile() more flexibility for future development/useage.
-updated various codepaths to use the new SpawnProjectile() functions.
-playtested, working, but with a few bugs...
+12
 
 
 
 
 
-changes:
-the smoke puff needs a +4,+4 offset, when hero casts fireball
+added class DirectionFunctions.
+moved ConvertDiagonalDirection() and GetOppositeDirection() into DirectionFunctions.
+this is a logical association, and consolidates direction related functions into one file.
+updated various codepaths to use the new class and relocated methods.
+refactored SpawnProjectile() to convert the actor's direction to a cardinal one.
+this is to address a bug where an actor facing diagonally spawned a projectile directly on top of them.
+this immediately caused the actor damage.
+
+
+updated the birth event for the fireball projectile to properly place the smoke puff particle.
+
+
+
+
+
 
 
 there are multiple calls to bounce when hero collides with bumper
 we should not be calling this multiple times...
 
-
-hero is able to hit himself with fireballs, and swords
-this is likely due to an offset issue
 
 
 why is the projectile count wrong?
@@ -76,12 +76,21 @@ do we have active projectiles in the room?
 or are we not releasing projectiles properly?
 
 
-
-
-
-
 bug: spikeblock hit hero when he was dead, put him into hit state again
 set hit state() should check to see if actor is in death state, bail if true
+
+
+
+
+
+
+
+can we set the dungeon screen's fadeIn value to a negative number?
+this would give the screen enough time to show the boss death or player death
+without a fade in occurring
+then after it hits 0, the fade in would start....
+
+
 
 
 
@@ -98,17 +107,8 @@ if the block is moving down, and the hero is facing up, the block pushes hero do
 which leads to a perpetual cycle of being hit, instakilling the hero.
 
 
-can we set the dungeon screen's fadeIn value to a negative number?
-this would give the screen enough time to show the boss death or player death
-without a fade in occurring
-then after it hits 0, the fade in would start....
 
 
-
-Fireball polish
-
-the fireball cast sound should always trigger, sometimes it doesn't cause the last Play() hasn't finished.
-fireball should have a longer actor lock time.
 
 
 
@@ -134,6 +134,24 @@ we need menuItem sprites for the various stats
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 pull all the sound effects from links awakening
 	
 	
@@ -148,11 +166,12 @@ between blob and boss. Boss + Hero collisions should still be valid/true..
 but i've noticed that the boss overlaps/locks the hero still. at least it feels that way.
 so... not sure what the issue is: either i'm imagining the lock, or it's actually locking....
 
-move DebugMenu.Draw() into DrawFunctions, cause that's where it belongs.
 
-seperate the Drawing and Updating of DebugInfo fields from Draw().
-the drawing should occur in DrawFunctions.
-the update should occur in an update() function that is called from dungeonScreen's Update.
+
+
+
+
+
 
 we need boss music, and that music should play when hero enters boss room
 

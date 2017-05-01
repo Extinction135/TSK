@@ -54,21 +54,5 @@ namespace DungeonRun
             Button.compText.position.Y = Button.rec.Location.Y - 3;
         }
 
-        public static Direction GetOppositeDirection(Direction Direction)
-        {
-            if (Direction == Direction.Down) { return Direction.Up; }
-            else if (Direction == Direction.Up) { return Direction.Down; }
-
-            else if (Direction == Direction.Left) { return Direction.Right; }
-            else if (Direction == Direction.UpLeft) { return Direction.Right; }
-            else if (Direction == Direction.DownLeft) { return Direction.Right; }
-
-            else if (Direction == Direction.Right) { return Direction.Left; }
-            else if (Direction == Direction.DownRight) { return Direction.Left; }
-            else if (Direction == Direction.UpRight) { return Direction.Left; }
-
-            return Direction.None;
-        }
-
     }
 }

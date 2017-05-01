@@ -215,7 +215,7 @@ namespace DungeonRun
                 if (Obj.type == ObjType.BlockSpikes)
                 {   //damage actor and push in actor's opposite direction
                     BattleFunctions.Damage(Actor, 1, 10.0f,
-                        ComponentFunctions.GetOppositeDirection(Actor.direction));
+                        DirectionFunctions.GetOppositeDirection(Actor.direction));
                 }
                 else if (Obj.type == ObjType.ConveyorBelt)
                 {   //push actor in belt's direction
@@ -225,7 +225,7 @@ namespace DungeonRun
                 {   
                     //push actor in opposite direction
                     MovementFunctions.Push(Actor.compMove,
-                        ComponentFunctions.GetOppositeDirection(Actor.direction),
+                        DirectionFunctions.GetOppositeDirection(Actor.direction),
                         10.0f);
                     //scale the bumper up
                     Obj.compSprite.scale = 1.25f;
@@ -259,7 +259,7 @@ namespace DungeonRun
 
                 else if (ObjA.type == ObjType.BlockSpikes)
                 {   //flip the object's direction to the opposite direction
-                    ObjA.compMove.direction = ComponentFunctions.GetOppositeDirection(ObjA.compMove.direction);
+                    ObjA.compMove.direction = DirectionFunctions.GetOppositeDirection(ObjA.compMove.direction);
                     //push the object in it's new direction, out of this collision
                     MovementFunctions.Push(ObjA.compMove, ObjA.compMove.direction, 5.0f);
                     Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect

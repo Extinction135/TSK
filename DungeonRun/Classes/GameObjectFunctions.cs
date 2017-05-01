@@ -88,7 +88,7 @@ namespace DungeonRun
 
 
 
-
+        static Direction cardinal;
 
 
         public static void SpawnProjectile(ObjType Type, Actor Actor)
@@ -96,6 +96,7 @@ namespace DungeonRun
             //wraps the SpawnProjectile() method below
             //applies projectile offset relative to Actor based on Type
             offset.X = 0; offset.Y = 0;
+            cardinal = DirectionFunctions.GetCardinalDirection(Actor.direction);
 
             //center horizontally, place near actor's feet
             if (Type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
@@ -104,18 +105,18 @@ namespace DungeonRun
             //place fireballs relative to direction actor is facing
             else if (Type == ObjType.ProjectileFireball)
             {
-                if (Actor.direction == Direction.Down) { offset.Y = 14; }
-                else if (Actor.direction == Direction.Up) { offset.Y = -9; }
-                else if (Actor.direction == Direction.Right) { offset.X = 11; offset.Y = 2; }
-                else if (Actor.direction == Direction.Left) { offset.X = -11; offset.Y = 2; }
+                if (cardinal == Direction.Down) { offset.Y = 14; }
+                else if (cardinal == Direction.Up) { offset.Y = -9; }
+                else if (cardinal == Direction.Right) { offset.X = 11; offset.Y = 2; }
+                else if (cardinal == Direction.Left) { offset.X = -11; offset.Y = 2; }
             }
             //place swords relative to direction actor is facing
             else if (Type == ObjType.ProjectileSword)
             {
-                if (Actor.direction == Direction.Down) { offset.X = -1; offset.Y = 15; }
-                else if (Actor.direction == Direction.Up) { offset.X = 1; offset.Y = -12; }
-                else if (Actor.direction == Direction.Right) { offset.X = 14; offset.Y = 0; }
-                else if (Actor.direction == Direction.Left) { offset.X = -14; offset.Y = 0; }
+                if (cardinal == Direction.Down) { offset.X = -1; offset.Y = 15; }
+                else if (cardinal == Direction.Up) { offset.X = 1; offset.Y = -12; }
+                else if (cardinal == Direction.Right) { offset.X = 14; offset.Y = 0; }
+                else if (cardinal == Direction.Left) { offset.X = -14; offset.Y = 0; }
                 //need to flip the projectile sprite based on it's direction
             }
             //place reward particles above actor's head
@@ -129,8 +130,8 @@ namespace DungeonRun
             //call the real SpawnProjectile method
             SpawnProjectile(Type, 
                 Actor.compSprite.position.X + offset.X, 
-                Actor.compSprite.position.Y + offset.Y, 
-                Actor.direction);
+                Actor.compSprite.position.Y + offset.Y,
+                cardinal);
         }
 
         public static void SpawnProjectile(ObjType Type, float X, float Y, Direction Direction)
@@ -140,8 +141,8 @@ namespace DungeonRun
 
             if (projectile.group == ObjGroup.Projectile)
             {   //convert projectile's directions to cardinal, projectiles move
-                projectile.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
-                projectile.compMove.direction = MovementFunctions.ConvertDiagonalDirection(Direction);
+                projectile.direction = DirectionFunctions.GetCardinalDirection(Direction);
+                projectile.compMove.direction = DirectionFunctions.GetCardinalDirection(Direction);
             }
             else//particles, items (consumable loot)
             {   //particles always face Down, particles dont move
@@ -183,8 +184,8 @@ namespace DungeonRun
             if (Obj.type == ObjType.ProjectileFireball)
             {
                 SpawnProjectile(ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
+                    Obj.compSprite.position.X + 4,
+                    Obj.compSprite.position.Y + 4,
                     Direction.None);
             }
         }
