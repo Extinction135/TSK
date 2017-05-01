@@ -120,7 +120,7 @@ namespace DungeonRun
             //create the background rec
             background = new Rectangle(0, 0, 640, 360);
             //play the opening soundFX
-            Assets.sfxInventoryOpen.Play();
+            Assets.Play(Assets.sfxInventoryOpen);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -138,7 +138,7 @@ namespace DungeonRun
             else if(Input.IsNewButtonPress(Buttons.A))
             {
                 currentlySelected.compSprite.scale = 2.0f;
-                Assets.sfxSelectMenuItem.Play();
+                Assets.Play(Assets.sfxMenuItem);
             }
 
             //get the previouslySelected menuItem

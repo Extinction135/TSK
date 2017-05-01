@@ -78,14 +78,10 @@ namespace DungeonRun
         //
         public static List<SoundEffectInstance> sfxHeartPickup;
         public static List<SoundEffectInstance> sfxGoldPickup;
+        public static List<SoundEffectInstance> sfxMenuItem;
+        public static List<SoundEffectInstance> sfxInventoryOpen;
 
         
-
-        static SoundEffect sfxSelectMenuItemSrc;
-        public static SoundEffectInstance sfxSelectMenuItem;
-
-        static SoundEffect sfxInventoryOpenSrc;
-        public static SoundEffectInstance sfxInventoryOpen;
 
         static SoundEffect sfxInventoryCloseSrc;
         public static SoundEffectInstance sfxInventoryClose;
@@ -206,13 +202,11 @@ namespace DungeonRun
             SoundEffect heartPickupSrc = content.Load<SoundEffect>(@"SoundHeartPickup");
             sfxGoldPickup = new List<SoundEffectInstance>();
             SoundEffect goldPickupSrc = content.Load<SoundEffect>(@"SoundGoldPickup");
-
-
-            sfxSelectMenuItemSrc = content.Load<SoundEffect>(@"SoundSelectMenuItem");
-            sfxSelectMenuItem = sfxSelectMenuItemSrc.CreateInstance();
-
-            sfxInventoryOpenSrc = content.Load<SoundEffect>(@"SoundInventoryOpen");
-            sfxInventoryOpen = sfxInventoryOpenSrc.CreateInstance();
+            sfxMenuItem = new List<SoundEffectInstance>();
+            SoundEffect menuItemSrc = content.Load<SoundEffect>(@"SoundSelectMenuItem");
+            sfxInventoryOpen = new List<SoundEffectInstance>();
+            SoundEffect inventoryOpenSrc = content.Load<SoundEffect>(@"SoundInventoryOpen");
+            
 
             sfxInventoryCloseSrc = content.Load<SoundEffect>(@"SoundInventoryClose");
             sfxInventoryClose = sfxInventoryCloseSrc.CreateInstance();
@@ -261,6 +255,9 @@ namespace DungeonRun
                 //
                 sfxHeartPickup.Add(heartPickupSrc.CreateInstance());
                 sfxGoldPickup.Add(goldPickupSrc.CreateInstance());
+                sfxMenuItem.Add(menuItemSrc.CreateInstance());
+                sfxInventoryOpen.Add(inventoryOpenSrc.CreateInstance());
+
                 //
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
             }
