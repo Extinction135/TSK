@@ -137,9 +137,9 @@ namespace DungeonRun
                 {   //reward the hero with the chests contents
                     if (Obj.type == ObjType.ChestGold)
                     {
-                        GameObjectFunctions.SpawnProjectile(ObjType.ParticleReward50Gold, Actor);
+                        GameObjectFunctions.SpawnProjectile(ObjType.ParticleRewardGold, Actor);
                         Assets.Play(Assets.sfxReward);
-                        PlayerData.saveData.gold += 50; //give the hero 50 gold
+                        PlayerData.saveData.gold += 20;
                     }
                     else if (Obj.type == ObjType.ChestKey)
                     {
@@ -229,9 +229,9 @@ namespace DungeonRun
 
                     //actors can collide with bumper twice per frame, due to per axis collision checks
                     //only play the bounce sound effect if the bumper hasn't been hit this frame
-                    if (Obj.compSprite.scale < 1.25f) { Assets.Play(Assets.sfxBounce); } 
+                    if (Obj.compSprite.scale < 1.5f) { Assets.Play(Assets.sfxBounce); } 
                     //if the bumper was hit this frame, scale it up
-                    Obj.compSprite.scale = 1.25f;
+                    Obj.compSprite.scale = 1.5f;
                     GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
                 }
 

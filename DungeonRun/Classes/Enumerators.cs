@@ -57,7 +57,7 @@ namespace DungeonRun
         ParticleExplosion, ParticleAttention,
         ParticleFire,
         //Particles - rewards
-        ParticleReward50Gold, ParticleRewardKey, ParticleRewardMap,
+        ParticleRewardGold, ParticleRewardKey, ParticleRewardMap,
         ParticleRewardHeartPiece, ParticleRewardHeartFull,
     }
 

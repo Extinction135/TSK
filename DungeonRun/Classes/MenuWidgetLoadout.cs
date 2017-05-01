@@ -21,7 +21,6 @@ namespace DungeonRun
         public static ComponentText goldAmount;
         public static Rectangle goldBkg;
 
-
         static MenuWidgetLoadout()
         {
             window = new MenuWindow(new Point(-100, -100),
@@ -36,10 +35,10 @@ namespace DungeonRun
             menuItems[0].description = "a magical boomerang\nthat always returns";
             menuItems[0].compSprite.currentFrame = new Byte4(5, 5, 0, 0);
 
-            //create the gold amount text and background
-            goldAmount = new ComponentText(Assets.font, "999", 
+            //create the gold amount text
+            goldAmount = new ComponentText(Assets.font, "99", 
                 new Vector2(0, 0), Assets.colorScheme.textLight);
-            goldBkg = new Rectangle(0, 0, 13, 7);
+            goldBkg = new Rectangle(0, 0, 9, 7);
         }
 
         public static void Reset(Point Position, Point Size)
@@ -92,9 +91,10 @@ namespace DungeonRun
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
 
             //set the inventory heart pieces frame, based on the number of heart pieces hero has
-            menuItems[5].compSprite.currentFrame.x = 10; //default to empty
             //add the piece counter to the current X frame, pieceCounter will always be less than 5
-            menuItems[5].compSprite.currentFrame.x += (byte)WorldUI.pieceCounter;
+            menuItems[5].compAnim.currentAnimation = new List<Byte4>
+            { new Byte4((byte)(10 + WorldUI.pieceCounter), 1, 0, 0) };
+            AnimationFunctions.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
 
             if (DungeonFunctions.dungeon.map) //if player found the map, display it
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
@@ -104,16 +104,14 @@ namespace DungeonRun
             else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
 
             //place the goldAmount text component & bkg to the gold menuItem
-            goldAmount.position.X = menuItems[4].compSprite.position.X - 5;
-            goldAmount.position.Y = menuItems[4].compSprite.position.Y - 3;
+            goldAmount.position.X = menuItems[4].compSprite.position.X - 1;
+            goldAmount.position.Y = menuItems[4].compSprite.position.Y - 4;
             goldBkg.X = (int)goldAmount.position.X - 1;
             goldBkg.Y = (int)goldAmount.position.Y + 4;
 
-            //apply padding so goldAmount is always 3 digits, limit to 999
+            //apply padding so goldAmount is always 2 digits
             goldAmount.text = "";
-            if (PlayerData.saveData.gold < 10) { goldAmount.text += "00"; }
-            else if (PlayerData.saveData.gold < 100) { goldAmount.text += "0"; }
-            else if (PlayerData.saveData.gold > 999) { PlayerData.saveData.gold = 999; }
+            if (PlayerData.saveData.gold < 10) { goldAmount.text += "0"; }
             goldAmount.text += PlayerData.saveData.gold;
         }
 
@@ -129,7 +127,6 @@ namespace DungeonRun
             {
                 for (i = 0; i < menuItems.Count; i++)
                 { DrawFunctions.Draw(menuItems[i].compSprite); }
-                //draw gold amount with background
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, goldBkg,
                     Assets.colorScheme.textDark);

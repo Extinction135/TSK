@@ -43,50 +43,41 @@ ram useage:
 todo:
 
 
-3
+2
 
 
 
-removed all codepaths in widgets that Updated() / Animated() lists of menuItems.
-the inventory menu was very distracting with menuItems animating all the time.
-updated InventoryScreen to animate the currently selected menuItem.
-now only the currently selected menuItem is animated on Inventory Screen. looks better.
-increased the amount by which a sprite is scaled down to 1.0, in AnimationFunctions.
+remade UI gold sprite to match the chest reward sprite, but without the background and text.
+i've made a design decision to limit the total gold to 99.
+aligned the goldAmount text in loadout widget to new gold amount sprite.
+updated the info widget with a goldAmount text component & bkg, so it can more accurately reproduce the loadout widget.
+updated InfoWidget.Display() to show gold + bkg only if currently selected menuItem is inventory gold.
 
-added a call to Animate() from MenuItemFunctions.SetMenuItemData().
-this fixes a bug where MenuItem sprites weren't being correctly displayed upon creation.
+reduced reward gold to 20 in sprite sheet.
+changed ObjType enum ParticleReward50Gold to ParticleRewardGold.
+updated various codepaths to use the more generic enum value ParticleRewardGold.
+reduced the chance of an enemy dropping gold to 30% (in SpawnLoot()).
+now limiting the hero's max gold amount to 99 in WorldUI.Update().
 
-added code to display the currently selected menuItem from inventoryScreen upon creation.
-playtested, working as expected. 
-moving onto additional bugs.
+updated InteractionFunctions.Interact(Actor, Obj) to scale Bumper obj up to 1.5.
+playtested, working as expected.
+
+moved heart piece sprites +2 on Y axis in sprite sheet, for better alignment in loadout widget.
+
+bug: pick up a piece of heart, open menu, select heart piece, resets to empty heart piece.
+cause: loadout widget was setting the sprite's current frame, which was then overwritten by the component animation's list.
+solution: set the component animation's list, then call Animate(HeartPiece MenuItem) from LoadoutWidget.Reset().
+playtested, working as expected.
 
 
 
 
-when inventory screen first opens, display the currently selected menuItem
-
-the gold background + text should be moved -1x, -1y
-
-the heart piece sprites should be moved +2y, in sprite sheet
-
-Animate() should scale sprites down faster (0.2?)
 
 we need the save game menuItem to rotate the arrow 180
 we can probably set/update the direction of the sprite
 
-scale bumper up to 2.0f upon collision
-
-
-bug: pick up a piece of heart, open menu, select heart piece
-it resets to empty heart piece
-
-
-
-
-
 audio ctrls sprite could be animated (sound waves growing)
 video ctrls sprite could be animated too
-
 
 we need menuItem sprites for the various stats
 	strength - increases amount of physical damage weapon does

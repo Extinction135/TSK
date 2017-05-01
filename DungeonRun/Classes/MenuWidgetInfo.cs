@@ -17,6 +17,8 @@ namespace DungeonRun
 
         public static MenuWindow window;
         public static MenuItem infoItem;
+        public static ComponentText goldAmount;
+        public static Rectangle goldBkg;
         public static ComponentText description;
         public static MenuRectangle divider1;
 
@@ -32,6 +34,10 @@ namespace DungeonRun
                 Assets.colorScheme.textDark);
             divider1 = new MenuRectangle(new Point(-100, -100), 
                 new Point(0, 0), Assets.colorScheme.windowInset);
+            //create the gold amount text
+            goldAmount = new ComponentText(Assets.font, "99",
+                new Vector2(0, 0), Assets.colorScheme.textLight);
+            goldBkg = new Rectangle(0, 0, 9, 7);
         }
 
         public static void Reset(Point Position, Point Size)
@@ -50,6 +56,11 @@ namespace DungeonRun
             divider1.size.X = Size.X - 16;
             divider1.size.Y = 1;
             divider1.Reset();
+            //align the goldAmount to the infoItem
+            goldAmount.position.X = infoItem.compSprite.position.X - 1;
+            goldAmount.position.Y = infoItem.compSprite.position.Y - 4;
+            goldBkg.X = (int)goldAmount.position.X - 1;
+            goldBkg.Y = (int)goldAmount.position.Y + 4;
         }
 
         public static void Display(MenuItem MenuItem)
@@ -57,6 +68,10 @@ namespace DungeonRun
             infoItem.compAnim.currentAnimation = MenuItem.compAnim.currentAnimation;
             window.title.text = MenuItem.name;
             description.text = MenuItem.description;
+            //if we are displaying the inventory gold menu item, also display the goldAmount + goldBkg
+            if (MenuItem.type == MenuItemType.InventoryGold)
+            { goldAmount.text = MenuWidgetLoadout.goldAmount.text; goldBkg.Width = 9; }
+            else { goldAmount.text = ""; goldBkg.Width = 0; }
         }
 
         public static void Update()
@@ -74,6 +89,10 @@ namespace DungeonRun
             {
                 DrawFunctions.Draw(infoItem.compSprite);
                 DrawFunctions.Draw(description);
+                ScreenManager.spriteBatch.Draw(
+                    Assets.dummyTexture, goldBkg,
+                    Assets.colorScheme.textDark);
+                DrawFunctions.Draw(goldAmount);
             }
         }
 

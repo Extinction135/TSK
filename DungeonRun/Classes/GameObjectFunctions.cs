@@ -48,10 +48,10 @@ namespace DungeonRun
 
         public static void SpawnLoot(Vector2 Pos)
         {   //either spawn a rupee or a heart item
-            if (GetRandom.Int(0, 100) > 50)
-            { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
-            else
+            if (GetRandom.Int(0, 100) > 30)
             { SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
+            else
+            { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
         }
 
         public static void SetWeaponCollisions(GameObject Obj)
@@ -110,7 +110,7 @@ namespace DungeonRun
                 //need to flip the projectile sprite based on it's direction
             }
             //place reward particles above actor's head
-            else if (Type == ObjType.ParticleReward50Gold ||
+            else if (Type == ObjType.ParticleRewardGold ||
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleRewardHeartFull ||
@@ -485,7 +485,7 @@ namespace DungeonRun
                 Obj.compAnim.loop = true;
             }
             //Particles - rewards
-            else if (Type == ObjType.ParticleReward50Gold ||
+            else if (Type == ObjType.ParticleRewardGold ||
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleRewardHeartPiece ||

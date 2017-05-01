@@ -130,6 +130,9 @@ namespace DungeonRun
             //scale current weapon and item back down to 1.0
             if (currentWeapon.scale > 1.0f) { currentWeapon.scale -= 0.05f; }
             if (currentItem.scale > 1.0f) { currentItem.scale -= 0.05f; }
+
+            //limit the hero's gold to a max of 99
+            if (PlayerData.saveData.gold > 99) { PlayerData.saveData.gold = 99; }
         }
 
         public static void Draw()
