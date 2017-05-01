@@ -58,6 +58,8 @@ namespace DungeonRun
 
         //monogame defaults to 1024 max sound effect instances in sound effect instance pool
         //the number of lists * listSize SHOULD be less than 1024
+        //current count (26 * 5) = 130 sfx instances
+
         public static List<SoundEffectInstance> sfxDash;
         public static List<SoundEffectInstance> sfxSwordSwipe;
         public static List<SoundEffectInstance> sfxEnemyHit;
@@ -86,16 +88,11 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxExplosion;
         public static List<SoundEffectInstance> sfxFireballCast;
         public static List<SoundEffectInstance> sfxFireballDeath;
-        
-
-        static SoundEffect sfxMetallicTapSrc;
-        public static SoundEffectInstance sfxMetallicTap;
-
-        static SoundEffect sfxBounceSrc;
-        public static SoundEffectInstance sfxBounce;
+        public static List<SoundEffectInstance> sfxMetallicTap;
+        //
+        public static List<SoundEffectInstance> sfxBounce;
 
         #endregion
-
 
 
         public static void Play(List<SoundEffectInstance> List)
@@ -107,8 +104,6 @@ namespace DungeonRun
                 else { List[i].Stop(); }
             }
         }
-
-
 
         public static void Load(GraphicsDevice GraphicsDevice, ContentManager ContentManager)
         {
@@ -153,7 +148,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Soundfx
+            #region Soundfx instance lists + sources
 
             sfxDash = new List<SoundEffectInstance>();
             SoundEffect dashSrc = content.Load<SoundEffect>(@"SoundDash");
@@ -207,18 +202,17 @@ namespace DungeonRun
             SoundEffect fireballCastSrc = content.Load<SoundEffect>(@"SoundFireballCast");
             sfxFireballDeath = new List<SoundEffectInstance>();
             SoundEffect fireballDeathSrc = content.Load<SoundEffect>(@"SoundFireballDeath");
-            
-
-            sfxMetallicTapSrc = content.Load<SoundEffect>(@"SoundMetallicTap");
-            sfxMetallicTap = sfxMetallicTapSrc.CreateInstance();
-
-            sfxBounceSrc = content.Load<SoundEffect>(@"SoundBounce");
-            sfxBounce = sfxBounceSrc.CreateInstance();
+            sfxMetallicTap = new List<SoundEffectInstance>();
+            SoundEffect metallicTapSrc = content.Load<SoundEffect>(@"SoundMetallicTap");
+            //
+            sfxBounce = new List<SoundEffectInstance>();
+            SoundEffect bounceSrc = content.Load<SoundEffect>(@"SoundBounce");
 
             #endregion
 
 
-            //populate the instance lists
+            #region Populate the instance lists
+
             for (i = 0; i < listSize; i++)
             {
                 sfxDash.Add(dashSrc.CreateInstance());
@@ -249,10 +243,14 @@ namespace DungeonRun
                 sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
                 sfxFireballCast.Add(fireballCastSrc.CreateInstance());
                 sfxFireballDeath.Add(fireballDeathSrc.CreateInstance());
-
-
-
+                sfxMetallicTap.Add(metallicTapSrc.CreateInstance());
+                //
+                sfxBounce.Add(bounceSrc.CreateInstance());
             }
+
+            #endregion
+
+
         }
 
     }

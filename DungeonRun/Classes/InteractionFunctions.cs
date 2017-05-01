@@ -252,7 +252,7 @@ namespace DungeonRun
                     //scale the bumper up
                     Obj.compSprite.scale = 1.25f;
                     //play the bounce sound fx
-                    Assets.sfxBounce.Play(); 
+                    Assets.Play(Assets.sfxBounce); 
                     GameObjectFunctions.SpawnProjectile(
                         ObjType.ParticleDashPuff,
                         Actor.compSprite.position,
@@ -287,7 +287,7 @@ namespace DungeonRun
                     ObjA.compMove.direction = ComponentFunctions.GetOppositeDirection(ObjA.compMove.direction);
                     //push the object in it's new direction, out of this collision
                     MovementFunctions.Push(ObjA.compMove, ObjA.compMove.direction, 5.0f);
-                    Assets.sfxMetallicTap.Play(); //play the 'clink' sound effect
+                    Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect
                     //show that the object has been hit
                     GameObjectFunctions.SpawnProjectile(
                         ObjType.ParticleHitSparkle, 

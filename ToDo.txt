@@ -43,16 +43,16 @@ ram useage:
 todo:
 
 
-8
+1
 
 
 
 
-migrated following sound effects to new system: sfxDoorOpen, sfxKeyPickup, sfxBossIntro
+migrated following sound effects to new system: sfxMetallicTap, sfxBounce
 updated various codepaths to use Assets.Play() method.
-playtested, working.
-
-
+playtested, working. some housekeeping and organization in Assets.
+today's commits were cheap, yes, but the new sfx system was badly needed.
+the generic solution written in Assets also scales.
 
 
 
