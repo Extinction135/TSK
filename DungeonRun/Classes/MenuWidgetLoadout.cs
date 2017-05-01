@@ -120,6 +120,8 @@ namespace DungeonRun
         public static void Update()
         {
             window.Update();
+            for (i = 0; i < menuItems.Count; i++)
+            { AnimationFunctions.Animate(menuItems[i].compAnim, menuItems[i].compSprite); }
         }
 
         public static void Draw()

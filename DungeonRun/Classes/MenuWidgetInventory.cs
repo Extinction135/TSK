@@ -166,6 +166,8 @@ namespace DungeonRun
         {
             window.Update();
             for (i = 0; i < dividers.Count; i++) { dividers[i].Update(); }
+            for (i = 0; i < menuItems.Count; i++)
+            { AnimationFunctions.Animate(menuItems[i].compAnim, menuItems[i].compSprite); }
         }
 
         public static void Draw()

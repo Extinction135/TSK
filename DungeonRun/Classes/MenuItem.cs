@@ -16,6 +16,7 @@ namespace DungeonRun
     {
 
         public ComponentSprite compSprite;
+        public ComponentAnimation compAnim;
         public MenuItemType type;
         public String name = "";
         public String description = "";
@@ -31,6 +32,7 @@ namespace DungeonRun
                 new Vector2(-100, 1000), 
                 new Byte4(15, 5, 0, 0), 
                 new Byte2(16, 16));
+            compAnim = new ComponentAnimation();
             MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, this);
             neighborUp = this;
             neighborDown = this;

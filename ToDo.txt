@@ -43,44 +43,53 @@ ram useage:
 todo:
 
 
-5
+4
 
 
 
+created gold UI animated sprites in MainSheet.
+updated menuItem to have animation component.
+updated SetMenuItemData() to set menuItem.compAnim.currentAnimation lists.
 
-added check to ActorFunctions.Update() -> death routines for hero death.
-upon hero death, attention particles are spawned just as hero falls to the ground.
-this adds emphasis to the hero's fall & death.
-playtested, looking MUCH better and more satisfying.
+updated MenuWidgetInfo to use a MenuItem instead of a component sprite.
+this is because MenuItems animate now, so it's just easier to use a menuItem here, instead of two components.
 
+updated MenuWidgetInfo to animate it's infoItem.
+updated MenuWidgetLoadout to animate it's menuItems.
+updated MenuWidgetInventory to animate it's menuItems.
+updated MenuWidgetOptions to animate it's menuItems.
+updated MenuWidgetStats to animate it's menuItems.
 
-
-
-
-we want to create an attention particle when the hero 'falls' upon death....
-
-
-
-
-
-
-
+since Animate() scales sprites down to 1.0, we no longer need to scale menuItems from InventoryScreen.
+removed that section of code from InventoryScreen.
+playtested, working, with some minor bugs and alignment issues.
 
 
 
-
-
-Inventory Menu++
-
-make the gold sprite in loadout widget animate, just like the gold consumables
-the info window should have the animated gold as well
-this SHOULD be as simple as setting the animation list of the sprite...
-
+let's only animate the currently selected menuItem
+this way we don't have to update/animate each widget's menuItems
+this prevents the menuitems from ccompeting with players attention
+also, we dont have animations for the main inventory items
+it would look better if everything was still, until selected.
 
 
 
-	
-	
+when inventory screen first opens, display the currently selected menuItem
+
+the gold background + text should be moved -1x, -1y
+
+the heart piece sprites should be moved +2y, in sprite sheet
+
+Animate() should scale sprites down faster (0.2?)
+
+we need the save game menuItem to rotate the arrow 180
+we can probably set/update the direction of the sprite
+
+
+audio ctrls sprite could be animated (sound waves growing)
+video ctrls sprite could be animated too
+
+
 we need menuItem sprites for the various stats
 	strength - increases amount of physical damage weapon does
 	magic = increases amount of magical damage magic does

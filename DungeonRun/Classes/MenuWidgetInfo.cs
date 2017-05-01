@@ -16,7 +16,7 @@ namespace DungeonRun
     {
 
         public static MenuWindow window;
-        public static ComponentSprite compSprite;
+        public static MenuItem infoItem;
         public static ComponentText description;
         public static MenuRectangle divider1;
 
@@ -26,9 +26,8 @@ namespace DungeonRun
         {
             window = new MenuWindow(new Point(-100, -100), 
                 new Point(100, 100), "Info Window");
-            compSprite = new ComponentSprite(Assets.mainSheet, 
-                new Vector2(-100, 1000), new Byte4(15, 5, 0, 0), 
-                new Byte2(16, 16));
+            infoItem = new MenuItem();
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, infoItem);
             description = new ComponentText(Assets.font, 
                 "default description \ntext here...", new Vector2(-100, -100), 
                 Assets.colorScheme.textDark);
@@ -39,8 +38,8 @@ namespace DungeonRun
         public static void Reset(Point Position, Point Size)
         {   //align this widgets component to Position + Size
             window.ResetAndMoveWindow(Position, Size, "Info Window");
-            compSprite.position.X = Position.X + 16 * 3 + 4;
-            compSprite.position.Y = Position.Y + 16 * 2;
+            infoItem.compSprite.position.X = Position.X + 16 * 3 + 4;
+            infoItem.compSprite.position.Y = Position.Y + 16 * 2;
             description.position.X = Position.X + 8;
             description.position.Y = Position.Y + 16 * 3;
             //reset and align the divider line
@@ -54,8 +53,12 @@ namespace DungeonRun
 
         public static void Display(MenuItem MenuItem)
         {   //set the widget's components based on the MenuItem's fields
+
+            //infoItem = MenuItem;
+            infoItem.compAnim.currentAnimation = MenuItem.compAnim.currentAnimation;
+
+
             window.title.text = MenuItem.name;
-            compSprite.currentFrame = MenuItem.compSprite.currentFrame;
             description.text = MenuItem.description;
         }
 
@@ -63,6 +66,7 @@ namespace DungeonRun
         {
             window.Update();
             divider1.Update();
+            AnimationFunctions.Animate(infoItem.compAnim, infoItem.compSprite);
         }
 
         public static void Draw()
@@ -71,7 +75,7 @@ namespace DungeonRun
             DrawFunctions.Draw(divider1);
             if(window.interior.displayState == DisplayState.Opened)
             {
-                DrawFunctions.Draw(compSprite);
+                DrawFunctions.Draw(infoItem.compSprite);
                 DrawFunctions.Draw(description);
             }
         }
