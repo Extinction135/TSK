@@ -35,20 +35,11 @@ ram useage:
 todo:
 
 
-10
-
-
-updated DrawFunctions.Draw(CollisionComponent) to only draw .blocking collision component rectangles.
-this 'cleans up' the collisions view/rendering of the game.
-fixes a bug where particle collision recs were being drawn.
-playtested, working as expected.
+9
 
 
 
-bug: spike blocks collision recs dont draw, because they aren't blocking
-
-
-
+created mockup for overworld screen.
 
 
 
