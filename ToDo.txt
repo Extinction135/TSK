@@ -35,11 +35,16 @@ ram useage:
 todo:
 
 
-9
+8
 
 
 
-created mockup for overworld screen.
+
+added OverworldTexture.png to content project, built.
+added instances to Assets to handle loading of new OverworldTexture.
+ram useage still 81-82 mb on PC.
+
+
 
 
 

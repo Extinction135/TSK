@@ -35,6 +35,7 @@ namespace DungeonRun
         public static Texture2D mainSheet;
         public static Texture2D bigTextSheet;
         public static Texture2D dungeonSheet;
+        public static Texture2D overworldSheet;
 
 
         #region Music Instances
@@ -125,6 +126,7 @@ namespace DungeonRun
             mainSheet = content.Load<Texture2D>(@"MainSheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
             dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
+            overworldSheet = content.Load<Texture2D>(@"OverworldTexture");
 
 
             #region Create Music instances
