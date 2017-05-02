@@ -35,23 +35,21 @@ ram useage:
 todo:
 
 
-12
+11
 
 
 
-updated FinishRoom() to place exit object along bottom wall.
-updated GameObjFunctions.SetType() to make Exit Pillars part of ObjGroup.Door.
-this shoehorns them into CleanupRoom(), so walls that collide with them are removed.
-updated GameObjFunctions.SetType() to sort ExitPillars to the floor.
-updated FinishRoom() to place the exit light fx as well.
-playtested, working as expected, exit looks great.
+updated InteractionFunctions.Interact(Actor, Obj) to rebuild dungeon upon hero collision with exit object.
+playtested, working as expected.
 
 
+
+
+when hero collides with the exit obj, for now we just rebuild the dungeon
 
 
 
 exiting dungeons
-	the spawn room should have a set of exit objects that resemble an exit door
 	if hero collides with the inner most part of the exit door, then the screen exits
 	and the overworld screen is created, which lets player choose which dungeon to go to next
 

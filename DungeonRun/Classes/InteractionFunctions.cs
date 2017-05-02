@@ -194,6 +194,12 @@ namespace DungeonRun
                             Direction.None);
                     }
                 }
+                else if (Obj.type == ObjType.Exit && Actor == Pool.hero)
+                {   //only hero can exit dungeon
+                    //for now, just rebuild the dungeon
+                    DungeonFunctions.BuildDungeon();
+                    //in the future we would create the Overworld screen
+                }
                 else if (Obj.type == ObjType.DoorTrap)
                 {   //trap doors push ALL actors
                     MovementFunctions.Push(Actor.compMove, Obj.direction, 1.0f);

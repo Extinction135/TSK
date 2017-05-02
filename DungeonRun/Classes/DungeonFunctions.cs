@@ -299,7 +299,7 @@ namespace DungeonRun
 
 
 
-                /*
+                
                 //Create testing spike blocks
 
                 objRef = PoolFunctions.GetObj();
@@ -334,7 +334,7 @@ namespace DungeonRun
                     13 * 16 + pos.X + 8,
                     3 * 16 + pos.Y + 8);
                 GameObjectFunctions.SetType(objRef, ObjType.Bumper);
-                */
+                
 
 
 
@@ -367,7 +367,7 @@ namespace DungeonRun
 
 
                 //spawn enemies inside of this room
-                //SpawnEnemies(Room);
+                SpawnEnemies(Room);
             }
 
             #endregion
