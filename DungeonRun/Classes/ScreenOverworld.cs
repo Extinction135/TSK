@@ -29,9 +29,9 @@ namespace DungeonRun
             map = new ComponentSprite(Assets.overworldSheet, 
                 new Vector2(window.border.position.X + 8, window.border.position.Y + 24), 
                 new Byte4(0, 0, 0, 0), new Byte2(241, 149));
-            
-            map.position.X += map.cellSize.x / 2;
-            map.position.Y += map.cellSize.y / 2;
+            map.scale = 2.0f;
+            map.position.X += map.cellSize.x;
+            map.position.Y += map.cellSize.y;
         }
 
         public override void HandleInput(GameTime GameTime)

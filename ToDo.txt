@@ -35,14 +35,17 @@ ram useage:
 todo:
 
 
-5
+4
 
 
 
-added in offsets to properly place the map sprite based on map cellsize.
-playtested, working, but the map sprite still needs to be scaled up x2.
-
-
+added line to scale map sprite up x2.
+updated the offset to properly place the map sprite.
+playtested, various issues / bugs.
+it's much closer to where it should be, but it's still off a pixel horizontally.
+and the vertical height doesn't match the mockup. it's off by 8 pixels.
+which is weird and i don't really understand why right now.
+kind of rushing commits and code today due to time constraints.
 
 
 
