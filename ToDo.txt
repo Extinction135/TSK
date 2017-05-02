@@ -35,36 +35,32 @@ ram useage:
 todo:
 
 
-3
+2
+
+
+updated overworld screen with new window size and placement.
+updated the position of map texture to be placed properly as well.
+playtested, working as expected.
 
 
 
 
 
-remade the overworld screen mockup.
-now the overworld map is 256x256.
-updated the overworld texture in content project.
+
+add the bottom location text to overworld screen
 
 
 
-
-
-the map sprite doesn't align with the mockup - why?
-
-
-the map sprite should also fit the pixel density, so we need a different map now
-the current map is too small.
-this also means the new map will need to be around 16*29, 16*18
-
-
-
-
-
-overworld window is 16 pixels too wide
+improve the map - needs a darker border that matches divider line
+fix top mountain castle
+add clouds back into corners / border of map
 
 need soundfx for exiting dungeon
 should fade in overlay
 once fade in finishes, overworld screen should be created
+
+we need transition in/out of overworld screen
+
 
 
 

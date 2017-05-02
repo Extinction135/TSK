@@ -24,14 +24,13 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            window = new MenuWindow(new Point(16 * 5, 16 * 1),
-                new Point(16 * 31, 16 * 20 + 8), "Overworld Map");
+            window = new MenuWindow(new Point(16 * 11 + 8, 16 * 1 + 8),
+                new Point(16 * 17, 16 * 19), "Overworld Map");
             map = new ComponentSprite(Assets.overworldSheet, 
                 new Vector2(window.border.position.X + 8, window.border.position.Y + 24), 
-                new Byte4(0, 0, 0, 0), new Byte2(241, 149));
-            map.scale = 1.0f;
-            map.position.X += map.cellSize.x;
-            map.position.Y += map.cellSize.y;
+                new Byte4(0, 0, 0, 0), new Byte2(255, 255));
+            map.position.X += map.cellSize.x / 2;
+            map.position.Y += map.cellSize.y / 2;
         }
 
         public override void HandleInput(GameTime GameTime)
