@@ -297,24 +297,23 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Create testing spike blocks
+
+
+                /*
+                //Create testing spike blocks
 
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     7 * 16 + pos.X + 8,
                     3 * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.BlockSpikes);
 
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     7 * 16 + pos.X + 8,
                     7 * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.BlockSpikes);
                 objRef.compMove.direction = Direction.Right;
-
-                #endregion
 
 
                 //place test conveyor belt
@@ -334,13 +333,41 @@ namespace DungeonRun
                 MovementFunctions.Teleport(objRef.compMove,
                     13 * 16 + pos.X + 8,
                     3 * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.Bumper);
+                */
+
+
+
+                //create the exit
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x / 2) * 16 + pos.X + 8,
+                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.Exit);
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x / 2) * 16 + pos.X + 8,
+                    Room.size.y * 16 + pos.Y + 8 - 16 * 1);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitLightFX);
+
+
+                //create exit pillars
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x / 2) * 16 + pos.X + 8 - 16,
+                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitPillarLeft);
+
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x / 2) * 16 + pos.X + 8 + 16,
+                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitPillarRight);
 
 
 
                 //spawn enemies inside of this room
-                SpawnEnemies(Room);
+                //SpawnEnemies(Room);
             }
 
             #endregion

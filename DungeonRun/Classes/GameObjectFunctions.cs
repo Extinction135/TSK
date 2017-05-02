@@ -215,6 +215,8 @@ namespace DungeonRun
                 Type == ObjType.ExitPillarRight)
             {
                 Obj.compSprite.cellSize.y = 16 * 3; //nonstandard size
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.group = ObjGroup.Door;
                 Obj.compCollision.rec.Height = 32 - 5;
                 Obj.compCollision.offsetY = 14;
             }
@@ -223,6 +225,7 @@ namespace DungeonRun
                 Obj.compSprite.cellSize.y = 16 * 2; //nonstandard size
                 Obj.compCollision.offsetY = 0;
                 Obj.compSprite.zOffset = 256; //sort above everything
+                Obj.compCollision.blocking = false;
             }
             else if (Type == ObjType.DoorOpen ||
                 Type == ObjType.DoorBombed ||

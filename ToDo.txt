@@ -35,50 +35,34 @@ ram useage:
 todo:
 
 
-13
-
-
-updated OptionsWidget to rotate the save game menuItem's sprite 180 degrees.
-centered the arrow in the sprite sheet
-updated info widget to inherit the currently selected menuItem's sprite rotation.
-playtested, the save game menuItem displays correctly now.
+12
 
 
 
-
-
-
-
-we can probably set/update the direction of the sprite
-
-audio ctrls sprite could be animated (sound waves growing)
-video ctrls sprite could be animated too
-
-we need menuItem sprites for the various stats
-	strength - increases amount of physical damage weapon does
-	magic = increases amount of magical damage magic does
-	agility = how quickly hero moves + dashes
-	luck = increases amount of gold found + rewarded
-	
-pull all the sound effects from links awakening
-	
-we need boss music, and that music should play when hero enters boss room
-
-we should be setting the loadout menuItems based on what the player selects/chooses
-this is related to the hero's loadout data, which we haven't planned out yet
-
-weapons = [1,1,0,0,0] - something like this, a byte list
-items, magic, armor, equipment
+updated FinishRoom() to place exit object along bottom wall.
+updated GameObjFunctions.SetType() to make Exit Pillars part of ObjGroup.Door.
+this shoehorns them into CleanupRoom(), so walls that collide with them are removed.
+updated GameObjFunctions.SetType() to sort ExitPillars to the floor.
+updated FinishRoom() to place the exit light fx as well.
+playtested, working as expected, exit looks great.
 
 
 
 
 
-it would be fairly easy to add bow and arrow projectiles for hero
-we could also add a spear projectile for blob enemies
+exiting dungeons
+	the spawn room should have a set of exit objects that resemble an exit door
+	if hero collides with the inner most part of the exit door, then the screen exits
+	and the overworld screen is created, which lets player choose which dungeon to go to next
 
-it would also be fairly easy to add the flamethrower obj
-which duplicates the functionality of casting a fireball, just like hero does
+
+
+
+
+dont draw particle collision recs
+
+
+
 
 
 
@@ -112,11 +96,52 @@ Version 0.3 Milestones
 	the cursor should be 'sticky' like in destiny
 	clicking on a location exits the overworld screen and builds a dungeon
 	
-	exiting dungeons
-	the spawn room should have a set of exit objects that resemble an exit door
-	if hero collides with the inner most part of the exit door, then the screen exits
-	and the overworld screen is created, which lets player choose which dungeon to go to next
 	
+	
+
+	
+	
+	
+	
+	
+	
+	
+Polish
+
+	we need menuItem sprites for the various stats
+	strength - increases amount of physical damage weapon does
+	magic = increases amount of magical damage magic does
+	agility = how quickly hero moves + dashes
+	luck = increases amount of gold found + rewarded
+
+	pull all the sound effects from links awakening
+
+	we need boss music, and that music should play when hero enters boss room
+
+	we should be setting the loadout menuItems based on what the player selects/chooses
+	this is related to the hero's loadout data, which we haven't planned out yet
+
+	weapons = [1,1,0,0,0] - something like this, a byte list
+	items, magic, armor, equipment
+
+
+
+
+
+	it would be fairly easy to add bow and arrow projectiles for hero
+	we could also add a spear projectile for blob enemies
+
+	it would also be fairly easy to add the flamethrower obj
+	which duplicates the functionality of casting a fireball, just like hero does
+
+
+
+
+
+
+
+
+
 
 	
 	
@@ -154,6 +179,8 @@ Version 0.4 Milestones
 
 Stuff that needs to be done, but it's not terribly important rn	
 	
+	audio ctrls sprite could be animated (sound waves growing)
+	video ctrls sprite could be animated too
 	fireball should have a cooldown, so hero can't spam them..
 
 	later in development, when we have a game options screen,
