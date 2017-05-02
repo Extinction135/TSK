@@ -35,15 +35,18 @@ ram useage:
 todo:
 
 
-7
+6
+
+
+added overworld texture as a sprite component to Overworld Screen.
+playtested, working - but the position we are using is applied to the sprite's origin.
+so, the map texture is positioned incorrectly. but it draws.
 
 
 
 
-created OverworldScreen.cs.
-add call to create a new Overworld Screen when hero exits dungeon.
-this is purely for testing purposes, not how the actual game would work.
-playtested, the basic functionality works.
+
+we need to add in an offset, cause the sprite centers to the position passed.
 
 
 
@@ -53,6 +56,13 @@ playtested, the basic functionality works.
 
 
 overworld window is 16 pixels too wide
+
+need soundfx for exiting dungeon
+should fade in overlay
+once fade in finishes, overworld screen should be created
+
+
+
 
 
 
