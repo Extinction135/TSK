@@ -35,29 +35,35 @@ ram useage:
 todo:
 
 
-11
+10
 
 
-
-updated InteractionFunctions.Interact(Actor, Obj) to rebuild dungeon upon hero collision with exit object.
+updated DrawFunctions.Draw(CollisionComponent) to only draw .blocking collision component rectangles.
+this 'cleans up' the collisions view/rendering of the game.
+fixes a bug where particle collision recs were being drawn.
 playtested, working as expected.
 
 
 
-
-when hero collides with the exit obj, for now we just rebuild the dungeon
-
-
-
-exiting dungeons
-	if hero collides with the inner most part of the exit door, then the screen exits
-	and the overworld screen is created, which lets player choose which dungeon to go to next
+bug: spike blocks collision recs dont draw, because they aren't blocking
 
 
 
 
 
-dont draw particle collision recs
+
+overworld screen
+	use the background from hyper light drifter for now
+	use the approach of moving the background image against the cursor movement (from destiny)
+	there should be a spining/pulsing cursor icon, like destiny
+	player should be able to select from a few 'locations' on the map
+	the cursor should be 'sticky' like in destiny
+	clicking on a location exits the overworld screen and builds a dungeon
+
+
+
+
+
 
 
 
@@ -86,17 +92,12 @@ Version 0.3 Milestones
 	objects should inherit the movement of hero, and check collisions with all objs & actors
 	if a draggable object would collide, it doesn't move
 	
-	overworld screen
-	use the background from hyper light drifter for now
-	use the approach of moving the background image against the cursor movement (from destiny)
-	there should be a spining/pulsing cursor icon, like destiny
-	player should be able to select from a few 'locations' on the map
-	the cursor should be 'sticky' like in destiny
-	clicking on a location exits the overworld screen and builds a dungeon
 	
 	
 	
-
+	
+	exiting dungeons
+	upon hero collision with exit, screen exits + creates Overworld screen
 	
 	
 	
