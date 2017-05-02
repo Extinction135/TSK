@@ -66,6 +66,7 @@ namespace DungeonRun
         public static void Display(MenuItem MenuItem)
         {   //set the widget's components based on the MenuItem's fields
             infoItem.compAnim.currentAnimation = MenuItem.compAnim.currentAnimation;
+            infoItem.compSprite.rotation = MenuItem.compSprite.rotation;
             window.title.text = MenuItem.name;
             description.text = MenuItem.description;
             //if we are displaying the inventory gold menu item, also display the goldAmount + goldBkg

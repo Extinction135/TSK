@@ -11,8 +11,6 @@
 CTRL + M, O = collapse functions/regions
 CTRL + M, P = expand functions/regions
 
-goal: 13 commits/day
-
 adding a new particle/projectile:
 	add new gameObject type for PP
 	add new gameObject animation list for PP
@@ -20,12 +18,6 @@ adding a new particle/projectile:
 	add call to spawn PP somewhere
 	maybe set the alignment of PP in ProjetileFunctions.AlignProjectile()
 	maybe projectile interacts with Actor/Obj in InteractionFunctions.Handle()
-	
-adding soundFX
-	added ___Src and ___Ins soundFX to Assets.cs.
-	added "_____" sound effect to project.
-	updated Assets.Load() to load Sound into ____Src + ____Ins.
-	call Assets.____Ins.Play() from somewhere in the codebase
 
 adding music:
 	music should be compressed down to 22K sample rate, mono.
@@ -43,30 +35,20 @@ ram useage:
 todo:
 
 
-1
+13
 
 
-
-turned off collisions between enemies.
-but, kept collisions between hero and enemies.
-this fixes a bug where enemies could spawn on top of each other and get stuck.
-it also fixes a bug where the boss could 'dash' onto the hero, locking him.
-this was very annoying and cheap when fighting him up close with a sword.
-playtested, working, feels better. 
-i'd still like to check collisions between enemies, but this works for now.
-it also reduces the update loop time.
-
-drastically increased the frequency with which the boss spawns mobs.
-playtested, SUPER FUN to fight tons of blobs in boss room.
-he spawns around 2 per second, up to 30 total.
-update loop still less than the draw loop, so estimated 4ms per frame on xbox one.
+updated OptionsWidget to rotate the save game menuItem's sprite 180 degrees.
+centered the arrow in the sprite sheet
+updated info widget to inherit the currently selected menuItem's sprite rotation.
+playtested, the save game menuItem displays correctly now.
 
 
 
 
 
 
-we need the save game menuItem to rotate the arrow 180
+
 we can probably set/update the direction of the sprite
 
 audio ctrls sprite could be animated (sound waves growing)
@@ -82,18 +64,21 @@ pull all the sound effects from links awakening
 	
 we need boss music, and that music should play when hero enters boss room
 
-
-
-
-
-
-
 we should be setting the loadout menuItems based on what the player selects/chooses
 this is related to the hero's loadout data, which we haven't planned out yet
 
 weapons = [1,1,0,0,0] - something like this, a byte list
 items, magic, armor, equipment
 
+
+
+
+
+it would be fairly easy to add bow and arrow projectiles for hero
+we could also add a spear projectile for blob enemies
+
+it would also be fairly easy to add the flamethrower obj
+which duplicates the functionality of casting a fireball, just like hero does
 
 
 
@@ -119,8 +104,6 @@ Version 0.3 Milestones
 	objects should inherit the movement of hero, and check collisions with all objs & actors
 	if a draggable object would collide, it doesn't move
 	
-	
-	
 	overworld screen
 	use the background from hyper light drifter for now
 	use the approach of moving the background image against the cursor movement (from destiny)
@@ -135,6 +118,10 @@ Version 0.3 Milestones
 	and the overworld screen is created, which lets player choose which dungeon to go to next
 	
 
+	
+	
+	
+	
 	
 	
 Version 0.4 Milestones	
@@ -164,10 +151,7 @@ Version 0.4 Milestones
 	
 	
 	
-	
-	
-	
-	
+
 Stuff that needs to be done, but it's not terribly important rn	
 	
 	fireball should have a cooldown, so hero can't spam them..
@@ -234,9 +218,5 @@ Maybes / Ideas
 	if we don't draw the floor tiles, the draw loop is much faster
 	so, we could standardize the room sizes, then create a floor sprite
 	then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
-
-	OPTIMIZATIONS
-	drop the sample rate down to 22k to save even more space on bkg music files
-	the soundfx are already at 32k, so we know lower sampled audio builds and loads correctly
 
 

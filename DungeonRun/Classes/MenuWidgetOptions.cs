@@ -104,6 +104,8 @@ namespace DungeonRun
             MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[5]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]);
+
+            menuItems[0].compSprite.rotation = Rotation.Clockwise180;
         }
 
         public static void Update()
