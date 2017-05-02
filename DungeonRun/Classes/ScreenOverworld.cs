@@ -15,10 +15,9 @@ namespace DungeonRun
     public class ScreenOverworld : Screen
     {
 
-
         public static MenuWindow window;
         public static ComponentSprite map;
-
+        public static ComponentText selectedLocation;
 
         public ScreenOverworld() { this.name = "OverworldScreen"; }
 
@@ -31,6 +30,9 @@ namespace DungeonRun
                 new Byte4(0, 0, 0, 0), new Byte2(255, 255));
             map.position.X += map.cellSize.x / 2;
             map.position.Y += map.cellSize.y / 2;
+            selectedLocation = new ComponentText(Assets.font, "Dungeon 1", 
+                new Vector2(window.border.position.X + 16 * 7 + 8, window.footerLine.position.Y - 1), 
+                Assets.colorScheme.textDark);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -51,6 +53,8 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             window.Update();
+
+            //center the location text
         }
 
         public override void Draw(GameTime GameTime)
@@ -60,7 +64,10 @@ namespace DungeonRun
             DrawFunctions.Draw(window);
 
             if (window.interior.displayState == DisplayState.Opened)
-            { DrawFunctions.Draw(map); }
+            {
+                DrawFunctions.Draw(map);
+                DrawFunctions.Draw(selectedLocation);
+            }
 
             ScreenManager.spriteBatch.End();
         }
