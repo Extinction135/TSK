@@ -136,8 +136,7 @@ namespace DungeonRun
         {
             if (displayState == DisplayState.Opened)
             {
-                if (
-                    Input.IsNewButtonPress(Buttons.Start) ||
+                if (Input.IsNewButtonPress(Buttons.Start) ||
                     Input.IsNewButtonPress(Buttons.A) ||
                     Input.IsNewButtonPress(Buttons.B) ||
                     Input.IsNewButtonPress(Buttons.X) ||

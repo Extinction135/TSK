@@ -197,6 +197,7 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.Exit && Actor == Pool.hero)
                 {   //only hero can exit dungeon
                     //for now, just rebuild the dungeon
+                    ScreenManager.AddScreen(new ScreenOverworld());
                     DungeonFunctions.BuildDungeon();
                     //in the future we would create the Overworld screen
                 }

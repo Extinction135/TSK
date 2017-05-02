@@ -35,15 +35,24 @@ ram useage:
 todo:
 
 
-8
+7
 
 
 
 
-added OverworldTexture.png to content project, built.
-added instances to Assets to handle loading of new OverworldTexture.
-ram useage still 81-82 mb on PC.
+created OverworldScreen.cs.
+add call to create a new Overworld Screen when hero exits dungeon.
+this is purely for testing purposes, not how the actual game would work.
+playtested, the basic functionality works.
 
+
+
+
+
+- need to add overworld texture to window
+
+
+overworld window is 16 pixels too wide
 
 
 
