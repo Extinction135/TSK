@@ -35,12 +35,12 @@ ram useage:
 todo:
 
 
-6
+5
 
 
-added overworld texture as a sprite component to Overworld Screen.
-playtested, working - but the position we are using is applied to the sprite's origin.
-so, the map texture is positioned incorrectly. but it draws.
+
+added in offsets to properly place the map sprite based on map cellsize.
+playtested, working, but the map sprite still needs to be scaled up x2.
 
 
 
