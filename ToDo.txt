@@ -35,27 +35,29 @@ ram useage:
 todo:
 
 
-4
-
-
-
-added line to scale map sprite up x2.
-updated the offset to properly place the map sprite.
-playtested, various issues / bugs.
-it's much closer to where it should be, but it's still off a pixel horizontally.
-and the vertical height doesn't match the mockup. it's off by 8 pixels.
-which is weird and i don't really understand why right now.
-kind of rushing commits and code today due to time constraints.
-
-
-
-we need to add in an offset, cause the sprite centers to the position passed.
+3
 
 
 
 
 
-- need to add overworld texture to window
+remade the overworld screen mockup.
+now the overworld map is 256x256.
+updated the overworld texture in content project.
+
+
+
+
+
+the map sprite doesn't align with the mockup - why?
+
+
+the map sprite should also fit the pixel density, so we need a different map now
+the current map is too small.
+this also means the new map will need to be around 16*29, 16*18
+
+
+
 
 
 overworld window is 16 pixels too wide
@@ -68,15 +70,9 @@ once fade in finishes, overworld screen should be created
 
 
 
+we're going to use a selection box to highlight certain areas of the overworld map
+we'll do this using menuItems, but we won't draw the menuItems
 
-
-overworld screen
-	use the background from hyper light drifter for now
-	use the approach of moving the background image against the cursor movement (from destiny)
-	there should be a spining/pulsing cursor icon, like destiny
-	player should be able to select from a few 'locations' on the map
-	the cursor should be 'sticky' like in destiny
-	clicking on a location exits the overworld screen and builds a dungeon
 
 
 
