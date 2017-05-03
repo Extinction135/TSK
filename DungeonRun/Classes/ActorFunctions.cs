@@ -47,6 +47,7 @@ namespace DungeonRun
             {
                 //player has died, failed the dungeon
                 DungeonRecord.beatDungeon = false;
+                DungeonFunctions.dungeonScreen.exitAction = ExitAction.Summary;
                 DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
                 //we could track hero deaths here
                 Assets.Play(Assets.sfxHeroKill);
@@ -73,6 +74,7 @@ namespace DungeonRun
             else if (Actor.type == ActorType.Boss)
             {
                 DungeonRecord.beatDungeon = true; //player has beat the dungeon
+                DungeonFunctions.dungeonScreen.exitAction = ExitAction.Summary;
                 DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec

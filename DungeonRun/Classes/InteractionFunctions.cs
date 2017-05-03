@@ -196,10 +196,11 @@ namespace DungeonRun
                 }
                 else if (Obj.type == ObjType.Exit && Actor == Pool.hero)
                 {   //only hero can exit dungeon
-                    //for now, just rebuild the dungeon
-                    ScreenManager.AddScreen(new ScreenOverworld());
-                    DungeonFunctions.BuildDungeon();
-                    //in the future we would create the Overworld screen
+                    DungeonRecord.beatDungeon = false;
+                    DungeonFunctions.dungeonScreen.exitAction = ExitAction.Overworld;
+                    //if dungeon screen is open, close it
+                    if (DungeonFunctions.dungeonScreen.displayState == DisplayState.Opened)
+                    { DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing; }
                 }
                 else if (Obj.type == ObjType.DoorTrap)
                 {   //trap doors push ALL actors

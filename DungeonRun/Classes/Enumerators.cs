@@ -21,6 +21,8 @@ namespace DungeonRun
 
     public enum DisplayState { Opening, Opened, Closing, Closed }
 
+    public enum ExitAction { None, Summary, Overworld }
+
     public enum Music { DungeonA, DungeonB, Boss, Overworld, Shop, Title, None }
 
     public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
@@ -76,7 +78,6 @@ namespace DungeonRun
         EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
     }
 
-    //this kinda duplicates the MenuItemType enum, and we could that instead...
     public enum Weapon { None, Sword }
 
     public enum Item { None, FireMagic }

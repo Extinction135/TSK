@@ -15,7 +15,7 @@ namespace DungeonRun
     public static class DungeonFunctions
     {
 
-        public static DungeonScreen dungeonScreen;
+        public static ScreenDungeon dungeonScreen;
         public static Dungeon dungeon;
         public static Room currentRoom; //points to a room on the dungeon's room list
 
@@ -31,7 +31,7 @@ namespace DungeonRun
 
 
 
-        public static void Initialize(DungeonScreen DungeonScreen) { dungeonScreen = DungeonScreen; }
+        public static void Initialize(ScreenDungeon DungeonScreen) { dungeonScreen = DungeonScreen; }
 
         public static void BuildDungeon()
         {

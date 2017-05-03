@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class DungeonScreen : Screen
+    public class ScreenDungeon : Screen
     {
 
         //the foreground black rectangle, overlays and hides game content
@@ -20,13 +20,12 @@ namespace DungeonRun
         public float overlayAlpha = 1.0f;
         float fadeInSpeed = 0.015f;
         float fadeOutSpeed = 0.025f;
-        //the various states the game can be in
-        public enum GameState { Playing, Summary }
-        public GameState gameState = GameState.Playing;
+        //what happens when this screen exits?
+        public ExitAction exitAction = ExitAction.None;
 
 
 
-        public DungeonScreen() { this.name = "DungeonScreen"; }
+        public ScreenDungeon() { this.name = "DungeonScreen"; }
 
         public override void LoadContent()
         {
@@ -66,7 +65,7 @@ namespace DungeonRun
             if (Flags.Debug)
             {   //if the game is in debug mode, dump info on clicked actor/obj
                 if (Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                { DebugFunctions.Inspect(this); }
+                { DebugFunctions.Inspect(); }
                 //toggle the paused boolean
                 if (Input.IsNewKeyPress(Keys.Space))
                 { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
@@ -103,22 +102,24 @@ namespace DungeonRun
                     {
                         overlayAlpha = 1.0f;
                         displayState = DisplayState.Closed;
-                        gameState = GameState.Summary;
                     }
                 }
                 else if (displayState == DisplayState.Closed)
                 {
-                    if (gameState == GameState.Summary)
+                    Debug.WriteLine("displayState: " + displayState);
+                    if (exitAction == ExitAction.Summary)
                     {
                         DungeonRecord.timer.Stop();
                         ScreenManager.AddScreen(new SummaryScreen());
-                        gameState = GameState.Playing;
+                        exitAction = ExitAction.None;
                     }
-                    else
+                    else if(exitAction == ExitAction.Overworld)
                     {
-                        //wait for ScreenState.Opening call from DungeonGenerator
-                        //this happens when a new dungeon is built
+                        DungeonRecord.timer.Stop();
+                        ScreenManager.AddScreen(new ScreenOverworld());
+                        exitAction = ExitAction.None;
                     }
+                    else { } //wait for call to generate a new dungeon
                 }
 
                 #endregion

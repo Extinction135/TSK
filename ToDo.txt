@@ -35,17 +35,43 @@ ram useage:
 todo:
 
 
-1
+13
 
 
 
 
-created component text 'selectedLocation' in Overworld Screen.
-this will display the currently selected location's name.
-placed the text at the bottom of the window.
-we'll need to center this text based on it's width - later.
-playtested, working as expected.
+renamed DungeonScreen to ScreenDungeon, to better fit established naming conventions.
+updated codepaths that referenced DungeonScreen.
+removed DungeonScreen parameter rom DebugFunctions (wasn't being used).
 
+added 'Overworld' value to DungeonScreen.GameState
+changed DungeonScreen.GameState to ExitAction eunmerator, to better reflect it's purpose.
+changed ExitAction values to { None, Summary, Overworld }.
+moved ExitAction enumerator into Enumerators.cs.
+
+updated ActorFunctions.SetDeathState() to use new ExitAction enum.
+routines here set the dungeon screen's exitAction & displayState enums.
+this causes dungeon screen to fade out, then perform the exit action.
+dungeon screen then reset it's exitAction to None.
+
+updated InteractionFunctions.Interact(Actor, Obj) to handle hero collision with exit door object.
+this interaction now tells dungeon screen to close, and sets the exitAction to overworld screen.
+
+
+
+
+
+bug: the fadeIn for dungeon screen happens too slowly for my preference.
+it should happen very quickly for exiting, but slowly for defeat/victory.
+
+
+
+
+
+
+
+
+summary screen should be renamed to ScreenSummary
 
 
 
@@ -62,6 +88,10 @@ thats the wrong place to do it from, we should start the fade out here
 should fade in overlay
 once fade in finishes, overworld screen should be created
 we need transition in/out of overworld screen
+
+
+
+
 
 
 

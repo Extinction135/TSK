@@ -17,7 +17,7 @@ namespace DungeonRun
         public static string output;
         static int i;
 
-        public static void Inspect(DungeonScreen DungeonScreen)
+        public static void Inspect()
         {   //check if any object or actor collide with cursor collision component, pass to Inspect()
             //check mouse click position for any objects
             for (i = 0; i < Pool.objCount; i++)
@@ -28,7 +28,6 @@ namespace DungeonRun
                     { Inspect(Pool.objPool[i]); }
                 }
             }
-
             //check mouse click position for any actors
             for (i = 0; i < Pool.actorCount; i++)
             {

@@ -37,7 +37,6 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
-            //dont do anything right now
             if (Input.IsNewButtonPress(Buttons.Start) ||
                 Input.IsNewButtonPress(Buttons.A) ||
                 Input.IsNewButtonPress(Buttons.B))
@@ -46,8 +45,8 @@ namespace DungeonRun
                 //play the summary exit sound effect immediately
                 //Assets.Play(Assets.sfxExitSummary);
                 ScreenManager.RemoveScreen(this);
+                DungeonFunctions.BuildDungeon();
             }
-
         }
 
         public override void Update(GameTime GameTime)
