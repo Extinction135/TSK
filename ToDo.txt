@@ -35,31 +35,38 @@ ram useage:
 todo:
 
 
-10
-
-
-
-
-updated DungeonFunctions.FinishRoom() to place Hero at the Exit door's position.
-Hero spawns into dungeon facing up, just inside the door, as if he just entered the dungeon.
-playtested, working as expected, bug noticed upon beating dungeon tho.
-
-
-
+9
 
 
 
 bug: the exit door and left pillar are placed incorrectly upon beating the dungeon?
-cause: the sprites are being flipped vertically or rotated
-solution: we should reset the horizontal flip boolean and rotation upon a Get(Obj).
+cause: the sprites are being rotated at some point, and are never reset.
+solution: call GameObjFunctions.Reset() on the Obj being returned from GetObj().
+also updated ObjFunctions.Reset() to completely reset all the Obj's components and fields to default.
+also updated GetProjectile() to clean projectile objects prior to return.
+playtested, i thought there would be problems with projectiles, but there aren't.
+there are other problems / bugs tho.
+
+
+
+
+the walls are not facing the right direction upon a dungeon build.
 
 
 
 
 
+bug: can't enter the boss room anymore....
+rebuilds the spawn room, places hero at exit
 
-we should be placing the hero at the exit door's sprite position, instead of center of room
-upon a dungeon build
+
+
+
+because we're calling Reset() on objs AND projectiles, we'll likely need to update SetType().projectile codepaths.
+
+
+
+
 
 
 

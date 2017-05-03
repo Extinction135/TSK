@@ -33,11 +33,10 @@ namespace DungeonRun
         
         public static GameObject GetObj()
         {   //only class that calls GetObj() is DungeonFunctions, during room building
-            //should NEVER loop / reset
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
-            Pool.objPool[Pool.objIndex].active = true;
-            //tell the obj to hide offscreen, intially
+            //reset obj to default state, hide offscreen
+            GameObjectFunctions.ResetObject(Pool.objPool[Pool.objIndex]);
             Pool.objPool[Pool.objIndex].compMove.newPosition.X = -1000;
             return Pool.objPool[Pool.objIndex];
         }
@@ -46,8 +45,8 @@ namespace DungeonRun
         {   //this is called throughout room gameplay, and will loop/reset
             Pool.projectileIndex++;
             if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
-            Pool.projectilePool[Pool.projectileIndex].active = true;
-            //tell the projectile to hide offscreen, intially
+            //reset projectile to default state, hide offscreen
+            GameObjectFunctions.ResetObject(Pool.projectilePool[Pool.projectileIndex]);
             Pool.projectilePool[Pool.projectileIndex].compMove.newPosition.X = -1000;
             return Pool.projectilePool[Pool.projectileIndex];
         }

@@ -21,26 +21,31 @@ namespace DungeonRun
 
         public static void ResetObject(GameObject Obj)
         {
-            Obj.compSprite.cellSize.x = 16 * 1; //assume cell size is 16x16 (most are)
-            Obj.compSprite.cellSize.y = 16 * 1;
-            Obj.compSprite.zOffset = 0;
-
+            //reset the obj
+            Obj.direction = Direction.Down;
             Obj.group = ObjGroup.Object; //assume object is a generic object
             Obj.lifetime = 0; //assume obj exists forever (not projectile)
             Obj.lifeCounter = 0; //reset counter
             Obj.active = true; //assume this object should draw / animate
-
+            //reset the sprite component
+            Obj.compSprite.cellSize.x = 16 * 1; //assume cell size is 16x16 (most are)
+            Obj.compSprite.cellSize.y = 16 * 1;
+            Obj.compSprite.zOffset = 0;
+            Obj.compSprite.flipHorizontally = false;
+            Obj.compSprite.rotation = Rotation.None;
+            Obj.compSprite.scale = 1.0f;
+            //reset the animation component
             Obj.compAnim.speed = 10; //set obj's animation speed to default value
             Obj.compAnim.loop = true; //assume obj's animation loops
             Obj.compAnim.index = 0; //reset the current animation index/frame
-
+            //reset the collision component
             Obj.compCollision.active = false; //assume this object doesn't move, shouldnt check itself for collisions vs objs
             Obj.compCollision.blocking = true; //assume the object is blocking (most are)
             Obj.compCollision.rec.Width = 16; //assume collisionRec is 16x16
             Obj.compCollision.rec.Height = 16; //(most are)
             Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Obj.compCollision.offsetY = -8; //(most are)
-
+            //reset the move component
             Obj.compMove.magnitude.X = 0; //discard any previous magnitude
             Obj.compMove.magnitude.Y = 0; //
             Obj.compMove.speed = 0.0f; //assume this object doesn't move
