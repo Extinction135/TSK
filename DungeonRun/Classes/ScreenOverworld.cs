@@ -24,6 +24,9 @@ namespace DungeonRun
         public float overlayAlpha = 0.0f;
         float fadeInSpeed = 0.05f;
 
+        //simply visually tracks which menuItem is selected
+        public ComponentSprite selectionBox;
+
 
 
         public ScreenOverworld() { this.name = "OverworldScreen"; }
@@ -43,6 +46,13 @@ namespace DungeonRun
                 new Vector2(window.border.position.X + 16 * 7 + 8, window.footerLine.position.Y - 1), 
                 Assets.colorScheme.textDark);
             Assets.Play(Assets.sfxMapOpen);
+
+            //create the selectionBox
+            selectionBox = new ComponentSprite(Assets.mainSheet,
+                new Vector2(0, 0), new Byte4(15, 6, 0, 0),
+                new Point(16, 16));
+            selectionBox.position.X = 640 / 2;
+            selectionBox.position.Y = 320 / 2;
 
             //open the screen
             displayState = DisplayState.Opening;
@@ -97,7 +107,9 @@ namespace DungeonRun
 
             #endregion
 
-
+            //pulse the selectionBox alpha
+            if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
+            else { selectionBox.alpha += 0.025f; }
         }
 
         public override void Draw(GameTime GameTime)
@@ -106,10 +118,11 @@ namespace DungeonRun
 
             DrawFunctions.Draw(window);
 
-            if (window.interior.displayState == DisplayState.Opened)
+            if (window.interior.displayState == DisplayState.Opened || window.interior.displayState == DisplayState.Closing)
             {
                 DrawFunctions.Draw(map);
                 DrawFunctions.Draw(selectedLocation);
+                DrawFunctions.Draw(selectionBox);
             }
 
             //draw the overlay rec last

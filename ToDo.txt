@@ -35,19 +35,23 @@ ram useage:
 todo:
 
 
-2
+1
 
 
 
-updated overworld screen mockup.
-updated map texture to have boss and shop locations.
-playtested. it actually looks really good in game.
+added selection box sprite to overworld screen.
+alpha blinks, matching the visual presentation established on inventory screen.
+playtested, consistent, working as expected.
+i think i have the flu.
+
+
+
 
 
 
 map locations++
-need locations on map
-need selection box that draws and pulses, just like inventory screen
+
+need blinking selection box, just like inventory screen
 need to place selection box at location positions
 using menuItems, build neighbors between connections
 display the menuItem's name on the bottom of the map (location name)
