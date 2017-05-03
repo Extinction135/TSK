@@ -133,22 +133,25 @@ namespace DungeonRun
 
         public static void SpawnProjectile(ObjType Type, float X, float Y, Direction Direction)
         {
-            GameObject projectile = PoolFunctions.GetProjectile();
-            SetType(projectile, Type);
+            GameObject obj = PoolFunctions.GetProjectile();
+            //default this projectile/particle to Down direction
+            obj.direction = Direction.Down;
+            obj.compMove.direction = Direction.Down;
 
-            if (projectile.group == ObjGroup.Projectile)
-            {   //convert projectile's directions to cardinal, projectiles move
-                projectile.direction = DirectionFunctions.GetCardinalDirection(Direction);
-                projectile.compMove.direction = DirectionFunctions.GetCardinalDirection(Direction);
-            }
-            else//particles, items (consumable loot)
-            {   //particles always face Down, particles dont move
-                projectile.direction = Direction.Down;
-                projectile.compMove.direction = Direction.Down;
+            //convert projectile's directions to cardinal
+            if (Type == ObjType.ProjectileFireball || Type == ObjType.ProjectileSword)
+            {
+                obj.direction = DirectionFunctions.GetCardinalDirection(Direction);
+                obj.compMove.direction = DirectionFunctions.GetCardinalDirection(Direction);
             }
 
-            MovementFunctions.Teleport(projectile.compMove, X, Y);
-            SetRotation(projectile); //set the projectile's rotation
+            //set stationary weapon's collision recs, now that they have proper direction
+            if (Type == ObjType.ProjectileSword) { SetWeaponCollisions(obj); }
+
+            //teleport the projectile to the proper location
+            MovementFunctions.Teleport(obj.compMove, X, Y);
+            //set the type, rotation, cellsize, & alignment as last step
+            SetType(obj, Type);
         }
 
         public static void SetRotation(GameObject Obj)
@@ -157,9 +160,6 @@ namespace DungeonRun
             if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
             else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
             else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
-
-            //default the obj sprite to not flip
-            Obj.compSprite.flipHorizontally = false;
             //some objects flip based on their direction
             if (Obj.type == ObjType.ProjectileSword)
             {
@@ -200,10 +200,8 @@ namespace DungeonRun
 
 
         public static void SetType(GameObject Obj, ObjType Type)
-        {
-            //ResetObject(Obj); //set obj fields to most common values
+        {   //Obj.direction should be set prior to this method running
             Obj.type = Type;
-            SetRotation(Obj); //set the obj's sprite rotation
 
 
             #region Room Objects
@@ -413,8 +411,6 @@ namespace DungeonRun
             else if (Type == ObjType.ProjectileSword)
             {
                 Obj.compSprite.zOffset = 16;
-                //stationary weapons share similar sprite dimensions
-                SetWeaponCollisions(Obj); //collision recs + offsets are similar
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 18; //in frames
@@ -424,7 +420,6 @@ namespace DungeonRun
             else if (Type == ObjType.ProjectileFireball)
             {
                 Obj.compSprite.zOffset = 16;
-                //set collision rec + offset
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
@@ -513,8 +508,8 @@ namespace DungeonRun
             //particles do not block upon collision
             if (Obj.group == ObjGroup.Particle) { Obj.compCollision.blocking = false; }
 
+            SetRotation(Obj);
             GameObjectAnimListManager.SetAnimationList(Obj); //set obj animation list based on type
-            ComponentFunctions.SetZdepth(Obj.compSprite);
             ComponentFunctions.UpdateCellSize(Obj.compSprite);
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }

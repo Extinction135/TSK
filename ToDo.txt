@@ -35,31 +35,27 @@ ram useage:
 todo:
 
 
-8
-
-
-bug: when hero enters the boss room, the spawn room rebuilds immediately afterwards.
-cause: the room objects weren't having their type reset, so the exit object was colliding with hero upon room build.
-solution: updated ResetObj() to set the ObjType to WallStraight.
-^ this was a really hard bug to figure out.
-
-updated BuildRoom() to fix a bug where walls were created facing the wrong direction.
-updated UpdateObjectPool() to call SetRotation() for all pool objects.
-fixed a bug in ObjFunctions.SetType() which called Reset() on an object after it's type was set.
-updated DungeonScreen to stop all work if screen displayState is closed.
-this fixes a bug where we could still hear sounds while viewing the overworld screen.
-
-playtested, working as expected. 
+7
 
 
 
+bug: boss decal welcome mat right doesn't flip properly.
+cause: from SetType() -> SetRotation() was setting the flipHorizontally boolean to false, by default.
+solution: this boolean is set false in ResetObject(), so there's no need to set it false again in SetRotation().
+simply removed the line of code that set the boolean false in SetRotation().
+however, this creates a bug with the sword projectile.
+
+bug: sword projectile doesn't flip properly for Up and Right directions.
+cause: a variety of issues, related to how the direction was being set via SpawnProjectile().
+solution: a refactoring of SpawnProjectile(), SetRotation(), and SetType().
+^ this was a very involved fix.
+
+playtested, working as expected.
+overall, very happy with the discovery and bugfixes.
+it cleaned up a lot of smelly code, that was doing thing redundantly and needlessly.
 
 
 
-
-
-
-boss decal doesn't flip properly anymore
 
 summary screen should be renamed to ScreenSummary
 
