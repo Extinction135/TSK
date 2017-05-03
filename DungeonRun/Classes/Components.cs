@@ -56,7 +56,7 @@ namespace DungeonRun
         public Texture2D texture;
         public Vector2 position;
         public Byte4 currentFrame;
-        public Byte2 cellSize;
+        public Point cellSize;
 
         public SpriteEffects spriteEffect; //flip vertically, flip horizontally, none
         public Boolean flipHorizontally;
@@ -72,7 +72,7 @@ namespace DungeonRun
         public Rotation rotation;
         public float rotationValue;
 
-        public ComponentSprite(Texture2D Texture, Vector2 Position, Byte4 CurrentFrame, Byte2 CellSize)
+        public ComponentSprite(Texture2D Texture, Vector2 Position, Byte4 CurrentFrame, Point CellSize)
         {
             texture = Texture;
             position = Position;
@@ -82,7 +82,7 @@ namespace DungeonRun
             flipHorizontally = false;
             visible = true;
             ComponentFunctions.CenterOrigin(this);
-            drawRec = new Rectangle((int)Position.X, (int)Position.Y, (int)CellSize.x, (int)CellSize.y);
+            drawRec = new Rectangle((int)Position.X, (int)Position.Y, CellSize.X, CellSize.Y);
             drawColor = new Color(255, 255, 255);
             alpha = 1.0f;
             scale = 1.0f;
@@ -91,6 +91,7 @@ namespace DungeonRun
             rotation = Rotation.None;
             rotationValue = 0.0f;
         }
+
     }
 
     public class ComponentText

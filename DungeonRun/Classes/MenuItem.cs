@@ -31,7 +31,7 @@ namespace DungeonRun
             compSprite = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(-100, 1000), 
                 new Byte4(15, 5, 0, 0), 
-                new Byte2(16, 16));
+                new Point(16, 16));
             compAnim = new ComponentAnimation();
             MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, this);
             neighborUp = this;

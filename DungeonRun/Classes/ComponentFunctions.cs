@@ -26,8 +26,8 @@ namespace DungeonRun
 
         public static void CenterOrigin(ComponentSprite Sprite)
         {
-            Sprite.origin.X = Sprite.cellSize.x * 0.5f;
-            Sprite.origin.Y = Sprite.cellSize.y * 0.5f;
+            Sprite.origin.X = Sprite.cellSize.X * 0.5f;
+            Sprite.origin.Y = Sprite.cellSize.Y * 0.5f;
         }
 
         public static void SetZdepth(ComponentSprite Sprite)
@@ -37,8 +37,8 @@ namespace DungeonRun
 
         public static void UpdateCellSize(ComponentSprite Sprite)
         {
-            Sprite.drawRec.Width = Sprite.cellSize.x;
-            Sprite.drawRec.Height = Sprite.cellSize.y;
+            Sprite.drawRec.Width = Sprite.cellSize.X;
+            Sprite.drawRec.Height = Sprite.cellSize.Y;
         }
 
         public static void CenterText(ComponentButton Button)

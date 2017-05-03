@@ -150,8 +150,8 @@ namespace DungeonRun
             //reset actor's sprite zDepth
             Actor.compSprite.zOffset = 0;
             //assume standard actor
-            Actor.compSprite.cellSize.x = 16;
-            Actor.compSprite.cellSize.y = 16;
+            Actor.compSprite.cellSize.X = 16;
+            Actor.compSprite.cellSize.Y = 16;
 
 
             #region Actor Specific Fields
@@ -183,8 +183,8 @@ namespace DungeonRun
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
                 //this actor is a boss (double size)
-                Actor.compSprite.cellSize.x = 32;
-                Actor.compSprite.cellSize.y = 32;
+                Actor.compSprite.cellSize.X = 32;
+                Actor.compSprite.cellSize.Y = 32;
                 //the boss actor has a lower sorting point that normal actors
                 Actor.compSprite.zOffset = 12;
             }

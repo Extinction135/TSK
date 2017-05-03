@@ -30,8 +30,8 @@ namespace DungeonRun
             Obj.lifeCounter = 0; //reset counter
             Obj.active = true; //assume this object should draw / animate
             //reset the sprite component
-            Obj.compSprite.cellSize.x = 16 * 1; //assume cell size is 16x16 (most are)
-            Obj.compSprite.cellSize.y = 16 * 1;
+            Obj.compSprite.cellSize.X = 16 * 1; //assume cell size is 16x16 (most are)
+            Obj.compSprite.cellSize.Y = 16 * 1;
             Obj.compSprite.zOffset = 0;
             Obj.compSprite.flipHorizontally = false;
             Obj.compSprite.rotation = Rotation.None;
@@ -208,7 +208,7 @@ namespace DungeonRun
 
             if (Type == ObjType.Exit)
             {
-                Obj.compSprite.cellSize.y = 16 * 3; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.group = ObjGroup.Door;
                 Obj.compCollision.rec.Height = 4;
@@ -218,7 +218,7 @@ namespace DungeonRun
             else if (Type == ObjType.ExitPillarLeft || 
                 Type == ObjType.ExitPillarRight)
             {
-                Obj.compSprite.cellSize.y = 16 * 3; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.group = ObjGroup.Door;
                 Obj.compCollision.rec.Height = 32 - 5;
@@ -226,7 +226,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ExitLightFX)
             {
-                Obj.compSprite.cellSize.y = 16 * 2; //nonstandard size
+                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
                 Obj.compCollision.offsetY = 0;
                 Obj.compSprite.zOffset = 256; //sort above everything
                 Obj.compCollision.blocking = false;
@@ -393,7 +393,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.ItemRupee || Type == ObjType.ItemHeart)
             {
-                Obj.compSprite.cellSize.x = 8; //non standard cellsize
+                Obj.compSprite.cellSize.X = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
@@ -438,7 +438,7 @@ namespace DungeonRun
             //Particles - small
             else if (Type == ObjType.ParticleDashPuff)
             {
-                Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = -8;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
@@ -447,7 +447,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleSmokePuff)
             {
-                Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
@@ -456,7 +456,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleHitSparkle)
             {
-                Obj.compSprite.cellSize.x = 8; Obj.compSprite.cellSize.y = 8; //nonstandard size
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames

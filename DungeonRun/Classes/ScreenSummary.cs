@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class SummaryScreen : Screen
+    public class ScreenSummary : Screen
     {
 
         int animSpeed; //how fast title sprites move, lower is faster
@@ -38,7 +38,7 @@ namespace DungeonRun
 
 
 
-        public SummaryScreen() { this.name = "SummaryScreen"; }
+        public ScreenSummary() { this.name = "SummaryScreen"; }
 
         public override void LoadContent()
         {
@@ -50,10 +50,10 @@ namespace DungeonRun
 
             //create the left and right title sprites
             leftTitle = new ComponentSprite(Assets.bigTextSheet, 
-                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(1, 1));
+                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(1, 1));
             leftTitle.alpha = 0.0f;
             rightTitle = new ComponentSprite(Assets.bigTextSheet, 
-                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(1, 1));
+                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(1, 1));
             rightTitle.alpha = 0.0f;
 
             //create the summary + data + continue text fields
@@ -81,11 +81,11 @@ namespace DungeonRun
             if (DungeonRecord.beatDungeon)
             {   //"dungoen complete"
                 leftTitle.currentFrame = new Byte4(0, 0, 0, 0);
-                leftTitle.cellSize = new Byte2(16 * 13, 16 * 4);
+                leftTitle.cellSize = new Point(16 * 13, 16 * 4);
                 leftTitleStartPos = new Vector2(-200, yPos);
                 
                 rightTitle.currentFrame = new Byte4(0, 1, 0, 0);
-                rightTitle.cellSize = new Byte2(16 * 13, 16 * 4);
+                rightTitle.cellSize = new Point(16 * 13, 16 * 4);
                 rightTitleStartPos = new Vector2(640, yPos);
 
                 leftTitleEndPos = new Vector2(130-15, yPos);
@@ -96,11 +96,11 @@ namespace DungeonRun
             else
             {   //"you died"
                 leftTitle.currentFrame = new Byte4(0, 2, 0, 0);
-                leftTitle.cellSize = new Byte2(16 * 8, 16 * 4);
+                leftTitle.cellSize = new Point(16 * 8, 16 * 4);
                 leftTitleStartPos = new Vector2(-100, yPos);
                 
                 rightTitle.currentFrame = new Byte4(1, 2, 0, 0);
-                rightTitle.cellSize = new Byte2(16 * 8, 16 * 4);
+                rightTitle.cellSize = new Point(16 * 8, 16 * 4);
                 rightTitleStartPos = new Vector2(640, yPos);
 
                 leftTitleEndPos = new Vector2(200-10, yPos);

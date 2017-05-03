@@ -74,7 +74,7 @@ namespace DungeonRun
             for (counter = 0; counter < floorCount; counter++)
             {
                 floorPool.Add(new ComponentSprite(Assets.dungeonSheet,
-                    new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Byte2(16, 16)));
+                    new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Point(16, 16)));
             }
             floorIndex = 0;
 
@@ -83,7 +83,7 @@ namespace DungeonRun
 
             //create an easy to remember reference to the player/hero actor
             hero = actorPool[0];
-            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Byte2(16, 8));
+            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;
         }
 

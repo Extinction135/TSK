@@ -117,7 +117,7 @@ namespace DungeonRun
                     if (exitAction == ExitAction.Summary)
                     {
                         DungeonRecord.timer.Stop();
-                        ScreenManager.AddScreen(new SummaryScreen());
+                        ScreenManager.AddScreen(new ScreenSummary());
                         exitAction = ExitAction.None;
                     }
                     else if(exitAction == ExitAction.Overworld)

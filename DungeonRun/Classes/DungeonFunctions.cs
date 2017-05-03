@@ -76,17 +76,17 @@ namespace DungeonRun
 
             #region Build the room
 
-            for (i = 0; i < Room.size.x; i++)
+            for (i = 0; i < Room.size.X; i++)
             {
-                for (j = 0; j < Room.size.y; j++)
+                for (j = 0; j < Room.size.Y; j++)
                 {
                     //place the floors
                     floorRef = PoolFunctions.GetFloor();
                     floorRef.position.X = i * 16 + pos.X + 8;
                     floorRef.position.Y = j * 16 + pos.Y + 8;
 
-                    if (Room.type == RoomType.Normal) { floorRef.currentFrame.y = 0; }
-                    else if (Room.type == RoomType.Boss) { floorRef.currentFrame.y = 1; }
+                    if (Room.type == RoomType.Normal) { floorRef.currentFrame.Y = 0; }
+                    else if (Room.type == RoomType.Boss) { floorRef.currentFrame.Y = 1; }
 
 
                     #region Top Row Walls
@@ -110,11 +110,11 @@ namespace DungeonRun
                             objRef.direction = Direction.Down;
                             GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
                         }
-                        else if (i == Room.size.x - 1)
+                        else if (i == Room.size.X - 1)
                         {   //topright corner
                             objRef = PoolFunctions.GetObj();
                             MovementFunctions.Teleport(objRef.compMove,
-                                Room.size.x * 16 + pos.X + 8, 
+                                Room.size.X * 16 + pos.X + 8, 
                                 -16 + pos.Y + 8);
                             objRef.direction = Direction.Left;
                             GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
@@ -126,13 +126,13 @@ namespace DungeonRun
 
                     #region Bottom Row Walls
 
-                    else if (j == Room.size.y - 1)
+                    else if (j == Room.size.Y - 1)
                     {
                         //bottom row
                         objRef = PoolFunctions.GetObj();
                         MovementFunctions.Teleport(objRef.compMove,
                             i * 16 + pos.X + 8,
-                            Room.size.y * 16 + pos.Y + 8);
+                            Room.size.Y * 16 + pos.Y + 8);
                         objRef.direction = Direction.Up;
                         GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
 
@@ -141,16 +141,16 @@ namespace DungeonRun
                             objRef = PoolFunctions.GetObj();
                             MovementFunctions.Teleport(objRef.compMove, 
                                 -16 + pos.X + 8,
-                                Room.size.y * 16 + pos.Y + 8);
+                                Room.size.Y * 16 + pos.Y + 8);
                             objRef.direction = Direction.Right;
                             GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
                         }
-                        else if (i == Room.size.x - 1)
+                        else if (i == Room.size.X - 1)
                         {   //bottom right corner
                             objRef = PoolFunctions.GetObj();
                             MovementFunctions.Teleport(objRef.compMove,
-                                Room.size.x * 16 + pos.X + 8,
-                                Room.size.y * 16 + pos.Y + 8);
+                                Room.size.X * 16 + pos.X + 8,
+                                Room.size.Y * 16 + pos.Y + 8);
                             objRef.direction = Direction.Up;
                             GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
                         }
@@ -170,7 +170,7 @@ namespace DungeonRun
                         objRef.direction = Direction.Right;
                         GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
                     }
-                    else if (i == Room.size.x - 1)
+                    else if (i == Room.size.X - 1)
                     {   //right side
                         objRef = PoolFunctions.GetObj();
                         MovementFunctions.Teleport(objRef.compMove, 
@@ -210,8 +210,8 @@ namespace DungeonRun
                 //create the exit
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x / 2) * 16 + pos.X + 8,
-                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                    (Room.size.X / 2) * 16 + pos.X + 8,
+                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
                 GameObjectFunctions.SetType(objRef, ObjType.Exit);
 
                 //place hero at exit door
@@ -225,20 +225,20 @@ namespace DungeonRun
                 //place the exit light fx over exit obj
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x / 2) * 16 + pos.X + 8,
-                    Room.size.y * 16 + pos.Y + 8 - 16 * 1);
+                    (Room.size.X / 2) * 16 + pos.X + 8,
+                    Room.size.Y * 16 + pos.Y + 8 - 16 * 1);
                 GameObjectFunctions.SetType(objRef, ObjType.ExitLightFX);
 
                 //create exit pillars
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x / 2) * 16 + pos.X + 8 - 16,
-                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                    (Room.size.X / 2) * 16 + pos.X + 8 - 16,
+                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
                 GameObjectFunctions.SetType(objRef, ObjType.ExitPillarLeft);
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x / 2) * 16 + pos.X + 8 + 16,
-                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                    (Room.size.X / 2) * 16 + pos.X + 8 + 16,
+                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
                 GameObjectFunctions.SetType(objRef, ObjType.ExitPillarRight);
 
                 #endregion
@@ -285,7 +285,7 @@ namespace DungeonRun
                 
 
                 //place skeleton pots along left wall
-                for (i = 0; i < Room.size.y; i++)
+                for (i = 0; i < Room.size.Y; i++)
                 {
                     objRef = PoolFunctions.GetObj();
                     MovementFunctions.Teleport(objRef.compMove,
@@ -303,7 +303,7 @@ namespace DungeonRun
                 //place chest gameObj in bottom right corner
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    (Room.size.X - 1) * 16 + pos.X + 8,
                     1 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.ChestGold);
@@ -311,7 +311,7 @@ namespace DungeonRun
                 //create a big key chest
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    (Room.size.X - 1) * 16 + pos.X + 8,
                     3 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.ChestKey);
@@ -319,7 +319,7 @@ namespace DungeonRun
                 //create a map chest
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    (Room.size.X - 1) * 16 + pos.X + 8,
                     5 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.ChestMap);
@@ -327,7 +327,7 @@ namespace DungeonRun
                 //create a heart piece chest
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x - 1) * 16 + pos.X + 8,
+                    (Room.size.X - 1) * 16 + pos.X + 8,
                     7 * 16 + pos.Y + 8);
                 objRef.direction = Direction.Down;
                 GameObjectFunctions.SetType(objRef, ObjType.ChestHeartPiece);
@@ -351,7 +351,7 @@ namespace DungeonRun
                 
 
                 //place test conveyor belt
-                for (i = 0; i < Room.size.y; i++)
+                for (i = 0; i < Room.size.Y; i++)
                 {
                     objRef = PoolFunctions.GetObj();
                     MovementFunctions.Teleport(objRef.compMove,
@@ -385,21 +385,21 @@ namespace DungeonRun
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     5 * 16 + pos.X + 8,
-                    Room.size.y * 16 + pos.Y + 8);
+                    Room.size.Y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
                 GameObjectFunctions.SetType(objRef, ObjType.DoorTrap);
                 //build left wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     (5 - 1) * 16 + pos.X + 8,
-                    Room.size.y * 16 + pos.Y + 8);
+                    Room.size.Y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
                 GameObjectFunctions.SetType(objRef, ObjType.WallTorch);
                 //build right wall torch
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     (5 + 1) * 16 + pos.X + 8,
-                    Room.size.y * 16 + pos.Y + 8);
+                    Room.size.Y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
                 GameObjectFunctions.SetType(objRef, ObjType.WallTorch);
 
@@ -419,8 +419,8 @@ namespace DungeonRun
                 {
                     objRef = PoolFunctions.GetObj();
                     MovementFunctions.Teleport(objRef.compMove,
-                        GetRandom.Int(0, Room.size.x) * 16 + pos.X + 8,
-                        GetRandom.Int(0, Room.size.y) * 16 + pos.Y + 8);
+                        GetRandom.Int(0, Room.size.X) * 16 + pos.X + 8,
+                        GetRandom.Int(0, Room.size.Y) * 16 + pos.Y + 8);
                     objRef.direction = Direction.Down;
                     GameObjectFunctions.SetType(objRef, ObjType.DebrisFloor);
                 }
@@ -446,8 +446,8 @@ namespace DungeonRun
                     //we'll never get a null result from GetActor() right here
                     ActorFunctions.SetType(actorRef, ActorType.Blob);
                     //get a random value between the min/max size of room
-                    int randomX = GetRandom.Int(-Room.size.x + 2, Room.size.x - 2);
-                    int randomY = GetRandom.Int(-Room.size.y + 2, Room.size.y - 2);
+                    int randomX = GetRandom.Int(-Room.size.X + 2, Room.size.X - 2);
+                    int randomY = GetRandom.Int(-Room.size.Y + 2, Room.size.Y - 2);
                     //divide random value in half
                     randomX = randomX / 2;
                     randomY = randomY / 2;

@@ -35,29 +35,24 @@ ram useage:
 todo:
 
 
-7
+6
 
+renamed SummaryScreen to ScreenSummary to better fit with established naming conventions.
 
+updated ComponentSprite.cellsize to Point, instead of Byte2.
+updated various codepaths that referenced the Byte2 cellsize.
+changed the size of the map sprite to 256, 256, due to a display issue with using 255, 255.
 
-bug: boss decal welcome mat right doesn't flip properly.
-cause: from SetType() -> SetRotation() was setting the flipHorizontally boolean to false, by default.
-solution: this boolean is set false in ResetObject(), so there's no need to set it false again in SetRotation().
-simply removed the line of code that set the boolean false in SetRotation().
-however, this creates a bug with the sword projectile.
+updated Byte2 & Byte4 structs to use capital fields to match naming conventions.
+updated various codepaths that referenced the lower case Byte2 and Byte4 fields.
+i might be ocd about naming conventions.
 
-bug: sword projectile doesn't flip properly for Up and Right directions.
-cause: a variety of issues, related to how the direction was being set via SpawnProjectile().
-solution: a refactoring of SpawnProjectile(), SetRotation(), and SetType().
-^ this was a very involved fix.
-
+updated overworld map texture to use gray border that matches the header and footer lines.
+moved the map sprite -1 on x axis to align with the header and footer lines in overworld menu window.
 playtested, working as expected.
-overall, very happy with the discovery and bugfixes.
-it cleaned up a lot of smelly code, that was doing thing redundantly and needlessly.
 
 
 
-
-summary screen should be renamed to ScreenSummary
 
 
 
@@ -66,14 +61,6 @@ summary screen should be renamed to ScreenSummary
 map & overworld screen ++
 
 the overworld screen needs polish, as does the transition into/out of the screen from dungeon
-
-
-the overworld screen should call DungeonFunctions.BuildDungeon().
-right now, we're doing that from the interaction functions.interact() method
-thats the wrong place to do it from, we should start the fade out here
-should fade in overlay
-once fade in finishes, overworld screen should be created
-we need transition in/out of overworld screen
 
 
 

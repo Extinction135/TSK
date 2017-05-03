@@ -15,23 +15,23 @@ namespace DungeonRun
 
     public struct Byte2
     {
-        public byte x;
-        public byte y;
-        public Byte2(byte X, byte Y)
+        public byte X;
+        public byte Y;
+        public Byte2(byte x, byte y)
         {
-            x = X; y = Y;
+            X = x; Y = y;
         }
     }
 
     public struct Byte4
     {   //used for animation
-        public byte x; //x frame
-        public byte y; //y frame
+        public byte X; //x frame
+        public byte Y; //y frame
         public byte flipHori; //>0 = flip horizontally
         public byte flags; //represents various states (unused)
-        public Byte4(byte X, byte Y, byte Flip, byte Flags)
+        public Byte4(byte x, byte y, byte Flip, byte Flags)
         {
-            x = X; y = Y;
+            X = x; Y = y;
             flipHori = Flip;
             flags = Flags;
         }
@@ -74,10 +74,10 @@ namespace DungeonRun
             collision = new ComponentCollision();
             collision.rec.X = Pos.X;
             collision.rec.Y = Pos.Y;
-            collision.rec.Width = Size.x * 16;
-            collision.rec.Height = Size.y * 16;
+            collision.rec.Width = Size.X * 16;
+            collision.rec.Height = Size.Y * 16;
             size = Size;
-            center = new Point(Pos.X + (Size.x / 2) * 16, Pos.Y + (Size.y / 2) * 16);
+            center = new Point(Pos.X + (Size.X / 2) * 16, Pos.Y + (Size.Y / 2) * 16);
             type = Type;
             enemyCount = EnemyCount;
             id = ID;

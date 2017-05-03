@@ -48,7 +48,7 @@ namespace DungeonRun
         public Actor()
         {
             //create the actor components
-            compSprite = new ComponentSprite(Assets.heroSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Byte2(16, 16));
+            compSprite = new ComponentSprite(Assets.heroSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(16, 16));
             compAnim = new ComponentAnimation();
             compInput = new ComponentInput();
             compMove = new ComponentMovement();

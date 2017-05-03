@@ -116,7 +116,7 @@ namespace DungeonRun
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(0, 0), new Byte4(15, 6, 0, 0), 
-                new Byte2(16, 16));
+                new Point(16, 16));
 
             //create the background rec
             background = new Rectangle(0, 0, 640, 360);

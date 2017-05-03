@@ -36,7 +36,7 @@ namespace DungeonRun
             {
                 hearts.Add(new ComponentSprite(Assets.mainSheet,
                     new Vector2(Xpos + 11 * counter, Ypos),
-                    new Byte4(15, 2, 0, 0), new Byte2(16, 16)));
+                    new Byte4(15, 2, 0, 0), new Point(16, 16)));
             }
         }
 
@@ -44,13 +44,13 @@ namespace DungeonRun
         {
             List<ComponentSprite> background = new List<ComponentSprite>();
             background.Add(new ComponentSprite(Assets.mainSheet, new Vector2(Xpos, Ypos),
-                new Byte4(15, 4, 0, 0), new Byte2(16, 16)));
+                new Byte4(15, 4, 0, 0), new Point(16, 16)));
             background.Add(new ComponentSprite(Assets.mainSheet, new Vector2(Xpos + 16, Ypos),
-                new Byte4(15, 4, 1, 0), new Byte2(16, 16)));
+                new Byte4(15, 4, 1, 0), new Point(16, 16)));
             background.Add(new ComponentSprite(Assets.mainSheet, new Vector2(Xpos, Ypos + 16),
-                new Byte4(15, 4, 1, 0), new Byte2(16, 16)));
+                new Byte4(15, 4, 1, 0), new Point(16, 16)));
             background.Add(new ComponentSprite(Assets.mainSheet, new Vector2(Xpos + 16, Ypos + 16),
-                new Byte4(15, 4, 0, 0), new Byte2(16, 16)));
+                new Byte4(15, 4, 0, 0), new Point(16, 16)));
             background[2].rotation = Rotation.Clockwise180;
             background[3].rotation = Rotation.Clockwise180;
             return background;
@@ -70,12 +70,12 @@ namespace DungeonRun
             //create the current weapon sprite
             currentWeapon = new ComponentSprite(Assets.mainSheet,
                 new Vector2(UIpos.X + 8, UIpos.Y + 8),
-                new Byte4(8, 5, 0, 0), new Byte2(16, 16));
+                new Byte4(8, 5, 0, 0), new Point(16, 16));
 
             //create the current item sprite
             currentItem = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(UIpos.X + 8 + 110, UIpos.Y + 8),
-                new Byte4(7, 5, 0, 0), new Byte2(16, 16));
+                new Byte4(7, 5, 0, 0), new Point(16, 16));
 
             //create the frametime text component
             frametime = new ComponentText(Assets.font, "test", 
@@ -115,13 +115,13 @@ namespace DungeonRun
             {
                 if (counter < maxHearts) 
                 //set the empty (unlocked) hearts
-                { hearts[counter].currentFrame.y = 1; }
+                { hearts[counter].currentFrame.Y = 1; }
                 //set the outline (locked) hearts
-                else { hearts[counter].currentFrame.y = 2; }
+                else { hearts[counter].currentFrame.Y = 2; }
 
                 //set the full hearts
                 if (counter <= Pool.hero.health - 1)
-                { hearts[counter].currentFrame.y = 0; }
+                { hearts[counter].currentFrame.Y = 0; }
                 //scale each heart back down to 1.0
                 if (hearts[counter].scale > 1.0f)
                 { hearts[counter].scale -= 0.05f; }

@@ -57,7 +57,7 @@ namespace DungeonRun
             Assets.Load(GraphicsDevice, Content);
             ScreenManager.Initialize(this);
             ScreenManager.AddScreen(new ScreenDungeon());
-            //ScreenManager.AddScreen(new ScreenOverworld());
+            ScreenManager.AddScreen(new ScreenOverworld());
         }
 
         protected override void UnloadContent() { }

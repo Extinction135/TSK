@@ -26,10 +26,10 @@ namespace DungeonRun
             window = new MenuWindow(new Point(16 * 11 + 8, 16 * 1 + 8),
                 new Point(16 * 17, 16 * 19), "Overworld Map");
             map = new ComponentSprite(Assets.overworldSheet, 
-                new Vector2(window.border.position.X + 8, window.border.position.Y + 24), 
-                new Byte4(0, 0, 0, 0), new Byte2(255, 255));
-            map.position.X += map.cellSize.x / 2;
-            map.position.Y += map.cellSize.y / 2;
+                new Vector2(window.border.position.X + 7, window.border.position.Y + 24), 
+                new Byte4(0, 0, 0, 0), new Point(256, 256));
+            map.position.X += map.cellSize.X / 2;
+            map.position.Y += map.cellSize.Y / 2;
             selectedLocation = new ComponentText(Assets.font, "Dungeon 1", 
                 new Vector2(window.border.position.X + 16 * 7 + 8, window.footerLine.position.Y - 1), 
                 Assets.colorScheme.textDark);
