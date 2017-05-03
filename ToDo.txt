@@ -35,26 +35,13 @@ ram useage:
 todo:
 
 
-3
-
-
-updated OverworldScreen with black rec overlay, and codepaths to handle screenState.
-playtested, working as expected - overworld screen fades out to black.
-then the dungeon screen fades in from black, creating a nice transition.
+2
 
 
 
-
-
-
-we should add an overlay rectangle to the overworld screen
-we're using overlay recs pretty often for screens
-maybe we should put this overlay rec into the base class?
-
-need displayState closing animations for overworld screen (overlay)
-
-overworld background color should match colorScheme bkg color
-
+updated overworld screen mockup.
+updated map texture to have boss and shop locations.
+playtested. it actually looks really good in game.
 
 
 
@@ -75,9 +62,6 @@ we're going to use a selection box to highlight certain areas of the overworld m
 do this using menuItems, to take advantage of the fact they have neighbors
 we've already solved the UI selection problem, don't invent a new solution
 just don't draw the menuItems, or better yet make menu items that fit into the map
-
-
-
 
 
 
