@@ -35,30 +35,18 @@ ram useage:
 todo:
 
 
-13
+12
+
+
+
+modified ScreenDungeon.Update() to fade in the overlay much faster when the hero exits a dungeon.
+also sets the overlayAlpha to be 0, so the fade in starts immediately.
+these timing changes are just personal preference. playtested, working as expected. 
 
 
 
 
-renamed DungeonScreen to ScreenDungeon, to better fit established naming conventions.
-updated codepaths that referenced DungeonScreen.
-removed DungeonScreen parameter rom DebugFunctions (wasn't being used).
-
-added 'Overworld' value to DungeonScreen.GameState
-changed DungeonScreen.GameState to ExitAction eunmerator, to better reflect it's purpose.
-changed ExitAction values to { None, Summary, Overworld }.
-moved ExitAction enumerator into Enumerators.cs.
-
-updated ActorFunctions.SetDeathState() to use new ExitAction enum.
-routines here set the dungeon screen's exitAction & displayState enums.
-this causes dungeon screen to fade out, then perform the exit action.
-dungeon screen then reset it's exitAction to None.
-
-updated InteractionFunctions.Interact(Actor, Obj) to handle hero collision with exit door object.
-this interaction now tells dungeon screen to close, and sets the exitAction to overworld screen.
-
-
-
+make the exit collision rec bigger, so hero can't overlap it and appear to be outside of dungeon.
 
 
 bug: the fadeIn for dungeon screen happens too slowly for my preference.

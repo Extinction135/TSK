@@ -18,7 +18,7 @@ namespace DungeonRun
         //the foreground black rectangle, overlays and hides game content
         Rectangle overlay; 
         public float overlayAlpha = 1.0f;
-        float fadeInSpeed = 0.015f;
+        float fadeInSpeed; //this is set in Update()
         float fadeOutSpeed = 0.025f;
         //what happens when this screen exits?
         public ExitAction exitAction = ExitAction.None;
@@ -97,6 +97,15 @@ namespace DungeonRun
                 }   //delay gives player time to understand what's happening
                 else if (displayState == DisplayState.Closing) //fade overlay to 1.0
                 {
+                    //set the fadeInSpeed & overlaayAlpha based on the exitAction
+                    if (exitAction == ExitAction.Overworld)
+                    {   //exits fade in immediately, and much faster
+                        fadeInSpeed = 0.05f;
+                        if (overlayAlpha < 0.0f) { overlayAlpha = 0.0f; }
+                    }
+                    else { fadeInSpeed = 0.015f; } //victory/defeat fades in much slower
+
+
                     overlayAlpha += fadeInSpeed;
                     if (overlayAlpha >= 1.0f)
                     {
