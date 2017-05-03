@@ -35,6 +35,8 @@ namespace DungeonRun
                         //if hero just entered the boss room, play the boss intro theme
                         if (DungeonFunctions.currentRoom.type == RoomType.Boss)
                         { Assets.Play(Assets.sfxBossIntro); }
+
+                        Debug.WriteLine("room type: " + DungeonFunctions.currentRoom.type);
                     }
                 }
             }

@@ -130,6 +130,8 @@ namespace DungeonRun
                     //set the current animation frame, check the animation counter
                     AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim,
                         Pool.objPool[Pool.counter].compSprite);
+                    //set the rotation for the obj's sprite
+                    GameObjectFunctions.SetRotation(Pool.objPool[Pool.counter]);
                 }
             }
         }

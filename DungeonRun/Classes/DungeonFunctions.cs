@@ -44,8 +44,6 @@ namespace DungeonRun
             BuildRoom(dungeon.rooms[0]);
             currentRoom = dungeon.rooms[0];
 
-            
-
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();
             DungeonRecord.dungeonID = 0; //ID = 0 for now
@@ -100,8 +98,8 @@ namespace DungeonRun
                         MovementFunctions.Teleport(objRef.compMove,
                             i * 16 + pos.X + 8,
                             0 * 16 - 16 + pos.Y + 8);
-                        objRef.direction = Direction.Down;
                         GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
+                        objRef.direction = Direction.Down;
 
                         if (i == 0)
                         {   //topleft corner
@@ -109,8 +107,8 @@ namespace DungeonRun
                             MovementFunctions.Teleport(objRef.compMove, 
                                 -16 + pos.X + 8, 
                                 -16 + pos.Y + 8);
-                            objRef.direction = Direction.Down;
                             GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
+                            objRef.direction = Direction.Down;
                         }
                         else if (i == Room.size.x - 1)
                         {   //topright corner
@@ -118,8 +116,8 @@ namespace DungeonRun
                             MovementFunctions.Teleport(objRef.compMove,
                                 Room.size.x * 16 + pos.X + 8, 
                                 -16 + pos.Y + 8);
-                            objRef.direction = Direction.Left;
                             GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
+                            objRef.direction = Direction.Left;
                         }
                     }
 
@@ -135,8 +133,8 @@ namespace DungeonRun
                         MovementFunctions.Teleport(objRef.compMove,
                             i * 16 + pos.X + 8,
                             Room.size.y * 16 + pos.Y + 8);
-                        objRef.direction = Direction.Up;
                         GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
+                        objRef.direction = Direction.Up;
 
                         if (i == 0)
                         {   //bottom left corner
@@ -144,8 +142,8 @@ namespace DungeonRun
                             MovementFunctions.Teleport(objRef.compMove, 
                                 -16 + pos.X + 8,
                                 Room.size.y * 16 + pos.Y + 8);
-                            objRef.direction = Direction.Right;
                             GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
+                            objRef.direction = Direction.Right;
                         }
                         else if (i == Room.size.x - 1)
                         {   //bottom right corner
@@ -153,8 +151,8 @@ namespace DungeonRun
                             MovementFunctions.Teleport(objRef.compMove,
                                 Room.size.x * 16 + pos.X + 8,
                                 Room.size.y * 16 + pos.Y + 8);
-                            objRef.direction = Direction.Up;
                             GameObjectFunctions.SetType(objRef, ObjType.WallInteriorCorner);
+                            objRef.direction = Direction.Up;
                         }
                     }
 
@@ -169,8 +167,8 @@ namespace DungeonRun
                         MovementFunctions.Teleport(objRef.compMove, 
                             i * 16 - 16 + pos.X + 8, 
                             j * 16 + pos.Y + 8);
-                        objRef.direction = Direction.Right;
                         GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
+                        objRef.direction = Direction.Right;
                     }
                     else if (i == Room.size.x - 1)
                     {   //right side
@@ -178,8 +176,8 @@ namespace DungeonRun
                         MovementFunctions.Teleport(objRef.compMove, 
                             i * 16 + 16 + pos.X + 8, 
                             j * 16 + pos.Y + 8);
-                        objRef.direction = Direction.Left;
                         GameObjectFunctions.SetType(objRef, ObjType.WallStraight);
+                        objRef.direction = Direction.Left;
                     }
 
                     #endregion
@@ -379,6 +377,9 @@ namespace DungeonRun
 
             else if (Room.type == RoomType.Boss)
             {
+
+                #region Create Trap Door + Door Decorations
+
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     5 * 16 + pos.X + 8,
@@ -399,6 +400,9 @@ namespace DungeonRun
                     Room.size.y * 16 + pos.Y + 8);
                 objRef.direction = Direction.Up;
                 GameObjectFunctions.SetType(objRef, ObjType.WallTorch);
+
+                #endregion
+
 
                 //spawn a boss actor
                 actorRef = PoolFunctions.GetActor();

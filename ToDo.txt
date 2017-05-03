@@ -35,34 +35,21 @@ ram useage:
 todo:
 
 
-9
+8
 
 
+bug: when hero enters the boss room, the spawn room rebuilds immediately afterwards.
+cause: the room objects weren't having their type reset, so the exit object was colliding with hero upon room build.
+solution: updated ResetObj() to set the ObjType to WallStraight.
+^ this was a really hard bug to figure out.
 
-bug: the exit door and left pillar are placed incorrectly upon beating the dungeon?
-cause: the sprites are being rotated at some point, and are never reset.
-solution: call GameObjFunctions.Reset() on the Obj being returned from GetObj().
-also updated ObjFunctions.Reset() to completely reset all the Obj's components and fields to default.
-also updated GetProjectile() to clean projectile objects prior to return.
-playtested, i thought there would be problems with projectiles, but there aren't.
-there are other problems / bugs tho.
+updated BuildRoom() to fix a bug where walls were created facing the wrong direction.
+updated UpdateObjectPool() to call SetRotation() for all pool objects.
+fixed a bug in ObjFunctions.SetType() which called Reset() on an object after it's type was set.
+updated DungeonScreen to stop all work if screen displayState is closed.
+this fixes a bug where we could still hear sounds while viewing the overworld screen.
 
-
-
-
-the walls are not facing the right direction upon a dungeon build.
-
-
-
-
-
-bug: can't enter the boss room anymore....
-rebuilds the spawn room, places hero at exit
-
-
-
-
-because we're calling Reset() on objs AND projectiles, we'll likely need to update SetType().projectile codepaths.
+playtested, working as expected. 
 
 
 
@@ -70,6 +57,9 @@ because we're calling Reset() on objs AND projectiles, we'll likely need to upda
 
 
 
+
+
+boss decal doesn't flip properly anymore
 
 summary screen should be renamed to ScreenSummary
 

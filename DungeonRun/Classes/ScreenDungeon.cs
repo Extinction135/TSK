@@ -105,7 +105,6 @@ namespace DungeonRun
                     }
                     else { fadeInSpeed = 0.015f; } //victory/defeat fades in much slower
 
-
                     overlayAlpha += fadeInSpeed;
                     if (overlayAlpha >= 1.0f)
                     {
@@ -115,7 +114,6 @@ namespace DungeonRun
                 }
                 else if (displayState == DisplayState.Closed)
                 {
-                    Debug.WriteLine("displayState: " + displayState);
                     if (exitAction == ExitAction.Summary)
                     {
                         DungeonRecord.timer.Stop();
@@ -134,13 +132,16 @@ namespace DungeonRun
                 #endregion
 
 
-                //update and move actors, objects, and projectiles
-                PoolFunctions.Update();
-                CollisionFunctions.CheckDungeonRoomCollisions();
-                WorldUI.Update();
-                //track camera to hero
-                Camera2D.targetPosition = Pool.hero.compSprite.position;
-                Camera2D.Update(GameTime);
+                //if the screen is closed, don't play any sounds or do any work
+                if (displayState != DisplayState.Closed)
+                {   //update and move actors, objects, projectiles, and camera
+                    PoolFunctions.Update();
+                    CollisionFunctions.CheckDungeonRoomCollisions();
+                    WorldUI.Update();
+                    //track camera to hero
+                    Camera2D.targetPosition = Pool.hero.compSprite.position;
+                    Camera2D.Update(GameTime);
+                }
             }
 
             Timing.stopWatch.Stop();

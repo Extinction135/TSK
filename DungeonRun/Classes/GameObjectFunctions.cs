@@ -19,10 +19,12 @@ namespace DungeonRun
         static Direction cardinal; //a cardinal direction used by SpawnProjectile()
 
 
+
         public static void ResetObject(GameObject Obj)
         {
             //reset the obj
             Obj.direction = Direction.Down;
+            Obj.type = ObjType.WallStraight; //reset the type
             Obj.group = ObjGroup.Object; //assume object is a generic object
             Obj.lifetime = 0; //assume obj exists forever (not projectile)
             Obj.lifeCounter = 0; //reset counter
@@ -199,9 +201,8 @@ namespace DungeonRun
 
         public static void SetType(GameObject Obj, ObjType Type)
         {
+            //ResetObject(Obj); //set obj fields to most common values
             Obj.type = Type;
-            GameObjectAnimListManager.SetAnimationList(Obj); //set obj animation list based on type
-            ResetObject(Obj); //set obj fields to most common values
             SetRotation(Obj); //set the obj's sprite rotation
 
 
@@ -512,6 +513,7 @@ namespace DungeonRun
             //particles do not block upon collision
             if (Obj.group == ObjGroup.Particle) { Obj.compCollision.blocking = false; }
 
+            GameObjectAnimListManager.SetAnimationList(Obj); //set obj animation list based on type
             ComponentFunctions.SetZdepth(Obj.compSprite);
             ComponentFunctions.UpdateCellSize(Obj.compSprite);
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
