@@ -92,6 +92,7 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxMetallicTap;
         //
         public static List<SoundEffectInstance> sfxBounce;
+        public static List<SoundEffectInstance> sfxMapOpen;
 
         #endregion
 
@@ -209,6 +210,8 @@ namespace DungeonRun
             //
             sfxBounce = new List<SoundEffectInstance>();
             SoundEffect bounceSrc = content.Load<SoundEffect>(@"SoundBounce");
+            sfxMapOpen = new List<SoundEffectInstance>();
+            SoundEffect mapOpenSrc = content.Load<SoundEffect>(@"SoundMapOpen");
 
             #endregion
 
@@ -248,6 +251,7 @@ namespace DungeonRun
                 sfxMetallicTap.Add(metallicTapSrc.CreateInstance());
                 //
                 sfxBounce.Add(bounceSrc.CreateInstance());
+                sfxMapOpen.Add(mapOpenSrc.CreateInstance());
             }
 
             #endregion

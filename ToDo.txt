@@ -35,51 +35,36 @@ ram useage:
 todo:
 
 
-6
+5
 
-renamed SummaryScreen to ScreenSummary to better fit with established naming conventions.
 
-updated ComponentSprite.cellsize to Point, instead of Byte2.
-updated various codepaths that referenced the Byte2 cellsize.
-changed the size of the map sprite to 256, 256, due to a display issue with using 255, 255.
-
-updated Byte2 & Byte4 structs to use capital fields to match naming conventions.
-updated various codepaths that referenced the lower case Byte2 and Byte4 fields.
-i might be ocd about naming conventions.
-
-updated overworld map texture to use gray border that matches the header and footer lines.
-moved the map sprite -1 on x axis to align with the header and footer lines in overworld menu window.
+added 'SoundMapOpen' to content project, built.
+added instances to Assets to load 'SoundMapOpen'.
+added call to play the 'SoundMapOpen' from OverworldScreen.LoadContent().
 playtested, working as expected.
 
 
 
 
+we should add an overlay rectangle to the overworld screen
+we're using overlay recs pretty often for screens
+maybe we should put this overlay rec into the base class?
 
 
-
-
-map & overworld screen ++
-
-the overworld screen needs polish, as does the transition into/out of the screen from dungeon
-
-
-
-
-
-
-
-
-improve the map - needs a darker border that matches divider line
-fix top mountain castle
-add clouds back into corners / border of map
 
 need soundfx for exiting dungeon
+need soundfx for overworld map closing
 
-need sound effect for moving between locations
-should display the name of locations at bottom of map
+need displayState opening, closing animations for overworld screen
+
+
+map locations++
 need locations on map
-
-overworld background color should match colorScheme bkg color
+need selection box that draws and pulses, just like inventory screen
+need to place selection box at location positions
+using menuItems, build neighbors between connections
+display the menuItem's name on the bottom of the map (location name)
+need sound effect for moving between locations
 
 we're going to use a selection box to highlight certain areas of the overworld map
 do this using menuItems, to take advantage of the fact they have neighbors
@@ -88,8 +73,13 @@ just don't draw the menuItems, or better yet make menu items that fit into the m
 
 
 
+overworld background color should match colorScheme bkg color
 
 
+
+
+
+are we using the inventory open/close sound fx for inventory screen?
 
 
 

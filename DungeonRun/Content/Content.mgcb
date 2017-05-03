@@ -293,3 +293,9 @@
 /processorParam:TextureFormat=Color
 /build:OverworldTexture.png
 
+#begin SoundMapOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundMapOpen.wav
+
