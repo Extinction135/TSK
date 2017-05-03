@@ -35,26 +35,21 @@ ram useage:
 todo:
 
 
-12
-
-
-
-modified ScreenDungeon.Update() to fade in the overlay much faster when the hero exits a dungeon.
-also sets the overlayAlpha to be 0, so the fade in starts immediately.
-these timing changes are just personal preference. playtested, working as expected. 
+11
 
 
 
 
-make the exit collision rec bigger, so hero can't overlap it and appear to be outside of dungeon.
+updated hero collision with exit door to stop his movement completely.
+this prevents hero from appearing outside of the dungeon upon a dash exit.
+also updated the collision rec for exit door, for the same reason.
+playtested, transition out of dungeon is much better.
 
 
-bug: the fadeIn for dungeon screen happens too slowly for my preference.
-it should happen very quickly for exiting, but slowly for defeat/victory.
 
 
-
-
+we should be placing the hero at the exit door's sprite position, instead of center of room
+upon a dungeon build
 
 
 

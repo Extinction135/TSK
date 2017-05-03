@@ -207,8 +207,8 @@ namespace DungeonRun
                 Obj.compSprite.cellSize.y = 16 * 3; //nonstandard size
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.group = ObjGroup.Door;
-                Obj.compCollision.rec.Height = 2;
-                Obj.compCollision.offsetY = 32 + 6;
+                Obj.compCollision.rec.Height = 4;
+                Obj.compCollision.offsetY = 32 + 4;
                 Obj.compCollision.blocking = false;
             }
             else if (Type == ObjType.ExitPillarLeft || 

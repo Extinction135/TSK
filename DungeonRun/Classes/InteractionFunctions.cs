@@ -201,6 +201,8 @@ namespace DungeonRun
                     //if dungeon screen is open, close it
                     if (DungeonFunctions.dungeonScreen.displayState == DisplayState.Opened)
                     { DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing; }
+                    //stop hero's movement, so he can't overlap exit and appear outside of dungeon
+                    MovementFunctions.StopMovement(Pool.hero.compMove);
                 }
                 else if (Obj.type == ObjType.DoorTrap)
                 {   //trap doors push ALL actors
