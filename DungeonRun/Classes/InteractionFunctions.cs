@@ -196,13 +196,15 @@ namespace DungeonRun
                 }
                 else if (Obj.type == ObjType.Exit && Actor == Pool.hero)
                 {   //only hero can exit dungeon
-                    DungeonRecord.beatDungeon = false;
-                    DungeonFunctions.dungeonScreen.exitAction = ExitAction.Overworld;
-                    //if dungeon screen is open, close it
                     if (DungeonFunctions.dungeonScreen.displayState == DisplayState.Opened)
-                    { DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing; }
-                    //stop hero's movement, so he can't overlap exit and appear outside of dungeon
-                    MovementFunctions.StopMovement(Pool.hero.compMove);
+                    {   //if dungeon screen is open, close it, perform interaction ONCE
+                        DungeonRecord.beatDungeon = false;
+                        DungeonFunctions.dungeonScreen.exitAction = ExitAction.Overworld;
+                        DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
+                        //stop movement, prevents overlap with exit
+                        MovementFunctions.StopMovement(Pool.hero.compMove);
+                        Assets.Play(Assets.sfxDoorOpen);
+                    }
                 }
                 else if (Obj.type == ObjType.DoorTrap)
                 {   //trap doors push ALL actors

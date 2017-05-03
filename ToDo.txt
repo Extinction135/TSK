@@ -35,13 +35,18 @@ ram useage:
 todo:
 
 
-5
+4
 
 
-added 'SoundMapOpen' to content project, built.
-added instances to Assets to load 'SoundMapOpen'.
-added call to play the 'SoundMapOpen' from OverworldScreen.LoadContent().
+
+
+updated InteractionFunctions.Interact() to only call the intraction bewtween hero and exit once.
+this is done by checking the displayState of the dungeon screen.
+updated this interaction to also play the doorOpen sound.
+this helps to tell the player hero has exited the dungeon.
 playtested, working as expected.
+
+
 
 
 
@@ -50,12 +55,11 @@ we should add an overlay rectangle to the overworld screen
 we're using overlay recs pretty often for screens
 maybe we should put this overlay rec into the base class?
 
+need displayState closing animations for overworld screen (overlay)
+
+overworld background color should match colorScheme bkg color
 
 
-need soundfx for exiting dungeon
-need soundfx for overworld map closing
-
-need displayState opening, closing animations for overworld screen
 
 
 map locations++
@@ -71,15 +75,16 @@ do this using menuItems, to take advantage of the fact they have neighbors
 we've already solved the UI selection problem, don't invent a new solution
 just don't draw the menuItems, or better yet make menu items that fit into the map
 
-
-
-overworld background color should match colorScheme bkg color
+need soundfx for selecting a location (this is the last thing player will hear from map screen)
 
 
 
 
 
-are we using the inventory open/close sound fx for inventory screen?
+play overworld map music
+play dungeon music
+play boss music (upon entering boss room)
+
 
 
 
