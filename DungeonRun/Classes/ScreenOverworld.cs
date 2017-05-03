@@ -19,10 +19,19 @@ namespace DungeonRun
         public static ComponentSprite map;
         public static ComponentText selectedLocation;
 
+        //the foreground black rectangle, overlays and hides screen content
+        Rectangle overlay;
+        public float overlayAlpha = 0.0f;
+        float fadeInSpeed = 0.05f;
+
+
+
         public ScreenOverworld() { this.name = "OverworldScreen"; }
 
         public override void LoadContent()
         {
+            overlay = new Rectangle(0, 0, 640, 360);
+
             window = new MenuWindow(new Point(16 * 11 + 8, 16 * 1 + 8),
                 new Point(16 * 17, 16 * 19), "Overworld Map");
             map = new ComponentSprite(Assets.overworldSheet, 
@@ -34,19 +43,26 @@ namespace DungeonRun
                 new Vector2(window.border.position.X + 16 * 7 + 8, window.footerLine.position.Y - 1), 
                 Assets.colorScheme.textDark);
             Assets.Play(Assets.sfxMapOpen);
+
+            //open the screen
+            displayState = DisplayState.Opening;
         }
 
         public override void HandleInput(GameTime GameTime)
         {
-            if (Input.IsNewButtonPress(Buttons.Start) ||
+            if (displayState == DisplayState.Opened)
+            {   //only allow input if the screen has opened completely
+                if (Input.IsNewButtonPress(Buttons.Start) ||
                 Input.IsNewButtonPress(Buttons.A) ||
                 Input.IsNewButtonPress(Buttons.B))
-            {
-                //displayState = DisplayState.Closing;
-                //play the summary exit sound effect immediately
-                //Assets.Play(Assets.sfxExitSummary);
-                ScreenManager.RemoveScreen(this);
-                DungeonFunctions.BuildDungeon();
+                {
+                    //displayState = DisplayState.Closing;
+                    //play the summary exit sound effect immediately
+                    //Assets.Play(Assets.sfxExitSummary);
+
+                    //begin closing the screen
+                    displayState = DisplayState.Closing;
+                }
             }
         }
 
@@ -55,6 +71,33 @@ namespace DungeonRun
             window.Update();
 
             //center the location text
+
+
+            #region Handle Screen State
+
+            if (displayState == DisplayState.Opening)
+            {
+                if (window.interior.displayState == DisplayState.Opened)
+                { displayState = DisplayState.Opened; }
+            }
+            else if (displayState == DisplayState.Closing)
+            {
+                overlayAlpha += fadeInSpeed;
+                if (overlayAlpha >= 1.0f)
+                {
+                    overlayAlpha = 1.0f;
+                    displayState = DisplayState.Closed;
+                }
+            }
+            else if (displayState == DisplayState.Closed)
+            {
+                ScreenManager.RemoveScreen(this);
+                DungeonFunctions.BuildDungeon();
+            }
+
+            #endregion
+
+
         }
 
         public override void Draw(GameTime GameTime)
@@ -68,6 +111,10 @@ namespace DungeonRun
                 DrawFunctions.Draw(map);
                 DrawFunctions.Draw(selectedLocation);
             }
+
+            //draw the overlay rec last
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
+                overlay, Assets.colorScheme.overlay * overlayAlpha);
 
             ScreenManager.spriteBatch.End();
         }

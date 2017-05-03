@@ -35,16 +35,12 @@ ram useage:
 todo:
 
 
-4
+3
 
 
-
-
-updated InteractionFunctions.Interact() to only call the intraction bewtween hero and exit once.
-this is done by checking the displayState of the dungeon screen.
-updated this interaction to also play the doorOpen sound.
-this helps to tell the player hero has exited the dungeon.
-playtested, working as expected.
+updated OverworldScreen with black rec overlay, and codepaths to handle screenState.
+playtested, working as expected - overworld screen fades out to black.
+then the dungeon screen fades in from black, creating a nice transition.
 
 
 
@@ -68,14 +64,19 @@ need selection box that draws and pulses, just like inventory screen
 need to place selection box at location positions
 using menuItems, build neighbors between connections
 display the menuItem's name on the bottom of the map (location name)
-need sound effect for moving between locations
+
+need sound effect for moving between locations (text letter?)
+need soundfx for selecting a location (menuItem select) 
+this is the last thing player will hear from map screen
+
+center the location text each time it changes
 
 we're going to use a selection box to highlight certain areas of the overworld map
 do this using menuItems, to take advantage of the fact they have neighbors
 we've already solved the UI selection problem, don't invent a new solution
 just don't draw the menuItems, or better yet make menu items that fit into the map
 
-need soundfx for selecting a location (this is the last thing player will hear from map screen)
+
 
 
 

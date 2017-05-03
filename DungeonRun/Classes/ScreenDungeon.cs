@@ -15,7 +15,7 @@ namespace DungeonRun
     public class ScreenDungeon : Screen
     {
 
-        //the foreground black rectangle, overlays and hides game content
+        //the foreground black rectangle, overlays and hides screen content
         Rectangle overlay; 
         public float overlayAlpha = 1.0f;
         float fadeInSpeed; //this is set in Update()
