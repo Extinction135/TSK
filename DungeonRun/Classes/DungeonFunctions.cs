@@ -44,12 +44,7 @@ namespace DungeonRun
             BuildRoom(dungeon.rooms[0]);
             currentRoom = dungeon.rooms[0];
 
-            //center hero to spawn room
-            ActorFunctions.SetType(Pool.hero, ActorType.Hero);
-            MovementFunctions.Teleport(Pool.hero.compMove, 
-                dungeon.rooms[0].center.X, 
-                dungeon.rooms[0].center.Y);
-            MovementFunctions.StopMovement(Pool.hero.compMove);
+            
 
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();
@@ -211,6 +206,48 @@ namespace DungeonRun
 
             if (Room.type == RoomType.Normal)
             {
+
+                #region Create the Exit, place Hero at Exit
+
+                //create the exit
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x / 2) * 16 + pos.X + 8,
+                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.Exit);
+
+                //place hero at exit door
+                ActorFunctions.SetType(Pool.hero, ActorType.Hero);
+                MovementFunctions.Teleport(Pool.hero.compMove,
+                    objRef.compSprite.position.X,
+                    objRef.compSprite.position.Y + 8);
+                MovementFunctions.StopMovement(Pool.hero.compMove);
+                Pool.hero.direction = Direction.Up; //face hero up
+
+                //place the exit light fx over exit obj
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x / 2) * 16 + pos.X + 8,
+                    Room.size.y * 16 + pos.Y + 8 - 16 * 1);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitLightFX);
+
+                //create exit pillars
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x / 2) * 16 + pos.X + 8 - 16,
+                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitPillarLeft);
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.x / 2) * 16 + pos.X + 8 + 16,
+                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitPillarRight);
+
+                #endregion
+
+
+                #region Create the BossDoor, Decals, and Door Decorations
+
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     5 * 16 + pos.X + 8,
@@ -259,8 +296,10 @@ namespace DungeonRun
                     GameObjectFunctions.SetType(objRef, ObjType.PotSkull);
                 }
 
+                #endregion
 
-                #region Test Chests
+
+                #region Create the Testing Chests
 
                 //place chest gameObj in bottom right corner
                 objRef = PoolFunctions.GetObj();
@@ -297,11 +336,7 @@ namespace DungeonRun
                 #endregion
 
 
-
-
-                
                 //Create testing spike blocks
-
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     7 * 16 + pos.X + 8,
@@ -315,18 +350,16 @@ namespace DungeonRun
                 GameObjectFunctions.SetType(objRef, ObjType.BlockSpikes);
                 objRef.compMove.direction = Direction.Right;
 
-
                 //place test conveyor belt
                 for (i = 0; i < Room.size.y; i++)
                 {
                     objRef = PoolFunctions.GetObj();
                     MovementFunctions.Teleport(objRef.compMove,
-                        11 * 16 + pos.X + 8,
+                        15 * 16 + pos.X + 8,
                         i * 16 + pos.Y + 8);
                     objRef.direction = Direction.Down;
                     GameObjectFunctions.SetType(objRef, ObjType.ConveyorBelt);
                 }
-
 
                 //place a test bumper
                 objRef = PoolFunctions.GetObj();
@@ -334,37 +367,6 @@ namespace DungeonRun
                     13 * 16 + pos.X + 8,
                     3 * 16 + pos.Y + 8);
                 GameObjectFunctions.SetType(objRef, ObjType.Bumper);
-                
-
-
-
-                //create the exit
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x / 2) * 16 + pos.X + 8,
-                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
-                GameObjectFunctions.SetType(objRef, ObjType.Exit);
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x / 2) * 16 + pos.X + 8,
-                    Room.size.y * 16 + pos.Y + 8 - 16 * 1);
-                GameObjectFunctions.SetType(objRef, ObjType.ExitLightFX);
-
-
-                //create exit pillars
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x / 2) * 16 + pos.X + 8 - 16,
-                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
-                GameObjectFunctions.SetType(objRef, ObjType.ExitPillarLeft);
-
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    (Room.size.x / 2) * 16 + pos.X + 8 + 16,
-                    Room.size.y * 16 + pos.Y + 8 - 16 * 2);
-                GameObjectFunctions.SetType(objRef, ObjType.ExitPillarRight);
-
-
 
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);

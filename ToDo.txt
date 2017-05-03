@@ -35,15 +35,25 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
 
-updated hero collision with exit door to stop his movement completely.
-this prevents hero from appearing outside of the dungeon upon a dash exit.
-also updated the collision rec for exit door, for the same reason.
-playtested, transition out of dungeon is much better.
+updated DungeonFunctions.FinishRoom() to place Hero at the Exit door's position.
+Hero spawns into dungeon facing up, just inside the door, as if he just entered the dungeon.
+playtested, working as expected, bug noticed upon beating dungeon tho.
+
+
+
+
+
+
+bug: the exit door and left pillar are placed incorrectly upon beating the dungeon?
+cause: the sprites are being flipped vertically or rotated
+solution: we should reset the horizontal flip boolean and rotation upon a Get(Obj).
+
+
 
 
 
