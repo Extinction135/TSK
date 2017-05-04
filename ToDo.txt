@@ -35,16 +35,24 @@ ram useage:
 todo:
 
 
-10
+9
+
+
+
+wrote ComponentFunctions.CenterText(Text, Font, X), which duplicates some functionality from CenterText(Button).
+later, it would be good to consolidate this work into one function, then chain CT(Button) to CT(Text, Font, X).
+updated OverworldScreen.HandleInput() to horizontally center the selected location text to the screen.
+playtested, working as expected, but with a bug.
 
 
 
 
-added in code to name all the locations via menuItem.name.
-updated HandleInput() to set the selectedLocation text to the currently selected menuItem's name.
-playtested, working as expected.
-
-
+bug: the "M" text sprite sometimes displays incorrectly.
+i think this is related to it's position, as that's the only variable that changes.
+let's dump the position value of the text each time we change locations.
+i suspect it has a half pixel offset, which it shouldnt.
+we can round it or cast to an int to fix the problem, if thats the problem.
+we'll see.
 
 
 

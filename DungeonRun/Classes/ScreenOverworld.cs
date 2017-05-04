@@ -121,8 +121,9 @@ namespace DungeonRun
                     i++;
                     if(i >= locations.Count) { i = 0; }
                     selectionBox.position = locations[i].compSprite.position;
-
+                    //update the location name, center it to the window/screen
                     selectedLocation.text = locations[i].name;
+                    ComponentFunctions.CenterText(selectedLocation, selectedLocation.font, 320);
                 }
             }
         }

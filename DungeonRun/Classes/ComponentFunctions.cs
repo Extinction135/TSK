@@ -54,5 +54,15 @@ namespace DungeonRun
             Button.compText.position.Y = Button.rec.Location.Y - 3;
         }
 
+        static int textWidth;
+        public static void CenterText(ComponentText Text, SpriteFont Font, int X)
+        {
+            //center the text to the X and Y position passed in
+            textWidth = (int)Font.MeasureString(Text.text).X;
+            Text.position.X = X - (textWidth / 2);
+            //if the textWidth is odd, it blurs, so add half pixel to keep it sharp
+            if (textWidth % 2 != 0) { Text.position.X += 0.5f; }
+        }
+
     }
 }
