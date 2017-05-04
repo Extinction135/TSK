@@ -124,6 +124,7 @@ namespace DungeonRun
                     //update the location name, center it to the window/screen
                     selectedLocation.text = locations[i].name;
                     ComponentFunctions.CenterText(selectedLocation, selectedLocation.font, 320);
+                    Debug.WriteLine("pos: " + selectedLocation.position.X + ", " + selectedLocation.position.Y);
                 }
             }
         }

@@ -46,22 +46,17 @@ namespace DungeonRun
             Button.textWidth = (int)Assets.font.MeasureString(Button.compText.text).X;
             //resize button to fit around the text
             Button.rec.Width = Button.textWidth + 6;
-            //center text to button
-            Button.compText.position.X = (Button.rec.Location.X + Button.rec.Width / 2) - (Button.textWidth / 2);
-            //if the textWidth is odd, it blurs, so add half pixel to keep it sharp
-            if (Button.textWidth % 2 != 0) { Button.compText.position.X += 0.5f; }
+            //center text to button, prevent half pixel offsets
+            Button.compText.position.X = (int)(Button.rec.Location.X + Button.rec.Width / 2) - (Button.textWidth / 2);
             //center text vertically
             Button.compText.position.Y = Button.rec.Location.Y - 3;
         }
 
         static int textWidth;
         public static void CenterText(ComponentText Text, SpriteFont Font, int X)
-        {
-            //center the text to the X and Y position passed in
+        {   //center the text to the X and Y position passed in, prevent half pixel offsets
             textWidth = (int)Font.MeasureString(Text.text).X;
-            Text.position.X = X - (textWidth / 2);
-            //if the textWidth is odd, it blurs, so add half pixel to keep it sharp
-            if (textWidth % 2 != 0) { Text.position.X += 0.5f; }
+            Text.position.X = (int)X - (textWidth / 2);
         }
 
     }
