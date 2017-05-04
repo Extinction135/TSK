@@ -35,16 +35,25 @@ ram useage:
 todo:
 
 
-12
+11
+
+
+completed placing the remaining menuItems relative to the locations on the map.
+wrote an basic routine to iterate thru the locations using the Y button.
+playtested, selectionBox is aligning with locations on map via menuItems.
+however, the blinking selectionBox sprite isn't very apparent.
+so, i'll need to redesign how we get the player's attention upon a location change.
 
 
 
 
-added List<MenuItem> locations to OverworldScreen.
-this contains all the locations on the map.
-populated locations list with menuItems.
-linked up selectionBox to match position of 1st location.
-playtested, working, aligned locations[5] to the center dungeon.
+
+
+
+fill out the remaining locations (shops first, then dungeons)
+
+
+
 
 
 

@@ -38,9 +38,10 @@ namespace DungeonRun
 
             window = new MenuWindow(new Point(16 * 11 + 8, 16 * 1 + 8),
                 new Point(16 * 17, 16 * 19), "Overworld Map");
-            map = new ComponentSprite(Assets.overworldSheet, 
-                new Vector2(window.border.position.X + 7, window.border.position.Y + 24), 
-                new Byte4(0, 0, 0, 0), new Point(256, 256));
+            //determine the top left position of the map texture/sprite
+            Vector2 mapTopLeft = new Vector2(window.border.position.X + 7, window.border.position.Y + 24);
+            map = new ComponentSprite(Assets.overworldSheet,
+                mapTopLeft, new Byte4(0, 0, 0, 0), new Point(256, 256));
             map.position.X += map.cellSize.X / 2;
             map.position.Y += map.cellSize.Y / 2;
             selectedLocation = new ComponentText(Assets.font, "Dungeon 1", 
@@ -62,20 +63,25 @@ namespace DungeonRun
             //we never draw the locations (menuItems), we use them for their neighbors
 
             //place the shops
-            locations[0].compSprite.position = new Vector2(320 + 1, 180 - 16);
-            locations[1].compSprite.position = new Vector2(320 + 1, 180 - 16);
-            locations[2].compSprite.position = new Vector2(320 + 1, 180 - 16);
-            locations[3].compSprite.position = new Vector2(320 + 1, 180 - 16);
-            locations[4].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[0].compSprite.position = new Vector2(mapTopLeft.X + 24, mapTopLeft.Y + 119); //armor
+            locations[1].compSprite.position = new Vector2(mapTopLeft.X + 73, mapTopLeft.Y + 135); //sword
+            locations[2].compSprite.position = new Vector2(mapTopLeft.X + 74, mapTopLeft.Y + 173); //ring
+            locations[3].compSprite.position = new Vector2(mapTopLeft.X + 130, mapTopLeft.Y + 174); //magic
+            locations[4].compSprite.position = new Vector2(mapTopLeft.X + 196, mapTopLeft.Y + 77); //potion
 
             //place the dungeons
-            locations[5].compSprite.position = new Vector2(320 + 1, 180 - 16);
-            locations[6].compSprite.position = new Vector2(320 + 1, 180 - 16);
-            locations[7].compSprite.position = new Vector2(320 + 1, 180 - 16);
-            locations[8].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[5].compSprite.position = new Vector2(mapTopLeft.X + 120, mapTopLeft.Y + 107); //center
+            locations[6].compSprite.position = new Vector2(mapTopLeft.X + 13, mapTopLeft.Y + 198); //bottom left
+            locations[7].compSprite.position = new Vector2(mapTopLeft.X + 233, mapTopLeft.Y + 105); //middle right
+            locations[8].compSprite.position = new Vector2(mapTopLeft.X + 137, mapTopLeft.Y + 7); //top center
+
+            //add an 8 pixel offset to the menuItems to align them with the locations
+            for (i = 0; i < locations.Count; i++) { locations[i].compSprite.position += new Vector2(8,8); }
 
             //place the selection box at a location
             selectionBox.position = locations[0].compSprite.position;
+            i = 0;
+
 
 
 
@@ -88,8 +94,8 @@ namespace DungeonRun
             if (displayState == DisplayState.Opened)
             {   //only allow input if the screen has opened completely
                 if (Input.IsNewButtonPress(Buttons.Start) ||
-                Input.IsNewButtonPress(Buttons.A) ||
-                Input.IsNewButtonPress(Buttons.B))
+                    Input.IsNewButtonPress(Buttons.A) ||
+                    Input.IsNewButtonPress(Buttons.B))
                 {
                     //displayState = DisplayState.Closing;
                     //play the summary exit sound effect immediately
@@ -97,6 +103,14 @@ namespace DungeonRun
 
                     //begin closing the screen
                     displayState = DisplayState.Closing;
+                }
+
+                //iterate thru the locations
+                if (Input.IsNewButtonPress(Buttons.Y))
+                {
+                    i++;
+                    if(i >= locations.Count) { i = 0; }
+                    selectionBox.position = locations[i].compSprite.position;
                 }
             }
         }
