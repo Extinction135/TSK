@@ -35,23 +35,26 @@ ram useage:
 todo:
 
 
-11
-
-
-completed placing the remaining menuItems relative to the locations on the map.
-wrote an basic routine to iterate thru the locations using the Y button.
-playtested, selectionBox is aligning with locations on map via menuItems.
-however, the blinking selectionBox sprite isn't very apparent.
-so, i'll need to redesign how we get the player's attention upon a location change.
+10
 
 
 
 
+added in code to name all the locations via menuItem.name.
+updated HandleInput() to set the selectedLocation text to the currently selected menuItem's name.
+playtested, working as expected.
 
 
 
-fill out the remaining locations (shops first, then dungeons)
 
+
+
+center the selectedLocation text to the window.
+set the initial selectedLocation text from LoadContent().
+
+setup the menuItem neighbors
+write routines to allow movement between locations via gamepad direction input
+(duplicate the routines from inventory screen)
 
 
 
@@ -64,10 +67,6 @@ fill out the remaining locations (shops first, then dungeons)
 
 map locations++
 
-
-need to place selection box at location positions
-using menuItems, build neighbors between connections
-display the menuItem's name on the bottom of the map (location name)
 
 need sound effect for moving between locations (text letter?)
 need soundfx for selecting a location (menuItem select) 

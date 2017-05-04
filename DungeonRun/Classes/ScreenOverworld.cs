@@ -62,17 +62,27 @@ namespace DungeonRun
             for (i = 0; i < 4; i++) { locations.Add(new MenuItem()); }
             //we never draw the locations (menuItems), we use them for their neighbors
 
-            //place the shops
+
+            //name & place the shops
+            locations[0].name = "Armor Shop";
             locations[0].compSprite.position = new Vector2(mapTopLeft.X + 24, mapTopLeft.Y + 119); //armor
+            locations[1].name = "Weapon Shop";
             locations[1].compSprite.position = new Vector2(mapTopLeft.X + 73, mapTopLeft.Y + 135); //sword
+            locations[2].name = "Equipment Shop";
             locations[2].compSprite.position = new Vector2(mapTopLeft.X + 74, mapTopLeft.Y + 173); //ring
+            locations[3].name = "Magic Shop";
             locations[3].compSprite.position = new Vector2(mapTopLeft.X + 130, mapTopLeft.Y + 174); //magic
+            locations[4].name = "Potion Shop";
             locations[4].compSprite.position = new Vector2(mapTopLeft.X + 196, mapTopLeft.Y + 77); //potion
 
-            //place the dungeons
+            //name & place the dungeons
+            locations[5].name = "Cursed Castle";
             locations[5].compSprite.position = new Vector2(mapTopLeft.X + 120, mapTopLeft.Y + 107); //center
+            locations[6].name = "Desert Palace";
             locations[6].compSprite.position = new Vector2(mapTopLeft.X + 13, mapTopLeft.Y + 198); //bottom left
+            locations[7].name = "Eastern Temple";
             locations[7].compSprite.position = new Vector2(mapTopLeft.X + 233, mapTopLeft.Y + 105); //middle right
+            locations[8].name = "Mountain Fortress";
             locations[8].compSprite.position = new Vector2(mapTopLeft.X + 137, mapTopLeft.Y + 7); //top center
 
             //add an 8 pixel offset to the menuItems to align them with the locations
@@ -111,6 +121,8 @@ namespace DungeonRun
                     i++;
                     if(i >= locations.Count) { i = 0; }
                     selectionBox.position = locations[i].compSprite.position;
+
+                    selectedLocation.text = locations[i].name;
                 }
             }
         }
