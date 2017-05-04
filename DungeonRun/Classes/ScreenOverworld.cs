@@ -90,13 +90,19 @@ namespace DungeonRun
 
             //place the selection box at a location
             selectionBox.position = locations[0].compSprite.position;
+            //get the current location's name
+            GetCurrentLocationName(locations[0]);
+            //reset the index
             i = 0;
-
-
-
-
             //open the screen
             displayState = DisplayState.Opening;
+        }
+
+
+        public static void GetCurrentLocationName(MenuItem Location)
+        {   //get the location name, center it to the window/screen
+            selectedLocation.text = Location.name;
+            ComponentFunctions.CenterText(selectedLocation, selectedLocation.font, 320);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -121,10 +127,7 @@ namespace DungeonRun
                     i++;
                     if(i >= locations.Count) { i = 0; }
                     selectionBox.position = locations[i].compSprite.position;
-                    //update the location name, center it to the window/screen
-                    selectedLocation.text = locations[i].name;
-                    ComponentFunctions.CenterText(selectedLocation, selectedLocation.font, 320);
-                    Debug.WriteLine("pos: " + selectedLocation.position.X + ", " + selectedLocation.position.Y);
+                    GetCurrentLocationName(locations[i]);
                 }
             }
         }

@@ -35,28 +35,18 @@ ram useage:
 todo:
 
 
-8
+7
 
 
 
+created OverworldScreen.GetCurrentLocationName(MenuItem).
+this function contains the work that was being done from HandleInput().
+updated LoadContent() to call GetCurrentLocationName().
+this fixes a bug where upon creation the OverworldScreen did not display the currently selected location.
+playtested, working as expected.
 
 
 
-
-
-bug: the "M" text sprite sometimes displays incorrectly.
-cause: the text is placed at an X position that has a half pixel value (0.5).
-solution: fix CenterText() to prevent half pixel offsets. simply cast to Int.
-
-
-
-
-
-
-
-
-center the selectedLocation text to the window.
-set the initial selectedLocation text from LoadContent().
 
 setup the menuItem neighbors
 write routines to allow movement between locations via gamepad direction input
