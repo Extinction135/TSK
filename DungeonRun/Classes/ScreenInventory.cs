@@ -163,6 +163,7 @@ namespace DungeonRun
                     MenuWidgetInfo.Display(currentlySelected);
                     Assets.Play(Assets.sfxTextLetter);
                     previouslySelected.compSprite.scale = 1.0f;
+                    selectionBox.scale = 2.0f;
                 }
             }
 
@@ -203,6 +204,9 @@ namespace DungeonRun
             //match the position of the selectionBox to the currently selected menuItem
             selectionBox.position = currentlySelected.compSprite.position;
             AnimationFunctions.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
+            //scale the selectionBox down to 1.0
+            if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
+            else { selectionBox.scale = 1.0f; }
         }
 
         public override void Draw(GameTime GameTime)

@@ -35,20 +35,15 @@ ram useage:
 todo:
 
 
-5
+4
 
 
 
-
-issue: the selectionBox does not grab the player's attention enough when changing locations.
-solution: upon location change, scale the selectionBox up to 2.0, then gradually scale down overtime.
-minor adjustments to the placement of cursed castle and potion shop menuItem locations.
-this is to better align with the map texture.
-playtested, working as expecte. 
-the selectionBox grabs my attention much better upon a location change.
-should this functionality be migrated to the inventory screen?
-
-
+updated InventoryScreen's selectionBox to scale up to 2.0 upon a menuItem change.
+this duplicates functionality from the Overworld Screen. We want the UI to be consistent.
+playtested, i actually love it. the scaling of the selectionBox is perfect.
+and when an item is selected, the item scales up. the juxtaposition is visually pleasing.
+HARUMPH!
 
 
 
