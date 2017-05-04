@@ -35,23 +35,20 @@ ram useage:
 todo:
 
 
-1
+13
 
 
-
-added selection box sprite to overworld screen.
-alpha blinks, matching the visual presentation established on inventory screen.
-playtested, consistent, working as expected.
-i think i have the flu.
-
-
+updated summary screen to direct player to the overworld screen upon close.
+it made no sense to return to the dungeon that player was just in.
+removed call to BuildDungeon() from SummaryScreen.
+playtested, working as expected.
 
 
 
 
 map locations++
 
-need blinking selection box, just like inventory screen
+
 need to place selection box at location positions
 using menuItems, build neighbors between connections
 display the menuItem's name on the bottom of the map (location name)
@@ -76,38 +73,77 @@ play boss music (upon entering boss room)
 
 
 
+would like to be able to select a location
+whatever location player selects creates the default dungeon for now
 
 
+
+
+Version 0.3 features
+	fireball projectile
+	overworld map screen
+	exiting / entering dungeons
+	new dugneon objects: moving spikeblock, conveyor belt, bumper
+	chest rewards for gold, key, map, and heart pieces
+	heart pieces can be collected to increase total hearts
+	improved boss battle
+	improved inventory screen, with animations
 
 
 
 
 
 	
-Version 0.3 Milestones
+	
+	
+	
+	
+	
+	
+	
 
-	pickup and throw
-	hero should be able to pickup the skull pot objects
-	hero should be able to carry the skull pot objects around
-	hero should be able to throw the pots in a direction
-	pots should travel for a bit, with a shadow, before colliding with ground
-	pots should also collide with room objects
-	pot should have sound for pickup, throw, explode/death
-	pots should randomly spawn loot too, when they are picked up
 	
-	dragging/pushing/pulling
-	hero should be able to 'grab' objects
-	if the object is draggable, then hero should be able to push and pull on it
-	this 'grabbing' state should last until player releases the A button
-	objects should inherit the movement of hero, and check collisions with all objs & actors
-	if a draggable object would collide, it doesn't move
+Version 0.4 Milestones
+
+	ROOM EDITOR + ROOM DATA
+	build the room editor screen
+	standardize all room types + sizes
+	create the room data folder, update cs project to copy room data to output folder
+	basically the same approach as CC, but we'll be storing the room data in a slightly diff format
+	we'll only store room objects + enemy spawn locations - no floors, projectiles, etc..
+	and we'll only need to store the object's enum value
+	this will be stored in a 2d list of Column{Rows}.
+	so row1 = {0,0,0,0,0,10,10,10,0,0,0,0,0} for example, where 10 is an object type and 0 isn't.
+	this was we don't have to store position data, we just correlate rows to room width, and columns to room height
+	width and height is set based on room type, so we'll need to save room type.
+	but thats it. room type + the 2d array of int values.
+	pretty compact and efficient.
+	
+	COMPLETE DUNGEONS
+	we'll be using room editor to build up the room data folders.
+	then when we build the dungeon, we'll load all the room data into the game at once.
+	when we need a specific type of room, we just copy the necessary room data.
+	then we place the room where we need it, and build it.
+	this is done over and over again, until the complete dungeon is built.
+	we'll use the same routines from CC to build the Exit -> Hub -> KeyPath -> BossPath layout.
+	
+	adopt CursedCastle's roomData approach (Editor -> XML -> Randomly Choose a Room)
+	update dungeon generation routines to build complete dungeons
+	create room editor, standardize room sizes
 	
 	
 	
+Version 0.5 Milestones	
+	SHOPS
+	create shop rooms, which are hardcoded (algo)
 	
+	INVENTORY
+	we should be setting the loadout menuItems based on what the player selects/chooses
+	this is related to the hero's loadout data, which we haven't planned out yet
+	weapons = [1,1,0,0,0] - something like this, a byte list
+	items, magic, armor, equipment
 	
-	exiting dungeons
-	upon hero collision with exit, screen exits + creates Overworld screen
+	SAVE/LOAD
 	
 	
 	
@@ -125,18 +161,6 @@ Polish
 
 	pull all the sound effects from links awakening
 
-	we need boss music, and that music should play when hero enters boss room
-
-	we should be setting the loadout menuItems based on what the player selects/chooses
-	this is related to the hero's loadout data, which we haven't planned out yet
-
-	weapons = [1,1,0,0,0] - something like this, a byte list
-	items, magic, armor, equipment
-
-
-
-
-
 	it would be fairly easy to add bow and arrow projectiles for hero
 	we could also add a spear projectile for blob enemies
 
@@ -144,49 +168,25 @@ Polish
 	which duplicates the functionality of casting a fireball, just like hero does
 
 
-
-
-
-
-
-
-
-
 	
 	
-	
-	
-	
-	
-Version 0.4 Milestones	
-	
-	ROOM EDITOR + ROOM DATA
-	build the room editor screen
-	standardize all room types + sizes
-	create the room data folder, update cs project to copy room data to output folder
-	basically the same approach as CC, but we'll be storing the room data in a slightly diff format
-	we'll only store room objects + enemy spawn locations - no floors, projectiles, etc..
-	and we'll only need to store the object's enum value
-	this will be stored in a 2d list of Column{Rows}.
-	so row1 = {0,0,0,0,0,10,10,10,0,0,0,0,0} for example, where 10 is an object type and 0 isn't.
-	this was we don't have to store position data, we just correlate rows to room width, and columns to room height
-	width and height is set based on room type, so we'll need to save room type.
-	but thats it. room type + the 2d array of int values.
-	pretty compact and efficient.
-	
-	COMPELTE DUNGEONS
-	we'll be using room editor to build up the room data folders.
-	then when we build the dungeon, we'll load all the room data into the game at once.
-	when we need a specific type of room, we just copy the necessary room data.
-	then we place the room where we need it, and build it.
-	this is done over and over again, until the complete dungeon is built.
-	we'll use the same routines from CC to build the Exit -> Hub -> KeyPath -> BossPath layout.
-	
-	
-	
-	
-
 Stuff that needs to be done, but it's not terribly important rn	
+	
+	pickup and throw
+	hero should be able to pickup the skull pot objects
+	hero should be able to carry the skull pot objects around
+	hero should be able to throw the pots in a direction
+	pots should travel for a bit, with a shadow, before colliding with ground
+	pots should also collide with room objects
+	pot should have sound for pickup, throw, explode/death
+	pots should randomly spawn loot too, when they are picked up
+	
+	dragging/pushing/pulling
+	hero should be able to 'grab' objects
+	if the object is draggable, then hero should be able to push and pull on it
+	this 'grabbing' state should last until player releases the A button
+	objects should inherit the movement of hero, and check collisions with all objs & actors
+	if a draggable object would collide, it doesn't move
 	
 	audio ctrls sprite could be animated (sound waves growing)
 	video ctrls sprite could be animated too
@@ -237,9 +237,7 @@ Stuff that needs to be done, but it's not terribly important rn
 	weapons : { bow, staff, axe }
 	items : { lightning, boomerang, arrow, bomb }
 	
-	adopt CursedCastle's roomData approach (Editor -> XML -> Randomly Choose a Room)
-	update dungeon generation routines to build complete dungeons
-	create room editor, standardize room sizes
+	
 	
 	
 Maybes / Ideas	

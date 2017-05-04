@@ -211,7 +211,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Handle Display State
+            #region Handle Opened Display State
 
             else if (displayState == DisplayState.Opened)
             {
@@ -258,9 +258,9 @@ namespace DungeonRun
             {
                 //award the gold bonus to player data
                 PlayerData.saveData.gold += rewardTotal;
-                //rebuild the dungeon and exit this screen
-                DungeonFunctions.BuildDungeon();
+                //exit this screen, return to overworld
                 ScreenManager.RemoveScreen(this);
+                ScreenManager.AddScreen(new ScreenOverworld());
             }
 
             #endregion
