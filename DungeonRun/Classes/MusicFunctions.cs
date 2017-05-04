@@ -24,6 +24,15 @@ namespace DungeonRun
         public static SoundEffectInstance currentMusic = Assets.musicDungeonA; 
         public static Music trackToLoad = Music.None;
 
+
+        public static void PlayMusic(Music Music)
+        {
+            trackToLoad = Music; //get the track to play
+            //begin fading out the current music, upon silence music will change
+            if (fadeState != FadeState.FadeOut) { fadeState = FadeState.FadeOut; }
+        }
+
+
         public static void Update()
         {
 

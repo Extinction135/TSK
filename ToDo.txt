@@ -35,19 +35,37 @@ ram useage:
 todo:
 
 
-4
+3
+
+
+added call to play the sfxMenuItem sound when player chooses a location.
+
+created MusicFunctions.PlayMusic(Music) to simplify what needs to happen in order to play a music track.
+i wasnt' really happy with how it was being done, but it worked. hopefully this will too.
+updated DungeonFunctions.BuildDungeon() use new PlayMusic() method.
+updated OverworldScreen.LoadContent() use new PlayMusic() method.
+playtested, working, minor audio bugs.
 
 
 
-updated InventoryScreen's selectionBox to scale up to 2.0 upon a menuItem change.
-this duplicates functionality from the Overworld Screen. We want the UI to be consistent.
-playtested, i actually love it. the scaling of the selectionBox is perfect.
-and when an item is selected, the item scales up. the juxtaposition is visually pleasing.
-HARUMPH!
 
 
 
-port the functionality of the selectionBox scaling up/down to inventory screen and inspect it
+
+
+minor bug: the drums faded in to 1.0 upon a transition between music tracks. why?
+
+minor bug: drum track can play during the overworld screen, if hero died with less than 3 hearts.
+solution: summary screen should set the hero's heart to 3.
+
+
+
+
+
+
+summary screen needs music
+
+
 
 
 
@@ -57,17 +75,10 @@ port the functionality of the selectionBox scaling up/down to inventory screen a
 map locations++
 
 
-need soundfx for selecting a location (menuItem select) 
-this is the last thing player will hear from map screen
 
 play overworld map music
 play dungeon music
 play boss music (upon entering boss room)
-
-
-
-would like to be able to select a location
-whatever location player selects creates the default dungeon for now
 
 
 
@@ -147,6 +158,15 @@ Version 0.5 Milestones
 	
 	
 Polish
+
+
+	Overworld Screen ++
+	later on, we should scale the selected location up.
+	but, this requires that the location menuItem be drawn.
+	AND it means we'll need sprites for the various locations.
+	we can reuse sprites from the main sheet, but we'll need a dungeon sprite.
+	we can flatten the background graphic into the map texture.
+	that way we have the item/sprite laying over the map texture, simplifying the instances in overworld screen.
 
 	we need menuItem sprites for the various stats
 	strength - increases amount of physical damage weapon does

@@ -15,14 +15,14 @@ namespace DungeonRun
     public class ScreenOverworld : Screen
     {
 
-        public static MenuWindow window;
-        public static ComponentSprite map;
-        public static ComponentText selectedLocation;
-
         //the foreground black rectangle, overlays and hides screen content
         Rectangle overlay;
         public float overlayAlpha = 0.0f;
         float fadeInSpeed = 0.05f;
+
+        public static MenuWindow window;
+        public static ComponentSprite map;
+        public static ComponentText selectedLocation;
 
         //pointers to the locations
         public MenuItem ShopArmor;
@@ -42,6 +42,14 @@ namespace DungeonRun
         public ComponentSprite selectionBox;
         public List<MenuItem> locations;
         public int i;
+
+
+
+        public static void GetCurrentLocationName(MenuItem Location)
+        {   //get the location name, center it to the window/screen
+            selectedLocation.text = Location.name;
+            ComponentFunctions.CenterText(selectedLocation, selectedLocation.font, 320);
+        }
 
 
 
@@ -180,21 +188,14 @@ namespace DungeonRun
             i = 0;
             //open the screen
             displayState = DisplayState.Opening;
-        }
-
-
-
-        public static void GetCurrentLocationName(MenuItem Location)
-        {   //get the location name, center it to the window/screen
-            selectedLocation.text = Location.name;
-            ComponentFunctions.CenterText(selectedLocation, selectedLocation.font, 320);
+            //play the overworld music
+            MusicFunctions.PlayMusic(Music.Overworld);
         }
 
         public override void HandleInput(GameTime GameTime)
         {
             if (displayState == DisplayState.Opened)
             {   //only allow input if the screen has opened completely
-
                 //get the previouslySelected menuItem
                 previouslySelected = currentlySelected;
                 //check to see if the gamePad direction is a new direction - prevents rapid scrolling
@@ -218,14 +219,10 @@ namespace DungeonRun
                         selectionBox.scale = 2.0f;
                     }
                 }
-
-                if (Input.IsNewButtonPress(Buttons.Start) || Input.IsNewButtonPress(Buttons.A))
+                else if (Input.IsNewButtonPress(Buttons.Start) || Input.IsNewButtonPress(Buttons.A))
                 {
-                    //play the summary exit sound effect immediately
-                    //Assets.Play(Assets.sfxExitSummary);
-
-                    //begin closing the screen
-                    displayState = DisplayState.Closing;
+                    Assets.Play(Assets.sfxMenuItem); //play soundfx
+                    displayState = DisplayState.Closing; //begin closing the screen
                     //later we'll build the dungeon or shop based on the currentlySelected location
                 }
             }

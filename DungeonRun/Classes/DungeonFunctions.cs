@@ -50,13 +50,17 @@ namespace DungeonRun
             DungeonRecord.timer.Start(); //start the record timer
 
             //load the dungeon's music track
+            //MusicFunctions.fadeState = FadeState.Silent;
+            //MusicFunctions.trackToLoad = Music.DungeonA;
+            MusicFunctions.PlayMusic(Music.DungeonA);
+
+            /*
             i = GetRandom.Int(0, 100);
             if (i > 50) { MusicFunctions.trackToLoad = Music.DungeonA; }
             else { MusicFunctions.trackToLoad = Music.Overworld; }
             //else { MusicFunctions.trackToLoad = Music.Shop; }
-
-            //tell music functions to play the loaded music track
-            MusicFunctions.fadeState = FadeState.Silent;
+            */
+            
 
             //fade the dungeon screen out from black, revealing the new level
             dungeonScreen.overlayAlpha = 1.0f;
