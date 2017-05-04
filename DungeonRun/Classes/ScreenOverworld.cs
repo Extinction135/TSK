@@ -190,7 +190,8 @@ namespace DungeonRun
             displayState = DisplayState.Opening;
             //play the overworld music
             MusicFunctions.PlayMusic(Music.Overworld);
-            
+            //fill hero's health up to max - prevents drum track from playing
+            Pool.hero.health = Pool.hero.maxHealth;
         }
 
         public override void HandleInput(GameTime GameTime)

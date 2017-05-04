@@ -35,42 +35,44 @@ ram useage:
 todo:
 
 
-2
-
-
-updated SummaryScreen to use the new MusicFunctions.PlayMusic() method.
-modified MusicFunctions.Update() to always check for hero health + handle drum track volume.
-these routines were moved out of the fadeState == FadeComplete codepath.
-
-added maxHealth byte to actor.cs.
-updated Actor.SetType() to properly set this field based on actor type.
-updated WorldUI to set the hero's maxHealth based maxHearts, based on total collected heart pieces.
-updated SummaryScreen to refill the hero's health to max upon load.
-this fixes the bug where the drum track could play during summary & overworld screens.
-technically, this wasn't a bug as the code was executing exactly as i wrote it.
+1
 
 
 
+bug: if we exit a dungeon with less than 3 hearts, the drums continue playing on overworld screen
+solution: set the hero.health to hero.maxHealth upon screen load.
 
+bug: drums fade out with the music track, which causes the drums to jump up to 1.0 volume for a moment.
+then they fade out with the music track. overall, it's nonsensical.
+solution: removed codepath that set the drumtrack volume equal to the music track volume upon fadeOut.
+drum track volume is now entirely seperate from music track volume and fadeState.
 
-
-minor bug: the drums faded in to 1.0 upon a transition between music tracks. why?
-
-we're matching the drum track volume to the music track volume upon a fade out
-we shouldn't be doing this. drums shouldn't be coupled to the current music playing
-
-
-
-bug: if we exit a dungeon with less than 3 hearts, the drums continue playing on oevrworld screen
+playtested. music track fadeout should happen faster. increased fadeIn/out speed.
+playtested. music track transitions sync up with the screen transitions much better.
 
 
 
 
 
 
-summary screen needs music
+
+
+
+
+need summary screen needs music
+drum track doesn't align with the music track.
+we need to sync these tracks up somehow.
+we may need to create a list of drum tracks, then play an instance when we start playing the music track
+this dupes functionality from Assets.sfx lists.
+
+
 
 we need boss music (upon entering boss room)
+
+
+
+
+
 
 
 

@@ -16,8 +16,8 @@ namespace DungeonRun
     {
 
         public static FadeState fadeState = FadeState.Silent;
-        public static float fadeInSpeed = 0.01f;
-        public static float fadeOutSpeed = 0.01f;
+        public static float fadeInSpeed = 0.04f;
+        public static float fadeOutSpeed = 0.04f;
         public static float maxVolume = 1.0f;
 
         //store reference to current music playing
@@ -36,7 +36,7 @@ namespace DungeonRun
         public static void Update()
         {
 
-            #region Fade in/out, play
+            #region Handle FadeIn FadeOut States
 
             if (fadeState == FadeState.FadeIn)
             {
@@ -55,8 +55,6 @@ namespace DungeonRun
                 if (currentMusic.Volume - fadeOutSpeed <= 0.0f)
                 { currentMusic.Volume = 0.0f;}
                 else { currentMusic.Volume -= fadeOutSpeed; }
-                //match drum volume to current music volume
-                Assets.musicDrums.Volume = currentMusic.Volume;
                 //check to see if music has reached 0
                 if (currentMusic.Volume == 0.0f)
                 { fadeState = FadeState.Silent; }
@@ -64,6 +62,8 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Handle Silent (switch music tracks) State
 
             else if (fadeState == FadeState.Silent)
             {
@@ -93,9 +93,11 @@ namespace DungeonRun
                 }
             }
 
+            #endregion
 
 
-            //check the hero's health to see if we should fade drum track
+            #region Handle Drum Track Volume - based on hero's health
+
             if (Pool.hero.health < 3)
             {   //fade the drum track in
                 if (Assets.musicDrums.Volume + fadeInSpeed >= maxVolume)
@@ -109,8 +111,7 @@ namespace DungeonRun
                 else { Assets.musicDrums.Volume -= fadeOutSpeed; }
             }
 
-
-
+            #endregion
 
         }
 
