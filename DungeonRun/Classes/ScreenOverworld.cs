@@ -26,7 +26,8 @@ namespace DungeonRun
 
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
-
+        public List<MenuItem> locations;
+        public int i;
 
 
         public ScreenOverworld() { this.name = "OverworldScreen"; }
@@ -51,8 +52,32 @@ namespace DungeonRun
             selectionBox = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(15, 6, 0, 0),
                 new Point(16, 16));
-            selectionBox.position.X = 640 / 2;
-            selectionBox.position.Y = 320 / 2;
+
+            //create the locations list
+            locations = new List<MenuItem>();
+            //populate locations with shops
+            for (i = 0; i < 5; i++) { locations.Add(new MenuItem()); }
+            //populate locations with dungeons
+            for (i = 0; i < 4; i++) { locations.Add(new MenuItem()); }
+            //we never draw the locations (menuItems), we use them for their neighbors
+
+            //place the shops
+            locations[0].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[1].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[2].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[3].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[4].compSprite.position = new Vector2(320 + 1, 180 - 16);
+
+            //place the dungeons
+            locations[5].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[6].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[7].compSprite.position = new Vector2(320 + 1, 180 - 16);
+            locations[8].compSprite.position = new Vector2(320 + 1, 180 - 16);
+
+            //place the selection box at a location
+            selectionBox.position = locations[0].compSprite.position;
+
+
 
             //open the screen
             displayState = DisplayState.Opening;

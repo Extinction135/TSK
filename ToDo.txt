@@ -35,13 +35,20 @@ ram useage:
 todo:
 
 
-13
+12
 
 
-updated summary screen to direct player to the overworld screen upon close.
-it made no sense to return to the dungeon that player was just in.
-removed call to BuildDungeon() from SummaryScreen.
-playtested, working as expected.
+
+
+added List<MenuItem> locations to OverworldScreen.
+this contains all the locations on the map.
+populated locations list with menuItems.
+linked up selectionBox to match position of 1st location.
+playtested, working, aligned locations[5] to the center dungeon.
+
+
+
+
 
 
 
