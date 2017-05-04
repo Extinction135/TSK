@@ -24,10 +24,25 @@ namespace DungeonRun
         public float overlayAlpha = 0.0f;
         float fadeInSpeed = 0.05f;
 
+        //pointers to the locations
+        public MenuItem ShopArmor;
+        public MenuItem ShopWeapon;
+        public MenuItem ShopEquipment;
+        public MenuItem ShopMagic;
+        public MenuItem ShopPotion;
+        public MenuItem DungeonCursedCastle;
+        public MenuItem DungeonDesertPalace;
+        public MenuItem DungeonEasternTemple;
+        public MenuItem DungeonMountainFortress;
+
+        //these point to a menuItem/location above
+        public MenuItem currentlySelected;
+        public MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
         public List<MenuItem> locations;
         public int i;
+
 
 
         public ScreenOverworld() { this.name = "OverworldScreen"; }
@@ -62,36 +77,105 @@ namespace DungeonRun
             for (i = 0; i < 4; i++) { locations.Add(new MenuItem()); }
             //we never draw the locations (menuItems), we use them for their neighbors
 
+            //set the named pointers
+            ShopArmor = locations[0];
+            ShopWeapon = locations[1];
+            ShopEquipment = locations[2];
+            ShopMagic = locations[3];
+            ShopPotion = locations[4];
+            DungeonCursedCastle = locations[5];
+            DungeonDesertPalace = locations[6];
+            DungeonEasternTemple = locations[7];
+            DungeonMountainFortress = locations[8];
+
+
+            #region Name and Place the Locations
 
             //name & place the shops
-            locations[0].name = "Armor Shop";
-            locations[0].compSprite.position = new Vector2(mapTopLeft.X + 24, mapTopLeft.Y + 119); //armor
-            locations[1].name = "Weapon Shop";
-            locations[1].compSprite.position = new Vector2(mapTopLeft.X + 73, mapTopLeft.Y + 135); //sword
-            locations[2].name = "Equipment Shop";
-            locations[2].compSprite.position = new Vector2(mapTopLeft.X + 74, mapTopLeft.Y + 173); //ring
-            locations[3].name = "Magic Shop";
-            locations[3].compSprite.position = new Vector2(mapTopLeft.X + 130, mapTopLeft.Y + 174); //magic
-            locations[4].name = "Potion Shop";
-            locations[4].compSprite.position = new Vector2(mapTopLeft.X + 196, mapTopLeft.Y + 77); //potion
+            ShopArmor.name = "Armor Shop";
+            ShopArmor.compSprite.position = new Vector2(mapTopLeft.X + 24, mapTopLeft.Y + 119); //armor
+            ShopWeapon.name = "Weapon Shop";
+            ShopWeapon.compSprite.position = new Vector2(mapTopLeft.X + 73, mapTopLeft.Y + 135); //sword
+            ShopEquipment.name = "Equipment Shop";
+            ShopEquipment.compSprite.position = new Vector2(mapTopLeft.X + 74, mapTopLeft.Y + 173); //ring
+            ShopMagic.name = "Magic Shop";
+            ShopMagic.compSprite.position = new Vector2(mapTopLeft.X + 130, mapTopLeft.Y + 174); //magic
+            ShopPotion.name = "Potion Shop";
+            ShopPotion.compSprite.position = new Vector2(mapTopLeft.X + 196, mapTopLeft.Y + 77); //potion
 
             //name & place the dungeons
-            locations[5].name = "Cursed Castle";
-            locations[5].compSprite.position = new Vector2(mapTopLeft.X + 120, mapTopLeft.Y + 107); //center
-            locations[6].name = "Desert Palace";
-            locations[6].compSprite.position = new Vector2(mapTopLeft.X + 13, mapTopLeft.Y + 198); //bottom left
-            locations[7].name = "Eastern Temple";
-            locations[7].compSprite.position = new Vector2(mapTopLeft.X + 233, mapTopLeft.Y + 105); //middle right
-            locations[8].name = "Mountain Fortress";
-            locations[8].compSprite.position = new Vector2(mapTopLeft.X + 137, mapTopLeft.Y + 7); //top center
+            DungeonCursedCastle.name = "Cursed Castle";
+            DungeonCursedCastle.compSprite.position = new Vector2(mapTopLeft.X + 120, mapTopLeft.Y + 107); //center
+            DungeonDesertPalace.name = "Desert Palace";
+            DungeonDesertPalace.compSprite.position = new Vector2(mapTopLeft.X + 13, mapTopLeft.Y + 198); //bottom left
+            DungeonEasternTemple.name = "Eastern Temple";
+            DungeonEasternTemple.compSprite.position = new Vector2(mapTopLeft.X + 233, mapTopLeft.Y + 105); //middle right
+            DungeonMountainFortress.name = "Mountain Fortress";
+            DungeonMountainFortress.compSprite.position = new Vector2(mapTopLeft.X + 137, mapTopLeft.Y + 7); //top center
 
             //add an 8 pixel offset to the menuItems to align them with the locations
             for (i = 0; i < locations.Count; i++) { locations[i].compSprite.position += new Vector2(8,8); }
 
-            //place the selection box at a location
-            selectionBox.position = locations[0].compSprite.position;
+            #endregion
+
+
+            #region Setup the Location/MenuItem Neighbors
+
+            //shop - armor
+            ShopArmor.neighborDown = DungeonDesertPalace;
+            ShopArmor.neighborLeft = ShopArmor;
+            ShopArmor.neighborUp = ShopArmor;
+            ShopArmor.neighborRight = ShopWeapon;
+            //shop - weapon
+            ShopWeapon.neighborDown = ShopEquipment;
+            ShopWeapon.neighborLeft = ShopArmor;
+            ShopWeapon.neighborUp = ShopWeapon;
+            ShopWeapon.neighborRight = DungeonCursedCastle;
+            //shop - equipment
+            ShopEquipment.neighborDown = ShopEquipment;
+            ShopEquipment.neighborLeft = DungeonDesertPalace;
+            ShopEquipment.neighborUp = ShopWeapon;
+            ShopEquipment.neighborRight = ShopMagic;
+            //shop - magic
+            ShopMagic.neighborDown = ShopMagic;
+            ShopMagic.neighborLeft = ShopEquipment;
+            ShopMagic.neighborUp = DungeonCursedCastle;
+            ShopMagic.neighborRight = DungeonEasternTemple;
+            //shop - potion
+            ShopPotion.neighborDown = ShopPotion;
+            ShopPotion.neighborLeft = DungeonCursedCastle;
+            ShopPotion.neighborUp = DungeonMountainFortress;
+            ShopPotion.neighborRight = DungeonEasternTemple;
+
+            //dungeon - cursed castle
+            DungeonCursedCastle.neighborDown = ShopMagic;
+            DungeonCursedCastle.neighborLeft = ShopWeapon;
+            DungeonCursedCastle.neighborUp = DungeonMountainFortress;
+            DungeonCursedCastle.neighborRight = ShopPotion;
+            //dungeon - desert palace
+            DungeonDesertPalace.neighborDown = DungeonDesertPalace;
+            DungeonDesertPalace.neighborLeft = DungeonDesertPalace;
+            DungeonDesertPalace.neighborUp = ShopArmor;
+            DungeonDesertPalace.neighborRight = ShopEquipment;
+            //dungeon - eastern temple
+            DungeonEasternTemple.neighborDown = DungeonEasternTemple;
+            DungeonEasternTemple.neighborLeft = ShopPotion;
+            DungeonEasternTemple.neighborUp = DungeonEasternTemple;
+            DungeonEasternTemple.neighborRight = DungeonEasternTemple;
+            //dungeon - mountain fortress
+            DungeonMountainFortress.neighborDown = DungeonCursedCastle;
+            DungeonMountainFortress.neighborLeft = DungeonMountainFortress;
+            DungeonMountainFortress.neighborUp = DungeonMountainFortress;
+            DungeonMountainFortress.neighborRight = ShopPotion;
+
+            #endregion
+
+
+            //set the selected menuItem pointers
+            currentlySelected = DungeonCursedCastle;
+            previouslySelected = DungeonCursedCastle;
             //get the current location's name
-            GetCurrentLocationName(locations[0]);
+            GetCurrentLocationName(currentlySelected);
             //reset the index
             i = 0;
             //open the screen
@@ -121,6 +205,35 @@ namespace DungeonRun
                     displayState = DisplayState.Closing;
                 }
 
+
+
+
+                //get the previouslySelected menuItem
+                previouslySelected = currentlySelected;
+                //check to see if the gamePad direction is a new direction - prevents rapid scrolling
+                if (Input.gamePadDirection != Input.lastGamePadDirection)
+                {
+                    //this is a new direction, allow movement between menuItems
+                    if (Input.gamePadDirection == Direction.Right)
+                    { currentlySelected = currentlySelected.neighborRight; }
+                    else if (Input.gamePadDirection == Direction.Left)
+                    { currentlySelected = currentlySelected.neighborLeft; }
+                    else if (Input.gamePadDirection == Direction.Down)
+                    { currentlySelected = currentlySelected.neighborDown; }
+                    else if (Input.gamePadDirection == Direction.Up)
+                    { currentlySelected = currentlySelected.neighborUp; }
+
+                    //check to see if we changed menuItems
+                    if (previouslySelected != currentlySelected)
+                    {
+                        GetCurrentLocationName(currentlySelected);
+                        Assets.Play(Assets.sfxTextLetter);
+                    }
+                }
+
+
+
+                /*
                 //iterate thru the locations
                 if (Input.IsNewButtonPress(Buttons.Y))
                 {
@@ -129,14 +242,16 @@ namespace DungeonRun
                     selectionBox.position = locations[i].compSprite.position;
                     GetCurrentLocationName(locations[i]);
                 }
+                */
+
+
+
             }
         }
 
         public override void Update(GameTime GameTime)
         {
             window.Update();
-
-            //center the location text
 
 
             #region Handle Screen State
@@ -163,9 +278,14 @@ namespace DungeonRun
 
             #endregion
 
-            //pulse the selectionBox alpha
-            if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
-            else { selectionBox.alpha += 0.025f; }
+
+            if (displayState != DisplayState.Opening)
+            {   //if screen is opened, closing, or closed, pulse the selectionBox alpha
+                if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
+                else { selectionBox.alpha += 0.025f; }
+                //match the position of the selectionBox to the currently selected menuItem
+                selectionBox.position = currentlySelected.compSprite.position;
+            }
         }
 
         public override void Draw(GameTime GameTime)

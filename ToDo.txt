@@ -35,23 +35,19 @@ ram useage:
 todo:
 
 
-7
+6
 
 
+created named MenuItem pointers in OverworldScreen to simplify and ease the setting of neighbors.
+updated LoadContent() to use these new named pointers, simplifying the naming and placing routines as well.
+various organization for OverworldScreen.
+setup the neighbors for named instances, which was actually very intuitive and easy.
 
-created OverworldScreen.GetCurrentLocationName(MenuItem).
-this function contains the work that was being done from HandleInput().
-updated LoadContent() to call GetCurrentLocationName().
-this fixes a bug where upon creation the OverworldScreen did not display the currently selected location.
-playtested, working as expected.
-
-
-
-
-setup the menuItem neighbors
-write routines to allow movement between locations via gamepad direction input
-(duplicate the routines from inventory screen)
-
+integrated the movement routines for menuItem neighbors from InventoryScreen to OverworldScreen.
+this is a direct integration, so there is no confusion as to how it's being done, it's done the same way.
+playtested, working as expected. 
+but it's still hard to see the selectionBox as it moves around.
+so i need to fix that.
 
 
 
