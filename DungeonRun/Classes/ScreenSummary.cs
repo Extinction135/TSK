@@ -120,9 +120,8 @@ namespace DungeonRun
             ComponentFunctions.UpdateCellSize(leftTitle);
             ComponentFunctions.UpdateCellSize(rightTitle);
 
-            //fade out the dungeon music
-            MusicFunctions.trackToLoad = Music.None;
-            MusicFunctions.fadeState = FadeState.FadeOut;
+            //play no music (for now)
+            MusicFunctions.PlayMusic(Music.None);
 
             //if the player beat the boss, the base reward is 100
             if (DungeonRecord.beatDungeon) { rewardTotal = 100; }
@@ -130,6 +129,8 @@ namespace DungeonRun
             rewardTotal += (DungeonRecord.enemyCount - DungeonRecord.totalDamage);
             //clip the rewardTotal to 0, if it goes negative
             if (rewardTotal < 0) { rewardTotal = 0; }
+            //fill hero's health up to max - prevents drum track from playing
+            Pool.hero.health = Pool.hero.maxHealth;
         }
 
         public override void HandleInput(GameTime GameTime)

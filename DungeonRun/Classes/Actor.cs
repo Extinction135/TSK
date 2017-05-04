@@ -41,6 +41,7 @@ namespace DungeonRun
 
         //battle fields
         public byte health;
+        public byte maxHealth;
         public Weapon weapon;
         public Item item;
 

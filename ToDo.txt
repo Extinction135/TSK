@@ -35,18 +35,19 @@ ram useage:
 todo:
 
 
-3
+2
 
 
-added call to play the sfxMenuItem sound when player chooses a location.
+updated SummaryScreen to use the new MusicFunctions.PlayMusic() method.
+modified MusicFunctions.Update() to always check for hero health + handle drum track volume.
+these routines were moved out of the fadeState == FadeComplete codepath.
 
-created MusicFunctions.PlayMusic(Music) to simplify what needs to happen in order to play a music track.
-i wasnt' really happy with how it was being done, but it worked. hopefully this will too.
-updated DungeonFunctions.BuildDungeon() use new PlayMusic() method.
-updated OverworldScreen.LoadContent() use new PlayMusic() method.
-playtested, working, minor audio bugs.
-
-
+added maxHealth byte to actor.cs.
+updated Actor.SetType() to properly set this field based on actor type.
+updated WorldUI to set the hero's maxHealth based maxHearts, based on total collected heart pieces.
+updated SummaryScreen to refill the hero's health to max upon load.
+this fixes the bug where the drum track could play during summary & overworld screens.
+technically, this wasn't a bug as the code was executing exactly as i wrote it.
 
 
 
@@ -55,8 +56,12 @@ playtested, working, minor audio bugs.
 
 minor bug: the drums faded in to 1.0 upon a transition between music tracks. why?
 
-minor bug: drum track can play during the overworld screen, if hero died with less than 3 hearts.
-solution: summary screen should set the hero's heart to 3.
+we're matching the drum track volume to the music track volume upon a fade out
+we shouldn't be doing this. drums shouldn't be coupled to the current music playing
+
+
+
+bug: if we exit a dungeon with less than 3 hearts, the drums continue playing on oevrworld screen
 
 
 
@@ -65,20 +70,7 @@ solution: summary screen should set the hero's heart to 3.
 
 summary screen needs music
 
-
-
-
-
-
-
-
-map locations++
-
-
-
-play overworld map music
-play dungeon music
-play boss music (upon entering boss room)
+we need boss music (upon entering boss room)
 
 
 

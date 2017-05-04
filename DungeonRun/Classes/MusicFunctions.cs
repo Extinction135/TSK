@@ -48,21 +48,7 @@ namespace DungeonRun
                 if (currentMusic.Volume == maxVolume)
                 { fadeState = FadeState.FadeComplete; }
             }
-            else if (fadeState == FadeState.FadeComplete)
-            {   //check the hero's health to see if we should fade drum track
-                if(Pool.hero.health < 3)
-                {   //fade the drum track in
-                    if (Assets.musicDrums.Volume + fadeInSpeed >= maxVolume)
-                    { Assets.musicDrums.Volume = maxVolume; }
-                    else { Assets.musicDrums.Volume += fadeInSpeed; }
-                }
-                else
-                {   //fade the drum track out
-                    if (Assets.musicDrums.Volume - fadeOutSpeed <= 0.0f)
-                    { Assets.musicDrums.Volume = 0.0f; }
-                    else { Assets.musicDrums.Volume -= fadeOutSpeed; }
-                }
-            }
+            else if (fadeState == FadeState.FadeComplete) { }
             else if (fadeState == FadeState.FadeOut)
             {
                 //music volume CANNOT be negative, else program error
@@ -106,6 +92,26 @@ namespace DungeonRun
                     fadeState = FadeState.FadeIn;
                 }
             }
+
+
+
+            //check the hero's health to see if we should fade drum track
+            if (Pool.hero.health < 3)
+            {   //fade the drum track in
+                if (Assets.musicDrums.Volume + fadeInSpeed >= maxVolume)
+                { Assets.musicDrums.Volume = maxVolume; }
+                else { Assets.musicDrums.Volume += fadeInSpeed; }
+            }
+            else
+            {   //fade the drum track out
+                if (Assets.musicDrums.Volume - fadeOutSpeed <= 0.0f)
+                { Assets.musicDrums.Volume = 0.0f; }
+                else { Assets.musicDrums.Volume -= fadeOutSpeed; }
+            }
+
+
+
+
         }
 
     }

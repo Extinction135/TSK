@@ -99,6 +99,7 @@ namespace DungeonRun
 
             //clip maxHearts to 14, match hero's health
             if(maxHearts > 14) { maxHearts = 14; }
+            Pool.hero.maxHealth = maxHearts; //match maxHearts to maxHealth
             if (Pool.hero.health > maxHearts) { Pool.hero.health = maxHearts; }
 
             //animate (scale) the hero's hearts

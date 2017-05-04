@@ -160,6 +160,7 @@ namespace DungeonRun
             {
                 Actor.compSprite.texture = Assets.heroSheet;
                 Actor.health = 3;
+                Actor.maxHealth = 14;
                 Actor.weapon = Weapon.Sword;
                 Actor.item = Item.FireMagic;
                 Actor.walkSpeed = 0.30f;
@@ -169,6 +170,7 @@ namespace DungeonRun
             {
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.health = 1;
+                Actor.maxHealth = 1;
                 Actor.weapon = Weapon.Sword;
                 Actor.item = Item.None;
                 Actor.walkSpeed = 0.05f;
@@ -178,6 +180,7 @@ namespace DungeonRun
             {
                 Actor.compSprite.texture = Assets.bossSheet;
                 Actor.health = 10;
+                Actor.maxHealth = 10;
                 Actor.weapon = Weapon.None;
                 Actor.item = Item.None;
                 Actor.walkSpeed = 0.50f;

@@ -190,6 +190,7 @@ namespace DungeonRun
             displayState = DisplayState.Opening;
             //play the overworld music
             MusicFunctions.PlayMusic(Music.Overworld);
+            
         }
 
         public override void HandleInput(GameTime GameTime)
