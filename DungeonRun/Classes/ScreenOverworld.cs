@@ -101,11 +101,11 @@ namespace DungeonRun
             ShopMagic.name = "Magic Shop";
             ShopMagic.compSprite.position = new Vector2(mapTopLeft.X + 130, mapTopLeft.Y + 174); //magic
             ShopPotion.name = "Potion Shop";
-            ShopPotion.compSprite.position = new Vector2(mapTopLeft.X + 196, mapTopLeft.Y + 77); //potion
+            ShopPotion.compSprite.position = new Vector2(mapTopLeft.X + 196, mapTopLeft.Y + 78); //potion
 
             //name & place the dungeons
             DungeonCursedCastle.name = "Cursed Castle";
-            DungeonCursedCastle.compSprite.position = new Vector2(mapTopLeft.X + 120, mapTopLeft.Y + 107); //center
+            DungeonCursedCastle.compSprite.position = new Vector2(mapTopLeft.X + 121, mapTopLeft.Y + 107); //center
             DungeonDesertPalace.name = "Desert Palace";
             DungeonDesertPalace.compSprite.position = new Vector2(mapTopLeft.X + 13, mapTopLeft.Y + 198); //bottom left
             DungeonEasternTemple.name = "Eastern Temple";
@@ -183,6 +183,7 @@ namespace DungeonRun
         }
 
 
+
         public static void GetCurrentLocationName(MenuItem Location)
         {   //get the location name, center it to the window/screen
             selectedLocation.text = Location.name;
@@ -193,20 +194,6 @@ namespace DungeonRun
         {
             if (displayState == DisplayState.Opened)
             {   //only allow input if the screen has opened completely
-                if (Input.IsNewButtonPress(Buttons.Start) ||
-                    Input.IsNewButtonPress(Buttons.A) ||
-                    Input.IsNewButtonPress(Buttons.B))
-                {
-                    //displayState = DisplayState.Closing;
-                    //play the summary exit sound effect immediately
-                    //Assets.Play(Assets.sfxExitSummary);
-
-                    //begin closing the screen
-                    displayState = DisplayState.Closing;
-                }
-
-
-
 
                 //get the previouslySelected menuItem
                 previouslySelected = currentlySelected;
@@ -228,24 +215,19 @@ namespace DungeonRun
                     {
                         GetCurrentLocationName(currentlySelected);
                         Assets.Play(Assets.sfxTextLetter);
+                        selectionBox.scale = 2.0f;
                     }
                 }
 
-
-
-                /*
-                //iterate thru the locations
-                if (Input.IsNewButtonPress(Buttons.Y))
+                if (Input.IsNewButtonPress(Buttons.Start) || Input.IsNewButtonPress(Buttons.A))
                 {
-                    i++;
-                    if(i >= locations.Count) { i = 0; }
-                    selectionBox.position = locations[i].compSprite.position;
-                    GetCurrentLocationName(locations[i]);
+                    //play the summary exit sound effect immediately
+                    //Assets.Play(Assets.sfxExitSummary);
+
+                    //begin closing the screen
+                    displayState = DisplayState.Closing;
+                    //later we'll build the dungeon or shop based on the currentlySelected location
                 }
-                */
-
-
-
             }
         }
 
@@ -285,6 +267,9 @@ namespace DungeonRun
                 else { selectionBox.alpha += 0.025f; }
                 //match the position of the selectionBox to the currently selected menuItem
                 selectionBox.position = currentlySelected.compSprite.position;
+                //scale the selectionBox down to 1.0
+                if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
+                else { selectionBox.scale = 1.0f; }
             }
         }
 

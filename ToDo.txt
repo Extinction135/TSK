@@ -35,22 +35,24 @@ ram useage:
 todo:
 
 
-6
-
-
-created named MenuItem pointers in OverworldScreen to simplify and ease the setting of neighbors.
-updated LoadContent() to use these new named pointers, simplifying the naming and placing routines as well.
-various organization for OverworldScreen.
-setup the neighbors for named instances, which was actually very intuitive and easy.
-
-integrated the movement routines for menuItem neighbors from InventoryScreen to OverworldScreen.
-this is a direct integration, so there is no confusion as to how it's being done, it's done the same way.
-playtested, working as expected. 
-but it's still hard to see the selectionBox as it moves around.
-so i need to fix that.
+5
 
 
 
+
+issue: the selectionBox does not grab the player's attention enough when changing locations.
+solution: upon location change, scale the selectionBox up to 2.0, then gradually scale down overtime.
+minor adjustments to the placement of cursed castle and potion shop menuItem locations.
+this is to better align with the map texture.
+playtested, working as expecte. 
+the selectionBox grabs my attention much better upon a location change.
+should this functionality be migrated to the inventory screen?
+
+
+
+
+
+port the functionality of the selectionBox scaling up/down to inventory screen and inspect it
 
 
 
@@ -60,19 +62,8 @@ so i need to fix that.
 map locations++
 
 
-need sound effect for moving between locations (text letter?)
 need soundfx for selecting a location (menuItem select) 
 this is the last thing player will hear from map screen
-
-center the location text each time it changes
-
-we're going to use a selection box to highlight certain areas of the overworld map
-do this using menuItems, to take advantage of the fact they have neighbors
-we've already solved the UI selection problem, don't invent a new solution
-just don't draw the menuItems, or better yet make menu items that fit into the map
-
-
-
 
 play overworld map music
 play dungeon music
@@ -82,6 +73,8 @@ play boss music (upon entering boss room)
 
 would like to be able to select a location
 whatever location player selects creates the default dungeon for now
+
+
 
 
 
