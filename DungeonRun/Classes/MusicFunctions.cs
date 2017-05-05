@@ -75,7 +75,7 @@ namespace DungeonRun
                     { currentMusic = Assets.musicDungeonA; Assets.musicDrums.Play(); }
 
                     else if (trackToLoad == Music.Overworld)
-                    { currentMusic = Assets.musicOverworld; Assets.musicDrums.Stop(); }
+                    { currentMusic = Assets.musicTitle; Assets.musicDrums.Stop(); }
                     else if (trackToLoad == Music.Title)
                     { currentMusic = Assets.musicTitle; Assets.musicDrums.Stop(); }
 
@@ -86,7 +86,7 @@ namespace DungeonRun
 
                     //stop the other music tracks from playing
                     if (currentMusic != Assets.musicDungeonA) { Assets.musicDungeonA.Stop(); }
-                    if (currentMusic != Assets.musicOverworld) { Assets.musicOverworld.Stop(); }
+                    //if (currentMusic != Assets.musicOverworld) { Assets.musicOverworld.Stop(); }
                     if (currentMusic != Assets.musicTitle) { Assets.musicTitle.Stop(); }
                     if (currentMusic != Assets.musicBoss) { Assets.musicBoss.Stop(); }
                     //if (currentMusic != Assets.musicShop) { Assets.musicShop.Stop(); }

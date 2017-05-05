@@ -43,8 +43,8 @@ namespace DungeonRun
         static SoundEffect musicDungeonASrc;
         public static SoundEffectInstance musicDungeonA;
 
-        static SoundEffect musicOverworldSrc;
-        public static SoundEffectInstance musicOverworld;
+        //static SoundEffect musicOverworldSrc;
+        //public static SoundEffectInstance musicOverworld;
 
         static SoundEffect musicBossSrc;
         public static SoundEffectInstance musicBoss;
@@ -146,9 +146,9 @@ namespace DungeonRun
             musicDungeonA = musicDungeonASrc.CreateInstance();
             musicDungeonA.IsLooped = true;
 
-            musicOverworldSrc = content.Load<SoundEffect>(@"MusicOverworld");
-            musicOverworld = musicOverworldSrc.CreateInstance();
-            musicOverworld.IsLooped = true;
+            //musicOverworldSrc = content.Load<SoundEffect>(@"MusicOverworld");
+            //musicOverworld = musicOverworldSrc.CreateInstance();
+            //musicOverworld.IsLooped = true;
 
             musicBossSrc = content.Load<SoundEffect>(@"MusicBoss");
             musicBoss = musicBossSrc.CreateInstance();
