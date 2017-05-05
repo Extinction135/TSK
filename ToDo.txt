@@ -35,18 +35,14 @@ ram useage:
 todo:
 
 
-11
-
-added musicBoss, musicDungeonB, and musicTitle to content project, built.
-added instances to load musicBoss to Assets.cs.
-updated MusicFunctions.Update() with codepath for Assets.musicBoss instance.
-updated CollisionFunctions.CheckDungeonRoomCollisions() to play Boss Music upon entry to boss room.
-playtested, working as expected. 83mb ram footprint.
+10
 
 
+updated debug info to display more info about drum track, due to a bug with drum track not playing sometimes.
+reverted to using a single soundeffect instance for the drumTrack in Assets.
+fixed the bug with drum track where it would sometimes not play.
+playtested, working as expected.
 
-
-bug: drum track did not fade in when hero has less than 3 hearts in boss room
 
 
 

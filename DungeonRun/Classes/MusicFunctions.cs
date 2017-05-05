@@ -71,10 +71,14 @@ namespace DungeonRun
                 if (trackToLoad == Music.None) { }
                 else
                 {   //determine the track to load based on the enum
-                    if (trackToLoad == Music.DungeonA) { currentMusic = Assets.musicDungeonA; }
-                    else if (trackToLoad == Music.Overworld) { currentMusic = Assets.musicOverworld; }
-                    else if (trackToLoad == Music.Boss) { currentMusic = Assets.musicBoss; }
-                    //else if (trackToLoad == Music.Shop) { currentMusic = Assets.musicShop; }
+                    if (trackToLoad == Music.DungeonA)
+                    { currentMusic = Assets.musicDungeonA; Assets.musicDrums.Play(); }
+                    else if (trackToLoad == Music.Overworld)
+                    { currentMusic = Assets.musicOverworld; Assets.musicDrums.Stop(); }
+                    else if (trackToLoad == Music.Boss) 
+                    { currentMusic = Assets.musicBoss; } //drums already playing
+                    //else if (trackToLoad == Music.Shop) 
+                    //{ currentMusic = Assets.musicShop; Assets.musicDrums.Stop();}
 
                     //stop the other music tracks from playing
                     if (currentMusic != Assets.musicDungeonA) { Assets.musicDungeonA.Stop(); }
@@ -86,10 +90,6 @@ namespace DungeonRun
                     currentMusic.Play();
                     currentMusic.Volume = 0.0f;
                     currentMusic.IsLooped = true;
-                    //play the drums
-                    Assets.PlayDrums();
-                    Assets.drumTrack.Volume = 0.0f;
-                    Assets.drumTrack.IsLooped = true;
                     //fade music + drums back in
                     fadeState = FadeState.FadeIn;
                 }
@@ -102,15 +102,15 @@ namespace DungeonRun
 
             if (Pool.hero.health < 3)
             {   //fade the drum track in
-                if (Assets.drumTrack.Volume + fadeInSpeed >= maxVolume)
-                { Assets.drumTrack.Volume = maxVolume; }
-                else { Assets.drumTrack.Volume += fadeInSpeed; }
+                if (Assets.musicDrums.Volume + fadeInSpeed >= maxVolume)
+                { Assets.musicDrums.Volume = maxVolume; }
+                else { Assets.musicDrums.Volume += fadeInSpeed; }
             }
             else
             {   //fade the drum track out
-                if (Assets.drumTrack.Volume - fadeOutSpeed <= 0.0f)
-                { Assets.drumTrack.Volume = 0.0f; }
-                else { Assets.drumTrack.Volume -= fadeOutSpeed; }
+                if (Assets.musicDrums.Volume - fadeOutSpeed <= 0.0f)
+                { Assets.musicDrums.Volume = 0.0f; }
+                else { Assets.musicDrums.Volume -= fadeOutSpeed; }
             }
 
             #endregion

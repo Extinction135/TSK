@@ -157,11 +157,9 @@ namespace DungeonRun
 
             #region Music + SaveData Components
 
-            musicText.text = "bkg music";
-            musicText.text += "\n" + MusicFunctions.trackToLoad;
-            musicText.text += "\n" + MusicFunctions.currentMusic.State;
-            musicText.text += "\nvol: " + MusicFunctions.currentMusic.Volume;
-            musicText.text += "\nd vol: " + Assets.drumTrack.Volume;
+            musicText.text = "music: " + MusicFunctions.trackToLoad;
+            musicText.text += "\n" + MusicFunctions.currentMusic.State + ": " + MusicFunctions.currentMusic.Volume;
+            musicText.text += "\n" + Assets.musicDrums.State + ": " + Assets.musicDrums.Volume;
 
             saveDataText.text = "save data";
             saveDataText.text += "\ngold: " + PlayerData.saveData.gold;
