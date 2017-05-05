@@ -19,7 +19,7 @@ By design I'm referring to the gameloop and the gameplay.
 + These include dungeons, and shops.
 + A dungeon is a series of rooms, with enemies, leading up to a boss fight.
 + A shop is a series of rooms, or a single room, where the player can spend gold.
-+ Gold can purchase items, or upgrades for their character.
++ Gold is used to purchase items or upgrades for the hero.
 + Items refer to weapons, armor, equipment, magic, etc..
 + Upgrades refer to stat upgrades that changes aspects of the hero.
 + The gameloop repeats until the Final Dungeon is unlocked.
@@ -33,6 +33,7 @@ By design I'm referring to the gameloop and the gameplay.
 + DungeonScreen - where the hero battles through a dungeon.
 + InventoryScreen - where the hero inspects and selects their loadout.
 + SummaryScreen - displays metrics about the player's performance in the dungeon.
++ OverworldScreen - displays the map and locations. Player chooses location to fast travel to.
 
 ## UWP App Limitations
 + Target ram useage is < 128mb.

@@ -35,35 +35,14 @@ ram useage:
 todo:
 
 
-3
+2
 
 
 
 
-removed inventory screen gif from versions.md.
-it just wasn't very interesting or important.
-updated README.md with version 0.3 gif.
-updated progrma window title to "v0.3".
+updated Design.md with OverworldScreen and a better description of how gold is used, in the Gameplay section.
 
 
-
-
-
-
-
-
-
-prep for version 0.3 release.
-
-
-
-update the window title to read v0.3
-
-
-update design.md -> screens section
-should include the Overworld Screen
-change the gamplay section too 
-should read "Gold is used to purchase items or upgrades for the hero."
 
 
 
@@ -76,28 +55,6 @@ count how many commit between releases too
 
 
 
-Version 0.3 features
-	hero can now cast a fireball projectile
-	overworld map screen, with selectable locations
-	exiting / entering dungeons
-	new dugneon objects: moving spikeblock, conveyor belt, bumper
-	chest rewards for gold, key, map, and heart pieces
-	heart pieces can be collected to increase total hearts
-	improved boss battle
-	improved inventory screen, with animations
-	completed game screen loop:
-	overworld map -> dungeon -> overworld map
-	overworld map -> dungeon -> summary screen -> overworld map
-	dungeon music plays for dungeon screen
-	overworld music plays for overworld screen
-	
-	
-
-
-
-	
-	
-	
 	
 	
 	
