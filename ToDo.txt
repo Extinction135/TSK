@@ -35,28 +35,11 @@ ram useage:
 todo:
 
 
-5
-
-
-recorded GIF of new features / gameplay for v0.3.
-added to /Gifs, pushed to repo.
+4
 
 
 
-
-
-record GIFs of new features for v0.3.
-
-run thru the spawn room, with mobs
-shooting fireballs, opening chests, 
-bumper, conveyor belt, spike block,
-
-
-boss battle, hero death (quick) to summary screen, to overworld screen, back to dungeon
-
-inventory screen
-
-
+updated Versions.md with new v0.3 gifs and features.
 
 
 

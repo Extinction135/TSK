@@ -27,4 +27,17 @@ Each version of DungeonRun expands on the game's mechanics and design.
 + Various visual improvements, including a Boss Door floor decal.
 
 
+## Version 0.3  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p3A.gif)  
 
++ Hero can cast fireball projectiles.
++ Added Overworld map screen, with selectable locations.
++ Hero can now exit and enter dungeons.
++ Added new dungeon objects: moving spikeblock, conveyor belt, and bumper.
++ Additional chest rewards: gold, key, map, and heart pieces.
++ Heart pieces can be collected to increase total hearts.
++ Improved boss battle with additional mobs spawned.
++ Improved Inventory screen, with animations.
++ Gameloop completed: overworld map -> dungeon -> summary screen -> overworld map.
++ Dungeon music plays for dungeon screen, randomly selected between two music tracks.
++ Title music plays for Summary and Overworld Screens.
