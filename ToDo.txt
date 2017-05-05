@@ -35,14 +35,14 @@ ram useage:
 todo:
 
 
-8
+7
 
-updated Assets to not load Overworld music track.
-updated various codepaths to ignore overworld music track and play title track instead.
-playtested, ram is 88mb without the overworld music.
-i'm happy with the title music playing for the overworld screen too.
-transitioning from the summary screen to the overworld screen fades the title music out for a second.
-but doesn't stop and restart it, which is acceptable for now.
+
+updated Assets to load DungeonB sound file.
+updated MusicFunctions.Update() with codepath for DungeonB.
+updated DungeonFunctions.BuildDungeon() to randomly play DungeonA or B music tracks.
+playtested, working as expected. ram at 94mb.
+
 
 
 

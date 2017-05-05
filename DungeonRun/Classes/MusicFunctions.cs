@@ -73,6 +73,8 @@ namespace DungeonRun
                 {   //determine the track to load based on the enum
                     if (trackToLoad == Music.DungeonA)
                     { currentMusic = Assets.musicDungeonA; Assets.musicDrums.Play(); }
+                    else if (trackToLoad == Music.DungeonB)
+                    { currentMusic = Assets.musicDungeonB; Assets.musicDrums.Play(); }
 
                     else if (trackToLoad == Music.Overworld)
                     { currentMusic = Assets.musicTitle; Assets.musicDrums.Stop(); }
@@ -86,6 +88,7 @@ namespace DungeonRun
 
                     //stop the other music tracks from playing
                     if (currentMusic != Assets.musicDungeonA) { Assets.musicDungeonA.Stop(); }
+                    if (currentMusic != Assets.musicDungeonB) { Assets.musicDungeonB.Stop(); }
                     //if (currentMusic != Assets.musicOverworld) { Assets.musicOverworld.Stop(); }
                     if (currentMusic != Assets.musicTitle) { Assets.musicTitle.Stop(); }
                     if (currentMusic != Assets.musicBoss) { Assets.musicBoss.Stop(); }
