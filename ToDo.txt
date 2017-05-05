@@ -35,27 +35,26 @@ ram useage:
 todo:
 
 
-6
+5
 
 
-playtested on xboxone without errors/bugs, operating within ram requirements.
-with full debug info, frame times are around 1-2 ms. 
-playtested on xbox one, ram @ 98mb of 128mb.
-remaining ram: 128-98 = @30mb.
-
-total heap size: 24,596.90 KB.
-framework/overhead @ 73mb. 
-total game content being loaded: 5,292,168 bytes.
-758 sprites created, @ 84,896 bytes.
-140 sound effect instances created, @ 12,320 bytes.
+recorded GIF of new features / gameplay for v0.3.
+added to /Gifs, pushed to repo.
 
 
 
 
 
+record GIFs of new features for v0.3.
 
-are we creating new component texts on screen summary?
-we shouldn't be.
+run thru the spawn room, with mobs
+shooting fireballs, opening chests, 
+bumper, conveyor belt, spike block,
+
+
+boss battle, hero death (quick) to summary screen, to overworld screen, back to dungeon
+
+inventory screen
 
 
 
