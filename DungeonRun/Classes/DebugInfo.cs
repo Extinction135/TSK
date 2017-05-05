@@ -161,7 +161,7 @@ namespace DungeonRun
             musicText.text += "\n" + MusicFunctions.trackToLoad;
             musicText.text += "\n" + MusicFunctions.currentMusic.State;
             musicText.text += "\nvol: " + MusicFunctions.currentMusic.Volume;
-            musicText.text += "\nd vol: " + Assets.musicDrums.Volume;
+            musicText.text += "\nd vol: " + Assets.drumTrack.Volume;
 
             saveDataText.text = "save data";
             saveDataText.text += "\ngold: " + PlayerData.saveData.gold;

@@ -43,14 +43,14 @@ namespace DungeonRun
         static SoundEffect musicDungeonASrc;
         public static SoundEffectInstance musicDungeonA;
 
-        static SoundEffect musicDrumsSrc;
-        public static SoundEffectInstance musicDrums;
-
         static SoundEffect musicOverworldSrc;
         public static SoundEffectInstance musicOverworld;
 
         //static SoundEffect musicShopSrc;
         //public static SoundEffectInstance musicShop;
+
+        public static List<SoundEffectInstance> drums;
+        public static SoundEffectInstance drumTrack;
 
         #endregion
 
@@ -97,6 +97,20 @@ namespace DungeonRun
         #endregion
 
 
+        public static void PlayDrums()
+        {
+            for (i = 0; i < listSize; i++)
+            {   //find a drum instance not playing
+                if (drums[i].State == SoundState.Stopped)
+                {
+                    drumTrack = drums[i]; //track it
+                    drums[i].Play(); //play it
+                    i = listSize; //bail
+                }
+                else { drums[i].Stop(); }
+            }
+        }
+
         public static void Play(List<SoundEffectInstance> List)
         {
             for (i = 0; i < listSize; i++)
@@ -136,10 +150,6 @@ namespace DungeonRun
             musicDungeonA = musicDungeonASrc.CreateInstance();
             musicDungeonA.IsLooped = true;
 
-            musicDrumsSrc = content.Load<SoundEffect>(@"MusicLowHealthDrums");
-            musicDrums = musicDrumsSrc.CreateInstance();
-            musicDrums.IsLooped = true;
-
             musicOverworldSrc = content.Load<SoundEffect>(@"MusicOverworld");
             musicOverworld = musicOverworldSrc.CreateInstance();
             musicOverworld.IsLooped = true;
@@ -147,6 +157,9 @@ namespace DungeonRun
             //musicShopSrc = content.Load<SoundEffect>(@"MusicShop");
             //musicShop = musicShopSrc.CreateInstance();
             //musicShop.IsLooped = true;
+
+            drums = new List<SoundEffectInstance>();
+            SoundEffect drumsSrc = content.Load<SoundEffect>(@"MusicLowHealthDrums");
 
             #endregion
 
@@ -220,6 +233,10 @@ namespace DungeonRun
 
             for (i = 0; i < listSize; i++)
             {
+                drums.Add(drumsSrc.CreateInstance());
+                drums[i].IsLooped = true;
+                drums[i].Volume = 0.0f;
+                //
                 sfxDash.Add(dashSrc.CreateInstance());
                 sfxSwordSwipe.Add(swordSwipeSrc.CreateInstance());
                 sfxEnemyHit.Add(enemyHitSrc.CreateInstance());
@@ -257,6 +274,8 @@ namespace DungeonRun
             #endregion
 
 
+            //drumTrack cannot be null initially
+            PlayDrums();
         }
 
     }
