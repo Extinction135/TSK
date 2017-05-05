@@ -35,31 +35,41 @@ ram useage:
 todo:
 
 
-12
+11
+
+added musicBoss, musicDungeonB, and musicTitle to content project, built.
+added instances to load musicBoss to Assets.cs.
+updated MusicFunctions.Update() with codepath for Assets.musicBoss instance.
+updated CollisionFunctions.CheckDungeonRoomCollisions() to play Boss Music upon entry to boss room.
+playtested, working as expected. 83mb ram footprint.
 
 
 
 
-reduced the overall number of drumTracks from 5 to 2.
-we only need 2 drumTracks for the PlayDrums() function to work properly.
-updated PlayDrums() to iterate over the drums list with a count of 2.
-this reduces the ram footprint of the game by a trivial amount..
-but the extra drum instances were completely unnecessary.
-playtested, working as expected.
-ram useage sitting around 79-80mb.
+bug: drum track did not fade in when hero has less than 3 hearts in boss room
 
 
 
+need asset instances for dungeonB, and title music.
 
 
-need summary screen needs music
+
+need summary screen needs music (title music)
 need boss music (upon entering boss room)
+load alternate dungeon music (dungeon B)
 
-both these music tracks should be mono 22k, short
-boss music won't play for long
-summary music won't play for long either
-these loops/tracks can be less than a minute, even 30 seconds
-this won't increase the ram footprint by much
+
+can use title music for shop too
+
+
+
+check ram footprint
+playtest on xbox one
+
+prep for version 0.3 release.
+
+
+
 
 
 
@@ -103,6 +113,11 @@ Version 0.3 features
 	
 Version 0.4 Milestones
 
+	SHOPS
+	create shop rooms, which are hardcoded (algo)
+	link them up to the overworld screen, via locations
+	play title music when hero is in a shop
+	
 	ROOM EDITOR + ROOM DATA
 	build the room editor screen
 	standardize all room types + sizes
@@ -132,8 +147,6 @@ Version 0.4 Milestones
 	
 	
 Version 0.5 Milestones	
-	SHOPS
-	create shop rooms, which are hardcoded (algo)
 	
 	INVENTORY
 	we should be setting the loadout menuItems based on what the player selects/chooses
