@@ -4,14 +4,16 @@ Each version of DungeonRun expands on the game's mechanics and design.
 
 ## Initial Repo Creation - 2017.03.16 (+0 days, +3 commits)  
 + Pushed prototype.
++ Setting aside time to work on project.
 
 
 ## Development Begins - 2017.04.01 (+16 days, +0 commits)  
++ Development part-time begins.
++ Part-time is about 4-5 hours a day.
 
 
 ## Version 0.1 - 2017.04.15 (+15 days, +130 commits)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p1.gif)  
-
 + Player controls a Hero character via a Gamepad.
 + Hero can move, dash, and attack blob enemies.
 + Blob enemies can move, dash, and attack hero.
@@ -23,7 +25,6 @@ Each version of DungeonRun expands on the game's mechanics and design.
 ## Version 0.2 - 2017.04.25 (+10 days, +135 commits)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p2A.gif)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p2B.gif)
-
 + A Boss enemy has been added, with it's own sounds and Ai.
 + A Boss room has been added, with transitions between rooms.
 + Chests and rewards have been added.
@@ -35,7 +36,6 @@ Each version of DungeonRun expands on the game's mechanics and design.
 
 ## Version 0.3 - 2017.05.05 (+10 days, +131 commits)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p3A.gif)  
-
 + Hero can cast fireball projectiles.
 + Added Overworld map screen, with selectable locations.
 + Hero can now exit and enter dungeons.

@@ -35,17 +35,13 @@ ram useage:
 todo:
 
 
-1
+13
 
 
-
-updated Versions.md with dates for milestones/releases of game.
-
-
-
-
-
-
+updated Readme with date for v0.3 release.
+updated Versions with more information.
+	
+	
 	
 Version 0.4 Milestones
 

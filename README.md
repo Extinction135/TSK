@@ -3,7 +3,7 @@ A 2D zelda clone, using Monogame 3.6, for Windows10 UWP & XboxOne.
 
 
 
-## Version 0.3  
+## Version 0.3 - 2017.05.05  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p3A.gif)  
  
 
