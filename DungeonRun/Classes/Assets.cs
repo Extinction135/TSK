@@ -99,7 +99,7 @@ namespace DungeonRun
 
         public static void PlayDrums()
         {
-            for (i = 0; i < listSize; i++)
+            for (i = 0; i < 2; i++)
             {   //find a drum instance not playing
                 if (drums[i].State == SoundState.Stopped)
                 {
@@ -160,6 +160,12 @@ namespace DungeonRun
 
             drums = new List<SoundEffectInstance>();
             SoundEffect drumsSrc = content.Load<SoundEffect>(@"MusicLowHealthDrums");
+            drums.Add(drumsSrc.CreateInstance());
+            drums[0].IsLooped = true;
+            drums[0].Volume = 0.0f;
+            drums.Add(drumsSrc.CreateInstance());
+            drums[1].IsLooped = true;
+            drums[1].Volume = 0.0f;
 
             #endregion
 
@@ -233,10 +239,6 @@ namespace DungeonRun
 
             for (i = 0; i < listSize; i++)
             {
-                drums.Add(drumsSrc.CreateInstance());
-                drums[i].IsLooped = true;
-                drums[i].Volume = 0.0f;
-                //
                 sfxDash.Add(dashSrc.CreateInstance());
                 sfxSwordSwipe.Add(swordSwipeSrc.CreateInstance());
                 sfxEnemyHit.Add(enemyHitSrc.CreateInstance());

@@ -35,35 +35,22 @@ ram useage:
 todo:
 
 
-13
-
-
-
-bug: the drum track doesn't align with the music track, sometimes
-cause: i think its due to the drum track not stopping/playing at the same time as the music track.
-solution: migrated the drum track sound file to the newer instance list approach used for sound effects.
-
-this way, we know for sure a drum track starts playing at the same time as a music track.
-created Assets.PlayDrums() and a static soundEffectInstance pointer called drumTrack.
-PlayDrums() locates a drum instance not playing, plays it, and sets the drumTrack pointer to the instance.
-then later MusicFunctions.Update() targets Assets.drumTrack, fading it's volume in/out based on hero's health.
-
-playtested, working perfectly. drums maintain alignment with music track.
-
-
-
-we dont need 5 instances of drum tracks
-we only need two
-and since PlayDrums() is it's own method, we can change it to work on a list with count 2
+12
 
 
 
 
+reduced the overall number of drumTracks from 5 to 2.
+we only need 2 drumTracks for the PlayDrums() function to work properly.
+updated PlayDrums() to iterate over the drums list with a count of 2.
+this reduces the ram footprint of the game by a trivial amount..
+but the extra drum instances were completely unnecessary.
+playtested, working as expected.
+ram useage sitting around 79-80mb.
 
-drum track doesn't align with the music track.
-we need to sync these tracks up somehow.
-we may need to create a list of drum tracks, then play an instance when we start playing the music track
-this dupes functionality from Assets.sfx lists.
+
+
+
 
 need summary screen needs music
 need boss music (upon entering boss room)
