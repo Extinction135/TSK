@@ -35,31 +35,16 @@ ram useage:
 todo:
 
 
-2
+1
 
 
 
-
-updated Design.md with OverworldScreen and a better description of how gold is used, in the Gameplay section.
-
-
-
-
-
-versions.md should have the release date of each version number
-count how many days between releases too
-count how many commit between releases too
+updated Versions.md with dates for milestones/releases of game.
 
 
 
 
 
-
-	
-	
-	
-	
-	
 
 	
 Version 0.4 Milestones

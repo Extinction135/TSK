@@ -2,7 +2,14 @@
 Each version of DungeonRun expands on the game's mechanics and design.  
 
 
-## Version 0.1
+## Initial Repo Creation - 2017.03.16 (+0 days, +3 commits)  
++ Pushed prototype.
+
+
+## Development Begins - 2017.04.01 (+16 days, +0 commits)  
+
+
+## Version 0.1 - 2017.04.15 (+15 days, +130 commits)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p1.gif)  
 
 + Player controls a Hero character via a Gamepad.
@@ -13,7 +20,7 @@ Each version of DungeonRun expands on the game's mechanics and design.
 + Extensive debugging information is provided about program & object state.
 
 
-## Version 0.2  
+## Version 0.2 - 2017.04.25 (+10 days, +135 commits)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p2A.gif)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p2B.gif)
 
@@ -26,7 +33,7 @@ Each version of DungeonRun expands on the game's mechanics and design.
 + Various visual improvements, including a Boss Door floor decal.
 
 
-## Version 0.3  
+## Version 0.3 - 2017.05.05 (+10 days, +131 commits)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p3A.gif)  
 
 + Hero can cast fireball projectiles.
