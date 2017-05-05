@@ -24,7 +24,7 @@ adding music:
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 	
 ram useage:
-	81mb on Win10.  82mb on XboxOne.
+	92mb on Win10.  82mb on XboxOne.
 	
 	
 	
@@ -35,18 +35,25 @@ ram useage:
 todo:
 
 
-10
+9
 
 
-updated debug info to display more info about drum track, due to a bug with drum track not playing sometimes.
-reverted to using a single soundeffect instance for the drumTrack in Assets.
-fixed the bug with drum track where it would sometimes not play.
-playtested, working as expected.
+created instances for MusicTitle in Assets.cs.
+updated MusicFunctions.Update() with codepath for MusicTitle instance.
+updated SummaryScreen to play the Title music upon load.
+playtested, working as expected. 
+title music on summary screen is very relaxing.
+but, ram is at 92mb now. sheesh.
 
 
 
 
-need asset instances for dungeonB, and title music.
+we could not load the overworld music and instead play the title music from overworld screen
+
+
+
+need asset instances for dungeonB.
+randomly choose between dungeonA dungeonB music upon dungeon build..
 
 
 
@@ -66,7 +73,7 @@ prep for version 0.3 release.
 
 
 
-
+update the window title to read v0.3
 
 
 update design.md -> screens section

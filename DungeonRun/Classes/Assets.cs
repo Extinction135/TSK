@@ -52,8 +52,8 @@ namespace DungeonRun
         //static SoundEffect musicDungeonBSrc;
         //public static SoundEffectInstance musicDungeonB;
 
-        //static SoundEffect musicTitleSrc;
-        //public static SoundEffectInstance musicTitle;
+        static SoundEffect musicTitleSrc;
+        public static SoundEffectInstance musicTitle;
 
         //static SoundEffect musicShopSrc;
         //public static SoundEffectInstance musicShop;
@@ -153,6 +153,10 @@ namespace DungeonRun
             musicBossSrc = content.Load<SoundEffect>(@"MusicBoss");
             musicBoss = musicBossSrc.CreateInstance();
             musicBoss.IsLooped = true;
+
+            musicTitleSrc = content.Load<SoundEffect>(@"MusicTitle");
+            musicTitle = musicTitleSrc.CreateInstance();
+            musicTitle.IsLooped = true;
 
             //musicShopSrc = content.Load<SoundEffect>(@"MusicShop");
             //musicShop = musicShopSrc.CreateInstance();
