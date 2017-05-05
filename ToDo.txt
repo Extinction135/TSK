@@ -24,7 +24,7 @@ adding music:
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 	
 ram useage:
-	92mb on Win10.  82mb on XboxOne.
+	92mb on Win10.  98mb on XboxOne.
 	
 	
 	
@@ -35,34 +35,31 @@ ram useage:
 todo:
 
 
-7
+6
 
 
-updated Assets to load DungeonB sound file.
-updated MusicFunctions.Update() with codepath for DungeonB.
-updated DungeonFunctions.BuildDungeon() to randomly play DungeonA or B music tracks.
-playtested, working as expected. ram at 94mb.
+playtested on xboxone without errors/bugs, operating within ram requirements.
+with full debug info, frame times are around 1-2 ms. 
+playtested on xbox one, ram @ 98mb of 128mb.
+remaining ram: 128-98 = @30mb.
 
-
-
-
-
-need asset instances for dungeonB.
-randomly choose between dungeonA dungeonB music upon dungeon build..
-
-
-
-need summary screen needs music (title music)
-need boss music (upon entering boss room)
-load alternate dungeon music (dungeon B)
-
-
-can use title music for shop too
+total heap size: 24,596.90 KB.
+framework/overhead @ 73mb. 
+total game content being loaded: 5,292,168 bytes.
+758 sprites created, @ 84,896 bytes.
+140 sound effect instances created, @ 12,320 bytes.
 
 
 
-check ram footprint
-playtest on xbox one
+
+
+
+are we creating new component texts on screen summary?
+we shouldn't be.
+
+
+
+
 
 prep for version 0.3 release.
 
@@ -75,6 +72,13 @@ update design.md -> screens section
 should include the Overworld Screen
 change the gamplay section too 
 should read "Gold is used to purchase items or upgrades for the hero."
+
+
+
+versions.md should have the release date of each version number
+count how many days between releases too
+count how many commit between releases too
+
 
 
 
