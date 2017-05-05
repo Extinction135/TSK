@@ -35,11 +35,21 @@ ram useage:
 todo:
 
 
-4
+3
 
 
 
-updated Versions.md with new v0.3 gifs and features.
+
+removed inventory screen gif from versions.md.
+it just wasn't very interesting or important.
+updated README.md with version 0.3 gif.
+updated progrma window title to "v0.3".
+
+
+
+
+
+
 
 
 

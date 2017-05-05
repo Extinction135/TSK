@@ -15,8 +15,7 @@ Each version of DungeonRun expands on the game's mechanics and design.
 
 ## Version 0.2  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p2A.gif)  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p2B.gif)  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p2C.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p2B.gif)
 
 + A Boss enemy has been added, with it's own sounds and Ai.
 + A Boss room has been added, with transitions between rooms.
