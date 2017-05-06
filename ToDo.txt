@@ -43,18 +43,20 @@ ram useage:
 todo:
 
 
-2
-
-	
-	
-updated the overall luminosity of the shop floor to match the castle's floor.
-fixed the bottom part of the exit object, extending the 'bar' over the 2nd pillar.
-playtested, working, tho I do want to modify the exit sprite a bit more.
+1
 
 
+added drawer and bookcase objects to shop room.
+added stone table object to shop room.
+added bar end cap to shop room.
+all these objects are actually other objects, just using the shop sheet.
+the collision recs still align, so it works.
+playtested, the shop dungeon is starting to look 'shoppy'.
 
 
-place some shelves, tables around the shop room
+
+
+
 
 
 
@@ -64,9 +66,8 @@ place some shelves, tables around the shop room
 pref: extend parts of the exit sprite for shop out to wall's edge.
 it looks like it's just kinda floating off the wall.
 
-	
 we'll also need to create 'vendors' and vendor stalls	
-	
+and create rugs under/around the stalls
 	
 	
 	

@@ -491,6 +491,39 @@ namespace DungeonRun
                 #endregion
 
 
+
+                //place some test shop objects
+
+                //bookcase
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    5 * 16 + pos.X + 8,
+                    0 * 16 + pos.Y + 0);
+                GameObjectFunctions.SetType(objRef, ObjType.BlockDark);
+
+                //drawers
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    7 * 16 + pos.X + 8,
+                    0 * 16 + pos.Y + 0);
+                GameObjectFunctions.SetType(objRef, ObjType.BlockLight);
+
+                //stone table
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    7 * 16 + pos.X + 8,
+                    4 * 16 + pos.Y + 8);
+                GameObjectFunctions.SetType(objRef, ObjType.BlockDraggable);
+
+                //bar end cap
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    9 * 16 + pos.X + 8,
+                    4 * 16 + pos.Y + 8);
+                GameObjectFunctions.SetType(objRef, ObjType.SwitchBlockUp);
+
+
+
             }
 
             #endregion

@@ -126,7 +126,6 @@ namespace DungeonRun
             { Pool.floorPool[Pool.counter].texture = Texture; }
         }
 
-
         public static void UpdateObjectPool()
         {   //align sprite + collision comps to move comp of all active objs
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
