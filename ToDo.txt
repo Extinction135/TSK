@@ -35,20 +35,20 @@ ram useage:
 todo:
 
 
-9
-
-
-bug: the rupee & heart's interaction rec is not aligned to the sprite.
-solution: updated GameObj.SetType() to set the Item/Rupee collision offsetX to -8.
-it was at -4, which placed the collision rec's starting location at the center of the sprite.
-this change centers the collision rec to the sprite, which makes it easier to pick them up as well.
-so, gameplay++. playtested, working as expected.
-i was only able to see this bug because the debug draw was upgraded in the previous commit.
+8
 
 
 
+reduced RoomType enum to Exit, Boss, Shop - since that's the only values currently being used.
+updated BuildDungeon() to create rooms list as Exit, Boss.
+updated BuildRoom() to use the Exit value when determining the floor sprites.
+updated FinishRoom() to use the Exit value as well.
+this fixes a minor naming issue where we were using 'Normal' to actually describe the spawn/exit room.
+things are properly named now, to avoid future confusion.
+playtested, working.
 
 
+bug: the floor sprite frames can be messed up for shop. part boss, part shop.
 
 
 

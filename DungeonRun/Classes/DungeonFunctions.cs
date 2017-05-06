@@ -46,7 +46,7 @@ namespace DungeonRun
             }
             else
             {   //populate the dungeon with rooms
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Normal, 10, 0));
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Exit, 10, 0));
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));
             }
 
@@ -93,7 +93,7 @@ namespace DungeonRun
                     floorRef.position.X = i * 16 + pos.X + 8;
                     floorRef.position.Y = j * 16 + pos.Y + 8;
 
-                    if (Room.type == RoomType.Normal) { floorRef.currentFrame.Y = 0; }
+                    if (Room.type == RoomType.Exit) { floorRef.currentFrame.Y = 0; }
                     else if (Room.type == RoomType.Boss) { floorRef.currentFrame.Y = 1; }
 
 
@@ -208,9 +208,9 @@ namespace DungeonRun
         public static void FinishRoom(Room Room)
         {
 
-            #region Normal Room (spawn room)
+            #region Exit Room
 
-            if (Room.type == RoomType.Normal)
+            if (Room.type == RoomType.Exit)
             {
 
                 #region Create the Exit, place Hero at Exit
