@@ -90,12 +90,14 @@ namespace DungeonRun
         public String name;
         public Boolean bigKey;
         public Boolean map;
+        public DungeonType type;
         public Dungeon(String Name)
         {   //initially, the map and key have not been found
             rooms = new List<Room>();
             name = Name;
             bigKey = false;
             map = false;
+            type = DungeonType.CursedCastle;
         }
     }
 

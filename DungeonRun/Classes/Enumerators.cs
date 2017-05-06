@@ -29,6 +29,8 @@ namespace DungeonRun
 
     public enum RoomType { Normal, Key, Boss, Hub, Exit, Secret }
 
+    public enum DungeonType { CursedCastle, Shop }
+
     public enum ActorType { Hero, Blob, Boss, }
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }

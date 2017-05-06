@@ -33,10 +33,13 @@ namespace DungeonRun
 
         public static void Initialize(ScreenDungeon DungeonScreen) { dungeonScreen = DungeonScreen; }
 
-        public static void BuildDungeon()
+        public static void BuildDungeon(DungeonType DungeonType)
         {
             //create a new dungeon
-            dungeon = new Dungeon("test");
+            dungeon = new Dungeon(""+ DungeonType);
+            dungeon.type = DungeonType;
+
+            //populate the dungeon with rooms
             dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Normal, 10, 0));
             dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));
 

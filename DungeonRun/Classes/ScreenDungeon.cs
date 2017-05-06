@@ -33,7 +33,7 @@ namespace DungeonRun
 
             Pool.Initialize();
             DungeonFunctions.Initialize(this);
-            DungeonFunctions.BuildDungeon();
+            DungeonFunctions.BuildDungeon(DungeonType.CursedCastle);
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
 
             //open the screen

@@ -25,11 +25,11 @@ namespace DungeonRun
         public static ComponentText selectedLocation;
 
         //pointers to the locations
-        public MenuItem ShopArmor;
-        public MenuItem ShopWeapon;
-        public MenuItem ShopEquipment;
-        public MenuItem ShopMagic;
-        public MenuItem ShopPotion;
+        //public MenuItem ShopArmor;
+        //public MenuItem ShopWeapon;
+        //public MenuItem ShopEquipment;
+        //public MenuItem ShopMagic;
+        public MenuItem Shop;
         public MenuItem DungeonCursedCastle;
         public MenuItem DungeonDesertPalace;
         public MenuItem DungeonEasternTemple;
@@ -86,11 +86,11 @@ namespace DungeonRun
             //we never draw the locations (menuItems), we use them for their neighbors
 
             //set the named pointers
-            ShopArmor = locations[0];
-            ShopWeapon = locations[1];
-            ShopEquipment = locations[2];
-            ShopMagic = locations[3];
-            ShopPotion = locations[4];
+            //ShopArmor = locations[0];
+            //ShopWeapon = locations[1];
+            //ShopEquipment = locations[2];
+            //ShopMagic = locations[3];
+            Shop = locations[4];
             DungeonCursedCastle = locations[5];
             DungeonDesertPalace = locations[6];
             DungeonEasternTemple = locations[7];
@@ -100,16 +100,16 @@ namespace DungeonRun
             #region Name and Place the Locations
 
             //name & place the shops
-            ShopArmor.name = "Armor Shop";
-            ShopArmor.compSprite.position = new Vector2(mapTopLeft.X + 24, mapTopLeft.Y + 119); //armor
-            ShopWeapon.name = "Weapon Shop";
-            ShopWeapon.compSprite.position = new Vector2(mapTopLeft.X + 73, mapTopLeft.Y + 135); //sword
-            ShopEquipment.name = "Equipment Shop";
-            ShopEquipment.compSprite.position = new Vector2(mapTopLeft.X + 74, mapTopLeft.Y + 173); //ring
-            ShopMagic.name = "Magic Shop";
-            ShopMagic.compSprite.position = new Vector2(mapTopLeft.X + 130, mapTopLeft.Y + 174); //magic
-            ShopPotion.name = "Potion Shop";
-            ShopPotion.compSprite.position = new Vector2(mapTopLeft.X + 196, mapTopLeft.Y + 78); //potion
+            //ShopArmor.name = "Armor Shop";
+            //ShopArmor.compSprite.position = new Vector2(mapTopLeft.X + 24, mapTopLeft.Y + 119); //armor
+            //ShopWeapon.name = "Weapon Shop";
+            //ShopWeapon.compSprite.position = new Vector2(mapTopLeft.X + 73, mapTopLeft.Y + 135); //sword
+            //ShopEquipment.name = "Equipment Shop";
+            //ShopEquipment.compSprite.position = new Vector2(mapTopLeft.X + 74, mapTopLeft.Y + 173); //ring
+            //ShopMagic.name = "Magic Shop";
+            //ShopMagic.compSprite.position = new Vector2(mapTopLeft.X + 130, mapTopLeft.Y + 174); //magic
+            Shop.name = "Potion Shop";
+            Shop.compSprite.position = new Vector2(mapTopLeft.X + 196, mapTopLeft.Y + 78); //potion
 
             //name & place the dungeons
             DungeonCursedCastle.name = "Cursed Castle";
@@ -130,51 +130,51 @@ namespace DungeonRun
             #region Setup the Location/MenuItem Neighbors
 
             //shop - armor
-            ShopArmor.neighborDown = DungeonDesertPalace;
-            ShopArmor.neighborLeft = ShopArmor;
-            ShopArmor.neighborUp = ShopArmor;
-            ShopArmor.neighborRight = ShopWeapon;
+            //ShopArmor.neighborDown = DungeonDesertPalace;
+            //ShopArmor.neighborLeft = ShopArmor;
+            //ShopArmor.neighborUp = ShopArmor;
+            //ShopArmor.neighborRight = ShopWeapon;
             //shop - weapon
-            ShopWeapon.neighborDown = ShopEquipment;
-            ShopWeapon.neighborLeft = ShopArmor;
-            ShopWeapon.neighborUp = ShopWeapon;
-            ShopWeapon.neighborRight = DungeonCursedCastle;
+            //ShopWeapon.neighborDown = ShopEquipment;
+            //ShopWeapon.neighborLeft = ShopArmor;
+            //ShopWeapon.neighborUp = ShopWeapon;
+            //ShopWeapon.neighborRight = DungeonCursedCastle;
             //shop - equipment
-            ShopEquipment.neighborDown = ShopEquipment;
-            ShopEquipment.neighborLeft = DungeonDesertPalace;
-            ShopEquipment.neighborUp = ShopWeapon;
-            ShopEquipment.neighborRight = ShopMagic;
+            //ShopEquipment.neighborDown = ShopEquipment;
+            //ShopEquipment.neighborLeft = DungeonDesertPalace;
+            //ShopEquipment.neighborUp = ShopWeapon;
+            //ShopEquipment.neighborRight = ShopMagic;
             //shop - magic
-            ShopMagic.neighborDown = ShopMagic;
-            ShopMagic.neighborLeft = ShopEquipment;
-            ShopMagic.neighborUp = DungeonCursedCastle;
-            ShopMagic.neighborRight = DungeonEasternTemple;
+            //ShopMagic.neighborDown = ShopMagic;
+            //ShopMagic.neighborLeft = ShopEquipment;
+            //ShopMagic.neighborUp = DungeonCursedCastle;
+            //ShopMagic.neighborRight = DungeonEasternTemple;
             //shop - potion
-            ShopPotion.neighborDown = ShopPotion;
-            ShopPotion.neighborLeft = DungeonCursedCastle;
-            ShopPotion.neighborUp = DungeonMountainFortress;
-            ShopPotion.neighborRight = DungeonEasternTemple;
+            Shop.neighborDown = DungeonEasternTemple;
+            Shop.neighborLeft = DungeonCursedCastle;
+            Shop.neighborUp = DungeonMountainFortress;
+            Shop.neighborRight = DungeonEasternTemple;
 
             //dungeon - cursed castle
-            DungeonCursedCastle.neighborDown = ShopMagic;
-            DungeonCursedCastle.neighborLeft = ShopWeapon;
+            DungeonCursedCastle.neighborDown = DungeonDesertPalace;
+            DungeonCursedCastle.neighborLeft = DungeonDesertPalace;
             DungeonCursedCastle.neighborUp = DungeonMountainFortress;
-            DungeonCursedCastle.neighborRight = ShopPotion;
+            DungeonCursedCastle.neighborRight = Shop;
             //dungeon - desert palace
             DungeonDesertPalace.neighborDown = DungeonDesertPalace;
             DungeonDesertPalace.neighborLeft = DungeonDesertPalace;
-            DungeonDesertPalace.neighborUp = ShopArmor;
-            DungeonDesertPalace.neighborRight = ShopEquipment;
+            DungeonDesertPalace.neighborUp = DungeonCursedCastle;
+            DungeonDesertPalace.neighborRight = DungeonCursedCastle;
             //dungeon - eastern temple
             DungeonEasternTemple.neighborDown = DungeonEasternTemple;
-            DungeonEasternTemple.neighborLeft = ShopPotion;
-            DungeonEasternTemple.neighborUp = DungeonEasternTemple;
+            DungeonEasternTemple.neighborLeft = Shop;
+            DungeonEasternTemple.neighborUp = Shop;
             DungeonEasternTemple.neighborRight = DungeonEasternTemple;
             //dungeon - mountain fortress
             DungeonMountainFortress.neighborDown = DungeonCursedCastle;
             DungeonMountainFortress.neighborLeft = DungeonMountainFortress;
             DungeonMountainFortress.neighborUp = DungeonMountainFortress;
-            DungeonMountainFortress.neighborRight = ShopPotion;
+            DungeonMountainFortress.neighborRight = Shop;
 
             #endregion
 
@@ -254,7 +254,9 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closed)
             {
                 ScreenManager.RemoveScreen(this);
-                DungeonFunctions.BuildDungeon();
+
+                if (currentlySelected == Shop) { DungeonFunctions.BuildDungeon(DungeonType.Shop); }
+                else { DungeonFunctions.BuildDungeon(DungeonType.CursedCastle); }
             }
 
             #endregion

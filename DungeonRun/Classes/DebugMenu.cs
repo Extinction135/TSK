@@ -60,8 +60,8 @@ namespace DungeonRun
                             buttons[counter].selected = Flags.DrawCollisions;
                         }
                         else if (counter == 1) //build the dungeon room again
-                        {
-                            DungeonFunctions.BuildDungeon();
+                        {   //build dungeon based on the last dungeon type
+                            DungeonFunctions.BuildDungeon(DungeonFunctions.dungeon.type);
                         }
 
                         #endregion

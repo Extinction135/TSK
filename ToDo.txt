@@ -35,18 +35,55 @@ ram useage:
 todo:
 
 
-13
+12
+
+
+
+updated overworld texture to only have one shop sprite.
+updated OverworldScreen to only have the potion shop (includes updating the menuItem neighbors).
+playtested, working as expected.
+
+created DungeonType enumerator in Enumerators.cs.
+has values: CursedCastle, Shop.
+this DungeonType will determine the sheet used for the dungeon level, and how it's built.
+updated Dungeon struct with field for DungeonType.
+constructor defaults DungeonType to CursedCastle.
+
+updated BuildDungeon() to take a DungeonType parameter.
+updated DebugMenu()'s BuildDungeon button to build a new dungeon based on the last dungeon's type.
+updated DungeonScreen.LoadContent() to build a cursed castle dungeon as default.
+later this will probably be changed to a Shop type, so player starts in a neutral area.
+updated OverworldScreen to build a Shop dungeon if shop location is selected.
+playtested, working as expected.
+
+
+build dungeon should check to type, and build a shop dungeon differently.
+which is a single room right now.
 
 
 
 
 
-bug: if hero collides with a heart during the death animation, he picks it up.
-this causes his health to be displayed as 1, not 0, which is nonsensical.
-solution: if an actor is dead, lock their health to 0.
-	
-	
-	
+
+future bug: we should only allow location movement on overworld screen if the screen is opened.
+if the screen is closing, don't let the player change the selected location.
+this will lead to a case where the player presses a direction at the last minute and they load into the 'wrong' area.
+
+
+
+
+
+
+we need to update BuildDungeon to check Dungeon.DungeonType
+
+
+
+
+now we need to build a dungeon just for the shop location
+for now, this will just be one room with an exit.
+which means we need to be able to set the dugeon type - enum?
+
+we'll need to switch out the dungeon sheet with a shop sheet, which means we'll need a shop sheet.
 	
 	
 	
