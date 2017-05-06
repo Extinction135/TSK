@@ -35,30 +35,25 @@ ram useage:
 todo:
 
 
-12
+11
 
 
 
-updated overworld texture to only have one shop sprite.
-updated OverworldScreen to only have the potion shop (includes updating the menuItem neighbors).
-playtested, working as expected.
+added 'Shop' value to RoomType enumerator.
+updated BuildDungeon() to populate the dungeon.rooms list differently based on dungeon.type.
 
-created DungeonType enumerator in Enumerators.cs.
-has values: CursedCastle, Shop.
-this DungeonType will determine the sheet used for the dungeon level, and how it's built.
-updated Dungeon struct with field for DungeonType.
-constructor defaults DungeonType to CursedCastle.
-
-updated BuildDungeon() to take a DungeonType parameter.
-updated DebugMenu()'s BuildDungeon button to build a new dungeon based on the last dungeon's type.
-updated DungeonScreen.LoadContent() to build a cursed castle dungeon as default.
-later this will probably be changed to a Shop type, so player starts in a neutral area.
-updated OverworldScreen to build a Shop dungeon if shop location is selected.
-playtested, working as expected.
+updated FinishRoom() to create a shop level/room based on room.type
+for now, this room just has an exit object, without any mobs or door or decorations.
+playtested, working, with a minor bug: theres a hole in the wall where the boss door was.. hmm..
+but otherwise, it was super easy to add in the shop dungeon/room.
 
 
-build dungeon should check to type, and build a shop dungeon differently.
-which is a single room right now.
+
+
+
+** we shouldn't be using 'normal' for the spawn room type
+we should be using spawn for the type, because that's what it is, duh.
+
 
 
 

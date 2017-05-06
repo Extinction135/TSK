@@ -33,15 +33,24 @@ namespace DungeonRun
 
         public static void Initialize(ScreenDungeon DungeonScreen) { dungeonScreen = DungeonScreen; }
 
-        public static void BuildDungeon(DungeonType DungeonType)
+        public static void BuildDungeon(DungeonType Type)
         {
             //create a new dungeon
-            dungeon = new Dungeon(""+ DungeonType);
-            dungeon.type = DungeonType;
+            dungeon = new Dungeon(""+ Type);
+            dungeon.type = Type;
 
-            //populate the dungeon with rooms
-            dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Normal, 10, 0));
-            dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));
+
+            if (Type == DungeonType.Shop)
+            {   //create the shop room
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Shop, 10, 0));
+            }
+            else
+            {   //populate the dungeon with rooms
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Normal, 10, 0));
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));
+            }
+
+            
 
             //build the first room in the dungeon (the spawn room)
             BuildRoom(dungeon.rooms[0]);
@@ -428,6 +437,57 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Create Shop Room
+
+            else if (Room.type == RoomType.Shop)
+            {
+
+
+                #region Create the Exit, place Hero at Exit
+
+                //create the exit
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.X / 2) * 16 + pos.X + 8,
+                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.Exit);
+
+                //place hero at exit door
+                ActorFunctions.SetType(Pool.hero, ActorType.Hero);
+                MovementFunctions.Teleport(Pool.hero.compMove,
+                    objRef.compSprite.position.X,
+                    objRef.compSprite.position.Y + 8);
+                MovementFunctions.StopMovement(Pool.hero.compMove);
+                Pool.hero.direction = Direction.Up; //face hero up
+
+                //place the exit light fx over exit obj
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.X / 2) * 16 + pos.X + 8,
+                    Room.size.Y * 16 + pos.Y + 8 - 16 * 1);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitLightFX);
+
+                //create exit pillars
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.X / 2) * 16 + pos.X + 8 - 16,
+                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitPillarLeft);
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    (Room.size.X / 2) * 16 + pos.X + 8 + 16,
+                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+                GameObjectFunctions.SetType(objRef, ObjType.ExitPillarRight);
+
+                #endregion
+
+
+            }
+
+            #endregion
+
 
         }
 
