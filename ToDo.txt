@@ -43,26 +43,28 @@ ram useage:
 todo:
 
 
-6
+5
+
+
+renamed Assets.dungeonSheet to cursedCastleSheet.
+created Assets.dungeonSheet, which points to a dungeon sprite sheet texture (cc or shop).
+initially dungeonSheet points to shop texture.
+updated GameObject's constructor parameters with Texture2D named Texture.
+updated BuildDungeon(DungeonType) to set the Assets.dungeonSheet based on DungeonType parameter.
+playtested, not working as expected.
+the shop sheet looks good for now, but the dungeonSheet pointer isn't working as expected.
 
 
 
-created ShopSheet, and several sprites inside of it.
-added to content project, built.
-added instances to Assets to load the new ShopSheet.
-playtested, working. ram is 95mb on pc.
+
+
+we'll need to update the texture ref for each object on the obj pool when we build dungeon()
+we'll need a function to set the obj's texture reference
+pass in a texture, loop over the objs
+could this be part of another function?
 
 
 
-
-
-
-
-
-we'll need to switch out the dungeon sheet with a shop sheet, which means we'll need a shop sheet.
-create the shop sheet, load it into content/assets.
-
-create a dungeonSheet pointer. this will point to the cursed castle sheet or the shop sheet.
 when we build the dungeon, just switch where dungeonSheet points.
 all dungeon objects should use the dungeonSheet as their texture.
 the dungeon sheet should default to cursed castle sheet.
@@ -71,6 +73,11 @@ in the future we'll load additional dungeon sheets into ram
 then switch where the dungeonSheet points to from BuildDungeon() based on dungeon type.
 
 
+	
+	
+	
+	
+	
 	
 	
 	

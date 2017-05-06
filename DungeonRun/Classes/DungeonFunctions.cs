@@ -41,11 +41,15 @@ namespace DungeonRun
 
 
             if (Type == DungeonType.Shop)
-            {   //create the shop room
+            {
+                Assets.dungeonSheet = Assets.shopSheet;
+                //create the shop room
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Shop, 10, 0));
             }
             else
-            {   //populate the dungeon with rooms
+            {
+                Assets.dungeonSheet = Assets.cursedCastleSheet;
+                //populate the dungeon with rooms
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Exit, 10, 0));
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));
             }

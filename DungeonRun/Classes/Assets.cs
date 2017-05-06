@@ -34,9 +34,13 @@ namespace DungeonRun
         //world/ui sheets
         public static Texture2D mainSheet;
         public static Texture2D bigTextSheet;
-        public static Texture2D dungeonSheet;
-        public static Texture2D shopSheet;
         public static Texture2D overworldSheet;
+
+        //dungeon sheets
+        public static Texture2D cursedCastleSheet;
+        public static Texture2D shopSheet;
+        //points to one of the above sheets
+        public static Texture2D dungeonSheet; 
 
 
         #region Music Instances
@@ -140,9 +144,15 @@ namespace DungeonRun
             //game textures
             mainSheet = content.Load<Texture2D>(@"MainSheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
-            dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
-            shopSheet = content.Load<Texture2D>(@"ShopSheet");
             overworldSheet = content.Load<Texture2D>(@"OverworldTexture");
+
+            //dungeon textures
+            cursedCastleSheet = content.Load<Texture2D>(@"DungeonSheet");
+            shopSheet = content.Load<Texture2D>(@"ShopSheet");
+            //initially the dungeonSheet defaults to shop
+            dungeonSheet = shopSheet;
+
+
 
 
             #region Create Music instances
