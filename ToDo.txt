@@ -35,27 +35,14 @@ ram useage:
 todo:
 
 
-8
+7
 
-
-
-reduced RoomType enum to Exit, Boss, Shop - since that's the only values currently being used.
-updated BuildDungeon() to create rooms list as Exit, Boss.
-updated BuildRoom() to use the Exit value when determining the floor sprites.
-updated FinishRoom() to use the Exit value as well.
-this fixes a minor naming issue where we were using 'Normal' to actually describe the spawn/exit room.
-things are properly named now, to avoid future confusion.
-playtested, working.
 
 
 bug: the floor sprite frames can be messed up for shop. part boss, part shop.
-
-
-
-** we shouldn't be using 'normal' for the spawn room type
-we should be using spawn for the type, because that's what it is, duh.
-
-
+cause: we weren't checking for the RoomType.Shop in BuildRoom().
+solution: added in a check to set the floor sprite if Room.type equals Shop.
+playtested, bug fixed.
 
 
 
