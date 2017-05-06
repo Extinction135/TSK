@@ -35,31 +35,18 @@ ram useage:
 todo:
 
 
-10
+9
 
 
-bug: theres a hole in the wall where the boss door was.. hmm..
-in order to determine what the cause is, we need more detailed debug info.
-
-extended color scheme with an interaction collision color, set to green.
-updated DrawFunctions.Draw() to draw interaction collision recs with the interaction color.
-this upgrades the draw collisions program state to display both blocking and non-blocking collision recs.
-playtested, working/displayed as expected.
-
-my guess was that a door was being leftover from a previous room build, but there is no door rec being drawn.
-however, the check performed in CleanupRoom() does not check to see if any of the objects it's comparing are active.
-so it's checking inactive objects, and the old boss door is an inactive object, and thus isn't being drawn.
-
-cause: inactive objects were being checked against wall objects.
-solution: updated CleanupRoom() with obj.active checks for all objects being compared.
-playtested, bug fixed and working as expected.
+bug: the rupee & heart's interaction rec is not aligned to the sprite.
+solution: updated GameObj.SetType() to set the Item/Rupee collision offsetX to -8.
+it was at -4, which placed the collision rec's starting location at the center of the sprite.
+this change centers the collision rec to the sprite, which makes it easier to pick them up as well.
+so, gameplay++. playtested, working as expected.
+i was only able to see this bug because the debug draw was upgraded in the previous commit.
 
 
 
-
-
-bug: the rupee & heart's interaction rec is off
-it should be pushed -4 on x axis for both objects.
 
 
 

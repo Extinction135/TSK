@@ -394,7 +394,7 @@ namespace DungeonRun
             else if (Type == ObjType.ItemRupee || Type == ObjType.ItemHeart)
             {
                 Obj.compSprite.cellSize.X = 8; //non standard cellsize
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Item;
