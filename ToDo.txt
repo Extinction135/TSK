@@ -43,46 +43,26 @@ ram useage:
 todo:
 
 
-4
-
-
-
-removed Assets.dungeonSheet, it wasn't working as expected.
-updated various codepaths that referenced Assets.dungeonSheet.
-created PoolFunctions.SetObjectPoolTexture(Texture2D).
-updated BuildDungeon() to call SetObjectPoolTexture() and pass the correct dungeon texture.
-playtested, working - but we need to update the floor sprites as well.
+3
 
 
 
 
 
-update the floor sprite texture when we update the objs.
-
-
-
-
-
-we'll need to update the texture ref for each object on the obj pool when we build dungeon()
-we'll need a function to set the obj's texture reference
-pass in a texture, loop over the objs
-could this be part of another function?
-
-
-
-when we build the dungeon, just switch where dungeonSheet points.
-all dungeon objects should use the dungeonSheet as their texture.
-the dungeon sheet should default to cursed castle sheet.
-
-in the future we'll load additional dungeon sheets into ram
-then switch where the dungeonSheet points to from BuildDungeon() based on dungeon type.
+changed SetObjectPoolTexture() to SetDungeonTexture() to better describe it's purpose.
+expanded SetDungeonTexture() to also set the floor pool texture.
+playtested, textures switching properly for each dungeon type.
 
 
 	
 	
 	
-	
-	
+shop floor is too bright, should be dark - match shade of dungeon floor
+fix the pixels on the exit obj's bottom row - should match the walls it's next to
+the top of exit (bar area) should extend to cover the 2nd log we added
+
+
+
 	
 	
 	

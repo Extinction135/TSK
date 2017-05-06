@@ -117,10 +117,13 @@ namespace DungeonRun
 
 
 
-        public static void SetObjectPoolTexture(Texture2D Texture)
-        {
+        public static void SetDungeonTexture(Texture2D Texture)
+        {   //set the obj pool texture
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
-            {Pool.objPool[Pool.counter].compSprite.texture = Texture;}
+            { Pool.objPool[Pool.counter].compSprite.texture = Texture; }
+            //set the floor pool texture
+            for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
+            { Pool.floorPool[Pool.counter].texture = Texture; }
         }
 
 
