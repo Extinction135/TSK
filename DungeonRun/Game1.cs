@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts the game in release mode, overwrites other flags
         // ******************************************************************
 
-        public static Boolean Debug = false; //draw/enable debugging info/menu/dev input
+        public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
         public static Boolean PlayMusic = false; //turns music on/off (but not soundFX)

@@ -59,6 +59,12 @@ namespace DungeonRun
                 Assets.dummyTexture, Coll.rec,
                 Assets.colorScheme.collision);
             }
+            else
+            {
+                ScreenManager.spriteBatch.Draw(
+                Assets.dummyTexture, Coll.rec,
+                Assets.colorScheme.interaction);
+            }
         }
 
         public static void Draw(ComponentText Text)

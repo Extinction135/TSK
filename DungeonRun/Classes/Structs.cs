@@ -113,7 +113,9 @@ namespace DungeonRun
         public Color background;
         public Color overlay;
         public Color debugBkg;
+
         public Color collision;
+        public Color interaction;
 
         public Color buttonUp;
         public Color buttonOver;
@@ -133,7 +135,9 @@ namespace DungeonRun
             background = new Color(100, 100, 100, 255);
             overlay = new Color(0, 0, 0, 255);
             debugBkg = new Color(0, 0, 0, 200);
+
             collision = new Color(100, 0, 0, 50);
+            interaction = new Color(0, 100, 0, 50);
 
             buttonUp = new Color(44, 44, 44);
             buttonOver = new Color(66, 66, 66);

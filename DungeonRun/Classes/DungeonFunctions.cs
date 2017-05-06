@@ -526,11 +526,11 @@ namespace DungeonRun
             //remove any walls that overlap doors
             for (i = 0; i < Pool.objCount; i++)
             {
-                if (Pool.objPool[i].group == ObjGroup.Door)
+                if (Pool.objPool[i].group == ObjGroup.Door && Pool.objPool[i].active)
                 {
                     for (j = 0; j < Pool.objCount; j++)
                     {
-                        if (Pool.objPool[j].group == ObjGroup.Wall)
+                        if (Pool.objPool[j].group == ObjGroup.Wall && Pool.objPool[j].active)
                         {
                             if (Pool.objPool[i].compCollision.rec.Intersects(Pool.objPool[j].compCollision.rec))
                             {
