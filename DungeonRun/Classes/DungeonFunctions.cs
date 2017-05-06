@@ -42,13 +42,15 @@ namespace DungeonRun
 
             if (Type == DungeonType.Shop)
             {
-                Assets.dungeonSheet = Assets.shopSheet;
+                //set the objPool texture
+                PoolFunctions.SetObjectPoolTexture(Assets.shopSheet);
                 //create the shop room
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Shop, 10, 0));
             }
             else
             {
-                Assets.dungeonSheet = Assets.cursedCastleSheet;
+                //set the objPool texture
+                PoolFunctions.SetObjectPoolTexture(Assets.cursedCastleSheet);
                 //populate the dungeon with rooms
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Exit, 10, 0));
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));

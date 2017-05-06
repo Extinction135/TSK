@@ -117,6 +117,13 @@ namespace DungeonRun
 
 
 
+        public static void SetObjectPoolTexture(Texture2D Texture)
+        {
+            for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
+            {Pool.objPool[Pool.counter].compSprite.texture = Texture;}
+        }
+
+
         public static void UpdateObjectPool()
         {   //align sprite + collision comps to move comp of all active objs
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)

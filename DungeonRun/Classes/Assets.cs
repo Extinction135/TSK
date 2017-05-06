@@ -38,9 +38,7 @@ namespace DungeonRun
 
         //dungeon sheets
         public static Texture2D cursedCastleSheet;
-        public static Texture2D shopSheet;
-        //points to one of the above sheets
-        public static Texture2D dungeonSheet; 
+        public static Texture2D shopSheet; 
 
 
         #region Music Instances
@@ -149,8 +147,6 @@ namespace DungeonRun
             //dungeon textures
             cursedCastleSheet = content.Load<Texture2D>(@"DungeonSheet");
             shopSheet = content.Load<Texture2D>(@"ShopSheet");
-            //initially the dungeonSheet defaults to shop
-            dungeonSheet = shopSheet;
 
 
 

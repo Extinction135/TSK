@@ -60,7 +60,7 @@ namespace DungeonRun
             //obj pool
             objPool = new List<GameObject>();
             for (counter = 0; counter < objCount; counter++)
-            { objPool.Add(new GameObject(Assets.dungeonSheet)); }
+            { objPool.Add(new GameObject(Assets.shopSheet)); }
             objIndex = 0;
 
             //projectile pool
@@ -73,7 +73,7 @@ namespace DungeonRun
             floorPool = new List<ComponentSprite>();
             for (counter = 0; counter < floorCount; counter++)
             {
-                floorPool.Add(new ComponentSprite(Assets.dungeonSheet,
+                floorPool.Add(new ComponentSprite(Assets.shopSheet,
                     new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Point(16, 16)));
             }
             floorIndex = 0;

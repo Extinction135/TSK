@@ -43,16 +43,21 @@ ram useage:
 todo:
 
 
-5
+4
 
 
-renamed Assets.dungeonSheet to cursedCastleSheet.
-created Assets.dungeonSheet, which points to a dungeon sprite sheet texture (cc or shop).
-initially dungeonSheet points to shop texture.
-updated GameObject's constructor parameters with Texture2D named Texture.
-updated BuildDungeon(DungeonType) to set the Assets.dungeonSheet based on DungeonType parameter.
-playtested, not working as expected.
-the shop sheet looks good for now, but the dungeonSheet pointer isn't working as expected.
+
+removed Assets.dungeonSheet, it wasn't working as expected.
+updated various codepaths that referenced Assets.dungeonSheet.
+created PoolFunctions.SetObjectPoolTexture(Texture2D).
+updated BuildDungeon() to call SetObjectPoolTexture() and pass the correct dungeon texture.
+playtested, working - but we need to update the floor sprites as well.
+
+
+
+
+
+update the floor sprite texture when we update the objs.
 
 
 
