@@ -1,4 +1,12 @@
-﻿Gif Capture process:
+﻿
+
+"As we enjoy great advantages from the inventions of others,
+we should be glad for an opportunity to serve others by an invention of ours,
+and this we should do freely and generously."
+- Benjamin Franklin	
+
+
+Gif Capture process:
 	run game in release mode
 	run LiceCap, expand capture area past program window about 10 pixels on each side
 	record at 30fps, open in photoshop and crop the frame down to just the game view (minus window title)
@@ -24,49 +32,47 @@ adding music:
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 	
 ram useage:
-	92mb on Win10.  98mb on XboxOne.
+	95mb on Win10.  98mb on XboxOne.
 	
 	
 	
-	
+
 	
 	
 	
 todo:
 
 
-7
+6
 
 
 
-bug: the floor sprite frames can be messed up for shop. part boss, part shop.
-cause: we weren't checking for the RoomType.Shop in BuildRoom().
-solution: added in a check to set the floor sprite if Room.type equals Shop.
-playtested, bug fixed.
-
-
-
-
-
-future bug: we should only allow location movement on overworld screen if the screen is opened.
-if the screen is closing, don't let the player change the selected location.
-this will lead to a case where the player presses a direction at the last minute and they load into the 'wrong' area.
+created ShopSheet, and several sprites inside of it.
+added to content project, built.
+added instances to Assets to load the new ShopSheet.
+playtested, working. ram is 95mb on pc.
 
 
 
 
 
 
-we need to update BuildDungeon to check Dungeon.DungeonType
 
-
-
-
-now we need to build a dungeon just for the shop location
-for now, this will just be one room with an exit.
-which means we need to be able to set the dugeon type - enum?
 
 we'll need to switch out the dungeon sheet with a shop sheet, which means we'll need a shop sheet.
+create the shop sheet, load it into content/assets.
+
+create a dungeonSheet pointer. this will point to the cursed castle sheet or the shop sheet.
+when we build the dungeon, just switch where dungeonSheet points.
+all dungeon objects should use the dungeonSheet as their texture.
+the dungeon sheet should default to cursed castle sheet.
+
+in the future we'll load additional dungeon sheets into ram
+then switch where the dungeonSheet points to from BuildDungeon() based on dungeon type.
+
+
+	
+	
 	
 	
 	

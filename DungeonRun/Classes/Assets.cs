@@ -35,6 +35,7 @@ namespace DungeonRun
         public static Texture2D mainSheet;
         public static Texture2D bigTextSheet;
         public static Texture2D dungeonSheet;
+        public static Texture2D shopSheet;
         public static Texture2D overworldSheet;
 
 
@@ -140,6 +141,7 @@ namespace DungeonRun
             mainSheet = content.Load<Texture2D>(@"MainSheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
             dungeonSheet = content.Load<Texture2D>(@"DungeonSheet");
+            shopSheet = content.Load<Texture2D>(@"ShopSheet");
             overworldSheet = content.Load<Texture2D>(@"OverworldTexture");
 
 
