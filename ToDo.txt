@@ -38,18 +38,71 @@ todo:
 13
 
 
-updated Readme with date for v0.3 release.
-updated Versions with more information.
+
+
+
+bug: if hero collides with a heart during the death animation, he picks it up.
+this causes his health to be displayed as 1, not 0, which is nonsensical.
+solution: if an actor is dead, lock their health to 0.
+	
+	
+	
+	
 	
 	
 	
 Version 0.4 Milestones
-
-	SHOPS
-	create shop rooms, which are hardcoded (algo)
-	link them up to the overworld screen, via locations
-	play title music when hero is in a shop
 	
+SHOPS
+	for simplicity, there should only be one shop location
+	all the 'vendors' will be present in that shop dungeon
+	the shop dungeon uses it's own texture sheet, which resembles the interior of a home
+	each vendor is a gameobject, that is interacted with just like chests
+	speaking with a vendor opens the shop screen
+	shop rooms are hardcoded, not designed thru editor
+	title music plays while hero is in shop dungeon
+	that means that we'll need a dungeon type enum to seperate cursed castle level from shop level
+	
+Shop Screen
+	a collection of widgets: 
+		top right info widget
+		central left shop inventory widget
+		bottom right cost + gold total widget
+	player browses the inventory, info displays menuItem description
+	cost widget takes a menuItem and displays it's cost, along with hero's total gold
+	player purchases an item with A button
+	shop screen handles the actual gold transaction
+
+Inventory
+	we'll need to track what items/weapons/armor/equipment the hero has access to, and what's equipped
+	lets use a bit field to do this: weapons {1, 1, 0, 0, 0} = sword, bow, locked, locked, locked
+	then from shop screen we can check the bit field and only display weapons that are locked
+	this extends to items, magic, weapons, armor, equipment
+		
+Shop Room Polisj
+	we'll need to draw gameobjects like desks, drawers, bookcases, etc.. to make shops look like shops
+	but i don't want to pollute the gameobj class with these one-off objects
+	instead we'll just switch out the sprites in the spritesheet and build the objects using the dungeon obj names
+	so, for example, a bookcase might be built by creating a wallTorch object.
+	the issue is that the objects will need to have similar collision recs
+	otherwise we have to extend gameobj.type enum, and setType() method, which i don't want to do.
+	but, it may have to be done for certain objects
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Version 0.5 Milestones
+
 	ROOM EDITOR + ROOM DATA
 	build the room editor screen
 	standardize all room types + sizes
@@ -77,16 +130,6 @@ Version 0.4 Milestones
 	create room editor, standardize room sizes
 	
 	
-	
-Version 0.5 Milestones	
-	
-	INVENTORY
-	we should be setting the loadout menuItems based on what the player selects/chooses
-	this is related to the hero's loadout data, which we haven't planned out yet
-	weapons = [1,1,0,0,0] - something like this, a byte list
-	items, magic, armor, equipment
-	
-	SAVE/LOAD
 	
 	
 	

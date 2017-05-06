@@ -283,7 +283,8 @@ namespace DungeonRun
                 //lock actor into the death state
                 if (Actor.state == ActorState.Dead)
                 {
-                    Actor.lockCounter = 0;
+                    Actor.lockCounter = 0; //lock actor into dead state
+                    Actor.health = 0; //lock actor's health at 0
 
 
                     #region Boss & Hero Death Effects
