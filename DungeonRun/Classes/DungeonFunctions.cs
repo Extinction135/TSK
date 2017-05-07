@@ -508,17 +508,14 @@ namespace DungeonRun
                     0 * 16 + pos.Y + 0);
                 GameObjectFunctions.SetType(objRef, ObjType.BlockLight);
 
-                
-                /*
-                //bar end cap
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    9 * 16 + pos.X + 8,
-                    4 * 16 + pos.Y + 8);
-                GameObjectFunctions.SetType(objRef, ObjType.SwitchBlockUp);
-                */
 
 
+
+
+                #region Create Item Vendor
+
+                //this will likely become a function later on that we pass an ObjType to
+                //then using the ObjType, function creates the correct vendor + ads + table + rugs
 
                 //stone table
                 objRef = PoolFunctions.GetObj();
@@ -542,7 +539,7 @@ namespace DungeonRun
                 objRef.compAnim.currentAnimation = new List<Byte4>
                 { new Byte4(5, 5, 0, 0), new Byte4(5, 6, 0, 0) };
 
-
+                #endregion
 
 
             }

@@ -52,42 +52,27 @@ ram useage:
 todo:
 
 
-10
+9
 
 
 
-removed bar end cap sprite from shop dungeon sheet.
-moved the stone table sprite to the location of the switch block up sprite.
-this fixes a future bug where the hero would of been able to drag the stone table.
-if we have advertisements on the table, the ad would float in the air. nonsensical.
-udpated DungeonFunctions.FinishRoom() to create a stone table using SwitchBlockUp object.
-playtested, working as expected.
+changed the placement of music text in debugInfo slightly, to better fit on screen.
+added shadows around the shop's exit pillar.
+
+updated the unknown item sprite, updated various mockups that used it too.
+created mockup for the Vendor screen, reusing two widgets and only needing a single new one.
 
 
 
 
-we don't need the bar end cap, remove the sprite from dungeon sheet.
-we should move the stone table into the position where the bar end cap was.
-we shouldn't be able to drag or pull stone tables, so move them to the position of the switch block up sprite frame.
-
-update the obj.type and placement to make sure we're placing the stone table properly again
 
 
-
-in debug info, we can move the music info section -8px on x axis
-
-we should add shadows around the outer edge of the shop exit object's pillars
-but not on the side that faces the outside light
 
 
 need a sound effect for interaction with vendor obj
-
-place item vendor next to the stone table
-place an item
-
+* actually this could be the vendor screen opening sound
 
 create vendor stalls, place rugs under/around the stalls
-	
 	
 need mockups for the vendor screen
 a collection of widgets: 

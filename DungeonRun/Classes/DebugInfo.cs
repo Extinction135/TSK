@@ -74,7 +74,7 @@ namespace DungeonRun
             textFields.Add(recordText);
 
             musicText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 26, yPos + 00), Assets.colorScheme.textLight);
+                new Vector2(16 * 26 - 8, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(musicText);
 
             saveDataText = new ComponentText(Assets.font, "",
