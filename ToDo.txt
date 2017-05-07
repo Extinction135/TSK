@@ -52,34 +52,25 @@ ram useage:
 todo:
 
 
-3
+2
 
 
 
-removed size parameter from ForSale Widget, hard coded it, updated VendorScreen.
-removed size parameter from Info Widget, hard coded it, updated Vendor & Inventory Screens.
-removed size parameter from Inventory Widget, hard coded it, updated Inventory Screen.
-removed size parameter from Loadout Widget, hard coded it, updated Vendor & Inventory Screens.
+
+removed size parameter from Options Widget, hard coded it, updated Inventory Screens.
+removed size parameter from Stats Widget, hard coded it, updated Inventory Screens.
+updated Loadout Widget to always animate the inventory gold menuItem.
+this draws the player's attention on both inventory + vendor screens.
 playtested, working as expected.
 
 
 
 
 
-widgets know their size, that's not something we should be passing in as a parameter.
-update all the widget's reset() functions to remove the size parameter.
-hard code their size into the reset() function, per widget.
-
-^ split into two commits
 
 in inventory screen, the selection box should only draw if the screen is opened
 rn, it draws while the screen is opening too
 this same problem occurs with vendor screen too
-
-
-animate the gold menuItem on vendor screen
-animate the gold menuItem on inventory screen too
-should this be done in loadout.update()
 
 
 

@@ -115,6 +115,7 @@ namespace DungeonRun
         public static void Update()
         {
             window.Update();
+            AnimationFunctions.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
         }
 
         public static void Draw()

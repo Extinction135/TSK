@@ -38,14 +38,10 @@ namespace DungeonRun
             displayState = DisplayState.Opening;
 
             MenuWidgetLoadout.Reset(new Point(16 * 9, 16 * 4));
-            MenuWidgetStats.Reset(
-                new Point(16 * 9, 16 * 10),
-                new Point(16 * 6 + 8, 16 * 8 + 8));
+            MenuWidgetStats.Reset(new Point(16 * 9, 16 * 10));
             MenuWidgetInventory.Reset(new Point(16 * 16, 16 * 4));
             MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 4));
-            MenuWidgetOptions.Reset(
-                new Point(16 * 24 + 8, 16 * 10),
-                new Point(16 * 6 + 8, 16 * 8 + 8));
+            MenuWidgetOptions.Reset(new Point(16 * 24 + 8, 16 * 10));
 
 
             #region Connect loadout widget's menuItems to stats widget's menuItems
@@ -197,7 +193,7 @@ namespace DungeonRun
             else { selectionBox.alpha += 0.025f; }
             //match the position of the selectionBox to the currently selected menuItem
             selectionBox.position = currentlySelected.compSprite.position;
-            AnimationFunctions.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
+            
             //scale the selectionBox down to 1.0
             if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
             else { selectionBox.scale = 1.0f; }
