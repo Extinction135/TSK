@@ -37,18 +37,12 @@ namespace DungeonRun
         {
             displayState = DisplayState.Opening;
 
-            MenuWidgetLoadout.Reset(
-                new Point(16 * 9, 16 * 4),
-                new Point(16 * 6 + 8, 16 * 5 + 8));
+            MenuWidgetLoadout.Reset(new Point(16 * 9, 16 * 4));
             MenuWidgetStats.Reset(
                 new Point(16 * 9, 16 * 10),
                 new Point(16 * 6 + 8, 16 * 8 + 8));
-            MenuWidgetInventory.Reset(
-                new Point(16 * 16, 16 * 4),
-                new Point(16 * 8, 16 * 14 + 8));
-            MenuWidgetInfo.Reset(
-                new Point(16 * 24 + 8, 16 * 4),
-                new Point(16 * 6 + 8, 16 * 5 + 8));
+            MenuWidgetInventory.Reset(new Point(16 * 16, 16 * 4));
+            MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 4));
             MenuWidgetOptions.Reset(
                 new Point(16 * 24 + 8, 16 * 10),
                 new Point(16 * 6 + 8, 16 * 8 + 8));

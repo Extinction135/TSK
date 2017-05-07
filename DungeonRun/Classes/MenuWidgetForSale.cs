@@ -30,9 +30,11 @@ namespace DungeonRun
             for (i = 0; i < 10; i++) { menuItems.Add(new MenuItem()); }
         }
 
-        public static void Reset(Point Position, Point Size)
-        {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position, Size, "For Sale - 000");
+        public static void Reset(Point Position)
+        {   //align this widgets component to Position
+            window.ResetAndMoveWindow(Position, 
+                new Point(16 * 8, 16 * 5 + 8), 
+                "For Sale - 000");
 
 
             #region Place first row of menuItems

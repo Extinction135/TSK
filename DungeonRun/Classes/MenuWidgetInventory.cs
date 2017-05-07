@@ -82,22 +82,24 @@ namespace DungeonRun
             Child.compSprite.position.Y = Parent.compSprite.position.Y;
         }
 
-        public static void Reset(Point Position, Point Size)
+        public static void Reset(Point Position)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position, Size, "Items");
+            window.ResetAndMoveWindow(Position,
+                new Point(16 * 8, 16 * 14 + 8), 
+                "Items");
 
 
             #region Reset and align dividers
 
             //set1 - weapons
-            ResetDivider(dividers[0], Position.X + 8, Position.Y + 16 * 4 + 8, Size.X - 16);
-            ResetDivider(dividers[1], Position.X + 8, Position.Y + 16 * 5 + 8, Size.X - 16);
+            ResetDivider(dividers[0], Position.X + 8, Position.Y + 16 * 4 + 8, window.size.X - 16);
+            ResetDivider(dividers[1], Position.X + 8, Position.Y + 16 * 5 + 8, window.size.X - 16);
             //set2 - armor
-            ResetDivider(dividers[2], Position.X + 8, Position.Y + 16 * 7 + 8, Size.X - 16);
-            ResetDivider(dividers[3], Position.X + 8, Position.Y + 16 * 8 + 8, Size.X - 16);
+            ResetDivider(dividers[2], Position.X + 8, Position.Y + 16 * 7 + 8, window.size.X - 16);
+            ResetDivider(dividers[3], Position.X + 8, Position.Y + 16 * 8 + 8, window.size.X - 16);
             //set3 - equipment
-            ResetDivider(dividers[4], Position.X + 8, Position.Y + 16 * 10 + 8, Size.X - 16);
-            ResetDivider(dividers[5], Position.X + 8, Position.Y + 16 * 11 + 8, Size.X - 16);
+            ResetDivider(dividers[4], Position.X + 8, Position.Y + 16 * 10 + 8, window.size.X - 16);
+            ResetDivider(dividers[5], Position.X + 8, Position.Y + 16 * 11 + 8, window.size.X - 16);
 
             #endregion
 

@@ -40,9 +40,11 @@ namespace DungeonRun
             goldBkg = new Rectangle(0, 0, 9, 7);
         }
 
-        public static void Reset(Point Position, Point Size)
+        public static void Reset(Point Position)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position, Size, "Info Window");
+            window.ResetAndMoveWindow(Position,
+                new Point(16 * 6 + 8, 16 * 5 + 8), 
+                "Info Window");
             description.position.X = Position.X + 8;
             description.position.Y = Position.Y + 16 * 3;
             //reset the infoItem to unknown, align it
@@ -53,7 +55,7 @@ namespace DungeonRun
             divider1.openDelay = window.headerLine.openDelay;
             divider1.position.X = Position.X + 8;
             divider1.position.Y = Position.Y + 16 * 3;
-            divider1.size.X = Size.X - 16;
+            divider1.size.X = window.size.X - 16;
             divider1.size.Y = 1;
             divider1.Reset();
             //align the goldAmount to the infoItem

@@ -36,9 +36,11 @@ namespace DungeonRun
             goldBkg = new Rectangle(0, 0, 9, 7);
         }
 
-        public static void Reset(Point Position, Point Size)
+        public static void Reset(Point Position)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position, Size, "Loadout");
+            window.ResetAndMoveWindow(Position,
+                new Point(16 * 6 + 8, 16 * 5 + 8), 
+                "Loadout");
 
 
             #region Place first row of menuItems

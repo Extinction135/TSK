@@ -41,15 +41,9 @@ namespace DungeonRun
         {
             displayState = DisplayState.Opening;
 
-            MenuWidgetLoadout.Reset(
-                new Point(16 * 9, 16 * 8),
-                new Point(16 * 6 + 8, 16 * 5 + 8));
-            MenuWidgetForSale.Reset(
-                new Point(16 * 16, 16 * 8),
-                new Point(16 * 8, 16 * 5 + 8));
-            MenuWidgetInfo.Reset(
-                new Point(16 * 24 + 8, 16 * 8),
-                new Point(16 * 6 + 8, 16 * 5 + 8));
+            MenuWidgetLoadout.Reset(new Point(16 * 9, 16 * 8));
+            MenuWidgetForSale.Reset(new Point(16 * 16, 16 * 8));
+            MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 8));
 
             //set the menuItems based on the vendorType
             if(vendorType.type == ObjType.VendorItems)

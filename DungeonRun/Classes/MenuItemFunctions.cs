@@ -320,7 +320,7 @@ namespace DungeonRun
 
             else
             {   //if the type was unhandled, default to unknown
-                MenuItem.name = "Uknown";
+                MenuItem.name = "Unknown";
                 MenuItem.description = "No description available\nfor this item.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 5, 0, 0) };
             }

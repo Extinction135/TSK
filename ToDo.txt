@@ -52,36 +52,43 @@ ram useage:
 todo:
 
 
-4
-
-
-updated MenuItemFunctions.SetType() to set the default price for menuItems to 0.
-updated various codepaths in SetType() to then set specific prices for certain menuItems.
-playtested, vendor screen now displaying proper prices for item for sale.
+3
 
 
 
+removed size parameter from ForSale Widget, hard coded it, updated VendorScreen.
+removed size parameter from Info Widget, hard coded it, updated Vendor & Inventory Screens.
+removed size parameter from Inventory Widget, hard coded it, updated Inventory Screen.
+removed size parameter from Loadout Widget, hard coded it, updated Vendor & Inventory Screens.
+playtested, working as expected.
 
 
 
 
-we need to set the price of menuItems in menuItemFunctions.SetType()
 
 widgets know their size, that's not something we should be passing in as a parameter.
 update all the widget's reset() functions to remove the size parameter.
 hard code their size into the reset() function, per widget.
 
-create vendor stalls, place rugs under/around the stalls
-	
-	
+^ split into two commits
+
 in inventory screen, the selection box should only draw if the screen is opened
 rn, it draws while the screen is opening too
-	
-	
-	
-	
-	
-	
+this same problem occurs with vendor screen too
+
+
+animate the gold menuItem on vendor screen
+animate the gold menuItem on inventory screen too
+should this be done in loadout.update()
+
+
+
+
+
+
+
+create vendor stalls, place rugs under/around the stalls
+
 	
 	
 Version 0.4 Milestones
