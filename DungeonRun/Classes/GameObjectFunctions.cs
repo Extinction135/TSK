@@ -312,19 +312,6 @@ namespace DungeonRun
                 { Obj.group = ObjGroup.Chest; }
             }
 
-
-
-            else if (Type == ObjType.VendorItems)
-            {   //match the collision rec of a chest, for now
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
-                Obj.compSprite.zOffset = -7;
-                Obj.group = ObjGroup.Vendor;
-                Obj.compAnim.speed = 20; //in frames, may need to be slower
-            }
-
-
-
             else if (Type == ObjType.BlockDraggable)
             {
                 Obj.compCollision.rec.Height = 12;
@@ -401,6 +388,29 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Shop Objects
+
+            else if (Type == ObjType.VendorItems)
+            {   //match the collision rec of a chest, for now
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.zOffset = -7;
+                Obj.group = ObjGroup.Vendor;
+                Obj.compAnim.speed = 20; //slow animation
+            }
+
+            else if (Type == ObjType.VendorAdvertisement)
+            {
+                Obj.compCollision.blocking = false;
+                Obj.compSprite.zOffset = 32;
+                Obj.group = ObjGroup.Vendor;
+                Obj.compAnim.speed = 100; //slow animation
+            }
+
+            #endregion
+
 
 
             #region Items
@@ -521,6 +531,9 @@ namespace DungeonRun
 
             //particles do not block upon collision
             if (Obj.group == ObjGroup.Particle) { Obj.compCollision.blocking = false; }
+            //all vendors use the main sheet as their texture
+            if(Obj.group == ObjGroup.Vendor) { Obj.compSprite.texture = Assets.mainSheet; }
+
 
             SetRotation(Obj);
             GameObjectAnimListManager.SetAnimationList(Obj); //set obj animation list based on type

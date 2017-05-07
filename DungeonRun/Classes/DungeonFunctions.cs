@@ -529,9 +529,20 @@ namespace DungeonRun
                 //item vendor
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
-                    7 * 16 + pos.X + 8,
-                    3 * 16 + pos.Y + 8);
+                    6 * 16 + pos.X + 8,
+                    4 * 16 + pos.Y + 8);
                 GameObjectFunctions.SetType(objRef, ObjType.VendorItems);
+                //item vendor advertisement
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    7 * 16 + pos.X + 8,
+                    4 * 16 + pos.Y + 2);
+                GameObjectFunctions.SetType(objRef, ObjType.VendorAdvertisement);
+                //display all the items available for purchase
+                objRef.compAnim.currentAnimation = new List<Byte4>
+                { new Byte4(5, 5, 0, 0), new Byte4(5, 6, 0, 0) };
+
+
 
 
             }

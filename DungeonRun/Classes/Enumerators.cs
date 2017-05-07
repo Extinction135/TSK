@@ -45,15 +45,19 @@ namespace DungeonRun
         WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallDecoration,
         PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, BossDecal, Pillar, WallTorch, DebrisFloor,
+
         //Interactive Objects
         ChestGold, ChestKey, ChestMap, ChestHeartPiece, ChestEmpty,
-
-        VendorItems,
-
         BlockDraggable, BlockDark, BlockLight, BlockSpikes,
         Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, ConveyorBelt,
+
+        //Shop Objects
+        VendorItems,
+        VendorAdvertisement,
+
+
         //Items - picked up by hero
         ItemRupee, ItemHeart,
         //Projectiles

@@ -52,16 +52,45 @@ ram useage:
 todo:
 
 
-12
+11
+
+
+updated GameObjFunctions.SetType() to set all vendor object's sprite sheet to main sheet.
+moved vendors back into the main sheet, so we don't pollute dungeon sheets unnecessarily.
+moved rug sprites into main sheet, out of shop dungeon sheet.
+updated item vendor's animation list to use main sheet frame positioning.
+
+moved 'VendorItems' value into ShopObjects section in ObjType enumerator.
+created region 'ShopObjects' in GameObjAnimListManager, moved 'VendorItems' into this region.
+created 'VendorAdvertisement' value in ObjType enumerator.
+created 'VendorAdvertisement' animation list in GameObjAnimListManager, defaults to boomerang sprite.
+created 'ShopObjects' region in GameObjFunctions.SetType(), some reorganization occurred.
+created path in GameObjFunctions for VendorAdvertisement.
+updated DungeonFunctions.FinishRoom() to create a VendorAdvertisement on stone table.
+updated the Ad's current animation with list for all item sprites.
 
 
 
-bug: item vendor does not display properly.
-cause: objects in the object pool use the dungeon sheet, and item vendor sprite is in the main sheet.
-solution: moved vendors into the (dungeon) shop sheet.
-updated vendor item's animation list to reflect new frame positioning.
-playtested, working as expected, but the item vendor animates too fast.
-slowed down the item vendor's animation. playtested, looking much better.
+
+
+
+
+
+moved item vendor next to the testing stone table.
+
+place bomb item on the stone table (hero cannot pick this up)
+
+this should be a gameobject without a collision rec, that sorts above everything else
+has an animation list that iterates thru all the items in the sheet, slowly (slow animation)
+doesn't collide or interact with hero at all
+
+
+this can be a generic advertisement object.
+we'll set the advertisement object's animation list after we get it
+
+
+
+
 
 
 
@@ -69,6 +98,9 @@ slowed down the item vendor's animation. playtested, looking much better.
 
 
 need a sound effect for interaction with vendor obj
+
+place item vendor next to the stone table
+place an item
 
 
 create vendor stalls, place rugs under/around the stalls

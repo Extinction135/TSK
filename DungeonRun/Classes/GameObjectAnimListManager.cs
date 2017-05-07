@@ -101,9 +101,6 @@ namespace DungeonRun
                 //ChestEmpty
                 new List<Byte4> { new Byte4(2, 6, 0, 0) },
 
-                //VendorItems
-                new List<Byte4> { new Byte4(1, 7, 0, 0), new Byte4(1, 7, 1, 0) },
-
                 //BlockDraggable
                 new List<Byte4> { new Byte4(2, 4, 0, 0) },
                 //BlockDark
@@ -138,6 +135,16 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(7, 4, 0, 0), new Byte4(7, 5, 0, 0), new Byte4(7, 6, 0, 0), new Byte4(7, 7, 0, 0) },
                 //ConveyorBelt
                 new List<Byte4> { new Byte4(4, 6, 0, 0), new Byte4(5, 6, 0, 0), new Byte4(6, 6, 0, 0) },
+
+                #endregion
+
+
+                #region Shop Objects
+
+                //VendorItems
+                new List<Byte4> { new Byte4(5, 15, 0, 0), new Byte4(5, 15, 1, 0) },
+                //VendorAdvertisement
+                new List<Byte4> { new Byte4(5, 5, 0, 0) },
 
                 #endregion
 
