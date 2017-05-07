@@ -56,6 +56,7 @@ namespace DungeonRun
         {
             //set the MenuItem data based on the passed Type
             MenuItem.type = Type;
+            MenuItem.price = 0; //defaults to 0
 
 
             #region Item menuItems
@@ -65,12 +66,14 @@ namespace DungeonRun
                 MenuItem.name = "Magic Boomerang";
                 MenuItem.description = "A magical boomerang.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 5, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.ItemBomb)
             {
                 MenuItem.name = "Explosive Bomb";
                 MenuItem.description = "An explosive bomb.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 6, 0, 0) };
+                MenuItem.price = 50;
             }
 
             #endregion
@@ -83,18 +86,21 @@ namespace DungeonRun
                 MenuItem.name = "Empty Bottle";
                 MenuItem.description = "An empty bottle.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 5, 0, 0) };
+                MenuItem.price = 99;
             }
             else if (Type == MenuItemType.BottleHealth)
             {
                 MenuItem.name = "Health Potion";
                 MenuItem.description = "Fully restores all\navailable hearts.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 6, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.BottleFairy)
             {
                 MenuItem.name = "Fairy in a Bottle";
                 MenuItem.description = "Revives hero upon\ndeath.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 9, 0, 0) };
+                MenuItem.price = 50;
             }
 
             #endregion
@@ -107,6 +113,7 @@ namespace DungeonRun
                 MenuItem.name = "Fireball Magic";
                 MenuItem.description = "Shoots a fireball\nin the facing direction.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 5, 0, 0) };
+                MenuItem.price = 99;
             }
 
             #endregion
@@ -119,18 +126,21 @@ namespace DungeonRun
                 MenuItem.name = "Magic Sword";
                 MenuItem.description = "A magic sword.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(8, 5, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.WeaponBow)
             {
                 MenuItem.name = "Magic Bow";
                 MenuItem.description = "A magic bow.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(8, 6, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.WeaponStaff)
             {
                 MenuItem.name = "Magic Staff";
                 MenuItem.description = "A magic staff.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(8, 7, 0, 0) };
+                MenuItem.price = 50;
             }
 
             #endregion
@@ -143,24 +153,28 @@ namespace DungeonRun
                 MenuItem.name = "Basic Cloth";
                 MenuItem.description = "A basic tshirt.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 5, 0, 0) };
+                MenuItem.price = 0;
             }
             else if (Type == MenuItemType.ArmorChest)
             {
                 MenuItem.name = "Plate Armor";
                 MenuItem.description = "Heavy plate armor.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 6, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.ArmorCape)
             {
                 MenuItem.name = "Magic Cape";
                 MenuItem.description = "A magical cape.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 7, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.ArmorRobe)
             {
                 MenuItem.name = "Magic Robe";
                 MenuItem.description = "A magical robe.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 8, 0, 0) };
+                MenuItem.price = 50;
             }
 
             #endregion
@@ -173,30 +187,35 @@ namespace DungeonRun
                 MenuItem.name = "Magic Ring";
                 MenuItem.description = "A magic ring.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 5, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.EquipmentPearl)
             {
                 MenuItem.name = "Magic Pearl";
                 MenuItem.description = "A magic pearl.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 6, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.EquipmentNecklace)
             {
                 MenuItem.name = "Magic Necklace";
                 MenuItem.description = "A magic necklace.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 7, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.EquipmentGlove)
             {
                 MenuItem.name = "Magic Glove";
                 MenuItem.description = "A magic glove.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 8, 0, 0) };
+                MenuItem.price = 50;
             }
             else if (Type == MenuItemType.EquipmentPin)
             {
                 MenuItem.name = "Magic Pin";
                 MenuItem.description = "A magic pin.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 9, 0, 0) };
+                MenuItem.price = 50;
             }
 
             #endregion

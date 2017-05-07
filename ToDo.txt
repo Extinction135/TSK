@@ -52,28 +52,18 @@ ram useage:
 todo:
 
 
-5
+4
 
 
-disconnected the loadout widget's menuItems from the forSale widget's menuItems.
-this prevents the loadout menuItem's price from being displayed in the forSale title.
-it wouldn't make sense to display those values.
-
-created ScreenVendor.GetPrice(MenuItem).
-this replaces the routines being used in HandleInput to display the currently selected menuItem's price.
-added a call to GetPrice() from the screen's LoadContent() method, so the screen initially displays the default menuItem's price.
-playtested, working as expected.
+updated MenuItemFunctions.SetType() to set the default price for menuItems to 0.
+updated various codepaths in SetType() to then set specific prices for certain menuItems.
+playtested, vendor screen now displaying proper prices for item for sale.
 
 
 
 
 
 
-
-we shouldn't be able to select the loadout widget's menuItems on vendor screen
-due to how we are displaying the item's price, selecting a loadout item would display it's price in forSale widget
-this doesn't make any sense. so, instead just break the neighbor links between loadout and forSale widget.
-then set the initial selected menuItem to the forSale menuItem[0].
 
 we need to set the price of menuItems in menuItemFunctions.SetType()
 
