@@ -52,25 +52,17 @@ ram useage:
 todo:
 
 
-2
+1
 
 
 
+updated inventory & vendor screens to only draw the selection box once the screen has finished opening animation.
+updated inventory & vendor screens to initially display the selection box at x2 scale.
+when the box starts drawing upon Opened state, it scales down to 1, grabbing the player's attention.
+playtested, working as expected. missing the sound effect that occurs when the selection box moves tho.
+added in call to the selection/move sound effect upon displayState switch to Opened.
+playtested, working as intended.
 
-removed size parameter from Options Widget, hard coded it, updated Inventory Screens.
-removed size parameter from Stats Widget, hard coded it, updated Inventory Screens.
-updated Loadout Widget to always animate the inventory gold menuItem.
-this draws the player's attention on both inventory + vendor screens.
-playtested, working as expected.
-
-
-
-
-
-
-in inventory screen, the selection box should only draw if the screen is opened
-rn, it draws while the screen is opening too
-this same problem occurs with vendor screen too
 
 
 

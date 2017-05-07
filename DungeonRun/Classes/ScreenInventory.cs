@@ -165,10 +165,12 @@ namespace DungeonRun
             if (displayState == DisplayState.Opening)
             {   
                 bkgAlpha += fadeInSpeed;
+                selectionBox.scale = 2.0f;
                 if (bkgAlpha >= maxAlpha)
                 {
                     bkgAlpha = maxAlpha;
                     displayState = DisplayState.Opened;
+                    Assets.Play(Assets.sfxTextLetter);
                 }
             }
             //fade background out
@@ -209,8 +211,10 @@ namespace DungeonRun
             MenuWidgetInfo.Draw();
             MenuWidgetInventory.Draw();
             MenuWidgetOptions.Draw();
-
-            DrawFunctions.Draw(selectionBox);
+            //only draw the selection box if the screen has opened completely
+            if (displayState == DisplayState.Opened)
+            { DrawFunctions.Draw(selectionBox); }
+            
             ScreenManager.spriteBatch.End();
         }
 
