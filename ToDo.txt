@@ -52,49 +52,32 @@ ram useage:
 todo:
 
 
-11
+10
 
 
-updated GameObjFunctions.SetType() to set all vendor object's sprite sheet to main sheet.
-moved vendors back into the main sheet, so we don't pollute dungeon sheets unnecessarily.
-moved rug sprites into main sheet, out of shop dungeon sheet.
-updated item vendor's animation list to use main sheet frame positioning.
 
-moved 'VendorItems' value into ShopObjects section in ObjType enumerator.
-created region 'ShopObjects' in GameObjAnimListManager, moved 'VendorItems' into this region.
-created 'VendorAdvertisement' value in ObjType enumerator.
-created 'VendorAdvertisement' animation list in GameObjAnimListManager, defaults to boomerang sprite.
-created 'ShopObjects' region in GameObjFunctions.SetType(), some reorganization occurred.
-created path in GameObjFunctions for VendorAdvertisement.
-updated DungeonFunctions.FinishRoom() to create a VendorAdvertisement on stone table.
-updated the Ad's current animation with list for all item sprites.
+removed bar end cap sprite from shop dungeon sheet.
+moved the stone table sprite to the location of the switch block up sprite.
+this fixes a future bug where the hero would of been able to drag the stone table.
+if we have advertisements on the table, the ad would float in the air. nonsensical.
+udpated DungeonFunctions.FinishRoom() to create a stone table using SwitchBlockUp object.
+playtested, working as expected.
 
 
 
 
+we don't need the bar end cap, remove the sprite from dungeon sheet.
+we should move the stone table into the position where the bar end cap was.
+we shouldn't be able to drag or pull stone tables, so move them to the position of the switch block up sprite frame.
+
+update the obj.type and placement to make sure we're placing the stone table properly again
 
 
 
+in debug info, we can move the music info section -8px on x axis
 
-moved item vendor next to the testing stone table.
-
-place bomb item on the stone table (hero cannot pick this up)
-
-this should be a gameobject without a collision rec, that sorts above everything else
-has an animation list that iterates thru all the items in the sheet, slowly (slow animation)
-doesn't collide or interact with hero at all
-
-
-this can be a generic advertisement object.
-we'll set the advertisement object's animation list after we get it
-
-
-
-
-
-
-
-
+we should add shadows around the outer edge of the shop exit object's pillars
+but not on the side that faces the outside light
 
 
 need a sound effect for interaction with vendor obj
@@ -104,6 +87,14 @@ place an item
 
 
 create vendor stalls, place rugs under/around the stalls
+	
+	
+need mockups for the vendor screen
+a collection of widgets: 
+	top right info widget
+	central left shop inventory widget
+	bottom right cost + gold total widget
+	
 	
 	
 	

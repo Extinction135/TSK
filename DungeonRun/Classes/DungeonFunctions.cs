@@ -525,7 +525,7 @@ namespace DungeonRun
                 MovementFunctions.Teleport(objRef.compMove,
                     7 * 16 + pos.X + 8,
                     4 * 16 + pos.Y + 8);
-                GameObjectFunctions.SetType(objRef, ObjType.BlockDraggable);
+                GameObjectFunctions.SetType(objRef, ObjType.SwitchBlockUp);
                 //item vendor
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
