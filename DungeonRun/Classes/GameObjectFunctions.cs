@@ -311,6 +311,22 @@ namespace DungeonRun
                 if (Type != ObjType.ChestEmpty)
                 { Obj.group = ObjGroup.Chest; }
             }
+
+
+
+            else if (Type == ObjType.VendorItems)
+            {   //match the collision rec of a chest, for now
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.zOffset = -7;
+                Obj.group = ObjGroup.Vendor;
+
+                //Obj.compAnim.speed = 6; //in frames
+                //Obj.compAnim.loop = true;
+            }
+
+
+
             else if (Type == ObjType.BlockDraggable)
             {
                 Obj.compCollision.rec.Height = 12;

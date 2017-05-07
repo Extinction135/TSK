@@ -6,6 +6,12 @@ and this we should do freely and generously."
 - Benjamin Franklin	
 
 
+there are 4 types of commits:
+	1. adding a feature
+	2. fixing a bug
+	3. refactoring / reorganizing
+	4. testing & profiling
+	
 Gif Capture process:
 	run game in release mode
 	run LiceCap, expand capture area past program window about 10 pixels on each side
@@ -39,35 +45,46 @@ ram useage:
 
 	
 	
+
+	
+	
 	
 todo:
 
 
-1
-
-
-added drawer and bookcase objects to shop room.
-added stone table object to shop room.
-added bar end cap to shop room.
-all these objects are actually other objects, just using the shop sheet.
-the collision recs still align, so it works.
-playtested, the shop dungeon is starting to look 'shoppy'.
+13
 
 
 
 
+updated exit pillar sprite in the shop sprite sheet.
+playtested, looking much better now.
+
+added sprites into MainSheet for item, weapon, armor, equipment, & potion vendors.
+added sprites for 'guide' NPC and dog.
+
+added 'VendorItems' value to ObjType enumerator.
+added animation list for 'VendorItems' to GameObjAnimListManager.
+added 'Vendor' value to ObjGroup enumerator.
+updated GameObjFunctions.SetType() to set Vendor objType for VendorItems type.
+updated InteractionFunctions.Interact(Actor, Obj) to handle Vendor group and VendorItems type.
+
+updated DugeonFunctions.FinishRoom() to place an item vendor behind stone table.
+playtested, the item vendor doesn't display properly because she's in the main sheet.
+the obj pool only uses the dungeon sheet. so she needs to be in the dungeon sheet.
+but, interaction with the vendor's collision rec works just fine, so it's only a visual bug.
 
 
 
 
 
+need a sound effect for interaction with vendor obj
 
 
-pref: extend parts of the exit sprite for shop out to wall's edge.
-it looks like it's just kinda floating off the wall.
-
-we'll also need to create 'vendors' and vendor stalls	
-and create rugs under/around the stalls
+create vendor stalls, place rugs under/around the stalls
+	
+	
+	
 	
 	
 	

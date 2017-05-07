@@ -35,7 +35,7 @@ namespace DungeonRun
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 
-    public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Item, Projectile, Particle }
+    public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Item, Projectile, Particle, Vendor }
 
     public enum ObjType
     {
@@ -47,6 +47,9 @@ namespace DungeonRun
         BossStatue, BossDecal, Pillar, WallTorch, DebrisFloor,
         //Interactive Objects
         ChestGold, ChestKey, ChestMap, ChestHeartPiece, ChestEmpty,
+
+        VendorItems,
+
         BlockDraggable, BlockDark, BlockLight, BlockSpikes,
         Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,

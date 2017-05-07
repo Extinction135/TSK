@@ -508,20 +508,30 @@ namespace DungeonRun
                     0 * 16 + pos.Y + 0);
                 GameObjectFunctions.SetType(objRef, ObjType.BlockLight);
 
-                //stone table
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    7 * 16 + pos.X + 8,
-                    4 * 16 + pos.Y + 8);
-                GameObjectFunctions.SetType(objRef, ObjType.BlockDraggable);
-
+                
+                /*
                 //bar end cap
                 objRef = PoolFunctions.GetObj();
                 MovementFunctions.Teleport(objRef.compMove,
                     9 * 16 + pos.X + 8,
                     4 * 16 + pos.Y + 8);
                 GameObjectFunctions.SetType(objRef, ObjType.SwitchBlockUp);
+                */
 
+
+
+                //stone table
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    7 * 16 + pos.X + 8,
+                    4 * 16 + pos.Y + 8);
+                GameObjectFunctions.SetType(objRef, ObjType.BlockDraggable);
+                //item vendor
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    7 * 16 + pos.X + 8,
+                    3 * 16 + pos.Y + 8);
+                GameObjectFunctions.SetType(objRef, ObjType.VendorItems);
 
 
             }
