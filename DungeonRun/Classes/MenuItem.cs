@@ -20,6 +20,7 @@ namespace DungeonRun
         public MenuItemType type;
         public String name = "";
         public String description = "";
+        public Byte price = 0;
         //the cardinal neighbors this menuItem links with
         public MenuItem neighborUp;
         public MenuItem neighborDown;

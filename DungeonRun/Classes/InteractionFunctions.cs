@@ -177,22 +177,15 @@ namespace DungeonRun
             #endregion
 
 
-            //Vendors
+            #region Vendors
+
             else if (Obj.group == ObjGroup.Vendor)
             {   //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
                 if (Actor == Pool.hero && Actor.state == ActorState.Interact)
-                {
-                    if (Obj.type == ObjType.VendorItems)
-                    {
-                        //open up the vendor screen, passing the obj as parameter
-                        //vendor screen checks for obj.type, display appropriate products
-                        ScreenManager.AddScreen(new ScreenVendor());
-                    }
-                }
+                { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
             }
 
-
-
+            #endregion
 
 
             #region Doors

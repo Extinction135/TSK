@@ -52,34 +52,22 @@ ram useage:
 todo:
 
 
-7
+6
 
 
 
 
-updated ForSaleWidget.Reset -> SetNeighbors() to 5 items per row.
-fixed a minor bug that placed some of the 2nd row menuItems on the first row Y position.
-playtested, these two bugs have been fixed.
+updated VendorScreen's constructor to accept a GameObj parameter.
+updated interactionFunctions.Interact() to pass the vendor obj to VendorScreen.
 
-pushed the vendor screen's widgets down 16 * 4, to center them to the screen.
-playtested, looking much better.
+updated ForSaleWidget to default it's for sale menuItems to unknown.
+updated VendorScreen to check for vendor type and set forSale widget's menuItems accordingly.
 
+added a 'price' field to menuItem, as a byte.
+updated VendorScreen.Input() to display the currently selected menuItem's price in the title of ForSale widget.
 
-
-
-
-
-
-push all the widgets down vertically to 16*8
-from inventory screen, they are set at 16*4
-
-
-
-we should pass the object into the venor screen
-vendor screen should check for object type, and set for sale item accordingly
-
-this means we cant have advertisement as objGroup.vendor tho
-it should be of object type, and set it's own texture in it's setType codepath type check..
+updated GameObjectFunctions.SetType() to set VendorAdvertisement objGroup to object, and texture to mainSheet.
+this fixes an issue where an advertisement could of been passed to the VendorScreen.
 
 
 
@@ -89,33 +77,14 @@ it should be of object type, and set it's own texture in it's setType codepath t
 
 
 
+
+we need to set the price of menuItems in menuItemFunctions.SetType()
 
 widgets know their size, that's not something we should be passing in as a parameter.
 update all the widget's reset() functions to remove the size parameter.
 hard code their size into the reset() function, per widget.
 
-
-
-create vendor screen
-	loadout widget
-	info widget
-	forSale widget
-	
-
-
-
-
-
-need a sound effect for interaction with vendor obj
-* actually this could be the vendor screen opening sound
-
 create vendor stalls, place rugs under/around the stalls
-	
-need mockups for the vendor screen
-a collection of widgets: 
-	top right info widget
-	central left shop inventory widget
-	bottom right cost + gold total widget
 	
 	
 	

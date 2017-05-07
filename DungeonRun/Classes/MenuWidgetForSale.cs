@@ -77,9 +77,6 @@ namespace DungeonRun
 
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
-            //set the menuItem's data - defaults to unknown
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
         }
 
         public static void Update()
@@ -96,7 +93,6 @@ namespace DungeonRun
                 { DrawFunctions.Draw(menuItems[i].compSprite); }
             }
         }
-
 
     }
 }

@@ -403,9 +403,9 @@ namespace DungeonRun
 
             else if (Type == ObjType.VendorAdvertisement)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = 32;
-                Obj.group = ObjGroup.Vendor;
                 Obj.compAnim.speed = 100; //slow animation
             }
 

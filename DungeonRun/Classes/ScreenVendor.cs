@@ -28,10 +28,14 @@ namespace DungeonRun
 
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
+        public GameObject vendorType;
 
 
-
-        public ScreenVendor() { this.name = "Vendor Screen"; }
+        public ScreenVendor(GameObject Obj)
+        {
+            this.name = "Vendor Screen";
+            vendorType = Obj;
+        }
 
         public override void LoadContent()
         {
@@ -52,6 +56,19 @@ namespace DungeonRun
             MenuWidgetLoadout.menuItems[7].neighborRight = MenuWidgetForSale.menuItems[5];
             MenuWidgetForSale.menuItems[0].neighborLeft = MenuWidgetLoadout.menuItems[3];
             MenuWidgetForSale.menuItems[5].neighborLeft = MenuWidgetLoadout.menuItems[7];
+
+
+            //set the menuItems based on the vendorType
+            if(vendorType.type == ObjType.VendorItems)
+            {
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, MenuWidgetForSale.menuItems[0]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, MenuWidgetForSale.menuItems[1]);
+            }
+            else
+            {
+                //other vendor for sale items here...
+            }
+
 
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];
@@ -85,6 +102,10 @@ namespace DungeonRun
             {
                 currentlySelected.compSprite.scale = 2.0f;
                 Assets.Play(Assets.sfxMenuItem);
+
+                //check if player already has currently selected in inventory
+                //calculate if player has enough gold to purchase currently selected
+                //either purchase or reject
             }
 
             //get the previouslySelected menuItem
@@ -109,6 +130,8 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxTextLetter);
                     previouslySelected.compSprite.scale = 1.0f;
                     selectionBox.scale = 2.0f;
+                    //display the currently selected item's price in the for sale window title
+                    MenuWidgetForSale.window.title.text = "For Sale - " + currentlySelected.price;
                 }
             }
 
