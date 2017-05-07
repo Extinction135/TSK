@@ -30,11 +30,6 @@ namespace DungeonRun
             menuItems = new List<MenuItem>();
             for (i = 0; i < 8; i++) { menuItems.Add(new MenuItem()); }
 
-            //throw some junk data into the items for checking
-            menuItems[0].name = "Boomerang";
-            menuItems[0].description = "a magical boomerang\nthat always returns";
-            menuItems[0].compSprite.currentFrame = new Byte4(5, 5, 0, 0);
-
             //create the gold amount text
             goldAmount = new ComponentText(Assets.font, "99", 
                 new Vector2(0, 0), Assets.colorScheme.textLight);
@@ -46,7 +41,7 @@ namespace DungeonRun
             window.ResetAndMoveWindow(Position, Size, "Loadout");
 
 
-            #region Place first row of loadout menuItems
+            #region Place first row of menuItems
 
             menuItems[0].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[0].compSprite.position.Y = window.background.position.Y + 16 * 2;
@@ -63,7 +58,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Place second row of loadout menuItems
+            #region Place second row of menuItems
 
             menuItems[4].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[4].compSprite.position.Y = window.background.position.Y + 16 * 3 + 8;

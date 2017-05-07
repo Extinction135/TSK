@@ -186,7 +186,7 @@ namespace DungeonRun
                     {
                         //open up the vendor screen, passing the obj as parameter
                         //vendor screen checks for obj.type, display appropriate products
-                        Debug.WriteLine("opening vendor screen..");
+                        ScreenManager.AddScreen(new ScreenVendor());
                     }
                 }
             }

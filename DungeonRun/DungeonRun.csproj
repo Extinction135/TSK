@@ -123,6 +123,7 @@
     <Compile Include="Classes\Input.cs" />
     <Compile Include="Classes\InteractionFunctions.cs" />
     <Compile Include="Classes\MenuItemFunctions.cs" />
+    <Compile Include="Classes\MenuWidgetForSale.cs" />
     <Compile Include="Classes\MenuWidgetInfo.cs" />
     <Compile Include="Classes\MenuItem.cs" />
     <Compile Include="Classes\MenuRectangle.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Classes\ScreenInventory.cs" />
     <Compile Include="Classes\ScreenOverworld.cs" />
     <Compile Include="Classes\ScreenSummary.cs" />
+    <Compile Include="Classes\ScreenVendor.cs" />
     <Compile Include="Classes\Structs.cs" />
     <Compile Include="Classes\Screen.cs" />
     <Compile Include="Classes\ScreenManager.cs" />

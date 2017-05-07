@@ -52,18 +52,53 @@ ram useage:
 todo:
 
 
-9
+8
 
 
 
-changed the placement of music text in debugInfo slightly, to better fit on screen.
-added shadows around the shop's exit pillar.
+cleaned up some old code leftover in MenuWidgetLoadout.cs.
+created MenuWidgetForSale.cs, based on MenuWidgetLoadout.cs.
+created VendorScreen, based on InventoryScreen.
+updated interactionFunctions.Interact(Actor, Obj) to create VendorScreen when hero talks to item vendor.
+playtested, working as expected. needs polish.
 
-updated the unknown item sprite, updated various mockups that used it too.
-created mockup for the Vendor screen, reusing two widgets and only needing a single new one.
 
 
 
+push all the widgets down vertically to 16*8
+from inventory screen, they are set at 16*4
+
+
+the forsale widget isn't displaying menuItems past #5. 
+there should be 4 more.
+
+
+we should pass the object into the venor screen
+vendor screen should check for object type, and set for sale item accordingly
+
+this means we cant have advertisement as objGroup.vendor tho
+it should be of object type, and set it's own texture in it's setType codepath type check..
+
+
+
+
+
+
+
+
+
+
+widgets know their size, that's not something we should be passing in as a parameter.
+update all the widget's reset() functions to remove the size parameter.
+hard code their size into the reset() function, per widget.
+
+
+
+create vendor screen
+	loadout widget
+	info widget
+	forSale widget
+	
 
 
 
