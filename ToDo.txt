@@ -52,22 +52,17 @@ ram useage:
 todo:
 
 
-6
+5
 
 
+disconnected the loadout widget's menuItems from the forSale widget's menuItems.
+this prevents the loadout menuItem's price from being displayed in the forSale title.
+it wouldn't make sense to display those values.
 
-
-updated VendorScreen's constructor to accept a GameObj parameter.
-updated interactionFunctions.Interact() to pass the vendor obj to VendorScreen.
-
-updated ForSaleWidget to default it's for sale menuItems to unknown.
-updated VendorScreen to check for vendor type and set forSale widget's menuItems accordingly.
-
-added a 'price' field to menuItem, as a byte.
-updated VendorScreen.Input() to display the currently selected menuItem's price in the title of ForSale widget.
-
-updated GameObjectFunctions.SetType() to set VendorAdvertisement objGroup to object, and texture to mainSheet.
-this fixes an issue where an advertisement could of been passed to the VendorScreen.
+created ScreenVendor.GetPrice(MenuItem).
+this replaces the routines being used in HandleInput to display the currently selected menuItem's price.
+added a call to GetPrice() from the screen's LoadContent() method, so the screen initially displays the default menuItem's price.
+playtested, working as expected.
 
 
 
@@ -75,8 +70,10 @@ this fixes an issue where an advertisement could of been passed to the VendorScr
 
 
 
-
-
+we shouldn't be able to select the loadout widget's menuItems on vendor screen
+due to how we are displaying the item's price, selecting a loadout item would display it's price in forSale widget
+this doesn't make any sense. so, instead just break the neighbor links between loadout and forSale widget.
+then set the initial selected menuItem to the forSale menuItem[0].
 
 we need to set the price of menuItems in menuItemFunctions.SetType()
 
@@ -87,7 +84,8 @@ hard code their size into the reset() function, per widget.
 create vendor stalls, place rugs under/around the stalls
 	
 	
-	
+in inventory screen, the selection box should only draw if the screen is opened
+rn, it draws while the screen is opening too
 	
 	
 	
@@ -123,8 +121,8 @@ Inventory
 	lets use a bit field to do this: weapons {1, 1, 0, 0, 0} = sword, bow, locked, locked, locked
 	then from shop screen we can check the bit field and only display weapons that are locked
 	this extends to items, magic, weapons, armor, equipment
-		
-Shop Room Polisj
+	
+Shop Room Polish
 	we'll need to draw gameobjects like desks, drawers, bookcases, etc.. to make shops look like shops
 	but i don't want to pollute the gameobj class with these one-off objects
 	instead we'll just switch out the sprites in the spritesheet and build the objects using the dungeon obj names
@@ -134,7 +132,12 @@ Shop Room Polisj
 	but, it may have to be done for certain objects
 	
 	
-	
+add item/weapon/armor/equipment/magic functionalities
+	boomerang
+	bomb
+	health potion
+	arrow + bow
+	??? armor, equipment
 	
 	
 	

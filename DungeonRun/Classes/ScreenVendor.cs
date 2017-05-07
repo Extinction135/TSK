@@ -50,13 +50,6 @@ namespace DungeonRun
             MenuWidgetInfo.Reset(
                 new Point(16 * 24 + 8, 16 * 8),
                 new Point(16 * 6 + 8, 16 * 5 + 8));
-            
-            //Connect Loadout menuItems to ForSale menuItems
-            MenuWidgetLoadout.menuItems[3].neighborRight = MenuWidgetForSale.menuItems[0];
-            MenuWidgetLoadout.menuItems[7].neighborRight = MenuWidgetForSale.menuItems[5];
-            MenuWidgetForSale.menuItems[0].neighborLeft = MenuWidgetLoadout.menuItems[3];
-            MenuWidgetForSale.menuItems[5].neighborLeft = MenuWidgetLoadout.menuItems[7];
-
 
             //set the menuItems based on the vendorType
             if(vendorType.type == ObjType.VendorItems)
@@ -68,7 +61,6 @@ namespace DungeonRun
             {
                 //other vendor for sale items here...
             }
-
 
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];
@@ -84,6 +76,16 @@ namespace DungeonRun
             background = new Rectangle(0, 0, 640, 360);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
+
+            //display the price of the default selected menuItem
+            GetPrice(currentlySelected);
+        }
+
+
+        public static void GetPrice(MenuItem MenuItem)
+        {
+            //display the currently selected item's price in the for sale window title
+            MenuWidgetForSale.window.title.text = "For Sale - " + MenuItem.price;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -130,8 +132,7 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxTextLetter);
                     previouslySelected.compSprite.scale = 1.0f;
                     selectionBox.scale = 2.0f;
-                    //display the currently selected item's price in the for sale window title
-                    MenuWidgetForSale.window.title.text = "For Sale - " + currentlySelected.price;
+                    GetPrice(currentlySelected);
                 }
             }
 
