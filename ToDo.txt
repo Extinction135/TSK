@@ -52,27 +52,17 @@ ram useage:
 todo:
 
 
-13
+12
 
 
 
+bug: item vendor does not display properly.
+cause: objects in the object pool use the dungeon sheet, and item vendor sprite is in the main sheet.
+solution: moved vendors into the (dungeon) shop sheet.
+updated vendor item's animation list to reflect new frame positioning.
+playtested, working as expected, but the item vendor animates too fast.
+slowed down the item vendor's animation. playtested, looking much better.
 
-updated exit pillar sprite in the shop sprite sheet.
-playtested, looking much better now.
-
-added sprites into MainSheet for item, weapon, armor, equipment, & potion vendors.
-added sprites for 'guide' NPC and dog.
-
-added 'VendorItems' value to ObjType enumerator.
-added animation list for 'VendorItems' to GameObjAnimListManager.
-added 'Vendor' value to ObjGroup enumerator.
-updated GameObjFunctions.SetType() to set Vendor objType for VendorItems type.
-updated InteractionFunctions.Interact(Actor, Obj) to handle Vendor group and VendorItems type.
-
-updated DugeonFunctions.FinishRoom() to place an item vendor behind stone table.
-playtested, the item vendor doesn't display properly because she's in the main sheet.
-the obj pool only uses the dungeon sheet. so she needs to be in the dungeon sheet.
-but, interaction with the vendor's collision rec works just fine, so it's only a visual bug.
 
 
 

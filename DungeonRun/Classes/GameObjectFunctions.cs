@@ -320,9 +320,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
                 Obj.group = ObjGroup.Vendor;
-
-                //Obj.compAnim.speed = 6; //in frames
-                //Obj.compAnim.loop = true;
+                Obj.compAnim.speed = 20; //in frames, may need to be slower
             }
 
 

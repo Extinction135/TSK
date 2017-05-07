@@ -102,7 +102,7 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(2, 6, 0, 0) },
 
                 //VendorItems
-                new List<Byte4> { new Byte4(7, 15, 0, 0), new Byte4(7, 15, 1, 0) },
+                new List<Byte4> { new Byte4(1, 7, 0, 0), new Byte4(1, 7, 1, 0) },
 
                 //BlockDraggable
                 new List<Byte4> { new Byte4(2, 4, 0, 0) },
