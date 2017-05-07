@@ -61,22 +61,22 @@ namespace DungeonRun
             menuItems[5].compSprite.position.Y = window.background.position.Y + 16 * 3 + 8;
 
             menuItems[6].compSprite.position.X = menuItems[5].compSprite.position.X + 24;
-            menuItems[6].compSprite.position.Y = menuItems[4].compSprite.position.Y;
+            menuItems[6].compSprite.position.Y = menuItems[5].compSprite.position.Y;
 
             menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X + 24;
-            menuItems[7].compSprite.position.Y = menuItems[4].compSprite.position.Y;
+            menuItems[7].compSprite.position.Y = menuItems[5].compSprite.position.Y;
 
             menuItems[8].compSprite.position.X = menuItems[7].compSprite.position.X + 24;
-            menuItems[8].compSprite.position.Y = menuItems[4].compSprite.position.Y;
+            menuItems[8].compSprite.position.Y = menuItems[5].compSprite.position.Y;
 
             menuItems[9].compSprite.position.X = menuItems[8].compSprite.position.X + 24;
-            menuItems[9].compSprite.position.Y = menuItems[4].compSprite.position.Y;
+            menuItems[9].compSprite.position.Y = menuItems[5].compSprite.position.Y;
 
             #endregion
 
 
             //set the menuItem's neighbors
-            MenuItemFunctions.SetNeighbors(menuItems, 4);
+            MenuItemFunctions.SetNeighbors(menuItems, 5);
             //set the menuItem's data - defaults to unknown
             MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);

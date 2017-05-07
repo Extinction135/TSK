@@ -52,15 +52,20 @@ ram useage:
 todo:
 
 
-8
+7
 
 
 
-cleaned up some old code leftover in MenuWidgetLoadout.cs.
-created MenuWidgetForSale.cs, based on MenuWidgetLoadout.cs.
-created VendorScreen, based on InventoryScreen.
-updated interactionFunctions.Interact(Actor, Obj) to create VendorScreen when hero talks to item vendor.
-playtested, working as expected. needs polish.
+
+updated ForSaleWidget.Reset -> SetNeighbors() to 5 items per row.
+fixed a minor bug that placed some of the 2nd row menuItems on the first row Y position.
+playtested, these two bugs have been fixed.
+
+pushed the vendor screen's widgets down 16 * 4, to center them to the screen.
+playtested, looking much better.
+
+
+
 
 
 
@@ -68,9 +73,6 @@ playtested, working as expected. needs polish.
 push all the widgets down vertically to 16*8
 from inventory screen, they are set at 16*4
 
-
-the forsale widget isn't displaying menuItems past #5. 
-there should be 4 more.
 
 
 we should pass the object into the venor screen
