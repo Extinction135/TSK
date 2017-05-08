@@ -212,6 +212,11 @@ namespace DungeonRun
             //scale the selectionBox down to 1.0
             if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
             else { selectionBox.scale = 1.0f; }
+
+            //animate the currently selected menuItem - this scales it back down to 1.0
+            if (currentlySelected.type != MenuItemType.InventoryGold) //inventory gold animates already
+            { AnimationFunctions.Animate(currentlySelected.compAnim, currentlySelected.compSprite); }
+            //this prevents inventory gold from getting animated twice per frame
         }
 
         public override void Draw(GameTime GameTime)

@@ -52,27 +52,17 @@ ram useage:
 todo:
 
 
-6
+5
 
 
 
-created PurchaseItem() in VendorScreen.
-wrote routines to handle purchasing of fireball magic.
+bug: the currently selected menuItem in inventory screen doesn't scale back down to 1.0.
+cause: we stopped animating the currently selected item.
+solution: animate the currently selected item again, unless it's the inventory gold menuItem.
+this prevents animating the inventory gold menuItem twice per frame.
+playtested, working as expected.
 
-updated LoadoutWidget.Update() to track the current and previous gold amounts.
-also 'counts' the displayed gold amount up or down to match the saveData gold amount.
 
-updated ActorFunctions.SetType() to default all actors to having Actor.item = none value.
-added SetLoadout() to InventoryScreen. calling SetLoadout() from HandleInput upon an A button press.
-
-updated ActorFunctions.Update() to only call UseItem() if the actor has an item to use.
-if the actor.item == None, then the actor simply reverts to the idle state.
-this prevents the actor from locking into the use animation, when there is no item to use.
-
-updated InventoryWidget to reset all it's menuItems to unknown upon Reset().
-updated InventoryWidget to set it's menuItems based on the player / save data booleans just added.
-
-playtested... working pretty well with a few bugs noted...
 
 
 
@@ -92,6 +82,10 @@ we should not be able to purchase an item with a price of 0..
 OR we could also check to see that menuItem.type != unknown...
 
 
+
+we should play the pickup gold sound when the load out widget changes gold amount / tracks it
+this happens when player purchases something
+we may need to add a new soundeffect for this....
 
 
 inventory screen shouldn't display fireball if boolean is false.
