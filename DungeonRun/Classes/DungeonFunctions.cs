@@ -511,10 +511,10 @@ namespace DungeonRun
 
 
                 //create all the vendors
-                CreateVendor(ObjType.VendorItems, new Vector2(3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-                CreateVendor(ObjType.VendorPotions, new Vector2(6 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-                CreateVendor(ObjType.VendorMagic, new Vector2(9 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-
+                CreateVendor(ObjType.VendorItems, new Vector2(1 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+                CreateVendor(ObjType.VendorPotions, new Vector2(4 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+                CreateVendor(ObjType.VendorMagic, new Vector2(7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+                CreateVendor(ObjType.VendorWeapons, new Vector2(10 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
             }
 
             #endregion
@@ -614,13 +614,22 @@ namespace DungeonRun
                 objRef.compAnim.currentAnimation.Add(new Byte4(6, 9, 0, 0)); //fairy
             }
             else if (VendorType == ObjType.VendorMagic)
-            {   //add all the potions from the main sheet
+            {   //add all the magic medallions from the main sheet
                 //objRef.compAnim.currentAnimation.Add(new Byte4(7, 5, 0, 0)); //portal
                 objRef.compAnim.currentAnimation.Add(new Byte4(7, 6, 0, 0)); //fireball
                 //objRef.compAnim.currentAnimation.Add(new Byte4(7, 7, 0, 0)); //lightning
                 //objRef.compAnim.currentAnimation.Add(new Byte4(7, 8, 0, 0)); //quake
                 //objRef.compAnim.currentAnimation.Add(new Byte4(7, 9, 0, 0)); //summon
             }
+            else if (VendorType == ObjType.VendorWeapons)
+            {   //add all the weapons from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(8, 5, 0, 0)); //sword
+                objRef.compAnim.currentAnimation.Add(new Byte4(8, 6, 0, 0)); //bow
+                objRef.compAnim.currentAnimation.Add(new Byte4(8, 7, 0, 0)); //staff
+                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 8, 0, 0)); //axe
+                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 9, 0, 0)); //net
+            }
+            
 
             #endregion
 
