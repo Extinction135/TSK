@@ -83,6 +83,10 @@ namespace DungeonRun
 
             //create an easy to remember reference to the player/hero actor
             hero = actorPool[0];
+            //set the hero's initial loadout
+            hero.weapon = MenuItemType.WeaponSword;
+            hero.item = MenuItemType.Unknown;
+            //create the hero's shadow
             heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;
         }

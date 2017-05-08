@@ -463,6 +463,7 @@ namespace DungeonRun
 
                 //place hero at exit door
                 ActorFunctions.SetType(Pool.hero, ActorType.Hero);
+                Pool.hero.state = ActorState.Idle;
                 MovementFunctions.Teleport(Pool.hero.compMove,
                     objRef.compSprite.position.X,
                     objRef.compSprite.position.Y + 8);

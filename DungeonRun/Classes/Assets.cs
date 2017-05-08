@@ -109,6 +109,7 @@ namespace DungeonRun
         //
         public static List<SoundEffectInstance> sfxBounce;
         public static List<SoundEffectInstance> sfxMapOpen;
+        public static List<SoundEffectInstance> sfxError;
 
         #endregion
 
@@ -246,6 +247,8 @@ namespace DungeonRun
             SoundEffect bounceSrc = content.Load<SoundEffect>(@"SoundBounce");
             sfxMapOpen = new List<SoundEffectInstance>();
             SoundEffect mapOpenSrc = content.Load<SoundEffect>(@"SoundMapOpen");
+            sfxError = new List<SoundEffectInstance>();
+            SoundEffect errorSrc = content.Load<SoundEffect>(@"SoundError");
 
             #endregion
 
@@ -286,6 +289,7 @@ namespace DungeonRun
                 //
                 sfxBounce.Add(bounceSrc.CreateInstance());
                 sfxMapOpen.Add(mapOpenSrc.CreateInstance());
+                sfxError.Add(errorSrc.CreateInstance());
             }
 
             #endregion

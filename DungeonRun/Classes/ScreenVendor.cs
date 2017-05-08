@@ -132,7 +132,8 @@ namespace DungeonRun
                 //play purchase sound
                 Assets.Play(Assets.sfxBeatDungeon);
             }
-            //else, do nothing
+            //else, play an error sound
+            else { Assets.Play(Assets.sfxError); }
         }
 
 

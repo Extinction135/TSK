@@ -152,36 +152,33 @@ namespace DungeonRun
             //assume standard actor
             Actor.compSprite.cellSize.X = 16;
             Actor.compSprite.cellSize.Y = 16;
-            //assume actor has no item
-            Actor.item = MenuItemType.Unknown;
-
+            
 
             #region Actor Specific Fields
 
             if (Type == ActorType.Hero)
             {
                 Actor.compSprite.texture = Assets.heroSheet;
-                Actor.health = 3;
                 Actor.maxHealth = 14;
-                Actor.weapon = MenuItemType.WeaponSword;
+                //do not update/change the hero's weapon/item/armor/equipment
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
             }
             else if (Type == ActorType.Blob)
             {
                 Actor.compSprite.texture = Assets.blobSheet;
-                Actor.health = 1;
                 Actor.maxHealth = 1;
                 Actor.weapon = MenuItemType.WeaponSword;
+                Actor.item = MenuItemType.Unknown;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
             }
             else if (Type == ActorType.Boss)
             {
                 Actor.compSprite.texture = Assets.bossSheet;
-                Actor.health = 10;
                 Actor.maxHealth = 10;
                 Actor.weapon = MenuItemType.Unknown;
+                Actor.item = MenuItemType.Unknown;
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
                 //this actor is a boss (double size)
@@ -193,6 +190,8 @@ namespace DungeonRun
 
             #endregion
 
+            //set actor's health
+            Actor.health = Actor.maxHealth;
 
             ActorAnimationListManager.SetAnimationGroup(Actor);
             ActorAnimationListManager.SetAnimationDirection(Actor);

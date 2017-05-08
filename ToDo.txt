@@ -52,21 +52,13 @@ ram useage:
 todo:
 
 
-2
+1
 
 
 
-
-updated InventoryScreen.SetLoadout() to set fireball to hero.item, and sword to hero.weapon.
-this allows the player to equip both the fireball and the sword.
-tho the sword is equipped by default.
-
-bug: player can purchase an unknown item from vendor for 0 gold.
-solution: updated PurchaseItem() to return from method if item is of unknown type.
-playtested, bug fixed.
-
-updated Loadout Widget to play the gold sound effect when the player's gold changes up or down.
-this happens when the player purchases an item.
+added SoundError to content project, built.
+added instances to Assets to load SoundError.
+updated VendorScreen to play an error sound if player does not have enough gold to purchase selected item.
 playtested, working as expected.
 
 
@@ -74,8 +66,30 @@ playtested, working as expected.
 
 
 bug: worldUI + player.item was not fireball upon a dungeon build.
-the player.item (and weapon i assume) are being reset upon a dungeon build.
-this shouldn't happen...
+
+when a dungeon is built, the actors are reset...
+check to see that we carry item into a boss room...
+this is happening because of a call to ActorFunctions.SetType()...
+
+
+
+
+
+
+
+
+
+bug: the loadout widget isn't getting the correct gold amount. why?
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,20 +99,7 @@ this shouldn't happen...
 we need an armor for actor
 we need an equipment for actor
 
-
-
-
 what happens if sword / shirt / ring is false? they should always be true...
-
-
-
-
-
-we should notify the player that they dont have enough cash...
-set the title of window to say "not enough cash" for now...
-but the title will be updated as soon as the menuItem changes
-play the error sound..
-
 
 
 

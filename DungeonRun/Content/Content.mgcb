@@ -323,3 +323,9 @@
 /processorParam:TextureFormat=Color
 /build:ShopSheet.png
 
+#begin SoundError.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundError.wav
+
