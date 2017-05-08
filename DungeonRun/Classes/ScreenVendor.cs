@@ -117,7 +117,10 @@ namespace DungeonRun
 
         public static void PurchaseItem(MenuItem Item)
         {
-            //see if hero has already purchased this item
+            //the player cannot purchase an unknown item
+            if (Item.type == MenuItemType.Unknown) { return; }
+
+            //the player cannot purchase an item twice
             if (Item.type == MenuItemType.MagicFireball && PlayerData.saveData.magicFireball) { return; }
 
             //see if hero has enough gold to purchase this item
@@ -129,10 +132,7 @@ namespace DungeonRun
                 //play purchase sound
                 Assets.Play(Assets.sfxBeatDungeon);
             }
-            else
-            {
-                //play error sound
-            }
+            //else, do nothing
         }
 
 
@@ -181,11 +181,11 @@ namespace DungeonRun
                     GetPrice(currentlySelected);
                 }
             }
-
         }
 
         public override void Update(GameTime GameTime)
         {
+            
             //fade background in
             if (displayState == DisplayState.Opening)
             {
@@ -209,10 +209,13 @@ namespace DungeonRun
                 }
             }
 
+
+            
             MenuWidgetLoadout.Update();
             MenuWidgetForSale.Update();
             MenuWidgetInfo.Update();
-
+            
+            
             //pulse the selectionBox alpha
             if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
             else { selectionBox.alpha += 0.025f; }
@@ -222,6 +225,7 @@ namespace DungeonRun
             //scale the selectionBox down to 1.0
             if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
             else { selectionBox.scale = 1.0f; }
+            
         }
 
         public override void Draw(GameTime GameTime)

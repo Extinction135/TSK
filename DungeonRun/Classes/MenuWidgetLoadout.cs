@@ -122,6 +122,8 @@ namespace DungeonRun
                 //display the gold amount with a prefix of 0, if needed
                 if (goldTracker < 10) { goldAmount.text = "0" + goldTracker; }
                 else { goldAmount.text = "" + goldTracker; }
+                //randomly play the gold sound effect
+                if (GetRandom.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
             }
         }
 

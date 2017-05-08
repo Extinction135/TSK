@@ -52,77 +52,38 @@ ram useage:
 todo:
 
 
-3
+2
 
 
-bug: the worldUI does not display the hero's sword.
-cause: the current weapon and item were never being passed to MenuItemFunctions.SetMenuItemData().
-solution: now passing the weapon and item menuItems to SetMenuItemData() upon WorldUI construction.
+
+
+updated InventoryScreen.SetLoadout() to set fireball to hero.item, and sword to hero.weapon.
+this allows the player to equip both the fireball and the sword.
+tho the sword is equipped by default.
+
+bug: player can purchase an unknown item from vendor for 0 gold.
+solution: updated PurchaseItem() to return from method if item is of unknown type.
+playtested, bug fixed.
+
+updated Loadout Widget to play the gold sound effect when the player's gold changes up or down.
+this happens when the player purchases an item.
 playtested, working as expected.
 
-updated ActorFunctions.Update() to scale world UI item and weapon to x2 upon useage.
+
+
+
+
+bug: worldUI + player.item was not fireball upon a dungeon build.
+the player.item (and weapon i assume) are being reset upon a dungeon build.
+this shouldn't happen...
 
 
 
 
 
 
-world UI should display the correct item
-if hero doesn't have an item, the item sprite should not be visible
-else, the item sprite's frame should be set, and it should be visible
-world UI.item should pull menuItem.compSprite.currentFrame...
-
-the actor's item should really be a menuItem.
-this way we don't have a layer of abstraction between Actor.item & what is equipped..
-we'd like to say - worldUI.currentItem.currentFrame = Pool.hero.item.compSprite.currentFrame;
-
-the item enum is entirely irrelevant.
-same with the weapon enum.
-
-but, there's a lot of checks throughout the codebase that use these enums
-so we'll have to update them to use menuItems...
-
-
-
-
-
-should be able to select the sword from inventory and set it as hero.weapon
-
-
-
-
-
-
-
-
-
-
-from vendor screen, an unknown item can be purchased for free, playing purchase sound
-we should not be able to purchase an item with a price of 0..
-OR we could also check to see that menuItem.type != unknown...
-
-
-
-we should play the pickup gold sound when the load out widget changes gold amount / tracks it
-this happens when player purchases something
-we may need to add a new soundeffect for this....
-
-
-inventory screen shouldn't display fireball if boolean is false.
-
-
-
-playtest: shouldn't be able to cast fireball initially
-playtest: inventory screen displays fireball boolean properly (visible, not visible)
-playtest: purchasing fireball magic from vendor
-playtest: using fireball post purchase
-
-
-
-
-
-we need an armor enum for actor
-we need an equipment enum for actor
+we need an armor for actor
+we need an equipment for actor
 
 
 
@@ -130,33 +91,24 @@ we need an equipment enum for actor
 what happens if sword / shirt / ring is false? they should always be true...
 
 
-update inventory screen to only display magic fireball medallion if boolean is true.
-
-
-
-
-
-
-fireball should be the first item that is 'purchasable'
-
-vendor screen should set the fireball boolean true upon purchase, deduct gold from player save data
-fireball should be selectable from inventory screen if boolean is true
-should appear in the worldUI
-by default the hero should start with no item
-
 
 
 
 we should notify the player that they dont have enough cash...
 set the title of window to say "not enough cash" for now...
 but the title will be updated as soon as the menuItem changes
+play the error sound..
+
+
+
 
 
 we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
 could say things like "please buy something, mister.."
 or "you don't have enough gold to but that.."
 
-
+we could put this dialog window below the other widgets
+it would fit better there
 
 
 
