@@ -103,8 +103,38 @@ namespace DungeonRun
 
     public struct SaveData
     {   //data that will be saved/loaded from game session to session
+        public String name;
         public int gold;
         public byte heartPieces; //sets max health
+
+        public Boolean itemBoomerang;
+
+        public Boolean bottleEmpty;
+
+        public Boolean magicFireball;
+
+        public Boolean weaponSword;
+
+        public Boolean armorShirt;
+
+        public Boolean equipmentRing;
+
+        public SaveData(String Name)
+        {
+            name = Name;
+
+            //create new game values
+            gold = 0;
+            heartPieces = 4 * 3; //player starts with 3 hearts
+            weaponSword = true;
+            armorShirt = true;
+            equipmentRing = true;
+
+            //all other items are locked
+            itemBoomerang = false;
+            bottleEmpty = false;
+            magicFireball = false;
+        }
     }
 
     public struct ColorScheme

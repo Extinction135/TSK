@@ -21,9 +21,7 @@ namespace DungeonRun
         public static SaveData saveData;
         static PlayerData()
         {
-            saveData = new SaveData();
-            saveData.gold = 0;
-            saveData.heartPieces = 4 * 3; //player starts with 3 hearts
+            saveData = new SaveData("NewGame");
         }
 
         public static void Save(string FileAddress)

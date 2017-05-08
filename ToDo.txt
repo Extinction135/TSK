@@ -52,31 +52,36 @@ ram useage:
 todo:
 
 
-12
+7
 
 
-added code to reset the ForSale's menuItem's to unknown upon Reset().
+bug: fireball menuItem displays the portal sprite.
+solution: updated the sprite frame in MenuItemFunctions.SetMenuItemData().
 
-added VendorPotions value to ObjType enumerator.
-added animation list for VendorPotions to GameObjAnimListManager.
-updated GameObjFuntions.SetType() with codepath for VendorPotions.
-updated DungeonFunctions.CreateVendor() to set vendor advertisement for VendorPotions.
-added call to DungeonFunctions.FinishRoom() to create a VendorPotion obj.
-updated VendorScreen with codepath to display VendorPotions for sale items.
-playtested, working as expected.
-
+created various booleans in SaveData struct, to represent items that are unlocked/locked.
+created constructor for SaveData struct, now sets default new game values.
+updated PlayerData to create a default new game instance of SaveData.
+planning how to implement fireball as first purchasable item...
 
 
 
 
 
-create additional vendors, each one a commit:
-potions, magic, weapons, armor, equipment
 
-creating a vendor should be a function, because they're all basically the same
 
-all vendors should exist in the shop room
-each vendor should have their advertisements too
+fireball should be the first item that is 'purchasable'
+
+vendor screen should set the fireball boolean true upon purchase, deduct gold from player save data
+fireball should be selectable from inventory screen if boolean is true
+should appear in the worldUI
+by default the hero should start with no item
+
+
+
+
+
+
+
 
 
 

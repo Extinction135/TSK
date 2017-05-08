@@ -112,7 +112,7 @@ namespace DungeonRun
             {
                 MenuItem.name = "Fireball Magic";
                 MenuItem.description = "Shoots a fireball\nin the facing direction.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 5, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 6, 0, 0) };
                 MenuItem.price = 99;
             }
 
