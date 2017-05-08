@@ -114,6 +114,18 @@ namespace DungeonRun
             Assets.Play(Assets.sfxInventoryOpen);
         }
 
+
+
+        public void SetLoadout()
+        {   //check the currently selected item's type, and the corresponding saveData boolean
+            if (currentlySelected.type == MenuItemType.MagicFireball && PlayerData.saveData.magicFireball)
+            { Pool.hero.item = Item.FireMagic; }
+
+            //expand this to include all items, bottle, magics, weapons, armor, & equipment
+        }
+
+
+
         public override void HandleInput(GameTime GameTime)
         {
             //exit this screen upon start or b button press
@@ -130,6 +142,7 @@ namespace DungeonRun
             {
                 currentlySelected.compSprite.scale = 2.0f;
                 Assets.Play(Assets.sfxMenuItem);
+                SetLoadout();
             }
 
             //get the previouslySelected menuItem

@@ -152,6 +152,8 @@ namespace DungeonRun
             //assume standard actor
             Actor.compSprite.cellSize.X = 16;
             Actor.compSprite.cellSize.Y = 16;
+            //assume actor has no item
+            Actor.item = Item.None;
 
 
             #region Actor Specific Fields
@@ -162,7 +164,6 @@ namespace DungeonRun
                 Actor.health = 3;
                 Actor.maxHealth = 14;
                 Actor.weapon = Weapon.Sword;
-                Actor.item = Item.FireMagic;
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
             }
@@ -172,7 +173,6 @@ namespace DungeonRun
                 Actor.health = 1;
                 Actor.maxHealth = 1;
                 Actor.weapon = Weapon.Sword;
-                Actor.item = Item.None;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
             }
@@ -182,7 +182,6 @@ namespace DungeonRun
                 Actor.health = 10;
                 Actor.maxHealth = 10;
                 Actor.weapon = Weapon.None;
-                Actor.item = Item.None;
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
                 //this actor is a boss (double size)
@@ -232,7 +231,7 @@ namespace DungeonRun
                         Actor.stateLocked = true;
                         MovementFunctions.StopMovement(Actor.compMove);
                     }
-                    else //if there isn't an obj to interact with, just revert to idle
+                    else //there is no obj to interact with, revert to idle
                     { Actor.state = ActorState.Idle; }
                 }
                 else if (Actor.state == ActorState.Dash)
@@ -253,12 +252,17 @@ namespace DungeonRun
                     if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }
                 }
                 else if (Actor.state == ActorState.Use)
-                {
-                    Actor.stateLocked = true;
-                    MovementFunctions.StopMovement(Actor.compMove);
-                    UseItem(Actor);
-                    //scale up the current item in world ui
-                    if (Actor == Pool.hero) { WorldUI.currentItem.scale = 1.4f; }
+                {   
+                    if (Actor.item != Item.None)
+                    {   //lock actor into use animation, stop movement, use the current item
+                        Actor.stateLocked = true;
+                        MovementFunctions.StopMovement(Actor.compMove);
+                        UseItem(Actor);
+                        //scale up the current item in world ui
+                        if (Actor == Pool.hero) { WorldUI.currentItem.scale = 1.4f; }
+                    }
+                    else //actor has no item to use, revert to idle
+                    { Actor.state = ActorState.Idle; }
                 }
 
                 //if actor opened a chest, they will be set into the reward state

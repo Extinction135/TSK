@@ -107,11 +107,35 @@ namespace DungeonRun
         }
 
 
-        public static void GetPrice(MenuItem MenuItem)
+        public static void GetPrice(MenuItem Item)
         {
             //display the currently selected item's price in the for sale window title
-            MenuWidgetForSale.window.title.text = "For Sale - " + MenuItem.price;
+            MenuWidgetForSale.window.title.text = "For Sale - " + Item.price;
         }
+
+
+
+        public static void PurchaseItem(MenuItem Item)
+        {
+            //see if hero has already purchased this item
+            if (Item.type == MenuItemType.MagicFireball && PlayerData.saveData.magicFireball) { return; }
+
+            //see if hero has enough gold to purchase this item
+            if (PlayerData.saveData.gold >= Item.price)
+            {
+                //deduct cost, flip boolean true
+                PlayerData.saveData.gold -= Item.price;
+                if (Item.type == MenuItemType.MagicFireball) { PlayerData.saveData.magicFireball = true; }
+                //play purchase sound
+                Assets.Play(Assets.sfxBeatDungeon);
+            }
+            else
+            {
+                //play error sound
+            }
+        }
+
+
 
         public override void HandleInput(GameTime GameTime)
         {
@@ -129,10 +153,7 @@ namespace DungeonRun
             {
                 currentlySelected.compSprite.scale = 2.0f;
                 Assets.Play(Assets.sfxMenuItem);
-
-                //check if player already has currently selected in inventory
-                //calculate if player has enough gold to purchase currently selected
-                //either purchase or reject
+                PurchaseItem(currentlySelected);
             }
 
             //get the previouslySelected menuItem

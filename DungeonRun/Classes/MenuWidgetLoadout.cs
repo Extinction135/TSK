@@ -19,6 +19,7 @@ namespace DungeonRun
         public static MenuWindow window;
         public static List<MenuItem> menuItems;
         public static ComponentText goldAmount;
+        public static int goldTracker;
         public static Rectangle goldBkg;
 
         static MenuWidgetLoadout()
@@ -105,17 +106,23 @@ namespace DungeonRun
             goldAmount.position.Y = menuItems[4].compSprite.position.Y - 4;
             goldBkg.X = (int)goldAmount.position.X - 1;
             goldBkg.Y = (int)goldAmount.position.Y + 4;
-
-            //apply padding so goldAmount is always 2 digits
-            goldAmount.text = "";
-            if (PlayerData.saveData.gold < 10) { goldAmount.text += "0"; }
-            goldAmount.text += PlayerData.saveData.gold;
+            //initially display the player's gold
+            goldTracker = PlayerData.saveData.gold;
         }
 
         public static void Update()
         {
             window.Update();
             AnimationFunctions.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
+
+            if(goldTracker != PlayerData.saveData.gold)
+            {   //count the gold amount up or down
+                if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
+                else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
+                //display the gold amount with a prefix of 0, if needed
+                if (goldTracker < 10) { goldAmount.text = "0" + goldTracker; }
+                else { goldAmount.text = "" + goldTracker; }
+            }
         }
 
         public static void Draw()

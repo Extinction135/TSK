@@ -48,11 +48,6 @@ namespace DungeonRun
             //create menuitems
             menuItems = new List<MenuItem>();
             for (i = 0; i < 25; i++) { menuItems.Add(new MenuItem()); }
-
-            //throw some junk data into the items for checking
-            menuItems[0].name = "Boomerang";
-            menuItems[0].description = "a magical boomerang\nthat always returns";
-            menuItems[0].compSprite.currentFrame = new Byte4(5, 5, 0, 0);
         }
 
         public static void ResetDivider(MenuRectangle Divider, int X, int Y, int Width)
@@ -124,42 +119,49 @@ namespace DungeonRun
             PlaceRow(10, Position.X + 16 * 1, Position.Y + 16 * 06 + 8);
             PlaceRow(15, Position.X + 16 * 1, Position.Y + 16 * 09 + 8);
             PlaceRow(20, Position.X + 16 * 1, Position.Y + 16 * 12 + 8);
-            
+
+            //reset the menuItems
+            for (i = 0; i < menuItems.Count; i++)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[i]); }
+
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
 
 
             #region Set the menuItem data (based on the hero's inventory)
 
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, menuItems[3]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, menuItems[4]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, menuItems[3]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, menuItems[4]);
 
-            MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]);
+
+            if (PlayerData.saveData.magicFireball)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]); }
+
             //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[6]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[7]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[8]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[9]);
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[10]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, menuItems[12]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, menuItems[12]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[13]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[14]);
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[15]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, menuItems[16]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, menuItems[17]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[18]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, menuItems[16]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, menuItems[17]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[18]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[19]);
 
             MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[20]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[22]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[23]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, menuItems[24]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[22]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[23]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, menuItems[24]);
 
             #endregion
 

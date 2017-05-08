@@ -108,23 +108,31 @@ namespace DungeonRun
         public byte heartPieces; //sets max health
 
         public Boolean itemBoomerang;
-
+        //itemBomb
         public Boolean bottleEmpty;
-
+        //bottleHealth
+        //bottleFairy
         public Boolean magicFireball;
-
+        //portal
         public Boolean weaponSword;
-
+        //bow
+        //axe
         public Boolean armorShirt;
-
+        //platemail
+        //cape
+        //robe
         public Boolean equipmentRing;
+        //pearl
+        //necklace
+        //glove
+        //pin
 
         public SaveData(String Name)
         {
             name = Name;
 
             //create new game values
-            gold = 0;
+            gold = 99; //testing
             heartPieces = 4 * 3; //player starts with 3 hearts
             weaponSword = true;
             armorShirt = true;

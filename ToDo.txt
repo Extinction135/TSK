@@ -52,17 +52,71 @@ ram useage:
 todo:
 
 
-7
+6
 
 
-bug: fireball menuItem displays the portal sprite.
-solution: updated the sprite frame in MenuItemFunctions.SetMenuItemData().
 
-created various booleans in SaveData struct, to represent items that are unlocked/locked.
-created constructor for SaveData struct, now sets default new game values.
-updated PlayerData to create a default new game instance of SaveData.
-planning how to implement fireball as first purchasable item...
+created PurchaseItem() in VendorScreen.
+wrote routines to handle purchasing of fireball magic.
 
+updated LoadoutWidget.Update() to track the current and previous gold amounts.
+also 'counts' the displayed gold amount up or down to match the saveData gold amount.
+
+updated ActorFunctions.SetType() to default all actors to having Actor.item = none value.
+added SetLoadout() to InventoryScreen. calling SetLoadout() from HandleInput upon an A button press.
+
+updated ActorFunctions.Update() to only call UseItem() if the actor has an item to use.
+if the actor.item == None, then the actor simply reverts to the idle state.
+this prevents the actor from locking into the use animation, when there is no item to use.
+
+updated InventoryWidget to reset all it's menuItems to unknown upon Reset().
+updated InventoryWidget to set it's menuItems based on the player / save data booleans just added.
+
+playtested... working pretty well with a few bugs noted...
+
+
+
+
+
+inventory screen - currently selected menuItem doesn't scale back down?
+because it's not being animated? i assume
+
+
+world UI should display the correct item
+if hero doesn't have an item, the item sprite should not be visible
+else, the item sprite's frame should be set, and it should be visible
+world UI.item should pull menuItem.compSprite.currentFrame...
+
+from vendor screen, an unknown item can be purchased for free, playing purchase sound
+we should not be able to purchase an item with a price of 0..
+OR we could also check to see that menuItem.type != unknown...
+
+
+
+
+inventory screen shouldn't display fireball if boolean is false.
+
+
+
+playtest: shouldn't be able to cast fireball initially
+playtest: inventory screen displays fireball boolean properly (visible, not visible)
+playtest: purchasing fireball magic from vendor
+playtest: using fireball post purchase
+
+
+
+
+
+we need an armor enum for actor
+we need an equipment enum for actor
+
+
+
+
+what happens if sword / shirt / ring is false? they should always be true...
+
+
+update inventory screen to only display magic fireball medallion if boolean is true.
 
 
 
@@ -78,6 +132,15 @@ by default the hero should start with no item
 
 
 
+
+we should notify the player that they dont have enough cash...
+set the title of window to say "not enough cash" for now...
+but the title will be updated as soon as the menuItem changes
+
+
+we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
+could say things like "please buy something, mister.."
+or "you don't have enough gold to but that.."
 
 
 
