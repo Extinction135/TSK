@@ -511,8 +511,8 @@ namespace DungeonRun
 
 
                 //create all the vendors
-                CreateVendor(ObjType.VendorItems, new Vector2(6 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-                
+                CreateVendor(ObjType.VendorItems, new Vector2(3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+                CreateVendor(ObjType.VendorPotions, new Vector2(6 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
 
 
             }
@@ -602,8 +602,16 @@ namespace DungeonRun
 
             if (VendorType == ObjType.VendorItems)
             {   //add all the items from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0));
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0));
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //boomerang
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0)); //bomb
+            }
+            else if (VendorType == ObjType.VendorPotions)
+            {   //add all the potions from the main sheet
+                //objRef.compAnim.currentAnimation.Add(new Byte4(6, 5, 0, 0)); //empty bottle
+                objRef.compAnim.currentAnimation.Add(new Byte4(6, 6, 0, 0)); //health
+                //objRef.compAnim.currentAnimation.Add(new Byte4(6, 7, 0, 0)); //magic
+                //objRef.compAnim.currentAnimation.Add(new Byte4(6, 8, 0, 0)); //mix
+                objRef.compAnim.currentAnimation.Add(new Byte4(6, 9, 0, 0)); //fairy
             }
 
             #endregion

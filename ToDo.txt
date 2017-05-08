@@ -52,7 +52,53 @@ ram useage:
 todo:
 
 
-13
+12
+
+
+added code to reset the ForSale's menuItem's to unknown upon Reset().
+
+added VendorPotions value to ObjType enumerator.
+added animation list for VendorPotions to GameObjAnimListManager.
+updated GameObjFuntions.SetType() with codepath for VendorPotions.
+updated DungeonFunctions.CreateVendor() to set vendor advertisement for VendorPotions.
+added call to DungeonFunctions.FinishRoom() to create a VendorPotion obj.
+updated VendorScreen with codepath to display VendorPotions for sale items.
+playtested, working as expected.
+
+
+
+
+
+
+create additional vendors, each one a commit:
+potions, magic, weapons, armor, equipment
+
+creating a vendor should be a function, because they're all basically the same
+
+all vendors should exist in the shop room
+each vendor should have their advertisements too
+
+
+
+Inventory
+	we'll need to track what items/weapons/armor/equipment the hero has access to, and what's equipped
+	lets use a bit field to do this: weapons {1, 1, 0, 0, 0} = sword, bow, locked, locked, locked
+	then from shop screen we can check the bit field and only display weapons that are locked
+	this extends to items, magic, weapons, armor, equipment
+	
+	
+	
+	
+	
+implement actual purchasing routines
+
+
+
+
+
+
+
+
 
 
 

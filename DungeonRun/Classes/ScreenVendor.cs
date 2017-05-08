@@ -51,9 +51,10 @@ namespace DungeonRun
                 MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, MenuWidgetForSale.menuItems[0]);
                 MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, MenuWidgetForSale.menuItems[1]);
             }
-            else
+            else if (vendorType.type == ObjType.VendorPotions)
             {
-                //other vendor for sale items here...
+                MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, MenuWidgetForSale.menuItems[0]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, MenuWidgetForSale.menuItems[1]);
             }
 
             //set the currently selected menuItem to the first inventory menuItem

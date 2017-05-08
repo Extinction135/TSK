@@ -41,18 +41,23 @@ namespace DungeonRun
 
             menuItems[0].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[0].compSprite.position.Y = window.background.position.Y + 16 * 2;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[0]);
 
             menuItems[1].compSprite.position.X = menuItems[0].compSprite.position.X + 24;
             menuItems[1].compSprite.position.Y = menuItems[0].compSprite.position.Y;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[1]);
 
             menuItems[2].compSprite.position.X = menuItems[1].compSprite.position.X + 24;
             menuItems[2].compSprite.position.Y = menuItems[0].compSprite.position.Y;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[2]);
 
             menuItems[3].compSprite.position.X = menuItems[2].compSprite.position.X + 24;
             menuItems[3].compSprite.position.Y = menuItems[0].compSprite.position.Y;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[3]);
 
             menuItems[4].compSprite.position.X = menuItems[3].compSprite.position.X + 24;
             menuItems[4].compSprite.position.Y = menuItems[0].compSprite.position.Y;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[4]);
 
             #endregion
 
@@ -61,18 +66,23 @@ namespace DungeonRun
 
             menuItems[5].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[5].compSprite.position.Y = window.background.position.Y + 16 * 3 + 8;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[5]);
 
             menuItems[6].compSprite.position.X = menuItems[5].compSprite.position.X + 24;
             menuItems[6].compSprite.position.Y = menuItems[5].compSprite.position.Y;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]);
 
             menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X + 24;
             menuItems[7].compSprite.position.Y = menuItems[5].compSprite.position.Y;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]);
 
             menuItems[8].compSprite.position.X = menuItems[7].compSprite.position.X + 24;
             menuItems[8].compSprite.position.Y = menuItems[5].compSprite.position.Y;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[8]);
 
             menuItems[9].compSprite.position.X = menuItems[8].compSprite.position.X + 24;
             menuItems[9].compSprite.position.Y = menuItems[5].compSprite.position.Y;
+            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[9]);
 
             #endregion
 

@@ -143,6 +143,9 @@ namespace DungeonRun
 
                 //VendorItems
                 new List<Byte4> { new Byte4(5, 15, 0, 0), new Byte4(5, 15, 1, 0) },
+                //VendorPotions
+                new List<Byte4> { new Byte4(6, 15, 0, 0), new Byte4(6, 15, 1, 0) },
+
                 //VendorAdvertisement
                 new List<Byte4> { new Byte4(5, 5, 0, 0) },
 
