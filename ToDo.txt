@@ -52,26 +52,17 @@ ram useage:
 todo:
 
 
-1
-
-
-
-updated inventory & vendor screens to only draw the selection box once the screen has finished opening animation.
-updated inventory & vendor screens to initially display the selection box at x2 scale.
-when the box starts drawing upon Opened state, it scales down to 1, grabbing the player's attention.
-playtested, working as expected. missing the sound effect that occurs when the selection box moves tho.
-added in call to the selection/move sound effect upon displayState switch to Opened.
-playtested, working as intended.
+13
 
 
 
 
 
-
-
-
+what music do we play for the shop dungeon?
 create vendor stalls, place rugs under/around the stalls
 
+	
+	
 	
 	
 Version 0.4 Milestones
@@ -86,31 +77,15 @@ SHOPS
 	title music plays while hero is in shop dungeon
 	that means that we'll need a dungeon type enum to seperate cursed castle level from shop level
 	
-Shop Screen
-	a collection of widgets: 
-		top right info widget
-		central left shop inventory widget
-		bottom right cost + gold total widget
-	player browses the inventory, info displays menuItem description
-	cost widget takes a menuItem and displays it's cost, along with hero's total gold
+Vendor Screen
 	player purchases an item with A button
-	shop screen handles the actual gold transaction
+	vendor screen handles the actual gold transaction
 
 Inventory
 	we'll need to track what items/weapons/armor/equipment the hero has access to, and what's equipped
 	lets use a bit field to do this: weapons {1, 1, 0, 0, 0} = sword, bow, locked, locked, locked
 	then from shop screen we can check the bit field and only display weapons that are locked
 	this extends to items, magic, weapons, armor, equipment
-	
-Shop Room Polish
-	we'll need to draw gameobjects like desks, drawers, bookcases, etc.. to make shops look like shops
-	but i don't want to pollute the gameobj class with these one-off objects
-	instead we'll just switch out the sprites in the spritesheet and build the objects using the dungeon obj names
-	so, for example, a bookcase might be built by creating a wallTorch object.
-	the issue is that the objects will need to have similar collision recs
-	otherwise we have to extend gameobj.type enum, and setType() method, which i don't want to do.
-	but, it may have to be done for certain objects
-	
 	
 add item/weapon/armor/equipment/magic functionalities
 	boomerang

@@ -510,36 +510,9 @@ namespace DungeonRun
 
 
 
-
-
-                #region Create Item Vendor
-
-                //this will likely become a function later on that we pass an ObjType to
-                //then using the ObjType, function creates the correct vendor + ads + table + rugs
-
-                //stone table
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    7 * 16 + pos.X + 8,
-                    4 * 16 + pos.Y + 8);
-                GameObjectFunctions.SetType(objRef, ObjType.SwitchBlockUp);
-                //item vendor
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    6 * 16 + pos.X + 8,
-                    4 * 16 + pos.Y + 8);
-                GameObjectFunctions.SetType(objRef, ObjType.VendorItems);
-                //item vendor advertisement
-                objRef = PoolFunctions.GetObj();
-                MovementFunctions.Teleport(objRef.compMove,
-                    7 * 16 + pos.X + 8,
-                    4 * 16 + pos.Y + 2);
-                GameObjectFunctions.SetType(objRef, ObjType.VendorAdvertisement);
-                //display all the items available for purchase
-                objRef.compAnim.currentAnimation = new List<Byte4>
-                { new Byte4(5, 5, 0, 0), new Byte4(5, 6, 0, 0) };
-
-                #endregion
+                //create all the vendors
+                CreateVendor(ObjType.VendorItems, new Vector2(6 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+                
 
 
             }
@@ -599,6 +572,48 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+
+        public static void CreateVendor(ObjType VendorType, Vector2 Position)
+        {
+            //place vendor
+            objRef = PoolFunctions.GetObj();
+            MovementFunctions.Teleport(objRef.compMove,
+                Position.X, Position.Y);
+            GameObjectFunctions.SetType(objRef, VendorType);
+
+            //place stone table
+            objRef = PoolFunctions.GetObj();
+            MovementFunctions.Teleport(objRef.compMove,
+                Position.X + 16, Position.Y);
+            GameObjectFunctions.SetType(objRef, ObjType.SwitchBlockUp);
+            
+            //place vendor advertisement
+            objRef = PoolFunctions.GetObj();
+            MovementFunctions.Teleport(objRef.compMove,
+                Position.X + 16, Position.Y - 6);
+            GameObjectFunctions.SetType(objRef, ObjType.VendorAdvertisement);
+            objRef.compAnim.currentAnimation = new List<Byte4>();
+
+
+            #region Display the vendor's wares for sale
+
+            if (VendorType == ObjType.VendorItems)
+            {   //add all the items from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0));
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0));
+            }
+
+            #endregion
+
+
+        }
+
+
+
+
 
     }
 }
