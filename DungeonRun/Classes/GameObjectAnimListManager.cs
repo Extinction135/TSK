@@ -151,6 +151,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(8, 15, 0, 0), new Byte4(8, 15, 1, 0) },
                 //VendorArmor
                 new List<Byte4> { new Byte4(9, 15, 0, 0), new Byte4(9, 15, 1, 0) },
+                //VendorEquipment
+                new List<Byte4> { new Byte4(10, 15, 0, 0), new Byte4(10, 15, 1, 0) },
 
                 //VendorAdvertisement
                 new List<Byte4> { new Byte4(5, 5, 0, 0) },

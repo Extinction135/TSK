@@ -45,7 +45,9 @@ namespace DungeonRun
             MenuWidgetForSale.Reset(new Point(16 * 16, 16 * 8));
             MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 8));
 
-            //set the menuItems based on the vendorType
+
+            #region Set the menuItems based on the vendorType
+
             if(vendorType.type == ObjType.VendorItems)
             {
                 MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, MenuWidgetForSale.menuItems[0]);
@@ -73,6 +75,17 @@ namespace DungeonRun
                 MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[2]);
                 MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[3]);
             }
+            else if (vendorType.type == ObjType.VendorEquipment)
+            {
+                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, MenuWidgetForSale.menuItems[0]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, MenuWidgetForSale.menuItems[1]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, MenuWidgetForSale.menuItems[2]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, MenuWidgetForSale.menuItems[3]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, MenuWidgetForSale.menuItems[4]);
+            }
+
+            #endregion
+
 
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];

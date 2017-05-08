@@ -54,7 +54,7 @@ namespace DungeonRun
         TorchUnlit, TorchLit, ConveyorBelt,
 
         //Shop Objects
-        VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor,
+        VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment,
         VendorAdvertisement,
 
 

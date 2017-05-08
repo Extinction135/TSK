@@ -516,6 +516,7 @@ namespace DungeonRun
                 CreateVendor(ObjType.VendorMagic, new Vector2(7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
                 CreateVendor(ObjType.VendorWeapons, new Vector2(10 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
                 CreateVendor(ObjType.VendorArmor, new Vector2(13 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+                CreateVendor(ObjType.VendorEquipment, new Vector2(16 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
             }
 
             #endregion
@@ -631,12 +632,20 @@ namespace DungeonRun
                 //objRef.compAnim.currentAnimation.Add(new Byte4(8, 9, 0, 0)); //net
             }
             else if (VendorType == ObjType.VendorArmor)
-            {   //add all the weapons from the main sheet
+            {   //add all the armor from the main sheet
                 objRef.compAnim.currentAnimation.Add(new Byte4(9, 5, 0, 0)); //shirt
                 objRef.compAnim.currentAnimation.Add(new Byte4(9, 6, 0, 0)); //plate mail
                 objRef.compAnim.currentAnimation.Add(new Byte4(9, 7, 0, 0)); //cape
                 objRef.compAnim.currentAnimation.Add(new Byte4(9, 8, 0, 0)); //robe
                 //objRef.compAnim.currentAnimation.Add(new Byte4(9, 9, 0, 0)); //robe2
+            }
+            else if (VendorType == ObjType.VendorEquipment)
+            {   //add all the equipment from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(10, 5, 0, 0)); //ring
+                objRef.compAnim.currentAnimation.Add(new Byte4(10, 6, 0, 0)); //pearl
+                objRef.compAnim.currentAnimation.Add(new Byte4(10, 7, 0, 0)); //necklace
+                objRef.compAnim.currentAnimation.Add(new Byte4(10, 8, 0, 0)); //glove
+                objRef.compAnim.currentAnimation.Add(new Byte4(10, 9, 0, 0)); //pin
             }
 
             #endregion
