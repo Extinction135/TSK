@@ -392,7 +392,8 @@ namespace DungeonRun
 
             #region Shop Objects
 
-            else if (Type == ObjType.VendorItems || Type == ObjType.VendorPotions)
+            else if (Type == ObjType.VendorItems || Type == ObjType.VendorPotions ||
+                Type == ObjType.VendorMagic)
             {   
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;

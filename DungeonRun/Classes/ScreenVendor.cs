@@ -56,6 +56,10 @@ namespace DungeonRun
                 MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, MenuWidgetForSale.menuItems[0]);
                 MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, MenuWidgetForSale.menuItems[1]);
             }
+            else if (vendorType.type == ObjType.VendorMagic)
+            {
+                MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, MenuWidgetForSale.menuItems[0]);
+            }
 
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];
