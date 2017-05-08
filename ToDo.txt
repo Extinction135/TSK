@@ -52,30 +52,62 @@ ram useage:
 todo:
 
 
-5
-
-
-
-bug: the currently selected menuItem in inventory screen doesn't scale back down to 1.0.
-cause: we stopped animating the currently selected item.
-solution: animate the currently selected item again, unless it's the inventory gold menuItem.
-this prevents animating the inventory gold menuItem twice per frame.
-playtested, working as expected.
+4
 
 
 
 
+removed Weapon and Item eumerators. we'll be using menuItems instead.
+changed Actor.weapon and Actor.item to MenuItemType.
+updated ActorFunctions.SetType() to set actor weapon and items using MenuItemType.
+updated ActorFunctions.Update() to check for itemType == Unknown.
+updated ActorFunctions.UseItem() to check for itemType == MagicFireball.
+updated ActorFunctions.UseWeapon() to check for itemType == WeaponSword.
+updated InventoryScreen.SetLoadOut() to check for itemType == MagicFireball.
+
+updated WorldUI to use menuItems for current weapon and item, instead of sprites.
+modified WorldUI.Update() to set the current weapon + item based on player loadout.
+changed how WorldUI tracks the hero's weapon and item.
+playtested, working with a few bugs...
 
 
 
-inventory screen - currently selected menuItem doesn't scale back down?
-because it's not being animated? i assume
+
+bug: the worldUI does not display the hero's sword. why?
+
+
+
 
 
 world UI should display the correct item
 if hero doesn't have an item, the item sprite should not be visible
 else, the item sprite's frame should be set, and it should be visible
 world UI.item should pull menuItem.compSprite.currentFrame...
+
+the actor's item should really be a menuItem.
+this way we don't have a layer of abstraction between Actor.item & what is equipped..
+we'd like to say - worldUI.currentItem.currentFrame = Pool.hero.item.compSprite.currentFrame;
+
+the item enum is entirely irrelevant.
+same with the weapon enum.
+
+but, there's a lot of checks throughout the codebase that use these enums
+so we'll have to update them to use menuItems...
+
+
+
+
+
+should be able to select the sword from inventory and set it as hero.weapon
+
+
+
+
+
+
+
+
+
 
 from vendor screen, an unknown item can be purchased for free, playing purchase sound
 we should not be able to purchase an item with a price of 0..

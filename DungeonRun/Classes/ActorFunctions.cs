@@ -113,7 +113,7 @@ namespace DungeonRun
 
         public static void UseWeapon(Actor Actor)
         {
-            if (Actor.weapon == Weapon.Sword)
+            if (Actor.weapon == MenuItemType.WeaponSword)
             {
                 GameObjectFunctions.SpawnProjectile(ObjType.ProjectileSword, Actor);
                 Assets.Play(Assets.sfxSwordSwipe);
@@ -123,10 +123,10 @@ namespace DungeonRun
 
         public static void UseItem(Actor Actor)
         {
-            if (Actor.item == Item.FireMagic)
+            if (Actor.item == MenuItemType.MagicFireball)
             {
                 GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball, Actor);
-                Assets.Play(Assets.sfxFireballCast); //need fireball soundfx
+                Assets.Play(Assets.sfxFireballCast);
                 Actor.lockTotal = 15;
             }
         }
@@ -153,7 +153,7 @@ namespace DungeonRun
             Actor.compSprite.cellSize.X = 16;
             Actor.compSprite.cellSize.Y = 16;
             //assume actor has no item
-            Actor.item = Item.None;
+            Actor.item = MenuItemType.Unknown;
 
 
             #region Actor Specific Fields
@@ -163,7 +163,7 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.heroSheet;
                 Actor.health = 3;
                 Actor.maxHealth = 14;
-                Actor.weapon = Weapon.Sword;
+                Actor.weapon = MenuItemType.WeaponSword;
                 Actor.walkSpeed = 0.30f;
                 Actor.dashSpeed = 0.80f;
             }
@@ -172,7 +172,7 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.health = 1;
                 Actor.maxHealth = 1;
-                Actor.weapon = Weapon.Sword;
+                Actor.weapon = MenuItemType.WeaponSword;
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
             }
@@ -181,7 +181,7 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.bossSheet;
                 Actor.health = 10;
                 Actor.maxHealth = 10;
-                Actor.weapon = Weapon.None;
+                Actor.weapon = MenuItemType.Unknown;
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
                 //this actor is a boss (double size)
@@ -249,17 +249,17 @@ namespace DungeonRun
                     MovementFunctions.StopMovement(Actor.compMove);
                     UseWeapon(Actor);
                     //scale up the current weapon in world ui
-                    if (Actor == Pool.hero) { WorldUI.currentWeapon.scale = 1.4f; }
+                    if (Actor == Pool.hero) { WorldUI.currentWeapon.compSprite.scale = 1.4f; }
                 }
                 else if (Actor.state == ActorState.Use)
                 {   
-                    if (Actor.item != Item.None)
+                    if (Actor.item != MenuItemType.Unknown)
                     {   //lock actor into use animation, stop movement, use the current item
                         Actor.stateLocked = true;
                         MovementFunctions.StopMovement(Actor.compMove);
                         UseItem(Actor);
                         //scale up the current item in world ui
-                        if (Actor == Pool.hero) { WorldUI.currentItem.scale = 1.4f; }
+                        if (Actor == Pool.hero) { WorldUI.currentItem.compSprite.scale = 1.4f; }
                     }
                     else //actor has no item to use, revert to idle
                     { Actor.state = ActorState.Idle; }

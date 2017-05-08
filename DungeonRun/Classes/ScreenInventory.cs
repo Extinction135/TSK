@@ -119,7 +119,7 @@ namespace DungeonRun
         public void SetLoadout()
         {   //check the currently selected item's type, and the corresponding saveData boolean
             if (currentlySelected.type == MenuItemType.MagicFireball && PlayerData.saveData.magicFireball)
-            { Pool.hero.item = Item.FireMagic; }
+            { Pool.hero.item = MenuItemType.MagicFireball; }
 
             //expand this to include all items, bottle, magics, weapons, armor, & equipment
         }

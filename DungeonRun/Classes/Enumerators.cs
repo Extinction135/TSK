@@ -87,8 +87,4 @@ namespace DungeonRun
         EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
     }
 
-    public enum Weapon { None, Sword }
-
-    public enum Item { None, FireMagic }
-
 }

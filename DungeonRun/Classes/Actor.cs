@@ -42,8 +42,8 @@ namespace DungeonRun
         //battle fields
         public byte health;
         public byte maxHealth;
-        public Weapon weapon;
-        public Item item;
+        public MenuItemType weapon;
+        public MenuItemType item;
 
         //actor requires a reference to the various textures/sounds it may use - all the possible textures
         public Actor()
