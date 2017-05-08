@@ -86,6 +86,8 @@ namespace DungeonRun
             //get the hero's current weapon and item
             heroWeapon = Pool.hero.weapon;
             heroItem = Pool.hero.item;
+            MenuItemFunctions.SetMenuItemData(heroWeapon, currentWeapon);
+            MenuItemFunctions.SetMenuItemData(heroItem, currentItem);
         }
 
 
@@ -139,12 +141,12 @@ namespace DungeonRun
             if (heroWeapon != Pool.hero.weapon)
             {   //check to see if hero's weapon has changed, update worldUI to new weapon
                 heroWeapon = Pool.hero.weapon;
-                MenuItemFunctions.SetMenuItemData(Pool.hero.weapon, currentWeapon);
+                MenuItemFunctions.SetMenuItemData(heroWeapon, currentWeapon);
             }
             if (heroItem != Pool.hero.item)
             {   //check to see if hero's item has changed, update worldUI to new item
                 heroItem = Pool.hero.item;
-                MenuItemFunctions.SetMenuItemData(Pool.hero.item, currentItem);
+                MenuItemFunctions.SetMenuItemData(heroItem, currentItem);
             }
 
             //if the hero has an item equipped, then draw it
@@ -152,9 +154,9 @@ namespace DungeonRun
             { currentItem.compSprite.visible = false; }
             else { currentItem.compSprite.visible = true; }
 
-            //scale current weapon and item back down to 1.0
-            if (currentWeapon.compSprite.scale > 1.0f) { currentWeapon.compSprite.scale -= 0.05f; }
-            if (currentItem.compSprite.scale > 1.0f) { currentItem.compSprite.scale -= 0.05f; }
+            //animate (and scale) the current weapon + item
+            AnimationFunctions.Animate(currentWeapon.compAnim, currentWeapon.compSprite);
+            AnimationFunctions.Animate(currentItem.compAnim, currentItem.compSprite);
         }
 
         public static void Draw()

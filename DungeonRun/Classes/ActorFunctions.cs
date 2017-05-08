@@ -249,7 +249,7 @@ namespace DungeonRun
                     MovementFunctions.StopMovement(Actor.compMove);
                     UseWeapon(Actor);
                     //scale up the current weapon in world ui
-                    if (Actor == Pool.hero) { WorldUI.currentWeapon.compSprite.scale = 1.4f; }
+                    if (Actor == Pool.hero) { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
                 }
                 else if (Actor.state == ActorState.Use)
                 {   
@@ -259,7 +259,7 @@ namespace DungeonRun
                         MovementFunctions.StopMovement(Actor.compMove);
                         UseItem(Actor);
                         //scale up the current item in world ui
-                        if (Actor == Pool.hero) { WorldUI.currentItem.compSprite.scale = 1.4f; }
+                        if (Actor == Pool.hero) { WorldUI.currentItem.compSprite.scale = 2.0f; }
                     }
                     else //actor has no item to use, revert to idle
                     { Actor.state = ActorState.Idle; }

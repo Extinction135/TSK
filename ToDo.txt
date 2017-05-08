@@ -52,28 +52,16 @@ ram useage:
 todo:
 
 
-4
+3
 
 
+bug: the worldUI does not display the hero's sword.
+cause: the current weapon and item were never being passed to MenuItemFunctions.SetMenuItemData().
+solution: now passing the weapon and item menuItems to SetMenuItemData() upon WorldUI construction.
+playtested, working as expected.
 
+updated ActorFunctions.Update() to scale world UI item and weapon to x2 upon useage.
 
-removed Weapon and Item eumerators. we'll be using menuItems instead.
-changed Actor.weapon and Actor.item to MenuItemType.
-updated ActorFunctions.SetType() to set actor weapon and items using MenuItemType.
-updated ActorFunctions.Update() to check for itemType == Unknown.
-updated ActorFunctions.UseItem() to check for itemType == MagicFireball.
-updated ActorFunctions.UseWeapon() to check for itemType == WeaponSword.
-updated InventoryScreen.SetLoadOut() to check for itemType == MagicFireball.
-
-updated WorldUI to use menuItems for current weapon and item, instead of sprites.
-modified WorldUI.Update() to set the current weapon + item based on player loadout.
-changed how WorldUI tracks the hero's weapon and item.
-playtested, working with a few bugs...
-
-
-
-
-bug: the worldUI does not display the hero's sword. why?
 
 
 
