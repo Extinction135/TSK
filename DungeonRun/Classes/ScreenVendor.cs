@@ -66,6 +66,13 @@ namespace DungeonRun
                 MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, MenuWidgetForSale.menuItems[1]);
                 MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, MenuWidgetForSale.menuItems[2]);
             }
+            else if (vendorType.type == ObjType.VendorArmor)
+            {
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, MenuWidgetForSale.menuItems[0]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, MenuWidgetForSale.menuItems[1]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[2]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[3]);
+            }
 
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];
