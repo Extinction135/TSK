@@ -123,7 +123,10 @@ namespace DungeonRun
 
             //check if currently selected is an item, set hero.item
             if (currentlySelected.type == MenuItemType.MagicFireball)
-            { Pool.hero.item = currentlySelected.type; }
+            {
+                Pool.hero.item = currentlySelected.type;
+                MenuWidgetLoadout.item.compSprite.scale = 2.0f;
+            }
 
             #endregion
 
@@ -132,11 +135,15 @@ namespace DungeonRun
 
             //check if currently selected is a weapon, set hero.weapon
             if (currentlySelected.type == MenuItemType.WeaponSword)
-            { Pool.hero.weapon = currentlySelected.type; }
+            {
+                Pool.hero.weapon = currentlySelected.type;
+                MenuWidgetLoadout.weapon.compSprite.scale = 2.0f;
+            }
 
             #endregion
 
-
+            //update the LoadoutWidget to show equipped items
+            MenuWidgetLoadout.UpdateLoadout();
         }
 
 

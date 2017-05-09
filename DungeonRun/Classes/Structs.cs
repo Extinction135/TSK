@@ -135,7 +135,7 @@ namespace DungeonRun
         public SaveData(String Name)
         {
             name = Name;
-            gold = 10;
+            gold = 99;
             heartPieces = 4 * 3; //player starts with 3 hearts
 
             //all items default to false

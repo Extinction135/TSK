@@ -52,35 +52,36 @@ ram useage:
 todo:
 
 
-11
+10
 
 
 
 
-removed weaponSword and armorShirt booleans from SaveData struct.
-hero will always have these items, so there is no need for a boolean to represent if hero has them.
-this also leads to a state where these booleans could be false, which would cause unpredicatble program behavior.
-in addition, these booleans were never being checked, anywhere, in the codebase.
+created LoadoutWidget.UpdateLoadout(), containing the routines used to set the loadout menuItems.
+updated InventoryScreen.SetLoadout() to call LoadoutWidget.UpdateLoadout(), when an item is equipped.
+this makes LoadoutWidget display the equipped item when player selects item from inventory screen.
 
-switched equipment ring boolean to false.
-updated InventoryWidget to set the ring menuItem based on saveData.equipmentRing.
-playtested, bugs.
+updated LoadoutWidget to animate menuItems, in prep for scaling them up when item/weapon/armor/equipment is equipped.
+updated LoadoutWidget with menuItem pointers to item, weapon, armor, equipment for easier readability.
+updated LoadoutWidget to use the new loadout pointers.
+updated InventoryScreen to scale the LoadoutWidget's item and weapon menuItems up to 200%, when loadout is set.
 
-bug: loadout widget should should display what the hero has equipped.
-solution: the hero needs menuItem fields for armor and equipment.
-loadout widget then sets the loadout menuItems based on the hero's loadout values.
 
-added MenuItemType fields armor, equipment to actor.cs
-this means that each actor has it's own loadout of weapon, item, armor, and equipment.
-updated ActorFunctions.SetType() to set each actor's equipment and armor values to unknown.
-by default, the current enemies don't have armor or equipment.
-we don't modify the hero's armor or equipment from SetType() tho - this is done via InventoryScreen.
-updated Pool's constructor to set the full initial loadout for the hero, including armor and equipment.
 
-updated Loadout widget to use actor.item, weapon, armor, and equipment.
-the loadout menuItems are now based on these fields values.
-slight reorganization of LoadoutWidget.
-playtested, working as expected.
+we should be able to update the loadout for cloth armor as well
+this is working for sword weapon and fireball item
+
+
+
+
+
+
+the loadout animates the loadout menuItems
+when we select a laodout menuItem from inventory screen, we animate the loadout menuItem again
+this leads to a double scaling down effect, which should happen
+we shouldn't be able to select loadout menuItems.
+this solves the scaling issue, and it doesn't make sense to be able to select them
+selecting an item should only equip it
 
 
 

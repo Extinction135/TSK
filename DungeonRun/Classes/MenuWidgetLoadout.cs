@@ -21,6 +21,12 @@ namespace DungeonRun
         public static ComponentText goldAmount;
         public static int goldTracker;
         public static Rectangle goldBkg;
+        //pointers to the loadout menuItems
+        public static MenuItem item;
+        public static MenuItem weapon;
+        public static MenuItem armor;
+        public static MenuItem equipment;
+
 
         static MenuWidgetLoadout()
         {
@@ -30,6 +36,11 @@ namespace DungeonRun
             //create menuitems
             menuItems = new List<MenuItem>();
             for (i = 0; i < 8; i++) { menuItems.Add(new MenuItem()); }
+            //set loadout pointers
+            item = menuItems[0];
+            weapon = menuItems[1];
+            armor = menuItems[2];
+            equipment = menuItems[3];
 
             //create the gold amount text
             goldAmount = new ComponentText(Assets.font, "99", 
@@ -81,21 +92,7 @@ namespace DungeonRun
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 4);
 
-            //get the hero's loadout
-            MenuItemFunctions.SetMenuItemData(Pool.hero.item, menuItems[0]);
-            MenuItemFunctions.SetMenuItemData(Pool.hero.weapon, menuItems[1]);
-            MenuItemFunctions.SetMenuItemData(Pool.hero.armor, menuItems[2]);
-            MenuItemFunctions.SetMenuItemData(Pool.hero.equipment, menuItems[3]);
-            //set the gold, hearts, and dungeon items
-            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
-            if (DungeonFunctions.dungeon.map) //if player found the map, display it
-            { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
-            else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }
-            if (DungeonFunctions.dungeon.bigKey) //if player found the key, display it
-            { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
-            else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
-
+            UpdateLoadout();
             //set the inventory heart pieces frame, based on the number of heart pieces hero has
             //add the piece counter to the current X frame, pieceCounter will always be less than 5
             menuItems[5].compAnim.currentAnimation = new List<Byte4>
@@ -119,11 +116,34 @@ namespace DungeonRun
             else { goldAmount.text = "" + goldTracker; }
         }
 
+        public static void UpdateLoadout()
+        {
+            //get the hero's loadout
+            MenuItemFunctions.SetMenuItemData(Pool.hero.item, item);
+            MenuItemFunctions.SetMenuItemData(Pool.hero.weapon, weapon);
+            MenuItemFunctions.SetMenuItemData(Pool.hero.armor, armor);
+            MenuItemFunctions.SetMenuItemData(Pool.hero.equipment, equipment);
+            //set the gold, hearts, and dungeon items
+            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
+            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
+            if (DungeonFunctions.dungeon.map) //if player found the map, display it
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
+            else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }
+            if (DungeonFunctions.dungeon.bigKey) //if player found the key, display it
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
+            else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
+        }
+
         public static void Update()
         {
             window.Update();
+            //scale the loadout sprites back down to 1.0
+            AnimationFunctions.Animate(item.compAnim, item.compSprite);
+            AnimationFunctions.Animate(weapon.compAnim, weapon.compSprite);
+            AnimationFunctions.Animate(armor.compAnim, armor.compSprite);
+            AnimationFunctions.Animate(equipment.compAnim, equipment.compSprite);
+            //animate the gold menuItem to grab the player's attention
             AnimationFunctions.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
-
             if(goldTracker != PlayerData.saveData.gold)
             {   //count the gold amount up or down
                 if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
