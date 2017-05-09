@@ -108,6 +108,15 @@ namespace DungeonRun
             goldBkg.Y = (int)goldAmount.position.Y + 4;
             //initially display the player's gold
             goldTracker = PlayerData.saveData.gold;
+            UpdateGoldAmount();
+        }
+
+
+        public static void UpdateGoldAmount()
+        {
+            //display the gold amount with a prefix of 0, if needed
+            if (goldTracker < 10) { goldAmount.text = "0" + goldTracker; }
+            else { goldAmount.text = "" + goldTracker; }
         }
 
         public static void Update()
@@ -119,9 +128,7 @@ namespace DungeonRun
             {   //count the gold amount up or down
                 if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
                 else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
-                //display the gold amount with a prefix of 0, if needed
-                if (goldTracker < 10) { goldAmount.text = "0" + goldTracker; }
-                else { goldAmount.text = "" + goldTracker; }
+                UpdateGoldAmount();
                 //randomly play the gold sound effect
                 if (GetRandom.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
             }

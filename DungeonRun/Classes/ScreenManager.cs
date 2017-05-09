@@ -73,7 +73,7 @@ namespace DungeonRun
         public static void Update(GameTime GameTime)
         {
             gameTime = GameTime;
-            Input.Update(GameTime); //read the keyboard and gamepad
+            Input.Update(GameTime);
 
             screensToUpdate.Clear();
             screensToUpdate.AddRange(screens);

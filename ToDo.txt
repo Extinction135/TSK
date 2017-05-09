@@ -52,7 +52,17 @@ ram useage:
 todo:
 
 
-13
+12
+
+
+
+bug: the loadout widget isn't displaying the player's gold amount properly.
+cause: faulty logic, wasn't initially updating the gold amount.
+solution: created Loadout.UpdateGoldAmount(), added calls to this functions from Reset() and Update().
+playtested, working as expected.
+
+
+
 
 
 bug: the loadout widget isn't getting the correct gold amount. why?

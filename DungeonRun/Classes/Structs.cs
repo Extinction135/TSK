@@ -132,7 +132,7 @@ namespace DungeonRun
             name = Name;
 
             //create new game values
-            gold = 99; //testing
+            gold = 10; //testing
             heartPieces = 4 * 3; //player starts with 3 hearts
             weaponSword = true;
             armorShirt = true;
