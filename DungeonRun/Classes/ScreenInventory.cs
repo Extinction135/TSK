@@ -142,6 +142,31 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Armor
+
+            //check if currently selected is armor, set hero.armor
+            if (currentlySelected.type == MenuItemType.ArmorCloth)
+            {
+                Pool.hero.armor = currentlySelected.type;
+                MenuWidgetLoadout.armor.compSprite.scale = 2.0f;
+            }
+
+            #endregion
+
+
+            #region Equipment
+
+            //check if currently selected is equipment, set hero.equipment
+            if (currentlySelected.type == MenuItemType.EquipmentRing)
+            {
+                Pool.hero.equipment = currentlySelected.type;
+                MenuWidgetLoadout.equipment.compSprite.scale = 2.0f;
+            }
+
+            #endregion
+
+
             //update the LoadoutWidget to show equipped items
             MenuWidgetLoadout.UpdateLoadout();
         }

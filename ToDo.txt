@@ -52,24 +52,28 @@ ram useage:
 todo:
 
 
-10
+9
 
 
 
 
-created LoadoutWidget.UpdateLoadout(), containing the routines used to set the loadout menuItems.
-updated InventoryScreen.SetLoadout() to call LoadoutWidget.UpdateLoadout(), when an item is equipped.
-this makes LoadoutWidget display the equipped item when player selects item from inventory screen.
-
-updated LoadoutWidget to animate menuItems, in prep for scaling them up when item/weapon/armor/equipment is equipped.
-updated LoadoutWidget with menuItem pointers to item, weapon, armor, equipment for easier readability.
-updated LoadoutWidget to use the new loadout pointers.
-updated InventoryScreen to scale the LoadoutWidget's item and weapon menuItems up to 200%, when loadout is set.
+updated InventoryScreen.SetLoadout() to set armor loadout and actor.armor value.
+playtested, working as expected.
 
 
 
-we should be able to update the loadout for cloth armor as well
-this is working for sword weapon and fireball item
+
+we need to get the ring working now.
+should be purchasable from vendor.
+should display in the inventory screen.
+loadout should accept an equipment update
+what does the ring do? i have no idea rn....
+
+sword should not be for sale from the weapon vendor
+cloth should not be for sale from the armor vendor
+
+
+
 
 
 
@@ -85,28 +89,17 @@ selecting an item should only equip it
 
 
 
-
-
-when we select the fireball, it should update the loadout widet
-this makes it appear as the currently equipped item
-the loadout item sprite should also scale up to 2.0, grabbing the user's attention
-
-
-
-sword should not be for sale from the weapon vendor
-cloth should not be for sale from the armor vendor
-
-
-
-
-
-
 we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
 could say things like "please buy something, mister.."
 or "you don't have enough gold to buy that.."
 this dialog widget can be reused later in the game for other things as well
 we could put this dialog window below the other widgets
 it would fit better there, do a mockup of this dialog screen
+
+
+
+
+
 
 
 

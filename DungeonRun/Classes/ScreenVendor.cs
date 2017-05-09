@@ -64,16 +64,14 @@ namespace DungeonRun
             }
             else if (vendorType.type == ObjType.VendorWeapons)
             {
-                MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, MenuWidgetForSale.menuItems[0]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, MenuWidgetForSale.menuItems[1]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, MenuWidgetForSale.menuItems[2]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, MenuWidgetForSale.menuItems[0]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, MenuWidgetForSale.menuItems[1]);
             }
             else if (vendorType.type == ObjType.VendorArmor)
             {
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, MenuWidgetForSale.menuItems[0]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, MenuWidgetForSale.menuItems[1]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[2]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[3]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, MenuWidgetForSale.menuItems[0]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[1]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[2]);
             }
             else if (vendorType.type == ObjType.VendorEquipment)
             {
@@ -107,13 +105,11 @@ namespace DungeonRun
         }
 
 
+
         public static void GetPrice(MenuItem Item)
-        {
-            //display the currently selected item's price in the for sale window title
+        {   //display the currently selected item's price in the for sale window title
             MenuWidgetForSale.window.title.text = "For Sale - " + Item.price;
         }
-
-
 
         public static void PurchaseItem(MenuItem Item)
         {
@@ -122,15 +118,18 @@ namespace DungeonRun
 
             //the player cannot purchase an item twice
             if (Item.type == MenuItemType.MagicFireball && PlayerData.saveData.magicFireball) { return; }
+            else if (Item.type == MenuItemType.EquipmentRing && PlayerData.saveData.equipmentRing) { return; }
 
             //see if hero has enough gold to purchase this item
             if (PlayerData.saveData.gold >= Item.price)
             {
-                //deduct cost, flip boolean true
+                //deduct cost, play purchase sound
                 PlayerData.saveData.gold -= Item.price;
-                if (Item.type == MenuItemType.MagicFireball) { PlayerData.saveData.magicFireball = true; }
-                //play purchase sound
                 Assets.Play(Assets.sfxBeatDungeon);
+
+                //flip the corresponding saveData boolean true
+                if (Item.type == MenuItemType.MagicFireball) { PlayerData.saveData.magicFireball = true; }
+                else if (Item.type == MenuItemType.EquipmentRing) { PlayerData.saveData.equipmentRing = true; }
             }
             //else, play an error sound
             else { Assets.Play(Assets.sfxError); }
