@@ -75,24 +75,15 @@ namespace DungeonRun
             gameTime = GameTime;
             Input.Update(GameTime); //read the keyboard and gamepad
 
-            //make a copy of the master screen list, to avoid confusion if
-            //the process of updating one screen adds or removes others
             screensToUpdate.Clear();
-            foreach (Screen screen in screens) { screensToUpdate.Add(screen); }
+            screensToUpdate.AddRange(screens);
             coveredByOtherScreen = false;
 
-            //loop as long as there are screens waiting to be updated.
-            while (screensToUpdate.Count > 0)
-            {   //remove the topmost screen from the waiting list
-                Screen screen = screensToUpdate[screensToUpdate.Count - 1];
-                screensToUpdate.RemoveAt(screensToUpdate.Count - 1);
-
-                if (coveredByOtherScreen == false) //targeting the top most screen
-                {   //update & send input only to the top screen
-                    screen.HandleInput(GameTime);
-                    screen.Update(GameTime);
-                    coveredByOtherScreen = true; //no update/input to screens below top
-                }
+            if (screens.Count > 0)
+            {
+                Screen activeScreen = screens[screens.Count - 1];
+                activeScreen.HandleInput(GameTime);
+                activeScreen.Update(GameTime);
             }
         }
 

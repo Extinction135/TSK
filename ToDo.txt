@@ -52,96 +52,51 @@ ram useage:
 todo:
 
 
-1
-
-
-
-added SoundError to content project, built.
-added instances to Assets to load SoundError.
-updated VendorScreen to play an error sound if player does not have enough gold to purchase selected item.
-playtested, working as expected.
-
-
-
-
-
-bug: worldUI + player.item was not fireball upon a dungeon build.
-
-when a dungeon is built, the actors are reset...
-check to see that we carry item into a boss room...
-this is happening because of a call to ActorFunctions.SetType()...
-
-
-
-
-
-
-
+13
 
 
 bug: the loadout widget isn't getting the correct gold amount. why?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 we need an armor for actor
 we need an equipment for actor
 
 what happens if sword / shirt / ring is false? they should always be true...
 
-
-
-
 we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
 could say things like "please buy something, mister.."
 or "you don't have enough gold to but that.."
-
+this dialog widget can be reused later in the game for other things as well
 we could put this dialog window below the other widgets
-it would fit better there
-
+it would fit better there, do a mockup of this dialog screen
 
 
 
 
 Inventory
 	we'll need to track what items/weapons/armor/equipment the hero has access to, and what's equipped
-	lets use a bit field to do this: weapons {1, 1, 0, 0, 0} = sword, bow, locked, locked, locked
-	then from shop screen we can check the bit field and only display weapons that are locked
+	this is going to be done using named booleans, not on a list
+	this makes it easier to understand the booleans purpose, and makes it easier for ppl to hack save files later
 	this extends to items, magic, weapons, armor, equipment
+
 	
 	
 	
-	
-	
-implement actual purchasing routines
-
-
-
-
-
-
-
-
-
-
-
-
-
 what music do we play for the shop dungeon?
-create vendor stalls, place rugs under/around the stalls
 
+
+
+
+Vendor stalls / layout ++
+	we need vendor 'stalls'
+	stalls should have rugs under them
+	vendors should not be in a line, the should be spread out
+	there should be more decorations in the shop
+	the 'guide' npc obj should also be in the shop
+	there should be a dog actor that chases the hero around
+	this dog actor is an enemy, but never attacks and has it's own AI.
+
+	
+	
 	
 	
 	
@@ -174,6 +129,22 @@ add item/weapon/armor/equipment/magic functionalities
 	health potion
 	arrow + bow
 	??? armor, equipment
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
