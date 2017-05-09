@@ -52,27 +52,47 @@ ram useage:
 todo:
 
 
-9
+8
+
+
+added int dropRate to GameObjectFunctions.
+modified how SpawnLoot() works to consider if the hero has the ring equipped.
+enemy drop rates are increased if the hero has the ring equipped.
+
+
+updated the descriptions for sword, fireball, cloth, and ring in MenuItemFunctions.SetMenuItemData().
 
 
 
 
-updated InventoryScreen.SetLoadout() to set armor loadout and actor.armor value.
-playtested, working as expected.
+
+update the menuItem descriptions for the items the hero can currently use:
+	sword - "an unbreakable sword that deals 1 physical damage.
+	fireball - "a flying fireball that deals 1 magical damage."
+	cloth - "provides no protection against attacks."
+	ring - "increases drop rate of loot from enemies."
+
+
+
+disable the unimplemented items from all vendors...
 
 
 
 
-we need to get the ring working now.
-should be purchasable from vendor.
-should display in the inventory screen.
-loadout should accept an equipment update
-what does the ring do? i have no idea rn....
 
-sword should not be for sale from the weapon vendor
-cloth should not be for sale from the armor vendor
+shouldn't be able to 'select' or scale up, an unknown menuItem, from any widget
+simply ignore these menuItems. but still play the select sound.
 
 
+
+
+
+
+in vendor screen, we should display the item's cost the same way we display the gold amount in loadout
+with a white number against a black background, in front of the menuItem
+we should make the gold amount display a struct, with a background, text component, and internal counter
+we should have a function that updates the gold amount display, probably located in ComponentFunctions.
+we could make the gold amount display a component.... hmmm...
 
 
 
@@ -176,8 +196,12 @@ add item/weapon/armor/equipment/magic functionalities
 	
 	
 	
-	
-	
+We should change the 'stats' window/widget to the 'help' widget
+display the big 4 topics about how to play the game:
+	controls - how to play the game
+	objective - the game's objective / goal
+	economy - purchasing items with gold
+	inventory - equipping and using items
 	
 	
 	

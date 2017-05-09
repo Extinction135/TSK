@@ -111,7 +111,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.MagicFireball)
             {
                 MenuItem.name = "Fireball Magic";
-                MenuItem.description = "Shoots a fireball\nin the facing direction.";
+                MenuItem.description = "A flying fireball that\ndeals 1 magical damage.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 6, 0, 0) };
                 MenuItem.price = 99;
             }
@@ -124,7 +124,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.WeaponSword)
             {
                 MenuItem.name = "Magic Sword";
-                MenuItem.description = "A magic sword.";
+                MenuItem.description = "A magic sword that\ndeals 1 physical damage.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(8, 5, 0, 0) };
                 MenuItem.price = 50;
             }
@@ -151,7 +151,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.ArmorCloth)
             {
                 MenuItem.name = "Basic Cloth";
-                MenuItem.description = "A basic tshirt.";
+                MenuItem.description = "Provides no protection \nagainst attacks.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 5, 0, 0) };
                 MenuItem.price = 0;
             }
@@ -184,8 +184,8 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.EquipmentRing)
             {
-                MenuItem.name = "Magic Ring";
-                MenuItem.description = "A magic ring.";
+                MenuItem.name = "Lucky Ring";
+                MenuItem.description = "Increases the drop rate \nof loot from enemies.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 5, 0, 0) };
                 MenuItem.price = 50;
             }

@@ -68,8 +68,7 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -16; //sort to floor
                 GameObjectFunctions.SpawnProjectile(ObjType.ParticleExplosion, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-                if (GetRandom.Int(0, 100) > 60) //spawn loot 40% of the time
-                { GameObjectFunctions.SpawnLoot(Actor.compSprite.position); } 
+                GameObjectFunctions.SpawnLoot(Actor.compSprite.position);
             }
             else if (Actor.type == ActorType.Boss)
             {

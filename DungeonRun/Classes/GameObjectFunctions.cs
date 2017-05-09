@@ -53,12 +53,23 @@ namespace DungeonRun
             Obj.compMove.speed = 0.0f; //assume this object doesn't move
         }
 
+
+        static int dropRate;
         public static void SpawnLoot(Vector2 Pos)
-        {   //either spawn a rupee or a heart item
-            if (GetRandom.Int(0, 100) > 30)
-            { SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
-            else
-            { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
+        {
+            dropRate = 60; //default 40% chance to drop loot
+            //if hero has ring equipped, increase the loot drop rate to 70%
+            if (Pool.hero.equipment == MenuItemType.EquipmentRing) { dropRate = 30; }
+
+            //create loot if random value is greater than dropRate
+            if (GetRandom.Int(0, 100) > dropRate)
+            {
+                //either spawn a rupee or a heart item
+                if (GetRandom.Int(0, 100) > 30)
+                { SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
+                else
+                { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
+            }
         }
 
         public static void SetWeaponCollisions(GameObject Obj)
