@@ -80,20 +80,15 @@ namespace DungeonRun
 
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 4);
-            //set the menuItem's data
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[1]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[2]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[3]);
+
+            //get the hero's loadout
+            MenuItemFunctions.SetMenuItemData(Pool.hero.item, menuItems[0]);
+            MenuItemFunctions.SetMenuItemData(Pool.hero.weapon, menuItems[1]);
+            MenuItemFunctions.SetMenuItemData(Pool.hero.armor, menuItems[2]);
+            MenuItemFunctions.SetMenuItemData(Pool.hero.equipment, menuItems[3]);
+            //set the gold, hearts, and dungeon items
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
-
-            //set the inventory heart pieces frame, based on the number of heart pieces hero has
-            //add the piece counter to the current X frame, pieceCounter will always be less than 5
-            menuItems[5].compAnim.currentAnimation = new List<Byte4>
-            { new Byte4((byte)(10 + WorldUI.pieceCounter), 1, 0, 0) };
-            AnimationFunctions.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
-
             if (DungeonFunctions.dungeon.map) //if player found the map, display it
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
             else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }
@@ -101,6 +96,11 @@ namespace DungeonRun
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
             else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
 
+            //set the inventory heart pieces frame, based on the number of heart pieces hero has
+            //add the piece counter to the current X frame, pieceCounter will always be less than 5
+            menuItems[5].compAnim.currentAnimation = new List<Byte4>
+            { new Byte4((byte)(10 + WorldUI.pieceCounter), 1, 0, 0) };
+            AnimationFunctions.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
             //place the goldAmount text component & bkg to the gold menuItem
             goldAmount.position.X = menuItems[4].compSprite.position.X - 1;
             goldAmount.position.Y = menuItems[4].compSprite.position.Y - 4;

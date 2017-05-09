@@ -52,29 +52,57 @@ ram useage:
 todo:
 
 
-12
+11
 
 
 
-bug: the loadout widget isn't displaying the player's gold amount properly.
-cause: faulty logic, wasn't initially updating the gold amount.
-solution: created Loadout.UpdateGoldAmount(), added calls to this functions from Reset() and Update().
+
+removed weaponSword and armorShirt booleans from SaveData struct.
+hero will always have these items, so there is no need for a boolean to represent if hero has them.
+this also leads to a state where these booleans could be false, which would cause unpredicatble program behavior.
+in addition, these booleans were never being checked, anywhere, in the codebase.
+
+switched equipment ring boolean to false.
+updated InventoryWidget to set the ring menuItem based on saveData.equipmentRing.
+playtested, bugs.
+
+bug: loadout widget should should display what the hero has equipped.
+solution: the hero needs menuItem fields for armor and equipment.
+loadout widget then sets the loadout menuItems based on the hero's loadout values.
+
+added MenuItemType fields armor, equipment to actor.cs
+this means that each actor has it's own loadout of weapon, item, armor, and equipment.
+updated ActorFunctions.SetType() to set each actor's equipment and armor values to unknown.
+by default, the current enemies don't have armor or equipment.
+we don't modify the hero's armor or equipment from SetType() tho - this is done via InventoryScreen.
+updated Pool's constructor to set the full initial loadout for the hero, including armor and equipment.
+
+updated Loadout widget to use actor.item, weapon, armor, and equipment.
+the loadout menuItems are now based on these fields values.
+slight reorganization of LoadoutWidget.
 playtested, working as expected.
 
 
 
 
 
-bug: the loadout widget isn't getting the correct gold amount. why?
+when we select the fireball, it should update the loadout widet
+this makes it appear as the currently equipped item
+the loadout item sprite should also scale up to 2.0, grabbing the user's attention
 
-we need an armor for actor
-we need an equipment for actor
 
-what happens if sword / shirt / ring is false? they should always be true...
+
+sword should not be for sale from the weapon vendor
+cloth should not be for sale from the armor vendor
+
+
+
+
+
 
 we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
 could say things like "please buy something, mister.."
-or "you don't have enough gold to but that.."
+or "you don't have enough gold to buy that.."
 this dialog widget can be reused later in the game for other things as well
 we could put this dialog window below the other widgets
 it would fit better there, do a mockup of this dialog screen
@@ -108,6 +136,13 @@ Vendor stalls / layout ++
 	
 	
 	
+we need an armor for actor
+we need an equipment for actor	
+	
+	
+	
+conveyor belts should move other game objects, like consumable items
+or other objects, like bumpers and spike blocks
 	
 	
 	

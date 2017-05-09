@@ -39,11 +39,15 @@ namespace DungeonRun
         public ComponentMovement compMove;
         public ComponentCollision compCollision;
 
-        //battle fields
+        //health points
         public byte health;
         public byte maxHealth;
+        //loadout
         public MenuItemType weapon;
         public MenuItemType item;
+        public MenuItemType armor;
+        public MenuItemType equipment;
+
 
         //actor requires a reference to the various textures/sounds it may use - all the possible textures
         public Actor()

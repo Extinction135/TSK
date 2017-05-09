@@ -170,6 +170,9 @@ namespace DungeonRun
                 Actor.maxHealth = 1;
                 Actor.weapon = MenuItemType.WeaponSword;
                 Actor.item = MenuItemType.Unknown;
+                Actor.armor = MenuItemType.Unknown;
+                Actor.equipment = MenuItemType.Unknown;
+
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
             }
@@ -179,8 +182,12 @@ namespace DungeonRun
                 Actor.maxHealth = 10;
                 Actor.weapon = MenuItemType.Unknown;
                 Actor.item = MenuItemType.Unknown;
+                Actor.armor = MenuItemType.Unknown;
+                Actor.equipment = MenuItemType.Unknown;
+
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
+
                 //this actor is a boss (double size)
                 Actor.compSprite.cellSize.X = 32;
                 Actor.compSprite.cellSize.Y = 32;

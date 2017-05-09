@@ -84,8 +84,14 @@ namespace DungeonRun
             //create an easy to remember reference to the player/hero actor
             hero = actorPool[0];
             //set the hero's initial loadout
+            //we shouldn't really be doing this here, it's buried in the pool class which makes no sense
+            //it'd be better to set the hero's loadOut when gameData is loaded
+            //and by default we should load gameData set to the new game values
             hero.weapon = MenuItemType.WeaponSword;
             hero.item = MenuItemType.Unknown;
+            hero.armor = MenuItemType.ArmorCloth;
+            hero.equipment = MenuItemType.Unknown;
+
             //create the hero's shadow
             heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;

@@ -109,18 +109,23 @@ namespace DungeonRun
 
         public Boolean itemBoomerang;
         //itemBomb
+
         public Boolean bottleEmpty;
         //bottleHealth
         //bottleFairy
+
         public Boolean magicFireball;
         //portal
-        public Boolean weaponSword;
+
+        public Boolean weaponBow;
         //bow
         //axe
-        public Boolean armorShirt;
+
+        public Boolean armorPlatemail;
         //platemail
         //cape
         //robe
+
         public Boolean equipmentRing;
         //pearl
         //necklace
@@ -130,18 +135,16 @@ namespace DungeonRun
         public SaveData(String Name)
         {
             name = Name;
-
-            //create new game values
-            gold = 10; //testing
+            gold = 10;
             heartPieces = 4 * 3; //player starts with 3 hearts
-            weaponSword = true;
-            armorShirt = true;
-            equipmentRing = true;
 
-            //all other items are locked
+            //all items default to false
             itemBoomerang = false;
             bottleEmpty = false;
             magicFireball = false;
+            weaponBow = false;
+            armorPlatemail = false;
+            equipmentRing = false;
         }
     }
 
