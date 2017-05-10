@@ -91,6 +91,15 @@ namespace DungeonRun
             MenuItemFunctions.SetNeighbors(menuItems, 5);
         }
 
+
+        public static void ResetItemsForSale()
+        { 
+            for (i = 0; i < 10; i++)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[i]); }
+        }
+
+
+
         public static void Update()
         {
             window.Update();

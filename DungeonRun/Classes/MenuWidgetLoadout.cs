@@ -109,6 +109,7 @@ namespace DungeonRun
         }
 
 
+
         public static void UpdateGoldAmount()
         {
             //display the gold amount with a prefix of 0, if needed
@@ -133,6 +134,8 @@ namespace DungeonRun
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
             else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
         }
+
+
 
         public static void Update()
         {

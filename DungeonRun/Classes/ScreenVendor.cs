@@ -45,46 +45,7 @@ namespace DungeonRun
             MenuWidgetForSale.Reset(new Point(16 * 16, 16 * 8));
             MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 8));
 
-
-            #region Set the menuItems based on the vendorType
-
-            if(vendorType.type == ObjType.VendorItems)
-            {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, MenuWidgetForSale.menuItems[1]);
-            }
-            else if (vendorType.type == ObjType.VendorPotions)
-            {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, MenuWidgetForSale.menuItems[1]);
-            }
-            else if (vendorType.type == ObjType.VendorMagic)
-            {
-                MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, MenuWidgetForSale.menuItems[0]);
-            }
-            else if (vendorType.type == ObjType.VendorWeapons)
-            {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, MenuWidgetForSale.menuItems[1]);
-            }
-            else if (vendorType.type == ObjType.VendorArmor)
-            {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[1]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[2]);
-            }
-            else if (vendorType.type == ObjType.VendorEquipment)
-            {
-                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, MenuWidgetForSale.menuItems[1]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, MenuWidgetForSale.menuItems[2]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, MenuWidgetForSale.menuItems[3]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, MenuWidgetForSale.menuItems[4]);
-            }
-
-            #endregion
-
-
+            SetItemsForSale();
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];
             previouslySelected = MenuWidgetForSale.menuItems[0];
@@ -105,13 +66,56 @@ namespace DungeonRun
         }
 
 
+        public void SetItemsForSale()
+        {
+            //reset all the menuItems to unknown
+            MenuWidgetForSale.ResetItemsForSale();
 
-        public static void GetPrice(MenuItem Item)
+
+            //check if hero has any vendor items, via PlayerData.saveData.(itemBoolean)
+            if (vendorType.type == ObjType.VendorItems)
+            {
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, MenuWidgetForSale.menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, MenuWidgetForSale.menuItems[1]);
+            }
+            else if (vendorType.type == ObjType.VendorPotions)
+            {
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, MenuWidgetForSale.menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, MenuWidgetForSale.menuItems[1]);
+            }
+            else if (vendorType.type == ObjType.VendorMagic)
+            {
+                if (!PlayerData.saveData.magicFireball)
+                { MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, MenuWidgetForSale.menuItems[0]); }
+            }
+            else if (vendorType.type == ObjType.VendorWeapons)
+            {
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, MenuWidgetForSale.menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, MenuWidgetForSale.menuItems[1]);
+            }
+            else if (vendorType.type == ObjType.VendorArmor)
+            {
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, MenuWidgetForSale.menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[2]);
+            }
+            else if (vendorType.type == ObjType.VendorEquipment)
+            {
+                if (!PlayerData.saveData.equipmentRing)
+                { MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, MenuWidgetForSale.menuItems[0]); }
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, MenuWidgetForSale.menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, MenuWidgetForSale.menuItems[2]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, MenuWidgetForSale.menuItems[3]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, MenuWidgetForSale.menuItems[4]);
+            }
+        }
+
+        public void GetPrice(MenuItem Item)
         {   //display the currently selected item's price in the for sale window title
             MenuWidgetForSale.window.title.text = "For Sale - " + Item.price;
         }
 
-        public static void PurchaseItem(MenuItem Item)
+        public void PurchaseItem(MenuItem Item)
         {
             //the player cannot purchase an unknown item
             if (Item.type == MenuItemType.Unknown) { return; }
@@ -130,6 +134,9 @@ namespace DungeonRun
                 //flip the corresponding saveData boolean true
                 if (Item.type == MenuItemType.MagicFireball) { PlayerData.saveData.magicFireball = true; }
                 else if (Item.type == MenuItemType.EquipmentRing) { PlayerData.saveData.equipmentRing = true; }
+
+                //update the vendor's forSale items
+                SetItemsForSale();
             }
             //else, play an error sound
             else { Assets.Play(Assets.sfxError); }
