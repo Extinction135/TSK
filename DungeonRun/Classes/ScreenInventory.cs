@@ -187,7 +187,8 @@ namespace DungeonRun
 
             else if(Input.IsNewButtonPress(Buttons.A))
             {
-                currentlySelected.compSprite.scale = 2.0f;
+                if (currentlySelected.type != MenuItemType.Unknown)
+                { currentlySelected.compSprite.scale = 2.0f; }
                 Assets.Play(Assets.sfxMenuItem);
                 SetLoadout();
             }

@@ -50,13 +50,13 @@ namespace DungeonRun
 
             if(vendorType.type == ObjType.VendorItems)
             {
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, MenuWidgetForSale.menuItems[0]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, MenuWidgetForSale.menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, MenuWidgetForSale.menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, MenuWidgetForSale.menuItems[1]);
             }
             else if (vendorType.type == ObjType.VendorPotions)
             {
-                MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, MenuWidgetForSale.menuItems[0]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, MenuWidgetForSale.menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, MenuWidgetForSale.menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, MenuWidgetForSale.menuItems[1]);
             }
             else if (vendorType.type == ObjType.VendorMagic)
             {
@@ -64,22 +64,22 @@ namespace DungeonRun
             }
             else if (vendorType.type == ObjType.VendorWeapons)
             {
-                MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, MenuWidgetForSale.menuItems[0]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, MenuWidgetForSale.menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, MenuWidgetForSale.menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, MenuWidgetForSale.menuItems[1]);
             }
             else if (vendorType.type == ObjType.VendorArmor)
             {
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, MenuWidgetForSale.menuItems[0]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[1]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[2]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, MenuWidgetForSale.menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[2]);
             }
             else if (vendorType.type == ObjType.VendorEquipment)
             {
                 MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, MenuWidgetForSale.menuItems[0]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, MenuWidgetForSale.menuItems[1]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, MenuWidgetForSale.menuItems[2]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, MenuWidgetForSale.menuItems[3]);
-                MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, MenuWidgetForSale.menuItems[4]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, MenuWidgetForSale.menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, MenuWidgetForSale.menuItems[2]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, MenuWidgetForSale.menuItems[3]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, MenuWidgetForSale.menuItems[4]);
             }
 
             #endregion
@@ -151,9 +151,10 @@ namespace DungeonRun
 
             else if (Input.IsNewButtonPress(Buttons.A))
             {
-                currentlySelected.compSprite.scale = 2.0f;
-                Assets.Play(Assets.sfxMenuItem);
+                if (currentlySelected.type != MenuItemType.Unknown)
+                { currentlySelected.compSprite.scale = 2.0f; }
                 PurchaseItem(currentlySelected);
+                Assets.Play(Assets.sfxMenuItem);
             }
 
             //get the previouslySelected menuItem

@@ -52,29 +52,41 @@ ram useage:
 todo:
 
 
-8
-
-
-added int dropRate to GameObjectFunctions.
-modified how SpawnLoot() works to consider if the hero has the ring equipped.
-enemy drop rates are increased if the hero has the ring equipped.
-
-
-updated the descriptions for sword, fireball, cloth, and ring in MenuItemFunctions.SetMenuItemData().
+7
 
 
 
 
+disabled the unimplemented items for all vendors.
+prior to this change, the player could purchase items that would have no effect at all.
 
-update the menuItem descriptions for the items the hero can currently use:
-	sword - "an unbreakable sword that deals 1 physical damage.
-	fireball - "a flying fireball that deals 1 magical damage."
-	cloth - "provides no protection against attacks."
-	ring - "increases drop rate of loot from enemies."
+updated vendor and inventory screens to only scale up menuItems that are not unknown.
+this is a preference of mine, it doesn't make sense to me to scale unknown menuItems up.
+playtested, working as expected.
 
 
 
-disable the unimplemented items from all vendors...
+implement the following items:
+	item boomerang - just like LttP boomerang
+	item bomb - projectile, upon end of life it creates an explosion projectile, bombs--
+	
+	bottle health - upon user, hero.health = hero.maxHealth
+	bottle fairy - if hero dies, hero.health = hero.maxHealth
+	
+	weapon bow - creates an arrow projectile, arrows--
+	weapon staff - creates a magic orb projectile, if health is max, has an attack of 0
+	
+	armor chest - take reduced damage from enemy attacks
+	armor cape - move faster
+	armor robe - reduced magic cost
+	
+	
+we'll need to implement a counter for bombs and arrows
+this should also appear on the worldUI.
+
+
+
+
 
 
 
@@ -83,22 +95,11 @@ disable the unimplemented items from all vendors...
 shouldn't be able to 'select' or scale up, an unknown menuItem, from any widget
 simply ignore these menuItems. but still play the select sound.
 
-
-
-
-
-
 in vendor screen, we should display the item's cost the same way we display the gold amount in loadout
 with a white number against a black background, in front of the menuItem
 we should make the gold amount display a struct, with a background, text component, and internal counter
 we should have a function that updates the gold amount display, probably located in ComponentFunctions.
 we could make the gold amount display a component.... hmmm...
-
-
-
-
-
-
 
 the loadout animates the loadout menuItems
 when we select a laodout menuItem from inventory screen, we animate the loadout menuItem again
@@ -107,36 +108,15 @@ we shouldn't be able to select loadout menuItems.
 this solves the scaling issue, and it doesn't make sense to be able to select them
 selecting an item should only equip it
 
-
-
-we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
-could say things like "please buy something, mister.."
-or "you don't have enough gold to buy that.."
-this dialog widget can be reused later in the game for other things as well
-we could put this dialog window below the other widgets
-it would fit better there, do a mockup of this dialog screen
-
-
-
-
-
-
-
-
-
-Inventory
-	we'll need to track what items/weapons/armor/equipment the hero has access to, and what's equipped
-	this is going to be done using named booleans, not on a list
-	this makes it easier to understand the booleans purpose, and makes it easier for ppl to hack save files later
-	this extends to items, magic, weapons, armor, equipment
-
-	
-	
+Dialog Widget
+	we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
+	could say things like "please buy something, mister.."
+	or "you don't have enough gold to buy that.."
+	this dialog widget can be reused later in the game for other things as well
+	we could put this dialog window below the other widgets
+	it would fit better there, do a mockup of this dialog screen
 	
 what music do we play for the shop dungeon?
-
-
-
 
 Vendor stalls / layout ++
 	we need vendor 'stalls'
@@ -148,15 +128,7 @@ Vendor stalls / layout ++
 	this dog actor is an enemy, but never attacks and has it's own AI.
 
 	
-	
-	
-we need an armor for actor
-we need an equipment for actor	
-	
-	
-	
-conveyor belts should move other game objects, like consumable items
-or other objects, like bumpers and spike blocks
+
 	
 	
 	
@@ -193,7 +165,8 @@ add item/weapon/armor/equipment/magic functionalities
 	
 	
 	
-	
+conveyor belts should move other game objects, like consumable items
+or other objects, like bumpers and spike blocks	
 	
 	
 We should change the 'stats' window/widget to the 'help' widget
