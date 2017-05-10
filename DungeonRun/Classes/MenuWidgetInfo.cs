@@ -73,7 +73,7 @@ namespace DungeonRun
             description.text = MenuItem.description;
             //if we are displaying the inventory gold menu item, also display the goldAmount + goldBkg
             if (MenuItem.type == MenuItemType.InventoryGold)
-            { goldAmount.text = MenuWidgetLoadout.goldAmount.text; goldBkg.Width = 9; }
+            { goldAmount.text = MenuWidgetLoadout.goldDisplay.amount.text; goldBkg.Width = 9; }
             else { goldAmount.text = ""; goldBkg.Width = 0; }
         }
 

@@ -18,14 +18,15 @@ namespace DungeonRun
         static int i;
         public static MenuWindow window;
         public static List<MenuItem> menuItems;
-        public static ComponentText goldAmount;
-        public static int goldTracker;
-        public static Rectangle goldBkg;
+
         //pointers to the loadout menuItems
         public static MenuItem item;
         public static MenuItem weapon;
         public static MenuItem armor;
         public static MenuItem equipment;
+
+        public static int goldTracker;
+        public static ComponentAmountDisplay goldDisplay;
 
 
 
@@ -44,9 +45,7 @@ namespace DungeonRun
             equipment = menuItems[3];
 
             //create the gold amount text
-            goldAmount = new ComponentText(Assets.font, "99", 
-                new Vector2(0, 0), Assets.colorScheme.textLight);
-            goldBkg = new Rectangle(0, 0, 9, 7);
+            goldDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
         public static void Reset(Point Position)
@@ -99,11 +98,11 @@ namespace DungeonRun
             menuItems[5].compAnim.currentAnimation = new List<Byte4>
             { new Byte4((byte)(10 + WorldUI.pieceCounter), 1, 0, 0) };
             AnimationFunctions.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
+
             //place the goldAmount text component & bkg to the gold menuItem
-            goldAmount.position.X = menuItems[4].compSprite.position.X - 1;
-            goldAmount.position.Y = menuItems[4].compSprite.position.Y - 4;
-            goldBkg.X = (int)goldAmount.position.X - 1;
-            goldBkg.Y = (int)goldAmount.position.Y + 4;
+            goldDisplay.Move(
+                (int)menuItems[4].compSprite.position.X - 1, 
+                (int)menuItems[4].compSprite.position.Y - 4);
             //initially display the player's gold
             goldTracker = PlayerData.saveData.gold;
             UpdateGoldAmount();
@@ -123,8 +122,8 @@ namespace DungeonRun
         public static void UpdateGoldAmount()
         {
             //display the gold amount with a prefix of 0, if needed
-            if (goldTracker < 10) { goldAmount.text = "0" + goldTracker; }
-            else { goldAmount.text = "" + goldTracker; }
+            if (goldTracker < 10) { goldDisplay.amount.text = "0" + goldTracker; }
+            else { goldDisplay.amount.text = "" + goldTracker; }
         }
 
         public static void UpdateLoadout()
@@ -175,10 +174,7 @@ namespace DungeonRun
             {
                 for (i = 0; i < menuItems.Count; i++)
                 { DrawFunctions.Draw(menuItems[i].compSprite); }
-                ScreenManager.spriteBatch.Draw(
-                    Assets.dummyTexture, goldBkg,
-                    Assets.colorScheme.textDark);
-                DrawFunctions.Draw(goldAmount);
+                DrawFunctions.Draw(goldDisplay);
             }
         }
 

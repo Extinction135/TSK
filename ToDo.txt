@@ -52,21 +52,26 @@ ram useage:
 todo:
 
 
-4
+3
 
 
 
-created LoadoutWidget.SetLoadoutItem(), which handles the setting of the item, weapon, armor and equipment in loadout widget.
-checks to see if the item.type has changed, scales the item up to 2.0 if true.
-added call to LoadoutWidget.SetLoadoutItem() for item, weapon, armor, & equipment pointers from UpdateLoadout().
-this makes the scaling of the loadout widget's items the responsibility of loadout widget.
-removed code to scale loadout's items from vendor & inventory screens.
+created ComponentAmountDisplay class in Components.cs.
+added a Draw(ComponentAmountDisplay) to drawFunctions.
+updated loadout widget to use a ComponentAmountDisplay to display the hero's current gold amount.
 playtested, working as expected.
 
 
 
 
 
+
+
+update info widget to also use a ComponentAmountDisplay for gold display
+
+
+update forSale widget to have ComponentAmountDisplays for each menuItem
+display that item's cost in the ComponentAmountDisplay
 
 
 
@@ -84,8 +89,6 @@ we could make the gold amount display a component.... hmmm...
 
 
 
-we need to show that the player has purchased the item
-this may be as simple as updating the menuItems after a purchase
 
 
 

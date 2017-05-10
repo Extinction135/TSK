@@ -104,5 +104,13 @@ namespace DungeonRun
             { Draw(MenuWindow.title); }
         }
 
+        public static void Draw(ComponentAmountDisplay Amnt)
+        {  //draw the amnt.bkg & amnt.text component
+            ScreenManager.spriteBatch.Draw(
+                Assets.dummyTexture, Amnt.bkg,
+                Assets.colorScheme.windowBkg);
+            Draw(Amnt.amount);
+        }
+
     }
 }
