@@ -44,7 +44,7 @@ namespace DungeonRun
             armor = menuItems[2];
             equipment = menuItems[3];
 
-            //create the gold amount text
+            //create gold amount display
             goldDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 

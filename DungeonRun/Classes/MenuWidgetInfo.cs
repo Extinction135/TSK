@@ -17,8 +17,11 @@ namespace DungeonRun
 
         public static MenuWindow window;
         public static MenuItem infoItem;
-        public static ComponentText goldAmount;
-        public static Rectangle goldBkg;
+
+        public static ComponentAmountDisplay goldDisplay;
+        //public static ComponentText goldAmount;
+        //public static Rectangle goldBkg;
+
         public static ComponentText description;
         public static MenuRectangle divider1;
 
@@ -34,10 +37,8 @@ namespace DungeonRun
                 Assets.colorScheme.textDark);
             divider1 = new MenuRectangle(new Point(-100, -100), 
                 new Point(0, 0), Assets.colorScheme.windowInset);
-            //create the gold amount text
-            goldAmount = new ComponentText(Assets.font, "99",
-                new Vector2(0, 0), Assets.colorScheme.textLight);
-            goldBkg = new Rectangle(0, 0, 9, 7);
+            //create gold amount display
+            goldDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
         public static void Reset(Point Position)
@@ -58,12 +59,13 @@ namespace DungeonRun
             divider1.size.X = window.size.X - 16;
             divider1.size.Y = 1;
             divider1.Reset();
-            //align the goldAmount to the infoItem
-            goldAmount.position.X = infoItem.compSprite.position.X - 1;
-            goldAmount.position.Y = infoItem.compSprite.position.Y - 4;
-            goldBkg.X = (int)goldAmount.position.X - 1;
-            goldBkg.Y = (int)goldAmount.position.Y + 4;
+            //align the goldAmount display to the infoItem
+            goldDisplay.Move(
+                (int)infoItem.compSprite.position.X - 1,
+                (int)infoItem.compSprite.position.Y - 4);
         }
+
+
 
         public static void Display(MenuItem MenuItem)
         {   //set the widget's components based on the MenuItem's fields
@@ -71,11 +73,16 @@ namespace DungeonRun
             infoItem.compSprite.rotation = MenuItem.compSprite.rotation;
             window.title.text = MenuItem.name;
             description.text = MenuItem.description;
-            //if we are displaying the inventory gold menu item, also display the goldAmount + goldBkg
+            //if we are displaying the inventory gold menu item, update goldDisplay
             if (MenuItem.type == MenuItemType.InventoryGold)
-            { goldAmount.text = MenuWidgetLoadout.goldDisplay.amount.text; goldBkg.Width = 9; }
-            else { goldAmount.text = ""; goldBkg.Width = 0; }
+            {   //make goldDisplay visible or non-visible
+                goldDisplay.amount.text = MenuWidgetLoadout.goldDisplay.amount.text;
+                goldDisplay.visible = true;
+            }
+            else { goldDisplay.amount.text = ""; goldDisplay.visible = false; }
         }
+
+
 
         public static void Update()
         {
@@ -92,10 +99,7 @@ namespace DungeonRun
             {
                 DrawFunctions.Draw(infoItem.compSprite);
                 DrawFunctions.Draw(description);
-                ScreenManager.spriteBatch.Draw(
-                    Assets.dummyTexture, goldBkg,
-                    Assets.colorScheme.textDark);
-                DrawFunctions.Draw(goldAmount);
+                if (goldDisplay.visible) { DrawFunctions.Draw(goldDisplay); }
             }
         }
 
