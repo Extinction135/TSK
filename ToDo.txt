@@ -52,13 +52,30 @@ ram useage:
 todo:
 
 
-6
+5
 
 
-created VendorScreen.SetItemsForSale(), which contains the routines that set the menuItems based on the vendor type.
-created ForSaleWidget.ResetItemsForSale(), which sets all the for sale items to unknown.
-updated SetItemsForSale() to reset the for sale items, then set their type based on saveData item booleans.
-playtested, with some bugs.
+removed MenuItem parameter from VendorScreen.GetPrice().
+it always targets the currentlySelectedItem.
+updated PurchaseItem() to call GetPrice(), after the items have been updated post-purchase.
+also added a call to MenuWidgetInfo.Display().
+these fixes make the vendor screen (& widgets) react to a player's purchase in a sensible manner.
+updated vendor screen to auto-equip any item that is purchased.
+added a call to update the loadout widget, so the newly equipped item appears there.
+added routines to scale the loadout's items up when the auto-equip happens.
+this will help to draw the player's attention there, and is consistent with equipping from the inventory screen.
+playtested, working as expected.
+
+
+
+
+
+the scaling of loadout items should be the responsibility of loadout widget
+if an item's type has changed, it should scale itself up.
+this means we only need to change an item in loadout, and the scale happens automatically.
+this reduces code in inventory screen and vendor screen..
+
+
 
 
 

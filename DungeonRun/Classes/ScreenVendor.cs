@@ -62,7 +62,7 @@ namespace DungeonRun
             Assets.Play(Assets.sfxInventoryOpen);
 
             //display the price of the default selected menuItem
-            GetPrice(currentlySelected);
+            GetPrice();
         }
 
 
@@ -110,9 +110,9 @@ namespace DungeonRun
             }
         }
 
-        public void GetPrice(MenuItem Item)
+        public void GetPrice()
         {   //display the currently selected item's price in the for sale window title
-            MenuWidgetForSale.window.title.text = "For Sale - " + Item.price;
+            MenuWidgetForSale.window.title.text = "For Sale - " + currentlySelected.price;
         }
 
         public void PurchaseItem(MenuItem Item)
@@ -131,12 +131,26 @@ namespace DungeonRun
                 PlayerData.saveData.gold -= Item.price;
                 Assets.Play(Assets.sfxBeatDungeon);
 
-                //flip the corresponding saveData boolean true
-                if (Item.type == MenuItemType.MagicFireball) { PlayerData.saveData.magicFireball = true; }
-                else if (Item.type == MenuItemType.EquipmentRing) { PlayerData.saveData.equipmentRing = true; }
+                //flip the corresponding saveData boolean true, auto-equip the purchased item
+                if (Item.type == MenuItemType.MagicFireball)
+                {
+                    PlayerData.saveData.magicFireball = true;
+                    Pool.hero.item = MenuItemType.MagicFireball;
+                    MenuWidgetLoadout.item.compSprite.scale = 2.0f;
+                }
+                else if (Item.type == MenuItemType.EquipmentRing)
+                {
+                    PlayerData.saveData.equipmentRing = true;
+                    Pool.hero.equipment = MenuItemType.EquipmentRing;
+                    MenuWidgetLoadout.equipment.compSprite.scale = 2.0f;
+                }
 
                 //update the vendor's forSale items
                 SetItemsForSale();
+                GetPrice();
+                MenuWidgetInfo.Display(currentlySelected);
+                //update the loadout
+                MenuWidgetLoadout.UpdateLoadout();
             }
             //else, play an error sound
             else { Assets.Play(Assets.sfxError); }
@@ -186,7 +200,7 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxTextLetter);
                     previouslySelected.compSprite.scale = 1.0f;
                     selectionBox.scale = 2.0f;
-                    GetPrice(currentlySelected);
+                    GetPrice();
                 }
             }
         }
