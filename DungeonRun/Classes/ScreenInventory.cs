@@ -123,10 +123,7 @@ namespace DungeonRun
 
             //check if currently selected is an item, set hero.item
             if (currentlySelected.type == MenuItemType.MagicFireball)
-            {
-                Pool.hero.item = currentlySelected.type;
-                MenuWidgetLoadout.item.compSprite.scale = 2.0f;
-            }
+            { Pool.hero.item = currentlySelected.type; }
 
             #endregion
 
@@ -135,10 +132,7 @@ namespace DungeonRun
 
             //check if currently selected is a weapon, set hero.weapon
             if (currentlySelected.type == MenuItemType.WeaponSword)
-            {
-                Pool.hero.weapon = currentlySelected.type;
-                MenuWidgetLoadout.weapon.compSprite.scale = 2.0f;
-            }
+            { Pool.hero.weapon = currentlySelected.type; }
 
             #endregion
 
@@ -147,10 +141,7 @@ namespace DungeonRun
 
             //check if currently selected is armor, set hero.armor
             if (currentlySelected.type == MenuItemType.ArmorCloth)
-            {
-                Pool.hero.armor = currentlySelected.type;
-                MenuWidgetLoadout.armor.compSprite.scale = 2.0f;
-            }
+            { Pool.hero.armor = currentlySelected.type; }
 
             #endregion
 
@@ -159,10 +150,7 @@ namespace DungeonRun
 
             //check if currently selected is equipment, set hero.equipment
             if (currentlySelected.type == MenuItemType.EquipmentRing)
-            {
-                Pool.hero.equipment = currentlySelected.type;
-                MenuWidgetLoadout.equipment.compSprite.scale = 2.0f;
-            }
+            { Pool.hero.equipment = currentlySelected.type; }
 
             #endregion
 

@@ -52,37 +52,23 @@ ram useage:
 todo:
 
 
-5
+4
 
 
-removed MenuItem parameter from VendorScreen.GetPrice().
-it always targets the currentlySelectedItem.
-updated PurchaseItem() to call GetPrice(), after the items have been updated post-purchase.
-also added a call to MenuWidgetInfo.Display().
-these fixes make the vendor screen (& widgets) react to a player's purchase in a sensible manner.
-updated vendor screen to auto-equip any item that is purchased.
-added a call to update the loadout widget, so the newly equipped item appears there.
-added routines to scale the loadout's items up when the auto-equip happens.
-this will help to draw the player's attention there, and is consistent with equipping from the inventory screen.
+
+created LoadoutWidget.SetLoadoutItem(), which handles the setting of the item, weapon, armor and equipment in loadout widget.
+checks to see if the item.type has changed, scales the item up to 2.0 if true.
+added call to LoadoutWidget.SetLoadoutItem() for item, weapon, armor, & equipment pointers from UpdateLoadout().
+this makes the scaling of the loadout widget's items the responsibility of loadout widget.
+removed code to scale loadout's items from vendor & inventory screens.
 playtested, working as expected.
 
 
 
 
 
-the scaling of loadout items should be the responsibility of loadout widget
-if an item's type has changed, it should scale itself up.
-this means we only need to change an item in loadout, and the scale happens automatically.
-this reduces code in inventory screen and vendor screen..
 
 
-
-
-
-
-upon purchasing an item, we should update the window title
-and update the info window as well
-we should auto-equip the purchased item too
 
 
 

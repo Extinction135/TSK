@@ -28,6 +28,7 @@ namespace DungeonRun
         public static MenuItem equipment;
 
 
+
         static MenuWidgetLoadout()
         {
             window = new MenuWindow(new Point(-100, -100),
@@ -110,6 +111,15 @@ namespace DungeonRun
 
 
 
+        public static void SetLoadoutItem(MenuItem Item, MenuItemType Type)
+        {
+            if (Item.type != Type)
+            {
+                MenuItemFunctions.SetMenuItemData(Type, Item);
+                Item.compSprite.scale = 2.0f;
+            }
+        }
+
         public static void UpdateGoldAmount()
         {
             //display the gold amount with a prefix of 0, if needed
@@ -119,11 +129,12 @@ namespace DungeonRun
 
         public static void UpdateLoadout()
         {
-            //get the hero's loadout
-            MenuItemFunctions.SetMenuItemData(Pool.hero.item, item);
-            MenuItemFunctions.SetMenuItemData(Pool.hero.weapon, weapon);
-            MenuItemFunctions.SetMenuItemData(Pool.hero.armor, armor);
-            MenuItemFunctions.SetMenuItemData(Pool.hero.equipment, equipment);
+            //set the loadout display based on hero's loadout
+            SetLoadoutItem(item, Pool.hero.item);
+            SetLoadoutItem(weapon, Pool.hero.weapon);
+            SetLoadoutItem(armor, Pool.hero.armor);
+            SetLoadoutItem(equipment, Pool.hero.equipment);
+
             //set the gold, hearts, and dungeon items
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);

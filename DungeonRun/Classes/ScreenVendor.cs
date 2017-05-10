@@ -66,6 +66,7 @@ namespace DungeonRun
         }
 
 
+
         public void SetItemsForSale()
         {
             //reset all the menuItems to unknown
@@ -136,13 +137,11 @@ namespace DungeonRun
                 {
                     PlayerData.saveData.magicFireball = true;
                     Pool.hero.item = MenuItemType.MagicFireball;
-                    MenuWidgetLoadout.item.compSprite.scale = 2.0f;
                 }
                 else if (Item.type == MenuItemType.EquipmentRing)
                 {
                     PlayerData.saveData.equipmentRing = true;
                     Pool.hero.equipment = MenuItemType.EquipmentRing;
-                    MenuWidgetLoadout.equipment.compSprite.scale = 2.0f;
                 }
 
                 //update the vendor's forSale items
