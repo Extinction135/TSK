@@ -57,7 +57,6 @@ namespace DungeonRun
         VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment,
         VendorAdvertisement,
 
-
         //Items - picked up by hero
         ItemRupee, ItemHeart,
         //Projectiles

@@ -52,42 +52,51 @@ ram useage:
 todo:
 
 
-1
+13
 
-added List<ComponentAmountDisplay> amounts to ForSale Widget.
-updated ComponentAmountDisplay.Move() to accept a MenuItem, since amounts align to a MenuItem.
-this reduces having to pass specific offsets to the Move() method.
-updated LoadoutWidget and InfoWidget to use modified Move(MenuItem) method.
 
-created MenuWidgetForSale.DisplayItemCost().
 
-moved GetPrice() into ForSale Widget, it's a more logical association.
-updated GetPrice() to accept a MenuItem parameter.
-moved SetItemsForSale() into ForSale widget, it's a more logical association too.
-updated SetItemsForSale() to accept an ObjType value named VendorType.
-updated VendorScreen to use the relocated methods in ForSale widget.
-playtested, working as expected.
+
+created mockup for dialog widget, added to vendor screen.
+dialog widget will also exist on the dialog screen, which will come later.
+fixed a naming issue with vendor screen mockups.
 
 
 
 
 
 
-
-
+Dialog Widget
+	we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
+	could say things like "please buy something, mister.."
+	or "you don't have enough gold to buy that.."
+	this dialog widget can be reused later in the game for other things as well
+	we could put this dialog window below the other widgets
+	it would fit better there, do a mockup of this dialog screen
+	
+	the text in dialog widget should animate in a single letter at a time, with sound fx
+	when the text is complete, play the text done sound effect
+	
+	we should display the animated NPC sprite in this window as well
+	
+	
+	
+	
+	
+	
+	
 we no longer need to update the window title of forSale widget
 the cost value is displayed in a amount component, per menuItem
 
 
 
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
 implement the following items:
 	item boomerang - just like LttP boomerang
 	item bomb - projectile, upon end of life it creates an explosion projectile, bombs--
@@ -102,15 +111,31 @@ implement the following items:
 	armor cape - move faster
 	armor robe - reduced magic cost
 	
+	equipment pearl - 
 	
-we'll need to implement a counter for bombs and arrows
+we'll need to implement a counter for bombs and arrows and magic
 this should also appear on the worldUI.
 
+when a fireball is cast, deduct one from magic counter.
+fireballs can only be cast if magic counter is greater than 0.
+
+update spawn loot to randomly drop arrows, bombs, and magic containers
+which means we'll need items/consumables for arrows, bombs, and magic containers
+should be simple to extend items to support these
+the issue is packing them into the main sheet,
+we'll have to move some sprites around to make it all fit
 
 
 
 
 
+
+
+
+
+
+
+minor bug:
 the loadout animates the loadout menuItems
 when we select a laodout menuItem from inventory screen, we animate the loadout menuItem again
 this leads to a double scaling down effect, which should happen
@@ -118,13 +143,7 @@ we shouldn't be able to select loadout menuItems.
 this solves the scaling issue, and it doesn't make sense to be able to select them
 selecting an item should only equip it
 
-Dialog Widget
-	we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
-	could say things like "please buy something, mister.."
-	or "you don't have enough gold to buy that.."
-	this dialog widget can be reused later in the game for other things as well
-	we could put this dialog window below the other widgets
-	it would fit better there, do a mockup of this dialog screen
+
 	
 what music do we play for the shop dungeon?
 

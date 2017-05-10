@@ -48,8 +48,6 @@ namespace DungeonRun
         public MenuItemType armor;
         public MenuItemType equipment;
 
-
-        //actor requires a reference to the various textures/sounds it may use - all the possible textures
         public Actor()
         {
             //create the actor components
