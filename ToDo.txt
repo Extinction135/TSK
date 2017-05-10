@@ -52,14 +52,15 @@ ram useage:
 todo:
 
 
-13
+12
 
 
 
+moved all widgets placement up in vendor screen in prep for dialog widget integration.
+created MenuWidgetDialog class, with just a basic menu window instance.
+integrated MenuWidgetDialog into VendorScreen.
+playtested, working as expected.
 
-created mockup for dialog widget, added to vendor screen.
-dialog widget will also exist on the dialog screen, which will come later.
-fixed a naming issue with vendor screen mockups.
 
 
 

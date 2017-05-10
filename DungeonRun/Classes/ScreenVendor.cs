@@ -42,9 +42,10 @@ namespace DungeonRun
         {
             displayState = DisplayState.Opening;
 
-            MenuWidgetLoadout.Reset(new Point(16 * 9, 16 * 8));
-            MenuWidgetForSale.Reset(new Point(16 * 16, 16 * 8));
-            MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 8));
+            MenuWidgetLoadout.Reset(new Point(16 * 9, 16 * 6));
+            MenuWidgetForSale.Reset(new Point(16 * 16, 16 * 6));
+            MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 6));
+            MenuWidgetDialog.Reset(new Point(16 * 9, 16 * 12));
 
             MenuWidgetForSale.SetItemsForSale(vendorType.type);
             //set the currently selected menuItem to the first inventory menuItem
@@ -187,8 +188,8 @@ namespace DungeonRun
             MenuWidgetLoadout.Update();
             MenuWidgetForSale.Update();
             MenuWidgetInfo.Update();
-            
-            
+            MenuWidgetDialog.Update();
+
             //pulse the selectionBox alpha
             if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
             else { selectionBox.alpha += 0.025f; }
@@ -209,6 +210,8 @@ namespace DungeonRun
             MenuWidgetLoadout.Draw();
             MenuWidgetForSale.Draw();
             MenuWidgetInfo.Draw();
+            MenuWidgetDialog.Draw();
+
             //only draw the selection box if the screen has opened completely
             if (displayState == DisplayState.Opened)
             { DrawFunctions.Draw(selectionBox); }
