@@ -17,6 +17,7 @@ namespace DungeonRun
         static int i;
         public static MenuWindow window;
         public static List<MenuItem> menuItems;
+        public static List<ComponentAmountDisplay> amounts;
 
 
 
@@ -28,6 +29,9 @@ namespace DungeonRun
             //create menuitems
             menuItems = new List<MenuItem>();
             for (i = 0; i < 10; i++) { menuItems.Add(new MenuItem()); }
+            //create amounts
+            amounts = new List<ComponentAmountDisplay>();
+            for (i = 0; i < 10; i++) { amounts.Add(new ComponentAmountDisplay(0,0,0)); }
         }
 
         public static void Reset(Point Position)
@@ -89,6 +93,8 @@ namespace DungeonRun
 
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
+            //place the amounts relative to the menuItems
+            for (i = 0; i < 10; i++) { amounts[i].Move(menuItems[i]); }
         }
 
 
@@ -96,7 +102,72 @@ namespace DungeonRun
         public static void ResetItemsForSale()
         { 
             for (i = 0; i < 10; i++)
-            { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[i]); }
+            {
+                MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[i]);
+                amounts[i].amount.text = "";
+                amounts[i].visible = false;
+            }
+        }
+
+        public static void DisplayItemCost(MenuItem Item, ComponentAmountDisplay Amount)
+        {
+            Amount.visible = true;
+            Amount.amount.text = "" + Item.price;
+        }
+
+        public static void GetPrice(MenuItem Item)
+        {   //display the currently selected item's price in the for sale window title
+            MenuWidgetForSale.window.title.text = "For Sale - " + Item.price;
+        }
+
+        public static void SetItemsForSale(ObjType VendorType)
+        {
+            //reset all the menuItems to unknown
+            ResetItemsForSale();
+
+            //check if hero has any vendor items, via PlayerData.saveData.(itemBoolean)
+            if (VendorType == ObjType.VendorItems)
+            {
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
+            }
+            else if (VendorType == ObjType.VendorPotions)
+            {
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, menuItems[1]);
+            }
+            else if (VendorType == ObjType.VendorMagic)
+            {
+                if (!PlayerData.saveData.magicFireball)
+                { MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[0]); }
+            }
+            else if (VendorType == ObjType.VendorWeapons)
+            {
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, menuItems[1]);
+            }
+            else if (VendorType == ObjType.VendorArmor)
+            {
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, menuItems[0]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[2]);
+            }
+            else if (VendorType == ObjType.VendorEquipment)
+            {
+                if (!PlayerData.saveData.equipmentRing)
+                { MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[0]); }
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[1]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[2]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[3]);
+                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, menuItems[4]);
+            }
+
+
+            for (i = 0; i < 10; i++)
+            {   //if any menuItem is known, display it's cost
+                if (menuItems[i].type != MenuItemType.Unknown)
+                { DisplayItemCost(menuItems[i], amounts[i]); }
+            }
         }
 
 
@@ -111,8 +182,11 @@ namespace DungeonRun
             DrawFunctions.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
-                for (i = 0; i < menuItems.Count; i++)
-                { DrawFunctions.Draw(menuItems[i].compSprite); }
+                for (i = 0; i < 10; i++)
+                {
+                    DrawFunctions.Draw(menuItems[i].compSprite);
+                    if (amounts[i].visible) { DrawFunctions.Draw(amounts[i]); }
+                }
             }
         }
 

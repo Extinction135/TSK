@@ -100,9 +100,7 @@ namespace DungeonRun
             AnimationFunctions.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
 
             //place the goldAmount text component & bkg to the gold menuItem
-            goldDisplay.Move(
-                (int)menuItems[4].compSprite.position.X - 1, 
-                (int)menuItems[4].compSprite.position.Y - 4);
+            goldDisplay.Move(menuItems[4]);
             //initially display the player's gold
             goldTracker = PlayerData.saveData.gold;
             UpdateGoldAmount();

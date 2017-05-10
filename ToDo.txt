@@ -52,13 +52,20 @@ ram useage:
 todo:
 
 
-3
+1
 
+added List<ComponentAmountDisplay> amounts to ForSale Widget.
+updated ComponentAmountDisplay.Move() to accept a MenuItem, since amounts align to a MenuItem.
+this reduces having to pass specific offsets to the Move() method.
+updated LoadoutWidget and InfoWidget to use modified Move(MenuItem) method.
 
+created MenuWidgetForSale.DisplayItemCost().
 
-created ComponentAmountDisplay class in Components.cs.
-added a Draw(ComponentAmountDisplay) to drawFunctions.
-updated loadout widget to use a ComponentAmountDisplay to display the hero's current gold amount.
+moved GetPrice() into ForSale Widget, it's a more logical association.
+updated GetPrice() to accept a MenuItem parameter.
+moved SetItemsForSale() into ForSale widget, it's a more logical association too.
+updated SetItemsForSale() to accept an ObjType value named VendorType.
+updated VendorScreen to use the relocated methods in ForSale widget.
 playtested, working as expected.
 
 
@@ -67,24 +74,9 @@ playtested, working as expected.
 
 
 
-update info widget to also use a ComponentAmountDisplay for gold display
 
-
-update forSale widget to have ComponentAmountDisplays for each menuItem
-display that item's cost in the ComponentAmountDisplay
-
-
-
-
-
-
-
-in vendor screen, we should display the item's cost the same way we display the gold amount in loadout
-with a white number against a black background, in front of the menuItem
-we should make the gold amount display a struct, with a background, text component, and internal counter
-we should have a function that updates the gold amount display, probably located in ComponentFunctions.
-we could make the gold amount display a component.... hmmm...
-
+we no longer need to update the window title of forSale widget
+the cost value is displayed in a amount component, per menuItem
 
 
 

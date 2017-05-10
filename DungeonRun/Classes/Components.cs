@@ -144,10 +144,12 @@ namespace DungeonRun
             bkg = new Rectangle(new Point(X, Y), new Point(9, 7));
             visible = true;
         }
-        public void Move(int X, int Y)
-        {   //place the bkg relative to the text
-            amount.position.X = X; amount.position.Y = Y;
-            bkg.X = X - 1; bkg.Y = Y + 4;
+        public void Move(MenuItem Item)
+        {   //place amount display relative to Item
+            amount.position.X = Item.compSprite.position.X - 1;
+            amount.position.Y = Item.compSprite.position.Y - 4;
+            bkg.X = (int)amount.position.X - 1;
+            bkg.Y = (int)amount.position.Y + 4;
         }
     }
 

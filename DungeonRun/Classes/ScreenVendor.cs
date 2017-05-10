@@ -46,7 +46,7 @@ namespace DungeonRun
             MenuWidgetForSale.Reset(new Point(16 * 16, 16 * 8));
             MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 8));
 
-            SetItemsForSale();
+            MenuWidgetForSale.SetItemsForSale(vendorType.type);
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];
             previouslySelected = MenuWidgetForSale.menuItems[0];
@@ -63,59 +63,10 @@ namespace DungeonRun
             Assets.Play(Assets.sfxInventoryOpen);
 
             //display the price of the default selected menuItem
-            GetPrice();
+            MenuWidgetForSale.GetPrice(currentlySelected);
         }
 
 
-
-        public void SetItemsForSale()
-        {
-            //reset all the menuItems to unknown
-            MenuWidgetForSale.ResetItemsForSale();
-
-
-            //check if hero has any vendor items, via PlayerData.saveData.(itemBoolean)
-            if (vendorType.type == ObjType.VendorItems)
-            {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, MenuWidgetForSale.menuItems[1]);
-            }
-            else if (vendorType.type == ObjType.VendorPotions)
-            {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, MenuWidgetForSale.menuItems[1]);
-            }
-            else if (vendorType.type == ObjType.VendorMagic)
-            {
-                if (!PlayerData.saveData.magicFireball)
-                { MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, MenuWidgetForSale.menuItems[0]); }
-            }
-            else if (vendorType.type == ObjType.VendorWeapons)
-            {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, MenuWidgetForSale.menuItems[1]);
-            }
-            else if (vendorType.type == ObjType.VendorArmor)
-            {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, MenuWidgetForSale.menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, MenuWidgetForSale.menuItems[1]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, MenuWidgetForSale.menuItems[2]);
-            }
-            else if (vendorType.type == ObjType.VendorEquipment)
-            {
-                if (!PlayerData.saveData.equipmentRing)
-                { MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentRing, MenuWidgetForSale.menuItems[0]); }
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, MenuWidgetForSale.menuItems[1]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, MenuWidgetForSale.menuItems[2]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, MenuWidgetForSale.menuItems[3]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, MenuWidgetForSale.menuItems[4]);
-            }
-        }
-
-        public void GetPrice()
-        {   //display the currently selected item's price in the for sale window title
-            MenuWidgetForSale.window.title.text = "For Sale - " + currentlySelected.price;
-        }
 
         public void PurchaseItem(MenuItem Item)
         {
@@ -146,8 +97,8 @@ namespace DungeonRun
                 }
 
                 //update the vendor's forSale items
-                SetItemsForSale();
-                GetPrice();
+                MenuWidgetForSale.SetItemsForSale(vendorType.type);
+                MenuWidgetForSale.GetPrice(currentlySelected);
                 MenuWidgetInfo.Display(currentlySelected);
                 //update the loadout
                 MenuWidgetLoadout.UpdateLoadout();
@@ -200,7 +151,7 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxTextLetter);
                     previouslySelected.compSprite.scale = 1.0f;
                     selectionBox.scale = 2.0f;
-                    GetPrice();
+                    MenuWidgetForSale.GetPrice(currentlySelected);
                 }
             }
         }
