@@ -29,7 +29,7 @@ namespace DungeonRun
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
         public GameObject vendorType;
-
+        public String welcomeDialog;
 
 
         public ScreenVendor(GameObject Obj)
@@ -47,9 +47,25 @@ namespace DungeonRun
             MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 6));
             MenuWidgetDialog.Reset(new Point(16 * 9, 16 * 12));
 
-            MenuWidgetDialog.DisplayDialog(vendorType.type,
-                "i've got many useful goods for sale, adventurer!");
+            //set a default welcome dialog
+            welcomeDialog = "i've got many useful goods for sale, adventurer!";
+            //set the welcome dialog based on the vendor type
+            if (vendorType.type == ObjType.VendorArmor)
+            { welcomeDialog = "I have a fine selection of armor for you to purchase."; }
+            else if (vendorType.type == ObjType.VendorEquipment)
+            { welcomeDialog = "I have a fine selection of equipment for you to purchase."; }
+            else if (vendorType.type == ObjType.VendorItems)
+            { welcomeDialog = "I have a fine selection of items for you to purchase."; }
+            else if (vendorType.type == ObjType.VendorMagic)
+            { welcomeDialog = "I have a fine selection of magic items for you to purchase."; }
+            else if (vendorType.type == ObjType.VendorPotions)
+            { welcomeDialog = "I have a fine selection of potions for you to purchase."; }
+            else if (vendorType.type == ObjType.VendorWeapons)
+            { welcomeDialog = "I have a fine selection of weapons for you to purchase."; }
+            //display the welcome dialog
+            MenuWidgetDialog.DisplayDialog(vendorType.type, welcomeDialog);
 
+            //display the items for sale
             MenuWidgetForSale.SetItemsForSale(vendorType.type);
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];

@@ -52,44 +52,14 @@ ram useage:
 todo:
 
 
-8
+7
 
 
 
-
-added an int to track the character count in dialog widget, in prep for animated text.
-added a string instance to hold the dialog text that should be displayed.
-modified DialogWidget.Update() to strip the first character off of the string instance.
-this character is added to dialog.text, which is being drawn.
-this continues until the string instance is empty, at which point the text done sound effect is played.
-until then the normal text sound effect is played.
+updated VendorScreen.LoadContent() to display a different welcome dialog message for each vendor.
+updated DialogWidget's windowo title to simply read "Hello!".
+this seems generic enough that it can be applied to anyone speaking with hero.
 playtested, working as expected.
-
-
-
-
-
-
-animate the dialog text letter by letter, with sound fx
-when the text is done, play the done sound fx
-
-
-store the string of dialog in a string instance
-strip off the first letter of string from instance
-add this letter to the end of dialog.text
-continue doing this, playing the letter sound effect, until string instance is empty
-if we're stripping the last letter, play the text sound done effect..
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -100,6 +70,12 @@ if we're stripping the last letter, play the text sound done effect..
 we should be using the dialog widget to display purchasing feedback
 when hero buys an item, speaker says 'thanks'
 when hero trys to buy an item he can't afford, speaker says 'you don't have enough gold'
+
+
+
+
+
+
 
 we no longer need to update the window title of forSale widget
 the cost value is displayed in a amount component, per menuItem

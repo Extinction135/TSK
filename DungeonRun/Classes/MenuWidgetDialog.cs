@@ -33,8 +33,7 @@ namespace DungeonRun
         public static void Reset(Point Position)
         {   //align this widgets component to Position + Size
             window.ResetAndMoveWindow(Position,
-                new Point(16 * 22, 16 * 4),
-                "Dialog Window");
+                new Point(16 * 22, 16 * 4), "Hello!");
             speaker.compMove.newPosition.X = Position.X + 16 * 1;
             speaker.compMove.newPosition.Y = Position.Y + 16 * 2;
             dialog.position.X = Position.X + 16 * 2;
