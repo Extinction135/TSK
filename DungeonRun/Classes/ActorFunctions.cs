@@ -122,7 +122,44 @@ namespace DungeonRun
 
         public static void UseItem(Actor Actor)
         {
-            if (Actor.item == MenuItemType.MagicFireball)
+
+            #region Empty Bottle + Potions
+
+            if (Actor.item == MenuItemType.BottleEmpty)
+            {
+                Actor.state = ActorState.Idle;
+                Actor.lockTotal = 0;
+                Assets.Play(Assets.sfxError);
+            }
+            else if (Actor.item == MenuItemType.BottleHealth)
+            {
+                Actor.health = Actor.maxHealth;
+                GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
+                Assets.Play(Assets.sfxHeartPickup); //need a healing sound effect
+                Actor.state = ActorState.Reward;
+                Actor.lockTotal = 20;
+                //set the potion to be an empty bottle
+                Actor.item = MenuItemType.BottleEmpty;
+                PlayerData.saveData.bottleHealth = false;
+            }
+            else if (Actor.item == MenuItemType.BottleMagic)
+            {
+                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
+                GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
+                Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
+                Actor.state = ActorState.Reward;
+                Actor.lockTotal = 20;
+                //set the potion to be an empty bottle
+                Actor.item = MenuItemType.BottleEmpty;
+                PlayerData.saveData.bottleMagic = false;
+            }
+
+            #endregion
+
+
+            #region Magic 
+
+            else if (Actor.item == MenuItemType.MagicFireball)
             {
                 if (PlayerData.saveData.magicCurrent > 0)
                 {
@@ -133,6 +170,9 @@ namespace DungeonRun
                 }
                 else { Assets.Play(Assets.sfxError); }
             }
+
+            #endregion
+
         }
 
         public static void SetType(Actor Actor, ActorType Type)
@@ -274,9 +314,6 @@ namespace DungeonRun
                     else //actor has no item to use, revert to idle
                     { Actor.state = ActorState.Idle; }
                 }
-
-                //if actor opened a chest, they will be set into the reward state
-                if (Actor.state == ActorState.Reward) { Actor.lockTotal = 50; }
             }
 
             #endregion

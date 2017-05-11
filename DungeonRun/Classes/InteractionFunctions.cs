@@ -167,6 +167,8 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxChestOpen);
                     GameObjectFunctions.SetType(Obj, ObjType.ChestEmpty);
                     Actor.state = ActorState.Reward; //set actor into reward state
+                    Actor.lockTotal = 45; //lock for a prolonged time
+
                     //play an explosion particle to show the chest was opened
                     GameObjectFunctions.SpawnProjectile(
                         ObjType.ParticleAttention,

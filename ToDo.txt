@@ -55,24 +55,39 @@ push new release on the 16th
 todo:
 
 
-9
-
-
-
-updated ForSale Widget to not display bottle products if hero has already purchased them.
-updated InventoryScreen.SetLoadout() with codepaths for all bottles.
-playtested, can now properly purchase & equip all bottle items
+8
 
 
 
 
+refactored how the hero/actor's lockTotal is set.
+when hero opens a chest, InteractionFunctions.Interact() now sets the lockTotal.
+updated ActorFunctions.Update() to NOT set the lockTotal based on reward state.
+updated ActorFunctions.UseItem() with paths for bottles.
+UseItem()'s various paths set the lockTotal for actor.
+organized VendorScreen.PurchaseItem().
+updated PurchcaseItem() to set the bottle1-3 booleans true upon potion purchase.
+playtested, various minor bugs.
 
 
 
 
 
 
-bottle does not get equipped from inventory screen, it should.
+potion should auto-equip when purchased - prevent a bug where empty bottle appears
+even tho we have potions in inventory
+
+test that health potion refills health
+test that magic potion refilles magic
+test that the potion is being set to 'empty bottle'
+empty bottles should appear in the inventory
+
+
+
+stay statelocked for 50 frames from chest - important...
+
+
+
 
 
 hero should be able to use the bottle items

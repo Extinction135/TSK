@@ -90,7 +90,9 @@ namespace DungeonRun
             //the player cannot purchase an unknown item
             if (Item.type == MenuItemType.Unknown) { return; }
 
-            //the player cannot purchase an item twice
+
+            #region The player cannot purchase an item twice
+
             //items
             if (Item.type == MenuItemType.MagicFireball && PlayerData.saveData.magicFireball) { return; }
             //bottles
@@ -99,39 +101,61 @@ namespace DungeonRun
             else if (Item.type == MenuItemType.BottleFairy && PlayerData.saveData.bottleFairy) { return; }
             //equipment
             else if (Item.type == MenuItemType.EquipmentRing && PlayerData.saveData.equipmentRing) { return; }
-
             
+            #endregion
 
 
             //see if hero has enough gold to purchase this item
             if (PlayerData.saveData.gold >= Item.price)
-            {
-                //deduct cost, play purchase sound
-                PlayerData.saveData.gold -= Item.price;
-                //flip the corresponding saveData boolean true, auto-equip the purchased item
+            {   //handle item effects, based on type
 
-                //items - auto-equip
+
+                #region Items - auto-equip
+
                 if (Item.type == MenuItemType.MagicFireball)
                 {
                     PlayerData.saveData.magicFireball = true;
                     Pool.hero.item = MenuItemType.MagicFireball;
                 }
 
-                //bottles - don't auto-equip
-                else if (Item.type == MenuItemType.BottleHealth)
-                { PlayerData.saveData.bottleHealth = true; }
-                else if (Item.type == MenuItemType.BottleMagic)
-                { PlayerData.saveData.bottleMagic = true; }
-                else if (Item.type == MenuItemType.BottleFairy)
-                { PlayerData.saveData.bottleFairy = true; }
+                #endregion
 
-                //equipment
+
+                #region Bottles - don't auto-equip
+
+                else if (Item.type == MenuItemType.BottleHealth)
+                {
+                    PlayerData.saveData.bottle1 = true;
+                    PlayerData.saveData.bottleHealth = true;
+                }
+                else if (Item.type == MenuItemType.BottleMagic)
+                {
+                    PlayerData.saveData.bottle2 = true;
+                    PlayerData.saveData.bottleMagic = true;
+                }
+                else if (Item.type == MenuItemType.BottleFairy)
+                {
+                    PlayerData.saveData.bottle3 = true;
+                    PlayerData.saveData.bottleFairy = true;
+                }
+
+                #endregion
+
+
+                #region Equipment
+
                 else if (Item.type == MenuItemType.EquipmentRing)
                 {
                     PlayerData.saveData.equipmentRing = true;
                     Pool.hero.equipment = MenuItemType.EquipmentRing;
                 }
 
+                #endregion
+
+
+                #region Complete Sale
+
+                PlayerData.saveData.gold -= Item.price; //deduct cost
                 //update the vendor's forSale items
                 MenuWidgetForSale.SetItemsForSale(vendorType.type);
                 MenuWidgetInfo.Display(currentlySelected);
@@ -142,8 +166,10 @@ namespace DungeonRun
                     "thanks for your purchase!");
                 //play purchase complete sound effect
                 Assets.Play(Assets.sfxBeatDungeon);
-            }
 
+                #endregion
+
+            }
             else//else, hero doesn't have enough gold to purchase the item
             {   //notify player of this state, via dialog widget and error sound effect
                 MenuWidgetDialog.DisplayDialog(vendorType.type, 
