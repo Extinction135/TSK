@@ -95,6 +95,13 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 6, 0, 0) };
                 MenuItem.price = 50;
             }
+            else if (Type == MenuItemType.BottleMagic)
+            {
+                MenuItem.name = "Magic Potion";
+                MenuItem.description = "Fully restores all\nmagic meter.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 7, 0, 0) };
+                MenuItem.price = 50;
+            }
             else if (Type == MenuItemType.BottleFairy)
             {
                 MenuItem.name = "Fairy in a Bottle";

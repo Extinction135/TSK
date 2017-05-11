@@ -112,9 +112,12 @@ namespace DungeonRun
         public Boolean itemBoomerang;
         //itemBomb
 
-        public Boolean bottleEmpty;
-        //bottleHealth
-        //bottleFairy
+        public Boolean bottle1;
+        public Boolean bottle2;
+        public Boolean bottle3;
+        public Boolean bottleHealth;
+        public Boolean bottleMagic;
+        public Boolean bottleFairy;
 
         public Boolean magicFireball;
         //portal
@@ -144,7 +147,14 @@ namespace DungeonRun
 
             //all items default to false
             itemBoomerang = false;
-            bottleEmpty = false;
+
+            bottle1 = false;
+            bottle2 = false;
+            bottle3 = false;
+            bottleHealth = false;
+            bottleMagic = false;
+            bottleFairy = false;
+
             magicFireball = false;
             weaponBow = false;
             armorPlatemail = false;

@@ -127,8 +127,9 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.VendorPotions)
             {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, menuItems[1]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, menuItems[0]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.BottleMagic, menuItems[1]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, menuItems[2]);
             }
             else if (VendorType == ObjType.VendorMagic)
             {

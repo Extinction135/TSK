@@ -132,11 +132,24 @@ namespace DungeonRun
 
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, menuItems[3]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, menuItems[4]);
 
+            //set the empty bottles based on booleans
+            if (PlayerData.saveData.bottle1)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]); }
+            if (PlayerData.saveData.bottle2)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[3]); }
+            if (PlayerData.saveData.bottle3)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[4]); }
 
+            //set the filled bottles based on booleans
+            if (PlayerData.saveData.bottleHealth)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.BottleHealth, menuItems[2]); }
+            if (PlayerData.saveData.bottleMagic)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.BottleMagic, menuItems[3]); }
+            if (PlayerData.saveData.bottleFairy)
+            { MenuItemFunctions.SetMenuItemData(MenuItemType.BottleFairy, menuItems[4]); }
+
+            //set the magic medallion items
             if (PlayerData.saveData.magicFireball)
             { MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]); }
 

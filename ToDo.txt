@@ -55,30 +55,47 @@ push new release on the 16th
 todo:
 
 
-11
+10
+
+
+
+updated saveData struct with booleans for bottles 1-3.
+updated MenuItemType enum with BottleMagic value.
+updated MenuItemFunctions.SetMenuItemData with path for BottleMagic.
+updated forSale widget to display all bottle products from potion vendor.
+updated VendorScreen.PurchaseItem() to handle health, magic, and fairy bottles.
+updated InventoryWidget to display empty bottles and filled bottles, based on saveData booleans.
+playtested, minor bugs.
+
+
+
+
+pucahsing works
+
+but, if we attempt to purchase the same potion twice, we dont get an error message
+we should get error message and error sound effect
+
+
+bottle does not get equipped from inventory screen, it should.
+
+
+hero should be able to use the bottle items
+equip one, then press the Y button to use it.
+
+
+we could set hero into reward state, if the item being used is a bottle
+however, this may lock hero into reward state for too long...
 
 
 
 
 
 
-lessened the push amount for sword.
-increased the damage and push amount for fireball.
 
 
-fireballs should do 2 damage, and push more than sword.
-
-
-
-
-
-
-
-
-
-need a magic potion
-need a health potion
-need an empty bottle
+need a magic potion (bottle)
+need a health potion (bottle)
+need an empty bottle (bottle)
 
 potion vendor should sell these
 these should appear in inventory
@@ -100,31 +117,6 @@ include in pickup routines
 add the arrow icon and number to worldUI.
 arrow counter is player specific, stored in saveData
 
-add bomb consumable item
-include in pickup routines
-add the bombs icon and number to worldUI.
-bomb counter is player specific, stored in saveData
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-we need to make room for more consumables in main sheet:
-	arrows
-	bombs
-	magic containers
-	fairies
-	
-	
-	
-	
-	
-	
 bow and arrow
 
 create arrow projectile, just like fireball
@@ -134,10 +126,28 @@ when hero uses bow, an arrow should be created
 we'll need an arrow counter in saveData
 we'll need to display this arrow counter in worldUI
 we'll need to have an arrow consumable item sprite
+
+
+
+
+
+
+
+
+
+
+
+
+
+add bomb consumable item
+include in pickup routines
+add the bombs icon and number to worldUI.
+bomb counter is player specific, stored in saveData
 	
 	
 	
-	
+we need to make room for more consumables in main sheet:
+	fairies
 	
 	
 	
@@ -147,18 +157,20 @@ implement the following items:
 	item bomb - projectile, upon end of life it creates an explosion projectile, bombs--
 	
 	bottle health - upon user, hero.health = hero.maxHealth
+	bottle magic
+	bottle empty
 	bottle fairy - if hero dies, hero.health = hero.maxHealth
 	
 	weapon bow - creates an arrow projectile, arrows--
 	weapon staff - creates a magic orb projectile, if health is max, has an attack of 0
 	
-	armor chest - take reduced damage from enemy attacks
+	armor chest - prevents damage from enemy arrows, move slower
 	armor cape - move faster
-	armor robe - reduced magic cost
+	armor robe - increases max magic value
 	
 	equipment pearl - 
 	
-we'll need to implement a counter for bombs and arrows and magic
+we'll need to implement a counter for bombs and arrows
 this should also appear on the worldUI.
 
 when a fireball is cast, deduct one from magic counter.
@@ -210,6 +222,13 @@ Vendor stalls / layout ++
 	
 conveyor belts should move other game objects, like consumable items
 or other objects, like bumpers and spike blocks	
+
+what if we pushed the hero a little bit in the opposite direction of the fireball being cast?
+this would make it seem like the 'weight' of the fireball pushed him back	
+	
+	
+	
+	
 	
 	
 	

@@ -91,8 +91,17 @@ namespace DungeonRun
             if (Item.type == MenuItemType.Unknown) { return; }
 
             //the player cannot purchase an item twice
+            //items
             if (Item.type == MenuItemType.MagicFireball && PlayerData.saveData.magicFireball) { return; }
+            //bottles
+            else if (Item.type == MenuItemType.BottleHealth && PlayerData.saveData.bottleHealth) { return; }
+            else if (Item.type == MenuItemType.BottleMagic && PlayerData.saveData.bottleMagic) { return; }
+            else if (Item.type == MenuItemType.BottleFairy && PlayerData.saveData.bottleFairy) { return; }
+            //equipment
             else if (Item.type == MenuItemType.EquipmentRing && PlayerData.saveData.equipmentRing) { return; }
+
+            
+
 
             //see if hero has enough gold to purchase this item
             if (PlayerData.saveData.gold >= Item.price)
@@ -100,11 +109,23 @@ namespace DungeonRun
                 //deduct cost, play purchase sound
                 PlayerData.saveData.gold -= Item.price;
                 //flip the corresponding saveData boolean true, auto-equip the purchased item
+
+                //items - auto-equip
                 if (Item.type == MenuItemType.MagicFireball)
                 {
                     PlayerData.saveData.magicFireball = true;
                     Pool.hero.item = MenuItemType.MagicFireball;
                 }
+
+                //bottles - don't auto-equip
+                else if (Item.type == MenuItemType.BottleHealth)
+                { PlayerData.saveData.bottleHealth = true; }
+                else if (Item.type == MenuItemType.BottleMagic)
+                { PlayerData.saveData.bottleMagic = true; }
+                else if (Item.type == MenuItemType.BottleFairy)
+                { PlayerData.saveData.bottleFairy = true; }
+
+                //equipment
                 else if (Item.type == MenuItemType.EquipmentRing)
                 {
                     PlayerData.saveData.equipmentRing = true;
