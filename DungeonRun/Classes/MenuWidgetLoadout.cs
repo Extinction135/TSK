@@ -96,7 +96,7 @@ namespace DungeonRun
             //set the inventory heart pieces frame, based on the number of heart pieces hero has
             //add the piece counter to the current X frame, pieceCounter will always be less than 5
             menuItems[5].compAnim.currentAnimation = new List<Byte4>
-            { new Byte4((byte)(10 + WorldUI.pieceCounter), 1, 0, 0) };
+            { new Byte4((byte)(11 + WorldUI.pieceCounter), 6, 0, 0) };
             AnimationFunctions.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
 
             //place the goldAmount text component & bkg to the gold menuItem

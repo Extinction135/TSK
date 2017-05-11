@@ -74,7 +74,7 @@ namespace DungeonRun
 
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(15, 6, 0, 0),
+                new Vector2(0, 0), new Byte4(15, 7, 0, 0),
                 new Point(16, 16));
 
             //create the locations list

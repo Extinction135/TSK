@@ -228,25 +228,25 @@ namespace DungeonRun
                 MenuItem.name = "Total Gold";
                 MenuItem.description = "The total amount\nof gold collected.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4>
-                { new Byte4(10, 3, 0, 0), new Byte4(11, 3, 0, 0), new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) };
+                { new Byte4(11, 7, 0, 0), new Byte4(12, 7, 0, 0), new Byte4(13, 7, 0, 0), new Byte4(14, 7, 0, 0) };
             }
             else if (Type == MenuItemType.InventoryHeartPieces)
             {
                 MenuItem.name = "Heart Pieces";
                 MenuItem.description = "The number of heart\npieces you've collected.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 1, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 6, 0, 0) };
             }
             else if (Type == MenuItemType.InventoryKey)
             {
                 MenuItem.name = "Dungeon Key";
                 MenuItem.description = "This key unlocks\nthe boss door.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 2, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(12, 5, 0, 0) };
             }
             else if (Type == MenuItemType.InventoryMap)
             {
                 MenuItem.name = "Dungeon Map";
                 MenuItem.description = "This map displays\nthe dungeon's rooms.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 2, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 5, 0, 0) };
             }
 
             #endregion
@@ -258,31 +258,31 @@ namespace DungeonRun
             {
                 MenuItem.name = "Save Game";
                 MenuItem.description = "Saves the current\ngame.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 7, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 8, 0, 0) };
             }
             else if (Type == MenuItemType.OptionsLoadGame)
             {
                 MenuItem.name = "Load Game";
                 MenuItem.description = "Loads a saved\ngame.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 7, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 8, 0, 0) };
             }
             else if (Type == MenuItemType.OptionsAudioCtrls)
             {
                 MenuItem.name = "Audio Controls";
                 MenuItem.description = "Changes the volume\nof soundfx and music.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 10, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 11, 0, 0) };
             }
             else if (Type == MenuItemType.OptionsInputCtrls)
             {
                 MenuItem.name = "Input Controls";
                 MenuItem.description = "Changes the mapping\nof input buttons.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 9, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 10, 0, 0) };
             }
             else if (Type == MenuItemType.OptionsVideoCtrls)
             {
                 MenuItem.name = "Video Controls";
                 MenuItem.description = "Changes the size\nof the game window.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 8, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 9, 0, 0) };
             }
 
             #endregion
@@ -290,30 +290,32 @@ namespace DungeonRun
 
             #region Stat menuItems
 
+            /*
             else if (Type == MenuItemType.StatsHealth)
             {
                 MenuItem.name = "Health Stat";
                 MenuItem.description = "How many hearts\nyou have.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 5, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 6, 0, 0) };
             }
             else if (Type == MenuItemType.StatsMagic)
             {
                 MenuItem.name = "Magic Stat";
                 MenuItem.description = "How powerful\nyour magic is.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 5, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 6, 0, 0) };
             }
             else if (Type == MenuItemType.StatsAgility)
             {
                 MenuItem.name = "Agility Stat";
                 MenuItem.description = "How quickly you\nmove and dash.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 5, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 6, 0, 0) };
             }
             else if (Type == MenuItemType.Stats4)
             {
-                MenuItem.name = "??? Stat";
+                MenuItem.name = "Luck Stat";
                 MenuItem.description = "TBD later...";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 5, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 6, 0, 0) };
             }
+            */
 
             #endregion
 
@@ -322,7 +324,7 @@ namespace DungeonRun
             {   //if the type was unhandled, default to unknown
                 MenuItem.name = "Unknown";
                 MenuItem.description = "No description available\nfor this item.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 5, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 6, 0, 0) };
             }
 
             //update the sprite's current frame to the animation list set above

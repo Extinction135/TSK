@@ -167,7 +167,7 @@ namespace DungeonRun
                 //ItemRupee
                 new List<Byte4> { new Byte4(20, 0, 0, 0), new Byte4(21, 0, 0, 0), new Byte4(22, 0, 0, 0), new Byte4(23, 0, 0, 0) },
                 //ItemHeart
-                new List<Byte4> { new Byte4(24, 0, 0, 0), new Byte4(25, 0, 0, 0), new Byte4(26, 0, 0, 0), new Byte4(27, 0, 0, 0) },
+                new List<Byte4> { new Byte4(20, 1, 0, 0), new Byte4(21, 1, 0, 0), new Byte4(22, 1, 0, 0), new Byte4(23, 1, 0, 0) },
 
                 #endregion
 
@@ -201,16 +201,16 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
 
                 //Rewards
-                //ParticleReward50Gold
-                new List<Byte4> { new Byte4(12, 2, 0, 0) },
+                //ParticleReward20Gold
+                new List<Byte4> { new Byte4(13, 5, 0, 0) },
                 //ParticleRewardKey,
-                new List<Byte4> { new Byte4(11, 2, 0, 0) },
+                new List<Byte4> { new Byte4(12, 5, 0, 0) },
                 //ParticleRewardMap,
-                new List<Byte4> { new Byte4(10, 2, 0, 0) },
+                new List<Byte4> { new Byte4(11, 5, 0, 0) },
                 //ParticleRewardHeartPiece
-                new List<Byte4> { new Byte4(13, 2, 0, 0) },
+                new List<Byte4> { new Byte4(14, 5, 0, 0) },
                 //ParticleRewardHeartFull
-                new List<Byte4> { new Byte4(14, 2, 0, 0) },
+                new List<Byte4> { new Byte4(15, 5, 0, 0) },
 
                 #endregion
 

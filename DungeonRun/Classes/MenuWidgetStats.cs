@@ -58,10 +58,10 @@ namespace DungeonRun
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 1);
             //set the menuItem's data
-            MenuItemFunctions.SetMenuItemData(MenuItemType.StatsHealth, menuItems[0]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.StatsMagic, menuItems[1]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.StatsAgility, menuItems[2]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.Stats4, menuItems[3]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.StatsHealth, menuItems[0]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.StatsMagic, menuItems[1]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.StatsAgility, menuItems[2]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.Stats4, menuItems[3]);
         }
 
         public static void Update()

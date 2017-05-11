@@ -52,42 +52,37 @@ ram useage:
 todo:
 
 
-3
-
-repacked main sheet in prep for additional consumable items / worldUI sprites.
-added magic meter sprite to mainsheet.
-added group of bombs (item) sprite to main sheet.
-added arrows, bombs, and magic pot consumables to mainsheet.
-now its time to update the codebase to reflect the changes made to the mainsheet.
+1
 
 
+updated the frame/animList values for: 
++ reward particles
++ heart consumables
++ inventory gold
++ heart pieces
++ key & map
++ unknown menuItem 
++ save/load menuItem
++ monitor, controller, sound menuItems
++ selection box sprite
+playtested, a bug.
+
+bug: the loadout widget's heart pieces menuItem doesn't display correctly.
+solution: updated the frame values being set in loadout widget to reflect the mainsheet repack.
+playtested, working as expected.
+
+fixed a minor non-bug that caused the stat menuItems to display incorrectly.
+but, we don't really have stat menuItems right now, so just commented out the code for them.
+this causes the stat menuItems to fall thru to unknown, which better reflects their state in the codebase at the moment.
+playtested, working as expected.
 
 
 
 
 
 
-updated the inventory screen mockup to have amounts for bombs and arrows.
 
 
-
-
-
-repacking the main sheet - update the following sprites/frames/objs in game code:
-	update consumable hearts frames (gameObjAnimList)
-	all reward particles (gameObjAnimList)
-	
-	heart pieces 0 - 3
-	gold animation UI sprites (used in loadout widget + info widget, as menuItem)
-	selection box
-	unknown item
-	save/load arrow
-	monitor, controller, sound icons...
-	
-	
-
-	
-	
 
 
 
