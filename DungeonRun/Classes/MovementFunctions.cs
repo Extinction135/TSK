@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class MovementFunctions
     {
+
         static float maxMagnitude = 7.0f;
 
 
@@ -43,17 +44,13 @@ namespace DungeonRun
         }
 
         public static void Move(GameObject Obj)
-        {   
-
-            //particles never move or check collisions
+        {   //particles never move or check collisions
             if (Obj.group != ObjGroup.Particle)
             {
                 ProjectMovement(Obj.compMove);
                 CollisionFunctions.CheckCollisions(Obj);
             }
             ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
-
-
         }
 
         public static void ProjectMovement(ComponentMovement Move)

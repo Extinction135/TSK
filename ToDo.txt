@@ -46,35 +46,26 @@ ram useage:
 	
 	
 
+push new release on the 16th
+
+
 	
 	
 	
 todo:
 
 
-1
+13
 
 
-updated the frame/animList values for: 
-+ reward particles
-+ heart consumables
-+ inventory gold
-+ heart pieces
-+ key & map
-+ unknown menuItem 
-+ save/load menuItem
-+ monitor, controller, sound menuItems
-+ selection box sprite
-playtested, a bug.
 
-bug: the loadout widget's heart pieces menuItem doesn't display correctly.
-solution: updated the frame values being set in loadout widget to reflect the mainsheet repack.
-playtested, working as expected.
-
-fixed a minor non-bug that caused the stat menuItems to display incorrectly.
-but, we don't really have stat menuItems right now, so just commented out the code for them.
-this causes the stat menuItems to fall thru to unknown, which better reflects their state in the codebase at the moment.
-playtested, working as expected.
+added magic meter to HUD mockup.
+changed the HUD heart sprite, and modified how they are displayed in worldUI.
+created HUD mockup version 1.
+updated heart sprites in the main sheet to new design.
+created magic meter sprite list. refactored how worldUI is created. 
+added Move(X, Y), which relocates the entire worldUI to the passed X, Y values.
+playtested, worldUI now matches the HUD mockup.
 
 
 
@@ -82,7 +73,16 @@ playtested, working as expected.
 
 
 
+update the worldUI to match the mockup.
+the hearts are spaced 10 pixels apart, there are 9 of them
+remove the extra hearts, update the worldUI + maxhearts to be 9
+the hero's maxHealth is only 9 now as well
 
+
+
+the magic meter is composed of 2 tails, 9 bodies
+each body has a rectangle centered to it, 7 pixels wide
+these recs wither dont draw (locked), draw dark (empty), or draw light (full)
 
 
 
