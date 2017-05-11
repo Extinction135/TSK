@@ -124,7 +124,6 @@ namespace DungeonRun
         {
             if (Actor.item == MenuItemType.MagicFireball)
             {
-
                 if (PlayerData.saveData.magicCurrent > 0)
                 {
                     PlayerData.saveData.magicCurrent--;
@@ -133,7 +132,6 @@ namespace DungeonRun
                     Actor.lockTotal = 15;
                 }
                 else { Assets.Play(Assets.sfxError); }
-                
             }
         }
 

@@ -55,22 +55,18 @@ push new release on the 16th
 todo:
 
 
-12
+11
 
 
 
-added ItemMagic value to ObjType enumerator.
-updated GameObjAnimListManager with ItemMagic anim list.
-updated GameObjFunctions.SetType() to handle ItemMagic.
-upgraded GameObjFunctions.SpawnLoot() to handle more than 2 types of loot.
 
-added magicCurrent & magicMax to SaveData struct.
-updated SaveData constructor to default magic values to 3.
-updated InteractionFunctions.Interact() to pickup ItemMagic objects, incrementing SaveData.magicCurrent.
 
-updated WorldUI to limit the current magic amount to the max magic amount in SaveData.
-updated ActorFunctions.UseItem() to decrement saveData.currentMagic upon a fireball cast.
-updated WorldUI to set the magic meter based on SaveData.magicCurrent and magicMax values.
+
+lessened the push amount for sword.
+increased the damage and push amount for fireball.
+
+
+fireballs should do 2 damage, and push more than sword.
 
 
 
@@ -80,19 +76,14 @@ updated WorldUI to set the magic meter based on SaveData.magicCurrent and magicM
 
 
 
+need a magic potion
+need a health potion
+need an empty bottle
 
-
-
-add magic pot consumable item.
-include in pick up routines.
-build the magic meter in worldUI.
-picking up magic pot should increment saveData.magic counter
-we'll also need a maxMagic counter.
-magic stat will determine the maxMagic counter.
-this only applies to player, not to all actors
-this is part of saveData..
-
-
+potion vendor should sell these
+these should appear in inventory
+player should be able to use them
+using a health or magic potion should turn it into an empty bottle
 
 
 

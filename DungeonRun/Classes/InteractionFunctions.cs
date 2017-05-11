@@ -77,12 +77,12 @@ namespace DungeonRun
 
                 if (Obj.type == ObjType.ProjectileSword)
                 {   //swords always complete their animation
-                    damage = 1; force = 8.0f;
+                    damage = 1; force = 6.0f;
                 }
                 else if (Obj.type == ObjType.ProjectileFireball)
                 {   //fireballs destruct upon collision/interaction
                     Obj.lifeCounter = Obj.lifetime;
-                    damage = 1; force = 8.0f;
+                    damage = 2; force = 10.0f;
                 }
 
                 BattleFunctions.Damage(Actor, damage, force, Obj.direction);
