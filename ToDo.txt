@@ -52,13 +52,18 @@ ram useage:
 todo:
 
 
-9
+8
 
 
-updated VendorScreen to call DialogWidget.DisplayDialog(), passing in the vendor that hero is talking with.
-fixed a minor issue where the speaker in DialogWidget wasn't being aligned properly.
-playtested, working as expected, with super cheesy dialog - for now.
 
+
+added an int to track the character count in dialog widget, in prep for animated text.
+added a string instance to hold the dialog text that should be displayed.
+modified DialogWidget.Update() to strip the first character off of the string instance.
+this character is added to dialog.text, which is being drawn.
+this continues until the string instance is empty, at which point the text done sound effect is played.
+until then the normal text sound effect is played.
+playtested, working as expected.
 
 
 
@@ -66,6 +71,14 @@ playtested, working as expected, with super cheesy dialog - for now.
 
 
 animate the dialog text letter by letter, with sound fx
+when the text is done, play the done sound fx
+
+
+store the string of dialog in a string instance
+strip off the first letter of string from instance
+add this letter to the end of dialog.text
+continue doing this, playing the letter sound effect, until string instance is empty
+if we're stripping the last letter, play the text sound done effect..
 
 
 
@@ -74,41 +87,33 @@ animate the dialog text letter by letter, with sound fx
 
 
 
-create Dialog Screen, uses DialogWidget.
-create Narrator NPC object, place in shop room.
-speaking with him creates a Dialog Screen.
 
 
 
 
 
 
-Dialog Widget
-	we could have a window that sits on top of the trio (in vendor screen) that acts as a dialog for vendor
-	could say things like "please buy something, mister.."
-	or "you don't have enough gold to buy that.."
-	this dialog widget can be reused later in the game for other things as well
-	we could put this dialog window below the other widgets
-	it would fit better there, do a mockup of this dialog screen
-	
-	the text in dialog widget should animate in a single letter at a time, with sound fx
-	when the text is complete, play the text done sound effect
-	
-	we should display the animated NPC sprite in this window as well
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+we should be using the dialog widget to display purchasing feedback
+when hero buys an item, speaker says 'thanks'
+when hero trys to buy an item he can't afford, speaker says 'you don't have enough gold'
+
 we no longer need to update the window title of forSale widget
 the cost value is displayed in a amount component, per menuItem
 
 
 
+
+
+
+
 	
-	
+create Dialog Screen, uses DialogWidget.
+create Narrator NPC object, place in shop room.
+speaking with him creates a Dialog Screen.	
 	
 	
 	

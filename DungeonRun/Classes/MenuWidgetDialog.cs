@@ -18,6 +18,9 @@ namespace DungeonRun
         public static MenuWindow window;
         public static GameObject speaker;
         public static ComponentText dialog;
+        public static String dialogString;
+        public static int charCount;
+
 
         static MenuWidgetDialog()
         {
@@ -43,7 +46,9 @@ namespace DungeonRun
         public static void DisplayDialog(ObjType Type, String Dialog)
         {   //set the menuItem's type and sprite frame
             GameObjectFunctions.SetType(speaker, Type);
-            dialog.text = Dialog;
+            //capture the dialog string, clear the dialog being drawn
+            dialogString = Dialog;
+            dialog.text = "";
         }
 
 
@@ -52,6 +57,19 @@ namespace DungeonRun
         {
             window.Update();
             AnimationFunctions.Animate(speaker.compAnim, speaker.compSprite);
+
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                charCount = dialogString.Count();
+                if (charCount > 0)
+                {   //strip off the first character, add it to dialog being drawn
+                    dialog.text += dialogString[0].ToString();
+                    dialogString = dialogString.Remove(0, 1);
+                    //determine what text sound effect should play based on character count
+                    if (charCount == 1) { Assets.Play(Assets.sfxTextDone); }
+                    else { Assets.Play(Assets.sfxTextLetter); }
+                }
+            }
         }
 
         public static void Draw()
