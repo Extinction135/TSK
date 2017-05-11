@@ -52,24 +52,14 @@ ram useage:
 todo:
 
 
-10
+9
 
 
+updated VendorScreen to call DialogWidget.DisplayDialog(), passing in the vendor that hero is talking with.
+fixed a minor issue where the speaker in DialogWidget wasn't being aligned properly.
+playtested, working as expected, with super cheesy dialog - for now.
 
 
-added text component to dialog widget.
-updated DisplayDialog() to pass string into text component.
-playtested, minor alignment fixes to the text component. looks good.
-
-
-
-
-
-
-
-we'll also need to pass in a string of text...
-
-something like DisplayDialog(MenuItemType, String).
 
 
 

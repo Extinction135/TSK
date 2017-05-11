@@ -47,6 +47,9 @@ namespace DungeonRun
             MenuWidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 6));
             MenuWidgetDialog.Reset(new Point(16 * 9, 16 * 12));
 
+            MenuWidgetDialog.DisplayDialog(vendorType.type,
+                "i've got many useful goods for sale, adventurer!");
+
             MenuWidgetForSale.SetItemsForSale(vendorType.type);
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = MenuWidgetForSale.menuItems[0];
