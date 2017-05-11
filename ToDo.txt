@@ -52,26 +52,31 @@ ram useage:
 todo:
 
 
-11
-
-
-
-added GameObject instance named 'speaker' to DialogWidget.
-created DisplayDialog() in DialogWidget.
-updated DialogWidget to animate the speaker object.
-playtested, working as expected.
+10
 
 
 
 
+added text component to dialog widget.
+updated DisplayDialog() to pass string into text component.
+playtested, minor alignment fixes to the text component. looks good.
 
 
 
-we need to add a menuItem to dialog widget
-this will be a vendor or NPC, so we'll need to pass a menuItem Type into the class somewhere
+
+
+
+
 we'll also need to pass in a string of text...
 
 something like DisplayDialog(MenuItemType, String).
+
+
+
+
+
+animate the dialog text letter by letter, with sound fx
+
 
 
 

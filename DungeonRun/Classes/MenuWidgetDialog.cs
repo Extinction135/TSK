@@ -17,13 +17,14 @@ namespace DungeonRun
 
         public static MenuWindow window;
         public static GameObject speaker;
-
+        public static ComponentText dialog;
 
         static MenuWidgetDialog()
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             speaker = new GameObject(Assets.mainSheet);
             GameObjectFunctions.SetType(speaker, ObjType.VendorArmor);
+            dialog = new ComponentText(Assets.font, "asdfasdf\nasdfasdf", new Vector2(0, 0), Assets.colorScheme.textDark);
         }
 
         public static void Reset(Point Position)
@@ -33,12 +34,16 @@ namespace DungeonRun
                 "Dialog Window");
             speaker.compSprite.position.X = Position.X + 16 * 1;
             speaker.compSprite.position.Y = Position.Y + 16 * 2;
+            dialog.position.X = Position.X + 16 * 2;
+            dialog.position.Y = Position.Y + 16 * 1 + 4;
         }
+
 
 
         public static void DisplayDialog(ObjType Type, String Dialog)
         {   //set the menuItem's type and sprite frame
             GameObjectFunctions.SetType(speaker, Type);
+            dialog.text = Dialog;
         }
 
 
@@ -54,8 +59,8 @@ namespace DungeonRun
             DrawFunctions.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
-                //
                 DrawFunctions.Draw(speaker.compSprite);
+                DrawFunctions.Draw(dialog);
             }
         }
 
