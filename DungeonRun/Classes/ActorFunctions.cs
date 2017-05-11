@@ -137,7 +137,7 @@ namespace DungeonRun
                 GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
                 Assets.Play(Assets.sfxHeartPickup); //need a healing sound effect
                 Actor.state = ActorState.Reward;
-                Actor.lockTotal = 20;
+                Actor.lockTotal = 30;
                 //set the potion to be an empty bottle
                 Actor.item = MenuItemType.BottleEmpty;
                 PlayerData.saveData.bottleHealth = false;
@@ -148,7 +148,7 @@ namespace DungeonRun
                 GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
                 Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
                 Actor.state = ActorState.Reward;
-                Actor.lockTotal = 20;
+                Actor.lockTotal = 30;
                 //set the potion to be an empty bottle
                 Actor.item = MenuItemType.BottleEmpty;
                 PlayerData.saveData.bottleMagic = false;

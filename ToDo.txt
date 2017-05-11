@@ -55,63 +55,15 @@ push new release on the 16th
 todo:
 
 
-8
+7
 
 
+updated PurchaseItem() to auto-equip any potions bought.
+this fixes a bug where an empty bottle could be displayed in worldUI, even tho player had potion in inventory.
 
-
-refactored how the hero/actor's lockTotal is set.
-when hero opens a chest, InteractionFunctions.Interact() now sets the lockTotal.
-updated ActorFunctions.Update() to NOT set the lockTotal based on reward state.
-updated ActorFunctions.UseItem() with paths for bottles.
-UseItem()'s various paths set the lockTotal for actor.
-organized VendorScreen.PurchaseItem().
-updated PurchcaseItem() to set the bottle1-3 booleans true upon potion purchase.
-playtested, various minor bugs.
-
-
-
-
-
-
-potion should auto-equip when purchased - prevent a bug where empty bottle appears
-even tho we have potions in inventory
-
-test that health potion refills health
-test that magic potion refilles magic
-test that the potion is being set to 'empty bottle'
-empty bottles should appear in the inventory
-
-
-
-stay statelocked for 50 frames from chest - important...
-
-
-
-
-
-hero should be able to use the bottle items
-equip one, then press the Y button to use it.
-
-
-we could set hero into reward state, if the item being used is a bottle
-however, this may lock hero into reward state for too long...
-
-
-
-
-
-
-
-
-need a magic potion (bottle)
-need a health potion (bottle)
-need an empty bottle (bottle)
-
-potion vendor should sell these
-these should appear in inventory
-player should be able to use them
-using a health or magic potion should turn it into an empty bottle
+reverted change made to the actor.lockTotal in InteractionFunctions.Interact() -> Chest routines.
+increased the lockTotal for using a potion, so the player has time to read the hero's animation better.
+playtested, looking good.
 
 
 

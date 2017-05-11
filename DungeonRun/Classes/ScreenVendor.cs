@@ -110,33 +110,36 @@ namespace DungeonRun
             {   //handle item effects, based on type
 
 
-                #region Items - auto-equip
+                #region Items
 
                 if (Item.type == MenuItemType.MagicFireball)
                 {
                     PlayerData.saveData.magicFireball = true;
-                    Pool.hero.item = MenuItemType.MagicFireball;
+                    Pool.hero.item = Item.type;
                 }
 
                 #endregion
 
 
-                #region Bottles - don't auto-equip
+                #region Bottles
 
                 else if (Item.type == MenuItemType.BottleHealth)
                 {
                     PlayerData.saveData.bottle1 = true;
                     PlayerData.saveData.bottleHealth = true;
+                    Pool.hero.item = Item.type;
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
                 {
                     PlayerData.saveData.bottle2 = true;
                     PlayerData.saveData.bottleMagic = true;
+                    Pool.hero.item = Item.type;
                 }
                 else if (Item.type == MenuItemType.BottleFairy)
                 {
                     PlayerData.saveData.bottle3 = true;
                     PlayerData.saveData.bottleFairy = true;
+                    Pool.hero.item = Item.type;
                 }
 
                 #endregion
@@ -147,7 +150,7 @@ namespace DungeonRun
                 else if (Item.type == MenuItemType.EquipmentRing)
                 {
                     PlayerData.saveData.equipmentRing = true;
-                    Pool.hero.equipment = MenuItemType.EquipmentRing;
+                    Pool.hero.equipment = Item.type;
                 }
 
                 #endregion
