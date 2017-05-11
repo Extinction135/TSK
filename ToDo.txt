@@ -52,40 +52,17 @@ ram useage:
 todo:
 
 
-6
-
-
-
-updated VendorScreen to display a purchase complete message in DialogWidget.
-updated VendorScreen to display a purchase fail message in DialogWidget.
-removed ForSaleWidget.GetPrice(), since we no longer need to display the price of items in the window title.
-removed code that called ForSaleWidget.GetPrice()from VendorScreen.
-playtested, working as expected.
+5
 
 
 
 
 
-we should be using the dialog widget to display purchasing feedback
-welcome message
-purchase complete message
-purchase fail message
-
-
-when hero buys an item, speaker says 'thanks'
-when hero trys to buy an item he can't afford, speaker says 'you don't have enough gold'
-
-
-
-
-
-
-
-we no longer need to update the window title of forSale widget
-the cost value is displayed in a amount component, per menuItem
-
-
-
+added narrator/guide to main sheet (old man).
+added VendorStory value to ObjTyp enumerator.
+added anim list for VendorStory to GameObjAnimListManager.
+updated GameObjFunctions.SetType() with path for VendorStory.
+updated DungeonFunctions.FinishRoom() to create a Story Vendor in the Shop room.
 
 
 

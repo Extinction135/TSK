@@ -518,6 +518,14 @@ namespace DungeonRun
                 CreateVendor(ObjType.VendorWeapons, new Vector2(10 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
                 CreateVendor(ObjType.VendorArmor, new Vector2(13 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
                 CreateVendor(ObjType.VendorEquipment, new Vector2(16 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+
+                //create story vendor
+                objRef = PoolFunctions.GetObj();
+                MovementFunctions.Teleport(objRef.compMove,
+                    7 * 16 + pos.X + 8,
+                    8 * 16 + pos.Y + 0);
+                GameObjectFunctions.SetType(objRef, ObjType.VendorStory);
+
             }
 
             #endregion

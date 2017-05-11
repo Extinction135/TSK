@@ -413,6 +413,14 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Vendor;
                 Obj.compAnim.speed = 20; //slow animation
             }
+            else if (Type == ObjType.VendorStory)
+            {
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = 0;
+                Obj.compAnim.speed = 20; //slow animation
+            }
             else if (Type == ObjType.VendorAdvertisement)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
