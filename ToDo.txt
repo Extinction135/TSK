@@ -52,22 +52,26 @@ ram useage:
 todo:
 
 
-7
+6
 
 
 
-updated VendorScreen.LoadContent() to display a different welcome dialog message for each vendor.
-updated DialogWidget's windowo title to simply read "Hello!".
-this seems generic enough that it can be applied to anyone speaking with hero.
+updated VendorScreen to display a purchase complete message in DialogWidget.
+updated VendorScreen to display a purchase fail message in DialogWidget.
+removed ForSaleWidget.GetPrice(), since we no longer need to display the price of items in the window title.
+removed code that called ForSaleWidget.GetPrice()from VendorScreen.
 playtested, working as expected.
 
 
 
 
 
-
-
 we should be using the dialog widget to display purchasing feedback
+welcome message
+purchase complete message
+purchase fail message
+
+
 when hero buys an item, speaker says 'thanks'
 when hero trys to buy an item he can't afford, speaker says 'you don't have enough gold'
 

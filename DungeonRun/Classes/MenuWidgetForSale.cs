@@ -24,7 +24,7 @@ namespace DungeonRun
         static MenuWidgetForSale()
         {
             window = new MenuWindow(new Point(-100, -100),
-                new Point(100, 100), "For Sale - 000");
+                new Point(100, 100), "");
 
             //create menuitems
             menuItems = new List<MenuItem>();
@@ -37,8 +37,7 @@ namespace DungeonRun
         public static void Reset(Point Position)
         {   //align this widgets component to Position
             window.ResetAndMoveWindow(Position, 
-                new Point(16 * 8, 16 * 5 + 8), 
-                "For Sale - 000");
+                new Point(16 * 8, 16 * 5 + 8), "For Sale");
 
 
             #region Place first row of menuItems
@@ -113,11 +112,6 @@ namespace DungeonRun
         {
             Amount.visible = true;
             Amount.amount.text = "" + Item.price;
-        }
-
-        public static void GetPrice(MenuItem Item)
-        {   //display the currently selected item's price in the for sale window title
-            MenuWidgetForSale.window.title.text = "For Sale - " + Item.price;
         }
 
         public static void SetItemsForSale(ObjType VendorType)

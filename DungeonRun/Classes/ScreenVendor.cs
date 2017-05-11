@@ -51,17 +51,17 @@ namespace DungeonRun
             welcomeDialog = "i've got many useful goods for sale, adventurer!";
             //set the welcome dialog based on the vendor type
             if (vendorType.type == ObjType.VendorArmor)
-            { welcomeDialog = "I have a fine selection of armor for you to purchase."; }
+            { welcomeDialog = "I have a fine selection of armor for sale."; }
             else if (vendorType.type == ObjType.VendorEquipment)
-            { welcomeDialog = "I have a fine selection of equipment for you to purchase."; }
+            { welcomeDialog = "I have a fine selection of equipment for sale."; }
             else if (vendorType.type == ObjType.VendorItems)
-            { welcomeDialog = "I have a fine selection of items for you to purchase."; }
+            { welcomeDialog = "I have a fine selection of items for sale."; }
             else if (vendorType.type == ObjType.VendorMagic)
-            { welcomeDialog = "I have a fine selection of magic items for you to purchase."; }
+            { welcomeDialog = "I have a fine selection of magic items for sale."; }
             else if (vendorType.type == ObjType.VendorPotions)
-            { welcomeDialog = "I have a fine selection of potions for you to purchase."; }
+            { welcomeDialog = "I have a fine selection of potions for sale."; }
             else if (vendorType.type == ObjType.VendorWeapons)
-            { welcomeDialog = "I have a fine selection of weapons for you to purchase."; }
+            { welcomeDialog = "I have a fine selection of weapons for sale."; }
             //display the welcome dialog
             MenuWidgetDialog.DisplayDialog(vendorType.type, welcomeDialog);
 
@@ -81,9 +81,6 @@ namespace DungeonRun
             background = new Rectangle(0, 0, 640, 360);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
-
-            //display the price of the default selected menuItem
-            MenuWidgetForSale.GetPrice(currentlySelected);
         }
 
 
@@ -102,8 +99,6 @@ namespace DungeonRun
             {
                 //deduct cost, play purchase sound
                 PlayerData.saveData.gold -= Item.price;
-                Assets.Play(Assets.sfxBeatDungeon);
-
                 //flip the corresponding saveData boolean true, auto-equip the purchased item
                 if (Item.type == MenuItemType.MagicFireball)
                 {
@@ -118,13 +113,22 @@ namespace DungeonRun
 
                 //update the vendor's forSale items
                 MenuWidgetForSale.SetItemsForSale(vendorType.type);
-                MenuWidgetForSale.GetPrice(currentlySelected);
                 MenuWidgetInfo.Display(currentlySelected);
                 //update the loadout
                 MenuWidgetLoadout.UpdateLoadout();
+                //update the dialog widget
+                MenuWidgetDialog.DisplayDialog(vendorType.type, 
+                    "thanks for your purchase!");
+                //play purchase complete sound effect
+                Assets.Play(Assets.sfxBeatDungeon);
             }
-            //else, play an error sound
-            else { Assets.Play(Assets.sfxError); }
+
+            else//else, hero doesn't have enough gold to purcahse the item
+            {   //notify player of this state, via dialog widget and error sound effect
+                MenuWidgetDialog.DisplayDialog(vendorType.type, 
+                    "you don't have enough gold to purchase that item.");
+                Assets.Play(Assets.sfxError);
+            }
         }
 
 
@@ -171,7 +175,6 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxTextLetter);
                     previouslySelected.compSprite.scale = 1.0f;
                     selectionBox.scale = 2.0f;
-                    MenuWidgetForSale.GetPrice(currentlySelected);
                 }
             }
         }
