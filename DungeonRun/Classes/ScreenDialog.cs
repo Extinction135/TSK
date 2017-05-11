@@ -34,7 +34,8 @@ namespace DungeonRun
 
             //here is where we could check to see where in the story the hero is
             //then set the dialog screen accordingly
-            dialog = "testing the dialog screen.";
+            dialog = "i'm the game's guide. later on, i'll tell the hero the story.\n";
+            dialog += "and i'll comment on his progress beating dungeons.";
             //if (speaker.type == ObjType.VendorStory) { }
             //we'd need to track what dungeons that hero has beaten
             //this way the story vendor could comment on the hero's progress

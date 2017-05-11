@@ -52,16 +52,13 @@ ram useage:
 todo:
 
 
-4
+3
 
-
-created DialogScreen.cs.
-added path to handle interaction between hero and the VendorStory object in InteractionFunctions.Interact(actor, obj).
-this interaction creates a DialogScreen.
-due to preference, i decided to continue to update the DungeonScreen while the DialogScreen is active.
-this is because i don't want the game to 'pause' when a dialog appears. 
-the game should appear to still be running, with things animating. 
-playtested, working as expected.
+repacked main sheet in prep for additional consumable items / worldUI sprites.
+added magic meter sprite to mainsheet.
+added group of bombs (item) sprite to main sheet.
+added arrows, bombs, and magic pot consumables to mainsheet.
+now its time to update the codebase to reflect the changes made to the mainsheet.
 
 
 
@@ -69,6 +66,86 @@ playtested, working as expected.
 
 
 
+
+updated the inventory screen mockup to have amounts for bombs and arrows.
+
+
+
+
+
+repacking the main sheet - update the following sprites/frames/objs in game code:
+	update consumable hearts frames (gameObjAnimList)
+	all reward particles (gameObjAnimList)
+	
+	heart pieces 0 - 3
+	gold animation UI sprites (used in loadout widget + info widget, as menuItem)
+	selection box
+	unknown item
+	save/load arrow
+	monitor, controller, sound icons...
+	
+	
+
+	
+	
+
+
+
+
+
+
+add magic pot consumable item.
+include in pick up routines.
+build the magic meter in worldUI.
+picking up magic pot should increment saveData.magic counter
+we'll also need a maxMagic counter.
+magic stat will determine the maxMagic counter.
+this only applies to player, not to all actors
+this is part of saveData..
+
+add arrow consumable item
+include in pickup routines
+add the arrow icon and number to worldUI.
+arrow counter is player specific, stored in saveData
+
+add bomb consumable item
+include in pickup routines
+add the bombs icon and number to worldUI.
+bomb counter is player specific, stored in saveData
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+we need to make room for more consumables in main sheet:
+	arrows
+	bombs
+	magic containers
+	fairies
+	
+	
+	
+	
+	
+	
+bow and arrow
+
+create arrow projectile, just like fireball
+create bow weapon, just like sword
+when hero uses bow, an arrow should be created
+
+we'll need an arrow counter in saveData
+we'll need to display this arrow counter in worldUI
+we'll need to have an arrow consumable item sprite
+	
+	
+	
+	
 	
 	
 	
@@ -111,6 +188,15 @@ we'll have to move some sprites around to make it all fit
 
 
 
+
+
+	
+
+	
+	
+	
+Version 0.4 Milestones
+	
 minor bug:
 the loadout animates the loadout menuItems
 when we select a laodout menuItem from inventory screen, we animate the loadout menuItem again
@@ -119,8 +205,6 @@ we shouldn't be able to select loadout menuItems.
 this solves the scaling issue, and it doesn't make sense to be able to select them
 selecting an item should only equip it
 
-
-	
 what music do we play for the shop dungeon?
 
 Vendor stalls / layout ++
@@ -131,57 +215,9 @@ Vendor stalls / layout ++
 	the 'guide' npc obj should also be in the shop
 	there should be a dog actor that chases the hero around
 	this dog actor is an enemy, but never attacks and has it's own AI.
-
-	
-
-	
-	
-	
-Version 0.4 Milestones
-	
-SHOPS
-	for simplicity, there should only be one shop location
-	all the 'vendors' will be present in that shop dungeon
-	the shop dungeon uses it's own texture sheet, which resembles the interior of a home
-	each vendor is a gameobject, that is interacted with just like chests
-	speaking with a vendor opens the shop screen
-	shop rooms are hardcoded, not designed thru editor
-	title music plays while hero is in shop dungeon
-	that means that we'll need a dungeon type enum to seperate cursed castle level from shop level
-	
-Vendor Screen
-	player purchases an item with A button
-	vendor screen handles the actual gold transaction
-
-Inventory
-	we'll need to track what items/weapons/armor/equipment the hero has access to, and what's equipped
-	lets use a bit field to do this: weapons {1, 1, 0, 0, 0} = sword, bow, locked, locked, locked
-	then from shop screen we can check the bit field and only display weapons that are locked
-	this extends to items, magic, weapons, armor, equipment
-	
-add item/weapon/armor/equipment/magic functionalities
-	boomerang
-	bomb
-	health potion
-	arrow + bow
-	??? armor, equipment
-	
-	
-	
-	
 	
 conveyor belts should move other game objects, like consumable items
 or other objects, like bumpers and spike blocks	
-	
-	
-We should change the 'stats' window/widget to the 'help' widget
-display the big 4 topics about how to play the game:
-	controls - how to play the game
-	objective - the game's objective / goal
-	economy - purchasing items with gold
-	inventory - equipping and using items
-	
-	
 	
 	
 	
