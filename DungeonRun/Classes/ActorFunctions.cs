@@ -124,9 +124,16 @@ namespace DungeonRun
         {
             if (Actor.item == MenuItemType.MagicFireball)
             {
-                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball, Actor);
-                Assets.Play(Assets.sfxFireballCast);
-                Actor.lockTotal = 15;
+
+                if (PlayerData.saveData.magicCurrent > 0)
+                {
+                    PlayerData.saveData.magicCurrent--;
+                    GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball, Actor);
+                    Assets.Play(Assets.sfxFireballCast);
+                    Actor.lockTotal = 15;
+                }
+                else { Assets.Play(Assets.sfxError); }
+                
             }
         }
 

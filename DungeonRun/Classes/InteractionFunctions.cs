@@ -101,6 +101,8 @@ namespace DungeonRun
                     { Actor.health++; Assets.Play(Assets.sfxHeartPickup); }
                     else if (Obj.type == ObjType.ItemRupee)
                     { PlayerData.saveData.gold++; Assets.Play(Assets.sfxGoldPickup); }
+                    else if (Obj.type == ObjType.ItemMagic)
+                    { PlayerData.saveData.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
                     //end the items life
                     Obj.lifetime = 1; Obj.lifeCounter = 2; 
                 }

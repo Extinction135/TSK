@@ -55,34 +55,28 @@ push new release on the 16th
 todo:
 
 
-13
+12
 
 
 
-added magic meter to HUD mockup.
-changed the HUD heart sprite, and modified how they are displayed in worldUI.
-created HUD mockup version 1.
-updated heart sprites in the main sheet to new design.
-created magic meter sprite list. refactored how worldUI is created. 
-added Move(X, Y), which relocates the entire worldUI to the passed X, Y values.
-playtested, worldUI now matches the HUD mockup.
+added ItemMagic value to ObjType enumerator.
+updated GameObjAnimListManager with ItemMagic anim list.
+updated GameObjFunctions.SetType() to handle ItemMagic.
+upgraded GameObjFunctions.SpawnLoot() to handle more than 2 types of loot.
+
+added magicCurrent & magicMax to SaveData struct.
+updated SaveData constructor to default magic values to 3.
+updated InteractionFunctions.Interact() to pickup ItemMagic objects, incrementing SaveData.magicCurrent.
+
+updated WorldUI to limit the current magic amount to the max magic amount in SaveData.
+updated ActorFunctions.UseItem() to decrement saveData.currentMagic upon a fireball cast.
+updated WorldUI to set the magic meter based on SaveData.magicCurrent and magicMax values.
 
 
 
 
 
 
-
-update the worldUI to match the mockup.
-the hearts are spaced 10 pixels apart, there are 9 of them
-remove the extra hearts, update the worldUI + maxhearts to be 9
-the hero's maxHealth is only 9 now as well
-
-
-
-the magic meter is composed of 2 tails, 9 bodies
-each body has a rectangle centered to it, 7 pixels wide
-these recs wither dont draw (locked), draw dark (empty), or draw light (full)
 
 
 
@@ -97,6 +91,18 @@ we'll also need a maxMagic counter.
 magic stat will determine the maxMagic counter.
 this only applies to player, not to all actors
 this is part of saveData..
+
+
+
+
+
+
+
+
+
+
+
+
 
 add arrow consumable item
 include in pickup routines

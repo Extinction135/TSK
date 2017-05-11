@@ -142,7 +142,11 @@ namespace DungeonRun
         }
 
         public static void Update()
-        {   //reset maxHearts and pieceCounter, we will calculate them for this frame
+        {
+
+            #region Update & Limit Hero's Hearts
+
+            //reset maxHearts and pieceCounter, we will calculate them for this frame
             maxHearts = 0; pieceCounter = 0;
             //determine the max hearts that hero has, based on heart pieces
             for (i = 0; i < PlayerData.saveData.heartPieces; i++)
@@ -178,8 +182,32 @@ namespace DungeonRun
                 { hearts[i].scale -= 0.05f; }
             }
 
-            //limit the hero's gold to a max of 99
-            if (PlayerData.saveData.gold > 99) { PlayerData.saveData.gold = 99; }
+            #endregion
+
+
+            #region Update & Limit Hero's Magic
+
+            //limit the max magic amount to 9
+            if (PlayerData.saveData.magicMax > 9) { PlayerData.saveData.magicMax = 9; }
+            //limit the current magic amount to the max magic amount
+            if (PlayerData.saveData.magicCurrent > PlayerData.saveData.magicMax)
+            { PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax; }
+            //loop thru the magic meter sprites, setting their frame
+            for (i = 0; i < 9; i++)
+            {   //reset sprite to locked
+                meterPieces[i + 1].currentFrame.X = 31;
+                //set available bars
+                if (i < PlayerData.saveData.magicMax)
+                { meterPieces[i + 1].currentFrame.X = 30; }
+                //set filled bars
+                if (i < PlayerData.saveData.magicCurrent)
+                { meterPieces[i + 1].currentFrame.X = 29; }
+            }
+
+            #endregion
+
+
+            #region Update & Animate Weapon and Item
 
             //weapon and item routines
             if (heroWeapon != Pool.hero.weapon)
@@ -202,15 +230,11 @@ namespace DungeonRun
             AnimationFunctions.Animate(currentWeapon.compAnim, currentWeapon.compSprite);
             AnimationFunctions.Animate(currentItem.compAnim, currentItem.compSprite);
 
+            #endregion
 
 
-
-            //update the magic meter sprites based on saveData.magic and saveData.maxMagic values
-
-
-
-
-
+            //limit the hero's gold to a max of 99
+            if (PlayerData.saveData.gold > 99) { PlayerData.saveData.gold = 99; }
         }
 
         public static void Draw()

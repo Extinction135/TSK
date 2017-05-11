@@ -106,6 +106,8 @@ namespace DungeonRun
         public String name;
         public int gold;
         public byte heartPieces; //sets max health
+        public byte magicCurrent; //current magic amount
+        public byte magicMax; //max magic amount
 
         public Boolean itemBoomerang;
         //itemBomb
@@ -137,6 +139,8 @@ namespace DungeonRun
             name = Name;
             gold = 99;
             heartPieces = 4 * 3; //player starts with 3 hearts
+            magicCurrent = 3;
+            magicMax = 3;
 
             //all items default to false
             itemBoomerang = false;
@@ -146,6 +150,7 @@ namespace DungeonRun
             armorPlatemail = false;
             equipmentRing = false;
         }
+
     }
 
     public struct ColorScheme

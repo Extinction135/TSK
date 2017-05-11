@@ -55,20 +55,20 @@ namespace DungeonRun
 
 
         static int dropRate;
+        static int lootType;
         public static void SpawnLoot(Vector2 Pos)
         {
             dropRate = 60; //default 40% chance to drop loot
             //if hero has ring equipped, increase the loot drop rate to 70%
             if (Pool.hero.equipment == MenuItemType.EquipmentRing) { dropRate = 30; }
-
+            //randomly choose a type of loot to spawn
+            lootType = GetRandom.Int(0, 3);
             //create loot if random value is greater than dropRate
             if (GetRandom.Int(0, 100) > dropRate)
             {
-                //either spawn a rupee or a heart item
-                if (GetRandom.Int(0, 100) > 30)
-                { SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
-                else
-                { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
+                if (lootType == 0) { SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
+                else if (lootType == 1) { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
+                else if (lootType == 2) { SpawnProjectile(ObjType.ItemMagic, Pos.X, Pos.Y, Direction.Down); }
             }
         }
 
@@ -434,7 +434,8 @@ namespace DungeonRun
 
             #region Items
 
-            else if (Type == ObjType.ItemRupee || Type == ObjType.ItemHeart)
+            else if (Type == ObjType.ItemRupee || Type == ObjType.ItemHeart ||
+                Type == ObjType.ItemMagic)
             {
                 Obj.compSprite.cellSize.X = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
