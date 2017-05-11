@@ -183,7 +183,9 @@ namespace DungeonRun
             {   //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
                 if (Actor == Pool.hero && Actor.state == ActorState.Interact)
                 { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
+                //story vendor interaction occurs in 'Other Interactive Objects' section below
             }
+
 
             #endregion
 
@@ -261,6 +263,14 @@ namespace DungeonRun
                 //lever, floor spikes, switch, bridge, flamethrower,
                 //torch unlit, torch lit
 
+
+                else if (Obj.type == ObjType.VendorStory)
+                {   //only HERO can interact with story vender
+                    if (Actor == Pool.hero && Actor.state == ActorState.Interact)
+                    {   //pass the story vendor to the dialog screen
+                        ScreenManager.AddScreen(new ScreenDialog(Obj));
+                    }
+                }
             }
 
             #endregion

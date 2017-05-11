@@ -52,26 +52,23 @@ ram useage:
 todo:
 
 
-5
+4
+
+
+created DialogScreen.cs.
+added path to handle interaction between hero and the VendorStory object in InteractionFunctions.Interact(actor, obj).
+this interaction creates a DialogScreen.
+due to preference, i decided to continue to update the DungeonScreen while the DialogScreen is active.
+this is because i don't want the game to 'pause' when a dialog appears. 
+the game should appear to still be running, with things animating. 
+playtested, working as expected.
 
 
 
 
 
-added narrator/guide to main sheet (old man).
-added VendorStory value to ObjTyp enumerator.
-added anim list for VendorStory to GameObjAnimListManager.
-updated GameObjFunctions.SetType() with path for VendorStory.
-updated DungeonFunctions.FinishRoom() to create a Story Vendor in the Shop room.
 
 
-
-
-	
-create Dialog Screen, uses DialogWidget.
-create Narrator NPC object, place in shop room.
-speaking with him creates a Dialog Screen.	
-	
 	
 	
 	

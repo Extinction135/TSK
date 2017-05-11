@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+using System.Diagnostics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
+
+namespace DungeonRun
+{
+    public class ScreenDialog : Screen
+    {
+
+        public GameObject speaker;
+        public String dialog;
+
+
+        public ScreenDialog(GameObject Obj)
+        {
+            this.name = "Dialog Screen";
+            speaker = Obj;
+        }
+
+        public override void LoadContent()
+        {
+            displayState = DisplayState.Opening;
+            MenuWidgetDialog.Reset(new Point(16 * 9, 16 * 12));
+
+
+
+            //here is where we could check to see where in the story the hero is
+            //then set the dialog screen accordingly
+            dialog = "testing the dialog screen.";
+            //if (speaker.type == ObjType.VendorStory) { }
+            //we'd need to track what dungeons that hero has beaten
+            //this way the story vendor could comment on the hero's progress
+
+
+
+            //display the dialog
+            MenuWidgetDialog.DisplayDialog(speaker.type, dialog);
+            //play the opening soundFX
+            Assets.Play(Assets.sfxInventoryOpen);
+        }
+
+        public override void HandleInput(GameTime GameTime)
+        {   //exit this screen upon start or b button press
+            if (Input.IsNewButtonPress(Buttons.Start) ||
+                Input.IsNewButtonPress(Buttons.B) ||
+                Input.IsNewButtonPress(Buttons.A))
+            {
+                Assets.Play(Assets.sfxInventoryClose);
+                ScreenManager.RemoveScreen(this);
+            }
+        }
+
+        public override void Update(GameTime GameTime)
+        {
+            MenuWidgetDialog.Update();
+            DungeonFunctions.dungeonScreen.Update(GameTime);
+        }
+
+        public override void Draw(GameTime GameTime)
+        {
+            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            MenuWidgetDialog.Draw();
+            ScreenManager.spriteBatch.End();
+        }
+
+    }
+}

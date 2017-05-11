@@ -138,6 +138,7 @@
     <Compile Include="Classes\PlayerData.cs" />
     <Compile Include="Classes\Pool.cs" />
     <Compile Include="Classes\PoolFunctions.cs" />
+    <Compile Include="Classes\ScreenDialog.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
     <Compile Include="Classes\ScreenInventory.cs" />
     <Compile Include="Classes\ScreenOverworld.cs" />
