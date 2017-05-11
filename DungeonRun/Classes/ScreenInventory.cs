@@ -122,7 +122,10 @@ namespace DungeonRun
             #region Items
 
             //check if currently selected is an item, set hero.item
-            if (currentlySelected.type == MenuItemType.MagicFireball)
+            if (currentlySelected.type == MenuItemType.BottleHealth ||
+                currentlySelected.type == MenuItemType.BottleMagic ||
+                currentlySelected.type == MenuItemType.BottleFairy ||
+                currentlySelected.type == MenuItemType.MagicFireball)
             { Pool.hero.item = currentlySelected.type; }
 
             #endregion

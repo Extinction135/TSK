@@ -55,25 +55,21 @@ push new release on the 16th
 todo:
 
 
-10
+9
 
 
 
-updated saveData struct with booleans for bottles 1-3.
-updated MenuItemType enum with BottleMagic value.
-updated MenuItemFunctions.SetMenuItemData with path for BottleMagic.
-updated forSale widget to display all bottle products from potion vendor.
-updated VendorScreen.PurchaseItem() to handle health, magic, and fairy bottles.
-updated InventoryWidget to display empty bottles and filled bottles, based on saveData booleans.
-playtested, minor bugs.
+updated ForSale Widget to not display bottle products if hero has already purchased them.
+updated InventoryScreen.SetLoadout() with codepaths for all bottles.
+playtested, can now properly purchase & equip all bottle items
 
 
 
 
-pucahsing works
 
-but, if we attempt to purchase the same potion twice, we dont get an error message
-we should get error message and error sound effect
+
+
+
 
 
 bottle does not get equipped from inventory screen, it should.

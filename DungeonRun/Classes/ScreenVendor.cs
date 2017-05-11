@@ -144,7 +144,7 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxBeatDungeon);
             }
 
-            else//else, hero doesn't have enough gold to purcahse the item
+            else//else, hero doesn't have enough gold to purchase the item
             {   //notify player of this state, via dialog widget and error sound effect
                 MenuWidgetDialog.DisplayDialog(vendorType.type, 
                     "you don't have enough gold to purchase that item.");
