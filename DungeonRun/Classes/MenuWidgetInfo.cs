@@ -29,8 +29,7 @@ namespace DungeonRun
 
         static MenuWidgetInfo()
         {
-            window = new MenuWindow(new Point(-100, -100), 
-                new Point(100, 100), "Info Window");
+            window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             infoItem = new MenuItem();
             description = new ComponentText(Assets.font, 
                 "default description \ntext here...", new Vector2(-100, -100), 

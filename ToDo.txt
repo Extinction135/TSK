@@ -52,15 +52,36 @@ ram useage:
 todo:
 
 
-12
+11
 
 
 
-moved all widgets placement up in vendor screen in prep for dialog widget integration.
-created MenuWidgetDialog class, with just a basic menu window instance.
-integrated MenuWidgetDialog into VendorScreen.
+added GameObject instance named 'speaker' to DialogWidget.
+created DisplayDialog() in DialogWidget.
+updated DialogWidget to animate the speaker object.
 playtested, working as expected.
 
+
+
+
+
+
+
+we need to add a menuItem to dialog widget
+this will be a vendor or NPC, so we'll need to pass a menuItem Type into the class somewhere
+we'll also need to pass in a string of text...
+
+something like DisplayDialog(MenuItemType, String).
+
+
+
+
+
+
+
+create Dialog Screen, uses DialogWidget.
+create Narrator NPC object, place in shop room.
+speaking with him creates a Dialog Screen.
 
 
 
