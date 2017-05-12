@@ -25,6 +25,7 @@ namespace DungeonRun
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton("draw collisions", new Point(2, 2)));
             buttons.Add(new ComponentButton("build dungeon", new Point(68, 2)));
+            buttons.Add(new ComponentButton("max gold", new Point(127, 2)));
         }
 
         public static void HandleInput()
@@ -62,6 +63,11 @@ namespace DungeonRun
                         else if (counter == 1) //build the dungeon room again
                         {   //build dungeon based on the last dungeon type
                             DungeonFunctions.BuildDungeon(DungeonFunctions.dungeon.type);
+                        }
+                        else if (counter == 2) //set the player's gold to 99
+                        {   
+                            PlayerData.saveData.gold = 99;
+                            Assets.Play(Assets.sfxGoldPickup);
                         }
 
                         #endregion
