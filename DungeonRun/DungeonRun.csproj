@@ -122,6 +122,7 @@
     <Compile Include="Classes\GetRandom.cs" />
     <Compile Include="Classes\Input.cs" />
     <Compile Include="Classes\InteractionFunctions.cs" />
+    <Compile Include="Classes\ItemFunctions.cs" />
     <Compile Include="Classes\MenuItemFunctions.cs" />
     <Compile Include="Classes\MenuWidgetDialog.cs" />
     <Compile Include="Classes\MenuWidgetForSale.cs" />

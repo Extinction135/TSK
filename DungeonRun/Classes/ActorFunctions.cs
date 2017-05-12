@@ -45,32 +45,16 @@ namespace DungeonRun
 
             if (Actor == Pool.hero)
             {
-
                 if(PlayerData.saveData.bottleFairy)
-                {
-                    Actor.health = Actor.maxHealth;
-                    PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
-
-                    GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
-                    GameObjectFunctions.SpawnProjectile(ObjType.ParticleFairy, Actor);
-                    PlayerData.saveData.bottleFairy = false;
-                    Actor.state = ActorState.Reward;
-                    Actor.stateLocked = true;
-                    Actor.lockTotal = 30;
-
-
-                    Assets.Play(Assets.sfxBeatDungeon); //need a fairy sound
-                }
+                { ItemFunctions.HandleEffect(MenuItemType.BottleFairy, Actor); }
                 else
-                {
-                    //player has died, failed the dungeon
+                {   //player has died, failed the dungeon
                     DungeonRecord.beatDungeon = false;
                     DungeonFunctions.dungeonScreen.exitAction = ExitAction.Summary;
                     DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
                     //we could track hero deaths here
                     Assets.Play(Assets.sfxHeroKill);
                 }
-                
             }
             else
             {
@@ -140,77 +124,7 @@ namespace DungeonRun
             }
         }
 
-        public static void UseItem(Actor Actor)
-        {
 
-            #region Empty Bottle + Potions
-
-            if (Actor.item == MenuItemType.BottleEmpty)
-            {
-                Actor.state = ActorState.Idle;
-                Actor.lockTotal = 0;
-                Assets.Play(Assets.sfxError);
-            }
-            else if (Actor.item == MenuItemType.BottleHealth)
-            {   //refill the actor's health
-                Actor.health = Actor.maxHealth;
-                GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
-                Assets.Play(Assets.sfxHeartPickup); //need a healing sound effect
-                Actor.state = ActorState.Reward;
-                Actor.lockTotal = 30;
-                //set the potion to be an empty bottle
-                Actor.item = MenuItemType.BottleEmpty;
-                PlayerData.saveData.bottleHealth = false;
-            }
-            else if (Actor.item == MenuItemType.BottleMagic)
-            {   //refill the actor's magic
-                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
-                GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
-                Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
-                Actor.state = ActorState.Reward;
-                Actor.lockTotal = 30;
-                //set the potion to be an empty bottle
-                Actor.item = MenuItemType.BottleEmpty;
-                PlayerData.saveData.bottleMagic = false;
-            }
-
-            else if (Actor.item == MenuItemType.BottleFairy)
-            {   //refill the actor's health and magic
-                Actor.health = Actor.maxHealth;
-                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
-                GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
-                GameObjectFunctions.SpawnProjectile(ObjType.ParticleFairy, Actor);
-                Actor.state = ActorState.Reward;
-                Actor.lockTotal = 30;
-                PlayerData.saveData.bottleFairy = false;
-
-                //set the potion to be an empty bottle
-                Actor.item = MenuItemType.BottleEmpty;
-                Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
-            }
-
-
-
-            #endregion
-
-
-            #region Magic 
-
-            else if (Actor.item == MenuItemType.MagicFireball)
-            {
-                if (PlayerData.saveData.magicCurrent > 0)
-                {
-                    PlayerData.saveData.magicCurrent--;
-                    GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball, Actor);
-                    Assets.Play(Assets.sfxFireballCast);
-                    Actor.lockTotal = 15;
-                }
-                else { Assets.Play(Assets.sfxError); }
-            }
-
-            #endregion
-
-        }
 
         public static void SetType(Actor Actor, ActorType Type)
         {
@@ -344,7 +258,7 @@ namespace DungeonRun
                     {   //lock actor into use animation, stop movement, use the current item
                         Actor.stateLocked = true;
                         MovementFunctions.StopMovement(Actor.compMove);
-                        UseItem(Actor);
+                        ItemFunctions.HandleEffect(Actor.item, Actor);
                         //scale up the current item in world ui
                         if (Actor == Pool.hero) { WorldUI.currentItem.compSprite.scale = 2.0f; }
                     }
