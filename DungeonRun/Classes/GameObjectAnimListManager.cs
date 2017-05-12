@@ -201,6 +201,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) },
                 //ParticleFire
                 new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
+                //ParticleFairy
+                new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) },
 
                 //Rewards
                 //ParticleReward20Gold

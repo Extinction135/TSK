@@ -132,7 +132,8 @@ namespace DungeonRun
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleRewardHeartFull ||
-                Type == ObjType.ParticleRewardHeartPiece)
+                Type == ObjType.ParticleRewardHeartPiece ||
+                Type == ObjType.ParticleFairy)
             { offset.Y = -14; }
 
             //call the real SpawnProjectile method
@@ -530,6 +531,14 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
+                Obj.compAnim.loop = true;
+            }
+            else if (Type == ObjType.ParticleFairy)
+            {
+                Obj.compSprite.zOffset = 32;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 50; //in frames
+                Obj.compAnim.speed = 10; //in frames
                 Obj.compAnim.loop = true;
             }
             //Particles - rewards

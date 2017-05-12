@@ -55,13 +55,21 @@ push new release on the 16th
 todo:
 
 
-6
+5
+
+added fairy sprite to main sheet, in the consumables section.
+added ParticleFairy to ObjType enumerator.
+updated GameObjAnimListManager with anim list for ParticleFairy.
+updated GameObjFunctions.SetType() with path for ParticleFairy.
+updated ActorFunctions.UseItem() to handle using a Fairy Bottle.
+updated GameObjFunctions.SpawnProjectile(Type, Actor) to place fairy particle over actor's head.
+playtested, working as expected.
 
 
-added button for 'max gold' to debug menu.
-updated DebugMenu.HandleInput() to set saveData.gold to 99 upon 'max gold' button press.
-playtested, working great.
-also playtested purchasing all available products, and interacting with them via inventory screen.
+
+
+
+
 
 
 
@@ -70,14 +78,14 @@ we need a fairy sprite - animated
 a fairy particle (that we can display like a reward over hero's head)
 when hero uses fairy bottle, the fairy particle should appear..
 
-
+we need a fairy projectile
+this projectile randomly moves around, slowly
+if the fairy collides with hero, it restores his health and magic
 
 if player uses a fairy bottle, it should simply refill both his health and magic
 if player would die from hit, refill both health and magic
 
 we'll need to polish the fairy animation / useage
-
-
 
 add fairy bottle functionality
 
@@ -90,16 +98,8 @@ do we need to update the fairy bottle menuItem in inventory? will this happen ba
 if this is true, then we likely don't need to update the bottle menuItems when hero uses them
 we'd only need to set the saveData booleans
 
-
-we shouldn't be able to equip a fairy bottle, it makes no sense
-
-
-
-
-we need to thoroughly playtest the bottle paths we've added
-
-
-
+later on, if the hero is attacking with a net, and the net hits the fairy
+we'll put the fairy in a bottle, if the fairy bottle is empty
 
 
 

@@ -132,7 +132,7 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxError);
             }
             else if (Actor.item == MenuItemType.BottleHealth)
-            {
+            {   //refill the actor's health
                 Actor.health = Actor.maxHealth;
                 GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
                 Assets.Play(Assets.sfxHeartPickup); //need a healing sound effect
@@ -143,7 +143,7 @@ namespace DungeonRun
                 PlayerData.saveData.bottleHealth = false;
             }
             else if (Actor.item == MenuItemType.BottleMagic)
-            {
+            {   //refill the actor's magic
                 PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
                 GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
                 Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
@@ -153,6 +153,22 @@ namespace DungeonRun
                 Actor.item = MenuItemType.BottleEmpty;
                 PlayerData.saveData.bottleMagic = false;
             }
+
+            else if (Actor.item == MenuItemType.BottleFairy)
+            {   //refill the actor's health and magic
+                Actor.health = Actor.maxHealth;
+                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
+                GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
+                GameObjectFunctions.SpawnProjectile(ObjType.ParticleFairy, Actor);
+                Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
+                Actor.state = ActorState.Reward;
+                Actor.lockTotal = 30;
+                //set the potion to be an empty bottle
+                Actor.item = MenuItemType.BottleEmpty;
+                PlayerData.saveData.bottleFairy = false;
+            }
+
+
 
             #endregion
 

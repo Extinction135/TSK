@@ -62,14 +62,15 @@ namespace DungeonRun
 
         //Projectiles
         ProjectileSword, ProjectileFireball,
+
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,
         //Particles - normal size
-        ParticleExplosion, ParticleAttention,
-        ParticleFire,
+        ParticleExplosion, ParticleAttention, ParticleFire, ParticleFairy,
         //Particles - rewards
         ParticleRewardGold, ParticleRewardKey, ParticleRewardMap,
         ParticleRewardHeartPiece, ParticleRewardHeartFull,
+
     }
 
     public enum MenuItemType
