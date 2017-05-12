@@ -224,16 +224,9 @@ namespace DungeonRun
 
                 //check states
                 if (Actor.state == ActorState.Interact)
-                {
-                    //if there is an object to interact with, pause the actor for a moment
-                    if (CollisionFunctions.CheckInteractionRecCollisions())
-                    {
-                        Actor.lockTotal = 10;
-                        Actor.stateLocked = true;
-                        MovementFunctions.StopMovement(Actor.compMove);
-                    }
-                    else //there is no obj to interact with, revert to idle
-                    { Actor.state = ActorState.Idle; }
+                {   //if there is an object to interact with, interact with it
+                    if (CollisionFunctions.CheckInteractionRecCollisions()) {}
+                    else { Actor.state = ActorState.Idle; } //return to idle
                 }
                 else if (Actor.state == ActorState.Dash)
                 {

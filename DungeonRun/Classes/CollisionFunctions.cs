@@ -50,11 +50,17 @@ namespace DungeonRun
             for (i = 0; i < Pool.objCount; i++)
             {
                 if (Pool.objPool[i].active)
-                {   //passes any collisions to a Handle() function
+                {
                     if (InteractionFunctions.interactionRec.rec.Intersects(Pool.objPool[i].compCollision.rec))
                     {
-                        InteractionFunctions.Interact(Pool.hero, Pool.objPool[i]);
+                        //we shouldn't be stopping the hero movement in general right here..
+                        MovementFunctions.StopMovement(Pool.hero.compMove);
+
+                        Pool.hero.stateLocked = true;
+                        Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;
+                        //handle the interaction, likely overwrites hero.lockTotal
+                        InteractionFunctions.Interact(Pool.hero, Pool.objPool[i]); 
                     }
                 }
             }

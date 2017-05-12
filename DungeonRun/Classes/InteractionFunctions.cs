@@ -66,6 +66,8 @@ namespace DungeonRun
             //particle Objs never interact with actors or reach this function
             //objectGroups are checked in order of most commonly interacted with
 
+            //this function handles hero collisions AND hero interactionRec collisions
+
 
             #region Projectiles
 
@@ -95,7 +97,7 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.Item)
             {
-                if(Actor == Pool.hero) //only the hero can pickup hearts or rupees
+                if (Actor == Pool.hero) //only the hero can pickup hearts or rupees
                 {
                     if (Obj.type == ObjType.ItemHeart)
                     { Actor.health++; Assets.Play(Assets.sfxHeartPickup); }
@@ -104,7 +106,7 @@ namespace DungeonRun
                     else if (Obj.type == ObjType.ItemMagic)
                     { PlayerData.saveData.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
                     //end the items life
-                    Obj.lifetime = 1; Obj.lifeCounter = 2; 
+                    Obj.lifetime = 1; Obj.lifeCounter = 2;
                 }
             }
 
@@ -160,7 +162,7 @@ namespace DungeonRun
                         if (WorldUI.pieceCounter == 3) //if this completes a heart, display the full heart reward
                         { GameObjectFunctions.SpawnProjectile(ObjType.ParticleRewardHeartFull, Actor); }
                         else //this does not complete a heart, display the heart piece reward
-                        { GameObjectFunctions.SpawnProjectile( ObjType.ParticleRewardHeartPiece, Actor); }
+                        { GameObjectFunctions.SpawnProjectile(ObjType.ParticleRewardHeartPiece, Actor); }
                         Assets.Play(Assets.sfxReward);
                         PlayerData.saveData.heartPieces++;
                     }
@@ -205,7 +207,7 @@ namespace DungeonRun
                         GameObjectFunctions.SetType(Obj, ObjType.DoorOpen);
                         Assets.Play(Assets.sfxDoorOpen);
                         GameObjectFunctions.SpawnProjectile(
-                            ObjType.ParticleAttention, 
+                            ObjType.ParticleAttention,
                             Obj.compSprite.position.X,
                             Obj.compSprite.position.Y,
                             Direction.None);
@@ -239,7 +241,7 @@ namespace DungeonRun
 
             #region Other Interactive Objects
 
-            else if(Obj.group == ObjGroup.Object)
+            else if (Obj.group == ObjGroup.Object)
             {
                 if (Obj.type == ObjType.BlockSpikes)
                 {   //damage actor and push in opposite direction relative to spike block
@@ -252,13 +254,13 @@ namespace DungeonRun
                 }
                 else if (Obj.type == ObjType.Bumper)
                 {
-                    MovementFunctions.Push(Actor.compMove, 
-                        DirectionFunctions.GetRelativeDirection(Obj, Actor), 
+                    MovementFunctions.Push(Actor.compMove,
+                        DirectionFunctions.GetRelativeDirection(Obj, Actor),
                         10.0f);
 
                     //actors can collide with bumper twice per frame, due to per axis collision checks
                     //only play the bounce sound effect if the bumper hasn't been hit this frame
-                    if (Obj.compSprite.scale < 1.5f) { Assets.Play(Assets.sfxBounce); } 
+                    if (Obj.compSprite.scale < 1.5f) { Assets.Play(Assets.sfxBounce); }
                     //if the bumper was hit this frame, scale it up
                     Obj.compSprite.scale = 1.5f;
                     GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
@@ -266,7 +268,6 @@ namespace DungeonRun
 
                 //lever, floor spikes, switch, bridge, flamethrower,
                 //torch unlit, torch lit
-
 
                 else if (Obj.type == ObjType.VendorStory)
                 {   //only HERO can interact with story vender
