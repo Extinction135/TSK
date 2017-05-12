@@ -223,9 +223,9 @@ namespace DungeonRun
                 }
                 else if (Input.IsNewButtonPress(Buttons.Start) || Input.IsNewButtonPress(Buttons.A))
                 {
-                    Assets.Play(Assets.sfxMenuItem); //play soundfx
+                    Assets.Play(Assets.sfxMenuItem); //play selection sfx
+                    Assets.Play(Assets.sfxInventoryClose); //play closing sfx
                     displayState = DisplayState.Closing; //begin closing the screen
-                    //later we'll build the dungeon or shop based on the currentlySelected location
                 }
             }
         }
@@ -254,8 +254,8 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closed)
             {
                 ScreenManager.RemoveScreen(this);
-
-                if (currentlySelected == Shop) { DungeonFunctions.BuildDungeon(DungeonType.Shop); }
+                if (currentlySelected == Shop)
+                { DungeonFunctions.BuildDungeon(DungeonType.Shop); }
                 else { DungeonFunctions.BuildDungeon(DungeonType.CursedCastle); }
             }
 

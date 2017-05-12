@@ -55,18 +55,13 @@ push new release on the 16th
 todo:
 
 
-12
+11
 
 
-added musicCounter to DungeonFunctions.cs.
-updated DungeonFunctions.BuildDungeon() to cycle thru dungeon music tracks.
-this is a change from randomly choosing a dungeon track.
-the previous implementation could play the same track back to back upon dungeon builds.
-this change prevents that from happening, and makes the music feel more varied in game.
-playtested, working as expected.
-
-
-
+updated overworld screen to play the menu closing sound when the screen exits.
+this closing sound plays over the music fading out, and back in.
+it makes the transition better, in my opinion, because there isn't a moment of silence.
+playtested, 'feels' better transitioning between overworld and locations.
 
 
 
