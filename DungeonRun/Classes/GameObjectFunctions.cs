@@ -474,6 +474,19 @@ namespace DungeonRun
                 Obj.compAnim.loop = true;
                 Obj.compMove.speed = 1.5f; //fireballs move
             }
+            else if (Type == ObjType.ProjectileBomb)
+            {
+                Obj.compSprite.zOffset = 0;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compCollision.blocking = false;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 100; //in frames
+                Obj.compAnim.speed = 7; //in frames
+                Obj.compAnim.loop = true;
+                //Obj.compMove.speed = 0.0f; //bobms dont move rn
+                //but in the future, they should 'slide' into place
+            }
 
             #endregion
 

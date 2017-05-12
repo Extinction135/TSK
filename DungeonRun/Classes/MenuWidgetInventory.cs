@@ -21,6 +21,7 @@ namespace DungeonRun
         public static List<ComponentText> labels; //weapons, armor, equipment texts
         public static List<MenuItem> menuItems;
 
+        public static ComponentAmountDisplay bombsDisplay;
 
 
         static MenuWidgetInventory()
@@ -48,6 +49,9 @@ namespace DungeonRun
             //create menuitems
             menuItems = new List<MenuItem>();
             for (i = 0; i < 25; i++) { menuItems.Add(new MenuItem()); }
+
+            //create bomb amount display
+            bombsDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
         public static void ResetDivider(MenuRectangle Divider, int X, int Y, int Width)
@@ -128,10 +132,30 @@ namespace DungeonRun
             MenuItemFunctions.SetNeighbors(menuItems, 5);
 
 
+
+
+
+
+            //align the bomb amount display to the bomb item
+            bombsDisplay.Move(menuItems[1]);
+            bombsDisplay.visible = false;
+
+
+
             #region Set the menuItem data (based on the hero's inventory)
 
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
+            if (PlayerData.saveData.bombsCurrent > 0)
+            {   
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBombs, menuItems[1]);
+                //if hero has bombs, display the number of bombs + draw display amount
+                if (PlayerData.saveData.bombsCurrent < 10)
+                { bombsDisplay.amount.text = "0" + PlayerData.saveData.bombsCurrent; }
+                else { bombsDisplay.amount.text = "" + PlayerData.saveData.bombsCurrent; }
+                bombsDisplay.visible = true;
+            }
+            
+
 
             //set the empty bottles based on booleans
             if (PlayerData.saveData.bottle1)
@@ -180,6 +204,11 @@ namespace DungeonRun
             #endregion
 
 
+
+            
+
+
+
         }
 
         public static void Update()
@@ -198,6 +227,7 @@ namespace DungeonRun
                 { DrawFunctions.Draw(labels[i]); }
                 for (i = 0; i < menuItems.Count; i++)
                 { DrawFunctions.Draw(menuItems[i].compSprite); }
+                DrawFunctions.Draw(bombsDisplay);
             }
         }
 

@@ -118,8 +118,7 @@ namespace DungeonRun
         }
 
         public static void UpdateGoldAmount()
-        {
-            //display the gold amount with a prefix of 0, if needed
+        {   //display the gold amount with a prefix of 0, if needed
             if (goldTracker < 10) { goldDisplay.amount.text = "0" + goldTracker; }
             else { goldDisplay.amount.text = "" + goldTracker; }
         }

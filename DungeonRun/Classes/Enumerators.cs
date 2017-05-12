@@ -61,7 +61,7 @@ namespace DungeonRun
         ItemRupee, ItemHeart, ItemMagic,
 
         //Projectiles
-        ProjectileSword, ProjectileFireball,
+        ProjectileSword, ProjectileFireball, ProjectileBomb,
 
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,
@@ -80,7 +80,7 @@ namespace DungeonRun
         StatsHealth, StatsMagic, StatsAgility, Stats4,
         OptionsSaveGame, OptionsLoadGame, OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls,
 
-        ItemBoomerang, ItemBomb, 
+        ItemBoomerang, ItemBomb, ItemBombs,
 
         BottleEmpty, BottleHealth, BottleMagic, BottleFairy,
 

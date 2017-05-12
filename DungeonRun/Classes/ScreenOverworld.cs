@@ -25,10 +25,6 @@ namespace DungeonRun
         public static ComponentText selectedLocation;
 
         //pointers to the locations
-        //public MenuItem ShopArmor;
-        //public MenuItem ShopWeapon;
-        //public MenuItem ShopEquipment;
-        //public MenuItem ShopMagic;
         public MenuItem Shop;
         public MenuItem DungeonCursedCastle;
         public MenuItem DungeonDesertPalace;

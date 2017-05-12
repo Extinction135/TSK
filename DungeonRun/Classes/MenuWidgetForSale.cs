@@ -123,7 +123,8 @@ namespace DungeonRun
             if (VendorType == ObjType.VendorItems)
             {
                 //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBombs, menuItems[2]);
             }
             else if (VendorType == ObjType.VendorPotions)
             {

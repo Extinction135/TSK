@@ -19,8 +19,6 @@ namespace DungeonRun
         public static MenuItem infoItem;
 
         public static ComponentAmountDisplay goldDisplay;
-        //public static ComponentText goldAmount;
-        //public static Rectangle goldBkg;
 
         public static ComponentText description;
         public static MenuRectangle divider1;

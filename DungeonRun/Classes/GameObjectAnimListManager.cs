@@ -180,6 +180,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0), new Byte4(3, 5, 0, 0) },
                 //ProjectileFireball
                 new List<Byte4> { new Byte4(4, 9, 0, 0), new Byte4(4, 9, 1, 0) },
+                //ProjectileBomb
+                new List<Byte4> { new Byte4(4, 11, 0, 0), new Byte4(4, 12, 0, 0) },
 
                 #endregion
 
