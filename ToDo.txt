@@ -55,30 +55,16 @@ push new release on the 16th
 todo:
 
 
-13
+12
 
 
-updated the cost of health, magic, and fairy bottles to better reflect their in game value.
-updated DungeonFunctions.BuildDungeon() to play the title music for the shop.
-the dungeon music just doesn't fit with it. the title music is better.
-plus the title music is LttP theme in synthwave format, which i could listen to all day.
-
-renamed MusicOverworld to MusicDungeonC - it fits as a dungeon track.
-updated content project to reflect this change.
-created instances for musicDungeonC in assets, to load the renamed track
-updated and reorganized Assets, trimming old code that loaded unused music tracks.
-updated DungeonFunctions.BuildDungeon() to randomly choose a dungeon track (A, B, or C).
-added DungeonC value to Music enumerator, removed Overworld & Shop values.
-updated MusicFunctions.Update() to with path for DungeonC, removed paths for Overworld track.
-updated Overworld Screen to play the Title music.
+added musicCounter to DungeonFunctions.cs.
+updated DungeonFunctions.BuildDungeon() to cycle thru dungeon music tracks.
+this is a change from randomly choosing a dungeon track.
+the previous implementation could play the same track back to back upon dungeon builds.
+this change prevents that from happening, and makes the music feel more varied in game.
 playtested, working as expected.
 
-
-
-
-we want to cycle thru the dungeon tracks, instead of choosing them randomly
-simply increment the internal counter in dungeon functions each time we build a dungeon
-step thru the dungeon tracks
 
 
 

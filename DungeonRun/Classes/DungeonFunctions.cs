@@ -24,6 +24,7 @@ namespace DungeonRun
         public static int i;
         public static int j;
         public static int g;
+        public static int musicCounter = 0;
         public static ComponentSprite floorRef;
         public static GameObject objRef;
         public static Actor actorRef;
@@ -39,10 +40,8 @@ namespace DungeonRun
             dungeon = new Dungeon(""+ Type);
             dungeon.type = Type;
 
-
             if (Type == DungeonType.Shop)
-            {
-                //set the objPool texture
+            {   //set the objPool texture
                 PoolFunctions.SetDungeonTexture(Assets.shopSheet);
                 //create the shop room
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Shop, 10, 0));
@@ -51,21 +50,20 @@ namespace DungeonRun
                 MusicFunctions.PlayMusic(Music.Title);
             }
             else
-            {
-                //set the objPool texture
+            {   //set the objPool texture
                 PoolFunctions.SetDungeonTexture(Assets.cursedCastleSheet);
                 //populate the dungeon with rooms
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Exit, 10, 0));
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));
 
-                //randomly play Dungeon music
-                i = GetRandom.Int(0, 110);
-                if (i < 33) { MusicFunctions.PlayMusic(Music.DungeonA); }
-                else if (i < 66) { MusicFunctions.PlayMusic(Music.DungeonB); }
-                else { MusicFunctions.PlayMusic(Music.DungeonC); }
+                //cycle thru the dungeon tracks
+                if (musicCounter == 0) { MusicFunctions.PlayMusic(Music.DungeonA); }
+                else if (musicCounter == 1) { MusicFunctions.PlayMusic(Music.DungeonB); }
+                else if (musicCounter == 2) { MusicFunctions.PlayMusic(Music.DungeonC); }
+                //increment and reset the counter
+                musicCounter++;
+                if (musicCounter > 2) { musicCounter = 0; }
             }
-
-            
 
             //build the first room in the dungeon (the spawn room)
             BuildRoom(dungeon.rooms[0]);
