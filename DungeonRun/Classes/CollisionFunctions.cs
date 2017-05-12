@@ -53,9 +53,7 @@ namespace DungeonRun
                 {
                     if (InteractionFunctions.interactionRec.rec.Intersects(Pool.objPool[i].compCollision.rec))
                     {
-                        //we shouldn't be stopping the hero movement in general right here..
                         MovementFunctions.StopMovement(Pool.hero.compMove);
-
                         Pool.hero.stateLocked = true;
                         Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;

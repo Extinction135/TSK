@@ -15,9 +15,7 @@ namespace DungeonRun
     public static class ItemFunctions
     {
 
-
-
-        public static void HandleEffect(MenuItemType Type, Actor Actor)
+        public static void UseItem(MenuItemType Type, Actor Actor)
         {
 
             #region Bottles - only hero can use bottles
@@ -25,6 +23,7 @@ namespace DungeonRun
             if (Type == MenuItemType.BottleEmpty)
             {
                 Actor.state = ActorState.Idle;
+                Actor.stateLocked = false;
                 Actor.lockTotal = 0;
                 Assets.Play(Assets.sfxError);
             }
@@ -78,9 +77,18 @@ namespace DungeonRun
             #endregion
 
 
+            #region Weapons - hero and enemies can use weapons
+
+            else if (Type == MenuItemType.WeaponSword)
+            {
+                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileSword, Actor);
+                Assets.Play(Assets.sfxSwordSwipe);
+                Actor.lockTotal = 15;
+            }
+
+            #endregion
+
         }
-
-
 
         static void UseBottle(MenuItemType Type, Actor Actor)
         {
@@ -90,9 +98,6 @@ namespace DungeonRun
             Actor.state = ActorState.Reward;
             Actor.lockTotal = 30;
         }
-
-
-
 
     }
 }

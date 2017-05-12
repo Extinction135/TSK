@@ -46,7 +46,7 @@ namespace DungeonRun
             if (Actor == Pool.hero)
             {
                 if(PlayerData.saveData.bottleFairy)
-                { ItemFunctions.HandleEffect(MenuItemType.BottleFairy, Actor); }
+                { ItemFunctions.UseItem(MenuItemType.BottleFairy, Actor); }
                 else
                 {   //player has died, failed the dungeon
                     DungeonRecord.beatDungeon = false;
@@ -111,16 +111,6 @@ namespace DungeonRun
                 Actor.compCollision.rec.Height = 8;
                 Actor.compCollision.offsetX = -6;
                 Actor.compCollision.offsetY = 0;
-            }
-        }
-
-        public static void UseWeapon(Actor Actor)
-        {
-            if (Actor.weapon == MenuItemType.WeaponSword)
-            {
-                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileSword, Actor);
-                Assets.Play(Assets.sfxSwordSwipe);
-                Actor.lockTotal = 15;
             }
         }
 
@@ -226,14 +216,13 @@ namespace DungeonRun
                 if (Actor.state == ActorState.Interact)
                 {   //if there is an object to interact with, interact with it
                     if (CollisionFunctions.CheckInteractionRecCollisions()) {}
-                    else { Actor.state = ActorState.Idle; } //return to idle
+                    else { Actor.state = ActorState.Idle; } //no interaction
                 }
                 else if (Actor.state == ActorState.Dash)
                 {
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
-                    //create a dash particle 
                     GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
                     if (Actor == Pool.hero) { Assets.Play(Assets.sfxDash); }
                 }
@@ -241,22 +230,19 @@ namespace DungeonRun
                 {
                     Actor.stateLocked = true;
                     MovementFunctions.StopMovement(Actor.compMove);
-                    UseWeapon(Actor);
-                    //scale up the current weapon in world ui
+                    ItemFunctions.UseItem(Actor.weapon, Actor);
                     if (Actor == Pool.hero) { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
                 }
                 else if (Actor.state == ActorState.Use)
                 {   
                     if (Actor.item != MenuItemType.Unknown)
-                    {   //lock actor into use animation, stop movement, use the current item
+                    { 
                         Actor.stateLocked = true;
                         MovementFunctions.StopMovement(Actor.compMove);
-                        ItemFunctions.HandleEffect(Actor.item, Actor);
-                        //scale up the current item in world ui
+                        ItemFunctions.UseItem(Actor.item, Actor);
                         if (Actor == Pool.hero) { WorldUI.currentItem.compSprite.scale = 2.0f; }
                     }
-                    else //actor has no item to use, revert to idle
-                    { Actor.state = ActorState.Idle; }
+                    else { Actor.state = ActorState.Idle; } //no item to use
                 }
             }
 
