@@ -45,12 +45,32 @@ namespace DungeonRun
 
             if (Actor == Pool.hero)
             {
-                //player has died, failed the dungeon
-                DungeonRecord.beatDungeon = false;
-                DungeonFunctions.dungeonScreen.exitAction = ExitAction.Summary;
-                DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
-                //we could track hero deaths here
-                Assets.Play(Assets.sfxHeroKill);
+
+                if(PlayerData.saveData.bottleFairy)
+                {
+                    Actor.health = Actor.maxHealth;
+                    PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
+
+                    GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
+                    GameObjectFunctions.SpawnProjectile(ObjType.ParticleFairy, Actor);
+                    PlayerData.saveData.bottleFairy = false;
+                    Actor.state = ActorState.Reward;
+                    Actor.stateLocked = true;
+                    Actor.lockTotal = 30;
+
+
+                    Assets.Play(Assets.sfxBeatDungeon); //need a fairy sound
+                }
+                else
+                {
+                    //player has died, failed the dungeon
+                    DungeonRecord.beatDungeon = false;
+                    DungeonFunctions.dungeonScreen.exitAction = ExitAction.Summary;
+                    DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
+                    //we could track hero deaths here
+                    Assets.Play(Assets.sfxHeroKill);
+                }
+                
             }
             else
             {
@@ -160,12 +180,13 @@ namespace DungeonRun
                 PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
                 GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
                 GameObjectFunctions.SpawnProjectile(ObjType.ParticleFairy, Actor);
-                Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
                 Actor.state = ActorState.Reward;
                 Actor.lockTotal = 30;
+                PlayerData.saveData.bottleFairy = false;
+
                 //set the potion to be an empty bottle
                 Actor.item = MenuItemType.BottleEmpty;
-                PlayerData.saveData.bottleFairy = false;
+                Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
             }
 
 

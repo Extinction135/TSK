@@ -55,28 +55,31 @@ push new release on the 16th
 todo:
 
 
-5
-
-added fairy sprite to main sheet, in the consumables section.
-added ParticleFairy to ObjType enumerator.
-updated GameObjAnimListManager with anim list for ParticleFairy.
-updated GameObjFunctions.SetType() with path for ParticleFairy.
-updated ActorFunctions.UseItem() to handle using a Fairy Bottle.
-updated GameObjFunctions.SpawnProjectile(Type, Actor) to place fairy particle over actor's head.
-playtested, working as expected.
+4
 
 
+
+
+updated ActorFunctions.SetDeathState() to refill hero's health and magic if hero has a fairy bottle.
+this also pushes hero out of death state.
+playtested, working, but needs some polish.
+not exactly sure if i'm happy with the visuals for fairy bringing hero back to life.
 
 
 
 
 
+does fairy bottle work when hero would normally die?
 
 
 
-we need a fairy sprite - animated
-a fairy particle (that we can display like a reward over hero's head)
-when hero uses fairy bottle, the fairy particle should appear..
+
+
+however, we're duplicating code when we use an item
+we should move these routines into an ItemFunctions class that handles each item seperately
+
+
+
 
 we need a fairy projectile
 this projectile randomly moves around, slowly
