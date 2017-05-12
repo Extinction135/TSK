@@ -49,20 +49,16 @@ namespace DungeonRun
         static SoundEffect musicDungeonBSrc;
         public static SoundEffectInstance musicDungeonB;
 
-        //static SoundEffect musicOverworldSrc;
-        //public static SoundEffectInstance musicOverworld;
+        static SoundEffect musicDungeonCSrc;
+        public static SoundEffectInstance musicDungeonC;
 
-        static SoundEffect musicBossSrc;
-        public static SoundEffectInstance musicBoss;
 
-        //static SoundEffect musicDungeonBSrc;
-        //public static SoundEffectInstance musicDungeonB;
 
         static SoundEffect musicTitleSrc;
         public static SoundEffectInstance musicTitle;
 
-        //static SoundEffect musicShopSrc;
-        //public static SoundEffectInstance musicShop;
+        static SoundEffect musicBossSrc;
+        public static SoundEffectInstance musicBoss;
 
         static SoundEffect musicDrumsSrc;
         public static SoundEffectInstance musicDrums;
@@ -162,21 +158,19 @@ namespace DungeonRun
             musicDungeonB = musicDungeonBSrc.CreateInstance();
             musicDungeonB.IsLooped = true;
 
-            //musicOverworldSrc = content.Load<SoundEffect>(@"MusicOverworld");
-            //musicOverworld = musicOverworldSrc.CreateInstance();
-            //musicOverworld.IsLooped = true;
+            musicDungeonCSrc = content.Load<SoundEffect>(@"MusicDungeonC");
+            musicDungeonC = musicDungeonCSrc.CreateInstance();
+            musicDungeonC.IsLooped = true;
 
-            musicBossSrc = content.Load<SoundEffect>(@"MusicBoss");
-            musicBoss = musicBossSrc.CreateInstance();
-            musicBoss.IsLooped = true;
+
 
             musicTitleSrc = content.Load<SoundEffect>(@"MusicTitle");
             musicTitle = musicTitleSrc.CreateInstance();
             musicTitle.IsLooped = true;
 
-            //musicShopSrc = content.Load<SoundEffect>(@"MusicShop");
-            //musicShop = musicShopSrc.CreateInstance();
-            //musicShop.IsLooped = true;
+            musicBossSrc = content.Load<SoundEffect>(@"MusicBoss");
+            musicBoss = musicBossSrc.CreateInstance();
+            musicBoss.IsLooped = true;
 
             musicDrumsSrc = content.Load<SoundEffect>(@"MusicLowHealthDrums");
             musicDrums = musicDrumsSrc.CreateInstance();

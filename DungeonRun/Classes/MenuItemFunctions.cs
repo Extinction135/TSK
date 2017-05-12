@@ -86,21 +86,21 @@ namespace DungeonRun
                 MenuItem.name = "Empty Bottle";
                 MenuItem.description = "An empty bottle.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 5, 0, 0) };
-                MenuItem.price = 99;
+                MenuItem.price = 5;
             }
             else if (Type == MenuItemType.BottleHealth)
             {
                 MenuItem.name = "Health Potion";
                 MenuItem.description = "Fully restores all\navailable hearts.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 6, 0, 0) };
-                MenuItem.price = 50;
+                MenuItem.price = 20;
             }
             else if (Type == MenuItemType.BottleMagic)
             {
                 MenuItem.name = "Magic Potion";
                 MenuItem.description = "Fully restores all\nmagic meter.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 7, 0, 0) };
-                MenuItem.price = 50;
+                MenuItem.price = 20;
             }
             else if (Type == MenuItemType.BottleFairy)
             {

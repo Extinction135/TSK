@@ -131,12 +131,6 @@
 /processorParam:Quality=Best
 /build:MusicLowHealthDrums.ogg
 
-#begin MusicOverworld.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:MusicOverworld.ogg
-
 #begin SoundDoorOpen.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -328,4 +322,10 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundError.wav
+
+#begin MusicDungeonC.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicDungeonC.ogg
 

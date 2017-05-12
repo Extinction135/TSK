@@ -188,8 +188,8 @@ namespace DungeonRun
             i = 0;
             //open the screen
             displayState = DisplayState.Opening;
-            //play the overworld music
-            MusicFunctions.PlayMusic(Music.Overworld);
+            //play the title music
+            MusicFunctions.PlayMusic(Music.Title);
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = Pool.hero.maxHealth;
         }

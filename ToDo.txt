@@ -55,14 +55,36 @@ push new release on the 16th
 todo:
 
 
-2
+13
 
 
+updated the cost of health, magic, and fairy bottles to better reflect their in game value.
+updated DungeonFunctions.BuildDungeon() to play the title music for the shop.
+the dungeon music just doesn't fit with it. the title music is better.
+plus the title music is LttP theme in synthwave format, which i could listen to all day.
 
-simplified how hero interacts with objects via CollisionFunctions.CheckInteractionRecCollisions().
-refactored how this function is called, from ActorFunctions.Update().
+renamed MusicOverworld to MusicDungeonC - it fits as a dungeon track.
+updated content project to reflect this change.
+created instances for musicDungeonC in assets, to load the renamed track
+updated and reorganized Assets, trimming old code that loaded unused music tracks.
+updated DungeonFunctions.BuildDungeon() to randomly choose a dungeon track (A, B, or C).
+added DungeonC value to Music enumerator, removed Overworld & Shop values.
+updated MusicFunctions.Update() to with path for DungeonC, removed paths for Overworld track.
+updated Overworld Screen to play the Title music.
 playtested, working as expected.
-this fixes a bug where the hero wouldn't lock long enough to complete the reward animation from chests.
+
+
+
+
+we want to cycle thru the dungeon tracks, instead of choosing them randomly
+simply increment the internal counter in dungeon functions each time we build a dungeon
+step thru the dungeon tracks
+
+
+
+
+
+instead of an unknown menuItem, we should have a 'purchased' menuItem for items that have been bought
 
 
 
@@ -70,55 +92,31 @@ this fixes a bug where the hero wouldn't lock long enough to complete the reward
 
 
 
-this means we should have a class called weapon functions, which replaces UseWeapon() in ActorFunctions.
+add bomb consumable item
+include in pickup routines
+add the bombs icon and number to worldUI.
+bomb counter is player specific, stored in saveData
+
+
+however we implement the explosion, we need to be able to set it's damage to 0
+because we will use this 0 damage explosion to push enemies away from hero, when a fairy bottle is used
 
 
 
 
 
-we should be calling ItemFunctions.Handle from Actor.Update, instead of routing in thru UseItem..
+need to polish the fairy animation / useage
+we need to push enemies away from the hero when a fairy is used
+this gives the hero a chance to breath, and prevents enemies from cheese hitting the hero while he's in reward state
 
+need a sound to signify that fairy was used
+need sound for health + magic potion useage - we're just using pickup sound rn
 
+we kinda need a non-damaging explosion thing
+this would be placed at the hero's position and push all enemies away from hero
+dealing no damage
 
-
-
-does fairy bottle work when hero would normally die?
-
-
-
-
-
-however, we're duplicating code when we use an item
-we should move these routines into an ItemFunctions class that handles each item seperately
-
-
-
-
-we need a fairy projectile
-this projectile randomly moves around, slowly
-if the fairy collides with hero, it restores his health and magic
-
-if player uses a fairy bottle, it should simply refill both his health and magic
-if player would die from hit, refill both health and magic
-
-we'll need to polish the fairy animation / useage
-
-add fairy bottle functionality
-
-when hero gets hit, if the hit kills hero, check to see if saveData.bottleFairy is true
-if it is, then refill the hero's health, and create a fairy particle
-this particle should float over the hero's head for a moment, then die
-we'll need a special sound to signify that the fairy was used
-
-do we need to update the fairy bottle menuItem in inventory? will this happen based on teh boolean?
-if this is true, then we likely don't need to update the bottle menuItems when hero uses them
-we'd only need to set the saveData booleans
-
-later on, if the hero is attacking with a net, and the net hits the fairy
-we'll put the fairy in a bottle, if the fairy bottle is empty
-
-
-
+we could also add a bunch of sparkles around the fairy when she appears
 
 
 
@@ -139,28 +137,24 @@ add the arrow icon and number to worldUI.
 arrow counter is player specific, stored in saveData
 
 bow and arrow
-
 create arrow projectile, just like fireball
 create bow weapon, just like sword
 when hero uses bow, an arrow should be created
-
 we'll need an arrow counter in saveData
-we'll need to display this arrow counter in worldUI
+we'll need to display this arrow counter in inventory screen, over the arrow menuItem
 we'll need to have an arrow consumable item sprite
 
 
 
 
 
-add bomb consumable item
-include in pickup routines
-add the bombs icon and number to worldUI.
-bomb counter is player specific, stored in saveData
+
 	
 	
 	
-we need to make room for more consumables in main sheet:
-	fairies
+	
+	
+	
 	
 	
 	
@@ -168,11 +162,6 @@ we need to make room for more consumables in main sheet:
 implement the following items:
 	item boomerang - just like LttP boomerang
 	item bomb - projectile, upon end of life it creates an explosion projectile, bombs--
-	
-	bottle health - upon user, hero.health = hero.maxHealth
-	bottle magic
-	bottle empty
-	bottle fairy - if hero dies, hero.health = hero.maxHealth
 	
 	weapon bow - creates an arrow projectile, arrows--
 	weapon staff - creates a magic orb projectile, if health is max, has an attack of 0
@@ -183,17 +172,7 @@ implement the following items:
 	
 	equipment pearl - 
 	
-we'll need to implement a counter for bombs and arrows
-this should also appear on the worldUI.
-
-when a fireball is cast, deduct one from magic counter.
-fireballs can only be cast if magic counter is greater than 0.
-
-update spawn loot to randomly drop arrows, bombs, and magic containers
-which means we'll need items/consumables for arrows, bombs, and magic containers
-should be simple to extend items to support these
-the issue is packing them into the main sheet,
-we'll have to move some sprites around to make it all fit
+update spawn loot to randomly drop arrows, bombs
 
 
 
@@ -240,12 +219,14 @@ what if we pushed the hero a little bit in the opposite direction of the firebal
 this would make it seem like the 'weight' of the fireball pushed him back	
 	
 	
+
 	
 	
 	
 	
-	
-	
+REPLACE BOSS MUSIC - ftlog	
+re-mix the boss music, making drums much less prominent in the mix
+also, mix the drums down to mono in session - we're getting phase issues when we convert to mono later
 	
 	
 	
@@ -323,6 +304,12 @@ Polish
 	
 Stuff that needs to be done, but it's not terribly important rn	
 	
+	we need a fairy projectile
+	this projectile randomly moves around, slowly
+	if the fairy collides with hero, it restores his health and magic
+	later on, if the hero is attacking with a net, and the net hits the fairy
+	we'll put the fairy in a bottle, if the fairy bottle is empty
+
 	pickup and throw
 	hero should be able to pickup the skull pot objects
 	hero should be able to carry the skull pot objects around

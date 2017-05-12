@@ -23,7 +23,7 @@ namespace DungeonRun
 
     public enum ExitAction { None, Summary, Overworld }
 
-    public enum Music { DungeonA, DungeonB, Boss, Overworld, Shop, Title, None }
+    public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 
     public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
 

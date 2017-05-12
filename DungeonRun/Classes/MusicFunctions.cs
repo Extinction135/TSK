@@ -75,24 +75,20 @@ namespace DungeonRun
                     { currentMusic = Assets.musicDungeonA; Assets.musicDrums.Play(); }
                     else if (trackToLoad == Music.DungeonB)
                     { currentMusic = Assets.musicDungeonB; Assets.musicDrums.Play(); }
-
-                    else if (trackToLoad == Music.Overworld)
-                    { currentMusic = Assets.musicTitle; Assets.musicDrums.Stop(); }
+                    else if (trackToLoad == Music.DungeonC)
+                    { currentMusic = Assets.musicDungeonC; Assets.musicDrums.Play(); }
+                    //
                     else if (trackToLoad == Music.Title)
                     { currentMusic = Assets.musicTitle; Assets.musicDrums.Stop(); }
-
                     else if (trackToLoad == Music.Boss) 
                     { currentMusic = Assets.musicBoss; } //drums already playing
-                    //else if (trackToLoad == Music.Shop) 
-                    //{ currentMusic = Assets.musicShop; Assets.musicDrums.Stop();}
 
                     //stop the other music tracks from playing
                     if (currentMusic != Assets.musicDungeonA) { Assets.musicDungeonA.Stop(); }
                     if (currentMusic != Assets.musicDungeonB) { Assets.musicDungeonB.Stop(); }
-                    //if (currentMusic != Assets.musicOverworld) { Assets.musicOverworld.Stop(); }
+                    if (currentMusic != Assets.musicDungeonC) { Assets.musicDungeonC.Stop(); }
                     if (currentMusic != Assets.musicTitle) { Assets.musicTitle.Stop(); }
                     if (currentMusic != Assets.musicBoss) { Assets.musicBoss.Stop(); }
-                    //if (currentMusic != Assets.musicShop) { Assets.musicShop.Stop(); }
 
                     //play the music
                     currentMusic.Play();
