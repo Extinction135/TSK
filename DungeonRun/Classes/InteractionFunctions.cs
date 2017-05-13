@@ -83,6 +83,11 @@ namespace DungeonRun
                     BattleFunctions.Damage(Actor, 2, 10.0f, Obj.direction);
                     Obj.lifeCounter = Obj.lifetime;
                 }
+                //explosions deal 2 damage, push 10
+                else if (Obj.type == ObjType.ProjectileExplosion)
+                {
+                    BattleFunctions.Damage(Actor, 2, 10.0f, Obj.direction);
+                }
             }
 
             #endregion

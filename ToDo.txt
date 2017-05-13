@@ -55,22 +55,33 @@ push new release on the 16th
 todo:
 
 
-5
-
-
-
-added code to GameObjFunctions.HandleDeathEvent() for bomb projectile.
+4
 
 
 
 
-handle the bomb explosion
-need explosion sound effect
+added ProjectileExplosion value to ObjType enumerator.
+updated GameObjAnimListManager with anim list for ProjectileExplosion.
+added codepath for ProjectileExplosion to GameObjFunctions.SetType(), HandleBirthEvent().
+added call to create a ProjectileExplosion from the bomb object's death event.
+
+
+test that bombs create explosion projectiles, observe their collision recs
 
 
 
 
-the projectile's death event
+create an explosion projectile when bomb dies
+
+the explosion projectile should play the explosion sound for birth event
+
+
+
+
+
+
+
+
 
 
 

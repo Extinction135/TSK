@@ -205,37 +205,32 @@ namespace DungeonRun
                     Direction.None);
                 Assets.Play(Assets.sfxBombDrop);
             }
-
             else if (Obj.type == ObjType.ProjectileFireball)
-            {
+            {   //place smoke puff centered to fireball
                 SpawnProjectile(ObjType.ParticleSmokePuff,
                     Obj.compSprite.position.X + 4,
                     Obj.compSprite.position.Y + 4,
                     Direction.None);
                 Assets.Play(Assets.sfxFireballCast);
             }
+            else if (Obj.type == ObjType.ProjectileExplosion)
+            {   //place smoke puff above explosion
+                SpawnProjectile(ObjType.ParticleSmokePuff,
+                    Obj.compSprite.position.X + 4,
+                    Obj.compSprite.position.Y - 8,
+                    Direction.None);
+                Assets.Play(Assets.sfxExplosion);
+            }
         }
 
         public static void HandleDeathEvent(GameObject Obj)
         {   //this targets projectiles/particles only
-
-
             if (Obj.type == ObjType.ProjectileBomb)
-            {
-                //explode
-                SpawnProjectile(ObjType.ParticleExplosion,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
+            {   //create explosion projectile
+                SpawnProjectile(ObjType.ProjectileExplosion,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
                     Direction.None);
-
-                //create explosion projectile
-                /*
-                SpawnProjectile(ObjType.ParticleFire,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-                */
-                Assets.Play(Assets.sfxExplosion);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {
@@ -527,6 +522,17 @@ namespace DungeonRun
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
                 Obj.compAnim.loop = true;
+            }
+            else if (Type == ObjType.ProjectileExplosion)
+            {
+                Obj.compSprite.zOffset = 16;
+                Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
+                Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
+                Obj.compCollision.blocking = false;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 24; //in frames
+                Obj.compAnim.speed = 5; //in frames
+                Obj.compAnim.loop = false;
             }
 
             #endregion

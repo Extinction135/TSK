@@ -61,7 +61,7 @@ namespace DungeonRun
         ItemRupee, ItemHeart, ItemMagic,
 
         //Projectiles
-        ProjectileSword, ProjectileFireball, ProjectileBomb,
+        ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion,
 
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,
