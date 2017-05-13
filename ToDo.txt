@@ -55,25 +55,15 @@ push new release on the 16th
 todo:
 
 
-4
+3
 
 
 
 
-added ProjectileExplosion value to ObjType enumerator.
-updated GameObjAnimListManager with anim list for ProjectileExplosion.
-added codepath for ProjectileExplosion to GameObjFunctions.SetType(), HandleBirthEvent().
-added call to create a ProjectileExplosion from the bomb object's death event.
-
-
-test that bombs create explosion projectiles, observe their collision recs
-
-
-
-
-create an explosion projectile when bomb dies
-
-the explosion projectile should play the explosion sound for birth event
+removed saveData text field from debug info.
+added 'dump savedata' button to debug menu.
+added routine to dump all of saveData's fields to output window upon button press.
+playtested, working as expected.
 
 
 
@@ -83,55 +73,29 @@ the explosion projectile should play the explosion sound for birth event
 
 
 
-
-
-
-
-
-
-
-
-
-remove save data from debug info
-instead we should have a debug menu button that says 'show save data'
-then we should dump all the save data to output
-there is a lot of save data, and it wouldn't fit in debug info's area
-
-
-
-
-
-
-
-
-
-
-
-
-
-however we implement the explosion, we need to be able to set it's damage to 0
-because we will use this 0 damage explosion to push enemies away from hero, when a fairy bottle is used
 
 
 
 
 
 need to polish the fairy animation / useage
-we need to push enemies away from the hero when a fairy is used
-this gives the hero a chance to breath, and prevents enemies from cheese hitting the hero while he's in reward state
 
-need a sound to signify that fairy was used
+we need to have a state where the hero is dying 
+this plays the hero's dying animation
+
+at start of dying state, all AI input is cleared
+during dying state, all AI input is suspended
+this prevents the enemies from moving around at this time
+we should have booleans that control AI input, and a function that clears and suspends AI input
+
+at the end of the hero dying state, we should check to see if hero has a fairy bottle
+if he does, we should play a ressurrection animation, with a fairy particle over the hero
+magic sparkles should appear around the hero
+there should be a special sound that plays signifying the hero has been brought back to life
+
+at the end of the resurrection state/animation, AI input is continued
+
 need sound for health + magic potion useage - we're just using pickup sound rn
-
-we kinda need a non-damaging explosion thing
-this would be placed at the hero's position and push all enemies away from hero
-dealing no damage
-
-we could also add a bunch of sparkles around the fairy when she appears
-
-
-
-
 
 
 

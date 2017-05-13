@@ -28,7 +28,7 @@ namespace DungeonRun
         public static ComponentText creationText;
         public static ComponentText recordText;
         public static ComponentText musicText;
-        public static ComponentText saveDataText;
+        //public static ComponentText saveDataText;
 
         public static long roomTime = 0;
         public static long dungeonTime = 0;
@@ -77,9 +77,9 @@ namespace DungeonRun
                 new Vector2(16 * 26 - 8, yPos + 00), Assets.colorScheme.textLight);
             textFields.Add(musicText);
 
-            saveDataText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(saveDataText);
+            //saveDataText = new ComponentText(Assets.font, "",
+            //    new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textLight);
+            //textFields.Add(saveDataText);
 
         }
 
@@ -161,8 +161,8 @@ namespace DungeonRun
             musicText.text += "\n" + MusicFunctions.currentMusic.State + ": " + MusicFunctions.currentMusic.Volume;
             musicText.text += "\n" + Assets.musicDrums.State + ": " + Assets.musicDrums.Volume;
 
-            saveDataText.text = "save data";
-            saveDataText.text += "\ngold: " + PlayerData.saveData.gold;
+            //saveDataText.text = "save data";
+            //saveDataText.text += "\ngold: " + PlayerData.saveData.gold;
 
             #endregion
 
