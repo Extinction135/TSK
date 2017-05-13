@@ -329,3 +329,9 @@
 /processorParam:Quality=Best
 /build:MusicDungeonC.ogg
 
+#begin SoundBombDrop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBombDrop.wav
+

@@ -115,7 +115,8 @@ namespace DungeonRun
             #region Projectiles
 
             //place fireballs relative to direction actor is facing
-            else if (Type == ObjType.ProjectileFireball)
+            else if (Type == ObjType.ProjectileFireball ||
+                Type == ObjType.ProjectileBomb)
             {
                 if (cardinal == Direction.Down) { offset.Y = 14; }
                 else if (cardinal == Direction.Up) { offset.Y = -9; }
@@ -123,8 +124,7 @@ namespace DungeonRun
                 else if (cardinal == Direction.Left) { offset.X = -11; offset.Y = 2; }
             }
             //place swords relative to direction actor is facing
-            else if (Type == ObjType.ProjectileSword ||
-                Type == ObjType.ProjectileBomb)
+            else if (Type == ObjType.ProjectileSword)
             {
                 if (cardinal == Direction.Down) { offset.X = -1; offset.Y = 15; }
                 else if (cardinal == Direction.Up) { offset.X = 1; offset.Y = -12; }
@@ -497,8 +497,6 @@ namespace DungeonRun
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
                 Obj.compAnim.loop = true;
-                //Obj.compMove.speed = 0.0f; //bobms dont move rn
-                //but in the future, they should 'slide' into place
             }
 
             #endregion

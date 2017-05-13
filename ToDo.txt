@@ -55,30 +55,22 @@ push new release on the 16th
 todo:
 
 
-8
+7
 
 
 
 
+added bomb drop sound effect to content project, built.
+added sfxBombDrop to Assets to load bomb drop sound effect.
+updated ItemFunctions.UseItem() bomb codepath to call the new bomb drop sfx.
+updated how bomb projectile is aligned to actor that 'casted' it.
 
-fixed a bug where the inventory widget's bombDisplay would draw when player had no bombs.
-fixed a bug where the hero's item would remain the bomb after hero used his last bomb.
-this also fixes a bug where hero would be set into use animation while attempting to use a bomb when he had none.
+refactored InteractionFunctions.Interact() to handle bomb projectile interaction.
+did some refactoring that cleaned up the class as well.
+playtested, working, but with some bugs.
 
-updated VendorScreen.PurchaseItem() to prevent player from purchasing more than 99 bombs.
-removed unused code from VendorScreen.PurchaseItem().
-added a check to ForSaleWidget.SetItemsForSale()  to see if saveData.bombsCurrent is < saveData.bombsMax.
-this prevents the player from purchasing bombs beyond the max bomb limit.
-
-fixed a bug where purchasing a bomb 3 pack set the hero's current item to the bomb 3 pack.
-instead, the item is set to be the single bomb object.
-
-
-
-
-
-
-we need a bomb planted sound
+updated Assets.sfxBombDrop to actually load the correct sound effect file. Duh.
+playtested, working as expected.
 
 
 
@@ -87,37 +79,10 @@ we need a bomb planted sound
 
 
 
+bombs should sort over walls, so they need a higher offset value
 
 
 handle the bomb explosion
-
-
-
-
-
-
-
-up next:
-need to be able to equip bombs
-need to be able to 'use' bombs
-need to be able to buy bombs
-
-
-
-
-
-would like to move the functionality for amoutn display into amoutn display
-so the class handles the setting of the text
-
-
-
-
-
-spawnProjectile -> needs to handle bomb's direction, when we get to sliding them
-
-
-
-need a bomb plant sound effect
 need explosion sound effect
 
 

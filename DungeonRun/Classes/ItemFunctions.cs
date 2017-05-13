@@ -28,18 +28,19 @@ namespace DungeonRun
                     {
                         PlayerData.saveData.bombsCurrent--;
                         GameObjectFunctions.SpawnProjectile(ObjType.ProjectileBomb, Actor);
-                        Assets.Play(Assets.sfxFireballCast);
+                        Assets.Play(Assets.sfxBombDrop);
                         Actor.lockTotal = 15;
+
                         //if hero used the last bomb, set the item to be unknown/none
-                        if (PlayerData.saveData.bombsCurrent == 0)
-                        { Actor.item = MenuItemType.Unknown; }
+                        //if (PlayerData.saveData.bombsCurrent == 0)
+                        //{ Actor.item = MenuItemType.Unknown; }
                     }
                     else { Assets.Play(Assets.sfxError); }
                 }
                 else
                 {   
                     GameObjectFunctions.SpawnProjectile(ObjType.ProjectileBomb, Actor);
-                    Assets.Play(Assets.sfxFireballCast);
+                    Assets.Play(Assets.sfxBombDrop);
                     Actor.lockTotal = 15;
                 }
             }

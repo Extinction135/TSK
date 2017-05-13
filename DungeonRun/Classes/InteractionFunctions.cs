@@ -15,9 +15,6 @@ namespace DungeonRun
     public static class InteractionFunctions
     {
 
-        public static byte damage;
-        public static float force;
-
         public static ComponentCollision interactionRec = new ComponentCollision();
 
         public static void ClearHeroInteractionRec()
@@ -73,21 +70,19 @@ namespace DungeonRun
 
             if (Obj.group == ObjGroup.Projectile)
             {
-                //all damage inducing projectiles
-                damage = 0; //reset the damage value
-                force = 0.0f; //reset the force amount (how much actor is pushed)
-
-                if (Obj.type == ObjType.ProjectileSword)
-                {   //swords always complete their animation
-                    damage = 1; force = 6.0f;
+                //bombs don't push or hurt actors
+                if (Obj.type == ObjType.ProjectileBomb) { return; }
+                //swords deal 1 damage, push 6, complete animation
+                else if (Obj.type == ObjType.ProjectileSword)
+                { 
+                    BattleFunctions.Damage(Actor, 1, 6.0f, Obj.direction);
                 }
+                //fireballs deal 2 damage, push 10, and die
                 else if (Obj.type == ObjType.ProjectileFireball)
-                {   //fireballs destruct upon collision/interaction
+                { 
+                    BattleFunctions.Damage(Actor, 2, 10.0f, Obj.direction);
                     Obj.lifeCounter = Obj.lifetime;
-                    damage = 2; force = 10.0f;
                 }
-
-                BattleFunctions.Damage(Actor, damage, force, Obj.direction);
             }
 
             #endregion
