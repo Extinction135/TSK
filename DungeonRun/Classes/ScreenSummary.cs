@@ -121,7 +121,7 @@ namespace DungeonRun
             Functions_Component.UpdateCellSize(rightTitle);
 
             //play title music
-            MusicFunctions.PlayMusic(Music.Title);
+            Functions_Music.PlayMusic(Music.Title);
 
             //if the player beat the boss, the base reward is 100
             if (DungeonRecord.beatDungeon) { rewardTotal = 100; }

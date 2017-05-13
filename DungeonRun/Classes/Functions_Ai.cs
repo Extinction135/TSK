@@ -58,7 +58,7 @@ namespace DungeonRun
                     if(actorRef != null)
                     {   //actorRef can never be an actor already active in room
                         Functions_Actor.SetType(actorRef, ActorType.Blob);
-                        MovementFunctions.Teleport(actorRef.compMove, actorPos.X, actorPos.Y);
+                        Functions_Movement.Teleport(actorRef.compMove, actorPos.X, actorPos.Y);
                     }
                 }
             }

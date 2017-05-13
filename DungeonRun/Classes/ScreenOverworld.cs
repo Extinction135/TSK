@@ -185,7 +185,7 @@ namespace DungeonRun
             //open the screen
             displayState = DisplayState.Opening;
             //play the title music
-            MusicFunctions.PlayMusic(Music.Title);
+            Functions_Music.PlayMusic(Music.Title);
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = Pool.hero.maxHealth;
         }

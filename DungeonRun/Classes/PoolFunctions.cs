@@ -36,7 +36,7 @@ namespace DungeonRun
             Pool.objIndex++;
             if (Pool.objIndex == Pool.objCount) { Pool.objIndex = 0; }
             //reset obj to default state, hide offscreen
-            GameObjectFunctions.ResetObject(Pool.objPool[Pool.objIndex]);
+            Functions_GameObject.ResetObject(Pool.objPool[Pool.objIndex]);
             Pool.objPool[Pool.objIndex].compMove.newPosition.X = -1000;
             return Pool.objPool[Pool.objIndex];
         }
@@ -46,7 +46,7 @@ namespace DungeonRun
             Pool.projectileIndex++;
             if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
             //reset projectile to default state, hide offscreen
-            GameObjectFunctions.ResetObject(Pool.projectilePool[Pool.projectileIndex]);
+            Functions_GameObject.ResetObject(Pool.projectilePool[Pool.projectileIndex]);
             Pool.projectilePool[Pool.projectileIndex].compMove.newPosition.X = -1000;
             return Pool.projectilePool[Pool.projectileIndex];
         }
@@ -140,7 +140,7 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.objPool[Pool.counter].compAnim,
                         Pool.objPool[Pool.counter].compSprite);
                     //set the rotation for the obj's sprite
-                    GameObjectFunctions.SetRotation(Pool.objPool[Pool.counter]);
+                    Functions_GameObject.SetRotation(Pool.objPool[Pool.counter]);
                 }
             }
         }
@@ -153,19 +153,19 @@ namespace DungeonRun
                     Pool.actorPool[Pool.counter].active &&
                     Pool.actorPool[Pool.counter].state != ActorState.Dead
                     )
-                { MovementFunctions.Move(Pool.actorPool[Pool.counter]); }
+                { Functions_Movement.Move(Pool.actorPool[Pool.counter]); }
             }
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             {   //move projectiles in projectile pool that are active
                 if (Pool.projectilePool[Pool.counter].active)
-                { MovementFunctions.Move(Pool.projectilePool[Pool.counter]); }
+                { Functions_Movement.Move(Pool.projectilePool[Pool.counter]); }
             }
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {   //if this object is active, and it isn't blocking, then move it
                 if (Pool.objPool[Pool.counter].active)
                 {   //only non-blocking objects get moved, collision checked, and interaction handled
                     if (!Pool.objPool[Pool.counter].compCollision.blocking)
-                    { MovementFunctions.Move(Pool.objPool[Pool.counter]); }
+                    { Functions_Movement.Move(Pool.objPool[Pool.counter]); }
                 }
             }
         }
@@ -199,7 +199,7 @@ namespace DungeonRun
             {
                 if (Pool.projectilePool[Pool.counter].active)
                 {   //all projectiles have a lifetime, so pass them to update
-                    GameObjectFunctions.Update(Pool.projectilePool[Pool.counter]);
+                    Functions_GameObject.Update(Pool.projectilePool[Pool.counter]);
                     Functions_Animation.Animate(Pool.projectilePool[Pool.counter].compAnim, 
                         Pool.projectilePool[Pool.counter].compSprite);
                 }
@@ -220,14 +220,14 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.objCount; Pool.counter++)
             {
                 if (Pool.objPool[Pool.counter].active)
-                { GameObjectFunctions.Draw(Pool.objPool[Pool.counter]); }
+                { Functions_GameObject.Draw(Pool.objPool[Pool.counter]); }
             }
 
             //projectile pool
             for (Pool.counter = 0; Pool.counter < Pool.projectileCount; Pool.counter++)
             {
                 if (Pool.projectilePool[Pool.counter].active)
-                { GameObjectFunctions.Draw(Pool.projectilePool[Pool.counter]); }
+                { Functions_GameObject.Draw(Pool.projectilePool[Pool.counter]); }
             }
 
             //actor pool

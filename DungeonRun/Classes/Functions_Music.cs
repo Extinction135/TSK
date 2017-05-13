@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class MusicFunctions
+    public static class Functions_Music
     {
 
         public static FadeState fadeState = FadeState.Silent;

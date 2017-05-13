@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class GameObjectAnimListManager
+    public static class Functions_GameObjectAnimList
     {
         //a list of byte4 lists that describe all game object animations
         static List<List<Byte4>> GameObjAnims;
@@ -20,7 +20,7 @@ namespace DungeonRun
 
 
 
-        static GameObjectAnimListManager()
+        static Functions_GameObjectAnimList()
         {
             GameObjAnims = new List<List<Byte4>>
             {

@@ -35,7 +35,7 @@ namespace DungeonRun
                         if (Functions_Dungeon.currentRoom.type == RoomType.Boss)
                         {   //if hero just entered the boss room, play the boss intro & music
                             Assets.Play(Assets.sfxBossIntro);
-                            MusicFunctions.PlayMusic(Music.Boss);
+                            Functions_Music.PlayMusic(Music.Boss);
                         }
                     }
                 }
@@ -44,26 +44,26 @@ namespace DungeonRun
 
         public static Boolean CheckInteractionRecCollisions()
         {   //set the interaction rec to the hero's position + direction
-            InteractionFunctions.SetHeroInteractionRec();
+            Functions_Interaction.SetHeroInteractionRec();
             collision = false;
             //check to see if the interactionRec collides with any gameObjects
             for (i = 0; i < Pool.objCount; i++)
             {
                 if (Pool.objPool[i].active)
                 {
-                    if (InteractionFunctions.interactionRec.rec.Intersects(Pool.objPool[i].compCollision.rec))
+                    if (Functions_Interaction.interactionRec.rec.Intersects(Pool.objPool[i].compCollision.rec))
                     {
-                        MovementFunctions.StopMovement(Pool.hero.compMove);
+                        Functions_Movement.StopMovement(Pool.hero.compMove);
                         Pool.hero.stateLocked = true;
                         Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;
                         //handle the interaction, likely overwrites hero.lockTotal
-                        InteractionFunctions.Interact(Pool.hero, Pool.objPool[i]); 
+                        Functions_Interaction.Interact(Pool.hero, Pool.objPool[i]); 
                     }
                 }
             }
             //move the interaction rec offscreen
-            InteractionFunctions.ClearHeroInteractionRec();
+            Functions_Interaction.ClearHeroInteractionRec();
             return collision;
         }
 
@@ -78,7 +78,7 @@ namespace DungeonRun
                 {
                     if (Actor.compCollision.rec.Intersects(Pool.objPool[i].compCollision.rec))
                     {
-                        InteractionFunctions.Interact(Actor, Pool.objPool[i]);
+                        Functions_Interaction.Interact(Actor, Pool.objPool[i]);
                         if (Pool.objPool[i].compCollision.blocking) { collision = true; }
                     }
                 }
@@ -124,7 +124,7 @@ namespace DungeonRun
                 if (Pool.objPool[i].active)
                 {
                     if (Projectile.compCollision.rec.Intersects(Pool.objPool[i].compCollision.rec))
-                    { InteractionFunctions.Interact(Projectile, Pool.objPool[i]); }
+                    { Functions_Interaction.Interact(Projectile, Pool.objPool[i]); }
                 }
             }
         }
@@ -136,7 +136,7 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active)
                 {
                     if (Projectile.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    { InteractionFunctions.Interact(Pool.actorPool[i], Projectile); }
+                    { Functions_Interaction.Interact(Pool.actorPool[i], Projectile); }
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace DungeonRun
                     if (Projectile.compCollision.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
                     {   //projectiles shouldn't be allowed to collide with themselves
                         if (Projectile != Pool.projectilePool[i])
-                        { InteractionFunctions.Interact(Projectile, Pool.projectilePool[i]); }
+                        { Functions_Interaction.Interact(Projectile, Pool.projectilePool[i]); }
                     }
                 }
             }

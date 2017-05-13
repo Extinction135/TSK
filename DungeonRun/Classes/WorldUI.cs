@@ -130,8 +130,8 @@ namespace DungeonRun
             //get the hero's current weapon and item
             heroWeapon = Pool.hero.weapon;
             heroItem = Pool.hero.item;
-            MenuItemFunctions.SetMenuItemData(heroWeapon, currentWeapon);
-            MenuItemFunctions.SetMenuItemData(heroItem, currentItem);
+            Functions_MenuItem.SetMenuItemData(heroWeapon, currentWeapon);
+            Functions_MenuItem.SetMenuItemData(heroItem, currentItem);
 
             //create the frametime text component
             frametime = new ComponentText(Assets.font, "test", 
@@ -213,12 +213,12 @@ namespace DungeonRun
             if (heroWeapon != Pool.hero.weapon)
             {   //check to see if hero's weapon has changed, update worldUI to new weapon
                 heroWeapon = Pool.hero.weapon;
-                MenuItemFunctions.SetMenuItemData(heroWeapon, currentWeapon);
+                Functions_MenuItem.SetMenuItemData(heroWeapon, currentWeapon);
             }
             if (heroItem != Pool.hero.item)
             {   //check to see if hero's item has changed, update worldUI to new item
                 heroItem = Pool.hero.item;
-                MenuItemFunctions.SetMenuItemData(heroItem, currentItem);
+                Functions_MenuItem.SetMenuItemData(heroItem, currentItem);
             }
 
             //if the hero has an item equipped, then draw it

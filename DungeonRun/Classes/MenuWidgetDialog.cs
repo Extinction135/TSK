@@ -26,7 +26,7 @@ namespace DungeonRun
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             speaker = new GameObject(Assets.mainSheet);
-            GameObjectFunctions.SetType(speaker, ObjType.VendorArmor);
+            Functions_GameObject.SetType(speaker, ObjType.VendorArmor);
             dialog = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
         }
 
@@ -44,7 +44,7 @@ namespace DungeonRun
 
         public static void DisplayDialog(ObjType Type, String Dialog)
         {   //set the menuItem's type and sprite frame
-            GameObjectFunctions.SetType(speaker, Type);
+            Functions_GameObject.SetType(speaker, Type);
             //capture the dialog string, clear the dialog being drawn
             dialogString = Dialog;
             dialog.text = "";

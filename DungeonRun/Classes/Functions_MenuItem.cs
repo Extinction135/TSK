@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class MenuItemFunctions
+    public static class Functions_MenuItem
     {
 
         static int i;

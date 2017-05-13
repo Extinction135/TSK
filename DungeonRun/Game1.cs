@@ -65,7 +65,7 @@ namespace DungeonRun
         protected override void Update(GameTime gameTime)
         {
             ScreenManager.Update(gameTime);
-            if (Flags.PlayMusic) { MusicFunctions.Update(); }
+            if (Flags.PlayMusic) { Functions_Music.Update(); }
             base.Update(gameTime);
         }
 

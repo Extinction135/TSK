@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class GameObjectFunctions
+    public static class Functions_GameObject
     {
 
         static Vector2 offset = new Vector2(0, 0);
@@ -169,7 +169,7 @@ namespace DungeonRun
             if (Type == ObjType.ProjectileSword) { SetWeaponCollisions(obj); }
 
             //teleport the projectile to the proper location
-            MovementFunctions.Teleport(obj.compMove, X, Y);
+            Functions_Movement.Teleport(obj.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment as last step
             SetType(obj, Type);
         }
@@ -606,7 +606,7 @@ namespace DungeonRun
 
 
             SetRotation(Obj);
-            GameObjectAnimListManager.SetAnimationList(Obj); //set obj animation list based on type
+            Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type
             Functions_Component.UpdateCellSize(Obj.compSprite);
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }

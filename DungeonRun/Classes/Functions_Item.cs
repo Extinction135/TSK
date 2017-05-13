@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class ItemFunctions
+    public static class Functions_Item
     {
 
         public static void UseItem(MenuItemType Type, Actor Actor)
@@ -27,7 +27,7 @@ namespace DungeonRun
                     if (PlayerData.saveData.bombsCurrent > 0)
                     {
                         PlayerData.saveData.bombsCurrent--;
-                        GameObjectFunctions.SpawnProjectile(ObjType.ProjectileBomb, Actor);
+                        Functions_GameObject.SpawnProjectile(ObjType.ProjectileBomb, Actor);
                         Actor.lockTotal = 15;
                         //if hero used the last bomb, set the item to be unknown/none
                         if (PlayerData.saveData.bombsCurrent == 0)
@@ -35,8 +35,8 @@ namespace DungeonRun
                     }
                 }
                 else
-                {   
-                    GameObjectFunctions.SpawnProjectile(ObjType.ProjectileBomb, Actor);
+                {
+                    Functions_GameObject.SpawnProjectile(ObjType.ProjectileBomb, Actor);
                     Actor.lockTotal = 15;
                 }
             }
@@ -69,7 +69,7 @@ namespace DungeonRun
             {   //refill the actor's health and magic
                 Actor.health = Actor.maxHealth;
                 PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
-                GameObjectFunctions.SpawnProjectile(ObjType.ParticleFairy, Actor);
+                Functions_GameObject.SpawnProjectile(ObjType.ParticleFairy, Actor);
                 PlayerData.saveData.bottleFairy = false;
                 UseBottle(Type, Actor);
             }
@@ -86,14 +86,14 @@ namespace DungeonRun
                     if (PlayerData.saveData.magicCurrent > 0)
                     {
                         PlayerData.saveData.magicCurrent--;
-                        GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball, Actor);
+                        Functions_GameObject.SpawnProjectile(ObjType.ProjectileFireball, Actor);
                         Actor.lockTotal = 15;
                     }
                     else { Assets.Play(Assets.sfxError); }
                 }
                 else
-                {   
-                    GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball, Actor);
+                {
+                    Functions_GameObject.SpawnProjectile(ObjType.ProjectileFireball, Actor);
                     Actor.lockTotal = 15;
                 }
             }
@@ -105,7 +105,7 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.WeaponSword)
             {
-                GameObjectFunctions.SpawnProjectile(ObjType.ProjectileSword, Actor);
+                Functions_GameObject.SpawnProjectile(ObjType.ProjectileSword, Actor);
                 Assets.Play(Assets.sfxSwordSwipe);
                 Actor.lockTotal = 15;
             }
@@ -116,7 +116,7 @@ namespace DungeonRun
 
         static void UseBottle(MenuItemType Type, Actor Actor)
         {
-            GameObjectFunctions.SpawnProjectile(ObjType.ParticleAttention, Actor);
+            Functions_GameObject.SpawnProjectile(ObjType.ParticleAttention, Actor);
             if (Actor.item == Type) { Actor.item = MenuItemType.BottleEmpty; }
             Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
             Actor.state = ActorState.Reward;

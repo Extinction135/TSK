@@ -53,7 +53,7 @@ namespace DungeonRun
             {
                 actorPool.Add(new Actor());
                 Functions_Actor.SetType(actorPool[counter], ActorType.Hero);
-                MovementFunctions.Teleport(actorPool[counter].compMove, 0, 0);
+                Functions_Movement.Teleport(actorPool[counter].compMove, 0, 0);
             }
             actorIndex = 1;
 

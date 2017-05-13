@@ -29,7 +29,7 @@ namespace DungeonRun
 
                 //set actor into hit state, push actor the projectile's direction
                 Functions_Actor.SetHitState(Actor);
-                MovementFunctions.Push(Actor.compMove, Direction, Force);
+                Functions_Movement.Push(Actor.compMove, Direction, Force);
             }
         }
 

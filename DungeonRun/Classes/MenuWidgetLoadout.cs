@@ -90,7 +90,7 @@ namespace DungeonRun
 
 
             //set the menuItem's neighbors
-            MenuItemFunctions.SetNeighbors(menuItems, 4);
+            Functions_MenuItem.SetNeighbors(menuItems, 4);
 
             UpdateLoadout();
             //set the inventory heart pieces frame, based on the number of heart pieces hero has
@@ -111,7 +111,7 @@ namespace DungeonRun
         {
             if (Item.type != Type)
             {
-                MenuItemFunctions.SetMenuItemData(Type, Item);
+                Functions_MenuItem.SetMenuItemData(Type, Item);
                 Item.compSprite.scale = 2.0f;
             }
         }
@@ -125,14 +125,14 @@ namespace DungeonRun
             SetLoadoutItem(equipment, Pool.hero.equipment);
 
             //set the gold, hearts, and dungeon items
-            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
             if (Functions_Dungeon.dungeon.map) //if player found the map, display it
-            { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
-            else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }
             if (Functions_Dungeon.dungeon.bigKey) //if player found the key, display it
-            { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
-            else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
         }
 
 

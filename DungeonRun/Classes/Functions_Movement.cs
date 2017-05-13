@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class MovementFunctions
+    public static class Functions_Movement
     {
 
         static float maxMagnitude = 7.0f;

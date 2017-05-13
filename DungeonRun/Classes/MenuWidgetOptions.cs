@@ -96,16 +96,16 @@ namespace DungeonRun
 
 
             //set the menuItem's neighbors
-            MenuItemFunctions.SetNeighbors(menuItems, 2);
+            Functions_MenuItem.SetNeighbors(menuItems, 2);
             //set the menuItem's data
-            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsSaveGame, menuItems[0]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsLoadGame, menuItems[1]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsVideoCtrls, menuItems[2]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsInputCtrls, menuItems[3]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.OptionsAudioCtrls, menuItems[4]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[5]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]);
-            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsSaveGame, menuItems[0]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsLoadGame, menuItems[1]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsVideoCtrls, menuItems[2]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsInputCtrls, menuItems[3]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsAudioCtrls, menuItems[4]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[5]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[6]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[7]);
 
             menuItems[0].compSprite.rotation = Rotation.Clockwise180;
         }

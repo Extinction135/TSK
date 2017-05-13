@@ -24,7 +24,7 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
             //display the hit effect particle
-            GameObjectFunctions.SpawnProjectile(ObjType.ParticleHitSparkle, Actor);
+            Functions_GameObject.SpawnProjectile(ObjType.ParticleHitSparkle, Actor);
 
             //play the correct hit sound effect based on the actor type
             if (Actor == Pool.hero) { Assets.Play(Assets.sfxHeroHit); }
@@ -46,7 +46,7 @@ namespace DungeonRun
             if (Actor == Pool.hero)
             {
                 if(PlayerData.saveData.bottleFairy)
-                { ItemFunctions.UseItem(MenuItemType.BottleFairy, Actor); }
+                { Functions_Item.UseItem(MenuItemType.BottleFairy, Actor); }
                 else
                 {   //player has died, failed the dungeon
                     DungeonRecord.beatDungeon = false;
@@ -70,9 +70,9 @@ namespace DungeonRun
             if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
-                GameObjectFunctions.SpawnProjectile(ObjType.ParticleExplosion, Actor);
+                Functions_GameObject.SpawnProjectile(ObjType.ParticleExplosion, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-                LootFunctions.SpawnLoot(Actor.compSprite.position);
+                Functions_Loot.SpawnLoot(Actor.compSprite.position);
             }
             else if (Actor.type == ActorType.Boss)
             {
@@ -223,14 +223,14 @@ namespace DungeonRun
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
-                    GameObjectFunctions.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
+                    Functions_GameObject.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
                     if (Actor == Pool.hero) { Assets.Play(Assets.sfxDash); }
                 }
                 else if (Actor.state == ActorState.Attack)
                 {
                     Actor.stateLocked = true;
-                    MovementFunctions.StopMovement(Actor.compMove);
-                    ItemFunctions.UseItem(Actor.weapon, Actor);
+                    Functions_Movement.StopMovement(Actor.compMove);
+                    Functions_Item.UseItem(Actor.weapon, Actor);
                     if (Actor == Pool.hero) { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
                 }
                 else if (Actor.state == ActorState.Use)
@@ -238,8 +238,8 @@ namespace DungeonRun
                     if (Actor.item != MenuItemType.Unknown)
                     { 
                         Actor.stateLocked = true;
-                        MovementFunctions.StopMovement(Actor.compMove);
-                        ItemFunctions.UseItem(Actor.item, Actor);
+                        Functions_Movement.StopMovement(Actor.compMove);
+                        Functions_Item.UseItem(Actor.item, Actor);
                         if (Actor == Pool.hero) { WorldUI.currentItem.compSprite.scale = 2.0f; }
                     }
                     else { Actor.state = ActorState.Idle; } //no item to use
@@ -274,7 +274,7 @@ namespace DungeonRun
                     {   //dead bosses perpetually explode
                         if(GetRandom.Int(0,100) > 75) //randomly create explosions
                         {   //randomly place explosion around boss
-                            GameObjectFunctions.SpawnProjectile(
+                            Functions_GameObject.SpawnProjectile(
                                 ObjType.ParticleExplosion,
                                 Actor.compSprite.position.X + GetRandom.Int(-16, 16),
                                 Actor.compSprite.position.Y + GetRandom.Int(-16, 16),
@@ -287,7 +287,7 @@ namespace DungeonRun
                     {   //near the last frame of hero's death, create attention particles
                         if (Actor.compAnim.index == Actor.compAnim.currentAnimation.Count-2)
                         {   //this will happen multiple times, until anim.index increments
-                            GameObjectFunctions.SpawnProjectile(
+                            Functions_GameObject.SpawnProjectile(
                                     ObjType.ParticleAttention,
                                     Actor.compSprite.position.X,
                                     Actor.compSprite.position.Y,

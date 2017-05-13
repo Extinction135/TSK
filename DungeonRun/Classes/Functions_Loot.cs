@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class LootFunctions
+    public static class Functions_Loot
     {
 
         static int dropRate;
@@ -31,17 +31,17 @@ namespace DungeonRun
 
                 //common loot drops
                 if (lootType < 33) //33%
-                { GameObjectFunctions.SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_GameObject.SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
                 else if (lootType < 66) //33%
-                { GameObjectFunctions.SpawnProjectile(ObjType.ItemMagic, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_GameObject.SpawnProjectile(ObjType.ItemMagic, Pos.X, Pos.Y, Direction.Down); }
 
                 //uncommon loot drops
                 else if (lootType < 91) //25%
-                { GameObjectFunctions.SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_GameObject.SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
 
                 //rare loot drops
                 else if (lootType < 100) //9%
-                { GameObjectFunctions.SpawnProjectile(ObjType.ItemBomb, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_GameObject.SpawnProjectile(ObjType.ItemBomb, Pos.X, Pos.Y, Direction.Down); }
             }
         }
 

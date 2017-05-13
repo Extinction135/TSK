@@ -46,7 +46,7 @@ namespace DungeonRun
             description.position.X = Position.X + 8;
             description.position.Y = Position.Y + 16 * 3;
             //reset the infoItem to unknown, align it
-            MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, infoItem);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, infoItem);
             infoItem.compSprite.position.X = Position.X + 16 * 3 + 4;
             infoItem.compSprite.position.Y = Position.Y + 16 * 2;
             //reset and align the divider line

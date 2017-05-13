@@ -56,7 +56,7 @@ namespace DungeonRun
 
 
             //set the menuItem's neighbors
-            MenuItemFunctions.SetNeighbors(menuItems, 1);
+            Functions_MenuItem.SetNeighbors(menuItems, 1);
             //set the menuItem's data
             //MenuItemFunctions.SetMenuItemData(MenuItemType.StatsHealth, menuItems[0]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.StatsMagic, menuItems[1]);
