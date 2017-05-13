@@ -90,21 +90,6 @@ namespace DungeonRun
             //the player cannot purchase an unknown item
             if (Item.type == MenuItemType.Unknown) { return; }
 
-
-            #region The player cannot purchase an item twice
-
-            //items
-            if (Item.type == MenuItemType.MagicFireball && PlayerData.saveData.magicFireball) { return; }
-            //bottles
-            else if (Item.type == MenuItemType.BottleHealth && PlayerData.saveData.bottleHealth) { return; }
-            else if (Item.type == MenuItemType.BottleMagic && PlayerData.saveData.bottleMagic) { return; }
-            else if (Item.type == MenuItemType.BottleFairy && PlayerData.saveData.bottleFairy) { return; }
-            //equipment
-            else if (Item.type == MenuItemType.EquipmentRing && PlayerData.saveData.equipmentRing) { return; }
-            
-            #endregion
-
-
             //see if hero has enough gold to purchase this item
             if (PlayerData.saveData.gold >= Item.price)
             {   //handle item effects, based on type
@@ -120,7 +105,7 @@ namespace DungeonRun
                 else if (Item.type == MenuItemType.ItemBombs)
                 {
                     PlayerData.saveData.bombsCurrent += 3;
-                    Pool.hero.item = Item.type;
+                    Pool.hero.item = MenuItemType.ItemBomb;
                 }
 
                 #endregion
@@ -175,15 +160,13 @@ namespace DungeonRun
                 #region Complete Sale
 
                 PlayerData.saveData.gold -= Item.price; //deduct cost
-                //update the vendor's forSale items
+                //update various widgets affected by this purchase
                 MenuWidgetForSale.SetItemsForSale(vendorType.type);
                 MenuWidgetInfo.Display(currentlySelected);
-                //update the loadout
                 MenuWidgetLoadout.UpdateLoadout();
-                //update the dialog widget
+                //display the purchase message & play purchase sfx
                 MenuWidgetDialog.DisplayDialog(vendorType.type, 
                     "thanks for your purchase!");
-                //play purchase complete sound effect
                 Assets.Play(Assets.sfxBeatDungeon);
 
                 #endregion

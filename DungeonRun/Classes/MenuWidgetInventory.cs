@@ -225,7 +225,7 @@ namespace DungeonRun
                 { DrawFunctions.Draw(labels[i]); }
                 for (i = 0; i < menuItems.Count; i++)
                 { DrawFunctions.Draw(menuItems[i].compSprite); }
-                DrawFunctions.Draw(bombsDisplay);
+                if (bombsDisplay.visible) { DrawFunctions.Draw(bombsDisplay); }
             }
         }
 

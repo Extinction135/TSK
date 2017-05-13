@@ -18,28 +18,26 @@ namespace DungeonRun
         public static void UseItem(MenuItemType Type, Actor Actor)
         {
 
-            #region Items
+            #region Items - hero and enemies can use Items
 
             if (Type == MenuItemType.ItemBomb)
             {
-
-                //create bomb projectile at actor's location
-                //place a distance away from actor in direction
-                //this should be handled in alignment routines in ObjFunctions
-
                 if (Actor == Pool.hero)
-                {   //hero has cast a fireball
+                {   
                     if (PlayerData.saveData.bombsCurrent > 0)
                     {
                         PlayerData.saveData.bombsCurrent--;
                         GameObjectFunctions.SpawnProjectile(ObjType.ProjectileBomb, Actor);
                         Assets.Play(Assets.sfxFireballCast);
                         Actor.lockTotal = 15;
+                        //if hero used the last bomb, set the item to be unknown/none
+                        if (PlayerData.saveData.bombsCurrent == 0)
+                        { Actor.item = MenuItemType.Unknown; }
                     }
                     else { Assets.Play(Assets.sfxError); }
                 }
                 else
-                {   //an enemy has cast a fireball
+                {   
                     GameObjectFunctions.SpawnProjectile(ObjType.ProjectileBomb, Actor);
                     Assets.Play(Assets.sfxFireballCast);
                     Actor.lockTotal = 15;
@@ -87,7 +85,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.MagicFireball)
             {
                 if(Actor == Pool.hero)
-                {   //hero has cast a fireball
+                {   
                     if (PlayerData.saveData.magicCurrent > 0)
                     {
                         PlayerData.saveData.magicCurrent--;
@@ -98,7 +96,7 @@ namespace DungeonRun
                     else { Assets.Play(Assets.sfxError); }
                 }
                 else
-                {   //an enemy has cast a fireball
+                {   
                     GameObjectFunctions.SpawnProjectile(ObjType.ProjectileFireball, Actor);
                     Assets.Play(Assets.sfxFireballCast);
                     Actor.lockTotal = 15;
