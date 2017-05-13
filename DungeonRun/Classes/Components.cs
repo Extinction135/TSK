@@ -151,6 +151,13 @@ namespace DungeonRun
             bkg.X = (int)amount.position.X - 1;
             bkg.Y = (int)amount.position.Y + 4;
         }
+        public void UpdateAmount(int Value)
+        {   //clip Value to 99
+            if(Value > 99) { Value = 99; }
+            //prefix a 0 if Value is less than 10
+            if (Value < 10) { amount.text = "0" + Value; }
+            else { amount.text = "" + Value; }
+        }
     }
 
 }

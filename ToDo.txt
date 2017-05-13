@@ -55,31 +55,28 @@ push new release on the 16th
 todo:
 
 
-10
+9
 
 
 
-added ProjectileBomb value to ObjType enumerator.
-updated GameObjAnimListManager with anim list for ProjectileBomb.
-added codepath for ProjectileBomb to GameObjFunctions.SetType().
 
-added ItemBombs value to MenuItemType.
-updated MenuItemFunctions.SetMenuItemData() with code path for ItemBombs.
-updated the price of ItemBombs and ItemBombs.
+updated InventoryWidget.Reset() to use ItemBomb instead of ItemBombs.
+updated MenuItemFunctions.SetMenuItemData() with a better description for ItemBombs.
+updated the item vendor's ad to include the ItemBombs sprite.
+updated VendorScreen.PurchaseItem() to handle ItemBomb and ItemBombs.
 
-created bombsCurrent and bombsMax bytes in SaveData struct.
-updated constructor to start hero with 0 bombs, max of 99.
-later we can limit the max, and use some upgrade to increase it, LttP style.
+created ComponentAmountDisplay.UpdateAmount() to handle clipping & prefix of display amount's text.
+this consolidates duplicate code being used in LoadoutWidget, and InventoryWidget.
+removed UpdateGoldAmount() from LoadoutWidget.
+updated Inventory widget to use Display.UpdateAmount().
+updated ForSale widget to use Display.UpdateAmount().
 
-updated the ForSale widget to display ItemBomb and ItemBombs.
-updated the InventoryWidget to display ItemBombs, if saveData.bombsCurrent is > than 0.
-added a display amount to InventoryWidget to display the saveData.bombsCurrent amount.
+updated GameObjFunctions.SpawnProjectile() to place bomb based on actor.direction.
 
 
 
-playtest:
-are bombs for sale?
-do we see bombs in inventory?
+
+
 
 
 
@@ -92,7 +89,8 @@ need to be able to buy bombs
 
 
 
-
+would like to move the functionality for amoutn display into amoutn display
+so the class handles the setting of the text
 
 
 
@@ -102,11 +100,32 @@ spawnProjectile -> needs to handle bomb's direction, when we get to sliding them
 
 
 
+need a bomb plant sound effect
+need explosion sound effect
 
-add bomb consumable item
-include in pickup routines
-add the bombs icon and number to worldUI.
-bomb counter is player specific, stored in saveData
+
+
+
+
+
+
+
+
+
+
+
+
+
+remove save data from debug info
+instead we should have a debug menu button that says 'show save data'
+then we should dump all the save data to output
+there is a lot of save data, and it wouldn't fit in debug info's area
+
+
+
+
+
+
 
 
 

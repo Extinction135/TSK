@@ -18,9 +18,40 @@ namespace DungeonRun
         public static void UseItem(MenuItemType Type, Actor Actor)
         {
 
+            #region Items
+
+            if (Type == MenuItemType.ItemBomb)
+            {
+
+                //create bomb projectile at actor's location
+                //place a distance away from actor in direction
+                //this should be handled in alignment routines in ObjFunctions
+
+                if (Actor == Pool.hero)
+                {   //hero has cast a fireball
+                    if (PlayerData.saveData.bombsCurrent > 0)
+                    {
+                        PlayerData.saveData.bombsCurrent--;
+                        GameObjectFunctions.SpawnProjectile(ObjType.ProjectileBomb, Actor);
+                        Assets.Play(Assets.sfxFireballCast);
+                        Actor.lockTotal = 15;
+                    }
+                    else { Assets.Play(Assets.sfxError); }
+                }
+                else
+                {   //an enemy has cast a fireball
+                    GameObjectFunctions.SpawnProjectile(ObjType.ProjectileBomb, Actor);
+                    Assets.Play(Assets.sfxFireballCast);
+                    Actor.lockTotal = 15;
+                }
+            }
+
+            #endregion
+
+
             #region Bottles - only hero can use bottles
 
-            if (Type == MenuItemType.BottleEmpty)
+            else if (Type == MenuItemType.BottleEmpty)
             {
                 Actor.state = ActorState.Idle;
                 Actor.stateLocked = false;

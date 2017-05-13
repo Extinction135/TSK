@@ -78,7 +78,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.ItemBombs)
             {
                 MenuItem.name = "Explosive Bombs";
-                MenuItem.description = "A set of 3 \nexplosive bombs.";
+                MenuItem.description = "A set of 3 explosive \nbombs.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 7, 0, 0) };
                 MenuItem.price = 30;
             }

@@ -122,7 +122,8 @@ namespace DungeonRun
             #region Items
 
             //check if currently selected is an item, set hero.item
-            if (currentlySelected.type == MenuItemType.BottleEmpty ||
+            if (currentlySelected.type == MenuItemType.ItemBomb ||
+                currentlySelected.type == MenuItemType.BottleEmpty ||
                 currentlySelected.type == MenuItemType.BottleHealth ||
                 currentlySelected.type == MenuItemType.BottleMagic ||
                 currentlySelected.type == MenuItemType.BottleFairy ||

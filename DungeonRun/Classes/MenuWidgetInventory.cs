@@ -147,11 +147,9 @@ namespace DungeonRun
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
             if (PlayerData.saveData.bombsCurrent > 0)
             {   
-                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBombs, menuItems[1]);
+                MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
                 //if hero has bombs, display the number of bombs + draw display amount
-                if (PlayerData.saveData.bombsCurrent < 10)
-                { bombsDisplay.amount.text = "0" + PlayerData.saveData.bombsCurrent; }
-                else { bombsDisplay.amount.text = "" + PlayerData.saveData.bombsCurrent; }
+                bombsDisplay.UpdateAmount(PlayerData.saveData.bombsCurrent);
                 bombsDisplay.visible = true;
             }
             

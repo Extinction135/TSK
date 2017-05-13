@@ -112,9 +112,14 @@ namespace DungeonRun
 
                 #region Items
 
-                if (Item.type == MenuItemType.MagicFireball)
+                if (Item.type == MenuItemType.ItemBomb)
                 {
-                    PlayerData.saveData.magicFireball = true;
+                    PlayerData.saveData.bombsCurrent++;
+                    Pool.hero.item = Item.type;
+                }
+                else if (Item.type == MenuItemType.ItemBombs)
+                {
+                    PlayerData.saveData.bombsCurrent += 3;
                     Pool.hero.item = Item.type;
                 }
 
@@ -139,6 +144,17 @@ namespace DungeonRun
                 {
                     PlayerData.saveData.bottle3 = true;
                     PlayerData.saveData.bottleFairy = true;
+                    Pool.hero.item = Item.type;
+                }
+
+                #endregion
+
+
+                #region Magic Medallions
+
+                else if (Item.type == MenuItemType.MagicFireball)
+                {
+                    PlayerData.saveData.magicFireball = true;
                     Pool.hero.item = Item.type;
                 }
 

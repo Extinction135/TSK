@@ -111,7 +111,7 @@ namespace DungeonRun
         public static void DisplayItemCost(MenuItem Item, ComponentAmountDisplay Amount)
         {
             Amount.visible = true;
-            Amount.amount.text = "" + Item.price;
+            Amount.UpdateAmount(Item.price);
         }
 
         public static void SetItemsForSale(ObjType VendorType)

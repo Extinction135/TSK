@@ -110,6 +110,10 @@ namespace DungeonRun
             if (Type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
             //center horizontally, place near actor's body
             else if (Type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
+
+
+            #region Projectiles
+
             //place fireballs relative to direction actor is facing
             else if (Type == ObjType.ProjectileFireball)
             {
@@ -119,14 +123,20 @@ namespace DungeonRun
                 else if (cardinal == Direction.Left) { offset.X = -11; offset.Y = 2; }
             }
             //place swords relative to direction actor is facing
-            else if (Type == ObjType.ProjectileSword)
+            else if (Type == ObjType.ProjectileSword ||
+                Type == ObjType.ProjectileBomb)
             {
                 if (cardinal == Direction.Down) { offset.X = -1; offset.Y = 15; }
                 else if (cardinal == Direction.Up) { offset.X = 1; offset.Y = -12; }
-                else if (cardinal == Direction.Right) { offset.X = 14; offset.Y = 0; }
-                else if (cardinal == Direction.Left) { offset.X = -14; offset.Y = 0; }
-                //need to flip the projectile sprite based on it's direction
+                else if (cardinal == Direction.Right) { offset.X = 14; }
+                else if (cardinal == Direction.Left) { offset.X = -14; }
             }
+
+            #endregion
+
+
+            #region Reward Particles
+
             //place reward particles above actor's head
             else if (Type == ObjType.ParticleRewardGold ||
                 Type == ObjType.ParticleRewardKey ||
@@ -135,6 +145,9 @@ namespace DungeonRun
                 Type == ObjType.ParticleRewardHeartPiece ||
                 Type == ObjType.ParticleFairy)
             { offset.Y = -14; }
+
+            #endregion
+
 
             //call the real SpawnProjectile method
             SpawnProjectile(Type, 

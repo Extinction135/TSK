@@ -103,7 +103,7 @@ namespace DungeonRun
             goldDisplay.Move(menuItems[4]);
             //initially display the player's gold
             goldTracker = PlayerData.saveData.gold;
-            UpdateGoldAmount();
+            goldDisplay.UpdateAmount(goldTracker);
         }
 
 
@@ -115,12 +115,6 @@ namespace DungeonRun
                 MenuItemFunctions.SetMenuItemData(Type, Item);
                 Item.compSprite.scale = 2.0f;
             }
-        }
-
-        public static void UpdateGoldAmount()
-        {   //display the gold amount with a prefix of 0, if needed
-            if (goldTracker < 10) { goldDisplay.amount.text = "0" + goldTracker; }
-            else { goldDisplay.amount.text = "" + goldTracker; }
         }
 
         public static void UpdateLoadout()
@@ -158,7 +152,7 @@ namespace DungeonRun
             {   //count the gold amount up or down
                 if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
                 else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
-                UpdateGoldAmount();
+                goldDisplay.UpdateAmount(goldTracker);
                 //randomly play the gold sound effect
                 if (GetRandom.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
             }

@@ -617,6 +617,7 @@ namespace DungeonRun
             {   //add all the items from the main sheet
                 objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //boomerang
                 objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0)); //bomb
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 7, 0, 0)); //bombs
             }
             else if (VendorType == ObjType.VendorPotions)
             {   //add all the potions from the main sheet
