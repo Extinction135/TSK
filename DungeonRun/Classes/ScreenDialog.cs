@@ -62,7 +62,7 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             MenuWidgetDialog.Update();
-            DungeonFunctions.dungeonScreen.Update(GameTime);
+            Functions_Dungeon.dungeonScreen.Update(GameTime);
         }
 
         public override void Draw(GameTime GameTime)

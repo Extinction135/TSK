@@ -285,7 +285,7 @@ namespace DungeonRun
 
             //only draw the selection box if the screen has opened completely
             if (displayState == DisplayState.Opened)
-            { DrawFunctions.Draw(selectionBox); }
+            { Functions_Draw.Draw(selectionBox); }
             ScreenManager.spriteBatch.End();
         }
 

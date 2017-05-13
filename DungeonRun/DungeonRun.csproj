@@ -106,19 +106,19 @@
     </Compile>
     <Compile Include="Classes\Functions_Battle.cs" />
     <Compile Include="Classes\Camera2D.cs" />
-    <Compile Include="Classes\ComponentFunctions.cs" />
+    <Compile Include="Classes\Functions_Component.cs" />
     <Compile Include="Classes\Components.cs" />
-    <Compile Include="Classes\DebugFunctions.cs" />
+    <Compile Include="Classes\Functions_Debug.cs" />
     <Compile Include="Classes\DebugInfo.cs" />
     <Compile Include="Classes\DebugMenu.cs" />
-    <Compile Include="Classes\DirectionFunctions.cs" />
-    <Compile Include="Classes\DrawFunctions.cs" />
-    <Compile Include="Classes\DungeonFunctions.cs" />
+    <Compile Include="Classes\Functions_Direction.cs" />
+    <Compile Include="Classes\Functions_Draw.cs" />
+    <Compile Include="Classes\Functions_Dungeon.cs" />
     <Compile Include="Classes\DungeonRecord.cs" />
     <Compile Include="Classes\Enumerators.cs" />
     <Compile Include="Classes\GameObjectAnimListManager.cs" />
     <Compile Include="Classes\GameObjectFunctions.cs" />
-    <Compile Include="Classes\CollisionFunctions.cs" />
+    <Compile Include="Classes\Functions_Collision.cs" />
     <Compile Include="Classes\GetRandom.cs" />
     <Compile Include="Classes\Input.cs" />
     <Compile Include="Classes\InteractionFunctions.cs" />

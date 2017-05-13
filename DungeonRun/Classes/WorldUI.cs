@@ -239,21 +239,21 @@ namespace DungeonRun
 
         public static void Draw()
         {
-            for (i = 0; i < hearts.Count; i++) { DrawFunctions.Draw(hearts[i]); }
-            for (i = 0; i < meterPieces.Count; i++) { DrawFunctions.Draw(meterPieces[i]); }
+            for (i = 0; i < hearts.Count; i++) { Functions_Draw.Draw(hearts[i]); }
+            for (i = 0; i < meterPieces.Count; i++) { Functions_Draw.Draw(meterPieces[i]); }
             for (i = 0; i < 4; i++)
             {
-                DrawFunctions.Draw(weaponBkg[i]);
-                DrawFunctions.Draw(itemBkg[i]);
+                Functions_Draw.Draw(weaponBkg[i]);
+                Functions_Draw.Draw(itemBkg[i]);
             }
-            DrawFunctions.Draw(currentWeapon.compSprite);
-            DrawFunctions.Draw(currentItem.compSprite);
+            Functions_Draw.Draw(currentWeapon.compSprite);
+            Functions_Draw.Draw(currentItem.compSprite);
             if (!Flags.Release)
             {
                 frametime.text = "U:" + Timing.updateTime.Milliseconds;
                 frametime.text += "\nD:" + Timing.drawTime.Milliseconds;
                 frametime.text += "\nT:" + Timing.totalTime.Milliseconds;
-                DrawFunctions.Draw(frametime);
+                Functions_Draw.Draw(frametime);
             }
         }
 

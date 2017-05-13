@@ -131,13 +131,8 @@ namespace DungeonRun
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
 
-
-
-
-
-
             //align the bomb amount display to the bomb item
-            ComponentFunctions.Move(bombsDisplay, menuItems[1]);
+            Functions_Component.Move(bombsDisplay, menuItems[1]);
             bombsDisplay.visible = false;
 
 
@@ -149,7 +144,7 @@ namespace DungeonRun
             {   
                 MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
                 //if hero has bombs, display the number of bombs + draw display amount
-                ComponentFunctions.UpdateAmount(bombsDisplay, PlayerData.saveData.bombsCurrent);
+                Functions_Component.UpdateAmount(bombsDisplay, PlayerData.saveData.bombsCurrent);
                 bombsDisplay.visible = true;
             }
             
@@ -217,15 +212,15 @@ namespace DungeonRun
 
         public static void Draw()
         {
-            DrawFunctions.Draw(window);
-            for (i = 0; i < dividers.Count; i++) { DrawFunctions.Draw(dividers[i]); }
+            Functions_Draw.Draw(window);
+            for (i = 0; i < dividers.Count; i++) { Functions_Draw.Draw(dividers[i]); }
             if (window.interior.displayState == DisplayState.Opened)
             {
                 for (i = 0; i < labels.Count; i++)
-                { DrawFunctions.Draw(labels[i]); }
+                { Functions_Draw.Draw(labels[i]); }
                 for (i = 0; i < menuItems.Count; i++)
-                { DrawFunctions.Draw(menuItems[i].compSprite); }
-                if (bombsDisplay.visible) { DrawFunctions.Draw(bombsDisplay); }
+                { Functions_Draw.Draw(menuItems[i].compSprite); }
+                if (bombsDisplay.visible) { Functions_Draw.Draw(bombsDisplay); }
             }
         }
 

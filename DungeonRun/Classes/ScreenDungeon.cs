@@ -32,8 +32,8 @@ namespace DungeonRun
             overlay = new Rectangle(0, 0, 640, 360);
 
             Pool.Initialize();
-            DungeonFunctions.Initialize(this);
-            DungeonFunctions.BuildDungeon(DungeonType.Shop);
+            Functions_Dungeon.Initialize(this);
+            Functions_Dungeon.BuildDungeon(DungeonType.Shop);
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
 
             //open the screen
@@ -65,7 +65,7 @@ namespace DungeonRun
             if (Flags.Debug)
             {   //if the game is in debug mode, dump info on clicked actor/obj
                 if (Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                { DebugFunctions.Inspect(); }
+                { Functions_Debug.Inspect(); }
                 //toggle the paused boolean
                 if (Input.IsNewKeyPress(Keys.Space))
                 { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
@@ -136,7 +136,7 @@ namespace DungeonRun
                 if (displayState != DisplayState.Closed)
                 {   //update and move actors, objects, projectiles, and camera
                     PoolFunctions.Update();
-                    CollisionFunctions.CheckDungeonRoomCollisions();
+                    Functions_Collision.CheckDungeonRoomCollisions();
                     WorldUI.Update();
                     //track camera to hero
                     Camera2D.targetPosition = Pool.hero.compSprite.position;
@@ -165,9 +165,9 @@ namespace DungeonRun
             PoolFunctions.Draw();
             if (Flags.DrawCollisions)
             {
-                DrawFunctions.Draw(Input.cursorColl);
-                DrawFunctions.Draw(DungeonFunctions.dungeon);
-                DrawFunctions.Draw(InteractionFunctions.interactionRec);
+                Functions_Draw.Draw(Input.cursorColl);
+                Functions_Draw.Draw(Functions_Dungeon.dungeon);
+                Functions_Draw.Draw(InteractionFunctions.interactionRec);
             }
             ScreenManager.spriteBatch.End();
 

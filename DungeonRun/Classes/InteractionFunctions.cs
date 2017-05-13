@@ -151,13 +151,13 @@ namespace DungeonRun
                     {
                         GameObjectFunctions.SpawnProjectile(ObjType.ParticleRewardKey, Actor);
                         Assets.Play(Assets.sfxKeyPickup);
-                        DungeonFunctions.dungeon.bigKey = true;
+                        Functions_Dungeon.dungeon.bigKey = true;
                     }
                     else if (Obj.type == ObjType.ChestMap)
                     {
                         GameObjectFunctions.SpawnProjectile(ObjType.ParticleRewardMap, Actor);
                         Assets.Play(Assets.sfxReward);
-                        DungeonFunctions.dungeon.map = true;
+                        Functions_Dungeon.dungeon.map = true;
                     }
                     else if (Obj.type == ObjType.ChestHeartPiece)
                     {
@@ -204,7 +204,7 @@ namespace DungeonRun
             {
                 if (Obj.type == ObjType.DoorBoss)
                 {   //only hero can open boss door, and must have dungeon key
-                    if (DungeonFunctions.dungeon.bigKey && Actor == Pool.hero)
+                    if (Functions_Dungeon.dungeon.bigKey && Actor == Pool.hero)
                     {
                         GameObjectFunctions.SetType(Obj, ObjType.DoorOpen);
                         Assets.Play(Assets.sfxDoorOpen);
@@ -217,11 +217,11 @@ namespace DungeonRun
                 }
                 else if (Obj.type == ObjType.Exit && Actor == Pool.hero)
                 {   //only hero can exit dungeon
-                    if (DungeonFunctions.dungeonScreen.displayState == DisplayState.Opened)
+                    if (Functions_Dungeon.dungeonScreen.displayState == DisplayState.Opened)
                     {   //if dungeon screen is open, close it, perform interaction ONCE
                         DungeonRecord.beatDungeon = false;
-                        DungeonFunctions.dungeonScreen.exitAction = ExitAction.Overworld;
-                        DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
+                        Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Overworld;
+                        Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
                         //stop movement, prevents overlap with exit
                         MovementFunctions.StopMovement(Pool.hero.compMove);
                         Assets.Play(Assets.sfxDoorOpen);
@@ -248,7 +248,7 @@ namespace DungeonRun
                 if (Obj.type == ObjType.BlockSpikes)
                 {   //damage actor and push in opposite direction relative to spike block
                     Functions_Battle.Damage(Actor, 1, 10.0f,
-                        DirectionFunctions.GetRelativeDirection(Obj, Actor));
+                        Functions_Direction.GetRelativeDirection(Obj, Actor));
                 }
                 else if (Obj.type == ObjType.ConveyorBelt)
                 {   //push actor in belt's direction
@@ -257,7 +257,7 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.Bumper)
                 {
                     MovementFunctions.Push(Actor.compMove,
-                        DirectionFunctions.GetRelativeDirection(Obj, Actor),
+                        Functions_Direction.GetRelativeDirection(Obj, Actor),
                         10.0f);
 
                     //actors can collide with bumper twice per frame, due to per axis collision checks
@@ -300,7 +300,7 @@ namespace DungeonRun
 
                 else if (ObjA.type == ObjType.BlockSpikes)
                 {   //flip the object's direction to the opposite direction
-                    ObjA.compMove.direction = DirectionFunctions.GetOppositeDirection(ObjA.compMove.direction);
+                    ObjA.compMove.direction = Functions_Direction.GetOppositeDirection(ObjA.compMove.direction);
                     //push the object in it's new direction, out of this collision
                     MovementFunctions.Push(ObjA.compMove, ObjA.compMove.direction, 5.0f);
                     Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect

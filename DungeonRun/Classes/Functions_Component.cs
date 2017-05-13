@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class ComponentFunctions
+    public static class Functions_Component
     {
         static int textWidth;
 

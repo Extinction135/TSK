@@ -132,7 +132,7 @@ namespace DungeonRun
             {
                 if (Pool.objPool[Pool.counter].active)
                 {   //align the sprite and collision components to the move component
-                    ComponentFunctions.Align(
+                    Functions_Component.Align(
                         Pool.objPool[Pool.counter].compMove, 
                         Pool.objPool[Pool.counter].compSprite, 
                         Pool.objPool[Pool.counter].compCollision);
@@ -213,7 +213,7 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
             {
                 if (Pool.floorPool[Pool.counter].visible)
-                { DrawFunctions.Draw(Pool.floorPool[Pool.counter]); }
+                { Functions_Draw.Draw(Pool.floorPool[Pool.counter]); }
             }
 
             //obj pool
@@ -240,8 +240,8 @@ namespace DungeonRun
             //match hero shadow to hero position + offset, then draw it
             Pool.heroShadow.position.X = Pool.hero.compSprite.position.X;
             Pool.heroShadow.position.Y = Pool.hero.compSprite.position.Y + 5;
-            ComponentFunctions.SetZdepth(Pool.heroShadow);
-            DrawFunctions.Draw(Pool.heroShadow);
+            Functions_Component.SetZdepth(Pool.heroShadow);
+            Functions_Draw.Draw(Pool.heroShadow);
         }
 
     }

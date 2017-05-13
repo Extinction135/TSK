@@ -101,8 +101,8 @@ namespace DungeonRun
 
             //display the player's gold, place gold display with gold menuItem
             goldTracker = PlayerData.saveData.gold;
-            ComponentFunctions.UpdateAmount(goldDisplay, goldTracker);
-            ComponentFunctions.Move(goldDisplay, menuItems[4]);
+            Functions_Component.UpdateAmount(goldDisplay, goldTracker);
+            Functions_Component.Move(goldDisplay, menuItems[4]);
         }
 
 
@@ -127,10 +127,10 @@ namespace DungeonRun
             //set the gold, hearts, and dungeon items
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
             MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
-            if (DungeonFunctions.dungeon.map) //if player found the map, display it
+            if (Functions_Dungeon.dungeon.map) //if player found the map, display it
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
             else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }
-            if (DungeonFunctions.dungeon.bigKey) //if player found the key, display it
+            if (Functions_Dungeon.dungeon.bigKey) //if player found the key, display it
             { MenuItemFunctions.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
             else { MenuItemFunctions.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
         }
@@ -151,7 +151,7 @@ namespace DungeonRun
             {   //count the gold amount up or down
                 if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
                 else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
-                ComponentFunctions.UpdateAmount(goldDisplay, goldTracker);
+                Functions_Component.UpdateAmount(goldDisplay, goldTracker);
                 //randomly play the gold sound effect
                 if (GetRandom.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
             }
@@ -159,12 +159,12 @@ namespace DungeonRun
 
         public static void Draw()
         {
-            DrawFunctions.Draw(window);
+            Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
                 for (i = 0; i < menuItems.Count; i++)
-                { DrawFunctions.Draw(menuItems[i].compSprite); }
-                DrawFunctions.Draw(goldDisplay);
+                { Functions_Draw.Draw(menuItems[i].compSprite); }
+                Functions_Draw.Draw(goldDisplay);
             }
         }
 

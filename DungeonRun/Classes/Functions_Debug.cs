@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class DebugFunctions
+    public static class Functions_Debug
     {
         public static string output;
         static int i;
@@ -146,6 +146,34 @@ namespace DungeonRun
             output += "\tflipHorizontally:" + Sprite.flipHorizontally;
             output += "\tvisible:" + Sprite.visible;
             output += "\torigin:" + Sprite.origin.X + ", " + Sprite.origin.Y;
+            Debug.WriteLine(output);
+        }
+
+        public static void Inspect(SaveData SaveData)
+        {
+            output = "\n\n---- SAVE DATA DUMP ----";
+            output += "\n  name: " + PlayerData.saveData.name;
+            output += "\n  gold: " + PlayerData.saveData.gold;
+            output += "\n  heart pieces: " + PlayerData.saveData.heartPieces;
+            output += "\n  magic: " + PlayerData.saveData.magicCurrent + " / " + PlayerData.saveData.magicMax;
+            output += "\n  bombs: " + PlayerData.saveData.bombsCurrent + " / " + PlayerData.saveData.bombsMax;
+
+            output += "\n  -- Items --"; ;
+            output += "\n  has boomerang: " + PlayerData.saveData.itemBoomerang;
+
+            output += "\n  has bottle1: " + PlayerData.saveData.bottle1;
+            output += "\n  has bottle2: " + PlayerData.saveData.bottle2;
+            output += "\n  has bottle3: " + PlayerData.saveData.bottle3;
+
+            output += "\n  has bottleHealth: " + PlayerData.saveData.bottleHealth;
+            output += "\n  has bottleMagic: " + PlayerData.saveData.bottleMagic;
+            output += "\n  has bottleFairy: " + PlayerData.saveData.bottleFairy;
+
+            output += "\n  has magicFireball: " + PlayerData.saveData.magicFireball;
+            output += "\n  has weaponBow: " + PlayerData.saveData.weaponBow;
+            output += "\n  has armorPlatemail: " + PlayerData.saveData.armorPlatemail;
+            output += "\n  has equipmentRing: " + PlayerData.saveData.equipmentRing;
+
             Debug.WriteLine(output);
         }
 

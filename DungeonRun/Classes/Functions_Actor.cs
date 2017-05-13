@@ -50,8 +50,8 @@ namespace DungeonRun
                 else
                 {   //player has died, failed the dungeon
                     DungeonRecord.beatDungeon = false;
-                    DungeonFunctions.dungeonScreen.exitAction = ExitAction.Summary;
-                    DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
+                    Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Summary;
+                    Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
                     //we could track hero deaths here
                     Assets.Play(Assets.sfxHeroKill);
                 }
@@ -77,8 +77,8 @@ namespace DungeonRun
             else if (Actor.type == ActorType.Boss)
             {
                 DungeonRecord.beatDungeon = true; //player has beat the dungeon
-                DungeonFunctions.dungeonScreen.exitAction = ExitAction.Summary;
-                DungeonFunctions.dungeonScreen.displayState = DisplayState.Closing;
+                Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Summary;
+                Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
 
@@ -92,7 +92,7 @@ namespace DungeonRun
 
 
             //sort actor for last time
-            ComponentFunctions.SetZdepth(Actor.compSprite);
+            Functions_Component.SetZdepth(Actor.compSprite);
         }
 
         public static void SetCollisionRec(Actor Actor)
@@ -187,8 +187,8 @@ namespace DungeonRun
 
             Functions_ActorAnimationList.SetAnimationGroup(Actor);
             Functions_ActorAnimationList.SetAnimationDirection(Actor);
-            ComponentFunctions.UpdateCellSize(Actor.compSprite);
-            ComponentFunctions.CenterOrigin(Actor.compSprite);
+            Functions_Component.UpdateCellSize(Actor.compSprite);
+            Functions_Component.CenterOrigin(Actor.compSprite);
         }
 
 
@@ -215,7 +215,7 @@ namespace DungeonRun
                 //check states
                 if (Actor.state == ActorState.Interact)
                 {   //if there is an object to interact with, interact with it
-                    if (CollisionFunctions.CheckInteractionRecCollisions()) {}
+                    if (Functions_Collision.CheckInteractionRecCollisions()) {}
                     else { Actor.state = ActorState.Idle; } //no interaction
                 }
                 else if (Actor.state == ActorState.Dash)
@@ -311,8 +311,8 @@ namespace DungeonRun
 
         public static void Draw(Actor Actor)
         {
-            DrawFunctions.Draw(Actor.compSprite);
-            if (Flags.DrawCollisions) { DrawFunctions.Draw(Actor.compCollision); }
+            Functions_Draw.Draw(Actor.compSprite);
+            if (Flags.DrawCollisions) { Functions_Draw.Draw(Actor.compCollision); }
         }
 
     }

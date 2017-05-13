@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class DirectionFunctions
+    public static class Functions_Direction
     {
 
         public static Direction GetCardinalDirection(Direction Direction)

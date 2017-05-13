@@ -39,8 +39,8 @@ namespace DungeonRun
         public static void Move(Actor Actor)
         {
             ProjectMovement(Actor.compMove);
-            CollisionFunctions.CheckCollisions(Actor);
-            ComponentFunctions.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
+            Functions_Collision.CheckCollisions(Actor);
+            Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
         }
 
         public static void Move(GameObject Obj)
@@ -48,9 +48,9 @@ namespace DungeonRun
             if (Obj.group != ObjGroup.Particle)
             {
                 ProjectMovement(Obj.compMove);
-                CollisionFunctions.CheckCollisions(Obj);
+                Functions_Collision.CheckCollisions(Obj);
             }
-            ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
+            Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
         public static void ProjectMovement(ComponentMovement Move)

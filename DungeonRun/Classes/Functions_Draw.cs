@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class DrawFunctions
+    public static class Functions_Draw
     {
 
         public static void Draw(Dungeon Dungeon)

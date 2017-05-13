@@ -117,13 +117,13 @@ namespace DungeonRun
 
         public static void Draw()
         {
-            DrawFunctions.Draw(window);
+            Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
                 for (i = 0; i < menuItems.Count; i++)
-                { DrawFunctions.Draw(menuItems[i].compSprite); }
+                { Functions_Draw.Draw(menuItems[i].compSprite); }
                 for (i = 0; i < labels.Count; i++)
-                { DrawFunctions.Draw(labels[i]); }
+                { Functions_Draw.Draw(labels[i]); }
             }
         }
 

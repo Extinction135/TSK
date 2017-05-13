@@ -44,7 +44,7 @@ namespace DungeonRun
         public static void GetCurrentLocationName(MenuItem Location)
         {   //get the location name, center it to the window/screen
             selectedLocation.text = Location.name;
-            ComponentFunctions.CenterText(selectedLocation, selectedLocation.font, 320);
+            Functions_Component.CenterText(selectedLocation, selectedLocation.font, 320);
         }
 
 
@@ -251,8 +251,8 @@ namespace DungeonRun
             {
                 ScreenManager.RemoveScreen(this);
                 if (currentlySelected == Shop)
-                { DungeonFunctions.BuildDungeon(DungeonType.Shop); }
-                else { DungeonFunctions.BuildDungeon(DungeonType.CursedCastle); }
+                { Functions_Dungeon.BuildDungeon(DungeonType.Shop); }
+                else { Functions_Dungeon.BuildDungeon(DungeonType.CursedCastle); }
             }
 
             #endregion
@@ -274,13 +274,13 @@ namespace DungeonRun
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
-            DrawFunctions.Draw(window);
+            Functions_Draw.Draw(window);
 
             if (window.interior.displayState == DisplayState.Opened || window.interior.displayState == DisplayState.Closing)
             {
-                DrawFunctions.Draw(map);
-                DrawFunctions.Draw(selectedLocation);
-                DrawFunctions.Draw(selectionBox);
+                Functions_Draw.Draw(map);
+                Functions_Draw.Draw(selectedLocation);
+                Functions_Draw.Draw(selectionBox);
             }
 
             //draw the overlay rec last

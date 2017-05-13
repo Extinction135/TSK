@@ -73,11 +73,11 @@ namespace DungeonRun
 
         public static void Draw()
         {
-            DrawFunctions.Draw(window);
+            Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
-                DrawFunctions.Draw(speaker.compSprite);
-                DrawFunctions.Draw(dialog);
+                Functions_Draw.Draw(speaker.compSprite);
+                Functions_Draw.Draw(dialog);
             }
         }
 

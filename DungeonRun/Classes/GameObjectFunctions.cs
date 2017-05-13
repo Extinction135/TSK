@@ -99,7 +99,7 @@ namespace DungeonRun
             //wraps the SpawnProjectile() method below
             //applies projectile offset relative to Actor based on Type
             offset.X = 0; offset.Y = 0;
-            cardinal = DirectionFunctions.GetCardinalDirection(Actor.direction);
+            cardinal = Functions_Direction.GetCardinalDirection(Actor.direction);
 
             //center horizontally, place near actor's feet
             if (Type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
@@ -161,8 +161,8 @@ namespace DungeonRun
             //convert projectile's directions to cardinal
             if (Type == ObjType.ProjectileFireball || Type == ObjType.ProjectileSword)
             {
-                obj.direction = DirectionFunctions.GetCardinalDirection(Direction);
-                obj.compMove.direction = DirectionFunctions.GetCardinalDirection(Direction);
+                obj.direction = Functions_Direction.GetCardinalDirection(Direction);
+                obj.compMove.direction = Functions_Direction.GetCardinalDirection(Direction);
             }
 
             //set stationary weapon's collision recs, now that they have proper direction
@@ -607,8 +607,8 @@ namespace DungeonRun
 
             SetRotation(Obj);
             GameObjectAnimListManager.SetAnimationList(Obj); //set obj animation list based on type
-            ComponentFunctions.UpdateCellSize(Obj.compSprite);
-            ComponentFunctions.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
+            Functions_Component.UpdateCellSize(Obj.compSprite);
+            Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
 
@@ -630,9 +630,9 @@ namespace DungeonRun
 
         public static void Draw(GameObject Obj)
         {
-            DrawFunctions.Draw(Obj.compSprite);
+            Functions_Draw.Draw(Obj.compSprite);
             if (Flags.DrawCollisions)
-            { DrawFunctions.Draw(Obj.compCollision); }  
+            { Functions_Draw.Draw(Obj.compCollision); }  
         }
 
     }

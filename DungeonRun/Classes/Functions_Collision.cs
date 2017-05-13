@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class CollisionFunctions
+    public static class Functions_Collision
     {
 
         static int i;
@@ -24,15 +24,15 @@ namespace DungeonRun
 
         public static void CheckDungeonRoomCollisions()
         {
-            for (i = 0; i < DungeonFunctions.dungeon.rooms.Count; i++)
+            for (i = 0; i < Functions_Dungeon.dungeon.rooms.Count; i++)
             {   //if the current room is not the room we are checking against, then continue
-                if (DungeonFunctions.currentRoom.id != DungeonFunctions.dungeon.rooms[i].id)
+                if (Functions_Dungeon.currentRoom.id != Functions_Dungeon.dungeon.rooms[i].id)
                 {   //if hero collides with this room rec, set it to be currentRoom, build the room
-                    if (Pool.hero.compCollision.rec.Intersects(DungeonFunctions.dungeon.rooms[i].collision.rec))
+                    if (Pool.hero.compCollision.rec.Intersects(Functions_Dungeon.dungeon.rooms[i].collision.rec))
                     {
-                        DungeonFunctions.currentRoom = DungeonFunctions.dungeon.rooms[i];
-                        DungeonFunctions.BuildRoom(DungeonFunctions.dungeon.rooms[i]);
-                        if (DungeonFunctions.currentRoom.type == RoomType.Boss)
+                        Functions_Dungeon.currentRoom = Functions_Dungeon.dungeon.rooms[i];
+                        Functions_Dungeon.BuildRoom(Functions_Dungeon.dungeon.rooms[i]);
+                        if (Functions_Dungeon.currentRoom.type == RoomType.Boss)
                         {   //if hero just entered the boss room, play the boss intro & music
                             Assets.Play(Assets.sfxBossIntro);
                             MusicFunctions.PlayMusic(Music.Boss);

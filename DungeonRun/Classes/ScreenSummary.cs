@@ -117,8 +117,8 @@ namespace DungeonRun
             rightTitle.position.X = rightTitleStartPos.X;
             rightTitle.position.Y = rightTitleStartPos.Y;
             //update the cellsize for the title components, since we changed them
-            ComponentFunctions.UpdateCellSize(leftTitle);
-            ComponentFunctions.UpdateCellSize(rightTitle);
+            Functions_Component.UpdateCellSize(leftTitle);
+            Functions_Component.UpdateCellSize(rightTitle);
 
             //play title music
             MusicFunctions.PlayMusic(Music.Title);
@@ -272,11 +272,11 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            DrawFunctions.Draw(leftTitle);
-            DrawFunctions.Draw(rightTitle);
-            DrawFunctions.Draw(summaryData);
-            DrawFunctions.Draw(summaryText);
-            DrawFunctions.Draw(continueText);
+            Functions_Draw.Draw(leftTitle);
+            Functions_Draw.Draw(rightTitle);
+            Functions_Draw.Draw(summaryData);
+            Functions_Draw.Draw(summaryText);
+            Functions_Draw.Draw(continueText);
             ScreenManager.spriteBatch.End();
         }
 
