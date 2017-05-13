@@ -274,6 +274,7 @@ namespace DungeonRun
                 Type == ObjType.WallInteriorCorner || Type == ObjType.WallExteriorCorner ||
                 Type == ObjType.WallPillar || Type == ObjType.WallDecoration)
             {
+                Obj.compSprite.zOffset = -32;
                 Obj.group = ObjGroup.Wall;
             }
             else if (Type == ObjType.PitTop)
@@ -489,7 +490,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileBomb)
             {
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = -4; //sort to floor
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;

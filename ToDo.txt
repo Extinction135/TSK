@@ -55,22 +55,14 @@ push new release on the 16th
 todo:
 
 
-7
+6
 
 
 
-
-added bomb drop sound effect to content project, built.
-added sfxBombDrop to Assets to load bomb drop sound effect.
-updated ItemFunctions.UseItem() bomb codepath to call the new bomb drop sfx.
-updated how bomb projectile is aligned to actor that 'casted' it.
-
-refactored InteractionFunctions.Interact() to handle bomb projectile interaction.
-did some refactoring that cleaned up the class as well.
-playtested, working, but with some bugs.
-
-updated Assets.sfxBombDrop to actually load the correct sound effect file. Duh.
-playtested, working as expected.
+fixed a bug where the hero's item wasn't being cleared when the last bomb was dropped.
+updated GameObj.SetType() to sort walls with a -32 zOffset.
+updated the zOffset for bombs to properly sort them to the floor.
+playtested, bombs now sort properly in relation to the walls and hero.
 
 
 
@@ -79,7 +71,6 @@ playtested, working as expected.
 
 
 
-bombs should sort over walls, so they need a higher offset value
 
 
 handle the bomb explosion
