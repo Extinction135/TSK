@@ -55,20 +55,11 @@ push new release on the 16th
 todo:
 
 
-6
+5
 
 
 
-fixed a bug where the hero's item wasn't being cleared when the last bomb was dropped.
-updated GameObj.SetType() to sort walls with a -32 zOffset.
-updated the zOffset for bombs to properly sort them to the floor.
-playtested, bombs now sort properly in relation to the walls and hero.
-
-
-
-
-
-
+added code to GameObjFunctions.HandleDeathEvent() for bomb projectile.
 
 
 
@@ -79,6 +70,7 @@ need explosion sound effect
 
 
 
+the projectile's death event
 
 
 

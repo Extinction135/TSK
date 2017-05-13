@@ -197,18 +197,47 @@ namespace DungeonRun
 
         public static void HandleBirthEvent(GameObject Obj)
         {   //this targets projectiles/particles only
-            if (Obj.type == ObjType.ProjectileFireball)
+            if (Obj.type == ObjType.ProjectileBomb)
+            {
+                SpawnProjectile(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+                Assets.Play(Assets.sfxBombDrop);
+            }
+
+            else if (Obj.type == ObjType.ProjectileFireball)
             {
                 SpawnProjectile(ObjType.ParticleSmokePuff,
                     Obj.compSprite.position.X + 4,
                     Obj.compSprite.position.Y + 4,
                     Direction.None);
+                Assets.Play(Assets.sfxFireballCast);
             }
         }
 
         public static void HandleDeathEvent(GameObject Obj)
         {   //this targets projectiles/particles only
-            if (Obj.type == ObjType.ProjectileFireball)
+
+
+            if (Obj.type == ObjType.ProjectileBomb)
+            {
+                //explode
+                SpawnProjectile(ObjType.ParticleExplosion,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+
+                //create explosion projectile
+                /*
+                SpawnProjectile(ObjType.ParticleFire,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+                */
+                Assets.Play(Assets.sfxExplosion);
+            }
+            else if (Obj.type == ObjType.ProjectileFireball)
             {
                 SpawnProjectile(ObjType.ParticleExplosion,
                     Obj.compSprite.position.X + 0,
@@ -539,7 +568,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = false;
             }
             else if (Type == ObjType.ParticleAttention)
