@@ -132,6 +132,8 @@ namespace DungeonRun
         }
     }
 
+
+    /*
     public class ComponentAmountDisplay
     {   //displays a 2 digit amount against a black background
         public ComponentText amount;
@@ -144,20 +146,12 @@ namespace DungeonRun
             bkg = new Rectangle(new Point(X, Y), new Point(9, 7));
             visible = true;
         }
-        public void Move(MenuItem Item)
-        {   //place amount display relative to Item
-            amount.position.X = Item.compSprite.position.X - 1;
-            amount.position.Y = Item.compSprite.position.Y - 4;
-            bkg.X = (int)amount.position.X - 1;
-            bkg.Y = (int)amount.position.Y + 4;
-        }
-        public void UpdateAmount(int Value)
-        {   //clip Value to 99
-            if(Value > 99) { Value = 99; }
-            //prefix a 0 if Value is less than 10
-            if (Value < 10) { amount.text = "0" + Value; }
-            else { amount.text = "" + Value; }
-        }
+
+
+
     }
+    */
+
+
 
 }

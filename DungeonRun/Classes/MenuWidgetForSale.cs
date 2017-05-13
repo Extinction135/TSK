@@ -93,7 +93,8 @@ namespace DungeonRun
             //set the menuItem's neighbors
             MenuItemFunctions.SetNeighbors(menuItems, 5);
             //place the amounts relative to the menuItems
-            for (i = 0; i < 10; i++) { amounts[i].Move(menuItems[i]); }
+            for (i = 0; i < 10; i++)
+            { ComponentFunctions.Move(amounts[i], menuItems[i]); }
         }
 
 
@@ -111,7 +112,7 @@ namespace DungeonRun
         public static void DisplayItemCost(MenuItem Item, ComponentAmountDisplay Amount)
         {
             Amount.visible = true;
-            Amount.UpdateAmount(Item.price);
+            ComponentFunctions.UpdateAmount(Amount, Item.price);
         }
 
         public static void SetItemsForSale(ObjType VendorType)

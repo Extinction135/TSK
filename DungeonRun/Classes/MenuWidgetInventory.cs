@@ -137,7 +137,7 @@ namespace DungeonRun
 
 
             //align the bomb amount display to the bomb item
-            bombsDisplay.Move(menuItems[1]);
+            ComponentFunctions.Move(bombsDisplay, menuItems[1]);
             bombsDisplay.visible = false;
 
 
@@ -149,7 +149,7 @@ namespace DungeonRun
             {   
                 MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
                 //if hero has bombs, display the number of bombs + draw display amount
-                bombsDisplay.UpdateAmount(PlayerData.saveData.bombsCurrent);
+                ComponentFunctions.UpdateAmount(bombsDisplay, PlayerData.saveData.bombsCurrent);
                 bombsDisplay.visible = true;
             }
             

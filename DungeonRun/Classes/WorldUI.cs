@@ -227,8 +227,8 @@ namespace DungeonRun
             else { currentItem.compSprite.visible = true; }
 
             //animate (and scale) the current weapon + item
-            AnimationFunctions.Animate(currentWeapon.compAnim, currentWeapon.compSprite);
-            AnimationFunctions.Animate(currentItem.compAnim, currentItem.compSprite);
+            Functions_Animation.Animate(currentWeapon.compAnim, currentWeapon.compSprite);
+            Functions_Animation.Animate(currentItem.compAnim, currentItem.compSprite);
 
             #endregion
 

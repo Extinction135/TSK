@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class ActorFunctions
+    public static class Functions_Actor
     {
 
         public static void SetHitState(Actor Actor)
@@ -185,8 +185,8 @@ namespace DungeonRun
             //set actor's health
             Actor.health = Actor.maxHealth;
 
-            ActorAnimationListManager.SetAnimationGroup(Actor);
-            ActorAnimationListManager.SetAnimationDirection(Actor);
+            Functions_ActorAnimationList.SetAnimationGroup(Actor);
+            Functions_ActorAnimationList.SetAnimationDirection(Actor);
             ComponentFunctions.UpdateCellSize(Actor.compSprite);
             ComponentFunctions.CenterOrigin(Actor.compSprite);
         }
@@ -305,8 +305,8 @@ namespace DungeonRun
 
 
             //set actor animation and direction
-            ActorAnimationListManager.SetAnimationGroup(Actor);
-            ActorAnimationListManager.SetAnimationDirection(Actor);
+            Functions_ActorAnimationList.SetAnimationGroup(Actor);
+            Functions_ActorAnimationList.SetAnimationDirection(Actor);
         }
 
         public static void Draw(Actor Actor)

@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class BattleFunctions
+    public static class Functions_Battle
     {
 
         public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
@@ -28,7 +28,7 @@ namespace DungeonRun
                 if (Actor == Pool.hero) { DungeonRecord.totalDamage += Damage; }
 
                 //set actor into hit state, push actor the projectile's direction
-                ActorFunctions.SetHitState(Actor);
+                Functions_Actor.SetHitState(Actor);
                 MovementFunctions.Push(Actor.compMove, Direction, Force);
             }
         }

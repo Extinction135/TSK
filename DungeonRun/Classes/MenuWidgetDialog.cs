@@ -55,7 +55,7 @@ namespace DungeonRun
         public static void Update()
         {
             window.Update();
-            AnimationFunctions.Animate(speaker.compAnim, speaker.compSprite);
+            Functions_Animation.Animate(speaker.compAnim, speaker.compSprite);
 
             if (window.interior.displayState == DisplayState.Opened)
             {

@@ -48,9 +48,9 @@ namespace DungeonRun
                 //reset the input for hero, map player input to hero
                 Input.ResetInputData(Pool.hero.compInput);
                 Input.MapPlayerInput(Pool.hero.compInput);
-                AiFunctions.SetActorInput(); //set AI for actor
-                AiFunctions.SetActorInput(); //set AI for actor
-                AiFunctions.SetActorInput(); //set AI for actor
+                Functions_Ai.SetActorInput(); //set AI for actor
+                Functions_Ai.SetActorInput(); //set AI for actor
+                Functions_Ai.SetActorInput(); //set AI for actor
 
                 //open the inventory screen if player presses start button
                 if (Input.IsNewButtonPress(Buttons.Start))

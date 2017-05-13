@@ -97,13 +97,12 @@ namespace DungeonRun
             //add the piece counter to the current X frame, pieceCounter will always be less than 5
             menuItems[5].compAnim.currentAnimation = new List<Byte4>
             { new Byte4((byte)(11 + WorldUI.pieceCounter), 6, 0, 0) };
-            AnimationFunctions.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
+            Functions_Animation.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
 
-            //place the goldAmount text component & bkg to the gold menuItem
-            goldDisplay.Move(menuItems[4]);
-            //initially display the player's gold
+            //display the player's gold, place gold display with gold menuItem
             goldTracker = PlayerData.saveData.gold;
-            goldDisplay.UpdateAmount(goldTracker);
+            ComponentFunctions.UpdateAmount(goldDisplay, goldTracker);
+            ComponentFunctions.Move(goldDisplay, menuItems[4]);
         }
 
 
@@ -142,17 +141,17 @@ namespace DungeonRun
         {
             window.Update();
             //scale the loadout sprites back down to 1.0
-            AnimationFunctions.Animate(item.compAnim, item.compSprite);
-            AnimationFunctions.Animate(weapon.compAnim, weapon.compSprite);
-            AnimationFunctions.Animate(armor.compAnim, armor.compSprite);
-            AnimationFunctions.Animate(equipment.compAnim, equipment.compSprite);
+            Functions_Animation.Animate(item.compAnim, item.compSprite);
+            Functions_Animation.Animate(weapon.compAnim, weapon.compSprite);
+            Functions_Animation.Animate(armor.compAnim, armor.compSprite);
+            Functions_Animation.Animate(equipment.compAnim, equipment.compSprite);
             //animate the gold menuItem to grab the player's attention
-            AnimationFunctions.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
+            Functions_Animation.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
             if(goldTracker != PlayerData.saveData.gold)
             {   //count the gold amount up or down
                 if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
                 else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
-                goldDisplay.UpdateAmount(goldTracker);
+                ComponentFunctions.UpdateAmount(goldDisplay, goldTracker);
                 //randomly play the gold sound effect
                 if (GetRandom.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
             }

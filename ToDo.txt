@@ -55,43 +55,37 @@ push new release on the 16th
 todo:
 
 
-2
-
-
-
-added ItemBomb value to ObjType enuerator.
-updated GameObjAnimListManager with anim list for ItemBomb.
-updated GameObjFunctions.SetType() to handle ItemBomb.
-updated SpawnLoot() to drop bombs.
-updated InteractionFunctions.Interact() to pickup bomb items.
-
-playtest.
-
-
-interaction with ItemBomb
-
-
-round of testing + bug fixes
+13
 
 
 
 
-update spawn loot to randomly drop bombs
-which means we need to implement the bomb item consumable object!
+the summary screen should not reward ANY gold at all, if the hero died.
+if the dungeon was beaten, then player should get a boss defeat gold bonus
+this will help keep the economy's gold supply in check
+otherwise, the hero gets gold far too easily
+
+
+
+add arrow consumable item
+include in pickup routines
+add the arrow icon and number to worldUI.
+arrow counter is player specific, stored in saveData
+
+bow and arrow
+create arrow projectile, just like fireball
+create bow weapon, just like sword
+when hero uses bow, an arrow should be created
+we'll need an arrow counter in saveData
+we'll need to display this arrow counter in inventory screen, over the arrow menuItem
+we'll need to have an arrow consumable item sprite
+
+update spawn loot to randomly drop arrows
 
 
 
 
-
-
-
-
-
-
-
-
-could move spawn loot into it's own class LootFunctions.
-would be easier to find later on, it's a little buried in gameObjFunctions.
+REORGANIZATION / REFACTORING SPRINT
 
 we're kinda getting some overlap between particles and projectiles
 it would be nice to consolidate them, if possible
@@ -101,6 +95,12 @@ this is probably part of a refactoring / reorganizing sprint coming up soon.
 
 ObjType.Item should probably be called Obj.Consumable____ -> hearts, magic, gold, bombs
 this helps to seperate the overlap between ObjType.Item and MenuItemType.Item
+
+
+
+
+
+
 
 
 
@@ -127,36 +127,6 @@ at the end of the resurrection state/animation, AI input is continued
 need sound for health + magic potion useage - we're just using pickup sound rn
 
 
-
-
-
-
-
-
-
-
-add arrow consumable item
-include in pickup routines
-add the arrow icon and number to worldUI.
-arrow counter is player specific, stored in saveData
-
-bow and arrow
-create arrow projectile, just like fireball
-create bow weapon, just like sword
-when hero uses bow, an arrow should be created
-we'll need an arrow counter in saveData
-we'll need to display this arrow counter in inventory screen, over the arrow menuItem
-we'll need to have an arrow consumable item sprite
-
-
-
-
-
-
-	
-	
-	
-	
 	
 	
 	
@@ -165,17 +135,15 @@ we'll need to have an arrow consumable item sprite
 	
 implement the following items:
 	item boomerang - just like LttP boomerang
-	
-	weapon bow - creates an arrow projectile, arrows--
 	weapon staff - creates a magic orb projectile, if health is max, has an attack of 0
 	
 	armor chest - prevents damage from enemy arrows, move slower
 	armor cape - move faster
 	armor robe - increases max magic value
 	
-	equipment pearl - 
+	equipment pearl - wtf does this do in game?
 	
-update spawn loot to randomly drop arrows, bombs
+
 
 
 
@@ -204,7 +172,6 @@ we shouldn't be able to select loadout menuItems.
 this solves the scaling issue, and it doesn't make sense to be able to select them
 selecting an item should only equip it
 
-what music do we play for the shop dungeon?
 
 Vendor stalls / layout ++
 	we need vendor 'stalls'
@@ -221,16 +188,20 @@ or other objects, like bumpers and spike blocks
 what if we pushed the hero a little bit in the opposite direction of the fireball being cast?
 this would make it seem like the 'weight' of the fireball pushed him back	
 	
-	
-
-	
-	
-
 instead of an unknown menuItem, we should have a 'purchased' menuItem for items that have been bought	
 	
-REPLACE BOSS MUSIC - ftlog	
+REPLACE BOSS MUSIC	
 re-mix the boss music, making drums much less prominent in the mix
 also, mix the drums down to mono in session - we're getting phase issues when we convert to mono later
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -281,14 +252,7 @@ Version 0.5 Milestones
 Polish
 
 
-	Overworld Screen ++
-	later on, we should scale the selected location up.
-	but, this requires that the location menuItem be drawn.
-	AND it means we'll need sprites for the various locations.
-	we can reuse sprites from the main sheet, but we'll need a dungeon sprite.
-	we can flatten the background graphic into the map texture.
-	that way we have the item/sprite laying over the map texture, simplifying the instances in overworld screen.
-
+	Stats MenuItems? Or Help Menu?
 	we need menuItem sprites for the various stats
 	strength - increases amount of physical damage weapon does
 	magic = increases amount of magical damage magic does
@@ -297,8 +261,7 @@ Polish
 
 	pull all the sound effects from links awakening
 
-	it would be fairly easy to add bow and arrow projectiles for hero
-	we could also add a spear projectile for blob enemies
+	we could add a spear projectile for blob enemies
 
 	it would also be fairly easy to add the flamethrower obj
 	which duplicates the functionality of casting a fireball, just like hero does
@@ -339,7 +302,6 @@ Stuff that needs to be done, but it's not terribly important rn
 	these menuItem neighbors will be set when the inventory screen is created
 	
 	we'll reuse options window on the title screen, and info window
-	inventory screen can be called from overworld screen as well
 
 	we need to implement the empty heart idea in the worldUI
 	this means hero should have values for current hearts, and maximum hearts
@@ -352,28 +314,6 @@ Stuff that needs to be done, but it's not terribly important rn
 
 	add wall pillar decorations when room is built
 	doors should have decorations around them as well
-
-	hero should spin around prior to dying
-	other actors should not do this, they should die immediately
-	the dungeon screen should only start it's fadeIn if the hero is in his final sitting death state
-	it should remain 'playing' while hero spins around
-	
-	we could have the boss drop an EGG projectile, which takes a few frames to 'hatch'
-	when the egg hatches, a blob actor could be placed there
-	this would prevent the blobs from overlapping each other
-	well, actually no - because an actor could overlap the egg as it hatches.. hmmmm
-	
-	create pause screen, can select different weapons / items
-	also displays total gold
-	
-	expand weapons to include moar { sword, bow, staff, axe, net }
-	link pause menu to weapon enum
-	
-	create shop sreen, can purchase different weapons / items for gold
-	implement purchasing routines (gold)
-	
-	play overworld music for overworld screen
-	play shop music for shop screen
 	
 	implement additional weapons / items
 	weapons : { bow, staff, axe }
@@ -385,7 +325,7 @@ Stuff that needs to be done, but it's not terribly important rn
 Maybes / Ideas	
 
 	blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
-	or they can use a weapon, like a stick or gooey hand, iunno
+	or they can use a weapon, like a stick or gooey hand, i dunno
 
 	debugInfo displays the floor index, instead of the # of floor tiles used currently
 	which isn't really a problem, cause we're going to optimize how floors are drawn later on

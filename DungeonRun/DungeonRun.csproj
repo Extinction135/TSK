@@ -97,14 +97,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\ActorFunctions.cs" />
-    <Compile Include="Classes\AnimationFunctions.cs" />
+    <Compile Include="Classes\Functions_Actor.cs" />
+    <Compile Include="Classes\Functions_Animation.cs" />
     <Compile Include="Classes\Assets.cs" />
     <Compile Include="Classes\Actor.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\BattleFunctions.cs" />
+    <Compile Include="Classes\Functions_Battle.cs" />
     <Compile Include="Classes\Camera2D.cs" />
     <Compile Include="Classes\ComponentFunctions.cs" />
     <Compile Include="Classes\Components.cs" />
@@ -146,12 +146,12 @@
     <Compile Include="Classes\ScreenOverworld.cs" />
     <Compile Include="Classes\ScreenSummary.cs" />
     <Compile Include="Classes\ScreenVendor.cs" />
-    <Compile Include="Classes\Structs.cs" />
+    <Compile Include="Classes\Data.cs" />
     <Compile Include="Classes\Screen.cs" />
     <Compile Include="Classes\ScreenManager.cs" />
     <Compile Include="Classes\GameObject.cs" />
-    <Compile Include="Classes\AiFunctions.cs" />
-    <Compile Include="Classes\ActorAnimListManager.cs" />
+    <Compile Include="Classes\Functions_Ai.cs" />
+    <Compile Include="Classes\Functions_ActorAnimationList.cs" />
     <Compile Include="Classes\Timing.cs" />
     <Compile Include="Classes\WorldUI.cs" />
     <Compile Include="GamePage.xaml.cs">

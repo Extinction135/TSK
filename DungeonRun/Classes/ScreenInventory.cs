@@ -256,7 +256,7 @@ namespace DungeonRun
 
             //animate the currently selected menuItem - this scales it back down to 1.0
             if (currentlySelected.type != MenuItemType.InventoryGold) //inventory gold animates already
-            { AnimationFunctions.Animate(currentlySelected.compAnim, currentlySelected.compSprite); }
+            { Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite); }
             //this prevents inventory gold from getting animated twice per frame
         }
 

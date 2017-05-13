@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class ActorAnimationListManager
+    public static class Functions_ActorAnimationList
     {
         //the animationList used by all actors
         public static ActorAnimationList actorAnims;
@@ -57,7 +57,7 @@ namespace DungeonRun
             else if (Actor.direction == Direction.UpLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
         }
 
-        static ActorAnimationListManager()
+        static Functions_ActorAnimationList()
         {
             //create/populate Actor's AnimationList
             actorAnims = new ActorAnimationList();

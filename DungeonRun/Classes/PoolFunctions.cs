@@ -137,7 +137,7 @@ namespace DungeonRun
                         Pool.objPool[Pool.counter].compSprite, 
                         Pool.objPool[Pool.counter].compCollision);
                     //set the current animation frame, check the animation counter
-                    AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim,
+                    Functions_Animation.Animate(Pool.objPool[Pool.counter].compAnim,
                         Pool.objPool[Pool.counter].compSprite);
                     //set the rotation for the obj's sprite
                     GameObjectFunctions.SetRotation(Pool.objPool[Pool.counter]);
@@ -179,8 +179,8 @@ namespace DungeonRun
             {
                 if (Pool.actorPool[Pool.counter].active)
                 {
-                    ActorFunctions.Update(Pool.actorPool[Pool.counter]);
-                    AnimationFunctions.Animate(Pool.actorPool[Pool.counter].compAnim, 
+                    Functions_Actor.Update(Pool.actorPool[Pool.counter]);
+                    Functions_Animation.Animate(Pool.actorPool[Pool.counter].compAnim, 
                         Pool.actorPool[Pool.counter].compSprite);
                 }
             }
@@ -190,7 +190,7 @@ namespace DungeonRun
                 if (Pool.objPool[Pool.counter].active)
                 {   //update only counts the object's lifetime, & no obj's have a lifetime
                     //GameObjectFunctions.Update(Pool.objPool[Pool.counter]);
-                    AnimationFunctions.Animate(Pool.objPool[Pool.counter].compAnim, 
+                    Functions_Animation.Animate(Pool.objPool[Pool.counter].compAnim, 
                         Pool.objPool[Pool.counter].compSprite);
                 }
             }
@@ -200,7 +200,7 @@ namespace DungeonRun
                 if (Pool.projectilePool[Pool.counter].active)
                 {   //all projectiles have a lifetime, so pass them to update
                     GameObjectFunctions.Update(Pool.projectilePool[Pool.counter]);
-                    AnimationFunctions.Animate(Pool.projectilePool[Pool.counter].compAnim, 
+                    Functions_Animation.Animate(Pool.projectilePool[Pool.counter].compAnim, 
                         Pool.projectilePool[Pool.counter].compSprite);
                 }
             }
@@ -234,7 +234,7 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
             {
                 if (Pool.actorPool[Pool.counter].active)
-                { ActorFunctions.Draw(Pool.actorPool[Pool.counter]); }
+                { Functions_Actor.Draw(Pool.actorPool[Pool.counter]); }
             }
 
             //match hero shadow to hero position + offset, then draw it

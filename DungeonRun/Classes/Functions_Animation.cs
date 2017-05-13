@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class AnimationFunctions
+    public static class Functions_Animation
     {
 
         public static void Animate(ComponentAnimation Anim, ComponentSprite Sprite)

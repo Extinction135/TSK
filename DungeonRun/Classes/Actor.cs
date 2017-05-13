@@ -23,7 +23,7 @@ namespace DungeonRun
         public byte lockTotal = 0; //how many frames the actor statelocks for, based on state
         public byte lockCounter = 0; //counts from 0 to lockTotal, then flips stateLocked false
 
-        public ActorAnimationList animList = ActorAnimationListManager.actorAnims; //this never changes
+        public ActorAnimationList animList = Functions_ActorAnimationList.actorAnims; //this never changes
         public AnimationGroup animGroup;
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?
@@ -57,7 +57,7 @@ namespace DungeonRun
             compMove = new ComponentMovement();
             compCollision = new ComponentCollision();
             //set the actor type to hero, teleport to position
-            ActorFunctions.SetType(this, ActorType.Hero);
+            Functions_Actor.SetType(this, ActorType.Hero);
             MovementFunctions.Teleport(this.compMove, compSprite.position.X, compSprite.position.Y);
         }
     }

@@ -74,19 +74,19 @@ namespace DungeonRun
                 if (Obj.type == ObjType.ProjectileBomb) { return; }
                 //swords deal 1 damage, push 6, complete animation
                 else if (Obj.type == ObjType.ProjectileSword)
-                { 
-                    BattleFunctions.Damage(Actor, 1, 6.0f, Obj.direction);
+                {
+                    Functions_Battle.Damage(Actor, 1, 6.0f, Obj.direction);
                 }
                 //fireballs deal 2 damage, push 10, and die
                 else if (Obj.type == ObjType.ProjectileFireball)
-                { 
-                    BattleFunctions.Damage(Actor, 2, 10.0f, Obj.direction);
+                {
+                    Functions_Battle.Damage(Actor, 2, 10.0f, Obj.direction);
                     Obj.lifeCounter = Obj.lifetime;
                 }
                 //explosions deal 2 damage, push 10
                 else if (Obj.type == ObjType.ProjectileExplosion)
                 {
-                    BattleFunctions.Damage(Actor, 2, 10.0f, Obj.direction);
+                    Functions_Battle.Damage(Actor, 2, 10.0f, Obj.direction);
                 }
             }
 
@@ -247,7 +247,7 @@ namespace DungeonRun
             {
                 if (Obj.type == ObjType.BlockSpikes)
                 {   //damage actor and push in opposite direction relative to spike block
-                    BattleFunctions.Damage(Actor, 1, 10.0f,
+                    Functions_Battle.Damage(Actor, 1, 10.0f,
                         DirectionFunctions.GetRelativeDirection(Obj, Actor));
                 }
                 else if (Obj.type == ObjType.ConveyorBelt)

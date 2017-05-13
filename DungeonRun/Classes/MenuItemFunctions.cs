@@ -342,7 +342,7 @@ namespace DungeonRun
             }
 
             //update the sprite's current frame to the animation list set above
-            AnimationFunctions.Animate(MenuItem.compAnim, MenuItem.compSprite);
+            Functions_Animation.Animate(MenuItem.compAnim, MenuItem.compSprite);
         }
 
     }

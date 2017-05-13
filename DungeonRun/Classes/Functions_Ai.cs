@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class AiFunctions
+    public static class Functions_Ai
     {
 
         public static Direction directionToHero;
@@ -57,7 +57,7 @@ namespace DungeonRun
                     Actor actorRef = PoolFunctions.GetActor();
                     if(actorRef != null)
                     {   //actorRef can never be an actor already active in room
-                        ActorFunctions.SetType(actorRef, ActorType.Blob);
+                        Functions_Actor.SetType(actorRef, ActorType.Blob);
                         MovementFunctions.Teleport(actorRef.compMove, actorPos.X, actorPos.Y);
                     }
                 }

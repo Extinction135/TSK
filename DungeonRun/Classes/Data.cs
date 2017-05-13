@@ -217,4 +217,26 @@ namespace DungeonRun
         }
     }
 
+
+
+
+
+    public class ComponentAmountDisplay
+    {   //displays a 2 digit amount against a black background
+        public ComponentText amount;
+        public Rectangle bkg;
+        public Boolean visible;
+        public ComponentAmountDisplay(int Amount, int X, int Y)
+        {
+            amount = new ComponentText(Assets.font, "" + Amount,
+                new Vector2(X, Y), Assets.colorScheme.textLight);
+            bkg = new Rectangle(new Point(X, Y), new Point(9, 7));
+            visible = true;
+        }
+    }
+
+
+
+
+
 }
