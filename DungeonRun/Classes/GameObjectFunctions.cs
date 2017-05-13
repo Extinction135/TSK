@@ -53,23 +53,17 @@ namespace DungeonRun
             Obj.compMove.speed = 0.0f; //assume this object doesn't move
         }
 
-
-        static int dropRate;
-        static int lootType;
-        public static void SpawnLoot(Vector2 Pos)
-        {
-            dropRate = 60; //default 40% chance to drop loot
-            //if hero has ring equipped, increase the loot drop rate to 70%
-            if (Pool.hero.equipment == MenuItemType.EquipmentRing) { dropRate = 30; }
-            //randomly choose a type of loot to spawn
-            lootType = GetRandom.Int(0, 4);
-            //create loot if random value is greater than dropRate
-            if (GetRandom.Int(0, 100) > dropRate)
+        public static void SetRotation(GameObject Obj)
+        {   //sprites are created facing Down, but we will need to set the spite rotation based on direction
+            Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
+            if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
+            else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
+            else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
+            //some objects flip based on their direction
+            if (Obj.type == ObjType.ProjectileSword)
             {
-                if (lootType == 0) { SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
-                else if (lootType == 1) { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
-                else if (lootType == 2) { SpawnProjectile(ObjType.ItemMagic, Pos.X, Pos.Y, Direction.Down); }
-                else if (lootType == 3) { SpawnProjectile(ObjType.ItemBomb, Pos.X, Pos.Y, Direction.Down); }
+                if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
+                { Obj.compSprite.flipHorizontally = true; }
             }
         }
 
@@ -178,20 +172,6 @@ namespace DungeonRun
             MovementFunctions.Teleport(obj.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment as last step
             SetType(obj, Type);
-        }
-
-        public static void SetRotation(GameObject Obj)
-        {   //sprites are created facing Down, but we will need to set the spite rotation based on direction
-            Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
-            if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
-            else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
-            else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
-            //some objects flip based on their direction
-            if (Obj.type == ObjType.ProjectileSword)
-            {
-                if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
-                { Obj.compSprite.flipHorizontally = true; }
-            }
         }
 
 
