@@ -62,13 +62,14 @@ namespace DungeonRun
             //if hero has ring equipped, increase the loot drop rate to 70%
             if (Pool.hero.equipment == MenuItemType.EquipmentRing) { dropRate = 30; }
             //randomly choose a type of loot to spawn
-            lootType = GetRandom.Int(0, 3);
+            lootType = GetRandom.Int(0, 4);
             //create loot if random value is greater than dropRate
             if (GetRandom.Int(0, 100) > dropRate)
             {
                 if (lootType == 0) { SpawnProjectile(ObjType.ItemHeart, Pos.X, Pos.Y, Direction.Down); }
                 else if (lootType == 1) { SpawnProjectile(ObjType.ItemRupee, Pos.X, Pos.Y, Direction.Down); }
                 else if (lootType == 2) { SpawnProjectile(ObjType.ItemMagic, Pos.X, Pos.Y, Direction.Down); }
+                else if (lootType == 3) { SpawnProjectile(ObjType.ItemBomb, Pos.X, Pos.Y, Direction.Down); }
             }
         }
 
@@ -474,7 +475,7 @@ namespace DungeonRun
             #region Items
 
             else if (Type == ObjType.ItemRupee || Type == ObjType.ItemHeart ||
-                Type == ObjType.ItemMagic)
+                Type == ObjType.ItemMagic || Type == ObjType.ItemBomb)
             {
                 Obj.compSprite.cellSize.X = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;

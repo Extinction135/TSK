@@ -170,6 +170,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(20, 1, 0, 0), new Byte4(21, 1, 0, 0), new Byte4(22, 1, 0, 0), new Byte4(23, 1, 0, 0) },
                 //ItemMagic
                 new List<Byte4> { new Byte4(20, 2, 0, 0), new Byte4(21, 2, 0, 0), new Byte4(22, 2, 0, 0), new Byte4(23, 2, 0, 0) },
+                //ItemBomb
+                new List<Byte4> { new Byte4(20, 4, 0, 0), new Byte4(21, 4, 0, 0), new Byte4(22, 4, 0, 0), new Byte4(23, 4, 0, 0) },
 
                 #endregion
 

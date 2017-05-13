@@ -58,7 +58,7 @@ namespace DungeonRun
         VendorAdvertisement,
 
         //Items - picked up by hero
-        ItemRupee, ItemHeart, ItemMagic,
+        ItemRupee, ItemHeart, ItemMagic, ItemBomb,
 
         //Projectiles
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion,

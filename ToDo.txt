@@ -55,15 +55,29 @@ push new release on the 16th
 todo:
 
 
-3
+2
+
+
+
+added ItemBomb value to ObjType enuerator.
+updated GameObjAnimListManager with anim list for ItemBomb.
+updated GameObjFunctions.SetType() to handle ItemBomb.
+updated SpawnLoot() to drop bombs.
+updated InteractionFunctions.Interact() to pickup bomb items.
+
+playtest.
+
+
+interaction with ItemBomb
+
+
+round of testing + bug fixes
 
 
 
 
-removed saveData text field from debug info.
-added 'dump savedata' button to debug menu.
-added routine to dump all of saveData's fields to output window upon button press.
-playtested, working as expected.
+update spawn loot to randomly drop bombs
+which means we need to implement the bomb item consumable object!
 
 
 
@@ -72,6 +86,21 @@ playtested, working as expected.
 
 
 
+
+
+
+
+could move spawn loot into it's own class LootFunctions.
+would be easier to find later on, it's a little buried in gameObjFunctions.
+
+we're kinda getting some overlap between particles and projectiles
+it would be nice to consolidate them, if possible
+then move SpawnProjectile() methods into a ProjectileFunctions class.
+
+this is probably part of a refactoring / reorganizing sprint coming up soon.
+
+ObjType.Item should probably be called Obj.Consumable____ -> hearts, magic, gold, bombs
+this helps to seperate the overlap between ObjType.Item and MenuItemType.Item
 
 
 
@@ -136,7 +165,6 @@ we'll need to have an arrow consumable item sprite
 	
 implement the following items:
 	item boomerang - just like LttP boomerang
-	item bomb - projectile, upon end of life it creates an explosion projectile, bombs--
 	
 	weapon bow - creates an arrow projectile, arrows--
 	weapon staff - creates a magic orb projectile, if health is max, has an attack of 0
