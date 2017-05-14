@@ -33,7 +33,7 @@ namespace DungeonRun
             if (Actor.active == false) { return; }
 
             //reset the target actor's input
-            Input.ResetInputData(Actor.compInput);
+            Functions_Input.ResetInputData(Actor.compInput);
             //reset the direction to hero
             directionToHero = Direction.None;
             //collect the actor and hero sprite positions
@@ -113,7 +113,7 @@ namespace DungeonRun
                 //handle the state where the hero is dead
                 if (Pool.hero.state == ActorState.Dead)
                 {   //reset AI input, randomly move + dash
-                    Input.ResetInputData(Actor.compInput);
+                    Functions_Input.ResetInputData(Actor.compInput);
                     Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                     if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
                 }

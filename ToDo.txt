@@ -55,13 +55,38 @@ push new release on the 16th
 todo:
 
 
-9
+8
 
 
-changed SaveData to be a class instead of a struct.
-changed GetRandom.cs to Functions_Random.cs, updated various codepaths.
-moved Pool class into Data.cs. Removed Pool.cs file.
-moved Timing class into Data.cs. Removed Timing.cs file.
+removed the constructor from SaveData, moved initial values into the field declarations (why? less code).
+cleaned up GameObject's constructor a little bit, but not co,pletely.
+
+split Input.cs into Data.Input class and Functions_Input class.
+removed Input.cs. updated various paths to use the new Functions_Input class.
+playtested, working normally.
+
+
+
+
+
+
+
+
+
+playerData.Save() and Load() should not exist in the PlayerData class.
+how about Functions_SaveLoad.cs ????
+
+
+
+
+BUT ALSO
+because we're using classes, we don't really need a constructor
+we can set the initial values for data fields when we declare them
+which means less code overall
+
+
+
+
 
 
 
@@ -81,17 +106,7 @@ so is worldUI
 
 
 
-Input
 
-input needs to be seperated into data & functions
-functions go into Functions_Input
-data goes into Data.cs
-we'll need to create an instance of input data for player1, in screenManager or game1.
-or this could even be in the PlayerData class.
-
-
-playerData.Save() and Load() should not exist in the PlayerData class.
-how about Functions_SaveLoad.cs ????
 
 
 

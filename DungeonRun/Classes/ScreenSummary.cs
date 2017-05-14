@@ -137,11 +137,11 @@ namespace DungeonRun
         {
             if (displayState == DisplayState.Opened)
             {
-                if (Input.IsNewButtonPress(Buttons.Start) ||
-                    Input.IsNewButtonPress(Buttons.A) ||
-                    Input.IsNewButtonPress(Buttons.B) ||
-                    Input.IsNewButtonPress(Buttons.X) ||
-                    Input.IsNewButtonPress(Buttons.Y))
+                if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
+                    Functions_Input.IsNewButtonPress(Buttons.A) ||
+                    Functions_Input.IsNewButtonPress(Buttons.B) ||
+                    Functions_Input.IsNewButtonPress(Buttons.X) ||
+                    Functions_Input.IsNewButtonPress(Buttons.Y))
                 {
                     displayState = DisplayState.Closing;
                     continueText.alpha = 1.0f;

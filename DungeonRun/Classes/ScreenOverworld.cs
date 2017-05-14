@@ -217,7 +217,8 @@ namespace DungeonRun
                         selectionBox.scale = 2.0f;
                     }
                 }
-                else if (Input.IsNewButtonPress(Buttons.Start) || Input.IsNewButtonPress(Buttons.A))
+                else if (Functions_Input.IsNewButtonPress(Buttons.Start) || 
+                    Functions_Input.IsNewButtonPress(Buttons.A))
                 {
                     Assets.Play(Assets.sfxMenuItem); //play selection sfx
                     Assets.Play(Assets.sfxInventoryClose); //play closing sfx

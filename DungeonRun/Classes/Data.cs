@@ -210,12 +210,12 @@ namespace DungeonRun
         public ObjType type;
 
         public ComponentSprite compSprite;
-        public ComponentCollision compCollision;
-        public ComponentAnimation compAnim;
-        public ComponentMovement compMove;
+        public ComponentCollision compCollision = new ComponentCollision();
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentMovement compMove = new ComponentMovement();
 
-        public Direction direction;
-        public Boolean active; //does this object draw, update?
+        public Direction direction = Direction.Down;
+        public Boolean active = true; //does this object draw, update?
 
         public Byte lifetime;   //how many frames this object exists for, 0 = forever/ignore
         public Byte lifeCounter;//counts up to lifetime value
@@ -225,11 +225,7 @@ namespace DungeonRun
             group = ObjGroup.Object;
             type = ObjType.WallStraight;
             compSprite = new ComponentSprite(Texture, new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
-            compCollision = new ComponentCollision();
-            compAnim = new ComponentAnimation();
-            compMove = new ComponentMovement();
-            direction = Direction.Down;
-            active = true;
+
             Functions_GameObject.SetType(this, type);
         }
     }
@@ -300,71 +296,47 @@ namespace DungeonRun
 
     public class SaveData
     {   //data that will be saved/loaded from game session to session
-        public int gold;
-        public byte heartPieces; //sets max health
+        public int gold = 99;
+        public byte heartPieces = 4 * 3; //sets max health
 
-        public byte magicCurrent; //current magic amount
-        public byte magicMax; //max magic amount
+        public byte magicCurrent = 3; //current magic amount
+        public byte magicMax = 3; //max magic amount
 
-        public byte bombsCurrent;
-        public byte bombsMax;
+        public byte bombsCurrent = 3;
+        public byte bombsMax = 99;
 
-        public Boolean itemBoomerang;
+        public Boolean itemBoomerang = false;
         //itemBomb
 
-        public Boolean bottle1;
-        public Boolean bottle2;
-        public Boolean bottle3;
-        public Boolean bottleHealth;
-        public Boolean bottleMagic;
-        public Boolean bottleFairy;
+        public Boolean bottle1 = false;
+        public Boolean bottle2 = false;
+        public Boolean bottle3 = false;
+        public Boolean bottleHealth = false;
+        public Boolean bottleMagic = false;
+        public Boolean bottleFairy = false;
 
-        public Boolean magicFireball;
+        public Boolean magicFireball = false;
         //portal
 
-        public Boolean weaponBow;
+        public Boolean weaponBow = false;
         //bow
         //axe
 
-        public Boolean armorPlatemail;
+        public Boolean armorPlatemail = false;
         //platemail
         //cape
         //robe
 
-        public Boolean equipmentRing;
+        public Boolean equipmentRing = false;
         //pearl
         //necklace
         //glove
         //pin
-
-        public SaveData()
-        {
-            gold = 99;
-            heartPieces = 4 * 3; //player starts with 3 hearts
-
-            magicCurrent = 3;
-            magicMax = 3;
-
-            bombsCurrent = 3;
-            bombsMax = 99;
-
-            //all items default to false
-            itemBoomerang = false;
-
-            bottle1 = false;
-            bottle2 = false;
-            bottle3 = false;
-            bottleHealth = false;
-            bottleMagic = false;
-            bottleFairy = false;
-
-            magicFireball = false;
-            weaponBow = false;
-            armorPlatemail = false;
-            equipmentRing = false;
-        }
-
     }
+
+    
+
+
 
 
 
@@ -653,6 +625,33 @@ namespace DungeonRun
         public static TimeSpan totalTime = new TimeSpan();
         public static void Reset() { stopWatch.Reset(); stopWatch.Start(); }
 
+    }
+
+    public static class Input
+    {
+        public static KeyboardState currentKeyboardState = new KeyboardState();
+        public static KeyboardState lastKeyboardState = new KeyboardState();
+
+        public static MouseState currentMouseState = new MouseState();
+        public static MouseState lastMouseState = new MouseState();
+
+        public static Point cursorPos = new Point(0, 0);
+        public static ComponentCollision cursorColl = new ComponentCollision();
+
+        public static GamePadState currentGamePadState = new GamePadState();
+        public static GamePadState lastGamePadState = new GamePadState();
+
+        public static float deadzone = 0.10f; //the amount of joystick movement classified as noise
+        public static Direction gamePadDirection = Direction.None;
+        public static Direction lastGamePadDirection = Direction.None;
+
+        static Input()
+        {
+            cursorColl.rec.Width = 4;
+            cursorColl.rec.Height = 4;
+            cursorColl.blocking = false;
+            cursorColl.active = true;
+        }
     }
 
 }

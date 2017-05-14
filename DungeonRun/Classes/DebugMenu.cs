@@ -32,7 +32,7 @@ namespace DungeonRun
         public static void HandleInput()
         {
             //dump the states for every active actor if Enter key is pressed
-            if (Input.IsNewKeyPress(Keys.Enter))
+            if (Functions_Input.IsNewKeyPress(Keys.Enter))
             {
                 for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
                 {
@@ -48,7 +48,7 @@ namespace DungeonRun
                 if (buttons[counter].rec.Contains(Input.cursorPos))
                 {   //any button containing the cursor draws with 'over' color
                     buttons[counter].currentColor = Assets.colorScheme.buttonOver;
-                    if(Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                    if(Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                     {   //any button clicked on becomes selected
 
 

@@ -23,7 +23,7 @@ namespace DungeonRun
         public static RenderTarget2D renderSurface;
         public static GameTime gameTime;
 
-        
+
 
         public static void Initialize(Game1 Game1)
         {
@@ -73,7 +73,7 @@ namespace DungeonRun
         public static void Update(GameTime GameTime)
         {
             gameTime = GameTime;
-            Input.Update(GameTime);
+            Functions_Input.Update(GameTime);
 
             screensToUpdate.Clear();
             screensToUpdate.AddRange(screens);

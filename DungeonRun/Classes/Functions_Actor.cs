@@ -196,7 +196,7 @@ namespace DungeonRun
         public static void Update(Actor Actor)
         {
             //get the input for this frame, set actor.direction
-            Input.SetInputState(Actor.compInput, Actor);
+            Functions_Input.SetInputState(Actor.compInput, Actor);
 
 
             #region Actor is not Statelocked
@@ -257,7 +257,7 @@ namespace DungeonRun
                 if (Actor.lockCounter > Actor.lockTotal) //check against lock total
                 {
                     Actor.stateLocked = false; //unlock actor
-                    Input.ResetInputData(Actor.compInput); //reset input component
+                    Functions_Input.ResetInputData(Actor.compInput); //reset input component
                     //check to see if the actor is dead
                     if (Actor.health <= 0) { SetDeathState(Actor); }
                 }

@@ -186,15 +186,15 @@ namespace DungeonRun
         {
             //exit this screen upon start or b button press
 
-            if (Input.IsNewButtonPress(Buttons.Start) ||
-                Input.IsNewButtonPress(Buttons.B))
+            if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
+                Functions_Input.IsNewButtonPress(Buttons.B))
             {
                 Assets.Play(Assets.sfxInventoryClose);
                 //ScreenManager.RemoveScreen(this);
                 displayState = DisplayState.Closing;
             }
 
-            else if (Input.IsNewButtonPress(Buttons.A))
+            else if (Functions_Input.IsNewButtonPress(Buttons.A))
             {
                 if (currentlySelected.type != MenuItemType.Unknown)
                 { currentlySelected.compSprite.scale = 2.0f; }

@@ -116,8 +116,8 @@
     <Compile Include="Classes\Functions_GameObjectAnimList.cs" />
     <Compile Include="Classes\Functions_GameObject.cs" />
     <Compile Include="Classes\Functions_Collision.cs" />
+    <Compile Include="Classes\Functions_Input.cs" />
     <Compile Include="Classes\Functions_Random.cs" />
-    <Compile Include="Classes\Input.cs" />
     <Compile Include="Classes\Functions_Interaction.cs" />
     <Compile Include="Classes\Functions_Item.cs" />
     <Compile Include="Classes\Functions_Loot.cs" />

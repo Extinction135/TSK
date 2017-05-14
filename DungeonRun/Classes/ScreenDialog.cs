@@ -50,9 +50,9 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {   //exit this screen upon start or b button press
-            if (Input.IsNewButtonPress(Buttons.Start) ||
-                Input.IsNewButtonPress(Buttons.B) ||
-                Input.IsNewButtonPress(Buttons.A))
+            if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
+                Functions_Input.IsNewButtonPress(Buttons.B) ||
+                Functions_Input.IsNewButtonPress(Buttons.A))
             {
                 Assets.Play(Assets.sfxInventoryClose);
                 ScreenManager.RemoveScreen(this);

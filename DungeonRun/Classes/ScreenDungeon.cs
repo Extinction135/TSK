@@ -49,28 +49,28 @@ namespace DungeonRun
             if (displayState == DisplayState.Opened) 
             {
                 //reset the input for hero, map player input to hero
-                Input.ResetInputData(Pool.hero.compInput);
-                Input.MapPlayerInput(Pool.hero.compInput);
+                Functions_Input.ResetInputData(Pool.hero.compInput);
+                Functions_Input.MapPlayerInput(Pool.hero.compInput);
                 Functions_Ai.SetActorInput(); //set AI for actor
                 Functions_Ai.SetActorInput(); //set AI for actor
                 Functions_Ai.SetActorInput(); //set AI for actor
 
                 //open the inventory screen if player presses start button
-                if (Input.IsNewButtonPress(Buttons.Start))
+                if (Functions_Input.IsNewButtonPress(Buttons.Start))
                 { ScreenManager.AddScreen(new ScreenInventory()); }
             }
             else//dungeonScreen is not in playing state..
             {   //reset all input for hero + actors
-                Input.ResetInputData(Pool.hero.compInput);
+                Functions_Input.ResetInputData(Pool.hero.compInput);
                 Functions_Pool.ResetActorPoolInput();
             }
 
             if (Flags.Debug)
             {   //if the game is in debug mode, dump info on clicked actor/obj
-                if (Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 { Functions_Debug.Inspect(); }
                 //toggle the paused boolean
-                if (Input.IsNewKeyPress(Keys.Space))
+                if (Functions_Input.IsNewKeyPress(Keys.Space))
                 { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
                 DebugMenu.HandleInput();
             }
