@@ -49,10 +49,10 @@ namespace DungeonRun
             if (Actor.type == ActorType.Boss)
             {
                 //randomly move in a direction + dash
-                Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
-                if (GetRandom.Int(0, 100) > 80) { Actor.compInput.dash = true; }
+                Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
                 //randomly spawn a blob mob at boss location
-                if (GetRandom.Int(0, 100) > 50)
+                if (Functions_Random.Int(0, 100) > 50)
                 {
                     Actor actorRef = Functions_Pool.GetActor();
                     if(actorRef != null)
@@ -92,21 +92,21 @@ namespace DungeonRun
                 }
                 else
                 {   //choose a random direction to move in
-                    Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
+                    Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                 }
 
                 //determine if actor is close enough to hero to attack
                 int attackRadius = 14;
                 if (yDistance < attackRadius && xDistance < attackRadius)
                 {   //actor is close enough to hero to attack
-                    if (GetRandom.Int(0, 100) > 50) //randomly attack
+                    if (Functions_Random.Int(0, 100) > 50) //randomly attack
                     { Actor.compInput.attack = true; }
                 }
 
                 //determine if the actor can dash
                 if (!Actor.compInput.attack)
                 {   //if the actor isn't attacking, then randomly dash
-                    if (GetRandom.Int(0, 100) > 90)
+                    if (Functions_Random.Int(0, 100) > 90)
                     { Actor.compInput.dash = true; }
                 }
 
@@ -114,8 +114,8 @@ namespace DungeonRun
                 if (Pool.hero.state == ActorState.Dead)
                 {   //reset AI input, randomly move + dash
                     Input.ResetInputData(Actor.compInput);
-                    Actor.compInput.direction = (Direction)GetRandom.Int(0, 8);
-                    if (GetRandom.Int(0, 100) > 90) { Actor.compInput.dash = true; }
+                    Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                    if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
                 }
             }
 

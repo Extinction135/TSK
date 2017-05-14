@@ -116,7 +116,7 @@
     <Compile Include="Classes\Functions_GameObjectAnimList.cs" />
     <Compile Include="Classes\Functions_GameObject.cs" />
     <Compile Include="Classes\Functions_Collision.cs" />
-    <Compile Include="Classes\GetRandom.cs" />
+    <Compile Include="Classes\Functions_Random.cs" />
     <Compile Include="Classes\Input.cs" />
     <Compile Include="Classes\Functions_Interaction.cs" />
     <Compile Include="Classes\Functions_Item.cs" />
@@ -133,7 +133,6 @@
     <Compile Include="Classes\MenuWindow.cs" />
     <Compile Include="Classes\Functions_Movement.cs" />
     <Compile Include="Classes\Functions_Music.cs" />
-    <Compile Include="Classes\Pool.cs" />
     <Compile Include="Classes\Functions_Pool.cs" />
     <Compile Include="Classes\ScreenDialog.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
@@ -146,7 +145,6 @@
     <Compile Include="Classes\ScreenManager.cs" />
     <Compile Include="Classes\Functions_Ai.cs" />
     <Compile Include="Classes\Functions_ActorAnimationList.cs" />
-    <Compile Include="Classes\Timing.cs" />
     <Compile Include="Classes\WorldUI.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>

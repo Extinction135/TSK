@@ -24,10 +24,10 @@ namespace DungeonRun
             //if hero has ring equipped, increase the loot drop rate to 70%
             if (Pool.hero.equipment == MenuItemType.EquipmentRing) { dropRate = 30; }
             //create loot if random value is greater than dropRate
-            if (GetRandom.Int(0, 100) > dropRate)
+            if (Functions_Random.Int(0, 100) > dropRate)
             {
                 //randomly choose a type of loot to spawn
-                lootType = GetRandom.Int(0, 100);
+                lootType = Functions_Random.Int(0, 100);
 
                 //common loot drops
                 if (lootType < 33) //33%

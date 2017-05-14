@@ -272,12 +272,12 @@ namespace DungeonRun
 
                     if (Actor.type == ActorType.Boss)
                     {   //dead bosses perpetually explode
-                        if(GetRandom.Int(0,100) > 75) //randomly create explosions
+                        if(Functions_Random.Int(0,100) > 75) //randomly create explosions
                         {   //randomly place explosion around boss
                             Functions_GameObject.SpawnProjectile(
                                 ObjType.ParticleExplosion,
-                                Actor.compSprite.position.X + GetRandom.Int(-16, 16),
-                                Actor.compSprite.position.Y + GetRandom.Int(-16, 16),
+                                Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
+                                Actor.compSprite.position.Y + Functions_Random.Int(-16, 16),
                                 Direction.None);
                             //play corresponding explosion sound effect too
                             Assets.Play(Assets.sfxExplosion);

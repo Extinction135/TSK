@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class GetRandom
+    public static class Functions_Random
     {
         static Random Random = new Random();
         public static int Int(int Low, int High)

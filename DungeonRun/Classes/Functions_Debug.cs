@@ -152,7 +152,6 @@ namespace DungeonRun
         public static void Inspect(SaveData SaveData)
         {
             output = "\n\n---- SAVE DATA DUMP ----";
-            output += "\n  name: " + PlayerData.saveData.name;
             output += "\n  gold: " + PlayerData.saveData.gold;
             output += "\n  heart pieces: " + PlayerData.saveData.heartPieces;
             output += "\n  magic: " + PlayerData.saveData.magicCurrent + " / " + PlayerData.saveData.magicMax;

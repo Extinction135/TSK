@@ -55,21 +55,13 @@ push new release on the 16th
 todo:
 
 
-10
+9
 
 
-
-renamed PoolFunctions to Functions_Pool, updated various references.
-moved PlayerData class from PlayerData.cs into Data.cs.
-moved all Components into Data.cs. Removed Components.cs.
-moved DungeonRecord into Data.cs. Removed DungeonRecord.cs.
-
-created Functions_Camera2D, with methods from Camera2D.
-moved Camera2D class into Data.cs.
-created instance of camera in DungeonScreen, updated screen to use new Functions_Camera2D class.
-deleted Camera2D.cs file.
-
-playtested, working as expected. aw yiss.
+changed SaveData to be a class instead of a struct.
+changed GetRandom.cs to Functions_Random.cs, updated various codepaths.
+moved Pool class into Data.cs. Removed Pool.cs file.
+moved Timing class into Data.cs. Removed Timing.cs file.
 
 
 
@@ -77,12 +69,19 @@ playtested, working as expected. aw yiss.
 
 
 
+Widgets...
+
+
+debug menu is really a widget, or fits into the idea/concept of what a widget is
+so is debug info
+so is worldUI
 
 
 
 
 
 
+Input
 
 input needs to be seperated into data & functions
 functions go into Functions_Input
@@ -92,6 +91,10 @@ or this could even be in the PlayerData class.
 
 
 playerData.Save() and Load() should not exist in the PlayerData class.
+how about Functions_SaveLoad.cs ????
+
+
+
 
 
 

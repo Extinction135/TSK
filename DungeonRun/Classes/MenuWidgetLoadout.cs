@@ -153,7 +153,7 @@ namespace DungeonRun
                 else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
                 Functions_Component.UpdateAmount(goldDisplay, goldTracker);
                 //randomly play the gold sound effect
-                if (GetRandom.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
+                if (Functions_Random.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
             }
         }
 

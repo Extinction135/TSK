@@ -14,6 +14,8 @@ namespace DungeonRun
 {
     public static class Assets
     {
+        //all the fonts, sprite sheets, music, and soundfx the program loads
+
         public static ContentManager content;
         public static Texture2D dummyTexture;
         static int listSize = 5;

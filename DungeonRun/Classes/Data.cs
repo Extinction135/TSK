@@ -105,76 +105,6 @@ namespace DungeonRun
         }
     }
 
-    public struct SaveData
-    {   //data that will be saved/loaded from game session to session
-        public String name;
-        public int gold;
-        public byte heartPieces; //sets max health
-
-        public byte magicCurrent; //current magic amount
-        public byte magicMax; //max magic amount
-
-        public byte bombsCurrent;
-        public byte bombsMax;
-
-        public Boolean itemBoomerang;
-        //itemBomb
-
-        public Boolean bottle1;
-        public Boolean bottle2;
-        public Boolean bottle3;
-        public Boolean bottleHealth;
-        public Boolean bottleMagic;
-        public Boolean bottleFairy;
-
-        public Boolean magicFireball;
-        //portal
-
-        public Boolean weaponBow;
-        //bow
-        //axe
-
-        public Boolean armorPlatemail;
-        //platemail
-        //cape
-        //robe
-
-        public Boolean equipmentRing;
-        //pearl
-        //necklace
-        //glove
-        //pin
-
-        public SaveData(String Name)
-        {
-            name = Name;
-            gold = 99;
-            heartPieces = 4 * 3; //player starts with 3 hearts
-
-            magicCurrent = 3;
-            magicMax = 3;
-
-            bombsCurrent = 3;
-            bombsMax = 99;
-
-            //all items default to false
-            itemBoomerang = false;
-
-            bottle1 = false;
-            bottle2 = false;
-            bottle3 = false;
-            bottleHealth = false;
-            bottleMagic = false;
-            bottleFairy = false;
-
-            magicFireball = false;
-            weaponBow = false;
-            armorPlatemail = false;
-            equipmentRing = false;
-        }
-
-    }
-
     public struct ColorScheme
     {
         public String name;
@@ -368,57 +298,72 @@ namespace DungeonRun
         }
     }
 
+    public class SaveData
+    {   //data that will be saved/loaded from game session to session
+        public int gold;
+        public byte heartPieces; //sets max health
 
+        public byte magicCurrent; //current magic amount
+        public byte magicMax; //max magic amount
 
-    //Classes (global)
+        public byte bombsCurrent;
+        public byte bombsMax;
 
-    public static class PlayerData
-    {
-        //'wraps' saveData and provides global access to this instance
-        public static SaveData saveData;
-        static PlayerData()
+        public Boolean itemBoomerang;
+        //itemBomb
+
+        public Boolean bottle1;
+        public Boolean bottle2;
+        public Boolean bottle3;
+        public Boolean bottleHealth;
+        public Boolean bottleMagic;
+        public Boolean bottleFairy;
+
+        public Boolean magicFireball;
+        //portal
+
+        public Boolean weaponBow;
+        //bow
+        //axe
+
+        public Boolean armorPlatemail;
+        //platemail
+        //cape
+        //robe
+
+        public Boolean equipmentRing;
+        //pearl
+        //necklace
+        //glove
+        //pin
+
+        public SaveData()
         {
-            saveData = new SaveData("NewGame");
+            gold = 99;
+            heartPieces = 4 * 3; //player starts with 3 hearts
+
+            magicCurrent = 3;
+            magicMax = 3;
+
+            bombsCurrent = 3;
+            bombsMax = 99;
+
+            //all items default to false
+            itemBoomerang = false;
+
+            bottle1 = false;
+            bottle2 = false;
+            bottle3 = false;
+            bottleHealth = false;
+            bottleMagic = false;
+            bottleFairy = false;
+
+            magicFireball = false;
+            weaponBow = false;
+            armorPlatemail = false;
+            equipmentRing = false;
         }
-        public static void Save(string FileAddress)
-        {
-            //open the file, serialize the data to XML, and always close the stream
-            FileStream stream = File.Open(FileAddress, FileMode.OpenOrCreate);
-            //serialize PlayerData to XML file
-            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-            serializer.Serialize(stream, saveData);
-        }
-        public static void Load(string FileAddress)
-        {
-            //deserialize the XML data to PlayerData
-            using (FileStream stream = new FileStream(FileAddress, FileMode.Open))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(PlayerData));
-                saveData = (SaveData)serializer.Deserialize(stream);
-            }
-        }
 
-    }
-
-    public static class DungeonRecord
-    {
-        public static int dungeonID;
-        public static Boolean beatDungeon;
-
-        public static Stopwatch timer;
-        public static int enemyCount;
-        public static int totalDamage;
-
-        public static void Reset()
-        {
-            dungeonID = 0;
-            beatDungeon = false;
-
-            timer = new Stopwatch();
-            timer.Reset();
-            enemyCount = 0;
-            totalDamage = 0;
-        }
     }
 
 
@@ -556,6 +501,158 @@ namespace DungeonRun
             bkg = new Rectangle(new Point(X, Y), new Point(9, 7));
             visible = true;
         }
+    }
+
+
+
+    //Classes (global)
+
+    public static class PlayerData
+    {
+        //'wraps' saveData and provides global access to this instance
+        public static SaveData saveData;
+        static PlayerData()
+        {
+            saveData = new SaveData();
+        }
+        public static void Save(string FileAddress)
+        {
+            //open the file, serialize the data to XML, and always close the stream
+            FileStream stream = File.Open(FileAddress, FileMode.OpenOrCreate);
+            //serialize PlayerData to XML file
+            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+            serializer.Serialize(stream, saveData);
+        }
+        public static void Load(string FileAddress)
+        {
+            //deserialize the XML data to PlayerData
+            using (FileStream stream = new FileStream(FileAddress, FileMode.Open))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(PlayerData));
+                saveData = (SaveData)serializer.Deserialize(stream);
+            }
+        }
+
+    }
+
+    public static class DungeonRecord
+    {
+        public static int dungeonID;
+        public static Boolean beatDungeon;
+
+        public static Stopwatch timer;
+        public static int enemyCount;
+        public static int totalDamage;
+
+        public static void Reset()
+        {
+            dungeonID = 0;
+            beatDungeon = false;
+
+            timer = new Stopwatch();
+            timer.Reset();
+            enemyCount = 0;
+            totalDamage = 0;
+        }
+    }
+
+    public static class Pool
+    {
+
+        //actor pool handles all actors in the room including hero
+        public static int actorCount;           //total count of actors in pool
+        public static List<Actor> actorPool;    //the actual list of actors
+        public static int actorIndex;           //used to iterate thru the pool
+
+        //obj pool handles gameobjects that don't move, & may(not) interact with actors
+        public static int objCount;
+        public static List<GameObject> objPool;
+        public static int objIndex;
+
+        //projectile pool handles projectiles/particles that move or are stationary
+        public static int projectileCount;
+        public static List<GameObject> projectilePool;
+        public static int projectileIndex;
+
+        public static int floorCount;
+        public static List<ComponentSprite> floorPool;
+        public static int floorIndex;
+
+        public static int counter;
+        public static int activeActor = 1; //tracks the current actor being handled by AI
+        public static Actor hero;
+        public static ComponentSprite heroShadow;
+
+        public static void Initialize()
+        {
+            //set the pool sizes
+            actorCount = 30;
+            objCount = 150;
+            projectileCount = 50;
+            floorCount = 500;
+
+            //actor pool
+            actorPool = new List<Actor>();
+            for (counter = 0; counter < actorCount; counter++)
+            {
+                actorPool.Add(new Actor());
+                Functions_Actor.SetType(actorPool[counter], ActorType.Hero);
+                Functions_Movement.Teleport(actorPool[counter].compMove, 0, 0);
+            }
+            actorIndex = 1;
+
+            //obj pool
+            objPool = new List<GameObject>();
+            for (counter = 0; counter < objCount; counter++)
+            { objPool.Add(new GameObject(Assets.shopSheet)); }
+            objIndex = 0;
+
+            //projectile pool
+            projectilePool = new List<GameObject>();
+            for (counter = 0; counter < projectileCount; counter++)
+            { projectilePool.Add(new GameObject(Assets.mainSheet)); }
+            projectileIndex = 0;
+
+            //floor pool
+            floorPool = new List<ComponentSprite>();
+            for (counter = 0; counter < floorCount; counter++)
+            {
+                floorPool.Add(new ComponentSprite(Assets.shopSheet,
+                    new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Point(16, 16)));
+            }
+            floorIndex = 0;
+
+            //reset all the pools
+            Functions_Pool.Reset();
+
+            //create an easy to remember reference to the player/hero actor
+            hero = actorPool[0];
+            //set the hero's initial loadout
+            //we shouldn't really be doing this here, it's buried in the pool class which makes no sense
+            //it'd be better to set the hero's loadOut when gameData is loaded
+            //and by default we should load gameData set to the new game values
+            hero.weapon = MenuItemType.WeaponSword;
+            hero.item = MenuItemType.Unknown;
+            hero.armor = MenuItemType.ArmorCloth;
+            hero.equipment = MenuItemType.Unknown;
+
+            //create the hero's shadow
+            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
+            heroShadow.zOffset = -16;
+        }
+
+    }
+
+    public static class Timing
+    {
+
+        public static Stopwatch stopWatch = new Stopwatch();
+        public static Stopwatch total = new Stopwatch();
+        public static TimeSpan updateTime = new TimeSpan();
+        public static TimeSpan drawTime = new TimeSpan();
+        public static TimeSpan totalTime = new TimeSpan();
+        public static void Reset() { stopWatch.Reset(); stopWatch.Start(); }
+
     }
 
 }

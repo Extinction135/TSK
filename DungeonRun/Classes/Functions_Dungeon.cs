@@ -436,8 +436,8 @@ namespace DungeonRun
                 {
                     objRef = Functions_Pool.GetObj();
                     Functions_Movement.Teleport(objRef.compMove,
-                        GetRandom.Int(0, Room.size.X) * 16 + pos.X + 8,
-                        GetRandom.Int(0, Room.size.Y) * 16 + pos.Y + 8);
+                        Functions_Random.Int(0, Room.size.X) * 16 + pos.X + 8,
+                        Functions_Random.Int(0, Room.size.Y) * 16 + pos.Y + 8);
                     objRef.direction = Direction.Down;
                     Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
                 }
@@ -549,8 +549,8 @@ namespace DungeonRun
                     //we'll never get a null result from GetActor() right here
                     Functions_Actor.SetType(actorRef, ActorType.Blob);
                     //get a random value between the min/max size of room
-                    int randomX = GetRandom.Int(-Room.size.X + 2, Room.size.X - 2);
-                    int randomY = GetRandom.Int(-Room.size.Y + 2, Room.size.Y - 2);
+                    int randomX = Functions_Random.Int(-Room.size.X + 2, Room.size.X - 2);
+                    int randomY = Functions_Random.Int(-Room.size.Y + 2, Room.size.Y - 2);
                     //divide random value in half
                     randomX = randomX / 2;
                     randomY = randomY / 2;
