@@ -14,8 +14,9 @@ using System.Xml.Serialization;
 
 namespace DungeonRun
 {
+    //all the data classes the program uses
 
-    public struct Byte2
+    public class Byte2
     {
         public byte X;
         public byte Y;
@@ -25,7 +26,7 @@ namespace DungeonRun
         }
     }
 
-    public struct Byte4
+    public class Byte4
     {   //used for animation
         public byte X; //x frame
         public byte Y; //y frame
@@ -39,7 +40,7 @@ namespace DungeonRun
         }
     }
 
-    public struct AnimationGroup
+    public class AnimationGroup
     {   //represents an animation with Down, Up, Left, Right states
         public List<Byte4> down;
         public List<Byte4> up;
@@ -47,7 +48,7 @@ namespace DungeonRun
         public List<Byte4> left;
     }
 
-    public struct ActorAnimationList
+    public class ActorAnimationList
     {
         public AnimationGroup idle;
         public AnimationGroup move;
@@ -63,9 +64,9 @@ namespace DungeonRun
         //pickup, hold, carry, drag, etc...
     }
 
-    public struct Room
+    public class Room
     {
-        public ComponentCollision collision;
+        public ComponentCollision collision = new ComponentCollision();
         public Byte2 size;
         public Point center;
         public RoomType type;
@@ -73,7 +74,6 @@ namespace DungeonRun
         public int id;
         public Room(Point Pos, Byte2 Size, RoomType Type, byte EnemyCount, int ID)
         {
-            collision = new ComponentCollision();
             collision.rec.X = Pos.X;
             collision.rec.Y = Pos.Y;
             collision.rec.Width = Size.X * 16;
@@ -86,74 +86,41 @@ namespace DungeonRun
         }
     }
 
-    public struct Dungeon
+    public class Dungeon
     {
-        public List<Room> rooms;
-        public String name;
-        public Boolean bigKey;
-        public Boolean map;
-        public DungeonType type;
-        public Dungeon(String Name)
-        {   //initially, the map and key have not been found
-            rooms = new List<Room>();
-            name = Name;
-            bigKey = false;
-            map = false;
-            type = DungeonType.CursedCastle;
-        }
+        public List<Room> rooms = new List<Room>();
+        public Boolean bigKey = false;
+        public Boolean map = false;
+        public DungeonType type = DungeonType.CursedCastle;
     }
 
-    public struct ColorScheme
+    public class ColorScheme
     {
-        public String name;
-        public Color background;
-        public Color overlay;
-        public Color debugBkg;
+        public Color background = new Color(100, 100, 100, 255);
+        public Color overlay = new Color(0, 0, 0, 255);
+        public Color debugBkg = new Color(0, 0, 0, 200);
 
-        public Color collision;
-        public Color interaction;
+        public Color collision = new Color(100, 0, 0, 50);
+        public Color interaction = new Color(0, 100, 0, 50);
 
-        public Color buttonUp;
-        public Color buttonOver;
-        public Color buttonDown;
+        public Color buttonUp = new Color(44, 44, 44);
+        public Color buttonOver = new Color(66, 66, 66);
+        public Color buttonDown = new Color(100, 100, 100);
 
-        public Color windowBkg;
-        public Color windowBorder;
-        public Color windowInset;
-        public Color windowInterior;
+        public Color windowBkg = new Color(0, 0, 0);
+        public Color windowBorder = new Color(210, 210, 210);
+        public Color windowInset = new Color(130, 130, 130);
+        public Color windowInterior = new Color(156, 156, 156);
 
-        public Color textLight;
-        public Color textDark;
-
-        public ColorScheme(String Name)
-        {
-            name = Name;
-            background = new Color(100, 100, 100, 255);
-            overlay = new Color(0, 0, 0, 255);
-            debugBkg = new Color(0, 0, 0, 200);
-
-            collision = new Color(100, 0, 0, 50);
-            interaction = new Color(0, 100, 0, 50);
-
-            buttonUp = new Color(44, 44, 44);
-            buttonOver = new Color(66, 66, 66);
-            buttonDown = new Color(100, 100, 100);
-
-            windowBkg = new Color(0, 0, 0);
-            windowBorder = new Color(210, 210, 210);
-            windowInset = new Color(130, 130, 130);
-            windowInterior = new Color(156, 156, 156);
-
-            textLight = new Color(255, 255, 255);
-            textDark = new Color(0, 0, 0);
-        }
+        public Color textLight = new Color(255, 255, 255);
+        public Color textDark = new Color(0, 0, 0);
     }
 
 
 
 
 
-    //Data Classes (instanced)
+    //Data Classes
 
     public class Actor
     {
@@ -476,7 +443,7 @@ namespace DungeonRun
 
 
 
-    //Data Components (instanced)
+    //Data Components
 
     public class ComponentCollision
     {   //allows an object or actor to collide with other objects or actors
@@ -558,7 +525,7 @@ namespace DungeonRun
         }
     }
 
-    //UI Components (instanced)
+    //UI Components
 
     public class ComponentText
     {
@@ -616,7 +583,7 @@ namespace DungeonRun
 
 
 
-    //Classes (global)
+    //Global Classes
 
     public static class PlayerData
     {

@@ -126,7 +126,7 @@ namespace DungeonRun
         public static void Load(GraphicsDevice GraphicsDevice, ContentManager ContentManager)
         {
             content = ContentManager;
-            colorScheme = new ColorScheme("default");
+            colorScheme = new ColorScheme();
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] { Color.White });
 

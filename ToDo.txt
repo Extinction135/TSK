@@ -55,13 +55,15 @@ push new release on the 16th
 todo:
 
 
-7
+6
 
 
-
-simplified GameObject class' constructor.
-simplified Actor class' constructor.
-simplified Camera2D class' constructor.
+made all structs into classes in Data.cs.
+renamed Data to DataClasses, which is a better description.
+simplified ColorScheme's constructor. (why? less code)
+removed name field from ColorScheme class.
+removed name field from Dungeon class.
+simplified Dungeon's constructor. (why? less code)
 
 
 

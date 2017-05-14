@@ -138,7 +138,7 @@
     <Compile Include="Classes\ScreenOverworld.cs" />
     <Compile Include="Classes\ScreenSummary.cs" />
     <Compile Include="Classes\ScreenVendor.cs" />
-    <Compile Include="Classes\Data.cs" />
+    <Compile Include="Classes\DataClasses.cs" />
     <Compile Include="Classes\Screen.cs" />
     <Compile Include="Classes\ScreenManager.cs" />
     <Compile Include="Classes\Functions_Ai.cs" />

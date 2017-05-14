@@ -37,7 +37,7 @@ namespace DungeonRun
         public static void BuildDungeon(DungeonType Type)
         {
             //create a new dungeon
-            dungeon = new Dungeon(""+ Type);
+            dungeon = new Dungeon();
             dungeon.type = Type;
 
             if (Type == DungeonType.Shop)
