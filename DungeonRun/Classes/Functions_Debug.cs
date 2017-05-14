@@ -176,5 +176,62 @@ namespace DungeonRun
             Debug.WriteLine(output);
         }
 
+
+
+        public static void HandleDebugMenuInput()
+        {
+            //dump the states for every active actor if Enter key is pressed
+            if (Functions_Input.IsNewKeyPress(Keys.Enter))
+            {
+                for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+                {
+                    if (Pool.actorPool[Pool.counter].active)
+                    { Inspect(Pool.actorPool[Pool.counter]); }
+                }
+            }
+            //check each button for user mouse button input (click + hover states)
+            for (DebugMenu.counter = 0; DebugMenu.counter < DebugMenu.buttons.Count; DebugMenu.counter++)
+            {   //check each button to see if it contains the cursor
+                if (DebugMenu.buttons[DebugMenu.counter].rec.Contains(Input.cursorPos))
+                {   //any button containing the cursor draws with 'over' color
+                    DebugMenu.buttons[DebugMenu.counter].currentColor = Assets.colorScheme.buttonOver;
+                    if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                    {   //any button clicked on becomes selected
+
+
+                        #region Button Events
+
+                        if (DebugMenu.counter == 0) //toggle draw collisions boolean
+                        {
+                            if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
+                            else { Flags.DrawCollisions = true; }
+                            //match the draw collisions boolean for the selected state
+                            DebugMenu.buttons[DebugMenu.counter].selected = Flags.DrawCollisions;
+                        }
+                        else if (DebugMenu.counter == 1) //build the dungeon room again
+                        {   //build dungeon based on the last dungeon type
+                            Functions_Dungeon.BuildDungeon(Functions_Dungeon.dungeon.type);
+                        }
+                        else if (DebugMenu.counter == 2) //set the player's gold to 99
+                        {
+                            PlayerData.saveData.gold = 99;
+                            Assets.Play(Assets.sfxGoldPickup);
+                        }
+                        else if (DebugMenu.counter == 3) //dump saveData to output
+                        { Functions_Debug.Inspect(PlayerData.saveData); }
+
+
+                        #endregion
+
+
+                    }
+                } //buttons not touching cursor return to button up color
+                else { DebugMenu.buttons[DebugMenu.counter].currentColor = Assets.colorScheme.buttonUp; }
+                //selected buttons get the button down color
+                if (DebugMenu.buttons[DebugMenu.counter].selected)
+                { DebugMenu.buttons[DebugMenu.counter].currentColor = Assets.colorScheme.buttonDown; }
+            }
+        }
+
     }
 }

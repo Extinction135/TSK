@@ -55,15 +55,36 @@ push new release on the 16th
 todo:
 
 
-6
+5
 
 
-made all structs into classes in Data.cs.
-renamed Data to DataClasses, which is a better description.
-simplified ColorScheme's constructor. (why? less code)
-removed name field from ColorScheme class.
-removed name field from Dungeon class.
-simplified Dungeon's constructor. (why? less code)
+
+
+created Functions_WorldUI.cs.
+split WorldUI.cs into Functions_WorldUI.cs and DataClasses.cs
+removed WorldUI.cs file.
+updated various code to use the new Functions_WorldUI class.
+
+split DebugInfo.cs into DebugInfo class in DataClasses.cs and Functions_Draw.DrawDebugInfo().
+removed DebugInfo.cs file.
+
+split DebugMenu.cs into DebugMenu class in DataClasses.cs and Functions_Draw.DrawDebugMenu().
+moved DebugMenu.HandleInput() to Functions_Debug.().
+removed DebugMenu.cs.
+
+created Widget base class, and Widgets global class in prep for MenuWidget refactoring..
+
+
+
+
+
+
+
+
+debug menu should be a global class
+it's functions should be moved into Functions_Debug
+
+
 
 
 
@@ -73,10 +94,6 @@ simplified Dungeon's constructor. (why? less code)
 
 Widgets...
 
-
-debug menu is really a widget, or fits into the idea/concept of what a widget is
-so is debug info
-so is worldUI
 
 widgets should only have constructor, reset, update, and draw methods
 all other methods should live in a WidetFunctions class, that takes a specific widget as a parameter
@@ -97,7 +114,8 @@ something like Widgets.InventoryWidget, where Widgets is the public static class
 
 
 
-
+Any Draw() method that exists in a function class should be moved into Functions_Draw
+ALL draw methods should exist in Functions_Draw.
 
 
 

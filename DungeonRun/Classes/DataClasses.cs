@@ -756,4 +756,167 @@ namespace DungeonRun
         }
     }
 
+    public static class WorldUI
+    {
+        public static int i;
+
+        public static List<ComponentSprite> hearts;
+        public static int lastHeartCount = 3;
+        public static int currentHeartCount = 3;
+        public static byte maxHearts = 0;
+        public static int pieceCounter = 0;
+
+        public static List<ComponentSprite> meterPieces;
+
+        public static List<ComponentSprite> weaponBkg;
+        public static List<ComponentSprite> itemBkg;
+        public static MenuItem currentWeapon;
+        public static MenuItem currentItem;
+        public static MenuItemType heroWeapon;
+        public static MenuItemType heroItem;
+
+        public static ComponentText frametime;
+
+        static WorldUI()
+        {
+            //create the heart sprites
+            hearts = new List<ComponentSprite>();
+            for (i = 0; i < 9; i++)
+            {
+                hearts.Add(new ComponentSprite(Assets.mainSheet,
+                    new Vector2(0, 0), new Byte4(15, 2, 0, 0),
+                    new Point(16, 16)));
+            }
+
+            //create the meter sprites
+            meterPieces = new List<ComponentSprite>();
+            for (i = 0; i < 11; i++)
+            {
+                meterPieces.Add(new ComponentSprite(Assets.mainSheet,
+                    new Vector2(0, 0), new Byte4(31, 3, 0, 0),
+                    new Point(8, 16)));
+            }
+
+            //set the head and tail meter frames
+            meterPieces[0].currentFrame.X = 28;
+            meterPieces[10].currentFrame.X = 28;
+            meterPieces[10].flipHorizontally = true;
+
+            //create the weapon and item background sprites
+            weaponBkg = new List<ComponentSprite>();
+            itemBkg = new List<ComponentSprite>();
+            for (i = 0; i < 4; i++)
+            {
+                weaponBkg.Add(new ComponentSprite(Assets.mainSheet,
+                    new Vector2(0, 0), new Byte4(15, 4, 0, 0),
+                    new Point(16, 16)));
+                itemBkg.Add(new ComponentSprite(Assets.mainSheet,
+                    new Vector2(0, 0), new Byte4(15, 4, 0, 0),
+                    new Point(16, 16)));
+            }
+
+            //create the current weapon & item menuItems
+            currentWeapon = new MenuItem();
+            currentItem = new MenuItem();
+
+            //get the hero's current weapon and item
+            heroWeapon = Pool.hero.weapon;
+            heroItem = Pool.hero.item;
+            Functions_MenuItem.SetMenuItemData(heroWeapon, currentWeapon);
+            Functions_MenuItem.SetMenuItemData(heroItem, currentItem);
+
+            //create the frametime text component
+            frametime = new ComponentText(Assets.font, "test",
+                new Vector2(640 - 55, 41), Assets.colorScheme.textLight);
+
+            //move the entire worldUI
+            Functions_WorldUI.Move(50, 50);
+        }
+    }
+ 
+    public static class DebugInfo
+    {
+        public static Rectangle background;
+        public static List<ComponentText> textFields;
+        public static int counter = 0;
+        public static int size = 0;
+
+        public static ComponentText timingText;
+        public static ComponentText actorText;
+        public static ComponentText moveText;
+        public static ComponentText poolText;
+        public static ComponentText creationText;
+        public static ComponentText recordText;
+        public static ComponentText musicText;
+        //public static ComponentText saveDataText;
+
+        public static long roomTime = 0;
+        public static long dungeonTime = 0;
+        public static byte framesTotal = 30; //how many frames to average over
+        public static byte frameCounter = 0; //increments thru frames 0-framesTotal
+        public static long updateTicks; //update tick times are added to this
+        public static long drawTicks; //draw tick times are added to this
+        public static long updateAvg; //stores the average update ticks
+        public static long drawAvg; //stores the average draw ticks
+
+        static DebugInfo()
+        {
+            textFields = new List<ComponentText>();
+
+            background = new Rectangle(0, 322 - 8, 640, 50);
+            int yPos = background.Y - 2;
+
+            timingText = new ComponentText(Assets.font, "",
+                new Vector2(2, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(timingText);
+
+            actorText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 3, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(actorText);
+
+            moveText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 7, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(moveText);
+
+            poolText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 12, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(poolText);
+
+            creationText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 17, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(creationText);
+
+            recordText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 21, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(recordText);
+
+            musicText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 26 - 8, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(musicText);
+
+            //saveDataText = new ComponentText(Assets.font, "",
+            //    new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textLight);
+            //textFields.Add(saveDataText);
+        }
+    }
+
+    public static class DebugMenu
+    {
+        public static Rectangle rec; //background rec
+        public static List<ComponentButton> buttons;
+        public static int counter;
+        static DebugMenu()
+        {
+            rec = new Rectangle(0, 0, 640, 13);
+            buttons = new List<ComponentButton>();
+            buttons.Add(new ComponentButton("draw collisions", new Point(2, 2)));
+            buttons.Add(new ComponentButton("build dungeon", new Point(68, 2)));
+            buttons.Add(new ComponentButton("max gold", new Point(127, 2)));
+            buttons.Add(new ComponentButton("dump savedata", new Point(168, 2)));
+        }
+    }
+
+
+
+
 }

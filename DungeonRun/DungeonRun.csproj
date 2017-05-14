@@ -107,8 +107,6 @@
     <Compile Include="Classes\Functions_Camera2D.cs" />
     <Compile Include="Classes\Functions_Component.cs" />
     <Compile Include="Classes\Functions_Debug.cs" />
-    <Compile Include="Classes\DebugInfo.cs" />
-    <Compile Include="Classes\DebugMenu.cs" />
     <Compile Include="Classes\Functions_Direction.cs" />
     <Compile Include="Classes\Functions_Draw.cs" />
     <Compile Include="Classes\Functions_Dungeon.cs" />
@@ -122,6 +120,7 @@
     <Compile Include="Classes\Functions_Item.cs" />
     <Compile Include="Classes\Functions_Loot.cs" />
     <Compile Include="Classes\Functions_MenuItem.cs" />
+    <Compile Include="Classes\Functions_WorldUI.cs" />
     <Compile Include="Classes\MenuWidgetDialog.cs" />
     <Compile Include="Classes\MenuWidgetForSale.cs" />
     <Compile Include="Classes\MenuWidgetInfo.cs" />
@@ -143,7 +142,7 @@
     <Compile Include="Classes\ScreenManager.cs" />
     <Compile Include="Classes\Functions_Ai.cs" />
     <Compile Include="Classes\Functions_ActorAnimationList.cs" />
-    <Compile Include="Classes\WorldUI.cs" />
+    <Compile Include="Classes\Widget.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>

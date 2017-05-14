@@ -72,7 +72,7 @@ namespace DungeonRun
                 //toggle the paused boolean
                 if (Functions_Input.IsNewKeyPress(Keys.Space))
                 { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
-                DebugMenu.HandleInput();
+                Functions_Debug.HandleDebugMenuInput();
             }
         }
 
@@ -140,7 +140,7 @@ namespace DungeonRun
                 {   //update and move actors, objects, projectiles, and camera
                     Functions_Pool.Update();
                     Functions_Collision.CheckDungeonRoomCollisions();
-                    WorldUI.Update();
+                    Functions_WorldUI.Update();
                     //track camera to hero
                     camera.targetPosition = Pool.hero.compSprite.position;
                     Functions_Camera2D.Update(camera, GameTime);
@@ -174,10 +174,10 @@ namespace DungeonRun
             }
             ScreenManager.spriteBatch.End();
 
-            //draw UI, debug info + debug menu
+            //draw UI, debug info + debug menu, without camera view
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            WorldUI.Draw();
-            if (Flags.Debug) { DebugInfo.Draw(); DebugMenu.Draw(); }
+            Functions_WorldUI.Draw();
+            if (Flags.Debug) { Functions_Draw.DrawDebugInfo(); Functions_Draw.DrawDebugMenu(); }
             //draw the overlay rec last
             ScreenManager.spriteBatch.Draw( Assets.dummyTexture, 
                 overlay, Assets.colorScheme.overlay * overlayAlpha);

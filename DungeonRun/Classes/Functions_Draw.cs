@@ -9,6 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using Windows.System;
+
+
 
 namespace DungeonRun
 {
@@ -111,6 +114,111 @@ namespace DungeonRun
                 Assets.colorScheme.windowBkg);
             Draw(Amnt.amount);
         }
+
+
+
+        public static void DrawDebugInfo()
+        {
+
+            #region Calculate Update + Draw Times, Frame Times, and Ram useage
+
+            DebugInfo.frameCounter++;
+            if (DebugInfo.frameCounter > DebugInfo.framesTotal)
+            {   //reset the counter + total ticks
+                DebugInfo.frameCounter = 0;
+                DebugInfo.updateTicks = 0;
+                DebugInfo.drawTicks = 0;
+            }
+            else if (DebugInfo.frameCounter == DebugInfo.framesTotal)
+            {   //calculate the average ticks
+                DebugInfo.updateAvg = DebugInfo.updateTicks / DebugInfo.framesTotal;
+                DebugInfo.drawAvg = DebugInfo.drawTicks / DebugInfo.framesTotal;
+            }
+            //collect tick times
+            DebugInfo.updateTicks += Timing.updateTime.Ticks;
+            DebugInfo.drawTicks += Timing.drawTime.Ticks;
+
+            //per frame
+            //timingText.text = "u: " + screen.updateTime.Ticks;
+            //timingText.text += "\nd: " + screen.drawTime.Ticks;
+            //timingText.text += "\nt: " + screen.totalTime.Milliseconds + " ms";
+            //average over framesTotal
+            DebugInfo.timingText.text = "u: " + DebugInfo.updateAvg;
+            DebugInfo.timingText.text += "\nd: " + DebugInfo.drawAvg;
+            DebugInfo.timingText.text += "\nt: " + Timing.totalTime.Milliseconds + " ms";
+            DebugInfo.timingText.text += "\n" + ScreenManager.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
+            DebugInfo.timingText.text += "\n" + MemoryManager.AppMemoryUsage / 1024 / 1024 + " mb";
+
+            #endregion
+
+
+            #region Actor + Movement Components
+
+            DebugInfo.actorText.text = "actor: hero";
+            DebugInfo.actorText.text += "\ninp: " + Pool.hero.inputState;
+            DebugInfo.actorText.text += "\ncur: " + Pool.hero.state;
+            DebugInfo.actorText.text += "\nlck: " + Pool.hero.stateLocked;
+            DebugInfo.actorText.text += "\ndir: " + Pool.hero.direction;
+
+            DebugInfo.moveText.text = "pos x:" + Pool.hero.compSprite.position.X + ", y:" + Pool.hero.compSprite.position.Y;
+            DebugInfo.moveText.text += "\nspd:" + Pool.hero.compMove.speed + "  fric:" + Pool.hero.compMove.friction;
+            DebugInfo.moveText.text += "\nmag x:" + Pool.hero.compMove.magnitude.X;
+            DebugInfo.moveText.text += "\nmag y:" + Pool.hero.compMove.magnitude.Y;
+            DebugInfo.moveText.text += "\ndir: " + Pool.hero.compMove.direction;
+
+            #endregion
+
+
+            #region Pool, Creation Time, and Record Components
+
+            DebugInfo.poolText.text = "floors: " + Pool.floorIndex + "/" + Pool.floorCount;
+
+            DebugInfo.poolText.text += "\nobjs: " + Pool.objIndex + "/" + Pool.objCount;
+            DebugInfo.poolText.text += "\nactrs: " + Pool.actorIndex + "/" + Pool.actorCount;
+            DebugInfo.poolText.text += "\npros: " + Pool.projectileIndex + "/" + Pool.projectileCount;
+
+            DebugInfo.creationText.text = "timers";
+            DebugInfo.creationText.text += "\nroom: " + DebugInfo.roomTime;
+            DebugInfo.creationText.text += "\ndung: " + DebugInfo.dungeonTime;
+
+            DebugInfo.recordText.text = "record";
+            DebugInfo.recordText.text += "\ntime: " + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
+            DebugInfo.recordText.text += "\nenemies: " + DungeonRecord.enemyCount;
+            DebugInfo.recordText.text += "\ndamage: " + DungeonRecord.totalDamage;
+
+            #endregion
+
+
+            #region Music + SaveData Components
+
+            DebugInfo.musicText.text = "music: " + Functions_Music.trackToLoad;
+            DebugInfo.musicText.text += "\n" + Functions_Music.currentMusic.State + ": " + Functions_Music.currentMusic.Volume;
+            DebugInfo.musicText.text += "\n" + Assets.musicDrums.State + ": " + Assets.musicDrums.Volume;
+
+            //saveDataText.text = "save data";
+            //saveDataText.text += "\ngold: " + PlayerData.saveData.gold;
+
+            #endregion
+
+
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, DebugInfo.background, Assets.colorScheme.debugBkg);
+            DebugInfo.size = DebugInfo.textFields.Count();
+            for (DebugInfo.counter = 0; DebugInfo.counter < DebugInfo.size; DebugInfo.counter++)
+            { Functions_Draw.Draw(DebugInfo.textFields[DebugInfo.counter]); }
+        }
+
+        public static void DrawDebugMenu()
+        {   //draw the background rec with correct color
+            ScreenManager.spriteBatch.Draw(
+                Assets.dummyTexture, DebugMenu.rec,
+                Assets.colorScheme.debugBkg);
+            //loop draw all the buttons
+            for (DebugMenu.counter = 0; DebugMenu.counter < DebugMenu.buttons.Count; DebugMenu.counter++)
+            { Functions_Draw.Draw(DebugMenu.buttons[DebugMenu.counter]); }
+        }
+
+
+
 
     }
 }
