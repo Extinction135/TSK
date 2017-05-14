@@ -452,16 +452,16 @@ namespace DungeonRun
             #endregion
 
 
-            #region Items
+            #region Pickups
 
-            else if (Type == ObjType.ItemRupee || Type == ObjType.ItemHeart ||
-                Type == ObjType.ItemMagic || Type == ObjType.ItemBomb)
+            else if (Type == ObjType.PickupRupee || Type == ObjType.PickupHeart ||
+                Type == ObjType.PickupMagic || Type == ObjType.PickupBomb)
             {
                 Obj.compSprite.cellSize.X = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
-                Obj.group = ObjGroup.Item;
+                Obj.group = ObjGroup.Pickup;
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = true;

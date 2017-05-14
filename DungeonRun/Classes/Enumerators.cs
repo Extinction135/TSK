@@ -35,7 +35,7 @@ namespace DungeonRun
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 
-    public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Item, Projectile, Particle, Vendor }
+    public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Pickup, Projectile, Particle, Vendor }
 
     public enum ObjType
     {
@@ -58,7 +58,7 @@ namespace DungeonRun
         VendorAdvertisement,
 
         //Items - picked up by hero
-        ItemRupee, ItemHeart, ItemMagic, ItemBomb,
+        PickupRupee, PickupHeart, PickupMagic, PickupBomb,
 
         //Projectiles
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion,

@@ -55,34 +55,24 @@ push new release on the 16th
 todo:
 
 
-4
+2
 
 
 
-renamed all widgets to have prefix of 'Widget' instead of 'MenuWidget'.
+
+
+renamed ObjGroup.Item to ObjGroup.Pickup.
+ObjType items now get the prefix 'Pickup' instead of 'Item'.
+updated various classes to use the new naming convention.
+this was done to prevent confusion betwee ObjType.Item and MenuItemType.Item.
+now the keyword 'Item' is no longer used in ObjType & ObjGroup.
 playtested, working as expected.
 
 
 
 
-Widgets...
 
 
-widgets should only have constructor, reset, update, and draw methods
-all other methods should live in a WidetFunctions class, that takes a specific widget as a parameter
-
-widgets should inherit from a base class widget, since widget's share certain code
-BUT, this means that widgets wont be public static
-SO, we'll need to create a public static class that contains all the widgets
-that way we can still access them from anywhere
-something like Widgets.InventoryWidget, where Widgets is the public static class
-
-
-
-
-
-Any Draw() method that exists in a function class should be moved into Functions_Draw
-ALL draw methods should exist in Functions_Draw.
 
 
 
@@ -95,10 +85,9 @@ we're kinda getting some overlap between particles and projectiles
 it would be nice to consolidate them, if possible
 then move SpawnProjectile() methods into a ProjectileFunctions class.
 
-this is probably part of a refactoring / reorganizing sprint coming up soon.
 
-ObjType.Item should probably be called Obj.Consumable____ -> hearts, magic, gold, bombs
-this helps to seperate the overlap between ObjType.Item and MenuItemType.Item
+particles are projectiles, they're just a special case of projectiles
+
 
 
 

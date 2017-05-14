@@ -93,19 +93,19 @@ namespace DungeonRun
             #endregion
 
 
-            #region Items
+            #region Pickups
 
-            else if (Obj.group == ObjGroup.Item)
+            else if (Obj.group == ObjGroup.Pickup)
             {
                 if (Actor == Pool.hero) //only the hero can pickup hearts or rupees
                 {
-                    if (Obj.type == ObjType.ItemHeart)
+                    if (Obj.type == ObjType.PickupHeart)
                     { Actor.health++; Assets.Play(Assets.sfxHeartPickup); }
-                    else if (Obj.type == ObjType.ItemRupee)
+                    else if (Obj.type == ObjType.PickupRupee)
                     { PlayerData.saveData.gold++; Assets.Play(Assets.sfxGoldPickup); }
-                    else if (Obj.type == ObjType.ItemMagic)
+                    else if (Obj.type == ObjType.PickupMagic)
                     { PlayerData.saveData.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
-                    else if (Obj.type == ObjType.ItemBomb)
+                    else if (Obj.type == ObjType.PickupBomb)
                     { PlayerData.saveData.bombsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
                     //end the items life
                     Obj.lifetime = 1; Obj.lifeCounter = 2;
