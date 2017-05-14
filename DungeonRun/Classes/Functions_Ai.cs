@@ -54,7 +54,7 @@ namespace DungeonRun
                 //randomly spawn a blob mob at boss location
                 if (GetRandom.Int(0, 100) > 50)
                 {
-                    Actor actorRef = PoolFunctions.GetActor();
+                    Actor actorRef = Functions_Pool.GetActor();
                     if(actorRef != null)
                     {   //actorRef can never be an actor already active in room
                         Functions_Actor.SetType(actorRef, ActorType.Blob);

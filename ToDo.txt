@@ -55,7 +55,141 @@ push new release on the 16th
 todo:
 
 
-13
+10
+
+
+
+renamed PoolFunctions to Functions_Pool, updated various references.
+moved PlayerData class from PlayerData.cs into Data.cs.
+moved all Components into Data.cs. Removed Components.cs.
+moved DungeonRecord into Data.cs. Removed DungeonRecord.cs.
+
+created Functions_Camera2D, with methods from Camera2D.
+moved Camera2D class into Data.cs.
+created instance of camera in DungeonScreen, updated screen to use new Functions_Camera2D class.
+deleted Camera2D.cs file.
+
+playtested, working as expected. aw yiss.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input needs to be seperated into data & functions
+functions go into Functions_Input
+data goes into Data.cs
+we'll need to create an instance of input data for player1, in screenManager or game1.
+or this could even be in the PlayerData class.
+
+
+playerData.Save() and Load() should not exist in the PlayerData class.
+
+
+
+
+
+
+
+
+
+
+
+REORGANIZATION / REFACTORING SPRINT
+
+we're kinda getting some overlap between particles and projectiles
+it would be nice to consolidate them, if possible
+then move SpawnProjectile() methods into a ProjectileFunctions class.
+
+this is probably part of a refactoring / reorganizing sprint coming up soon.
+
+ObjType.Item should probably be called Obj.Consumable____ -> hearts, magic, gold, bombs
+this helps to seperate the overlap between ObjType.Item and MenuItemType.Item
+
+
+
+components should be structs, and be part of structs class
+we should move the component's methods into the component functions class
+
+dungeon record can be a struct as well
+camera2d can be a struct as well, with a corresponding camera functions class
+
+actor can be a struct, same with game object
+assets should really be named Content
+
+menuItem can be a struct as well
+debug info can be a struct as well, we'd draw the debug info in DrawFunctions
+
+
+
+actor anim list manager should actually be actor anim list functions
+same with game object anim list manager -> functions
+
+input should be a struct, and there should be an input functions class
+
+menu rectangle should be a struct, and it's methods should be moved into a more general MenuFunctions class
+menu window should be a struct, and it's methods should be moved into the MenuFunctions class as well
+
+
+the timing class should be part of data folder
+
+
+
+
+
+widgets should only have constructor, reset, update, and draw methods
+all other methods should live in a WidetFunctions class, that takes a specific widget as a parameter
+
+
+
+
+
+
+widgets should inherit from a base class widget, since widget's share certain code
+BUT, this means that widgets wont be public static
+SO, we'll need to create a public static class that contains all the widgets
+that way we can still access them from anywhere
+something like Widgets.InventoryWidget, where Widgets is the public static class
+
+we should also organize the classes into folders a bit:
+	data
+	functions
+	screens
+	widgets
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,24 +219,16 @@ update spawn loot to randomly drop arrows
 
 
 
-REORGANIZATION / REFACTORING SPRINT
-
-we're kinda getting some overlap between particles and projectiles
-it would be nice to consolidate them, if possible
-then move SpawnProjectile() methods into a ProjectileFunctions class.
-
-this is probably part of a refactoring / reorganizing sprint coming up soon.
-
-ObjType.Item should probably be called Obj.Consumable____ -> hearts, magic, gold, bombs
-this helps to seperate the overlap between ObjType.Item and MenuItemType.Item
 
 
 
 
-
-
-
-
+	
+	
+	
+	
+	
+	
 
 
 

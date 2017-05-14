@@ -104,16 +104,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Functions_Battle.cs" />
-    <Compile Include="Classes\Camera2D.cs" />
+    <Compile Include="Classes\Functions_Camera2D.cs" />
     <Compile Include="Classes\Functions_Component.cs" />
-    <Compile Include="Classes\Components.cs" />
     <Compile Include="Classes\Functions_Debug.cs" />
     <Compile Include="Classes\DebugInfo.cs" />
     <Compile Include="Classes\DebugMenu.cs" />
     <Compile Include="Classes\Functions_Direction.cs" />
     <Compile Include="Classes\Functions_Draw.cs" />
     <Compile Include="Classes\Functions_Dungeon.cs" />
-    <Compile Include="Classes\DungeonRecord.cs" />
     <Compile Include="Classes\Enumerators.cs" />
     <Compile Include="Classes\Functions_GameObjectAnimList.cs" />
     <Compile Include="Classes\Functions_GameObject.cs" />
@@ -135,9 +133,8 @@
     <Compile Include="Classes\MenuWindow.cs" />
     <Compile Include="Classes\Functions_Movement.cs" />
     <Compile Include="Classes\Functions_Music.cs" />
-    <Compile Include="Classes\PlayerData.cs" />
     <Compile Include="Classes\Pool.cs" />
-    <Compile Include="Classes\PoolFunctions.cs" />
+    <Compile Include="Classes\Functions_Pool.cs" />
     <Compile Include="Classes\ScreenDialog.cs" />
     <Compile Include="Classes\ScreenDungeon.cs" />
     <Compile Include="Classes\ScreenInventory.cs" />

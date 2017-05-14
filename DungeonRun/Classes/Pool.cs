@@ -79,7 +79,7 @@ namespace DungeonRun
             floorIndex = 0;
 
             //reset all the pools
-            PoolFunctions.Reset();
+            Functions_Pool.Reset();
 
             //create an easy to remember reference to the player/hero actor
             hero = actorPool[0];

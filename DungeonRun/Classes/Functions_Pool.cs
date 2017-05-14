@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class PoolFunctions
+    public static class Functions_Pool
     {
 
         public static Actor GetActor()

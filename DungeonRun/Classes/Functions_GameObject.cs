@@ -153,7 +153,7 @@ namespace DungeonRun
 
         public static void SpawnProjectile(ObjType Type, float X, float Y, Direction Direction)
         {
-            GameObject obj = PoolFunctions.GetProjectile();
+            GameObject obj = Functions_Pool.GetProjectile();
             //default this projectile/particle to Down direction
             obj.direction = Direction.Down;
             obj.compMove.direction = Direction.Down;
@@ -623,7 +623,7 @@ namespace DungeonRun
                 if (Obj.lifeCounter >= Obj.lifetime)
                 {   //any dead object is released
                     HandleDeathEvent(Obj);
-                    PoolFunctions.Release(Obj);
+                    Functions_Pool.Release(Obj);
                 }
             }
         }

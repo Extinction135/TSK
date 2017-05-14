@@ -23,6 +23,8 @@ namespace DungeonRun
         //what happens when this screen exits?
         public ExitAction exitAction = ExitAction.None;
 
+        public Camera2D camera;
+
 
 
         public ScreenDungeon() { this.name = "DungeonScreen"; }
@@ -30,6 +32,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             overlay = new Rectangle(0, 0, 640, 360);
+            camera = new Camera2D();
 
             Pool.Initialize();
             Functions_Dungeon.Initialize(this);
@@ -59,7 +62,7 @@ namespace DungeonRun
             else//dungeonScreen is not in playing state..
             {   //reset all input for hero + actors
                 Input.ResetInputData(Pool.hero.compInput);
-                PoolFunctions.ResetActorPoolInput();
+                Functions_Pool.ResetActorPoolInput();
             }
 
             if (Flags.Debug)
@@ -135,12 +138,12 @@ namespace DungeonRun
                 //if the screen is closed, don't play any sounds or do any work
                 if (displayState != DisplayState.Closed)
                 {   //update and move actors, objects, projectiles, and camera
-                    PoolFunctions.Update();
+                    Functions_Pool.Update();
                     Functions_Collision.CheckDungeonRoomCollisions();
                     WorldUI.Update();
                     //track camera to hero
-                    Camera2D.targetPosition = Pool.hero.compSprite.position;
-                    Camera2D.Update(GameTime);
+                    camera.targetPosition = Pool.hero.compSprite.position;
+                    Functions_Camera2D.Update(camera, GameTime);
                 }
             }
 
@@ -160,9 +163,9 @@ namespace DungeonRun
                         null,
                         null,
                         null,
-                        Camera2D.view
+                        camera.view
                         );
-            PoolFunctions.Draw();
+            Functions_Pool.Draw();
             if (Flags.DrawCollisions)
             {
                 Functions_Draw.Draw(Input.cursorColl);
