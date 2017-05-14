@@ -52,33 +52,8 @@ push new release on the 16th
 todo:
 
 
-13
+12
 
-
-
-created Functions_Projectiles.cs
-moved SpawnProjectile() from Functions_GameObject to Functions_Projectiles.
-moved HandleBirthEvent() from Functions_GameObject to Functions_Projectiles.
-moved HandleDeathEvent() from Functions_GameObject to Functions_Projectiles.
-this seperates the functions related to projectiles from the gameobject functions class.
-updated various codepaths the used Functions_GameObject to use Functions_Projectiles.
-minor cleaning of the Functions_GameObject.SetType() method.
-playtested, working as expected.
-
-
-
-
-
-
-
-
-Particles & Projectiles
-
-we're kinda getting some overlap between particles and projectiles
-it would be nice to consolidate them, if possible
-then move SpawnProjectile() methods into a ProjectileFunctions class.
-
-particles are projectiles, they're just a special case of projectiles
 
 
 

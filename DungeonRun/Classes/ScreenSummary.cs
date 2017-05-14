@@ -122,15 +122,13 @@ namespace DungeonRun
 
             //play title music
             Functions_Music.PlayMusic(Music.Title);
-
-            //if the player beat the boss, the base reward is 100
-            if (DungeonRecord.beatDungeon) { rewardTotal = 100; }
-            //calculate additional rewards
-            rewardTotal += (DungeonRecord.enemyCount - DungeonRecord.totalDamage);
-            //clip the rewardTotal to 0, if it goes negative
-            if (rewardTotal < 0) { rewardTotal = 0; }
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = Pool.hero.maxHealth;
+
+            //reward player gold, if dungeon was completed
+            if (DungeonRecord.beatDungeon)
+            { rewardTotal = 99; } else { rewardTotal = 0; }
+            PlayerData.saveData.gold += rewardTotal;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -256,10 +254,7 @@ namespace DungeonRun
             #region Handle Exit State
 
             else if (displayState == DisplayState.Closed)
-            {
-                //award the gold bonus to player data
-                PlayerData.saveData.gold += rewardTotal;
-                //exit this screen, return to overworld
+            {   //exit this screen, return to overworld
                 ScreenManager.RemoveScreen(this);
                 ScreenManager.AddScreen(new ScreenOverworld());
             }
