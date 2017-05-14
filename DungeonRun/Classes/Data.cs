@@ -12,8 +12,6 @@ using Microsoft.Xna.Framework.Media;
 using System.IO;
 using System.Xml.Serialization;
 
-
-
 namespace DungeonRun
 {
 
@@ -153,7 +151,9 @@ namespace DungeonRun
 
 
 
-    //Classes (instanced)
+
+
+    //Data Classes (instanced)
 
     public class Actor
     {
@@ -176,10 +176,10 @@ namespace DungeonRun
 
         //the components that actor requires to function
         public ComponentSprite compSprite;
-        public ComponentAnimation compAnim;
-        public ComponentInput compInput;
-        public ComponentMovement compMove;
-        public ComponentCollision compCollision;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public ComponentInput compInput = new ComponentInput();
+        public ComponentMovement compMove = new ComponentMovement();
+        public ComponentCollision compCollision = new ComponentCollision();
 
         //health points
         public byte health;
@@ -192,22 +192,16 @@ namespace DungeonRun
 
         public Actor()
         {
-            //create the actor components
             compSprite = new ComponentSprite(Assets.heroSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(16, 16));
-            compAnim = new ComponentAnimation();
-            compInput = new ComponentInput();
-            compMove = new ComponentMovement();
-            compCollision = new ComponentCollision();
-            //set the actor type to hero, teleport to position
-            Functions_Actor.SetType(this, ActorType.Hero);
+            Functions_Actor.SetType(this, ActorType.Hero);//default to hero actor
             Functions_Movement.Teleport(this.compMove, compSprite.position.X, compSprite.position.Y);
         }
     }
 
     public class GameObject
     {
-        public ObjGroup group;
-        public ObjType type;
+        public ObjGroup group = ObjGroup.Object;
+        public ObjType type = ObjType.WallStraight;
 
         public ComponentSprite compSprite;
         public ComponentCollision compCollision = new ComponentCollision();
@@ -222,40 +216,8 @@ namespace DungeonRun
 
         public GameObject(Texture2D Texture)
         {   //initialize to default value - this data is changed in Update()
-            group = ObjGroup.Object;
-            type = ObjType.WallStraight;
             compSprite = new ComponentSprite(Texture, new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
-
             Functions_GameObject.SetType(this, type);
-        }
-    }
-
-    public class MenuItem
-    {
-        public ComponentSprite compSprite;
-        public ComponentAnimation compAnim;
-        public MenuItemType type;
-        public String name = "";
-        public String description = "";
-        public Byte price = 0;
-        //the cardinal neighbors this menuItem links with
-        public MenuItem neighborUp;
-        public MenuItem neighborDown;
-        public MenuItem neighborLeft;
-        public MenuItem neighborRight;
-
-        public MenuItem()
-        {   //default to ? sprite, hidden offscreen
-            compSprite = new ComponentSprite(Assets.mainSheet,
-                new Vector2(-100, 1000),
-                new Byte4(15, 5, 0, 0),
-                new Point(16, 16));
-            compAnim = new ComponentAnimation();
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, this);
-            neighborUp = this;
-            neighborDown = this;
-            neighborLeft = this;
-            neighborRight = this;
         }
     }
 
@@ -267,11 +229,11 @@ namespace DungeonRun
         public int deadzoneX = 50;
         public int deadzoneY = 50;
 
-        public Matrix view;
+        public Matrix view = Matrix.Identity;
         public float targetZoom = 1.0f;
         public float zoomSpeed = 0.05f;
-        public Vector2 currentPosition;
-        public Vector2 targetPosition;
+        public Vector2 currentPosition = Vector2.Zero;
+        public Vector2 targetPosition = Vector2.Zero;
 
         public Matrix matRotation = Matrix.CreateRotationZ(0.0f);
         public Matrix matZoom;
@@ -285,12 +247,8 @@ namespace DungeonRun
         public Camera2D()
         {
             graphics = ScreenManager.game.GraphicsDevice;
-            view = Matrix.Identity;
-            translateCenter.Z = 0; //these two values dont change on a 2D camera
-            translateBody.Z = 0;
-            currentPosition = Vector2.Zero; //initially the camera is at 0,0
-            targetPosition = Vector2.Zero;
-            targetZoom = 1.0f;
+            //these two values dont change on a 2D camera
+            translateCenter.Z = 0; translateBody.Z = 0;
         }
     }
 
@@ -334,13 +292,191 @@ namespace DungeonRun
         //pin
     }
 
-    
+    //UI Classes
+
+    public class MenuItem
+    {
+        public ComponentSprite compSprite;
+        public ComponentAnimation compAnim = new ComponentAnimation();
+        public MenuItemType type;
+        public String name = "";
+        public String description = "";
+        public Byte price = 0;
+        //the cardinal neighbors this menuItem links with
+        public MenuItem neighborUp;
+        public MenuItem neighborDown;
+        public MenuItem neighborLeft;
+        public MenuItem neighborRight;
+
+        public MenuItem()
+        {   //default to ? sprite, hidden offscreen
+            compSprite = new ComponentSprite(Assets.mainSheet,
+                new Vector2(-100, 1000),
+                new Byte4(15, 5, 0, 0),
+                new Point(16, 16));
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, this);
+            neighborUp = this; neighborDown = this;
+            neighborLeft = this; neighborRight = this;
+        }
+    }
+
+    public class MenuRectangle
+    {
+        public DisplayState displayState;
+        public int animationSpeed = 5;      //how quickly the UI element animates in/out
+        public int animationCounter = 0;    //counts up to delay value
+        public int openDelay = 0;           //how many updates are ignored before open animation occurs
+        public Rectangle rec = new Rectangle(0, 0, 0, 0);
+        public Point position;
+        public Point size;
+        public Color color;
+
+        public MenuRectangle(Point Position, Point Size, Color Color)
+        {
+            position = Position; size = Size;
+            color = Color; Reset();
+        }
+
+        public void Update()
+        {
+            if (displayState == DisplayState.Opening)
+            {
+                if (animationCounter < openDelay) { animationCounter += 1; }
+                if (animationCounter >= openDelay)
+                {   //grow right
+                    rec.Height = size.Y;
+                    if (rec.Width < size.X) { rec.Width += ((size.X - rec.Width) / animationSpeed) + 1; } //easeIn 
+                    if (rec.Width > size.X) { rec.Width = size.X; }
+                    if (rec.Width == size.X) { displayState = DisplayState.Opened; animationCounter = 0; } //open complete
+                }
+            }
+        }
+
+        public void Reset()
+        {
+            rec.Width = 0;
+            rec.Height = 0;
+            rec.Location = position;
+            animationCounter = 0;
+            displayState = DisplayState.Opening;
+        }
+
+    }
+
+    public class MenuWindow
+    {
+        public Point size;
+        public int animationCounter = 0;        //counts up to delay value
+        public int openDelay = 0;               //how many updates are ignored before open occurs
+
+        public MenuRectangle background;
+        public MenuRectangle border;
+        public MenuRectangle inset;
+        public MenuRectangle interior;
+
+        public ComponentText title;
+        public MenuRectangle headerLine;
+        public MenuRectangle footerLine;
+
+        public MenuWindow(Point Position, Point Size, String Title)
+        {
+            size = Size;
+            //create the window components
+            background = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBkg);
+            border = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBorder);
+            inset = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
+            interior = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInterior);
+            headerLine = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
+            footerLine = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
+            title = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
+            //align all the window components
+            ResetAndMoveWindow(Position, Size, Title);
+            //set the openDelay to cascade in all the components
+            background.openDelay = 0;
+            border.openDelay = 2;
+            inset.openDelay = 2;
+            interior.openDelay = 8;
+            headerLine.openDelay = 12;
+            footerLine.openDelay = 12;
+        }
+
+        public void Update()
+        {   //count up to the openDelay value, then begin updating the menu rectangles
+            if (animationCounter < openDelay) { animationCounter += 1; }
+            if (animationCounter >= openDelay)
+            {
+                background.Update();
+                border.Update();
+                inset.Update();
+                interior.Update();
+                headerLine.Update();
+                footerLine.Update();
+            }
+        }
+
+        public void ResetAndMoveWindow(Point Position, Point Size, String Title)
+        {
+            size = Size;
+            //set the new title, move into position
+            title.text = Title;
+            title.position.X = Position.X + 8;
+            title.position.Y = Position.Y + 2;
+
+
+            #region Reset all the MenuRectangles, and update them to the passed Position + Size
+
+            background.position.X = Position.X + 0;
+            background.position.Y = Position.Y + 0;
+            background.size.X = Size.X + 0;
+            background.size.Y = Size.Y + 0;
+            background.Reset();
+
+            border.position.X = Position.X + 1;
+            border.position.Y = Position.Y + 1;
+            border.size.X = Size.X - 2;
+            border.size.Y = Size.Y - 2;
+            border.Reset();
+
+            inset.position.X = Position.X + 2;
+            inset.position.Y = Position.Y + 2;
+            inset.size.X = Size.X - 4;
+            inset.size.Y = Size.Y - 4;
+            inset.Reset();
+
+            interior.position.X = Position.X + 3;
+            interior.position.Y = Position.Y + 3;
+            interior.size.X = Size.X - 6;
+            interior.size.Y = Size.Y - 6;
+            interior.Reset();
+
+            #endregion
+
+
+            #region Reset the header and footer lines, update with Position + Size
+
+            headerLine.position.X = Position.X + 8;
+            headerLine.position.Y = Position.Y + 16;
+            headerLine.size.X = Size.X - 16;
+            headerLine.size.Y = 1;
+            headerLine.Reset();
+
+            footerLine.position.X = Position.X + 8;
+            footerLine.position.Y = Position.Y + Size.Y - 16;
+            footerLine.size.X = Size.X - 16;
+            footerLine.size.Y = 1;
+            footerLine.Reset();
+
+            #endregion
+
+        }
+
+    }
 
 
 
 
 
-    //Components (instanced)
+    //Data Components (instanced)
 
     public class ComponentCollision
     {   //allows an object or actor to collide with other objects or actors
@@ -420,8 +556,9 @@ namespace DungeonRun
             rotation = Rotation.None;
             rotationValue = 0.0f;
         }
-
     }
+
+    //UI Components (instanced)
 
     public class ComponentText
     {
@@ -477,6 +614,8 @@ namespace DungeonRun
 
 
 
+
+
     //Classes (global)
 
     public static class PlayerData
@@ -504,7 +643,6 @@ namespace DungeonRun
                 saveData = (SaveData)serializer.Deserialize(stream);
             }
         }
-
     }
 
     public static class DungeonRecord
@@ -530,7 +668,6 @@ namespace DungeonRun
 
     public static class Pool
     {
-
         //actor pool handles all actors in the room including hero
         public static int actorCount;           //total count of actors in pool
         public static List<Actor> actorPool;    //the actual list of actors
@@ -617,14 +754,12 @@ namespace DungeonRun
 
     public static class Timing
     {
-
         public static Stopwatch stopWatch = new Stopwatch();
         public static Stopwatch total = new Stopwatch();
         public static TimeSpan updateTime = new TimeSpan();
         public static TimeSpan drawTime = new TimeSpan();
         public static TimeSpan totalTime = new TimeSpan();
         public static void Reset() { stopWatch.Reset(); stopWatch.Start(); }
-
     }
 
     public static class Input

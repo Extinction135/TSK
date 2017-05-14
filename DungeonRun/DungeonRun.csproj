@@ -125,12 +125,10 @@
     <Compile Include="Classes\MenuWidgetDialog.cs" />
     <Compile Include="Classes\MenuWidgetForSale.cs" />
     <Compile Include="Classes\MenuWidgetInfo.cs" />
-    <Compile Include="Classes\MenuRectangle.cs" />
     <Compile Include="Classes\MenuWidgetInventory.cs" />
     <Compile Include="Classes\MenuWidgetLoadout.cs" />
     <Compile Include="Classes\MenuWidgetOptions.cs" />
     <Compile Include="Classes\MenuWidgetStats.cs" />
-    <Compile Include="Classes\MenuWindow.cs" />
     <Compile Include="Classes\Functions_Movement.cs" />
     <Compile Include="Classes\Functions_Music.cs" />
     <Compile Include="Classes\Functions_Pool.cs" />

@@ -55,38 +55,13 @@ push new release on the 16th
 todo:
 
 
-8
-
-
-removed the constructor from SaveData, moved initial values into the field declarations (why? less code).
-cleaned up GameObject's constructor a little bit, but not co,pletely.
-
-split Input.cs into Data.Input class and Functions_Input class.
-removed Input.cs. updated various paths to use the new Functions_Input class.
-playtested, working normally.
+7
 
 
 
-
-
-
-
-
-
-playerData.Save() and Load() should not exist in the PlayerData class.
-how about Functions_SaveLoad.cs ????
-
-
-
-
-BUT ALSO
-because we're using classes, we don't really need a constructor
-we can set the initial values for data fields when we declare them
-which means less code overall
-
-
-
-
+simplified GameObject class' constructor.
+simplified Actor class' constructor.
+simplified Camera2D class' constructor.
 
 
 
@@ -100,6 +75,21 @@ Widgets...
 debug menu is really a widget, or fits into the idea/concept of what a widget is
 so is debug info
 so is worldUI
+
+widgets should only have constructor, reset, update, and draw methods
+all other methods should live in a WidetFunctions class, that takes a specific widget as a parameter
+
+widgets should inherit from a base class widget, since widget's share certain code
+BUT, this means that widgets wont be public static
+SO, we'll need to create a public static class that contains all the widgets
+that way we can still access them from anywhere
+something like Widgets.InventoryWidget, where Widgets is the public static class
+
+
+
+
+
+
 
 
 
@@ -162,20 +152,6 @@ the timing class should be part of data folder
 
 
 
-
-widgets should only have constructor, reset, update, and draw methods
-all other methods should live in a WidetFunctions class, that takes a specific widget as a parameter
-
-
-
-
-
-
-widgets should inherit from a base class widget, since widget's share certain code
-BUT, this means that widgets wont be public static
-SO, we'll need to create a public static class that contains all the widgets
-that way we can still access them from anywhere
-something like Widgets.InventoryWidget, where Widgets is the public static class
 
 we should also organize the classes into folders a bit:
 	data
