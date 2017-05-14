@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class MenuWidgetInfo
+    public static class WidgetInfo
     {
 
         public static MenuWindow window;
@@ -25,7 +25,7 @@ namespace DungeonRun
 
 
 
-        static MenuWidgetInfo()
+        static WidgetInfo()
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             infoItem = new MenuItem();
@@ -71,7 +71,7 @@ namespace DungeonRun
             //if we are displaying the inventory gold menu item, update goldDisplay
             if (MenuItem.type == MenuItemType.InventoryGold)
             {   //make goldDisplay visible or non-visible
-                goldDisplay.amount.text = MenuWidgetLoadout.goldDisplay.amount.text;
+                goldDisplay.amount.text = WidgetLoadout.goldDisplay.amount.text;
                 goldDisplay.visible = true;
             }
             else { goldDisplay.amount.text = ""; goldDisplay.visible = false; }

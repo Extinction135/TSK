@@ -28,7 +28,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             displayState = DisplayState.Opening;
-            MenuWidgetDialog.Reset(new Point(16 * 9, 16 * 12));
+            WidgetDialog.Reset(new Point(16 * 9, 16 * 12));
 
 
 
@@ -43,7 +43,7 @@ namespace DungeonRun
 
 
             //display the dialog
-            MenuWidgetDialog.DisplayDialog(speaker.type, dialog);
+            WidgetDialog.DisplayDialog(speaker.type, dialog);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
         }
@@ -61,14 +61,14 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            MenuWidgetDialog.Update();
+            WidgetDialog.Update();
             Functions_Dungeon.dungeonScreen.Update(GameTime);
         }
 
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            MenuWidgetDialog.Draw();
+            WidgetDialog.Draw();
             ScreenManager.spriteBatch.End();
         }
 

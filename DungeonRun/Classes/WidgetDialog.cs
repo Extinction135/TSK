@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class MenuWidgetDialog
+    public static class WidgetDialog
     {
 
         public static MenuWindow window;
@@ -22,7 +22,7 @@ namespace DungeonRun
         public static int charCount;
 
 
-        static MenuWidgetDialog()
+        static WidgetDialog()
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             speaker = new GameObject(Assets.mainSheet);

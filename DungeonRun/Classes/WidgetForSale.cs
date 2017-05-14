@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class MenuWidgetForSale
+    public static class WidgetForSale
     {
         static int i;
         public static MenuWindow window;
@@ -21,7 +21,7 @@ namespace DungeonRun
 
 
 
-        static MenuWidgetForSale()
+        static WidgetForSale()
         {
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "");

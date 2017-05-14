@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class MenuWidgetLoadout
+    public static class WidgetLoadout
     {
 
         static int i;
@@ -30,7 +30,7 @@ namespace DungeonRun
 
 
 
-        static MenuWidgetLoadout()
+        static WidgetLoadout()
         {
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "Loadout");

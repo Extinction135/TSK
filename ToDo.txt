@@ -55,39 +55,12 @@ push new release on the 16th
 todo:
 
 
-5
+4
 
 
 
-
-created Functions_WorldUI.cs.
-split WorldUI.cs into Functions_WorldUI.cs and DataClasses.cs
-removed WorldUI.cs file.
-updated various code to use the new Functions_WorldUI class.
-
-split DebugInfo.cs into DebugInfo class in DataClasses.cs and Functions_Draw.DrawDebugInfo().
-removed DebugInfo.cs file.
-
-split DebugMenu.cs into DebugMenu class in DataClasses.cs and Functions_Draw.DrawDebugMenu().
-moved DebugMenu.HandleInput() to Functions_Debug.().
-removed DebugMenu.cs.
-
-created Widget base class, and Widgets global class in prep for MenuWidget refactoring..
-
-
-
-
-
-
-
-
-debug menu should be a global class
-it's functions should be moved into Functions_Debug
-
-
-
-
-
+renamed all widgets to have prefix of 'Widget' instead of 'MenuWidget'.
+playtested, working as expected.
 
 
 
@@ -108,23 +81,8 @@ something like Widgets.InventoryWidget, where Widgets is the public static class
 
 
 
-
-
-
-
-
-
 Any Draw() method that exists in a function class should be moved into Functions_Draw
 ALL draw methods should exist in Functions_Draw.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -141,60 +99,6 @@ this is probably part of a refactoring / reorganizing sprint coming up soon.
 
 ObjType.Item should probably be called Obj.Consumable____ -> hearts, magic, gold, bombs
 this helps to seperate the overlap between ObjType.Item and MenuItemType.Item
-
-
-
-components should be structs, and be part of structs class
-we should move the component's methods into the component functions class
-
-dungeon record can be a struct as well
-camera2d can be a struct as well, with a corresponding camera functions class
-
-actor can be a struct, same with game object
-assets should really be named Content
-
-menuItem can be a struct as well
-debug info can be a struct as well, we'd draw the debug info in DrawFunctions
-
-
-
-actor anim list manager should actually be actor anim list functions
-same with game object anim list manager -> functions
-
-input should be a struct, and there should be an input functions class
-
-menu rectangle should be a struct, and it's methods should be moved into a more general MenuFunctions class
-menu window should be a struct, and it's methods should be moved into the MenuFunctions class as well
-
-
-the timing class should be part of data folder
-
-
-
-
-
-we should also organize the classes into folders a bit:
-	data
-	functions
-	screens
-	widgets
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
 
 
 
