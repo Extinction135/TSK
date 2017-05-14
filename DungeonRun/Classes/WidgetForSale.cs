@@ -12,16 +12,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class WidgetForSale
+    public class WidgetForSale : Widget
     {
-        static int i;
-        public static MenuWindow window;
-        public static List<MenuItem> menuItems;
-        public static List<ComponentAmountDisplay> amounts;
+        public List<MenuItem> menuItems;
+        public List<ComponentAmountDisplay> amounts;
 
 
 
-        static WidgetForSale()
+        public WidgetForSale()
         {
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "");
@@ -34,10 +32,9 @@ namespace DungeonRun
             for (i = 0; i < 10; i++) { amounts.Add(new ComponentAmountDisplay(0,0,0)); }
         }
 
-        public static void Reset(Point Position)
+        public override void Reset(int X, int Y)
         {   //align this widgets component to Position
-            window.ResetAndMoveWindow(Position, 
-                new Point(16 * 8, 16 * 5 + 8), "For Sale");
+            window.ResetAndMove(X, Y, new Point(16 * 8, 16 * 5 + 8), "For Sale");
 
 
             #region Place first row of menuItems
@@ -97,9 +94,27 @@ namespace DungeonRun
             { Functions_Component.Move(amounts[i], menuItems[i]); }
         }
 
+        public override void Update()
+        {
+            window.Update();
+        }
+
+        public override void Draw()
+        {
+            Functions_Draw.Draw(window);
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                for (i = 0; i < 10; i++)
+                {
+                    Functions_Draw.Draw(menuItems[i].compSprite);
+                    if (amounts[i].visible) { Functions_Draw.Draw(amounts[i]); }
+                }
+            }
+        }
 
 
-        public static void ResetItemsForSale()
+
+        public void ResetItemsForSale()
         { 
             for (i = 0; i < 10; i++)
             {
@@ -109,13 +124,13 @@ namespace DungeonRun
             }
         }
 
-        public static void DisplayItemCost(MenuItem Item, ComponentAmountDisplay Amount)
+        public void DisplayItemCost(MenuItem Item, ComponentAmountDisplay Amount)
         {
             Amount.visible = true;
             Functions_Component.UpdateAmount(Amount, Item.price);
         }
 
-        public static void SetItemsForSale(ObjType VendorType)
+        public void SetItemsForSale(ObjType VendorType)
         {
             //reset all the menuItems to unknown
             ResetItemsForSale();
@@ -170,26 +185,6 @@ namespace DungeonRun
             {   //if any menuItem is known, display it's cost
                 if (menuItems[i].type != MenuItemType.Unknown)
                 { DisplayItemCost(menuItems[i], amounts[i]); }
-            }
-        }
-
-
-
-        public static void Update()
-        {
-            window.Update();
-        }
-
-        public static void Draw()
-        {
-            Functions_Draw.Draw(window);
-            if (window.interior.displayState == DisplayState.Opened)
-            {
-                for (i = 0; i < 10; i++)
-                {
-                    Functions_Draw.Draw(menuItems[i].compSprite);
-                    if (amounts[i].visible) { Functions_Draw.Draw(amounts[i]); }
-                }
             }
         }
 

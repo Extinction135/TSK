@@ -12,20 +12,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class WidgetInfo
+    public class WidgetInfo : Widget
     {
-
-        public static MenuWindow window;
-        public static MenuItem infoItem;
-
-        public static ComponentAmountDisplay goldDisplay;
-
-        public static ComponentText description;
-        public static MenuRectangle divider1;
+        public MenuItem infoItem;
+        public ComponentAmountDisplay goldDisplay;
+        public ComponentText description;
+        public MenuRectangle divider1;
 
 
 
-        static WidgetInfo()
+        public WidgetInfo()
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             infoItem = new MenuItem();
@@ -38,21 +34,21 @@ namespace DungeonRun
             goldDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
-        public static void Reset(Point Position)
+        public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position,
+            window.ResetAndMove(X, Y,
                 new Point(16 * 6 + 8, 16 * 5 + 8), 
                 "Info Window");
-            description.position.X = Position.X + 8;
-            description.position.Y = Position.Y + 16 * 3;
+            description.position.X = X + 8;
+            description.position.Y = Y + 16 * 3;
             //reset the infoItem to unknown, align it
             Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, infoItem);
-            infoItem.compSprite.position.X = Position.X + 16 * 3 + 4;
-            infoItem.compSprite.position.Y = Position.Y + 16 * 2;
+            infoItem.compSprite.position.X = X + 16 * 3 + 4;
+            infoItem.compSprite.position.Y = Y + 16 * 2;
             //reset and align the divider line
             divider1.openDelay = window.headerLine.openDelay;
-            divider1.position.X = Position.X + 8;
-            divider1.position.Y = Position.Y + 16 * 3;
+            divider1.position.X = X + 8;
+            divider1.position.Y = Y + 16 * 3;
             divider1.size.X = window.size.X - 16;
             divider1.size.Y = 1;
             divider1.Reset();
@@ -60,9 +56,28 @@ namespace DungeonRun
             Functions_Component.Move(goldDisplay, infoItem);
         }
 
+        public override void Update()
+        {
+            window.Update();
+            divider1.Update();
+            Functions_Animation.Animate(infoItem.compAnim, infoItem.compSprite);
+        }
+
+        public override void Draw()
+        {
+            Functions_Draw.Draw(window);
+            Functions_Draw.Draw(divider1);
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                Functions_Draw.Draw(infoItem.compSprite);
+                Functions_Draw.Draw(description);
+                if (goldDisplay.visible) { Functions_Draw.Draw(goldDisplay); }
+            }
+        }
 
 
-        public static void Display(MenuItem MenuItem)
+
+        public void Display(MenuItem MenuItem)
         {   //set the widget's components based on the MenuItem's fields
             infoItem.compAnim.currentAnimation = MenuItem.compAnim.currentAnimation;
             infoItem.compSprite.rotation = MenuItem.compSprite.rotation;
@@ -71,31 +86,10 @@ namespace DungeonRun
             //if we are displaying the inventory gold menu item, update goldDisplay
             if (MenuItem.type == MenuItemType.InventoryGold)
             {   //make goldDisplay visible or non-visible
-                goldDisplay.amount.text = WidgetLoadout.goldDisplay.amount.text;
+                goldDisplay.amount.text = Widgets.Loadout.goldDisplay.amount.text;
                 goldDisplay.visible = true;
             }
             else { goldDisplay.amount.text = ""; goldDisplay.visible = false; }
-        }
-
-
-
-        public static void Update()
-        {
-            window.Update();
-            divider1.Update();
-            Functions_Animation.Animate(infoItem.compAnim, infoItem.compSprite);
-        }
-
-        public static void Draw()
-        {
-            Functions_Draw.Draw(window);
-            Functions_Draw.Draw(divider1);
-            if(window.interior.displayState == DisplayState.Opened)
-            {
-                Functions_Draw.Draw(infoItem.compSprite);
-                Functions_Draw.Draw(description);
-                if (goldDisplay.visible) { Functions_Draw.Draw(goldDisplay); }
-            }
         }
 
     }

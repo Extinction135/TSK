@@ -28,9 +28,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             displayState = DisplayState.Opening;
-            WidgetDialog.Reset(new Point(16 * 9, 16 * 12));
-
-
+            Widgets.Dialog.Reset(16 * 9, 16 * 12);
 
             //here is where we could check to see where in the story the hero is
             //then set the dialog screen accordingly
@@ -40,10 +38,8 @@ namespace DungeonRun
             //we'd need to track what dungeons that hero has beaten
             //this way the story vendor could comment on the hero's progress
 
-
-
             //display the dialog
-            WidgetDialog.DisplayDialog(speaker.type, dialog);
+            Widgets.Dialog.DisplayDialog(speaker.type, dialog);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
         }
@@ -61,14 +57,14 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            WidgetDialog.Update();
+            Widgets.Dialog.Update();
             Functions_Dungeon.dungeonScreen.Update(GameTime);
         }
 
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            WidgetDialog.Draw();
+            Widgets.Dialog.Draw();
             ScreenManager.spriteBatch.End();
         }
 

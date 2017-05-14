@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public abstract class Screen
     {  
-
         public Game1 game;
         public DisplayState displayState;
         public Screen() { }
@@ -24,6 +23,5 @@ namespace DungeonRun
         public virtual void HandleInput(GameTime gameTime) { }
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(GameTime gameTime) { }
-
     }
 }

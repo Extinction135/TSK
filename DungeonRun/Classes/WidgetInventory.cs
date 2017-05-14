@@ -12,19 +12,15 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class WidgetInventory
+    public class WidgetInventory : Widget
     {
-
-        static int i;
-        public static MenuWindow window;
-        public static List<MenuRectangle> dividers;
-        public static List<ComponentText> labels; //weapons, armor, equipment texts
-        public static List<MenuItem> menuItems;
-
-        public static ComponentAmountDisplay bombsDisplay;
+        public List<MenuRectangle> dividers;
+        public List<ComponentText> labels; //weapons, armor, equipment texts
+        public List<MenuItem> menuItems;
+        public ComponentAmountDisplay bombsDisplay;
 
 
-        static WidgetInventory()
+        public WidgetInventory()
         {
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "Info Window");
@@ -54,51 +50,22 @@ namespace DungeonRun
             bombsDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
-        public static void ResetDivider(MenuRectangle Divider, int X, int Y, int Width)
-        {
-            Divider.openDelay = window.headerLine.openDelay;
-            Divider.position.X = X;
-            Divider.position.Y = Y;
-            Divider.size.X = Width;
-            Divider.size.Y = 1;
-            Divider.Reset();
-        }
-
-        public static void PlaceRow(int index, int X, int Y)
-        {   //place the menuItem index at X, Y
-            menuItems[index].compSprite.position.X = X;
-            menuItems[index].compSprite.position.Y = Y;
-            //align the rest of the row
-            PlaceMenuItem(menuItems[index+1], menuItems[index]);
-            PlaceMenuItem(menuItems[index+2], menuItems[index+1]);
-            PlaceMenuItem(menuItems[index+3], menuItems[index+2]);
-            PlaceMenuItem(menuItems[index+4], menuItems[index+3]);
-        }
-
-        public static void PlaceMenuItem(MenuItem Child, MenuItem Parent)
-        {
-            Child.compSprite.position.X = Parent.compSprite.position.X + 24;
-            Child.compSprite.position.Y = Parent.compSprite.position.Y;
-        }
-
-        public static void Reset(Point Position)
+        public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position,
-                new Point(16 * 8, 16 * 14 + 8), 
-                "Items");
+            window.ResetAndMove(X, Y, new Point(16 * 8, 16 * 14 + 8), "Items");
 
 
             #region Reset and align dividers
 
             //set1 - weapons
-            ResetDivider(dividers[0], Position.X + 8, Position.Y + 16 * 4 + 8, window.size.X - 16);
-            ResetDivider(dividers[1], Position.X + 8, Position.Y + 16 * 5 + 8, window.size.X - 16);
+            ResetDivider(dividers[0], X + 8, Y + 16 * 4 + 8, window.size.X - 16);
+            ResetDivider(dividers[1], X + 8, Y + 16 * 5 + 8, window.size.X - 16);
             //set2 - armor
-            ResetDivider(dividers[2], Position.X + 8, Position.Y + 16 * 7 + 8, window.size.X - 16);
-            ResetDivider(dividers[3], Position.X + 8, Position.Y + 16 * 8 + 8, window.size.X - 16);
+            ResetDivider(dividers[2], X + 8, Y + 16 * 7 + 8, window.size.X - 16);
+            ResetDivider(dividers[3], X + 8, Y + 16 * 8 + 8, window.size.X - 16);
             //set3 - equipment
-            ResetDivider(dividers[4], Position.X + 8, Position.Y + 16 * 10 + 8, window.size.X - 16);
-            ResetDivider(dividers[5], Position.X + 8, Position.Y + 16 * 11 + 8, window.size.X - 16);
+            ResetDivider(dividers[4], X + 8, Y + 16 * 10 + 8, window.size.X - 16);
+            ResetDivider(dividers[5], X + 8, Y + 16 * 11 + 8, window.size.X - 16);
 
             #endregion
 
@@ -106,7 +73,7 @@ namespace DungeonRun
             #region Place the Labels
 
             //place labels (X)
-            labels[0].position.X = Position.X + 8;
+            labels[0].position.X = X + 8;
             labels[1].position.X = labels[0].position.X;
             labels[2].position.X = labels[0].position.X;
             //place labels (Y)
@@ -118,11 +85,11 @@ namespace DungeonRun
 
 
             //place the menuItems
-            PlaceRow(00, Position.X + 16 * 1, Position.Y + 16 * 02 + 0);
-            PlaceRow(05, Position.X + 16 * 1, Position.Y + 16 * 03 + 8);
-            PlaceRow(10, Position.X + 16 * 1, Position.Y + 16 * 06 + 8);
-            PlaceRow(15, Position.X + 16 * 1, Position.Y + 16 * 09 + 8);
-            PlaceRow(20, Position.X + 16 * 1, Position.Y + 16 * 12 + 8);
+            PlaceRow(00, X + 16 * 1, Y + 16 * 02 + 0);
+            PlaceRow(05, X + 16 * 1, Y + 16 * 03 + 8);
+            PlaceRow(10, X + 16 * 1, Y + 16 * 06 + 8);
+            PlaceRow(15, X + 16 * 1, Y + 16 * 09 + 8);
+            PlaceRow(20, X + 16 * 1, Y + 16 * 12 + 8);
 
             //reset the menuItems
             for (i = 0; i < menuItems.Count; i++)
@@ -136,7 +103,6 @@ namespace DungeonRun
             bombsDisplay.visible = false;
 
 
-
             #region Set the menuItem data (based on the hero's inventory)
 
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
@@ -147,8 +113,6 @@ namespace DungeonRun
                 Functions_Component.UpdateAmount(bombsDisplay, PlayerData.saveData.bombsCurrent);
                 bombsDisplay.visible = true;
             }
-            
-
 
             //set the empty bottles based on booleans
             if (PlayerData.saveData.bottle1)
@@ -197,20 +161,15 @@ namespace DungeonRun
             #endregion
 
 
-
-            
-
-
-
         }
 
-        public static void Update()
+        public override void Update()
         {
             window.Update();
             for (i = 0; i < dividers.Count; i++) { dividers[i].Update(); }
         }
 
-        public static void Draw()
+        public override void Draw()
         {
             Functions_Draw.Draw(window);
             for (i = 0; i < dividers.Count; i++) { Functions_Draw.Draw(dividers[i]); }
@@ -222,6 +181,35 @@ namespace DungeonRun
                 { Functions_Draw.Draw(menuItems[i].compSprite); }
                 if (bombsDisplay.visible) { Functions_Draw.Draw(bombsDisplay); }
             }
+        }
+
+
+
+        public void ResetDivider(MenuRectangle Divider, int X, int Y, int Width)
+        {
+            Divider.openDelay = window.headerLine.openDelay;
+            Divider.position.X = X;
+            Divider.position.Y = Y;
+            Divider.size.X = Width;
+            Divider.size.Y = 1;
+            Divider.Reset();
+        }
+
+        public void PlaceRow(int index, int X, int Y)
+        {   //place the menuItem index at X, Y
+            menuItems[index].compSprite.position.X = X;
+            menuItems[index].compSprite.position.Y = Y;
+            //align the rest of the row
+            PlaceMenuItem(menuItems[index+1], menuItems[index]);
+            PlaceMenuItem(menuItems[index+2], menuItems[index+1]);
+            PlaceMenuItem(menuItems[index+3], menuItems[index+2]);
+            PlaceMenuItem(menuItems[index+4], menuItems[index+3]);
+        }
+
+        public void PlaceMenuItem(MenuItem Child, MenuItem Parent)
+        {
+            Child.compSprite.position.X = Parent.compSprite.position.X + 24;
+            Child.compSprite.position.Y = Parent.compSprite.position.Y;
         }
 
     }

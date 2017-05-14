@@ -12,31 +12,23 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    class Widget
-    {
-
-
-        //this is the base class for all widgets
-
-
-
-
-
+    public abstract class Widget
+    {   //the base class for all widgets
+        public int i;
+        public MenuWindow window;
+        public virtual void Reset(int X, int Y) { }
+        public virtual void Update() { }
+        public virtual void Draw() { }
     }
 
-
-
     public static class Widgets
-    {
-        //this is the global instance that contains all widget instances
-
-        //widgets:
-        //dialog
-        //for sale
-        //menuItem info (previously info)
-        //inventory
-        //loadout
-        //options
-        //stats
+    {   //this is the global instance that contains all widget instances
+        public static WidgetDialog Dialog = new WidgetDialog();
+        public static WidgetForSale ForSale = new WidgetForSale();
+        public static WidgetInfo Info = new WidgetInfo();
+        public static WidgetInventory Inventory = new WidgetInventory();
+        public static WidgetLoadout Loadout = new WidgetLoadout();
+        public static WidgetOptions Options = new WidgetOptions();
+        public static WidgetStats Stats = new WidgetStats();
     }
 }

@@ -12,16 +12,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class WidgetStats
+    public class WidgetStats : Widget
     {
-
-        static int i;
-        public static MenuWindow window;
-        public static List<MenuItem> menuItems;
+        public List<MenuItem> menuItems;
 
 
 
-        static WidgetStats()
+        public WidgetStats()
         {
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "Stats");
@@ -31,11 +28,9 @@ namespace DungeonRun
             for (i = 0; i < 4; i++) { menuItems.Add(new MenuItem()); }
         }
 
-        public static void Reset(Point Position)
+        public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position,
-                new Point(16 * 6 + 8, 16 * 8 + 8), 
-                "Stats");
+            window.ResetAndMove(X, Y, new Point(16 * 6 + 8, 16 * 8 + 8), "Stats");
 
 
             #region Place the menuItems
@@ -64,12 +59,12 @@ namespace DungeonRun
             //MenuItemFunctions.SetMenuItemData(MenuItemType.Stats4, menuItems[3]);
         }
 
-        public static void Update()
+        public override void Update()
         {
             window.Update();
         }
 
-        public static void Draw()
+        public override void Draw()
         {
             Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)

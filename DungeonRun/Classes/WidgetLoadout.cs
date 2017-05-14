@@ -12,25 +12,21 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class WidgetLoadout
+    public class WidgetLoadout : Widget
     {
-
-        static int i;
-        public static MenuWindow window;
-        public static List<MenuItem> menuItems;
-
+        public List<MenuItem> menuItems;
         //pointers to the loadout menuItems
-        public static MenuItem item;
-        public static MenuItem weapon;
-        public static MenuItem armor;
-        public static MenuItem equipment;
+        public MenuItem item;
+        public MenuItem weapon;
+        public MenuItem armor;
+        public MenuItem equipment;
 
-        public static int goldTracker;
-        public static ComponentAmountDisplay goldDisplay;
+        public int goldTracker;
+        public ComponentAmountDisplay goldDisplay;
 
 
 
-        static WidgetLoadout()
+        public WidgetLoadout()
         {
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "Loadout");
@@ -48,11 +44,9 @@ namespace DungeonRun
             goldDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
-        public static void Reset(Point Position)
+        public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position,
-                new Point(16 * 6 + 8, 16 * 5 + 8), 
-                "Loadout");
+            window.ResetAndMove(X, Y, new Point(16 * 6 + 8, 16 * 5 + 8), "Loadout");
 
 
             #region Place first row of menuItems
@@ -105,9 +99,40 @@ namespace DungeonRun
             Functions_Component.Move(goldDisplay, menuItems[4]);
         }
 
+        public override void Update()
+        {
+            window.Update();
+            //scale the loadout sprites back down to 1.0
+            Functions_Animation.Animate(item.compAnim, item.compSprite);
+            Functions_Animation.Animate(weapon.compAnim, weapon.compSprite);
+            Functions_Animation.Animate(armor.compAnim, armor.compSprite);
+            Functions_Animation.Animate(equipment.compAnim, equipment.compSprite);
+            //animate the gold menuItem to grab the player's attention
+            Functions_Animation.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
+            if (goldTracker != PlayerData.saveData.gold)
+            {   //count the gold amount up or down
+                if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
+                else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
+                Functions_Component.UpdateAmount(goldDisplay, goldTracker);
+                //randomly play the gold sound effect
+                if (Functions_Random.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
+            }
+        }
+
+        public override void Draw()
+        {
+            Functions_Draw.Draw(window);
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                for (i = 0; i < menuItems.Count; i++)
+                { Functions_Draw.Draw(menuItems[i].compSprite); }
+                Functions_Draw.Draw(goldDisplay);
+            }
+        }
 
 
-        public static void SetLoadoutItem(MenuItem Item, MenuItemType Type)
+
+        public void SetLoadoutItem(MenuItem Item, MenuItemType Type)
         {
             if (Item.type != Type)
             {
@@ -116,7 +141,7 @@ namespace DungeonRun
             }
         }
 
-        public static void UpdateLoadout()
+        public void UpdateLoadout()
         {
             //set the loadout display based on hero's loadout
             SetLoadoutItem(item, Pool.hero.item);
@@ -133,39 +158,6 @@ namespace DungeonRun
             if (Functions_Dungeon.dungeon.bigKey) //if player found the key, display it
             { Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
             else { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
-        }
-
-
-
-        public static void Update()
-        {
-            window.Update();
-            //scale the loadout sprites back down to 1.0
-            Functions_Animation.Animate(item.compAnim, item.compSprite);
-            Functions_Animation.Animate(weapon.compAnim, weapon.compSprite);
-            Functions_Animation.Animate(armor.compAnim, armor.compSprite);
-            Functions_Animation.Animate(equipment.compAnim, equipment.compSprite);
-            //animate the gold menuItem to grab the player's attention
-            Functions_Animation.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
-            if(goldTracker != PlayerData.saveData.gold)
-            {   //count the gold amount up or down
-                if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
-                else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
-                Functions_Component.UpdateAmount(goldDisplay, goldTracker);
-                //randomly play the gold sound effect
-                if (Functions_Random.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }
-            }
-        }
-
-        public static void Draw()
-        {
-            Functions_Draw.Draw(window);
-            if (window.interior.displayState == DisplayState.Opened)
-            {
-                for (i = 0; i < menuItems.Count; i++)
-                { Functions_Draw.Draw(menuItems[i].compSprite); }
-                Functions_Draw.Draw(goldDisplay);
-            }
         }
 
     }

@@ -357,7 +357,7 @@ namespace DungeonRun
             footerLine = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
             title = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
             //align all the window components
-            ResetAndMoveWindow(Position, Size, Title);
+            ResetAndMove(Position.X, Position.Y, Size, Title);
             //set the openDelay to cascade in all the components
             background.openDelay = 0;
             border.openDelay = 2;
@@ -381,37 +381,37 @@ namespace DungeonRun
             }
         }
 
-        public void ResetAndMoveWindow(Point Position, Point Size, String Title)
+        public void ResetAndMove(int X, int Y, Point Size, String Title)
         {
             size = Size;
             //set the new title, move into position
             title.text = Title;
-            title.position.X = Position.X + 8;
-            title.position.Y = Position.Y + 2;
+            title.position.X = X + 8;
+            title.position.Y = Y + 2;
 
 
             #region Reset all the MenuRectangles, and update them to the passed Position + Size
 
-            background.position.X = Position.X + 0;
-            background.position.Y = Position.Y + 0;
+            background.position.X = X + 0;
+            background.position.Y = Y + 0;
             background.size.X = Size.X + 0;
             background.size.Y = Size.Y + 0;
             background.Reset();
 
-            border.position.X = Position.X + 1;
-            border.position.Y = Position.Y + 1;
+            border.position.X = X + 1;
+            border.position.Y = Y + 1;
             border.size.X = Size.X - 2;
             border.size.Y = Size.Y - 2;
             border.Reset();
 
-            inset.position.X = Position.X + 2;
-            inset.position.Y = Position.Y + 2;
+            inset.position.X = X + 2;
+            inset.position.Y = Y + 2;
             inset.size.X = Size.X - 4;
             inset.size.Y = Size.Y - 4;
             inset.Reset();
 
-            interior.position.X = Position.X + 3;
-            interior.position.Y = Position.Y + 3;
+            interior.position.X = X + 3;
+            interior.position.Y = Y + 3;
             interior.size.X = Size.X - 6;
             interior.size.Y = Size.Y - 6;
             interior.Reset();
@@ -421,14 +421,14 @@ namespace DungeonRun
 
             #region Reset the header and footer lines, update with Position + Size
 
-            headerLine.position.X = Position.X + 8;
-            headerLine.position.Y = Position.Y + 16;
+            headerLine.position.X = X + 8;
+            headerLine.position.Y = Y + 16;
             headerLine.size.X = Size.X - 16;
             headerLine.size.Y = 1;
             headerLine.Reset();
 
-            footerLine.position.X = Position.X + 8;
-            footerLine.position.Y = Position.Y + Size.Y - 16;
+            footerLine.position.X = X + 8;
+            footerLine.position.Y = Y + Size.Y - 16;
             footerLine.size.X = Size.X - 16;
             footerLine.size.Y = 1;
             footerLine.Reset();

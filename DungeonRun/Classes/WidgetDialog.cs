@@ -12,17 +12,15 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class WidgetDialog
+    public class WidgetDialog : Widget
     {
-
-        public static MenuWindow window;
-        public static GameObject speaker;
-        public static ComponentText dialog;
-        public static String dialogString;
-        public static int charCount;
+        public GameObject speaker;
+        public ComponentText dialog;
+        public String dialogString;
+        public int charCount;
 
 
-        static WidgetDialog()
+        public WidgetDialog()
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             speaker = new GameObject(Assets.mainSheet);
@@ -30,29 +28,17 @@ namespace DungeonRun
             dialog = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
         }
 
-        public static void Reset(Point Position)
+        public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position,
+            window.ResetAndMove(X, Y,
                 new Point(16 * 22, 16 * 4), "Hello!");
-            speaker.compMove.newPosition.X = Position.X + 16 * 1;
-            speaker.compMove.newPosition.Y = Position.Y + 16 * 2;
-            dialog.position.X = Position.X + 16 * 2;
-            dialog.position.Y = Position.Y + 16 * 1 + 4;
+            speaker.compMove.newPosition.X = X + 16 * 1;
+            speaker.compMove.newPosition.Y = Y + 16 * 2;
+            dialog.position.X = X + 16 * 2;
+            dialog.position.Y = Y + 16 * 1 + 4;
         }
 
-
-
-        public static void DisplayDialog(ObjType Type, String Dialog)
-        {   //set the menuItem's type and sprite frame
-            Functions_GameObject.SetType(speaker, Type);
-            //capture the dialog string, clear the dialog being drawn
-            dialogString = Dialog;
-            dialog.text = "";
-        }
-
-
-
-        public static void Update()
+        public override void Update()
         {
             window.Update();
             Functions_Animation.Animate(speaker.compAnim, speaker.compSprite);
@@ -71,7 +57,7 @@ namespace DungeonRun
             }
         }
 
-        public static void Draw()
+        public override void Draw()
         {
             Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
@@ -79,6 +65,16 @@ namespace DungeonRun
                 Functions_Draw.Draw(speaker.compSprite);
                 Functions_Draw.Draw(dialog);
             }
+        }
+
+
+        
+        public void DisplayDialog(ObjType Type, String Dialog)
+        {   //set the menuItem's type and sprite frame
+            Functions_GameObject.SetType(speaker, Type);
+            //capture the dialog string, clear the dialog being drawn
+            dialogString = Dialog;
+            dialog.text = "";
         }
 
     }

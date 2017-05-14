@@ -12,17 +12,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class WidgetOptions
+    public class WidgetOptions : Widget
     {
-
-        static int i;
-        public static MenuWindow window;
-        public static List<ComponentText> labels;
-        public static List<MenuItem> menuItems;
+        public List<ComponentText> labels;
+        public List<MenuItem> menuItems;
 
 
 
-        static WidgetOptions()
+        public WidgetOptions()
         {
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "Options");
@@ -40,11 +37,9 @@ namespace DungeonRun
             for (i = 0; i < 8; i++) { menuItems.Add(new MenuItem()); }
         }
 
-        public static void Reset(Point Position)
+        public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMoveWindow(Position,
-                new Point(16 * 6 + 8, 16 * 8 + 8), 
-                "Options");
+            window.ResetAndMove(X, Y, new Point(16 * 6 + 8, 16 * 8 + 8), "Options");
 
 
             #region Place the menuItems
@@ -110,12 +105,12 @@ namespace DungeonRun
             menuItems[0].compSprite.rotation = Rotation.Clockwise180;
         }
 
-        public static void Update()
+        public override void Update()
         {
             window.Update();
         }
 
-        public static void Draw()
+        public override void Draw()
         {
             Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)

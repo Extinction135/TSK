@@ -42,10 +42,10 @@ namespace DungeonRun
         {
             displayState = DisplayState.Opening;
 
-            WidgetLoadout.Reset(new Point(16 * 9, 16 * 6));
-            WidgetForSale.Reset(new Point(16 * 16, 16 * 6));
-            WidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 6));
-            WidgetDialog.Reset(new Point(16 * 9, 16 * 12));
+            Widgets.Loadout.Reset(16 * 9, 16 * 6);
+            Widgets.ForSale.Reset(16 * 16, 16 * 6);
+            Widgets.Info.Reset(16 * 24 + 8, 16 * 6);
+            Widgets.Dialog.Reset(16 * 9, 16 * 12);
 
             //set a default welcome dialog
             welcomeDialog = "i've got many useful goods for sale, adventurer!";
@@ -63,14 +63,13 @@ namespace DungeonRun
             else if (vendorType.type == ObjType.VendorWeapons)
             { welcomeDialog = "I have a fine selection of weapons for sale."; }
             //display the welcome dialog
-            WidgetDialog.DisplayDialog(vendorType.type, welcomeDialog);
-
+            Widgets.Dialog.DisplayDialog(vendorType.type, welcomeDialog);
             //display the items for sale
-            WidgetForSale.SetItemsForSale(vendorType.type);
+            Widgets.ForSale.SetItemsForSale(vendorType.type);
             //set the currently selected menuItem to the first inventory menuItem
-            currentlySelected = WidgetForSale.menuItems[0];
-            previouslySelected = WidgetForSale.menuItems[0];
-            WidgetInfo.Display(currentlySelected);
+            currentlySelected = Widgets.ForSale.menuItems[0];
+            previouslySelected = Widgets.ForSale.menuItems[0];
+            Widgets.Info.Display(currentlySelected);
 
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet,
@@ -82,8 +81,6 @@ namespace DungeonRun
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
         }
-
-
 
         public void PurchaseItem(MenuItem Item)
         {
@@ -161,11 +158,11 @@ namespace DungeonRun
 
                 PlayerData.saveData.gold -= Item.price; //deduct cost
                 //update various widgets affected by this purchase
-                WidgetForSale.SetItemsForSale(vendorType.type);
-                WidgetInfo.Display(currentlySelected);
-                WidgetLoadout.UpdateLoadout();
+                Widgets.ForSale.SetItemsForSale(vendorType.type);
+                Widgets.Info.Display(currentlySelected);
+                Widgets.Loadout.UpdateLoadout();
                 //display the purchase message & play purchase sfx
-                WidgetDialog.DisplayDialog(vendorType.type, 
+                Widgets.Dialog.DisplayDialog(vendorType.type, 
                     "thanks for your purchase!");
                 Assets.Play(Assets.sfxBeatDungeon);
 
@@ -174,7 +171,7 @@ namespace DungeonRun
             }
             else//else, hero doesn't have enough gold to purchase the item
             {   //notify player of this state, via dialog widget and error sound effect
-                WidgetDialog.DisplayDialog(vendorType.type, 
+                Widgets.Dialog.DisplayDialog(vendorType.type, 
                     "you don't have enough gold to purchase that item.");
                 Assets.Play(Assets.sfxError);
             }
@@ -220,7 +217,7 @@ namespace DungeonRun
                 //check to see if we changed menuItems
                 if (previouslySelected != currentlySelected)
                 {
-                    WidgetInfo.Display(currentlySelected);
+                    Widgets.Info.Display(currentlySelected);
                     Assets.Play(Assets.sfxTextLetter);
                     previouslySelected.compSprite.scale = 1.0f;
                     selectionBox.scale = 2.0f;
@@ -256,10 +253,10 @@ namespace DungeonRun
 
 
             
-            WidgetLoadout.Update();
-            WidgetForSale.Update();
-            WidgetInfo.Update();
-            WidgetDialog.Update();
+            Widgets.Loadout.Update();
+            Widgets.ForSale.Update();
+            Widgets.Info.Update();
+            Widgets.Dialog.Update();
 
             //pulse the selectionBox alpha
             if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
@@ -278,10 +275,10 @@ namespace DungeonRun
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.overlay * bkgAlpha);
 
-            WidgetLoadout.Draw();
-            WidgetForSale.Draw();
-            WidgetInfo.Draw();
-            WidgetDialog.Draw();
+            Widgets.Loadout.Draw();
+            Widgets.ForSale.Draw();
+            Widgets.Info.Draw();
+            Widgets.Dialog.Draw();
 
             //only draw the selection box if the screen has opened completely
             if (displayState == DisplayState.Opened)

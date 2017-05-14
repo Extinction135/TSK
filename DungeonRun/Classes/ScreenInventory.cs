@@ -37,71 +37,71 @@ namespace DungeonRun
         {
             displayState = DisplayState.Opening;
 
-            WidgetLoadout.Reset(new Point(16 * 9, 16 * 4));
-            WidgetStats.Reset(new Point(16 * 9, 16 * 10));
-            WidgetInventory.Reset(new Point(16 * 16, 16 * 4));
-            WidgetInfo.Reset(new Point(16 * 24 + 8, 16 * 4));
-            WidgetOptions.Reset(new Point(16 * 24 + 8, 16 * 10));
+            Widgets.Loadout.Reset(16 * 9, 16 * 4);
+            Widgets.Stats.Reset(16 * 9, 16 * 10);
+            Widgets.Inventory.Reset(16 * 16, 16 * 4);
+            Widgets.Info.Reset(16 * 24 + 8, 16 * 4);
+            Widgets.Options.Reset(16 * 24 + 8, 16 * 10);
 
 
             #region Connect loadout widget's menuItems to stats widget's menuItems
 
-            WidgetLoadout.menuItems[4].neighborDown = WidgetStats.menuItems[0];
-            WidgetLoadout.menuItems[5].neighborDown = WidgetStats.menuItems[0];
-            WidgetLoadout.menuItems[6].neighborDown = WidgetStats.menuItems[0];
-            WidgetLoadout.menuItems[7].neighborDown = WidgetStats.menuItems[0];
-            WidgetStats.menuItems[0].neighborUp = WidgetLoadout.menuItems[4];
+            Widgets.Loadout.menuItems[4].neighborDown = Widgets.Stats.menuItems[0];
+            Widgets.Loadout.menuItems[5].neighborDown = Widgets.Stats.menuItems[0];
+            Widgets.Loadout.menuItems[6].neighborDown = Widgets.Stats.menuItems[0];
+            Widgets.Loadout.menuItems[7].neighborDown = Widgets.Stats.menuItems[0];
+            Widgets.Stats.menuItems[0].neighborUp = Widgets.Loadout.menuItems[4];
 
             #endregion
 
 
             #region Connect loadout widget's menuItems to inventory widget's menuItems
 
-            WidgetLoadout.menuItems[3].neighborRight = WidgetInventory.menuItems[0];
-            WidgetInventory.menuItems[0].neighborLeft = WidgetLoadout.menuItems[3];
+            Widgets.Loadout.menuItems[3].neighborRight = Widgets.Inventory.menuItems[0];
+            Widgets.Inventory.menuItems[0].neighborLeft = Widgets.Loadout.menuItems[3];
 
-            WidgetLoadout.menuItems[7].neighborRight = WidgetInventory.menuItems[5];
-            WidgetInventory.menuItems[5].neighborLeft = WidgetLoadout.menuItems[7];
+            Widgets.Loadout.menuItems[7].neighborRight = Widgets.Inventory.menuItems[5];
+            Widgets.Inventory.menuItems[5].neighborLeft = Widgets.Loadout.menuItems[7];
 
             #endregion
 
 
             #region Connect stat widget's menuItems to inventory widget's menuItems
 
-            WidgetStats.menuItems[0].neighborRight = WidgetInventory.menuItems[10];
-            WidgetInventory.menuItems[10].neighborLeft = WidgetStats.menuItems[0];
+            Widgets.Stats.menuItems[0].neighborRight = Widgets.Inventory.menuItems[10];
+            Widgets.Inventory.menuItems[10].neighborLeft = Widgets.Stats.menuItems[0];
 
-            WidgetStats.menuItems[1].neighborRight = WidgetInventory.menuItems[15];
-            WidgetInventory.menuItems[15].neighborLeft = WidgetStats.menuItems[1];
+            Widgets.Stats.menuItems[1].neighborRight = Widgets.Inventory.menuItems[15];
+            Widgets.Inventory.menuItems[15].neighborLeft = Widgets.Stats.menuItems[1];
 
-            WidgetStats.menuItems[2].neighborRight = WidgetInventory.menuItems[15];
+            Widgets.Stats.menuItems[2].neighborRight = Widgets.Inventory.menuItems[15];
 
-            WidgetStats.menuItems[3].neighborRight = WidgetInventory.menuItems[20];
-            WidgetInventory.menuItems[20].neighborLeft = WidgetStats.menuItems[3];
+            Widgets.Stats.menuItems[3].neighborRight = Widgets.Inventory.menuItems[20];
+            Widgets.Inventory.menuItems[20].neighborLeft = Widgets.Stats.menuItems[3];
 
             #endregion
 
 
             #region Connect options widget's menuItems to inventory widget's menuItems
 
-            WidgetOptions.menuItems[0].neighborLeft = WidgetInventory.menuItems[14];
-            WidgetInventory.menuItems[14].neighborRight = WidgetOptions.menuItems[0];
+            Widgets.Options.menuItems[0].neighborLeft = Widgets.Inventory.menuItems[14];
+            Widgets.Inventory.menuItems[14].neighborRight = Widgets.Options.menuItems[0];
 
-            WidgetOptions.menuItems[2].neighborLeft = WidgetInventory.menuItems[19];
-            WidgetInventory.menuItems[19].neighborRight = WidgetOptions.menuItems[2];
+            Widgets.Options.menuItems[2].neighborLeft = Widgets.Inventory.menuItems[19];
+            Widgets.Inventory.menuItems[19].neighborRight = Widgets.Options.menuItems[2];
 
-            WidgetOptions.menuItems[4].neighborLeft = WidgetInventory.menuItems[19];
+            Widgets.Options.menuItems[4].neighborLeft = Widgets.Inventory.menuItems[19];
 
-            WidgetOptions.menuItems[6].neighborLeft = WidgetInventory.menuItems[24];
-            WidgetInventory.menuItems[24].neighborRight = WidgetOptions.menuItems[6];
+            Widgets.Options.menuItems[6].neighborLeft = Widgets.Inventory.menuItems[24];
+            Widgets.Inventory.menuItems[24].neighborRight = Widgets.Options.menuItems[6];
 
             #endregion
 
 
             //set the currently selected menuItem to the first inventory menuItem
-            currentlySelected = WidgetInventory.menuItems[0];
-            previouslySelected = WidgetInventory.menuItems[0];
-            WidgetInfo.Display(currentlySelected);
+            currentlySelected = Widgets.Inventory.menuItems[0];
+            previouslySelected = Widgets.Inventory.menuItems[0];
+            Widgets.Info.Display(currentlySelected);
 
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet, 
@@ -161,7 +161,7 @@ namespace DungeonRun
 
 
             //update the LoadoutWidget to show equipped items
-            WidgetLoadout.UpdateLoadout();
+            Widgets.Loadout.UpdateLoadout();
         }
 
 
@@ -204,7 +204,7 @@ namespace DungeonRun
                 //check to see if we changed menuItems
                 if (previouslySelected != currentlySelected)
                 {
-                    WidgetInfo.Display(currentlySelected);
+                    Widgets.Info.Display(currentlySelected);
                     Assets.Play(Assets.sfxTextLetter);
                     previouslySelected.compSprite.scale = 1.0f;
                     selectionBox.scale = 2.0f;
@@ -238,11 +238,11 @@ namespace DungeonRun
                 }
             }
 
-            WidgetLoadout.Update();
-            WidgetStats.Update();
-            WidgetInfo.Update();
-            WidgetInventory.Update();
-            WidgetOptions.Update();
+            Widgets.Loadout.Update();
+            Widgets.Stats.Update();
+            Widgets.Info.Update();
+            Widgets.Inventory.Update();
+            Widgets.Options.Update();
 
             //pulse the selectionBox alpha
             if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
@@ -265,11 +265,11 @@ namespace DungeonRun
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.overlay * bkgAlpha);
 
-            WidgetLoadout.Draw();
-            WidgetStats.Draw();
-            WidgetInfo.Draw();
-            WidgetInventory.Draw();
-            WidgetOptions.Draw();
+            Widgets.Loadout.Draw();
+            Widgets.Stats.Draw();
+            Widgets.Info.Draw();
+            Widgets.Inventory.Draw();
+            Widgets.Options.Draw();
             //only draw the selection box if the screen has opened completely
             if (displayState == DisplayState.Opened)
             { Functions_Draw.Draw(selectionBox); }
