@@ -43,9 +43,6 @@ ram useage:
 	
 	
 
-	
-	
-
 push new release on the 16th
 
 
@@ -55,18 +52,12 @@ push new release on the 16th
 todo:
 
 
-2
+1
 
 
-
-
-
-renamed ObjGroup.Item to ObjGroup.Pickup.
-ObjType items now get the prefix 'Pickup' instead of 'Item'.
-updated various classes to use the new naming convention.
-this was done to prevent confusion betwee ObjType.Item and MenuItemType.Item.
-now the keyword 'Item' is no longer used in ObjType & ObjGroup.
-playtested, working as expected.
+playtested on xbox one, no bugs/crashes/errors.
+frametime: 2-3 ms total.
+ram: 103mb.
 
 
 
@@ -79,24 +70,35 @@ playtested, working as expected.
 
 
 
-REORGANIZATION / REFACTORING SPRINT
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Particles & Projectiles
 
 we're kinda getting some overlap between particles and projectiles
 it would be nice to consolidate them, if possible
 then move SpawnProjectile() methods into a ProjectileFunctions class.
 
-
 particles are projectiles, they're just a special case of projectiles
-
-
-
-
-
-
-
-
-
-
 
 
 
