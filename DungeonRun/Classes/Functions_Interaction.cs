@@ -143,28 +143,28 @@ namespace DungeonRun
                 {   //reward the hero with the chests contents
                     if (Obj.type == ObjType.ChestGold)
                     {
-                        Functions_GameObject.SpawnProjectile(ObjType.ParticleRewardGold, Actor);
+                        Functions_Projectiles.SpawnProjectile(ObjType.ParticleRewardGold, Actor);
                         Assets.Play(Assets.sfxReward);
                         PlayerData.saveData.gold += 20;
                     }
                     else if (Obj.type == ObjType.ChestKey)
                     {
-                        Functions_GameObject.SpawnProjectile(ObjType.ParticleRewardKey, Actor);
+                        Functions_Projectiles.SpawnProjectile(ObjType.ParticleRewardKey, Actor);
                         Assets.Play(Assets.sfxKeyPickup);
                         Functions_Dungeon.dungeon.bigKey = true;
                     }
                     else if (Obj.type == ObjType.ChestMap)
                     {
-                        Functions_GameObject.SpawnProjectile(ObjType.ParticleRewardMap, Actor);
+                        Functions_Projectiles.SpawnProjectile(ObjType.ParticleRewardMap, Actor);
                         Assets.Play(Assets.sfxReward);
                         Functions_Dungeon.dungeon.map = true;
                     }
                     else if (Obj.type == ObjType.ChestHeartPiece)
                     {
                         if (WorldUI.pieceCounter == 3) //if this completes a heart, display the full heart reward
-                        { Functions_GameObject.SpawnProjectile(ObjType.ParticleRewardHeartFull, Actor); }
+                        { Functions_Projectiles.SpawnProjectile(ObjType.ParticleRewardHeartFull, Actor); }
                         else //this does not complete a heart, display the heart piece reward
-                        { Functions_GameObject.SpawnProjectile(ObjType.ParticleRewardHeartPiece, Actor); }
+                        { Functions_Projectiles.SpawnProjectile(ObjType.ParticleRewardHeartPiece, Actor); }
                         Assets.Play(Assets.sfxReward);
                         PlayerData.saveData.heartPieces++;
                     }
@@ -174,7 +174,7 @@ namespace DungeonRun
                     Actor.lockTotal = 50; //lock for a prolonged time
 
                     //play an explosion particle to show the chest was opened
-                    Functions_GameObject.SpawnProjectile(
+                    Functions_Projectiles.SpawnProjectile(
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
@@ -208,7 +208,7 @@ namespace DungeonRun
                     {
                         Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
                         Assets.Play(Assets.sfxDoorOpen);
-                        Functions_GameObject.SpawnProjectile(
+                        Functions_Projectiles.SpawnProjectile(
                             ObjType.ParticleAttention,
                             Obj.compSprite.position.X,
                             Obj.compSprite.position.Y,
@@ -230,7 +230,7 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.DoorTrap)
                 {   //trap doors push ALL actors
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
-                    Functions_GameObject.SpawnProjectile(
+                    Functions_Projectiles.SpawnProjectile(
                         ObjType.ParticleDashPuff,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
@@ -265,7 +265,7 @@ namespace DungeonRun
                     if (Obj.compSprite.scale < 1.5f) { Assets.Play(Assets.sfxBounce); }
                     //if the bumper was hit this frame, scale it up
                     Obj.compSprite.scale = 1.5f;
-                    Functions_GameObject.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
+                    Functions_Projectiles.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
                 }
 
                 //lever, floor spikes, switch, bridge, flamethrower,
@@ -305,7 +305,7 @@ namespace DungeonRun
                     Functions_Movement.Push(ObjA.compMove, ObjA.compMove.direction, 5.0f);
                     Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect
                     //show that the object has been hit
-                    Functions_GameObject.SpawnProjectile(
+                    Functions_Projectiles.SpawnProjectile(
                         ObjType.ParticleHitSparkle, 
                         ObjA.compSprite.position.X,
                         ObjA.compSprite.position.Y,

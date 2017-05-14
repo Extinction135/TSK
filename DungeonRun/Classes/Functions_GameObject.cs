@@ -15,11 +15,6 @@ namespace DungeonRun
     public static class Functions_GameObject
     {
 
-        static Vector2 offset = new Vector2(0, 0);
-        static Direction cardinal; //a cardinal direction used by SpawnProjectile()
-
-
-
         public static void ResetObject(GameObject Obj)
         {
             //reset the obj
@@ -89,141 +84,6 @@ namespace DungeonRun
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
-            }
-        }
-
-
-
-        public static void SpawnProjectile(ObjType Type, Actor Actor)
-        {
-            //wraps the SpawnProjectile() method below
-            //applies projectile offset relative to Actor based on Type
-            offset.X = 0; offset.Y = 0;
-            cardinal = Functions_Direction.GetCardinalDirection(Actor.direction);
-
-            //center horizontally, place near actor's feet
-            if (Type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
-            //center horizontally, place near actor's body
-            else if (Type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
-
-
-            #region Projectiles
-
-            //place fireballs relative to direction actor is facing
-            else if (Type == ObjType.ProjectileFireball ||
-                Type == ObjType.ProjectileBomb)
-            {
-                if (cardinal == Direction.Down) { offset.Y = 14; }
-                else if (cardinal == Direction.Up) { offset.Y = -9; }
-                else if (cardinal == Direction.Right) { offset.X = 11; offset.Y = 2; }
-                else if (cardinal == Direction.Left) { offset.X = -11; offset.Y = 2; }
-            }
-            //place swords relative to direction actor is facing
-            else if (Type == ObjType.ProjectileSword)
-            {
-                if (cardinal == Direction.Down) { offset.X = -1; offset.Y = 15; }
-                else if (cardinal == Direction.Up) { offset.X = 1; offset.Y = -12; }
-                else if (cardinal == Direction.Right) { offset.X = 14; }
-                else if (cardinal == Direction.Left) { offset.X = -14; }
-            }
-
-            #endregion
-
-
-            #region Reward Particles
-
-            //place reward particles above actor's head
-            else if (Type == ObjType.ParticleRewardGold ||
-                Type == ObjType.ParticleRewardKey ||
-                Type == ObjType.ParticleRewardMap ||
-                Type == ObjType.ParticleRewardHeartFull ||
-                Type == ObjType.ParticleRewardHeartPiece ||
-                Type == ObjType.ParticleFairy)
-            { offset.Y = -14; }
-
-            #endregion
-
-
-            //call the real SpawnProjectile method
-            SpawnProjectile(Type, 
-                Actor.compSprite.position.X + offset.X, 
-                Actor.compSprite.position.Y + offset.Y,
-                cardinal);
-        }
-
-        public static void SpawnProjectile(ObjType Type, float X, float Y, Direction Direction)
-        {
-            GameObject obj = Functions_Pool.GetProjectile();
-            //default this projectile/particle to Down direction
-            obj.direction = Direction.Down;
-            obj.compMove.direction = Direction.Down;
-
-            //convert projectile's directions to cardinal
-            if (Type == ObjType.ProjectileFireball || Type == ObjType.ProjectileSword)
-            {
-                obj.direction = Functions_Direction.GetCardinalDirection(Direction);
-                obj.compMove.direction = Functions_Direction.GetCardinalDirection(Direction);
-            }
-
-            //set stationary weapon's collision recs, now that they have proper direction
-            if (Type == ObjType.ProjectileSword) { SetWeaponCollisions(obj); }
-
-            //teleport the projectile to the proper location
-            Functions_Movement.Teleport(obj.compMove, X, Y);
-            //set the type, rotation, cellsize, & alignment as last step
-            SetType(obj, Type);
-        }
-
-
-
-        public static void HandleBirthEvent(GameObject Obj)
-        {   //this targets projectiles/particles only
-            if (Obj.type == ObjType.ProjectileBomb)
-            {
-                SpawnProjectile(ObjType.ParticleAttention,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-                Assets.Play(Assets.sfxBombDrop);
-            }
-            else if (Obj.type == ObjType.ProjectileFireball)
-            {   //place smoke puff centered to fireball
-                SpawnProjectile(ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y + 4,
-                    Direction.None);
-                Assets.Play(Assets.sfxFireballCast);
-            }
-            else if (Obj.type == ObjType.ProjectileExplosion)
-            {   //place smoke puff above explosion
-                SpawnProjectile(ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y - 8,
-                    Direction.None);
-                Assets.Play(Assets.sfxExplosion);
-            }
-        }
-
-        public static void HandleDeathEvent(GameObject Obj)
-        {   //this targets projectiles/particles only
-            if (Obj.type == ObjType.ProjectileBomb)
-            {   //create explosion projectile
-                SpawnProjectile(ObjType.ProjectileExplosion,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.None);
-            }
-            else if (Obj.type == ObjType.ProjectileFireball)
-            {
-                SpawnProjectile(ObjType.ParticleExplosion,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-                SpawnProjectile(ObjType.ParticleFire,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0, 
-                    Direction.None);
-                Assets.Play(Assets.sfxFireballDeath);
             }
         }
 
@@ -464,7 +324,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Pickup;
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.loop = true;
             }
 
             #endregion
@@ -490,7 +349,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
-                Obj.compAnim.loop = true;
                 Obj.compMove.speed = 1.5f; //fireballs move
             }
             else if (Type == ObjType.ProjectileBomb)
@@ -502,7 +360,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
-                Obj.compAnim.loop = true;
             }
             else if (Type == ObjType.ProjectileExplosion)
             {
@@ -547,7 +404,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.loop = true;
             }
             //Particles - normal size
             else if (Type == ObjType.ParticleExplosion)
@@ -572,7 +428,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
-                Obj.compAnim.loop = true;
             }
             else if (Type == ObjType.ParticleFairy)
             {
@@ -580,7 +435,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 50; //in frames
                 Obj.compAnim.speed = 10; //in frames
-                Obj.compAnim.loop = true;
             }
             //Particles - rewards
             else if (Type == ObjType.ParticleRewardGold ||
@@ -593,7 +447,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 50; //in frames
                 Obj.compAnim.speed = 5; //in frames
-                Obj.compAnim.loop = true;
             }
 
             #endregion
@@ -619,10 +472,10 @@ namespace DungeonRun
             {  
                 Obj.lifeCounter++; //increment the life counter of the gameobject
                 //handle the object's birth & death events
-                if (Obj.lifeCounter == 2) { HandleBirthEvent(Obj); }
+                if (Obj.lifeCounter == 2) { Functions_Projectiles.HandleBirthEvent(Obj); }
                 if (Obj.lifeCounter >= Obj.lifetime)
                 {   //any dead object is released
-                    HandleDeathEvent(Obj);
+                    Functions_Projectiles.HandleDeathEvent(Obj);
                     Functions_Pool.Release(Obj);
                 }
             }
