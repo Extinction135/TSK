@@ -373,6 +373,17 @@ namespace DungeonRun
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = false;
             }
+            else if (Type == ObjType.ProjectileArrow)
+            {
+                Obj.compSprite.zOffset = 16;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compCollision.blocking = false;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 200; //in frames
+                Obj.compAnim.speed = 5; //in frames
+                Obj.compMove.speed = 1.5f; //arrow move
+            }
 
             #endregion
 

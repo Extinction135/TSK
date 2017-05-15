@@ -61,7 +61,7 @@ namespace DungeonRun
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, 
 
         //Projectiles
-        ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion,
+        ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion, ProjectileArrow,
 
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,

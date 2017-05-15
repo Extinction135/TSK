@@ -230,7 +230,7 @@ namespace DungeonRun
         public byte bombsCurrent = 3;
         public byte bombsMax = 99;
 
-        public byte arrowsCurrent = 0;
+        public byte arrowsCurrent = 99; //testing
         public byte arrowsMax = 99;
 
         public Boolean itemBoomerang = false;

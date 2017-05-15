@@ -52,27 +52,61 @@ push new release on the 16th
 todo:
 
 
-8
+7
 
 
 
-Update the Inventory screen to properly display the bow weapon, and the arrow count
 
-updated InventoryScreen.SetLoadout() with path for WeaponBow.
-this allows the player to equip the bow.
-created InventoryWidget.SetInventoryMenuItems().
-this makes it a bit easier to find, as it was buried in the widget's reset method.
-organized codepaths in SetInventoryMenuItems(), added path for WeaponBow.
+Create the arrow projectile, get it moving around
 
-added arrowsDisplay ComponentAmountDisplay to InventoryWidget.
-added paths to place, update, and draw the arrowsDisplay to InventoryWidget.
-playtested, working as expected.
+added ProjectileArrow value to ObjType enumerator.
+added anim list for ProjectileArrow to Functions_GameObjAnimList.
+added path for ProjectileArrow to Functions_GameObj.SetType().
+added ProjectileArrow into SpawnProjectile()'s offset from actor.
+updated Functions_Item.UseItem() with path to handle ProjectileArrow.
 
+playtested, arrow projectiles are created when hero has bow equipped and uses it.
+current arrow count decrements properly as well, and is displayed in inventory screen correctly.
+
+
+
+
+
+
+can we create an arrow projectile?
+does it move? it shouldn't collide with anything.
+
+
+
+
+
+
+
+Handle arrow collisions + interactions
+
+
+
+
+
+Consolidate SetWeaponCollisions() into SpawnProjectile
+
+
+
+
+ 
+
+
+
+
+
+we'll need to set the arrow collision rec based on it's direction
+for now, it's just gonna match the fireball collision rec tho.
 
 
 
 
 nothing should happen when we use the bow weapon right now, that's next
+
 
 
 

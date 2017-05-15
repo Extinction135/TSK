@@ -109,6 +109,24 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxSwordSwipe);
                 Actor.lockTotal = 15;
             }
+            else if (Type == MenuItemType.WeaponBow)
+            {
+                if (Actor == Pool.hero)
+                {
+                    if (PlayerData.saveData.arrowsCurrent > 0)
+                    {
+                        PlayerData.saveData.arrowsCurrent--;
+                        Functions_Projectiles.SpawnProjectile(ObjType.ProjectileArrow, Actor);
+                        Actor.lockTotal = 15;
+                    }
+                    else { Assets.Play(Assets.sfxError); }
+                }
+                else
+                {
+                    Functions_Projectiles.SpawnProjectile(ObjType.ProjectileArrow, Actor);
+                    Actor.lockTotal = 15;
+                }
+            }
 
             #endregion
 
