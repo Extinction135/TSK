@@ -350,7 +350,7 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
-                Obj.compMove.speed = 1.5f; //fireballs move
+                Obj.compMove.speed = 1.5f; //fireballs move slow
             }
             else if (Type == ObjType.ProjectileBomb)
             {
@@ -382,7 +382,7 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
-                Obj.compMove.speed = 1.5f; //arrow move
+                Obj.compMove.speed = 2.25f; //arrow move fast
             }
 
             #endregion

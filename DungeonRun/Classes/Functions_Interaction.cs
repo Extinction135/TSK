@@ -88,6 +88,12 @@ namespace DungeonRun
                 {
                     Functions_Battle.Damage(Actor, 2, 10.0f, Obj.direction);
                 }
+                //arrows deal 1 damage, push 4, and die
+                else if (Obj.type == ObjType.ProjectileArrow)
+                {
+                    Functions_Battle.Damage(Actor, 1, 4.0f, Obj.direction);
+                    Obj.lifeCounter = Obj.lifetime;
+                }
             }
 
             #endregion
@@ -295,9 +301,10 @@ namespace DungeonRun
 
             if(ObjB.compCollision.blocking) //is the colliding object blocking?
             {
-                if (ObjA.type == ObjType.ProjectileFireball)
+                if (ObjA.type == ObjType.ProjectileFireball ||
+                    ObjA.type == ObjType.ProjectileArrow)
                 {
-                    ObjA.lifeCounter = ObjA.lifetime; //kill fireball
+                    ObjA.lifeCounter = ObjA.lifetime; //kill projectile
                 }
 
                 else if (ObjA.type == ObjType.BlockSpikes)

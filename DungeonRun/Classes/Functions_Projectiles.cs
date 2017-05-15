@@ -178,6 +178,19 @@ namespace DungeonRun
                     Direction.None);
                 Assets.Play(Assets.sfxFireballDeath);
             }
+            else if (Obj.type == ObjType.ProjectileArrow)
+            {
+                SpawnProjectile(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+                Assets.Play(Assets.sfxMetallicTap);
+                //spawn an arrow pickup item (so hero can reuse arrows, if he's quick)
+                Functions_Projectiles.SpawnProjectile(ObjType.PickupArrow,
+                    Obj.compSprite.position.X + 4,
+                    Obj.compSprite.position.Y - 2, 
+                    Direction.Down);
+            }
         }
 
     }
