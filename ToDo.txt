@@ -52,22 +52,19 @@ push new release on the 16th
 todo:
 
 
-10
+9
 
 
 
-Added Arrow pickup consumable item
+Made the Bow Weapon available for Purchase from Weapon Vendor
 
-added arrowsCurrent and arrowsMax to saveData class.
-defaults to 0 arrows, with a max of 99.
-added PickupArrow value to ObjType enunmerator.
-updated Functions_GameObjAnimList with path for PickupArrow.
-slight reorg of ObjType enum and Functions_GameObjAnimList.
-updated Functions_GameObj.SetType() with path for PickupArrow.
-updated Functions_Loot.SpawnLoot() with path for PickupArrow.
-updated the loot table to drop bombs @ 5% and arrows @ %4 (rare loot drops).
-updated Functions_Interaction.Interact() with path for PickupArrow.
-an arrow pickup simply increments the saveData.arrowsCurrent value.
+updated the ForSale widget SetItemsForSale() to check saveData.weaponBow.
+sets the 1st menuItem to weapon bow if saveData.weaponBow is false.
+updated VendorScreen.PurchaseItem() to handle the weaponBow menuItemType.
+this sets the saveData.weaponBow boolean true, and auto-equips it.
+
+
+
 
 
 
