@@ -18,6 +18,8 @@ namespace DungeonRun
         public List<ComponentText> labels; //weapons, armor, equipment texts
         public List<MenuItem> menuItems;
         public ComponentAmountDisplay bombsDisplay;
+        public ComponentAmountDisplay arrowsDisplay;
+
 
 
         public WidgetInventory()
@@ -48,6 +50,7 @@ namespace DungeonRun
 
             //create bomb amount display
             bombsDisplay = new ComponentAmountDisplay(0, 0, 0);
+            arrowsDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
         public override void Reset(int X, int Y)
@@ -98,69 +101,12 @@ namespace DungeonRun
             //set the menuItem's neighbors
             Functions_MenuItem.SetNeighbors(menuItems, 5);
 
-            //align the bomb amount display to the bomb item
-            Functions_Component.Move(bombsDisplay, menuItems[1]);
+            //set the amount displays to be hidden, initially
             bombsDisplay.visible = false;
+            arrowsDisplay.visible = false;
 
-
-            #region Set the menuItem data (based on the hero's inventory)
-
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-            if (PlayerData.saveData.bombsCurrent > 0)
-            {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
-                //if hero has bombs, display the number of bombs + draw display amount
-                Functions_Component.UpdateAmount(bombsDisplay, PlayerData.saveData.bombsCurrent);
-                bombsDisplay.visible = true;
-            }
-
-            //set the empty bottles based on booleans
-            if (PlayerData.saveData.bottle1)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]); }
-            if (PlayerData.saveData.bottle2)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[3]); }
-            if (PlayerData.saveData.bottle3)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[4]); }
-
-            //set the filled bottles based on booleans
-            if (PlayerData.saveData.bottleHealth)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[2]); }
-            if (PlayerData.saveData.bottleMagic)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[3]); }
-            if (PlayerData.saveData.bottleFairy)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[4]); }
-
-            //set the magic medallion items
-            if (PlayerData.saveData.magicFireball)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]); }
-
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[6]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[7]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[8]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[9]);
-
-            Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponSword, menuItems[10]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, menuItems[12]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[13]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[14]);
-
-            Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[15]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, menuItems[16]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, menuItems[17]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[18]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[19]);
-
-            if (PlayerData.saveData.equipmentRing)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[20]); }
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[22]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[23]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, menuItems[24]);
-
-            #endregion
-
-
+            //set the inventory widget's menuItems based on saveData booleans
+            SetInventoryMenuItems();
         }
 
         public override void Update()
@@ -180,10 +126,108 @@ namespace DungeonRun
                 for (i = 0; i < menuItems.Count; i++)
                 { Functions_Draw.Draw(menuItems[i].compSprite); }
                 if (bombsDisplay.visible) { Functions_Draw.Draw(bombsDisplay); }
+                if (arrowsDisplay.visible) { Functions_Draw.Draw(arrowsDisplay); }
             }
         }
 
 
+
+        public void SetInventoryMenuItems()
+        {
+
+            #region Items
+
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
+            
+            if (PlayerData.saveData.bombsCurrent > 0)
+            {
+                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
+                Functions_Component.Move(bombsDisplay, menuItems[1]);
+                //if hero has bombs, display the number of bombs + draw display amount
+                Functions_Component.UpdateAmount(bombsDisplay, PlayerData.saveData.bombsCurrent);
+                bombsDisplay.visible = true;
+            }
+
+            #endregion
+
+
+            #region Bottles
+
+            //set the empty bottles based on booleans
+            if (PlayerData.saveData.bottle1)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]); }
+            if (PlayerData.saveData.bottle2)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[3]); }
+            if (PlayerData.saveData.bottle3)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[4]); }
+
+            //set the filled bottles based on booleans
+            if (PlayerData.saveData.bottleHealth)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[2]); }
+            if (PlayerData.saveData.bottleMagic)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[3]); }
+            if (PlayerData.saveData.bottleFairy)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[4]); }
+
+            #endregion
+
+
+            #region Set the magic medallion items
+
+            if (PlayerData.saveData.magicFireball)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]); }
+
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[6]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[7]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[8]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[9]);
+
+            #endregion
+
+
+            #region Weapons
+
+            Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponSword, menuItems[10]);
+
+            if (PlayerData.saveData.weaponBow)
+            {
+                Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
+                Functions_Component.Move(arrowsDisplay, menuItems[11]);
+                //if hero has arrows, display the number of arrows + draw display amount
+                Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.saveData.arrowsCurrent);
+                arrowsDisplay.visible = true;
+            }
+            
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, menuItems[12]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[13]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[14]);
+
+            #endregion
+
+
+            #region Armor
+
+            Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[15]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, menuItems[16]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, menuItems[17]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[18]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[19]);
+
+            #endregion
+
+
+            #region Equipment
+
+            if (PlayerData.saveData.equipmentRing)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[20]); }
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[22]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[23]);
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, menuItems[24]);
+
+            #endregion
+
+        }
 
         public void ResetDivider(MenuRectangle Divider, int X, int Y, int Width)
         {

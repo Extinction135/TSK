@@ -136,7 +136,8 @@ namespace DungeonRun
             #region Weapons
 
             //check if currently selected is a weapon, set hero.weapon
-            if (currentlySelected.type == MenuItemType.WeaponSword)
+            if (currentlySelected.type == MenuItemType.WeaponSword ||
+                currentlySelected.type == MenuItemType.WeaponBow)
             { Pool.hero.weapon = currentlySelected.type; }
 
             #endregion
