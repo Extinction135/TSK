@@ -143,6 +143,17 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Weapons
+
+                else if (Item.type == MenuItemType.WeaponBow)
+                {
+                    PlayerData.saveData.weaponBow = true;
+                    Pool.hero.weapon = Item.type;
+                }
+
+                #endregion
+
+
                 #region Equipment
 
                 else if (Item.type == MenuItemType.EquipmentRing)
