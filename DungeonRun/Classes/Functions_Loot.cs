@@ -40,8 +40,10 @@ namespace DungeonRun
                 { Functions_Projectiles.SpawnProjectile(ObjType.PickupRupee, Pos.X, Pos.Y, Direction.Down); }
 
                 //rare loot drops
-                else if (lootType < 100) //9%
+                else if (lootType < 95) //5%
                 { Functions_Projectiles.SpawnProjectile(ObjType.PickupBomb, Pos.X, Pos.Y, Direction.Down); }
+                else if (lootType < 100) //4%
+                { Functions_Projectiles.SpawnProjectile(ObjType.PickupArrow, Pos.X, Pos.Y, Direction.Down); }
             }
         }
 

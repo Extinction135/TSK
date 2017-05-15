@@ -315,7 +315,8 @@ namespace DungeonRun
             #region Pickups
 
             else if (Type == ObjType.PickupRupee || Type == ObjType.PickupHeart ||
-                Type == ObjType.PickupMagic || Type == ObjType.PickupBomb)
+                Type == ObjType.PickupMagic || Type == ObjType.PickupArrow ||
+                Type == ObjType.PickupBomb)
             {
                 Obj.compSprite.cellSize.X = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;

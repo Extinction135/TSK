@@ -105,6 +105,8 @@ namespace DungeonRun
                     { PlayerData.saveData.gold++; Assets.Play(Assets.sfxGoldPickup); }
                     else if (Obj.type == ObjType.PickupMagic)
                     { PlayerData.saveData.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    else if (Obj.type == ObjType.PickupArrow)
+                    { PlayerData.saveData.arrowsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
                     else if (Obj.type == ObjType.PickupBomb)
                     { PlayerData.saveData.bombsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
                     //end the items life

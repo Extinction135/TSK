@@ -162,15 +162,17 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Items
+                #region Pickups
 
-                //ItemRupee
+                //PickupRupee
                 new List<Byte4> { new Byte4(20, 0, 0, 0), new Byte4(21, 0, 0, 0), new Byte4(22, 0, 0, 0), new Byte4(23, 0, 0, 0) },
-                //ItemHeart
+                //PickupHeart
                 new List<Byte4> { new Byte4(20, 1, 0, 0), new Byte4(21, 1, 0, 0), new Byte4(22, 1, 0, 0), new Byte4(23, 1, 0, 0) },
-                //ItemMagic
+                //PickupMagic
                 new List<Byte4> { new Byte4(20, 2, 0, 0), new Byte4(21, 2, 0, 0), new Byte4(22, 2, 0, 0), new Byte4(23, 2, 0, 0) },
-                //ItemBomb
+                //PickupArrow
+                new List<Byte4> { new Byte4(20, 3, 0, 0), new Byte4(21, 3, 0, 0), new Byte4(22, 3, 0, 0), new Byte4(23, 3, 0, 0) },
+                //PickupBomb
                 new List<Byte4> { new Byte4(20, 4, 0, 0), new Byte4(21, 4, 0, 0), new Byte4(22, 4, 0, 0), new Byte4(23, 4, 0, 0) },
 
                 #endregion

@@ -224,11 +224,14 @@ namespace DungeonRun
         public int gold = 99;
         public byte heartPieces = 4 * 3; //sets max health
 
-        public byte magicCurrent = 3; //current magic amount
-        public byte magicMax = 3; //max magic amount
+        public byte magicCurrent = 3;
+        public byte magicMax = 3;
 
         public byte bombsCurrent = 3;
         public byte bombsMax = 99;
+
+        public byte arrowsCurrent = 0;
+        public byte arrowsMax = 99;
 
         public Boolean itemBoomerang = false;
         //itemBomb

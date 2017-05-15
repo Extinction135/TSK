@@ -57,8 +57,8 @@ namespace DungeonRun
         VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment, VendorStory,
         VendorAdvertisement,
 
-        //Items - picked up by hero
-        PickupRupee, PickupHeart, PickupMagic, PickupBomb,
+        //Pickups - picked up by hero
+        PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, 
 
         //Projectiles
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion,

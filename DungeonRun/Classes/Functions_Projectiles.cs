@@ -20,8 +20,7 @@ namespace DungeonRun
 
 
         public static void SpawnProjectile(ObjType Type, Actor Actor)
-        {
-            //wraps the SpawnProjectile() method below
+        {   //wraps the SpawnProjectile() method below
             //applies projectile offset relative to Actor based on Type
             offset.X = 0; offset.Y = 0;
             cardinal = Functions_Direction.GetCardinalDirection(Actor.direction);
@@ -35,7 +34,7 @@ namespace DungeonRun
             #region Pickups
 
             else if (Type == ObjType.PickupRupee)
-            {   //place the dropped rupee away from the hero, cardinal = pushed direction
+            {   //place the dropped rupee away from hero, cardinal = pushed direction
                 if (cardinal == Direction.Down) { offset.X = 4; offset.Y = -12; }
                 else if (cardinal == Direction.Up) { offset.X = 4; offset.Y = 15; }
                 else if (cardinal == Direction.Right) { offset.X = -14; offset.Y = 4; }

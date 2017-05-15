@@ -52,24 +52,36 @@ push new release on the 16th
 todo:
 
 
-11
-
-
-updated Functions_Actor.SetHitState() to cause hero to drop a gold piece upon hit.
-updated Functions_Projectiles.SpawnProjectile() to place rupee away from hero.
-this is similar to how fireballs and swords are placed away from the hero, so they dont collide.
-this update increases the consequences for getting hit, and reminds me of old sega sonic games.
-the player can pickup the dropped gold, but only has 255 frames to do so before it disappears.
-playtested, and after several iterations getting the offsets looking good, it works well.
+10
 
 
 
+Added Arrow pickup consumable item
+
+added arrowsCurrent and arrowsMax to saveData class.
+defaults to 0 arrows, with a max of 99.
+added PickupArrow value to ObjType enunmerator.
+updated Functions_GameObjAnimList with path for PickupArrow.
+slight reorg of ObjType enum and Functions_GameObjAnimList.
+updated Functions_GameObj.SetType() with path for PickupArrow.
+updated Functions_Loot.SpawnLoot() with path for PickupArrow.
+updated the loot table to drop bombs @ 5% and arrows @ %4 (rare loot drops).
+updated Functions_Interaction.Interact() with path for PickupArrow.
+an arrow pickup simply increments the saveData.arrowsCurrent value.
 
 
 
 
 
 
+how do we display how many arrows the hero has? in inventory screen
+but we should only display the counter if the hero has unlocked the BOW
+this can only be done from the weapons vendor
+
+update weapons vendor to allow purchasing of BOW weapon
+this should flip the saveData.bow boolean true
+inventory screen should check this boolean to see if it displays the bow menuItem
+if this boolean is true, also display the arrow display amount
 
 
 
@@ -78,7 +90,6 @@ playtested, and after several iterations getting the offsets looking good, it wo
 
 add arrow consumable item
 include in pickup routines
-add the arrow icon and number to worldUI.
 arrow counter is player specific, stored in saveData
 
 bow and arrow
@@ -90,6 +101,15 @@ we'll need to display this arrow counter in inventory screen, over the arrow men
 we'll need to have an arrow consumable item sprite
 
 update spawn loot to randomly drop arrows
+
+
+
+
+
+
+
+
+
 
 
 
