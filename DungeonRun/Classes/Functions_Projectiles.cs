@@ -46,28 +46,23 @@ namespace DungeonRun
 
             #region Projectiles
 
-            //place fireballs relative to direction actor is facing
-            else if (Type == ObjType.ProjectileFireball ||
-                Type == ObjType.ProjectileBomb || Type == ObjType.ProjectileArrow)
+            else if (
+                Type == ObjType.ProjectileFireball ||
+                Type == ObjType.ProjectileBomb || 
+                Type == ObjType.ProjectileArrow)
             {
                 if (cardinal == Direction.Down) { offset.Y = 14; }
                 else if (cardinal == Direction.Up) { offset.Y = -9; }
                 else if (cardinal == Direction.Right) { offset.X = 11; offset.Y = 2; }
                 else if (cardinal == Direction.Left) { offset.X = -11; offset.Y = 2; }
             }
-            //place swords relative to direction actor is facing
-            else if (Type == ObjType.ProjectileSword)
-            {
-
+            else if (
+                Type == ObjType.ProjectileSword) 
+            {   
                 if (cardinal == Direction.Down) { offset.X = -1; offset.Y = 15; }
                 else if (cardinal == Direction.Up) { offset.X = 1; offset.Y = -12; }
                 else if (cardinal == Direction.Right) { offset.X = 14; }
                 else if (cardinal == Direction.Left) { offset.X = -14; }
-
-                //can't we put the SetWeaponCollisions() routines here?
-                //we know the direction the obj/actor is facing
-                //then we could set the arrow's collision rec here as well
-                //and get rid of SetWeaponCollisions() in Functions_GameObject
             }
 
             #endregion
@@ -102,26 +97,13 @@ namespace DungeonRun
             obj.compMove.direction = Direction.Down;
 
             //convert projectile's directions to cardinal
-            if (Type == ObjType.ProjectileFireball || Type == ObjType.ProjectileSword ||
+            if (Type == ObjType.ProjectileFireball || 
+                Type == ObjType.ProjectileSword ||
                 Type == ObjType.ProjectileArrow)
             {
                 obj.direction = Functions_Direction.GetCardinalDirection(Direction);
                 obj.compMove.direction = Functions_Direction.GetCardinalDirection(Direction);
             }
-
-
-
-
-
-            //  ***** this can be moved into the above SpawnProjectile() method
-            //set stationary weapon's collision recs, now that they have proper direction
-            if (Type == ObjType.ProjectileSword) { Functions_GameObject.SetWeaponCollisions(obj); }
-
-
-
-
-
-
 
             //teleport the projectile to the proper location
             Functions_Movement.Teleport(obj.compMove, X, Y);

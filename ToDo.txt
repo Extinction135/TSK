@@ -52,69 +52,16 @@ push new release on the 16th
 todo:
 
 
-5
+4
 
 
+Simpifying how projectiles are aligned and offset.
 
-Upgrade the Arrow projectile to use the correct sound effects.
+refactor of Functions_Projectiles.SpawnProjectile().
+refactor of Functions_GameObj.SetType().
+updated Functions_GameObj.SetType() to set hitbox of arrow based on arrow's direction.
 
-added 'SoundArrowHit' to content project, built.
-added 'SoundArrowShoot' to content project, built.
-added instances to Assets for ArrowHit and ArrowShoot sfx.
-updated the death sound effect for arrow to be ArrowHit sfx.
-updated the birth event for arrow projectile to play the ArrowShoot sfx.
-playtested.
-
-
-add the shoot arrow sound effect
-add the hit arrow sound effect
-
-
-
-
-
-
-
-
-
-
-Consolidate SetWeaponCollisions() into SpawnProjectile
-
-
-
-
- 
-
-
-
-
-
-we'll need to set the arrow collision rec based on it's direction
-for now, it's just gonna match the fireball collision rec tho.
-
-
-
-
-nothing should happen when we use the bow weapon right now, that's next
-
-
-
-
-
-
-add arrow consumable item
-include in pickup routines
-arrow counter is player specific, stored in saveData
-
-bow and arrow
-create arrow projectile, just like fireball
-create bow weapon, just like sword
-when hero uses bow, an arrow should be created
-we'll need an arrow counter in saveData
-we'll need to display this arrow counter in inventory screen, over the arrow menuItem
-we'll need to have an arrow consumable item sprite
-
-update spawn loot to randomly drop arrows
+playtest
 
 
 
@@ -129,11 +76,19 @@ update spawn loot to randomly drop arrows
 
 
 
+should be able to purchase arrows from the weapon vendor
+set of 10 for 10 gold
+set of 30 for 30 gold
 
 
 
-	
-	
+
+
+when a pickup item 'dies', an attention particle should be created at it's location
+
+
+
+
 	
 	
 	

@@ -340,6 +340,7 @@ namespace DungeonRun
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
+                SetWeaponCollisions(Obj); //set collisions based on direction
             }
             else if (Type == ObjType.ProjectileFireball)
             {
@@ -383,6 +384,17 @@ namespace DungeonRun
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compMove.speed = 2.25f; //arrow move fast
+                //set collision rec based on direction
+                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
+                {
+                    Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -6;
+                    Obj.compCollision.rec.Width = 4; Obj.compCollision.rec.Height = 12;
+                }
+                else //left or right
+                {
+                    Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -2;
+                    Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 4;
+                }
             }
 
             #endregion
