@@ -94,19 +94,27 @@ namespace DungeonRun
 
                 #region Items
 
-                if (Item.type == MenuItemType.ItemBomb)
-                {
-                    PlayerData.saveData.bombsCurrent++;
-                    Pool.hero.item = Item.type;
-                }
-                else if (Item.type == MenuItemType.ItemBombs)
-                {
-                    PlayerData.saveData.bombsCurrent += 3;
-                    Pool.hero.item = MenuItemType.ItemBomb;
+                if (Item.type == MenuItemType.ItemBomb || Item.type == MenuItemType.ItemBombs)
+                {   //check to see if hero is full on bombs
+                    if (PlayerData.saveData.bombsCurrent < PlayerData.saveData.bombsMax)
+                    {   //check to see how many bombs hero is purchasing
+                        if (Item.type == MenuItemType.ItemBomb)
+                        { PlayerData.saveData.bombsCurrent++; }
+                        else { PlayerData.saveData.bombsCurrent += 3; }
+                        //auto-equip the bombs purchased
+                        Pool.hero.item = MenuItemType.ItemBomb;
+                        CompleteSale(Item);
+                    }
+                    else { DialogCarryingMaxAmount(); }
                 }
                 else if (Item.type == MenuItemType.ItemArrows20)
-                {
-                    PlayerData.saveData.arrowsCurrent += 20;
+                {   //check to see if hero is full on arrows
+                    if (PlayerData.saveData.arrowsCurrent < PlayerData.saveData.arrowsMax)
+                    {   //increment the arrows, complete the sale
+                        PlayerData.saveData.arrowsCurrent += 20;
+                        CompleteSale(Item);
+                    }
+                    else { DialogCarryingMaxAmount(); }
                 }
 
                 #endregion
@@ -119,18 +127,21 @@ namespace DungeonRun
                     PlayerData.saveData.bottle1 = true;
                     PlayerData.saveData.bottleHealth = true;
                     Pool.hero.item = Item.type;
+                    CompleteSale(Item);
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
                 {
                     PlayerData.saveData.bottle2 = true;
                     PlayerData.saveData.bottleMagic = true;
                     Pool.hero.item = Item.type;
+                    CompleteSale(Item);
                 }
                 else if (Item.type == MenuItemType.BottleFairy)
                 {
                     PlayerData.saveData.bottle3 = true;
                     PlayerData.saveData.bottleFairy = true;
                     Pool.hero.item = Item.type;
+                    CompleteSale(Item);
                 }
 
                 #endregion
@@ -142,6 +153,7 @@ namespace DungeonRun
                 {
                     PlayerData.saveData.magicFireball = true;
                     Pool.hero.item = Item.type;
+                    CompleteSale(Item);
                 }
 
                 #endregion
@@ -153,6 +165,7 @@ namespace DungeonRun
                 {
                     PlayerData.saveData.weaponBow = true;
                     Pool.hero.weapon = Item.type;
+                    CompleteSale(Item);
                 }
 
                 #endregion
@@ -164,33 +177,52 @@ namespace DungeonRun
                 {
                     PlayerData.saveData.equipmentRing = true;
                     Pool.hero.equipment = Item.type;
+                    CompleteSale(Item);
                 }
-
-                #endregion
-
-
-                #region Complete Sale
-
-                PlayerData.saveData.gold -= Item.price; //deduct cost
-                //update various widgets affected by this purchase
-                Widgets.ForSale.SetItemsForSale(vendorType.type);
-                Widgets.Info.Display(currentlySelected);
-                Widgets.Loadout.UpdateLoadout();
-                //display the purchase message & play purchase sfx
-                Widgets.Dialog.DisplayDialog(vendorType.type, 
-                    "thanks for your purchase!");
-                Assets.Play(Assets.sfxBeatDungeon);
 
                 #endregion
 
             }
             else//else, hero doesn't have enough gold to purchase the item
-            {   //notify player of this state, via dialog widget and error sound effect
-                Widgets.Dialog.DisplayDialog(vendorType.type, 
-                    "you don't have enough gold to purchase that item.");
-                Assets.Play(Assets.sfxError);
-            }
+            { DialogNotEnoughGold(); }
         }
+
+
+
+        public void CompleteSale(MenuItem Item)
+        {
+            PlayerData.saveData.gold -= Item.price; //deduct cost
+            //update various widgets affected by this purchase
+            Widgets.ForSale.SetItemsForSale(vendorType.type);
+            Widgets.Info.Display(currentlySelected);
+            Widgets.Loadout.UpdateLoadout();
+            //display the purchase message & play purchase sfx
+            DialogPurchaseThankyou();
+        }
+
+        public void DialogNotEnoughGold()
+        {
+            Widgets.Dialog.DisplayDialog(vendorType.type,
+                    "you don't have enough gold to purchase that item.");
+            Assets.Play(Assets.sfxError);
+        }
+
+        public void DialogPurchaseThankyou()
+        {
+            Widgets.Dialog.DisplayDialog(vendorType.type,
+                    "thanks for your purchase!");
+            Assets.Play(Assets.sfxBeatDungeon);
+        }
+
+        public void DialogCarryingMaxAmount()
+        {
+            Widgets.Dialog.DisplayDialog(vendorType.type,
+                    "you are already carrying the maximum amount.");
+            Assets.Play(Assets.sfxError);
+        }
+
+
+
 
 
 

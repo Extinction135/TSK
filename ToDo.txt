@@ -52,21 +52,21 @@ push new release on the 16th
 todo:
 
 
-3
+2
 
 
 
-Make item vendor sell arrows in packs of 20, for 20 gold.
+Polish the purchase item routines
 
-added ItemArrows20 to MenuItemType enumerator.
-added sprite for ItemArrows20 pack in MainSheet.
-added path for ItemArrows20 to Functions_MenuItem.SetMenuItemData().
-updated ForSaleWidget.SetItemsForSale() with path for ItemArrows20.
-this path checks the saveData.weaponBow boolean to make sure hero has the bow.
-otherwise, arrows are not for sale.
-updated VendorScreen.PurchaseItem() with path for ItemArrows20.
-this increments the saveData.arrowsCurrent value by 20.
-no bounds checking is performed however.
+prevent player from purchasing arrows when they are full on arrows.
+updated ForSale Widget to only display arrows for sale if arrowsCurrent is less than arrowsMax.
+
+tell player when they are full on bombs and arrows.
+split vendor dialog into functions in VendorScreen.
+moved complete sale routines into CompleteSale() method in VendorScreen.
+updated VendorScreen.PurchaseItem() to use new functions.
+updated ForSaleWidget.SetItemsForSale() to always make bombs available for purchase.
+
 playtested, working as expected.
 
 
@@ -75,12 +75,16 @@ playtested, working as expected.
 
 
 
+update bottles in vendor screen to check and see if hero is already carrying max
+
+
+
 
 
 
 update WorldUI to bounds check arrowsCurrent to arrowsMax.
 
-update ForSale Widget to only display arrows for sale if arrowsCurrent is less than arrowsMax.
+
 
 
 arrows should appear in the item vendor's ad on the table
