@@ -147,6 +147,10 @@ namespace DungeonRun
                     Direction.None);
                 Assets.Play(Assets.sfxFireballCast);
             }
+            else if (Obj.type == ObjType.ProjectileArrow)
+            {
+                Assets.Play(Assets.sfxArrowShoot);
+            }
             else if (Obj.type == ObjType.ProjectileExplosion)
             {   //place smoke puff above explosion
                 SpawnProjectile(ObjType.ParticleSmokePuff,
@@ -184,7 +188,7 @@ namespace DungeonRun
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
-                Assets.Play(Assets.sfxMetallicTap);
+                Assets.Play(Assets.sfxArrowHit);
                 //spawn an arrow pickup item (so hero can reuse arrows, if he's quick)
                 Functions_Projectiles.SpawnProjectile(ObjType.PickupArrow,
                     Obj.compSprite.position.X + 4,

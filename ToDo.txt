@@ -52,37 +52,27 @@ push new release on the 16th
 todo:
 
 
-7
+5
 
 
 
+Upgrade the Arrow projectile to use the correct sound effects.
 
-Create the arrow projectile, get it moving around
-
-added ProjectileArrow value to ObjType enumerator.
-added anim list for ProjectileArrow to Functions_GameObjAnimList.
-added path for ProjectileArrow to Functions_GameObj.SetType().
-added ProjectileArrow into SpawnProjectile()'s offset from actor.
-updated Functions_Item.UseItem() with path to handle ProjectileArrow.
-
-playtested, arrow projectiles are created when hero has bow equipped and uses it.
-current arrow count decrements properly as well, and is displayed in inventory screen correctly.
+added 'SoundArrowHit' to content project, built.
+added 'SoundArrowShoot' to content project, built.
+added instances to Assets for ArrowHit and ArrowShoot sfx.
+updated the death sound effect for arrow to be ArrowHit sfx.
+updated the birth event for arrow projectile to play the ArrowShoot sfx.
+playtested.
 
 
-
-
-
-
-can we create an arrow projectile?
-does it move? it shouldn't collide with anything.
+add the shoot arrow sound effect
+add the hit arrow sound effect
 
 
 
 
 
-
-
-Handle arrow collisions + interactions
 
 
 

@@ -73,7 +73,6 @@ namespace DungeonRun
 
         //monogame defaults to 1024 max sound effect instances in sound effect instance pool
         //the number of lists * listSize SHOULD be less than 1024
-        //current count (26 * 5) = 130 sfx instances
 
         public static List<SoundEffectInstance> sfxDash;
         public static List<SoundEffectInstance> sfxSwordSwipe;
@@ -109,6 +108,9 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxMapOpen;
         public static List<SoundEffectInstance> sfxError;
         public static List<SoundEffectInstance> sfxBombDrop;
+        public static List<SoundEffectInstance> sfxArrowShoot;
+        //
+        public static List<SoundEffectInstance> sfxArrowHit;
 
         #endregion
 
@@ -248,6 +250,11 @@ namespace DungeonRun
             SoundEffect errorSrc = content.Load<SoundEffect>(@"SoundError");
             sfxBombDrop = new List<SoundEffectInstance>();
             SoundEffect bombDropSrc = content.Load<SoundEffect>(@"SoundBombDrop");
+            sfxArrowShoot = new List<SoundEffectInstance>();
+            SoundEffect arrowShootSrc = content.Load<SoundEffect>(@"SoundArrowShoot");
+            //
+            sfxArrowHit = new List<SoundEffectInstance>();
+            SoundEffect arrowHitSrc = content.Load<SoundEffect>(@"SoundArrowHit");
 
             #endregion
 
@@ -290,8 +297,9 @@ namespace DungeonRun
                 sfxMapOpen.Add(mapOpenSrc.CreateInstance());
                 sfxError.Add(errorSrc.CreateInstance());
                 sfxBombDrop.Add(bombDropSrc.CreateInstance());
-
+                sfxArrowShoot.Add(arrowShootSrc.CreateInstance());
                 //
+                sfxArrowHit.Add(arrowHitSrc.CreateInstance());
             }
 
             #endregion
