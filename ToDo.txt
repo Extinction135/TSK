@@ -52,33 +52,48 @@ push new release on the 16th
 todo:
 
 
-4
-
-
-Simpifying how projectiles are aligned and offset.
-
-refactor of Functions_Projectiles.SpawnProjectile().
-refactor of Functions_GameObj.SetType().
-updated Functions_GameObj.SetType() to set hitbox of arrow based on arrow's direction.
-
-playtest
+3
 
 
 
+Make item vendor sell arrows in packs of 20, for 20 gold.
 
-
-
-
-
-
+added ItemArrows20 to MenuItemType enumerator.
+added sprite for ItemArrows20 pack in MainSheet.
+added path for ItemArrows20 to Functions_MenuItem.SetMenuItemData().
+updated ForSaleWidget.SetItemsForSale() with path for ItemArrows20.
+this path checks the saveData.weaponBow boolean to make sure hero has the bow.
+otherwise, arrows are not for sale.
+updated VendorScreen.PurchaseItem() with path for ItemArrows20.
+this increments the saveData.arrowsCurrent value by 20.
+no bounds checking is performed however.
+playtested, working as expected.
 
 
 
 
 
-should be able to purchase arrows from the weapon vendor
-set of 10 for 10 gold
-set of 30 for 30 gold
+
+
+
+
+
+update WorldUI to bounds check arrowsCurrent to arrowsMax.
+
+update ForSale Widget to only display arrows for sale if arrowsCurrent is less than arrowsMax.
+
+
+arrows should appear in the item vendor's ad on the table
+sword should not appear in the weapon vendor's ad
+
+
+
+
+when hero 'shoots' an arrow, place a bow particle over the hero sprite
+it should appear to be in his hands
+it should match his direction
+this may need to be a projectile
+
 
 
 

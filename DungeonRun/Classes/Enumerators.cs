@@ -80,7 +80,7 @@ namespace DungeonRun
         StatsHealth, StatsMagic, StatsAgility, Stats4,
         OptionsSaveGame, OptionsLoadGame, OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls,
 
-        ItemBoomerang, ItemBomb, ItemBombs,
+        ItemBoomerang, ItemBomb, ItemBombs, ItemArrows20,
 
         BottleEmpty, BottleHealth, BottleMagic, BottleFairy,
 

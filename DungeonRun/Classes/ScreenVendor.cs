@@ -104,6 +104,10 @@ namespace DungeonRun
                     PlayerData.saveData.bombsCurrent += 3;
                     Pool.hero.item = MenuItemType.ItemBomb;
                 }
+                else if (Item.type == MenuItemType.ItemArrows20)
+                {
+                    PlayerData.saveData.arrowsCurrent += 20;
+                }
 
                 #endregion
 

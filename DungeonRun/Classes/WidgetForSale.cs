@@ -144,6 +144,13 @@ namespace DungeonRun
                     Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
                     Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBombs, menuItems[2]);
                 }
+
+                if (PlayerData.saveData.weaponBow)
+                {   //if hero has the bow weapon, then arrows are available for sale
+                    Functions_MenuItem.SetMenuItemData(MenuItemType.ItemArrows20, menuItems[3]);
+                    //later on, we should check to see that arrowsCurrent is less than arrowsMax
+                }
+
             }
             else if (VendorType == ObjType.VendorPotions)
             {
