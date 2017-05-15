@@ -615,15 +615,16 @@ namespace DungeonRun
 
             if (VendorType == ObjType.VendorItems)
             {   //add all the items from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //boomerang
+                //objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //boomerang
                 objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0)); //bomb
                 objRef.compAnim.currentAnimation.Add(new Byte4(5, 7, 0, 0)); //bombs
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 8, 0, 0)); //arrows
             }
             else if (VendorType == ObjType.VendorPotions)
             {   //add all the potions from the main sheet
                 //objRef.compAnim.currentAnimation.Add(new Byte4(6, 5, 0, 0)); //empty bottle
                 objRef.compAnim.currentAnimation.Add(new Byte4(6, 6, 0, 0)); //health
-                //objRef.compAnim.currentAnimation.Add(new Byte4(6, 7, 0, 0)); //magic
+                objRef.compAnim.currentAnimation.Add(new Byte4(6, 7, 0, 0)); //magic
                 //objRef.compAnim.currentAnimation.Add(new Byte4(6, 8, 0, 0)); //mix
                 objRef.compAnim.currentAnimation.Add(new Byte4(6, 9, 0, 0)); //fairy
             }
@@ -637,9 +638,9 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.VendorWeapons)
             {   //add all the weapons from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(8, 5, 0, 0)); //sword
+                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 5, 0, 0)); //sword
                 objRef.compAnim.currentAnimation.Add(new Byte4(8, 6, 0, 0)); //bow
-                objRef.compAnim.currentAnimation.Add(new Byte4(8, 7, 0, 0)); //staff
+                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 7, 0, 0)); //staff
                 //objRef.compAnim.currentAnimation.Add(new Byte4(8, 8, 0, 0)); //axe
                 //objRef.compAnim.currentAnimation.Add(new Byte4(8, 9, 0, 0)); //net
             }

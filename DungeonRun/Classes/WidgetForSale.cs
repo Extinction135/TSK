@@ -151,12 +151,19 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.VendorPotions)
             {
+                //bottles always are available for purchase
+                Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[0]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[1]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[2]);
+
+                /*
                 if (!PlayerData.saveData.bottleHealth)
                 { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[0]); }
                 if (!PlayerData.saveData.bottleMagic)
                 { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[1]); }
                 if (!PlayerData.saveData.bottleFairy)
                 { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[2]); }
+                */
             }
             else if (VendorType == ObjType.VendorMagic)
             {

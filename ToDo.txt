@@ -52,31 +52,35 @@ push new release on the 16th
 todo:
 
 
-2
-
-
-
-Polish the purchase item routines
-
-prevent player from purchasing arrows when they are full on arrows.
-updated ForSale Widget to only display arrows for sale if arrowsCurrent is less than arrowsMax.
-
-tell player when they are full on bombs and arrows.
-split vendor dialog into functions in VendorScreen.
-moved complete sale routines into CompleteSale() method in VendorScreen.
-updated VendorScreen.PurchaseItem() to use new functions.
-updated ForSaleWidget.SetItemsForSale() to always make bombs available for purchase.
-
-playtested, working as expected.
+1
 
 
 
 
+Polishing the ForSale widget and what products vendor provides / advertises
+
+updated ForSale widget to always display health, magic potions, and fairy bottles.
+updated VendorScreen to check and see if hero has already purchased bottles.
+vendor notifies player if purchase is more potions than they can carry.
+this is the same approach used to notify player upon purchase of max bombs / arrows.
+
+updated the 20 pack of arrows sprite.
+the 20 pack of arrows now appear in the item vendor's table advertisement.
+the magic potion now appears in the potion vendor's table advertisement.
+the sword & staff was removed from the weapon vendor's table advertisement.
+
+playtested, working great.
 
 
 
-update bottles in vendor screen to check and see if hero is already carrying max
 
+
+
+
+the bow should appear in weapon vendor's products
+however, we should check upon purchase to see if we've already bought the item
+so we'll need a dialog for that.
+we should switch the bottles over to using that dialog as well, since they are a single item
 
 
 
@@ -87,23 +91,20 @@ update WorldUI to bounds check arrowsCurrent to arrowsMax.
 
 
 
-arrows should appear in the item vendor's ad on the table
-sword should not appear in the weapon vendor's ad
-
-
-
-
 when hero 'shoots' an arrow, place a bow particle over the hero sprite
 it should appear to be in his hands
 it should match his direction
 this may need to be a projectile
 
-
-
-
-
-
 when a pickup item 'dies', an attention particle should be created at it's location
+
+
+
+
+
+
+
+
 
 
 

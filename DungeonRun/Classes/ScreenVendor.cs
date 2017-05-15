@@ -82,6 +82,9 @@ namespace DungeonRun
             Assets.Play(Assets.sfxInventoryOpen);
         }
 
+
+
+
         public void PurchaseItem(MenuItem Item)
         {
             //the player cannot purchase an unknown item
@@ -89,7 +92,7 @@ namespace DungeonRun
 
             //see if hero has enough gold to purchase this item
             if (PlayerData.saveData.gold >= Item.price)
-            {   //handle item effects, based on type
+            {
 
 
                 #region Items
@@ -124,24 +127,36 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.BottleHealth)
                 {
-                    PlayerData.saveData.bottle1 = true;
-                    PlayerData.saveData.bottleHealth = true;
-                    Pool.hero.item = Item.type;
-                    CompleteSale(Item);
+                    if (!PlayerData.saveData.bottleHealth)
+                    {
+                        PlayerData.saveData.bottle1 = true;
+                        PlayerData.saveData.bottleHealth = true;
+                        Pool.hero.item = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogCarryingMaxAmount(); }
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
                 {
-                    PlayerData.saveData.bottle2 = true;
-                    PlayerData.saveData.bottleMagic = true;
-                    Pool.hero.item = Item.type;
-                    CompleteSale(Item);
+                    if (!PlayerData.saveData.bottleMagic)
+                    {
+                        PlayerData.saveData.bottle2 = true;
+                        PlayerData.saveData.bottleMagic = true;
+                        Pool.hero.item = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogCarryingMaxAmount(); }
                 }
                 else if (Item.type == MenuItemType.BottleFairy)
                 {
-                    PlayerData.saveData.bottle3 = true;
-                    PlayerData.saveData.bottleFairy = true;
-                    Pool.hero.item = Item.type;
-                    CompleteSale(Item);
+                    if (!PlayerData.saveData.bottleFairy)
+                    {
+                        PlayerData.saveData.bottle3 = true;
+                        PlayerData.saveData.bottleFairy = true;
+                        Pool.hero.item = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogCarryingMaxAmount(); }
                 }
 
                 #endregion
@@ -182,12 +197,10 @@ namespace DungeonRun
 
                 #endregion
 
-            }
-            else//else, hero doesn't have enough gold to purchase the item
-            { DialogNotEnoughGold(); }
+
+            } //else, hero doesn't have enough gold to purchase the item
+            else { DialogNotEnoughGold(); }
         }
-
-
 
         public void CompleteSale(MenuItem Item)
         {
@@ -210,14 +223,14 @@ namespace DungeonRun
         public void DialogPurchaseThankyou()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "thanks for your purchase!");
+                    "thankyou for your purchase!");
             Assets.Play(Assets.sfxBeatDungeon);
         }
 
         public void DialogCarryingMaxAmount()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you are already carrying the maximum amount.");
+                    "you are carrying the maximum amount of that item.");
             Assets.Play(Assets.sfxError);
         }
 
