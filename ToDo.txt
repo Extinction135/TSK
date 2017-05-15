@@ -52,16 +52,27 @@ push new release on the 16th
 todo:
 
 
-12
+11
+
+
+updated Functions_Actor.SetHitState() to cause hero to drop a gold piece upon hit.
+updated Functions_Projectiles.SpawnProjectile() to place rupee away from hero.
+this is similar to how fireballs and swords are placed away from the hero, so they dont collide.
+this update increases the consequences for getting hit, and reminds me of old sega sonic games.
+the player can pickup the dropped gold, but only has 255 frames to do so before it disappears.
+playtested, and after several iterations getting the offsets looking good, it works well.
 
 
 
 
 
-the summary screen should not reward ANY gold at all, if the hero died.
-if the dungeon was beaten, then player should get a boss defeat gold bonus
-this will help keep the economy's gold supply in check
-otherwise, the hero gets gold far too easily
+
+
+
+
+
+
+
 
 
 

@@ -26,8 +26,16 @@ namespace DungeonRun
             //display the hit effect particle
             Functions_Projectiles.SpawnProjectile(ObjType.ParticleHitSparkle, Actor);
 
-            //play the correct hit sound effect based on the actor type
-            if (Actor == Pool.hero) { Assets.Play(Assets.sfxHeroHit); }
+            //play hero/enemy hit sound effect
+            if (Actor == Pool.hero)
+            {
+                Assets.Play(Assets.sfxHeroHit);
+                if (PlayerData.saveData.gold > 0) //if hero has any gold
+                {   //drop a gold piece upon getting hit
+                    Functions_Projectiles.SpawnProjectile(ObjType.PickupRupee, Actor);
+                    PlayerData.saveData.gold--;
+                }
+            }
             else { Assets.Play(Assets.sfxEnemyHit); }
             //if the actor hit was the boss, also play the boss hit sound
             if (Actor.type == ActorType.Boss) { Assets.Play(Assets.sfxBossHit); }

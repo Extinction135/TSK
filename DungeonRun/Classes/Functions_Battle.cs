@@ -28,8 +28,9 @@ namespace DungeonRun
                 if (Actor == Pool.hero) { DungeonRecord.totalDamage += Damage; }
 
                 //set actor into hit state, push actor the projectile's direction
+                Functions_Movement.Push(Actor.compMove, Direction, Force); //sets magnitude only
+                Actor.direction = Direction; //actor's facing direction becomes direction pushed
                 Functions_Actor.SetHitState(Actor);
-                Functions_Movement.Push(Actor.compMove, Direction, Force);
             }
         }
 

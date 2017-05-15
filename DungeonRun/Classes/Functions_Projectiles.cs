@@ -32,6 +32,19 @@ namespace DungeonRun
             else if (Type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
 
 
+            #region Pickups
+
+            else if (Type == ObjType.PickupRupee)
+            {   //place the dropped rupee away from the hero, cardinal = pushed direction
+                if (cardinal == Direction.Down) { offset.X = 4; offset.Y = -12; }
+                else if (cardinal == Direction.Up) { offset.X = 4; offset.Y = 15; }
+                else if (cardinal == Direction.Right) { offset.X = -14; offset.Y = 4; }
+                else if (cardinal == Direction.Left) { offset.X = 14; offset.Y = 4; }
+            }
+
+            #endregion
+
+
             #region Projectiles
 
             //place fireballs relative to direction actor is facing
