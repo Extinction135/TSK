@@ -52,20 +52,25 @@ push new release on the 16th
 todo:
 
 
-13
+12
 
 
+Making Vendor products appear consistently, part 2
 
-Making Vendor products appear consistently
+the ring disappears after purchase from the equipment vendor.
+it really shouldn't do so, as this is inconsistent with how other items appear post-purchase.
 
-Vendor products shouldn't disappear after purchase.
-this leads to a state where a vendor sells nothing, which doesn't look good or make sense.
-
-updated ForSale widget to always display the bow weapon from the item vendor.
-updated VendorScreen to check and see if hero has already purchased the bow item.
-created VendorScreen.DialogAlreadyPurchased() method.
-added call to DialogAlreadyPurchased() from the routine that checks for the bow weapon.
+updated the ForSale widget to always display the ring product from equipment vendor.
+updated the VendorScreen to check saveData boolen for ring, call the AlreadyPurchased() dialog if true.
 playtested, working as expected.
+
+
+
+
+
+
+the same thing needs to happen with the fire magic
+
 
 
 

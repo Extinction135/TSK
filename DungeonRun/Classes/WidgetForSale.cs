@@ -183,8 +183,9 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.VendorEquipment)
             {
-                if (!PlayerData.saveData.equipmentRing)
-                { Functions_MenuItem.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[0]); }
+                //if (!PlayerData.saveData.equipmentRing) {  }
+
+                Functions_MenuItem.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[0]);
                 //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[1]);
                 //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[2]);
                 //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[3]);

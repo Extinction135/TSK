@@ -194,9 +194,13 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.EquipmentRing)
                 {
-                    PlayerData.saveData.equipmentRing = true;
-                    Pool.hero.equipment = Item.type;
-                    CompleteSale(Item);
+                    if (!PlayerData.saveData.equipmentRing)
+                    {
+                        PlayerData.saveData.equipmentRing = true;
+                        Pool.hero.equipment = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
                 }
 
                 #endregion
