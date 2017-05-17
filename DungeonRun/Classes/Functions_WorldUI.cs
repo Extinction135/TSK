@@ -157,8 +157,18 @@ namespace DungeonRun
             #endregion
 
 
-            //limit the hero's gold to a max of 99
+            #region Limit Hero's arrows, bombs, & gold
+
+            if (PlayerData.saveData.arrowsCurrent > PlayerData.saveData.arrowsMax)
+            { PlayerData.saveData.arrowsCurrent = PlayerData.saveData.arrowsMax; }
+
+            if (PlayerData.saveData.bombsCurrent > PlayerData.saveData.bombsMax)
+            { PlayerData.saveData.bombsCurrent = PlayerData.saveData.bombsMax; }
+
             if (PlayerData.saveData.gold > 99) { PlayerData.saveData.gold = 99; }
+
+            #endregion
+
         }
 
         public static void Draw()

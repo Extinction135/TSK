@@ -52,39 +52,17 @@ push new release on the 16th
 todo:
 
 
-10
+9
 
 
 
+Limit the number of arrows and bombs to the max amount hero can carry
 
+updated WorldUI to limit the hero's current arrow count to the max arrow count, every frame.
+updated WorldUI to limit the hero's current bomb count to the max bomb count, every frame.
+organized Functions_WorldUI a little bit too.
+playtested, working as expected.
 
-Fix the arrow sprite
-
-reverted the arrow projetile sprite back to being a single pixel width.
-it was just too wide for my preference, in the room.
-the ui representation of the arrow is 3 pixels wide, and it looks fine.
-the reason the arrow sprite was made 2 pixels wide was due to an alignment issue.
-the hitbox isn't aligned visually to the sprite, it's wider by a pixel.
-but, to make the arrow sprite look good, it needs to be 1 pixel wide.
-it's' fine. playtested, looks better.
-
-
-
-
-
-
-the arrow projectile should revert back to the single pixel sprite
-the hitbox alignment is fine
-
-
-
-
-
-
-the bow should appear in weapon vendor's products
-however, we should check upon purchase to see if we've already bought the item
-so we'll need a dialog for that.
-we should switch the bottles over to using that dialog as well, since they are a single item
 
 
 
@@ -102,7 +80,7 @@ this may need to be a projectile
 
 when a pickup item 'dies', an attention particle should be created at it's location
 
-
+increase the projectile pool count, we're using a lot of particles
 
 
 
