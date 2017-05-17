@@ -67,6 +67,8 @@ namespace DungeonRun
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleFairy,
+        ParticleBow,
+
         //Particles - rewards
         ParticleRewardGold, ParticleRewardKey, ParticleRewardMap,
         ParticleRewardHeartPiece, ParticleRewardHeartFull,

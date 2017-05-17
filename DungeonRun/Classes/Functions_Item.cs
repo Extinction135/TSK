@@ -117,6 +117,7 @@ namespace DungeonRun
                     {
                         PlayerData.saveData.arrowsCurrent--;
                         Functions_Projectiles.SpawnProjectile(ObjType.ProjectileArrow, Actor);
+                        Functions_Projectiles.SpawnProjectile(ObjType.ParticleBow, Actor);
                         Actor.lockTotal = 15;
                     }
                     else { Assets.Play(Assets.sfxError); }
@@ -124,6 +125,7 @@ namespace DungeonRun
                 else
                 {
                     Functions_Projectiles.SpawnProjectile(ObjType.ProjectileArrow, Actor);
+                    Functions_Projectiles.SpawnProjectile(ObjType.ParticleBow, Actor);
                     Actor.lockTotal = 15;
                 }
             }

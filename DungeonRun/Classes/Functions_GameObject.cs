@@ -429,6 +429,9 @@ namespace DungeonRun
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
             }
+
+
+
             //Particles - normal size
             else if (Type == ObjType.ParticleExplosion)
             {
@@ -460,6 +463,17 @@ namespace DungeonRun
                 Obj.lifetime = 50; //in frames
                 Obj.compAnim.speed = 10; //in frames
             }
+            else if (Type == ObjType.ParticleBow)
+            {
+                Obj.compSprite.zOffset = 32;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 15; //in frames
+                Obj.compAnim.speed = 10; //in frames
+                Obj.compAnim.loop = false;
+            }
+
+
+
             //Particles - rewards
             else if (Type == ObjType.ParticleRewardGold ||
                 Type == ObjType.ParticleRewardKey ||

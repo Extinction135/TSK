@@ -20,15 +20,25 @@ namespace DungeonRun
 
 
         public static void SpawnProjectile(ObjType Type, Actor Actor)
-        {   //wraps the SpawnProjectile() method below
-            //applies projectile offset relative to Actor based on Type
-            offset.X = 0; offset.Y = 0;
+        {   //this method sets offsets for Projectile/Particle based on type, relative to Actor
+            offset.X = 0; offset.Y = 0; //reset offsets
             cardinal = Functions_Direction.GetCardinalDirection(Actor.direction);
+
+
+            #region Particles
 
             //center horizontally, place near actor's feet
             if (Type == ObjType.ParticleDashPuff) { offset.X = 4; offset.Y = 8; }
-            //center horizontally, place near actor's body
-            else if (Type == ObjType.ParticleSmokePuff) { offset.X = 4; offset.Y = 4; }
+
+            else if (Type == ObjType.ParticleBow)
+            {   //place bow particle in the actor's hands
+                if (cardinal == Direction.Down) { offset.Y = 6; }
+                else if (cardinal == Direction.Up) { offset.Y = -6; }
+                else if (cardinal == Direction.Right) { offset.X = 6; }
+                else if (cardinal == Direction.Left) { offset.X = -6; }
+            }
+
+            #endregion
 
 
             #region Pickups
@@ -90,16 +100,17 @@ namespace DungeonRun
         }
 
         public static void SpawnProjectile(ObjType Type, float X, float Y, Direction Direction)
-        {
+        {   //this method spawns a projectile at the X, Y location, with a cardinal direction
             GameObject obj = Functions_Pool.GetProjectile();
             //default this projectile/particle to Down direction
             obj.direction = Direction.Down;
             obj.compMove.direction = Direction.Down;
 
-            //convert projectile's directions to cardinal
+            //certain projectiles/particles get a cardinal direction, others dont
             if (Type == ObjType.ProjectileFireball || 
                 Type == ObjType.ProjectileSword ||
-                Type == ObjType.ProjectileArrow)
+                Type == ObjType.ProjectileArrow ||
+                Type == ObjType.ParticleBow)
             {
                 obj.direction = Functions_Direction.GetCardinalDirection(Direction);
                 obj.compMove.direction = Functions_Direction.GetCardinalDirection(Direction);

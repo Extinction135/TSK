@@ -56,42 +56,58 @@ todo:
 
 
 
-Limit the number of arrows and bombs to the max amount hero can carry
+Place a bow in an actor's hand when they fire an arrow
 
-updated WorldUI to limit the hero's current arrow count to the max arrow count, every frame.
-updated WorldUI to limit the hero's current bomb count to the max bomb count, every frame.
-organized Functions_WorldUI a little bit too.
-playtested, working as expected.
+this is done by creating a short lived bow particle, & aligning it to the actor.
+this only happens when the actor fires an arrow.
+
+added ParticleBow value to ObjType enum.
+added anim list for ParticleBow to Functions_GameObjAnimList.
+added path for ParticleBow to Functions_GameObjects.SetType().
+added path for ParticleBow to Functions_Projectiles.SpawnProjectile().
+added a call to spawn a particle bow when hero fires an arrow from bow weapon.
+reorganized Functions_Projectiles.SpawnProjectile(ObjType, Actor), removed unused code.
+playtested, working, but needed some polish.
+
+various offsets, anim frames, and timings were refined.
+modified the bow sprite to read better.
+removed the arrow in bow sprite from main sheet.
+playtested, looking much better.
 
 
 
 
 
 
-update WorldUI to bounds check arrowsCurrent to arrowsMax.
+
+
+
+particles are the same thing as projectiles
+can't we just make them projectiles?
+this would avoid all kinds of confusion later on...
 
 
 
 
-when hero 'shoots' an arrow, place a bow particle over the hero sprite
-it should appear to be in his hands
-it should match his direction
-this may need to be a projectile
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 when a pickup item 'dies', an attention particle should be created at it's location
 
 increase the projectile pool count, we're using a lot of particles
 
 
-
-
-
-
-
-
-
-
-	
 	
 	
 	
