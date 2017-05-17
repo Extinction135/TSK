@@ -52,56 +52,21 @@ push new release on the 16th
 todo:
 
 
-7
+6
 
 
 
 
+Polish the pickup items
 
-
-
-
-
-
-
-
-
-
-Fix confusion between projectiles, particles, pickups & gameobjects - part 2
-
-the confusion between projectile, particles, and pickups continues with the FUnctions_Projectiles class.
-this class of functions serves more than just projectiles, so it needs to be renamed.
-plus, it's SpawnProjectile() method handles more than just projectiles, so that needs to be renamed as well.
-
-renamed Functions_Projectiles to Functions_Entity.
-renamed SpawnProjectile() to SpawnEntity().
-updated various references to old class and it's methods.
-
+when a pickup item 'dies', an attention particle should be created at it's location.
+updated Functions_Entity.HandleDeathEvent() to spawn an attention particle upon pickup death.
+doubled the size of the entity pool to 100, because game is using lots of particles.
 playtested, working as expected.
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-when a pickup item 'dies', an attention particle should be created at it's location
-
-increase the projectile pool count, we're using a lot of particles
-
-
-	
 	
 	
 

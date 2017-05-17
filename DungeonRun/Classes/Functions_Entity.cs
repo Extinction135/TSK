@@ -123,7 +123,11 @@ namespace DungeonRun
         }
 
         public static void HandleBirthEvent(GameObject Obj)
-        {   //this targets projectiles/particles only
+        {   //Obj is from the Entity pool
+
+
+            #region Projectiles
+
             if (Obj.type == ObjType.ProjectileBomb)
             {
                 SpawnEntity(ObjType.ParticleAttention,
@@ -152,11 +156,26 @@ namespace DungeonRun
                     Direction.None);
                 Assets.Play(Assets.sfxExplosion);
             }
+
+            #endregion
+
         }
 
         public static void HandleDeathEvent(GameObject Obj)
-        {   //this targets projectiles/particles only
-            if (Obj.type == ObjType.ProjectileBomb)
+        {   //Obj is from the Entity pool
+
+            if (Obj.group == ObjGroup.Pickup)
+            {   //when an item pickup dies, display an attention particle
+                SpawnEntity(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+            }
+
+
+            #region Projectiles
+
+            else if (Obj.type == ObjType.ProjectileBomb)
             {   //create explosion projectile
                 SpawnEntity(ObjType.ProjectileExplosion,
                     Obj.compSprite.position.X,
@@ -188,6 +207,9 @@ namespace DungeonRun
                     Obj.compSprite.position.Y - 2, 
                     Direction.Down);
             }
+
+            #endregion
+
         }
 
     }
