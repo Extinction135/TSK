@@ -47,18 +47,18 @@ namespace DungeonRun
             Functions_Interaction.SetHeroInteractionRec();
             collision = false;
             //check to see if the interactionRec collides with any gameObjects
-            for (i = 0; i < Pool.objCount; i++)
+            for (i = 0; i < Pool.roomObjCount; i++)
             {
-                if (Pool.objPool[i].active)
+                if (Pool.roomObjPool[i].active)
                 {
-                    if (Functions_Interaction.interactionRec.rec.Intersects(Pool.objPool[i].compCollision.rec))
+                    if (Functions_Interaction.interactionRec.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {
                         Functions_Movement.StopMovement(Pool.hero.compMove);
                         Pool.hero.stateLocked = true;
                         Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;
                         //handle the interaction, likely overwrites hero.lockTotal
-                        Functions_Interaction.Interact(Pool.hero, Pool.objPool[i]); 
+                        Functions_Interaction.Interact(Pool.hero, Pool.roomObjPool[i]); 
                     }
                 }
             }
@@ -72,14 +72,14 @@ namespace DungeonRun
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
             collision = false; //assume no collision
-            for (i = 0; i < Pool.objCount; i++)
+            for (i = 0; i < Pool.roomObjCount; i++)
             {
-                if (Pool.objPool[i].active)
+                if (Pool.roomObjPool[i].active)
                 {
-                    if (Actor.compCollision.rec.Intersects(Pool.objPool[i].compCollision.rec))
+                    if (Actor.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {
-                        Functions_Interaction.Interact(Actor, Pool.objPool[i]);
-                        if (Pool.objPool[i].compCollision.blocking) { collision = true; }
+                        Functions_Interaction.Interact(Actor, Pool.roomObjPool[i]);
+                        if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
                     }
                 }
             }
@@ -119,12 +119,12 @@ namespace DungeonRun
 
         public static void CheckObjPoolCollisions(GameObject Projectile)
         {
-            for (i = 0; i < Pool.objCount; i++)
+            for (i = 0; i < Pool.roomObjCount; i++)
             {
-                if (Pool.objPool[i].active)
+                if (Pool.roomObjPool[i].active)
                 {
-                    if (Projectile.compCollision.rec.Intersects(Pool.objPool[i].compCollision.rec))
-                    { Functions_Interaction.Interact(Projectile, Pool.objPool[i]); }
+                    if (Projectile.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    { Functions_Interaction.Interact(Projectile, Pool.roomObjPool[i]); }
                 }
             }
         }
@@ -143,14 +143,14 @@ namespace DungeonRun
 
         public static void CheckProjectilePoolCollisions(GameObject Projectile)
         {
-            for (i = 0; i < Pool.projectileCount; i++)
+            for (i = 0; i < Pool.entityCount; i++)
             {
-                if (Pool.projectilePool[i].active)
+                if (Pool.entityPool[i].active)
                 {
-                    if (Projectile.compCollision.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
+                    if (Projectile.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
                     {   //projectiles shouldn't be allowed to collide with themselves
-                        if (Projectile != Pool.projectilePool[i])
-                        { Functions_Interaction.Interact(Projectile, Pool.projectilePool[i]); }
+                        if (Projectile != Pool.entityPool[i])
+                        { Functions_Interaction.Interact(Projectile, Pool.entityPool[i]); }
                     }
                 }
             }

@@ -101,7 +101,7 @@ namespace DungeonRun
 
         public static void SpawnProjectile(ObjType Type, float X, float Y, Direction Direction)
         {   //this method spawns a projectile at the X, Y location, with a cardinal direction
-            GameObject obj = Functions_Pool.GetProjectile();
+            GameObject obj = Functions_Pool.GetEntity();
             //default this projectile/particle to Down direction
             obj.direction = Direction.Down;
             obj.compMove.direction = Direction.Down;

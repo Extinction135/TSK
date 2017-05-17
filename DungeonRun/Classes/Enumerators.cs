@@ -46,21 +46,21 @@ namespace DungeonRun
         PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, BossDecal, Pillar, WallTorch, DebrisFloor,
 
-        //Interactive Objects
+        //Interactive Objects - dungeon
         ChestGold, ChestKey, ChestMap, ChestHeartPiece, ChestEmpty,
         BlockDraggable, BlockDark, BlockLight, BlockSpikes,
         Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, ConveyorBelt,
 
-        //Shop Objects
+        //Interactive Objects - shop
         VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment, VendorStory,
         VendorAdvertisement,
 
-        //Pickups - picked up by hero
+        //Pickups - collide with hero
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, 
 
-        //Projectiles
+        //Projectiles - collide with actors
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion, ProjectileArrow,
 
         //Particles - small
@@ -68,7 +68,6 @@ namespace DungeonRun
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleFairy,
         ParticleBow,
-
         //Particles - rewards
         ParticleRewardGold, ParticleRewardKey, ParticleRewardMap,
         ParticleRewardHeartPiece, ParticleRewardHeartFull,

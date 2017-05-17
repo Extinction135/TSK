@@ -643,15 +643,15 @@ namespace DungeonRun
         public static List<Actor> actorPool;    //the actual list of actors
         public static int actorIndex;           //used to iterate thru the pool
 
-        //obj pool handles gameobjects that don't move, & may(not) interact with actors
-        public static int objCount;
-        public static List<GameObject> objPool;
-        public static int objIndex;
+        //obj pool handles room objects, from dungeon & main sheet
+        public static int roomObjCount;
+        public static List<GameObject> roomObjPool;
+        public static int roomObjIndex;
 
-        //projectile pool handles projectiles/particles that move or are stationary
-        public static int projectileCount;
-        public static List<GameObject> projectilePool;
-        public static int projectileIndex;
+        //entity pool handles projectiles/particles/pickups, only from main sheet
+        public static int entityCount;
+        public static List<GameObject> entityPool;
+        public static int entityIndex;
 
         public static int floorCount;
         public static List<ComponentSprite> floorPool;
@@ -666,8 +666,8 @@ namespace DungeonRun
         {
             //set the pool sizes
             actorCount = 30;
-            objCount = 150;
-            projectileCount = 50;
+            roomObjCount = 150;
+            entityCount = 50;
             floorCount = 500;
 
             //actor pool
@@ -680,17 +680,17 @@ namespace DungeonRun
             }
             actorIndex = 1;
 
-            //obj pool
-            objPool = new List<GameObject>();
-            for (counter = 0; counter < objCount; counter++)
-            { objPool.Add(new GameObject(Assets.shopSheet)); }
-            objIndex = 0;
+            //room obj pool
+            roomObjPool = new List<GameObject>();
+            for (counter = 0; counter < roomObjCount; counter++)
+            { roomObjPool.Add(new GameObject(Assets.shopSheet)); }
+            roomObjIndex = 0;
 
-            //projectile pool
-            projectilePool = new List<GameObject>();
-            for (counter = 0; counter < projectileCount; counter++)
-            { projectilePool.Add(new GameObject(Assets.mainSheet)); }
-            projectileIndex = 0;
+            //entity pool
+            entityPool = new List<GameObject>();
+            for (counter = 0; counter < entityCount; counter++)
+            { entityPool.Add(new GameObject(Assets.mainSheet)); }
+            entityIndex = 0;
 
             //floor pool
             floorPool = new List<ComponentSprite>();
