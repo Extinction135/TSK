@@ -122,6 +122,13 @@ namespace DungeonRun
             }
         }
 
+        public static void ResetActorLoadout(Actor Actor)
+        {
+            Actor.weapon = MenuItemType.Unknown;
+            Actor.item = MenuItemType.Unknown;
+            Actor.armor = MenuItemType.Unknown;
+            Actor.equipment = MenuItemType.Unknown;
+        }
 
 
         public static void SetType(Actor Actor, ActorType Type)
@@ -154,17 +161,15 @@ namespace DungeonRun
                 Actor.compSprite.texture = Assets.heroSheet;
                 Actor.maxHealth = 14;
                 //do not update/change the hero's weapon/item/armor/equipment
-                Actor.walkSpeed = 0.30f;
-                Actor.dashSpeed = 0.80f;
+                Actor.walkSpeed = 0.35f;
+                Actor.dashSpeed = 0.90f;
             }
             else if (Type == ActorType.Blob)
             {
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.maxHealth = 1;
+                ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponSword;
-                Actor.item = MenuItemType.Unknown;
-                Actor.armor = MenuItemType.Unknown;
-                Actor.equipment = MenuItemType.Unknown;
 
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
@@ -173,10 +178,7 @@ namespace DungeonRun
             {
                 Actor.compSprite.texture = Assets.bossSheet;
                 Actor.maxHealth = 10;
-                Actor.weapon = MenuItemType.Unknown;
-                Actor.item = MenuItemType.Unknown;
-                Actor.armor = MenuItemType.Unknown;
-                Actor.equipment = MenuItemType.Unknown;
+                ResetActorLoadout(Actor);
 
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
@@ -189,6 +191,7 @@ namespace DungeonRun
             }
 
             #endregion
+
 
             //set actor's health
             Actor.health = Actor.maxHealth;

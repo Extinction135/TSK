@@ -61,14 +61,14 @@ namespace DungeonRun
             }
             else if (Type == MenuItemType.BottleMagic)
             {   //refill the actor's magic
-                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
+                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicTotal;
                 PlayerData.saveData.bottleMagic = false;
                 UseBottle(Type, Actor);
             }
             else if (Type == MenuItemType.BottleFairy)
             {   //refill the actor's health and magic
                 Actor.health = Actor.maxHealth;
-                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
+                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicTotal;
                 Functions_Entity.SpawnEntity(ObjType.ParticleFairy, Actor);
                 PlayerData.saveData.bottleFairy = false;
                 UseBottle(Type, Actor);

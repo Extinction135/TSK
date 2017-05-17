@@ -111,17 +111,27 @@ namespace DungeonRun
 
             #region Update & Limit Hero's Magic
 
-            //limit the max magic amount to 9
-            if (PlayerData.saveData.magicMax > 9) { PlayerData.saveData.magicMax = 9; }
+            //get the number of unlocked magic meter pieces
+            PlayerData.saveData.magicTotal = PlayerData.saveData.magicUnlocked;
+
+            //add the robe effect to the magicTotal value
+            if (Pool.hero.armor == MenuItemType.ArmorRobe)
+            { PlayerData.saveData.magicTotal += 4; }
+
+            //limit the magicTotal amount to 9
+            if (PlayerData.saveData.magicTotal > 9)
+            { PlayerData.saveData.magicTotal = 9; }
+
             //limit the current magic amount to the max magic amount
-            if (PlayerData.saveData.magicCurrent > PlayerData.saveData.magicMax)
-            { PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax; }
+            if (PlayerData.saveData.magicCurrent > PlayerData.saveData.magicTotal)
+            { PlayerData.saveData.magicCurrent = PlayerData.saveData.magicTotal; }
+
             //loop thru the magic meter sprites, setting their frame
             for (i = 0; i < 9; i++)
             {   //reset sprite to locked
                 WorldUI.meterPieces[i + 1].currentFrame.X = 31;
                 //set available bars
-                if (i < PlayerData.saveData.magicMax)
+                if (i < PlayerData.saveData.magicTotal)
                 { WorldUI.meterPieces[i + 1].currentFrame.X = 30; }
                 //set filled bars
                 if (i < PlayerData.saveData.magicCurrent)

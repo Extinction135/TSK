@@ -20,6 +20,7 @@ namespace DungeonRun
         static float force;
         
 
+
         public static void Damage(Actor Actor, GameObject Obj)
         {   //based on the obj type, deal damage to the actor, push in a direction
             //reset the damage fields
@@ -40,15 +41,21 @@ namespace DungeonRun
             {   //fireballs deal 2 damage, push 10, and die
                 damage = 2; force = 10.0f; direction = Obj.direction;
                 Obj.lifeCounter = Obj.lifetime;
+                if (Actor.armor == MenuItemType.ArmorCloth) { damage = 1; }
             }
             else if (Obj.type == ObjType.ProjectileExplosion)
             {   //explosions deal 2 damage, push 10
                 damage = 2; force = 10.0f; direction = Obj.direction;
+                //check to see if damage should be modified
+                if (Actor.armor == MenuItemType.ArmorChest) { damage = 1; }
             }
             else if (Obj.type == ObjType.ProjectileArrow)
             {   //arrows deal 1 damage, push 4, and die
                 damage = 1; force = 4.0f; direction = Obj.direction;
                 Obj.lifeCounter = Obj.lifetime;
+                //check to see if damage should be modified
+                if (Actor.armor == MenuItemType.ArmorChest)
+                { damage = 0; Assets.Play(Assets.sfxMetallicTap); }
             }
 
             #endregion

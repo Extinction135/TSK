@@ -193,7 +193,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.ArmorRobe)
             {
                 MenuItem.name = "Mage's Robe";
-                MenuItem.description = "Increases maximum \namount of magic.";
+                MenuItem.description = "Increases maximum \namount of magic by 4.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 8, 0, 0) };
                 MenuItem.price = 60;
             }

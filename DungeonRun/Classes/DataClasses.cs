@@ -137,9 +137,9 @@ namespace DungeonRun
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?
 
-        //type specific fields, changed by ActorFunctions.SetType()
-        public float dashSpeed = 0.75f;
-        public float walkSpeed = 0.25f;
+        //type specific fields, set by Functions_Actor.SetType()
+        public float dashSpeed;
+        public float walkSpeed;
 
         //the components that actor requires to function
         public ComponentSprite compSprite;
@@ -151,11 +151,12 @@ namespace DungeonRun
         //health points
         public byte health;
         public byte maxHealth;
+
         //loadout
-        public MenuItemType weapon;
-        public MenuItemType item;
-        public MenuItemType armor;
-        public MenuItemType equipment;
+        public MenuItemType weapon = MenuItemType.Unknown;
+        public MenuItemType item = MenuItemType.Unknown;
+        public MenuItemType armor = MenuItemType.Unknown;
+        public MenuItemType equipment = MenuItemType.Unknown;
 
         public Actor()
         {
@@ -225,7 +226,8 @@ namespace DungeonRun
         public byte heartPieces = 4 * 3; //sets max health
 
         public byte magicCurrent = 3;
-        public byte magicMax = 3;
+        public byte magicUnlocked = 3;
+        public byte magicTotal; //magicUnlocked + any modifiers
 
         public byte bombsCurrent = 3;
         public byte bombsMax = 99;

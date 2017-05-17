@@ -83,6 +83,7 @@ namespace DungeonRun
             if(!Flags.Paused)
             {
 
+
                 #region Handle Screen State
 
                 if(displayState == DisplayState.Opening) //fade overlay to 0
