@@ -65,38 +65,8 @@ namespace DungeonRun
 
             //this function handles hero collisions AND hero interactionRec collisions
 
-
-            #region Projectiles
-
-            if (Obj.group == ObjGroup.Projectile)
-            {
-                //bombs don't push or hurt actors
-                if (Obj.type == ObjType.ProjectileBomb) { return; }
-                //swords deal 1 damage, push 6, complete animation
-                else if (Obj.type == ObjType.ProjectileSword)
-                {
-                    Functions_Battle.Damage(Actor, 1, 6.0f, Obj.direction);
-                }
-                //fireballs deal 2 damage, push 10, and die
-                else if (Obj.type == ObjType.ProjectileFireball)
-                {
-                    Functions_Battle.Damage(Actor, 2, 10.0f, Obj.direction);
-                    Obj.lifeCounter = Obj.lifetime;
-                }
-                //explosions deal 2 damage, push 10
-                else if (Obj.type == ObjType.ProjectileExplosion)
-                {
-                    Functions_Battle.Damage(Actor, 2, 10.0f, Obj.direction);
-                }
-                //arrows deal 1 damage, push 4, and die
-                else if (Obj.type == ObjType.ProjectileArrow)
-                {
-                    Functions_Battle.Damage(Actor, 1, 4.0f, Obj.direction);
-                    Obj.lifeCounter = Obj.lifetime;
-                }
-            }
-
-            #endregion
+            //most projectiles deal damage to actors upon a collision/interaction
+            if (Obj.group == ObjGroup.Projectile) { Functions_Battle.Damage(Actor, Obj); }
 
 
             #region Pickups
@@ -253,11 +223,7 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.Object)
             {
-                if (Obj.type == ObjType.BlockSpikes)
-                {   //damage actor and push in opposite direction relative to spike block
-                    Functions_Battle.Damage(Actor, 1, 10.0f,
-                        Functions_Direction.GetRelativeDirection(Obj, Actor));
-                }
+                if (Obj.type == ObjType.BlockSpikes) { Functions_Battle.Damage(Actor, Obj); }
                 else if (Obj.type == ObjType.ConveyorBelt)
                 {   //push actor in belt's direction
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 0.1f);
@@ -267,7 +233,6 @@ namespace DungeonRun
                     Functions_Movement.Push(Actor.compMove,
                         Functions_Direction.GetRelativeDirection(Obj, Actor),
                         10.0f);
-
                     //actors can collide with bumper twice per frame, due to per axis collision checks
                     //only play the bounce sound effect if the bumper hasn't been hit this frame
                     if (Obj.compSprite.scale < 1.5f) { Assets.Play(Assets.sfxBounce); }

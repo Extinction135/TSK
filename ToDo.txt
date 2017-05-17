@@ -52,22 +52,20 @@ push new release on the 16th
 todo:
 
 
-3
+2
 
 
-Implementing Armor - part 1
+Implementing Armor - part 2
 
-added armorChest, armorCape, and armorRobe to saveData.
-updated descriptions and names of all armor menu items.
-updated ForSale widget to display all armor products from armor vendor.
-updated VendorScreen to allow purchasing of chest, cape, and robe menuItems.
-updated InventoryScreen to allow player to equip chest, cape, and robe as armor.
-updated InventoryWidget to display chest, cape, robe if saveData booleans are true.
-updated Functions_Debug.Inspect() to write new saveData armor booleans to output.
-updated Inspect() to also write arrows current and max data to output.
-playtested, working as expected, savedata output confirms
+to make it easier to understand how damage is handled (and modified), battle routines need to be localized.
+so, i'm putting all the routines for handling damage into the Functions_Battle class.
+they'll exist in the Damage() method, which will handle battle interactions between an actor and an object.
 
-
+created Functions_Battle.Damage(Actor, Obj) method.
+made the Damage(Actor, Damage, Force, Direction) method private to Functions_Battle.
+Damage(Actor, Obj) manages the damage mods, then calls Damage(Actor, Damage, Force, Direction).
+moved damage calculations out of Functions_Interaction.Interact(Actor, Obj).
+playtested, working as expected.
 
 
 

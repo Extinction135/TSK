@@ -15,7 +15,61 @@ namespace DungeonRun
     public static class Functions_Battle
     {
 
-        public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
+        static Direction direction;
+        static byte damage;
+        static float force;
+        
+
+        public static void Damage(Actor Actor, GameObject Obj)
+        {   //based on the obj type, deal damage to the actor, push in a direction
+            //reset the damage fields
+            direction = Direction.None;
+            damage = 0;
+            force = 0.0f;
+
+
+            #region Projectiles
+
+            //bombs don't push or hurt actors
+            if (Obj.type == ObjType.ProjectileBomb) { return; }
+            else if (Obj.type == ObjType.ProjectileSword)
+            {   //swords deal 1 damage, push 6
+                damage = 1; force = 6.0f; direction = Obj.direction;
+            }
+            else if (Obj.type == ObjType.ProjectileFireball)
+            {   //fireballs deal 2 damage, push 10, and die
+                damage = 2; force = 10.0f; direction = Obj.direction;
+                Obj.lifeCounter = Obj.lifetime;
+            }
+            else if (Obj.type == ObjType.ProjectileExplosion)
+            {   //explosions deal 2 damage, push 10
+                damage = 2; force = 10.0f; direction = Obj.direction;
+            }
+            else if (Obj.type == ObjType.ProjectileArrow)
+            {   //arrows deal 1 damage, push 4, and die
+                damage = 1; force = 4.0f; direction = Obj.direction;
+                Obj.lifeCounter = Obj.lifetime;
+            }
+
+            #endregion
+
+
+            #region Objects
+
+            else if (Obj.type == ObjType.BlockSpikes)
+            {   //push actor away from spike block
+                damage = 1; force = 10.0f;
+                direction = Functions_Direction.GetRelativeDirection(Obj, Actor);
+            }
+
+            #endregion
+
+
+            //if damage was prevented, then do not damage/push the actor
+            if (damage > 0) { Damage(Actor, damage, force, direction); }
+        }
+
+        static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
         {
             //only damage/hit/push actors not in the hit state
             if (Actor.state != ActorState.Hit)
