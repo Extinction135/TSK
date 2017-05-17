@@ -52,34 +52,23 @@ push new release on the 16th
 todo:
 
 
-12
-
-
-Making Vendor products appear consistently, part 2
-
-the ring disappears after purchase from the equipment vendor.
-it really shouldn't do so, as this is inconsistent with how other items appear post-purchase.
-
-updated the ForSale widget to always display the ring product from equipment vendor.
-updated the VendorScreen to check saveData boolen for ring, call the AlreadyPurchased() dialog if true.
-playtested, working as expected.
+10
 
 
 
 
 
+Fix the arrow sprite
 
-the same thing needs to happen with the fire magic
+reverted the arrow projetile sprite back to being a single pixel width.
+it was just too wide for my preference, in the room.
+the ui representation of the arrow is 3 pixels wide, and it looks fine.
+the reason the arrow sprite was made 2 pixels wide was due to an alignment issue.
+the hitbox isn't aligned visually to the sprite, it's wider by a pixel.
+but, to make the arrow sprite look good, it needs to be 1 pixel wide.
+it's' fine. playtested, looks better.
 
 
-
-
-
-
-
-
-
-we need to do the same thing with the ring
 
 
 
