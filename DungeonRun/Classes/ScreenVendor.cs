@@ -178,9 +178,13 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.WeaponBow)
                 {
-                    PlayerData.saveData.weaponBow = true;
-                    Pool.hero.weapon = Item.type;
-                    CompleteSale(Item);
+                    if (!PlayerData.saveData.weaponBow)
+                    {
+                        PlayerData.saveData.weaponBow = true;
+                        Pool.hero.weapon = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
                 }
 
                 #endregion
@@ -216,7 +220,7 @@ namespace DungeonRun
         public void DialogNotEnoughGold()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you don't have enough gold to purchase that item.");
+                    "you don't have enough gold to purchase this item.");
             Assets.Play(Assets.sfxError);
         }
 
@@ -230,11 +234,16 @@ namespace DungeonRun
         public void DialogCarryingMaxAmount()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you are carrying the maximum amount of that item.");
+                    "you are carrying the maximum amount of this item.");
             Assets.Play(Assets.sfxError);
         }
 
-
+        public void DialogAlreadyPurchased()
+        {
+            Widgets.Dialog.DisplayDialog(vendorType.type,
+                    "you have already purchased this item.");
+            Assets.Play(Assets.sfxError);
+        }
 
 
 

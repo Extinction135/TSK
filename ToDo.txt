@@ -52,25 +52,35 @@ push new release on the 16th
 todo:
 
 
-1
+13
+
+
+
+Making Vendor products appear consistently
+
+Vendor products shouldn't disappear after purchase.
+this leads to a state where a vendor sells nothing, which doesn't look good or make sense.
+
+updated ForSale widget to always display the bow weapon from the item vendor.
+updated VendorScreen to check and see if hero has already purchased the bow item.
+created VendorScreen.DialogAlreadyPurchased() method.
+added call to DialogAlreadyPurchased() from the routine that checks for the bow weapon.
+playtested, working as expected.
 
 
 
 
-Polishing the ForSale widget and what products vendor provides / advertises
 
-updated ForSale widget to always display health, magic potions, and fairy bottles.
-updated VendorScreen to check and see if hero has already purchased bottles.
-vendor notifies player if purchase is more potions than they can carry.
-this is the same approach used to notify player upon purchase of max bombs / arrows.
 
-updated the 20 pack of arrows sprite.
-the 20 pack of arrows now appear in the item vendor's table advertisement.
-the magic potion now appears in the potion vendor's table advertisement.
-the sword & staff was removed from the weapon vendor's table advertisement.
 
-playtested, working great.
 
+we need to do the same thing with the ring
+
+
+
+
+the arrow projectile should revert back to the single pixel sprite
+the hitbox alignment is fine
 
 
 
