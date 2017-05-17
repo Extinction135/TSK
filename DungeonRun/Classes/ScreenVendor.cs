@@ -96,7 +96,7 @@ namespace DungeonRun
 
                 #region Items
 
-                if (Item.type == MenuItemType.ItemBomb || Item.type == MenuItemType.ItemBombs)
+                if (Item.type == MenuItemType.ItemBomb || Item.type == MenuItemType.ItemBomb3Pack)
                 {   //check to see if hero is full on bombs
                     if (PlayerData.saveData.bombsCurrent < PlayerData.saveData.bombsMax)
                     {   //check to see how many bombs hero is purchasing
@@ -108,11 +108,11 @@ namespace DungeonRun
                     }
                     else { DialogCarryingMaxAmount(); }
                 }
-                else if (Item.type == MenuItemType.ItemArrows20)
+                else if (Item.type == MenuItemType.ItemArrow3Pack)
                 {   //check to see if hero is full on arrows
                     if (PlayerData.saveData.arrowsCurrent < PlayerData.saveData.arrowsMax)
                     {   //increment the arrows, complete the sale
-                        PlayerData.saveData.arrowsCurrent += 20;
+                        PlayerData.saveData.arrowsCurrent += 3;
                         CompleteSale(Item);
                     }
                     else { DialogCarryingMaxAmount(); }

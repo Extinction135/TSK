@@ -140,10 +140,10 @@ namespace DungeonRun
             {
                 //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBombs, menuItems[2]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb3Pack, menuItems[2]);
                 
                 if (PlayerData.saveData.weaponBow) //if hero has bow weapon, arrows are for sale
-                { Functions_MenuItem.SetMenuItemData(MenuItemType.ItemArrows20, menuItems[3]); }
+                { Functions_MenuItem.SetMenuItemData(MenuItemType.ItemArrow3Pack, menuItems[3]); }
             }
             else if (VendorType == ObjType.VendorPotions)
             {

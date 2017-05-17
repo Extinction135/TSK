@@ -71,21 +71,21 @@ namespace DungeonRun
             else if (Type == MenuItemType.ItemBomb)
             {
                 MenuItem.name = "Explosive Bomb";
-                MenuItem.description = "An explosive bomb.";
+                MenuItem.description = "Explodes, dealing 2 \nphysical damage.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 6, 0, 0) };
                 MenuItem.price = 10;
             }
-            else if (Type == MenuItemType.ItemBombs)
+            else if (Type == MenuItemType.ItemBomb3Pack)
             {
                 MenuItem.name = "Explosive Bombs";
-                MenuItem.description = "A set of 3 explosive \nbombs.";
+                MenuItem.description = "A set of 3 explosive \nbombs, for 30 gold.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 7, 0, 0) };
                 MenuItem.price = 30;
             }
-            else if (Type == MenuItemType.ItemArrows20)
+            else if (Type == MenuItemType.ItemArrow3Pack)
             {
                 MenuItem.name = "Arrow Set";
-                MenuItem.description = "A set of 20 arrows.";
+                MenuItem.description = "A set of 3 arrows, \nfor 20 gold.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 8, 0, 0) };
                 MenuItem.price = 20;
             }
@@ -112,14 +112,14 @@ namespace DungeonRun
             else if (Type == MenuItemType.BottleMagic)
             {
                 MenuItem.name = "Magic Potion";
-                MenuItem.description = "Fully restores all\nmagic meter.";
+                MenuItem.description = "Fully restores all\navailable magic.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 7, 0, 0) };
                 MenuItem.price = 20;
             }
             else if (Type == MenuItemType.BottleFairy)
             {
                 MenuItem.name = "Fairy in a Bottle";
-                MenuItem.description = "Revives hero upon\ndeath.";
+                MenuItem.description = "Restores health and \nmagic, even from death.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 9, 0, 0) };
                 MenuItem.price = 50;
             }
@@ -132,7 +132,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.MagicFireball)
             {
                 MenuItem.name = "Fireball Magic";
-                MenuItem.description = "A flying fireball that\ndeals 1 magical damage.";
+                MenuItem.description = "deals 2 magical damage, \ncosts 1 magic.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 6, 0, 0) };
                 MenuItem.price = 99;
             }
@@ -144,15 +144,15 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.WeaponSword)
             {
-                MenuItem.name = "Magic Sword";
-                MenuItem.description = "A magic sword that\ndeals 1 physical damage.";
+                MenuItem.name = "Hero's Sword";
+                MenuItem.description = "sharp and strong, \ndeals 1 physical damage.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(8, 5, 0, 0) };
                 MenuItem.price = 50;
             }
             else if (Type == MenuItemType.WeaponBow)
             {
-                MenuItem.name = "Magic Bow";
-                MenuItem.description = "A magic bow.";
+                MenuItem.name = "Sturdy Bow";
+                MenuItem.description = "shoots arrows, which \ndeal 1 physical damage.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(8, 6, 0, 0) };
                 MenuItem.price = 50;
             }
@@ -171,8 +171,8 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.ArmorCloth)
             {
-                MenuItem.name = "Basic Cloth";
-                MenuItem.description = "Provides no protection \nagainst attacks.";
+                MenuItem.name = "Cloth";
+                MenuItem.description = "Provides protection \nagainst magical damage.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 5, 0, 0) };
                 MenuItem.price = 0;
             }
