@@ -156,6 +156,7 @@ namespace DungeonRun
             output += "\n  heart pieces: " + PlayerData.saveData.heartPieces;
             output += "\n  magic: " + PlayerData.saveData.magicCurrent + " / " + PlayerData.saveData.magicMax;
             output += "\n  bombs: " + PlayerData.saveData.bombsCurrent + " / " + PlayerData.saveData.bombsMax;
+            output += "\n  arrows: " + PlayerData.saveData.arrowsCurrent + " / " + PlayerData.saveData.arrowsMax;
 
             output += "\n  -- Items --"; ;
             output += "\n  has boomerang: " + PlayerData.saveData.itemBoomerang;
@@ -169,8 +170,13 @@ namespace DungeonRun
             output += "\n  has bottleFairy: " + PlayerData.saveData.bottleFairy;
 
             output += "\n  has magicFireball: " + PlayerData.saveData.magicFireball;
+
             output += "\n  has weaponBow: " + PlayerData.saveData.weaponBow;
-            output += "\n  has armorPlatemail: " + PlayerData.saveData.armorPlatemail;
+
+            output += "\n  has armorChest: " + PlayerData.saveData.armorChest;
+            output += "\n  has armorCape: " + PlayerData.saveData.armorCape;
+            output += "\n  has armorRobe: " + PlayerData.saveData.armorRobe;
+
             output += "\n  has equipmentRing: " + PlayerData.saveData.equipmentRing;
 
             Debug.WriteLine(output);

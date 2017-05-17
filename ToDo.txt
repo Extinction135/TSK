@@ -52,23 +52,58 @@ push new release on the 16th
 todo:
 
 
-6
+3
+
+
+Implementing Armor - part 1
+
+added armorChest, armorCape, and armorRobe to saveData.
+updated descriptions and names of all armor menu items.
+updated ForSale widget to display all armor products from armor vendor.
+updated VendorScreen to allow purchasing of chest, cape, and robe menuItems.
+updated InventoryScreen to allow player to equip chest, cape, and robe as armor.
+updated InventoryWidget to display chest, cape, robe if saveData booleans are true.
+updated Functions_Debug.Inspect() to write new saveData armor booleans to output.
+updated Inspect() to also write arrows current and max data to output.
+playtested, working as expected, savedata output confirms
 
 
 
 
-Polish the pickup items
-
-when a pickup item 'dies', an attention particle should be created at it's location.
-updated Functions_Entity.HandleDeathEvent() to spawn an attention particle upon pickup death.
-doubled the size of the entity pool to 100, because game is using lots of particles.
-playtested, working as expected.
 
 
 
 
-	
-	
+
+implement functionality for armor items...
+cloth - reduce magical damage to 1 if wearing cloth
+chest - prevents damage from enemy arrows, move slower
+cape - move faster
+robe - increases max magic value
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -94,6 +129,19 @@ need sound for health + magic potion useage - we're just using pickup sound rn
 
 
 	
+	make sure fairy animation is working properly
+	animate afaster probaby
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -102,11 +150,7 @@ need sound for health + magic potion useage - we're just using pickup sound rn
 implement the following items:
 	item boomerang - just like LttP boomerang
 	weapon staff - creates a magic orb projectile, if health is max, has an attack of 0
-	
-	armor chest - prevents damage from enemy arrows, move slower
-	armor cape - move faster
-	armor robe - increases max magic value
-	
+
 	equipment pearl - wtf does this do in game?
 	
 

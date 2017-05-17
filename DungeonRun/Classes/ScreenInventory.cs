@@ -146,7 +146,10 @@ namespace DungeonRun
             #region Armor
 
             //check if currently selected is armor, set hero.armor
-            if (currentlySelected.type == MenuItemType.ArmorCloth)
+            if (currentlySelected.type == MenuItemType.ArmorCloth ||
+                currentlySelected.type == MenuItemType.ArmorChest ||
+                currentlySelected.type == MenuItemType.ArmorCape ||
+                currentlySelected.type == MenuItemType.ArmorRobe)
             { Pool.hero.armor = currentlySelected.type; }
 
             #endregion

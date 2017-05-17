@@ -192,6 +192,42 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Armor
+
+                else if (Item.type == MenuItemType.ArmorChest)
+                {
+                    if (!PlayerData.saveData.armorChest)
+                    {
+                        PlayerData.saveData.armorChest = true;
+                        Pool.hero.armor = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
+                else if (Item.type == MenuItemType.ArmorCape)
+                {
+                    if (!PlayerData.saveData.armorCape)
+                    {
+                        PlayerData.saveData.armorCape = true;
+                        Pool.hero.armor = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
+                else if (Item.type == MenuItemType.ArmorRobe)
+                {
+                    if (!PlayerData.saveData.armorRobe)
+                    {
+                        PlayerData.saveData.armorRobe = true;
+                        Pool.hero.armor = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
+
+                #endregion
+
+
                 #region Equipment
 
                 else if (Item.type == MenuItemType.EquipmentRing)

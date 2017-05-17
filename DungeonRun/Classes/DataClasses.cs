@@ -250,10 +250,9 @@ namespace DungeonRun
         //bow
         //axe
 
-        public Boolean armorPlatemail = false;
-        //platemail
-        //cape
-        //robe
+        public Boolean armorChest = false;
+        public Boolean armorCape = false;
+        public Boolean armorRobe = false;
 
         public Boolean equipmentRing = false;
         //pearl

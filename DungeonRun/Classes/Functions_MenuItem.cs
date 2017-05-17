@@ -171,31 +171,31 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.ArmorCloth)
             {
-                MenuItem.name = "Cloth";
+                MenuItem.name = "Hero's Tunic";
                 MenuItem.description = "Provides protection \nagainst magical damage.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 5, 0, 0) };
                 MenuItem.price = 0;
             }
             else if (Type == MenuItemType.ArmorChest)
             {
-                MenuItem.name = "Plate Armor";
-                MenuItem.description = "Heavy plate armor.";
+                MenuItem.name = "Knight's Armor";
+                MenuItem.description = "Prevents some damage, \nbut slows movement.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 6, 0, 0) };
-                MenuItem.price = 50;
+                MenuItem.price = 80;
             }
             else if (Type == MenuItemType.ArmorCape)
             {
-                MenuItem.name = "Magic Cape";
-                MenuItem.description = "A magical cape.";
+                MenuItem.name = "Rogue's Cape";
+                MenuItem.description = "Increases movement \nand dash speed.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 7, 0, 0) };
-                MenuItem.price = 50;
+                MenuItem.price = 80;
             }
             else if (Type == MenuItemType.ArmorRobe)
             {
-                MenuItem.name = "Magic Robe";
-                MenuItem.description = "A magical robe.";
+                MenuItem.name = "Mage's Robe";
+                MenuItem.description = "Increases maximum \namount of magic.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 8, 0, 0) };
-                MenuItem.price = 50;
+                MenuItem.price = 60;
             }
 
             #endregion

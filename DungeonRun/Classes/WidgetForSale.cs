@@ -162,9 +162,9 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.VendorArmor)
             {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, menuItems[1]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[2]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorChest, menuItems[0]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCape, menuItems[1]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[2]);
             }
             else if (VendorType == ObjType.VendorEquipment)
             {

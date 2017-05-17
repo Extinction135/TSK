@@ -208,10 +208,15 @@ namespace DungeonRun
             #region Armor
 
             Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[15]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorChest, menuItems[16]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCape, menuItems[17]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[18]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[19]);
+
+            if (PlayerData.saveData.armorChest)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorChest, menuItems[16]); }
+
+            if (PlayerData.saveData.armorCape)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCape, menuItems[17]); }
+
+            if (PlayerData.saveData.armorRobe)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[18]); }
 
             #endregion
 
