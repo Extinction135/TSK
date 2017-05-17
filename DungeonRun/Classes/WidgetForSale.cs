@@ -139,36 +139,21 @@ namespace DungeonRun
             if (VendorType == ObjType.VendorItems)
             {
                 //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-                
-                //bombs are always available for purchase
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBombs, menuItems[2]);
                 
-                if (PlayerData.saveData.weaponBow)
-                {   //if hero has the bow weapon, then arrows are available for sale
-                    Functions_MenuItem.SetMenuItemData(MenuItemType.ItemArrows20, menuItems[3]);
-                }
+                if (PlayerData.saveData.weaponBow) //if hero has bow weapon, arrows are for sale
+                { Functions_MenuItem.SetMenuItemData(MenuItemType.ItemArrows20, menuItems[3]); }
             }
             else if (VendorType == ObjType.VendorPotions)
             {
-                //bottles always are available for purchase
                 Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[0]);
                 Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[1]);
                 Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[2]);
-
-                /*
-                if (!PlayerData.saveData.bottleHealth)
-                { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[0]); }
-                if (!PlayerData.saveData.bottleMagic)
-                { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[1]); }
-                if (!PlayerData.saveData.bottleFairy)
-                { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[2]); }
-                */
             }
             else if (VendorType == ObjType.VendorMagic)
             {
-                if (!PlayerData.saveData.magicFireball)
-                { Functions_MenuItem.SetMenuItemData(MenuItemType.MagicFireball, menuItems[0]); }
+                Functions_MenuItem.SetMenuItemData(MenuItemType.MagicFireball, menuItems[0]);
             }
             else if (VendorType == ObjType.VendorWeapons)
             {
@@ -183,8 +168,6 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.VendorEquipment)
             {
-                //if (!PlayerData.saveData.equipmentRing) {  }
-
                 Functions_MenuItem.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[0]);
                 //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[1]);
                 //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[2]);

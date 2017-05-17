@@ -84,7 +84,6 @@ namespace DungeonRun
 
 
 
-
         public void PurchaseItem(MenuItem Item)
         {
             //the player cannot purchase an unknown item
@@ -104,7 +103,6 @@ namespace DungeonRun
                         if (Item.type == MenuItemType.ItemBomb)
                         { PlayerData.saveData.bombsCurrent++; }
                         else { PlayerData.saveData.bombsCurrent += 3; }
-                        //auto-equip the bombs purchased
                         Pool.hero.item = MenuItemType.ItemBomb;
                         CompleteSale(Item);
                     }
@@ -166,9 +164,13 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.MagicFireball)
                 {
-                    PlayerData.saveData.magicFireball = true;
-                    Pool.hero.item = Item.type;
-                    CompleteSale(Item);
+                    if (!PlayerData.saveData.magicFireball)
+                    {
+                        PlayerData.saveData.magicFireball = true;
+                        Pool.hero.item = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
                 }
 
                 #endregion
@@ -248,7 +250,6 @@ namespace DungeonRun
                     "you have already purchased this item.");
             Assets.Play(Assets.sfxError);
         }
-
 
 
 
