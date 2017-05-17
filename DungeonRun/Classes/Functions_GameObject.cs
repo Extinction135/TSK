@@ -510,10 +510,10 @@ namespace DungeonRun
             {  
                 Obj.lifeCounter++; //increment the life counter of the gameobject
                 //handle the object's birth & death events
-                if (Obj.lifeCounter == 2) { Functions_Projectiles.HandleBirthEvent(Obj); }
+                if (Obj.lifeCounter == 2) { Functions_Entity.HandleBirthEvent(Obj); }
                 if (Obj.lifeCounter >= Obj.lifetime)
                 {   //any dead object is released
-                    Functions_Projectiles.HandleDeathEvent(Obj);
+                    Functions_Entity.HandleDeathEvent(Obj);
                     Functions_Pool.Release(Obj);
                 }
             }

@@ -24,7 +24,7 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
             //display the hit effect particle
-            Functions_Projectiles.SpawnProjectile(ObjType.ParticleHitSparkle, Actor);
+            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Actor);
 
             //play hero/enemy hit sound effect
             if (Actor == Pool.hero)
@@ -32,7 +32,7 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxHeroHit);
                 if (PlayerData.saveData.gold > 0) //if hero has any gold
                 {   //drop a gold piece upon getting hit
-                    Functions_Projectiles.SpawnProjectile(ObjType.PickupRupee, Actor);
+                    Functions_Entity.SpawnEntity(ObjType.PickupRupee, Actor);
                     PlayerData.saveData.gold--;
                 }
             }
@@ -78,7 +78,7 @@ namespace DungeonRun
             if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
-                Functions_Projectiles.SpawnProjectile(ObjType.ParticleExplosion, Actor);
+                Functions_Entity.SpawnEntity(ObjType.ParticleExplosion, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Functions_Loot.SpawnLoot(Actor.compSprite.position);
             }
@@ -231,7 +231,7 @@ namespace DungeonRun
                     Actor.lockTotal = 10;
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
-                    Functions_Projectiles.SpawnProjectile(ObjType.ParticleDashPuff, Actor);
+                    Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Actor);
                     if (Actor == Pool.hero) { Assets.Play(Assets.sfxDash); }
                 }
                 else if (Actor.state == ActorState.Attack)
@@ -282,7 +282,7 @@ namespace DungeonRun
                     {   //dead bosses perpetually explode
                         if(Functions_Random.Int(0,100) > 75) //randomly create explosions
                         {   //randomly place explosion around boss
-                            Functions_Projectiles.SpawnProjectile(
+                            Functions_Entity.SpawnEntity(
                                 ObjType.ParticleExplosion,
                                 Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
                                 Actor.compSprite.position.Y + Functions_Random.Int(-16, 16),
@@ -295,7 +295,7 @@ namespace DungeonRun
                     {   //near the last frame of hero's death, create attention particles
                         if (Actor.compAnim.index == Actor.compAnim.currentAnimation.Count-2)
                         {   //this will happen multiple times, until anim.index increments
-                            Functions_Projectiles.SpawnProjectile(
+                            Functions_Entity.SpawnEntity(
                                     ObjType.ParticleAttention,
                                     Actor.compSprite.position.X,
                                     Actor.compSprite.position.Y,

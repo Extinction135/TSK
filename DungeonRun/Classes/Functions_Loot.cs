@@ -31,19 +31,19 @@ namespace DungeonRun
 
                 //common loot drops
                 if (lootType < 33) //33%
-                { Functions_Projectiles.SpawnProjectile(ObjType.PickupHeart, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_Entity.SpawnEntity(ObjType.PickupHeart, Pos.X, Pos.Y, Direction.Down); }
                 else if (lootType < 66) //33%
-                { Functions_Projectiles.SpawnProjectile(ObjType.PickupMagic, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_Entity.SpawnEntity(ObjType.PickupMagic, Pos.X, Pos.Y, Direction.Down); }
 
                 //uncommon loot drops
                 else if (lootType < 91) //25%
-                { Functions_Projectiles.SpawnProjectile(ObjType.PickupRupee, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_Entity.SpawnEntity(ObjType.PickupRupee, Pos.X, Pos.Y, Direction.Down); }
 
                 //rare loot drops
                 else if (lootType < 95) //5%
-                { Functions_Projectiles.SpawnProjectile(ObjType.PickupBomb, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_Entity.SpawnEntity(ObjType.PickupBomb, Pos.X, Pos.Y, Direction.Down); }
                 else if (lootType < 100) //4%
-                { Functions_Projectiles.SpawnProjectile(ObjType.PickupArrow, Pos.X, Pos.Y, Direction.Down); }
+                { Functions_Entity.SpawnEntity(ObjType.PickupArrow, Pos.X, Pos.Y, Direction.Down); }
             }
         }
 

@@ -12,14 +12,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class Functions_Projectiles
+    public static class Functions_Entity
     {
         static Direction cardinal; //a cardinal direction used by SpawnProjectile()
         static Vector2 offset = new Vector2(0, 0);
 
 
 
-        public static void SpawnProjectile(ObjType Type, Actor Actor)
+        public static void SpawnEntity(ObjType Type, Actor Actor)
         {   //this method sets offsets for Projectile/Particle based on type, relative to Actor
             offset.X = 0; offset.Y = 0; //reset offsets
             cardinal = Functions_Direction.GetCardinalDirection(Actor.direction);
@@ -93,13 +93,13 @@ namespace DungeonRun
 
 
             //call the real SpawnProjectile method
-            SpawnProjectile(Type,
+            SpawnEntity(Type,
                 Actor.compSprite.position.X + offset.X,
                 Actor.compSprite.position.Y + offset.Y,
                 cardinal);
         }
 
-        public static void SpawnProjectile(ObjType Type, float X, float Y, Direction Direction)
+        public static void SpawnEntity(ObjType Type, float X, float Y, Direction Direction)
         {   //this method spawns a projectile at the X, Y location, with a cardinal direction
             GameObject obj = Functions_Pool.GetEntity();
             //default this projectile/particle to Down direction
@@ -126,7 +126,7 @@ namespace DungeonRun
         {   //this targets projectiles/particles only
             if (Obj.type == ObjType.ProjectileBomb)
             {
-                SpawnProjectile(ObjType.ParticleAttention,
+                SpawnEntity(ObjType.ParticleAttention,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
@@ -134,7 +134,7 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {   //place smoke puff centered to fireball
-                SpawnProjectile(ObjType.ParticleSmokePuff,
+                SpawnEntity(ObjType.ParticleSmokePuff,
                     Obj.compSprite.position.X + 4,
                     Obj.compSprite.position.Y + 4,
                     Direction.None);
@@ -146,7 +146,7 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.ProjectileExplosion)
             {   //place smoke puff above explosion
-                SpawnProjectile(ObjType.ParticleSmokePuff,
+                SpawnEntity(ObjType.ParticleSmokePuff,
                     Obj.compSprite.position.X + 4,
                     Obj.compSprite.position.Y - 8,
                     Direction.None);
@@ -158,18 +158,18 @@ namespace DungeonRun
         {   //this targets projectiles/particles only
             if (Obj.type == ObjType.ProjectileBomb)
             {   //create explosion projectile
-                SpawnProjectile(ObjType.ProjectileExplosion,
+                SpawnEntity(ObjType.ProjectileExplosion,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.None);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {
-                SpawnProjectile(ObjType.ParticleExplosion,
+                SpawnEntity(ObjType.ParticleExplosion,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
-                SpawnProjectile(ObjType.ParticleFire,
+                SpawnEntity(ObjType.ParticleFire,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
@@ -177,13 +177,13 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.ProjectileArrow)
             {
-                SpawnProjectile(ObjType.ParticleAttention,
+                SpawnEntity(ObjType.ParticleAttention,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
                 Assets.Play(Assets.sfxArrowHit);
                 //spawn an arrow pickup item (so hero can reuse arrows, if he's quick)
-                Functions_Projectiles.SpawnProjectile(ObjType.PickupArrow,
+                SpawnEntity(ObjType.PickupArrow,
                     Obj.compSprite.position.X + 4,
                     Obj.compSprite.position.Y - 2, 
                     Direction.Down);

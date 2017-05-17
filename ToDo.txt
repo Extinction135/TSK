@@ -52,34 +52,11 @@ push new release on the 16th
 todo:
 
 
-8
+7
 
 
 
-Fix confusion between projectiles, particles, pickups & gameobjects - part 1
 
-the confusion starts with the Pool class, which creates a GameObject pool and a Particle pool.
-the GameObject pool doesn't accurately describe what that List<GameObjects> is.
-not does the Projectile pool describe itself accurately, because it also contains particles and pickups.
-so, we need to resolve the conceptual problems present in these variable names.
-the pool lists should accurately describe themselves.
-
-to remedy this confusion, the obj pool should be called the 'room obj' pool, since it only contains room objs.
-the projectile pool will be renamed to the 'entity pool'.
-the term entity is then being used to describe projectiles, particles, and pickups.
-
-renamed ObjPool/Count/Index to RoomObjPool/Count/Index in Pool data class.
-updated various paths that referenced old 'obj' prefix.
-changed Functions_Pool.GetObj() to GetRoomObj(), updated refs to it.
-changed Functions_Pool.ResetObjPool() to ResetRoomObjPool(), updated refs to it.
-changed Functions_Pool.UpdateObjectPool() to UpdateRoomObjPool(), updated refs to it.
-
-renamed ProjectilePool/Count/Index to EntityPool/Count/Index in Pool data class.
-updated various paths that referenced old 'projectile' prefix.
-changed Functions_Pool.GetProjectile() to GetEntity(), updated refs to it.
-changed ResetProjectilePool() to ResetEntityPool(), updated refs to it.
-
-playtested, everything still works fine.
 
 
 
@@ -92,13 +69,20 @@ playtested, everything still works fine.
 
 Fix confusion between projectiles, particles, pickups & gameobjects - part 2
 
+the confusion between projectile, particles, and pickups continues with the FUnctions_Projectiles class.
+this class of functions serves more than just projectiles, so it needs to be renamed.
+plus, it's SpawnProjectile() method handles more than just projectiles, so that needs to be renamed as well.
+
+renamed Functions_Projectiles to Functions_Entity.
+renamed SpawnProjectile() to SpawnEntity().
+updated various references to old class and it's methods.
+
+playtested, working as expected.
 
 
-We need to do the same thing for Functions_Projectiles, and it's methods
 
-rename projectile classes and functions..
-SpawnProjectile -> SpawnEntity()
-Functions_Projectiles -> Functions_Entity
+
+
 
 
 

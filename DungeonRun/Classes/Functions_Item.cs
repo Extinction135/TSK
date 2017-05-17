@@ -27,7 +27,7 @@ namespace DungeonRun
                     if (PlayerData.saveData.bombsCurrent > 0)
                     {
                         PlayerData.saveData.bombsCurrent--;
-                        Functions_Projectiles.SpawnProjectile(ObjType.ProjectileBomb, Actor);
+                        Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
                         Actor.lockTotal = 15;
                         //if hero used the last bomb, set the item to be unknown/none
                         if (PlayerData.saveData.bombsCurrent == 0)
@@ -36,7 +36,7 @@ namespace DungeonRun
                 }
                 else
                 {
-                    Functions_Projectiles.SpawnProjectile(ObjType.ProjectileBomb, Actor);
+                    Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
                     Actor.lockTotal = 15;
                 }
             }
@@ -69,7 +69,7 @@ namespace DungeonRun
             {   //refill the actor's health and magic
                 Actor.health = Actor.maxHealth;
                 PlayerData.saveData.magicCurrent = PlayerData.saveData.magicMax;
-                Functions_Projectiles.SpawnProjectile(ObjType.ParticleFairy, Actor);
+                Functions_Entity.SpawnEntity(ObjType.ParticleFairy, Actor);
                 PlayerData.saveData.bottleFairy = false;
                 UseBottle(Type, Actor);
             }
@@ -86,14 +86,14 @@ namespace DungeonRun
                     if (PlayerData.saveData.magicCurrent > 0)
                     {
                         PlayerData.saveData.magicCurrent--;
-                        Functions_Projectiles.SpawnProjectile(ObjType.ProjectileFireball, Actor);
+                        Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Actor);
                         Actor.lockTotal = 15;
                     }
                     else { Assets.Play(Assets.sfxError); }
                 }
                 else
                 {
-                    Functions_Projectiles.SpawnProjectile(ObjType.ProjectileFireball, Actor);
+                    Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Actor);
                     Actor.lockTotal = 15;
                 }
             }
@@ -105,7 +105,7 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.WeaponSword)
             {
-                Functions_Projectiles.SpawnProjectile(ObjType.ProjectileSword, Actor);
+                Functions_Entity.SpawnEntity(ObjType.ProjectileSword, Actor);
                 Assets.Play(Assets.sfxSwordSwipe);
                 Actor.lockTotal = 15;
             }
@@ -116,16 +116,16 @@ namespace DungeonRun
                     if (PlayerData.saveData.arrowsCurrent > 0)
                     {
                         PlayerData.saveData.arrowsCurrent--;
-                        Functions_Projectiles.SpawnProjectile(ObjType.ProjectileArrow, Actor);
-                        Functions_Projectiles.SpawnProjectile(ObjType.ParticleBow, Actor);
+                        Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Actor);
+                        Functions_Entity.SpawnEntity(ObjType.ParticleBow, Actor);
                         Actor.lockTotal = 15;
                     }
                     else { Assets.Play(Assets.sfxError); }
                 }
                 else
                 {
-                    Functions_Projectiles.SpawnProjectile(ObjType.ProjectileArrow, Actor);
-                    Functions_Projectiles.SpawnProjectile(ObjType.ParticleBow, Actor);
+                    Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Actor);
+                    Functions_Entity.SpawnEntity(ObjType.ParticleBow, Actor);
                     Actor.lockTotal = 15;
                 }
             }
@@ -136,7 +136,7 @@ namespace DungeonRun
 
         static void UseBottle(MenuItemType Type, Actor Actor)
         {
-            Functions_Projectiles.SpawnProjectile(ObjType.ParticleAttention, Actor);
+            Functions_Entity.SpawnEntity(ObjType.ParticleAttention, Actor);
             if (Actor.item == Type) { Actor.item = MenuItemType.BottleEmpty; }
             Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
             Actor.state = ActorState.Reward;
