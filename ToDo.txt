@@ -56,24 +56,16 @@ todo:
 Finishing Version 0.4
 
 
-12
+11
 
 
 
-Implement wall statue that shoots arrows
+Fixing Wall Statues - part 1
 
-randomly shoots arrows in the direction it faces, if hero aligns on that axis
-changed ObjType.WallDecoration ot ObjType.WallStatue.
-updated Functions_GameObject.SetType() to set WallStatue.getsAI to true.
-this will pass the wallStatue object to Functions_AI.HandleObj().
-
-updated Functions_Dungeon.FinishRoom() to place a wall statue along the top wall facing down.
-Functions_AI.HandleObj() with path to handle a WallStatue object facing down.
-later i'll update this routine to handle all cardinal directions.
-for now, i just want to get it working/tested.
-
-playtested, working, but with some minor bugs.
-
+updated FinishRoom() to place wall statue objects on top, left, and bottom walls.
+updated CleanupRoom() to consider doors + wall statues For comparison against walls.
+playtested, the flickering / sorting issue with wall statues has been fixed.
+this also reduced the active room objects just a little bit, so we have more to use later on.
 
 
 

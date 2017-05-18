@@ -299,18 +299,6 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 objRef.compSprite.flipHorizontally = true;
                 Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-                
-
-                //place skeleton pots along left wall
-                for (i = 0; i < Room.size.Y; i++)
-                {
-                    objRef = Functions_Pool.GetRoomObj();
-                    Functions_Movement.Teleport(objRef.compMove,
-                        0 * 16 + pos.X + 8,
-                        i * 16 + pos.Y + 8);
-                    objRef.direction = Direction.Down;
-                    Functions_GameObject.SetType(objRef, ObjType.PotSkull);
-                }
 
                 #endregion
 
@@ -350,6 +338,22 @@ namespace DungeonRun
                 Functions_GameObject.SetType(objRef, ObjType.ChestHeartPiece);
 
                 #endregion
+
+
+
+                /*
+                //place skeleton pots along left wall
+                for (i = 0; i < Room.size.Y; i++)
+                {
+                    objRef = Functions_Pool.GetRoomObj();
+                    Functions_Movement.Teleport(objRef.compMove,
+                        0 * 16 + pos.X + 8,
+                        i * 16 + pos.Y + 8);
+                    objRef.direction = Direction.Down;
+                    Functions_GameObject.SetType(objRef, ObjType.PotSkull);
+                }
+                */
+
 
 
                 //Create testing spike blocks
@@ -393,7 +397,7 @@ namespace DungeonRun
                 Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
 
 
-                //place test wall statue object
+                //place test wall statue object - top wall
                 objRef = Functions_Pool.GetRoomObj();
                 Functions_Movement.Teleport(objRef.compMove,
                     8 * 16 + pos.X + 8,
@@ -401,10 +405,31 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 Functions_GameObject.SetType(objRef, ObjType.WallStatue);
 
+                //place test wall statue object - left wall
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    -1 * 16 + pos.X + 8,
+                    5 * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Right;
+                Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+                //place test wall statue object - bottom wall
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    5 * 16 + pos.X + 8,
+                    (Room.size.Y + 1) * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Up;
+                Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+
+
+
+
+
 
 
                 //spawn enemies inside of this room
-                SpawnEnemies(Room);
+                //SpawnEnemies(Room);
             }
 
             #endregion
@@ -585,17 +610,28 @@ namespace DungeonRun
 
         public static void CleanupRoom(Room Room)
         {
-            //remove any walls that overlap doors
+            Boolean checkObjB; //remove certain overlapping objects
             for (i = 0; i < Pool.roomObjCount; i++)
             {
-                if (Pool.roomObjPool[i].group == ObjGroup.Door && Pool.roomObjPool[i].active)
+                checkObjB = false; //check to see if ObjA can delete ObjB
+                if (Pool.roomObjPool[i].active) //if ObjA is active..
+                {   //certain objects delete other objects, if they collide
+                    if (Pool.roomObjPool[i].group == ObjGroup.Door ||
+                        Pool.roomObjPool[i].type == ObjType.WallStatue)
+                    { checkObjB = true; }
+                }
+
+                if (checkObjB) //ObjA can delete ObjB
                 {
                     for (j = 0; j < Pool.roomObjCount; j++)
-                    {
-                        if (Pool.roomObjPool[j].group == ObjGroup.Wall && Pool.roomObjPool[j].active)
-                        {
-                            if (Pool.roomObjPool[i].compCollision.rec.Intersects(Pool.roomObjPool[j].compCollision.rec))
-                            { Functions_Pool.Release(Pool.roomObjPool[j]); }
+                    {   //if ObjB is active, and not the same object (dont compare objects with themselves)
+                        if (Pool.roomObjPool[j].active && Pool.roomObjPool[i] != Pool.roomObjPool[j]) 
+                        {   //check that the obj is a wall
+                            if (Pool.roomObjPool[j].group == ObjGroup.Wall)
+                            {   //walls that intersect ObjA get released (deleted)
+                                if (Pool.roomObjPool[i].compCollision.rec.Intersects(Pool.roomObjPool[j].compCollision.rec))
+                                { Functions_Pool.Release(Pool.roomObjPool[j]); }
+                            }
                         }
                     }
                 }

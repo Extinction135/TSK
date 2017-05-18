@@ -163,6 +163,8 @@ namespace DungeonRun
             {
                 if (Functions_Random.Int(0, 500) > 497)
                 {
+
+
                     Functions_Entity.SpawnEntity(ObjType.ProjectileArrow,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y + 16,
@@ -170,6 +172,15 @@ namespace DungeonRun
 
                     //we need to be spawning arrows beyond the object's collision rec
                     //this will be based on the obj's direction
+
+
+                    //we need a function that will return an offset based on the passed obj's direction
+                    //this would consolidate the offsets into one function
+                    //we could use this for most objects & actors
+                    //for example, i'm willing to bet that the arrow offset for actors is the same as the offset for this obj
+                    //can we consolidate these offsets somehow? what would be the name of this function? where would it go?
+
+
                 }
             }
         }
