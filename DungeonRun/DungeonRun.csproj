@@ -98,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Functions_Actor.cs" />
+    <Compile Include="Classes\Functions_Alignment.cs" />
     <Compile Include="Classes\Functions_Animation.cs" />
     <Compile Include="Classes\Assets.cs" />
     <Compile Include="App.xaml.cs">

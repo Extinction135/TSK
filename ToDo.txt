@@ -60,28 +60,39 @@ Finishing Version 0.4
 
 
 
-Fixing Wall Statues - part 1
-
-updated FinishRoom() to place wall statue objects on top, left, and bottom walls.
-updated CleanupRoom() to consider doors + wall statues For comparison against walls.
-playtested, the flickering / sorting issue with wall statues has been fixed.
-this also reduced the active room objects just a little bit, so we have more to use later on.
+Fixing Wall Statues - part 2
 
 
+added a right statue wall, for complete testing of wall directions.
+
+planned out how to set the offsets for the wall statue objects.
+this requires offsets based on object direction.
+similarities were found between what was needed and what currently exists.
+in Functions_Entity.SpawnProjectile(), we're applying offsets based on actor.direction.
+so, it would make sense to move these routines into a class that only handles the offsets.
+this would group the offset routines for actors + objects together in one class.
+
+created Functions_Alignment.cs.
+adde two methods, SetOffsets(Actor, ObjType) and SetOffsets(GameObject, ObjType).
+moved the routines for setting offsets based on actor into SetOffsets(Actor, ObjType).
+this simplifies the Functions_Entity.SpawnProjectile(ObjType, Actor) method.
+updated SetOffsets(GameObject, ObjType) with path to handle arrow projectiles.
+
+cleaned up Functions_Entity.
+playtested, the wall statues properly fire arrows in the correct direction.
+in addition, equipping the chest armor prevents all damage from arrows.
 
 
 
 
-the wall statue sits over a wall
-the wall underneath it should be removed
-this would occur in the clean room method of dungeon functions.
 
 
 
-the statue object should work for all directions
-right now it only works for the down direction
-the 16 px offset is perfect
-we need to test left, right, and up versions of the wall statue
+
+fired arrows should not create arrow pickups.
+however, arrows should be cheaper, and should drop from loot table more often.
+this will help to make arrows more abundant and available.
+
 
 
 we need to be able to control if arrows drop arrow pickups or not

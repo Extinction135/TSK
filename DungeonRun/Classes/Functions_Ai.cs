@@ -162,25 +162,13 @@ namespace DungeonRun
             else if (Obj.type == ObjType.WallStatue)
             {
                 if (Functions_Random.Int(0, 500) > 497)
-                {
-
-
+                {   //calculate the arrow's offset to the wall state object
+                    Functions_Alignment.SetOffsets(Obj, ObjType.ProjectileArrow);
+                    //spawn the arrow projectile, passing the calculated offsets
                     Functions_Entity.SpawnEntity(ObjType.ProjectileArrow,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y + 16,
-                        Direction.Down);
-
-                    //we need to be spawning arrows beyond the object's collision rec
-                    //this will be based on the obj's direction
-
-
-                    //we need a function that will return an offset based on the passed obj's direction
-                    //this would consolidate the offsets into one function
-                    //we could use this for most objects & actors
-                    //for example, i'm willing to bet that the arrow offset for actors is the same as the offset for this obj
-                    //can we consolidate these offsets somehow? what would be the name of this function? where would it go?
-
-
+                        Obj.compSprite.position.X + Functions_Alignment.offsetX,
+                        Obj.compSprite.position.Y + Functions_Alignment.offsetY,
+                        Obj.direction); //fire in the obj's facing direction
                 }
             }
         }

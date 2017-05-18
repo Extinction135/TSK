@@ -397,6 +397,9 @@ namespace DungeonRun
                 Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
 
 
+
+                #region Create Wall Statues
+
                 //place test wall statue object - top wall
                 objRef = Functions_Pool.GetRoomObj();
                 Functions_Movement.Teleport(objRef.compMove,
@@ -413,6 +416,14 @@ namespace DungeonRun
                 objRef.direction = Direction.Right;
                 Functions_GameObject.SetType(objRef, ObjType.WallStatue);
 
+                //place test wall statue object - right wall
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    (Room.size.X + 0) * 16 + pos.X + 8,
+                    7 * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Left;
+                Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
                 //place test wall statue object - bottom wall
                 objRef = Functions_Pool.GetRoomObj();
                 Functions_Movement.Teleport(objRef.compMove,
@@ -421,15 +432,12 @@ namespace DungeonRun
                 objRef.direction = Direction.Up;
                 Functions_GameObject.SetType(objRef, ObjType.WallStatue);
 
-
-
-
-
+                #endregion
 
 
 
                 //spawn enemies inside of this room
-                //SpawnEnemies(Room);
+                SpawnEnemies(Room);
             }
 
             #endregion
@@ -640,7 +648,6 @@ namespace DungeonRun
 
 
 
-
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
             //place vendor
@@ -717,10 +724,6 @@ namespace DungeonRun
 
 
         }
-
-
-
-
 
     }
 }
