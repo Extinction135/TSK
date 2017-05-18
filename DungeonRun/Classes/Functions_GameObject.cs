@@ -24,6 +24,7 @@ namespace DungeonRun
             Obj.lifetime = 0; //assume obj exists forever (not projectile)
             Obj.lifeCounter = 0; //reset counter
             Obj.active = true; //assume this object should draw / animate
+            Obj.getsAI = false; //most objects do not get any AI input
             //reset the sprite component
             Obj.compSprite.cellSize.X = 16 * 1; //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.Y = 16 * 1;
@@ -236,11 +237,18 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Liftable;
             }
             else if (
-                Type == ObjType.SpikesFloor || Type == ObjType.Flamethrower ||
-                Type == ObjType.Switch || Type == ObjType.Bridge)
+                Type == ObjType.SpikesFloor || 
+                Type == ObjType.Switch || 
+                Type == ObjType.Bridge)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
+            }
+            else if (Type == ObjType.Flamethrower)
+            {
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+                Obj.getsAI = true; //obj gets AI
             }
             else if (Type == ObjType.Bumper)
             {
@@ -495,7 +503,6 @@ namespace DungeonRun
             //all vendors use the main sheet as their texture
             if(Obj.group == ObjGroup.Vendor) { Obj.compSprite.texture = Assets.mainSheet; }
 
-
             SetRotation(Obj);
             Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type
             Functions_Component.UpdateCellSize(Obj.compSprite);
@@ -517,6 +524,8 @@ namespace DungeonRun
                     Functions_Pool.Release(Obj);
                 }
             }
+            //certain objects get AI input
+            if(Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
         public static void Draw(GameObject Obj)

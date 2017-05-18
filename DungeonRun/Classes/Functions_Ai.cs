@@ -14,34 +14,52 @@ namespace DungeonRun
 {
     public static class Functions_Ai
     {
-
-        public static Direction directionToHero;
-        public static Vector2 actorPos;
-        public static Vector2 heroPos;
         static Actor Actor;
+        static Direction directionToHero;
+
+        static Vector2 actorPos;
+        static Vector2 heroPos;
+
+        static int xDistance;
+        static int yDistance;
 
 
+
+        static Direction GetDirectionToHero(Vector2 Pos)
+        {
+            //get hero's position
+            heroPos = Pool.hero.compSprite.position;
+            //get the x and y distances between starting position and hero
+            xDistance = (int)Math.Abs(heroPos.X - Pos.X);
+            yDistance = (int)Math.Abs(heroPos.Y - Pos.Y);
+
+            //determine the axis hero is closest on
+            if (xDistance < yDistance)
+            { 
+                if (heroPos.Y > Pos.Y)
+                { return Direction.Down; }
+                else { return Direction.Up; }
+            }
+            else
+            {
+                if (heroPos.X > Pos.X)
+                { return Direction.Right; }
+                else { return Direction.Left; }
+            }
+        }
 
         public static void SetActorInput()
         {
-            //increment the active actor
-            Pool.activeActor++;
+            Pool.activeActor++; //increment the active actor
             if (Pool.activeActor >= Pool.actorCount) { Pool.activeActor = 1; } //skip 0th actor (HERO)
             //target the active actor from the actor's pool
             Actor = Pool.actorPool[Pool.activeActor];
             //if this actor isn't active, don't pass AI to it
             if (Actor.active == false) { return; }
-
             //reset the target actor's input
             Functions_Input.ResetInputData(Actor.compInput);
-            //reset the direction to hero
-            directionToHero = Direction.None;
-            //collect the actor and hero sprite positions
+            //get actor sprite position
             actorPos = Actor.compSprite.position;
-            heroPos = Pool.hero.compSprite.position;
-            //get the x and y distances between the actor and hero
-            int xDistance = (int)Math.Abs(heroPos.X - actorPos.X);
-            int yDistance = (int)Math.Abs(heroPos.Y - actorPos.Y);
 
 
             #region Boss AI
@@ -70,19 +88,8 @@ namespace DungeonRun
 
             else //blob
             {
-                //determine the axis hero is closest on
-                if (xDistance < yDistance)
-                {   //hero is closer on xAxis, actor should move on yAxis
-                    if (heroPos.Y > actorPos.Y)
-                    { directionToHero = Direction.Down; }
-                    else { directionToHero = Direction.Up; }
-                }
-                else
-                {   //hero is closer on yAxis, actor should move on xAxis
-                    if (heroPos.X > actorPos.X)
-                    { directionToHero = Direction.Right; }
-                    else { directionToHero = Direction.Left; }
-                }
+                //get the direction to hero
+                directionToHero = GetDirectionToHero(actorPos);
 
                 //determine if actor is close enough to hero to chase
                 int chaseRadius = 16 * 6;
@@ -137,6 +144,21 @@ namespace DungeonRun
             //if very close or nearby, move away from hero
             //if in visibility range, ranged attack hero
             //else, wander around
+        }
+
+        public static void HandleObj(GameObject Obj)
+        {
+            if (Obj.type == ObjType.Flamethrower)
+            {   //keep in mind this is called every frame
+                if (Functions_Random.Int(0, 500) > 497)
+                {   //randomly cast fireball towards hero
+                    directionToHero = GetDirectionToHero(Obj.compSprite.position);
+                    Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, 
+                        Obj.compSprite.position.X, 
+                        Obj.compSprite.position.Y, 
+                        directionToHero);
+                }
+            }
         }
 
     }

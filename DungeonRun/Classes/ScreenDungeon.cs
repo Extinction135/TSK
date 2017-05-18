@@ -47,8 +47,7 @@ namespace DungeonRun
         {
             //if screen is playing, allow input for player + active actor
             if (displayState == DisplayState.Opened) 
-            {
-                //reset the input for hero, map player input to hero
+            {   //reset the input for hero, map player input to hero
                 Functions_Input.ResetInputData(Pool.hero.compInput);
                 Functions_Input.MapPlayerInput(Pool.hero.compInput);
                 Functions_Ai.SetActorInput(); //set AI for actor

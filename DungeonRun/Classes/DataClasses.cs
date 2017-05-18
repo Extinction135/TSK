@@ -178,12 +178,13 @@ namespace DungeonRun
 
         public Direction direction = Direction.Down;
         public Boolean active = true; //does this object draw, update?
+        public Boolean getsAI = false; //does this object get passed to Functions_AI.HandleObj()?
 
         public Byte lifetime;   //how many frames this object exists for, 0 = forever/ignore
         public Byte lifeCounter;//counts up to lifetime value
 
         public GameObject(Texture2D Texture)
-        {   //initialize to default value - this data is changed in Update()
+        {   //initialize to default value - data is changed later
             compSprite = new ComponentSprite(Texture, new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
             Functions_GameObject.SetType(this, type);
         }

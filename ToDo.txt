@@ -52,30 +52,28 @@ push new release on the 16th
 todo:
 
 
-1
+
+Finishing Version 0.4
+
+
+13
 
 
 
 
-Implementing Armor - part 3
+Implement flamethrower room object
 
-the various armor pieces effects need to be implemented in the codebase.
-updated Functions_Battle.Damage() with paths for cloth & chest armor.
-cloth armor reduces magical damage to 1. 
-armor reduces physical damage by 1, unless the weapon attacking is a sword.
-added call to play metallic soundfx if arrow collides with an actor wearing armor.
+already created ObjType value & anim list for flamethrower object.
+updated FinishRoom() to create flamethrower object in exit room.
 
-created ResetActorLoadout() in Functions_Actor.
-this reduces duplicate code in Functions_Actor.SetType().
+in prep for flamethrower obj implementation, cleaned up Functions_AI.
+created Functions_AI.HandleObj(GameObject).
+added call to Functions_AI.HandleObj() from Functions_GameObject.Update().
+added boolean to gameObject class named 'getsAI', defaults to false.
+updated Funtions_GameObject.SetType() to set flamethrower.getsAI to be true.
+this is the only room object that will get AI, for now.
+updated Functions_AI.HandleObj() to randomly shoot fireballs at hero.
 
-updated Functions_Movement.Move(Actor) to factor in chest & cape armor movement speed multipliers.
-playtested and refined the movement modifiers for chest & cape so it plays well.
-there is enough difference to notice, but not too much to where it's op or broken.
-
-updated SaveData to use magicCurrent, magicUnlocked, and magicTotal values.
-the magicTotal value is the unlocked value plus any modifiers, like the robe armor.
-updated worldUI to set the magicTotal each frame.
-worldUI calculates & limits the magicTotal each frame, factoring in the robe modifier.
 playtested, working as expected.
 
 
@@ -85,25 +83,23 @@ playtested, working as expected.
 
 
 
+where do we tell flamethrower to create a fireball projectile?
+from update somewhere...
 
 
-
-we need an enemy that shoots arrows
-we need an enemy / room obj that shoot fireballs (flamethrower)
-
+we need a counter, so obj doesn't spam fireballs
+we could do this with a random check instead of a counter.
 
 
-
-
-
-
-
-
+we need to do some basic AI on it, so obj only shoots fireballs when hero aligns with it on an axis
+BUT no room objects get updates, nor would we want them too, because theres alot 
 
 
 
 
 
+we could also implement the flamethrower room obj pretty easily now
+we could implement an arrow shooting object easily now too..
 
 
 
@@ -129,10 +125,20 @@ at the end of the resurrection state/animation, AI input is continued
 
 need sound for health + magic potion useage - we're just using pickup sound rn
 
+make sure fairy animation is working properly
+animate faster probaby
+	
+	
+	
+	
+	
+RELEASE V0.4 with gifs and improvements
+	
+	
+	
+
 
 	
-	make sure fairy animation is working properly
-	animate afaster probaby
 	
 	
 	
@@ -147,34 +153,30 @@ need sound for health + magic potion useage - we're just using pickup sound rn
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Prep for version 0.5	
 	
 	
 implement the following items:
-	item boomerang - just like LttP boomerang
-	weapon staff - creates a magic orb projectile, if health is max, has an attack of 0
-
-	equipment pearl - wtf does this do in game?
+	item boomerang - just like LttP boomerang, hits an enemy for 1, can 'collect' pickups
+	weapon staff - creates a magic orb projectile, if magic is max, else has an attack of 0, but pushes
+	equipment pearl - wtf does this do in game?	
 	
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+we need an enemy that shoots arrows (new enemy type, not just blob with bow)
+we need an enemy that shoot fireballs (new enemy type, wizard?)	
 	
-
-	
-	
-	
-Version 0.4 Milestones
 	
 minor bug:
 the loadout animates the loadout menuItems
@@ -185,26 +187,6 @@ this solves the scaling issue, and it doesn't make sense to be able to select th
 selecting an item should only equip it
 
 
-Vendor stalls / layout ++
-	we need vendor 'stalls'
-	stalls should have rugs under them
-	vendors should not be in a line, the should be spread out
-	there should be more decorations in the shop
-	the 'guide' npc obj should also be in the shop
-	there should be a dog actor that chases the hero around
-	this dog actor is an enemy, but never attacks and has it's own AI.
-	
-conveyor belts should move other game objects, like consumable items
-or other objects, like bumpers and spike blocks	
-
-what if we pushed the hero a little bit in the opposite direction of the fireball being cast?
-this would make it seem like the 'weight' of the fireball pushed him back	
-	
-instead of an unknown menuItem, we should have a 'purchased' menuItem for items that have been bought	
-	
-REPLACE BOSS MUSIC	
-re-mix the boss music, making drums much less prominent in the mix
-also, mix the drums down to mono in session - we're getting phase issues when we convert to mono later
 	
 	
 	
@@ -261,9 +243,44 @@ Version 0.5 Milestones
 	
 	
 	
+	
+	
+	
+	
 Polish
 
 
+	Vendor stalls / layout ++
+	we need vendor 'stalls'
+	stalls should have rugs under them
+	vendors should not be in a line, the should be spread out
+	there should be more decorations in the shop
+	the 'guide' npc obj should also be in the shop
+	there should be a dog actor that chases the hero around
+	this dog actor is an enemy, but never attacks and has it's own AI.
+	
+	conveyor belts should move other game objects, like consumable items
+	or other objects, like bumpers and spike blocks	
+
+	what if we pushed the hero a little bit in the opposite direction of the fireball being cast?
+	this would make it seem like the 'weight' of the fireball pushed him back	
+	
+	instead of an unknown menuItem, we should have a 'purchased' menuItem for items that have been bought	
+	
+	REPLACE BOSS MUSIC	
+	re-mix the boss music, making drums much less prominent in the mix
+	also, mix the drums down to mono in session - we're getting phase issues when we convert to mono later
+
+
+
+	we should be able to turn the conveyors on and off
+	this allows us to build rooms with additional complexity
+	perhaps the switch turns the conveyors on/off?
+	puzzle: conveyor belt that pushes the hero away from something
+	solution: hit the switch, turn the belts off, so hero can move around
+	we could even put them on a timer and play a timer tick sound, suspending the music
+	
+	
 	Stats MenuItems? Or Help Menu?
 	we need menuItem sprites for the various stats
 	strength - increases amount of physical damage weapon does
@@ -348,3 +365,43 @@ Maybes / Ideas
 	then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
 
 
+	
+	
+	
+	
+	
+	
+	
+Taking it Further
+
+	design dungeons as a whole
+	dungeons should have a theme
+	there should be 'architectural puzzles', where the dungeon changes in some way
+	this could be raising/lowering water levels
+	moving forward/backwards in time
+	destroying parts of the dungeon/rooms
+	using switches to alter the paths thru rooms, or alter the nature of rooms
+	for example, turning conveyo belts on/off, or spike traps
+	
+	in addition to these architectural puzzles, dungeons should also have a key item
+	this key item must be collected to complete the dungeon
+	for example, the hammer knocks down posts
+	the hookshot pulls hero across gaps
+	
+	there are certain zelda puzzle tropes to be followed to:
+	block puzzle - move a block or series of blocks into place, to press a switch / chest / etc
+	enemy puzzle - kill all enemies / miniboss / boss
+	shooting puzzle - shoot an eye or some object with an arrow / boomerang / projectile
+	torch puzzle - light 3-4 torches
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

@@ -385,6 +385,15 @@ namespace DungeonRun
                     3 * 16 + pos.Y + 8);
                 Functions_GameObject.SetType(objRef, ObjType.Bumper);
 
+                //place test flamethrower
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    13 * 16 + pos.X + 8,
+                    5 * 16 + pos.Y + 8);
+                Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
+
+
+
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);
             }
