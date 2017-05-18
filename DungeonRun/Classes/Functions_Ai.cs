@@ -153,10 +153,23 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 500) > 497)
                 {   //randomly cast fireball towards hero
                     directionToHero = GetDirectionToHero(Obj.compSprite.position);
-                    Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, 
-                        Obj.compSprite.position.X, 
-                        Obj.compSprite.position.Y, 
+                    Functions_Entity.SpawnEntity(ObjType.ProjectileFireball,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
                         directionToHero);
+                }
+            }
+            else if (Obj.type == ObjType.WallStatue)
+            {
+                if (Functions_Random.Int(0, 500) > 497)
+                {
+                    Functions_Entity.SpawnEntity(ObjType.ProjectileArrow,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y + 16,
+                        Direction.Down);
+
+                    //we need to be spawning arrows beyond the object's collision rec
+                    //this will be based on the obj's direction
                 }
             }
         }

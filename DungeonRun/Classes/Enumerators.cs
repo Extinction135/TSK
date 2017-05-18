@@ -42,7 +42,7 @@ namespace DungeonRun
         //Room Objects
         Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
         DoorOpen, DoorBombable, DoorBombed, DoorBoss, DoorTrap, DoorShut, DoorFake,
-        WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallDecoration,
+        WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue,
         PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, BossDecal, Pillar, WallTorch, DebrisFloor,
 

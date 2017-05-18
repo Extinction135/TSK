@@ -136,13 +136,22 @@ namespace DungeonRun
             {
                 Obj.group = ObjGroup.Door;
             }
-            else if (Type == ObjType.WallStraight || Type == ObjType.WallStraightCracked ||
-                Type == ObjType.WallInteriorCorner || Type == ObjType.WallExteriorCorner ||
-                Type == ObjType.WallPillar || Type == ObjType.WallDecoration)
+            else if (Type == ObjType.WallStraight || 
+                Type == ObjType.WallStraightCracked ||
+                Type == ObjType.WallInteriorCorner || 
+                Type == ObjType.WallExteriorCorner ||
+                Type == ObjType.WallPillar)
             {
                 Obj.compSprite.zOffset = -32;
                 Obj.group = ObjGroup.Wall;
             }
+            else if (Type == ObjType.WallStatue)
+            {
+                Obj.compSprite.zOffset = -32;
+                Obj.group = ObjGroup.Wall;
+                Obj.getsAI = true; //obj gets AI
+            }
+
             else if (Type == ObjType.PitTop)
             {
                 //pits dont collide with actors

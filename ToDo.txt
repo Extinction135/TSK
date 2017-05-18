@@ -56,26 +56,23 @@ todo:
 Finishing Version 0.4
 
 
-13
+12
 
 
 
+Implement wall statue that shoots arrows
 
-Implement flamethrower room object
+randomly shoots arrows in the direction it faces, if hero aligns on that axis
+changed ObjType.WallDecoration ot ObjType.WallStatue.
+updated Functions_GameObject.SetType() to set WallStatue.getsAI to true.
+this will pass the wallStatue object to Functions_AI.HandleObj().
 
-already created ObjType value & anim list for flamethrower object.
-updated FinishRoom() to create flamethrower object in exit room.
+updated Functions_Dungeon.FinishRoom() to place a wall statue along the top wall facing down.
+Functions_AI.HandleObj() with path to handle a WallStatue object facing down.
+later i'll update this routine to handle all cardinal directions.
+for now, i just want to get it working/tested.
 
-in prep for flamethrower obj implementation, cleaned up Functions_AI.
-created Functions_AI.HandleObj(GameObject).
-added call to Functions_AI.HandleObj() from Functions_GameObject.Update().
-added boolean to gameObject class named 'getsAI', defaults to false.
-updated Funtions_GameObject.SetType() to set flamethrower.getsAI to be true.
-this is the only room object that will get AI, for now.
-updated Functions_AI.HandleObj() to randomly shoot fireballs at hero.
-
-playtested, working as expected.
-
+playtested, working, but with some minor bugs.
 
 
 
@@ -83,23 +80,31 @@ playtested, working as expected.
 
 
 
-where do we tell flamethrower to create a fireball projectile?
-from update somewhere...
-
-
-we need a counter, so obj doesn't spam fireballs
-we could do this with a random check instead of a counter.
-
-
-we need to do some basic AI on it, so obj only shoots fireballs when hero aligns with it on an axis
-BUT no room objects get updates, nor would we want them too, because theres alot 
+the wall statue sits over a wall
+the wall underneath it should be removed
+this would occur in the clean room method of dungeon functions.
 
 
 
+the statue object should work for all directions
+right now it only works for the down direction
+the 16 px offset is perfect
+we need to test left, right, and up versions of the wall statue
 
 
-we could also implement the flamethrower room obj pretty easily now
-we could implement an arrow shooting object easily now too..
+we need to be able to control if arrows drop arrow pickups or not
+if an enemy shoots an arrow, the arrow should not drop a pickup
+if hero shoots an arrow, then the arrow should drop a pickup
+this is a binary state, so we can do this with a boolean
+
+
+
+
+
+
+
+
+
 
 
 

@@ -61,7 +61,7 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(5, 2, 0, 0) },
                 //WallPillar
                 new List<Byte4> { new Byte4(4, 1, 0, 0) },
-                //WallDecoration
+                //WallStatue
                 new List<Byte4> { new Byte4(5, 1, 0, 0) },
 
                 //PitTop

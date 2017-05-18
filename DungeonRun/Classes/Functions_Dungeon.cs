@@ -393,6 +393,15 @@ namespace DungeonRun
                 Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
 
 
+                //place test wall statue object
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    8 * 16 + pos.X + 8,
+                    0 * 16 - 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+
 
                 //spawn enemies inside of this room
                 SpawnEnemies(Room);
