@@ -82,10 +82,10 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 7, 0, 0) };
                 MenuItem.price = 30;
             }
-            else if (Type == MenuItemType.ItemArrow3Pack)
+            else if (Type == MenuItemType.ItemArrowPack)
             {
                 MenuItem.name = "Arrow Set";
-                MenuItem.description = "A set of 3 arrows, \nfor 20 gold.";
+                MenuItem.description = "A set of 20 arrows, \nfor 20 gold.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 8, 0, 0) };
                 MenuItem.price = 20;
             }

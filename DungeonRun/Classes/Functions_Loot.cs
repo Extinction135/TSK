@@ -30,19 +30,19 @@ namespace DungeonRun
                 lootType = Functions_Random.Int(0, 100);
 
                 //common loot drops
-                if (lootType < 33) //33%
+                if (lootType < 25) //25%
                 { Functions_Entity.SpawnEntity(ObjType.PickupHeart, Pos.X, Pos.Y, Direction.Down); }
-                else if (lootType < 66) //33%
+                else if (lootType < 50) //25%
                 { Functions_Entity.SpawnEntity(ObjType.PickupMagic, Pos.X, Pos.Y, Direction.Down); }
 
                 //uncommon loot drops
-                else if (lootType < 91) //25%
+                else if (lootType < 75) //25%
                 { Functions_Entity.SpawnEntity(ObjType.PickupRupee, Pos.X, Pos.Y, Direction.Down); }
 
                 //rare loot drops
-                else if (lootType < 95) //5%
+                else if (lootType < 88) //13%
                 { Functions_Entity.SpawnEntity(ObjType.PickupBomb, Pos.X, Pos.Y, Direction.Down); }
-                else if (lootType < 100) //4%
+                else if (lootType < 100) //12%
                 { Functions_Entity.SpawnEntity(ObjType.PickupArrow, Pos.X, Pos.Y, Direction.Down); }
             }
         }

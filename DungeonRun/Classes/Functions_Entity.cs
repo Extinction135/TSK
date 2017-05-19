@@ -129,10 +129,12 @@ namespace DungeonRun
                     Direction.None);
                 Assets.Play(Assets.sfxArrowHit);
                 //spawn an arrow pickup item (so hero can reuse arrows, if he's quick)
+                /*
                 SpawnEntity(ObjType.PickupArrow,
                     Obj.compSprite.position.X + 4,
                     Obj.compSprite.position.Y - 2, 
                     Direction.Down);
+                */
             }
 
             #endregion

@@ -56,54 +56,25 @@ todo:
 Finishing Version 0.4
 
 
-11
+9
 
 
 
-Fixing Wall Statues - part 2
-
-
-added a right statue wall, for complete testing of wall directions.
-
-planned out how to set the offsets for the wall statue objects.
-this requires offsets based on object direction.
-similarities were found between what was needed and what currently exists.
-in Functions_Entity.SpawnProjectile(), we're applying offsets based on actor.direction.
-so, it would make sense to move these routines into a class that only handles the offsets.
-this would group the offset routines for actors + objects together in one class.
-
-created Functions_Alignment.cs.
-adde two methods, SetOffsets(Actor, ObjType) and SetOffsets(GameObject, ObjType).
-moved the routines for setting offsets based on actor into SetOffsets(Actor, ObjType).
-this simplifies the Functions_Entity.SpawnProjectile(ObjType, Actor) method.
-updated SetOffsets(GameObject, ObjType) with path to handle arrow projectiles.
-
-cleaned up Functions_Entity.
-playtested, the wall statues properly fire arrows in the correct direction.
-in addition, equipping the chest armor prevents all damage from arrows.
-
-
-
-
-
-
-
+Fix the Arrow economy
 
 fired arrows should not create arrow pickups.
+updated Functions_Entity.HandleDeathEvent() arrows routine to not spawn arrow pickups.
+
 however, arrows should be cheaper, and should drop from loot table more often.
 this will help to make arrows more abundant and available.
+bombs should remain the rarest items dropped from loot table.
 
+renamed MenuItemType.ItemArrow3Pack to MenuItemType.ItemArrowPack, to be amount agnostic.
+updated MenuItemType description and cost for arrow pack.
+we're back to 20 arrows for 20 gold, which seems like a good deal.
 
-
-we need to be able to control if arrows drop arrow pickups or not
-if an enemy shoots an arrow, the arrow should not drop a pickup
-if hero shoots an arrow, then the arrow should drop a pickup
-this is a binary state, so we can do this with a boolean
-
-
-
-
-
+updated Funtions_Loot.SpawnLoot() with better drop rates for gold, arrows, and bombs.
+playtested, working as expected.
 
 
 

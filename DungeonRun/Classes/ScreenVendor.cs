@@ -108,11 +108,11 @@ namespace DungeonRun
                     }
                     else { DialogCarryingMaxAmount(); }
                 }
-                else if (Item.type == MenuItemType.ItemArrow3Pack)
+                else if (Item.type == MenuItemType.ItemArrowPack)
                 {   //check to see if hero is full on arrows
                     if (PlayerData.saveData.arrowsCurrent < PlayerData.saveData.arrowsMax)
                     {   //increment the arrows, complete the sale
-                        PlayerData.saveData.arrowsCurrent += 3;
+                        PlayerData.saveData.arrowsCurrent += 20;
                         CompleteSale(Item);
                     }
                     else { DialogCarryingMaxAmount(); }
