@@ -45,24 +45,42 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
+
+            #region Handle AI Input
+
+            if(Flags.ProcessAI)
+            {
+                if (displayState == DisplayState.Opened)
+                {   //process AI for up to 3 actors per frame
+                    Functions_Ai.SetActorInput();
+                    Functions_Ai.SetActorInput();
+                    Functions_Ai.SetActorInput();
+                }
+                else//clear enemy AI input
+                { Functions_Pool.ResetActorPoolInput(); }
+            }
+
+            #endregion
+
+
+            #region Handle Player Input
+
             //if screen is playing, allow input for player + active actor
             if (displayState == DisplayState.Opened) 
             {   //reset the input for hero, map player input to hero
                 Functions_Input.ResetInputData(Pool.hero.compInput);
                 Functions_Input.MapPlayerInput(Pool.hero.compInput);
-                Functions_Ai.SetActorInput(); //set AI for actor
-                Functions_Ai.SetActorInput(); //set AI for actor
-                Functions_Ai.SetActorInput(); //set AI for actor
-
                 //open the inventory screen if player presses start button
                 if (Functions_Input.IsNewButtonPress(Buttons.Start))
                 { ScreenManager.AddScreen(new ScreenInventory()); }
             }
-            else//dungeonScreen is not in playing state..
-            {   //reset all input for hero + actors
-                Functions_Input.ResetInputData(Pool.hero.compInput);
-                Functions_Pool.ResetActorPoolInput();
-            }
+            else//reset input for hero
+            { Functions_Input.ResetInputData(Pool.hero.compInput); }
+
+            #endregion
+
+
+            #region Handle Debug Keyboard / Mouse Input
 
             if (Flags.Debug)
             {   //if the game is in debug mode, dump info on clicked actor/obj
@@ -73,6 +91,9 @@ namespace DungeonRun
                 { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
                 Functions_Debug.HandleDebugMenuInput();
             }
+
+            #endregion
+
         }
 
         public override void Update(GameTime GameTime)
@@ -145,6 +166,19 @@ namespace DungeonRun
                     camera.targetPosition = Pool.hero.compSprite.position;
                     Functions_Camera2D.Update(camera, GameTime);
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
 
             Timing.stopWatch.Stop();

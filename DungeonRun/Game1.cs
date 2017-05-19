@@ -24,6 +24,7 @@ namespace DungeonRun
         public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
         public static Boolean PlayMusic = false; //turns music on/off (but not soundFX)
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
+        public static Boolean ProcessAI = false; //apply AI input to enemies / actors
     }
 
     public class Game1 : Game
@@ -43,6 +44,7 @@ namespace DungeonRun
                 Flags.Paused = false;
                 Flags.PlayMusic = true;
                 Flags.SpawnMobs = true;
+                Flags.ProcessAI = true;
             }
 
             //hide/show the cursor based on Debug flag
