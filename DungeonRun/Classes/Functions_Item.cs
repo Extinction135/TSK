@@ -138,7 +138,7 @@ namespace DungeonRun
         {
             Functions_Entity.SpawnEntity(ObjType.ParticleAttention, Actor);
             if (Actor.item == Type) { Actor.item = MenuItemType.BottleEmpty; }
-            Assets.Play(Assets.sfxHeartPickup); //need a refill sound effect
+            Assets.Play(Assets.sfxBeatDungeon); //need a refill sound effect
             Actor.state = ActorState.Reward;
             Actor.lockTotal = 30;
         }

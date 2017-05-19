@@ -45,55 +45,52 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
+            if (displayState == DisplayState.Opened)
+            {   //input maps only when screen is open
 
-            #region Handle AI Input
+                #region Handle AI Input
 
-            if(Flags.ProcessAI)
-            {
-                if (displayState == DisplayState.Opened)
+                if (Flags.ProcessAI)
                 {   //process AI for up to 3 actors per frame
                     Functions_Ai.SetActorInput();
                     Functions_Ai.SetActorInput();
                     Functions_Ai.SetActorInput();
                 }
-                else//clear enemy AI input
-                { Functions_Pool.ResetActorPoolInput(); }
-            }
 
-            #endregion
+                #endregion
 
 
-            #region Handle Player Input
+                #region Handle Player Input
 
-            //if screen is playing, allow input for player + active actor
-            if (displayState == DisplayState.Opened) 
-            {   //reset the input for hero, map player input to hero
-                Functions_Input.ResetInputData(Pool.hero.compInput);
+                //map player input to hero
                 Functions_Input.MapPlayerInput(Pool.hero.compInput);
                 //open the inventory screen if player presses start button
                 if (Functions_Input.IsNewButtonPress(Buttons.Start))
                 { ScreenManager.AddScreen(new ScreenInventory()); }
+
+                #endregion
+
+
+                #region Handle Debug Keyboard / Mouse Input
+
+                if (Flags.Debug)
+                {   //if the game is in debug mode, dump info on clicked actor/obj
+                    if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                    { Functions_Debug.Inspect(); }
+                    //toggle the paused boolean
+                    if (Functions_Input.IsNewKeyPress(Keys.Space))
+                    { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
+                    Functions_Debug.HandleDebugMenuInput();
+                }
+
+                #endregion
+
             }
-            else//reset input for hero
-            { Functions_Input.ResetInputData(Pool.hero.compInput); }
-
-            #endregion
-
-
-            #region Handle Debug Keyboard / Mouse Input
-
-            if (Flags.Debug)
-            {   //if the game is in debug mode, dump info on clicked actor/obj
-                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                { Functions_Debug.Inspect(); }
-                //toggle the paused boolean
-                if (Functions_Input.IsNewKeyPress(Keys.Space))
-                { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
-                Functions_Debug.HandleDebugMenuInput();
+            else
+            {   //screen is not opened, prevent all input mapping
+                Functions_Pool.ResetActorPoolInput(); //clear enemy input
+                Functions_Input.ResetInputData(Pool.hero.compInput); //clear hero input
             }
-
-            #endregion
-
         }
 
         public override void Update(GameTime GameTime)
@@ -102,7 +99,6 @@ namespace DungeonRun
 
             if(!Flags.Paused)
             {
-
 
                 #region Handle Screen State
 
@@ -166,19 +162,6 @@ namespace DungeonRun
                     camera.targetPosition = Pool.hero.compSprite.position;
                     Functions_Camera2D.Update(camera, GameTime);
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
 
             Timing.stopWatch.Stop();

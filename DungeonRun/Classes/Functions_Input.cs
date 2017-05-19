@@ -25,8 +25,9 @@ namespace DungeonRun
         }
 
         public static void MapPlayerInput(ComponentInput CompInput)
-        {   //maps input helper state to input component state
-            //AI sets input component state directly, without using a controller/input helper abstraction
+        {   
+            ResetInputData(CompInput); //reset the input component
+            //map controller input to input component
             CompInput.direction = Input.gamePadDirection;
             if (IsNewButtonPress(Buttons.X)) { CompInput.attack = true; }
             else if (IsNewButtonPress(Buttons.Y)) { CompInput.use = true; }

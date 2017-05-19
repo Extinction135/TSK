@@ -56,30 +56,24 @@ todo:
 Finishing Version 0.4
 
 
-8
+12
 
 
 
 
-Simplifying control over how AI is processed, globally
+Fairy death-rez polish part 1
 
-added boolean 'ProcessAI' to Flags class.
-updated DungeonScreen.HandleInput() to consider the Flags.ProcessAI boolean.
-organized DungeonScreen.HandleInput().
+if the hero has a fairy in a bottle, it brings him back to life upon death.
+however, this currently happens immediately and doesn't even play the hero's death animation.
+this isn't even close to the LttP implementation, the hero's death animation should complete.
+then afterwards, the fairy animation should happen, so the player has time to understand what's going on.
+
+organized & further simplified how DungeonScreen handles input.
 playtested, working as expected.
-when the processAI boolean is false, enemies dont act - but they can be hit and destroyed.
-this makes it alot easier to playtest killing the boss.
 
-
-
-
-
-
-Simplifying control over how AI is processed, locally to DungeonScreen
-
-now we need a boolean called 'pauseInput' to exist in dungeon screen
-this will control if actors get input, all actors - including hero
-this allows dungeonscreen to turn off input for certain purposes - like the fairy res state
+modified how hero's death is handled in Functions_Actor.Update() & SetDeathState().
+playtested, and working, but not quite as polished as i'd like it to be.
+the death animation completes, but doesn't pause for a moment prior to fairy bottle animation.
 
 
 
@@ -89,23 +83,19 @@ this allows dungeonscreen to turn off input for certain purposes - like the fair
 
 
 
+
+
+
+
+
+we also want to pause game objects from moving... and updating
+only the hero should be updating in this specific state...
+this state should be seperate from the dungeon screens state
+the screen state should be in the opened state during the fairy evaluation..
 
 
 from actor functions, handle death state, we check to see if the hero can use a fairy bottle or not
 if no, then we set the dungeon screen to closing
-
-
-
-
-
-if hero beats dungeon, stop AI
-if hero dies, stop AI
-if screen is fading in, stop AI
-
-
-
-it would be useful to have a boolean that controls the AI input
-flip the boolean false, and all AI input stops
 
 
 
@@ -133,6 +123,16 @@ need sound for health + magic potion useage - we're just using pickup sound rn
 
 make sure fairy animation is working properly
 animate faster probaby
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

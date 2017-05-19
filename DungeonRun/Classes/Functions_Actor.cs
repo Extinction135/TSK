@@ -48,29 +48,12 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 255;
 
-
-            #region Hero Specific Death Effects
-
             if (Actor == Pool.hero)
-            {
-                if(PlayerData.saveData.bottleFairy)
-                { Functions_Item.UseItem(MenuItemType.BottleFairy, Actor); }
-                else
-                {   //player has died, failed the dungeon
-                    DungeonRecord.beatDungeon = false;
-                    Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Summary;
-                    Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
-                    //we could track hero deaths here
-                    Assets.Play(Assets.sfxHeroKill);
-                }
-            }
-            else
-            {
-                DungeonRecord.enemyCount++; //track non-hero actor deaths
-                Assets.Play(Assets.sfxEnemyKill);
-            }
-
-            #endregion
+            {   //play hero death sfx
+                Assets.Play(Assets.sfxHeroKill);
+                //track hero deaths here
+            }   //track enemy deaths
+            else { DungeonRecord.enemyCount++; }
 
 
             #region Enemy Specific Death Effects
@@ -81,6 +64,7 @@ namespace DungeonRun
                 Functions_Entity.SpawnEntity(ObjType.ParticleExplosion, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Functions_Loot.SpawnLoot(Actor.compSprite.position);
+                Assets.Play(Assets.sfxEnemyKill); //death sfx
             }
             else if (Actor.type == ActorType.Boss)
             {
@@ -89,6 +73,7 @@ namespace DungeonRun
                 Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
+                Assets.Play(Assets.sfxEnemyKill); //death sfx
 
                 //boss explosions are handled in Update()
                 //explosions are called perpetually across frames
@@ -279,7 +264,7 @@ namespace DungeonRun
                     Actor.health = 0; //lock actor's health at 0
 
 
-                    #region Boss & Hero Death Effects
+                    #region Boss Death Effects
 
                     if (Actor.type == ActorType.Boss)
                     {   //dead bosses perpetually explode
@@ -294,15 +279,36 @@ namespace DungeonRun
                             Assets.Play(Assets.sfxExplosion);
                         }
                     }
+
+                    #endregion
+
+
+                    #region Hero Death Effects
+
                     else if(Actor.type == ActorType.Hero)
                     {   //near the last frame of hero's death, create attention particles
                         if (Actor.compAnim.index == Actor.compAnim.currentAnimation.Count-2)
-                        {   //this will happen multiple times, until anim.index increments
+                        {   //this event happens when hero falls to ground
+                            //goto next anim frame, this event is only processed once
+                            Actor.compAnim.index++; 
+                            //spawn particle to grab the player's attention
                             Functions_Entity.SpawnEntity(
                                     ObjType.ParticleAttention,
                                     Actor.compSprite.position.X,
                                     Actor.compSprite.position.Y,
                                     Direction.None);
+                            //check to see if hero can use fairy bottle to selfrez
+                            if (PlayerData.saveData.bottleFairy)
+                            { Functions_Item.UseItem(MenuItemType.BottleFairy, Actor); }
+                            else
+                            {   //player has died, failed the dungeon
+                                DungeonRecord.beatDungeon = false;
+                                Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Summary;
+                                Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
+                            }
+
+                            Debug.WriteLine("processed death event");
+
                         }
                     }
 
