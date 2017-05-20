@@ -447,8 +447,6 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
             }
 
-
-
             //Particles - normal size
             else if (Type == ObjType.ParticleExplosion)
             {
@@ -489,19 +487,19 @@ namespace DungeonRun
                 Obj.compAnim.loop = false;
             }
 
-
-
-            //Particles - rewards
+            //Particles - Rewards & Bottles
             else if (Type == ObjType.ParticleRewardGold ||
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleRewardHeartPiece ||
-                Type == ObjType.ParticleRewardHeartFull)
+                Type == ObjType.ParticleRewardHeartFull ||
+                Type == ObjType.ParticleHealthPotion ||
+                Type == ObjType.ParticleMagicPotion ||
+                Type == ObjType.ParticleFairyBottle)
             {
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 50; //in frames
-                Obj.compAnim.speed = 5; //in frames
+                Obj.lifetime = 40; //in frames
             }
 
             #endregion

@@ -306,9 +306,6 @@ namespace DungeonRun
                                 Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Summary;
                                 Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
                             }
-
-                            Debug.WriteLine("processed death event");
-
                         }
                     }
 

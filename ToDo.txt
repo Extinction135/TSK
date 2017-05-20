@@ -56,28 +56,58 @@ todo:
 Finishing Version 0.4
 
 
-12
+11
 
 
 
 
-Fairy death-rez polish part 1
+Fairy death-rez polish part 2
 
-if the hero has a fairy in a bottle, it brings him back to life upon death.
-however, this currently happens immediately and doesn't even play the hero's death animation.
-this isn't even close to the LttP implementation, the hero's death animation should complete.
-then afterwards, the fairy animation should happen, so the player has time to understand what's going on.
+in prep for remaking how the fairy rez happens, we need to refactor how the fairy bottle is used.
+we need particles for health, magic, fairy bottles.
+these particles need to be displayed above the hero's head when he uses a bottle.
 
-organized & further simplified how DungeonScreen handles input.
-playtested, working as expected.
+added values ParticleHealthPotion, ParticleMagicPotion, & ParticleFairyBottle to ObjType enum.
+added anim lists for new bottle particles.
+added path for new bottle particles to Functions_GameObject.SetType().
+added new bottle particles into Functions_Alignment.SetOffsets(Actor, ObjType).
+updated Functions_Item.UseItem() to create bottle particles based on the type of bottle used.
 
-modified how hero's death is handled in Functions_Actor.Update() & SetDeathState().
-playtested, and working, but not quite as polished as i'd like it to be.
+playtested, working and looking great.
+and, actually, when the hero uses the fairy bottle upon death, it doesn't look that bad.
+
+
+
+
+
+
+
+
+
+
 the death animation completes, but doesn't pause for a moment prior to fairy bottle animation.
 
 
 
 
+when the hero rezzes from death via fairy bottle, we shouldn't be 'using' the fairy bottle
+the rezz should be a separate routine
+
+rezz routine:
+fairy sprite appears over the dead hero
+the fairy particle animates for a period of time
+sparkles appear around the hero
+fairy dust falls upon the hero
+the fairy dust sound fx plays twice
+total routine takes about 60-120 frames to complete
+upon last frame of routine, hero is brought back to life
+
+use fairy bottle routine:
+hero is placed into use animation state
+the fairy bottle appears over the hero's head
+a fairy particle DOES NOT APPEAR
+this standardizes all use bottle routines to simply put bottle over hero's head
+upon use of the bottle, it's effects are immediately applied
 
 
 
@@ -85,44 +115,17 @@ the death animation completes, but doesn't pause for a moment prior to fairy bot
 
 
 
-
-
-
-we also want to pause game objects from moving... and updating
-only the hero should be updating in this specific state...
-this state should be seperate from the dungeon screens state
-the screen state should be in the opened state during the fairy evaluation..
-
-
-from actor functions, handle death state, we check to see if the hero can use a fairy bottle or not
-if no, then we set the dungeon screen to closing
+polish hearts and magic world UI
+	if the hearts change value, play the heart refill sound
+	if the magic changes value, play the magic refill sound
+	if hero uses magic, play the magic use sound
 
 
 
 
 
 
-need to polish the fairy animation / useage
-
-we need to have a state where the hero is dying 
-this plays the hero's dying animation
-
-at start of dying state, all AI input is cleared
-during dying state, all AI input is suspended
-this prevents the enemies from moving around at this time
-we should have booleans that control AI input, and a function that clears and suspends AI input
-
-at the end of the hero dying state, we should check to see if hero has a fairy bottle
-if he does, we should play a ressurrection animation, with a fairy particle over the hero
-magic sparkles should appear around the hero
-there should be a special sound that plays signifying the hero has been brought back to life
-
-at the end of the resurrection state/animation, AI input is continued
-
-need sound for health + magic potion useage - we're just using pickup sound rn
-
-make sure fairy animation is working properly
-animate faster probaby
+	
 	
 	
 	

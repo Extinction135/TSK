@@ -93,7 +93,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Reward Particles
+            #region Reward & Bottle Particles
 
             //place reward particles above actor's head
             else if (Type == ObjType.ParticleRewardGold ||
@@ -101,7 +101,10 @@ namespace DungeonRun
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleRewardHeartFull ||
                 Type == ObjType.ParticleRewardHeartPiece ||
-                Type == ObjType.ParticleFairy)
+                Type == ObjType.ParticleFairy ||
+                Type == ObjType.ParticleHealthPotion ||
+                Type == ObjType.ParticleMagicPotion ||
+                Type == ObjType.ParticleFairyBottle)
             { offsetY = -14; }
 
             #endregion

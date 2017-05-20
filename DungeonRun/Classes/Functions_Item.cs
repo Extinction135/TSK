@@ -56,12 +56,14 @@ namespace DungeonRun
             else if (Type == MenuItemType.BottleHealth)
             {   //refill actor's health, draw attention, soundfx, update boolean
                 Actor.health = Actor.maxHealth;
+                Functions_Entity.SpawnEntity(ObjType.ParticleHealthPotion, Actor);
                 PlayerData.saveData.bottleHealth = false;
                 UseBottle(Type, Actor);
             }
             else if (Type == MenuItemType.BottleMagic)
             {   //refill the actor's magic
                 PlayerData.saveData.magicCurrent = PlayerData.saveData.magicTotal;
+                Functions_Entity.SpawnEntity(ObjType.ParticleMagicPotion, Actor);
                 PlayerData.saveData.bottleMagic = false;
                 UseBottle(Type, Actor);
             }
@@ -69,7 +71,7 @@ namespace DungeonRun
             {   //refill the actor's health and magic
                 Actor.health = Actor.maxHealth;
                 PlayerData.saveData.magicCurrent = PlayerData.saveData.magicTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleFairy, Actor);
+                Functions_Entity.SpawnEntity(ObjType.ParticleFairyBottle, Actor);
                 PlayerData.saveData.bottleFairy = false;
                 UseBottle(Type, Actor);
             }
@@ -140,7 +142,7 @@ namespace DungeonRun
             if (Actor.item == Type) { Actor.item = MenuItemType.BottleEmpty; }
             Assets.Play(Assets.sfxBeatDungeon); //need a refill sound effect
             Actor.state = ActorState.Reward;
-            Actor.lockTotal = 30;
+            Actor.lockTotal = 40;
         }
 
     }
