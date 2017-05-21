@@ -56,152 +56,47 @@ todo:
 Finishing Version 0.4
 
 
-11
-
-
-
-
-Fairy death-rez polish part 2
-
-in prep for remaking how the fairy rez happens, we need to refactor how the fairy bottle is used.
-we need particles for health, magic, fairy bottles.
-these particles need to be displayed above the hero's head when he uses a bottle.
-
-added values ParticleHealthPotion, ParticleMagicPotion, & ParticleFairyBottle to ObjType enum.
-added anim lists for new bottle particles.
-added path for new bottle particles to Functions_GameObject.SetType().
-added new bottle particles into Functions_Alignment.SetOffsets(Actor, ObjType).
-updated Functions_Item.UseItem() to create bottle particles based on the type of bottle used.
-
-playtested, working and looking great.
-and, actually, when the hero uses the fairy bottle upon death, it doesn't look that bad.
-
-
-
-
-
-
-
-
-
-
-the death animation completes, but doesn't pause for a moment prior to fairy bottle animation.
-
-
-
-
-when the hero rezzes from death via fairy bottle, we shouldn't be 'using' the fairy bottle
-the rezz should be a separate routine
-
-rezz routine:
-fairy sprite appears over the dead hero
-the fairy particle animates for a period of time
-sparkles appear around the hero
-fairy dust falls upon the hero
-the fairy dust sound fx plays twice
-total routine takes about 60-120 frames to complete
-upon last frame of routine, hero is brought back to life
-
-use fairy bottle routine:
-hero is placed into use animation state
-the fairy bottle appears over the hero's head
-a fairy particle DOES NOT APPEAR
-this standardizes all use bottle routines to simply put bottle over hero's head
-upon use of the bottle, it's effects are immediately applied
-
-
-
-
-
-
-
-polish hearts and magic world UI
-	if the hearts change value, play the heart refill sound
-	if the magic changes value, play the magic refill sound
-	if hero uses magic, play the magic use sound
-
+13
 
 
 
 
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+*** trim all the debug info off
 	
 	
 RELEASE V0.4 with gifs and improvements
 	
 	
+gif 1: 
+	overworld screen, choose shop
+	goto to bottle vendor, peruse items for sale, enough time to read description
+	purchase a bottle
+	goto weapon vendor, read bow description, purchase bow
+	leave shop
+	overworld screen
+
+gif 2:
+	play thru the spawn room, get the big key, enter the boss room
+	defeat the boss using arrows, magic, bombs, and use a magic bottle
+	
+	
+	
+	
+record gifs for
+	overworld -> shop level, purchasing items -> exit shop
+	overworld -> dungeon with arrows, fireballs, using sword, chests, -> boss battle
+	boss battle -> using bombs, arrows, fireballs, bottle, inventory screen
 	
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-Prep for version 0.5	
-	
-	
-implement the following items:
-	item boomerang - just like LttP boomerang, hits an enemy for 1, can 'collect' pickups
-	weapon staff - creates a magic orb projectile, if magic is max, else has an attack of 0, but pushes
-	equipment pearl - wtf does this do in game?	
-	
-
-we need an enemy that shoots arrows (new enemy type, not just blob with bow)
-we need an enemy that shoot fireballs (new enemy type, wizard?)	
-	
-	
-minor bug:
-the loadout animates the loadout menuItems
-when we select a laodout menuItem from inventory screen, we animate the loadout menuItem again
-this leads to a double scaling down effect, which should happen
-we shouldn't be able to select loadout menuItems.
-this solves the scaling issue, and it doesn't make sense to be able to select them
-selecting an item should only equip it
-
-
-	
-	
-	
-	
-	
-	
+update versions
+update readme
+update structure
+update design -> screens, to include vendor screen
+	object pool optimizations -> actors, roomObjects, entities
+	entity is defined as a projectile, particle, or item that can be picked up by hero
 	
 	
 	
@@ -258,7 +153,27 @@ Version 0.5 Milestones
 	
 Polish
 
+	implement the following items:
+	item boomerang - just like LttP boomerang, hits an enemy for 1, can 'collect' pickups
+	weapon staff - creates a magic orb projectile, if magic is max, else has an attack of 0, but pushes
+	equipment pearl - wtf does this do in game?	
+	
+	we need an enemy that shoots arrows (new enemy type, not just blob with bow)
+	we need an enemy that shoot fireballs (new enemy type, wizard?)	
 
+	minor bug:
+	the loadout animates the loadout menuItems
+	when we select a laodout menuItem from inventory screen, we animate the loadout menuItem again
+	this leads to a double scaling down effect, which should happen
+	we shouldn't be able to select loadout menuItems.
+	this solves the scaling issue, and it doesn't make sense to be able to select them
+	selecting an item should only equip it
+
+	polish hearts and magic world UI
+	if the hearts change value, play the heart refill sound
+	if the magic changes value, play the magic refill sound
+	if hero uses magic, play the magic use sound
+	
 	Vendor stalls / layout ++
 	we need vendor 'stalls'
 	stalls should have rugs under them
@@ -280,15 +195,12 @@ Polish
 	re-mix the boss music, making drums much less prominent in the mix
 	also, mix the drums down to mono in session - we're getting phase issues when we convert to mono later
 
-
-
 	we should be able to turn the conveyors on and off
 	this allows us to build rooms with additional complexity
 	perhaps the switch turns the conveyors on/off?
 	puzzle: conveyor belt that pushes the hero away from something
 	solution: hit the switch, turn the belts off, so hero can move around
 	we could even put them on a timer and play a timer tick sound, suspending the music
-	
 	
 	Stats MenuItems? Or Help Menu?
 	we need menuItem sprites for the various stats
