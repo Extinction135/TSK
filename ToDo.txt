@@ -62,7 +62,6 @@ Finishing Version 0.4
 
 
 
-update structure
 update design -> screens, to include vendor screen
 	object pool optimizations -> actors, roomObjects, entities
 	entity is defined as a projectile, particle, or item that can be picked up by hero

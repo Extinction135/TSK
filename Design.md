@@ -12,6 +12,7 @@ By design I'm referring to the gameloop and the gameplay.
 + Load a new dungeon, or purchase upgrades/items at a shop.
 + Repeat.
 
+
 ## Gameplay
 + User inputs commands via a gamepad, like Xbox360 or Xbox One controller.
 + There is no mouse and keyboard input.
@@ -27,6 +28,7 @@ By design I'm referring to the gameloop and the gameplay.
 + Afterwards, the game can continue to be played as normal.
 
 
+
 # Additional Development Notes
 
 ## Screens
@@ -34,11 +36,14 @@ By design I'm referring to the gameloop and the gameplay.
 + InventoryScreen - where the hero inspects and selects their loadout.
 + SummaryScreen - displays metrics about the player's performance in the dungeon.
 + OverworldScreen - displays the map and locations. Player chooses location to fast travel to.
++ VendorScreen - allows the player to purchase products from a variety of vendors.
+
 
 ## UWP App Limitations
 + Target ram useage is < 128mb.
 + Monogame framework takes up around 50mb.
 + Sound files take up the most ram, so they're mono at 22k.
+
 
 ## Rendering Optimizations
 + The game renders to a 640x360 texture.
@@ -48,16 +53,20 @@ By design I'm referring to the gameloop and the gameplay.
 + Draw calls are the most expensive single operation in the game.
 + The Draw loop is the most expensive loop in the game.
 
+
 ## Object Pool Optimizations
-+ Object pools are used for Actors, GameObjects, and Projectiles.
-+ An Actor, GameObject, or Projectile is never created outside of a constructor method.
++ Object pools are used for Actors, RoomObjects, and Entities.
++ An entity is defined as a projectile, a particle, or an item hero can pickup.
++ An Actor, RoomObject, or Entity is never created outside of a constructor method.
 + This makes the ram useage predictable and stable.
-+ This also prevents garbage collection from running.
++ This also reduces garbage collection.
+
 
 ## Ai Optimizations
 + 1 to 3 Actors are processed by the AiManager per frame.
 + This number is based on how many active Actors are present on screen.
 + This approach distributes the overhead of Ai across frames.
+
 
 ## Dungeon Generation
 + Dungeons are created using the critical path approach.
@@ -68,6 +77,7 @@ By design I'm referring to the gameloop and the gameplay.
 + Passing through the hub room twice gives the dungeon a non-linear feel.
 + Additional secret rooms are connected at the end.
 + Secret rooms are connected via bombable walls, in a traditional Zelda style.
+
 
 ## Room Design
 + Rooms are designed by hand via a Room Editor.
