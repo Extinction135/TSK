@@ -62,37 +62,8 @@ Finishing Version 0.4
 
 
 
-	
-*** trim all the debug info off
-	
-	
-RELEASE V0.4 with gifs and improvements
-	
-	
-gif 1: 
-	overworld screen, choose shop
-	goto to bottle vendor, peruse items for sale, enough time to read description
-	purchase a bottle
-	goto weapon vendor, read bow description, purchase bow
-	leave shop
-	overworld screen
-
-gif 2:
-	play thru the spawn room, get the big key, enter the boss room
-	defeat the boss using arrows, magic, bombs, and use a magic bottle
-	
-	
-	
-	
-record gifs for
-	overworld -> shop level, purchasing items -> exit shop
-	overworld -> dungeon with arrows, fireballs, using sword, chests, -> boss battle
-	boss battle -> using bombs, arrows, fireballs, bottle, inventory screen
-	
-
-
 update versions
-update readme
+
 update structure
 update design -> screens, to include vendor screen
 	object pool optimizations -> actors, roomObjects, entities

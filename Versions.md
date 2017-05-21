@@ -47,3 +47,35 @@ Each version of DungeonRun expands on the game's mechanics and design.
 + Gameloop completed: overworld map -> dungeon -> summary screen -> overworld map.
 + Dungeon music plays for dungeon screen, randomly selected between two music tracks.
 + Title music plays for Summary and Overworld Screens.
+
+
+## Version 0.4 - 2017.05.20 (+15 days, +153 commits)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p4A.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p4B.gif)  
++ Added the ability to purchase various items from vendors.
++ Added a shop level, where vendors sell their products.
++ Added a dialog widget so NPCs can communicate with player.
++ Added a for sale widget, so player can purchase vendor items.
++ Implemented arrows, bombs, health and magic potions.
++ Implemented the fairy in a bottle item.
++ Implemented pickups for magic, arrows, and bombs.
++ Redesigned the world UI to display a magic meter.
++ Updated fireball to cost 1 magic to cast, but deals 2 damage now.
++ Implemented 4 different armor types: cloth, plate, cape, and robes.
++ Implemented the ring equipment item, which increases the loot drop rate.
++ Created products for bombs and arrows, to be purchased from item vendor.
++ Created the bow product, which allows hero to fire arrows.
++ Created the flamethrower room object, which shoots fireballs.
++ Created the wall statue room object, which shoots arrows.
+
+
+
+
+
+
+
+
+
+
+
+
