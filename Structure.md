@@ -6,12 +6,11 @@ This document will also discuss the paradigms used.
 
 
 ## Architecture
-The architecture of DungeonRun is best described as functional OOP.  
+The architecture is best described as a cross between OOP and Functional programming.  
 Great care has been taken to seperate data from functionality.  
-However, functionality is grouped into logical global classes.  
+However, functionality is grouped into classes.  
 Data is passed to these classes methods, from anywhere in the codebase.  
-I found this approach reduced the number of instances in the program.  
-Subjectively, I think it also makes it easier to reason about program state.  
+Methods attempt to be pure, but this is not always true.  
 A great deal of effort has been made to keep the codebase small, clear, and fast.
 
 
@@ -26,10 +25,10 @@ The key guidelines directing development are:
 For example, the idea of components (from ECS) are implemented in the codebase.  
 An actor is composed of sprite, movement, collision, and input components.  
 A gameobject is composed of sprite, movement, and collision components.  
-These components are then passed to global classes with functions.  
-Sometimes actors or gameobjects are passed to these global classes functions too.  
+A component, actor, or gameobject is then passed into a method, along with other parameters.  
+No interfaces, factories, or additional abstractions are used.  
 
 
-MVC is also strictly enforced, via the HandleInput(), Update(), and Draw() methods.  
-These methods exist in every screen, which are managed by a global ScreenManager class.  
-This is based on MSDN examples, but heavily modified and definitely improved upon.  
+The MVC pattern is also used, via the HandleInput(), Update(), and Draw() methods.  
+These methods exist in every screen, which are managed by a ScreenManager class.  
+This is based on MSDN examples, but modified to suit my needs.  
