@@ -190,37 +190,6 @@ namespace DungeonRun
         }
     }
 
-    public class Camera2D
-    {
-        public GraphicsDevice graphics;
-        public Boolean lazyMovement = false;
-        public float speed = 5f; //how fast the camera moves
-        public int deadzoneX = 50;
-        public int deadzoneY = 50;
-
-        public Matrix view = Matrix.Identity;
-        public float targetZoom = 1.0f;
-        public float zoomSpeed = 0.05f;
-        public Vector2 currentPosition = Vector2.Zero;
-        public Vector2 targetPosition = Vector2.Zero;
-
-        public Matrix matRotation = Matrix.CreateRotationZ(0.0f);
-        public Matrix matZoom;
-        public Vector3 translateCenter;
-        public Vector3 translateBody;
-        public float currentZoom = 1.0f;
-        public Vector2 distance;
-        public Boolean followX = true;
-        public Boolean followY = true;
-
-        public Camera2D()
-        {
-            graphics = ScreenManager.game.GraphicsDevice;
-            //these two values dont change on a 2D camera
-            translateCenter.Z = 0; translateBody.Z = 0;
-        }
-    }
-
     public class SaveData
     {   //data that will be saved/loaded from game session to session
         public int gold = 99;
@@ -589,6 +558,30 @@ namespace DungeonRun
 
 
     //Global Classes
+
+    public static class Camera2D
+    {
+        public static GraphicsDevice graphics = ScreenManager.game.GraphicsDevice;
+        public static Boolean lazyMovement = false;
+        public static float speed = 5f; //how fast the camera moves
+        public static int deadzoneX = 50;
+        public static int deadzoneY = 50;
+
+        public static Matrix view = Matrix.Identity;
+        public static float targetZoom = 1.0f;
+        public static float zoomSpeed = 0.05f;
+        public static Vector2 currentPosition = Vector2.Zero;
+        public static Vector2 targetPosition = Vector2.Zero;
+
+        public static Matrix matRotation = Matrix.CreateRotationZ(0.0f);
+        public static Matrix matZoom;
+        public static Vector3 translateCenter;
+        public static Vector3 translateBody;
+        public static float currentZoom = 1.0f;
+        public static Vector2 distance;
+        public static Boolean followX = true;
+        public static Boolean followY = true;
+    }
 
     public static class PlayerData
     {

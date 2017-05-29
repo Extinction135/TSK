@@ -107,7 +107,7 @@ namespace DungeonRun
             Window.Current.Activate();
             //set the window title
             ApplicationView appView = ApplicationView.GetForCurrentView();
-            appView.Title = "Demo v0.3";
+            appView.Title = "v0.5";
         }
 
         /// <summary>

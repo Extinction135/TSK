@@ -23,8 +23,6 @@ namespace DungeonRun
         //what happens when this screen exits?
         public ExitAction exitAction = ExitAction.None;
 
-        public Camera2D camera;
-
 
 
         public ScreenDungeon() { this.name = "DungeonScreen"; }
@@ -32,9 +30,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             overlay = new Rectangle(0, 0, 640, 360);
-            camera = new Camera2D();
 
-            //Pool.Initialize();
             Functions_Dungeon.Initialize(this);
             Functions_Dungeon.BuildDungeon(DungeonType.Shop);
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
@@ -159,8 +155,8 @@ namespace DungeonRun
                     Functions_Collision.CheckDungeonRoomCollisions();
                     Functions_WorldUI.Update();
                     //track camera to hero
-                    camera.targetPosition = Pool.hero.compSprite.position;
-                    Functions_Camera2D.Update(camera, GameTime);
+                    Camera2D.targetPosition = Pool.hero.compSprite.position;
+                    Functions_Camera2D.Update(GameTime);
                 }
             }
 
@@ -180,7 +176,7 @@ namespace DungeonRun
                         null,
                         null,
                         null,
-                        camera.view
+                        Camera2D.view
                         );
             Functions_Pool.Draw();
             if (Flags.DrawCollisions)

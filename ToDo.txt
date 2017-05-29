@@ -46,23 +46,28 @@ ram useage:
 	
 todo:
 
-12
+11
 
 
 
-Adding Room Builder/Editor - Part 1
+Adding Room Builder/Editor - Part 2
 
-added button 'room builder' to debug top menu, in prep for room builder screen.
-added path to Functions_Debug for room builder button, does nothing right now.
-moved call to initialize pool from DungeonScreen into ScreenManager.Initialize().
+dungeon screen and room builder screen will both use a camera.
+however, the camera doesn't need to be instanced, instead it should be global.
+there's no need (right now) for multiple cameras. also reduces code.
+
+removed constructor from Camera class.
+updated Functions_Camera2D.SetView() to handle the z axis for translateBody and translateCenter fields.
+defined camera's reference to GraphicsDevice when reference is created.
+updated Camera2D to be public static, instead of an instanced class (in game).
+updated DungonScreen to use the public static Camera.
+modified Functions_Camera2D to use the public static Camera instead of Camera instance as parameter.
+updated Functions_Input to use modified Functions_Camera2D methods.
+updated window title to version 0.5.
 playtested, working as expected.
 
 
 
-
-
-** we should be initializing the pools and whatever else when screen manager is created
-this should not be done from dungeon screen
 
 
 

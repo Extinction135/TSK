@@ -130,8 +130,7 @@ namespace DungeonRun
             Input.cursorPos.X = Input.currentMouseState.X / 2;
             Input.cursorPos.Y = Input.currentMouseState.Y / 2;
             //set cursor collision comp pos to world pos of the cursor's render surface pos
-            Input.cursorColl.rec.Location = Functions_Camera2D.ConvertScreenToWorld(
-                Functions_Dungeon.dungeonScreen.camera, Input.cursorPos.X, Input.cursorPos.Y);
+            Input.cursorColl.rec.Location = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
 
             //save the last gamePadDirection
             Input.lastGamePadDirection = Input.gamePadDirection;

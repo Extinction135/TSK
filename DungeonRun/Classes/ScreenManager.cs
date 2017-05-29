@@ -32,8 +32,6 @@ namespace DungeonRun
             screensToUpdate = new List<Screen>();
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
-            //gridRef = new Sprite(this, game.gridSheet, new Vector2(320, 320), new Point(640, 360), new Vector3(0, 0, 0));
-
             Pool.Initialize();
         }
 
@@ -101,14 +99,6 @@ namespace DungeonRun
             //each screen handles opening and closing the spriteBatch for drawing
             //this allows screens to use camera matrices to draw world views
             foreach (Screen screen in screens) { screen.Draw(gameTime); }
-
-            /*
-            //draw grid reference here
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointClamp);
-            if (game.variables.drawGrid) { gridRef.Draw(); }
-            cursor.Draw(); //cursor is always last thing drawn to viewport
-            spriteBatch.End();
-            */
 
             //Draw the renderSurface to the window frame
             game.GraphicsDevice.SetRenderTarget(null);
