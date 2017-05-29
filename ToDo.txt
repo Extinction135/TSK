@@ -46,11 +46,78 @@ ram useage:
 	
 todo:
 
-13
+12
 
 
 
-	mockups for the editor
+Adding Room Builder/Editor - Part 1
+
+added button 'room builder' to debug top menu, in prep for room builder screen.
+added path to Functions_Debug for room builder button, does nothing right now.
+moved call to initialize pool from DungeonScreen into ScreenManager.Initialize().
+playtested, working as expected.
+
+
+
+
+
+** we should be initializing the pools and whatever else when screen manager is created
+this should not be done from dungeon screen
+
+
+
+
+why is the camera an instance?
+we only have one camera, we will only use one camera
+it should be static public..
+this will remove the need to create a camera instance in dungeon screen and room builder screen
+
+
+
+
+
+
+
+
+
+	
+create room builder screen + widget
+
+builder screen
+	no hero input, only builder input (grab, drag, place, erase)
+	the screen doesn't animate/update objects & actors
+	the floors, room objs, and actors are drawn
+	hero is set offscreen, with no player input
+
+builder widget
+	7 rows of 5 room objects
+	1 row of 5 enemy actors
+	move, add, erase tool sprites
+	save, new, load buttons
+	save / load opens a file dialog
+	new opens the new room screen
+
+new room screen
+	there is no new room widget, it's just the screen
+	three buttons, some text
+	arrow button cycles thru standard, row, column, exit, hub, key, boss enum values
+	create button creates a basic room of the enum value
+	cancel exits the screen
+	one of the issues here is that we'll need to make sure the floor pool has enough sprites to create the larger rooms
+	this will also increase the drawtime on the xbox one
+	
+	
+	
+we'll link to room builder screen from the top menu
+	add the room builder button
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	download and add new music tracks to game
 	check ram footprint

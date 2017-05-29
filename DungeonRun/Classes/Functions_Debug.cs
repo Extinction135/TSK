@@ -224,8 +224,13 @@ namespace DungeonRun
                             Assets.Play(Assets.sfxGoldPickup);
                         }
                         else if (DebugMenu.counter == 3) //dump saveData to output
-                        { Functions_Debug.Inspect(PlayerData.saveData); }
+                        { Inspect(PlayerData.saveData); }
 
+                        else if (DebugMenu.counter == 4) //room builder
+                        {
+                            //exit all screens
+                            //create room builder screen
+                        }
 
                         #endregion
 

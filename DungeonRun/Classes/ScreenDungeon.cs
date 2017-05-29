@@ -34,7 +34,7 @@ namespace DungeonRun
             overlay = new Rectangle(0, 0, 640, 360);
             camera = new Camera2D();
 
-            Pool.Initialize();
+            //Pool.Initialize();
             Functions_Dungeon.Initialize(this);
             Functions_Dungeon.BuildDungeon(DungeonType.Shop);
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
@@ -194,7 +194,11 @@ namespace DungeonRun
             //draw UI, debug info + debug menu, without camera view
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_WorldUI.Draw();
-            if (Flags.Debug) { Functions_Draw.DrawDebugInfo(); Functions_Draw.DrawDebugMenu(); }
+            if (Flags.Debug)
+            {
+                Functions_Draw.DrawDebugInfo();
+                Functions_Draw.DrawDebugMenu();
+            }
             //draw the overlay rec last
             ScreenManager.spriteBatch.Draw( Assets.dummyTexture, 
                 overlay, Assets.colorScheme.overlay * overlayAlpha);

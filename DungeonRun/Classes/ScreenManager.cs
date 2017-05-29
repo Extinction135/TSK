@@ -33,6 +33,8 @@ namespace DungeonRun
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
             //gridRef = new Sprite(this, game.gridSheet, new Vector2(320, 320), new Point(640, 360), new Vector3(0, 0, 0));
+
+            Pool.Initialize();
         }
 
         public static Screen[] GetScreens() { return screens.ToArray(); }

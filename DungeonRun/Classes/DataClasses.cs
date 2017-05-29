@@ -918,6 +918,7 @@ namespace DungeonRun
             buttons.Add(new ComponentButton("build dungeon", new Point(68, 2)));
             buttons.Add(new ComponentButton("max gold", new Point(127, 2)));
             buttons.Add(new ComponentButton("dump savedata", new Point(168, 2)));
+            buttons.Add(new ComponentButton("room builder", new Point(229, 2)));
         }
     }
 

@@ -204,21 +204,16 @@ namespace DungeonRun
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, DebugInfo.background, Assets.colorScheme.debugBkg);
             DebugInfo.size = DebugInfo.textFields.Count();
             for (DebugInfo.counter = 0; DebugInfo.counter < DebugInfo.size; DebugInfo.counter++)
-            { Functions_Draw.Draw(DebugInfo.textFields[DebugInfo.counter]); }
+            { Draw(DebugInfo.textFields[DebugInfo.counter]); }
         }
 
         public static void DrawDebugMenu()
         {   //draw the background rec with correct color
-            ScreenManager.spriteBatch.Draw(
-                Assets.dummyTexture, DebugMenu.rec,
-                Assets.colorScheme.debugBkg);
+            ScreenManager.spriteBatch.Draw( Assets.dummyTexture, DebugMenu.rec, Assets.colorScheme.debugBkg);
             //loop draw all the buttons
             for (DebugMenu.counter = 0; DebugMenu.counter < DebugMenu.buttons.Count; DebugMenu.counter++)
-            { Functions_Draw.Draw(DebugMenu.buttons[DebugMenu.counter]); }
+            { Draw(DebugMenu.buttons[DebugMenu.counter]); }
         }
-
-
-
 
     }
 }
