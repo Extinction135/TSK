@@ -50,34 +50,20 @@ todo:
 
 
 
-Adding Room Builder/Editor - Part 2
+Adding Room Builder/Editor - Part 3
 
-dungeon screen and room builder screen will both use a camera.
-however, the camera doesn't need to be instanced, instead it should be global.
-there's no need (right now) for multiple cameras. also reduces code.
+we need to be able to return to the dungeon screen from the room builder screen.
+we *could* create a dungeon screen, but it's easier to create an overworld screen.
+from the overworld screen, we can select a variety of dungeons.
 
-removed constructor from Camera class.
-updated Functions_Camera2D.SetView() to handle the z axis for translateBody and translateCenter fields.
-defined camera's reference to GraphicsDevice when reference is created.
-updated Camera2D to be public static, instead of an instanced class (in game).
-updated DungonScreen to use the public static Camera.
-modified Functions_Camera2D to use the public static Camera instead of Camera instance as parameter.
-updated Functions_Input to use modified Functions_Camera2D methods.
-updated window title to version 0.5.
+added top menu button 'overworld' that exits all screens, then creates overworld screen.
+added path for overworld button to Functions_Debug.HandleDebugMenuInput().
+playtested, major bug.
+
+bug: creating an overworld screen via debug menu causes a state where there are no screens present upon overworld exit.
+cause: overworld screen assumes dungeon screen is underneath it.
+solution: instead of removing the overworld screen, we exit all screens and create a dungeon screen.
 playtested, working as expected.
-
-
-
-
-
-
-
-why is the camera an instance?
-we only have one camera, we will only use one camera
-it should be static public..
-this will remove the need to create a camera instance in dungeon screen and room builder screen
-
-
 
 
 

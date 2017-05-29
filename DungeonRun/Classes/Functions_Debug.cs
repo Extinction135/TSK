@@ -207,29 +207,33 @@ namespace DungeonRun
 
                         #region Button Events
 
-                        if (DebugMenu.counter == 0) //toggle draw collisions boolean
-                        {
+                        if (DebugMenu.counter == 0) //draw collisions button
+                        {   //toggle draw collision boolean
                             if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
                             else { Flags.DrawCollisions = true; }
                             //match the draw collisions boolean for the selected state
                             DebugMenu.buttons[DebugMenu.counter].selected = Flags.DrawCollisions;
                         }
-                        else if (DebugMenu.counter == 1) //build the dungeon room again
+                        else if (DebugMenu.counter == 1) //build dungeon button
                         {   //build dungeon based on the last dungeon type
                             Functions_Dungeon.BuildDungeon(Functions_Dungeon.dungeon.type);
                         }
-                        else if (DebugMenu.counter == 2) //set the player's gold to 99
-                        {
+                        else if (DebugMenu.counter == 2) //max gold button
+                        {   //set the player's gold to 99
                             PlayerData.saveData.gold = 99;
                             Assets.Play(Assets.sfxGoldPickup);
                         }
-                        else if (DebugMenu.counter == 3) //dump saveData to output
-                        { Inspect(PlayerData.saveData); }
-
-                        else if (DebugMenu.counter == 4) //room builder
+                        else if (DebugMenu.counter == 3) //dump saveData button
                         {
-                            //exit all screens
-                            //create room builder screen
+                            Inspect(PlayerData.saveData);
+                        }
+                        else if (DebugMenu.counter == 4) //room builder button
+                        {   //exit all screens,create room builder screen
+                            //
+                        }
+                        else if (DebugMenu.counter == 5) //overworld button
+                        {   //exit all screens, create overworld screen
+                            ScreenManager.ExitAndLoad(new ScreenOverworld());
                         }
 
                         #endregion

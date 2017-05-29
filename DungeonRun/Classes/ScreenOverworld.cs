@@ -250,7 +250,7 @@ namespace DungeonRun
             }
             else if (displayState == DisplayState.Closed)
             {
-                ScreenManager.RemoveScreen(this);
+                ScreenManager.ExitAndLoad(new ScreenDungeon());
                 if (currentlySelected == Shop)
                 { Functions_Dungeon.BuildDungeon(DungeonType.Shop); }
                 else { Functions_Dungeon.BuildDungeon(DungeonType.CursedCastle); }
