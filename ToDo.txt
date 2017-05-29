@@ -42,40 +42,18 @@ ram useage:
 	
 	
 	
-
-push new release on the 16th
-
-
-	
 	
 	
 todo:
-
-
-
-Finishing Version 0.4
-
 
 13
 
 
 
-
-
-update design -> screens, to include vendor screen
-	object pool optimizations -> actors, roomObjects, entities
-	entity is defined as a projectile, particle, or item that can be picked up by hero
+	mockups for the editor
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	download and add new music tracks to game
+	check ram footprint
 	
 	
 	
