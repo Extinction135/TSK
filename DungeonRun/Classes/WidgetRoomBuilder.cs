@@ -24,28 +24,46 @@ namespace DungeonRun
         public MenuRectangle divider2;
 
         public ComponentSprite moveIcon;
-
+        public ComponentSprite addIcon;
+        public ComponentSprite minusIcon;
 
         public WidgetRoomBuilder()
         {
+
+            #region Create Window and Additional Divider lines
+
             window = new MenuWindow(
                 new Point(8, 16 * 4), 
                 new Point(16 * 6, 16 * 14 + 8),
                 "Room Builder");
-
-            selectionBox = new ComponentSprite(
-                Assets.mainSheet, new Vector2(-100, 5000),
-                new Byte4(15, 7, 0, 0), new Point(16, 16));
-
             divider1 = new MenuRectangle(new Point(0, 0), 
                 new Point(0, 0), Assets.colorScheme.windowInset);
-
             divider2 = new MenuRectangle(new Point(0, 0), 
                 new Point(0, 0), Assets.colorScheme.windowInset);
+
+            #endregion
+
+
+            #region Create Icon sprites
 
             moveIcon = new ComponentSprite(Assets.mainSheet,
                 new Vector2(16 * 1 + 8, 16 * 15),
                 new Byte4(14, 13, 0, 0), new Point(16, 16));
+
+            addIcon = new ComponentSprite(Assets.mainSheet,
+                new Vector2(16 * 3 + 8, 16 * 15),
+                new Byte4(14, 15, 0, 0), new Point(16, 16));
+
+            minusIcon = new ComponentSprite(Assets.mainSheet,
+                new Vector2(16 * 5 + 8, 16 * 15),
+                new Byte4(15, 15, 0, 0), new Point(16, 16));
+
+            #endregion
+
+
+            selectionBox = new ComponentSprite(
+                Assets.mainSheet, new Vector2(-100, 5000),
+                new Byte4(15, 7, 0, 0), new Point(16, 16));
 
             //create & populate the objList
             objList = new List<GameObject>();
@@ -201,7 +219,9 @@ namespace DungeonRun
                 }
 
                 Functions_Draw.Draw(moveIcon);
-
+                Functions_Draw.Draw(addIcon);
+                Functions_Draw.Draw(minusIcon);
+                
                 Functions_Draw.Draw(selectionBox);
             }
         }

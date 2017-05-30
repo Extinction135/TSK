@@ -46,16 +46,16 @@ ram useage:
 	
 todo:
 
-3
+2
 
 
-Adding Room Builder/Editor - Part 10
+Adding Room Builder/Editor - Part 11
 
-builder widget needs hand icon
+builder widget needs plus & minus icons
 
-updated MainSheet texture with new tool icon sprites.
-added component sprite instance for move icon (hand) to room builder widget.
-updated Draw() to display the move icon sprite.
+added sprite component instances for plus and minus icons.
+updated Draw() to display these instances.
+organized code section where window, line dividers, and icon instances are created.
 playtested, working as expected.
 
 
@@ -63,7 +63,9 @@ playtested, working as expected.
 
 
 
-builder widget needs plus & minus icons
+
+
+
 
 
 we can check collisions with a sprite component using it's drawRec
