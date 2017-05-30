@@ -15,18 +15,13 @@ namespace DungeonRun
     public class ScreenRoomBuilder : Screen
     {
 
-        public static MenuWindow window;
-
 
 
         public ScreenRoomBuilder() { this.name = "Room Builder Screen"; }
 
         public override void LoadContent()
         {
-            window = new MenuWindow(
-                new Point(8, 16 * 4),
-                new Point(16 * 6, 16 * 14 + 8), 
-                "Room Builder");
+            Widgets.RoomBuilder.Reset(8, 16 * 4);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -36,15 +31,14 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            window.Update();
+            Widgets.RoomBuilder.Update();
         }
 
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
-            Functions_Draw.Draw(window);
-
+            Widgets.RoomBuilder.Draw();
             Functions_Draw.DrawDebugMenu();
 
             ScreenManager.spriteBatch.End();

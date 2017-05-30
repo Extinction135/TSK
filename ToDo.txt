@@ -50,19 +50,16 @@ todo:
 
 
 
-Adding Room Builder/Editor - Part 4
+Adding Room Builder/Editor - Part 5
 
-created room builder screen, with a window instance (for testing).
-updated path in Functions_Debu.HandleDebugMenuInput() to actually create a room builder screen.
-playtested, working as expected, but we can't return to the overworld screen (can't exit).
+we need to create the room builder widget, which holds the room objects and enemy spawns.
+this widget's construction is based on the room builder mockup.
 
-in room builder screen, added path to draw & pass input to debug menu.
-playtested, now we can exit the room builder screen and return to the game.
-
-
-
-
-
+created WidgetRoomBuilder class, based on the other widgets created so far.
+added WidgetRoomBuilder instance to global widget's list in Widgets class.
+updated RoomBuilder screen to use the RoomBuilder widget.
+removed the window reference RoomBuilder screen was using for testing.
+playtested, working as expected.
 
 
 

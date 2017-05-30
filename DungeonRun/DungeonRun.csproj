@@ -130,6 +130,7 @@
     <Compile Include="Classes\WidgetInventory.cs" />
     <Compile Include="Classes\WidgetLoadout.cs" />
     <Compile Include="Classes\WidgetOptions.cs" />
+    <Compile Include="Classes\WidgetRoomBuilder.cs" />
     <Compile Include="Classes\WidgetStats.cs" />
     <Compile Include="Classes\Functions_Movement.cs" />
     <Compile Include="Classes\Functions_Music.cs" />
