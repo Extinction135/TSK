@@ -20,6 +20,9 @@ namespace DungeonRun
         public List<GameObject> objList; //a list of room objects user can select
         public ComponentSprite selectionBox;
 
+        public MenuRectangle divider1;
+        public MenuRectangle divider2;
+
 
 
         public WidgetRoomBuilder()
@@ -32,6 +35,12 @@ namespace DungeonRun
             selectionBox = new ComponentSprite(
                 Assets.mainSheet, new Vector2(-100, 5000),
                 new Byte4(15, 7, 0, 0), new Point(16, 16));
+
+            divider1 = new MenuRectangle(new Point(0, 0), 
+                new Point(0, 0), Assets.colorScheme.windowInset);
+
+            divider2 = new MenuRectangle(new Point(0, 0), 
+                new Point(0, 0), Assets.colorScheme.windowInset);
 
             //create & populate the objList
             objList = new List<GameObject>();
@@ -133,11 +142,28 @@ namespace DungeonRun
             window.footerLine.Reset();
             //set active object to first obj on objList
             SetActiveObj(0);
+
+            //reset the divider lines
+            divider1.position.X = 16;
+            divider1.position.Y = 16 * 14;
+            divider1.size.X = 16 * 5;
+            divider1.size.Y = 1;
+            divider1.Reset();
+            divider1.openDelay = 12;
+
+            divider2.position.X = 16;
+            divider2.position.Y = 16 * 16;
+            divider2.size.X = 16 * 5;
+            divider2.size.Y = 1;
+            divider2.Reset();
+            divider2.openDelay = 12;
         }
 
         public override void Update()
         {
             window.Update();
+            divider1.Update();
+            divider2.Update();
 
             if (window.interior.displayState == DisplayState.Opened)
             {
@@ -154,6 +180,8 @@ namespace DungeonRun
         public override void Draw()
         {
             Functions_Draw.Draw(window);
+            Functions_Draw.Draw(divider1);
+            Functions_Draw.Draw(divider2);
 
             if (window.interior.displayState == DisplayState.Opened)
             {

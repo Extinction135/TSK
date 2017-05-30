@@ -46,19 +46,16 @@ ram useage:
 	
 todo:
 
-6
+4
 
 
+Adding Room Builder/Editor - Part 9
 
-Adding Room Builder/Editor - Part 7
+builder widget needs divider lines, that reset properly.
 
-we want to be able to set the 'active' object.
-we want to be able to display which obj is the active object, using a selection box sprite.
-
-added selection box component sprite to room builder widget.
-updated activeObject to point to the first obj on the objList.
-updated selection box to match the active object's position.
-added path to pulse, scale, and draw the selectionBox.
+created MenuRectangle instances for divider lines 1 & 2.
+updated Reset() to properly reset these divider lines, with openDelay.
+updated Draw() & Update() to handle divider lines.
 playtested, working as expected.
 
 
@@ -67,30 +64,16 @@ playtested, working as expected.
 
 
 
-Adding Room Builder/Editor - Part 8
+builder widget needs hand, plus, minus icons
 
-we want to be able to click on an object, and set it as the active obj.
+we must use the camera on the room builder screen
+in order to properly convert the mouse cursor's collRec position to world coordinates
 
-
-
-
-
-
-we should have a reset function for the room builder widget
-but, we won't be using the x,y parameters
-we will be resetting the window's instances, and resetting the activeObj / selectionBox
-
-
-
-
-
-
-
-
-
-
-add divider lines to builder widget
 add an actor's list to builder widget, draw and display active just like objs
+
+
+
+
 
 
 
