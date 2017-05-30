@@ -18,7 +18,7 @@ namespace DungeonRun
 
         public GameObject activeObj; //points to an obj in the obj list
         public List<GameObject> objList; //a list of room objects user can select
-
+        public ComponentSprite selectionBox;
 
 
 
@@ -29,9 +29,14 @@ namespace DungeonRun
                 new Point(16 * 6, 16 * 14 + 8),
                 "Room Builder");
 
-            objList = new List<GameObject>();
+            selectionBox = new ComponentSprite(
+                Assets.mainSheet, new Vector2(-100, 5000),
+                new Byte4(15, 7, 0, 0), new Point(16, 16));
+            selectionBox.position.X = 16 * 5 + 8;
+            selectionBox.position.Y = 16 * 10;
 
-            //populate the objList
+            //create & populate the objList
+            objList = new List<GameObject>();
             for (i = 0; i < 7; i++) //row
             {
                 for (int j = 0; j < 5; j++) //column
@@ -117,11 +122,27 @@ namespace DungeonRun
                     objList.Add(obj); 
                 }
             }
+
+            //set the active object
+            activeObj = objList[0];
+            selectionBox.scale = 2.0f;
+            selectionBox.position = activeObj.compSprite.position;
         }
 
         public override void Update()
         {
             window.Update();
+
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                //pulse the selectionBox alpha
+                if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
+                else { selectionBox.alpha += 0.025f; }
+
+                //scale the selectionBox down to 1.0
+                if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
+                else { selectionBox.scale = 1.0f; }
+            }
         }
 
         public override void Draw()
@@ -139,6 +160,8 @@ namespace DungeonRun
                     for (i = 0; i < 5 * 7; i++)
                     { Functions_Draw.Draw(objList[i].compCollision); }
                 }
+
+                Functions_Draw.Draw(selectionBox);
             }
         }
 

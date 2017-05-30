@@ -15,6 +15,8 @@ namespace DungeonRun
     public class ScreenRoomBuilder : Screen
     {
 
+        
+
 
 
         public ScreenRoomBuilder() { this.name = "Room Builder Screen"; }
@@ -29,7 +31,7 @@ namespace DungeonRun
             Widgets.RoomBuilder.window.headerLine.Reset();
             Widgets.RoomBuilder.window.footerLine.Reset();
 
-
+            
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -40,6 +42,8 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             Widgets.RoomBuilder.Update();
+
+            
         }
 
         public override void Draw(GameTime GameTime)
@@ -54,6 +58,8 @@ namespace DungeonRun
                 Functions_Draw.Draw(Input.cursorColl);
                 //draw the room object's collision recs + interaction recs
             }
+
+            
 
             ScreenManager.spriteBatch.End();
         }

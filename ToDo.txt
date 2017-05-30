@@ -46,29 +46,19 @@ ram useage:
 	
 todo:
 
-7
+6
 
 
 
-Adding Room Builder/Editor - Part 6
+Adding Room Builder/Editor - Part 7
 
-we want to populate the room builder widget with game objects.
-we want to draw all the widget's objects.
+we want to be able to set the 'active' object.
+we want to be able to display which obj is the active object, using a selection box sprite.
 
-created NewRoomScreen mockup, simplifying a previous design.
-removed the overrided Reset() method from RoomBuilder widget.
-this is because the room builder widget would never be reset.
-this also makes me question if every widget should have a reset method - as most widgets don't reset.
-that's something to deal with later tho.
-
-created a gameobj instance, and a list of gameobjs for room builder widget.
-hardcoded room builder widget's window position and size.
-added path to populate the objList with correct number of gameObjs, based on row * columns from mockup.
-added region to set the object.type properly, based on row and column position
-added path to draw the object's sprite 
-added path to draw the object's collision rec, based on Flags.DrawCollisions boolean.
-added path to draw the cursor's collision rec (to room builder screen), based on Flags.DrawCollisions boolean.
-
+added selection box component sprite to room builder widget.
+updated activeObject to point to the first obj on the objList.
+updated selection box to match the active object's position.
+added path to pulse, scale, and draw the selectionBox.
 playtested, working as expected.
 
 
@@ -77,13 +67,30 @@ playtested, working as expected.
 
 
 
+Adding Room Builder/Editor - Part 8
 
-Adding Room Builder/Editor - Part 7
-
-we want to be able to click on an object, and set it to the 'active' object.
-we want to be able to display which obj is the active object, using a selection box sprite.
+we want to be able to click on an object, and set it as the active obj.
 
 
+
+
+
+
+we should have a reset function for the room builder widget
+but, we won't be using the x,y parameters
+we will be resetting the window's instances, and resetting the activeObj / selectionBox
+
+
+
+
+
+
+
+
+
+
+add divider lines to builder widget
+add an actor's list to builder widget, draw and display active just like objs
 
 
 
