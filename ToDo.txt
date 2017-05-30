@@ -46,24 +46,18 @@ ram useage:
 	
 todo:
 
-11
+9
 
 
 
-Adding Room Builder/Editor - Part 3
+Adding Room Builder/Editor - Part 4
 
-we need to be able to return to the dungeon screen from the room builder screen.
-we *could* create a dungeon screen, but it's easier to create an overworld screen.
-from the overworld screen, we can select a variety of dungeons.
+created room builder screen, with a window instance (for testing).
+updated path in Functions_Debu.HandleDebugMenuInput() to actually create a room builder screen.
+playtested, working as expected, but we can't return to the overworld screen (can't exit).
 
-added top menu button 'overworld' that exits all screens, then creates overworld screen.
-added path for overworld button to Functions_Debug.HandleDebugMenuInput().
-playtested, major bug.
-
-bug: creating an overworld screen via debug menu causes a state where there are no screens present upon overworld exit.
-cause: overworld screen assumes dungeon screen is underneath it.
-solution: instead of removing the overworld screen, we exit all screens and create a dungeon screen.
-playtested, working as expected.
+in room builder screen, added path to draw & pass input to debug menu.
+playtested, now we can exit the room builder screen and return to the game.
 
 
 
@@ -71,8 +65,8 @@ playtested, working as expected.
 
 
 
-	
-create room builder screen + widget
+
+
 
 builder screen
 	no hero input, only builder input (grab, drag, place, erase)
@@ -97,21 +91,14 @@ new room screen
 	one of the issues here is that we'll need to make sure the floor pool has enough sprites to create the larger rooms
 	this will also increase the drawtime on the xbox one
 	
+
 	
-	
-we'll link to room builder screen from the top menu
-	add the room builder button
-	
-	
-	
+download and add new music tracks to game
+check ram footprint
 	
 	
 	
 	
-	
-	
-	download and add new music tracks to game
-	check ram footprint
 	
 	
 	
