@@ -46,17 +46,33 @@ ram useage:
 	
 todo:
 
-2
+1
 
 
-Adding Room Builder/Editor - Part 11
+Adding Room Builder/Editor - Part 12
 
-builder widget needs plus & minus icons
 
-added sprite component instances for plus and minus icons.
-updated Draw() to display these instances.
-organized code section where window, line dividers, and icon instances are created.
-playtested, working as expected.
+we want to be able to set the currently selected tool.
+we need another selection box for the current tool.
+which means we need to rename the selection box to selectionBoxObj.
+and create a new component sprite named selectionBoxTool.
+
+created instance for activeTool pointer.
+renamed selectionBox to selectionBoxObj, created selectionBoxTool instance.
+updated Draw() to handle selectionBoxTool instance.
+created BuilderWidget.SetActiveTool(), similar to SetActiveObj().
+created BuilderWidget.UpdateSelectionBox() to handle updating both obj and tool selection boxes.
+playtested, not working as expected... 
+
+bug: can't select tool icons.
+cause: we're using the sprite component's drawRec for collision checking..
+and that doesn't work, because it represents the sprite's texture region in the spritesheet.
+we'll need to actually have a collision component associated with the sprite.
+this collision component will need to be aligned to the sprite.
+then we can check collisions against the collision component.
+
+but, everything else works besides the collision checks with the tool icons.
+
 
 
 
@@ -73,7 +89,8 @@ this is how we will check collisions with the tool icons..
 
 
 
-
+instead of displaying actors, we could use sprite components to show actors
+this would work the same way as the tool icons
 
 
 

@@ -16,13 +16,15 @@ namespace DungeonRun
     public class WidgetRoomBuilder : Widget
     {
 
-        public GameObject activeObj; //points to an obj in the obj list
-        public List<GameObject> objList; //a list of room objects user can select
-        public ComponentSprite selectionBox;
-
         public MenuRectangle divider1;
         public MenuRectangle divider2;
 
+        public ComponentSprite selectionBoxObj; //highlites the currently selected obj
+        public GameObject activeObj; //points to an obj in the obj list
+        public List<GameObject> objList; //a list of room objects user can select
+
+        public ComponentSprite selectionBoxTool; //highlites the currently selected obj
+        public ComponentSprite activeTool; //points to one of the following component sprites (tool icons)
         public ComponentSprite moveIcon;
         public ComponentSprite addIcon;
         public ComponentSprite minusIcon;
@@ -61,7 +63,11 @@ namespace DungeonRun
             #endregion
 
 
-            selectionBox = new ComponentSprite(
+            selectionBoxObj = new ComponentSprite(
+                Assets.mainSheet, new Vector2(-100, 5000),
+                new Byte4(15, 7, 0, 0), new Point(16, 16));
+
+            selectionBoxTool = new ComponentSprite(
                 Assets.mainSheet, new Vector2(-100, 5000),
                 new Byte4(15, 7, 0, 0), new Point(16, 16));
 
@@ -163,9 +169,7 @@ namespace DungeonRun
             window.interior.Reset();
             window.headerLine.Reset();
             window.footerLine.Reset();
-            //set active object to first obj on objList
-            SetActiveObj(0);
-
+            
             //reset the divider lines
             divider1.position.X = 16;
             divider1.position.Y = 16 * 14;
@@ -180,6 +184,11 @@ namespace DungeonRun
             divider2.size.Y = 1;
             divider2.Reset();
             divider2.openDelay = 12;
+
+            //set active object to first obj on objList
+            SetActiveObj(0);
+            //set active tool to move tool
+            SetActiveTool(moveIcon);
         }
 
         public override void Update()
@@ -190,13 +199,8 @@ namespace DungeonRun
 
             if (window.interior.displayState == DisplayState.Opened)
             {
-                //pulse the selectionBox alpha
-                if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
-                else { selectionBox.alpha += 0.025f; }
-
-                //scale the selectionBox down to 1.0
-                if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
-                else { selectionBox.scale = 1.0f; }
+                UpdateSelectionBox(selectionBoxObj);
+                UpdateSelectionBox(selectionBoxTool);
             }
         }
 
@@ -222,7 +226,8 @@ namespace DungeonRun
                 Functions_Draw.Draw(addIcon);
                 Functions_Draw.Draw(minusIcon);
                 
-                Functions_Draw.Draw(selectionBox);
+                Functions_Draw.Draw(selectionBoxObj);
+                Functions_Draw.Draw(selectionBoxTool);
             }
         }
 
@@ -231,8 +236,25 @@ namespace DungeonRun
         public void SetActiveObj(int index)
         {
             activeObj = objList[index];
-            selectionBox.scale = 2.0f;
-            selectionBox.position = activeObj.compSprite.position;
+            selectionBoxObj.scale = 2.0f;
+            selectionBoxObj.position = activeObj.compSprite.position;
+        }
+
+        public void SetActiveTool(ComponentSprite Tool)
+        {
+            activeTool = Tool;
+            selectionBoxTool.scale = 2.0f;
+            selectionBoxTool.position = activeTool.position;
+        }
+
+        public void UpdateSelectionBox(ComponentSprite SelectionBox)
+        {
+            //pulse the selectionBox alpha
+            if (SelectionBox.alpha >= 1.0f) { SelectionBox.alpha = 0.1f; }
+            else { SelectionBox.alpha += 0.025f; }
+            //scale the selectionBox down to 1.0
+            if (SelectionBox.scale > 1.0f) { SelectionBox.scale -= 0.07f; }
+            else { SelectionBox.scale = 1.0f; }
         }
 
     }
