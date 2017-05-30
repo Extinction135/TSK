@@ -46,16 +46,16 @@ ram useage:
 	
 todo:
 
-4
+3
 
 
-Adding Room Builder/Editor - Part 9
+Adding Room Builder/Editor - Part 10
 
-builder widget needs divider lines, that reset properly.
+builder widget needs hand icon
 
-created MenuRectangle instances for divider lines 1 & 2.
-updated Reset() to properly reset these divider lines, with openDelay.
-updated Draw() & Update() to handle divider lines.
+updated MainSheet texture with new tool icon sprites.
+added component sprite instance for move icon (hand) to room builder widget.
+updated Draw() to display the move icon sprite.
 playtested, working as expected.
 
 
@@ -63,8 +63,17 @@ playtested, working as expected.
 
 
 
+builder widget needs plus & minus icons
 
-builder widget needs hand, plus, minus icons
+
+we can check collisions with a sprite component using it's drawRec
+this is how we will check collisions with the tool icons..
+
+
+
+
+
+
 
 we must use the camera on the room builder screen
 in order to properly convert the mouse cursor's collRec position to world coordinates

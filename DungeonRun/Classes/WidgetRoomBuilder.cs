@@ -23,6 +23,7 @@ namespace DungeonRun
         public MenuRectangle divider1;
         public MenuRectangle divider2;
 
+        public ComponentSprite moveIcon;
 
 
         public WidgetRoomBuilder()
@@ -41,6 +42,10 @@ namespace DungeonRun
 
             divider2 = new MenuRectangle(new Point(0, 0), 
                 new Point(0, 0), Assets.colorScheme.windowInset);
+
+            moveIcon = new ComponentSprite(Assets.mainSheet,
+                new Vector2(16 * 1 + 8, 16 * 15),
+                new Byte4(14, 13, 0, 0), new Point(16, 16));
 
             //create & populate the objList
             objList = new List<GameObject>();
@@ -194,6 +199,8 @@ namespace DungeonRun
                     for (i = 0; i < 5 * 7; i++)
                     { Functions_Draw.Draw(objList[i].compCollision); }
                 }
+
+                Functions_Draw.Draw(moveIcon);
 
                 Functions_Draw.Draw(selectionBox);
             }
