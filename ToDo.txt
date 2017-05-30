@@ -46,20 +46,44 @@ ram useage:
 	
 todo:
 
-9
+7
 
 
 
-Adding Room Builder/Editor - Part 5
+Adding Room Builder/Editor - Part 6
 
-we need to create the room builder widget, which holds the room objects and enemy spawns.
-this widget's construction is based on the room builder mockup.
+we want to populate the room builder widget with game objects.
+we want to draw all the widget's objects.
 
-created WidgetRoomBuilder class, based on the other widgets created so far.
-added WidgetRoomBuilder instance to global widget's list in Widgets class.
-updated RoomBuilder screen to use the RoomBuilder widget.
-removed the window reference RoomBuilder screen was using for testing.
+created NewRoomScreen mockup, simplifying a previous design.
+removed the overrided Reset() method from RoomBuilder widget.
+this is because the room builder widget would never be reset.
+this also makes me question if every widget should have a reset method - as most widgets don't reset.
+that's something to deal with later tho.
+
+created a gameobj instance, and a list of gameobjs for room builder widget.
+hardcoded room builder widget's window position and size.
+added path to populate the objList with correct number of gameObjs, based on row * columns from mockup.
+added region to set the object.type properly, based on row and column position
+added path to draw the object's sprite 
+added path to draw the object's collision rec, based on Flags.DrawCollisions boolean.
+added path to draw the cursor's collision rec (to room builder screen), based on Flags.DrawCollisions boolean.
+
 playtested, working as expected.
+
+
+
+
+
+
+
+
+Adding Room Builder/Editor - Part 7
+
+we want to be able to click on an object, and set it to the 'active' object.
+we want to be able to display which obj is the active object, using a selection box sprite.
+
+
 
 
 

@@ -21,7 +21,15 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            Widgets.RoomBuilder.Reset(8, 16 * 4);
+            //reset the room builder widget's window
+            Widgets.RoomBuilder.window.background.Reset();
+            Widgets.RoomBuilder.window.border.Reset();
+            Widgets.RoomBuilder.window.inset.Reset();
+            Widgets.RoomBuilder.window.interior.Reset();
+            Widgets.RoomBuilder.window.headerLine.Reset();
+            Widgets.RoomBuilder.window.footerLine.Reset();
+
+
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -40,6 +48,12 @@ namespace DungeonRun
 
             Widgets.RoomBuilder.Draw();
             Functions_Draw.DrawDebugMenu();
+
+            if (Flags.DrawCollisions)
+            {
+                Functions_Draw.Draw(Input.cursorColl);
+                //draw the room object's collision recs + interaction recs
+            }
 
             ScreenManager.spriteBatch.End();
         }

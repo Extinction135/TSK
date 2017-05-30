@@ -63,7 +63,6 @@ namespace DungeonRun
 
 
 
-
         public static void Move(ComponentAmountDisplay Display, MenuItem Item)
         {   //place amount display relative to Item
             Display.amount.position.X = Item.compSprite.position.X - 1;
@@ -79,9 +78,6 @@ namespace DungeonRun
             if (Value < 10) { Display.amount.text = "0" + Value; }
             else { Display.amount.text = "" + Value; }
         }
-
-
-
 
     }
 }
