@@ -32,8 +32,6 @@ namespace DungeonRun
             selectionBox = new ComponentSprite(
                 Assets.mainSheet, new Vector2(-100, 5000),
                 new Byte4(15, 7, 0, 0), new Point(16, 16));
-            selectionBox.position.X = 16 * 5 + 8;
-            selectionBox.position.Y = 16 * 10;
 
             //create & populate the objList
             objList = new List<GameObject>();
@@ -122,11 +120,19 @@ namespace DungeonRun
                     objList.Add(obj); 
                 }
             }
+        }
 
-            //set the active object
-            activeObj = objList[0];
-            selectionBox.scale = 2.0f;
-            selectionBox.position = activeObj.compSprite.position;
+        public override void Reset(int X, int Y)
+        {
+            //reset the room builder widget's window
+            window.background.Reset();
+            window.border.Reset();
+            window.inset.Reset();
+            window.interior.Reset();
+            window.headerLine.Reset();
+            window.footerLine.Reset();
+            //set active object to first obj on objList
+            SetActiveObj(0);
         }
 
         public override void Update()
@@ -163,6 +169,15 @@ namespace DungeonRun
 
                 Functions_Draw.Draw(selectionBox);
             }
+        }
+
+
+
+        public void SetActiveObj(int index)
+        {
+            activeObj = objList[index];
+            selectionBox.scale = 2.0f;
+            selectionBox.position = activeObj.compSprite.position;
         }
 
     }

@@ -15,35 +15,37 @@ namespace DungeonRun
     public class ScreenRoomBuilder : Screen
     {
 
-        
 
+        int i;
 
 
         public ScreenRoomBuilder() { this.name = "Room Builder Screen"; }
 
         public override void LoadContent()
         {
-            //reset the room builder widget's window
-            Widgets.RoomBuilder.window.background.Reset();
-            Widgets.RoomBuilder.window.border.Reset();
-            Widgets.RoomBuilder.window.inset.Reset();
-            Widgets.RoomBuilder.window.interior.Reset();
-            Widgets.RoomBuilder.window.headerLine.Reset();
-            Widgets.RoomBuilder.window.footerLine.Reset();
-
-            
+            Widgets.RoomBuilder.Reset(0, 0);
         }
 
         public override void HandleInput(GameTime GameTime)
         {
             Functions_Debug.HandleDebugMenuInput();
+
+            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+            {   //on left button click - does builder widget contain the mouse cursor's position?
+                if (Widgets.RoomBuilder.window.interior.rec.Contains(Input.cursorPos))
+                {   //does mouse hitbox collide with any obj on the widget's objList?
+                    for (i = 0; i < 5 * 7; i++)
+                    {   //if there is a collision, set the active object to the object clicked on
+                        if (Widgets.RoomBuilder.objList[i].compCollision.rec.Contains(Input.cursorPos))
+                        {  Widgets.RoomBuilder.SetActiveObj(i); }
+                    }
+                }
+            }
         }
 
         public override void Update(GameTime GameTime)
         {
             Widgets.RoomBuilder.Update();
-
-            
         }
 
         public override void Draw(GameTime GameTime)
@@ -58,8 +60,6 @@ namespace DungeonRun
                 Functions_Draw.Draw(Input.cursorColl);
                 //draw the room object's collision recs + interaction recs
             }
-
-            
 
             ScreenManager.spriteBatch.End();
         }
