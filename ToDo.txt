@@ -46,19 +46,38 @@ ram useage:
 	
 todo:
 
-5
+4
 
 
-Adding Room Builder/Editor - Part 21
+Adding Room Builder/Editor - Part 22
 
-updated RoomBuilderScreen to time it's update and draw methods.
-also draws debug info now.
-updated camera position to center dev room to area right of builder widget.
+created Functions_Dungeon.ConnectRooms(Parent, Child).
+this method was ported from a game I worked on that has similar room and dungeon data.
+some refactoring was required to get it to fit into DungeonRun.
 
-updated Room class to set room.size based on room.type.
-removed the Size parameter from Room constructor.
-updated various codepaths that passed Size parameter to Room constructor.
-playtested, working as expected.
+
+
+
+
+
+
+
+
+
+set the size based on the room type correctly
+update the basic dungeon algorithm to work with the newly sized rooms
+should be spawn room -> hub -> boss room
+simple 3 room dungeon, arranged north
+rooms should be connected using the door algorithm
+
+
+
+
+
+
+ConnectRooms() generates a bit of garbage
+cleanup the garbage so it's static (outside of function)
+
 
 
 
@@ -73,31 +92,6 @@ this is window with buttons, no widget
 new button should create a new room screen
 new room screen stores ref to builder screen
 affects the room instance in builder screen - changes room type
-
-
-
-room size should be based on type
-room constructor should not accept a size parameter any more
-size is set in constructor using type value
-
-
-update the basic dungeon algorithm to work with the newly sized rooms
-we'll need to write an algorithm that connects rooms together using doors
-lift this from CC codebase
-should be spawn room -> hub -> boss room
-simple 3 room dungeon, arranged north
-rooms should be connected using the door algorithm
-
-
-
-
-
-
-
-
-
-
-
 
 
 
