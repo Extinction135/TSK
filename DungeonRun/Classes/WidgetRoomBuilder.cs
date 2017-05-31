@@ -30,9 +30,6 @@ namespace DungeonRun
 
         
 
-
-
-
         public WidgetRoomBuilder()
         {
 
@@ -156,12 +153,59 @@ namespace DungeonRun
             #endregion
 
 
-            //add actor objects
+            #region Add Enemy objs to ObjList
+
+            //enemy1 - index 35
+            GameObject enemy1 = new GameObject(Assets.blobSheet);
+            Functions_GameObject.ResetObject(enemy1);
+            enemy1.compSprite.position.X = 16 * 1 + 8;
+            enemy1.compSprite.position.Y = 16 * 13;
+            enemy1.compCollision.rec.X = 16 * 1;
+            enemy1.compCollision.rec.Y = 16 * 13 - 8;
+            objList.Add(enemy1);
+
+            //enemy2 - index 36
+            GameObject enemy2 = new GameObject(Assets.blobSheet);
+            Functions_GameObject.ResetObject(enemy2);
+            enemy2.compSprite.position.X = 16 * 2 + 8;
+            enemy2.compSprite.position.Y = 16 * 13;
+            enemy2.compCollision.rec.X = 16 * 2;
+            enemy2.compCollision.rec.Y = 16 * 13 - 8;
+            objList.Add(enemy2);
+
+            //enemy3 - index 37
+            GameObject enemy3 = new GameObject(Assets.blobSheet);
+            Functions_GameObject.ResetObject(enemy3);
+            enemy3.compSprite.position.X = 16 * 3 + 8;
+            enemy3.compSprite.position.Y = 16 * 13;
+            enemy3.compCollision.rec.X = 16 * 3;
+            enemy3.compCollision.rec.Y = 16 * 13 - 8;
+            objList.Add(enemy3);
+
+            //enemy4 - index 38
+            GameObject enemy4 = new GameObject(Assets.blobSheet);
+            Functions_GameObject.ResetObject(enemy4);
+            enemy4.compSprite.position.X = 16 * 4 + 8;
+            enemy4.compSprite.position.Y = 16 * 13;
+            enemy4.compCollision.rec.X = 16 * 4;
+            enemy4.compCollision.rec.Y = 16 * 13 - 8;
+            objList.Add(enemy4);
+
+            //enemy4 - index 39
+            GameObject enemy5 = new GameObject(Assets.blobSheet);
+            Functions_GameObject.ResetObject(enemy5);
+            enemy5.compSprite.position.X = 16 * 5 + 8;
+            enemy5.compSprite.position.Y = 16 * 13;
+            enemy5.compCollision.rec.X = 16 * 5;
+            enemy5.compCollision.rec.Y = 16 * 13 - 8;
+            objList.Add(enemy5);
+
+            #endregion
 
 
             #region Add Toolbar objs to ObjList
 
-            //move icon - index 35
+            //move icon - index 40
             GameObject moveObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(moveObj);
             //set sprite position
@@ -176,7 +220,7 @@ namespace DungeonRun
             //add object to list
             objList.Add(moveObj);
 
-            //add icon - index 36
+            //add icon - index 41
             GameObject addObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(addObj);
             //set sprite position
@@ -191,7 +235,7 @@ namespace DungeonRun
             //add object to list
             objList.Add(addObj);
 
-            //minus icon - index 37
+            //minus icon - index 42
             GameObject minusObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(minusObj);
             //set sprite position
@@ -240,7 +284,7 @@ namespace DungeonRun
             //set active object to first obj on objList
             SetActiveObj(0);
             //set active tool to move tool
-            SetActiveTool(5*7);
+            SetActiveTool(40);
         }
 
         public override void Update()
@@ -274,10 +318,6 @@ namespace DungeonRun
                     { Functions_Draw.Draw(objList[i].compCollision); }
                 }
 
-                //Functions_Draw.Draw(moveIcon);
-                //Functions_Draw.Draw(addIcon);
-                //Functions_Draw.Draw(minusIcon);
-                
                 Functions_Draw.Draw(selectionBoxObj);
                 Functions_Draw.Draw(selectionBoxTool);
             }

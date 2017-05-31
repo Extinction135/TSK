@@ -15,8 +15,8 @@ namespace DungeonRun
     public class ScreenRoomBuilder : Screen
     {
 
-
         int i;
+
 
 
         public ScreenRoomBuilder() { this.name = "Room Builder Screen"; }
@@ -38,12 +38,10 @@ namespace DungeonRun
                     {   //if there is a collision, set the active object to the object clicked on
                         if (Widgets.RoomBuilder.objList[i].compCollision.rec.Contains(Input.cursorPos))
                         {
-                            if (i < 35) //handle collision with room obj
+                            if (i < 40) //handle collision with room obj
                             { Widgets.RoomBuilder.SetActiveObj(i); }
                             else //handle collision with toolbar obj
                             { Widgets.RoomBuilder.SetActiveTool(i); }
-
-                            //later we'll need to expand this section to handle the actor objs as well..
                         }
                     }
                 }

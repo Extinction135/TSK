@@ -46,16 +46,18 @@ ram useage:
 	
 todo:
 
-11
+10
 
 
-Adding Room Builder/Editor - Part 15
+Adding Room Builder/Editor - Part 16
 
-we need to be able to select the toolbar icons now.
-which means we simply need to check collisions between them and mouse position.
-this is just like how we currently check collisions against room objs in widget.
+we need to add the actor objects, which will be gameobjects.
+we'll set them up the same way we set up the toolbar ocns
+we'll need to update various codepaths that rely on the current list arrangement.
 
-updated RoomBuilderScreen.HandleInput() with paths to check for room objs & toolbar objs.
+added gameobject instances for 5 enemy actors, correctly placed in widget window.
+updated RoomBuilderWidget.Reset().
+updated RoomBuilderScreen.HandleInput() to work on roomObjs, actors, and toolbar objs.
 playtested, working as expected.
 
 
