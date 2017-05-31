@@ -33,34 +33,19 @@ namespace DungeonRun
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {   //on left button click - does builder widget contain the mouse cursor's position?
                 if (Widgets.RoomBuilder.window.interior.rec.Contains(Input.cursorPos))
-                {   
-                    
-                    
-                    //this section will be rewritten to operate over a generic list of gameObjects
-                    //then based on the obj's index, the click event will differ
-
-
-
-                    
-                    //does any obj on the widget's objList contain the mouse position?
-                    for (i = 0; i < 5 * 7; i++)
+                {   //does any obj on the widget's objList contain the mouse position?
+                    for (i = 0; i < Widgets.RoomBuilder.total; i++)
                     {   //if there is a collision, set the active object to the object clicked on
                         if (Widgets.RoomBuilder.objList[i].compCollision.rec.Contains(Input.cursorPos))
-                        {  Widgets.RoomBuilder.SetActiveObj(i); }
+                        {
+                            if (i < 35) //handle collision with room obj
+                            { Widgets.RoomBuilder.SetActiveObj(i); }
+                            else //handle collision with toolbar obj
+                            { Widgets.RoomBuilder.SetActiveTool(i); }
+
+                            //later we'll need to expand this section to handle the actor objs as well..
+                        }
                     }
-
-
-                    /*
-                    //does any tool icon contain the mouse position?
-                    if(Widgets.RoomBuilder.moveIcon.drawRec.Contains(Input.cursorPos))
-                    { Widgets.RoomBuilder.SetActiveTool(Widgets.RoomBuilder.moveIcon); }
-                    else if (Widgets.RoomBuilder.addIcon.drawRec.Contains(Input.cursorPos))
-                    { Widgets.RoomBuilder.SetActiveTool(Widgets.RoomBuilder.addIcon); }
-                    else if (Widgets.RoomBuilder.minusIcon.drawRec.Contains(Input.cursorPos))
-                    { Widgets.RoomBuilder.SetActiveTool(Widgets.RoomBuilder.minusIcon); }
-                    */
-
-
                 }
             }
         }

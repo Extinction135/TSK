@@ -46,18 +46,17 @@ ram useage:
 	
 todo:
 
-12
+11
 
 
-Adding Room Builder/Editor - Part 14
+Adding Room Builder/Editor - Part 15
 
-we need the plus and minus icons added to the toolbar, as gameobjs.
+we need to be able to select the toolbar icons now.
+which means we simply need to check collisions between them and mouse position.
+this is just like how we currently check collisions against room objs in widget.
 
-added gameobjects for add and minus toolbar icons to ObjList.
+updated RoomBuilderScreen.HandleInput() with paths to check for room objs & toolbar objs.
 playtested, working as expected.
-
-
-
 
 
 

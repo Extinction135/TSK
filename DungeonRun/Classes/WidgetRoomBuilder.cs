@@ -161,7 +161,7 @@ namespace DungeonRun
 
             #region Add Toolbar objs to ObjList
 
-            //move icon
+            //move icon - index 35
             GameObject moveObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(moveObj);
             //set sprite position
@@ -176,7 +176,7 @@ namespace DungeonRun
             //add object to list
             objList.Add(moveObj);
 
-            //add icon
+            //add icon - index 36
             GameObject addObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(addObj);
             //set sprite position
@@ -191,7 +191,7 @@ namespace DungeonRun
             //add object to list
             objList.Add(addObj);
 
-            //minus icon
+            //minus icon - index 37
             GameObject minusObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(minusObj);
             //set sprite position
