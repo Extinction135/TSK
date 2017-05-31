@@ -46,26 +46,15 @@ ram useage:
 	
 todo:
 
-13
+12
 
 
-Adding Room Builder/Editor - Part 13
+Adding Room Builder/Editor - Part 14
 
+we need the plus and minus icons added to the toolbar, as gameobjs.
 
-all the selectable objects in the builder widget should be gameobjects.
-this is the easiest and most consistent solution that allows user to click on widget objects.
-
-
-removed sprite components moveIcon, addIcon, & minusIcon.
-modified SetActiveTool() to accept an int parameter, just like SetActiveObj().
-updated activeTool instance to be of type GameObject.
-created the move obj as a gameobject type, added to objList.
-updated various paths to use only the objList in builder widget.
+added gameobjects for add and minus toolbar icons to ObjList.
 playtested, working as expected.
-
-
-
-
 
 
 

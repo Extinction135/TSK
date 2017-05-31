@@ -65,7 +65,7 @@ namespace DungeonRun
             objList = new List<GameObject>();
 
 
-            #region Populate the ObjList with Room Objects
+            #region Add RoomObjs to ObjList
 
             for (i = 0; i < 7; i++) //row
             {
@@ -156,52 +156,60 @@ namespace DungeonRun
             #endregion
 
 
-
             //add actor objects
 
-            //add toolbar objects
 
-            #region Create Icon sprites
+            #region Add Toolbar objs to ObjList
 
-
+            //move icon
             GameObject moveObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(moveObj);
-            //set the new position value for the move component
+            //set sprite position
             moveObj.compSprite.position.X = 16 * 1 + 8;
             moveObj.compSprite.position.Y = 16 * 15;
-            //set the sprite to display
+            //set sprites frame
             moveObj.compSprite.currentFrame.X = 14;
             moveObj.compSprite.currentFrame.Y = 13;
-            //manually set collision rec
+            //set collision rec
             moveObj.compCollision.rec.X = 16 * 1 + 8 - 8;
             moveObj.compCollision.rec.Y = 16 * 15 - 8;
-            //add the object to the list
+            //add object to list
             objList.Add(moveObj);
 
+            //add icon
+            GameObject addObj = new GameObject(Assets.mainSheet);
+            Functions_GameObject.ResetObject(addObj);
+            //set sprite position
+            addObj.compSprite.position.X = 16 * 3 + 8;
+            addObj.compSprite.position.Y = 16 * 15;
+            //set sprites frame
+            addObj.compSprite.currentFrame.X = 14;
+            addObj.compSprite.currentFrame.Y = 15;
+            //set collision rec
+            addObj.compCollision.rec.X = 16 * 3 + 8 - 8;
+            addObj.compCollision.rec.Y = 16 * 15 - 8;
+            //add object to list
+            objList.Add(addObj);
 
-
-
-
-            /*
-            moveIcon = new ComponentSprite(Assets.mainSheet,
-                new Vector2(16 * 1 + 8, 16 * 15),
-                new Byte4(14, 13, 0, 0), new Point(16, 16));
-
-            addIcon = new ComponentSprite(Assets.mainSheet,
-                new Vector2(16 * 3 + 8, 16 * 15),
-                new Byte4(14, 15, 0, 0), new Point(16, 16));
-
-            minusIcon = new ComponentSprite(Assets.mainSheet,
-                new Vector2(16 * 5 + 8, 16 * 15),
-                new Byte4(15, 15, 0, 0), new Point(16, 16));
-            */
-
+            //minus icon
+            GameObject minusObj = new GameObject(Assets.mainSheet);
+            Functions_GameObject.ResetObject(minusObj);
+            //set sprite position
+            minusObj.compSprite.position.X = 16 * 5 + 8;
+            minusObj.compSprite.position.Y = 16 * 15;
+            //set sprites frame
+            minusObj.compSprite.currentFrame.X = 15;
+            minusObj.compSprite.currentFrame.Y = 15;
+            //set collision rec
+            minusObj.compCollision.rec.X = 16 * 5 + 8 - 8;
+            minusObj.compCollision.rec.Y = 16 * 15 - 8;
+            //add object to list
+            objList.Add(minusObj);
 
             #endregion
 
 
             total = objList.Count();
-
         }
 
         public override void Reset(int X, int Y)
