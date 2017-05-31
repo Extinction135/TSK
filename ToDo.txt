@@ -46,26 +46,31 @@ ram useage:
 	
 todo:
 
-7
+6
 
 
-Adding Room Builder/Editor - Part 19
+Adding Room Builder/Editor - Part 20
 
-seperated room functions from Functions_Dungeon into Functions_Room.
-this vastly simplifies Functions_Dungeon.
-updated various paths that referenced old function addresses.
-reduced the number of variables between Functions_Dungeon & Functions_Room classes.
+created room instance in RoomBuilderScreen.
+modified RoomBuilderScreen.Update() to track camera to center of room.
+this is done in update so that if the room size changes, the camera automatically adapts - smoothly too.
+updated RoomBuilderScreen.Draw() to use the camera view to draw the room.
 
-refactored how the dungeon music is chosen, upon a dungeon build.
-cause why not? we're working on the editor, might as well refactor some music routines.
-cause that makes sense.. ???
-
-added room instance to room builder screen.
-playtested, everything is still working as expected.
+added 'Dev' value to RoomType enum, for testing of RoomBuilder Screen.
 
 
 
 
+
+how do we draw the room instance?
+
+prolly using pool
+
+
+
+so the dev room is being built as the exit room
+which includes all the extras and actors
+we then need a dev type, so it wont build all the extra shit
 
 
 

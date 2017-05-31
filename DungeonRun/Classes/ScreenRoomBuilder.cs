@@ -24,6 +24,21 @@ namespace DungeonRun
         public override void LoadContent()
         {
             Widgets.RoomBuilder.Reset(0, 0);
+            room = new Room(new Point(16 * 5, 16 * 5), new Byte2(20, 10), RoomType.Dev, 0, 0);
+
+
+            
+
+            //clear any previous dungeon data
+            Functions_Dungeon.dungeon = new Dungeon();
+            //set the objPool texture & build the room instance
+            Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
+            Functions_Room.BuildRoom(room);
+            Functions_Dungeon.currentRoom = room;
+            //update the pool once
+            Functions_Pool.Update();
+
+
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -83,21 +98,37 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             Widgets.RoomBuilder.Update();
+            //track camera to center of room instance
+            Camera2D.targetPosition.X = room.center.X;
+            Camera2D.targetPosition.Y = room.center.Y;
+            Functions_Camera2D.Update(GameTime);
         }
 
         public override void Draw(GameTime GameTime)
         {
-            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
+            #region Draw gameworld from camera's view
+
+            ScreenManager.spriteBatch.Begin(
+                        SpriteSortMode.BackToFront,
+                        BlendState.AlphaBlend,
+                        SamplerState.PointClamp,
+                        null,
+                        null,
+                        null,
+                        Camera2D.view
+                        );
+            Functions_Pool.Draw();
+            if (Flags.DrawCollisions) { Functions_Draw.Draw(Input.cursorColl); }
+            ScreenManager.spriteBatch.End();
+
+            #endregion
+
+
+            //Draw UI, debug info + debug menu
+            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Widgets.RoomBuilder.Draw();
             Functions_Draw.DrawDebugMenu();
-
-            if (Flags.DrawCollisions)
-            {
-                Functions_Draw.Draw(Input.cursorColl);
-                //draw the room object's collision recs + interaction recs
-            }
-
             ScreenManager.spriteBatch.End();
         }
 

@@ -168,7 +168,9 @@ namespace DungeonRun
         {
             Timing.Reset();
 
-            //draw gameworld from camera's view
+
+            #region Draw gameworld from camera's view
+
             ScreenManager.spriteBatch.Begin(
                         SpriteSortMode.BackToFront,
                         BlendState.AlphaBlend,
@@ -187,7 +189,11 @@ namespace DungeonRun
             }
             ScreenManager.spriteBatch.End();
 
-            //draw UI, debug info + debug menu, without camera view
+            #endregion
+
+
+            #region Draw UI, debug info + debug menu, & overlay
+
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_WorldUI.Draw();
             if (Flags.Debug)
@@ -195,10 +201,12 @@ namespace DungeonRun
                 Functions_Draw.DrawDebugInfo();
                 Functions_Draw.DrawDebugMenu();
             }
-            //draw the overlay rec last
             ScreenManager.spriteBatch.Draw( Assets.dummyTexture, 
                 overlay, Assets.colorScheme.overlay * overlayAlpha);
             ScreenManager.spriteBatch.End();
+
+            #endregion
+
 
             Timing.stopWatch.Stop();
             Timing.drawTime = Timing.stopWatch.Elapsed;

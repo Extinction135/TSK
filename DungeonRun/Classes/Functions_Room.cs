@@ -48,6 +48,9 @@ namespace DungeonRun
                     floorRef.position.X = i * 16 + pos.X + 8;
                     floorRef.position.Y = j * 16 + pos.Y + 8;
 
+                    //default to 0
+                    floorRef.currentFrame.Y = 0;
+                    //update frame based on room type
                     if (Room.type == RoomType.Shop) { floorRef.currentFrame.Y = 0; }
                     else if (Room.type == RoomType.Exit) { floorRef.currentFrame.Y = 0; }
                     else if (Room.type == RoomType.Boss) { floorRef.currentFrame.Y = 1; }
