@@ -31,7 +31,7 @@ namespace DungeonRun
                     if (Pool.hero.compCollision.rec.Intersects(Functions_Dungeon.dungeon.rooms[i].collision.rec))
                     {
                         Functions_Dungeon.currentRoom = Functions_Dungeon.dungeon.rooms[i];
-                        Functions_Dungeon.BuildRoom(Functions_Dungeon.dungeon.rooms[i]);
+                        Functions_Room.BuildRoom(Functions_Dungeon.dungeon.rooms[i]);
                         if (Functions_Dungeon.currentRoom.type == RoomType.Boss)
                         {   //if hero just entered the boss room, play the boss intro & music
                             Assets.Play(Assets.sfxBossIntro);

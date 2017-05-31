@@ -122,6 +122,7 @@
     <Compile Include="Classes\Functions_Item.cs" />
     <Compile Include="Classes\Functions_Loot.cs" />
     <Compile Include="Classes\Functions_MenuItem.cs" />
+    <Compile Include="Classes\Functions_Room.cs" />
     <Compile Include="Classes\Functions_WorldUI.cs" />
     <Compile Include="Classes\ScreenRoomBuilder.cs" />
     <Compile Include="Classes\WidgetDialog.cs" />

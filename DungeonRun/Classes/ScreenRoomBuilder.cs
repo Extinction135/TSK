@@ -16,7 +16,7 @@ namespace DungeonRun
     {
 
         int i;
-
+        public Room room;
 
 
         public ScreenRoomBuilder() { this.name = "Room Builder Screen"; }
