@@ -16,10 +16,8 @@ namespace DungeonRun
     {
 
         public static ScreenDungeon dungeonScreen;
-        public static Dungeon dungeon;
-        public static Room currentRoom; //points to a room on the dungeon's room list
-        public static Stopwatch stopWatch = new Stopwatch();
-        public static TimeSpan time;
+        public static Dungeon dungeon; //the last dungeon created
+        public static Room currentRoom; //points to a room on dungeon's roomList
 
 
 
@@ -35,7 +33,7 @@ namespace DungeonRun
             {   //set the objPool texture
                 Functions_Pool.SetDungeonTexture(Assets.shopSheet);
                 //create the shop room
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Shop, 10, 0));
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), RoomType.Shop, 10, 0));
 
                 //keep the title music playing
                 Functions_Music.PlayMusic(Music.Title);
@@ -44,8 +42,8 @@ namespace DungeonRun
             {   //set the objPool texture
                 Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
                 //populate the dungeon with rooms
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), new Byte2(20, 10), RoomType.Exit, 10, 0));
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), new Byte2(20, 10), RoomType.Boss, 10, 1));
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), RoomType.Exit, 10, 0));
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), RoomType.Boss, 10, 1));
 
                 //cycle thru dungeon tracks
                 if (Functions_Music.currentMusic == Assets.musicDungeonA)

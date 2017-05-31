@@ -67,20 +67,25 @@ namespace DungeonRun
     public class Room
     {
         public ComponentCollision collision = new ComponentCollision();
-        public Byte2 size;
+        public Byte2 size = new Byte2(0, 0);
         public Point center;
         public RoomType type;
         public byte enemyCount;
         public int id;
-        public Room(Point Pos, Byte2 Size, RoomType Type, byte EnemyCount, int ID)
+        public Room(Point Pos, RoomType Type, byte EnemyCount, int ID)
         {
+            type = Type;
+            //set room size based on type
+            if (type == RoomType.Exit) { size.X = 20; size.Y = 10; }
+            else if (type == RoomType.Boss) { size.X = 20; size.Y = 10; }
+            else if (type == RoomType.Dev) { size.X = 20; size.Y = 10; }
+            else if (type == RoomType.Shop) { size.X = 20; size.Y = 10; }
+
             collision.rec.X = Pos.X;
             collision.rec.Y = Pos.Y;
-            collision.rec.Width = Size.X * 16;
-            collision.rec.Height = Size.Y * 16;
-            size = Size;
-            center = new Point(Pos.X + (Size.X / 2) * 16, Pos.Y + (Size.Y / 2) * 16);
-            type = Type;
+            collision.rec.Width = size.X * 16;
+            collision.rec.Height = size.Y * 16;
+            center = new Point(Pos.X + (size.X / 2) * 16, Pos.Y + (size.Y / 2) * 16);
             enemyCount = EnemyCount;
             id = ID;
         }

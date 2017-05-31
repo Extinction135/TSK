@@ -46,31 +46,19 @@ ram useage:
 	
 todo:
 
-6
+5
 
 
-Adding Room Builder/Editor - Part 20
+Adding Room Builder/Editor - Part 21
 
-created room instance in RoomBuilderScreen.
-modified RoomBuilderScreen.Update() to track camera to center of room.
-this is done in update so that if the room size changes, the camera automatically adapts - smoothly too.
-updated RoomBuilderScreen.Draw() to use the camera view to draw the room.
+updated RoomBuilderScreen to time it's update and draw methods.
+also draws debug info now.
+updated camera position to center dev room to area right of builder widget.
 
-added 'Dev' value to RoomType enum, for testing of RoomBuilder Screen.
-
-
-
-
-
-how do we draw the room instance?
-
-prolly using pool
-
-
-
-so the dev room is being built as the exit room
-which includes all the extras and actors
-we then need a dev type, so it wont build all the extra shit
+updated Room class to set room.size based on room.type.
+removed the Size parameter from Room constructor.
+updated various codepaths that passed Size parameter to Room constructor.
+playtested, working as expected.
 
 
 
@@ -78,35 +66,6 @@ we then need a dev type, so it wont build all the extra shit
 
 
 
-
-add a room instance to room builder screen
-this should default to standard 9x9
-
-
-
-add camera to room builder screen
-check that cursor collision rec is being properly tracked
-in order to properly convert the mouse cursor's collRec position to world coordinates
-
-
-
-separate the room functions from dungeon functions
-these functions will exist in their own class called room functions
-update all codepaths to use this new class
-update room builder screen to use this new class as well
-the default room should be built, with walls and floors
-
-*this means that the builder screen will need to draw floors and room objs
-should also draw the actor pool, but place the hero far away, so as not to be seen
-and no input is passed to actors at all - no ai or player input
-
-
-
-
-
-
-
-draw the debug info on the bottom of the builder screen
 
 
 create new room screen
