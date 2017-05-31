@@ -46,16 +46,18 @@ ram useage:
 	
 todo:
 
-9
+8
 
 
-Adding Room Builder/Editor - Part 17
+Adding Room Builder/Editor - Part 18
 
-we need to add the save, new, and load buttons to the builder widget.
 
-added ComponentButton instances for Save, New, and Load.
-properly placed withing the room builder widget, and drawn.
-playtested, looks correct, after a few alignement revisions.
+we need to be able to interact with the buttons, just like the debug menu does.
+
+created a List<ComponentButton> called buttons in RoomBuilderWidget.
+switched to using this list instead of individual instances of component buttons.
+this makes the button interaction consistent with how it's done in debug menu.
+
 
 
 

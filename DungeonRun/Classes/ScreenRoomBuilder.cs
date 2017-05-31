@@ -30,6 +30,9 @@ namespace DungeonRun
         {
             Functions_Debug.HandleDebugMenuInput();
 
+
+            #region Check Widget Objects for User Interaction
+
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {   //on left button click - does builder widget contain the mouse cursor's position?
                 if (Widgets.RoomBuilder.window.interior.rec.Contains(Input.cursorPos))
@@ -46,6 +49,35 @@ namespace DungeonRun
                     }
                 }
             }
+
+            #endregion
+
+
+            #region Check Widget Buttons for User Interaction
+
+            for (i = 0; i < 3; i++)
+            {
+                if (Widgets.RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
+                {   //any button containing the cursor draws with 'over' color
+                    Widgets.RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonOver;
+                    if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                    {   //any button clicked on becomes selected
+                        Widgets.RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonDown;
+
+                        if (i == 0) //save btn
+                        { }
+                        else if (i == 1) //new btn
+                        { }
+                        else if (i == 2) //load btn
+                        { }
+                    }
+                } //buttons not touching cursor return to button up color
+                else { Widgets.RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonUp; }
+            }
+
+            #endregion
+
+
         }
 
         public override void Update(GameTime GameTime)
