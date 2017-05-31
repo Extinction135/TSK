@@ -46,23 +46,34 @@ ram useage:
 	
 todo:
 
-1
+13
 
 
-Adding Room Builder/Editor - Part 12
+Adding Room Builder/Editor - Part 13
 
 
-we want to be able to set the currently selected tool.
-we need another selection box for the current tool.
-which means we need to rename the selection box to selectionBoxObj.
-and create a new component sprite named selectionBoxTool.
+all the selectable objects in the builder widget should be gameobjects.
+this is the easiest and most consistent solution that allows user to click on widget objects.
 
-created instance for activeTool pointer.
-renamed selectionBox to selectionBoxObj, created selectionBoxTool instance.
-updated Draw() to handle selectionBoxTool instance.
-created BuilderWidget.SetActiveTool(), similar to SetActiveObj().
-created BuilderWidget.UpdateSelectionBox() to handle updating both obj and tool selection boxes.
-playtested, not working as expected... 
+
+removed sprite components moveIcon, addIcon, & minusIcon.
+modified SetActiveTool() to accept an int parameter, just like SetActiveObj().
+updated activeTool instance to be of type GameObject.
+created the move obj as a gameobject type, added to objList.
+updated various paths to use only the objList in builder widget.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
 
 bug: can't select tool icons.
 cause: we're using the sprite component's drawRec for collision checking..
@@ -71,7 +82,32 @@ we'll need to actually have a collision component associated with the sprite.
 this collision component will need to be aligned to the sprite.
 then we can check collisions against the collision component.
 
-but, everything else works besides the collision checks with the tool icons.
+
+
+
+whats the lightest way to associate sprite and collision components?
+these tool icons shouldnt be gameObjs.. that just pollutes the gameObj routines...
+
+
+there are two approaches we can take
+
+1. we have instnaces for sprite and collision rec
+2. we create gameobj instnaces, then set their anim frames and collision recs by hand
+
+thoughts...
+1 is the lighter approach
+2 is the consistent approach
+
+
+probably should go with option 2, so we can reuse any functions we may need/write
+since everything builder widget menu related will be a gameObj
+we can also put all the widget gameObjs onto a big list and then draw them as list
+we can also iterate over them for collisions
+then handle collisions based on their index
+
+option2 also reduces the number of named instances in room builder widget
+because we can just throw them on a gameObjs list
+then address them by objList[index]
 
 
 
@@ -83,23 +119,11 @@ but, everything else works besides the collision checks with the tool icons.
 
 
 
-
-we can check collisions with a sprite component using it's drawRec
-this is how we will check collisions with the tool icons..
-
-
-
-instead of displaying actors, we could use sprite components to show actors
-this would work the same way as the tool icons
 
 
 
 we must use the camera on the room builder screen
 in order to properly convert the mouse cursor's collRec position to world coordinates
-
-add an actor's list to builder widget, draw and display active just like objs
-
-
 
 
 

@@ -20,14 +20,18 @@ namespace DungeonRun
         public MenuRectangle divider2;
 
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
-        public GameObject activeObj; //points to an obj in the obj list
-        public List<GameObject> objList; //a list of room objects user can select
-
         public ComponentSprite selectionBoxTool; //highlites the currently selected obj
-        public ComponentSprite activeTool; //points to one of the following component sprites (tool icons)
-        public ComponentSprite moveIcon;
-        public ComponentSprite addIcon;
-        public ComponentSprite minusIcon;
+
+        public GameObject activeObj; //points to a RoomObj on the obj list
+        public GameObject activeTool; //points to a ToolObj on the obj list
+
+        public List<GameObject> objList; //a list of objects user can select
+        public int total;
+
+        
+
+
+
 
         public WidgetRoomBuilder()
         {
@@ -46,33 +50,23 @@ namespace DungeonRun
             #endregion
 
 
-            #region Create Icon sprites
-
-            moveIcon = new ComponentSprite(Assets.mainSheet,
-                new Vector2(16 * 1 + 8, 16 * 15),
-                new Byte4(14, 13, 0, 0), new Point(16, 16));
-
-            addIcon = new ComponentSprite(Assets.mainSheet,
-                new Vector2(16 * 3 + 8, 16 * 15),
-                new Byte4(14, 15, 0, 0), new Point(16, 16));
-
-            minusIcon = new ComponentSprite(Assets.mainSheet,
-                new Vector2(16 * 5 + 8, 16 * 15),
-                new Byte4(15, 15, 0, 0), new Point(16, 16));
-
-            #endregion
-
+            #region Create the SelectionBoxes
 
             selectionBoxObj = new ComponentSprite(
                 Assets.mainSheet, new Vector2(-100, 5000),
                 new Byte4(15, 7, 0, 0), new Point(16, 16));
-
             selectionBoxTool = new ComponentSprite(
                 Assets.mainSheet, new Vector2(-100, 5000),
                 new Byte4(15, 7, 0, 0), new Point(16, 16));
 
-            //create & populate the objList
+            #endregion
+
+
             objList = new List<GameObject>();
+
+
+            #region Populate the ObjList with Room Objects
+
             for (i = 0; i < 7; i++) //row
             {
                 for (int j = 0; j < 5; j++) //column
@@ -85,7 +79,7 @@ namespace DungeonRun
                     Functions_GameObject.SetType(obj, ObjType.WallStraight);
 
 
-                    #region Set the object properly
+                    #region Set the objects properly
 
                     if (i == 0) //first row
                     {
@@ -158,6 +152,56 @@ namespace DungeonRun
                     objList.Add(obj); 
                 }
             }
+
+            #endregion
+
+
+
+            //add actor objects
+
+            //add toolbar objects
+
+            #region Create Icon sprites
+
+
+            GameObject moveObj = new GameObject(Assets.mainSheet);
+            Functions_GameObject.ResetObject(moveObj);
+            //set the new position value for the move component
+            moveObj.compSprite.position.X = 16 * 1 + 8;
+            moveObj.compSprite.position.Y = 16 * 15;
+            //set the sprite to display
+            moveObj.compSprite.currentFrame.X = 14;
+            moveObj.compSprite.currentFrame.Y = 13;
+            //manually set collision rec
+            moveObj.compCollision.rec.X = 16 * 1 + 8 - 8;
+            moveObj.compCollision.rec.Y = 16 * 15 - 8;
+            //add the object to the list
+            objList.Add(moveObj);
+
+
+
+
+
+            /*
+            moveIcon = new ComponentSprite(Assets.mainSheet,
+                new Vector2(16 * 1 + 8, 16 * 15),
+                new Byte4(14, 13, 0, 0), new Point(16, 16));
+
+            addIcon = new ComponentSprite(Assets.mainSheet,
+                new Vector2(16 * 3 + 8, 16 * 15),
+                new Byte4(14, 15, 0, 0), new Point(16, 16));
+
+            minusIcon = new ComponentSprite(Assets.mainSheet,
+                new Vector2(16 * 5 + 8, 16 * 15),
+                new Byte4(15, 15, 0, 0), new Point(16, 16));
+            */
+
+
+            #endregion
+
+
+            total = objList.Count();
+
         }
 
         public override void Reset(int X, int Y)
@@ -188,7 +232,7 @@ namespace DungeonRun
             //set active object to first obj on objList
             SetActiveObj(0);
             //set active tool to move tool
-            SetActiveTool(moveIcon);
+            SetActiveTool(5*7);
         }
 
         public override void Update()
@@ -213,18 +257,18 @@ namespace DungeonRun
             if (window.interior.displayState == DisplayState.Opened)
             {
                 //draw objlist's sprites
-                for (i = 0; i < 5 * 7; i++)
+                for (i = 0; i < total; i++)
                 { Functions_Draw.Draw(objList[i].compSprite); }
 
                 if (Flags.DrawCollisions)
                 {   //draw objlist's collision recs
-                    for (i = 0; i < 5 * 7; i++)
+                    for (i = 0; i < total; i++)
                     { Functions_Draw.Draw(objList[i].compCollision); }
                 }
 
-                Functions_Draw.Draw(moveIcon);
-                Functions_Draw.Draw(addIcon);
-                Functions_Draw.Draw(minusIcon);
+                //Functions_Draw.Draw(moveIcon);
+                //Functions_Draw.Draw(addIcon);
+                //Functions_Draw.Draw(minusIcon);
                 
                 Functions_Draw.Draw(selectionBoxObj);
                 Functions_Draw.Draw(selectionBoxTool);
@@ -240,11 +284,11 @@ namespace DungeonRun
             selectionBoxObj.position = activeObj.compSprite.position;
         }
 
-        public void SetActiveTool(ComponentSprite Tool)
+        public void SetActiveTool(int index)
         {
-            activeTool = Tool;
+            activeTool = objList[index];
             selectionBoxTool.scale = 2.0f;
-            selectionBoxTool.position = activeTool.position;
+            selectionBoxTool.position = activeTool.compSprite.position;
         }
 
         public void UpdateSelectionBox(ComponentSprite SelectionBox)
