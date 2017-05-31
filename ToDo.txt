@@ -46,63 +46,16 @@ ram useage:
 	
 todo:
 
-10
+9
 
 
-Adding Room Builder/Editor - Part 16
+Adding Room Builder/Editor - Part 17
 
-we need to add the actor objects, which will be gameobjects.
-we'll set them up the same way we set up the toolbar ocns
-we'll need to update various codepaths that rely on the current list arrangement.
+we need to add the save, new, and load buttons to the builder widget.
 
-added gameobject instances for 5 enemy actors, correctly placed in widget window.
-updated RoomBuilderWidget.Reset().
-updated RoomBuilderScreen.HandleInput() to work on roomObjs, actors, and toolbar objs.
-playtested, working as expected.
-
-
-
-
-
-
-bug: can't select tool icons.
-cause: we're using the sprite component's drawRec for collision checking..
-and that doesn't work, because it represents the sprite's texture region in the spritesheet.
-we'll need to actually have a collision component associated with the sprite.
-this collision component will need to be aligned to the sprite.
-then we can check collisions against the collision component.
-
-
-
-
-whats the lightest way to associate sprite and collision components?
-these tool icons shouldnt be gameObjs.. that just pollutes the gameObj routines...
-
-
-there are two approaches we can take
-
-1. we have instnaces for sprite and collision rec
-2. we create gameobj instnaces, then set their anim frames and collision recs by hand
-
-thoughts...
-1 is the lighter approach
-2 is the consistent approach
-
-
-probably should go with option 2, so we can reuse any functions we may need/write
-since everything builder widget menu related will be a gameObj
-we can also put all the widget gameObjs onto a big list and then draw them as list
-we can also iterate over them for collisions
-then handle collisions based on their index
-
-option2 also reduces the number of named instances in room builder widget
-because we can just throw them on a gameObjs list
-then address them by objList[index]
-
-
-
-
-
+added ComponentButton instances for Save, New, and Load.
+properly placed withing the room builder widget, and drawn.
+playtested, looks correct, after a few alignement revisions.
 
 
 

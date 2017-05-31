@@ -28,7 +28,10 @@ namespace DungeonRun
         public List<GameObject> objList; //a list of objects user can select
         public int total;
 
-        
+        public ComponentButton saveBtn;
+        public ComponentButton newBtn;
+        public ComponentButton loadBtn;
+
 
         public WidgetRoomBuilder()
         {
@@ -254,6 +257,10 @@ namespace DungeonRun
 
 
             total = objList.Count();
+
+            saveBtn = new ComponentButton("save", new Point(16 * 1, 16 * 16 + 8));
+            newBtn = new ComponentButton("new", new Point(16 * 2 + 13, 16 * 16 + 8));
+            loadBtn = new ComponentButton("load", new Point(16 * 4 + 10, 16 * 16 + 8));
         }
 
         public override void Reset(int X, int Y)
@@ -320,6 +327,10 @@ namespace DungeonRun
 
                 Functions_Draw.Draw(selectionBoxObj);
                 Functions_Draw.Draw(selectionBoxTool);
+
+                Functions_Draw.Draw(saveBtn);
+                Functions_Draw.Draw(newBtn);
+                Functions_Draw.Draw(loadBtn);
             }
         }
 
