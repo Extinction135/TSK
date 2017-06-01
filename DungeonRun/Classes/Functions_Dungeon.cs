@@ -33,7 +33,7 @@ namespace DungeonRun
             {   //set the objPool texture
                 Functions_Pool.SetDungeonTexture(Assets.shopSheet);
                 //create the shop room
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), RoomType.Shop, 10, 0));
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), RoomType.Shop, 0));
 
                 //keep the title music playing
                 Functions_Music.PlayMusic(Music.Title);
@@ -44,9 +44,9 @@ namespace DungeonRun
 
 
                 //create the dungeon's rooms
-                Room exitRoom = new Room(new Point(0, 0), RoomType.Exit, 0, 0);
-                Room hubRoom = new Room(new Point(0, 0), RoomType.Hub, 0, 1);
-                Room bossRoom = new Room(new Point(0, 0), RoomType.Boss, 0, 2);
+                Room exitRoom = new Room(new Point(0, 0), RoomType.Exit, 0);
+                Room hubRoom = new Room(new Point(0, 0), RoomType.Hub, 1);
+                Room bossRoom = new Room(new Point(0, 0), RoomType.Boss, 2);
 
                 //place/move the rooms (relative to each other)
                 exitRoom.Move(16 * 10, 16 * 100);

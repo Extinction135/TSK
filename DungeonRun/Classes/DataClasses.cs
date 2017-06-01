@@ -70,10 +70,10 @@ namespace DungeonRun
         public Byte2 size = new Byte2(0, 0);
         public Point center = new Point(0, 0);
         public RoomType type;
-        public byte enemyCount;
         public int id;
-        public Room(Point Pos, RoomType Type, byte EnemyCount, int ID)
+        public Room(Point Pos, RoomType Type, int ID)
         {
+            id = ID;
             type = Type;
             //set room size based on type
             if (type == RoomType.Exit)      { size.X = 11; size.Y = 11; }
@@ -84,9 +84,6 @@ namespace DungeonRun
 
             collision.rec.Width = size.X * 16;
             collision.rec.Height = size.Y * 16;
-            enemyCount = EnemyCount;
-            id = ID;
-
             Move(Pos.X, Pos.Y);
         }
         public void Move(int X, int Y)

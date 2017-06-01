@@ -174,7 +174,7 @@ namespace DungeonRun
             if (Flags.SpawnMobs)
             {
                 //place enemies within the room
-                for (i = 0; i < Room.enemyCount; i++)
+                for (i = 0; i < 10; i++)
                 {
                     actorRef = Functions_Pool.GetActor();
                     //we SHOULD be checking to see if actorRef is null..

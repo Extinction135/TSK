@@ -24,7 +24,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             Widgets.RoomBuilder.Reset(0, 0);
-            room = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0, 0);
+            room = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0);
 
             //clear any previous dungeon data
             Functions_Dungeon.dungeon = new Dungeon();
