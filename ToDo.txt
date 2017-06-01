@@ -46,33 +46,17 @@ ram useage:
 	
 todo:
 
-9
+8
 
 
-Adding Room Builder/Editor - Part 27
+Adding Room Builder/Editor - Part 28
 
-removed enemyCount field from Room class.
-updated all references to pass the correct parameters to Room constructor.
-updated SpawnEnemies() to use a hardcoded value of 10 enemies.
-this spawning of enemies is only relevant to the Hub room.
-in the future enemies will be placed by hand, so eventually SpawnEnemies() will be removed.
-playtested, working as expected.
-
-
-
-
-
+planning how to create room doors, see BuildDoors() method.
 
 
 
 
 write the connectRooms() method and test that it works on the exit & hub rooms
-
-
-
-
-
-
 
 
 

@@ -43,6 +43,10 @@ namespace DungeonRun
                 Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
 
 
+
+
+
+
                 //create the dungeon's rooms
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit, 0);
                 Room hubRoom = new Room(new Point(0, 0), RoomType.Hub, 1);
@@ -87,7 +91,80 @@ namespace DungeonRun
 
 
 
-        public static void ConnectRooms(Room Parent, Room Child)
+        public static void BuildDoors(Room Room, Dungeon Dungeon)
+        {
+
+
+            //we could store a list of points with the dungeon that represent doors
+            //this would make door placement consistent between rooms
+            //if one of these door points collides with a wall, then the wall becomes a door
+            //the door keeps the walls direction
+
+            //based on the room.type, we can modify the door type
+            //if room is boss room, then door is trap door
+            //if room is hub room, and door point is index 0, then door is boss door
+            //we can set the boss door as door point 0, if we evaluate the boss room first for door positions
+
+
+
+
+
+            //this happens each time a dungeon is built...
+            //compare parent and child rooms
+            //using comparison rectangle...
+            //place compRec at parent room's position, match size
+            //expand compRec size by 16*2 in both directions
+            //move compRex -16,-16
+            //check compRec collision with child room
+            //if collision, continue, else return/exit method
+
+            //the child room is nearby, but may be located in a corner
+            //determine the direction child is located relative to parent
+
+            //using 4 booleans: collisionLeft, collisionRight, collisionUp, collisionDown
+            //check each direction until a collision with child room happens, else return/exit method
+            //place compRec at parent room's position, match size
+
+            //place compRec at parent room's position
+            //move -32 x axis, check child collision, GetDoorLocation(left), return
+
+            //place compRec at parent room's position
+            //move +32 x axis, check child collision, GetDoorLocation(right), return
+
+            //place compRec at parent room's position
+            //move -32 y axis, check child collision, GetDoorLocation(up), return
+
+            //place compRec at parent room's position
+            //move +32 y axis, check child collision, GetDoorLocation(down), return
+
+
+
+            //GetDoorLocation (left, right, up, or down)
+            //poke with a point value to determine a valid door location, along room's edge
+            //store all door locations on a point list
+            //if the door locations list is greater than 2
+            //choose the middle door location, else choose 1st door location
+
+
+
+
+
+            //this happens each time a room is built...
+            //when a room is built, check collisions between doorPoints and straight wall objs in room
+            //if any point collides with a straight wall obj, that wall obj becomes a door
+            //the door keeps the wall's direction enum
+
+
+
+
+
+        }
+
+
+
+
+
+        public static void ConnectRoomsOLD(Room Parent, Room Child)
         {   //connect parent to child from any direction
             Point poke = new Point(0, 0); //used to see if child.collision.contains() poke value
             List<Point> doorPositions = new List<Point>(); //a list of possible door positions
