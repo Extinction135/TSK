@@ -155,385 +155,17 @@ namespace DungeonRun
             #endregion
 
 
-            FinishRoom(Room); //add type specific room objs
+            //pass the room to the appropriate method for completion
+            if (Room.type == RoomType.Exit) { FinishExitRoom(Room); }
+            else if (Room.type == RoomType.Boss) { FinishBossRoom(Room); }
+            else if (Room.type == RoomType.Shop) { FinishShopRoom(Room); }
+
             CleanupRoom(Room); //remove overlapping objs
             //update the object pool, since we teleported objects around
             Functions_Pool.UpdateRoomObjPool();
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
-        }
-
-        public static void FinishRoom(Room Room)
-        {
-
-            #region Exit Room
-
-            if (Room.type == RoomType.Exit)
-            {
-
-                #region Create the Exit, place Hero at Exit
-
-                //create the exit
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X / 2) * 16 + pos.X + 8,
-                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-                Functions_GameObject.SetType(objRef, ObjType.Exit);
-
-                //place hero at exit door
-                Functions_Actor.SetType(Pool.hero, ActorType.Hero);
-                Functions_Movement.Teleport(Pool.hero.compMove,
-                    objRef.compSprite.position.X,
-                    objRef.compSprite.position.Y + 8);
-                Functions_Movement.StopMovement(Pool.hero.compMove);
-                Pool.hero.direction = Direction.Up; //face hero up
-
-                //place the exit light fx over exit obj
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X / 2) * 16 + pos.X + 8,
-                    Room.size.Y * 16 + pos.Y + 8 - 16 * 1);
-                Functions_GameObject.SetType(objRef, ObjType.ExitLightFX);
-
-                //create exit pillars
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X / 2) * 16 + pos.X + 8 - 16,
-                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-                Functions_GameObject.SetType(objRef, ObjType.ExitPillarLeft);
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X / 2) * 16 + pos.X + 8 + 16,
-                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-                Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
-
-                #endregion
-
-
-                #region Create the BossDoor, Decals, and Door Decorations
-
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    5 * 16 + pos.X + 8,
-                    0 * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.DoorBoss);
-                //build left wall torch
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (5 - 1) * 16 + pos.X + 8,
-                    0 * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-                //build right wall torch
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (5 + 1) * 16 + pos.X + 8,
-                    0 * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-
-                //build the boss welcome mat (left)
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    5 * 16 + pos.X + 0,
-                    1 * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-                //build the boss welcome mat (right)
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    6 * 16 + pos.X + 0,
-                    1 * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                objRef.compSprite.flipHorizontally = true;
-                Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-
-                #endregion
-
-
-                #region Create the Testing Chests
-
-                //place chest gameObj in bottom right corner
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X - 1) * 16 + pos.X + 8,
-                    1 * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.ChestGold);
-
-                //create a big key chest
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X - 1) * 16 + pos.X + 8,
-                    3 * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.ChestKey);
-
-                //create a map chest
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X - 1) * 16 + pos.X + 8,
-                    5 * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.ChestMap);
-
-                //create a heart piece chest
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X - 1) * 16 + pos.X + 8,
-                    7 * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.ChestHeartPiece);
-
-                #endregion
-
-
-
-                /*
-                //place skeleton pots along left wall
-                for (i = 0; i < Room.size.Y; i++)
-                {
-                    objRef = Functions_Pool.GetRoomObj();
-                    Functions_Movement.Teleport(objRef.compMove,
-                        0 * 16 + pos.X + 8,
-                        i * 16 + pos.Y + 8);
-                    objRef.direction = Direction.Down;
-                    Functions_GameObject.SetType(objRef, ObjType.PotSkull);
-                }
-                */
-
-
-
-                //Create testing spike blocks
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    7 * 16 + pos.X + 8,
-                    3 * 16 + pos.Y + 8);
-                Functions_GameObject.SetType(objRef, ObjType.BlockSpikes);
-
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    7 * 16 + pos.X + 8,
-                    7 * 16 + pos.Y + 8);
-                objRef.compMove.direction = Direction.Right;
-                Functions_GameObject.SetType(objRef, ObjType.BlockSpikes);
-
-
-                //place test conveyor belt
-                for (i = 0; i < Room.size.Y; i++)
-                {
-                    objRef = Functions_Pool.GetRoomObj();
-                    Functions_Movement.Teleport(objRef.compMove,
-                        15 * 16 + pos.X + 8,
-                        i * 16 + pos.Y + 8);
-                    objRef.direction = Direction.Down;
-                    Functions_GameObject.SetType(objRef, ObjType.ConveyorBelt);
-                }
-
-                //place a test bumper
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    13 * 16 + pos.X + 8,
-                    3 * 16 + pos.Y + 8);
-                Functions_GameObject.SetType(objRef, ObjType.Bumper);
-
-                //place test flamethrower
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    13 * 16 + pos.X + 8,
-                    5 * 16 + pos.Y + 8);
-                Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
-
-
-
-                #region Create Wall Statues
-
-                //place test wall statue object - top wall
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    8 * 16 + pos.X + 8,
-                    0 * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-                //place test wall statue object - left wall
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    -1 * 16 + pos.X + 8,
-                    5 * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Right;
-                Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-                //place test wall statue object - right wall
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X + 0) * 16 + pos.X + 8,
-                    7 * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Left;
-                Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-                //place test wall statue object - bottom wall
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    5 * 16 + pos.X + 8,
-                    (Room.size.Y + 1) * 16 - 16 + pos.Y + 8);
-                objRef.direction = Direction.Up;
-                Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-                #endregion
-
-
-
-                //spawn enemies inside of this room
-                SpawnEnemies(Room);
-            }
-
-            #endregion
-
-
-            #region Boss Room
-
-            else if (Room.type == RoomType.Boss)
-            {
-
-                #region Create Trap Door + Door Decorations
-
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    5 * 16 + pos.X + 8,
-                    Room.size.Y * 16 + pos.Y + 8);
-                objRef.direction = Direction.Up;
-                Functions_GameObject.SetType(objRef, ObjType.DoorTrap);
-                //build left wall torch
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (5 - 1) * 16 + pos.X + 8,
-                    Room.size.Y * 16 + pos.Y + 8);
-                objRef.direction = Direction.Up;
-                Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-                //build right wall torch
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (5 + 1) * 16 + pos.X + 8,
-                    Room.size.Y * 16 + pos.Y + 8);
-                objRef.direction = Direction.Up;
-                Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-
-                #endregion
-
-
-                //spawn a boss actor
-                actorRef = Functions_Pool.GetActor();
-                Functions_Actor.SetType(actorRef, ActorType.Boss);
-                //teleport boss to center of room
-                Functions_Movement.Teleport(actorRef.compMove,
-                    Room.center.X + 8,
-                    Room.center.Y + 8);
-
-                //randomly place debris around room
-                for (i = 0; i < 30; i++)
-                {
-                    objRef = Functions_Pool.GetRoomObj();
-                    Functions_Movement.Teleport(objRef.compMove,
-                        Functions_Random.Int(0, Room.size.X) * 16 + pos.X + 8,
-                        Functions_Random.Int(0, Room.size.Y) * 16 + pos.Y + 8);
-                    objRef.direction = Direction.Down;
-                    Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
-                }
-
-                //dont spawn any mobs in this room
-            }
-
-            #endregion
-
-
-            #region Create Shop Room
-
-            else if (Room.type == RoomType.Shop)
-            {
-
-
-                #region Create the Exit, place Hero at Exit
-
-                //create the exit
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X / 2) * 16 + pos.X + 8,
-                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-                Functions_GameObject.SetType(objRef, ObjType.Exit);
-
-                //place hero at exit door
-                Functions_Actor.SetType(Pool.hero, ActorType.Hero);
-                Pool.hero.state = ActorState.Idle;
-                Functions_Movement.Teleport(Pool.hero.compMove,
-                    objRef.compSprite.position.X,
-                    objRef.compSprite.position.Y + 8);
-                Functions_Movement.StopMovement(Pool.hero.compMove);
-                Pool.hero.direction = Direction.Up; //face hero up
-
-                //place the exit light fx over exit obj
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X / 2) * 16 + pos.X + 8,
-                    Room.size.Y * 16 + pos.Y + 8 - 16 * 1);
-                Functions_GameObject.SetType(objRef, ObjType.ExitLightFX);
-
-                //create exit pillars
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X / 2) * 16 + pos.X + 8 - 16,
-                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-                Functions_GameObject.SetType(objRef, ObjType.ExitPillarLeft);
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    (Room.size.X / 2) * 16 + pos.X + 8 + 16,
-                    Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-                Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
-
-                #endregion
-
-
-
-                //place some test shop objects
-
-                //bookcase
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    5 * 16 + pos.X + 8,
-                    0 * 16 + pos.Y + 0);
-                Functions_GameObject.SetType(objRef, ObjType.BlockDark);
-
-                //drawers
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    7 * 16 + pos.X + 8,
-                    0 * 16 + pos.Y + 0);
-                Functions_GameObject.SetType(objRef, ObjType.BlockLight);
-
-
-
-                //create all the vendors
-                CreateVendor(ObjType.VendorItems, new Vector2(1 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-                CreateVendor(ObjType.VendorPotions, new Vector2(4 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-                CreateVendor(ObjType.VendorMagic, new Vector2(7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-                CreateVendor(ObjType.VendorWeapons, new Vector2(10 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-                CreateVendor(ObjType.VendorArmor, new Vector2(13 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-                CreateVendor(ObjType.VendorEquipment, new Vector2(16 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-
-                //create story vendor
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    7 * 16 + pos.X + 8,
-                    8 * 16 + pos.Y + 0);
-                Functions_GameObject.SetType(objRef, ObjType.VendorStory);
-
-            }
-
-            #endregion
-
-
         }
 
         public static void SpawnEnemies(Room Room)
@@ -671,6 +303,348 @@ namespace DungeonRun
             #endregion
 
 
+        }
+
+
+
+        public static void FinishExitRoom(Room Room)
+        {
+
+            #region Create the Exit, place Hero at Exit
+
+            //create the exit
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+            Functions_GameObject.SetType(objRef, ObjType.Exit);
+
+            //place hero at exit door
+            Functions_Actor.SetType(Pool.hero, ActorType.Hero);
+            Functions_Movement.Teleport(Pool.hero.compMove,
+                objRef.compSprite.position.X,
+                objRef.compSprite.position.Y + 8);
+            Functions_Movement.StopMovement(Pool.hero.compMove);
+            Pool.hero.direction = Direction.Up; //face hero up
+
+            //place the exit light fx over exit obj
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 1);
+            Functions_GameObject.SetType(objRef, ObjType.ExitLightFX);
+
+            //create exit pillars
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8 - 16,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+            Functions_GameObject.SetType(objRef, ObjType.ExitPillarLeft);
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8 + 16,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+            Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
+
+            #endregion
+
+
+            #region Create the BossDoor, Decals, and Door Decorations
+
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                5 * 16 + pos.X + 8,
+                0 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.DoorBoss);
+            //build left wall torch
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (5 - 1) * 16 + pos.X + 8,
+                0 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.WallTorch);
+            //build right wall torch
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (5 + 1) * 16 + pos.X + 8,
+                0 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.WallTorch);
+
+            //build the boss welcome mat (left)
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                5 * 16 + pos.X + 0,
+                1 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.BossDecal);
+            //build the boss welcome mat (right)
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                6 * 16 + pos.X + 0,
+                1 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            objRef.compSprite.flipHorizontally = true;
+            Functions_GameObject.SetType(objRef, ObjType.BossDecal);
+
+            #endregion
+
+
+            #region Create the Testing Chests
+
+            //place chest gameObj in bottom right corner
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X - 1) * 16 + pos.X + 8,
+                1 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestGold);
+
+            //create a big key chest
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X - 1) * 16 + pos.X + 8,
+                3 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestKey);
+
+            //create a map chest
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X - 1) * 16 + pos.X + 8,
+                5 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestMap);
+
+            //create a heart piece chest
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X - 1) * 16 + pos.X + 8,
+                7 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestHeartPiece);
+
+            #endregion
+
+
+            /*
+            //place skeleton pots along left wall
+            for (i = 0; i < Room.size.Y; i++)
+            {
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    0 * 16 + pos.X + 8,
+                    i * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                Functions_GameObject.SetType(objRef, ObjType.PotSkull);
+            }
+            */
+
+            //Create testing spike blocks
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8,
+                3 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BlockSpikes);
+
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8,
+                7 * 16 + pos.Y + 8);
+            objRef.compMove.direction = Direction.Right;
+            Functions_GameObject.SetType(objRef, ObjType.BlockSpikes);
+
+            //place test conveyor belt
+            for (i = 0; i < Room.size.Y; i++)
+            {
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    15 * 16 + pos.X + 8,
+                    i * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                Functions_GameObject.SetType(objRef, ObjType.ConveyorBelt);
+            }
+
+            //place a test bumper
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                13 * 16 + pos.X + 8,
+                3 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.Bumper);
+
+            //place test flamethrower
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                13 * 16 + pos.X + 8,
+                5 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
+
+
+            #region Create Wall Statues
+
+            //place test wall statue object - top wall
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                8 * 16 + pos.X + 8,
+                0 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+            //place test wall statue object - left wall
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                -1 * 16 + pos.X + 8,
+                5 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Right;
+            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+            //place test wall statue object - right wall
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X + 0) * 16 + pos.X + 8,
+                7 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Left;
+            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+            //place test wall statue object - bottom wall
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                5 * 16 + pos.X + 8,
+                (Room.size.Y + 1) * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Up;
+            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+            #endregion
+
+
+            SpawnEnemies(Room);
+        }
+
+        public static void FinishBossRoom(Room Room)
+        {
+
+            #region Create Trap Door + Door Decorations
+
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                5 * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y + 8);
+            objRef.direction = Direction.Up;
+            Functions_GameObject.SetType(objRef, ObjType.DoorTrap);
+            //build left wall torch
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (5 - 1) * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y + 8);
+            objRef.direction = Direction.Up;
+            Functions_GameObject.SetType(objRef, ObjType.WallTorch);
+            //build right wall torch
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (5 + 1) * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y + 8);
+            objRef.direction = Direction.Up;
+            Functions_GameObject.SetType(objRef, ObjType.WallTorch);
+
+            #endregion
+
+
+            //randomly place debris around room
+            for (i = 0; i < 30; i++)
+            {
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    Functions_Random.Int(0, Room.size.X) * 16 + pos.X + 8,
+                    Functions_Random.Int(0, Room.size.Y) * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
+            }
+
+            //spawn a boss actor
+            actorRef = Functions_Pool.GetActor();
+            Functions_Actor.SetType(actorRef, ActorType.Boss);
+            //teleport boss to center of room
+            Functions_Movement.Teleport(actorRef.compMove,
+                Room.center.X + 8,
+                Room.center.Y + 8);
+        }
+
+        public static void FinishShopRoom(Room Room)
+        {
+
+            #region Create the Exit, place Hero at Exit
+
+            //create the exit
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+            Functions_GameObject.SetType(objRef, ObjType.Exit);
+
+            //place hero at exit door
+            Functions_Actor.SetType(Pool.hero, ActorType.Hero);
+            Pool.hero.state = ActorState.Idle;
+            Functions_Movement.Teleport(Pool.hero.compMove,
+                objRef.compSprite.position.X,
+                objRef.compSprite.position.Y + 8);
+            Functions_Movement.StopMovement(Pool.hero.compMove);
+            Pool.hero.direction = Direction.Up; //face hero up
+
+            //place the exit light fx over exit obj
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 1);
+            Functions_GameObject.SetType(objRef, ObjType.ExitLightFX);
+
+            //create exit pillars
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8 - 16,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+            Functions_GameObject.SetType(objRef, ObjType.ExitPillarLeft);
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8 + 16,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
+            Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
+
+            #endregion
+
+
+            #region Place some test shop objects
+
+            //bookcase
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                5 * 16 + pos.X + 8,
+                0 * 16 + pos.Y + 0);
+            Functions_GameObject.SetType(objRef, ObjType.BlockDark);
+            //drawers
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8,
+                0 * 16 + pos.Y + 0);
+            Functions_GameObject.SetType(objRef, ObjType.BlockLight);
+
+            #endregion
+
+
+            //create all the vendors
+            CreateVendor(ObjType.VendorItems, new Vector2(1 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorPotions, new Vector2(4 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorMagic, new Vector2(7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorWeapons, new Vector2(10 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorArmor, new Vector2(13 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorEquipment, new Vector2(16 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+
+            //create story vendor
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8,
+                8 * 16 + pos.Y + 0);
+            Functions_GameObject.SetType(objRef, ObjType.VendorStory);
         }
 
     }

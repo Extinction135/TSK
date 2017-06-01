@@ -76,9 +76,10 @@ namespace DungeonRun
         {
             type = Type;
             //set room size based on type
-            if (type == RoomType.Exit) { size.X = 20; size.Y = 10; }
+            if (type == RoomType.Exit)      { size.X = 20; size.Y = 10; }
+            else if (type == RoomType.Hub)  { size.X = 20; size.Y = 10; }
             else if (type == RoomType.Boss) { size.X = 20; size.Y = 10; }
-            else if (type == RoomType.Dev) { size.X = 20; size.Y = 10; }
+            else if (type == RoomType.Dev)  { size.X = 20; size.Y = 10; }
             else if (type == RoomType.Shop) { size.X = 20; size.Y = 10; }
 
             collision.rec.X = Pos.X;

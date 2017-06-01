@@ -46,15 +46,116 @@ ram useage:
 	
 todo:
 
-4
+13
 
 
-Adding Room Builder/Editor - Part 22
+Adding Room Builder/Editor - Part 23
 
-created Functions_Dungeon.ConnectRooms(Parent, Child).
-this method was ported from a game I worked on that has similar room and dungeon data.
-some refactoring was required to get it to fit into DungeonRun.
+added 'Hub' value to RoomType enumerator. 
+refactored FinishRoom() into separate methods: FinishExitRoom(), FinishBossRoom(), FinishShopRoom().
+moved calls to these functions into BuildRoom().
+removed the method FinishRoom().
+this makes program flow a bit clearer to me, instead of having many branching paths in a larger method.
 
+
+
+
+
+
+
+change how finishRoom() works
+it should no longer be creating doors
+this is in prep for testing/writing connectRooms()
+
+
+
+dungeon generation should create a linear north dungeon
+exit -> hub -> boss
+
+exit just has the exit door
+hub is filled with stuff & enemies
+boss has enemy debris + boss
+
+these rooms have set sizes as well
+which means dungeon generation needs to respect those sizes when placing rooms
+which should be done based on the room.size field
+this should not be hardcoded, in case we want to change room sizes later on
+
+
+initially, exit room will not connect to hub, because it wont have any doors
+but using draw collisions, we should be able to see that the room is placed correctly
+
+then we can write the connectRooms() method and test that it works on the exit & hub rooms
+
+
+
+
+
+
+
+
+
+
+
+
+
+when we build the room, we need to create the room's doors
+
+we'll need a way to figure out what rooms are nearby this room
+create a collision rec that is larger than the current room
+should be 16 * 2 larger on all sides
+check to see what room recs this collision rec collides with
+these rooms are the nearby rooms
+put them on a list
+
+for each nearby room on the list,
+use the 'poke' algorithm to determine the best place to put a door between the two rooms
+if there is a place to put a door, place a door at that position, in the parent room
+
+we could cache the room's neighbors at the end of dungeon generation
+this removes the need to do this everytime we build a room, reducing cost
+this list would then be iterated over, each room being passed to the connectRooms() method
+the method would determine the direction to connect the rooms
+
+
+
+
+
+
+
+
+
+
+
+ConnectRooms() isn't going to work the way we thought it was...
+because the child room objects list doesn't exist
+so we cant set the child door
+only the parent room's object list exist
+because we're using the obj pool..
+ONLY ONE ROOM EXISTS AT A TIME!!!
+
+we can only really build the parent room's doors
+which means the connectRooms() has to be deterministic
+when hero changes rooms, we'll build that room's doors
+and the doors SHOULD be placed in the same positions
+otherwise the hero will spawn into a wall
+
+
+
+
+
+if room is boss room, then the connecting door is a trap door
+if room connects to boss room, then the door is a boss door
+else each door is an open door
+
+
+
+
+
+
+
+
+we should pass the exit room and boss room to the connect rooms method
 
 
 

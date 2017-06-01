@@ -27,7 +27,7 @@ namespace DungeonRun
 
     public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
 
-    public enum RoomType { Exit, Boss, Shop, Dev } //Normal, Key, Hub, Secret
+    public enum RoomType { Exit, Hub, Boss, Shop, Dev } //Normal, Key, Hub, Secret
 
     public enum DungeonType { CursedCastle, Shop }
 
