@@ -46,26 +46,21 @@ ram useage:
 	
 todo:
 
-13
+12
 
 
-Adding Room Builder/Editor - Part 23
+Adding Room Builder/Editor - Part 24
 
-added 'Hub' value to RoomType enumerator. 
-refactored FinishRoom() into separate methods: FinishExitRoom(), FinishBossRoom(), FinishShopRoom().
-moved calls to these functions into BuildRoom().
-removed the method FinishRoom().
-this makes program flow a bit clearer to me, instead of having many branching paths in a larger method.
-
-
-
+created FinishHubRoom() method.
+added codepath to BuildRoom() to call FinishHubRoom().
+commented out code that created doors for Hub & Boss rooms.
+this is in prep for using ConnectRooms() to build doors.
+this also breaks the current dungeon implementation..
+so now we fix it.
 
 
 
 
-change how finishRoom() works
-it should no longer be creating doors
-this is in prep for testing/writing connectRooms()
 
 
 

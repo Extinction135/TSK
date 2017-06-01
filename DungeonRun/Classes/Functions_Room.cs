@@ -157,6 +157,7 @@ namespace DungeonRun
 
             //pass the room to the appropriate method for completion
             if (Room.type == RoomType.Exit) { FinishExitRoom(Room); }
+            else if (Room.type == RoomType.Hub) { FinishHubRoom(Room); }
             else if (Room.type == RoomType.Boss) { FinishBossRoom(Room); }
             else if (Room.type == RoomType.Shop) { FinishShopRoom(Room); }
 
@@ -309,6 +310,12 @@ namespace DungeonRun
 
         public static void FinishExitRoom(Room Room)
         {
+            // ***** we shouldn't be placing hero here
+            // ***** this should be happening upon dungeon completion
+            // ***** placing hero here is outside of the conceptual scope of this function
+            // ***** the exit room is always dungeon.rooms[0]
+            // ***** the exit door is always located in the same position inside the room
+
 
             #region Create the Exit, place Hero at Exit
 
@@ -348,7 +355,12 @@ namespace DungeonRun
 
             #endregion
 
+        }
 
+        public static void FinishHubRoom(Room Room)
+        {
+
+            /*
             #region Create the BossDoor, Decals, and Door Decorations
 
             objRef = Functions_Pool.GetRoomObj();
@@ -389,6 +401,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objRef, ObjType.BossDecal);
 
             #endregion
+            */
 
 
             #region Create the Testing Chests
@@ -428,6 +441,8 @@ namespace DungeonRun
             #endregion
 
 
+            #region Place Test Objects
+
             /*
             //place skeleton pots along left wall
             for (i = 0; i < Room.size.Y; i++)
@@ -455,7 +470,7 @@ namespace DungeonRun
             objRef.compMove.direction = Direction.Right;
             Functions_GameObject.SetType(objRef, ObjType.BlockSpikes);
 
-            //place test conveyor belt
+            //place conveyor belt
             for (i = 0; i < Room.size.Y; i++)
             {
                 objRef = Functions_Pool.GetRoomObj();
@@ -466,19 +481,21 @@ namespace DungeonRun
                 Functions_GameObject.SetType(objRef, ObjType.ConveyorBelt);
             }
 
-            //place a test bumper
+            //place bumper
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
                 13 * 16 + pos.X + 8,
                 3 * 16 + pos.Y + 8);
             Functions_GameObject.SetType(objRef, ObjType.Bumper);
 
-            //place test flamethrower
+            //place flamethrower
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
                 13 * 16 + pos.X + 8,
                 5 * 16 + pos.Y + 8);
             Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
+
+            #endregion
 
 
             #region Create Wall Statues
@@ -523,7 +540,7 @@ namespace DungeonRun
 
         public static void FinishBossRoom(Room Room)
         {
-
+            /*
             #region Create Trap Door + Door Decorations
 
             objRef = Functions_Pool.GetRoomObj();
@@ -548,7 +565,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objRef, ObjType.WallTorch);
 
             #endregion
-
+            */
 
             //randomly place debris around room
             for (i = 0; i < 30; i++)
