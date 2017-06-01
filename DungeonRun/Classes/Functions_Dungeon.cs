@@ -43,21 +43,22 @@ namespace DungeonRun
                 Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
 
 
-                //place exit room first
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 100), RoomType.Exit, 0, 0));
+                //create the dungeon's rooms
+                Room exitRoom = new Room(new Point(0, 0), RoomType.Exit, 0, 0);
+                Room hubRoom = new Room(new Point(0, 0), RoomType.Hub, 0, 1);
+                Room bossRoom = new Room(new Point(0, 0), RoomType.Boss, 0, 2);
 
-                //place hub room north of exit room, based on exit room size
-                dungeon.rooms.Add(new Room(
-                    new Point(16 * 10,
-                    dungeon.rooms[0].collision.rec.Y - (16 * dungeon.rooms[0].size.Y) - 16), 
-                    RoomType.Hub, 10, 1));
+                //place/move the rooms (relative to each other)
+                exitRoom.Move(16 * 10, 16 * 100);
+                hubRoom.Move(16 * 10, exitRoom.collision.rec.Y - (16 * hubRoom.size.Y) - 16);
+                bossRoom.Move(16 * 10, hubRoom.collision.rec.Y - (16 * bossRoom.size.Y) - 16);
 
-                //place boss room north of hub room, based on hub room size
-                dungeon.rooms.Add(new Room(
-                    new Point(16 * 10,
-                    dungeon.rooms[1].collision.rec.Y - (16 * dungeon.rooms[1].size.Y) - 16),
-                    RoomType.Boss, 0, 2));
+                //add rooms to the rooms list
+                dungeon.rooms.Add(exitRoom);
+                dungeon.rooms.Add(hubRoom);
+                dungeon.rooms.Add(bossRoom);
 
+                
 
 
 

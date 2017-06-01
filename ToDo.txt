@@ -46,22 +46,20 @@ ram useage:
 	
 todo:
 
-11
+10
 
 
-Adding Room Builder/Editor - Part 25
+Adding Room Builder/Editor - Part 26
 
-changed BuildDungeon().
-dungeon generation now creates a 3 room dungeon north.
-this layout is: exit -> hub -> boss rooms.
-this was done in prep for writing/checking ConnectRooms().
+changed size of exit room, tested that dungeon builds relative to room sizes.
+it does not, due to a bug. so we fix the bug now.
 
-added 'roomRec' field to ColorScheme class, set to transparent blue color.
-updated Funtions_Draw.Draw(Dungeon) to draw room rec's using this blue color.
-this change makes it easier to see where a room exists in the dungeon.
-playtested, dungeon rooms are being placed as expected.
-
-
+added Room.Move() method. 
+added call to Move() in Room constructor.
+refactored how dungeon rooms are created & placed.
+tested that dungeon builds relative to room sizes.
+changed room sizes to various values, tested.
+dungeon generation working properly.
 
 
 
