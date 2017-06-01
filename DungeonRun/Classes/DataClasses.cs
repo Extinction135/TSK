@@ -108,6 +108,7 @@ namespace DungeonRun
 
         public Color collision = new Color(100, 0, 0, 50);
         public Color interaction = new Color(0, 100, 0, 50);
+        public Color roomRec = new Color(0, 0, 100, 50);
 
         public Color buttonUp = new Color(44, 44, 44);
         public Color buttonOver = new Color(66, 66, 66);

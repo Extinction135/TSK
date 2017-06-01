@@ -21,7 +21,12 @@ namespace DungeonRun
         public static void Draw(Dungeon Dungeon)
         {   //draw the dungeon's room collision recs
             for (int i = 0; i < Dungeon.rooms.Count; i++)
-            { Draw(Dungeon.rooms[i].collision); }
+            {
+                ScreenManager.spriteBatch.Draw(
+                    Assets.dummyTexture, 
+                    Dungeon.rooms[i].collision.rec,
+                    Assets.colorScheme.roomRec);
+            }
         }
 
         public static void Draw(ComponentSprite Sprite)
@@ -59,14 +64,14 @@ namespace DungeonRun
             if(Coll.blocking)
             {
                 ScreenManager.spriteBatch.Draw(
-                Assets.dummyTexture, Coll.rec,
-                Assets.colorScheme.collision);
+                    Assets.dummyTexture, Coll.rec,
+                    Assets.colorScheme.collision);
             }
             else
             {
                 ScreenManager.spriteBatch.Draw(
-                Assets.dummyTexture, Coll.rec,
-                Assets.colorScheme.interaction);
+                    Assets.dummyTexture, Coll.rec,
+                    Assets.colorScheme.interaction);
             }
         }
 

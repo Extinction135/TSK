@@ -41,9 +41,25 @@ namespace DungeonRun
             else
             {   //set the objPool texture
                 Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
-                //populate the dungeon with rooms
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), RoomType.Exit, 10, 0));
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 10), RoomType.Boss, 10, 1));
+
+
+                //place exit room first
+                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 100), RoomType.Exit, 0, 0));
+
+                //place hub room north of exit room, based on exit room size
+                dungeon.rooms.Add(new Room(
+                    new Point(16 * 10,
+                    dungeon.rooms[0].collision.rec.Y - (16 * dungeon.rooms[0].size.Y) - 16), 
+                    RoomType.Hub, 10, 1));
+
+                //place boss room north of hub room, based on hub room size
+                dungeon.rooms.Add(new Room(
+                    new Point(16 * 10,
+                    dungeon.rooms[1].collision.rec.Y - (16 * dungeon.rooms[1].size.Y) - 16),
+                    RoomType.Boss, 0, 2));
+
+
+
 
                 //cycle thru dungeon tracks
                 if (Functions_Music.currentMusic == Assets.musicDungeonA)
@@ -54,7 +70,7 @@ namespace DungeonRun
                 { Functions_Music.PlayMusic(Music.DungeonA); }
             }
 
-            //build the first room in the dungeon (the spawn room)
+            //build the first room in the dungeon (room with exit)
             Functions_Room.BuildRoom(dungeon.rooms[0]);
             currentRoom = dungeon.rooms[0];
 

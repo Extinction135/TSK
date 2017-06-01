@@ -46,35 +46,37 @@ ram useage:
 	
 todo:
 
-12
+11
 
 
-Adding Room Builder/Editor - Part 24
+Adding Room Builder/Editor - Part 25
 
-created FinishHubRoom() method.
-added codepath to BuildRoom() to call FinishHubRoom().
-commented out code that created doors for Hub & Boss rooms.
-this is in prep for using ConnectRooms() to build doors.
-this also breaks the current dungeon implementation..
-so now we fix it.
+changed BuildDungeon().
+dungeon generation now creates a 3 room dungeon north.
+this layout is: exit -> hub -> boss rooms.
+this was done in prep for writing/checking ConnectRooms().
 
-
-
-
-
+added 'roomRec' field to ColorScheme class, set to transparent blue color.
+updated Funtions_Draw.Draw(Dungeon) to draw room rec's using this blue color.
+this change makes it easier to see where a room exists in the dungeon.
+playtested, dungeon rooms are being placed as expected.
 
 
-dungeon generation should create a linear north dungeon
-exit -> hub -> boss
 
-exit just has the exit door
-hub is filled with stuff & enemies
-boss has enemy debris + boss
+
+
+
+
+
 
 these rooms have set sizes as well
 which means dungeon generation needs to respect those sizes when placing rooms
 which should be done based on the room.size field
 this should not be hardcoded, in case we want to change room sizes later on
+
+
+
+
 
 
 initially, exit room will not connect to hub, because it wont have any doors
@@ -170,9 +172,22 @@ rooms should be connected using the door algorithm
 
 
 
-
 ConnectRooms() generates a bit of garbage
 cleanup the garbage so it's static (outside of function)
+
+
+
+
+
+
+
+
+get rid of enemy count from room data class
+enemies will be placed by hand
+but for now we'll just randomly create a number of enemies in hub room
+
+
+
 
 
 
