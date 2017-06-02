@@ -27,6 +27,20 @@ namespace DungeonRun
                     Dungeon.rooms[i].collision.rec,
                     Assets.colorScheme.roomRec);
             }
+
+            //draw the dungeon door locations too
+            for (int i = 0; i < Dungeon.doorLocations.Count; i++)
+            {
+                Rectangle doorPosRec = new Rectangle(0, 0, 16, 16);
+
+                doorPosRec.X = Dungeon.doorLocations[i].X;
+                doorPosRec.Y = Dungeon.doorLocations[i].Y;
+
+                ScreenManager.spriteBatch.Draw(
+                    Assets.dummyTexture,
+                    doorPosRec,
+                    Assets.colorScheme.interaction);
+            }
         }
 
         public static void Draw(ComponentSprite Sprite)

@@ -46,12 +46,48 @@ ram useage:
 	
 todo:
 
-8
+13
 
 
-Adding Room Builder/Editor - Part 28
+Adding Room Builder/Editor - Part 29
 
-planning how to create room doors, see BuildDoors() method.
+added List of Points to Dungeon class, called 'doorLocations'.
+created Functions_Dungeon.RoomsNearby(Room Parent, Room Child).
+created Functions_Dungeon.GetDoorLocations(Room Parent, Room Child).
+created Functions_Dungeon.Poke(Direction Dir, Room Parent, Room Child).
+created Functions_Room.SetDoors(Room Room).
+updated Functions_Draw.Draw(Dungeon) to draw the locations of door positions.
+
+playtested, and after some bug fixes, it's working perfectly. YAY!
+the foundation for the dungeon generation rountines has been written.
+
+
+
+
+
+
+
+
+
+
+
+//based on the room.type, we can modify the door type
+//if room is boss room, then door is trap door
+//if room is hub room, and door point is index 0, then door is boss door
+//we can set the boss door as door point 0, if we evaluate the boss room first for door positions
+
+
+
+
+
+
+working, yay
+
+
+when we build an exit room, the hero should not be placed at the exit
+we should place the hero at the exit only when the dungeon is built
+
+
 
 
 

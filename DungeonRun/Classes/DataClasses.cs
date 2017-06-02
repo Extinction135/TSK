@@ -101,6 +101,7 @@ namespace DungeonRun
         public Boolean bigKey = false;
         public Boolean map = false;
         public DungeonType type = DungeonType.CursedCastle;
+        public List<Point> doorLocations = new List<Point>();
     }
 
     public class ColorScheme

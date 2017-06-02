@@ -162,12 +162,15 @@ namespace DungeonRun
             else if (Room.type == RoomType.Shop) { FinishShopRoom(Room); }
 
             CleanupRoom(Room); //remove overlapping objs
+            SetDoors(Room); //set the room's doors
             //update the object pool, since we teleported objects around
             Functions_Pool.UpdateRoomObjPool();
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
         }
+
+
 
         public static void SpawnEnemies(Room Room)
         {
@@ -228,6 +231,38 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+
+
+
+        public static void SetDoors(Room Room)
+        {
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {   
+                    if (Pool.roomObjPool[i].group == ObjGroup.Wall)
+                    {   //check to see if wall collides with any doorPos point from dungeon
+                        for (int g = 0; g < Functions_Dungeon.dungeon.doorLocations.Count; g++)
+                        {
+                            if(Pool.roomObjPool[i].compCollision.rec.Contains(Functions_Dungeon.dungeon.doorLocations[g]))
+                            {   //update wall to be an open door
+                                Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
 
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {

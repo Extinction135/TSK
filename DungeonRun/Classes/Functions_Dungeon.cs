@@ -62,7 +62,42 @@ namespace DungeonRun
                 dungeon.rooms.Add(hubRoom);
                 dungeon.rooms.Add(bossRoom);
 
-                
+
+
+
+
+                //create the door location points
+                List<Room> buildList = new List<Room>();
+                buildList.Add(exitRoom);
+                buildList.Add(hubRoom);
+                buildList.Add(bossRoom);
+
+                while(buildList.Count() > 0)
+                {   //check first room against remaining rooms
+                    for (int i = 1; i < buildList.Count(); i++)
+                    {   //if the two rooms are nearby
+
+                        //Debug.WriteLine("rooms nearby: " + RoomsNearby(buildList[0], buildList[i]));
+                        //Debug.WriteLine("parent: " + buildList[0].type);
+                        //Debug.WriteLine("child: " + buildList[i].type);
+
+                        if (RoomsNearby(buildList[0], buildList[i]))
+                        {   //get door locations between these two rooms
+                            GetDoorLocations(buildList[0], buildList[i]);
+                        }
+                    }
+                    buildList.RemoveAt(0); //remove first room
+                }
+
+                //dump door locations
+                //Debug.WriteLine("doorlocations");
+                //for (int i = 0; i < dungeon.doorLocations.Count; i++)
+                //{ Debug.WriteLine("" + dungeon.doorLocations[i]); }
+
+
+
+
+
 
 
 
@@ -91,210 +126,127 @@ namespace DungeonRun
 
 
 
-        public static void BuildDoors(Room Room, Dungeon Dungeon)
+
+
+
+        static Rectangle compRec = new Rectangle(0, 0, 0, 0);
+        static Boolean RoomsNearby(Room Parent, Room Child)
+        {   //place & size comparisonRec to be 2 cells larger than parent
+            compRec.X = Parent.collision.rec.X - 32;
+            compRec.Y = Parent.collision.rec.Y - 32;
+            compRec.Width = Parent.collision.rec.Width + 64;
+            compRec.Height = Parent.collision.rec.Height + 64;
+            //ensure that compRec intersets child room
+            if (compRec.Intersects(Child.collision.rec))
+            { return true; } else { return false; }
+        }
+
+
+        public static void GetDoorLocations(Room Parent, Room Child)
+        {   //determine the direction child is located relative to parent
+            compRec.Width = Parent.collision.rec.Width;
+            compRec.Height = Parent.collision.rec.Height;
+
+            //check left
+            compRec.X = Parent.collision.rec.X - 32;
+            compRec.Y = Parent.collision.rec.Y;
+            if (compRec.Intersects(Child.collision.rec))
+            { Poke(Direction.Left, Parent, Child); return; }
+
+            //check right
+            compRec.X = Parent.collision.rec.X + 32;
+            compRec.Y = Parent.collision.rec.Y;
+            if (compRec.Intersects(Child.collision.rec))
+            { Poke(Direction.Right, Parent, Child); return; }
+
+            //check up
+            compRec.X = Parent.collision.rec.X;
+            compRec.Y = Parent.collision.rec.Y - 32;
+            if (compRec.Intersects(Child.collision.rec))
+            { Poke(Direction.Up, Parent, Child); return; }
+
+            //check down
+            compRec.X = Parent.collision.rec.X;
+            compRec.Y = Parent.collision.rec.Y + 32;
+            if (compRec.Intersects(Child.collision.rec))
+            { Poke(Direction.Down, Parent, Child); return; }
+        }
+
+
+        static Point poke = new Point(0, 0); //used to see if child.collision.contains() poke value
+        static void Poke(Direction Dir, Room Parent, Room Child)
         {
+            List<Point> doorPos = new List<Point>(); //a list of possible door positions
 
 
-            //we could store a list of points with the dungeon that represent doors
-            //this would make door placement consistent between rooms
-            //if one of these door points collides with a wall, then the wall becomes a door
-            //the door keeps the walls direction
+            #region Check Left
 
-            //based on the room.type, we can modify the door type
-            //if room is boss room, then door is trap door
-            //if room is hub room, and door point is index 0, then door is boss door
-            //we can set the boss door as door point 0, if we evaluate the boss room first for door positions
+            if (Dir == Direction.Left)
+            {   //iterate vertically left of parent from top left corner
+                for (int i = 0; i < Parent.size.Y; i++)
+                {
+                    poke.X = Parent.collision.rec.X - 24;
+                    poke.Y = Parent.collision.rec.Y + i * 16;
+                    if (Child.collision.rec.Contains(poke))
+                    { poke.X += 8;  doorPos.Add(poke); }
+                }
+            }
 
-
-
-
-
-            //this happens each time a dungeon is built...
-            //compare parent and child rooms
-            //using comparison rectangle...
-            //place compRec at parent room's position, match size
-            //expand compRec size by 16*2 in both directions
-            //move compRex -16,-16
-            //check compRec collision with child room
-            //if collision, continue, else return/exit method
-
-            //the child room is nearby, but may be located in a corner
-            //determine the direction child is located relative to parent
-
-            //using 4 booleans: collisionLeft, collisionRight, collisionUp, collisionDown
-            //check each direction until a collision with child room happens, else return/exit method
-            //place compRec at parent room's position, match size
-
-            //place compRec at parent room's position
-            //move -32 x axis, check child collision, GetDoorLocation(left), return
-
-            //place compRec at parent room's position
-            //move +32 x axis, check child collision, GetDoorLocation(right), return
-
-            //place compRec at parent room's position
-            //move -32 y axis, check child collision, GetDoorLocation(up), return
-
-            //place compRec at parent room's position
-            //move +32 y axis, check child collision, GetDoorLocation(down), return
+            #endregion
 
 
+            #region Check Right
 
-            //GetDoorLocation (left, right, up, or down)
-            //poke with a point value to determine a valid door location, along room's edge
-            //store all door locations on a point list
-            //if the door locations list is greater than 2
-            //choose the middle door location, else choose 1st door location
+            else if(Dir == Direction.Right)
+            {   //iterate vertically left of parent from top right corner
+                for (int i = 0; i < Parent.size.Y; i++)
+                {
+                    poke.X = Parent.collision.rec.X + Parent.collision.rec.Width + 24;
+                    poke.Y = Parent.collision.rec.Y + i * 16;
+                    if (Child.collision.rec.Contains(poke))
+                    { poke.X -= 8; doorPos.Add(poke); }
+                }
+            }
 
-
-
-
-
-            //this happens each time a room is built...
-            //when a room is built, check collisions between doorPoints and straight wall objs in room
-            //if any point collides with a straight wall obj, that wall obj becomes a door
-            //the door keeps the wall's direction enum
-
+            #endregion
 
 
+            #region Check Up
+
+            else if (Dir == Direction.Up)
+            {   //iterate horizontally above parent from top left corner
+                for (int i = 0; i < Parent.size.X; i++)
+                {
+                    poke.X = Parent.collision.rec.X + i * 16;
+                    poke.Y = Parent.collision.rec.Y - 24;
+                    if (Child.collision.rec.Contains(poke))
+                    { poke.Y += 8; doorPos.Add(poke); }
+                }
+            }
+
+            #endregion
 
 
+            #region Check Down
+
+            else if (Dir == Direction.Down)
+            {   //iterate horizontally above parent from top left corner
+                for (int i = 0; i < Parent.size.X; i++)
+                {
+                    poke.X = Parent.collision.rec.X + i * 16;
+                    poke.Y = Parent.collision.rec.Y + Parent.collision.rec.Height + 24;
+                    if (Child.collision.rec.Contains(poke))
+                    { poke.Y -= 8; doorPos.Add(poke); }
+                }
+            }
+
+            #endregion
+
+
+            if (doorPos.Count > 2) //choose middle door position
+            { dungeon.doorLocations.Add(doorPos[(int)doorPos.Count / 2]); }
+            else { dungeon.doorLocations.Add(doorPos[0]); } //choose 1st door
         }
-
-
-
-
-
-        public static void ConnectRoomsOLD(Room Parent, Room Child)
-        {   //connect parent to child from any direction
-            Point poke = new Point(0, 0); //used to see if child.collision.contains() poke value
-            List<Point> doorPositions = new List<Point>(); //a list of possible door positions
-            List<Direction> directions = new List<Direction>();
-            int counter;
-
-
-            #region Poke to see how the Parent and Child rooms can connect
-
-            //check up - iterate horizontally above parent from top left corner
-            for (counter = 0; counter < Parent.size.X; counter++)
-            {
-                poke.X = Parent.collision.rec.X + counter * 16;
-                poke.Y = Parent.collision.rec.Y - 32;
-                if (Child.collision.rec.Contains(poke)) { doorPositions.Add(poke); directions.Add(Direction.Up); }
-            }
-            //check down - iterate horizontally below parent from bottom left corner
-            for (counter = 0; counter < Parent.size.X; counter++)
-            {
-                poke.X = Parent.collision.rec.X + counter * 16;
-                poke.Y = Parent.collision.rec.Y + Parent.collision.rec.Height + 32;
-                if (Child.collision.rec.Contains(poke)) { doorPositions.Add(poke); directions.Add(Direction.Down); }
-            }
-            //check left - iterate vertically left of parent from top left corner
-            for (counter = 0; counter < Parent.size.Y; counter++)
-            {
-                poke.X = Parent.collision.rec.X - 32;
-                poke.Y = Parent.collision.rec.Y + counter * 16;
-                if (Child.collision.rec.Contains(poke)) { doorPositions.Add(poke); directions.Add(Direction.Left); }
-            }
-            //check right - iterate vertically right of parent from top left corner
-            for (counter = 0; counter < Parent.size.Y; counter++)
-            {
-                poke.X = Parent.collision.rec.X + Parent.collision.rec.Width + 32;
-                poke.Y = Parent.collision.rec.Y + counter * 16;
-                if (Child.collision.rec.Contains(poke)) { doorPositions.Add(poke); directions.Add(Direction.Right); }
-            }
-
-            #endregion
-
-
-            Vector2 doorPosition = new Vector2(); //create the door gameobject at this doorPosition
-            int doorChoice;
-            //if we only have 1 possible connection use it, otherwise choose the middlemost position to place a door at
-            if (doorPositions.Count == 1) { doorChoice = 0; }
-            else if (doorPositions.Count > 1) { doorChoice = (int)doorPositions.Count / 2; }
-            else { return; } //we did not find any possible connection between Parent and Child, bail from this method
-            //set the door position based on the choice we made above
-            doorPosition.X = doorPositions[doorChoice].X;
-            doorPosition.Y = doorPositions[doorChoice].Y;
-
-            //create the parent and child doors
-            GameObject parentDoor = Functions_Pool.GetRoomObj();
-            GameObject childDoor = Functions_Pool.GetRoomObj();
-
-
-            #region Based on direction selected, set the direction of both the parent and child doors, place them correctly
-
-            if (directions[doorChoice] == Direction.Up)
-            {
-                parentDoor.direction = Direction.Down;
-                childDoor.direction = Direction.Up;
-                Functions_Movement.Teleport(parentDoor.compMove, doorPosition.X + 8, doorPosition.Y + 16 + 8);
-                Functions_Movement.Teleport(childDoor.compMove, doorPosition.X + 8, doorPosition.Y + 16 + 8);
-                //parentDoor.sprite.position.X += 8;
-                //parentDoor.sprite.position.Y += 16 + 8;
-                //childDoor.sprite.position.X += 8;
-                //childDoor.sprite.position.Y += 16 + 8;
-            }
-            else if (directions[doorChoice] == Direction.Down)
-            {
-                parentDoor.direction = Direction.Up;
-                childDoor.direction = Direction.Down;
-                Functions_Movement.Teleport(parentDoor.compMove, doorPosition.X + 8, doorPosition.Y + 16 + 8 - 32 - 16);
-                Functions_Movement.Teleport(childDoor.compMove, doorPosition.X + 8, doorPosition.Y + 16 + 8 - 32 - 16);
-                //parentDoor.sprite.position.X += 8;
-                //parentDoor.sprite.position.Y += 16 + 8 - 32 - 16;
-                //childDoor.sprite.position.X += 8;
-                //childDoor.sprite.position.Y += 16 + 8 - 32 - 16;
-            }
-            else if (directions[doorChoice] == Direction.Left)
-            {
-                parentDoor.direction = Direction.Left;
-                childDoor.direction = Direction.Right;
-                Functions_Movement.Teleport(parentDoor.compMove, doorPosition.X + 8 + 16, doorPosition.Y + 0 + 8);
-                Functions_Movement.Teleport(childDoor.compMove, doorPosition.X + 8 + 16, doorPosition.Y + 0 + 8);
-                //parentDoor.sprite.position.X += 8 + 16;
-                //parentDoor.sprite.position.Y += 8 + 0;
-                //childDoor.sprite.position.X += 8 + 16;
-                //childDoor.sprite.position.Y += 8 + 0;
-            }
-            else if (directions[doorChoice] == Direction.Right)
-            {
-                parentDoor.direction = Direction.Right;
-                childDoor.direction = Direction.Left;
-                Functions_Movement.Teleport(parentDoor.compMove, doorPosition.X + 8 - 16 * 2, doorPosition.Y + 0 + 8);
-                Functions_Movement.Teleport(childDoor.compMove, doorPosition.X + 8 - 16 * 2, doorPosition.Y + 0 + 8);
-                //parentDoor.sprite.position.X += 8 - 16 * 2;
-                //parentDoor.sprite.position.Y += 8 + 0;
-                //childDoor.sprite.position.X += 8 - 16 * 2;
-                //childDoor.sprite.position.Y += 8 + 0;
-            }
-
-            #endregion
-
-
-            #region Change the door type based on the child room type
-
-            if (Child.type == RoomType.Boss)
-            {
-                //parentDoor.type = GameObject.Type.DungeonDoorBoss;
-                //childDoor.type = GameObject.Type.DungeonDoorTrap;
-                Functions_GameObject.SetType(parentDoor, ObjType.DoorBoss);
-                Functions_GameObject.SetType(childDoor, ObjType.DoorTrap);
-            }
-            else
-            {
-                Functions_GameObject.SetType(parentDoor, ObjType.DoorOpen);
-                Functions_GameObject.SetType(childDoor, ObjType.DoorOpen);
-            }
-            //else if (Child.type == RoomType.Secret)
-            //{ parentDoor.type = GameObject.Type.DungeonDoorBombable; childDoor.type = GameObject.Type.DungeonDoorBombed; }
-
-            #endregion
-            
-        }
-
-
-
-
 
 
     }
