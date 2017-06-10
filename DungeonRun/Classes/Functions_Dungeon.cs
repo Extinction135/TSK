@@ -131,9 +131,6 @@ namespace DungeonRun
 
 
 
-
-
-
         static Rectangle compRec = new Rectangle(0, 0, 0, 0);
         static Boolean RoomsNearby(Room Parent, Room Child)
         {   //place & size comparisonRec to be 2 cells larger than parent
@@ -252,7 +249,6 @@ namespace DungeonRun
             { dungeon.doorLocations.Add(doorPos[(int)doorPos.Count / 2]); }
             else { dungeon.doorLocations.Add(doorPos[0]); } //choose 1st door
         }
-
 
     }
 }

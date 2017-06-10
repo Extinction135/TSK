@@ -345,17 +345,10 @@ namespace DungeonRun
 
 
 
-        public static void FinishExitRoom(Room Room)
+
+
+        public static void PlaceExit(Room Room)
         {
-            // ***** we shouldn't be placing hero here
-            // ***** this should be happening upon dungeon completion
-            // ***** placing hero here is outside of the conceptual scope of this function
-            // ***** the exit room is always dungeon.rooms[0]
-            // ***** the exit door is always located in the same position inside the room
-
-
-            #region Create the Exit, place Hero at Exit
-
             //create the exit
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
@@ -381,9 +374,17 @@ namespace DungeonRun
                 (Room.size.X / 2) * 16 + pos.X + 8 + 16,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
             Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
+        }
 
-            #endregion
 
+
+
+
+
+
+        public static void FinishExitRoom(Room Room)
+        {
+            PlaceExit(Room);
         }
 
         public static void FinishHubRoom(Room Room)
@@ -579,32 +580,7 @@ namespace DungeonRun
 
         public static void FinishBossRoom(Room Room)
         {
-            /*
-            #region Create Trap Door + Door Decorations
-
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                5 * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8);
-            objRef.direction = Direction.Up;
-            Functions_GameObject.SetType(objRef, ObjType.DoorTrap);
-            //build left wall torch
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (5 - 1) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8);
-            objRef.direction = Direction.Up;
-            Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-            //build right wall torch
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (5 + 1) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8);
-            objRef.direction = Direction.Up;
-            Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-
-            #endregion
-            */
+            //place door decorations around trap door
 
             //randomly place debris around room
             for (i = 0; i < 30; i++)
@@ -628,45 +604,7 @@ namespace DungeonRun
 
         public static void FinishShopRoom(Room Room)
         {
-
-            #region Create the Exit, place Hero at Exit
-
-            //create the exit
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X / 2) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-            Functions_GameObject.SetType(objRef, ObjType.Exit);
-
-            //place hero at exit door
-            Functions_Actor.SetType(Pool.hero, ActorType.Hero);
-            Pool.hero.state = ActorState.Idle;
-            Functions_Movement.Teleport(Pool.hero.compMove,
-                objRef.compSprite.position.X,
-                objRef.compSprite.position.Y + 8);
-            Functions_Movement.StopMovement(Pool.hero.compMove);
-            Pool.hero.direction = Direction.Up; //face hero up
-
-            //place the exit light fx over exit obj
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X / 2) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 1);
-            Functions_GameObject.SetType(objRef, ObjType.ExitLightFX);
-
-            //create exit pillars
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X / 2) * 16 + pos.X + 8 - 16,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-            Functions_GameObject.SetType(objRef, ObjType.ExitPillarLeft);
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X / 2) * 16 + pos.X + 8 + 16,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-            Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
-
-            #endregion
+            PlaceExit(Room);
 
 
             #region Place some test shop objects

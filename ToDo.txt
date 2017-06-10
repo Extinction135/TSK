@@ -46,17 +46,16 @@ ram useage:
 	
 todo:
 
-10
+9
 
 
-Adding Room Builder/Editor - Part 33
+Adding Room Builder/Editor - Part 34
 
-we want torch decorations around bossDoor, and boss decals in front of door.
+we are duplicating code for creating exit in both FinishShopRoom() and FinishExitRoom().
+this could be put into it's own method, that accepts a Room as a parameter.
 
-updated BuildRoom() to SetDoors() prior to finishing a room.
-updated FinishHubRoom() to locate and store a reference to the bossDoor in the room.
-updated FinishHubRoom() to place torches on left and right of bossDoor ref.
-updated FinishHubRoom() to place boss decals in front of bossDoor ref.
+created PlaceExit(Room Room).
+updated FinishExitRoom() and FinishShopRoom() to use PlaceExit().
 playtested, working as expected.
 
 
@@ -68,18 +67,13 @@ playtested, working as expected.
 
 
 
+add method DecorateDoor(Obj Door, Room Room, ObjType Type)
+if type == torches, then place torches
+if type == pillars, then place pillars
 
 
-
-
-
-
-ConnectRooms() generates a bit of garbage
-cleanup the garbage so it's static (outside of function)
-
-
-
-
+each room should have door decorations (for open doors)
+exit, hub, and boss rooms
 
 
 
@@ -89,11 +83,8 @@ cleanup the garbage so it's static (outside of function)
 
 
 
-we could place decorations around other doors
-pillars, statues, torches, etc...
-other rooms could use these decorations
-could have a method that accepts a door and a room, plus a decoration type
-(pillars, torches, cracked walls, mix)
+
+
 
 
 
