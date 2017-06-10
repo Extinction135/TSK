@@ -23,7 +23,6 @@ namespace DungeonRun
         public static GameObject objRef;
         public static Actor actorRef;
         public static Point pos;
-        
 
 
 
@@ -253,7 +252,7 @@ namespace DungeonRun
                                 if (Room.type == RoomType.Boss)
                                 {
                                     Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap);
-                                    DecorateDoor(Pool.roomObjPool[i], ObjType.WallTorch);
+                                    DecorateDoor(Pool.roomObjPool[i], ObjType.WallPillar);
                                 }
                                 //if room is hub, and the doorLocation is 0 (boss door), then door is boss door
                                 else if (Room.type == RoomType.Hub && g == 0)

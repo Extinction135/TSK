@@ -46,24 +46,60 @@ ram useage:
 	
 todo:
 
-8
+7
 
 
-Adding Room Builder/Editor - Part 35
+Adding Room Builder/Editor - Part 36
 
-we need to be able to decorate doors in a generic manner.
+prep for saving and loading room data.
 
-created method DecorateDoor(GameObject Door, ObjType Type).
-this method places objects of Type on the left and right of Door.
-for now, we place pillar around the boss door.
-we place torches around all other doors, from SetDoors().
-removed routines for placing torches around doors from FinishHubRoom().
-moved the routine for placing boss floor decals into SetDoors().
-removed the reference to BossDoor, as it's no longer needed.
+added RoomData folder to project source.
+added dummy data to RoomData folder.
+updated DungeonRun.csproj file to recursively copy all files from RoomData to output directory.
+tested, RoomData is copied as expected to output directory.
 
-updated CleanupRoom() to check for wall on wall collisions.
-this must be done because we're placing pillar walls over other walls now.
-playtested, working as expected.
+
+
+
+
+
+
+standardize all room types + sizes (in constructor)
+
+objects will be able to overlap
+the objects we'll be saving will be located on the pool's roomObj list
+so we can just dump that list to XML file, ignoring inactive objects
+
+dump the room data to XML file
+
+roomData
+	type
+	list of objData
+	
+objData
+	type
+	x pos
+	y pos
+
+** we'll need to create objects that serve as actor spawn points
+** x & y pos are relative to the top left corner of room (room origin)
+
+
+
+
+
+
+
+
+
+load room data from XML file
+
+
+
+
+
+
+
 
 
 
@@ -163,6 +199,27 @@ Version 0.5 Milestones
 	adopt CursedCastle's roomData approach (Editor -> XML -> Randomly Choose a Room)
 	update dungeon generation routines to build complete dungeons
 	create room editor, standardize room sizes
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
