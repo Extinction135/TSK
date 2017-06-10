@@ -46,17 +46,15 @@ ram useage:
 	
 todo:
 
-13
+12
 
 
-Adding Room Builder/Editor - Part 30
+Adding Room Builder/Editor - Part 31
 
-when we build an exit room, the hero should not be placed at the exit
-we should place the hero at the exit only when the dungeon is built
+when the hero enters the boss room, the door he passes thru should shut.
+this means the only door in the boss room is a trap door.
 
-moved code that placed hero from Functions_Room.FinishExitRoom() to Functions_Dungeon.BuildDungeon().
-changed hero placement code to reference dungeon.rooms[0].
-organized BuildDungeon().
+updated SetDoors() to select a trap door type, if room is boss room.
 playtested, working as expected.
 
 
@@ -67,16 +65,13 @@ playtested, working as expected.
 
 
 
-
-
-
-
-
-we need to get the boss door working properly
-based on the room.type, we can modify the door type
-if room is boss room, then door is trap door
 if room is hub room, and door point is index 0, then door is boss door
 we can set the boss door as door point 0, if we evaluate the boss room first for door positions
+
+
+
+
+
 
 
 ConnectRooms() generates a bit of garbage

@@ -248,8 +248,16 @@ namespace DungeonRun
                         for (int g = 0; g < Functions_Dungeon.dungeon.doorLocations.Count; g++)
                         {
                             if(Pool.roomObjPool[i].compCollision.rec.Contains(Functions_Dungeon.dungeon.doorLocations[g]))
-                            {   //update wall to be an open door
-                                Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen);
+                            {   
+                                //if current room is boss room, then door is trap door
+                                if (Room.type == RoomType.Boss)
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap); }
+
+                                //all other rooms simply have open doors
+                                else { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen); }
+
+                                //sort the object that became a door
+                                Functions_Component.SetZdepth(Pool.roomObjPool[i].compSprite);
                             }
                         }
                     }
