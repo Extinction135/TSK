@@ -23,8 +23,7 @@ namespace DungeonRun
         public static GameObject objRef;
         public static Actor actorRef;
         public static Point pos;
-
-        static GameObject bossDoor;
+        
 
 
 
@@ -214,8 +213,10 @@ namespace DungeonRun
                 checkObjB = false; //check to see if ObjA can delete ObjB
                 if (Pool.roomObjPool[i].active) //if ObjA is active..
                 {   //certain objects delete other objects, if they collide
-                    if (Pool.roomObjPool[i].group == ObjGroup.Door ||
-                        Pool.roomObjPool[i].type == ObjType.WallStatue)
+                    if (Pool.roomObjPool[i].group == ObjGroup.Door 
+                        || Pool.roomObjPool[i].type == ObjType.WallStatue
+                        || Pool.roomObjPool[i].type == ObjType.WallPillar
+                        )
                     { checkObjB = true; }
                 }
 
@@ -250,12 +251,38 @@ namespace DungeonRun
                             {   
                                 //if current room is boss room, then door is trap door
                                 if (Room.type == RoomType.Boss)
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap); }
+                                {
+                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap);
+                                    DecorateDoor(Pool.roomObjPool[i], ObjType.WallTorch);
+                                }
                                 //if room is hub, and the doorLocation is 0 (boss door), then door is boss door
                                 else if (Room.type == RoomType.Hub && g == 0)
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBoss); }
+                                {
+                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBoss);
+                                    DecorateDoor(Pool.roomObjPool[i], ObjType.WallPillar);
+
+                                    //build the boss welcome mat (left)
+                                    objRef = Functions_Pool.GetRoomObj();
+                                    Functions_Movement.Teleport(objRef.compMove,
+                                        Pool.roomObjPool[i].compSprite.position.X - 8,
+                                        Pool.roomObjPool[i].compSprite.position.Y + 16);
+                                    objRef.direction = Direction.Down;
+                                    Functions_GameObject.SetType(objRef, ObjType.BossDecal);
+                                    //build the boss welcome mat (right)
+                                    objRef = Functions_Pool.GetRoomObj();
+                                    Functions_Movement.Teleport(objRef.compMove,
+                                        Pool.roomObjPool[i].compSprite.position.X + 8,
+                                        Pool.roomObjPool[i].compSprite.position.Y + 16);
+                                    objRef.direction = Direction.Down;
+                                    objRef.compSprite.flipHorizontally = true;
+                                    Functions_GameObject.SetType(objRef, ObjType.BossDecal);
+                                }
                                 //all other rooms simply have open doors
-                                else { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen); }
+                                else
+                                {
+                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen);
+                                    DecorateDoor(Pool.roomObjPool[i], ObjType.WallTorch);
+                                }
 
                                 //sort the object that became a door
                                 Functions_Component.SetZdepth(Pool.roomObjPool[i].compSprite);
@@ -343,10 +370,6 @@ namespace DungeonRun
 
         }
 
-
-
-
-
         public static void PlaceExit(Room Room)
         {
             //create the exit
@@ -376,9 +399,22 @@ namespace DungeonRun
             Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
         }
 
-
-
-
+        public static void DecorateDoor(GameObject Door, ObjType Type)
+        {   //build left wall torch/pillar/decoration
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                Door.compSprite.position.X - 16,
+                Door.compSprite.position.Y);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, Type);
+            //build right wall torch/pillar/decoration
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                Door.compSprite.position.X + 16,
+                Door.compSprite.position.Y);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, Type);
+        }
 
 
 
@@ -389,60 +425,6 @@ namespace DungeonRun
 
         public static void FinishHubRoom(Room Room)
         {
-
-            #region Locate the BossDoor in this room
-
-            bossDoor = null; //loop thru the room objects, locate the bossDoor
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].type == ObjType.DoorBoss)
-                {
-                    if (Pool.roomObjPool[i].active)
-                    { bossDoor = Pool.roomObjPool[i]; }
-                }
-            }
-
-            #endregion
-
-
-            #region Set Torch Decorations & Boss Decal
-
-            if (bossDoor != null)
-            {
-                //build left wall torch
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    bossDoor.compSprite.position.X - 16,
-                    bossDoor.compSprite.position.Y);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-                //build right wall torch
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    bossDoor.compSprite.position.X + 16,
-                    bossDoor.compSprite.position.Y);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-
-                //build the boss welcome mat (left)
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    bossDoor.compSprite.position.X - 8,
-                    bossDoor.compSprite.position.Y + 16);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-                //build the boss welcome mat (right)
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    bossDoor.compSprite.position.X + 8,
-                    bossDoor.compSprite.position.Y + 16);
-                objRef.direction = Direction.Down;
-                objRef.compSprite.flipHorizontally = true;
-                Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-            }
-
-            #endregion
-
 
             #region Create the Testing Chests
 
@@ -580,8 +562,6 @@ namespace DungeonRun
 
         public static void FinishBossRoom(Room Room)
         {
-            //place door decorations around trap door
-
             //randomly place debris around room
             for (i = 0; i < 30; i++)
             {

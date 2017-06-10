@@ -46,38 +46,24 @@ ram useage:
 	
 todo:
 
-9
+8
 
 
-Adding Room Builder/Editor - Part 34
+Adding Room Builder/Editor - Part 35
 
-we are duplicating code for creating exit in both FinishShopRoom() and FinishExitRoom().
-this could be put into it's own method, that accepts a Room as a parameter.
+we need to be able to decorate doors in a generic manner.
 
-created PlaceExit(Room Room).
-updated FinishExitRoom() and FinishShopRoom() to use PlaceExit().
+created method DecorateDoor(GameObject Door, ObjType Type).
+this method places objects of Type on the left and right of Door.
+for now, we place pillar around the boss door.
+we place torches around all other doors, from SetDoors().
+removed routines for placing torches around doors from FinishHubRoom().
+moved the routine for placing boss floor decals into SetDoors().
+removed the reference to BossDoor, as it's no longer needed.
+
+updated CleanupRoom() to check for wall on wall collisions.
+this must be done because we're placing pillar walls over other walls now.
 playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-add method DecorateDoor(Obj Door, Room Room, ObjType Type)
-if type == torches, then place torches
-if type == pillars, then place pillars
-
-
-each room should have door decorations (for open doors)
-exit, hub, and boss rooms
-
-
-
-
 
 
 
