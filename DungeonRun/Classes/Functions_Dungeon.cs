@@ -67,9 +67,11 @@ namespace DungeonRun
                 
                 //create the door location points
                 List<Room> buildList = new List<Room>();
+                //add boss room first, followed by hub room
+                buildList.Add(bossRoom); //the boss door pos should be
+                buildList.Add(hubRoom); //at index 0 of doorLocations
+                //then add whatever other rooms exist in dungeon
                 buildList.Add(exitRoom);
-                buildList.Add(hubRoom);
-                buildList.Add(bossRoom);
 
                 while(buildList.Count() > 0)
                 {   //check first room against remaining rooms
@@ -233,13 +235,13 @@ namespace DungeonRun
             #region Check Down
 
             else if (Dir == Direction.Down)
-            {   //iterate horizontally above parent from top left corner
+            {   //iterate horizontally below parent from bottom left corner
                 for (int i = 0; i < Parent.size.X; i++)
                 {
                     poke.X = Parent.collision.rec.X + i * 16;
                     poke.Y = Parent.collision.rec.Y + Parent.collision.rec.Height + 24;
                     if (Child.collision.rec.Contains(poke))
-                    { poke.Y -= 8; doorPos.Add(poke); }
+                    { poke.Y -= 24; doorPos.Add(poke); }
                 }
             }
 

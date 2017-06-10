@@ -252,7 +252,9 @@ namespace DungeonRun
                                 //if current room is boss room, then door is trap door
                                 if (Room.type == RoomType.Boss)
                                 { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap); }
-
+                                //if room is hub, and the doorLocation is 0 (boss door), then door is boss door
+                                else if (Room.type == RoomType.Hub && g == 0)
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBoss); }
                                 //all other rooms simply have open doors
                                 else { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen); }
 
