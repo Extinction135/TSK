@@ -46,39 +46,18 @@ ram useage:
 	
 todo:
 
-11
+10
 
 
-Adding Room Builder/Editor - Part 32
+Adding Room Builder/Editor - Part 33
 
-the door from the hub room to the boss room should be a boss door.
+we want torch decorations around bossDoor, and boss decals in front of door.
 
-reordered what rooms are placed on the buildList.
-the exit room is evaluated first, against the hub room.
-this makes the boss door index 0 on the doorLocations list.
-updated SetDoors() to check and see if room is hub room.
-if so, and if the doorLocation index is 0, then the door is set to a boss door.
-
-playtested - theres a bug with the Poke() method that is incorrectly placing doors.
-this only happens in the Check Down section.
-this section was never evaluated before, because we connected rooms in the Up direction.
-but because the buildList has been reordered, we are now Poking rooms in the Down direction.
-
-fixed an alignment issue with Poke(), in the Check Down section.
+updated BuildRoom() to SetDoors() prior to finishing a room.
+updated FinishHubRoom() to locate and store a reference to the bossDoor in the room.
+updated FinishHubRoom() to place torches on left and right of bossDoor ref.
+updated FinishHubRoom() to place boss decals in front of bossDoor ref.
 playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-plus, we want torch decorations around the door, and a boss decal in front of the door
-
-
 
 
 
@@ -102,6 +81,19 @@ cleanup the garbage so it's static (outside of function)
 
 
 
+
+
+
+
+
+
+
+
+we could place decorations around other doors
+pillars, statues, torches, etc...
+other rooms could use these decorations
+could have a method that accepts a door and a room, plus a decoration type
+(pillars, torches, cracked walls, mix)
 
 
 

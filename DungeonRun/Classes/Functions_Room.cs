@@ -24,6 +24,8 @@ namespace DungeonRun
         public static Actor actorRef;
         public static Point pos;
 
+        static GameObject bossDoor;
+
 
 
         public static void BuildRoom(Room Room)
@@ -155,6 +157,8 @@ namespace DungeonRun
             #endregion
 
 
+            SetDoors(Room); //set the room's doors
+
             //pass the room to the appropriate method for completion
             if (Room.type == RoomType.Exit) { FinishExitRoom(Room); }
             else if (Room.type == RoomType.Hub) { FinishHubRoom(Room); }
@@ -162,7 +166,7 @@ namespace DungeonRun
             else if (Room.type == RoomType.Shop) { FinishShopRoom(Room); }
 
             CleanupRoom(Room); //remove overlapping objs
-            SetDoors(Room); //set the room's doors
+            
             //update the object pool, since we teleported objects around
             Functions_Pool.UpdateRoomObjPool();
 
@@ -232,11 +236,6 @@ namespace DungeonRun
             }
         }
 
-
-
-
-
-
         public static void SetDoors(Room Room)
         {
             for (i = 0; i < Pool.roomObjCount; i++)
@@ -266,13 +265,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
-
-
-
-
 
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
@@ -397,48 +389,58 @@ namespace DungeonRun
         public static void FinishHubRoom(Room Room)
         {
 
-            /*
-            #region Create the BossDoor, Decals, and Door Decorations
+            #region Locate the BossDoor in this room
 
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                5 * 16 + pos.X + 8,
-                0 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.DoorBoss);
-            //build left wall torch
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (5 - 1) * 16 + pos.X + 8,
-                0 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-            //build right wall torch
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (5 + 1) * 16 + pos.X + 8,
-                0 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.WallTorch);
-
-            //build the boss welcome mat (left)
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                5 * 16 + pos.X + 0,
-                1 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-            //build the boss welcome mat (right)
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                6 * 16 + pos.X + 0,
-                1 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            objRef.compSprite.flipHorizontally = true;
-            Functions_GameObject.SetType(objRef, ObjType.BossDecal);
+            bossDoor = null; //loop thru the room objects, locate the bossDoor
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].type == ObjType.DoorBoss)
+                {
+                    if (Pool.roomObjPool[i].active)
+                    { bossDoor = Pool.roomObjPool[i]; }
+                }
+            }
 
             #endregion
-            */
+
+
+            #region Set Torch Decorations & Boss Decal
+
+            if (bossDoor != null)
+            {
+                //build left wall torch
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    bossDoor.compSprite.position.X - 16,
+                    bossDoor.compSprite.position.Y);
+                objRef.direction = Direction.Down;
+                Functions_GameObject.SetType(objRef, ObjType.WallTorch);
+                //build right wall torch
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    bossDoor.compSprite.position.X + 16,
+                    bossDoor.compSprite.position.Y);
+                objRef.direction = Direction.Down;
+                Functions_GameObject.SetType(objRef, ObjType.WallTorch);
+
+                //build the boss welcome mat (left)
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    bossDoor.compSprite.position.X - 8,
+                    bossDoor.compSprite.position.Y + 16);
+                objRef.direction = Direction.Down;
+                Functions_GameObject.SetType(objRef, ObjType.BossDecal);
+                //build the boss welcome mat (right)
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    bossDoor.compSprite.position.X + 8,
+                    bossDoor.compSprite.position.Y + 16);
+                objRef.direction = Direction.Down;
+                objRef.compSprite.flipHorizontally = true;
+                Functions_GameObject.SetType(objRef, ObjType.BossDecal);
+            }
+
+            #endregion
 
 
             #region Create the Testing Chests
