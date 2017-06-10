@@ -361,14 +361,6 @@ namespace DungeonRun
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
             Functions_GameObject.SetType(objRef, ObjType.Exit);
 
-            //place hero at exit door
-            Functions_Actor.SetType(Pool.hero, ActorType.Hero);
-            Functions_Movement.Teleport(Pool.hero.compMove,
-                objRef.compSprite.position.X,
-                objRef.compSprite.position.Y + 8);
-            Functions_Movement.StopMovement(Pool.hero.compMove);
-            Pool.hero.direction = Direction.Up; //face hero up
-
             //place the exit light fx over exit obj
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,

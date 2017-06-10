@@ -49,74 +49,15 @@ todo:
 13
 
 
-Adding Room Builder/Editor - Part 29
-
-added List of Points to Dungeon class, called 'doorLocations'.
-created Functions_Dungeon.RoomsNearby(Room Parent, Room Child).
-created Functions_Dungeon.GetDoorLocations(Room Parent, Room Child).
-created Functions_Dungeon.Poke(Direction Dir, Room Parent, Room Child).
-created Functions_Room.SetDoors(Room Room).
-updated Functions_Draw.Draw(Dungeon) to draw the locations of door positions.
-
-playtested, and after some bug fixes, it's working perfectly. YAY!
-the foundation for the dungeon generation rountines has been written.
-
-
-
-
-
-
-
-
-
-
-
-//based on the room.type, we can modify the door type
-//if room is boss room, then door is trap door
-//if room is hub room, and door point is index 0, then door is boss door
-//we can set the boss door as door point 0, if we evaluate the boss room first for door positions
-
-
-
-
-
-
-working, yay
-
+Adding Room Builder/Editor - Part 30
 
 when we build an exit room, the hero should not be placed at the exit
 we should place the hero at the exit only when the dungeon is built
 
-
-
-
-
-
-write the connectRooms() method and test that it works on the exit & hub rooms
-
-
-
-
-
-
-
-when we build the room, we need to create the room's doors
-
-we'll need a way to figure out what rooms are nearby this room
-create a collision rec that is larger than the current room
-should be 16 * 2 larger on all sides
-check to see what room recs this collision rec collides with
-these rooms are the nearby rooms
-put them on a list
-
-for each nearby room on the list,
-use the 'poke' algorithm to determine the best place to put a door between the two rooms
-if there is a place to put a door, place a door at that position, in the parent room
-
-we could cache the room's neighbors at the end of dungeon generation
-this removes the need to do this everytime we build a room, reducing cost
-this list would then be iterated over, each room being passed to the connectRooms() method
-the method would determine the direction to connect the rooms
+moved code that placed hero from Functions_Room.FinishExitRoom() to Functions_Dungeon.BuildDungeon().
+changed hero placement code to reference dungeon.rooms[0].
+organized BuildDungeon().
+playtested, working as expected.
 
 
 
@@ -128,72 +69,18 @@ the method would determine the direction to connect the rooms
 
 
 
-ConnectRooms() isn't going to work the way we thought it was...
-because the child room objects list doesn't exist
-so we cant set the child door
-only the parent room's object list exist
-because we're using the obj pool..
-ONLY ONE ROOM EXISTS AT A TIME!!!
-
-we can only really build the parent room's doors
-which means the connectRooms() has to be deterministic
-when hero changes rooms, we'll build that room's doors
-and the doors SHOULD be placed in the same positions
-otherwise the hero will spawn into a wall
 
 
 
-
-
-if room is boss room, then the connecting door is a trap door
-if room connects to boss room, then the door is a boss door
-else each door is an open door
-
-
-
-
-
-
-
-
-we should pass the exit room and boss room to the connect rooms method
-
-
-
-
-
-
-
-
-
-set the size based on the room type correctly
-update the basic dungeon algorithm to work with the newly sized rooms
-should be spawn room -> hub -> boss room
-simple 3 room dungeon, arranged north
-rooms should be connected using the door algorithm
-
-
-
+we need to get the boss door working properly
+based on the room.type, we can modify the door type
+if room is boss room, then door is trap door
+if room is hub room, and door point is index 0, then door is boss door
+we can set the boss door as door point 0, if we evaluate the boss room first for door positions
 
 
 ConnectRooms() generates a bit of garbage
 cleanup the garbage so it's static (outside of function)
-
-
-
-
-
-
-
-
-get rid of enemy count from room data class
-enemies will be placed by hand
-but for now we'll just randomly create a number of enemies in hub room
-
-
-
-
-
 
 
 

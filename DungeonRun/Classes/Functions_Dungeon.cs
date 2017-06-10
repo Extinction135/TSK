@@ -25,9 +25,11 @@ namespace DungeonRun
 
         public static void BuildDungeon(DungeonType Type)
         {
-            //create a new dungeon
             dungeon = new Dungeon();
             dungeon.type = Type;
+
+
+            #region Create Shop
 
             if (Type == DungeonType.Shop)
             {   //set the objPool texture
@@ -38,15 +40,16 @@ namespace DungeonRun
                 //keep the title music playing
                 Functions_Music.PlayMusic(Music.Title);
             }
+
+            #endregion
+
+
+            #region Create Dungeon
+
             else
             {   //set the objPool texture
                 Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
-
-
-
-
-
-
+                
                 //create the dungeon's rooms
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit, 0);
                 Room hubRoom = new Room(new Point(0, 0), RoomType.Hub, 1);
@@ -61,11 +64,7 @@ namespace DungeonRun
                 dungeon.rooms.Add(exitRoom);
                 dungeon.rooms.Add(hubRoom);
                 dungeon.rooms.Add(bossRoom);
-
-
-
-
-
+                
                 //create the door location points
                 List<Room> buildList = new List<Room>();
                 buildList.Add(exitRoom);
@@ -93,14 +92,7 @@ namespace DungeonRun
                 //Debug.WriteLine("doorlocations");
                 //for (int i = 0; i < dungeon.doorLocations.Count; i++)
                 //{ Debug.WriteLine("" + dungeon.doorLocations[i]); }
-
-
-
-
-
-
-
-
+                
                 //cycle thru dungeon tracks
                 if (Functions_Music.currentMusic == Assets.musicDungeonA)
                 { Functions_Music.PlayMusic(Music.DungeonB); }
@@ -110,9 +102,20 @@ namespace DungeonRun
                 { Functions_Music.PlayMusic(Music.DungeonA); }
             }
 
+            #endregion
+
+
             //build the first room in the dungeon (room with exit)
             Functions_Room.BuildRoom(dungeon.rooms[0]);
             currentRoom = dungeon.rooms[0];
+
+            //place hero in the current room (room 0), in front of exit door
+            Functions_Actor.SetType(Pool.hero, ActorType.Hero);
+            Functions_Movement.Teleport(Pool.hero.compMove,
+                (currentRoom.size.X / 2) * 16 + currentRoom.collision.rec.X + 8,
+                currentRoom.collision.rec.Y + (currentRoom.size.Y - 1) * 16);
+            Functions_Movement.StopMovement(Pool.hero.compMove);
+            Pool.hero.direction = Direction.Up; //face hero up
 
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();
