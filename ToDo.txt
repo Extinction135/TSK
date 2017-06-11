@@ -46,38 +46,102 @@ ram useage:
 	
 todo:
 
-6
-
-
-Adding Room Builder/Editor - Part 37
-
-initial setup for saving room data.
-
-created Functions_SaveLoad class.
-added call to Functions_SaveLoad.Save() from RoomBuilder screen's HandleInput().
-began working out the details of the room builder, only to realize that it should not be made in a UWP project.
-UWP uses .net core, which isn't mature, and does things it's own way, which is frustrating.
-so instead, we'll make the room builder using a directX project.
-this requires a bit of planning..
+13
 
 
 
 
+Preparing for Separation of Game and Editor
+
+simplify Game1.cs as much as possible, as each port will have it's own Game1.cs.
+the less thats in Game1.cs, the less has to be hand maintained between projects.
+
+reorganized data classes file.
+moved Flags class from Game1.cs into data classes file.
+created Flags constructor, which handles the release boolean settings.
+removed release settings routine from Game1.cs.
+moved responsibility for checking PlayMusic boolean flag into Functions_Music.Update().
+this was done to simplify Game1.cs.
+playtested, works except there is an audio bug.
+
+fixed a bug where the dungeon music didn't play & iterate properly.
+playtested, audio bug fixed.
 
 
 
 
-working with the XML is going to be difficult using a UWP project
-this is because .net core doesn't do things like .net does
-it would be easier to make the room editor using a traditional directX project, using .net
-the room editor would manage the creation + editing of the RoomData folder
 
-the various game ports would all use the same RoomData folder, copied into their output directory
 
-this means we need to move the game classes into their own folder
-and the UWP project should reference the class files it needs
-then we can create a directX project, ref the classes we need, and make the roomBuilder
-this also sets up porting the game to directX, and openGL
+
+when we create door decorations, they should inherit the direction of the door
+
+bug with music - the dungeon music isn't playing...
+
+
+
+
+
+Separating Game Classes from Project
+
+move all game classes into their own folder
+reference these classes back into the UWP app
+test that the game still works & deploys
+update the .gitignore file
+
+
+
+
+
+
+Splitting Game & RoomBuilder
+
+create directX project named RoomBuilder
+move classes specific to RoomBuilder into the project folder
+these editor classes shouldn't be in the shared game classes folder
+only reference game classes that are needed for editing rooms
+RoomBuilder will only display the RoomBuilder screen
+
+in UWP project, remove references to roomBuilder specific classes
+this reduces the total files necessary to build/run the game
+this completes the Game & Builder separation phase
+
+
+
+
+
+Porting Game to DirectX and OpenGL
+
+create directX project named DungeonRun, ref game classes
+create OpenGL project named DungeonRun, ref game classes
+test that both build and run properly
+Game1.cs should be shared between directX, openGL, & UWP projects
+update the .gitignore file (ignore all project bin & obj directories)
+
+
+
+
+
+
+
+Develop RoomBuilder project
+
+this project can use .net XML serialization & win forms & whatever else
+because it will never run on an xbox or be player facing
+
+create the roomBuilder screen & widgets
+
+
+
+
+Managing RoomData & Game Content
+
+for now, just manually copy the roomData folder into each game's working directory
+each game project will need to contain the csproj code to recursively copy roomData to output dir
+we'll also need to setup content files for each game project
+unless there is a way to reference assets for building, we'll have to copy assets into each projects directory too
+there's got to be a way to do this... ask on the forums
+
+
 
 
 

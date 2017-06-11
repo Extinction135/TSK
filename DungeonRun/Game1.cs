@@ -12,42 +12,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class Flags
-    {   //the master control booleans for various codepaths
-
-        // ******************************************************************
-        public static Boolean Release = false; //puts the game in release mode, overwrites other flags
-        // ******************************************************************
-
-        public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
-        public static Boolean DrawCollisions = false; //draw/hide collision rec components
-        public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
-        public static Boolean PlayMusic = false; //turns music on/off (but not soundFX)
-        public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
-        public static Boolean ProcessAI = true; //apply AI input to enemies / actors
-    }
-
     public class Game1 : Game
     {
-
         public GraphicsDeviceManager graphics;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            if (Flags.Release)
-            {   //set the game's flags for release mode
-                Flags.Debug = false;
-                Flags.DrawCollisions = false;
-                Flags.Paused = false;
-                Flags.PlayMusic = true;
-                Flags.SpawnMobs = true;
-                Flags.ProcessAI = true;
-            }
-
-            //hide/show the cursor based on Debug flag
             if (Flags.Debug) { IsMouseVisible = true; } else { IsMouseVisible = false; }
         }
 
@@ -67,7 +39,7 @@ namespace DungeonRun
         protected override void Update(GameTime gameTime)
         {
             ScreenManager.Update(gameTime);
-            if (Flags.PlayMusic) { Functions_Music.Update(); }
+            Functions_Music.Update();
             base.Update(gameTime);
         }
 

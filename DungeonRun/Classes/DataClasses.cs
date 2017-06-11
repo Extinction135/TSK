@@ -14,7 +14,398 @@ using System.Xml.Serialization;
 
 namespace DungeonRun
 {
-    //all the data classes the program uses
+    //Global Classes
+
+    public static class Flags
+    {   // **********************************************************************************************************
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        // **********************************************************************************************************
+
+        public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
+        public static Boolean DrawCollisions = false; //draw/hide collision rec components
+        public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
+        public static Boolean PlayMusic = false; //turns music on/off (but not soundFX)
+        public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
+        public static Boolean ProcessAI = true; //apply AI input to enemies / actors
+
+        static Flags()
+        {
+            if (Release)
+            {   //set flags for release mode
+                Debug = false;
+                DrawCollisions = false;
+                Paused = false;
+                PlayMusic = true;
+                SpawnMobs = true;
+                ProcessAI = true;
+            }
+        }
+    }
+
+    public static class Camera2D
+    {
+        public static GraphicsDevice graphics = ScreenManager.game.GraphicsDevice;
+        public static Boolean lazyMovement = false;
+        public static float speed = 5f; //how fast the camera moves
+        public static int deadzoneX = 50;
+        public static int deadzoneY = 50;
+
+        public static Matrix view = Matrix.Identity;
+        public static float targetZoom = 1.0f;
+        public static float zoomSpeed = 0.05f;
+        public static Vector2 currentPosition = Vector2.Zero;
+        public static Vector2 targetPosition = Vector2.Zero;
+
+        public static Matrix matRotation = Matrix.CreateRotationZ(0.0f);
+        public static Matrix matZoom;
+        public static Vector3 translateCenter;
+        public static Vector3 translateBody;
+        public static float currentZoom = 1.0f;
+        public static Vector2 distance;
+        public static Boolean followX = true;
+        public static Boolean followY = true;
+    }
+
+    public static class PlayerData
+    {
+        //'wraps' saveData and provides global access to this instance
+        public static SaveData saveData;
+        static PlayerData()
+        {
+            saveData = new SaveData();
+        }
+        public static void Save(string FileAddress)
+        {
+            //open the file, serialize the data to XML, and always close the stream
+            FileStream stream = File.Open(FileAddress, FileMode.OpenOrCreate);
+            //serialize PlayerData to XML file
+            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
+            serializer.Serialize(stream, saveData);
+        }
+        public static void Load(string FileAddress)
+        {
+            //deserialize the XML data to PlayerData
+            using (FileStream stream = new FileStream(FileAddress, FileMode.Open))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(PlayerData));
+                saveData = (SaveData)serializer.Deserialize(stream);
+            }
+        }
+    }
+
+    public static class DungeonRecord
+    {
+        public static int dungeonID;
+        public static Boolean beatDungeon;
+
+        public static Stopwatch timer;
+        public static int enemyCount;
+        public static int totalDamage;
+
+        public static void Reset()
+        {
+            dungeonID = 0;
+            beatDungeon = false;
+
+            timer = new Stopwatch();
+            timer.Reset();
+            enemyCount = 0;
+            totalDamage = 0;
+        }
+    }
+
+    public static class Pool
+    {
+        //actor pool handles all actors in the room including hero
+        public static int actorCount;           //total count of actors in pool
+        public static List<Actor> actorPool;    //the actual list of actors
+        public static int actorIndex;           //used to iterate thru the pool
+
+        //obj pool handles room objects, from dungeon & main sheet
+        public static int roomObjCount;
+        public static List<GameObject> roomObjPool;
+        public static int roomObjIndex;
+
+        //entity pool handles projectiles/particles/pickups, only from main sheet
+        public static int entityCount;
+        public static List<GameObject> entityPool;
+        public static int entityIndex;
+
+        public static int floorCount;
+        public static List<ComponentSprite> floorPool;
+        public static int floorIndex;
+
+        public static int counter;
+        public static int activeActor = 1; //tracks the current actor being handled by AI
+        public static Actor hero;
+        public static ComponentSprite heroShadow;
+
+        public static void Initialize()
+        {
+            //set the pool sizes
+            actorCount = 30;
+            roomObjCount = 150;
+            entityCount = 100;
+            floorCount = 500;
+
+            //actor pool
+            actorPool = new List<Actor>();
+            for (counter = 0; counter < actorCount; counter++)
+            {
+                actorPool.Add(new Actor());
+                Functions_Actor.SetType(actorPool[counter], ActorType.Hero);
+                Functions_Movement.Teleport(actorPool[counter].compMove, 0, 0);
+            }
+            actorIndex = 1;
+
+            //room obj pool
+            roomObjPool = new List<GameObject>();
+            for (counter = 0; counter < roomObjCount; counter++)
+            { roomObjPool.Add(new GameObject(Assets.shopSheet)); }
+            roomObjIndex = 0;
+
+            //entity pool
+            entityPool = new List<GameObject>();
+            for (counter = 0; counter < entityCount; counter++)
+            { entityPool.Add(new GameObject(Assets.mainSheet)); }
+            entityIndex = 0;
+
+            //floor pool
+            floorPool = new List<ComponentSprite>();
+            for (counter = 0; counter < floorCount; counter++)
+            {
+                floorPool.Add(new ComponentSprite(Assets.shopSheet,
+                    new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Point(16, 16)));
+            }
+            floorIndex = 0;
+
+            //reset all the pools
+            Functions_Pool.Reset();
+
+            //create an easy to remember reference to the player/hero actor
+            hero = actorPool[0];
+            //set the hero's initial loadout
+            //we shouldn't really be doing this here, it's buried in the pool class which makes no sense
+            //it'd be better to set the hero's loadOut when gameData is loaded
+            //and by default we should load gameData set to the new game values
+            hero.weapon = MenuItemType.WeaponSword;
+            hero.item = MenuItemType.Unknown;
+            hero.armor = MenuItemType.ArmorCloth;
+            hero.equipment = MenuItemType.Unknown;
+
+            //create the hero's shadow
+            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
+            heroShadow.zOffset = -16;
+        }
+
+    }
+
+    public static class Timing
+    {
+        public static Stopwatch stopWatch = new Stopwatch();
+        public static Stopwatch total = new Stopwatch();
+        public static TimeSpan updateTime = new TimeSpan();
+        public static TimeSpan drawTime = new TimeSpan();
+        public static TimeSpan totalTime = new TimeSpan();
+        public static void Reset() { stopWatch.Reset(); stopWatch.Start(); }
+    }
+
+    public static class Input
+    {
+        public static KeyboardState currentKeyboardState = new KeyboardState();
+        public static KeyboardState lastKeyboardState = new KeyboardState();
+
+        public static MouseState currentMouseState = new MouseState();
+        public static MouseState lastMouseState = new MouseState();
+
+        public static Point cursorPos = new Point(0, 0);
+        public static ComponentCollision cursorColl = new ComponentCollision();
+
+        public static GamePadState currentGamePadState = new GamePadState();
+        public static GamePadState lastGamePadState = new GamePadState();
+
+        public static float deadzone = 0.10f; //the amount of joystick movement classified as noise
+        public static Direction gamePadDirection = Direction.None;
+        public static Direction lastGamePadDirection = Direction.None;
+
+        static Input()
+        {
+            cursorColl.rec.Width = 4;
+            cursorColl.rec.Height = 4;
+            cursorColl.blocking = false;
+            cursorColl.active = true;
+        }
+    }
+
+    public static class WorldUI
+    {
+        public static int i;
+
+        public static List<ComponentSprite> hearts;
+        public static int lastHeartCount = 3;
+        public static int currentHeartCount = 3;
+        public static byte maxHearts = 0;
+        public static int pieceCounter = 0;
+
+        public static List<ComponentSprite> meterPieces;
+
+        public static List<ComponentSprite> weaponBkg;
+        public static List<ComponentSprite> itemBkg;
+        public static MenuItem currentWeapon;
+        public static MenuItem currentItem;
+        public static MenuItemType heroWeapon;
+        public static MenuItemType heroItem;
+
+        public static ComponentText frametime;
+
+        static WorldUI()
+        {
+            //create the heart sprites
+            hearts = new List<ComponentSprite>();
+            for (i = 0; i < 9; i++)
+            {
+                hearts.Add(new ComponentSprite(Assets.mainSheet,
+                    new Vector2(0, 0), new Byte4(15, 2, 0, 0),
+                    new Point(16, 16)));
+            }
+
+            //create the meter sprites
+            meterPieces = new List<ComponentSprite>();
+            for (i = 0; i < 11; i++)
+            {
+                meterPieces.Add(new ComponentSprite(Assets.mainSheet,
+                    new Vector2(0, 0), new Byte4(31, 3, 0, 0),
+                    new Point(8, 16)));
+            }
+
+            //set the head and tail meter frames
+            meterPieces[0].currentFrame.X = 28;
+            meterPieces[10].currentFrame.X = 28;
+            meterPieces[10].flipHorizontally = true;
+
+            //create the weapon and item background sprites
+            weaponBkg = new List<ComponentSprite>();
+            itemBkg = new List<ComponentSprite>();
+            for (i = 0; i < 4; i++)
+            {
+                weaponBkg.Add(new ComponentSprite(Assets.mainSheet,
+                    new Vector2(0, 0), new Byte4(15, 4, 0, 0),
+                    new Point(16, 16)));
+                itemBkg.Add(new ComponentSprite(Assets.mainSheet,
+                    new Vector2(0, 0), new Byte4(15, 4, 0, 0),
+                    new Point(16, 16)));
+            }
+
+            //create the current weapon & item menuItems
+            currentWeapon = new MenuItem();
+            currentItem = new MenuItem();
+
+            //get the hero's current weapon and item
+            heroWeapon = Pool.hero.weapon;
+            heroItem = Pool.hero.item;
+            Functions_MenuItem.SetMenuItemData(heroWeapon, currentWeapon);
+            Functions_MenuItem.SetMenuItemData(heroItem, currentItem);
+
+            //create the frametime text component
+            frametime = new ComponentText(Assets.font, "test",
+                new Vector2(640 - 55, 41), Assets.colorScheme.textLight);
+
+            //move the entire worldUI
+            Functions_WorldUI.Move(50, 50);
+        }
+    }
+
+    public static class DebugInfo
+    {
+        public static Rectangle background;
+        public static List<ComponentText> textFields;
+        public static int counter = 0;
+        public static int size = 0;
+
+        public static ComponentText timingText;
+        public static ComponentText actorText;
+        public static ComponentText moveText;
+        public static ComponentText poolText;
+        public static ComponentText creationText;
+        public static ComponentText recordText;
+        public static ComponentText musicText;
+        //public static ComponentText saveDataText;
+
+        public static long roomTime = 0;
+        public static long dungeonTime = 0;
+        public static byte framesTotal = 30; //how many frames to average over
+        public static byte frameCounter = 0; //increments thru frames 0-framesTotal
+        public static long updateTicks; //update tick times are added to this
+        public static long drawTicks; //draw tick times are added to this
+        public static long updateAvg; //stores the average update ticks
+        public static long drawAvg; //stores the average draw ticks
+
+        static DebugInfo()
+        {
+            textFields = new List<ComponentText>();
+
+            background = new Rectangle(0, 322 - 8, 640, 50);
+            int yPos = background.Y - 2;
+
+            timingText = new ComponentText(Assets.font, "",
+                new Vector2(2, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(timingText);
+
+            actorText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 3, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(actorText);
+
+            moveText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 7, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(moveText);
+
+            poolText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 12, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(poolText);
+
+            creationText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 17, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(creationText);
+
+            recordText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 21, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(recordText);
+
+            musicText = new ComponentText(Assets.font, "",
+                new Vector2(16 * 26 - 8, yPos + 00), Assets.colorScheme.textLight);
+            textFields.Add(musicText);
+
+            //saveDataText = new ComponentText(Assets.font, "",
+            //    new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textLight);
+            //textFields.Add(saveDataText);
+        }
+    }
+
+    public static class DebugMenu
+    {
+        public static Rectangle rec; //background rec
+        public static List<ComponentButton> buttons;
+        public static int counter;
+        static DebugMenu()
+        {
+            rec = new Rectangle(0, 0, 640, 13);
+            buttons = new List<ComponentButton>();
+            buttons.Add(new ComponentButton("draw collisions", new Point(2, 2)));
+            buttons.Add(new ComponentButton("build dungeon", new Point(68, 2)));
+            buttons.Add(new ComponentButton("max gold", new Point(127, 2)));
+            buttons.Add(new ComponentButton("dump savedata", new Point(168, 2)));
+            buttons.Add(new ComponentButton("room builder", new Point(229, 2)));
+            buttons.Add(new ComponentButton("overworld", new Point(284, 2)));
+        }
+    }
+
+
+
+
+
+
+
+
 
     public class Byte2
     {
@@ -230,7 +621,6 @@ namespace DungeonRun
         //portal
 
         public Boolean weaponBow = false;
-        //bow
         //axe
 
         public Boolean armorChest = false;
@@ -561,369 +951,6 @@ namespace DungeonRun
                 new Vector2(X, Y), Assets.colorScheme.textLight);
             bkg = new Rectangle(new Point(X, Y), new Point(9, 7));
             visible = true;
-        }
-    }
-
-
-
-
-
-    //Global Classes
-
-    public static class Camera2D
-    {
-        public static GraphicsDevice graphics = ScreenManager.game.GraphicsDevice;
-        public static Boolean lazyMovement = false;
-        public static float speed = 5f; //how fast the camera moves
-        public static int deadzoneX = 50;
-        public static int deadzoneY = 50;
-
-        public static Matrix view = Matrix.Identity;
-        public static float targetZoom = 1.0f;
-        public static float zoomSpeed = 0.05f;
-        public static Vector2 currentPosition = Vector2.Zero;
-        public static Vector2 targetPosition = Vector2.Zero;
-
-        public static Matrix matRotation = Matrix.CreateRotationZ(0.0f);
-        public static Matrix matZoom;
-        public static Vector3 translateCenter;
-        public static Vector3 translateBody;
-        public static float currentZoom = 1.0f;
-        public static Vector2 distance;
-        public static Boolean followX = true;
-        public static Boolean followY = true;
-    }
-
-    public static class PlayerData
-    {
-        //'wraps' saveData and provides global access to this instance
-        public static SaveData saveData;
-        static PlayerData()
-        {
-            saveData = new SaveData();
-        }
-        public static void Save(string FileAddress)
-        {
-            //open the file, serialize the data to XML, and always close the stream
-            FileStream stream = File.Open(FileAddress, FileMode.OpenOrCreate);
-            //serialize PlayerData to XML file
-            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-            serializer.Serialize(stream, saveData);
-        }
-        public static void Load(string FileAddress)
-        {
-            //deserialize the XML data to PlayerData
-            using (FileStream stream = new FileStream(FileAddress, FileMode.Open))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(PlayerData));
-                saveData = (SaveData)serializer.Deserialize(stream);
-            }
-        }
-    }
-
-    public static class DungeonRecord
-    {
-        public static int dungeonID;
-        public static Boolean beatDungeon;
-
-        public static Stopwatch timer;
-        public static int enemyCount;
-        public static int totalDamage;
-
-        public static void Reset()
-        {
-            dungeonID = 0;
-            beatDungeon = false;
-
-            timer = new Stopwatch();
-            timer.Reset();
-            enemyCount = 0;
-            totalDamage = 0;
-        }
-    }
-
-    public static class Pool
-    {
-        //actor pool handles all actors in the room including hero
-        public static int actorCount;           //total count of actors in pool
-        public static List<Actor> actorPool;    //the actual list of actors
-        public static int actorIndex;           //used to iterate thru the pool
-
-        //obj pool handles room objects, from dungeon & main sheet
-        public static int roomObjCount;
-        public static List<GameObject> roomObjPool;
-        public static int roomObjIndex;
-
-        //entity pool handles projectiles/particles/pickups, only from main sheet
-        public static int entityCount;
-        public static List<GameObject> entityPool;
-        public static int entityIndex;
-
-        public static int floorCount;
-        public static List<ComponentSprite> floorPool;
-        public static int floorIndex;
-
-        public static int counter;
-        public static int activeActor = 1; //tracks the current actor being handled by AI
-        public static Actor hero;
-        public static ComponentSprite heroShadow;
-
-        public static void Initialize()
-        {
-            //set the pool sizes
-            actorCount = 30;
-            roomObjCount = 150;
-            entityCount = 100;
-            floorCount = 500;
-
-            //actor pool
-            actorPool = new List<Actor>();
-            for (counter = 0; counter < actorCount; counter++)
-            {
-                actorPool.Add(new Actor());
-                Functions_Actor.SetType(actorPool[counter], ActorType.Hero);
-                Functions_Movement.Teleport(actorPool[counter].compMove, 0, 0);
-            }
-            actorIndex = 1;
-
-            //room obj pool
-            roomObjPool = new List<GameObject>();
-            for (counter = 0; counter < roomObjCount; counter++)
-            { roomObjPool.Add(new GameObject(Assets.shopSheet)); }
-            roomObjIndex = 0;
-
-            //entity pool
-            entityPool = new List<GameObject>();
-            for (counter = 0; counter < entityCount; counter++)
-            { entityPool.Add(new GameObject(Assets.mainSheet)); }
-            entityIndex = 0;
-
-            //floor pool
-            floorPool = new List<ComponentSprite>();
-            for (counter = 0; counter < floorCount; counter++)
-            {
-                floorPool.Add(new ComponentSprite(Assets.shopSheet,
-                    new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Point(16, 16)));
-            }
-            floorIndex = 0;
-
-            //reset all the pools
-            Functions_Pool.Reset();
-
-            //create an easy to remember reference to the player/hero actor
-            hero = actorPool[0];
-            //set the hero's initial loadout
-            //we shouldn't really be doing this here, it's buried in the pool class which makes no sense
-            //it'd be better to set the hero's loadOut when gameData is loaded
-            //and by default we should load gameData set to the new game values
-            hero.weapon = MenuItemType.WeaponSword;
-            hero.item = MenuItemType.Unknown;
-            hero.armor = MenuItemType.ArmorCloth;
-            hero.equipment = MenuItemType.Unknown;
-
-            //create the hero's shadow
-            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
-            heroShadow.zOffset = -16;
-        }
-
-    }
-
-    public static class Timing
-    {
-        public static Stopwatch stopWatch = new Stopwatch();
-        public static Stopwatch total = new Stopwatch();
-        public static TimeSpan updateTime = new TimeSpan();
-        public static TimeSpan drawTime = new TimeSpan();
-        public static TimeSpan totalTime = new TimeSpan();
-        public static void Reset() { stopWatch.Reset(); stopWatch.Start(); }
-    }
-
-    public static class Input
-    {
-        public static KeyboardState currentKeyboardState = new KeyboardState();
-        public static KeyboardState lastKeyboardState = new KeyboardState();
-
-        public static MouseState currentMouseState = new MouseState();
-        public static MouseState lastMouseState = new MouseState();
-
-        public static Point cursorPos = new Point(0, 0);
-        public static ComponentCollision cursorColl = new ComponentCollision();
-
-        public static GamePadState currentGamePadState = new GamePadState();
-        public static GamePadState lastGamePadState = new GamePadState();
-
-        public static float deadzone = 0.10f; //the amount of joystick movement classified as noise
-        public static Direction gamePadDirection = Direction.None;
-        public static Direction lastGamePadDirection = Direction.None;
-
-        static Input()
-        {
-            cursorColl.rec.Width = 4;
-            cursorColl.rec.Height = 4;
-            cursorColl.blocking = false;
-            cursorColl.active = true;
-        }
-    }
-
-    public static class WorldUI
-    {
-        public static int i;
-
-        public static List<ComponentSprite> hearts;
-        public static int lastHeartCount = 3;
-        public static int currentHeartCount = 3;
-        public static byte maxHearts = 0;
-        public static int pieceCounter = 0;
-
-        public static List<ComponentSprite> meterPieces;
-
-        public static List<ComponentSprite> weaponBkg;
-        public static List<ComponentSprite> itemBkg;
-        public static MenuItem currentWeapon;
-        public static MenuItem currentItem;
-        public static MenuItemType heroWeapon;
-        public static MenuItemType heroItem;
-
-        public static ComponentText frametime;
-
-        static WorldUI()
-        {
-            //create the heart sprites
-            hearts = new List<ComponentSprite>();
-            for (i = 0; i < 9; i++)
-            {
-                hearts.Add(new ComponentSprite(Assets.mainSheet,
-                    new Vector2(0, 0), new Byte4(15, 2, 0, 0),
-                    new Point(16, 16)));
-            }
-
-            //create the meter sprites
-            meterPieces = new List<ComponentSprite>();
-            for (i = 0; i < 11; i++)
-            {
-                meterPieces.Add(new ComponentSprite(Assets.mainSheet,
-                    new Vector2(0, 0), new Byte4(31, 3, 0, 0),
-                    new Point(8, 16)));
-            }
-
-            //set the head and tail meter frames
-            meterPieces[0].currentFrame.X = 28;
-            meterPieces[10].currentFrame.X = 28;
-            meterPieces[10].flipHorizontally = true;
-
-            //create the weapon and item background sprites
-            weaponBkg = new List<ComponentSprite>();
-            itemBkg = new List<ComponentSprite>();
-            for (i = 0; i < 4; i++)
-            {
-                weaponBkg.Add(new ComponentSprite(Assets.mainSheet,
-                    new Vector2(0, 0), new Byte4(15, 4, 0, 0),
-                    new Point(16, 16)));
-                itemBkg.Add(new ComponentSprite(Assets.mainSheet,
-                    new Vector2(0, 0), new Byte4(15, 4, 0, 0),
-                    new Point(16, 16)));
-            }
-
-            //create the current weapon & item menuItems
-            currentWeapon = new MenuItem();
-            currentItem = new MenuItem();
-
-            //get the hero's current weapon and item
-            heroWeapon = Pool.hero.weapon;
-            heroItem = Pool.hero.item;
-            Functions_MenuItem.SetMenuItemData(heroWeapon, currentWeapon);
-            Functions_MenuItem.SetMenuItemData(heroItem, currentItem);
-
-            //create the frametime text component
-            frametime = new ComponentText(Assets.font, "test",
-                new Vector2(640 - 55, 41), Assets.colorScheme.textLight);
-
-            //move the entire worldUI
-            Functions_WorldUI.Move(50, 50);
-        }
-    }
- 
-    public static class DebugInfo
-    {
-        public static Rectangle background;
-        public static List<ComponentText> textFields;
-        public static int counter = 0;
-        public static int size = 0;
-
-        public static ComponentText timingText;
-        public static ComponentText actorText;
-        public static ComponentText moveText;
-        public static ComponentText poolText;
-        public static ComponentText creationText;
-        public static ComponentText recordText;
-        public static ComponentText musicText;
-        //public static ComponentText saveDataText;
-
-        public static long roomTime = 0;
-        public static long dungeonTime = 0;
-        public static byte framesTotal = 30; //how many frames to average over
-        public static byte frameCounter = 0; //increments thru frames 0-framesTotal
-        public static long updateTicks; //update tick times are added to this
-        public static long drawTicks; //draw tick times are added to this
-        public static long updateAvg; //stores the average update ticks
-        public static long drawAvg; //stores the average draw ticks
-
-        static DebugInfo()
-        {
-            textFields = new List<ComponentText>();
-
-            background = new Rectangle(0, 322 - 8, 640, 50);
-            int yPos = background.Y - 2;
-
-            timingText = new ComponentText(Assets.font, "",
-                new Vector2(2, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(timingText);
-
-            actorText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 3, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(actorText);
-
-            moveText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 7, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(moveText);
-
-            poolText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 12, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(poolText);
-
-            creationText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 17, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(creationText);
-
-            recordText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 21, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(recordText);
-
-            musicText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 26 - 8, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(musicText);
-
-            //saveDataText = new ComponentText(Assets.font, "",
-            //    new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textLight);
-            //textFields.Add(saveDataText);
-        }
-    }
-
-    public static class DebugMenu
-    {
-        public static Rectangle rec; //background rec
-        public static List<ComponentButton> buttons;
-        public static int counter;
-        static DebugMenu()
-        {
-            rec = new Rectangle(0, 0, 640, 13);
-            buttons = new List<ComponentButton>();
-            buttons.Add(new ComponentButton("draw collisions", new Point(2, 2)));
-            buttons.Add(new ComponentButton("build dungeon", new Point(68, 2)));
-            buttons.Add(new ComponentButton("max gold", new Point(127, 2)));
-            buttons.Add(new ComponentButton("dump savedata", new Point(168, 2)));
-            buttons.Add(new ComponentButton("room builder", new Point(229, 2)));
-            buttons.Add(new ComponentButton("overworld", new Point(284, 2)));
         }
     }
 

@@ -18,7 +18,7 @@ namespace DungeonRun
         public static ScreenDungeon dungeonScreen;
         public static Dungeon dungeon; //the last dungeon created
         public static Room currentRoom; //points to a room on dungeon's roomList
-
+        public static int dungeonTrack = 0;
 
 
         public static void Initialize(ScreenDungeon DungeonScreen) { dungeonScreen = DungeonScreen; }
@@ -94,14 +94,14 @@ namespace DungeonRun
                 //Debug.WriteLine("doorlocations");
                 //for (int i = 0; i < dungeon.doorLocations.Count; i++)
                 //{ Debug.WriteLine("" + dungeon.doorLocations[i]); }
-                
+
+                //choose the dungeon track
+                if (dungeonTrack == 0) { Functions_Music.PlayMusic(Music.DungeonA); }
+                else if (dungeonTrack == 1) { Functions_Music.PlayMusic(Music.DungeonB); }
+                else if (dungeonTrack == 2) { Functions_Music.PlayMusic(Music.DungeonC); }
                 //cycle thru dungeon tracks
-                if (Functions_Music.currentMusic == Assets.musicDungeonA)
-                { Functions_Music.PlayMusic(Music.DungeonB); }
-                else if (Functions_Music.currentMusic == Assets.musicDungeonB)
-                { Functions_Music.PlayMusic(Music.DungeonC); }
-                else if (Functions_Music.currentMusic == Assets.musicDungeonC)
-                { Functions_Music.PlayMusic(Music.DungeonA); }
+                dungeonTrack++;
+                if (dungeonTrack > 2) { dungeonTrack = 0; }
             }
 
             #endregion
