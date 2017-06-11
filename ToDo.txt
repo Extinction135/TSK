@@ -46,18 +46,19 @@ ram useage:
 	
 todo:
 
-12
+11
 
 
 
 
-Minor Bug Fix
-
-fixed a minor bug where door decorations were placed always facing down.
-now they are placed with the same direction as the door they decorate.
+moved the UWP project into it's own folder.
+updated the .gitignore file.
 playtested, working as expected.
 
-
+created GameClasses folder, copied all game classes here.
+deleted all classes from UWP project.
+added files from GameClasses folder to UWP project (as link).
+playtested, working as expected.
 
 
 
@@ -71,7 +72,7 @@ Separating Game Classes from Project
 move all game classes into their own folder
 reference these classes back into the UWP app
 test that the game still works & deploys
-update the .gitignore file
+updated the .gitignore file.
 
 
 

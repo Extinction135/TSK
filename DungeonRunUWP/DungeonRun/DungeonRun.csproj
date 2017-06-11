@@ -97,58 +97,156 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Functions_Actor.cs" />
-    <Compile Include="Classes\Functions_Alignment.cs" />
-    <Compile Include="Classes\Functions_Animation.cs" />
-    <Compile Include="Classes\Assets.cs" />
+    <Compile Include="..\..\GameClasses\Assets.cs">
+      <Link>Classes\Assets.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\DataClasses.cs">
+      <Link>Classes\DataClasses.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Enumerators.cs">
+      <Link>Classes\Enumerators.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Actor.cs">
+      <Link>Classes\Functions_Actor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_ActorAnimationList.cs">
+      <Link>Classes\Functions_ActorAnimationList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Ai.cs">
+      <Link>Classes\Functions_Ai.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Alignment.cs">
+      <Link>Classes\Functions_Alignment.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Animation.cs">
+      <Link>Classes\Functions_Animation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Battle.cs">
+      <Link>Classes\Functions_Battle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Camera2D.cs">
+      <Link>Classes\Functions_Camera2D.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Collision.cs">
+      <Link>Classes\Functions_Collision.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Component.cs">
+      <Link>Classes\Functions_Component.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Debug.cs">
+      <Link>Classes\Functions_Debug.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Direction.cs">
+      <Link>Classes\Functions_Direction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Draw.cs">
+      <Link>Classes\Functions_Draw.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Dungeon.cs">
+      <Link>Classes\Functions_Dungeon.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Entity.cs">
+      <Link>Classes\Functions_Entity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_GameObject.cs">
+      <Link>Classes\Functions_GameObject.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_GameObjectAnimList.cs">
+      <Link>Classes\Functions_GameObjectAnimList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Input.cs">
+      <Link>Classes\Functions_Input.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Interaction.cs">
+      <Link>Classes\Functions_Interaction.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Item.cs">
+      <Link>Classes\Functions_Item.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Loot.cs">
+      <Link>Classes\Functions_Loot.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_MenuItem.cs">
+      <Link>Classes\Functions_MenuItem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Movement.cs">
+      <Link>Classes\Functions_Movement.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Music.cs">
+      <Link>Classes\Functions_Music.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Pool.cs">
+      <Link>Classes\Functions_Pool.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Random.cs">
+      <Link>Classes\Functions_Random.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Room.cs">
+      <Link>Classes\Functions_Room.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_SaveLoad.cs">
+      <Link>Classes\Functions_SaveLoad.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_WorldUI.cs">
+      <Link>Classes\Functions_WorldUI.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Screen.cs">
+      <Link>Classes\Screen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenDialog.cs">
+      <Link>Classes\ScreenDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenDungeon.cs">
+      <Link>Classes\ScreenDungeon.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenInventory.cs">
+      <Link>Classes\ScreenInventory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenManager.cs">
+      <Link>Classes\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
+      <Link>Classes\ScreenOverworld.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenRoomBuilder.cs">
+      <Link>Classes\ScreenRoomBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenSummary.cs">
+      <Link>Classes\ScreenSummary.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenVendor.cs">
+      <Link>Classes\ScreenVendor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Widget.cs">
+      <Link>Classes\Widget.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetDialog.cs">
+      <Link>Classes\WidgetDialog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetForSale.cs">
+      <Link>Classes\WidgetForSale.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetInfo.cs">
+      <Link>Classes\WidgetInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetInventory.cs">
+      <Link>Classes\WidgetInventory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetLoadout.cs">
+      <Link>Classes\WidgetLoadout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetOptions.cs">
+      <Link>Classes\WidgetOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetRoomBuilder.cs">
+      <Link>Classes\WidgetRoomBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetStats.cs">
+      <Link>Classes\WidgetStats.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Functions_Battle.cs" />
-    <Compile Include="Classes\Functions_Camera2D.cs" />
-    <Compile Include="Classes\Functions_Component.cs" />
-    <Compile Include="Classes\Functions_Debug.cs" />
-    <Compile Include="Classes\Functions_Direction.cs" />
-    <Compile Include="Classes\Functions_Draw.cs" />
-    <Compile Include="Classes\Functions_Dungeon.cs" />
-    <Compile Include="Classes\Enumerators.cs" />
-    <Compile Include="Classes\Functions_GameObjectAnimList.cs" />
-    <Compile Include="Classes\Functions_GameObject.cs" />
-    <Compile Include="Classes\Functions_Collision.cs" />
-    <Compile Include="Classes\Functions_Input.cs" />
-    <Compile Include="Classes\Functions_Entity.cs" />
-    <Compile Include="Classes\Functions_Random.cs" />
-    <Compile Include="Classes\Functions_Interaction.cs" />
-    <Compile Include="Classes\Functions_Item.cs" />
-    <Compile Include="Classes\Functions_Loot.cs" />
-    <Compile Include="Classes\Functions_MenuItem.cs" />
-    <Compile Include="Classes\Functions_Room.cs" />
-    <Compile Include="Classes\Functions_SaveLoad.cs" />
-    <Compile Include="Classes\Functions_WorldUI.cs" />
-    <Compile Include="Classes\ScreenRoomBuilder.cs" />
-    <Compile Include="Classes\WidgetDialog.cs" />
-    <Compile Include="Classes\WidgetForSale.cs" />
-    <Compile Include="Classes\WidgetInfo.cs" />
-    <Compile Include="Classes\WidgetInventory.cs" />
-    <Compile Include="Classes\WidgetLoadout.cs" />
-    <Compile Include="Classes\WidgetOptions.cs" />
-    <Compile Include="Classes\WidgetRoomBuilder.cs" />
-    <Compile Include="Classes\WidgetStats.cs" />
-    <Compile Include="Classes\Functions_Movement.cs" />
-    <Compile Include="Classes\Functions_Music.cs" />
-    <Compile Include="Classes\Functions_Pool.cs" />
-    <Compile Include="Classes\ScreenDialog.cs" />
-    <Compile Include="Classes\ScreenDungeon.cs" />
-    <Compile Include="Classes\ScreenInventory.cs" />
-    <Compile Include="Classes\ScreenOverworld.cs" />
-    <Compile Include="Classes\ScreenSummary.cs" />
-    <Compile Include="Classes\ScreenVendor.cs" />
-    <Compile Include="Classes\DataClasses.cs" />
-    <Compile Include="Classes\Screen.cs" />
-    <Compile Include="Classes\ScreenManager.cs" />
-    <Compile Include="Classes\Functions_Ai.cs" />
-    <Compile Include="Classes\Functions_ActorAnimationList.cs" />
-    <Compile Include="Classes\Widget.cs" />
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>

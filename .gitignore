@@ -5,8 +5,8 @@
 *.suo
 
 # directories to ignore
-.vs/
-DungeonRun/bin/
-DungeonRun/Content/obj/
-DungeonRun/Content/bin/
-DungeonRun/obj/
+DungeonRunUWP/.vs/
+DungeonRunUWP/DungeonRun/bin/
+DungeonRunUWP/DungeonRun/Content/obj/
+DungeonRunUWP/DungeonRun/Content/bin/
+DungeonRunUWP/DungeonRun/obj/
