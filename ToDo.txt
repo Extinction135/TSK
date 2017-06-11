@@ -46,31 +46,83 @@ ram useage:
 	
 todo:
 
-7
+6
 
 
-Adding Room Builder/Editor - Part 36
+Adding Room Builder/Editor - Part 37
 
-prep for saving and loading room data.
+initial setup for saving room data.
 
-added RoomData folder to project source.
-added dummy data to RoomData folder.
-updated DungeonRun.csproj file to recursively copy all files from RoomData to output directory.
-tested, RoomData is copied as expected to output directory.
-
-
-
-
+created Functions_SaveLoad class.
+added call to Functions_SaveLoad.Save() from RoomBuilder screen's HandleInput().
+began working out the details of the room builder, only to realize that it should not be made in a UWP project.
+UWP uses .net core, which isn't mature, and does things it's own way, which is frustrating.
+so instead, we'll make the room builder using a directX project.
+this requires a bit of planning..
 
 
 
-standardize all room types + sizes (in constructor)
+
+
+
+
+
+working with the XML is going to be difficult using a UWP project
+this is because .net core doesn't do things like .net does
+it would be easier to make the room editor using a traditional directX project, using .net
+the room editor would manage the creation + editing of the RoomData folder
+
+the various game ports would all use the same RoomData folder, copied into their output directory
+
+this means we need to move the game classes into their own folder
+and the UWP project should reference the class files it needs
+then we can create a directX project, ref the classes we need, and make the roomBuilder
+this also sets up porting the game to directX, and openGL
+
+
+
+
+
+
+
+
+
+
+
+dump the room data to XML file
+
+
+
+
+this starts with the user pressing the 'save' button from room builder screen
+this dumps the current room data to xml file in RoomData folder
+
+
+to test that this works, we'll need to be able to add objects to the dev room
+for now, we will only be saving and testing the dev room type
+dont worry about other room types for now
+
+
+we'll need to be able to set the tool to move, add, and delete
+this is based on what the user clicks on in the tool area of room builder widget
+
+
+we'll need to be able to set the currently selected object
+are we doing this already?
+then based on the tool state, we can add an object to the room
+
+
+
+
+
+
+
 
 objects will be able to overlap
 the objects we'll be saving will be located on the pool's roomObj list
 so we can just dump that list to XML file, ignoring inactive objects
 
-dump the room data to XML file
+
 
 roomData
 	type
@@ -90,6 +142,15 @@ objData
 
 
 
+
+
+
+
+
+
+
+
+standardize all room types + sizes (in constructor)
 
 
 load room data from XML file
@@ -205,7 +266,8 @@ Version 0.5 Milestones
 	
 	
 	
-	
+Style / theme ++
+	make background black instead of medium gray, if game is in release mode
 	
 	
 	
