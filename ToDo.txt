@@ -46,37 +46,69 @@ ram useage:
 	
 todo:
 
-9
+8
 
 
-Setting up RoomBuilder
-
-we want to organize the classes specific to RoomBuilder.
-we want to create the first version of RoomBuilder.
-this should simply dupe prior functionality from Game implementation.
-
-created RoomBuilderClasses folder.
-moved Functions_SaveLoad, ScreenRoomBuilder, and WidgetRoomBuilder into folder.
-created RoomBuilder/Classes & RoomBuilderClasses folders.
-referenced both RoomBuilderClasses and Game classes into RoomBuilder project.
-updated RoomBuilder's Game1.cs to create a RoomBuilder screen by default.
-this completes the Game & Builder separation phase
-however, there are a variety of bugs present in RoomBuilder.
-
-updated ScreenRoomBuilder with an instance of RoomBuilderWidget.
-fixed various references to Widgets.RoomBuilder to use above instance.
-only the MemoryManager bug remains in RoomBuilder project.
-
-
-
-
-
-
-Fix MemoryManager bug in RoomBuilder Project
+Fix MemoryManager bug in RoomBuilder Project & Fix Content.mgcbs
 
 the UWP game uses MemoryManager to get the used RAM footprint
 this doesn't exist in a monogame directX project
-we'll have to make this unique to the UWP project
+there will be some code specific to UWP, DirectX, and OpenGL.
+this code should be located in a file named appropriately, and referenced when needed.
+
+created Functions_UWP.cs in GameClasses folder.
+created global class Functions_Backend, with GetRam() method.
+the Functions_UWP.Functions_Backend.GetRam() method implements the UWP approach.
+wrote directX version of Functions_Backend.GetRam(). 
+referenced this file in the directX project.
+updated RoomBuilder.Game1.cs to set the window frame to proper size & other settings.
+
+fixed UWP's content.mgcb with refs for all content, built it.
+playtested, working as expected.
+fixed roomBuilder's content.mgcb with refs for all content, built it.
+playtested, bug present related to DungeonRecord.timer being null.
+
+bug: DungeonRecord.timer doesn't exist, because we never created it.
+solution: updated DataClasses.DungeonRecord to create it's timer instance upon construction.
+playtested, roomBuilder compiles and runs...
+although it has an extrodinarily high draw time (@13,000 ticks)...
+
+moved classes specific to RoomBuilder into it's project folders.
+updated RoomBuilder project to use these classes directly (not as links).
+we will not be porting RoomBuilder to OpenGL, it will remain a DirectX only project.
+therefore, there is no need to share the builder specific files.
+this simplifies the repo directory and reduces possible confusion later on.
+
+updated the .gitignore file.
+playtested both UWP and RoomBuilder, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+how do we handle roomData? 
+if we can't reliably copy the folder to the output directory for UWP projects?...
+
+
+
+
 
 
 
@@ -112,7 +144,18 @@ there's got to be a way to do this... ask on the forums
 
 
 
+these classes contain graphics api specific functions, like getting the ram
+Functions_UWP, Functions_DirectX, Functions_OpenGL
 
+
+
+
+
+how do we share content across ports?
+create one content project, with all assets, and build it
+then we can simply copy the build directory to the output directory
+just like how we copy roomData, except we'll need to go up a folder to access it
+this means all ports can copy one content directory
 
 
 

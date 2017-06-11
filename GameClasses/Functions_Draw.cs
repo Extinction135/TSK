@@ -9,9 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
-using Windows.System;
-
-
 
 namespace DungeonRun
 {
@@ -157,16 +154,12 @@ namespace DungeonRun
             DebugInfo.updateTicks += Timing.updateTime.Ticks;
             DebugInfo.drawTicks += Timing.drawTime.Ticks;
 
-            //per frame
-            //timingText.text = "u: " + screen.updateTime.Ticks;
-            //timingText.text += "\nd: " + screen.drawTime.Ticks;
-            //timingText.text += "\nt: " + screen.totalTime.Milliseconds + " ms";
             //average over framesTotal
             DebugInfo.timingText.text = "u: " + DebugInfo.updateAvg;
             DebugInfo.timingText.text += "\nd: " + DebugInfo.drawAvg;
             DebugInfo.timingText.text += "\nt: " + Timing.totalTime.Milliseconds + " ms";
             DebugInfo.timingText.text += "\n" + ScreenManager.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
-            DebugInfo.timingText.text += "\n" + MemoryManager.AppMemoryUsage / 1024 / 1024 + " mb";
+            DebugInfo.timingText.text += "\n" + Functions_Backend.GetRam() + " mb";
 
             #endregion
 

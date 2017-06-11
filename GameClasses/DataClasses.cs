@@ -95,22 +95,21 @@ namespace DungeonRun
 
     public static class DungeonRecord
     {
-        public static int dungeonID;
-        public static Boolean beatDungeon;
-
-        public static Stopwatch timer;
-        public static int enemyCount;
-        public static int totalDamage;
+        public static int dungeonID = 0;
+        public static Boolean beatDungeon = false;
+        public static Stopwatch timer = new Stopwatch();
+        public static int enemyCount = 0;
+        public static int totalDamage = 0;
 
         public static void Reset()
         {
             dungeonID = 0;
             beatDungeon = false;
-
             timer = new Stopwatch();
-            timer.Reset();
             enemyCount = 0;
             totalDamage = 0;
+
+            timer.Reset();
         }
     }
 

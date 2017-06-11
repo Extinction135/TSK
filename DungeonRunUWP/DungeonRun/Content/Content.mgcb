@@ -21,7 +21,7 @@
 /processorParam:TextureFormat=Color
 /build:pixelFont.bmp
 
-#begin DungeonSheet.png
+#begin BigTextSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -31,7 +31,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:DungeonSheet.png
+/build:BigTextSheet.png
 
 #begin BlobSheet.png
 /importer:TextureImporter
@@ -45,104 +45,6 @@
 /processorParam:TextureFormat=Color
 /build:BlobSheet.png
 
-#begin HeroSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:HeroSheet.png
-
-#begin BigTextSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:BigTextSheet.png
-
-#begin mediumFont.bmp
-/importer:TextureImporter
-/processor:FontTextureProcessor
-/processorParam:FirstCharacter= 
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Color
-/build:mediumFont.bmp
-
-#begin MusicDungeonA.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:MusicDungeonA.ogg
-
-#begin SoundDash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundDash.wav
-
-#begin SoundSwordSwipe.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundSwordSwipe.wav
-
-#begin SoundEnemyHit.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEnemyHit.wav
-
-#begin SoundHeroHit.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundHeroHit.wav
-
-#begin SoundEnemyKill.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEnemyKill.wav
-
-#begin SoundHeroKill.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundHeroKill.wav
-
-#begin SoundBeatDungeon.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundBeatDungeon.wav
-
-#begin MusicLowHealthDrums.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:MusicLowHealthDrums.ogg
-
-#begin SoundDoorOpen.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundDoorOpen.wav
-
-#begin SoundKeyPickup.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundKeyPickup.wav
-
 #begin BossSheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -155,41 +57,29 @@
 /processorParam:TextureFormat=Color
 /build:BossSheet.png
 
-#begin SoundBossIntro.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundBossIntro.wav
+#begin DungeonSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DungeonSheet.png
 
-#begin SoundChestOpen.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundChestOpen.wav
-
-#begin SoundReward.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundReward.wav
-
-#begin SoundTextDone.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundTextDone.wav
-
-#begin SoundTextLetter.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundTextLetter.wav
-
-#begin SoundExitSummary.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundExitSummary.wav
+#begin HeroSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HeroSheet.png
 
 #begin MainSheet.png
 /importer:TextureImporter
@@ -203,41 +93,157 @@
 /processorParam:TextureFormat=Color
 /build:MainSheet.png
 
-#begin SoundHeartPickup.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundHeartPickup.wav
+#begin mediumFont.bmp
+/importer:TextureImporter
+/processor:FontTextureProcessor
+/processorParam:FirstCharacter= 
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:mediumFont.bmp
 
-#begin SoundGoldPickup.wav
-/importer:WavImporter
+#begin MusicBoss.ogg
+/importer:OggImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundGoldPickup.wav
+/build:MusicBoss.ogg
 
-#begin SoundSelectMenuItem.wav
-/importer:WavImporter
+#begin MusicDungeonA.ogg
+/importer:OggImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundSelectMenuItem.wav
+/build:MusicDungeonA.ogg
 
-#begin SoundInventoryClose.wav
-/importer:WavImporter
+#begin MusicDungeonB.ogg
+/importer:OggImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundInventoryClose.wav
+/build:MusicDungeonB.ogg
 
-#begin SoundInventoryOpen.wav
+#begin MusicDungeonC.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicDungeonC.ogg
+
+#begin MusicLowHealthDrums.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicLowHealthDrums.ogg
+
+#begin MusicTitle.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicTitle.ogg
+
+#begin OverworldTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:OverworldTexture.png
+
+#begin ShopSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ShopSheet.png
+
+#begin SoundArrowHit.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundInventoryOpen.wav
+/build:SoundArrowHit.wav
+
+#begin SoundArrowShoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundArrowShoot.wav
+
+#begin SoundBeatDungeon.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBeatDungeon.wav
+
+#begin SoundBombDrop.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBombDrop.wav
 
 #begin SoundBossHit.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundBossHit.wav
+
+#begin SoundBossIntro.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBossIntro.wav
+
+#begin SoundBounce.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBounce.wav
+
+#begin SoundChestOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundChestOpen.wav
+
+#begin SoundDash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundDash.wav
+
+#begin SoundDoorOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundDoorOpen.wav
+
+#begin SoundEnemyHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEnemyHit.wav
+
+#begin SoundEnemyKill.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEnemyKill.wav
+
+#begin SoundError.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundError.wav
+
+#begin SoundExitSummary.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundExitSummary.wav
 
 #begin SoundExplosion.wav
 /importer:WavImporter
@@ -257,29 +263,47 @@
 /processorParam:Quality=Best
 /build:SoundFireballDeath.wav
 
-#begin SoundMetallicTap.wav
+#begin SoundGoldPickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundMetallicTap.wav
+/build:SoundGoldPickup.wav
 
-#begin SoundBounce.wav
+#begin SoundHeartPickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundBounce.wav
+/build:SoundHeartPickup.wav
 
-#begin OverworldTexture.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:OverworldTexture.png
+#begin SoundHeroHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundHeroHit.wav
+
+#begin SoundHeroKill.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundHeroKill.wav
+
+#begin SoundInventoryClose.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundInventoryClose.wav
+
+#begin SoundInventoryOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundInventoryOpen.wav
+
+#begin SoundKeyPickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundKeyPickup.wav
 
 #begin SoundMapOpen.wav
 /importer:WavImporter
@@ -287,63 +311,39 @@
 /processorParam:Quality=Best
 /build:SoundMapOpen.wav
 
-#begin MusicBoss.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:MusicBoss.ogg
-
-#begin MusicDungeonB.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:MusicDungeonB.ogg
-
-#begin MusicTitle.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:MusicTitle.ogg
-
-#begin ShopSheet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:ShopSheet.png
-
-#begin SoundError.wav
+#begin SoundMetallicTap.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundError.wav
+/build:SoundMetallicTap.wav
 
-#begin MusicDungeonC.ogg
-/importer:OggImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:MusicDungeonC.ogg
-
-#begin SoundBombDrop.wav
+#begin SoundReward.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundBombDrop.wav
+/build:SoundReward.wav
 
-#begin SoundArrowHit.wav
+#begin SoundSelectMenuItem.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundArrowHit.wav
+/build:SoundSelectMenuItem.wav
 
-#begin SoundArrowShoot.wav
+#begin SoundSwordSwipe.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundArrowShoot.wav
+/build:SoundSwordSwipe.wav
+
+#begin SoundTextDone.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTextDone.wav
+
+#begin SoundTextLetter.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTextLetter.wav
 

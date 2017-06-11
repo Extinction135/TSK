@@ -20,7 +20,13 @@ namespace DungeonRun
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            if (Flags.Debug) { IsMouseVisible = true; } else { IsMouseVisible = false; }
+
+            //settings unique to RoomBuilder
+            IsMouseVisible = true;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            Window.Title = "RoomBuilder v0.1";
+            Window.AllowUserResizing = false;
         }
 
         protected override void Initialize() { base.Initialize(); }

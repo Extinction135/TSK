@@ -83,6 +83,9 @@
     <Compile Include="..\..\GameClasses\Functions_Direction.cs">
       <Link>Classes\Functions_Direction.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_DirectX.cs">
+      <Link>Classes\Functions_DirectX.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Draw.cs">
       <Link>Classes\Functions_Draw.cs</Link>
     </Compile>
@@ -179,18 +182,12 @@
     <Compile Include="..\..\GameClasses\WidgetStats.cs">
       <Link>Classes\WidgetStats.cs</Link>
     </Compile>
-    <Compile Include="..\..\RoomBuilderClasses\Functions_SaveLoad.cs">
-      <Link>RoomBuilderClasses\Functions_SaveLoad.cs</Link>
-    </Compile>
-    <Compile Include="..\..\RoomBuilderClasses\ScreenRoomBuilder.cs">
-      <Link>RoomBuilderClasses\ScreenRoomBuilder.cs</Link>
-    </Compile>
-    <Compile Include="..\..\RoomBuilderClasses\WidgetRoomBuilder.cs">
-      <Link>RoomBuilderClasses\WidgetRoomBuilder.cs</Link>
-    </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomBuilderClasses\Functions_SaveLoad.cs" />
+    <Compile Include="RoomBuilderClasses\ScreenRoomBuilder.cs" />
+    <Compile Include="RoomBuilderClasses\WidgetRoomBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

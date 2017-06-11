@@ -184,6 +184,9 @@
     <Compile Include="..\..\GameClasses\Functions_Room.cs">
       <Link>Classes\Functions_Room.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_UWP.cs">
+      <Link>Classes\Functions_UWP.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_WorldUI.cs">
       <Link>Classes\Functions_WorldUI.cs</Link>
     </Compile>
@@ -266,9 +269,14 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
+  <!-- reference the game content and roomData
+  <ItemGroup>
+    <SharedContent Include="..\..\DungeonRunContent\bin\**" />
+  </ItemGroup>
   <ItemGroup>
     <RoomData Include="RoomData\**" />
   </ItemGroup>
+  end references -->
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -288,9 +296,15 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
+    <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
+	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
+	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" />
   </Target>
-  -->
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="true" />
   </Target>
+  -->
+  
 </Project>
