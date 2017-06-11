@@ -227,14 +227,6 @@ namespace DungeonRun
                         {
                             Inspect(PlayerData.saveData);
                         }
-                        else if (DebugMenu.counter == 4) //room builder button
-                        {   //exit all screens, create room builder screen
-                            ScreenManager.ExitAndLoad(new ScreenRoomBuilder());
-                        }
-                        else if (DebugMenu.counter == 5) //overworld button
-                        {   //exit all screens, create overworld screen
-                            ScreenManager.ExitAndLoad(new ScreenOverworld());
-                        }
 
                         #endregion
 

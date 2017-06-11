@@ -46,19 +46,36 @@ ram useage:
 	
 todo:
 
-11
+10
 
 
 
 
-moved the UWP project into it's own folder.
-updated the .gitignore file.
+
+
+
+
+
+
+Removing RoomBuilder from UWP Game
+
+we want to move the files that RoomBuilder needs into it's own project & directory.
+
+created folder 'DungeonRunRoomBuilder'.
+created directX project named RoomBuilder in folder.
+playtested, roomBuilder project builds and runs fine.
+updated .gitignore file with paths for roomBuilder.
+
+removed debug menu buttons for roomBuilder and overworld.
+removed routines from Functions_Debug that handled input for those buttons.
+removed references to following classes from UWP project:
++ Functions_SaveLoad
++ ScreenRoomBuilder
++ WidgetRoomBuilder
+
+this removes roomBuilder from the UWP project.
 playtested, working as expected.
 
-created GameClasses folder, copied all game classes here.
-deleted all classes from UWP project.
-added files from GameClasses folder to UWP project (as link).
-playtested, working as expected.
 
 
 
@@ -66,22 +83,11 @@ playtested, working as expected.
 
 
 
+what files do we need to separate?
+	functions saveload 
+	screen room builder
+	widget room builder
 
-Separating Game Classes from Project
-
-move all game classes into their own folder
-reference these classes back into the UWP app
-test that the game still works & deploys
-updated the .gitignore file.
-
-
-
-
-
-
-Splitting Game & RoomBuilder
-
-create directX project named RoomBuilder
 move classes specific to RoomBuilder into the project folder
 these editor classes shouldn't be in the shared game classes folder
 only reference game classes that are needed for editing rooms
@@ -89,7 +95,23 @@ RoomBuilder will only display the RoomBuilder screen
 
 in UWP project, remove references to roomBuilder specific classes
 this reduces the total files necessary to build/run the game
+
+
+
+update UWP project, removing the roomBuilder button from top menu
+
+
+update RoomBuilder to default create the roomBuilder screen
+
+
+
+
 this completes the Game & Builder separation phase
+
+
+
+
+
 
 
 

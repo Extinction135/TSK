@@ -18,7 +18,7 @@ namespace DungeonRun
 
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
 
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
@@ -394,8 +394,6 @@ namespace DungeonRun
             buttons.Add(new ComponentButton("build dungeon", new Point(68, 2)));
             buttons.Add(new ComponentButton("max gold", new Point(127, 2)));
             buttons.Add(new ComponentButton("dump savedata", new Point(168, 2)));
-            buttons.Add(new ComponentButton("room builder", new Point(229, 2)));
-            buttons.Add(new ComponentButton("overworld", new Point(284, 2)));
         }
     }
 

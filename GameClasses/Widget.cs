@@ -30,6 +30,5 @@ namespace DungeonRun
         public static WidgetLoadout Loadout = new WidgetLoadout();
         public static WidgetOptions Options = new WidgetOptions();
         public static WidgetStats Stats = new WidgetStats();
-        public static WidgetRoomBuilder RoomBuilder = new WidgetRoomBuilder();
     }
 }
