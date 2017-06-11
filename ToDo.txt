@@ -46,36 +46,21 @@ ram useage:
 	
 todo:
 
-13
+12
 
 
 
 
-Preparing for Separation of Game and Editor
+Minor Bug Fix
 
-simplify Game1.cs as much as possible, as each port will have it's own Game1.cs.
-the less thats in Game1.cs, the less has to be hand maintained between projects.
-
-reorganized data classes file.
-moved Flags class from Game1.cs into data classes file.
-created Flags constructor, which handles the release boolean settings.
-removed release settings routine from Game1.cs.
-moved responsibility for checking PlayMusic boolean flag into Functions_Music.Update().
-this was done to simplify Game1.cs.
-playtested, works except there is an audio bug.
-
-fixed a bug where the dungeon music didn't play & iterate properly.
-playtested, audio bug fixed.
+fixed a minor bug where door decorations were placed always facing down.
+now they are placed with the same direction as the door they decorate.
+playtested, working as expected.
 
 
 
 
 
-
-
-when we create door decorations, they should inherit the direction of the door
-
-bug with music - the dungeon music isn't playing...
 
 
 

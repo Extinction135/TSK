@@ -404,14 +404,14 @@ namespace DungeonRun
             Functions_Movement.Teleport(objRef.compMove,
                 Door.compSprite.position.X - 16,
                 Door.compSprite.position.Y);
-            objRef.direction = Direction.Down;
+            objRef.direction = Door.direction;
             Functions_GameObject.SetType(objRef, Type);
             //build right wall torch/pillar/decoration
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
                 Door.compSprite.position.X + 16,
                 Door.compSprite.position.Y);
-            objRef.direction = Direction.Down;
+            objRef.direction = Door.direction;
             Functions_GameObject.SetType(objRef, Type);
         }
 
