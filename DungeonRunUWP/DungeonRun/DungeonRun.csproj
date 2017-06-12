@@ -269,13 +269,8 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
-  <!-- reference the game content and roomData
   <ItemGroup>
-    <SharedContent Include="..\..\DungeonRunContent\bin\**" />
-  </ItemGroup>
-  end references -->
-  <ItemGroup>
-    <RoomData Include="RoomData\**" />
+    <GameData Include="GameData\**" />
   </ItemGroup>
   
   <ItemGroup>
@@ -297,14 +292,11 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
-    <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
-	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
-	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" />
   </Target>
   -->
   <Target Name="AfterBuild">
-    <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" />
-	<Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="@(GameData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
+	<Copy SourceFiles="@(GameData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" />
   </Target>
   
   

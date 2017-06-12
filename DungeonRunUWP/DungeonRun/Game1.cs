@@ -33,12 +33,8 @@ namespace DungeonRun
             base.LoadContent();
             Assets.Load(GraphicsDevice, Content);
             ScreenManager.Initialize(this);
-            ScreenManager.AddScreen(new ScreenDungeon());
             ScreenManager.AddScreen(new ScreenOverworld());
-
-            //Functions_Backend.LoadRoomData();
-            //Functions_Backend.SavePlayerData();
-            Functions_Backend.LoadPlayerData();
+            Functions_Backend.LoadPlayerData(); //load autoSave data
         }
 
         protected override void UnloadContent() { }

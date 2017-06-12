@@ -30,11 +30,9 @@ namespace DungeonRun
         public override void LoadContent()
         {
             overlay = new Rectangle(0, 0, 640, 360);
-
             Functions_Dungeon.Initialize(this);
-            Functions_Dungeon.BuildDungeon(DungeonType.Shop);
+            Functions_Dungeon.BuildDungeon();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
-
             //open the screen
             displayState = DisplayState.Opening;
         }

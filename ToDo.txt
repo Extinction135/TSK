@@ -46,21 +46,81 @@ ram useage:
 	
 todo:
 
-13
+12
 
 
 
-Figuring out how to Load & Save data for UWP
+changed RoomData folder to GameData.
+added directory GameData/PlayerData.
+built project, tested that GameData and it's subfolders copy properly.
 
-how UWP loads and saves data is different, because it uses .net core.
-so, we'll need to write save and load functions in the Functions_UWP class.
+changed SavePlayerData() to save to a file named "autoSave.xml" in /PlayerData/.
+updated /PlayerData/ to only contain one file, named "autoSave.xml".
+updated Functions_Dungeon.BuildDungeon() to call SavePlayerData() upon dungeon completion.
+changed LoadPlayerData() to load the autoSave.xml file from PlayerData folder.
+updated Game1.LoadContent() to call LoadPlayerData() when game first runs.
 
-created Functions_Backend.LoadRoomData() to test loading a dummy .txt file and displaying it's contents.
-created Functions_Backend.SavePlayerData() to test saving player data.
-created Functions_Backend.LoadPlayerData() to test loading player data.
-playtested saving and loading of player data, working as expected.
+however, there is a problem with writing to files in the app's install directory.
+the problem is - you can't write to files in the installed directory. 
+so we have to use the local folder...
+updated SavePlayerData() and LoadPlayerData() to use local folder instead of installed folder.
+
+local folder use means we aren't using playerData folder.
+so, deleted playerData folder.
+
+fixed a bug where the dungeon was being built twice.
+once from OverworldScreen and once from DungeonScreen.
+added field dungeonType to Functions_Dungeon.
+updated BuildDungeon() to accept no parameters.
+updated OverworldScreen to set dungeonType.
+updated DungeonScreen to call BuildDungeon() without parameters.
+
+playtested, autosave is indeed working.
+tested case where autoSave.xml is missing (first run case), working.
 
 
+
+
+
+
+
+
+
+
+
+autosave should happen upon dungeon exit, as well as dungeon build.
+
+
+
+
+
+
+
+
+
+we need a reset() method for the playerData
+then we can call reset() and save the player data to create a new game
+
+from the options menu on inventory screen, add a 'new game' menuItem
+clicking this should call reset() on playerdata, then save player data, 
+then exit all screens, create a dungeon screen + overworld screen
+
+
+
+
+
+
+setup system for saving the player data each time a dungeon is created
+
+when the game boots up, load the player data from disk
+
+test that this work on xbox one
+
+setup a folder called gameData with subfolders:
+	roomData
+	playerData
+	
+for now, there will only be one file in playerData
 
 
 

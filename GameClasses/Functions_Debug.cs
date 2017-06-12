@@ -216,7 +216,7 @@ namespace DungeonRun
                         }
                         else if (DebugMenu.counter == 1) //build dungeon button
                         {   //build dungeon based on the last dungeon type
-                            Functions_Dungeon.BuildDungeon(Functions_Dungeon.dungeon.type);
+                            Functions_Dungeon.BuildDungeon();
                         }
                         else if (DebugMenu.counter == 2) //max gold button
                         {   //set the player's gold to 99

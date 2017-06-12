@@ -17,21 +17,22 @@ namespace DungeonRun
 
         public static ScreenDungeon dungeonScreen;
         public static Dungeon dungeon; //the last dungeon created
+        public static DungeonType dungeonType = DungeonType.CursedCastle; //changed later
         public static Room currentRoom; //points to a room on dungeon's roomList
         public static int dungeonTrack = 0;
 
 
         public static void Initialize(ScreenDungeon DungeonScreen) { dungeonScreen = DungeonScreen; }
 
-        public static void BuildDungeon(DungeonType Type)
+        public static void BuildDungeon()
         {
-            dungeon = new Dungeon();
-            dungeon.type = Type;
-
+            dungeon = new Dungeon(); //DungeonScreen calls BuildDungeon()
+            dungeon.type = dungeonType; //dungeonType is set by OverworldScreen
+            
 
             #region Create Shop
 
-            if (Type == DungeonType.Shop)
+            if (dungeonType == DungeonType.Shop)
             {   //set the objPool texture
                 Functions_Pool.SetDungeonTexture(Assets.shopSheet);
                 //create the shop room
@@ -127,6 +128,9 @@ namespace DungeonRun
             //fade the dungeon screen out from black, revealing the new level
             dungeonScreen.overlayAlpha = 1.0f;
             dungeonScreen.displayState = DisplayState.Opening;
+
+            //save the player's data
+            Functions_Backend.SavePlayerData();
         }
 
 

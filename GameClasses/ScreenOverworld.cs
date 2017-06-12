@@ -249,11 +249,12 @@ namespace DungeonRun
                 }
             }
             else if (displayState == DisplayState.Closed)
-            {
-                ScreenManager.ExitAndLoad(new ScreenDungeon());
+            {   //set the type of dungeon we are about to build/load
                 if (currentlySelected == Shop)
-                { Functions_Dungeon.BuildDungeon(DungeonType.Shop); }
-                else { Functions_Dungeon.BuildDungeon(DungeonType.CursedCastle); }
+                { Functions_Dungeon.dungeonType = DungeonType.Shop; }
+                else { Functions_Dungeon.dungeonType = DungeonType.CursedCastle; }
+                //dungeon is built by dungeon screen
+                ScreenManager.ExitAndLoad(new ScreenDungeon());
             }
 
             #endregion
