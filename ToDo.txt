@@ -46,65 +46,20 @@ ram useage:
 	
 todo:
 
-8
-
-
-Fix MemoryManager bug in RoomBuilder Project & Fix Content.mgcbs
-
-the UWP game uses MemoryManager to get the used RAM footprint
-this doesn't exist in a monogame directX project
-there will be some code specific to UWP, DirectX, and OpenGL.
-this code should be located in a file named appropriately, and referenced when needed.
-
-created Functions_UWP.cs in GameClasses folder.
-created global class Functions_Backend, with GetRam() method.
-the Functions_UWP.Functions_Backend.GetRam() method implements the UWP approach.
-wrote directX version of Functions_Backend.GetRam(). 
-referenced this file in the directX project.
-updated RoomBuilder.Game1.cs to set the window frame to proper size & other settings.
-
-fixed UWP's content.mgcb with refs for all content, built it.
-playtested, working as expected.
-fixed roomBuilder's content.mgcb with refs for all content, built it.
-playtested, bug present related to DungeonRecord.timer being null.
-
-bug: DungeonRecord.timer doesn't exist, because we never created it.
-solution: updated DataClasses.DungeonRecord to create it's timer instance upon construction.
-playtested, roomBuilder compiles and runs...
-although it has an extrodinarily high draw time (@13,000 ticks)...
-
-moved classes specific to RoomBuilder into it's project folders.
-updated RoomBuilder project to use these classes directly (not as links).
-we will not be porting RoomBuilder to OpenGL, it will remain a DirectX only project.
-therefore, there is no need to share the builder specific files.
-this simplifies the repo directory and reduces possible confusion later on.
-
-updated the .gitignore file.
-playtested both UWP and RoomBuilder, working as expected.
+13
 
 
 
+Figuring out how to Load & Save data for UWP
 
+how UWP loads and saves data is different, because it uses .net core.
+so, we'll need to write save and load functions in the Functions_UWP class.
 
+created Functions_Backend.LoadRoomData() to test loading a dummy .txt file and displaying it's contents.
+created Functions_Backend.SavePlayerData() to test saving player data.
+created Functions_Backend.LoadPlayerData() to test loading player data.
+playtested saving and loading of player data, working as expected.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-how do we handle roomData? 
-if we can't reliably copy the folder to the output directory for UWP projects?...
 
 
 
@@ -131,35 +86,20 @@ create the roomBuilder screen & widgets
 
 
 
-Managing RoomData & Game Content
-
-for now, just manually copy the roomData folder into each game's working directory
-each game project will need to contain the csproj code to recursively copy roomData to output dir
-we'll also need to setup content files for each game project
-unless there is a way to reference assets for building, we'll have to copy assets into each projects directory too
-there's got to be a way to do this... ask on the forums
 
 
 
 
 
 
-these classes contain graphics api specific functions, like getting the ram
-Functions_UWP, Functions_DirectX, Functions_OpenGL
 
 
 
-
-
-how do we share content across ports?
-create one content project, with all assets, and build it
-then we can simply copy the build directory to the output directory
-just like how we copy roomData, except we'll need to go up a folder to access it
-this means all ports can copy one content directory
-
-
-
-
+how do we handle roomData? 
+if we can't reliably copy the folder to the output directory for UWP projects?...
+this means the roomData has to be a file in the project
+this file can be shared, like other .cs files
+it might as well be a .cs file...
 
 
 dump the room data to XML file

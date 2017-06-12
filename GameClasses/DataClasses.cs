@@ -67,13 +67,10 @@ namespace DungeonRun
     }
 
     public static class PlayerData
-    {
-        //'wraps' saveData and provides global access to this instance
+    {   //'wraps' saveData and provides global access to this instance
         public static SaveData saveData;
-        static PlayerData()
-        {
-            saveData = new SaveData();
-        }
+        static PlayerData() { saveData = new SaveData(); }
+        /*
         public static void Save(string FileAddress)
         {
             //open the file, serialize the data to XML, and always close the stream
@@ -91,6 +88,7 @@ namespace DungeonRun
                 saveData = (SaveData)serializer.Deserialize(stream);
             }
         }
+        */
     }
 
     public static class DungeonRecord

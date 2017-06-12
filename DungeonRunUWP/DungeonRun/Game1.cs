@@ -10,6 +10,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 
+
+
+
 namespace DungeonRun
 {
     public class Game1 : Game
@@ -32,6 +35,10 @@ namespace DungeonRun
             ScreenManager.Initialize(this);
             ScreenManager.AddScreen(new ScreenDungeon());
             ScreenManager.AddScreen(new ScreenOverworld());
+
+            //Functions_Backend.LoadRoomData();
+            //Functions_Backend.SavePlayerData();
+            Functions_Backend.LoadPlayerData();
         }
 
         protected override void UnloadContent() { }

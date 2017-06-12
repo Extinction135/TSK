@@ -273,10 +273,11 @@
   <ItemGroup>
     <SharedContent Include="..\..\DungeonRunContent\bin\**" />
   </ItemGroup>
+  end references -->
   <ItemGroup>
     <RoomData Include="RoomData\**" />
   </ItemGroup>
-  end references -->
+  
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -300,11 +301,11 @@
 	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
 	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" />
   </Target>
+  -->
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" />
-	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="true" />
-	<Copy SourceFiles="@(SharedContent)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	<Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" />
   </Target>
-  -->
+  
   
 </Project>
