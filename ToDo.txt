@@ -46,48 +46,16 @@ ram useage:
 	
 todo:
 
-12
-
-
-
-changed RoomData folder to GameData.
-added directory GameData/PlayerData.
-built project, tested that GameData and it's subfolders copy properly.
-
-changed SavePlayerData() to save to a file named "autoSave.xml" in /PlayerData/.
-updated /PlayerData/ to only contain one file, named "autoSave.xml".
-updated Functions_Dungeon.BuildDungeon() to call SavePlayerData() upon dungeon completion.
-changed LoadPlayerData() to load the autoSave.xml file from PlayerData folder.
-updated Game1.LoadContent() to call LoadPlayerData() when game first runs.
-
-however, there is a problem with writing to files in the app's install directory.
-the problem is - you can't write to files in the installed directory. 
-so we have to use the local folder...
-updated SavePlayerData() and LoadPlayerData() to use local folder instead of installed folder.
-
-local folder use means we aren't using playerData folder.
-so, deleted playerData folder.
-
-fixed a bug where the dungeon was being built twice.
-once from OverworldScreen and once from DungeonScreen.
-added field dungeonType to Functions_Dungeon.
-updated BuildDungeon() to accept no parameters.
-updated OverworldScreen to set dungeonType.
-updated DungeonScreen to call BuildDungeon() without parameters.
-
-playtested, autosave is indeed working.
-tested case where autoSave.xml is missing (first run case), working.
+11
 
 
 
 
+test that this autosave system works on the xbox one
 
 
 
-
-
-
-
+autosave should happen more often, like when a player purchases an item
 autosave should happen upon dungeon exit, as well as dungeon build.
 
 
