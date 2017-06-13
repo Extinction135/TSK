@@ -46,22 +46,49 @@ ram useage:
 	
 todo:
 
-11
+13
+
+
+
+Migrate game to dark color scheme, develop mockups.
+
+created mockup for Title Screen, with titleWidget.
+updated Inventory Screen mockup.
+created Summary Screen mockup.
+updated Vendor Screen mockup.
+updated MainSheet with all menuItem icons required by titleWidget and optionsWidget.
+updated DungeonSheet.
+
+changed background color to black
+changed debug background color to dark gray
 
 
 
 
-test that this autosave system works on the xbox one
+
+
+
+
+
+place a floor tile underneath each open door
+
+
+
+
+
+
+
+
+
+
+
+
+Implement New Game Option via Inventory Screen
 
 
 
 autosave should happen more often, like when a player purchases an item
 autosave should happen upon dungeon exit, as well as dungeon build.
-
-
-
-
-
 
 
 
@@ -74,21 +101,6 @@ clicking this should call reset() on playerdata, then save player data,
 then exit all screens, create a dungeon screen + overworld screen
 
 
-
-
-
-
-setup system for saving the player data each time a dungeon is created
-
-when the game boots up, load the player data from disk
-
-test that this work on xbox one
-
-setup a folder called gameData with subfolders:
-	roomData
-	playerData
-	
-for now, there will only be one file in playerData
 
 
 
@@ -109,32 +121,19 @@ Develop RoomBuilder project
 this project can use .net XML serialization & win forms & whatever else
 because it will never run on an xbox or be player facing
 
-create the roomBuilder screen & widgets
-
-
-
-
-
-
-
-
-
-
-
 
 
 how do we handle roomData? 
-if we can't reliably copy the folder to the output directory for UWP projects?...
-this means the roomData has to be a file in the project
-this file can be shared, like other .cs files
-it might as well be a .cs file...
+roomData is populated by room builder project
+the roomData folder is simmply copied into the project's directory
+the project copys the roomData folder to it's output
+the game then loads all the roomData upon game boot
+when a room is needed, the data is copied from the loaded roomData
+
+
 
 
 dump the room data to XML file
-
-
-
-
 this starts with the user pressing the 'save' button from room builder screen
 this dumps the current room data to xml file in RoomData folder
 

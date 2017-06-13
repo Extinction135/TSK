@@ -492,9 +492,9 @@ namespace DungeonRun
 
     public class ColorScheme
     {
-        public Color background = new Color(100, 100, 100, 255);
+        public Color background = new Color(0, 0, 0, 255);
         public Color overlay = new Color(0, 0, 0, 255);
-        public Color debugBkg = new Color(0, 0, 0, 200);
+        public Color debugBkg = new Color(20, 20, 20, 255);
 
         public Color collision = new Color(100, 0, 0, 50);
         public Color interaction = new Color(0, 100, 0, 50);
