@@ -46,14 +46,8 @@ ram useage:
 	
 todo:
 
-10
+9
 
-
-
-Created LoadGame Screen mockup.
-
-added crystals back to main sheet, too.
-i guess beating a dungeon will reward the player a crystal.
 
 
 
@@ -61,7 +55,8 @@ i guess beating a dungeon will reward the player a crystal.
 
 update the inventory screen to display total crystals collected.
 
-
+we can split stats window into two frames
+crystals can go below it
 
 
 
