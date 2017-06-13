@@ -46,31 +46,23 @@ ram useage:
 	
 todo:
 
-13
-
-
-
-Migrate game to dark color scheme, develop mockups.
-
-created mockup for Title Screen, with titleWidget.
-updated Inventory Screen mockup.
-created Summary Screen mockup.
-updated Vendor Screen mockup.
-updated MainSheet with all menuItem icons required by titleWidget and optionsWidget.
-updated DungeonSheet.
-
-changed background color to black
-changed debug background color to dark gray
+12
 
 
 
 
+Fix visual bug with open doors
 
+because the background is black now, open doors appear as completly black.
+they have a shadow, but this shadow wont appear unless a floor tile exists underneath door.
+place a floor tile underneath each open door.
 
+updated Functions_Room.SetDoors() to place a floortile underneath any door.
+created SetFloors(), which sets every floor tile sprite's frame based on room.type.
+added call to SetFloors() from BuildRoom().
+removed code from BuildRoom() that set the floor sprite's frame.
 
-
-
-place a floor tile underneath each open door
+playtested, working as expected, bug fixed.
 
 
 
@@ -78,6 +70,10 @@ place a floor tile underneath each open door
 
 
 
+
+Bug: sometimes an enemy that was recently killed can still attack hero from beyond the grave
+this is likely due to not checking to see if the current actor is dead or inactive...
+update AI to check for this state
 
 
 

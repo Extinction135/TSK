@@ -48,13 +48,6 @@ namespace DungeonRun
                     floorRef.position.X = i * 16 + pos.X + 8;
                     floorRef.position.Y = j * 16 + pos.Y + 8;
 
-                    //default to 0
-                    floorRef.currentFrame.Y = 0;
-                    //update frame based on room type
-                    if (Room.type == RoomType.Shop) { floorRef.currentFrame.Y = 0; }
-                    else if (Room.type == RoomType.Exit) { floorRef.currentFrame.Y = 0; }
-                    else if (Room.type == RoomType.Boss) { floorRef.currentFrame.Y = 1; }
-
 
                     #region Top Row Walls
 
@@ -156,6 +149,7 @@ namespace DungeonRun
 
 
             SetDoors(Room); //set the room's doors
+            SetFloors(Room); //set the floortile frames based on room.type
 
             //pass the room to the appropriate method for completion
             if (Room.type == RoomType.Exit) { FinishExitRoom(Room); }
@@ -173,6 +167,17 @@ namespace DungeonRun
         }
 
 
+        public static void SetFloors(Room Room)
+        {
+            for (i = 0; i < Pool.floorCount; i++)
+            {   //set all the floor sprite's current frame based on the room.type
+                Pool.floorPool[i].currentFrame.X = 6;
+                if (Room.type == RoomType.Shop) { Pool.floorPool[i].currentFrame.Y = 0; }
+                else if (Room.type == RoomType.Exit) { Pool.floorPool[i].currentFrame.Y = 0; }
+                else if (Room.type == RoomType.Boss) { Pool.floorPool[i].currentFrame.Y = 1; }
+                else { Pool.floorPool[i].currentFrame.Y = 0; }
+            }
+        }
 
         public static void SpawnEnemies(Room Room)
         {
@@ -247,7 +252,7 @@ namespace DungeonRun
                         for (int g = 0; g < Functions_Dungeon.dungeon.doorLocations.Count; g++)
                         {
                             if(Pool.roomObjPool[i].compCollision.rec.Contains(Functions_Dungeon.dungeon.doorLocations[g]))
-                            {   
+                            {
                                 //if current room is boss room, then door is trap door
                                 if (Room.type == RoomType.Boss)
                                 {
@@ -285,6 +290,10 @@ namespace DungeonRun
 
                                 //sort the object that became a door
                                 Functions_Component.SetZdepth(Pool.roomObjPool[i].compSprite);
+
+                                //place a floor tile underneath this door
+                                floorRef = Functions_Pool.GetFloor();
+                                floorRef.position = Pool.roomObjPool[i].compSprite.position;
                             }
                         }
                     }
