@@ -161,6 +161,7 @@ namespace DungeonRun
             
             //update the object pool, since we teleported objects around
             Functions_Pool.UpdateRoomObjPool();
+            Assets.Play(Assets.sfxDoorOpen); //play the door sound
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;

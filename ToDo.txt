@@ -46,34 +46,21 @@ ram useage:
 	
 todo:
 
-12
-
-
-
-
-Fix visual bug with open doors
-
-because the background is black now, open doors appear as completly black.
-they have a shadow, but this shadow wont appear unless a floor tile exists underneath door.
-place a floor tile underneath each open door.
-
-updated Functions_Room.SetDoors() to place a floortile underneath any door.
-created SetFloors(), which sets every floor tile sprite's frame based on room.type.
-added call to SetFloors() from BuildRoom().
-removed code from BuildRoom() that set the floor sprite's frame.
-
-playtested, working as expected, bug fixed.
+10
 
 
 
 
 
 
+Polish: transitioning between rooms should play the door open soundfx.
+
+updated Functions_Room.BuildRoom() to play the DoorOpen soundfx.
+this mimics how LttP handled exiting/entering a room.
+playtested, working as expected.
 
 
-Bug: sometimes an enemy that was recently killed can still attack hero from beyond the grave
-this is likely due to not checking to see if the current actor is dead or inactive...
-update AI to check for this state
+
 
 
 
