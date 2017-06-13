@@ -58,6 +58,7 @@ namespace DungeonRun
             if (Actor.active == false) { return; }
             //if this actor is dead, don't pass AI to it
             if (Actor.state == ActorState.Dead) { return; }
+
             //reset the target actor's input
             Functions_Input.ResetInputData(Actor.compInput);
             //get actor sprite position
@@ -149,9 +150,9 @@ namespace DungeonRun
         }
 
         public static void HandleObj(GameObject Obj)
-        {   //keep in mind this is called every frame
+        {
             if (Obj.type == ObjType.Flamethrower)
-            {   
+            {   //keep in mind this is called every frame
                 if (Functions_Random.Int(0, 500) > 497)
                 {   //randomly cast fireball towards hero
                     directionToHero = GetDirectionToHero(Obj.compSprite.position);
