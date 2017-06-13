@@ -50,23 +50,44 @@ todo:
 
 
 
+Created LoadGame Screen mockup.
 
-
-
-Polish: transitioning between rooms should play the door open soundfx.
-
-updated Functions_Room.BuildRoom() to play the DoorOpen soundfx.
-this mimics how LttP handled exiting/entering a room.
-playtested, working as expected.
+added crystals back to main sheet, too.
+i guess beating a dungeon will reward the player a crystal.
 
 
 
 
 
+update the inventory screen to display total crystals collected.
 
 
 
-Implement New Game Option via Inventory Screen
+
+
+
+create title screen based on mockup
+this includes the title widget
+	continue simply loads autosave data and creates overworld screen
+	new game resets player data, autosaves, and creates overworld screen
+	load game (does nothing)
+	quit game - closes the program
+	
+	
+	
+audio ctrls screen
+	sfx volume
+	music volume
+input ctrls screen
+	button mapping
+video ctrls screen
+	full screen or windowed?
+game ctrls screen
+	how camera moves - follow hero or center to current room?
+
+
+update the inventory widget based on mockup
+save game should just autosave for now..
 
 
 

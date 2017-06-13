@@ -18,7 +18,7 @@ namespace DungeonRun
 
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
 
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
