@@ -184,6 +184,9 @@
     <Compile Include="..\..\GameClasses\Functions_Room.cs">
       <Link>Classes\Functions_Room.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_TitleAnimated.cs">
+      <Link>Classes\Functions_TitleAnimated.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_UWP.cs">
       <Link>Classes\Functions_UWP.cs</Link>
     </Compile>
@@ -210,6 +213,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenSummary.cs">
       <Link>Classes\ScreenSummary.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenTitle.cs">
+      <Link>Classes\ScreenTitle.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenVendor.cs">
       <Link>Classes\ScreenVendor.cs</Link>
@@ -272,7 +278,6 @@
   <ItemGroup>
     <GameData Include="GameData\**" />
   </ItemGroup>
-  
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -296,8 +301,6 @@
   -->
   <Target Name="AfterBuild">
     <Copy SourceFiles="@(GameData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
-	<Copy SourceFiles="@(GameData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="@(GameData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" />
   </Target>
-  
-  
 </Project>

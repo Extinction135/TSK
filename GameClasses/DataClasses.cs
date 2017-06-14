@@ -400,7 +400,7 @@ namespace DungeonRun
 
 
 
-
+    //Instanced Classes
 
     public class Byte2
     {
@@ -462,10 +462,10 @@ namespace DungeonRun
             id = ID;
             type = Type;
             //set room size based on type
-            if (type == RoomType.Exit)      { size.X = 11; size.Y = 11; }
-            else if (type == RoomType.Hub)  { size.X = 20; size.Y = 10; }
+            if (type == RoomType.Exit) { size.X = 11; size.Y = 11; }
+            else if (type == RoomType.Hub) { size.X = 20; size.Y = 10; }
             else if (type == RoomType.Boss) { size.X = 20; size.Y = 10; }
-            else if (type == RoomType.Dev)  { size.X = 20; size.Y = 10; }
+            else if (type == RoomType.Dev) { size.X = 20; size.Y = 10; }
             else if (type == RoomType.Shop) { size.X = 20; size.Y = 10; }
 
             collision.rec.Width = size.X * 16;
@@ -512,10 +512,6 @@ namespace DungeonRun
         public Color textLight = new Color(255, 255, 255);
         public Color textDark = new Color(0, 0, 0);
     }
-
-
-
-
 
     //Data Classes
 
@@ -809,7 +805,26 @@ namespace DungeonRun
 
     }
 
+    public class TitleAnimated
+    {
+        public int animSpeed; //how fast title moves, lower is faster
+        public ComponentSprite compSprite;
+        public Vector2 startPos;
+        public Vector2 endPos;
+        public DisplayState displayState;
 
+        public TitleAnimated(Vector2 StartPos, Vector2 EndPos, TitleText Text, int AnimSpeed)
+        {
+            startPos = StartPos;
+            endPos = EndPos;
+            animSpeed = AnimSpeed;
+            compSprite = new ComponentSprite(Assets.bigTextSheet,
+                new Vector2(0,0), new Byte4(0, 0, 0, 0), new Point(16 * 1, 16 * 4));
+            compSprite.alpha = 0.0f; //titles fade in
+            Functions_TitleAnimated.Reset(this);
+            Functions_TitleAnimated.SetText(this, Text);
+        }
+    }
 
 
 

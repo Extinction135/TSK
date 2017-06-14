@@ -15,15 +15,8 @@ namespace DungeonRun
     public class ScreenSummary : Screen
     {
 
-        int animSpeed; //how fast title sprites move, lower is faster
-
-        ComponentSprite leftTitle;
-        Vector2 leftTitleStartPos;
-        Vector2 leftTitleEndPos;
-
-        ComponentSprite rightTitle;
-        Vector2 rightTitleStartPos;
-        Vector2 rightTitleEndPos;
+        TitleAnimated leftTitle;
+        TitleAnimated rightTitle;
 
         ComponentText summaryText;
         ComponentText summaryData;
@@ -43,20 +36,38 @@ namespace DungeonRun
         public override void LoadContent()
         {
 
+            #region Create animated Titles
 
-            #region Create the various sprites and text components
+            float yPos = 80;
+            if (DungeonRecord.beatDungeon)
+            {   //'dungeon complete' state
+                leftTitle = new TitleAnimated(
+                    new Vector2(-200, yPos),
+                    new Vector2(115 + 5, yPos),
+                    TitleText.Dungeon, 8);
+                rightTitle = new TitleAnimated(
+                    new Vector2(640, yPos),
+                    new Vector2(320 + 5, yPos),
+                    TitleText.Complete, 8);
+                Assets.Play(Assets.sfxBeatDungeon);
+            }
+            else
+            {   //'you died' state
+                leftTitle = new TitleAnimated(
+                    new Vector2(-100, yPos),
+                    new Vector2(190 + 4, yPos),
+                    TitleText.You, 8);
+                rightTitle = new TitleAnimated(
+                    new Vector2(640, yPos),
+                    new Vector2(305 + 4, yPos),
+                    TitleText.Died, 8);
+            }
 
-            float yPos = 60;
+            #endregion
 
-            //create the left and right title sprites
-            leftTitle = new ComponentSprite(Assets.bigTextSheet, 
-                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(1, 1));
-            leftTitle.alpha = 0.0f;
-            rightTitle = new ComponentSprite(Assets.bigTextSheet, 
-                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(1, 1));
-            rightTitle.alpha = 0.0f;
 
-            //create the summary + data + continue text fields
+            #region Create the summary + data + continue text fields
+
             summaryText = new ComponentText(Assets.medFont, 
                 "time \nenemies \ndamage \nreward",
                 new Vector2(220, 150),
@@ -75,56 +86,10 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Setup the Title Text Sprite Components
-
-            if (DungeonRecord.beatDungeon)
-            {   //"dungoen complete"
-                leftTitle.currentFrame = new Byte4(0, 0, 0, 0);
-                leftTitle.cellSize = new Point(16 * 13, 16 * 4);
-                leftTitleStartPos = new Vector2(-200, yPos);
-                
-                rightTitle.currentFrame = new Byte4(0, 1, 0, 0);
-                rightTitle.cellSize = new Point(16 * 13, 16 * 4);
-                rightTitleStartPos = new Vector2(640, yPos);
-
-                leftTitleEndPos = new Vector2(130-15, yPos);
-                rightTitleEndPos = new Vector2(305+15, yPos);
-                animSpeed = 8; //lower is faster
-                Assets.Play(Assets.sfxBeatDungeon);
-            }
-            else
-            {   //"you died"
-                leftTitle.currentFrame = new Byte4(0, 2, 0, 0);
-                leftTitle.cellSize = new Point(16 * 8, 16 * 4);
-                leftTitleStartPos = new Vector2(-100, yPos);
-                
-                rightTitle.currentFrame = new Byte4(1, 2, 0, 0);
-                rightTitle.cellSize = new Point(16 * 8, 16 * 4);
-                rightTitleStartPos = new Vector2(640, yPos);
-
-                leftTitleEndPos = new Vector2(200-10, yPos);
-                rightTitleEndPos = new Vector2(285+20, yPos);
-                animSpeed = 8; //lower is faster
-            }
-
-            #endregion
-
-
-            //set the title sprites into their starting positions
-            leftTitle.position.X = leftTitleStartPos.X;
-            leftTitle.position.Y = leftTitleStartPos.Y;
-            rightTitle.position.X = rightTitleStartPos.X;
-            rightTitle.position.Y = rightTitleStartPos.Y;
-            //update the cellsize for the title components, since we changed them
-            Functions_Component.UpdateCellSize(leftTitle);
-            Functions_Component.UpdateCellSize(rightTitle);
-
-            //play title music
-            Functions_Music.PlayMusic(Music.Title);
+            
+            Functions_Music.PlayMusic(Music.Title); //play title music
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = Pool.hero.maxHealth;
-
             //reward player gold, if dungeon was completed
             if (DungeonRecord.beatDungeon)
             { rewardTotal = 99; } else { rewardTotal = 0; }
@@ -142,9 +107,14 @@ namespace DungeonRun
                     Functions_Input.IsNewButtonPress(Buttons.Y))
                 {
                     displayState = DisplayState.Closing;
-                    continueText.alpha = 1.0f;
+                    //close the animated titles
+                    if (leftTitle.displayState == DisplayState.Opened)
+                    { leftTitle.displayState = DisplayState.Closing; }
+                    if (rightTitle.displayState == DisplayState.Opened)
+                    { rightTitle.displayState = DisplayState.Closing; }
                     //play the summary exit sound effect immediately
                     Assets.Play(Assets.sfxExitSummary);
+                    continueText.alpha = 1.0f;
                 }
             }
         }
@@ -152,53 +122,31 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
 
-
-            #region Animate Title Sprites in / out
+            #region Handle Opening / Closing screen state
 
             if (displayState == DisplayState.Opening)
             {
-                if (leftTitle.position.X < leftTitleEndPos.X)
-                {   //move left title to endPos
-                    leftTitle.position.X += (leftTitleEndPos.X - leftTitle.position.X) / animSpeed;
-                    leftTitle.position.X += 1; //fixes delayed movement
-                }
-                if (leftTitle.position.X > leftTitleEndPos.X)
-                { leftTitle.position.X = leftTitleEndPos.X; }
-
-                if (rightTitle.position.X > rightTitleEndPos.X)
-                {   //move right title to endPos
-                    rightTitle.position.X -= (rightTitle.position.X - rightTitleEndPos.X) / animSpeed;
-                    rightTitle.position.X -= 1; //fixes delayed movement
-                }
-                if (rightTitle.position.X < rightTitleEndPos.X)
-                { rightTitle.position.X = rightTitleEndPos.X; }
+                Functions_TitleAnimated.AnimateMovement(leftTitle);
+                Functions_TitleAnimated.AnimateMovement(rightTitle);
                 //fade in components
-                leftTitle.alpha += fadeSpeed;
-                rightTitle.alpha += fadeSpeed;
+                leftTitle.compSprite.alpha += fadeSpeed;
+                rightTitle.compSprite.alpha += fadeSpeed;
                 continueText.alpha += fadeSpeed;
                 summaryText.alpha += fadeSpeed;
                 summaryData.alpha += fadeSpeed;
                 //check components position + opacity, transition state
-                if (rightTitle.position.X == rightTitleEndPos.X && 
-                    leftTitle.position.X == leftTitleEndPos.X &&
+                if (rightTitle.displayState == DisplayState.Opened && 
+                    leftTitle.displayState == DisplayState.Opened &&
                     continueText.alpha >= 1.0f)
                 { continueText.alpha = 1.0f; displayState = DisplayState.Opened; }
             }
             else if (displayState == DisplayState.Closing)
             {
-                if (leftTitle.position.X > leftTitleStartPos.X)
-                {   //move left title to startPos
-                    leftTitle.position.X -= (leftTitle.position.X - leftTitleStartPos.X) / animSpeed;
-                    leftTitle.position.X -= 1; //fixes delayed movement
-                }
-                if (rightTitle.position.X < rightTitleStartPos.X)
-                {   //move right title to startPos
-                    rightTitle.position.X += (rightTitleStartPos.X - rightTitle.position.X) / animSpeed;
-                    rightTitle.position.X += 1; //fixes delayed movement
-                }
+                Functions_TitleAnimated.AnimateMovement(leftTitle);
+                Functions_TitleAnimated.AnimateMovement(rightTitle);
                 //fade out components
-                leftTitle.alpha -= fadeSpeed * 1.5f;
-                rightTitle.alpha -= fadeSpeed * 1.5f;
+                leftTitle.compSprite.alpha -= fadeSpeed * 1.5f;
+                rightTitle.compSprite.alpha -= fadeSpeed * 1.5f;
                 summaryText.alpha -= fadeSpeed * 1.5f;
                 summaryData.alpha -= fadeSpeed * 1.5f;
                 continueText.alpha -= fadeSpeed * 0.9f;
@@ -215,11 +163,11 @@ namespace DungeonRun
             else if (displayState == DisplayState.Opened)
             {
                 //pulse the alpha of the left and right title sprites
-                if (leftTitle.alpha >= 1.0f) { leftTitle.alpha = 0.85f; }
-                if (rightTitle.alpha >= 1.0f) { rightTitle.alpha = 0.85f; }
+                if (leftTitle.compSprite.alpha >= 1.0f) { leftTitle.compSprite.alpha = 0.85f; }
+                if (rightTitle.compSprite.alpha >= 1.0f) { rightTitle.compSprite.alpha = 0.85f; }
                 if (continueText.alpha >= 1.0f) { continueText.alpha = 0.85f; }
-                leftTitle.alpha += 0.004f;
-                rightTitle.alpha += 0.004f;
+                leftTitle.compSprite.alpha += 0.004f;
+                rightTitle.compSprite.alpha += 0.004f;
                 continueText.alpha += 0.01f;
 
                 if(!countingComplete)
@@ -261,14 +209,13 @@ namespace DungeonRun
 
             #endregion
 
-
         }
 
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            Functions_Draw.Draw(leftTitle);
-            Functions_Draw.Draw(rightTitle);
+            Functions_Draw.Draw(leftTitle.compSprite);
+            Functions_Draw.Draw(rightTitle.compSprite);
             Functions_Draw.Draw(summaryData);
             Functions_Draw.Draw(summaryText);
             Functions_Draw.Draw(continueText);

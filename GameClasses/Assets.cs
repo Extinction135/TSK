@@ -33,10 +33,11 @@ namespace DungeonRun
         public static Texture2D blobSheet;
         public static Texture2D bossSheet;
 
-        //world/ui sheets
+        //world/ui/screen sheets
         public static Texture2D mainSheet;
         public static Texture2D bigTextSheet;
         public static Texture2D overworldSheet;
+        public static Texture2D titleBkgSheet;
 
         //dungeon sheets
         public static Texture2D cursedCastleSheet;
@@ -141,10 +142,11 @@ namespace DungeonRun
             blobSheet = content.Load<Texture2D>(@"BlobSheet");
             bossSheet = content.Load<Texture2D>(@"BossSheet");
 
-            //game textures
+            //world/ui/screen sheets
             mainSheet = content.Load<Texture2D>(@"MainSheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
             overworldSheet = content.Load<Texture2D>(@"OverworldTexture");
+            titleBkgSheet = content.Load<Texture2D>(@"TitleBkg");
 
             //dungeon textures
             cursedCastleSheet = content.Load<Texture2D>(@"DungeonSheet");

@@ -46,30 +46,136 @@ ram useage:
 	
 todo:
 
-9
+13
 
 
 
 
 
 
-update the inventory screen to display total crystals collected.
+New Game / Load Game / Save Game Sprint - part 1
 
-we can split stats window into two frames
-crystals can go below it
+updated TitleScreen mockup. created TitleScreen.cs.
+added TitleBkg.png to Content project.
+updated Assets.cs to load TitleBkg sheet.
+updated TitleScreen to display background image.
+
+created TitleAnimated class in DataClasses.cs.
+created TitleText enum in Enumerators.cs.
+created Functions_TitleAnimated.cs.
+
+heavily modified SummaryScreen to use new TitleAnimated instances.
+this greatly simplifies SummaryScreen.
+updated TitleScreen to use new TitleAnimated instances.
+playtested, everything working as expected.
+
+
+
+
+
+we are no longer animating titles 'out'
+summary screen shouldn't animate titles on closing state
+we don't need to set the title.displayState to closing for titleScreen or summaryScreen
+
+
+
+
+the overlay rec should be a data class, we're duplicating rectangle, recAlpha, recFadeIn / out speeds
+
+
+
+
+the fading in/out of titles should be a function
+
+
+
+
+move MenuWindow functions into their own class
+move MenuRectangle functions into their own class
+
+
+
+
+export the background title screen image
+create the dungeon + run text, that animate in from the side
+this dupes functionality from summary screen - should prolly put these into their own classes
 
 
 
 
 create title screen based on mockup
-this includes the title widget
+	background image, plus dungeon run text (from text sheet)
+	fade background image in, dungeon + run slide in from the sides (just like summary screen)
+	dungeon run text blinks (just like summary screen)
+	title widget opens, after a second of waiting..
+title widget
+	is composed of menuItems
+	has no functionality right now
+	
+create load/save/new game screen
+	this isn't a widget, the screen should contain everything
+	it's not that complicated, and we don't need to litter the widget classes
+	
+update the options widget based on mockup
+update the stats widget based on mockup
+create the crystals widget based on mockup
+none of these have any functionality right now	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+load game screen functionality
+	we'll need to create 3 save files, if these files don't exist
+	then based on which game is selected, we write player data to the proper file
+	this screen has three states: loading, saving, or creating a new game
+	loading: loads player data from the selected file
+	saving: saves player data to the selected file
+	creating: overwrites file with new player data
+
+options widget functionality	
+	save game autosaves for now
+	quit game exits all screens and loads title screen
+	load game creates load screen
+	
+title widget functionality
 	continue simply loads autosave data and creates overworld screen
 	new game resets player data, autosaves, and creates overworld screen
-	load game (does nothing)
+	load game - calls the load game screen
 	quit game - closes the program
+	audio/input/video/game ctrls - do nothing for now
+
+
 	
 	
 	
+Autosave++
+
+autosave should happen more often, like when a player purchases an item
+autosave should happen upon dungeon exit, as well as dungeon build.
+text should appear that says 'autosaving' when autosave happens
+this should appear underneath the HUD on the bottom left
+
+we need a reset() method for the playerData
+then we can call reset() and save the player data to create a new game
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 audio ctrls screen
 	sfx volume
 	music volume
@@ -79,29 +185,11 @@ video ctrls screen
 	full screen or windowed?
 game ctrls screen
 	how camera moves - follow hero or center to current room?
-
-
-update the inventory widget based on mockup
-save game should just autosave for now..
-
-
-
-autosave should happen more often, like when a player purchases an item
-autosave should happen upon dungeon exit, as well as dungeon build.
-
-
-
-
-we need a reset() method for the playerData
-then we can call reset() and save the player data to create a new game
-
-from the options menu on inventory screen, add a 'new game' menuItem
-clicking this should call reset() on playerdata, then save player data, 
-then exit all screens, create a dungeon screen + overworld screen
-
-
-
-
+	
+	
+	
+	
+	
 
 
 

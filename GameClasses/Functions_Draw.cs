@@ -130,8 +130,7 @@ namespace DungeonRun
                 Assets.colorScheme.windowBkg);
             Draw(Amnt.amount);
         }
-
-
+        
 
         public static void DrawDebugInfo()
         {
