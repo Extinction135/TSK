@@ -457,6 +457,7 @@ namespace DungeonRun
         public Point center = new Point(0, 0);
         public RoomType type;
         public int id;
+
         public Room(Point Pos, RoomType Type, int ID)
         {
             id = ID;
@@ -470,14 +471,7 @@ namespace DungeonRun
 
             collision.rec.Width = size.X * 16;
             collision.rec.Height = size.Y * 16;
-            Move(Pos.X, Pos.Y);
-        }
-        public void Move(int X, int Y)
-        {
-            collision.rec.X = X;
-            collision.rec.Y = Y;
-            center.X = X + (size.X / 2) * 16;
-            center.Y = Y + (size.Y / 2) * 16;
+            Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
         }
     }
 

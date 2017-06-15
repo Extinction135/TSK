@@ -169,6 +169,14 @@ namespace DungeonRun
 
 
 
+        public static void MoveRoom(Room Room, int X, int Y)
+        {
+            Room.collision.rec.X = X;
+            Room.collision.rec.Y = Y;
+            Room.center.X = X + (Room.size.X / 2) * 16;
+            Room.center.Y = Y + (Room.size.Y / 2) * 16;
+        }
+
         public static void SetFloors(Room Room)
         {
             for (i = 0; i < Pool.floorCount; i++)

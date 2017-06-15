@@ -54,14 +54,16 @@ todo:
 
 Refactoring - seperating data and functionality
 
-created Functions_MenuWindow class.
-moved MenuWindow functions Update() and ResetAndMove() into Functions_MenuWindow class.
+moved Room.Move() to Functions_Room.MoveRoom().
+updated various codepaths that used Move() to now use MoveRoom().
 built + tested.
 
 
 
 
-move MenuWindow functions into their own class
+
+
+
 move MenuRectangle functions into their own class
 
 

@@ -57,9 +57,9 @@ namespace DungeonRun
                 Room bossRoom = new Room(new Point(0, 0), RoomType.Boss, 2);
 
                 //place/move the rooms (relative to each other)
-                exitRoom.Move(16 * 10, 16 * 100);
-                hubRoom.Move(16 * 10, exitRoom.collision.rec.Y - (16 * hubRoom.size.Y) - 16);
-                bossRoom.Move(16 * 10, hubRoom.collision.rec.Y - (16 * bossRoom.size.Y) - 16);
+                Functions_Room.MoveRoom(exitRoom, 16 * 10, 16 * 100);
+                Functions_Room.MoveRoom(hubRoom, 16 * 10, exitRoom.collision.rec.Y - (16 * hubRoom.size.Y) - 16);
+                Functions_Room.MoveRoom(bossRoom, 16 * 10, hubRoom.collision.rec.Y - (16 * bossRoom.size.Y) - 16);
 
                 //add rooms to the rooms list
                 dungeon.rooms.Add(exitRoom);
