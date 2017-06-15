@@ -169,6 +169,9 @@
     <Compile Include="..\..\GameClasses\Functions_MenuItem.cs">
       <Link>Classes\Functions_MenuItem.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_MenuWindow.cs">
+      <Link>Classes\Functions_MenuWindow.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Movement.cs">
       <Link>Classes\Functions_Movement.cs</Link>
     </Compile>

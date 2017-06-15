@@ -30,7 +30,7 @@ namespace DungeonRun
 
         public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMove(X, Y,
+            Functions_MenuWindow.ResetAndMove(window, X, Y,
                 new Point(16 * 22, 16 * 4), "Hello!");
             speaker.compMove.newPosition.X = X + 16 * 1;
             speaker.compMove.newPosition.Y = Y + 16 * 2;
@@ -40,7 +40,7 @@ namespace DungeonRun
 
         public override void Update()
         {
-            window.Update();
+            Functions_MenuWindow.Update(window);
             Functions_Animation.Animate(speaker.compAnim, speaker.compSprite);
 
             if (window.interior.displayState == DisplayState.Opened)

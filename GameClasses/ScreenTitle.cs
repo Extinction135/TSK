@@ -26,6 +26,7 @@ namespace DungeonRun
         TitleAnimated rightTitle;
 
         List<MenuItem> menuItems;
+
         /*
         MenuItem contiue;
         MenuItem newGame;
@@ -124,7 +125,7 @@ namespace DungeonRun
                 if (rightTitle.compSprite.alpha < 1.0f)
                 { rightTitle.compSprite.alpha += fadeInSpeed; }
                 //open the window
-                window.Update();
+                Functions_MenuWindow.Update(window);
             }
             else if (displayState == DisplayState.Closing)
             {   //fade titles out

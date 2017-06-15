@@ -55,7 +55,8 @@ namespace DungeonRun
 
         public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMove(X, Y, new Point(16 * 8, 16 * 14 + 8), "Items");
+            Functions_MenuWindow.ResetAndMove(window, X, Y, 
+                new Point(16 * 8, 16 * 14 + 8), "Items");
 
 
             #region Reset and align dividers
@@ -111,7 +112,7 @@ namespace DungeonRun
 
         public override void Update()
         {
-            window.Update();
+            Functions_MenuWindow.Update(window);
             for (i = 0; i < dividers.Count; i++) { dividers[i].Update(); }
         }
 

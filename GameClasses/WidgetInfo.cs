@@ -36,7 +36,7 @@ namespace DungeonRun
 
         public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMove(X, Y,
+            Functions_MenuWindow.ResetAndMove(window, X, Y,
                 new Point(16 * 6 + 8, 16 * 5 + 8), 
                 "Info Window");
             description.position.X = X + 8;
@@ -58,7 +58,7 @@ namespace DungeonRun
 
         public override void Update()
         {
-            window.Update();
+            Functions_MenuWindow.Update(window);
             divider1.Update();
             Functions_Animation.Animate(infoItem.compAnim, infoItem.compSprite);
         }

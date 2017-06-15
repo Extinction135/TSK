@@ -46,7 +46,8 @@ namespace DungeonRun
 
         public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
-            window.ResetAndMove(X, Y, new Point(16 * 6 + 8, 16 * 5 + 8), "Loadout");
+            Functions_MenuWindow.ResetAndMove(window, X, Y, 
+                new Point(16 * 6 + 8, 16 * 5 + 8), "Loadout");
 
 
             #region Place first row of menuItems
@@ -101,7 +102,7 @@ namespace DungeonRun
 
         public override void Update()
         {
-            window.Update();
+            Functions_MenuWindow.Update(window);
             //scale the loadout sprites back down to 1.0
             Functions_Animation.Animate(item.compAnim, item.compSprite);
             Functions_Animation.Animate(weapon.compAnim, weapon.compSprite);

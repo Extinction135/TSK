@@ -229,7 +229,7 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            window.Update();
+            Functions_MenuWindow.Update(window);
 
 
             #region Handle Screen State

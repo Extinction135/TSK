@@ -46,46 +46,17 @@ ram useage:
 	
 todo:
 
-13
+12
 
 
 
 
 
+Refactoring - seperating data and functionality
 
-New Game / Load Game / Save Game Sprint - part 1
-
-updated TitleScreen mockup. created TitleScreen.cs.
-added TitleBkg.png to Content project.
-updated Assets.cs to load TitleBkg sheet.
-updated TitleScreen to display background image.
-
-created TitleAnimated class in DataClasses.cs.
-created TitleText enum in Enumerators.cs.
-created Functions_TitleAnimated.cs.
-
-heavily modified SummaryScreen to use new TitleAnimated instances.
-this greatly simplifies SummaryScreen.
-updated TitleScreen to use new TitleAnimated instances.
-playtested, everything working as expected.
-
-
-
-
-
-we are no longer animating titles 'out'
-summary screen shouldn't animate titles on closing state
-we don't need to set the title.displayState to closing for titleScreen or summaryScreen
-
-
-
-
-the overlay rec should be a data class, we're duplicating rectangle, recAlpha, recFadeIn / out speeds
-
-
-
-
-the fading in/out of titles should be a function
+created Functions_MenuWindow class.
+moved MenuWindow functions Update() and ResetAndMove() into Functions_MenuWindow class.
+built + tested.
 
 
 
@@ -96,22 +67,65 @@ move MenuRectangle functions into their own class
 
 
 
-export the background title screen image
-create the dungeon + run text, that animate in from the side
-this dupes functionality from summary screen - should prolly put these into their own classes
 
 
 
 
-create title screen based on mockup
-	background image, plus dungeon run text (from text sheet)
-	fade background image in, dungeon + run slide in from the sides (just like summary screen)
-	dungeon run text blinks (just like summary screen)
-	title widget opens, after a second of waiting..
-title widget
-	is composed of menuItems
-	has no functionality right now
-	
+
+
+New Game / Load Game / Save Game Sprint - part 2
+
+
+
+
+
+we are no longer animating titles 'out'
+summary screen shouldn't animate titles on closing state
+we don't need to set the title.displayState to closing for titleScreen or summaryScreen
+
+the overlay rec should be a data class, we're duplicating rectangle, recAlpha, recFadeIn / out speeds
+
+dungeon run text should blink, just like summary screen
+should this be part of the animatedTitle's functions_class as well?
+functions.Blink(Title), where title.blinkSpeed is used?
+
+the fading in/out of titles should be a function
+their fade speed should be part of the animatedTitle data class
+
+
+
+
+
+
+
+
+
+complete creation of title widget
+add menuitems, set menuItem neighbors
+make selectionBox appear, function (match currently selected pos)
+update input to allow user to move selectionBox thru menuItems
+no click functionality right now...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 create load/save/new game screen
 	this isn't a widget, the screen should contain everything
 	it's not that complicated, and we don't need to litter the widget classes
@@ -120,7 +134,6 @@ update the options widget based on mockup
 update the stats widget based on mockup
 create the crystals widget based on mockup
 none of these have any functionality right now	
-	
 	
 	
 	

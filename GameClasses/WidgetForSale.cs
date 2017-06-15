@@ -34,7 +34,8 @@ namespace DungeonRun
 
         public override void Reset(int X, int Y)
         {   //align this widgets component to Position
-            window.ResetAndMove(X, Y, new Point(16 * 8, 16 * 5 + 8), "For Sale");
+            Functions_MenuWindow.ResetAndMove(window, X, Y, 
+                new Point(16 * 8, 16 * 5 + 8), "For Sale");
 
 
             #region Place first row of menuItems
@@ -96,7 +97,7 @@ namespace DungeonRun
 
         public override void Update()
         {
-            window.Update();
+            Functions_MenuWindow.Update(window);
         }
 
         public override void Draw()
