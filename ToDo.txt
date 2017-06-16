@@ -50,24 +50,10 @@ todo:
 
 
 
+Summary Screen cleanup
 
-
-
-Consolidate and simplify how screens fade in/out - part 2
-
-updated VendorScreen to use a ScreenRec.
-updated DungeonsScreen to use a ScreenRec.
-playtested, working as expected.
-
-
-
-
-
-
-
-
-
-"press any button to play again" should be "press any button to continue"
+removed code in SummaryScreen that closed AnimatedTitle instances.
+we are no longer animating the title instances 'out'.
 
 
 
@@ -79,34 +65,8 @@ playtested, working as expected.
 
 
 
-New Game / Load Game / Save Game Sprint - part 2
 
-
-
-
-
-we are no longer animating titles 'out'
-summary screen shouldn't animate titles on closing state
-we don't need to set the title.displayState to closing for titleScreen or summaryScreen
-
-
-
-dungeon run text should blink, just like summary screen
-should this be part of the animatedTitle's functions_class as well?
-functions.Blink(Title), where title.blinkSpeed is used?
-
-the fading in/out of titles should be a function
-their fade speed should be part of the animatedTitle data class
-
-
-
-
-
-
-
-
-
-complete creation of title widget
+complete creation of title screen
 add menuitems, set menuItem neighbors
 make selectionBox appear, function (match currently selected pos)
 update input to allow user to move selectionBox thru menuItems
@@ -410,15 +370,17 @@ Version 0.5 Milestones
 	
 	
 	
-	
-	
-Style / theme ++
-	make background black instead of medium gray, if game is in release mode
-	
-	
-	
-	
-	
+Polish++	
+"press any button to play again" should be "press any button to continue"
+
+dungeon run text should blink, just like summary screen
+should this be part of the animatedTitle's functions_class as well?
+functions.Blink(Title), where title.blinkSpeed is used?
+
+
+
+
+
 	
 	
 	

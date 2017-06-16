@@ -108,11 +108,6 @@ namespace DungeonRun
                     Functions_Input.IsNewButtonPress(Buttons.Y))
                 {
                     displayState = DisplayState.Closing;
-                    //close the animated titles
-                    if (leftTitle.displayState == DisplayState.Opened)
-                    { leftTitle.displayState = DisplayState.Closing; }
-                    if (rightTitle.displayState == DisplayState.Opened)
-                    { rightTitle.displayState = DisplayState.Closing; }
                     //play the summary exit sound effect immediately
                     Assets.Play(Assets.sfxExitSummary);
                     continueText.alpha = 1.0f;
