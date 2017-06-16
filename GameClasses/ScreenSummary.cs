@@ -14,10 +14,9 @@ namespace DungeonRun
 {
     public class ScreenSummary : Screen
     {
-
+        ScreenRec background = new ScreenRec();
         TitleAnimated leftTitle;
         TitleAnimated rightTitle;
-
         ComponentText summaryText;
         ComponentText summaryData;
         ComponentText continueText;
@@ -35,6 +34,8 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            background.alpha = 1.0f;
+
 
             #region Create animated Titles
 
@@ -125,7 +126,7 @@ namespace DungeonRun
             #region Handle Opening / Closing screen state
 
             if (displayState == DisplayState.Opening)
-            {
+            {   //animate titles into place
                 Functions_TitleAnimated.AnimateMovement(leftTitle);
                 Functions_TitleAnimated.AnimateMovement(rightTitle);
                 //fade in components
@@ -201,8 +202,9 @@ namespace DungeonRun
 
             else if (displayState == DisplayState.Closed)
             {   //exit this screen, return to overworld
-                ScreenManager.RemoveScreen(this);
-                ScreenManager.AddScreen(new ScreenOverworld());
+                //ScreenManager.RemoveScreen(this);
+                //ScreenManager.AddScreen(new ScreenOverworld());
+                ScreenManager.ExitAndLoad(new ScreenOverworld());
             }
 
             #endregion
@@ -212,6 +214,9 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            //draw background first
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
+                background.rec, Assets.colorScheme.overlay * background.alpha);
             Functions_Draw.Draw(leftTitle.compSprite);
             Functions_Draw.Draw(rightTitle.compSprite);
             Functions_Draw.Draw(summaryData);

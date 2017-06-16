@@ -20,8 +20,12 @@ namespace DungeonRun
         public float overlayAlpha = 1.0f;
         float fadeInSpeed; //this is set in Update()
         float fadeOutSpeed = 0.025f;
-        //what happens when this screen exits?
-        public ExitAction exitAction = ExitAction.None;
+
+        //replace the above code with a ScreenRec
+
+
+
+        public ExitAction exitAction;
 
 
 
@@ -107,7 +111,7 @@ namespace DungeonRun
                 }
                 else if (displayState == DisplayState.Opened)
                 {   //set overlay alpha to a negative value
-                    overlayAlpha = -2.0f; //delays closing state a bit
+                    overlayAlpha = -1.5f; //delays closing state a bit
                 }   //delay gives player time to understand what's happening
                 else if (displayState == DisplayState.Closing) //fade overlay to 1.0
                 {
@@ -128,19 +132,21 @@ namespace DungeonRun
                 }
                 else if (displayState == DisplayState.Closed)
                 {
+                    DungeonRecord.timer.Stop();
                     if (exitAction == ExitAction.Summary)
                     {
-                        DungeonRecord.timer.Stop();
-                        ScreenManager.AddScreen(new ScreenSummary());
-                        exitAction = ExitAction.None;
+                        //ScreenManager.AddScreen(new ScreenSummary());
+                        ScreenManager.ExitAndLoad(new ScreenSummary());
                     }
                     else if(exitAction == ExitAction.Overworld)
                     {
-                        DungeonRecord.timer.Stop();
-                        ScreenManager.AddScreen(new ScreenOverworld());
-                        exitAction = ExitAction.None;
+                        //ScreenManager.AddScreen(new ScreenOverworld());
+                        ScreenManager.ExitAndLoad(new ScreenOverworld());
                     }
-                    else { } //wait for call to generate a new dungeon
+                    else if(exitAction == ExitAction.Title)
+                    {
+                        ScreenManager.ExitAndLoad(new ScreenTitle());
+                    }
                 }
 
                 #endregion

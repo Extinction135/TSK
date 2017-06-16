@@ -46,30 +46,38 @@ ram useage:
 	
 todo:
 
-11
-
-
-
-
-
-Make the handling of Titles consistent.
-
-the title on the title screen don't animate out
-so, the titles on the summary screen shouldn't animate out
-updated SummaryScreen to stop titles from animating out during closing screen state
+10
 
 
 
 
 
 
+Consolidate and simplify how screens fade in/out
+
+created ScreenRec data class.
+updated TitleScreen to use new ScreenRec class.
+updated SummaryScreen to use new ScreenRec class.
+updated various screens to call ExitAndLoad() instead of AddScreen().
+updated OverworldScreen to use ScreenRec.
+
+added MainMenu value to ExitAction enumerator.
+updated DungeonScreen to handle exiting to TitleScreen.
+playtested, working as expected.
 
 
-Title screen's overlay rec should fade in when screen closes
-titles should not fade out
-same with summary screen
 
-this simplifies the code of both screens
+
+
+dungeon screen should implement ScreenRec
+vendor screen should implement a ScreenRec as well
+
+
+
+
+
+
+
 
 
 
@@ -88,7 +96,7 @@ we are no longer animating titles 'out'
 summary screen shouldn't animate titles on closing state
 we don't need to set the title.displayState to closing for titleScreen or summaryScreen
 
-the overlay rec should be a data class, we're duplicating rectangle, recAlpha, recFadeIn / out speeds
+
 
 dungeon run text should blink, just like summary screen
 should this be part of the animatedTitle's functions_class as well?

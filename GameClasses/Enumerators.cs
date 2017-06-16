@@ -23,7 +23,7 @@ namespace DungeonRun
 
     public enum TitleText { Dungeon, Complete, You, Died, Run }
 
-    public enum ExitAction { None, Summary, Overworld }
+    public enum ExitAction { Title, Summary, Overworld }
 
     public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 

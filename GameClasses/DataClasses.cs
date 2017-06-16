@@ -699,6 +699,14 @@ namespace DungeonRun
         }
     }
 
+    public class ScreenRec
+    {
+        public Rectangle rec = new Rectangle(0, 0, 640, 360);
+        public float alpha = 0.0f;
+        public float fadeInSpeed = 0.05f;
+        public float fadeOutSpeed = 0.05f;
+    }
+
 
 
     //Data Components

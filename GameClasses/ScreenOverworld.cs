@@ -14,12 +14,7 @@ namespace DungeonRun
 {
     public class ScreenOverworld : Screen
     {
-
-        //the foreground black rectangle, overlays and hides screen content
-        Rectangle overlay;
-        public float overlayAlpha = 0.0f;
-        float fadeInSpeed = 0.05f;
-
+        ScreenRec overlay = new ScreenRec();
         public static MenuWindow window;
         public static ComponentSprite map;
         public static ComponentText selectedLocation;
@@ -53,7 +48,7 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            overlay = new Rectangle(0, 0, 640, 360);
+            overlay.alpha = 1.0f;
 
             window = new MenuWindow(new Point(16 * 11 + 8, 16 * 1 + 8),
                 new Point(16 * 17, 16 * 19), "Overworld Map");
@@ -235,16 +230,20 @@ namespace DungeonRun
             #region Handle Screen State
 
             if (displayState == DisplayState.Opening)
-            {
-                if (window.interior.displayState == DisplayState.Opened)
-                { displayState = DisplayState.Opened; }
+            {   //fade overlay out
+                overlay.alpha -= overlay.fadeInSpeed;
+                if (overlay.alpha <= 0.0f)
+                {
+                    overlay.alpha = 0.0f;
+                    displayState = DisplayState.Opened;
+                }
             }
             else if (displayState == DisplayState.Closing)
-            {
-                overlayAlpha += fadeInSpeed;
-                if (overlayAlpha >= 1.0f)
+            {   //fade overlay in
+                overlay.alpha += overlay.fadeInSpeed;
+                if (overlay.alpha >= 1.0f)
                 {
-                    overlayAlpha = 1.0f;
+                    overlay.alpha = 1.0f;
                     displayState = DisplayState.Closed;
                 }
             }
@@ -276,18 +275,19 @@ namespace DungeonRun
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
 
+            //draw overlay as background
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
+                overlay.rec, Assets.colorScheme.overlay * 1.0f);
             Functions_Draw.Draw(window);
-
-            if (window.interior.displayState == DisplayState.Opened || window.interior.displayState == DisplayState.Closing)
+            if (window.interior.displayState == DisplayState.Opened)
             {
                 Functions_Draw.Draw(map);
                 Functions_Draw.Draw(selectedLocation);
                 Functions_Draw.Draw(selectionBox);
             }
-
-            //draw the overlay rec last
+            //draw overlay rec as foreground cover
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                overlay, Assets.colorScheme.overlay * overlayAlpha);
+                overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
 
             ScreenManager.spriteBatch.End();
         }

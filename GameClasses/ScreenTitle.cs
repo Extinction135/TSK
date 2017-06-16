@@ -14,11 +14,7 @@ namespace DungeonRun
 {
     public class ScreenTitle : Screen
     {
-
-        Rectangle overlay;
-        public float overlayAlpha = 6.0f;
-        float fadeInSpeed = 0.05f;
-
+        ScreenRec overlay = new ScreenRec();
         ComponentSprite background;
         static MenuWindow window;
 
@@ -49,7 +45,7 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            overlay = new Rectangle(0, 0, 640, 360);
+            overlay.alpha = 6.0f;
 
             background = new ComponentSprite(Assets.titleBkgSheet,
                 new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(640, 360));
@@ -107,10 +103,10 @@ namespace DungeonRun
 
             if (displayState == DisplayState.Opening)
             {   //fade overlay out
-                overlayAlpha -= fadeInSpeed;
-                if (overlayAlpha <= 0.0f)
+                overlay.alpha -= overlay.fadeInSpeed;
+                if (overlay.alpha <= 0.0f)
                 {
-                    overlayAlpha = 0.0f;
+                    overlay.alpha = 0.0f;
                     displayState = DisplayState.Opened;
                     //Assets.Play(Assets.sfxMapOpen);
                 }
@@ -121,23 +117,18 @@ namespace DungeonRun
                 Functions_TitleAnimated.AnimateMovement(rightTitle);
                 //fade titles in
                 if (leftTitle.compSprite.alpha < 1.0f)
-                { leftTitle.compSprite.alpha += fadeInSpeed; }
+                { leftTitle.compSprite.alpha += 0.05f; }
                 if (rightTitle.compSprite.alpha < 1.0f)
-                { rightTitle.compSprite.alpha += fadeInSpeed; }
+                { rightTitle.compSprite.alpha += 0.05f; }
                 //open the window
                 Functions_MenuWindow.Update(window);
             }
             else if (displayState == DisplayState.Closing)
-            {   //fade titles out
-                if (leftTitle.compSprite.alpha > 0.0f)
-                { leftTitle.compSprite.alpha -= fadeInSpeed * 2f; }
-                if (rightTitle.compSprite.alpha > 0.0f)
-                { rightTitle.compSprite.alpha -= fadeInSpeed * 2f; }
-                //fade overlay in
-                overlayAlpha += fadeInSpeed;
-                if (overlayAlpha >= 1.0f)
+            {   //fade overlay in
+                overlay.alpha += overlay.fadeInSpeed;
+                if (overlay.alpha >= 1.0f)
                 {
-                    overlayAlpha = 1.0f;
+                    overlay.alpha = 1.0f;
                     displayState = DisplayState.Closed;
                 }
             }
@@ -180,9 +171,9 @@ namespace DungeonRun
                 //Functions_Draw.Draw(selectionBox);
             }
 
-            //draw the overlay rec last
+            //draw overlay last
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                overlay, Assets.colorScheme.overlay * overlayAlpha);
+                overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
 
             ScreenManager.spriteBatch.End();
         }
