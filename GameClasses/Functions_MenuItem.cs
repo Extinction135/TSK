@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_MenuItem
     {
-
         static int i;
         static int rowCounter;
 
@@ -275,11 +274,17 @@ namespace DungeonRun
 
             #region Option menuItems
 
-            else if (Type == MenuItemType.OptionsSaveGame)
+            else if (Type == MenuItemType.OptionsContinue)
             {
-                MenuItem.name = "Save Game";
-                MenuItem.description = "Saves the current\ngame.";
+                MenuItem.name = "Continue Game";
+                MenuItem.description = "Continues the\nlast game.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 8, 0, 0) };
+            }
+            else if (Type == MenuItemType.OptionsNewGame)
+            {
+                MenuItem.name = "New Game";
+                MenuItem.description = "Starts a new\ngame.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 12, 0, 0) };
             }
             else if (Type == MenuItemType.OptionsLoadGame)
             {
@@ -287,6 +292,13 @@ namespace DungeonRun
                 MenuItem.description = "Loads a saved\ngame.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 8, 0, 0) };
             }
+            else if (Type == MenuItemType.OptionsQuitGame)
+            {
+                MenuItem.name = "Quit Game";
+                MenuItem.description = "Quit the current\ngame.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 12, 0, 0) };
+            }
+            //
             else if (Type == MenuItemType.OptionsAudioCtrls)
             {
                 MenuItem.name = "Audio Controls";
@@ -304,6 +316,19 @@ namespace DungeonRun
                 MenuItem.name = "Video Controls";
                 MenuItem.description = "Changes the size\nof the game window.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 9, 0, 0) };
+            }
+            else if (Type == MenuItemType.OptionsGameCtrls)
+            {
+                MenuItem.name = "Game Controls";
+                MenuItem.description = "Changes game\ncontrols + settings.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 11, 0, 0) };
+            }
+            //
+            else if (Type == MenuItemType.OptionsSaveGame)
+            {
+                MenuItem.name = "Save Game";
+                MenuItem.description = "Saves the current\ngame.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 8, 0, 0) };
             }
 
             #endregion
@@ -350,6 +375,12 @@ namespace DungeonRun
 
             //update the sprite's current frame to the animation list set above
             Functions_Animation.Animate(MenuItem.compAnim, MenuItem.compSprite);
+        }
+
+        public static void PlaceMenuItem(MenuItem Child, MenuItem Parent, int Offset)
+        {
+            Child.compSprite.position.X = Parent.compSprite.position.X + Offset;
+            Child.compSprite.position.Y = Parent.compSprite.position.Y;
         }
 
     }

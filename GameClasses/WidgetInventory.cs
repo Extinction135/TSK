@@ -251,16 +251,10 @@ namespace DungeonRun
             menuItems[index].compSprite.position.X = X;
             menuItems[index].compSprite.position.Y = Y;
             //align the rest of the row
-            PlaceMenuItem(menuItems[index+1], menuItems[index]);
-            PlaceMenuItem(menuItems[index+2], menuItems[index+1]);
-            PlaceMenuItem(menuItems[index+3], menuItems[index+2]);
-            PlaceMenuItem(menuItems[index+4], menuItems[index+3]);
-        }
-
-        public void PlaceMenuItem(MenuItem Child, MenuItem Parent)
-        {
-            Child.compSprite.position.X = Parent.compSprite.position.X + 24;
-            Child.compSprite.position.Y = Parent.compSprite.position.Y;
+            Functions_MenuItem.PlaceMenuItem(menuItems[index+1], menuItems[index], 24);
+            Functions_MenuItem.PlaceMenuItem(menuItems[index+2], menuItems[index+1], 24);
+            Functions_MenuItem.PlaceMenuItem(menuItems[index+3], menuItems[index+2], 24);
+            Functions_MenuItem.PlaceMenuItem(menuItems[index+4], menuItems[index+3], 24);
         }
 
     }

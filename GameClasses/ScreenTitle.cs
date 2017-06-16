@@ -17,27 +17,25 @@ namespace DungeonRun
         ScreenRec overlay = new ScreenRec();
         ComponentSprite background;
         static MenuWindow window;
-
         TitleAnimated leftTitle;
         TitleAnimated rightTitle;
+        int i;
 
         List<MenuItem> menuItems;
+        MenuItem contGame = new MenuItem();
+        MenuItem newGame = new MenuItem();
+        MenuItem loadGame = new MenuItem();
+        MenuItem quitGame = new MenuItem();
+        MenuItem audioCtrls = new MenuItem();
+        MenuItem inputCtrls = new MenuItem();
+        MenuItem videoCtrls = new MenuItem();
+        MenuItem gameCtrls = new MenuItem();
 
-        /*
-        MenuItem contiue;
-        MenuItem newGame;
-        MenuItem loadGame;
-        MenuItem quitGame;
-        MenuItem audioCtrls;
-        MenuItem inputCtrls;
-        MenuItem videoCtrls;
-        MenuItem gameCtrls;
-
-        MenuItem currentlySelected;
-        MenuItem previouslySelected;
-        ComponentSprite selectionBox;
-        int i = 0;
-        */
+        //these point to a menuItem
+        public MenuItem currentlySelected;
+        public MenuItem previouslySelected;
+        //simply visually tracks which menuItem is selected
+        public ComponentSprite selectionBox;
 
 
 
@@ -46,13 +44,10 @@ namespace DungeonRun
         public override void LoadContent()
         {
             overlay.alpha = 6.0f;
-
             background = new ComponentSprite(Assets.titleBkgSheet,
                 new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(640, 360));
-
-            window = new MenuWindow(new Point(16 * 14, 16 * 15),
-                new Point(16 * 12, 16 * 6), "Main Menu");
-
+            window = new MenuWindow(new Point(16 * 13 + 8, 16 * 15),
+                new Point(16 * 13, 16 * 5 + 8), "Main Menu");
             float yPos = 200;
             leftTitle = new TitleAnimated(
                 new Vector2(-150, yPos),
@@ -63,19 +58,59 @@ namespace DungeonRun
                 new Vector2(320+35, yPos),
                 TitleText.Run, 8);
 
-            //leftTitle.compSprite.alpha = 1.0f;
-            //rightTitle.compSprite.alpha = 1.0f;
 
-            /*
+            #region Create the menuItems
+
+            menuItems = new List<MenuItem>();
+            //set the menuItem data
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsContinue, contGame);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsNewGame, newGame);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsLoadGame, loadGame);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsQuitGame, quitGame);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsAudioCtrls, audioCtrls);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsInputCtrls, inputCtrls);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsVideoCtrls, videoCtrls);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsGameCtrls, gameCtrls);
+            //add the menuItems to the menuItems list
+            menuItems.Add(contGame);
+            menuItems.Add(newGame);
+            menuItems.Add(loadGame);
+            menuItems.Add(quitGame);
+            menuItems.Add(audioCtrls);
+            menuItems.Add(inputCtrls);
+            menuItems.Add(videoCtrls);
+            menuItems.Add(gameCtrls);
+            //set the menuItem's neighbors
+            Functions_MenuItem.SetNeighbors(menuItems, 4);
+
+            #endregion
+
+
+            #region Place the menuItems
+
+            //row 1
+            contGame.compSprite.position.X = window.background.rec.X + 16;
+            contGame.compSprite.position.Y = window.background.rec.Y + 24 + 8;
+            Functions_MenuItem.PlaceMenuItem(newGame, contGame, 48);
+            Functions_MenuItem.PlaceMenuItem(loadGame, newGame, 48);
+            Functions_MenuItem.PlaceMenuItem(quitGame, loadGame, 48);
+            //row 2
+            audioCtrls.compSprite.position.X = contGame.compSprite.position.X;
+            audioCtrls.compSprite.position.Y = contGame.compSprite.position.Y + 24;
+            Functions_MenuItem.PlaceMenuItem(inputCtrls, audioCtrls, 48);
+            Functions_MenuItem.PlaceMenuItem(videoCtrls, inputCtrls, 48);
+            Functions_MenuItem.PlaceMenuItem(gameCtrls, videoCtrls, 48);
+
+            #endregion
+
+
+            //set the currently selected menuItem to the first inventory menuItem
+            currentlySelected = menuItems[0];
+            previouslySelected = menuItems[0];
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(15, 7, 0, 0),
                 new Point(16, 16));
-            */
-            //create the menuItems
-            menuItems = new List<MenuItem>();
-
-
             //open the screen
             displayState = DisplayState.Opening;
             //play the title music
@@ -89,9 +124,34 @@ namespace DungeonRun
                 if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
                     Functions_Input.IsNewButtonPress(Buttons.A))
                 {
+                    if (currentlySelected.type != MenuItemType.Unknown)
+                    { currentlySelected.compSprite.scale = 2.0f; }
                     displayState = DisplayState.Closing;
                     //play the summary exit sound effect immediately
                     Assets.Play(Assets.sfxMenuItem);
+                }
+                //get the previouslySelected menuItem
+                previouslySelected = currentlySelected;
+                //check to see if the gamePad direction is a new direction - prevents rapid scrolling
+                if (Input.gamePadDirection != Input.lastGamePadDirection)
+                {
+                    //this is a new direction, allow movement between menuItems
+                    if (Input.gamePadDirection == Direction.Right)
+                    { currentlySelected = currentlySelected.neighborRight; }
+                    else if (Input.gamePadDirection == Direction.Left)
+                    { currentlySelected = currentlySelected.neighborLeft; }
+                    else if (Input.gamePadDirection == Direction.Down)
+                    { currentlySelected = currentlySelected.neighborDown; }
+                    else if (Input.gamePadDirection == Direction.Up)
+                    { currentlySelected = currentlySelected.neighborUp; }
+
+                    //check to see if we changed menuItems
+                    if (previouslySelected != currentlySelected)
+                    {
+                        Assets.Play(Assets.sfxTextLetter);
+                        previouslySelected.compSprite.scale = 1.0f;
+                        selectionBox.scale = 2.0f;
+                    }
                 }
             }
         }
@@ -143,9 +203,7 @@ namespace DungeonRun
 
 
             if (displayState != DisplayState.Opening)
-            {   
-                /*
-                //if screen is opened, closing, or closed, pulse the selectionBox alpha
+            {   //pulse the selectionBox alpha
                 if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
                 else { selectionBox.alpha += 0.025f; }
                 //match the position of the selectionBox to the currently selected menuItem
@@ -153,7 +211,8 @@ namespace DungeonRun
                 //scale the selectionBox down to 1.0
                 if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
                 else { selectionBox.scale = 1.0f; }
-                */
+                //animate the currently selected menuItem - this scales it back down to 1.0
+                Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
             }
         }
 
@@ -168,7 +227,9 @@ namespace DungeonRun
 
             if (window.interior.displayState == DisplayState.Opened)
             {
-                //Functions_Draw.Draw(selectionBox);
+                Functions_Draw.Draw(selectionBox);
+                for (i = 0; i < menuItems.Count; i++)
+                { Functions_Draw.Draw(menuItems[i].compSprite); }
             }
 
             //draw overlay last

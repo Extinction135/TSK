@@ -49,11 +49,31 @@ todo:
 10
 
 
+Developing TitleScreen + MenuItems
 
-Summary Screen cleanup
+we need menuItems on the Title screen's window
+we should be able to navigate between these menuItems 
 
-removed code in SummaryScreen that closed AnimatedTitle instances.
-we are no longer animating the title instances 'out'.
+created MenuItem enumerator values for Continue, NewGame, QuitGame, and GameCtrls.
+updated Functions_MenuItem.SetMenuItemData() with paths for new values.
+moved PlaceMenuItem(Child, Parent) out of WidgetInventory and into Functions_MenuItem.
+updated TitleScreen to create, place, and set MenuItems.
+updated TitleScreen with currentlySelected, and previouslySelected menuItem refs.
+udpated TitleScreen with selectionBox.
+TitleScreen.HandleInput() now moves selectionBox between all menuItems properly.
+
+added Offset parameter to PlaceMenuItem(Child, Parent, Offset).
+updated InventoryWidget to pass 24 as Offset to PlaceMenuItem().
+updated TitleScreen to pass 48 as Offset to PlaceMenuItem().
+updated TitleScreen.window to fit menuItems better, based on mockup.
+playtested, working as expected.
+
+
+
+
+
+
+add labels to titleScreen.window
 
 
 
@@ -61,9 +81,11 @@ we are no longer animating the title instances 'out'.
 
 
 
+slow down the overlay fade in when title screen closes
 
 
 
+add labels to title screen next to icons
 
 
 complete creation of title screen
@@ -73,6 +95,9 @@ update input to allow user to move selectionBox thru menuItems
 no click functionality right now...
 
 
+
+
+inventory screen needs to be updated to use a ScreenRec as well!
 
 
 

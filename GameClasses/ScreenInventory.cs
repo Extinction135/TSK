@@ -25,7 +25,6 @@ namespace DungeonRun
         //these point to a menuItem that is part of a widget
         public MenuItem currentlySelected;
         public MenuItem previouslySelected;
-
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
 
@@ -102,7 +101,6 @@ namespace DungeonRun
             currentlySelected = Widgets.Inventory.menuItems[0];
             previouslySelected = Widgets.Inventory.menuItems[0];
             Widgets.Info.Display(currentlySelected);
-
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(0, 0), new Byte4(15, 7, 0, 0), 
@@ -171,9 +169,7 @@ namespace DungeonRun
 
 
         public override void HandleInput(GameTime GameTime)
-        {
-            //exit this screen upon start or b button press
-            
+        {   //exit this screen upon start or b button press
             if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
                 Functions_Input.IsNewButtonPress(Buttons.B))
             {
@@ -181,7 +177,7 @@ namespace DungeonRun
                 //ScreenManager.RemoveScreen(this);
                 displayState = DisplayState.Closing;
             }
-
+            //select a menuItem with button A press
             else if(Functions_Input.IsNewButtonPress(Buttons.A))
             {
                 if (currentlySelected.type != MenuItemType.Unknown)
@@ -189,7 +185,6 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxMenuItem);
                 SetLoadout();
             }
-
             //get the previouslySelected menuItem
             previouslySelected = currentlySelected;
             //check to see if the gamePad direction is a new direction - prevents rapid scrolling
@@ -214,7 +209,6 @@ namespace DungeonRun
                     selectionBox.scale = 2.0f;
                 }
             }
-
         }
 
         public override void Update(GameTime GameTime)
@@ -253,11 +247,9 @@ namespace DungeonRun
             else { selectionBox.alpha += 0.025f; }
             //match the position of the selectionBox to the currently selected menuItem
             selectionBox.position = currentlySelected.compSprite.position;
-            
             //scale the selectionBox down to 1.0
             if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
             else { selectionBox.scale = 1.0f; }
-
             //animate the currently selected menuItem - this scales it back down to 1.0
             if (currentlySelected.type != MenuItemType.InventoryGold) //inventory gold animates already
             { Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite); }
