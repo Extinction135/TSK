@@ -14,22 +14,16 @@ namespace DungeonRun
 {
     public class ScreenVendor : Screen
     {
-
-        //the foreground black rectangle, overlays and hides game content
-        Rectangle background;
-        public float bkgAlpha = 0.0f;
+        ScreenRec background = new ScreenRec();
         public float maxAlpha = 0.7f;
-        float fadeInSpeed = 0.03f;
-        float fadeOutSpeed = 0.1f;
-
         //these point to a menuItem that is part of a widget
         public MenuItem currentlySelected;
         public MenuItem previouslySelected;
-
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
         public GameObject vendorType;
         public String welcomeDialog;
+
 
 
         public ScreenVendor(GameObject Obj)
@@ -40,6 +34,10 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            background.alpha = 0.0f;
+            background.fadeInSpeed = 0.03f;
+            background.fadeOutSpeed = 0.1f;
+
             displayState = DisplayState.Opening;
 
             Widgets.Loadout.Reset(16 * 9, 16 * 6);
@@ -75,9 +73,6 @@ namespace DungeonRun
             selectionBox = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(15, 7, 0, 0),
                 new Point(16, 16));
-
-            //create the background rec
-            background = new Rectangle(0, 0, 640, 360);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
         }
@@ -336,16 +331,14 @@ namespace DungeonRun
         }
 
         public override void Update(GameTime GameTime)
-        {
-            
-            //fade background in
+        {   //fade background in
             if (displayState == DisplayState.Opening)
             {
-                bkgAlpha += fadeInSpeed;
+                background.alpha += background.fadeInSpeed;
                 selectionBox.scale = 2.0f;
-                if (bkgAlpha >= maxAlpha)
+                if (background.alpha >= maxAlpha)
                 {
-                    bkgAlpha = maxAlpha;
+                    background.alpha = maxAlpha;
                     displayState = DisplayState.Opened;
                     Assets.Play(Assets.sfxTextLetter);
                 }
@@ -353,15 +346,13 @@ namespace DungeonRun
             //fade background out
             else if (displayState == DisplayState.Closing)
             {
-                bkgAlpha -= fadeOutSpeed;
-                if (bkgAlpha <= 0.0f)
+                background.alpha -= background.fadeOutSpeed;
+                if (background.alpha <= 0.0f)
                 {
-                    bkgAlpha = 0.0f;
+                    background.alpha = 0.0f;
                     ScreenManager.RemoveScreen(this);
                 }
             }
-
-
             
             Widgets.Loadout.Update();
             Widgets.ForSale.Update();
@@ -377,19 +368,17 @@ namespace DungeonRun
             //scale the selectionBox down to 1.0
             if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
             else { selectionBox.scale = 1.0f; }
-            
         }
 
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.overlay * bkgAlpha);
-
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
+                background.rec, Assets.colorScheme.overlay * background.alpha);
             Widgets.Loadout.Draw();
             Widgets.ForSale.Draw();
             Widgets.Info.Draw();
             Widgets.Dialog.Draw();
-
             //only draw the selection box if the screen has opened completely
             if (displayState == DisplayState.Opened)
             { Functions_Draw.Draw(selectionBox); }

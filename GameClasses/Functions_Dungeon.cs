@@ -126,7 +126,7 @@ namespace DungeonRun
             DungeonRecord.timer.Start(); //start the record timer
 
             //fade the dungeon screen out from black, revealing the new level
-            dungeonScreen.overlayAlpha = 1.0f;
+            dungeonScreen.overlay.alpha = 1.0f;
             dungeonScreen.displayState = DisplayState.Opening;
 
             //save the player's data

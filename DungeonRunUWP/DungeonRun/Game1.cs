@@ -34,8 +34,8 @@ namespace DungeonRun
             Assets.Load(GraphicsDevice, Content);
             ScreenManager.Initialize(this);
 
-            ScreenManager.AddScreen(new ScreenTitle());
-            //ScreenManager.AddScreen(new ScreenOverworld());
+            //ScreenManager.AddScreen(new ScreenTitle());
+            ScreenManager.AddScreen(new ScreenOverworld());
             Functions_Backend.LoadPlayerData(); //load autoSave data
         }
 

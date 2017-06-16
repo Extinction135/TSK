@@ -14,17 +14,7 @@ namespace DungeonRun
 {
     public class ScreenDungeon : Screen
     {
-
-        //the foreground black rectangle, overlays and hides screen content
-        Rectangle overlay; 
-        public float overlayAlpha = 1.0f;
-        float fadeInSpeed; //this is set in Update()
-        float fadeOutSpeed = 0.025f;
-
-        //replace the above code with a ScreenRec
-
-
-
+        public ScreenRec overlay = new ScreenRec();
         public ExitAction exitAction;
 
 
@@ -33,7 +23,9 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            overlay = new Rectangle(0, 0, 640, 360);
+            overlay.alpha = 1.0f;
+            overlay.fadeOutSpeed = 0.025f;
+
             Functions_Dungeon.Initialize(this);
             Functions_Dungeon.BuildDungeon();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
@@ -102,31 +94,30 @@ namespace DungeonRun
 
                 if(displayState == DisplayState.Opening) //fade overlay to 0
                 {
-                    overlayAlpha -= fadeOutSpeed;
-                    if (overlayAlpha <= 0.0f)
+                    overlay.alpha -= overlay.fadeOutSpeed;
+                    if (overlay.alpha <= 0.0f)
                     {
-                        overlayAlpha = 0.0f;
+                        overlay.alpha = 0.0f;
                         displayState = DisplayState.Opened;
                     }
                 }
                 else if (displayState == DisplayState.Opened)
                 {   //set overlay alpha to a negative value
-                    overlayAlpha = -1.5f; //delays closing state a bit
+                    overlay.alpha = -1.5f; //delays closing state a bit
                 }   //delay gives player time to understand what's happening
                 else if (displayState == DisplayState.Closing) //fade overlay to 1.0
-                {
-                    //set the fadeInSpeed & overlaayAlpha based on the exitAction
+                {   //set the fadeInSpeed & overlay alpha based on the exitAction
                     if (exitAction == ExitAction.Overworld)
                     {   //exits fade in immediately, and much faster
-                        fadeInSpeed = 0.05f;
-                        if (overlayAlpha < 0.0f) { overlayAlpha = 0.0f; }
+                        overlay.fadeInSpeed = 0.05f;
+                        if (overlay.alpha < 0.0f) { overlay.alpha = 0.0f; }
                     }
-                    else { fadeInSpeed = 0.015f; } //victory/defeat fades in much slower
+                    else { overlay.fadeInSpeed = 0.015f; } //victory/defeat fades in much slower
 
-                    overlayAlpha += fadeInSpeed;
-                    if (overlayAlpha >= 1.0f)
+                    overlay.alpha += overlay.fadeInSpeed;
+                    if (overlay.alpha >= 1.0f)
                     {
-                        overlayAlpha = 1.0f;
+                        overlay.alpha = 1.0f;
                         displayState = DisplayState.Closed;
                     }
                 }
@@ -134,19 +125,11 @@ namespace DungeonRun
                 {
                     DungeonRecord.timer.Stop();
                     if (exitAction == ExitAction.Summary)
-                    {
-                        //ScreenManager.AddScreen(new ScreenSummary());
-                        ScreenManager.ExitAndLoad(new ScreenSummary());
-                    }
+                    { ScreenManager.ExitAndLoad(new ScreenSummary()); }
                     else if(exitAction == ExitAction.Overworld)
-                    {
-                        //ScreenManager.AddScreen(new ScreenOverworld());
-                        ScreenManager.ExitAndLoad(new ScreenOverworld());
-                    }
+                    { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
                     else if(exitAction == ExitAction.Title)
-                    {
-                        ScreenManager.ExitAndLoad(new ScreenTitle());
-                    }
+                    { ScreenManager.ExitAndLoad(new ScreenTitle()); }
                 }
 
                 #endregion
@@ -206,7 +189,7 @@ namespace DungeonRun
                 Functions_Draw.DrawDebugMenu();
             }
             ScreenManager.spriteBatch.Draw( Assets.dummyTexture, 
-                overlay, Assets.colorScheme.overlay * overlayAlpha);
+                overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
             ScreenManager.spriteBatch.End();
 
             #endregion

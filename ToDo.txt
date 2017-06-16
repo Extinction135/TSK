@@ -53,28 +53,21 @@ todo:
 
 
 
-Consolidate and simplify how screens fade in/out
+Consolidate and simplify how screens fade in/out - part 2
 
-created ScreenRec data class.
-updated TitleScreen to use new ScreenRec class.
-updated SummaryScreen to use new ScreenRec class.
-updated various screens to call ExitAndLoad() instead of AddScreen().
-updated OverworldScreen to use ScreenRec.
-
-added MainMenu value to ExitAction enumerator.
-updated DungeonScreen to handle exiting to TitleScreen.
+updated VendorScreen to use a ScreenRec.
+updated DungeonsScreen to use a ScreenRec.
 playtested, working as expected.
 
 
 
 
 
-dungeon screen should implement ScreenRec
-vendor screen should implement a ScreenRec as well
 
 
 
 
+"press any button to play again" should be "press any button to continue"
 
 
 
