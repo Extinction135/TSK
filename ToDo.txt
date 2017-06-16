@@ -54,23 +54,14 @@ todo:
 
 
 
-Refactored MenuRectangle Functions out of MenuRectangle class.
-
-now they exist in the Functions_MenuRectangle class
-this completes seperation of data and functionality in DataClasses.
 
 
+Cleaned up the PlayerData class.
 
+moved directX specific code into Funtions_DirectX
+created LoadRoomData(), SavePlayerData(), and LoadPlayerData() stubs in Functions_DirectX
+these will be implemented later when port to directX happens.
 
-
-
-create Functions_DirectX
-
-move save code into that class from saveData / playerData class
-
-
-
-move MenuRectangle functions into their own class
 
 
 

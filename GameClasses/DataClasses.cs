@@ -68,27 +68,7 @@ namespace DungeonRun
 
     public static class PlayerData
     {   //'wraps' saveData and provides global access to this instance
-        public static SaveData saveData;
-        static PlayerData() { saveData = new SaveData(); }
-        /*
-        public static void Save(string FileAddress)
-        {
-            //open the file, serialize the data to XML, and always close the stream
-            FileStream stream = File.Open(FileAddress, FileMode.OpenOrCreate);
-            //serialize PlayerData to XML file
-            XmlSerializer serializer = new XmlSerializer(typeof(SaveData));
-            serializer.Serialize(stream, saveData);
-        }
-        public static void Load(string FileAddress)
-        {
-            //deserialize the XML data to PlayerData
-            using (FileStream stream = new FileStream(FileAddress, FileMode.Open))
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(PlayerData));
-                saveData = (SaveData)serializer.Deserialize(stream);
-            }
-        }
-        */
+        public static SaveData saveData = new SaveData();
     }
 
     public static class DungeonRecord
