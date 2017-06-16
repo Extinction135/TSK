@@ -20,12 +20,12 @@ namespace DungeonRun
             if (Window.animationCounter < Window.openDelay) { Window.animationCounter += 1; }
             if (Window.animationCounter >= Window.openDelay)
             {
-                Window.background.Update();
-                Window.border.Update();
-                Window.inset.Update();
-                Window.interior.Update();
-                Window.headerLine.Update();
-                Window.footerLine.Update();
+                Functions_MenuRectangle.Update(Window.background);
+                Functions_MenuRectangle.Update(Window.border);
+                Functions_MenuRectangle.Update(Window.inset);
+                Functions_MenuRectangle.Update(Window.interior);
+                Functions_MenuRectangle.Update(Window.headerLine);
+                Functions_MenuRectangle.Update(Window.footerLine);
             }
         }
 
@@ -44,25 +44,25 @@ namespace DungeonRun
             Window.background.position.Y = Y + 0;
             Window.background.size.X = Size.X + 0;
             Window.background.size.Y = Size.Y + 0;
-            Window.background.Reset();
+            Functions_MenuRectangle.Reset(Window.background);
 
             Window.border.position.X = X + 1;
             Window.border.position.Y = Y + 1;
             Window.border.size.X = Size.X - 2;
             Window.border.size.Y = Size.Y - 2;
-            Window.border.Reset();
+            Functions_MenuRectangle.Reset(Window.border);
 
             Window.inset.position.X = X + 2;
             Window.inset.position.Y = Y + 2;
             Window.inset.size.X = Size.X - 4;
             Window.inset.size.Y = Size.Y - 4;
-            Window.inset.Reset();
+            Functions_MenuRectangle.Reset(Window.inset);
 
             Window.interior.position.X = X + 3;
             Window.interior.position.Y = Y + 3;
             Window.interior.size.X = Size.X - 6;
             Window.interior.size.Y = Size.Y - 6;
-            Window.interior.Reset();
+            Functions_MenuRectangle.Reset(Window.interior);
 
             #endregion
 
@@ -73,13 +73,13 @@ namespace DungeonRun
             Window.headerLine.position.Y = Y + 16;
             Window.headerLine.size.X = Size.X - 16;
             Window.headerLine.size.Y = 1;
-            Window.headerLine.Reset();
+            Functions_MenuRectangle.Reset(Window.headerLine);
 
             Window.footerLine.position.X = X + 8;
             Window.footerLine.position.Y = Y + Size.Y - 16;
             Window.footerLine.size.X = Size.X - 16;
             Window.footerLine.size.Y = 1;
-            Window.footerLine.Reset();
+            Functions_MenuRectangle.Reset(Window.footerLine);
 
             #endregion
 

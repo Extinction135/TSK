@@ -113,7 +113,8 @@ namespace DungeonRun
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
-            for (i = 0; i < dividers.Count; i++) { dividers[i].Update(); }
+            for (i = 0; i < dividers.Count; i++)
+            { Functions_MenuRectangle.Update(dividers[i]); }
         }
 
         public override void Draw()
@@ -242,7 +243,7 @@ namespace DungeonRun
             Divider.position.Y = Y;
             Divider.size.X = Width;
             Divider.size.Y = 1;
-            Divider.Reset();
+            Functions_MenuRectangle.Reset(Divider);
         }
 
         public void PlaceRow(int index, int X, int Y)

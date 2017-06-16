@@ -51,7 +51,7 @@ namespace DungeonRun
             divider1.position.Y = Y + 16 * 3;
             divider1.size.X = window.size.X - 16;
             divider1.size.Y = 1;
-            divider1.Reset();
+            Functions_MenuRectangle.Reset(divider1);
             //align the goldAmount display to the infoItem
             Functions_Component.Move(goldDisplay, infoItem);
         }
@@ -59,7 +59,7 @@ namespace DungeonRun
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
-            divider1.Update();
+            Functions_MenuRectangle.Update(divider1);
             Functions_Animation.Animate(infoItem.compAnim, infoItem.compSprite);
         }
 

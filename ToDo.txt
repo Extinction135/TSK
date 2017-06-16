@@ -52,15 +52,21 @@ todo:
 
 
 
-Refactoring - seperating data and functionality
-
-moved Room.Move() to Functions_Room.MoveRoom().
-updated various codepaths that used Move() to now use MoveRoom().
-built + tested.
 
 
+Refactored MenuRectangle Functions out of MenuRectangle class.
+
+now they exist in the Functions_MenuRectangle class
+this completes seperation of data and functionality in DataClasses.
 
 
+
+
+
+
+create Functions_DirectX
+
+move save code into that class from saveData / playerData class
 
 
 

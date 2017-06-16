@@ -393,11 +393,7 @@ namespace DungeonRun
             buttons.Add(new ComponentButton("dump savedata", new Point(168, 2)));
         }
     }
-
-
-
-
-
+    
 
 
     //Instanced Classes
@@ -661,33 +657,9 @@ namespace DungeonRun
         public MenuRectangle(Point Position, Point Size, Color Color)
         {
             position = Position; size = Size;
-            color = Color; Reset();
+            color = Color;
+            Functions_MenuRectangle.Reset(this);
         }
-
-        public void Update()
-        {
-            if (displayState == DisplayState.Opening)
-            {
-                if (animationCounter < openDelay) { animationCounter += 1; }
-                if (animationCounter >= openDelay)
-                {   //grow right
-                    rec.Height = size.Y;
-                    if (rec.Width < size.X) { rec.Width += ((size.X - rec.Width) / animationSpeed) + 1; } //easeIn 
-                    if (rec.Width > size.X) { rec.Width = size.X; }
-                    if (rec.Width == size.X) { displayState = DisplayState.Opened; animationCounter = 0; } //open complete
-                }
-            }
-        }
-
-        public void Reset()
-        {
-            rec.Width = 0;
-            rec.Height = 0;
-            rec.Location = position;
-            animationCounter = 0;
-            displayState = DisplayState.Opening;
-        }
-
     }
 
     public class MenuWindow
@@ -726,7 +698,6 @@ namespace DungeonRun
             headerLine.openDelay = 12;
             footerLine.openDelay = 12;
         }
-
     }
 
     public class TitleAnimated
