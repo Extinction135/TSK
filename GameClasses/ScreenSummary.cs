@@ -142,8 +142,6 @@ namespace DungeonRun
             }
             else if (displayState == DisplayState.Closing)
             {
-                Functions_TitleAnimated.AnimateMovement(leftTitle);
-                Functions_TitleAnimated.AnimateMovement(rightTitle);
                 //fade out components
                 leftTitle.compSprite.alpha -= fadeSpeed * 1.5f;
                 rightTitle.compSprite.alpha -= fadeSpeed * 1.5f;

@@ -46,7 +46,17 @@ ram useage:
 	
 todo:
 
-12
+11
+
+
+
+
+
+Make the handling of Titles consistent.
+
+the title on the title screen don't animate out
+so, the titles on the summary screen shouldn't animate out
+updated SummaryScreen to stop titles from animating out during closing screen state
 
 
 
@@ -55,15 +65,11 @@ todo:
 
 
 
+Title screen's overlay rec should fade in when screen closes
+titles should not fade out
+same with summary screen
 
-Cleaned up the PlayerData class.
-
-moved directX specific code into Funtions_DirectX
-created LoadRoomData(), SavePlayerData(), and LoadPlayerData() stubs in Functions_DirectX
-these will be implemented later when port to directX happens.
-
-
-
+this simplifies the code of both screens
 
 
 
