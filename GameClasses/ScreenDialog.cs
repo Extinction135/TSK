@@ -19,6 +19,7 @@ namespace DungeonRun
         public String dialog;
 
 
+
         public ScreenDialog(GameObject Obj)
         {
             this.name = "Dialog Screen";

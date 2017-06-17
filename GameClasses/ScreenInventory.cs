@@ -14,14 +14,8 @@ namespace DungeonRun
 {
     public class ScreenInventory : Screen
     {
-
-        //the foreground black rectangle, overlays and hides game content
-        Rectangle background;
-        public float bkgAlpha = 0.0f;
+        ScreenRec background = new ScreenRec();
         public float maxAlpha = 0.7f;
-        float fadeInSpeed = 0.03f;
-        float fadeOutSpeed = 0.1f;
-
         //these point to a menuItem that is part of a widget
         public MenuItem currentlySelected;
         public MenuItem previouslySelected;
@@ -34,6 +28,9 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            background.alpha = 0.0f;
+            background.fadeInSpeed = 0.03f;
+            background.fadeOutSpeed = 0.1f;
             displayState = DisplayState.Opening;
 
             Widgets.Loadout.Reset(16 * 9, 16 * 4);
@@ -105,9 +102,6 @@ namespace DungeonRun
             selectionBox = new ComponentSprite(Assets.mainSheet, 
                 new Vector2(0, 0), new Byte4(15, 7, 0, 0), 
                 new Point(16, 16));
-
-            //create the background rec
-            background = new Rectangle(0, 0, 640, 360);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
         }
@@ -215,12 +209,12 @@ namespace DungeonRun
         {
             //fade background in
             if (displayState == DisplayState.Opening)
-            {   
-                bkgAlpha += fadeInSpeed;
+            {
+                background.alpha += background.fadeInSpeed;
                 selectionBox.scale = 2.0f;
-                if (bkgAlpha >= maxAlpha)
+                if (background.alpha >= maxAlpha)
                 {
-                    bkgAlpha = maxAlpha;
+                    background.alpha = maxAlpha;
                     displayState = DisplayState.Opened;
                     Assets.Play(Assets.sfxTextLetter);
                 }
@@ -228,10 +222,10 @@ namespace DungeonRun
             //fade background out
             else if (displayState == DisplayState.Closing)
             {
-                bkgAlpha -= fadeOutSpeed;
-                if (bkgAlpha <= 0.0f)
+                background.alpha -= background.fadeOutSpeed;
+                if (background.alpha <= 0.0f)
                 {
-                    bkgAlpha = 0.0f;
+                    background.alpha = 0.0f;
                     ScreenManager.RemoveScreen(this);
                 }
             }
@@ -259,7 +253,8 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, background, Assets.colorScheme.overlay * bkgAlpha);
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
+                background.rec, Assets.colorScheme.overlay * background.alpha);
 
             Widgets.Loadout.Draw();
             Widgets.Stats.Draw();

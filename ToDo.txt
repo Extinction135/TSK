@@ -49,25 +49,9 @@ todo:
 10
 
 
-Develop TitleScreen + MenuItem Labels
 
-added labels to titleScreen.window.
-placed labels next to their menuItems.
-updated titleScreen.window to better fit menuItems + labels.
-slowed down the closing fade for TitleScreen.
-
-added routine stubs for handling menuItem selection in TitleScreen.HandleInput().
-playtested, working as expected.
-
-
-
-
-
-
-
-
-inventory screen needs to be updated to use a ScreenRec as well!
-
+Updated InventoryScreen to use a ScreenRec.
+finally, all screens use ScreenRec instances.
 
 
 
