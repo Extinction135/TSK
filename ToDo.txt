@@ -49,26 +49,29 @@ todo:
 10
 
 
+Develop TitleScreen's MenuItem Functionality
 
-Updated InventoryScreen to use a ScreenRec.
-finally, all screens use ScreenRec instances.
-
-
-
-complete menuItem selection functionality in TitleScreen
-
-
-
+added ContinueGame and QuitGame values to ExitAction enumerator.
+updated TitleScreen with an ExitAction instance.
+updated TitleScreen closed state with routines for ContinueGame, and QuitGame.
+updated Game1.cs with path to ensure released game starts with TitleScreen.
+implemented functionality for Continue and Quit Game menuItems in TitleScreen.
+playtested, working as expected.
 
 
 
 
 
+overworld screen needs an opening pause
 
 
 
 
 
+
+
+update Functions_Backend.LoadPlayerData() to accept a parameter that points to a save file
+this way we can load the autosave data, or specific game 1,2,3 data
 
 
 create load/save/new game screen
@@ -100,12 +103,10 @@ options widget functionality
 	quit game exits all screens and loads title screen
 	load game creates load screen
 	
-title widget functionality
-	continue simply loads autosave data and creates overworld screen
+title widget functionality ++
 	new game resets player data, autosaves, and creates overworld screen
 	load game - calls the load game screen
-	quit game - closes the program
-	audio/input/video/game ctrls - do nothing for now
+	audio/input/video/game ctrls - does nothing for now
 
 
 	
@@ -120,15 +121,6 @@ this should appear underneath the HUD on the bottom left
 
 we need a reset() method for the playerData
 then we can call reset() and save the player data to create a new game
-
-
-
-
-
-
-
-
-
 
 
 

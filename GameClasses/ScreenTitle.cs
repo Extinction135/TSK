@@ -37,7 +37,7 @@ namespace DungeonRun
         public MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
-
+        public ExitAction exitAction;
 
 
         public ScreenTitle() { this.name = "TitleScreen"; }
@@ -162,34 +162,53 @@ namespace DungeonRun
                 if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
                     Functions_Input.IsNewButtonPress(Buttons.A))
                 {
-                    if (currentlySelected.type != MenuItemType.Unknown)
-                    { currentlySelected.compSprite.scale = 2.0f; }
-                    Assets.Play(Assets.sfxMenuItem);
+                    currentlySelected.compSprite.scale = 2.0f;
 
-                    //handle menuItem selection
+
+                    #region Handle MenuItem Selection
+
                     if (currentlySelected.type == MenuItemType.OptionsContinue)
                     {
                         displayState = DisplayState.Closing;
-                        //loads autosaved player data
-                        //on screen close, create overworld screen
+                        exitAction = ExitAction.ContinueGame;
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsNewGame)
-                    { } //create screen
+                    {
+                        //create new game screen
+                    }
                     else if (currentlySelected.type == MenuItemType.OptionsLoadGame)
-                    { } //create screen
+                    {
+                        //create load game screen
+                    }
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {
                         displayState = DisplayState.Closing;
-                        //on screen close, exit program
+                        exitAction = ExitAction.QuitGame;
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsAudioCtrls)
-                    { } //create screen
+                    {
+                        //create audio ctrls screen
+                    }
                     else if (currentlySelected.type == MenuItemType.OptionsInputCtrls)
-                    { } //create screen
+                    {
+                        //create input ctrls screen
+                    }
                     else if (currentlySelected.type == MenuItemType.OptionsVideoCtrls)
-                    { } //create screen
+                    {
+                        //create video ctrls screen
+                    }
                     else if (currentlySelected.type == MenuItemType.OptionsGameCtrls)
-                    { } //create screen
+                    {
+                        //create game ctrls screen
+                    }
+
+                    #endregion
+
+
+                    //handle soundEffect
+                    if (currentlySelected.type == MenuItemType.OptionsQuitGame)
+                    { Assets.Play(Assets.sfxInventoryClose); }
+                    else { Assets.Play(Assets.sfxMenuItem); }
                 }
                 //get the previouslySelected menuItem
                 previouslySelected = currentlySelected;
@@ -254,9 +273,13 @@ namespace DungeonRun
             }
             else if (displayState == DisplayState.Closed)
             {
-                //goto the proper screen based on user input
-                //only continue & quit game get here
-                ScreenManager.ExitAndLoad(new ScreenTitle());
+                if (exitAction == ExitAction.ContinueGame)
+                {
+                    Functions_Backend.LoadPlayerData(); //load autoSave data
+                    ScreenManager.ExitAndLoad(new ScreenOverworld());
+                }
+                else if (exitAction == ExitAction.QuitGame)
+                { ScreenManager.game.Exit(); }
             }
 
             #endregion
