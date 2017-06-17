@@ -21,6 +21,7 @@ namespace DungeonRun
         TitleAnimated rightTitle;
         int i;
 
+        public List<ComponentText> labels;
         List<MenuItem> menuItems;
         MenuItem contGame = new MenuItem();
         MenuItem newGame = new MenuItem();
@@ -44,10 +45,12 @@ namespace DungeonRun
         public override void LoadContent()
         {
             overlay.alpha = 6.0f;
+            overlay.fadeInSpeed = 0.03f; //slower closing fade
+
             background = new ComponentSprite(Assets.titleBkgSheet,
                 new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(640, 360));
-            window = new MenuWindow(new Point(16 * 13 + 8, 16 * 15),
-                new Point(16 * 13, 16 * 5 + 8), "Main Menu");
+            window = new MenuWindow(new Point(16 * 13 + 8 + 4, 16 * 15),
+                new Point(16 * 12 + 8, 16 * 5 + 8), "Main Menu");
             float yPos = 200;
             leftTitle = new TitleAnimated(
                 new Vector2(-150, yPos),
@@ -71,6 +74,8 @@ namespace DungeonRun
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsInputCtrls, inputCtrls);
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsVideoCtrls, videoCtrls);
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsGameCtrls, gameCtrls);
+            //customize the continue game menuItem sprite
+            contGame.compSprite.rotation = Rotation.Clockwise90;
             //add the menuItems to the menuItems list
             menuItems.Add(contGame);
             menuItems.Add(newGame);
@@ -84,7 +89,7 @@ namespace DungeonRun
             Functions_MenuItem.SetNeighbors(menuItems, 4);
 
             #endregion
-
+            
 
             #region Place the menuItems
 
@@ -100,6 +105,39 @@ namespace DungeonRun
             Functions_MenuItem.PlaceMenuItem(inputCtrls, audioCtrls, 48);
             Functions_MenuItem.PlaceMenuItem(videoCtrls, inputCtrls, 48);
             Functions_MenuItem.PlaceMenuItem(gameCtrls, videoCtrls, 48);
+
+            #endregion
+
+
+            #region Create the labels
+
+            labels = new List<ComponentText>();
+            //row 1
+            labels.Add(new ComponentText(Assets.font, "con-\ntinue",
+                contGame.compSprite.position + new Vector2(11, -12), 
+                Assets.colorScheme.textDark));
+            labels.Add(new ComponentText(Assets.font, "new\ngame",
+                newGame.compSprite.position + new Vector2(11, -12),
+                Assets.colorScheme.textDark));
+            labels.Add(new ComponentText(Assets.font, "load\ngame",
+                loadGame.compSprite.position + new Vector2(11, -12),
+                Assets.colorScheme.textDark));
+            labels.Add(new ComponentText(Assets.font, "quit\ngame",
+                quitGame.compSprite.position + new Vector2(11, -12),
+                Assets.colorScheme.textDark));
+            //row 2
+            labels.Add(new ComponentText(Assets.font, "audio\nctrls",
+                audioCtrls.compSprite.position + new Vector2(11, -12),
+                Assets.colorScheme.textDark));
+            labels.Add(new ComponentText(Assets.font, "input\nctrls",
+                inputCtrls.compSprite.position + new Vector2(11, -12),
+                Assets.colorScheme.textDark));
+            labels.Add(new ComponentText(Assets.font, "video\nctrls",
+                videoCtrls.compSprite.position + new Vector2(11, -12),
+                Assets.colorScheme.textDark));
+            labels.Add(new ComponentText(Assets.font, "game\nctrls",
+                gameCtrls.compSprite.position + new Vector2(11, -12),
+                Assets.colorScheme.textDark));
 
             #endregion
 
@@ -126,9 +164,32 @@ namespace DungeonRun
                 {
                     if (currentlySelected.type != MenuItemType.Unknown)
                     { currentlySelected.compSprite.scale = 2.0f; }
-                    displayState = DisplayState.Closing;
-                    //play the summary exit sound effect immediately
                     Assets.Play(Assets.sfxMenuItem);
+
+                    //handle menuItem selection
+                    if (currentlySelected.type == MenuItemType.OptionsContinue)
+                    {
+                        displayState = DisplayState.Closing;
+                        //loads autosaved player data
+                        //on screen close, create overworld screen
+                    }
+                    else if (currentlySelected.type == MenuItemType.OptionsNewGame)
+                    { } //create screen
+                    else if (currentlySelected.type == MenuItemType.OptionsLoadGame)
+                    { } //create screen
+                    else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
+                    {
+                        displayState = DisplayState.Closing;
+                        //on screen close, exit program
+                    }
+                    else if (currentlySelected.type == MenuItemType.OptionsAudioCtrls)
+                    { } //create screen
+                    else if (currentlySelected.type == MenuItemType.OptionsInputCtrls)
+                    { } //create screen
+                    else if (currentlySelected.type == MenuItemType.OptionsVideoCtrls)
+                    { } //create screen
+                    else if (currentlySelected.type == MenuItemType.OptionsGameCtrls)
+                    { } //create screen
                 }
                 //get the previouslySelected menuItem
                 previouslySelected = currentlySelected;
@@ -163,12 +224,11 @@ namespace DungeonRun
 
             if (displayState == DisplayState.Opening)
             {   //fade overlay out
-                overlay.alpha -= overlay.fadeInSpeed;
+                overlay.alpha -= overlay.fadeOutSpeed;
                 if (overlay.alpha <= 0.0f)
                 {
                     overlay.alpha = 0.0f;
                     displayState = DisplayState.Opened;
-                    //Assets.Play(Assets.sfxMapOpen);
                 }
             }
             else if (displayState == DisplayState.Opened)
@@ -227,9 +287,11 @@ namespace DungeonRun
 
             if (window.interior.displayState == DisplayState.Opened)
             {
-                Functions_Draw.Draw(selectionBox);
                 for (i = 0; i < menuItems.Count; i++)
                 { Functions_Draw.Draw(menuItems[i].compSprite); }
+                for (i = 0; i < labels.Count; i++)
+                { Functions_Draw.Draw(labels[i]); }
+                Functions_Draw.Draw(selectionBox);
             }
 
             //draw overlay last
