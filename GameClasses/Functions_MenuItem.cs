@@ -289,13 +289,13 @@ namespace DungeonRun
             else if (Type == MenuItemType.OptionsLoadGame)
             {
                 MenuItem.name = "Load Game";
-                MenuItem.description = "Loads a saved\ngame.";
+                MenuItem.description = "Loads a saved game.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 8, 0, 0) };
             }
             else if (Type == MenuItemType.OptionsQuitGame)
             {
                 MenuItem.name = "Quit Game";
-                MenuItem.description = "Quit the current\ngame.";
+                MenuItem.description = "Quit the current game.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 12, 0, 0) };
             }
             //
@@ -327,8 +327,14 @@ namespace DungeonRun
             else if (Type == MenuItemType.OptionsSaveGame)
             {
                 MenuItem.name = "Save Game";
-                MenuItem.description = "Saves the current\ngame.";
+                MenuItem.description = "Saves the current game.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 8, 0, 0) };
+            }
+            else if (Type == MenuItemType.OptionsHelpInfo)
+            {
+                MenuItem.name = "Help Info";
+                MenuItem.description = "View the help files.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 10, 0, 0) };
             }
 
             #endregion

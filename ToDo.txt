@@ -46,23 +46,60 @@ ram useage:
 	
 todo:
 
-10
+3
 
 
-Develop TitleScreen's MenuItem Functionality
 
-added ContinueGame and QuitGame values to ExitAction enumerator.
-updated TitleScreen with an ExitAction instance.
-updated TitleScreen closed state with routines for ContinueGame, and QuitGame.
-updated Game1.cs with path to ensure released game starts with TitleScreen.
-implemented functionality for Continue and Quit Game menuItems in TitleScreen.
-playtested, working as expected.
+
+Complete OptionWidget's MenuItems Display
+
+added OptionsHelpInfo value to MenuItemType enumerator.
+updated Functions_MenuItem.SetMenuItemData() with path for OptionsHelpInfo value.
+updated OptionsWidget to display the proper menuItems based on latest mockup.
+playtested, options widget menuItems being displayed correctly.
+
+
+
+
+
+Get OptionWidget's QuitGame MenuItem working
+
+
+
+
+how the input is handled on inventory screen is not setup to handle each widget individually
+instead, it assumes the user has selected an inventory item and updates the loadout...
+
+
+
+
+
+we need a way back to the title screen from in game
+this is from the options widget
+we need to add 'quit game' menuItem to options widget
+this is in bottom right location
+this simply calls ScreenManager.ExitAndLoad(new TitleScreen());
+
 
 
 
 
 
 overworld screen needs an opening pause
+
+transitioning from title screen to overworld screen
+the overworld map just appears, does not fade in at all
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -116,6 +153,12 @@ Autosave++
 
 autosave should happen more often, like when a player purchases an item
 autosave should happen upon dungeon exit, as well as dungeon build.
+
+this is simply text that says 'autosaving...'
+with animated periods
+pops up under the worldUI
+is handled by WorldUI
+
 text should appear that says 'autosaving' when autosave happens
 this should appear underneath the HUD on the bottom left
 

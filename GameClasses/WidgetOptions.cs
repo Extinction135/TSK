@@ -77,16 +77,16 @@ namespace DungeonRun
             }
 
             labels[0].text = "save\ngame";
-            labels[1].text = "load\ngame";
+            labels[1].text = "help\ninfo";
 
             labels[2].text = "video\nctrls";
-            labels[3].text = "input\nctrls";
+            labels[3].text = "game\nctrls";
 
             labels[4].text = "audio\nctrls";
-            labels[5].text = "";
+            labels[5].text = "input\nctrls";
 
-            labels[6].text = "";
-            labels[7].text = "";
+            labels[6].text = "load\ngame";
+            labels[7].text = "quit\ngame";
 
             #endregion
 
@@ -95,13 +95,13 @@ namespace DungeonRun
             Functions_MenuItem.SetNeighbors(menuItems, 2);
             //set the menuItem's data
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsSaveGame, menuItems[0]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsLoadGame, menuItems[1]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsHelpInfo, menuItems[1]);
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsVideoCtrls, menuItems[2]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsInputCtrls, menuItems[3]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsGameCtrls, menuItems[3]);
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsAudioCtrls, menuItems[4]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[5]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[6]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[7]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsInputCtrls, menuItems[5]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsLoadGame, menuItems[6]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsQuitGame, menuItems[7]);
 
             menuItems[0].compSprite.rotation = Rotation.Clockwise180;
         }

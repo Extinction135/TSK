@@ -87,7 +87,7 @@ namespace DungeonRun
 
         OptionsContinue, OptionsNewGame, OptionsLoadGame, OptionsQuitGame,
         OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls, OptionsGameCtrls,
-        OptionsSaveGame,
+        OptionsSaveGame, OptionsHelpInfo,
 
         ItemBoomerang, ItemBomb, ItemBomb3Pack, ItemArrowPack,
 
