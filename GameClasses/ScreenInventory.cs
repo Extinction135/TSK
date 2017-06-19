@@ -16,12 +16,13 @@ namespace DungeonRun
     {
         ScreenRec background = new ScreenRec();
         public float maxAlpha = 0.7f;
+        public float overlayAlpha = 0.0f; //used for bkg as overlay rec
         //these point to a menuItem that is part of a widget
         public MenuItem currentlySelected;
         public MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
-
+        public ExitAction exitAction = ExitAction.ExitScreen;
 
 
         public ScreenInventory() { this.name = "InventoryScreen"; }
@@ -163,21 +164,36 @@ namespace DungeonRun
 
 
         public override void HandleInput(GameTime GameTime)
-        {   //exit this screen upon start or b button press
-            if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
-                Functions_Input.IsNewButtonPress(Buttons.B))
-            {
-                Assets.Play(Assets.sfxInventoryClose);
-                //ScreenManager.RemoveScreen(this);
-                displayState = DisplayState.Closing;
-            }
-            //select a menuItem with button A press
-            else if(Functions_Input.IsNewButtonPress(Buttons.A))
+        {   //select a menuItem with button A press
+            if (Functions_Input.IsNewButtonPress(Buttons.A))
             {
                 if (currentlySelected.type != MenuItemType.Unknown)
                 { currentlySelected.compSprite.scale = 2.0f; }
                 Assets.Play(Assets.sfxMenuItem);
-                SetLoadout();
+
+
+                #region Handle the Options MenuItems
+
+                if (currentlySelected.type == MenuItemType.OptionsQuitGame)
+                {
+                    //ScreenManager.ExitAndLoad(new ScreenTitle());
+                    displayState = DisplayState.Closing;
+                    exitAction = ExitAction.Title;
+                    Assets.Play(Assets.sfxInventoryClose);
+                }
+
+                #endregion
+
+
+                else { SetLoadout(); }
+            }
+            //exit this screen upon start or b button press
+            else if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
+                Functions_Input.IsNewButtonPress(Buttons.B))
+            {
+                Assets.Play(Assets.sfxInventoryClose);
+                displayState = DisplayState.Closing;
+                exitAction = ExitAction.ExitScreen;
             }
             //get the previouslySelected menuItem
             previouslySelected = currentlySelected;
@@ -207,9 +223,11 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            //fade background in
+
+            #region Handle Display State
+
             if (displayState == DisplayState.Opening)
-            {
+            {   //fade background in
                 background.alpha += background.fadeInSpeed;
                 selectionBox.scale = 2.0f;
                 if (background.alpha >= maxAlpha)
@@ -219,16 +237,41 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxTextLetter);
                 }
             }
-            //fade background out
             else if (displayState == DisplayState.Closing)
             {
-                background.alpha -= background.fadeOutSpeed;
-                if (background.alpha <= 0.0f)
-                {
-                    background.alpha = 0.0f;
-                    ScreenManager.RemoveScreen(this);
+                if (exitAction == ExitAction.ExitScreen)
+                {   //fade background out
+                    background.alpha -= background.fadeOutSpeed;
+                    if (background.alpha <= 0.0f)
+                    {
+                        background.alpha = 0.0f;
+                        displayState = DisplayState.Closed;
+                    }
+                }
+                else if (exitAction == ExitAction.Title)
+                {   //fade overlay rec in, using overlay alpha
+                    overlayAlpha += 0.025f;
+                    if (overlayAlpha >= 1.0f)
+                    {
+                        overlayAlpha = 1.0f;
+                        displayState = DisplayState.Closed;
+                    }
                 }
             }
+            else if (displayState == DisplayState.Closed)
+            {
+                if (exitAction == ExitAction.ExitScreen)
+                {   //overlay has faded in 100%
+                    ScreenManager.RemoveScreen(this);
+                }
+                else if (exitAction == ExitAction.Title)
+                {   //bkg has faded out
+                    ScreenManager.ExitAndLoad(new ScreenTitle());
+                }
+            }
+
+            #endregion
+
 
             Widgets.Loadout.Update();
             Widgets.Stats.Update();
@@ -264,7 +307,10 @@ namespace DungeonRun
             //only draw the selection box if the screen has opened completely
             if (displayState == DisplayState.Opened)
             { Functions_Draw.Draw(selectionBox); }
-            
+
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
+                background.rec, Assets.colorScheme.overlay * overlayAlpha);
+
             ScreenManager.spriteBatch.End();
         }
 

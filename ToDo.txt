@@ -51,18 +51,24 @@ todo:
 
 
 
-Complete OptionWidget's MenuItems Display
-
-added OptionsHelpInfo value to MenuItemType enumerator.
-updated Functions_MenuItem.SetMenuItemData() with path for OptionsHelpInfo value.
-updated OptionsWidget to display the proper menuItems based on latest mockup.
-playtested, options widget menuItems being displayed correctly.
-
-
-
-
 
 Get OptionWidget's QuitGame MenuItem working
+
+added ExitScreen value to ExitAction enumerator.
+added exitAction instance to InventoryScreen.
+updated InventoryScreen with codepaths to handle exiting to title screen.
+this codepath starts with user selecting the QuitGame MenuItem.
+playtested, working as expected.
+
+
+
+
+
+
+InventoryScreen needs an exit action
+because we could be quitting the game
+
+
 
 
 
