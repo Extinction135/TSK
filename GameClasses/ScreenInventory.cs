@@ -44,10 +44,14 @@ namespace DungeonRun
             #region Connect loadout widget's menuItems to stats widget's menuItems
 
             Widgets.Loadout.menuItems[4].neighborDown = Widgets.Stats.menuItems[0];
-            Widgets.Loadout.menuItems[5].neighborDown = Widgets.Stats.menuItems[0];
-            Widgets.Loadout.menuItems[6].neighborDown = Widgets.Stats.menuItems[0];
-            Widgets.Loadout.menuItems[7].neighborDown = Widgets.Stats.menuItems[0];
+            Widgets.Loadout.menuItems[5].neighborDown = Widgets.Stats.menuItems[1];
+            Widgets.Loadout.menuItems[6].neighborDown = Widgets.Stats.menuItems[2];
+            Widgets.Loadout.menuItems[7].neighborDown = Widgets.Stats.menuItems[3];
+
             Widgets.Stats.menuItems[0].neighborUp = Widgets.Loadout.menuItems[4];
+            Widgets.Stats.menuItems[1].neighborUp = Widgets.Loadout.menuItems[5];
+            Widgets.Stats.menuItems[2].neighborUp = Widgets.Loadout.menuItems[6];
+            Widgets.Stats.menuItems[3].neighborUp = Widgets.Loadout.menuItems[7];
 
             #endregion
 
@@ -65,16 +69,9 @@ namespace DungeonRun
 
             #region Connect stat widget's menuItems to inventory widget's menuItems
 
-            Widgets.Stats.menuItems[0].neighborRight = Widgets.Inventory.menuItems[10];
-            Widgets.Inventory.menuItems[10].neighborLeft = Widgets.Stats.menuItems[0];
-
-            Widgets.Stats.menuItems[1].neighborRight = Widgets.Inventory.menuItems[15];
-            Widgets.Inventory.menuItems[15].neighborLeft = Widgets.Stats.menuItems[1];
-
-            Widgets.Stats.menuItems[2].neighborRight = Widgets.Inventory.menuItems[15];
-
-            Widgets.Stats.menuItems[3].neighborRight = Widgets.Inventory.menuItems[20];
-            Widgets.Inventory.menuItems[20].neighborLeft = Widgets.Stats.menuItems[3];
+            Widgets.Stats.menuItems[3].neighborRight = Widgets.Inventory.menuItems[10];
+            Widgets.Inventory.menuItems[10].neighborLeft = Widgets.Stats.menuItems[3];
+            Widgets.Inventory.menuItems[15].neighborLeft = Widgets.Stats.menuItems[3];
 
             #endregion
 

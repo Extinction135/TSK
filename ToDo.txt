@@ -46,55 +46,37 @@ ram useage:
 	
 todo:
 
-3
-
-
-
-
-
-Get OptionWidget's QuitGame MenuItem working
-
-added ExitScreen value to ExitAction enumerator.
-added exitAction instance to InventoryScreen.
-updated InventoryScreen with codepaths to handle exiting to title screen.
-this codepath starts with user selecting the QuitGame MenuItem.
-playtested, working as expected.
+13
 
 
 
 
 
 
-InventoryScreen needs an exit action
-because we could be quitting the game
+Update the StatWidget based on latest mockup
+
+changed the statWidget's menuItem to be horizontally aligned.
+added ComponentAmountDisplay for each stat.
+fixed the neighbor links for the new stats setup.
+playtested, working as expected. 
+statsWidget now matches latest mockup.
 
 
 
 
 
 
-how the input is handled on inventory screen is not setup to handle each widget individually
-instead, it assumes the user has selected an inventory item and updates the loadout...
-
-
-
-
-
-we need a way back to the title screen from in game
-this is from the options widget
-we need to add 'quit game' menuItem to options widget
-this is in bottom right location
-this simply calls ScreenManager.ExitAndLoad(new TitleScreen());
+create the crystals widget based on mockup
 
 
 
 
 
 
-overworld screen needs an opening pause
 
-transitioning from title screen to overworld screen
-the overworld map just appears, does not fade in at all
+
+
+
 
 
 
@@ -121,10 +103,7 @@ create load/save/new game screen
 	this isn't a widget, the screen should contain everything
 	it's not that complicated, and we don't need to litter the widget classes
 	
-update the options widget based on mockup
-update the stats widget based on mockup
-create the crystals widget based on mockup
-none of these have any functionality right now	
+
 	
 	
 	
@@ -350,9 +329,6 @@ new room screen
 	
 
 	
-download and add new music tracks to game
-check ram footprint
-	
 	
 	
 	
@@ -397,7 +373,9 @@ dungeon run text should blink, just like summary screen
 should this be part of the animatedTitle's functions_class as well?
 functions.Blink(Title), where title.blinkSpeed is used?
 
-
+overworld screen needs an opening pause
+transitioning from title screen to overworld screen
+the overworld map just appears, does not fade in at all
 
 
 
