@@ -53,23 +53,21 @@ todo:
 
 
 
-Update the StatWidget based on latest mockup
-
-changed the statWidget's menuItem to be horizontally aligned.
-added ComponentAmountDisplay for each stat.
-fixed the neighbor links for the new stats setup.
-playtested, working as expected. 
-statsWidget now matches latest mockup.
 
 
 
+Create the CrystalsWidget based on latest mockup
 
+created WidgetCrystals.cs in game classes folder, ref'd into UWP project.
+added CrystalsWidget instance to Widgets global class.
+updated InventoryScreen to place and draw CrystalsWidget.
 
+added CrystalFilled & CrystalEmpty values to MenuItem enumerator.
+updated Functions_MenuItem.SetMenuItemData() with paths for CrystalFilled & CrystalEmpty values.
+updated WidgetCrystal to place 6 crystal menuItems proportionally centered.
 
-create the crystals widget based on mockup
-
-
-
+updated InventoryScreen to properly link CrystalWidget's menuItems to other widgets.
+playtested, working as expected.
 
 
 

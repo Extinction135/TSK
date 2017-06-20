@@ -36,6 +36,7 @@ namespace DungeonRun
 
             Widgets.Loadout.Reset(16 * 9, 16 * 4);
             Widgets.Stats.Reset(16 * 9, 16 * 10);
+            Widgets.Crystals.Reset(16 * 9, 16 * 14 + 8);
             Widgets.Inventory.Reset(16 * 16, 16 * 4);
             Widgets.Info.Reset(16 * 24 + 8, 16 * 4);
             Widgets.Options.Reset(16 * 24 + 8, 16 * 10);
@@ -88,6 +89,26 @@ namespace DungeonRun
 
             Widgets.Options.menuItems[6].neighborLeft = Widgets.Inventory.menuItems[24];
             Widgets.Inventory.menuItems[24].neighborRight = Widgets.Options.menuItems[6];
+
+            #endregion
+
+
+            #region Connect crystal widget's menuItems
+
+            Widgets.Crystals.menuItems[0].neighborUp = Widgets.Stats.menuItems[0];
+            Widgets.Crystals.menuItems[1].neighborUp = Widgets.Stats.menuItems[1];
+            Widgets.Crystals.menuItems[2].neighborUp = Widgets.Stats.menuItems[1];
+            Widgets.Crystals.menuItems[3].neighborUp = Widgets.Stats.menuItems[2];
+            Widgets.Crystals.menuItems[4].neighborUp = Widgets.Stats.menuItems[2];
+            Widgets.Crystals.menuItems[5].neighborUp = Widgets.Stats.menuItems[3];
+
+            Widgets.Stats.menuItems[3].neighborDown = Widgets.Crystals.menuItems[5];
+            Widgets.Stats.menuItems[2].neighborDown = Widgets.Crystals.menuItems[4];
+            Widgets.Stats.menuItems[1].neighborDown = Widgets.Crystals.menuItems[1];
+            Widgets.Stats.menuItems[0].neighborDown = Widgets.Crystals.menuItems[0];
+
+            Widgets.Crystals.menuItems[5].neighborRight = Widgets.Inventory.menuItems[20];
+            Widgets.Inventory.menuItems[20].neighborLeft = Widgets.Crystals.menuItems[5];
 
             #endregion
 
@@ -272,6 +293,7 @@ namespace DungeonRun
 
             Widgets.Loadout.Update();
             Widgets.Stats.Update();
+            Widgets.Crystals.Update();
             Widgets.Info.Update();
             Widgets.Inventory.Update();
             Widgets.Options.Update();
@@ -298,6 +320,7 @@ namespace DungeonRun
 
             Widgets.Loadout.Draw();
             Widgets.Stats.Draw();
+            Widgets.Crystals.Draw();
             Widgets.Info.Draw();
             Widgets.Inventory.Draw();
             Widgets.Options.Draw();

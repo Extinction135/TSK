@@ -84,6 +84,7 @@ namespace DungeonRun
         Unknown,
         InventoryGold, InventoryHeartPieces, InventoryMap, InventoryKey,
         StatsHealth, StatsMagic, StatsAgility, Stats4,
+        CrystalFilled, CrystalEmpty,
 
         OptionsContinue, OptionsNewGame, OptionsLoadGame, OptionsQuitGame,
         OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls, OptionsGameCtrls,

@@ -229,6 +229,9 @@
     <Compile Include="..\..\GameClasses\Widget.cs">
       <Link>Classes\Widget.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\WidgetCrystals.cs">
+      <Link>Classes\WidgetCrystals.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\WidgetDialog.cs">
       <Link>Classes\WidgetDialog.cs</Link>
     </Compile>
