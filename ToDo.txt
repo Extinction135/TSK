@@ -50,21 +50,23 @@ todo:
 
 
 
-Complete LSN Screen's selectionBox functionality
+Add arrow and action text to LSN Screen
 
-created selectionBox, currentlySelected, previouslySelected instances.
-setup menuItem neighbors for LSN screen.
+added arrow sprite, which is placed relative to selection box.
+added action text, which is placed relative to arrow.
 playtested, working as expected.
 
 
 
 
-create arrow icon 
-create action label text (load, save, or new)
 
+
+
+the arrow should move right, then reset past a certain point
 
 create game player sprites 
 animate player sprites when selected
+
 add additional game text (dummy for now)
 create dummy crystals
 

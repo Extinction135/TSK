@@ -27,11 +27,14 @@ namespace DungeonRun
         MenuItem game2MenuItem;
         MenuItem game3MenuItem;
         //these point to a menuItem
-        public MenuItem currentlySelected;
-        public MenuItem previouslySelected;
+        MenuItem currentlySelected;
+        MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
-        public ComponentSprite selectionBox;
-        
+        ComponentSprite selectionBox;
+        ComponentSprite arrow;
+        ComponentText actionText;
+
+
 
         public ScreenLoadSaveNew(LoadSaveNewState State)
         {
@@ -43,14 +46,8 @@ namespace DungeonRun
         {
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
-
             window = new MenuWindow(new Point(16 * 13 + 8 + 4, 16 * 6),
                 new Point(16 * 12 + 8, 16 * 11), "Default ");
-            //setup window title based on screenState
-            if (screenState == LoadSaveNewState.Load) { window.title.text = "Load "; }
-            else if (screenState == LoadSaveNewState.New) { window.title.text = "New "; }
-            else if (screenState == LoadSaveNewState.Save) { window.title.text = "Save "; }
-            window.title.text += "Game";
 
 
             #region Setup Game1-3 MenuItems
@@ -63,7 +60,7 @@ namespace DungeonRun
             Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, game2MenuItem);
             Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, game3MenuItem);
             //set X positions
-            game1MenuItem.compSprite.position.X = window.background.rec.X + 35;
+            game1MenuItem.compSprite.position.X = window.background.rec.X + 35 + 8;
             game2MenuItem.compSprite.position.X = game1MenuItem.compSprite.position.X;
             game3MenuItem.compSprite.position.X = game1MenuItem.compSprite.position.X;
             //set Y positions
@@ -132,6 +129,38 @@ namespace DungeonRun
             selectionBox = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(15, 7, 0, 0),
                 new Point(16, 16));
+            //create the arrow
+            arrow = new ComponentSprite(Assets.mainSheet,
+                new Vector2(0, 0), new Byte4(15, 8, 0, 0),
+                new Point(16, 16));
+            arrow.rotation = Rotation.Clockwise90;
+            //create action text
+            actionText = new ComponentText(Assets.font, "",
+                new Vector2(0, 0), Assets.colorScheme.textDark);
+
+
+            #region Modify components based on screenState
+
+            if (screenState == LoadSaveNewState.Load)
+            {
+                window.title.text = "Load ";
+                actionText.text = "Load";
+            }
+            else if (screenState == LoadSaveNewState.New)
+            {
+                window.title.text = "New ";
+                actionText.text = "New";
+            }
+            else if (screenState == LoadSaveNewState.Save)
+            {
+                window.title.text = "Save ";
+                actionText.text = "Save";
+            }
+            window.title.text += "Game";
+
+            #endregion
+
+
             //open the screen
             displayState = DisplayState.Opening;
         }
@@ -234,6 +263,12 @@ namespace DungeonRun
                 else { selectionBox.alpha += 0.025f; }
                 //match the position of the selectionBox to the currently selected menuItem
                 selectionBox.position = currentlySelected.compSprite.position;
+                //place arrow relative to selectionBox
+                arrow.position.X = selectionBox.position.X - 20 - 8;
+                arrow.position.Y = selectionBox.position.Y + 3;
+                //place action text relative to arrow
+                actionText.position.X = arrow.position.X - 6;
+                actionText.position.Y = arrow.position.Y - 16;
                 //scale the selectionBox down to 1.0
                 if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
                 else { selectionBox.scale = 1.0f; }
@@ -261,6 +296,8 @@ namespace DungeonRun
                     Functions_Draw.Draw(game3MenuItem.compSprite);
                     for (i = 0; i < texts.Count; i++) { Functions_Draw.Draw(texts[i]); }
                     Functions_Draw.Draw(selectionBox);
+                    Functions_Draw.Draw(arrow);
+                    Functions_Draw.Draw(actionText);
                 }
             }
 
