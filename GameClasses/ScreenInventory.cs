@@ -199,6 +199,14 @@ namespace DungeonRun
                     exitAction = ExitAction.Title;
                     Assets.Play(Assets.sfxInventoryClose);
                 }
+                else if (currentlySelected.type == MenuItemType.OptionsSaveGame)
+                {
+                    ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.Save));
+                }
+                else if (currentlySelected.type == MenuItemType.OptionsLoadGame)
+                {
+                    ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.Load));
+                }
 
                 #endregion
 
@@ -317,17 +325,20 @@ namespace DungeonRun
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
                 background.rec, Assets.colorScheme.overlay * background.alpha);
-
-            Widgets.Loadout.Draw();
-            Widgets.Stats.Draw();
-            Widgets.Crystals.Draw();
-            Widgets.Info.Draw();
-            Widgets.Inventory.Draw();
-            Widgets.Options.Draw();
+            //only draw screen contents if screen is opening or opened
+            if (displayState == DisplayState.Opening || displayState == DisplayState.Opened)
+            {
+                Widgets.Loadout.Draw();
+                Widgets.Stats.Draw();
+                Widgets.Crystals.Draw();
+                Widgets.Info.Draw();
+                Widgets.Inventory.Draw();
+                Widgets.Options.Draw();
+            }
             //only draw the selection box if the screen has opened completely
             if (displayState == DisplayState.Opened)
             { Functions_Draw.Draw(selectionBox); }
-
+            //draw overlay last
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
                 background.rec, Assets.colorScheme.overlay * overlayAlpha);
 

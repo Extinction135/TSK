@@ -50,22 +50,73 @@ todo:
 
 
 
-Create Load/Save/New Game Screen
+Develop Load/Save/New Game Screen
 
-created ScreenLoadSaveNew.cs class.
-created LoadSaveNew enumerator to represent state of ScreenLoadSaveNew.
-updated TitleScreen to create LoadSaveNew screen when user clicks on 'Load' or 'New' menuItem.
-updated ScreenLoadSaveNew with basic input for exiting the screen.
-playtested, working as expected.
+updated InventoryScreen to create LoadSaveNew screen when save/load menuItem is selected.
+updated LSN screen with placeholder menuItems and divider lines.
+updated LSN screen with component texts for games 1-3.
+playtested, displaying/working as expected.
+
+updated LSN screen to only draw screen contents if screen is opening or opened.
+this makes the window + contents disappear immediately when user closes screen.
+also updated InventoryScreen to use the same drawing approach to screen contents.
+playtested, but i'm not happy with the screen's closing transition..
 
 
 
 
 
 
-the closing state of the screen should look better
+the windows should 'close'
+the window contents should disappear upon close
+once all windows close, and background fades in/out, the screen closes
+
+
+
+
+
+
+
+
+
+create selectionBox
+create arrow icon 
+create action label text (load, save, or new)
+set neighbors, get selectionBox moving properly
+
+
+create game player sprites 
+animate player sprites when selected
+add additional game text (dummy for now)
+create dummy crystals
+
+
+
+we need to be saving the crystals obtained in player data
+add crystal booleans, save them, load them
+
+
+create game saves 1, 2, 3
+this should follow the same idea as autoSave file
+create the files if they don't exist
+if they do exist, load them into the game
+they should exist as game1Data, game2Data, game3Data in playerData as instances
+these instances are seperate from saveData instance
+
+
+
+
+
+
+
+
+the exiting state of the screen should look better
 the window needs to fade out or close...
 
+
+when we load a game, the screen should fade TO black
+when we save a game, a dialog screen should appear that says the save was successful
+when we create a new game, the screen should fade TO black
 
 
 
@@ -93,7 +144,9 @@ this way we can load the autosave data, or specific game 1,2,3 data
 	
 	
 	
-	
+inventory widget can be simplified
+it never moves around, so we should hard-code the divider placement
+remove ResetDivider() method
 	
 	
 	

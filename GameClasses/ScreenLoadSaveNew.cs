@@ -18,6 +18,14 @@ namespace DungeonRun
         static MenuWindow window;
         LoadSaveNewState screenState;
         ExitAction exitAction;
+        int i;
+
+        MenuItem game1MenuItem;
+        MenuItem game2MenuItem;
+        MenuItem game3MenuItem;
+        public List<MenuRectangle> dividers;
+        public List<ComponentText> texts;
+
 
         /*
         //these point to a menuItem
@@ -47,6 +55,71 @@ namespace DungeonRun
             window.title.text += "Game";
 
 
+            #region Setup Game1-3 MenuItems
+
+            game1MenuItem = new MenuItem();
+            game2MenuItem = new MenuItem();
+            game3MenuItem = new MenuItem();
+
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, game1MenuItem);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, game2MenuItem);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, game3MenuItem);
+
+            game1MenuItem.compSprite.position.X = window.background.rec.X + 35;
+            game2MenuItem.compSprite.position.X = game1MenuItem.compSprite.position.X;
+            game3MenuItem.compSprite.position.X = game1MenuItem.compSprite.position.X;
+
+            game1MenuItem.compSprite.position.Y = window.background.rec.Y + 16 * 3;
+            game2MenuItem.compSprite.position.Y = window.background.rec.Y + 16 * 6;
+            game3MenuItem.compSprite.position.Y = window.background.rec.Y + 16 * 9;
+
+            #endregion
+
+
+            #region Setup dividers
+
+            dividers = new List<MenuRectangle>();
+            //game1 header and footer
+            dividers.Add(new MenuRectangle(
+                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 2),
+                new Point(window.size.X - 16, 1), 
+                Assets.colorScheme.windowInset));
+            dividers.Add(new MenuRectangle(
+                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 4),
+                new Point(window.size.X - 16, 1),
+                Assets.colorScheme.windowInset));
+            //game2 header and footer
+            dividers.Add(new MenuRectangle(
+                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 5),
+                new Point(window.size.X - 16, 1),
+                Assets.colorScheme.windowInset));
+            dividers.Add(new MenuRectangle(
+                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 7),
+                new Point(window.size.X - 16, 1),
+                Assets.colorScheme.windowInset));
+            //game3 header
+            dividers.Add(new MenuRectangle(
+                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 8),
+                new Point(window.size.X - 16, 1),
+                Assets.colorScheme.windowInset));
+
+            #endregion
+
+
+            #region Setup Game Title Texts
+
+            texts = new List<ComponentText>();
+            texts.Add(new ComponentText(Assets.font, "Game 1 - test",
+                new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 1 + 1),
+                Assets.colorScheme.textDark));
+            texts.Add(new ComponentText(Assets.font, "Game 2 - test",
+                new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 4 + 1),
+                Assets.colorScheme.textDark));
+            texts.Add(new ComponentText(Assets.font, "Game 3 - test",
+                new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 7 + 1),
+                Assets.colorScheme.textDark));
+
+            #endregion
 
             /*
             //set the currently selected menuItem to the first inventory menuItem
@@ -60,8 +133,6 @@ namespace DungeonRun
 
             //open the screen
             displayState = DisplayState.Opening;
-            //play the title music
-            //Functions_Music.PlayMusic(Music.Title);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -163,12 +234,15 @@ namespace DungeonRun
 
             #endregion
 
-            //open the window
+            //open the window + dividers
             Functions_MenuWindow.Update(window);
+            for (i = 0; i < dividers.Count; i++)
+            { Functions_MenuRectangle.Update(dividers[i]); }
 
-            /*
             if (displayState != DisplayState.Opening)
-            {   //pulse the selectionBox alpha
+            {   
+                /*
+                //pulse the selectionBox alpha
                 if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
                 else { selectionBox.alpha += 0.025f; }
                 //match the position of the selectionBox to the currently selected menuItem
@@ -178,8 +252,8 @@ namespace DungeonRun
                 else { selectionBox.scale = 1.0f; }
                 //animate the currently selected menuItem - this scales it back down to 1.0
                 Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
+                */
             }
-            */
         }
 
         public override void Draw(GameTime GameTime)
@@ -188,17 +262,28 @@ namespace DungeonRun
 
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
                 background.rec, Assets.colorScheme.overlay * background.alpha);
-            Functions_Draw.Draw(window);
 
-            if (window.interior.displayState == DisplayState.Opened)
+            //only draw screen contents if screen is opening or opened
+            if (displayState == DisplayState.Opening || displayState == DisplayState.Opened)
             {
-                /*
-                for (i = 0; i < menuItems.Count; i++)
-                { Functions_Draw.Draw(menuItems[i].compSprite); }
-                for (i = 0; i < labels.Count; i++)
-                { Functions_Draw.Draw(labels[i]); }
-                Functions_Draw.Draw(selectionBox);
-                */
+                Functions_Draw.Draw(window);
+                for (i = 0; i < dividers.Count; i++) { Functions_Draw.Draw(dividers[i]); }
+                if (window.interior.displayState == DisplayState.Opened)
+                {
+                    Functions_Draw.Draw(game1MenuItem.compSprite);
+                    Functions_Draw.Draw(game2MenuItem.compSprite);
+                    Functions_Draw.Draw(game3MenuItem.compSprite);
+
+                    for (i = 0; i < texts.Count; i++) { Functions_Draw.Draw(texts[i]); }
+
+                    /*
+                    for (i = 0; i < menuItems.Count; i++)
+                    { Functions_Draw.Draw(menuItems[i].compSprite); }
+                    for (i = 0; i < labels.Count; i++)
+                    { Functions_Draw.Draw(labels[i]); }
+                    Functions_Draw.Draw(selectionBox);
+                    */
+                }
             }
 
             ScreenManager.spriteBatch.End();
