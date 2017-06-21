@@ -211,6 +211,9 @@
     <Compile Include="..\..\GameClasses\ScreenInventory.cs">
       <Link>Classes\ScreenInventory.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenLoadSaveNew.cs">
+      <Link>Classes\ScreenLoadSaveNew.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenManager.cs">
       <Link>Classes\ScreenManager.cs</Link>
     </Compile>

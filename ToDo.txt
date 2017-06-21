@@ -46,27 +46,16 @@ ram useage:
 	
 todo:
 
-13
+11
 
 
 
+Create Load/Save/New Game Screen
 
-
-
-
-
-
-Create the CrystalsWidget based on latest mockup
-
-created WidgetCrystals.cs in game classes folder, ref'd into UWP project.
-added CrystalsWidget instance to Widgets global class.
-updated InventoryScreen to place and draw CrystalsWidget.
-
-added CrystalFilled & CrystalEmpty values to MenuItem enumerator.
-updated Functions_MenuItem.SetMenuItemData() with paths for CrystalFilled & CrystalEmpty values.
-updated WidgetCrystal to place 6 crystal menuItems proportionally centered.
-
-updated InventoryScreen to properly link CrystalWidget's menuItems to other widgets.
+created ScreenLoadSaveNew.cs class.
+created LoadSaveNew enumerator to represent state of ScreenLoadSaveNew.
+updated TitleScreen to create LoadSaveNew screen when user clicks on 'Load' or 'New' menuItem.
+updated ScreenLoadSaveNew with basic input for exiting the screen.
 playtested, working as expected.
 
 
@@ -74,43 +63,20 @@ playtested, working as expected.
 
 
 
+the closing state of the screen should look better
+the window needs to fade out or close...
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-update Functions_Backend.LoadPlayerData() to accept a parameter that points to a save file
-this way we can load the autosave data, or specific game 1,2,3 data
 
 
 create load/save/new game screen
 	this isn't a widget, the screen should contain everything
 	it's not that complicated, and we don't need to litter the widget classes
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-load game screen functionality
+load/save/new game screen functionality
 	we'll need to create 3 save files, if these files don't exist
 	then based on which game is selected, we write player data to the proper file
 	this screen has three states: loading, saving, or creating a new game
@@ -118,6 +84,32 @@ load game screen functionality
 	saving: saves player data to the selected file
 	creating: overwrites file with new player data
 
+update Functions_Backend.LoadPlayerData() to accept a parameter that points to a save file
+this way we can load the autosave data, or specific game 1,2,3 data	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 options widget functionality	
 	save game autosaves for now
 	quit game exits all screens and loads title screen

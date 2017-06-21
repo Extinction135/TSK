@@ -174,11 +174,11 @@ namespace DungeonRun
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsNewGame)
                     {
-                        //create new game screen
+                        ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.New));
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsLoadGame)
                     {
-                        //create load game screen
+                        ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.Load));
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {

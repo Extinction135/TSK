@@ -21,6 +21,8 @@ namespace DungeonRun
 
     public enum DisplayState { Opening, Opened, Closing, Closed }
 
+    public enum LoadSaveNewState { Load, Save, New }
+
     public enum TitleText { Dungeon, Complete, You, Died, Run }
 
     public enum ExitAction { Title, Summary, Overworld, ContinueGame, QuitGame, ExitScreen }
