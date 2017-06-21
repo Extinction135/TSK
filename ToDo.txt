@@ -50,23 +50,31 @@ todo:
 
 
 
-Develop Load/Save/New Game Screen
+Complete LSN Screen's selectionBox functionality
 
-updated InventoryScreen to create LoadSaveNew screen when save/load menuItem is selected.
-updated LSN screen with placeholder menuItems and divider lines.
-updated LSN screen with component texts for games 1-3.
-playtested, displaying/working as expected.
-
-updated LSN screen to only draw screen contents if screen is opening or opened.
-this makes the window + contents disappear immediately when user closes screen.
-also updated InventoryScreen to use the same drawing approach to screen contents.
-playtested, but i'm not happy with the screen's closing transition..
+created selectionBox, currentlySelected, previouslySelected instances.
+setup menuItem neighbors for LSN screen.
+playtested, working as expected.
 
 
 
 
+create arrow icon 
+create action label text (load, save, or new)
 
 
+create game player sprites 
+animate player sprites when selected
+add additional game text (dummy for now)
+create dummy crystals
+
+
+
+
+
+
+
+InventoryScreen and LSN screen polish ++
 the windows should 'close'
 the window contents should disappear upon close
 once all windows close, and background fades in/out, the screen closes
@@ -76,19 +84,6 @@ once all windows close, and background fades in/out, the screen closes
 
 
 
-
-
-
-create selectionBox
-create arrow icon 
-create action label text (load, save, or new)
-set neighbors, get selectionBox moving properly
-
-
-create game player sprites 
-animate player sprites when selected
-add additional game text (dummy for now)
-create dummy crystals
 
 
 
