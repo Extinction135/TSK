@@ -50,19 +50,17 @@ todo:
 
 
 
-Add arrow and action text to LSN Screen
 
-added arrow sprite, which is placed relative to selection box.
-added action text, which is placed relative to arrow.
+Animate the LSN Screen's arrow
+
+updated LSN screen to set arrow relative to action text.
+updated how arrow text is placed so it animates left to right.
+past a certain limit, the arrow is reset to align with action text.
+this causes the arrow to 'bump' left to right, and move vertically with action text.
 playtested, working as expected.
 
 
 
-
-
-
-
-the arrow should move right, then reset past a certain point
 
 create game player sprites 
 animate player sprites when selected
@@ -81,7 +79,9 @@ the windows should 'close'
 the window contents should disappear upon close
 once all windows close, and background fades in/out, the screen closes
 
-
+we shouldn't stop drawing the components if the screen is closing..
+because we may be fading an overlay over the components
+if they disappear, it's jarring...
 
 
 

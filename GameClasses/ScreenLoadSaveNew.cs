@@ -131,7 +131,7 @@ namespace DungeonRun
                 new Point(16, 16));
             //create the arrow
             arrow = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(15, 8, 0, 0),
+                new Vector2(1000, 0), new Byte4(15, 8, 0, 0),
                 new Point(16, 16));
             arrow.rotation = Rotation.Clockwise90;
             //create action text
@@ -263,12 +263,17 @@ namespace DungeonRun
                 else { selectionBox.alpha += 0.025f; }
                 //match the position of the selectionBox to the currently selected menuItem
                 selectionBox.position = currentlySelected.compSprite.position;
-                //place arrow relative to selectionBox
-                arrow.position.X = selectionBox.position.X - 20 - 8;
-                arrow.position.Y = selectionBox.position.Y + 3;
-                //place action text relative to arrow
-                actionText.position.X = arrow.position.X - 6;
-                actionText.position.Y = arrow.position.Y - 16;
+
+                //place action text relative to selection box
+                actionText.position.X = selectionBox.position.X - 34;
+                actionText.position.Y = selectionBox.position.Y - 13;
+
+                //animate the arrow relative to action text
+                if (arrow.position.X > actionText.position.X + 10)
+                { arrow.position.X = actionText.position.X + 6; }
+                else { arrow.position.X += 0.1f; }
+                arrow.position.Y = actionText.position.Y + 16;
+
                 //scale the selectionBox down to 1.0
                 if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
                 else { selectionBox.scale = 1.0f; }
