@@ -50,20 +50,16 @@ todo:
 
 
 
+Create Game Player Sprites for LSN Screen
 
-Animate the LSN Screen's arrow
-
-updated LSN screen to set arrow relative to action text.
-updated how arrow text is placed so it animates left to right.
-past a certain limit, the arrow is reset to align with action text.
-this causes the arrow to 'bump' left to right, and move vertically with action text.
+created game player sprites for games 1-3.
+created animation components for stationary and walking animations.
+updated LSN screen to animate the currently selected player sprite.
 playtested, working as expected.
 
 
 
 
-create game player sprites 
-animate player sprites when selected
 
 add additional game text (dummy for now)
 create dummy crystals

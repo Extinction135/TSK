@@ -34,6 +34,12 @@ namespace DungeonRun
         ComponentSprite arrow;
         ComponentText actionText;
 
+        ComponentSprite game1Player;
+        ComponentSprite game2Player;
+        ComponentSprite game3Player;
+        ComponentAnimation playerStationary;
+        ComponentAnimation playerWalking;
+
 
 
         public ScreenLoadSaveNew(LoadSaveNewState State)
@@ -121,10 +127,28 @@ namespace DungeonRun
 
             #endregion
 
-            
-            //set the currently selected menuItem to the first inventory menuItem
-            currentlySelected = game1MenuItem;
-            previouslySelected = game1MenuItem;
+
+            #region Setup Game Player Sprites + Animations
+
+            game1Player = new ComponentSprite(Assets.heroSheet,
+                game1MenuItem.compSprite.position, 
+                new Byte4(0, 0, 0, 0), new Point(16, 16));
+            game2Player = new ComponentSprite(Assets.heroSheet,
+                game2MenuItem.compSprite.position,
+                new Byte4(0, 0, 0, 0), new Point(16, 16));
+            game3Player = new ComponentSprite(Assets.heroSheet,
+                game3MenuItem.compSprite.position,
+                new Byte4(0, 0, 0, 0), new Point(16, 16));
+
+            playerStationary = new ComponentAnimation();
+            playerStationary.currentAnimation = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+
+            playerWalking = new ComponentAnimation();
+            playerWalking.currentAnimation = new List<Byte4> { new Byte4(1, 0, 0, 0), new Byte4(1, 0, 1, 0) };
+
+            #endregion
+
+
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(15, 7, 0, 0),
@@ -142,25 +166,19 @@ namespace DungeonRun
             #region Modify components based on screenState
 
             if (screenState == LoadSaveNewState.Load)
-            {
-                window.title.text = "Load ";
-                actionText.text = "Load";
-            }
+            { window.title.text = "Load "; actionText.text = "Load"; }
             else if (screenState == LoadSaveNewState.New)
-            {
-                window.title.text = "New ";
-                actionText.text = "New";
-            }
+            { window.title.text = "New "; actionText.text = "New"; }
             else if (screenState == LoadSaveNewState.Save)
-            {
-                window.title.text = "Save ";
-                actionText.text = "Save";
-            }
+            { window.title.text = "Save "; actionText.text = "Save"; }
             window.title.text += "Game";
 
             #endregion
 
 
+            //set the currently selected menuItem to the first inventory menuItem
+            currentlySelected = game1MenuItem;
+            previouslySelected = game1MenuItem;
             //open the screen
             displayState = DisplayState.Opening;
         }
@@ -263,22 +281,38 @@ namespace DungeonRun
                 else { selectionBox.alpha += 0.025f; }
                 //match the position of the selectionBox to the currently selected menuItem
                 selectionBox.position = currentlySelected.compSprite.position;
-
+                //scale the selectionBox down to 1.0
+                if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
+                else { selectionBox.scale = 1.0f; }
+                //animate the currently selected menuItem - this scales it back down to 1.0
+                Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
                 //place action text relative to selection box
                 actionText.position.X = selectionBox.position.X - 34;
                 actionText.position.Y = selectionBox.position.Y - 13;
-
                 //animate the arrow relative to action text
                 if (arrow.position.X > actionText.position.X + 10)
                 { arrow.position.X = actionText.position.X + 6; }
                 else { arrow.position.X += 0.1f; }
                 arrow.position.Y = actionText.position.Y + 16;
 
-                //scale the selectionBox down to 1.0
-                if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
-                else { selectionBox.scale = 1.0f; }
-                //animate the currently selected menuItem - this scales it back down to 1.0
-                Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
+
+                #region Set the animation list for each game player sprite
+
+                if (currentlySelected == game1MenuItem)
+                { Functions_Animation.Animate(playerWalking, game1Player); }
+                else { Functions_Animation.Animate(playerStationary, game1Player); }
+
+                if (currentlySelected == game2MenuItem)
+                { Functions_Animation.Animate(playerWalking, game2Player); }
+                else { Functions_Animation.Animate(playerStationary, game2Player); }
+
+                if (currentlySelected == game3MenuItem)
+                { Functions_Animation.Animate(playerWalking, game3Player); }
+                else { Functions_Animation.Animate(playerStationary, game3Player); }
+
+                #endregion
+
+
             }
         }
 
@@ -299,6 +333,10 @@ namespace DungeonRun
                     Functions_Draw.Draw(game1MenuItem.compSprite);
                     Functions_Draw.Draw(game2MenuItem.compSprite);
                     Functions_Draw.Draw(game3MenuItem.compSprite);
+                    Functions_Draw.Draw(game1Player);
+                    Functions_Draw.Draw(game2Player);
+                    Functions_Draw.Draw(game3Player);
+
                     for (i = 0; i < texts.Count; i++) { Functions_Draw.Draw(texts[i]); }
                     Functions_Draw.Draw(selectionBox);
                     Functions_Draw.Draw(arrow);
