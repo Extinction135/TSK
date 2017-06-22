@@ -187,26 +187,9 @@ namespace DungeonRun
                 Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, game3Crystals[i]);
             }
 
-            game1Crystals[0].compSprite.position = new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 3);
-            game1Crystals[1].compSprite.position = game1Crystals[0].compSprite.position + new Vector2(11, 0);
-            game1Crystals[2].compSprite.position = game1Crystals[1].compSprite.position + new Vector2(11, 0);
-            game1Crystals[3].compSprite.position = game1Crystals[2].compSprite.position + new Vector2(11, 0);
-            game1Crystals[4].compSprite.position = game1Crystals[3].compSprite.position + new Vector2(11, 0);
-            game1Crystals[5].compSprite.position = game1Crystals[4].compSprite.position + new Vector2(11, 0);
-
-            game2Crystals[0].compSprite.position = new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 6);
-            game2Crystals[1].compSprite.position = game2Crystals[0].compSprite.position + new Vector2(11, 0);
-            game2Crystals[2].compSprite.position = game2Crystals[1].compSprite.position + new Vector2(11, 0);
-            game2Crystals[3].compSprite.position = game2Crystals[2].compSprite.position + new Vector2(11, 0);
-            game2Crystals[4].compSprite.position = game2Crystals[3].compSprite.position + new Vector2(11, 0);
-            game2Crystals[5].compSprite.position = game2Crystals[4].compSprite.position + new Vector2(11, 0);
-
-            game3Crystals[0].compSprite.position = new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 9);
-            game3Crystals[1].compSprite.position = game3Crystals[0].compSprite.position + new Vector2(11, 0);
-            game3Crystals[2].compSprite.position = game3Crystals[1].compSprite.position + new Vector2(11, 0);
-            game3Crystals[3].compSprite.position = game3Crystals[2].compSprite.position + new Vector2(11, 0);
-            game3Crystals[4].compSprite.position = game3Crystals[3].compSprite.position + new Vector2(11, 0);
-            game3Crystals[5].compSprite.position = game3Crystals[4].compSprite.position + new Vector2(11, 0);
+            PlaceCrystals(game1Crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 3));
+            PlaceCrystals(game2Crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 6));
+            PlaceCrystals(game3Crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 9));
 
             #endregion
 
@@ -244,6 +227,20 @@ namespace DungeonRun
             //open the screen
             displayState = DisplayState.Opening;
         }
+
+
+
+        public void PlaceCrystals(List<MenuItem> Crystals, Vector2 Pos)
+        {
+            Crystals[0].compSprite.position = Pos;
+            Crystals[1].compSprite.position = Crystals[0].compSprite.position + new Vector2(11, 0);
+            Crystals[2].compSprite.position = Crystals[1].compSprite.position + new Vector2(11, 0);
+            Crystals[3].compSprite.position = Crystals[2].compSprite.position + new Vector2(11, 0);
+            Crystals[4].compSprite.position = Crystals[3].compSprite.position + new Vector2(11, 0);
+            Crystals[5].compSprite.position = Crystals[4].compSprite.position + new Vector2(11, 0);
+        }
+
+
 
         public override void HandleInput(GameTime GameTime)
         {

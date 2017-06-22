@@ -52,19 +52,12 @@ todo:
 
 
 
-Add Crystal Booleans to SaveData
 
-added 6 booleans to SaveData that represent the 6 dungeon crystals.
-updated Functions_actor.SetDeathState() to flip crystal1 saveData upon boss death.
-updated WidgetCrystal.Reset() to properly display the current saveData's crystal booleans.
+Refactor LoadSaveNew Screen
+
+created PlaceCrystals() method in LSN screen.
+generalized and moved crystal placement routines into PlaceCrystals().
 playtested, working as expected.
-
-
-
-
-
-
-
 
 
 
