@@ -68,6 +68,7 @@ namespace DungeonRun
             }
             else if (Actor.type == ActorType.Boss)
             {
+                PlayerData.saveData.crystal1 = true; //flip crystal1
                 DungeonRecord.beatDungeon = true; //player has beat the dungeon
                 Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Summary;
                 Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;

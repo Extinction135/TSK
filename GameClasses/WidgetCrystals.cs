@@ -55,13 +55,36 @@ namespace DungeonRun
 
             //set the menuItem's neighbors
             Functions_MenuItem.SetNeighbors(menuItems, 6);
-            //set the menuItem's data
-            Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[0]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[1]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[2]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[3]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[4]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[5]);
+
+
+            #region Set the menuItem's data (filled or empty crystals)
+
+            if (PlayerData.saveData.crystal1)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[0]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[0]); }
+
+            if (PlayerData.saveData.crystal2)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[1]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[1]); }
+
+            if (PlayerData.saveData.crystal3)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[2]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[2]); }
+
+            if (PlayerData.saveData.crystal4)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[3]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[3]); }
+
+            if (PlayerData.saveData.crystal5)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[4]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[4]); }
+
+            if (PlayerData.saveData.crystal6)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[5]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[5]); }
+
+            #endregion
+
         }
 
         public override void Update()

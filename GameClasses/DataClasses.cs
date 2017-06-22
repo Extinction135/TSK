@@ -563,7 +563,7 @@ namespace DungeonRun
         public byte bombsCurrent = 3;
         public byte bombsMax = 99;
 
-        public byte arrowsCurrent = 99; //testing
+        public byte arrowsCurrent = 10; //testing
         public byte arrowsMax = 99;
 
         public Boolean itemBoomerang = false;
@@ -591,6 +591,14 @@ namespace DungeonRun
         //necklace
         //glove
         //pin
+
+        //crystal booleans
+        public Boolean crystal1 = false;
+        public Boolean crystal2 = false;
+        public Boolean crystal3 = false;
+        public Boolean crystal4 = false;
+        public Boolean crystal5 = false;
+        public Boolean crystal6 = false;
     }
 
     //UI Classes

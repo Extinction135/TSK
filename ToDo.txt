@@ -46,22 +46,17 @@ ram useage:
 	
 todo:
 
-7
+13
 
 
 
 
 
+Add Crystal Booleans to SaveData
 
-Create dummy data for each Game instance on LSN Screen
-
-created 3 componentText instances to represent game data (time & date).
-tested to make sure time and data information fits properly in window.
-playtested, working as expected.
-
-created 3 MenuItem lists, to represent games1-3 crystals.
-populated crystals lists, aligned to screen window.
-lots of repeated code here, this should be refactored later on.
+added 6 booleans to SaveData that represent the 6 dungeon crystals.
+updated Functions_actor.SetDeathState() to flip crystal1 saveData upon boss death.
+updated WidgetCrystal.Reset() to properly display the current saveData's crystal booleans.
 playtested, working as expected.
 
 
@@ -70,13 +65,13 @@ playtested, working as expected.
 
 
 
-refactor how game display data is managed.
-this should really be a dataClass, with functions to align instances.
-but, this display data doesn't exist outside of the LSN screen, so....
 
 
 
 
+
+we want to display the crystals properly in LSN screen
+but this means we need to setup the 3 game files
 
 
 
@@ -96,8 +91,7 @@ if they disappear, it's jarring...
 
 
 
-we need to be saving the crystals obtained in player data
-add crystal booleans, save them, load them
+
 
 
 create game saves 1, 2, 3
