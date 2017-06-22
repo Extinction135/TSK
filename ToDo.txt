@@ -46,23 +46,34 @@ ram useage:
 	
 todo:
 
-11
+7
 
 
 
-Create Game Player Sprites for LSN Screen
 
-created game player sprites for games 1-3.
-created animation components for stationary and walking animations.
-updated LSN screen to animate the currently selected player sprite.
+
+
+Create dummy data for each Game instance on LSN Screen
+
+created 3 componentText instances to represent game data (time & date).
+tested to make sure time and data information fits properly in window.
+playtested, working as expected.
+
+created 3 MenuItem lists, to represent games1-3 crystals.
+populated crystals lists, aligned to screen window.
+lots of repeated code here, this should be refactored later on.
 playtested, working as expected.
 
 
 
 
 
-add additional game text (dummy for now)
-create dummy crystals
+
+
+refactor how game display data is managed.
+this should really be a dataClass, with functions to align instances.
+but, this display data doesn't exist outside of the LSN screen, so....
+
 
 
 
