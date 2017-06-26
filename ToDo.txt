@@ -51,19 +51,47 @@ todo:
 
 
 
-Polish Create Game Experience
 
-updated DialogScreen to exit and load Overworld Screen upon creation of a new game.
-this puts the player 'into' the game, instead of leaving them on the LSN screen.
-playtested, working as expected.
 
 
 
 
 Get Loading Working for saved Game Files
 
-we should use the same approach when we load gameFiles from disk
-use the GameFile enumerator, pass it into LoadGame().
+created LoadGame() method.
+this method accepts a GameFile parameter, just like SaveGame().
+
+created Functions_Backend.SetFilename().
+this simplifies SaveGame() and LoadGame() methods.
+
+created Functions_Backend.LoadPlayerData().
+added routine to handle case where loading file address doesn't exist.
+when this happens, the game simply saves the current data to the address.
+in the future, we should probably popup a dialog screen alerting player.
+
+updated LSN screen to call Functions_Backend.LoadGame(), based on selected menuItem.
+playtested loading of save game data, working as expected.
+
+
+
+
+
+
+
+
+
+when we reset/open the inventory screen, reset all menuItem.scale to 1.0.
+
+
+
+
+handle case where file does not exist
+add enum value to Dialog enum = GameNotFound
+
+
+handle case where file load fails
+add enum value to Dialog enum = GameLoadFailed
+
 
 
 

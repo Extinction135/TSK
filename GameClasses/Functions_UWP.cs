@@ -21,6 +21,8 @@ namespace DungeonRun
     public static class Functions_Backend
     {
         static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+        static string filename;
+
 
 
         public static string GetRam()
@@ -43,74 +45,89 @@ namespace DungeonRun
             Debug.WriteLine("text file contents: " + text);
         }
 
-        public static async void LoadPlayerData()
+
+
+
+
+
+
+
+
+
+
+
+        public static void SetFilename(GameFile Type)
         {
-            /*
-            //pick the playerData.xml file to load
-            var loadPicker = new Windows.Storage.Pickers.FileOpenPicker();
-            loadPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
-            loadPicker.FileTypeFilter.Add(".xml");
-            StorageFile loadFile = await loadPicker.PickSingleFileAsync();
-            */
-
-            //get the PlayerData folder path
-            //StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            //StorageFolder assets = await appInstalledFolder.GetFolderAsync("PlayerData");
-
-            /*
-            //load the 1st playerData.xml file from PlayerData folder
-            var files = await assets.GetFilesAsync();
-            StorageFile loadFile = files[0];
-            Debug.WriteLine("loaded playerData: " + files[0].Path);
-            */
-
-            //get the autoSave.xml file
-            //StorageFile loadFile = await assets.GetFileAsync("autoSave.xml");
-            //Debug.WriteLine("loaded playerData: " + loadFile.Path);
-
-            //get the local folder
-            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-            Debug.WriteLine("loading: " + localFolder.Path + @"\autoSave.xml");
-            try
-            {   //load the autoSave.xml file (but it may not exist, if this is first run of game)
-                StorageFile loadFile = await localFolder.GetFileAsync("autoSave.xml");
-                //load the file into PlayerData.saveData
-                if (loadFile != null)
-                {
-                    var serializer = new XmlSerializer(typeof(SaveData));
-                    Stream stream = await loadFile.OpenStreamForReadAsync();
-                    using (stream)
-                    { PlayerData.saveData = (SaveData)serializer.Deserialize(stream); }
-                    //Functions_Debug.Inspect(PlayerData.saveData);
-                }
-            }
-            catch { }
-        }
-
-
-
-
-
-
-        public static async void SaveGame(GameFile Type)
-        {
-            string filename = "autoSave.xml"; //defaults to autoSave
+            filename = "autoSave.xml"; //defaults to autoSave
             if (Type == GameFile.Game1) { filename = "game1.xml"; }
             else if (Type == GameFile.Game2) { filename = "game2.xml"; }
             else if (Type == GameFile.Game3) { filename = "game3.xml"; }
-            //Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
-            StorageFile saveFile = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            SavePlayerData(saveFile);
         }
 
-        public static async void SavePlayerData(StorageFile saveFile)
+        public static async void SaveGame(GameFile Type)
+        {
+            SetFilename(Type);
+            //Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
+            StorageFile file = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+            SavePlayerData(file);
+        }
+
+        public static async void LoadGame(GameFile Type)
+        {
+            SetFilename(Type);
+            //Debug.WriteLine("loading: " + localFolder.Path + @"\" + filename);
+            try
+            {
+                StorageFile file = await localFolder.GetFileAsync(filename);
+                LoadPlayerData(file);
+            }
+            catch
+            {   //file does not exist, cannot be loaded
+                SaveGame(Type); //so save the current data to file address
+                Debug.WriteLine("cannot load gamefile, creating file instead.");
+                //ScreenManager.AddScreen(new ScreenDialog(Dialog.GameNotFound));
+            }
+        }
+        
+
+
+
+
+        public static async void SavePlayerData(StorageFile gameFile)
         {   //save the playerData, to saveFile address
             var serializer = new XmlSerializer(typeof(SaveData));
-            Stream stream = await saveFile.OpenStreamForWriteAsync();
+            Stream stream = await gameFile.OpenStreamForWriteAsync();
             using (stream)
             { serializer.Serialize(stream, PlayerData.saveData); }
         }
 
+        public static async void LoadPlayerData(StorageFile gameFile)
+        {
+            Debug.WriteLine("loadfile: " + filename);
+
+            try
+            {   //load gameFile into PlayerData.saveData
+                if (gameFile != null)
+                {
+                    var serializer = new XmlSerializer(typeof(SaveData));
+                    Stream stream = await gameFile.OpenStreamForReadAsync();
+                    using (stream)
+                    { PlayerData.saveData = (SaveData)serializer.Deserialize(stream); }
+                    //create dialog screen, let player know file has been loaded
+                    ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoaded));
+                    //Debug.WriteLine("load complete");
+                }
+            }
+            catch
+            {
+                //create a dialog screen alerting user there was a problem loading the saved game file
+            }
+            finally
+            {
+                //inspect the loaded saveData
+                //Functions_Debug.Inspect(PlayerData.saveData);
+            }
+        }
 
 
 
@@ -155,6 +172,55 @@ namespace DungeonRun
             StorageFile saveFile = await assets.CreateFileAsync("autoSave.xml", CreationCollisionOption.ReplaceExisting);
             */
         }
+
+
+        public static async void LoadPlayerDataOLD()
+        {
+            /*
+            //pick the playerData.xml file to load
+            var loadPicker = new Windows.Storage.Pickers.FileOpenPicker();
+            loadPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            loadPicker.FileTypeFilter.Add(".xml");
+            StorageFile loadFile = await loadPicker.PickSingleFileAsync();
+            */
+
+            //get the PlayerData folder path
+            //StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            //StorageFolder assets = await appInstalledFolder.GetFolderAsync("PlayerData");
+
+            /*
+            //load the 1st playerData.xml file from PlayerData folder
+            var files = await assets.GetFilesAsync();
+            StorageFile loadFile = files[0];
+            Debug.WriteLine("loaded playerData: " + files[0].Path);
+            */
+
+            //get the autoSave.xml file
+            //StorageFile loadFile = await assets.GetFileAsync("autoSave.xml");
+            //Debug.WriteLine("loaded playerData: " + loadFile.Path);
+
+            //get the local folder
+            //StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            //Debug.WriteLine("loading: " + localFolder.Path + @"\autoSave.xml");
+            try
+            {   //load the autoSave.xml file (but it may not exist, if this is first run of game)
+                StorageFile loadFile = await localFolder.GetFileAsync("autoSave.xml");
+                //load the file into PlayerData.saveData
+                if (loadFile != null)
+                {
+                    var serializer = new XmlSerializer(typeof(SaveData));
+                    Stream stream = await loadFile.OpenStreamForReadAsync();
+                    using (stream)
+                    { PlayerData.saveData = (SaveData)serializer.Deserialize(stream); }
+                    //Functions_Debug.Inspect(PlayerData.saveData);
+                }
+            }
+            catch { }
+        }
+
+
+
+
 
 
 

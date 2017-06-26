@@ -267,8 +267,13 @@ namespace DungeonRun
                     Functions_Input.IsNewButtonPress(Buttons.A))
                 {
                     if (screenState == LoadSaveNewState.Load)
-                    {
-                        //load
+                    {   //load playerData
+                        if (currentlySelected == game1MenuItem)
+                        { Functions_Backend.LoadGame(GameFile.Game1); }
+                        else if (currentlySelected == game2MenuItem)
+                        { Functions_Backend.LoadGame(GameFile.Game2); }
+                        else if (currentlySelected == game3MenuItem)
+                        { Functions_Backend.LoadGame(GameFile.Game3); }
                     }
                     else //screenState == Save or New
                     {   //reset playerData, if screen is in 'new game' state

@@ -275,7 +275,7 @@ namespace DungeonRun
             {
                 if (exitAction == ExitAction.ContinueGame)
                 {
-                    Functions_Backend.LoadPlayerData(); //load autoSave data
+                    Functions_Backend.LoadGame(GameFile.AutoSave); //load autoSave data
                     ScreenManager.ExitAndLoad(new ScreenOverworld());
                 }
                 else if (exitAction == ExitAction.QuitGame)
