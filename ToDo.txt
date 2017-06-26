@@ -52,14 +52,12 @@ todo:
 
 
 
-Develop Saving PlayerData to Game & AutoSave Files
+Develop NewGame functionality
 
-created GameFile enumerator to represent AutoSave, Game1, 2, + 3 save files.
-decomposed SavePlayerData() into SaveGame(GameFile) and SavePlayerData(StorageFile).
-SaveGame() is written in a manner that overwrites or creates the file it is saving.
-updated LSN screen to actually save Game1, 2, 3 files.
 
-playtested, SaveGame() properly writes autosave, game1, game2, and game3 files.
+this was as simple as creating a new instance of PlayerData.saveData.
+this creation happens from the LSN screen, making it backend independent.
+implementing this functionality was a single line of code...
 
 
 
@@ -69,15 +67,13 @@ playtested, SaveGame() properly writes autosave, game1, game2, and game3 files.
 
 
 
-
-write a reset playerData method
-reset the player data for new state, prior to saving
-
-
-
-
-we need to let the player know that their file has been saved..
+we need to let the player know that their file has been saved/created..
 this needs a mockup and design - probably using the dialog screen and player sprite
+
+
+when player saves/creates game, update the game files on LSN screen
+
+
 
 
 

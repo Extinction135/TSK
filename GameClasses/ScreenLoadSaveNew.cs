@@ -271,9 +271,9 @@ namespace DungeonRun
                         //load
                     }
                     else //screenState == Save or New
-                    {
+                    {   //reset playerData, if screen is in 'new game' state
                         if (screenState == LoadSaveNewState.New)
-                        { } //reset playerData
+                        { PlayerData.saveData = new SaveData(); } 
                         //save playerData
                         if (currentlySelected == game1MenuItem)
                         { Functions_Backend.SaveGame(GameFile.Game1); }
@@ -281,6 +281,9 @@ namespace DungeonRun
                         { Functions_Backend.SaveGame(GameFile.Game2); }
                         else if (currentlySelected == game3MenuItem)
                         { Functions_Backend.SaveGame(GameFile.Game3); }
+
+                        //create dialog screen, let player know their file has been saved
+                        //ScreenManager.AddScreen(new ScreenDialog(Obj));
                     }
                     //handle soundEffect
                     if (currentlySelected.type == MenuItemType.OptionsQuitGame)

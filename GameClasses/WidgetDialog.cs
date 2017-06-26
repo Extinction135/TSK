@@ -20,11 +20,12 @@ namespace DungeonRun
         public int charCount;
 
 
+
         public WidgetDialog()
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             speaker = new GameObject(Assets.mainSheet);
-            Functions_GameObject.SetType(speaker, ObjType.VendorArmor);
+            Functions_GameObject.SetType(speaker, ObjType.VendorStory);
             dialog = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
         }
 
