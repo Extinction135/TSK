@@ -20,6 +20,9 @@ namespace DungeonRun
 {
     public static class Functions_Backend
     {
+        static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+
+
         public static string GetRam()
         {   //get the ram footprint in mb
 			return "" + (MemoryManager.AppMemoryUsage / 1024 / 1024);
@@ -38,44 +41,6 @@ namespace DungeonRun
 
             string text = await Windows.Storage.FileIO.ReadTextAsync(files[0]);
             Debug.WriteLine("text file contents: " + text);
-        }
-
-        public static async void SavePlayerData()
-        {
-            //get the local folder
-            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
-            Debug.WriteLine("saving: " + localFolder.Path + @"\autoSave.xml");
-            //create the autoSave.xml file
-            StorageFile saveFile = await localFolder.CreateFileAsync("autoSave.xml", CreationCollisionOption.ReplaceExisting);
-
-            /*
-            //pick the path and name to save the file to
-            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
-            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
-            savePicker.FileTypeChoices.Add("PlayerDataSave", new List<string>() { ".xml" });
-            savePicker.SuggestedFileName = "PlayerDataSave";
-            StorageFile saveFile = await savePicker.PickSaveFileAsync();
-            */
-
-            /*
-            //get the PlayerData folder path
-            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFolder assets = await appInstalledFolder.GetFolderAsync("PlayerData");
-
-            //get all the files in the PlayerData folder
-            //var files = await assets.GetFilesAsync();
-            //StorageFile saveFile = files[0];
-            //Debug.WriteLine("saved playerData: " + files[0].Path);
-
-            //create the autoSave.xml file
-            StorageFile saveFile = await assets.CreateFileAsync("autoSave.xml", CreationCollisionOption.ReplaceExisting);
-            */
-
-            //save the playerData
-            var serializer = new XmlSerializer(typeof(SaveData));
-            Stream stream = await saveFile.OpenStreamForWriteAsync();
-            using (stream)
-            { serializer.Serialize(stream, PlayerData.saveData); }
         }
 
         public static async void LoadPlayerData()
@@ -121,6 +86,78 @@ namespace DungeonRun
             }
             catch { }
         }
+
+
+
+
+
+
+        public static async void SaveGame(GameFile Type)
+        {
+            string filename = "autoSave.xml"; //defaults to autoSave
+            if (Type == GameFile.Game1) { filename = "game1.xml"; }
+            else if (Type == GameFile.Game2) { filename = "game2.xml"; }
+            else if (Type == GameFile.Game3) { filename = "game3.xml"; }
+            Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
+            StorageFile saveFile = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+            SavePlayerData(saveFile);
+        }
+
+        public static async void SavePlayerData(StorageFile saveFile)
+        {   //save the playerData, to saveFile address
+            var serializer = new XmlSerializer(typeof(SaveData));
+            Stream stream = await saveFile.OpenStreamForWriteAsync();
+            using (stream)
+            { serializer.Serialize(stream, PlayerData.saveData); }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public static void SavePlayerData_OLD()
+        {
+            //Debug.WriteLine("saving: " + localFolder.Path + @"\autoSave.xml");
+            //create the autoSave.xml file
+            //StorageFile saveFile = await localFolder.CreateFileAsync("autoSave.xml", CreationCollisionOption.ReplaceExisting);
+
+            /*
+            //pick the path and name to save the file to
+            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            savePicker.FileTypeChoices.Add("PlayerDataSave", new List<string>() { ".xml" });
+            savePicker.SuggestedFileName = "PlayerDataSave";
+            StorageFile saveFile = await savePicker.PickSaveFileAsync();
+            */
+
+            /*
+            //get the PlayerData folder path
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFolder assets = await appInstalledFolder.GetFolderAsync("PlayerData");
+
+            //get all the files in the PlayerData folder
+            //var files = await assets.GetFilesAsync();
+            //StorageFile saveFile = files[0];
+            //Debug.WriteLine("saved playerData: " + files[0].Path);
+
+            //create the autoSave.xml file
+            StorageFile saveFile = await assets.CreateFileAsync("autoSave.xml", CreationCollisionOption.ReplaceExisting);
+            */
+        }
+
+
+
 
     }
 }

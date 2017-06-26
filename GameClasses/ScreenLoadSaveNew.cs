@@ -245,7 +245,10 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             if (displayState == DisplayState.Opened)
-            {   //exit this screen upon start or b button press
+            {
+
+                #region Exit this screen upon start or b button press
+
                 if (Functions_Input.IsNewButtonPress(Buttons.B))
                 {
                     Assets.Play(Assets.sfxInventoryClose);
@@ -253,21 +256,44 @@ namespace DungeonRun
                     exitAction = ExitAction.ExitScreen;
                 }
 
-                /*
+                #endregion
+
+
+                #region Handle load/save/new
+
                 //only allow input if the screen has opened completely
-                if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
+                else if (
+                    Functions_Input.IsNewButtonPress(Buttons.Start) ||
                     Functions_Input.IsNewButtonPress(Buttons.A))
                 {
-                    currentlySelected.compSprite.scale = 2.0f;
-
-                    //handle load/save/new
-
+                    if (screenState == LoadSaveNewState.Load)
+                    {
+                        //load
+                    }
+                    else //screenState == Save or New
+                    {
+                        if (screenState == LoadSaveNewState.New)
+                        { } //reset playerData
+                        //save playerData
+                        if (currentlySelected == game1MenuItem)
+                        { Functions_Backend.SaveGame(GameFile.Game1); }
+                        else if (currentlySelected == game2MenuItem)
+                        { Functions_Backend.SaveGame(GameFile.Game2); }
+                        else if (currentlySelected == game3MenuItem)
+                        { Functions_Backend.SaveGame(GameFile.Game3); }
+                    }
                     //handle soundEffect
                     if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     { Assets.Play(Assets.sfxInventoryClose); }
                     else { Assets.Play(Assets.sfxMenuItem); }
+                    //scale up currently selected
+                    currentlySelected.compSprite.scale = 2.0f;
                 }
-                */
+
+                #endregion
+
+
+                #region Move between MenuItems
 
                 //get the previouslySelected menuItem
                 previouslySelected = currentlySelected;
@@ -290,6 +316,9 @@ namespace DungeonRun
                         selectionBox.scale = 2.0f;
                     }
                 }
+
+                #endregion
+
             }
         }
 

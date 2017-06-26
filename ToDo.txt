@@ -52,12 +52,38 @@ todo:
 
 
 
+Develop Saving PlayerData to Game & AutoSave Files
 
-Refactor LoadSaveNew Screen
+created GameFile enumerator to represent AutoSave, Game1, 2, + 3 save files.
+decomposed SavePlayerData() into SaveGame(GameFile) and SavePlayerData(StorageFile).
+SaveGame() is written in a manner that overwrites or creates the file it is saving.
+updated LSN screen to actually save Game1, 2, 3 files.
 
-created PlaceCrystals() method in LSN screen.
-generalized and moved crystal placement routines into PlaceCrystals().
-playtested, working as expected.
+playtested, SaveGame() properly writes autosave, game1, game2, and game3 files.
+
+
+
+
+
+
+
+
+
+
+write a reset playerData method
+reset the player data for new state, prior to saving
+
+
+
+
+we need to let the player know that their file has been saved..
+this needs a mockup and design - probably using the dialog screen and player sprite
+
+
+
+
+we should use the same approach when we load gameFiles from disk
+use the GameFile enumerator, pass it into LoadGame().
 
 
 
@@ -66,27 +92,6 @@ playtested, working as expected.
 we want to display the crystals properly in LSN screen
 but this means we need to setup the 3 game files
 
-
-
-
-InventoryScreen and LSN screen polish ++
-the windows should 'close'
-the window contents should disappear upon close
-once all windows close, and background fades in/out, the screen closes
-
-we shouldn't stop drawing the components if the screen is closing..
-because we may be fading an overlay over the components
-if they disappear, it's jarring...
-
-
-
-
-
-
-
-
-
-
 create game saves 1, 2, 3
 this should follow the same idea as autoSave file
 create the files if they don't exist
@@ -94,30 +99,6 @@ if they do exist, load them into the game
 they should exist as game1Data, game2Data, game3Data in playerData as instances
 these instances are seperate from saveData instance
 
-
-
-
-
-
-
-
-the exiting state of the screen should look better
-the window needs to fade out or close...
-
-
-when we load a game, the screen should fade TO black
-when we save a game, a dialog screen should appear that says the save was successful
-when we create a new game, the screen should fade TO black
-
-
-
-
-
-
-create load/save/new game screen
-	this isn't a widget, the screen should contain everything
-	it's not that complicated, and we don't need to litter the widget classes
-	
 load/save/new game screen functionality
 	we'll need to create 3 save files, if these files don't exist
 	then based on which game is selected, we write player data to the proper file
@@ -128,46 +109,12 @@ load/save/new game screen functionality
 
 update Functions_Backend.LoadPlayerData() to accept a parameter that points to a save file
 this way we can load the autosave data, or specific game 1,2,3 data	
-	
-	
-	
-	
-	
-	
-	
-inventory widget can be simplified
-it never moves around, so we should hard-code the divider placement
-remove ResetDivider() method
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-options widget functionality	
-	save game autosaves for now
-	quit game exits all screens and loads title screen
-	load game creates load screen
-	
-title widget functionality ++
-	new game resets player data, autosaves, and creates overworld screen
-	load game - calls the load game screen
-	audio/input/video/game ctrls - does nothing for now
 
 
-	
-	
-	
+
+
+
+
 Autosave++
 
 autosave should happen more often, like when a player purchases an item
@@ -188,38 +135,71 @@ then we can call reset() and save the player data to create a new game
 
 
 
-audio ctrls screen
-	sfx volume
-	music volume
-input ctrls screen
-	button mapping
-video ctrls screen
-	full screen or windowed?
-game ctrls screen
-	how camera moves - follow hero or center to current room?
+
+InventoryScreen and LSN screen polish ++
+the windows should 'close'
+the window contents should disappear upon close
+once all windows close, and background fades in/out, the screen closes
+
+we shouldn't stop drawing the components if the screen is closing..
+because we may be fading an overlay over the components
+if they disappear, it's jarring...
+
+the exiting state of the screen should look better
+the window needs to fade out or close...
+
+when we load a game, the screen should fade TO black
+when we save a game, a dialog screen should appear that says the save was successful
+when we create a new game, the screen should fade TO black
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	release v0.5 - updates being save data + game files
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
 Develop RoomBuilder project
 
 this project can use .net XML serialization & win forms & whatever else
 because it will never run on an xbox or be player facing
-
 
 
 how do we handle roomData? 
@@ -228,8 +208,6 @@ the roomData folder is simmply copied into the project's directory
 the project copys the roomData folder to it's output
 the game then loads all the roomData upon game boot
 when a room is needed, the data is copied from the loaded roomData
-
-
 
 
 dump the room data to XML file
@@ -253,14 +231,9 @@ then based on the tool state, we can add an object to the room
 
 
 
-
-
-
-
 objects will be able to overlap
 the objects we'll be saving will be located on the pool's roomObj list
 so we can just dump that list to XML file, ignoring inactive objects
-
 
 
 roomData
@@ -277,46 +250,15 @@ objData
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 standardize all room types + sizes (in constructor)
 
-
 load room data from XML file
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 create new room screen
 this is window with buttons, no widget
 new button should create a new room screen
 new room screen stores ref to builder screen
 affects the room instance in builder screen - changes room type
-
-
 
 save button should create a file dialog
 load button should create a file dialog
@@ -361,15 +303,7 @@ new room screen
 	one of the issues here is that we'll need to make sure the floor pool has enough sprites to create the larger rooms
 	this will also increase the drawtime on the xbox one
 	
-
-	
-	
-	
-	
-	
-	
-	
-Version 0.5 Milestones
+Version 0.6 Milestones
 
 	ROOM EDITOR + ROOM DATA
 	build the room editor screen
@@ -400,6 +334,14 @@ Version 0.5 Milestones
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 Polish++	
 "press any button to play again" should be "press any button to continue"
 
@@ -414,8 +356,28 @@ the overworld map just appears, does not fade in at all
 
 
 	
+
+options widget functionality	
+	save game autosaves for now
+	quit game exits all screens and loads title screen
+	load game creates load screen
 	
+title widget functionality ++
+	new game resets player data, autosaves, and creates overworld screen
+	load game - calls the load game screen
+	audio/input/video/game ctrls - does nothing for now
+
+audio ctrls screen
+	sfx volume
+	music volume
+input ctrls screen
+	button mapping
+video ctrls screen
+	full screen or windowed?
+game ctrls screen
+	how camera moves - follow hero or center to current room?
 	
+
 	
 	
 	

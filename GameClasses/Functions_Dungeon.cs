@@ -129,8 +129,8 @@ namespace DungeonRun
             dungeonScreen.overlay.alpha = 1.0f;
             dungeonScreen.displayState = DisplayState.Opening;
 
-            //save the player's data
-            Functions_Backend.SavePlayerData();
+            //autosave playerData
+            Functions_Backend.SaveGame(GameFile.AutoSave);
         }
 
 

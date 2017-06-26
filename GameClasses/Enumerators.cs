@@ -23,6 +23,8 @@ namespace DungeonRun
 
     public enum LoadSaveNewState { Load, Save, New }
 
+    public enum GameFile { AutoSave, Game1, Game2, Game3 }
+
     public enum TitleText { Dungeon, Complete, You, Died, Run }
 
     public enum ExitAction { Title, Summary, Overworld, ContinueGame, QuitGame, ExitScreen }
