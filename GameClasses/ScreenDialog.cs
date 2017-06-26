@@ -61,7 +61,11 @@ namespace DungeonRun
                 Functions_Input.IsNewButtonPress(Buttons.A))
             {
                 Assets.Play(Assets.sfxInventoryClose);
-                ScreenManager.RemoveScreen(this);
+                //exit all screens and load the overworld (put player into game)
+                if (dialogType == Dialog.GameCreated || dialogType == Dialog.GameLoaded)
+                { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
+                //or simply exit this screen
+                else { ScreenManager.RemoveScreen(this); }
             }
         }
 

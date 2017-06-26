@@ -51,34 +51,28 @@ todo:
 
 
 
-Notify Player after their game has been saved/created
+Polish Create Game Experience
 
-refactored DialogScreen to use an ObjType enum, instead of a GameObj.
-this allows us to pass the type as a constructor parameter..
-instead of creating an obj, then setting it's type, then passing it in.
-so, less code that's easier to understand.
+updated DialogScreen to exit and load Overworld Screen upon creation of a new game.
+this puts the player 'into' the game, instead of leaving them on the LSN screen.
+playtested, working as expected.
 
-minor refactoring of Functions_GameObject.SetType().
-created Dialog enumerator to represent all possible dialog states/strings.
-refactored DialogScreen to accept a Dialog enum as the only constructor parameter.
-this sets both the speaker sprite/obj, and the dialog string.
-updated LSN screen to pass Dialog.GameCreated or Dialog.GameSaved to DialogScreen.
 
-playtested that guide displays after save/new, working as expected.
+
+
+Get Loading Working for saved Game Files
+
+we should use the same approach when we load gameFiles from disk
+use the GameFile enumerator, pass it into LoadGame().
+
+
 
 
 
 
 when dialog is created or saved, blackground should fade in
 
-
-
-
-
-
-when we load or create a game, afterwards goto the overworld screen
-this can be done from the DialogScreen, by checking the dialogType
-if its GameLoaded or GameCreated, exit all and load overworld..
+we should only update the dungeon screen if the dialog is story dialog
 
 this means the dialog screen needs to be able to fade to black..
 
@@ -89,8 +83,7 @@ this means the dialog screen needs to be able to fade to black..
 
 
 
-we should use the same approach when we load gameFiles from disk
-use the GameFile enumerator, pass it into LoadGame().
+
 
 
 
