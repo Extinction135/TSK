@@ -84,8 +84,7 @@ namespace DungeonRun
             catch
             {   //file does not exist, cannot be loaded
                 SaveGame(Type); //so save the current data to file address
-                Debug.WriteLine("cannot load gamefile, creating file instead.");
-                //ScreenManager.AddScreen(new ScreenDialog(Dialog.GameNotFound));
+                ScreenManager.AddScreen(new ScreenDialog(Dialog.GameNotFound));
             }
         }
         
@@ -103,8 +102,7 @@ namespace DungeonRun
 
         public static async void LoadPlayerData(StorageFile gameFile)
         {
-            Debug.WriteLine("loadfile: " + filename);
-
+            //Debug.WriteLine("loadfile: " + filename);
             try
             {   //load gameFile into PlayerData.saveData
                 if (gameFile != null)
@@ -115,7 +113,6 @@ namespace DungeonRun
                     { PlayerData.saveData = (SaveData)serializer.Deserialize(stream); }
                     //create dialog screen, let player know file has been loaded
                     ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoaded));
-                    //Debug.WriteLine("load complete");
                 }
             }
             catch

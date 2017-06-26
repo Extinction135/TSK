@@ -42,6 +42,11 @@ namespace DungeonRun
             { dialogString = "you have created a new game save file."; }
             else if (dialogType == Dialog.GameLoaded)
             { dialogString = "your selected game file has been loaded."; }
+            else if (dialogType == Dialog.GameNotFound)
+            {
+                dialogString = "the selected game file was not found. your current game has been saved to the\n";
+                dialogString += "selected game slot instead.";
+            }
 
             #endregion
 
@@ -61,8 +66,10 @@ namespace DungeonRun
                 Functions_Input.IsNewButtonPress(Buttons.A))
             {
                 Assets.Play(Assets.sfxInventoryClose);
-                //exit all screens and load the overworld (put player into game)
-                if (dialogType == Dialog.GameCreated || dialogType == Dialog.GameLoaded)
+                //exit all screens, load overworld (put player into game)
+                if (dialogType == Dialog.GameCreated || 
+                    dialogType == Dialog.GameLoaded ||
+                    dialogType == Dialog.GameNotFound)
                 { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
                 //or simply exit this screen
                 else { ScreenManager.RemoveScreen(this); }

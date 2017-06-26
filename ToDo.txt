@@ -56,21 +56,16 @@ todo:
 
 
 
-Get Loading Working for saved Game Files
 
-created LoadGame() method.
-this method accepts a GameFile parameter, just like SaveGame().
 
-created Functions_Backend.SetFilename().
-this simplifies SaveGame() and LoadGame() methods.
 
-created Functions_Backend.LoadPlayerData().
-added routine to handle case where loading file address doesn't exist.
-when this happens, the game simply saves the current data to the address.
-in the future, we should probably popup a dialog screen alerting player.
+Polish loading case where game file is missing
 
-updated LSN screen to call Functions_Backend.LoadGame(), based on selected menuItem.
-playtested loading of save game data, working as expected.
+added GameNotFound value to Dialog enumerator.
+updated Functions_Backend.LoadGame() to display a dialog screen, if file to be loaded doesn't exist.
+updated DialogScreen with paths to handle GameNotFound value.
+if file to be loaded doesn't exist, the current game data is saved to that game slot.
+playtested, working as expected.
 
 
 
@@ -79,18 +74,13 @@ playtested loading of save game data, working as expected.
 
 
 
-
-when we reset/open the inventory screen, reset all menuItem.scale to 1.0.
-
-
-
-
-handle case where file does not exist
-add enum value to Dialog enum = GameNotFound
 
 
 handle case where file load fails
 add enum value to Dialog enum = GameLoadFailed
+
+when we reset/open the inventory screen, reset all menuItem.scale to 1.0.
+
 
 
 
