@@ -98,7 +98,7 @@ namespace DungeonRun
             if (Type == GameFile.Game1) { filename = "game1.xml"; }
             else if (Type == GameFile.Game2) { filename = "game2.xml"; }
             else if (Type == GameFile.Game3) { filename = "game3.xml"; }
-            Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
+            //Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
             StorageFile saveFile = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             SavePlayerData(saveFile);
         }

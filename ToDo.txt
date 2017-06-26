@@ -51,27 +51,38 @@ todo:
 
 
 
+Notify Player after their game has been saved/created
 
-Develop NewGame functionality
+refactored DialogScreen to use an ObjType enum, instead of a GameObj.
+this allows us to pass the type as a constructor parameter..
+instead of creating an obj, then setting it's type, then passing it in.
+so, less code that's easier to understand.
 
+minor refactoring of Functions_GameObject.SetType().
+created Dialog enumerator to represent all possible dialog states/strings.
+refactored DialogScreen to accept a Dialog enum as the only constructor parameter.
+this sets both the speaker sprite/obj, and the dialog string.
+updated LSN screen to pass Dialog.GameCreated or Dialog.GameSaved to DialogScreen.
 
-this was as simple as creating a new instance of PlayerData.saveData.
-this creation happens from the LSN screen, making it backend independent.
-implementing this functionality was a single line of code...
-
-
-
-
-
-
-
-
-
-we need to let the player know that their file has been saved/created..
-this needs a mockup and design - probably using the dialog screen and player sprite
+playtested that guide displays after save/new, working as expected.
 
 
-when player saves/creates game, update the game files on LSN screen
+
+
+when dialog is created or saved, blackground should fade in
+
+
+
+
+
+
+when we load or create a game, afterwards goto the overworld screen
+this can be done from the DialogScreen, by checking the dialogType
+if its GameLoaded or GameCreated, exit all and load overworld..
+
+this means the dialog screen needs to be able to fade to black..
+
+
 
 
 
@@ -84,6 +95,21 @@ use the GameFile enumerator, pass it into LoadGame().
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+when player saves/creates game, update the game files on LSN screen
 
 we want to display the crystals properly in LSN screen
 but this means we need to setup the 3 game files

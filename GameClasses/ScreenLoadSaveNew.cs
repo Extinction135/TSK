@@ -281,9 +281,10 @@ namespace DungeonRun
                         { Functions_Backend.SaveGame(GameFile.Game2); }
                         else if (currentlySelected == game3MenuItem)
                         { Functions_Backend.SaveGame(GameFile.Game3); }
-
-                        //create dialog screen, let player know their file has been saved
-                        //ScreenManager.AddScreen(new ScreenDialog(Obj));
+                        //create dialog screen, let player know file has been created or saved
+                        if (screenState == LoadSaveNewState.New)
+                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameCreated)); }
+                        else { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameSaved)); }
                     }
                     //handle soundEffect
                     if (currentlySelected.type == MenuItemType.OptionsQuitGame)

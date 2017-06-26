@@ -14,33 +14,42 @@ namespace DungeonRun
 {
     public class ScreenDialog : Screen
     {
+        public Dialog dialogType = Dialog.Default;
+        public ObjType speakerType;
+        public String dialogString;
 
-        public GameObject speaker;
-        public String dialog;
 
 
-
-        public ScreenDialog(GameObject Obj)
+        public ScreenDialog(Dialog Dialog)
         {
             this.name = "Dialog Screen";
-            speaker = Obj;
+            dialogType = Dialog;
         }
 
         public override void LoadContent()
         {
+
+            #region Based on DialogType, set the speaker and dialog text
+
+            //assume guide is speaker w/ default dialog
+            speakerType = ObjType.VendorStory; 
+            dialogString = "this is the default guide text...";
+
+            //get specific dialog
+            if (dialogType == Dialog.GameSaved)
+            { dialogString = "your current game has been successfully saved."; }
+            else if (dialogType == Dialog.GameCreated)
+            { dialogString = "you have created a new game save file."; }
+            else if (dialogType == Dialog.GameLoaded)
+            { dialogString = "your selected game file has been loaded."; }
+
+            #endregion
+
+
             displayState = DisplayState.Opening;
             Widgets.Dialog.Reset(16 * 9, 16 * 12);
-
-            //here is where we could check to see where in the story the hero is
-            //then set the dialog screen accordingly
-            dialog = "i'm the game's guide. later on, i'll tell the hero the story.\n";
-            dialog += "and i'll comment on his progress beating dungeons.";
-            //if (speaker.type == ObjType.VendorStory) { }
-            //we'd need to track what dungeons that hero has beaten
-            //this way the story vendor could comment on the hero's progress
-
             //display the dialog
-            Widgets.Dialog.DisplayDialog(speaker.type, dialog);
+            Widgets.Dialog.DisplayDialog(speakerType, dialogString);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
         }
@@ -59,7 +68,9 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             Widgets.Dialog.Update();
-            Functions_Dungeon.dungeonScreen.Update(GameTime);
+            //if we can update the dungeon screen, do so
+            if (Functions_Dungeon.dungeonScreen != null)
+            { Functions_Dungeon.dungeonScreen.Update(GameTime); }
         }
 
         public override void Draw(GameTime GameTime)

@@ -298,7 +298,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Shop Objects
+            #region Vendor & Story Objects
 
             else if (Type == ObjType.VendorItems || Type == ObjType.VendorPotions ||
                 Type == ObjType.VendorMagic || Type == ObjType.VendorWeapons ||
@@ -306,6 +306,7 @@ namespace DungeonRun
             {   
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -7;
                 Obj.group = ObjGroup.Vendor;
                 Obj.compAnim.speed = 20; //slow animation
@@ -323,7 +324,7 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = 32;
-                Obj.compAnim.speed = 100; //slow animation
+                Obj.compAnim.speed = 100; //very slow animation
             }
 
             #endregion
@@ -507,9 +508,6 @@ namespace DungeonRun
 
             //particles do not block upon collision
             if (Obj.group == ObjGroup.Particle) { Obj.compCollision.blocking = false; }
-            //all vendors use the main sheet as their texture
-            if(Obj.group == ObjGroup.Vendor) { Obj.compSprite.texture = Assets.mainSheet; }
-
             SetRotation(Obj);
             Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type
             Functions_Component.UpdateCellSize(Obj.compSprite);

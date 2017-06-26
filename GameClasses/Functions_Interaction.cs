@@ -172,7 +172,6 @@ namespace DungeonRun
                 //story vendor interaction occurs in 'Other Interactive Objects' section below
             }
 
-
             #endregion
 
 
@@ -219,11 +218,27 @@ namespace DungeonRun
             #endregion
 
 
-            #region Other Interactive Objects
 
             else if (Obj.group == ObjGroup.Object)
             {
-                if (Obj.type == ObjType.BlockSpikes) { Functions_Battle.Damage(Actor, Obj); }
+
+                #region Story / Guide Object
+
+                if (Obj.type == ObjType.VendorStory)
+                {   //only HERO can interact with story vender
+                    if (Actor == Pool.hero && Actor.state == ActorState.Interact)
+                    {   //pass the story vendor to the dialog screen
+                        //figure out what part of the story the hero is at, pass this dialog
+                        ScreenManager.AddScreen(new ScreenDialog(Dialog.Default));
+                    }
+                }
+
+                #endregion
+
+
+                #region Misc Interactive Dungeon Objects
+
+                else if (Obj.type == ObjType.BlockSpikes) { Functions_Battle.Damage(Actor, Obj); }
                 else if (Obj.type == ObjType.ConveyorBelt)
                 {   //push actor in belt's direction
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 0.1f);
@@ -240,22 +255,12 @@ namespace DungeonRun
                     Obj.compSprite.scale = 1.5f;
                     Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Actor);
                 }
-
                 //lever, floor spikes, switch, bridge, flamethrower,
                 //torch unlit, torch lit
 
-                else if (Obj.type == ObjType.VendorStory)
-                {   //only HERO can interact with story vender
-                    if (Actor == Pool.hero && Actor.state == ActorState.Interact)
-                    {   //pass the story vendor to the dialog screen
-                        ScreenManager.AddScreen(new ScreenDialog(Obj));
-                    }
-                }
+                #endregion
+
             }
-
-            #endregion
-
-
         }
 
         public static void Interact(GameObject ObjA, GameObject ObjB)

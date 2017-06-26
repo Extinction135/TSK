@@ -59,9 +59,10 @@ namespace DungeonRun
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, ConveyorBelt,
 
-        //Interactive Objects - shop
-        VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment, VendorStory,
+        //Vendor & Story Objects
+        VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment,
         VendorAdvertisement,
+        VendorStory,
 
         //Pickups - collide with hero
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, 
@@ -104,4 +105,9 @@ namespace DungeonRun
         EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
     }
 
+    public enum Dialog
+    {
+        Default, GameSaved, GameLoaded, GameCreated,
+        //Intro, Dungeon1, Dungeon2 //etc...
+    }
 }
