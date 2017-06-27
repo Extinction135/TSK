@@ -12,7 +12,6 @@ using Microsoft.Xna.Framework.Media;
 
 
 
-
 namespace DungeonRun
 {
     public class Game1 : Game
@@ -33,16 +32,7 @@ namespace DungeonRun
             base.LoadContent();
             Assets.Load(GraphicsDevice, Content);
             ScreenManager.Initialize(this);
-
-            if (Flags.Release)
-            { ScreenManager.ExitAndLoad(new ScreenTitle()); }
-            else
-            {   //developing & testing
-                ScreenManager.ExitAndLoad(new ScreenTitle());
-                //bypass title screen, dupes 'continue game'
-                //ScreenManager.ExitAndLoad(new ScreenOverworld());
-                //Functions_Backend.LoadPlayerData(); //load autoSave data
-            }
+            ScreenManager.ExitAndLoad(new ScreenTitle());
         }
 
         protected override void UnloadContent() { }

@@ -58,7 +58,7 @@ namespace DungeonRun
         public static async void SaveGame(GameFile Type)
         {
             SetFilename(Type);
-            //Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
+            Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
             StorageFile file = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             SavePlayerData(file);
         }
@@ -66,7 +66,7 @@ namespace DungeonRun
         public static async void LoadGame(GameFile Type)
         {
             SetFilename(Type);
-            //Debug.WriteLine("loading: " + localFolder.Path + @"\" + filename);
+            Debug.WriteLine("loading: " + localFolder.Path + @"\" + filename);
             try
             {
                 StorageFile file = await localFolder.GetFileAsync(filename);
@@ -93,17 +93,20 @@ namespace DungeonRun
         {
             try
             {   //load gameFile into PlayerData.saveData
-                //if (gameFile != null){}
-                var serializer = new XmlSerializer(typeof(SaveData));
-                Stream stream = await gameFile.OpenStreamForReadAsync();
-                using (stream)
-                { PlayerData.saveData = (SaveData)serializer.Deserialize(stream); }
-                //create dialog screen, let player know file has been loaded
-                ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoaded));
+                if (gameFile != null)
+                {
+                    var serializer = new XmlSerializer(typeof(SaveData));
+                    Stream stream = await gameFile.OpenStreamForReadAsync();
+                    using (stream)
+                    { PlayerData.saveData = (SaveData)serializer.Deserialize(stream); }
+                    //create dialog screen, let player know file has been loaded
+                    ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoaded));
+                }
             }
             catch
             {   //create a dialog screen alerting user there was a problem loading the saved game file
                 ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoadFailed));
+                //Debug.WriteLine("loading: " + localFolder.Path + @"\" + filename);
             }
             finally
             {

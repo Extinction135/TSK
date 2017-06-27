@@ -51,13 +51,16 @@ todo:
 
 
 
-Polish LSN Screen MenuItem Interaction
+Cleanup & Polish the Game Startup Experience
 
-when player selects a game file on LSN screen, the bkg menuItem scales up to 2.0.
-but a dialog screen is immediately created, leaving the menuItem scale at 2.0.
-this looks bad, so don't scale up the menuItems on LSN screen anymore.
+removed old code from Game1 that had branching paths for game startup.
+now the game will always start with the TitleScreen, in any mode - dev or release.
 
-updated LSN screen to remove scaling and animation of bkg menuItems.
+created ScreenManager.StartGame() method.
+this method controls which screen is created upon a load/new game path.
+updated TitleScreen() to call StartGame() upon continue game selection.
+updated DialogScreen to call StartGame() upon load/new game path.
+removed unused code from ScreenManager.
 playtested, working as expected.
 
 
@@ -65,8 +68,26 @@ playtested, working as expected.
 
 
 
-we could start in the potion shop instead of overworld screen
-this is more how the game would start or load...
+upon a continue game, the corrupted save file dialog displays.. why?
+
+
+
+when we continue a game, the autosave is loaded
+but then we are now creating a shop screen, which creates a shop dungeon
+upon dungeon creation, autosave file gets written
+so we have a conflict where the file is being loaded and saved at the same time
+
+we should only autosave upon a dungeon exit, and from the summary screen, and from a quitgame call
+we should not be autosaving from a dungeon creation
+
+
+
+
+
+
+
+
+
 
 
 

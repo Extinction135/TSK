@@ -35,41 +35,6 @@ namespace DungeonRun
             Pool.Initialize();
         }
 
-        public static Screen[] GetScreens() { return screens.ToArray(); }
-
-        public static void AddScreen(Screen screen)
-        {   //set all of screen's references
-            screen.game = game;
-            screen.LoadContent();
-            screens.Add(screen);
-        }
-
-        public static void RemoveScreen(Screen screen)
-        {
-            screen.UnloadContent();
-            screens.Remove(screen);
-            screensToUpdate.Remove(screen);
-        }
-
-        public static void ExitAndLoad(Screen screenToLoad)
-        {   //remove every screen on screens list
-            while (screens.Count > 0)
-            {
-                try
-                {
-                    screens[0].UnloadContent();
-                    screensToUpdate.Remove(screens[0]);
-                    screens.Remove(screens[0]);
-                }
-                catch { }
-            }
-            AddScreen(screenToLoad);
-        }
-
-        public static void UnloadContent() { foreach (Screen screen in screens) { screen.UnloadContent(); } }
-
-
-  
         public static void Update(GameTime GameTime)
         {
             gameTime = GameTime;
@@ -109,6 +74,46 @@ namespace DungeonRun
                     game.graphics.GraphicsDevice.Viewport.Height),    //match height of window frame
                 Color.White);
             spriteBatch.End();
+        }
+
+
+
+        public static void AddScreen(Screen screen)
+        {   //set all of screen's references
+            screen.game = game;
+            screen.LoadContent();
+            screens.Add(screen);
+        }
+
+        public static void RemoveScreen(Screen screen)
+        {
+            screen.UnloadContent();
+            screens.Remove(screen);
+            screensToUpdate.Remove(screen);
+        }
+
+        public static void ExitAndLoad(Screen screenToLoad)
+        {   //remove every screen on screens list
+            while (screens.Count > 0)
+            {
+                try
+                {
+                    screens[0].UnloadContent();
+                    screensToUpdate.Remove(screens[0]);
+                    screens.Remove(screens[0]);
+                }
+                catch { }
+            }
+            AddScreen(screenToLoad);
+        }
+
+        public static void UnloadContent() { foreach (Screen screen in screens) { screen.UnloadContent(); } }
+
+        public static void StartGame()
+        {
+            //ExitAndLoad(new ScreenOverworld()); //old way
+            Functions_Dungeon.dungeonType = DungeonType.Shop;
+            ExitAndLoad(new ScreenDungeon());
         }
 
     }
