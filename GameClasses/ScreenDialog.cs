@@ -17,6 +17,8 @@ namespace DungeonRun
         public Dialog dialogType = Dialog.Default;
         public ObjType speakerType;
         public String dialogString;
+        ScreenRec background = new ScreenRec();
+        float overlayAlpha = 0.0f;
 
 
 
@@ -28,6 +30,9 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            background.alpha = 0.0f;
+            background.fadeInSpeed = 0.05f; //slower closing fade
+
 
             #region Based on DialogType, set the speaker and dialog text
 
@@ -58,12 +63,12 @@ namespace DungeonRun
             #endregion
 
 
-            displayState = DisplayState.Opening;
             Widgets.Dialog.Reset(16 * 9, 16 * 12);
             //display the dialog
             Widgets.Dialog.DisplayDialog(speakerType, dialogString);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
+            displayState = DisplayState.Opening;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -73,8 +78,36 @@ namespace DungeonRun
                 Functions_Input.IsNewButtonPress(Buttons.A))
             {
                 Assets.Play(Assets.sfxInventoryClose);
-                //exit all screens, restart game
-                if (dialogType == Dialog.GameCreated || 
+                displayState = DisplayState.Closing;
+            }
+        }
+
+        public override void Update(GameTime GameTime)
+        {
+
+            #region Handle Screen State
+
+            if (displayState == DisplayState.Opening)
+            {   //fade background in
+                background.alpha += background.fadeInSpeed;
+                if (background.alpha >= 1.0f)
+                {
+                    background.alpha = 1.0f;
+                    displayState = DisplayState.Opened;
+                }
+            }
+            else if (displayState == DisplayState.Closing)
+            {   //fade overlay in
+                overlayAlpha += background.fadeInSpeed;
+                if (overlayAlpha >= 1.0f)
+                {
+                    overlayAlpha = 1.0f;
+                    displayState = DisplayState.Closed;
+                }
+            }
+            else if (displayState == DisplayState.Closed)
+            {   //exit all screens, restart game
+                if (dialogType == Dialog.GameCreated ||
                     dialogType == Dialog.GameLoaded ||
                     dialogType == Dialog.GameNotFound ||
                     dialogType == Dialog.GameAutoSaved)
@@ -82,10 +115,10 @@ namespace DungeonRun
                 //or simply exit this screen
                 else { ScreenManager.RemoveScreen(this); }
             }
-        }
 
-        public override void Update(GameTime GameTime)
-        {
+            #endregion
+
+
             Widgets.Dialog.Update();
             //if we can update the dungeon screen, do so
             if (Functions_Dungeon.dungeonScreen != null)
@@ -95,7 +128,13 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            //draw background first
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
+                background.rec, Assets.colorScheme.overlay * background.alpha);
             Widgets.Dialog.Draw();
+            //draw overlay last
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
+                background.rec, Assets.colorScheme.overlay * overlayAlpha);
             ScreenManager.spriteBatch.End();
         }
 
