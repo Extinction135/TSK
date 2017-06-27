@@ -27,7 +27,7 @@ namespace DungeonRun
 
     public enum TitleText { Dungeon, Complete, You, Died, Run }
 
-    public enum ExitAction { Title, Summary, Overworld, ContinueGame, QuitGame, ExitScreen }
+    public enum ExitAction { Title, Summary, Overworld, QuitGame, ExitScreen }
 
     public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 
@@ -107,7 +107,8 @@ namespace DungeonRun
 
     public enum Dialog
     {
-        Default, GameSaved, GameLoaded, GameCreated, GameNotFound, GameLoadFailed,
+        Default, GameSaved, GameLoaded, GameAutoSaved,
+        GameCreated, GameNotFound, GameLoadFailed,
         //Intro, Dungeon1, Dungeon2 //etc...
     }
 }

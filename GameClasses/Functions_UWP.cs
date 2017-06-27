@@ -58,7 +58,7 @@ namespace DungeonRun
         public static async void SaveGame(GameFile Type)
         {
             SetFilename(Type);
-            Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
+            //Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
             StorageFile file = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             SavePlayerData(file);
         }
@@ -66,11 +66,12 @@ namespace DungeonRun
         public static async void LoadGame(GameFile Type)
         {
             SetFilename(Type);
-            Debug.WriteLine("loading: " + localFolder.Path + @"\" + filename);
+            //Debug.WriteLine("loading: " + localFolder.Path + @"\" + filename);
             try
             {
                 StorageFile file = await localFolder.GetFileAsync(filename);
-                LoadPlayerData(file);
+                if (Type == GameFile.AutoSave) { LoadPlayerData(file, true); }
+                else { LoadPlayerData(file, false); }
             }
             catch
             {   //file does not exist, cannot be loaded
@@ -89,7 +90,7 @@ namespace DungeonRun
             { serializer.Serialize(stream, PlayerData.saveData); }
         }
 
-        public static async void LoadPlayerData(StorageFile gameFile)
+        public static async void LoadPlayerData(StorageFile gameFile, Boolean autoSave)
         {
             try
             {   //load gameFile into PlayerData.saveData
@@ -99,8 +100,10 @@ namespace DungeonRun
                     Stream stream = await gameFile.OpenStreamForReadAsync();
                     using (stream)
                     { PlayerData.saveData = (SaveData)serializer.Deserialize(stream); }
-                    //create dialog screen, let player know file has been loaded
-                    ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoaded));
+
+                    if (autoSave) //create dialog screen, let player know file has been loaded
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameAutoSaved)); }
+                    else { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoaded)); }
                 }
             }
             catch

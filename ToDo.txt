@@ -49,26 +49,28 @@ todo:
 
 
 
+Polish the ContinueGame experience
+
+added Dialog.GameAutoSaved value.
+updated Functions_UWP.LoadPlayerData() with path for GameAutoSaved value.
+added boolean to LoadPlayerData() to handle autoSave case.
+updated DialogScreen with path for Dialog.GameAutoSaved value.
+
+simplified TitleScreen, making ContinueGame act similar to Load/New Game experience.
+this also simplifies the ExitGame path in TitleScreen.
+playtested, working as expected.
 
 
 
 
-Fix Corrupted Autosave File Bug
+when we load an autosave file, the dialog should tell user of this
+"I've loaded your last autosaved game session."
 
-upon a continue game, the corrupted save file dialog displays.
+dialog should be first-person, from perspective of story guide
+always use "i've ...."
 
-cause: when we continue a game, the autosave is loaded.
-but now we are creating a shop screen, which creates a shop dungeon.
-upon dungeon creation, the autosave file gets written.
-so we have a conflict where autosave file is being loaded and saved to at the same time.
 
-fix: dont load and save the autosave file at the same time.
-updated Functions_Dungeon.BuildDungeon() to NOT autosave upon dungeon creation.
-updated DungeonScreen.Update - Closed state to autosave.
-now whenever the player leaves the dungeon screen, autosave will be called.
 
-playtested, fixed a minor bug where shop dungeon was being created twice.
-this involved an update to the TitleScreen. now working as expected.
 
 
 
@@ -83,14 +85,6 @@ this involved an update to the TitleScreen. now working as expected.
 
 
 various polish
-
-do not scale the selected menuItem up on LSN screen
-
-when we load an autosave file, the dialog should tell user of this
-"I've loaded your last autosaved game session."
-
-dialog should be first-person, from perspective of story guide
-
 
 when dialog is created or saved, blackground should fade in
 

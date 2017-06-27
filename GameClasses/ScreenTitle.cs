@@ -37,7 +37,7 @@ namespace DungeonRun
         public MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
-        public ExitAction exitAction;
+
 
 
         public ScreenTitle() { this.name = "TitleScreen"; }
@@ -169,8 +169,7 @@ namespace DungeonRun
 
                     if (currentlySelected.type == MenuItemType.OptionsContinue)
                     {
-                        displayState = DisplayState.Closing;
-                        exitAction = ExitAction.ContinueGame;
+                        Functions_Backend.LoadGame(GameFile.AutoSave);
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsNewGame)
                     {
@@ -182,8 +181,7 @@ namespace DungeonRun
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {
-                        displayState = DisplayState.Closing;
-                        exitAction = ExitAction.QuitGame;
+                        displayState = DisplayState.Closing; //fadeout, remove screen
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsAudioCtrls)
                     {
@@ -272,12 +270,7 @@ namespace DungeonRun
                 }
             }
             else if (displayState == DisplayState.Closed)
-            {
-                if (exitAction == ExitAction.ContinueGame) //load autoSave data
-                { Functions_Backend.LoadGame(GameFile.AutoSave); }
-                else if (exitAction == ExitAction.QuitGame)
-                { ScreenManager.game.Exit(); }
-            }
+            { ScreenManager.game.Exit(); }
 
             #endregion
 

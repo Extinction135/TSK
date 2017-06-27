@@ -37,14 +37,14 @@ namespace DungeonRun
 
             //get specific dialog
             if (dialogType == Dialog.GameSaved)
-            { dialogString = "your current game has been successfully saved."; }
+            { dialogString = "I have successfully saved the current game."; }
             else if (dialogType == Dialog.GameCreated)
-            { dialogString = "you have created a new game save file."; }
+            { dialogString = "I have created a new game for you."; }
             else if (dialogType == Dialog.GameLoaded)
-            { dialogString = "your selected game file has been loaded."; }
+            { dialogString = "I have loaded the selected game file."; }
             else if (dialogType == Dialog.GameNotFound)
             {
-                dialogString = "the selected game file was not found. your current game has been saved to the\n";
+                dialogString = "the selected game file was not found. I have saved your current game to the\n";
                 dialogString += "selected game slot instead.";
             }
             else if (dialogType == Dialog.GameLoadFailed)
@@ -52,6 +52,8 @@ namespace DungeonRun
                 dialogString = "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n";
                 dialogString += "The data may be corrupted.";
             }
+            else if (dialogType == Dialog.GameAutoSaved)
+            { dialogString = "I've successfully loaded your last autosaved game."; }
 
             #endregion
 
@@ -74,7 +76,8 @@ namespace DungeonRun
                 //exit all screens, restart game
                 if (dialogType == Dialog.GameCreated || 
                     dialogType == Dialog.GameLoaded ||
-                    dialogType == Dialog.GameNotFound)
+                    dialogType == Dialog.GameNotFound ||
+                    dialogType == Dialog.GameAutoSaved)
                 { ScreenManager.StartGame(); }
                 //or simply exit this screen
                 else { ScreenManager.RemoveScreen(this); }
