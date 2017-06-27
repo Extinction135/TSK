@@ -47,6 +47,11 @@ namespace DungeonRun
                 dialogString = "the selected game file was not found. your current game has been saved to the\n";
                 dialogString += "selected game slot instead.";
             }
+            else if (dialogType == Dialog.GameLoadFailed)
+            {
+                dialogString = "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n";
+                dialogString += "The data may be corrupted.";
+            }
 
             #endregion
 

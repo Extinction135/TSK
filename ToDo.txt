@@ -58,35 +58,31 @@ todo:
 
 
 
+Polish loading case where game file is corrupted
 
-Polish loading case where game file is missing
+added GameLoadFailed value to Dialog enumerator.
+updated Functions_Backend.LoadPlayerData() to handle malformed xml.
+playtested loading malformed xml, working, but not as expected.
 
-added GameNotFound value to Dialog enumerator.
-updated Functions_Backend.LoadGame() to display a dialog screen, if file to be loaded doesn't exist.
-updated DialogScreen with paths to handle GameNotFound value.
-if file to be loaded doesn't exist, the current game data is saved to that game slot.
-playtested, working as expected.
-
-
-
-
-
+the xml header has to be malformed for the catch{} to be called.
+otherwise the game loads any data it can from the xml.
+this can cause a state where a save file is only partially loaded.
+not really sure how to check to make sure the xml is perfectly formatted.
+but, it works for now.
 
 
 
 
 
-handle case where file load fails
-add enum value to Dialog enum = GameLoadFailed
+
+
+
+
+
+
+various polish
 
 when we reset/open the inventory screen, reset all menuItem.scale to 1.0.
-
-
-
-
-
-
-
 
 when dialog is created or saved, blackground should fade in
 

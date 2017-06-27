@@ -107,7 +107,7 @@ namespace DungeonRun
 
     public enum Dialog
     {
-        Default, GameSaved, GameLoaded, GameCreated, GameNotFound,
+        Default, GameSaved, GameLoaded, GameCreated, GameNotFound, GameLoadFailed,
         //Intro, Dungeon1, Dungeon2 //etc...
     }
 }
