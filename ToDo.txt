@@ -50,18 +50,23 @@ todo:
 
 
 
-Fix bug where OptionsWidget menuItems can become stuck at scale larger than 1.0
 
-cause: happens when the save/load menuItem is selected from OptionsWidget.
-this scales the save/load menuItem sprite up to 2.0.
-then the LSN screen is created, which can remove all screens.
-upon the next InventoryScreen creation, the options save/load menuItems scale is larger than 1.0.
-this scale value is only updated if the menuItem is highlighted.
+Polish LSN Screen MenuItem Interaction
 
-fix: set all option widget's menuItems.scale to 1.0 upon reset.
-slight cleanup of WidgetOptions.Reset() method.
+when player selects a game file on LSN screen, the bkg menuItem scales up to 2.0.
+but a dialog screen is immediately created, leaving the menuItem scale at 2.0.
+this looks bad, so don't scale up the menuItems on LSN screen anymore.
+
+updated LSN screen to remove scaling and animation of bkg menuItems.
+playtested, working as expected.
 
 
+
+
+
+
+we could start in the potion shop instead of overworld screen
+this is more how the game would start or load...
 
 
 

@@ -295,8 +295,6 @@ namespace DungeonRun
                     if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     { Assets.Play(Assets.sfxInventoryClose); }
                     else { Assets.Play(Assets.sfxMenuItem); }
-                    //scale up currently selected
-                    currentlySelected.compSprite.scale = 2.0f;
                 }
 
                 #endregion
@@ -321,7 +319,6 @@ namespace DungeonRun
                     if (previouslySelected != currentlySelected)
                     {
                         Assets.Play(Assets.sfxTextLetter);
-                        previouslySelected.compSprite.scale = 1.0f;
                         selectionBox.scale = 2.0f;
                     }
                 }
@@ -357,11 +354,7 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closed)
             {
                 if (exitAction == ExitAction.ExitScreen)
-                {
-                    //Functions_Backend.LoadPlayerData(); //load autoSave data
-                    //ScreenManager.ExitAndLoad(new ScreenOverworld());
-                    ScreenManager.RemoveScreen(this);
-                }
+                { ScreenManager.RemoveScreen(this); }
             }
 
             #endregion
@@ -381,8 +374,6 @@ namespace DungeonRun
                 //scale the selectionBox down to 1.0
                 if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
                 else { selectionBox.scale = 1.0f; }
-                //animate the currently selected menuItem - this scales it back down to 1.0
-                Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
                 //place action text relative to selection box
                 actionText.position.X = selectionBox.position.X - 34;
                 actionText.position.Y = selectionBox.position.Y - 13;
