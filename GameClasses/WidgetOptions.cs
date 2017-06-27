@@ -91,10 +91,10 @@ namespace DungeonRun
             #endregion
 
 
-            //set the menuItem's neighbors
-            Functions_MenuItem.SetNeighbors(menuItems, 2);
-            //set the menuItem's data
+            #region Set the menuItem's data
+
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsSaveGame, menuItems[0]);
+            menuItems[0].compSprite.rotation = Rotation.Clockwise180;
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsHelpInfo, menuItems[1]);
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsVideoCtrls, menuItems[2]);
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsGameCtrls, menuItems[3]);
@@ -103,7 +103,13 @@ namespace DungeonRun
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsLoadGame, menuItems[6]);
             Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsQuitGame, menuItems[7]);
 
-            menuItems[0].compSprite.rotation = Rotation.Clockwise180;
+            #endregion
+
+
+            //set the menuItem's neighbors
+            Functions_MenuItem.SetNeighbors(menuItems, 2);
+            //reset scale of menuItems to 1.0
+            for (i = 0; i < 8; i++) { menuItems[i].compSprite.scale = 1.0f; }
         }
 
         public override void Update()

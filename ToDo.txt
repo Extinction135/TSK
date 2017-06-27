@@ -46,34 +46,20 @@ ram useage:
 	
 todo:
 
-13
 
 
 
 
+Fix bug where OptionsWidget menuItems can become stuck at scale larger than 1.0
 
+cause: happens when the save/load menuItem is selected from OptionsWidget.
+this scales the save/load menuItem sprite up to 2.0.
+then the LSN screen is created, which can remove all screens.
+upon the next InventoryScreen creation, the options save/load menuItems scale is larger than 1.0.
+this scale value is only updated if the menuItem is highlighted.
 
-
-
-
-
-
-Polish loading case where game file is corrupted
-
-added GameLoadFailed value to Dialog enumerator.
-updated Functions_Backend.LoadPlayerData() to handle malformed xml.
-playtested loading malformed xml, working, but not as expected.
-
-the xml header has to be malformed for the catch{} to be called.
-otherwise the game loads any data it can from the xml.
-this can cause a state where a save file is only partially loaded.
-not really sure how to check to make sure the xml is perfectly formatted.
-but, it works for now.
-
-
-
-
-
+fix: set all option widget's menuItems.scale to 1.0 upon reset.
+slight cleanup of WidgetOptions.Reset() method.
 
 
 
@@ -82,7 +68,13 @@ but, it works for now.
 
 various polish
 
-when we reset/open the inventory screen, reset all menuItem.scale to 1.0.
+do not scale the selected menuItem up on LSN screen
+
+when we load an autosave file, the dialog should tell user of this
+"I've loaded your last autosaved game session."
+
+dialog should be first-person, from perspective of story guide
+
 
 when dialog is created or saved, blackground should fade in
 
