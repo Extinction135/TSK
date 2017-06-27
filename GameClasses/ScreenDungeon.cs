@@ -124,6 +124,9 @@ namespace DungeonRun
                 else if (displayState == DisplayState.Closed)
                 {
                     DungeonRecord.timer.Stop();
+                    //save the player's current game progress
+                    Functions_Backend.SaveGame(GameFile.AutoSave);
+                    //handle exit action
                     if (exitAction == ExitAction.Summary)
                     { ScreenManager.ExitAndLoad(new ScreenSummary()); }
                     else if(exitAction == ExitAction.Overworld)

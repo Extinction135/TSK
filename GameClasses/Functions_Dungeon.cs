@@ -128,9 +128,6 @@ namespace DungeonRun
             //fade the dungeon screen out from black, revealing the new level
             dungeonScreen.overlay.alpha = 1.0f;
             dungeonScreen.displayState = DisplayState.Opening;
-
-            //autosave playerData
-            Functions_Backend.SaveGame(GameFile.AutoSave);
         }
 
 

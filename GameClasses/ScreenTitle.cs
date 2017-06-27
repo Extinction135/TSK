@@ -273,11 +273,8 @@ namespace DungeonRun
             }
             else if (displayState == DisplayState.Closed)
             {
-                if (exitAction == ExitAction.ContinueGame)
-                {
-                    Functions_Backend.LoadGame(GameFile.AutoSave); //load autoSave data
-                    ScreenManager.StartGame();
-                }
+                if (exitAction == ExitAction.ContinueGame) //load autoSave data
+                { Functions_Backend.LoadGame(GameFile.AutoSave); }
                 else if (exitAction == ExitAction.QuitGame)
                 { ScreenManager.game.Exit(); }
             }

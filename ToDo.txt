@@ -51,34 +51,24 @@ todo:
 
 
 
-Cleanup & Polish the Game Startup Experience
-
-removed old code from Game1 that had branching paths for game startup.
-now the game will always start with the TitleScreen, in any mode - dev or release.
-
-created ScreenManager.StartGame() method.
-this method controls which screen is created upon a load/new game path.
-updated TitleScreen() to call StartGame() upon continue game selection.
-updated DialogScreen to call StartGame() upon load/new game path.
-removed unused code from ScreenManager.
-playtested, working as expected.
 
 
+Fix Corrupted Autosave File Bug
 
+upon a continue game, the corrupted save file dialog displays.
 
+cause: when we continue a game, the autosave is loaded.
+but now we are creating a shop screen, which creates a shop dungeon.
+upon dungeon creation, the autosave file gets written.
+so we have a conflict where autosave file is being loaded and saved to at the same time.
 
+fix: dont load and save the autosave file at the same time.
+updated Functions_Dungeon.BuildDungeon() to NOT autosave upon dungeon creation.
+updated DungeonScreen.Update - Closed state to autosave.
+now whenever the player leaves the dungeon screen, autosave will be called.
 
-upon a continue game, the corrupted save file dialog displays.. why?
-
-
-
-when we continue a game, the autosave is loaded
-but then we are now creating a shop screen, which creates a shop dungeon
-upon dungeon creation, autosave file gets written
-so we have a conflict where the file is being loaded and saved at the same time
-
-we should only autosave upon a dungeon exit, and from the summary screen, and from a quitgame call
-we should not be autosaving from a dungeon creation
+playtested, fixed a minor bug where shop dungeon was being created twice.
+this involved an update to the TitleScreen. now working as expected.
 
 
 
