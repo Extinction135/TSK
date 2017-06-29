@@ -53,11 +53,7 @@ todo:
 
 
 
-Polish the Vendor & Inventory Screen's closing animation timing
 
-sped up the fadeOutSpeed to 0.07, from 0.03.
-this gives the widgets enough time to close, but is still snappy and responsive.
-playtested, working as expected.
 
 
 
@@ -65,21 +61,15 @@ playtested, working as expected.
 
 Polish Dialog Screen's closing animation
 
+updated DialogScreen to check and see if the dialog widget is closed.
+previously DialogScreen checked to see if the background had faded out.
+now dialog widget has enough time to close, while the bkg fades out too.
+this makes the dialog screen transition much smoother.
+playtested, working as expected, looks much better.
 
 
 
 
-
-
-the inventory & vendor screens should allow enough time to let the widgets close completely
-this means the fade out happens slower, or the wigets close faster
-
-
-
-
-
-dialog screen should close it's widget, even if the dialog is default
-this widget should always close, actually
 
 
 

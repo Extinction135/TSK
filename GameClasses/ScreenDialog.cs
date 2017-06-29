@@ -30,6 +30,9 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            foreground.fadeInSpeed = 0.05f;
+            background.fadeOutSpeed = 0.05f;
+
 
             #region Based on DialogType, set speaker, dialog text, and fade booleans
 
@@ -118,16 +121,15 @@ namespace DungeonRun
                 {   //fade foreground in
                     foreground.fadeState = FadeState.FadeIn;
                     Functions_ScreenRec.Fade(foreground);
-                    if (foreground.fadeState == FadeState.FadeComplete)
-                    { displayState = DisplayState.Closed; }
                 }
                 else
                 {   //if we don't fade foreground in, then fade background out
                     background.fadeState = FadeState.FadeOut;
                     Functions_ScreenRec.Fade(background);
-                    if (background.fadeState == FadeState.FadeComplete)
-                    { displayState = DisplayState.Closed; }
                 }
+                //make sure dialog widget has enough time to close
+                if (Widgets.Dialog.window.background.displayState == DisplayState.Closed)
+                { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
             {   //exit all screens, restart game
