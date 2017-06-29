@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public class WidgetInventory : Widget
     {
-        public List<MenuRectangle> dividers;
         public List<ComponentText> labels; //weapons, armor, equipment texts
         public List<MenuItem> menuItems;
         public ComponentAmountDisplay bombsDisplay;
@@ -26,15 +25,12 @@ namespace DungeonRun
         {
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "Info Window");
-
             //create dividers
-            dividers = new List<MenuRectangle>();
             for (i = 0; i < 6; i++)
             {
-                dividers.Add(new MenuRectangle(new Point(0, 0), 
+                window.lines.Add(new MenuRectangle(new Point(0, 0), 
                     new Point(0, 0), Assets.colorScheme.windowInset));
             }
-
             //create labels
             labels = new List<ComponentText>();
             labels.Add(new ComponentText(Assets.font, "weapons", 
@@ -43,69 +39,47 @@ namespace DungeonRun
                 new Vector2(0, 0), Assets.colorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "equipment",
                 new Vector2(0, 0), Assets.colorScheme.textDark));
-
             //create menuitems
             menuItems = new List<MenuItem>();
             for (i = 0; i < 25; i++) { menuItems.Add(new MenuItem()); }
-
             //create bomb amount display
             bombsDisplay = new ComponentAmountDisplay(0, 0, 0);
             arrowsDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
         public override void Reset(int X, int Y)
-        {   //align this widgets component to Position + Size
+        {   //reset additional divider lines
+            window.lines[2].position.Y = Y + 16 * 4 + 8;
+            window.lines[3].position.Y = Y + 16 * 5 + 8;
+            window.lines[4].position.Y = Y + 16 * 7 + 8;
+            window.lines[5].position.Y = Y + 16 * 8 + 8;
+            window.lines[6].position.Y = Y + 16 * 10 + 8;
+            window.lines[7].position.Y = Y + 16 * 11 + 8;
+            //align this widgets component to Position + Size
             Functions_MenuWindow.ResetAndMove(window, X, Y, 
                 new Point(16 * 8, 16 * 14 + 8), "Items");
-
-
-            #region Reset and align dividers
-
-            //set1 - weapons
-            ResetDivider(dividers[0], X + 8, Y + 16 * 4 + 8, window.size.X - 16);
-            ResetDivider(dividers[1], X + 8, Y + 16 * 5 + 8, window.size.X - 16);
-            //set2 - armor
-            ResetDivider(dividers[2], X + 8, Y + 16 * 7 + 8, window.size.X - 16);
-            ResetDivider(dividers[3], X + 8, Y + 16 * 8 + 8, window.size.X - 16);
-            //set3 - equipment
-            ResetDivider(dividers[4], X + 8, Y + 16 * 10 + 8, window.size.X - 16);
-            ResetDivider(dividers[5], X + 8, Y + 16 * 11 + 8, window.size.X - 16);
-
-            #endregion
-
-
-            #region Place the Labels
-
             //place labels (X)
             labels[0].position.X = X + 8;
             labels[1].position.X = labels[0].position.X;
             labels[2].position.X = labels[0].position.X;
             //place labels (Y)
-            labels[0].position.Y = dividers[0].position.Y + 1;
-            labels[1].position.Y = dividers[2].position.Y + 1;
-            labels[2].position.Y = dividers[4].position.Y + 1;
-
-            #endregion
-
-
+            labels[0].position.Y = window.lines[2].position.Y + 1;
+            labels[1].position.Y = window.lines[4].position.Y + 1;
+            labels[2].position.Y = window.lines[6].position.Y + 1;
             //place the menuItems
             PlaceRow(00, X + 16 * 1, Y + 16 * 02 + 0);
             PlaceRow(05, X + 16 * 1, Y + 16 * 03 + 8);
             PlaceRow(10, X + 16 * 1, Y + 16 * 06 + 8);
             PlaceRow(15, X + 16 * 1, Y + 16 * 09 + 8);
             PlaceRow(20, X + 16 * 1, Y + 16 * 12 + 8);
-
             //reset the menuItems
             for (i = 0; i < menuItems.Count; i++)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[i]); }
-
             //set the menuItem's neighbors
             Functions_MenuItem.SetNeighbors(menuItems, 5);
-
             //set the amount displays to be hidden, initially
             bombsDisplay.visible = false;
             arrowsDisplay.visible = false;
-
             //set the inventory widget's menuItems based on saveData booleans
             SetInventoryMenuItems();
         }
@@ -113,14 +87,11 @@ namespace DungeonRun
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
-            for (i = 0; i < dividers.Count; i++)
-            { Functions_MenuRectangle.Update(dividers[i]); }
         }
 
         public override void Draw()
         {
             Functions_Draw.Draw(window);
-            for (i = 0; i < dividers.Count; i++) { Functions_Draw.Draw(dividers[i]); }
             if (window.interior.displayState == DisplayState.Opened)
             {
                 for (i = 0; i < labels.Count; i++)
@@ -234,16 +205,6 @@ namespace DungeonRun
 
             #endregion
 
-        }
-
-        public void ResetDivider(MenuRectangle Divider, int X, int Y, int Width)
-        {
-            Divider.openDelay = window.headerLine.openDelay;
-            Divider.position.X = X;
-            Divider.position.Y = Y;
-            Divider.size.X = Width;
-            Divider.size.Y = 1;
-            Functions_MenuRectangle.Reset(Divider);
         }
 
         public void PlaceRow(int index, int X, int Y)

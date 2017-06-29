@@ -14,15 +14,17 @@ namespace DungeonRun
 {
     public static class Functions_MenuWindow
     {
+        static int i;
 
         public static void Update(MenuWindow Window)
-        {   
+        {
             Functions_MenuRectangle.Update(Window.background);
             Functions_MenuRectangle.Update(Window.border);
             Functions_MenuRectangle.Update(Window.inset);
             Functions_MenuRectangle.Update(Window.interior);
-            Functions_MenuRectangle.Update(Window.headerLine);
-            Functions_MenuRectangle.Update(Window.footerLine);
+            //update all window lines
+            for (i = 0; i < Window.lines.Count; i++)
+            { Functions_MenuRectangle.Update(Window.lines[i]); }
         }
 
         public static void Close(MenuWindow Window)
@@ -31,8 +33,9 @@ namespace DungeonRun
             Window.border.displayState = DisplayState.Closing;
             Window.inset.displayState = DisplayState.Closing;
             Window.interior.displayState = DisplayState.Closing;
-            Window.headerLine.displayState = DisplayState.Closing;
-            Window.footerLine.displayState = DisplayState.Closing;
+            //close all window lines
+            for (i = 0; i < Window.lines.Count; i++)
+            { Window.lines[i].displayState = DisplayState.Closing; }
         }
 
         public static void ResetAndMove(MenuWindow Window, int X, int Y, Point Size, String Title)
@@ -75,17 +78,18 @@ namespace DungeonRun
 
             #region Reset the header and footer lines, update with Position + Size
 
-            Window.headerLine.position.X = X + 8;
-            Window.headerLine.position.Y = Y + 16;
-            Window.headerLine.size.X = Size.X - 16;
-            Window.headerLine.size.Y = 1;
-            Functions_MenuRectangle.Reset(Window.headerLine);
-
-            Window.footerLine.position.X = X + 8;
-            Window.footerLine.position.Y = Y + Size.Y - 16;
-            Window.footerLine.size.X = Size.X - 16;
-            Window.footerLine.size.Y = 1;
-            Functions_MenuRectangle.Reset(Window.footerLine);
+            //set header and footer Y positions
+            Window.lines[0].position.Y = Y + 16;
+            Window.lines[1].position.Y = Y + Size.Y - 16;
+            //reset all line's horizontal position & width
+            for (i = 0; i < Window.lines.Count; i++)
+            {
+                Window.lines[i].openDelay = Window.lines[0].openDelay;
+                Window.lines[i].position.X = X + 8;
+                Window.lines[i].size.X = Size.X - 16;
+                Window.lines[i].size.Y = 1;
+                Functions_MenuRectangle.Reset(Window.lines[i]);
+            }
 
             #endregion
 

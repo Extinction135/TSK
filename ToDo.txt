@@ -51,38 +51,40 @@ todo:
 
 
 
+Simplify how MenuWindows handle their divider lines
 
+the issue with inventory & info widgets is that additional divider lines dont get closed.
+instead of individually tracking each divider line, use a list.
+then iterate over the divider lines on the list, updating and/or closing them.
+this allows us to add additional divider lines for each unique widget.
 
-Update Screens to use new widget closing animation
+updated MenuWindow to use a list of MenuRecs called 'lines'.
+changed how header and footer divider lines were created, now on 'lines' list.
+updated Draw functions to handle the lines list.
+updated InfoWidget & InventoryWidget to use the window.lines list.
+refactored InventoryWidget class.
+updated LSN screen to use window.lines list.
 
-updated InventoryScreen to close widgets upon user input.
-refactored MenuWindow class - removed unused animationCounter & openDelay fields.
-refactored how menuRectangles close, now they shrink and move right.
 playtested, working as expected.
 
 
 
 
-the issue with inventory screen is that the additional divider lines dont get closed
-to handle this in a generic manner, we should have a list for divider lines
-then we can close everything on the list at once, using a base method called Close()
-everything that composes a window is a menuRec
+
+speed up the divider lines closing
+speed up the inventory screen's closing anim
 
 
 
 
 
-we need to be able to close widgets
-this causes the widget to stop drawing it's contents
-and moves the window.recs right to left while shrinking, until they disappear
-
-this starts with menuRectangles, they need to be able to close
 
 
 
-this should happen in the base class of widget
-we should be opening and closing in the base class
-using a base class function
+
+
+
+
 
 
 

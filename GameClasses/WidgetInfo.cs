@@ -30,28 +30,25 @@ namespace DungeonRun
                 Assets.colorScheme.textDark);
             divider1 = new MenuRectangle(new Point(-100, -100), 
                 new Point(0, 0), Assets.colorScheme.windowInset);
+            window.lines.Add(divider1);
             //create gold amount display
             goldDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
         public override void Reset(int X, int Y)
-        {   //align this widgets component to Position + Size
+        {   //reset additional divider lines
+            divider1.position.Y = Y + 16 * 3;
+            //align this widgets component to Position + Size
             Functions_MenuWindow.ResetAndMove(window, X, Y,
                 new Point(16 * 6 + 8, 16 * 5 + 8), 
                 "Info Window");
+            //reset description
             description.position.X = X + 8;
             description.position.Y = Y + 16 * 3;
             //reset the infoItem to unknown, align it
             Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, infoItem);
             infoItem.compSprite.position.X = X + 16 * 3 + 4;
             infoItem.compSprite.position.Y = Y + 16 * 2;
-            //reset and align the divider line
-            divider1.openDelay = window.headerLine.openDelay;
-            divider1.position.X = X + 8;
-            divider1.position.Y = Y + 16 * 3;
-            divider1.size.X = window.size.X - 16;
-            divider1.size.Y = 1;
-            Functions_MenuRectangle.Reset(divider1);
             //align the goldAmount display to the infoItem
             Functions_Component.Move(goldDisplay, infoItem);
         }
@@ -59,14 +56,12 @@ namespace DungeonRun
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
-            Functions_MenuRectangle.Update(divider1);
             Functions_Animation.Animate(infoItem.compAnim, infoItem.compSprite);
         }
 
         public override void Draw()
         {
             Functions_Draw.Draw(window);
-            Functions_Draw.Draw(divider1);
             if (window.interior.displayState == DisplayState.Opened)
             {
                 Functions_Draw.Draw(infoItem.compSprite);

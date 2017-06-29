@@ -20,7 +20,7 @@ namespace DungeonRun
         ExitAction exitAction;
         int i;
 
-        public List<MenuRectangle> dividers;
+        //public List<MenuRectangle> dividers;
         public List<ComponentText> texts;
 
         MenuItem game1MenuItem;
@@ -60,8 +60,25 @@ namespace DungeonRun
         {
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
-            window = new MenuWindow(new Point(16 * 13 + 8 + 4, 16 * 6),
+
+            //create window and dividers
+            window = new MenuWindow(
+                new Point(16 * 13 + 8 + 4, 16 * 6),
                 new Point(16 * 12 + 8, 16 * 11), "Default ");
+            for (i = 0; i < 5; i++)
+            {
+                window.lines.Add(new MenuRectangle(new Point(0, 0),
+                    new Point(0, 0), Assets.colorScheme.windowInset));
+            }
+            //reset window and dividers
+            window.lines[2].position.Y = window.background.position.Y + 16 * 2;
+            window.lines[3].position.Y = window.background.position.Y + 16 * 4;
+            window.lines[4].position.Y = window.background.position.Y + 16 * 5;
+            window.lines[5].position.Y = window.background.position.Y + 16 * 7;
+            window.lines[6].position.Y = window.background.position.Y + 16 * 8;
+            Functions_MenuWindow.ResetAndMove(window,
+                16 * 13 + 8 + 4, 16 * 6,
+                new Point(16 * 12 + 8, 16 * 11), "Default");
 
 
             #region Setup Games 1-3 MenuItems
@@ -86,36 +103,6 @@ namespace DungeonRun
             game2MenuItem.neighborDown = game3MenuItem;
             game3MenuItem.neighborUp = game2MenuItem;
             game2MenuItem.neighborUp = game1MenuItem;
-
-            #endregion
-
-
-            #region Setup dividers
-
-            dividers = new List<MenuRectangle>();
-            //game1 header and footer
-            dividers.Add(new MenuRectangle(
-                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 2),
-                new Point(window.size.X - 16, 1), 
-                Assets.colorScheme.windowInset));
-            dividers.Add(new MenuRectangle(
-                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 4),
-                new Point(window.size.X - 16, 1),
-                Assets.colorScheme.windowInset));
-            //game2 header and footer
-            dividers.Add(new MenuRectangle(
-                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 5),
-                new Point(window.size.X - 16, 1),
-                Assets.colorScheme.windowInset));
-            dividers.Add(new MenuRectangle(
-                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 7),
-                new Point(window.size.X - 16, 1),
-                Assets.colorScheme.windowInset));
-            //game3 header
-            dividers.Add(new MenuRectangle(
-                new Point(window.background.rec.X + 8, window.background.rec.Y + 16 * 8),
-                new Point(window.size.X - 16, 1),
-                Assets.colorScheme.windowInset));
 
             #endregion
 
@@ -253,6 +240,7 @@ namespace DungeonRun
                 {
                     Assets.Play(Assets.sfxInventoryClose);
                     displayState = DisplayState.Closing;
+                    Functions_MenuWindow.Close(window);
                     exitAction = ExitAction.ExitScreen;
                 }
 
@@ -362,8 +350,6 @@ namespace DungeonRun
 
             //open the window + dividers
             Functions_MenuWindow.Update(window);
-            for (i = 0; i < dividers.Count; i++)
-            { Functions_MenuRectangle.Update(dividers[i]); }
 
             if (displayState != DisplayState.Opening)
             {   //pulse the selectionBox alpha
@@ -407,43 +393,35 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
                 background.rec, Assets.colorScheme.overlay * background.alpha);
-
-            //only draw screen contents if screen is opening or opened
-            if (displayState == DisplayState.Opening || displayState == DisplayState.Opened)
+            Functions_Draw.Draw(window);
+            if (window.interior.displayState == DisplayState.Opened)
             {
-                Functions_Draw.Draw(window);
-                for (i = 0; i < dividers.Count; i++) { Functions_Draw.Draw(dividers[i]); }
-                if (window.interior.displayState == DisplayState.Opened)
+                Functions_Draw.Draw(game1MenuItem.compSprite);
+                Functions_Draw.Draw(game2MenuItem.compSprite);
+                Functions_Draw.Draw(game3MenuItem.compSprite);
+
+                Functions_Draw.Draw(game1Player);
+                Functions_Draw.Draw(game2Player);
+                Functions_Draw.Draw(game3Player);
+
+                Functions_Draw.Draw(game1Text);
+                Functions_Draw.Draw(game2Text);
+                Functions_Draw.Draw(game3Text);
+
+                for (i = 0; i < texts.Count; i++) { Functions_Draw.Draw(texts[i]); }
+                Functions_Draw.Draw(selectionBox);
+                Functions_Draw.Draw(arrow);
+                Functions_Draw.Draw(actionText);
+
+                for (i = 0; i < game1Crystals.Count; i++)
                 {
-                    Functions_Draw.Draw(game1MenuItem.compSprite);
-                    Functions_Draw.Draw(game2MenuItem.compSprite);
-                    Functions_Draw.Draw(game3MenuItem.compSprite);
-
-                    Functions_Draw.Draw(game1Player);
-                    Functions_Draw.Draw(game2Player);
-                    Functions_Draw.Draw(game3Player);
-
-                    Functions_Draw.Draw(game1Text);
-                    Functions_Draw.Draw(game2Text);
-                    Functions_Draw.Draw(game3Text);
-
-                    for (i = 0; i < texts.Count; i++) { Functions_Draw.Draw(texts[i]); }
-                    Functions_Draw.Draw(selectionBox);
-                    Functions_Draw.Draw(arrow);
-                    Functions_Draw.Draw(actionText);
-
-                    for (i = 0; i < game1Crystals.Count; i++)
-                    {
-                        Functions_Draw.Draw(game1Crystals[i].compSprite);
-                        Functions_Draw.Draw(game2Crystals[i].compSprite);
-                        Functions_Draw.Draw(game3Crystals[i].compSprite);
-                    }
+                    Functions_Draw.Draw(game1Crystals[i].compSprite);
+                    Functions_Draw.Draw(game2Crystals[i].compSprite);
+                    Functions_Draw.Draw(game3Crystals[i].compSprite);
                 }
             }
-
             ScreenManager.spriteBatch.End();
         }
 

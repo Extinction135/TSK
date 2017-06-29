@@ -59,7 +59,7 @@ namespace DungeonRun
             map.position.X += map.cellSize.X / 2;
             map.position.Y += map.cellSize.Y / 2;
             selectedLocation = new ComponentText(Assets.font, "Dungeon 1", 
-                new Vector2(window.border.position.X + 16 * 7 + 8, window.footerLine.position.Y - 1), 
+                new Vector2(window.border.position.X + 16 * 7 + 8, window.lines[1].position.Y - 1), 
                 Assets.colorScheme.textDark);
             Assets.Play(Assets.sfxMapOpen);
 

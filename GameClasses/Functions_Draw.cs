@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class Functions_Draw
     {
+        static int i;
 
         public static void Draw(Dungeon Dungeon)
         {   //draw the dungeon's room collision recs
@@ -116,8 +117,9 @@ namespace DungeonRun
             Draw(MenuWindow.border);
             Draw(MenuWindow.inset);
             Draw(MenuWindow.interior);
-            Draw(MenuWindow.headerLine);
-            Draw(MenuWindow.footerLine);
+            for (i = 0; i < MenuWindow.lines.Count; i++)
+            { Draw(MenuWindow.lines[i]); }
+
             //only draw the title if the window is completely open
             if (MenuWindow.interior.displayState == DisplayState.Opened)
             { Draw(MenuWindow.title); }

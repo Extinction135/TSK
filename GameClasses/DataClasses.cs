@@ -650,36 +650,33 @@ namespace DungeonRun
     public class MenuWindow
     {
         public Point size;
-
+        public ComponentText title;
         public MenuRectangle background;
         public MenuRectangle border;
         public MenuRectangle inset;
         public MenuRectangle interior;
-
-        public ComponentText title;
-        public MenuRectangle headerLine;
-        public MenuRectangle footerLine;
+        public List<MenuRectangle> lines;
 
         public MenuWindow(Point Position, Point Size, String Title)
         {
             size = Size;
+            title = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
             //create the window components
             background = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBkg);
             border = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBorder);
             inset = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
             interior = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInterior);
-            headerLine = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
-            footerLine = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
-            title = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
-            //align all the window components
-            Functions_MenuWindow.ResetAndMove(this, Position.X, Position.Y, Size, Title);
+            lines = new List<MenuRectangle>();
+            lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset)); //header
+            lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset)); //footer
             //set the openDelay to cascade in all the components
             background.openDelay = 0;
             border.openDelay = 2;
             inset.openDelay = 2;
             interior.openDelay = 8;
-            headerLine.openDelay = 12;
-            footerLine.openDelay = 12;
+            lines[0].openDelay = 12; //all lines will use this openDelay value
+            //align all the window components
+            Functions_MenuWindow.ResetAndMove(this, Position.X, Position.Y, Size, Title);
         }
     }
 
