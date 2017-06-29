@@ -17,6 +17,7 @@ namespace DungeonRun
         public Dialog dialogType = Dialog.Default;
         public ObjType speakerType;
         public String dialogString;
+        Boolean updateDungeonScreen;
         ScreenRec background = new ScreenRec();
         ScreenRec foreground = new ScreenRec();
 
@@ -41,39 +42,40 @@ namespace DungeonRun
             dialogString = "this is the default guide text...";
             background.fade = false;
             foreground.fade = false;
+            updateDungeonScreen = true;
 
             //get specific dialog
             if (dialogType == Dialog.GameSaved)
             {   //returns to inventory screen upon close
                 dialogString = "I have successfully saved the current game.";
-                background.fade = true; foreground.fade = false;
+                background.fade = true; foreground.fade = false; updateDungeonScreen = false;
             }
             else if (dialogType == Dialog.GameLoadFailed)
             {   //returns to previous screen (inventory or title) upon close
                 dialogString = "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n";
                 dialogString += "The data may be corrupted.";
-                background.fade = true; foreground.fade = false;
+                background.fade = true; foreground.fade = false; updateDungeonScreen = false;
             }
             else if (dialogType == Dialog.GameCreated)
             {   //goes to overworld screen upon close
                 dialogString = "I have created a new game for you.";
-                background.fade = true; foreground.fade = true;
+                background.fade = true; foreground.fade = true; updateDungeonScreen = false;
             }
             else if (dialogType == Dialog.GameLoaded)
             {   //goes to overworld screen upon close
                 dialogString = "I have loaded the selected game file.";
-                background.fade = true; foreground.fade = true;
+                background.fade = true; foreground.fade = true; updateDungeonScreen = false;
             }
             else if (dialogType == Dialog.GameNotFound)
             {   //goes to overworld screen upon close
                 dialogString = "the selected game file was not found. I have saved your current game to the\n";
                 dialogString += "selected game slot instead.";
-                background.fade = true; foreground.fade = true;
+                background.fade = true; foreground.fade = true; updateDungeonScreen = false;
             }
             else if (dialogType == Dialog.GameAutoSaved)
             {   //goes to overworld screen upon close
                 dialogString = "I've successfully loaded your last autosaved game.";
-                background.fade = true; foreground.fade = true;
+                background.fade = true; foreground.fade = true; updateDungeonScreen = false;
             }
 
             #endregion
@@ -146,9 +148,11 @@ namespace DungeonRun
 
 
             Widgets.Dialog.Update();
-            //if we can update the dungeon screen, do so
-            if (Functions_Dungeon.dungeonScreen != null)
-            { Functions_Dungeon.dungeonScreen.Update(GameTime); }
+            if(updateDungeonScreen) //if we should update dungeon screen,
+            {   //& if the dungeon screen exists, do so
+                if (Functions_Dungeon.dungeonScreen != null)
+                { Functions_Dungeon.dungeonScreen.Update(GameTime); }
+            }
         }
 
         public override void Draw(GameTime GameTime)

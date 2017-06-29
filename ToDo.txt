@@ -52,23 +52,18 @@ todo:
 
 
 
+Refactor how the DialogScreen updates DungeonScreen
 
+when the player talks to the guide, or opens the dialog screen in any way..
+the dialog screen updates the dungeon screen, if the dungeon screen exists.
+but, this is not the desired behavior.
+instead the dungeon screen should only update if the player is talking to the guide.
 
-
-
-
-
-
-Polish Dialog Screen's closing animation
-
-updated DialogScreen to check and see if the dialog widget is closed.
-previously DialogScreen checked to see if the background had faded out.
-now dialog widget has enough time to close, while the bkg fades out too.
-this makes the dialog screen transition much smoother.
-playtested, working as expected, looks much better.
-
-
-
+added boolean updateDungeonScreen to DialogScreen.
+by default this boolean is set to true.
+then, based on the dialog type, the boolean is updated.
+this lets the load/save/new game dialogs to set the boolean.
+playtested, working as expected.
 
 
 
@@ -84,10 +79,6 @@ update LSN screen to use screenRec + functions
 update overworld screen to use screenRec + functions
 update summary screen to use screenRec + functions
 
-
-
-polish the 'quit game' experience from the inventory screen
-the screen should fade out, currently it does not..
 
 we can also create the dungeon screen with an overlay alpha greater than 1
 this will delay how quickly the screen 'appears'
