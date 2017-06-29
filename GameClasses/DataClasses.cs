@@ -632,7 +632,8 @@ namespace DungeonRun
     public class MenuRectangle
     {
         public DisplayState displayState;
-        public int animationSpeed = 5;      //how quickly the UI element animates in/out
+        public int speedOpen = 5;
+        public int speedClose = 5;
         public int animationCounter = 0;    //counts up to delay value
         public int openDelay = 0;           //how many updates are ignored before open animation occurs
         public Rectangle rec = new Rectangle(0, 0, 0, 0);

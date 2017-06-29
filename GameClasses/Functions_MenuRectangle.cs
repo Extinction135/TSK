@@ -24,7 +24,7 @@ namespace DungeonRun
                 {   //grow right
                     MenuRec.rec.Height = MenuRec.size.Y; //set height
                     //easeIn
-                    MenuRec.rec.Width += ((MenuRec.size.X - MenuRec.rec.Width) / MenuRec.animationSpeed) + 1;
+                    MenuRec.rec.Width += ((MenuRec.size.X - MenuRec.rec.Width) / MenuRec.speedOpen) + 1;
                     //check end condition
                     if (MenuRec.rec.Width >= MenuRec.size.X) 
                     {   //open complete
@@ -37,9 +37,11 @@ namespace DungeonRun
             else if (MenuRec.displayState == DisplayState.Closing)
             {   //close right
                 MenuRec.rec.Height = MenuRec.size.Y; //set height
+                //set closing animation speed for lines (dividers) (faster)
+                if (MenuRec.size.Y == 1) { MenuRec.speedClose = 2; }
                 //move and shrink
-                MenuRec.rec.X += ((MenuRec.rec.Width / MenuRec.animationSpeed) + 1);
-                MenuRec.rec.Width -= ((MenuRec.rec.Width / MenuRec.animationSpeed) + 1);
+                MenuRec.rec.X += ((MenuRec.rec.Width / MenuRec.speedClose) + 1);
+                MenuRec.rec.Width -= ((MenuRec.rec.Width / MenuRec.speedClose) + 1);
                 //check end condition
                 if (MenuRec.rec.Width <= 0)
                 {   //close complete

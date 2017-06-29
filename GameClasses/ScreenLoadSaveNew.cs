@@ -19,13 +19,24 @@ namespace DungeonRun
         LoadSaveNewState screenState;
         ExitAction exitAction;
         int i;
-
-        //public List<MenuRectangle> dividers;
+        //contains all text components used
         public List<ComponentText> texts;
-
+        //animations used in game data display
+        ComponentAnimation playerStationary;
+        ComponentAnimation playerWalking;
+        //the game data display components
         MenuItem game1MenuItem;
         MenuItem game2MenuItem;
         MenuItem game3MenuItem;
+        ComponentSprite game1Player;
+        ComponentSprite game2Player;
+        ComponentSprite game3Player;
+        ComponentText game1Text;
+        ComponentText game2Text;
+        ComponentText game3Text;
+        List<MenuItem> game1Crystals;
+        List<MenuItem> game2Crystals;
+        List<MenuItem> game3Crystals;
         //these point to a menuItem
         MenuItem currentlySelected;
         MenuItem previouslySelected;
@@ -33,20 +44,6 @@ namespace DungeonRun
         ComponentSprite selectionBox;
         ComponentSprite arrow;
         ComponentText actionText;
-
-        ComponentSprite game1Player;
-        ComponentSprite game2Player;
-        ComponentSprite game3Player;
-        ComponentAnimation playerStationary;
-        ComponentAnimation playerWalking;
-
-        ComponentText game1Text;
-        ComponentText game2Text;
-        ComponentText game3Text;
-
-        List<MenuItem> game1Crystals;
-        List<MenuItem> game2Crystals;
-        List<MenuItem> game3Crystals;
 
 
 
@@ -214,20 +211,6 @@ namespace DungeonRun
             //open the screen
             displayState = DisplayState.Opening;
         }
-
-
-
-        public void PlaceCrystals(List<MenuItem> Crystals, Vector2 Pos)
-        {
-            Crystals[0].compSprite.position = Pos;
-            Crystals[1].compSprite.position = Crystals[0].compSprite.position + new Vector2(11, 0);
-            Crystals[2].compSprite.position = Crystals[1].compSprite.position + new Vector2(11, 0);
-            Crystals[3].compSprite.position = Crystals[2].compSprite.position + new Vector2(11, 0);
-            Crystals[4].compSprite.position = Crystals[3].compSprite.position + new Vector2(11, 0);
-            Crystals[5].compSprite.position = Crystals[4].compSprite.position + new Vector2(11, 0);
-        }
-
-
 
         public override void HandleInput(GameTime GameTime)
         {
@@ -423,6 +406,18 @@ namespace DungeonRun
                 }
             }
             ScreenManager.spriteBatch.End();
+        }
+
+
+
+        public void PlaceCrystals(List<MenuItem> Crystals, Vector2 Pos)
+        {
+            Crystals[0].compSprite.position = Pos;
+            Crystals[1].compSprite.position = Crystals[0].compSprite.position + new Vector2(11, 0);
+            Crystals[2].compSprite.position = Crystals[1].compSprite.position + new Vector2(11, 0);
+            Crystals[3].compSprite.position = Crystals[2].compSprite.position + new Vector2(11, 0);
+            Crystals[4].compSprite.position = Crystals[3].compSprite.position + new Vector2(11, 0);
+            Crystals[5].compSprite.position = Crystals[4].compSprite.position + new Vector2(11, 0);
         }
 
     }
