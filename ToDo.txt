@@ -49,16 +49,43 @@ todo:
 
 
 
-Polish Dialog Screen User Experience
+Polish DialogScreen's background and foreground fading
 
-when the player talks with the guide in the shop, dont fade DialogScreen's background or overlay rec in.
-this is done by checking the dialogType in dialogScreen.
+added maxAlpha float to ScreenRec class.
+added fadeState enum to ScreenRec class.
+added fade boolean to ScreenRec class.
 
-added fadeBkg boolean to dialogScreen.
-updated dialogScreen to only fade bkg & overlay in if fadeBkg is true.
-fadeBkg is based on the dialogType, 
-fadeBkg is set (along with the dialogString) in dialogScreen.LoadContent().
-playtested, working as expected, but needs additional polish for save game case.
+created Functions_ScreenRec.cs file.
+created Functions_ScreenRec.Fade(ScreenRec).
+this consolidates all the code that handles ScreenRec fading.
+
+updated DialogScreen to set screenRec booleans based on dialogType.
+modified DialogScreen.Update() to fade in/out background/foreground independently.
+this fading is based on the screenRec.fade boolean.
+
+playtested, working as expected.
+but i'm still not happy with how dialog screen closes.
+
+
+
+
+
+
+we need to be able to close widgets
+this causes the widget to stop drawing it's contents
+and moves the window.recs right to left while shrinking, until they disappear
+
+
+
+
+
+ScreenRecs + Closing Widgets
+update DialogScreen to use screenRec + functions
+update titleScreen to use screenRec + functions
+update inventoryScreen to use screenRec + functions
+update LSN screen to use screenRec + functions
+update overworld screen to use screenRec + functions
+update summary screen to use screenRec + functions
 
 
 
@@ -66,12 +93,6 @@ playtested, working as expected, but needs additional polish for save game case.
 
 
 
-
-when we save a game, the bkg rec should fade out
-when we load a game, the overlay rec should fade in
-when we create a new game, the overlay rec should fade in
-when we continue game, the overlay rec should fade in
-when we talk with guide, bkg + overlay rec is invisible
 
 
 
