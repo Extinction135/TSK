@@ -22,13 +22,28 @@ namespace DungeonRun
                 if (MenuRec.animationCounter < MenuRec.openDelay) { MenuRec.animationCounter += 1; }
                 if (MenuRec.animationCounter >= MenuRec.openDelay)
                 {   //grow right
-                    MenuRec.rec.Height = MenuRec.size.Y;
-                    if (MenuRec.rec.Width < MenuRec.size.X)
-                    { MenuRec.rec.Width += ((MenuRec.size.X - MenuRec.rec.Width) / MenuRec.animationSpeed) + 1; } //easeIn 
-                    if (MenuRec.rec.Width > MenuRec.size.X)
-                    { MenuRec.rec.Width = MenuRec.size.X; }
-                    if (MenuRec.rec.Width == MenuRec.size.X)
-                    { MenuRec.displayState = DisplayState.Opened; MenuRec.animationCounter = 0; } //open complete
+                    MenuRec.rec.Height = MenuRec.size.Y; //set height
+                    //easeIn
+                    MenuRec.rec.Width += ((MenuRec.size.X - MenuRec.rec.Width) / MenuRec.animationSpeed) + 1;
+                    //check end condition
+                    if (MenuRec.rec.Width >= MenuRec.size.X) 
+                    {   //open complete
+                        MenuRec.rec.Width = MenuRec.size.X;
+                        MenuRec.displayState = DisplayState.Opened;
+                        MenuRec.animationCounter = 0;
+                    } 
+                }
+            }
+            else if (MenuRec.displayState == DisplayState.Closing)
+            {   //close up
+                MenuRec.rec.Width = MenuRec.size.X; //set width
+                //easeOut
+                MenuRec.rec.Height -= ((MenuRec.size.Y - MenuRec.rec.Height) / MenuRec.animationSpeed) + 1;
+                //check end condition
+                if (MenuRec.rec.Height <= 0) 
+                {   //close complete
+                    MenuRec.rec.Height = 0;
+                    MenuRec.displayState = DisplayState.Closed;
                 }
             }
         }

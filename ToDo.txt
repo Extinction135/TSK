@@ -49,22 +49,17 @@ todo:
 
 
 
-Polish DialogScreen's background and foreground fading
 
-added maxAlpha float to ScreenRec class.
-added fadeState enum to ScreenRec class.
-added fade boolean to ScreenRec class.
 
-created Functions_ScreenRec.cs file.
-created Functions_ScreenRec.Fade(ScreenRec).
-this consolidates all the code that handles ScreenRec fading.
+Add MenuRectangle Closing Animation
 
-updated DialogScreen to set screenRec booleans based on dialogType.
-modified DialogScreen.Update() to fade in/out background/foreground independently.
-this fading is based on the screenRec.fade boolean.
+we have an opening animation for menuRecs.
+we also need a closing animation for menuRecs.
 
-playtested, working as expected.
-but i'm still not happy with how dialog screen closes.
+updated Functions_MenuRectangle.Update() with path for closing animation.
+added Close() method to Functions_MenuWindow.
+updated DialogScreen with call to close DialogWidget upon user input.
+playtested, DialogWidget is closing as expected and looks much better.
 
 
 
@@ -75,7 +70,13 @@ we need to be able to close widgets
 this causes the widget to stop drawing it's contents
 and moves the window.recs right to left while shrinking, until they disappear
 
+this starts with menuRectangles, they need to be able to close
 
+
+
+this should happen in the base class of widget
+we should be opening and closing in the base class
+using a base class function
 
 
 
@@ -91,8 +92,8 @@ update summary screen to use screenRec + functions
 
 
 
-
-
+polish the 'quit game' experience from the inventory screen
+the screen should fade out, currently it does not..
 
 
 

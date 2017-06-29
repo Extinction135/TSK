@@ -30,55 +30,54 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            background.fade = false;
-            foreground.fade = false;
 
-
-            #region Based on DialogType, set the speaker and dialog text
+            #region Based on DialogType, set speaker, dialog text, and fade booleans
 
             //assume guide is speaker w/ default dialog
             speakerType = ObjType.VendorStory; 
             dialogString = "this is the default guide text...";
+            background.fade = false;
+            foreground.fade = false;
 
             //get specific dialog
             if (dialogType == Dialog.GameSaved)
-            {
+            {   //returns to inventory screen upon close
                 dialogString = "I have successfully saved the current game.";
                 background.fade = true; foreground.fade = false;
             }
-            else if (dialogType == Dialog.GameCreated)
-            {
-                dialogString = "I have created a new game for you.";
-                background.fade = true; foreground.fade = true;
-            }
-            else if (dialogType == Dialog.GameLoaded)
-            {
-                dialogString = "I have loaded the selected game file.";
-                background.fade = true; foreground.fade = true;
-            }
-            else if (dialogType == Dialog.GameNotFound)
-            {
-                dialogString = "the selected game file was not found. I have saved your current game to the\n";
-                dialogString += "selected game slot instead.";
-                background.fade = true; foreground.fade = true;
-            }
             else if (dialogType == Dialog.GameLoadFailed)
-            {
+            {   //returns to previous screen (inventory or title) upon close
                 dialogString = "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n";
                 dialogString += "The data may be corrupted.";
                 background.fade = true; foreground.fade = false;
             }
+            else if (dialogType == Dialog.GameCreated)
+            {   //goes to overworld screen upon close
+                dialogString = "I have created a new game for you.";
+                background.fade = true; foreground.fade = true;
+            }
+            else if (dialogType == Dialog.GameLoaded)
+            {   //goes to overworld screen upon close
+                dialogString = "I have loaded the selected game file.";
+                background.fade = true; foreground.fade = true;
+            }
+            else if (dialogType == Dialog.GameNotFound)
+            {   //goes to overworld screen upon close
+                dialogString = "the selected game file was not found. I have saved your current game to the\n";
+                dialogString += "selected game slot instead.";
+                background.fade = true; foreground.fade = true;
+            }
             else if (dialogType == Dialog.GameAutoSaved)
-            {
+            {   //goes to overworld screen upon close
                 dialogString = "I've successfully loaded your last autosaved game.";
                 background.fade = true; foreground.fade = true;
             }
 
             #endregion
-            
 
-            Widgets.Dialog.Reset(16 * 9, 16 * 12);
+
             //display the dialog
+            Widgets.Dialog.Reset(16 * 9, 16 * 12);
             Widgets.Dialog.DisplayDialog(speakerType, dialogString);
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
@@ -93,6 +92,7 @@ namespace DungeonRun
             {
                 Assets.Play(Assets.sfxInventoryClose);
                 displayState = DisplayState.Closing;
+                Functions_MenuWindow.Close(Widgets.Dialog.window);
             }
         }
 
@@ -127,7 +127,6 @@ namespace DungeonRun
                     Functions_ScreenRec.Fade(background);
                     if (background.fadeState == FadeState.FadeComplete)
                     { displayState = DisplayState.Closed; }
-                    //also, close the dialog widget
                 }
             }
             else if (displayState == DisplayState.Closed)

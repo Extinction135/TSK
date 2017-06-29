@@ -642,8 +642,7 @@ namespace DungeonRun
 
         public MenuRectangle(Point Position, Point Size, Color Color)
         {
-            position = Position; size = Size;
-            color = Color;
+            position = Position; size = Size; color = Color;
             Functions_MenuRectangle.Reset(this);
         }
     }

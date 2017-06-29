@@ -85,5 +85,15 @@ namespace DungeonRun
 
         }
 
+        public static void Close(MenuWindow Window)
+        {
+            Window.background.displayState = DisplayState.Closing;
+            Window.border.displayState = DisplayState.Closing;
+            Window.inset.displayState = DisplayState.Closing;
+            Window.interior.displayState = DisplayState.Closing;
+            Window.headerLine.displayState = DisplayState.Closing;
+            Window.footerLine.displayState = DisplayState.Closing;
+        }
+
     }
 }
