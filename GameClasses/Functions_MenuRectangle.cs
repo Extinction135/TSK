@@ -39,6 +39,7 @@ namespace DungeonRun
                 MenuRec.rec.Height = MenuRec.size.Y; //set height
                 //set closing animation speed for lines (faster)
                 if (MenuRec.size.Y == 1) { MenuRec.speedClose = 2; }
+                else { MenuRec.speedClose = 3; } //still close quickly
                 //move and shrink
                 MenuRec.rec.X += ((MenuRec.rec.Width / MenuRec.speedClose) + 1);
                 MenuRec.rec.Width -= ((MenuRec.rec.Width / MenuRec.speedClose) + 1);

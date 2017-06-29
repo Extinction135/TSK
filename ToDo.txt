@@ -53,11 +53,20 @@ todo:
 
 
 
+Polish the Vendor & Inventory Screen's closing animation timing
 
-Vendor Screen should close it's widgets
-
-updated vendor screen to call Functions_MenuWindow.Close() on it's widgets.
+sped up the fadeOutSpeed to 0.07, from 0.03.
+this gives the widgets enough time to close, but is still snappy and responsive.
 playtested, working as expected.
+
+
+
+
+
+Polish Dialog Screen's closing animation
+
+
+
 
 
 
@@ -69,7 +78,8 @@ this means the fade out happens slower, or the wigets close faster
 
 
 
-
+dialog screen should close it's widget, even if the dialog is default
+this widget should always close, actually
 
 
 

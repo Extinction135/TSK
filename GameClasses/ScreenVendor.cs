@@ -36,8 +36,7 @@ namespace DungeonRun
         {
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
-            background.fadeOutSpeed = 0.1f;
-
+            background.fadeOutSpeed = 0.07f;
             displayState = DisplayState.Opening;
 
             Widgets.Loadout.Reset(16 * 9, 16 * 6);
@@ -45,9 +44,11 @@ namespace DungeonRun
             Widgets.Info.Reset(16 * 24 + 8, 16 * 6);
             Widgets.Dialog.Reset(16 * 9, 16 * 12);
 
+
+            #region Set the welcome dialog based on the vendor type
+
             //set a default welcome dialog
             welcomeDialog = "i've got many useful goods for sale, adventurer!";
-            //set the welcome dialog based on the vendor type
             if (vendorType.type == ObjType.VendorArmor)
             { welcomeDialog = "I have a fine selection of armor for sale."; }
             else if (vendorType.type == ObjType.VendorEquipment)
@@ -60,6 +61,10 @@ namespace DungeonRun
             { welcomeDialog = "I have a fine selection of potions for sale."; }
             else if (vendorType.type == ObjType.VendorWeapons)
             { welcomeDialog = "I have a fine selection of weapons for sale."; }
+
+            #endregion
+
+
             //display the welcome dialog
             Widgets.Dialog.DisplayDialog(vendorType.type, welcomeDialog);
             //display the items for sale
@@ -68,11 +73,9 @@ namespace DungeonRun
             currentlySelected = Widgets.ForSale.menuItems[0];
             previouslySelected = Widgets.ForSale.menuItems[0];
             Widgets.Info.Display(currentlySelected);
-
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(15, 7, 0, 0),
-                new Point(16, 16));
+                new Vector2(0, 0), new Byte4(15, 7, 0, 0), new Point(16, 16));
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
         }

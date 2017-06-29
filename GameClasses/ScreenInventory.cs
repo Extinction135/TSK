@@ -31,7 +31,7 @@ namespace DungeonRun
         {
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
-            background.fadeOutSpeed = 0.03f; //0.1
+            background.fadeOutSpeed = 0.07f;
             displayState = DisplayState.Opening;
 
             Widgets.Loadout.Reset(16 * 9, 16 * 4);
