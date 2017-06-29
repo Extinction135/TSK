@@ -292,7 +292,10 @@ namespace DungeonRun
                 Functions_Input.IsNewButtonPress(Buttons.B))
             {
                 Assets.Play(Assets.sfxInventoryClose);
-                //ScreenManager.RemoveScreen(this);
+                Functions_MenuWindow.Close(Widgets.Loadout.window);
+                Functions_MenuWindow.Close(Widgets.ForSale.window);
+                Functions_MenuWindow.Close(Widgets.Info.window);
+                Functions_MenuWindow.Close(Widgets.Dialog.window);
                 displayState = DisplayState.Closing;
             }
 

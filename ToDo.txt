@@ -48,35 +48,32 @@ todo:
 
 
 
-Polish widget's closing animation
-
-we want the the divider lines to close before the window closes.
-so they need to animate closed faster. but we only have one animation speed.
-this speed is used for both opening and closing animations.
-so we need to actually have 2 speeds, one for opening and one for closing.
-
-updated MenuRectangle class with fields speedOpen and speedClose.
-these fields control the open and close animation speed.
-removed the animationSpeed value from MenuRectangle.
-updated Functions_MenuRectangle.Update() to use new anim fields.
-updated Functions_MenuRectangle.Update() to set divider lines closeSpeed to 2.
-this closes the lines faster than the window, and looks better.
-
-playtested, working as expected, looks good.
 
 
 
 
 
 
+Vendor Screen should close it's widgets
+
+updated vendor screen to call Functions_MenuWindow.Close() on it's widgets.
+playtested, working as expected.
 
 
-speed up the inventory screen's closing anim
-
-widget divider lines should close faster than the window recs
 
 
-vendor screen should close it's widgets
+the inventory & vendor screens should allow enough time to let the widgets close completely
+this means the fade out happens slower, or the wigets close faster
+
+
+
+
+
+
+
+
+
+
 
 
 ScreenRecs + Closing Widgets
