@@ -51,16 +51,22 @@ todo:
 
 
 
-Add MenuRectangle Closing Animation
 
-we have an opening animation for menuRecs.
-we also need a closing animation for menuRecs.
 
-updated Functions_MenuRectangle.Update() with path for closing animation.
-added Close() method to Functions_MenuWindow.
-updated DialogScreen with call to close DialogWidget upon user input.
-playtested, DialogWidget is closing as expected and looks much better.
+Update Screens to use new widget closing animation
 
+updated InventoryScreen to close widgets upon user input.
+refactored MenuWindow class - removed unused animationCounter & openDelay fields.
+refactored how menuRectangles close, now they shrink and move right.
+playtested, working as expected.
+
+
+
+
+the issue with inventory screen is that the additional divider lines dont get closed
+to handle this in a generic manner, we should have a list for divider lines
+then we can close everything on the list at once, using a base method called Close()
+everything that composes a window is a menuRec
 
 
 

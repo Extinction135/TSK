@@ -650,8 +650,6 @@ namespace DungeonRun
     public class MenuWindow
     {
         public Point size;
-        public int animationCounter = 0;        //counts up to delay value
-        public int openDelay = 0;               //how many updates are ignored before open occurs
 
         public MenuRectangle background;
         public MenuRectangle border;

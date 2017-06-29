@@ -31,7 +31,7 @@ namespace DungeonRun
         {
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
-            background.fadeOutSpeed = 0.1f;
+            background.fadeOutSpeed = 0.03f; //0.1
             displayState = DisplayState.Opening;
 
             Widgets.Loadout.Reset(16 * 9, 16 * 4);
@@ -219,6 +219,12 @@ namespace DungeonRun
             {
                 Assets.Play(Assets.sfxInventoryClose);
                 displayState = DisplayState.Closing;
+                Functions_MenuWindow.Close(Widgets.Loadout.window);
+                Functions_MenuWindow.Close(Widgets.Stats.window);
+                Functions_MenuWindow.Close(Widgets.Crystals.window);
+                Functions_MenuWindow.Close(Widgets.Info.window);
+                Functions_MenuWindow.Close(Widgets.Inventory.window);
+                Functions_MenuWindow.Close(Widgets.Options.window);
                 exitAction = ExitAction.ExitScreen;
             }
             //get the previouslySelected menuItem
@@ -325,23 +331,18 @@ namespace DungeonRun
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
                 background.rec, Assets.colorScheme.overlay * background.alpha);
-            //only draw screen contents if screen is opening or opened
-            if (displayState == DisplayState.Opening || displayState == DisplayState.Opened)
-            {
-                Widgets.Loadout.Draw();
-                Widgets.Stats.Draw();
-                Widgets.Crystals.Draw();
-                Widgets.Info.Draw();
-                Widgets.Inventory.Draw();
-                Widgets.Options.Draw();
-            }
+            Widgets.Loadout.Draw();
+            Widgets.Stats.Draw();
+            Widgets.Crystals.Draw();
+            Widgets.Info.Draw();
+            Widgets.Inventory.Draw();
+            Widgets.Options.Draw();
             //only draw the selection box if the screen has opened completely
             if (displayState == DisplayState.Opened)
             { Functions_Draw.Draw(selectionBox); }
             //draw overlay last
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
                 background.rec, Assets.colorScheme.overlay * overlayAlpha);
-
             ScreenManager.spriteBatch.End();
         }
 

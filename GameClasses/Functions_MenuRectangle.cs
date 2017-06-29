@@ -35,14 +35,15 @@ namespace DungeonRun
                 }
             }
             else if (MenuRec.displayState == DisplayState.Closing)
-            {   //close up
-                MenuRec.rec.Width = MenuRec.size.X; //set width
-                //easeOut
-                MenuRec.rec.Height -= ((MenuRec.size.Y - MenuRec.rec.Height) / MenuRec.animationSpeed) + 1;
+            {   //close right
+                MenuRec.rec.Height = MenuRec.size.Y; //set height
+                //move and shrink
+                MenuRec.rec.X += ((MenuRec.rec.Width / MenuRec.animationSpeed) + 1);
+                MenuRec.rec.Width -= ((MenuRec.rec.Width / MenuRec.animationSpeed) + 1);
                 //check end condition
-                if (MenuRec.rec.Height <= 0) 
+                if (MenuRec.rec.Width <= 0)
                 {   //close complete
-                    MenuRec.rec.Height = 0;
+                    MenuRec.rec.Width = 0;
                     MenuRec.displayState = DisplayState.Closed;
                 }
             }
