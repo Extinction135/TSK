@@ -4,7 +4,7 @@ Will be ported to DirectX and OpenGL once completed.
 
 
 
-## Version 0.3 - 2017.05.20  
+## Version 0.4 - 2017.05.20  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p4A.gif)  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p4B.gif)  
  

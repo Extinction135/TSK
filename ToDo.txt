@@ -49,36 +49,41 @@ todo:
 
 
 
+Polish Dialog Screen User Experience
 
+when the player talks with the guide in the shop, dont fade DialogScreen's background or overlay rec in.
+this is done by checking the dialogType in dialogScreen.
 
-
-Polish the DialogScreen
-
-added a ScreenRec background to DialogScreen.
-updated DialogScreen to fade black background in when screen opens.
-updated DialogScreen to fade black overlay in when screen closes.
-this creates smooth transitions between DialogScreen and most other screens.
-the exception is when the player 'talks' with the guide in the shop.
-playtested, working as expected.
-
-
-
-
-
-
-when the player talks with the guide in the shop, dont fade DialogScreen's background or overlay rec in
-we can do this by checking the dialogType instance in dialogScreen
+added fadeBkg boolean to dialogScreen.
+updated dialogScreen to only fade bkg & overlay in if fadeBkg is true.
+fadeBkg is based on the dialogType, 
+fadeBkg is set (along with the dialogString) in dialogScreen.LoadContent().
+playtested, working as expected, but needs additional polish for save game case.
 
 
 
 
 
 
-the DialogScreen shouldn't fade the background or overlay in at all.
-this will be handled in a future update.
 
 
-when dialog is created or saved, blackground should fade in
+when we save a game, the bkg rec should fade out
+when we load a game, the overlay rec should fade in
+when we create a new game, the overlay rec should fade in
+when we continue game, the overlay rec should fade in
+when we talk with guide, bkg + overlay rec is invisible
+
+
+
+
+
+
+
+we can also create the dungeon screen with an overlay alpha greater than 1
+this will delay how quickly the screen 'appears'
+but we don't want it too take too long
+and we only want this delay when we come from LSN screen or ContinueGame
+so we'll need to set the delay in the dungeon screen's constructor
 
 
 
@@ -86,23 +91,7 @@ when dialog is created or saved, blackground should fade in
 
 various polish
 
-
-
 we should only update the dungeon screen if the dialog is story dialog
-
-this means the dialog screen needs to be able to fade to black..
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

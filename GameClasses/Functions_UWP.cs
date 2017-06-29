@@ -141,7 +141,6 @@ namespace DungeonRun
         //get the PlayerData folder path
         StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
         StorageFolder assets = await appInstalledFolder.GetFolderAsync("PlayerData");
-
         //get all the files in the PlayerData folder
         //var files = await assets.GetFilesAsync();
         //StorageFile saveFile = files[0];
