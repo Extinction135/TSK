@@ -162,11 +162,7 @@ namespace DungeonRun
                         SpriteSortMode.BackToFront,
                         BlendState.AlphaBlend,
                         SamplerState.PointClamp,
-                        null,
-                        null,
-                        null,
-                        Camera2D.view
-                        );
+                        null, null, null, Camera2D.view);
             Functions_Pool.Draw();
             if (Flags.DrawCollisions)
             {
@@ -188,8 +184,7 @@ namespace DungeonRun
                 Functions_Draw.DrawDebugInfo();
                 Functions_Draw.DrawDebugMenu();
             }
-            ScreenManager.spriteBatch.Draw( Assets.dummyTexture, 
-                overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
+            Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
 
             #endregion

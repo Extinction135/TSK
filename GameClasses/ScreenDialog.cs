@@ -158,13 +158,9 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            //draw background first
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                background.rec, Assets.colorScheme.overlay * background.alpha);
+            Functions_Draw.Draw(background);
             Widgets.Dialog.Draw();
-            //draw foreground last
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                foreground.rec, Assets.colorScheme.overlay * foreground.alpha);
+            Functions_Draw.Draw(foreground);
             ScreenManager.spriteBatch.End();
         }
 

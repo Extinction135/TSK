@@ -373,8 +373,7 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                background.rec, Assets.colorScheme.overlay * background.alpha);
+            Functions_Draw.Draw(background);
             Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {

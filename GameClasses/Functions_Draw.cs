@@ -132,7 +132,16 @@ namespace DungeonRun
                 Assets.colorScheme.windowBkg);
             Draw(Amnt.amount);
         }
-        
+
+        public static void Draw(ScreenRec Rec)
+        {  
+            ScreenManager.spriteBatch.Draw(
+                Assets.dummyTexture, Rec.rec, 
+                Assets.colorScheme.overlay * Rec.alpha);
+        }
+
+
+
 
         public static void DrawDebugInfo()
         {

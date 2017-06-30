@@ -288,12 +288,10 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-
             Functions_Draw.Draw(background);
             Functions_Draw.Draw(leftTitle.compSprite);
             Functions_Draw.Draw(rightTitle.compSprite);
             Functions_Draw.Draw(window);
-
             if (window.interior.displayState == DisplayState.Opened)
             {
                 for (i = 0; i < menuItems.Count; i++)
@@ -302,11 +300,7 @@ namespace DungeonRun
                 { Functions_Draw.Draw(labels[i]); }
                 Functions_Draw.Draw(selectionBox);
             }
-
-            //draw overlay last
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
-
+            Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
         }
 

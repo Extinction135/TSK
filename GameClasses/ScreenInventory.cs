@@ -271,9 +271,7 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            //draw background first
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
-                background.rec, Assets.colorScheme.overlay * background.alpha);
+            Functions_Draw.Draw(background);
             Widgets.Loadout.Draw();
             Widgets.Stats.Draw();
             Widgets.Crystals.Draw();
@@ -281,11 +279,8 @@ namespace DungeonRun
             Widgets.Inventory.Draw();
             Widgets.Options.Draw();
             //only draw the selection box if the screen has opened completely
-            if (displayState == DisplayState.Opened)
-            { Functions_Draw.Draw(selectionBox); }
-            //draw overlay last
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
+            if (displayState == DisplayState.Opened) { Functions_Draw.Draw(selectionBox); }
+            Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
         }
 

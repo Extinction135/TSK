@@ -55,15 +55,20 @@ todo:
 
 
 
-Standardize how ScreenRecs are used for all Screens
+Standardize how ScreenRecs are Drawn
 
-updated TitleScreen to use the Functions_ScreenRec.Fade() method.
-updated DungeonScreen to use the Functions_ScreenRec.Fade() method.
-updated InventoryScreen to use the Functions_ScreenRec.Fade() method.
-updated InventoryScreen to use separate ScreenRec instances for background and foreground.
-updated LSNscreen to use the Functions_ScreenRec.Fade() method.
-updated OverworldScreen to use the Functions_ScreenRec.Fade() method.
-updated VendorScreen to use the Functions_ScreenRec.Fade() method.
+updated Functions_Draw with Draw(ScreenRec) method.
+
+updated VendorScreen to use new Draw(ScreenRec) method.
+updated TitleScreen to use new Draw(ScreenRec) method.
+updated SummaryScreen to use new Draw(ScreenRec) method.
+updated OverworldScreen to use new Draw(ScreenRec) method.
+updated OverworldScreen to use a background ScreenRec.
+updated LSNSCreen to use new Draw(ScreenRec) method.
+updated InventoryScreen to use new Draw(ScreenRec) method.
+updated DungeonScreen to use new Draw(ScreenRec) method.
+updated DialogScreen to use new Draw(ScreenRec) method.
+
 playtested, working as expected.
 
 
@@ -72,8 +77,6 @@ playtested, working as expected.
 
 
 
-
-we should write a draw() method for screenRecs
 
 
 

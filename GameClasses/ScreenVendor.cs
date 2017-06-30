@@ -131,6 +131,9 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
+
+            #region Handle Screen State
+
             if (displayState == DisplayState.Opening)
             {
                 selectionBox.scale = 2.0f;
@@ -153,6 +156,9 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closed)
             { ScreenManager.RemoveScreen(this); }
 
+            #endregion
+
+
             Widgets.Loadout.Update();
             Widgets.ForSale.Update();
             Widgets.Info.Update();
@@ -172,8 +178,7 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
-                background.rec, Assets.colorScheme.overlay * background.alpha);
+            Functions_Draw.Draw(background);
             Widgets.Loadout.Draw();
             Widgets.ForSale.Draw();
             Widgets.Info.Draw();

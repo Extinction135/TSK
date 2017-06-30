@@ -196,9 +196,7 @@ namespace DungeonRun
             #region Handle Exit State
 
             else if (displayState == DisplayState.Closed)
-            {   //exit this screen, return to overworld
-                //ScreenManager.RemoveScreen(this);
-                //ScreenManager.AddScreen(new ScreenOverworld());
+            {   //exit all screens, return to overworld
                 ScreenManager.ExitAndLoad(new ScreenOverworld());
             }
 
@@ -209,9 +207,7 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            //draw background first
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                background.rec, Assets.colorScheme.overlay * background.alpha);
+            Functions_Draw.Draw(background);
             Functions_Draw.Draw(leftTitle.compSprite);
             Functions_Draw.Draw(rightTitle.compSprite);
             Functions_Draw.Draw(summaryData);

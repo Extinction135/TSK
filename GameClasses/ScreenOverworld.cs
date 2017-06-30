@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public class ScreenOverworld : Screen
     {
+        ScreenRec background = new ScreenRec();
         ScreenRec overlay = new ScreenRec();
         public static MenuWindow window;
         public static ComponentSprite map;
@@ -40,8 +41,9 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            background.alpha = 1.0f;
             overlay.alpha = 1.0f;
-
+            
             window = new MenuWindow(new Point(16 * 11 + 8, 16 * 1 + 8),
                 new Point(16 * 17, 16 * 19), "Overworld Map");
             //determine the top left position of the map texture/sprite
@@ -216,8 +218,6 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            Functions_MenuWindow.Update(window);
-
 
             #region Handle Screen State
 
@@ -247,6 +247,7 @@ namespace DungeonRun
             #endregion
 
 
+            Functions_MenuWindow.Update(window);
             if (displayState != DisplayState.Opening)
             {   //if screen is opened, closing, or closed, pulse the selectionBox alpha
                 if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
@@ -262,10 +263,7 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-
-            //draw overlay as background
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                overlay.rec, Assets.colorScheme.overlay * 1.0f);
+            Functions_Draw.Draw(background);
             Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
@@ -273,10 +271,7 @@ namespace DungeonRun
                 Functions_Draw.Draw(selectedLocation);
                 Functions_Draw.Draw(selectionBox);
             }
-            //draw overlay rec as foreground cover
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
-
+            Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
         }
 
