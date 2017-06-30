@@ -15,14 +15,14 @@ namespace DungeonRun
     public class ScreenInventory : Screen
     {
         ScreenRec background = new ScreenRec();
-        public float maxAlpha = 0.7f;
-        public float overlayAlpha = 0.0f; //used for bkg as overlay rec
+        ScreenRec overlay = new ScreenRec();
         //these point to a menuItem that is part of a widget
         public MenuItem currentlySelected;
         public MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
         public ExitAction exitAction = ExitAction.ExitScreen;
+
 
 
         public ScreenInventory() { this.name = "InventoryScreen"; }
@@ -32,6 +32,8 @@ namespace DungeonRun
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
             background.fadeOutSpeed = 0.07f;
+            background.maxAlpha = 0.7f;
+            overlay.fadeInSpeed = 0.025f; //fade in slowly
             displayState = DisplayState.Opening;
 
             Widgets.Loadout.Reset(16 * 9, 16 * 4);
@@ -125,62 +127,6 @@ namespace DungeonRun
             Assets.Play(Assets.sfxInventoryOpen);
         }
 
-
-
-        public void SetLoadout()
-        {
-
-            #region Items
-
-            //check if currently selected is an item, set hero.item
-            if (currentlySelected.type == MenuItemType.ItemBomb ||
-                currentlySelected.type == MenuItemType.BottleEmpty ||
-                currentlySelected.type == MenuItemType.BottleHealth ||
-                currentlySelected.type == MenuItemType.BottleMagic ||
-                currentlySelected.type == MenuItemType.BottleFairy ||
-                currentlySelected.type == MenuItemType.MagicFireball)
-            { Pool.hero.item = currentlySelected.type; }
-
-            #endregion
-
-
-            #region Weapons
-
-            //check if currently selected is a weapon, set hero.weapon
-            if (currentlySelected.type == MenuItemType.WeaponSword ||
-                currentlySelected.type == MenuItemType.WeaponBow)
-            { Pool.hero.weapon = currentlySelected.type; }
-
-            #endregion
-
-
-            #region Armor
-
-            //check if currently selected is armor, set hero.armor
-            if (currentlySelected.type == MenuItemType.ArmorCloth ||
-                currentlySelected.type == MenuItemType.ArmorChest ||
-                currentlySelected.type == MenuItemType.ArmorCape ||
-                currentlySelected.type == MenuItemType.ArmorRobe)
-            { Pool.hero.armor = currentlySelected.type; }
-
-            #endregion
-
-
-            #region Equipment
-
-            //check if currently selected is equipment, set hero.equipment
-            if (currentlySelected.type == MenuItemType.EquipmentRing)
-            { Pool.hero.equipment = currentlySelected.type; }
-
-            #endregion
-
-
-            //update the LoadoutWidget to show equipped items
-            Widgets.Loadout.UpdateLoadout();
-        }
-
-
-
         public override void HandleInput(GameTime GameTime)
         {   //select a menuItem with button A press
             if (Functions_Input.IsNewButtonPress(Buttons.A))
@@ -260,34 +206,30 @@ namespace DungeonRun
 
             if (displayState == DisplayState.Opening)
             {   //fade background in
-                background.alpha += background.fadeInSpeed;
-                selectionBox.scale = 2.0f;
-                if (background.alpha >= maxAlpha)
+                background.fadeState = FadeState.FadeIn;
+                Functions_ScreenRec.Fade(background);
+                if (background.fadeState == FadeState.FadeComplete)
                 {
-                    background.alpha = maxAlpha;
                     displayState = DisplayState.Opened;
                     Assets.Play(Assets.sfxTextLetter);
                 }
+                selectionBox.scale = 2.0f;
             }
             else if (displayState == DisplayState.Closing)
             {
                 if (exitAction == ExitAction.ExitScreen)
                 {   //fade background out
-                    background.alpha -= background.fadeOutSpeed;
-                    if (background.alpha <= 0.0f)
-                    {
-                        background.alpha = 0.0f;
-                        displayState = DisplayState.Closed;
-                    }
+                    background.fadeState = FadeState.FadeOut;
+                    Functions_ScreenRec.Fade(background);
+                    if (background.fadeState == FadeState.FadeComplete)
+                    { displayState = DisplayState.Closed; }
                 }
                 else if (exitAction == ExitAction.Title)
-                {   //fade overlay rec in, using overlay alpha
-                    overlayAlpha += 0.025f;
-                    if (overlayAlpha >= 1.0f)
-                    {
-                        overlayAlpha = 1.0f;
-                        displayState = DisplayState.Closed;
-                    }
+                {   //fade overlay in
+                    overlay.fadeState = FadeState.FadeIn;
+                    Functions_ScreenRec.Fade(overlay);
+                    if (overlay.fadeState == FadeState.FadeComplete)
+                    { displayState = DisplayState.Closed; }
                 }
             }
             else if (displayState == DisplayState.Closed)
@@ -329,6 +271,7 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            //draw background first
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
                 background.rec, Assets.colorScheme.overlay * background.alpha);
             Widgets.Loadout.Draw();
@@ -342,8 +285,62 @@ namespace DungeonRun
             { Functions_Draw.Draw(selectionBox); }
             //draw overlay last
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture,
-                background.rec, Assets.colorScheme.overlay * overlayAlpha);
+                overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
             ScreenManager.spriteBatch.End();
+        }
+
+
+
+        public void SetLoadout()
+        {
+
+            #region Items
+
+            //check if currently selected is an item, set hero.item
+            if (currentlySelected.type == MenuItemType.ItemBomb ||
+                currentlySelected.type == MenuItemType.BottleEmpty ||
+                currentlySelected.type == MenuItemType.BottleHealth ||
+                currentlySelected.type == MenuItemType.BottleMagic ||
+                currentlySelected.type == MenuItemType.BottleFairy ||
+                currentlySelected.type == MenuItemType.MagicFireball)
+            { Pool.hero.item = currentlySelected.type; }
+
+            #endregion
+
+
+            #region Weapons
+
+            //check if currently selected is a weapon, set hero.weapon
+            if (currentlySelected.type == MenuItemType.WeaponSword ||
+                currentlySelected.type == MenuItemType.WeaponBow)
+            { Pool.hero.weapon = currentlySelected.type; }
+
+            #endregion
+
+
+            #region Armor
+
+            //check if currently selected is armor, set hero.armor
+            if (currentlySelected.type == MenuItemType.ArmorCloth ||
+                currentlySelected.type == MenuItemType.ArmorChest ||
+                currentlySelected.type == MenuItemType.ArmorCape ||
+                currentlySelected.type == MenuItemType.ArmorRobe)
+            { Pool.hero.armor = currentlySelected.type; }
+
+            #endregion
+
+
+            #region Equipment
+
+            //check if currently selected is equipment, set hero.equipment
+            if (currentlySelected.type == MenuItemType.EquipmentRing)
+            { Pool.hero.equipment = currentlySelected.type; }
+
+            #endregion
+
+
+            //update the LoadoutWidget to show equipped items
+            Widgets.Loadout.UpdateLoadout();
         }
 
     }

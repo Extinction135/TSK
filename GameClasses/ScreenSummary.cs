@@ -20,7 +20,7 @@ namespace DungeonRun
         ComponentText summaryText;
         ComponentText summaryData;
         ComponentText continueText;
-        float fadeSpeed = 0.05f;
+        float textFadeSpeed = 0.05f;
 
         int enemyCount = 0;
         int totalDamage = 0;
@@ -125,11 +125,11 @@ namespace DungeonRun
                 Functions_TitleAnimated.AnimateMovement(leftTitle);
                 Functions_TitleAnimated.AnimateMovement(rightTitle);
                 //fade in components
-                leftTitle.compSprite.alpha += fadeSpeed;
-                rightTitle.compSprite.alpha += fadeSpeed;
-                continueText.alpha += fadeSpeed;
-                summaryText.alpha += fadeSpeed;
-                summaryData.alpha += fadeSpeed;
+                leftTitle.compSprite.alpha += textFadeSpeed;
+                rightTitle.compSprite.alpha += textFadeSpeed;
+                continueText.alpha += textFadeSpeed;
+                summaryText.alpha += textFadeSpeed;
+                summaryData.alpha += textFadeSpeed;
                 //check components position + opacity, transition state
                 if (rightTitle.displayState == DisplayState.Opened && 
                     leftTitle.displayState == DisplayState.Opened &&
@@ -139,11 +139,11 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closing)
             {
                 //fade out components
-                leftTitle.compSprite.alpha -= fadeSpeed * 1.5f;
-                rightTitle.compSprite.alpha -= fadeSpeed * 1.5f;
-                summaryText.alpha -= fadeSpeed * 1.5f;
-                summaryData.alpha -= fadeSpeed * 1.5f;
-                continueText.alpha -= fadeSpeed * 0.9f;
+                leftTitle.compSprite.alpha -= textFadeSpeed * 1.5f;
+                rightTitle.compSprite.alpha -= textFadeSpeed * 1.5f;
+                summaryText.alpha -= textFadeSpeed * 1.5f;
+                summaryData.alpha -= textFadeSpeed * 1.5f;
+                continueText.alpha -= textFadeSpeed * 0.9f;
                 //check components opacity, transition state
                 if (continueText.alpha <= 0.0f)
                 { continueText.alpha = 0.0f; displayState = DisplayState.Closed; }

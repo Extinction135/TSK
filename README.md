@@ -14,7 +14,6 @@ Will be ported to DirectX and OpenGL once completed.
 + Gameplay and Design is discussed in Design.md.
 + Daily tasks/commits are planned and organized in ToDo.txt.
 + The history of commits is available back to the initial push.
-+ I'm aiming for 13 commits per day, until a release is ready.
 
 ## Playing the Game
 + Compiled binaries are not provided, to keep repo size small.

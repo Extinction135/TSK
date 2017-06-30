@@ -57,6 +57,7 @@ namespace DungeonRun
         {
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
+            background.maxAlpha = 0.8f;
 
             //create window and dividers
             window = new MenuWindow(
@@ -305,22 +306,18 @@ namespace DungeonRun
             #region Handle Screen State
 
             if (displayState == DisplayState.Opening)
-            {   //fade bkg in
-                background.alpha += background.fadeInSpeed;
-                if (background.alpha >= 0.8f)
-                {
-                    background.alpha = 0.8f;
-                    displayState = DisplayState.Opened;
-                }
+            {   //fade background in
+                background.fadeState = FadeState.FadeIn;
+                Functions_ScreenRec.Fade(background);
+                if (background.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Opened; }
             }
             else if (displayState == DisplayState.Closing)
-            {   //fade bkg out
-                background.alpha -= background.fadeOutSpeed;
-                if (background.alpha <= 0.0f)
-                {
-                    background.alpha = 0.0f;
-                    displayState = DisplayState.Closed;
-                }
+            {   //fade background out
+                background.fadeState = FadeState.FadeOut;
+                Functions_ScreenRec.Fade(background);
+                if (background.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
             {

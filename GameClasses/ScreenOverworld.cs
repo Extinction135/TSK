@@ -36,14 +36,6 @@ namespace DungeonRun
 
 
 
-        public static void GetCurrentLocationName(MenuItem Location)
-        {   //get the location name, center it to the window/screen
-            selectedLocation.text = Location.name;
-            Functions_Component.CenterText(selectedLocation, selectedLocation.font, 320);
-        }
-
-
-
         public ScreenOverworld() { this.name = "OverworldScreen"; }
 
         public override void LoadContent()
@@ -231,21 +223,17 @@ namespace DungeonRun
 
             if (displayState == DisplayState.Opening)
             {   //fade overlay out
-                overlay.alpha -= overlay.fadeInSpeed;
-                if (overlay.alpha <= 0.0f)
-                {
-                    overlay.alpha = 0.0f;
-                    displayState = DisplayState.Opened;
-                }
+                overlay.fadeState = FadeState.FadeOut;
+                Functions_ScreenRec.Fade(overlay);
+                if (overlay.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Opened; }
             }
             else if (displayState == DisplayState.Closing)
             {   //fade overlay in
-                overlay.alpha += overlay.fadeInSpeed;
-                if (overlay.alpha >= 1.0f)
-                {
-                    overlay.alpha = 1.0f;
-                    displayState = DisplayState.Closed;
-                }
+                overlay.fadeState = FadeState.FadeIn;
+                Functions_ScreenRec.Fade(overlay);
+                if (overlay.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
             {   //set the type of dungeon we are about to build/load
@@ -290,6 +278,14 @@ namespace DungeonRun
                 overlay.rec, Assets.colorScheme.overlay * overlay.alpha);
 
             ScreenManager.spriteBatch.End();
+        }
+
+
+
+        public static void GetCurrentLocationName(MenuItem Location)
+        {   //get the location name, center it to the window/screen
+            selectedLocation.text = Location.name;
+            Functions_Component.CenterText(selectedLocation, selectedLocation.font, 320);
         }
 
     }

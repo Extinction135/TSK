@@ -52,17 +52,18 @@ todo:
 
 
 
-Refactor how the DialogScreen updates DungeonScreen
 
-when the player talks to the guide, or opens the dialog screen in any way..
-the dialog screen updates the dungeon screen, if the dungeon screen exists.
-but, this is not the desired behavior.
-instead the dungeon screen should only update if the player is talking to the guide.
 
-added boolean updateDungeonScreen to DialogScreen.
-by default this boolean is set to true.
-then, based on the dialog type, the boolean is updated.
-this lets the load/save/new game dialogs to set the boolean.
+
+Standardize how ScreenRecs are used for all Screens
+
+updated TitleScreen to use the Functions_ScreenRec.Fade() method.
+updated DungeonScreen to use the Functions_ScreenRec.Fade() method.
+updated InventoryScreen to use the Functions_ScreenRec.Fade() method.
+updated InventoryScreen to use separate ScreenRec instances for background and foreground.
+updated LSNscreen to use the Functions_ScreenRec.Fade() method.
+updated OverworldScreen to use the Functions_ScreenRec.Fade() method.
+updated VendorScreen to use the Functions_ScreenRec.Fade() method.
 playtested, working as expected.
 
 
@@ -71,63 +72,50 @@ playtested, working as expected.
 
 
 
-ScreenRecs + Closing Widgets
-update DialogScreen to use screenRec + functions
-update titleScreen to use screenRec + functions
-update inventoryScreen to use screenRec + functions
-update LSN screen to use screenRec + functions
-update overworld screen to use screenRec + functions
-update summary screen to use screenRec + functions
+
+we should write a draw() method for screenRecs
 
 
+
+
+
+
+Transition into game
 we can also create the dungeon screen with an overlay alpha greater than 1
 this will delay how quickly the screen 'appears'
 but we don't want it too take too long
 and we only want this delay when we come from LSN screen or ContinueGame
 so we'll need to set the delay in the dungeon screen's constructor
 
-figure out why screen transitions are sometimes 'choppy' or abrupt
-is this because the screen takes time to be created?
-
-we should only update the dungeon screen if the dialog is story dialog
-
+Game Files Polish
 when player saves/creates game, update the game files on LSN screen
 we want to display the crystals properly in LSN screen
 and we want to save / display the total play time and creation date
 this data has not yet been added to the saveData
-
-
-
-
-
-
-
-
+additionally, this data should be a data class, because we're duping stuff on LSN screen
 
 Autosave++
-
 autosave should happen more often, like when a player purchases an item
 autosave should happen upon dungeon exit, as well as dungeon build.
-
 this is simply text that says 'autosaving...'
 with animated periods
 pops up under the worldUI
 is handled by WorldUI
-
 text should appear that says 'autosaving' when autosave happens
 this should appear underneath the HUD on the bottom left
 
-we need a reset() method for the playerData
-then we can call reset() and save the player data to create a new game
+UDT++
+move U/D/T times to left of HUD
+these should draw when game is in release mode
+for actual release, we can flip the UDT flag in release check
 
 
 
 
 
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	release v0.5 - updates being save data + game files
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	release v0.5 - updates being save data + game files + screen transitions
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 
@@ -321,7 +309,9 @@ overworld screen needs an opening pause
 transitioning from title screen to overworld screen
 the overworld map just appears, does not fade in at all
 
-
+figure out why screen transitions are sometimes 'choppy' or abrupt
+is this because the screen takes time to be created? yes
+can we create all the screens at once, upon boot, so everything is smooth?
 
 	
 

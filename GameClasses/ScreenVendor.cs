@@ -15,7 +15,6 @@ namespace DungeonRun
     public class ScreenVendor : Screen
     {
         ScreenRec background = new ScreenRec();
-        public float maxAlpha = 0.7f;
         //these point to a menuItem that is part of a widget
         public MenuItem currentlySelected;
         public MenuItem previouslySelected;
@@ -37,6 +36,7 @@ namespace DungeonRun
             background.alpha = 0.0f;
             background.fadeInSpeed = 0.03f;
             background.fadeOutSpeed = 0.07f;
+            background.maxAlpha = 0.7f;
             displayState = DisplayState.Opening;
 
             Widgets.Loadout.Reset(16 * 9, 16 * 6);
@@ -78,6 +78,110 @@ namespace DungeonRun
                 new Vector2(0, 0), new Byte4(15, 7, 0, 0), new Point(16, 16));
             //play the opening soundFX
             Assets.Play(Assets.sfxInventoryOpen);
+        }
+
+        public override void HandleInput(GameTime GameTime)
+        {
+            //exit this screen upon start or b button press
+
+            if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
+                Functions_Input.IsNewButtonPress(Buttons.B))
+            {
+                Assets.Play(Assets.sfxInventoryClose);
+                Functions_MenuWindow.Close(Widgets.Loadout.window);
+                Functions_MenuWindow.Close(Widgets.ForSale.window);
+                Functions_MenuWindow.Close(Widgets.Info.window);
+                Functions_MenuWindow.Close(Widgets.Dialog.window);
+                displayState = DisplayState.Closing;
+            }
+
+            else if (Functions_Input.IsNewButtonPress(Buttons.A))
+            {
+                if (currentlySelected.type != MenuItemType.Unknown)
+                { currentlySelected.compSprite.scale = 2.0f; }
+                PurchaseItem(currentlySelected);
+                Assets.Play(Assets.sfxMenuItem);
+            }
+
+            //get the previouslySelected menuItem
+            previouslySelected = currentlySelected;
+            //check to see if the gamePad direction is a new direction - prevents rapid scrolling
+            if (Input.gamePadDirection != Input.lastGamePadDirection)
+            {
+                //this is a new direction, allow movement between menuItems
+                if (Input.gamePadDirection == Direction.Right)
+                { currentlySelected = currentlySelected.neighborRight; }
+                else if (Input.gamePadDirection == Direction.Left)
+                { currentlySelected = currentlySelected.neighborLeft; }
+                else if (Input.gamePadDirection == Direction.Down)
+                { currentlySelected = currentlySelected.neighborDown; }
+                else if (Input.gamePadDirection == Direction.Up)
+                { currentlySelected = currentlySelected.neighborUp; }
+
+                //check to see if we changed menuItems
+                if (previouslySelected != currentlySelected)
+                {
+                    Widgets.Info.Display(currentlySelected);
+                    Assets.Play(Assets.sfxTextLetter);
+                    previouslySelected.compSprite.scale = 1.0f;
+                    selectionBox.scale = 2.0f;
+                }
+            }
+        }
+
+        public override void Update(GameTime GameTime)
+        {
+            if (displayState == DisplayState.Opening)
+            {
+                selectionBox.scale = 2.0f;
+                //fade background in
+                background.fadeState = FadeState.FadeIn;
+                Functions_ScreenRec.Fade(background);
+                if (background.fadeState == FadeState.FadeComplete)
+                {
+                    displayState = DisplayState.Opened;
+                    Assets.Play(Assets.sfxTextLetter);
+                }
+            }
+            else if (displayState == DisplayState.Closing)
+            {   //fade background out
+                background.fadeState = FadeState.FadeOut;
+                Functions_ScreenRec.Fade(background);
+                if (background.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Closed; }
+            }
+            else if (displayState == DisplayState.Closed)
+            { ScreenManager.RemoveScreen(this); }
+
+            Widgets.Loadout.Update();
+            Widgets.ForSale.Update();
+            Widgets.Info.Update();
+            Widgets.Dialog.Update();
+
+            //pulse the selectionBox alpha
+            if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
+            else { selectionBox.alpha += 0.025f; }
+            //match the position of the selectionBox to the currently selected menuItem
+            selectionBox.position = currentlySelected.compSprite.position;
+            Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
+            //scale the selectionBox down to 1.0
+            if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
+            else { selectionBox.scale = 1.0f; }
+        }
+
+        public override void Draw(GameTime GameTime)
+        {
+            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
+                background.rec, Assets.colorScheme.overlay * background.alpha);
+            Widgets.Loadout.Draw();
+            Widgets.ForSale.Draw();
+            Widgets.Info.Draw();
+            Widgets.Dialog.Draw();
+            //only draw the selection box if the screen has opened completely
+            if (displayState == DisplayState.Opened)
+            { Functions_Draw.Draw(selectionBox); }
+            ScreenManager.spriteBatch.End();
         }
 
 
@@ -283,112 +387,6 @@ namespace DungeonRun
             Widgets.Dialog.DisplayDialog(vendorType.type,
                     "you have already purchased this item.");
             Assets.Play(Assets.sfxError);
-        }
-
-
-
-        public override void HandleInput(GameTime GameTime)
-        {
-            //exit this screen upon start or b button press
-
-            if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
-                Functions_Input.IsNewButtonPress(Buttons.B))
-            {
-                Assets.Play(Assets.sfxInventoryClose);
-                Functions_MenuWindow.Close(Widgets.Loadout.window);
-                Functions_MenuWindow.Close(Widgets.ForSale.window);
-                Functions_MenuWindow.Close(Widgets.Info.window);
-                Functions_MenuWindow.Close(Widgets.Dialog.window);
-                displayState = DisplayState.Closing;
-            }
-
-            else if (Functions_Input.IsNewButtonPress(Buttons.A))
-            {
-                if (currentlySelected.type != MenuItemType.Unknown)
-                { currentlySelected.compSprite.scale = 2.0f; }
-                PurchaseItem(currentlySelected);
-                Assets.Play(Assets.sfxMenuItem);
-            }
-
-            //get the previouslySelected menuItem
-            previouslySelected = currentlySelected;
-            //check to see if the gamePad direction is a new direction - prevents rapid scrolling
-            if (Input.gamePadDirection != Input.lastGamePadDirection)
-            {
-                //this is a new direction, allow movement between menuItems
-                if (Input.gamePadDirection == Direction.Right)
-                { currentlySelected = currentlySelected.neighborRight; }
-                else if (Input.gamePadDirection == Direction.Left)
-                { currentlySelected = currentlySelected.neighborLeft; }
-                else if (Input.gamePadDirection == Direction.Down)
-                { currentlySelected = currentlySelected.neighborDown; }
-                else if (Input.gamePadDirection == Direction.Up)
-                { currentlySelected = currentlySelected.neighborUp; }
-
-                //check to see if we changed menuItems
-                if (previouslySelected != currentlySelected)
-                {
-                    Widgets.Info.Display(currentlySelected);
-                    Assets.Play(Assets.sfxTextLetter);
-                    previouslySelected.compSprite.scale = 1.0f;
-                    selectionBox.scale = 2.0f;
-                }
-            }
-        }
-
-        public override void Update(GameTime GameTime)
-        {   //fade background in
-            if (displayState == DisplayState.Opening)
-            {
-                background.alpha += background.fadeInSpeed;
-                selectionBox.scale = 2.0f;
-                if (background.alpha >= maxAlpha)
-                {
-                    background.alpha = maxAlpha;
-                    displayState = DisplayState.Opened;
-                    Assets.Play(Assets.sfxTextLetter);
-                }
-            }
-            //fade background out
-            else if (displayState == DisplayState.Closing)
-            {
-                background.alpha -= background.fadeOutSpeed;
-                if (background.alpha <= 0.0f)
-                {
-                    background.alpha = 0.0f;
-                    ScreenManager.RemoveScreen(this);
-                }
-            }
-            
-            Widgets.Loadout.Update();
-            Widgets.ForSale.Update();
-            Widgets.Info.Update();
-            Widgets.Dialog.Update();
-
-            //pulse the selectionBox alpha
-            if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
-            else { selectionBox.alpha += 0.025f; }
-            //match the position of the selectionBox to the currently selected menuItem
-            selectionBox.position = currentlySelected.compSprite.position;
-            Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
-            //scale the selectionBox down to 1.0
-            if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
-            else { selectionBox.scale = 1.0f; }
-        }
-
-        public override void Draw(GameTime GameTime)
-        {
-            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, 
-                background.rec, Assets.colorScheme.overlay * background.alpha);
-            Widgets.Loadout.Draw();
-            Widgets.ForSale.Draw();
-            Widgets.Info.Draw();
-            Widgets.Dialog.Draw();
-            //only draw the selection box if the screen has opened completely
-            if (displayState == DisplayState.Opened)
-            { Functions_Draw.Draw(selectionBox); }
-            ScreenManager.spriteBatch.End();
         }
 
     }

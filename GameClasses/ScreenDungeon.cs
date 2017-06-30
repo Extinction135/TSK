@@ -93,13 +93,11 @@ namespace DungeonRun
                 #region Handle Screen State
 
                 if(displayState == DisplayState.Opening) //fade overlay to 0
-                {
-                    overlay.alpha -= overlay.fadeOutSpeed;
-                    if (overlay.alpha <= 0.0f)
-                    {
-                        overlay.alpha = 0.0f;
-                        displayState = DisplayState.Opened;
-                    }
+                {   //fade overlay out
+                    overlay.fadeState = FadeState.FadeOut;
+                    Functions_ScreenRec.Fade(overlay);
+                    if (overlay.fadeState == FadeState.FadeComplete)
+                    { displayState = DisplayState.Opened; }
                 }
                 else if (displayState == DisplayState.Opened)
                 {   //set overlay alpha to a negative value
@@ -114,12 +112,11 @@ namespace DungeonRun
                     }
                     else { overlay.fadeInSpeed = 0.015f; } //victory/defeat fades in much slower
 
-                    overlay.alpha += overlay.fadeInSpeed;
-                    if (overlay.alpha >= 1.0f)
-                    {
-                        overlay.alpha = 1.0f;
-                        displayState = DisplayState.Closed;
-                    }
+                    //fade overlay in
+                    overlay.fadeState = FadeState.FadeIn;
+                    Functions_ScreenRec.Fade(overlay);
+                    if (overlay.fadeState == FadeState.FadeComplete)
+                    { displayState = DisplayState.Closed; }
                 }
                 else if (displayState == DisplayState.Closed)
                 {

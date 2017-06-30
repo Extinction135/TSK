@@ -241,12 +241,10 @@ namespace DungeonRun
 
             if (displayState == DisplayState.Opening)
             {   //fade overlay out
-                overlay.alpha -= overlay.fadeOutSpeed;
-                if (overlay.alpha <= 0.0f)
-                {
-                    overlay.alpha = 0.0f;
-                    displayState = DisplayState.Opened;
-                }
+                overlay.fadeState = FadeState.FadeOut;
+                Functions_ScreenRec.Fade(overlay);
+                if (overlay.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Opened; }
             }
             else if (displayState == DisplayState.Opened)
             {   //animate titles in
@@ -262,12 +260,10 @@ namespace DungeonRun
             }
             else if (displayState == DisplayState.Closing)
             {   //fade overlay in
-                overlay.alpha += overlay.fadeInSpeed;
-                if (overlay.alpha >= 1.0f)
-                {
-                    overlay.alpha = 1.0f;
-                    displayState = DisplayState.Closed;
-                }
+                overlay.fadeState = FadeState.FadeIn;
+                Functions_ScreenRec.Fade(overlay);
+                if (overlay.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
             { ScreenManager.game.Exit(); }
