@@ -152,32 +152,32 @@ namespace DungeonRun
         public static void Inspect(SaveData SaveData)
         {
             output = "\n\n---- SAVE DATA DUMP ----";
-            output += "\n  gold: " + PlayerData.saveData.gold;
-            output += "\n  heart pieces: " + PlayerData.saveData.heartPieces;
-            output += "\n  magic: " + PlayerData.saveData.magicCurrent + " / " + PlayerData.saveData.magicTotal;
-            output += "\n  bombs: " + PlayerData.saveData.bombsCurrent + " / " + PlayerData.saveData.bombsMax;
-            output += "\n  arrows: " + PlayerData.saveData.arrowsCurrent + " / " + PlayerData.saveData.arrowsMax;
+            output += "\n  gold: " + PlayerData.current.gold;
+            output += "\n  heart pieces: " + PlayerData.current.heartPieces;
+            output += "\n  magic: " + PlayerData.current.magicCurrent + " / " + PlayerData.current.magicTotal;
+            output += "\n  bombs: " + PlayerData.current.bombsCurrent + " / " + PlayerData.current.bombsMax;
+            output += "\n  arrows: " + PlayerData.current.arrowsCurrent + " / " + PlayerData.current.arrowsMax;
 
             output += "\n  -- Items --"; ;
-            output += "\n  has boomerang: " + PlayerData.saveData.itemBoomerang;
+            output += "\n  has boomerang: " + PlayerData.current.itemBoomerang;
 
-            output += "\n  has bottle1: " + PlayerData.saveData.bottle1;
-            output += "\n  has bottle2: " + PlayerData.saveData.bottle2;
-            output += "\n  has bottle3: " + PlayerData.saveData.bottle3;
+            output += "\n  has bottle1: " + PlayerData.current.bottle1;
+            output += "\n  has bottle2: " + PlayerData.current.bottle2;
+            output += "\n  has bottle3: " + PlayerData.current.bottle3;
 
-            output += "\n  has bottleHealth: " + PlayerData.saveData.bottleHealth;
-            output += "\n  has bottleMagic: " + PlayerData.saveData.bottleMagic;
-            output += "\n  has bottleFairy: " + PlayerData.saveData.bottleFairy;
+            output += "\n  has bottleHealth: " + PlayerData.current.bottleHealth;
+            output += "\n  has bottleMagic: " + PlayerData.current.bottleMagic;
+            output += "\n  has bottleFairy: " + PlayerData.current.bottleFairy;
 
-            output += "\n  has magicFireball: " + PlayerData.saveData.magicFireball;
+            output += "\n  has magicFireball: " + PlayerData.current.magicFireball;
 
-            output += "\n  has weaponBow: " + PlayerData.saveData.weaponBow;
+            output += "\n  has weaponBow: " + PlayerData.current.weaponBow;
 
-            output += "\n  has armorChest: " + PlayerData.saveData.armorChest;
-            output += "\n  has armorCape: " + PlayerData.saveData.armorCape;
-            output += "\n  has armorRobe: " + PlayerData.saveData.armorRobe;
+            output += "\n  has armorChest: " + PlayerData.current.armorChest;
+            output += "\n  has armorCape: " + PlayerData.current.armorCape;
+            output += "\n  has armorRobe: " + PlayerData.current.armorRobe;
 
-            output += "\n  has equipmentRing: " + PlayerData.saveData.equipmentRing;
+            output += "\n  has equipmentRing: " + PlayerData.current.equipmentRing;
 
             Debug.WriteLine(output);
         }
@@ -220,12 +220,12 @@ namespace DungeonRun
                         }
                         else if (DebugMenu.counter == 2) //max gold button
                         {   //set the player's gold to 99
-                            PlayerData.saveData.gold = 99;
+                            PlayerData.current.gold = 99;
                             Assets.Play(Assets.sfxGoldPickup);
                         }
                         else if (DebugMenu.counter == 3) //dump saveData button
                         {
-                            Inspect(PlayerData.saveData);
+                            Inspect(PlayerData.current);
                         }
 
                         #endregion

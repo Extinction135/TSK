@@ -112,12 +112,12 @@ namespace DungeonRun
 
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
             
-            if (PlayerData.saveData.bombsCurrent > 0)
+            if (PlayerData.current.bombsCurrent > 0)
             {
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
                 Functions_Component.Move(bombsDisplay, menuItems[1]);
                 //if hero has bombs, display the number of bombs + draw display amount
-                Functions_Component.UpdateAmount(bombsDisplay, PlayerData.saveData.bombsCurrent);
+                Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
                 bombsDisplay.visible = true;
             }
 
@@ -127,19 +127,19 @@ namespace DungeonRun
             #region Bottles
 
             //set the empty bottles based on booleans
-            if (PlayerData.saveData.bottle1)
+            if (PlayerData.current.bottle1)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]); }
-            if (PlayerData.saveData.bottle2)
+            if (PlayerData.current.bottle2)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[3]); }
-            if (PlayerData.saveData.bottle3)
+            if (PlayerData.current.bottle3)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[4]); }
 
             //set the filled bottles based on booleans
-            if (PlayerData.saveData.bottleHealth)
+            if (PlayerData.current.bottleHealth)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[2]); }
-            if (PlayerData.saveData.bottleMagic)
+            if (PlayerData.current.bottleMagic)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[3]); }
-            if (PlayerData.saveData.bottleFairy)
+            if (PlayerData.current.bottleFairy)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[4]); }
 
             #endregion
@@ -147,7 +147,7 @@ namespace DungeonRun
 
             #region Set the magic medallion items
 
-            if (PlayerData.saveData.magicFireball)
+            if (PlayerData.current.magicFireball)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]); }
 
             //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[6]);
@@ -162,12 +162,12 @@ namespace DungeonRun
 
             Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponSword, menuItems[10]);
 
-            if (PlayerData.saveData.weaponBow)
+            if (PlayerData.current.weaponBow)
             {
                 Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
                 Functions_Component.Move(arrowsDisplay, menuItems[11]);
                 //if hero has arrows, display the number of arrows + draw display amount
-                Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.saveData.arrowsCurrent);
+                Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
                 arrowsDisplay.visible = true;
             }
             
@@ -182,13 +182,13 @@ namespace DungeonRun
 
             Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[15]);
 
-            if (PlayerData.saveData.armorChest)
+            if (PlayerData.current.armorChest)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorChest, menuItems[16]); }
 
-            if (PlayerData.saveData.armorCape)
+            if (PlayerData.current.armorCape)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCape, menuItems[17]); }
 
-            if (PlayerData.saveData.armorRobe)
+            if (PlayerData.current.armorRobe)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[18]); }
 
             #endregion
@@ -196,7 +196,7 @@ namespace DungeonRun
 
             #region Equipment
 
-            if (PlayerData.saveData.equipmentRing)
+            if (PlayerData.current.equipmentRing)
             { Functions_MenuItem.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[20]); }
             //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[22]);

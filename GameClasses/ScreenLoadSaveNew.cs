@@ -24,6 +24,8 @@ namespace DungeonRun
         //animations used in game data display
         ComponentAnimation playerStationary;
         ComponentAnimation playerWalking;
+
+        //these should be a data class
         //the game data display components
         MenuItem game1MenuItem;
         MenuItem game2MenuItem;
@@ -37,6 +39,7 @@ namespace DungeonRun
         List<MenuItem> game1Crystals;
         List<MenuItem> game2Crystals;
         List<MenuItem> game3Crystals;
+
         //these point to a menuItem
         MenuItem currentlySelected;
         MenuItem previouslySelected;
@@ -44,7 +47,7 @@ namespace DungeonRun
         ComponentSprite selectionBox;
         ComponentSprite arrow;
         ComponentText actionText;
-
+        
 
 
         public ScreenLoadSaveNew(LoadSaveNewState State)
@@ -211,6 +214,41 @@ namespace DungeonRun
             previouslySelected = game1MenuItem;
             //open the screen
             displayState = DisplayState.Opening;
+
+
+
+            
+            //set the game displays from the gameData instances
+            texts[0].text = "Game 1 - " + PlayerData.game1.name;
+            game1Text.text = "time: " + PlayerData.game1.time;
+            game1Text.text += "\ndate: " + PlayerData.game1.date;
+            SetCrystals(PlayerData.game1.crystal1, game1Crystals[0]);
+            SetCrystals(PlayerData.game1.crystal2, game1Crystals[1]);
+            SetCrystals(PlayerData.game1.crystal3, game1Crystals[2]);
+            SetCrystals(PlayerData.game1.crystal4, game1Crystals[3]);
+            SetCrystals(PlayerData.game1.crystal5, game1Crystals[4]);
+            SetCrystals(PlayerData.game1.crystal6, game1Crystals[5]);
+
+            texts[1].text = "Game 2 - " + PlayerData.game2.name;
+            game2Text.text = "time: " + PlayerData.game2.time;
+            game2Text.text += "\ndate: " + PlayerData.game2.date;
+            SetCrystals(PlayerData.game2.crystal1, game2Crystals[0]);
+            SetCrystals(PlayerData.game2.crystal2, game2Crystals[1]);
+            SetCrystals(PlayerData.game2.crystal3, game2Crystals[2]);
+            SetCrystals(PlayerData.game2.crystal4, game2Crystals[3]);
+            SetCrystals(PlayerData.game2.crystal5, game2Crystals[4]);
+            SetCrystals(PlayerData.game2.crystal6, game2Crystals[5]);
+
+            texts[2].text = "Game 3 - " + PlayerData.game3.name;
+            game3Text.text = "time: " + PlayerData.game3.time;
+            game3Text.text += "\ndate: " + PlayerData.game3.date;
+            SetCrystals(PlayerData.game3.crystal1, game3Crystals[0]);
+            SetCrystals(PlayerData.game3.crystal2, game3Crystals[1]);
+            SetCrystals(PlayerData.game3.crystal3, game3Crystals[2]);
+            SetCrystals(PlayerData.game3.crystal4, game3Crystals[3]);
+            SetCrystals(PlayerData.game3.crystal5, game3Crystals[4]);
+            SetCrystals(PlayerData.game3.crystal6, game3Crystals[5]);
+            // ^ this needs to be integrated into the sections above
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -241,16 +279,16 @@ namespace DungeonRun
                     if (screenState == LoadSaveNewState.Load)
                     {   //load playerData
                         if (currentlySelected == game1MenuItem)
-                        { Functions_Backend.LoadGame(GameFile.Game1); }
+                        { Functions_Backend.LoadGame(GameFile.Game1, true); }
                         else if (currentlySelected == game2MenuItem)
-                        { Functions_Backend.LoadGame(GameFile.Game2); }
+                        { Functions_Backend.LoadGame(GameFile.Game2, true); }
                         else if (currentlySelected == game3MenuItem)
-                        { Functions_Backend.LoadGame(GameFile.Game3); }
+                        { Functions_Backend.LoadGame(GameFile.Game3, true); }
                     }
                     else //screenState == Save or New
                     {   //reset playerData, if screen is in 'new game' state
                         if (screenState == LoadSaveNewState.New)
-                        { PlayerData.saveData = new SaveData(); } 
+                        { PlayerData.current = new SaveData(); } 
                         //save playerData
                         if (currentlySelected == game1MenuItem)
                         { Functions_Backend.SaveGame(GameFile.Game1); }
@@ -414,6 +452,12 @@ namespace DungeonRun
             Crystals[3].compSprite.position = Crystals[2].compSprite.position + new Vector2(11, 0);
             Crystals[4].compSprite.position = Crystals[3].compSprite.position + new Vector2(11, 0);
             Crystals[5].compSprite.position = Crystals[4].compSprite.position + new Vector2(11, 0);
+        }
+
+        public void SetCrystals(Boolean isFilled, MenuItem menuItem)
+        {
+            if (isFilled)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItem); }
         }
 
     }

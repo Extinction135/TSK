@@ -30,10 +30,10 @@ namespace DungeonRun
             if (Actor == Pool.hero)
             {
                 Assets.Play(Assets.sfxHeroHit);
-                if (PlayerData.saveData.gold > 0) //if hero has any gold
+                if (PlayerData.current.gold > 0) //if hero has any gold
                 {   //drop a gold piece upon getting hit
                     Functions_Entity.SpawnEntity(ObjType.PickupRupee, Actor);
-                    PlayerData.saveData.gold--;
+                    PlayerData.current.gold--;
                 }
             }
             else { Assets.Play(Assets.sfxEnemyHit); }
@@ -68,7 +68,7 @@ namespace DungeonRun
             }
             else if (Actor.type == ActorType.Boss)
             {
-                PlayerData.saveData.crystal1 = true; //flip crystal1
+                PlayerData.current.crystal1 = true; //flip crystal1
                 DungeonRecord.beatDungeon = true; //player has beat the dungeon
                 Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Summary;
                 Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
@@ -299,7 +299,7 @@ namespace DungeonRun
                                     Actor.compSprite.position.Y,
                                     Direction.None);
                             //check to see if hero can use fairy bottle to selfrez
-                            if (PlayerData.saveData.bottleFairy)
+                            if (PlayerData.current.bottleFairy)
                             { Functions_Item.UseItem(MenuItemType.BottleFairy, Actor); }
                             else
                             {   //player has died, failed the dungeon

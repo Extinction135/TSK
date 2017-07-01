@@ -48,6 +48,35 @@ todo:
 
 
 
+Update LSN screen class to match LSN screen mockups
+
+added name, time, date strings to saveData class.
+updated LSN Screen with saveData instances for game1, 2, & 3.
+consolidated SavePlayerData() into SaveGame().
+consolidated LoadPlayerData() into LoadGame().
+
+updated SaveGame() and LoadGame() to take SaveData instance parameter.
+this allows Save() and Load() to work on more than just PlayerData.saveData.
+
+updated LoadGame() with boolean to control creation of dialog screen.
+LoadGame() can now silently load files without notifying the player.
+updated LSN screen to silently load all game files into it's instances.
+created SetCrystals() in LSN screen.
+playtested, there are several bugs, which were studied.
+
+renamed PlayerData.saveData to current.
+replaced many instances of 'saveData' with 'current'.
+added instances for game1, game2, and game3 saveData to PlayerData.
+we'll be loading the saved game data into these instances.
+current will point to one of the game saveData instances.
+
+updated SaveGame() to use PlayerData.current instance.
+updated LoadGame() to handle loading autosave, game1, game2, and game3 instances.
+playtested, previous bugs fixed.
+
+updated TitleScreen to silently load all game files, including autoSave.
+updated LSN screen to properly display all loaded game data.
+playtested, working as expected - finally.
 
 
 
@@ -55,57 +84,49 @@ todo:
 
 
 
-Standardize how ScreenRecs are Drawn
 
-updated Functions_Draw with Draw(ScreenRec) method.
-
-updated VendorScreen to use new Draw(ScreenRec) method.
-updated TitleScreen to use new Draw(ScreenRec) method.
-updated SummaryScreen to use new Draw(ScreenRec) method.
-updated OverworldScreen to use new Draw(ScreenRec) method.
-updated OverworldScreen to use a background ScreenRec.
-updated LSNSCreen to use new Draw(ScreenRec) method.
-updated InventoryScreen to use new Draw(ScreenRec) method.
-updated DungeonScreen to use new Draw(ScreenRec) method.
-updated DialogScreen to use new Draw(ScreenRec) method.
-
-playtested, working as expected.
+move gameDisplayData into it's own class, from LSN screen
+refactor how LSN screen displays game data
+we're duping alot of functionality / code
 
 
 
 
 
 
+Handling corrupt game files
+
+if a saved game file has correct XML headers, then game will load it
+any fields that match to saveData's fields will then be loaded
+theoretically, we could load an XML file that has no correct fields,
+and the game would never know.. 
+this makes it impossible to check if the loaded data is corrupt or accurate.
+only XML with malformed opening header tags will fail to load.
+
+if we try and load a file that is corrupted, and it fails..
+simply save new gamedata to that file address
+never notify player that the game data was corrupt, just overwrite it
 
 
 
 
 
+autosave should happen when the player quits game from the inventory screen
 
 
-Transition into game
-we can also create the dungeon screen with an overlay alpha greater than 1
-this will delay how quickly the screen 'appears'
-but we don't want it too take too long
-and we only want this delay when we come from LSN screen or ContinueGame
-so we'll need to set the delay in the dungeon screen's constructor
 
-Game Files Polish
-when player saves/creates game, update the game files on LSN screen
-we want to display the crystals properly in LSN screen
-and we want to save / display the total play time and creation date
-this data has not yet been added to the saveData
-additionally, this data should be a data class, because we're duping stuff on LSN screen
+
 
 Autosave++
-autosave should happen more often, like when a player purchases an item
-autosave should happen upon dungeon exit, as well as dungeon build.
+
 this is simply text that says 'autosaving...'
 with animated periods
 pops up under the worldUI
 is handled by WorldUI
 text should appear that says 'autosaving' when autosave happens
 this should appear underneath the HUD on the bottom left
+
+
 
 UDT++
 move U/D/T times to left of HUD

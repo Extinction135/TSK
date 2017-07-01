@@ -24,13 +24,13 @@ namespace DungeonRun
             {
                 if (Actor == Pool.hero)
                 {   
-                    if (PlayerData.saveData.bombsCurrent > 0)
+                    if (PlayerData.current.bombsCurrent > 0)
                     {
-                        PlayerData.saveData.bombsCurrent--;
+                        PlayerData.current.bombsCurrent--;
                         Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
                         Actor.lockTotal = 15;
                         //if hero used the last bomb, set the item to be unknown/none
-                        if (PlayerData.saveData.bombsCurrent == 0)
+                        if (PlayerData.current.bombsCurrent == 0)
                         { Actor.item = MenuItemType.Unknown; }
                     }
                 }
@@ -57,22 +57,22 @@ namespace DungeonRun
             {   //refill actor's health, draw attention, soundfx, update boolean
                 Actor.health = Actor.maxHealth;
                 Functions_Entity.SpawnEntity(ObjType.ParticleHealthPotion, Actor);
-                PlayerData.saveData.bottleHealth = false;
+                PlayerData.current.bottleHealth = false;
                 UseBottle(Type, Actor);
             }
             else if (Type == MenuItemType.BottleMagic)
             {   //refill the actor's magic
-                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicTotal;
+                PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
                 Functions_Entity.SpawnEntity(ObjType.ParticleMagicPotion, Actor);
-                PlayerData.saveData.bottleMagic = false;
+                PlayerData.current.bottleMagic = false;
                 UseBottle(Type, Actor);
             }
             else if (Type == MenuItemType.BottleFairy)
             {   //refill the actor's health and magic
                 Actor.health = Actor.maxHealth;
-                PlayerData.saveData.magicCurrent = PlayerData.saveData.magicTotal;
+                PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
                 Functions_Entity.SpawnEntity(ObjType.ParticleFairyBottle, Actor);
-                PlayerData.saveData.bottleFairy = false;
+                PlayerData.current.bottleFairy = false;
                 UseBottle(Type, Actor);
             }
 
@@ -85,9 +85,9 @@ namespace DungeonRun
             {
                 if(Actor == Pool.hero)
                 {   
-                    if (PlayerData.saveData.magicCurrent > 0)
+                    if (PlayerData.current.magicCurrent > 0)
                     {
-                        PlayerData.saveData.magicCurrent--;
+                        PlayerData.current.magicCurrent--;
                         Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Actor);
                         Actor.lockTotal = 15;
                     }
@@ -115,9 +115,9 @@ namespace DungeonRun
             {
                 if (Actor == Pool.hero)
                 {
-                    if (PlayerData.saveData.arrowsCurrent > 0)
+                    if (PlayerData.current.arrowsCurrent > 0)
                     {
-                        PlayerData.saveData.arrowsCurrent--;
+                        PlayerData.current.arrowsCurrent--;
                         Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Actor);
                         Functions_Entity.SpawnEntity(ObjType.ParticleBow, Actor);
                         Actor.lockTotal = 15;

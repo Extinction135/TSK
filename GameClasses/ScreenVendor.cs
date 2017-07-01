@@ -197,7 +197,7 @@ namespace DungeonRun
             if (Item.type == MenuItemType.Unknown) { return; }
 
             //see if hero has enough gold to purchase this item
-            if (PlayerData.saveData.gold >= Item.price)
+            if (PlayerData.current.gold >= Item.price)
             {
 
 
@@ -205,11 +205,11 @@ namespace DungeonRun
 
                 if (Item.type == MenuItemType.ItemBomb || Item.type == MenuItemType.ItemBomb3Pack)
                 {   //check to see if hero is full on bombs
-                    if (PlayerData.saveData.bombsCurrent < PlayerData.saveData.bombsMax)
+                    if (PlayerData.current.bombsCurrent < PlayerData.current.bombsMax)
                     {   //check to see how many bombs hero is purchasing
                         if (Item.type == MenuItemType.ItemBomb)
-                        { PlayerData.saveData.bombsCurrent++; }
-                        else { PlayerData.saveData.bombsCurrent += 3; }
+                        { PlayerData.current.bombsCurrent++; }
+                        else { PlayerData.current.bombsCurrent += 3; }
                         Pool.hero.item = MenuItemType.ItemBomb;
                         CompleteSale(Item);
                     }
@@ -217,9 +217,9 @@ namespace DungeonRun
                 }
                 else if (Item.type == MenuItemType.ItemArrowPack)
                 {   //check to see if hero is full on arrows
-                    if (PlayerData.saveData.arrowsCurrent < PlayerData.saveData.arrowsMax)
+                    if (PlayerData.current.arrowsCurrent < PlayerData.current.arrowsMax)
                     {   //increment the arrows, complete the sale
-                        PlayerData.saveData.arrowsCurrent += 20;
+                        PlayerData.current.arrowsCurrent += 20;
                         CompleteSale(Item);
                     }
                     else { DialogCarryingMaxAmount(); }
@@ -232,10 +232,10 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.BottleHealth)
                 {
-                    if (!PlayerData.saveData.bottleHealth)
+                    if (!PlayerData.current.bottleHealth)
                     {
-                        PlayerData.saveData.bottle1 = true;
-                        PlayerData.saveData.bottleHealth = true;
+                        PlayerData.current.bottle1 = true;
+                        PlayerData.current.bottleHealth = true;
                         Pool.hero.item = Item.type;
                         CompleteSale(Item);
                     }
@@ -243,10 +243,10 @@ namespace DungeonRun
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
                 {
-                    if (!PlayerData.saveData.bottleMagic)
+                    if (!PlayerData.current.bottleMagic)
                     {
-                        PlayerData.saveData.bottle2 = true;
-                        PlayerData.saveData.bottleMagic = true;
+                        PlayerData.current.bottle2 = true;
+                        PlayerData.current.bottleMagic = true;
                         Pool.hero.item = Item.type;
                         CompleteSale(Item);
                     }
@@ -254,10 +254,10 @@ namespace DungeonRun
                 }
                 else if (Item.type == MenuItemType.BottleFairy)
                 {
-                    if (!PlayerData.saveData.bottleFairy)
+                    if (!PlayerData.current.bottleFairy)
                     {
-                        PlayerData.saveData.bottle3 = true;
-                        PlayerData.saveData.bottleFairy = true;
+                        PlayerData.current.bottle3 = true;
+                        PlayerData.current.bottleFairy = true;
                         Pool.hero.item = Item.type;
                         CompleteSale(Item);
                     }
@@ -271,9 +271,9 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.MagicFireball)
                 {
-                    if (!PlayerData.saveData.magicFireball)
+                    if (!PlayerData.current.magicFireball)
                     {
-                        PlayerData.saveData.magicFireball = true;
+                        PlayerData.current.magicFireball = true;
                         Pool.hero.item = Item.type;
                         CompleteSale(Item);
                     }
@@ -287,9 +287,9 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.WeaponBow)
                 {
-                    if (!PlayerData.saveData.weaponBow)
+                    if (!PlayerData.current.weaponBow)
                     {
-                        PlayerData.saveData.weaponBow = true;
+                        PlayerData.current.weaponBow = true;
                         Pool.hero.weapon = Item.type;
                         CompleteSale(Item);
                     }
@@ -303,9 +303,9 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.ArmorChest)
                 {
-                    if (!PlayerData.saveData.armorChest)
+                    if (!PlayerData.current.armorChest)
                     {
-                        PlayerData.saveData.armorChest = true;
+                        PlayerData.current.armorChest = true;
                         Pool.hero.armor = Item.type;
                         CompleteSale(Item);
                     }
@@ -313,9 +313,9 @@ namespace DungeonRun
                 }
                 else if (Item.type == MenuItemType.ArmorCape)
                 {
-                    if (!PlayerData.saveData.armorCape)
+                    if (!PlayerData.current.armorCape)
                     {
-                        PlayerData.saveData.armorCape = true;
+                        PlayerData.current.armorCape = true;
                         Pool.hero.armor = Item.type;
                         CompleteSale(Item);
                     }
@@ -323,9 +323,9 @@ namespace DungeonRun
                 }
                 else if (Item.type == MenuItemType.ArmorRobe)
                 {
-                    if (!PlayerData.saveData.armorRobe)
+                    if (!PlayerData.current.armorRobe)
                     {
-                        PlayerData.saveData.armorRobe = true;
+                        PlayerData.current.armorRobe = true;
                         Pool.hero.armor = Item.type;
                         CompleteSale(Item);
                     }
@@ -339,9 +339,9 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.EquipmentRing)
                 {
-                    if (!PlayerData.saveData.equipmentRing)
+                    if (!PlayerData.current.equipmentRing)
                     {
-                        PlayerData.saveData.equipmentRing = true;
+                        PlayerData.current.equipmentRing = true;
                         Pool.hero.equipment = Item.type;
                         CompleteSale(Item);
                     }
@@ -357,7 +357,7 @@ namespace DungeonRun
 
         public void CompleteSale(MenuItem Item)
         {
-            PlayerData.saveData.gold -= Item.price; //deduct cost
+            PlayerData.current.gold -= Item.price; //deduct cost
             //update various widgets affected by this purchase
             Widgets.ForSale.SetItemsForSale(vendorType.type);
             Widgets.Info.Display(currentlySelected);

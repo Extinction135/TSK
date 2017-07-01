@@ -95,7 +95,7 @@ namespace DungeonRun
             Functions_Animation.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
 
             //display the player's gold, place gold display with gold menuItem
-            goldTracker = PlayerData.saveData.gold;
+            goldTracker = PlayerData.current.gold;
             Functions_Component.UpdateAmount(goldDisplay, goldTracker);
             Functions_Component.Move(goldDisplay, menuItems[4]);
         }
@@ -110,10 +110,10 @@ namespace DungeonRun
             Functions_Animation.Animate(equipment.compAnim, equipment.compSprite);
             //animate the gold menuItem to grab the player's attention
             Functions_Animation.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
-            if (goldTracker != PlayerData.saveData.gold)
+            if (goldTracker != PlayerData.current.gold)
             {   //count the gold amount up or down
-                if (goldTracker < PlayerData.saveData.gold) { goldTracker++; }
-                else if (goldTracker > PlayerData.saveData.gold) { goldTracker--; }
+                if (goldTracker < PlayerData.current.gold) { goldTracker++; }
+                else if (goldTracker > PlayerData.current.gold) { goldTracker--; }
                 Functions_Component.UpdateAmount(goldDisplay, goldTracker);
                 //randomly play the gold sound effect
                 if (Functions_Random.Int(0, 100) > 60) { Assets.Play(Assets.sfxGoldPickup); }

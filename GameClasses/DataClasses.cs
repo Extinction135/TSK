@@ -66,7 +66,10 @@ namespace DungeonRun
 
     public static class PlayerData
     {   //'wraps' saveData and provides global access to this instance
-        public static SaveData saveData = new SaveData();
+        public static SaveData current = new SaveData();
+        public static SaveData game1 = new SaveData();
+        public static SaveData game2 = new SaveData();
+        public static SaveData game3 = new SaveData();
     }
 
     public static class DungeonRecord
@@ -481,7 +484,7 @@ namespace DungeonRun
         public Color textDark = new Color(0, 0, 0);
     }
 
-    //Data Classes
+    //GameData Classes
 
     public class Actor
     {
@@ -553,6 +556,10 @@ namespace DungeonRun
 
     public class SaveData
     {   //data that will be saved/loaded from game session to session
+        public string name = "new";
+        public string time = "00:00:00";
+        public string date = "00.00.0000";
+
         public int gold = 99;
         public byte heartPieces = 4 * 3; //sets max health
 

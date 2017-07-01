@@ -72,7 +72,7 @@ namespace DungeonRun
             //reset maxHearts and pieceCounter, we will calculate them for this frame
             WorldUI.maxHearts = 0; WorldUI.pieceCounter = 0;
             //determine the max hearts that hero has, based on heart pieces
-            for (i = 0; i < PlayerData.saveData.heartPieces; i++)
+            for (i = 0; i < PlayerData.current.heartPieces; i++)
             {
                 WorldUI.pieceCounter++; //hearts are groups of 4 pieces
                 if (WorldUI.pieceCounter == 4)
@@ -112,29 +112,29 @@ namespace DungeonRun
             #region Update & Limit Hero's Magic
 
             //get the number of unlocked magic meter pieces
-            PlayerData.saveData.magicTotal = PlayerData.saveData.magicUnlocked;
+            PlayerData.current.magicTotal = PlayerData.current.magicUnlocked;
 
             //add the robe effect to the magicTotal value
             if (Pool.hero.armor == MenuItemType.ArmorRobe)
-            { PlayerData.saveData.magicTotal += 4; }
+            { PlayerData.current.magicTotal += 4; }
 
             //limit the magicTotal amount to 9
-            if (PlayerData.saveData.magicTotal > 9)
-            { PlayerData.saveData.magicTotal = 9; }
+            if (PlayerData.current.magicTotal > 9)
+            { PlayerData.current.magicTotal = 9; }
 
             //limit the current magic amount to the max magic amount
-            if (PlayerData.saveData.magicCurrent > PlayerData.saveData.magicTotal)
-            { PlayerData.saveData.magicCurrent = PlayerData.saveData.magicTotal; }
+            if (PlayerData.current.magicCurrent > PlayerData.current.magicTotal)
+            { PlayerData.current.magicCurrent = PlayerData.current.magicTotal; }
 
             //loop thru the magic meter sprites, setting their frame
             for (i = 0; i < 9; i++)
             {   //reset sprite to locked
                 WorldUI.meterPieces[i + 1].currentFrame.X = 31;
                 //set available bars
-                if (i < PlayerData.saveData.magicTotal)
+                if (i < PlayerData.current.magicTotal)
                 { WorldUI.meterPieces[i + 1].currentFrame.X = 30; }
                 //set filled bars
-                if (i < PlayerData.saveData.magicCurrent)
+                if (i < PlayerData.current.magicCurrent)
                 { WorldUI.meterPieces[i + 1].currentFrame.X = 29; }
             }
 
@@ -169,13 +169,13 @@ namespace DungeonRun
 
             #region Limit Hero's arrows, bombs, & gold
 
-            if (PlayerData.saveData.arrowsCurrent > PlayerData.saveData.arrowsMax)
-            { PlayerData.saveData.arrowsCurrent = PlayerData.saveData.arrowsMax; }
+            if (PlayerData.current.arrowsCurrent > PlayerData.current.arrowsMax)
+            { PlayerData.current.arrowsCurrent = PlayerData.current.arrowsMax; }
 
-            if (PlayerData.saveData.bombsCurrent > PlayerData.saveData.bombsMax)
-            { PlayerData.saveData.bombsCurrent = PlayerData.saveData.bombsMax; }
+            if (PlayerData.current.bombsCurrent > PlayerData.current.bombsMax)
+            { PlayerData.current.bombsCurrent = PlayerData.current.bombsMax; }
 
-            if (PlayerData.saveData.gold > 99) { PlayerData.saveData.gold = 99; }
+            if (PlayerData.current.gold > 99) { PlayerData.current.gold = 99; }
 
             #endregion
 

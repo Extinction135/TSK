@@ -78,13 +78,13 @@ namespace DungeonRun
                     if (Obj.type == ObjType.PickupHeart)
                     { Actor.health++; Assets.Play(Assets.sfxHeartPickup); }
                     else if (Obj.type == ObjType.PickupRupee)
-                    { PlayerData.saveData.gold++; Assets.Play(Assets.sfxGoldPickup); }
+                    { PlayerData.current.gold++; Assets.Play(Assets.sfxGoldPickup); }
                     else if (Obj.type == ObjType.PickupMagic)
-                    { PlayerData.saveData.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    { PlayerData.current.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
                     else if (Obj.type == ObjType.PickupArrow)
-                    { PlayerData.saveData.arrowsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    { PlayerData.current.arrowsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
                     else if (Obj.type == ObjType.PickupBomb)
-                    { PlayerData.saveData.bombsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    { PlayerData.current.bombsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
                     //end the items life
                     Obj.lifetime = 1; Obj.lifeCounter = 2;
                 }
@@ -123,7 +123,7 @@ namespace DungeonRun
                     {
                         Functions_Entity.SpawnEntity(ObjType.ParticleRewardGold, Actor);
                         Assets.Play(Assets.sfxReward);
-                        PlayerData.saveData.gold += 20;
+                        PlayerData.current.gold += 20;
                     }
                     else if (Obj.type == ObjType.ChestKey)
                     {
@@ -144,7 +144,7 @@ namespace DungeonRun
                         else //this does not complete a heart, display the heart piece reward
                         { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartPiece, Actor); }
                         Assets.Play(Assets.sfxReward);
-                        PlayerData.saveData.heartPieces++;
+                        PlayerData.current.heartPieces++;
                     }
                     Assets.Play(Assets.sfxChestOpen);
                     Functions_GameObject.SetType(Obj, ObjType.ChestEmpty);

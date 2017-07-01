@@ -94,7 +94,7 @@ namespace DungeonRun
             //reward player gold, if dungeon was completed
             if (DungeonRecord.beatDungeon)
             { rewardTotal = 99; } else { rewardTotal = 0; }
-            PlayerData.saveData.gold += rewardTotal;
+            PlayerData.current.gold += rewardTotal;
         }
 
         public override void HandleInput(GameTime GameTime)

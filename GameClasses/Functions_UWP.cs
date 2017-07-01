@@ -53,69 +53,79 @@ namespace DungeonRun
             if (Type == GameFile.Game1) { filename = "game1.xml"; }
             else if (Type == GameFile.Game2) { filename = "game2.xml"; }
             else if (Type == GameFile.Game3) { filename = "game3.xml"; }
+            //Debug.WriteLine("save/load file: " + localFolder.Path + @"\" + filename);
         }
 
         public static async void SaveGame(GameFile Type)
         {
             SetFilename(Type);
-            //Debug.WriteLine("saving: " + localFolder.Path + @"\" + filename);
             StorageFile file = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            SavePlayerData(file);
+            var serializer = new XmlSerializer(typeof(SaveData));
+            Stream stream = await file.OpenStreamForWriteAsync();
+            using (stream) //save the playerData, to saveFile address
+            { serializer.Serialize(stream, PlayerData.current); }
         }
 
-        public static async void LoadGame(GameFile Type)
+        public static async void LoadGame(GameFile Type, Boolean showDialogScreen)
         {
             SetFilename(Type);
-            //Debug.WriteLine("loading: " + localFolder.Path + @"\" + filename);
+            Boolean autoSave = false;
+            Dialog dialogType = Dialog.Default;
+            //Debug.WriteLine("begin file load");
             try
             {
                 StorageFile file = await localFolder.GetFileAsync(filename);
-                if (Type == GameFile.AutoSave) { LoadPlayerData(file, true); }
-                else { LoadPlayerData(file, false); }
-            }
-            catch
-            {   //file does not exist, cannot be loaded
-                SaveGame(Type); //so save the current data to file address
-                ScreenManager.AddScreen(new ScreenDialog(Dialog.GameNotFound));
-            }
-        }
-  
+                //Debug.WriteLine("get storage file");
+                try
+                {   //load gameFile into saveData parameter
+                    if (file != null)
+                    {
+                        //Debug.WriteLine("file isn't null");
+                        var serializer = new XmlSerializer(typeof(SaveData));
+                        Stream stream = await file.OpenStreamForReadAsync();
+                        using (stream)
+                        {
+                            if (Type == GameFile.AutoSave)
+                            {
+                                PlayerData.current = (SaveData)serializer.Deserialize(stream);
+                                autoSave = true;
+                            }
+                            else if (Type == GameFile.Game1)
+                            {
+                                PlayerData.game1 = (SaveData)serializer.Deserialize(stream);
+                                PlayerData.current = PlayerData.game1;
+                            }
+                            else if (Type == GameFile.Game2)
+                            {
+                                PlayerData.game2 = (SaveData)serializer.Deserialize(stream);
+                                PlayerData.current = PlayerData.game2;
+                            }
+                            else if (Type == GameFile.Game3)
+                            {
+                                PlayerData.game3 = (SaveData)serializer.Deserialize(stream);
+                                PlayerData.current = PlayerData.game3;
+                            }
+                        }
+                        //Debug.WriteLine("deserialize complete");
 
-
-        public static async void SavePlayerData(StorageFile gameFile)
-        {   //save the playerData, to saveFile address
-            var serializer = new XmlSerializer(typeof(SaveData));
-            Stream stream = await gameFile.OpenStreamForWriteAsync();
-            using (stream)
-            { serializer.Serialize(stream, PlayerData.saveData); }
-        }
-
-        public static async void LoadPlayerData(StorageFile gameFile, Boolean autoSave)
-        {
-            try
-            {   //load gameFile into PlayerData.saveData
-                if (gameFile != null)
+                        if (autoSave) //let player know file has been loaded
+                        { dialogType = Dialog.GameAutoSaved; } else { dialogType = Dialog.GameLoaded; }
+                    }
+                }
+                catch //create a dialog screen alerting user there was a problem loading the saved game file
                 {
-                    var serializer = new XmlSerializer(typeof(SaveData));
-                    Stream stream = await gameFile.OpenStreamForReadAsync();
-                    using (stream)
-                    { PlayerData.saveData = (SaveData)serializer.Deserialize(stream); }
-
-                    if (autoSave) //create dialog screen, let player know file has been loaded
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameAutoSaved)); }
-                    else { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoaded)); }
+                    dialogType = Dialog.GameLoadFailed;
+                    //Debug.WriteLine("problem loading");
                 }
             }
-            catch
-            {   //create a dialog screen alerting user there was a problem loading the saved game file
-                ScreenManager.AddScreen(new ScreenDialog(Dialog.GameLoadFailed));
-                //Debug.WriteLine("loading: " + localFolder.Path + @"\" + filename);
-            }
-            finally
+            catch //file does not exist, cannot be loaded, save the current data to file address
             {
-                //inspect the loaded saveData
-                //Functions_Debug.Inspect(PlayerData.saveData);
+                //Debug.WriteLine("file does not exist");
+                SaveGame(Type); dialogType = Dialog.GameNotFound;
             }
+            //if we should display the dialogScreen, do so with the proper dialogType
+            if (showDialogScreen) { ScreenManager.AddScreen(new ScreenDialog(dialogType)); }
+            //Functions_Debug.Inspect(PlayerData.saveData);
         }
 
 

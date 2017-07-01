@@ -153,6 +153,12 @@ namespace DungeonRun
             displayState = DisplayState.Opening;
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
+
+            //silently load all game files
+            Functions_Backend.LoadGame(GameFile.Game1, false);
+            Functions_Backend.LoadGame(GameFile.Game2, false);
+            Functions_Backend.LoadGame(GameFile.Game3, false);
+            Functions_Backend.LoadGame(GameFile.AutoSave, false);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -169,7 +175,7 @@ namespace DungeonRun
 
                     if (currentlySelected.type == MenuItemType.OptionsContinue)
                     {
-                        Functions_Backend.LoadGame(GameFile.AutoSave);
+                        Functions_Backend.LoadGame(GameFile.AutoSave, true);
                     }
                     else if (currentlySelected.type == MenuItemType.OptionsNewGame)
                     {
@@ -182,7 +188,8 @@ namespace DungeonRun
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {
                         displayState = DisplayState.Closing; //fadeout, remove screen
-                    }
+                    } 
+
                     else if (currentlySelected.type == MenuItemType.OptionsAudioCtrls)
                     {
                         //create audio ctrls screen
