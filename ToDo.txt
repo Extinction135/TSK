@@ -48,37 +48,16 @@ todo:
 
 
 
-Update LSN screen class to match LSN screen mockups
-
-added name, time, date strings to saveData class.
-updated LSN Screen with saveData instances for game1, 2, & 3.
-consolidated SavePlayerData() into SaveGame().
-consolidated LoadPlayerData() into LoadGame().
-
-updated SaveGame() and LoadGame() to take SaveData instance parameter.
-this allows Save() and Load() to work on more than just PlayerData.saveData.
-
-updated LoadGame() with boolean to control creation of dialog screen.
-LoadGame() can now silently load files without notifying the player.
-updated LSN screen to silently load all game files into it's instances.
-created SetCrystals() in LSN screen.
-playtested, there are several bugs, which were studied.
-
-renamed PlayerData.saveData to current.
-replaced many instances of 'saveData' with 'current'.
-added instances for game1, game2, and game3 saveData to PlayerData.
-we'll be loading the saved game data into these instances.
-current will point to one of the game saveData instances.
-
-updated SaveGame() to use PlayerData.current instance.
-updated LoadGame() to handle loading autosave, game1, game2, and game3 instances.
-playtested, previous bugs fixed.
-
-updated TitleScreen to silently load all game files, including autoSave.
-updated LSN screen to properly display all loaded game data.
-playtested, working as expected - finally.
 
 
+
+
+Reduce repeated fields in LSN screen
+
+created GameDisplayData data class.
+updated LSN Screen to use GameDisplayData instances.
+added Functions_Draw.Draw(GameDisplayData).
+playtested, working as expected.
 
 
 

@@ -24,23 +24,11 @@ namespace DungeonRun
         //animations used in game data display
         ComponentAnimation playerStationary;
         ComponentAnimation playerWalking;
-
-        //these should be a data class
-        //the game data display components
-        MenuItem game1MenuItem;
-        MenuItem game2MenuItem;
-        MenuItem game3MenuItem;
-        ComponentSprite game1Player;
-        ComponentSprite game2Player;
-        ComponentSprite game3Player;
-        ComponentText game1Text;
-        ComponentText game2Text;
-        ComponentText game3Text;
-        List<MenuItem> game1Crystals;
-        List<MenuItem> game2Crystals;
-        List<MenuItem> game3Crystals;
-
-        //these point to a menuItem
+        //create the game display data
+        GameDisplayData game1 = new GameDisplayData();
+        GameDisplayData game2 = new GameDisplayData();
+        GameDisplayData game3 = new GameDisplayData();
+        //these point to a GameDisplayData.menuItem above
         MenuItem currentlySelected;
         MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
@@ -62,7 +50,9 @@ namespace DungeonRun
             background.fadeInSpeed = 0.03f;
             background.maxAlpha = 0.8f;
 
-            //create window and dividers
+
+            #region Create & set window and dividers
+
             window = new MenuWindow(
                 new Point(16 * 13 + 8 + 4, 16 * 6),
                 new Point(16 * 12 + 8, 16 * 11), "Default ");
@@ -71,7 +61,6 @@ namespace DungeonRun
                 window.lines.Add(new MenuRectangle(new Point(0, 0),
                     new Point(0, 0), Assets.colorScheme.windowInset));
             }
-            //reset window and dividers
             window.lines[2].position.Y = window.background.position.Y + 16 * 2;
             window.lines[3].position.Y = window.background.position.Y + 16 * 4;
             window.lines[4].position.Y = window.background.position.Y + 16 * 5;
@@ -81,29 +70,24 @@ namespace DungeonRun
                 16 * 13 + 8 + 4, 16 * 6,
                 new Point(16 * 12 + 8, 16 * 11), "Default");
 
+            #endregion
+
 
             #region Setup Games 1-3 MenuItems
 
-            game1MenuItem = new MenuItem();
-            game2MenuItem = new MenuItem();
-            game3MenuItem = new MenuItem();
-            //set menuItem sprites
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, game1MenuItem);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, game2MenuItem);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, game3MenuItem);
             //set X positions
-            game1MenuItem.compSprite.position.X = window.background.rec.X + 35 + 8;
-            game2MenuItem.compSprite.position.X = game1MenuItem.compSprite.position.X;
-            game3MenuItem.compSprite.position.X = game1MenuItem.compSprite.position.X;
+            game1.menuItem.compSprite.position.X = window.background.rec.X + 35 + 8;
+            game2.menuItem.compSprite.position.X = game1.menuItem.compSprite.position.X;
+            game3.menuItem.compSprite.position.X = game1.menuItem.compSprite.position.X;
             //set Y positions
-            game1MenuItem.compSprite.position.Y = window.background.rec.Y + 16 * 3;
-            game2MenuItem.compSprite.position.Y = window.background.rec.Y + 16 * 6;
-            game3MenuItem.compSprite.position.Y = window.background.rec.Y + 16 * 9;
+            game1.menuItem.compSprite.position.Y = window.background.rec.Y + 16 * 3;
+            game2.menuItem.compSprite.position.Y = window.background.rec.Y + 16 * 6;
+            game3.menuItem.compSprite.position.Y = window.background.rec.Y + 16 * 9;
             //set neighbors
-            game1MenuItem.neighborDown = game2MenuItem;
-            game2MenuItem.neighborDown = game3MenuItem;
-            game3MenuItem.neighborUp = game2MenuItem;
-            game2MenuItem.neighborUp = game1MenuItem;
+            game1.menuItem.neighborDown = game2.menuItem;
+            game2.menuItem.neighborDown = game3.menuItem;
+            game3.menuItem.neighborUp = game2.menuItem;
+            game2.menuItem.neighborUp = game1.menuItem;
 
             #endregion
 
@@ -111,13 +95,13 @@ namespace DungeonRun
             #region Setup Game Title Texts
 
             texts = new List<ComponentText>();
-            texts.Add(new ComponentText(Assets.font, "Game 1 - test",
+            texts.Add(new ComponentText(Assets.font, "Game 1 - " + PlayerData.game1.name,
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 1 + 1),
                 Assets.colorScheme.textDark));
-            texts.Add(new ComponentText(Assets.font, "Game 2 - test",
+            texts.Add(new ComponentText(Assets.font, "Game 2 - " + PlayerData.game2.name,
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 4 + 1),
                 Assets.colorScheme.textDark));
-            texts.Add(new ComponentText(Assets.font, "Game 3 - test",
+            texts.Add(new ComponentText(Assets.font, "Game 3 - " + PlayerData.game3.name,
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 7 + 1),
                 Assets.colorScheme.textDark));
 
@@ -126,15 +110,9 @@ namespace DungeonRun
 
             #region Setup Game Player Sprites + Animations
 
-            game1Player = new ComponentSprite(Assets.heroSheet,
-                game1MenuItem.compSprite.position, 
-                new Byte4(0, 0, 0, 0), new Point(16, 16));
-            game2Player = new ComponentSprite(Assets.heroSheet,
-                game2MenuItem.compSprite.position,
-                new Byte4(0, 0, 0, 0), new Point(16, 16));
-            game3Player = new ComponentSprite(Assets.heroSheet,
-                game3MenuItem.compSprite.position,
-                new Byte4(0, 0, 0, 0), new Point(16, 16));
+            game1.hero.position = game1.menuItem.compSprite.position;
+            game2.hero.position = game2.menuItem.compSprite.position;
+            game3.hero.position = game3.menuItem.compSprite.position;
 
             playerStationary = new ComponentAnimation();
             playerStationary.currentAnimation = new List<Byte4> { new Byte4(0, 0, 0, 0) };
@@ -147,37 +125,38 @@ namespace DungeonRun
 
             #region Setup Game Texts
 
-            game1Text = new ComponentText(Assets.font, "time: 12:34:56 \ndate: 01.23.4567",
-                game1MenuItem.compSprite.position + new Vector2(16, -12), 
-                Assets.colorScheme.textDark);
-            game2Text = new ComponentText(Assets.font, "time: 12:34:56 \ndate: 01.23.4567",
-                game2MenuItem.compSprite.position + new Vector2(16, -12),
-                Assets.colorScheme.textDark);
-            game3Text = new ComponentText(Assets.font, "time: - \ndate: -",
-                game3MenuItem.compSprite.position + new Vector2(16, -12),
-                Assets.colorScheme.textDark);
+            game1.timeDateText.text = "time: " + PlayerData.game1.time;
+            game1.timeDateText.text += "\ndate: " + PlayerData.game1.date;
+            game1.timeDateText.position = game1.menuItem.compSprite.position + new Vector2(16, -12);
+
+            game2.timeDateText.text = "time: " + PlayerData.game2.time;
+            game2.timeDateText.text += "\ndate: " + PlayerData.game2.date;
+            game2.timeDateText.position = game2.menuItem.compSprite.position + new Vector2(16, -12);
+
+            game3.timeDateText.text = "time: " + PlayerData.game3.time;
+            game3.timeDateText.text += "\ndate: " + PlayerData.game3.date;
+            game3.timeDateText.position = game3.menuItem.compSprite.position + new Vector2(16, -12);
 
             #endregion
 
 
             #region Setup Games 1-3 Crystals
-
-            game1Crystals = new List<MenuItem>();
-            game2Crystals = new List<MenuItem>();
-            game3Crystals = new List<MenuItem>();
+            
             for (i = 0; i < 6; i++)
             {
-                game1Crystals.Add(new MenuItem());
-                game2Crystals.Add(new MenuItem());
-                game3Crystals.Add(new MenuItem());
-                Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, game1Crystals[i]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, game2Crystals[i]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, game3Crystals[i]);
+                game1.crystals.Add(new MenuItem());
+                game2.crystals.Add(new MenuItem());
+                game3.crystals.Add(new MenuItem());
+                Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, game1.crystals[i]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, game2.crystals[i]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, game3.crystals[i]);
             }
-
-            PlaceCrystals(game1Crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 3));
-            PlaceCrystals(game2Crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 6));
-            PlaceCrystals(game3Crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 9));
+            PlaceCrystals(game1.crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 3));
+            PlaceCrystals(game2.crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 6));
+            PlaceCrystals(game3.crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 9));
+            SetCrystals(PlayerData.game1, game1.crystals);
+            SetCrystals(PlayerData.game2, game2.crystals);
+            SetCrystals(PlayerData.game3, game3.crystals);
 
             #endregion
 
@@ -210,45 +189,10 @@ namespace DungeonRun
 
 
             //set the currently selected menuItem to the first inventory menuItem
-            currentlySelected = game1MenuItem;
-            previouslySelected = game1MenuItem;
+            currentlySelected = game1.menuItem;
+            previouslySelected = game1.menuItem;
             //open the screen
             displayState = DisplayState.Opening;
-
-
-
-            
-            //set the game displays from the gameData instances
-            texts[0].text = "Game 1 - " + PlayerData.game1.name;
-            game1Text.text = "time: " + PlayerData.game1.time;
-            game1Text.text += "\ndate: " + PlayerData.game1.date;
-            SetCrystals(PlayerData.game1.crystal1, game1Crystals[0]);
-            SetCrystals(PlayerData.game1.crystal2, game1Crystals[1]);
-            SetCrystals(PlayerData.game1.crystal3, game1Crystals[2]);
-            SetCrystals(PlayerData.game1.crystal4, game1Crystals[3]);
-            SetCrystals(PlayerData.game1.crystal5, game1Crystals[4]);
-            SetCrystals(PlayerData.game1.crystal6, game1Crystals[5]);
-
-            texts[1].text = "Game 2 - " + PlayerData.game2.name;
-            game2Text.text = "time: " + PlayerData.game2.time;
-            game2Text.text += "\ndate: " + PlayerData.game2.date;
-            SetCrystals(PlayerData.game2.crystal1, game2Crystals[0]);
-            SetCrystals(PlayerData.game2.crystal2, game2Crystals[1]);
-            SetCrystals(PlayerData.game2.crystal3, game2Crystals[2]);
-            SetCrystals(PlayerData.game2.crystal4, game2Crystals[3]);
-            SetCrystals(PlayerData.game2.crystal5, game2Crystals[4]);
-            SetCrystals(PlayerData.game2.crystal6, game2Crystals[5]);
-
-            texts[2].text = "Game 3 - " + PlayerData.game3.name;
-            game3Text.text = "time: " + PlayerData.game3.time;
-            game3Text.text += "\ndate: " + PlayerData.game3.date;
-            SetCrystals(PlayerData.game3.crystal1, game3Crystals[0]);
-            SetCrystals(PlayerData.game3.crystal2, game3Crystals[1]);
-            SetCrystals(PlayerData.game3.crystal3, game3Crystals[2]);
-            SetCrystals(PlayerData.game3.crystal4, game3Crystals[3]);
-            SetCrystals(PlayerData.game3.crystal5, game3Crystals[4]);
-            SetCrystals(PlayerData.game3.crystal6, game3Crystals[5]);
-            // ^ this needs to be integrated into the sections above
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -278,11 +222,11 @@ namespace DungeonRun
                 {
                     if (screenState == LoadSaveNewState.Load)
                     {   //load playerData
-                        if (currentlySelected == game1MenuItem)
+                        if (currentlySelected == game1.menuItem)
                         { Functions_Backend.LoadGame(GameFile.Game1, true); }
-                        else if (currentlySelected == game2MenuItem)
+                        else if (currentlySelected == game2.menuItem)
                         { Functions_Backend.LoadGame(GameFile.Game2, true); }
-                        else if (currentlySelected == game3MenuItem)
+                        else if (currentlySelected == game3.menuItem)
                         { Functions_Backend.LoadGame(GameFile.Game3, true); }
                     }
                     else //screenState == Save or New
@@ -290,11 +234,11 @@ namespace DungeonRun
                         if (screenState == LoadSaveNewState.New)
                         { PlayerData.current = new SaveData(); } 
                         //save playerData
-                        if (currentlySelected == game1MenuItem)
+                        if (currentlySelected == game1.menuItem)
                         { Functions_Backend.SaveGame(GameFile.Game1); }
-                        else if (currentlySelected == game2MenuItem)
+                        else if (currentlySelected == game2.menuItem)
                         { Functions_Backend.SaveGame(GameFile.Game2); }
-                        else if (currentlySelected == game3MenuItem)
+                        else if (currentlySelected == game3.menuItem)
                         { Functions_Backend.SaveGame(GameFile.Game3); }
                         //create dialog screen, let player know file has been created or saved
                         if (screenState == LoadSaveNewState.New)
@@ -390,17 +334,17 @@ namespace DungeonRun
 
                 #region Set the animation list for each game player sprite
 
-                if (currentlySelected == game1MenuItem)
-                { Functions_Animation.Animate(playerWalking, game1Player); }
-                else { Functions_Animation.Animate(playerStationary, game1Player); }
+                if (currentlySelected == game1.menuItem)
+                { Functions_Animation.Animate(playerWalking, game1.hero); }
+                else { Functions_Animation.Animate(playerStationary, game1.hero); }
 
-                if (currentlySelected == game2MenuItem)
-                { Functions_Animation.Animate(playerWalking, game2Player); }
-                else { Functions_Animation.Animate(playerStationary, game2Player); }
+                if (currentlySelected == game2.menuItem)
+                { Functions_Animation.Animate(playerWalking, game2.hero); }
+                else { Functions_Animation.Animate(playerStationary, game2.hero); }
 
-                if (currentlySelected == game3MenuItem)
-                { Functions_Animation.Animate(playerWalking, game3Player); }
-                else { Functions_Animation.Animate(playerStationary, game3Player); }
+                if (currentlySelected == game3.menuItem)
+                { Functions_Animation.Animate(playerWalking, game3.hero); }
+                else { Functions_Animation.Animate(playerStationary, game3.hero); }
 
                 #endregion
 
@@ -415,29 +359,13 @@ namespace DungeonRun
             Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
-                Functions_Draw.Draw(game1MenuItem.compSprite);
-                Functions_Draw.Draw(game2MenuItem.compSprite);
-                Functions_Draw.Draw(game3MenuItem.compSprite);
-
-                Functions_Draw.Draw(game1Player);
-                Functions_Draw.Draw(game2Player);
-                Functions_Draw.Draw(game3Player);
-
-                Functions_Draw.Draw(game1Text);
-                Functions_Draw.Draw(game2Text);
-                Functions_Draw.Draw(game3Text);
-
                 for (i = 0; i < texts.Count; i++) { Functions_Draw.Draw(texts[i]); }
+                Functions_Draw.Draw(game1);
+                Functions_Draw.Draw(game2);
+                Functions_Draw.Draw(game3);
                 Functions_Draw.Draw(selectionBox);
                 Functions_Draw.Draw(arrow);
                 Functions_Draw.Draw(actionText);
-
-                for (i = 0; i < game1Crystals.Count; i++)
-                {
-                    Functions_Draw.Draw(game1Crystals[i].compSprite);
-                    Functions_Draw.Draw(game2Crystals[i].compSprite);
-                    Functions_Draw.Draw(game3Crystals[i].compSprite);
-                }
             }
             ScreenManager.spriteBatch.End();
         }
@@ -454,10 +382,14 @@ namespace DungeonRun
             Crystals[5].compSprite.position = Crystals[4].compSprite.position + new Vector2(11, 0);
         }
 
-        public void SetCrystals(Boolean isFilled, MenuItem menuItem)
+        public void SetCrystals(SaveData saveData, List<MenuItem> Crystals)
         {
-            if (isFilled)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItem); }
+            if (saveData.crystal1) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[0]); }
+            if (saveData.crystal2) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[1]); }
+            if (saveData.crystal3) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[2]); }
+            if (saveData.crystal4) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[3]); }
+            if (saveData.crystal5) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[4]); }
+            if (saveData.crystal6) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[5]); }
         }
 
     }

@@ -140,6 +140,14 @@ namespace DungeonRun
                 Assets.colorScheme.overlay * Rec.alpha);
         }
 
+        public static void Draw(GameDisplayData Display)
+        {
+            Draw(Display.menuItem.compSprite);
+            Draw(Display.hero);
+            Draw(Display.timeDateText);
+            for (i = 0; i < 6; i++) { Draw(Display.crystals[i].compSprite); }
+        }
+
 
 
         public static void DrawDebugInfo()

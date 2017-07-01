@@ -65,7 +65,7 @@ namespace DungeonRun
     }
 
     public static class PlayerData
-    {   //'wraps' saveData and provides global access to this instance
+    {   //current points to game1/game2/game3, or loads autoSave data
         public static SaveData current = new SaveData();
         public static SaveData game1 = new SaveData();
         public static SaveData game2 = new SaveData();
@@ -87,7 +87,6 @@ namespace DungeonRun
             timer = new Stopwatch();
             enemyCount = 0;
             totalDamage = 0;
-
             timer.Reset();
         }
     }
@@ -606,6 +605,18 @@ namespace DungeonRun
         public Boolean crystal4 = false;
         public Boolean crystal5 = false;
         public Boolean crystal6 = false;
+    }
+
+    public class GameDisplayData
+    {   //this is used by LoadSaveNewScreen to display a game's data visually
+        public MenuItem menuItem = new MenuItem();
+        public ComponentSprite hero = new ComponentSprite(
+            Assets.heroSheet, new Vector2(-100, 1000),
+            new Byte4(0, 0, 0, 0), new Point(16, 16));
+        public ComponentText timeDateText = new ComponentText(
+            Assets.font, "time:/ndate:", new Vector2(-100, 1000),
+            Assets.colorScheme.textDark);
+        public List<MenuItem> crystals = new List<MenuItem>();
     }
 
     //UI Classes
