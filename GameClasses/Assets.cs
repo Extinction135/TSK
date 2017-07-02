@@ -122,7 +122,7 @@ namespace DungeonRun
             {   //find a sfx instance not playing, play it, exit loop
                 if (List[i].State == SoundState.Stopped)
                 { List[i].Play(); i = listSize; }
-                else { List[i].Stop(); }
+                //else { List[i].Stop(); } //causes clipping
             }
         }
 
