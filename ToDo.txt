@@ -53,23 +53,11 @@ todo:
 
 
 
+Autosave current game when player exits to Title from Inventory
 
-
-
-Handle Corrupt game files & FirstRun Setup - Part 1
-
-upon a failure to load a gamefile, game now saves current game data to that file.
-this 'fixes' the corrupt gamefile, but overwrites the old corrupt data.
-in other words, attempting to load a malformed gamefile overwrites it with current data.
-
-updated & organized Functions_Backend.LoadGame().
-updated DialogScreen to notify player that the corrupt file was overwritten.
-playtested first run case, working as expected, new files are created.
-playtested loading corrupt gamefile, working as expected.
-
-bonus: any corrupt game files are silently 'fixed to new' when title screen loads.
-so the only way to get the corrupted game dialog screen is if
-a gamefile gets malformed during gameplay, outside of the title screen.
+added call to autosave game from InventoryScreen.
+this ensures the player's progress is current, right up to exit.
+playtested, working as expected.
 
 
 
@@ -79,13 +67,6 @@ a gamefile gets malformed during gameplay, outside of the title screen.
 
 
 
-
-
-
-
-Autosave++
-
-autosave should happen when the player quits game from the inventory screen
 
 there should be a visual indication that autosave is happening
 this is simply text that says 'autosaving...'
