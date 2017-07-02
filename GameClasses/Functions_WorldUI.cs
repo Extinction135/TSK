@@ -166,14 +166,14 @@ namespace DungeonRun
             }
             Functions_Draw.Draw(WorldUI.currentWeapon.compSprite);
             Functions_Draw.Draw(WorldUI.currentItem.compSprite);
-            if (!Flags.Release)
+            Functions_Draw.Draw(WorldUI.autosaveText);
+            if (Flags.DrawUDT)
             {
                 WorldUI.frametime.text = "U:" + Timing.updateTime.Milliseconds;
                 WorldUI.frametime.text += "\nD:" + Timing.drawTime.Milliseconds;
                 WorldUI.frametime.text += "\nT:" + Timing.totalTime.Milliseconds;
                 Functions_Draw.Draw(WorldUI.frametime);
             }
-            Functions_Draw.Draw(WorldUI.autosaveText);
         }
 
 
@@ -205,8 +205,8 @@ namespace DungeonRun
             }
 
             //place frametime & autosave texts
-            WorldUI.frametime.position.X = 650 - 55;
-            WorldUI.frametime.position.Y = 41;
+            WorldUI.frametime.position.X = 32;
+            WorldUI.frametime.position.Y = 41+8+1;
             WorldUI.autosaveText.position.X = 54;
             WorldUI.autosaveText.position.Y = 81;
         }

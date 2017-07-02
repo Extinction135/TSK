@@ -52,36 +52,15 @@ todo:
 
 
 
+Improve the Release timing text placement
+
+moved UDT text to left of WorldUI.
+added boolean DrawUDT to Flags class.
+updated Flags constructor to set UDT flag true for release.
+updated Functions_WorldUI.Draw() to check Flags.DrawUDT.
+playtested in release mode, working as expected.
 
 
-Visually indicate the game is autosaving, via WorldUI
-
-added a ComponentText instanced named autosaveText to WorldUI class.
-updated Functions_WorldUI to Move() and Draw() autosaveText.
-playtested, autosave text displaying in proper location.
-
-added int autosaveCounter to WorldUI data class.
-added string autosaving "autosaving..." to WorldUI data class.
-updated Functions_WorldUI.Update() and created DisplayAutosave().
-these methods handle the reset and animation of "autosaving..." text.
-added call to DisplayAutosave() when hero collides with exit door.
-
-playtested, working as expected. 
-autosave text displays & animates very briefly upon dungeon exit.
-
-however, the display of autosave can be done better.
-autosave doesn't display when the boss is beaten, or when player dies.
-it makes more sense to call DisplayAutosave() when the DungeonScreen begins closing.
-then autosave text would display for all cases of closing the DungeonScreen.
-
-updated DungeonScreen.Update() - closing section to call DisplayAutosave().
-this only happens once, right as the screen begins closing.
-playtested, working as expected.
-
-
-
-
-whenever the dungeon screen starts it's close, display the autosave text..
 
 
 
@@ -110,7 +89,10 @@ for actual release, we can flip the UDT flag in release check
 
 
 
+polish
 
+we shouldn't end any sound effect, instead just skip it
+ending the sfx causes it to clip when it stops
 
 
 
