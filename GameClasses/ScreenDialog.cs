@@ -53,7 +53,7 @@ namespace DungeonRun
             else if (dialogType == Dialog.GameLoadFailed)
             {   //returns to previous screen (inventory or title) upon close
                 dialogString = "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n";
-                dialogString += "The data may be corrupted.";
+                dialogString += "The data is corrupted... I've overwritten the file with your current game.";
                 background.fade = true; foreground.fade = false; updateDungeonScreen = false;
             }
             else if (dialogType == Dialog.GameCreated)

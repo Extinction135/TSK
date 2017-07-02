@@ -71,11 +71,13 @@ namespace DungeonRun
             SetFilename(Type);
             Boolean autoSave = false;
             Dialog dialogType = Dialog.Default;
-            //Debug.WriteLine("begin file load");
             try
             {
                 StorageFile file = await localFolder.GetFileAsync(filename);
-                //Debug.WriteLine("get storage file");
+
+
+                #region Load the file into proper saveData instance
+
                 try
                 {   //load gameFile into saveData parameter
                     if (file != null)
@@ -112,11 +114,27 @@ namespace DungeonRun
                         { dialogType = Dialog.GameAutoSaved; } else { dialogType = Dialog.GameLoaded; }
                     }
                 }
-                catch //create a dialog screen alerting user there was a problem loading the saved game file
-                {
-                    dialogType = Dialog.GameLoadFailed;
+
+                #endregion
+
+
+                #region Handle file loading failure
+
+                catch
+                {   //create dialog screen alerting user there was problem loading file
                     //Debug.WriteLine("problem loading");
+                    //overwrite any corrupt autosave data
+                    SaveGame(GameFile.AutoSave);
+                    //overwrite any corrupt game file with current game data
+                    if (Type == GameFile.Game1) { SaveGame(GameFile.Game1); }
+                    else if (Type == GameFile.Game2) { SaveGame(GameFile.Game2); }
+                    else if (Type == GameFile.Game3) { SaveGame(GameFile.Game3); }
+                    //notify player of this event
+                    dialogType = Dialog.GameLoadFailed;
                 }
+
+                #endregion
+                
             }
             catch //file does not exist, cannot be loaded, save the current data to file address
             {

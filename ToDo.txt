@@ -52,45 +52,32 @@ todo:
 
 
 
-Reduce repeated fields in LSN screen
-
-created GameDisplayData data class.
-updated LSN Screen to use GameDisplayData instances.
-added Functions_Draw.Draw(GameDisplayData).
-playtested, working as expected.
 
 
 
 
+Handle Corrupt game files & FirstRun Setup - Part 1
 
+upon a failure to load a gamefile, game now saves current game data to that file.
+this 'fixes' the corrupt gamefile, but overwrites the old corrupt data.
+in other words, attempting to load a malformed gamefile overwrites it with current data.
 
-move gameDisplayData into it's own class, from LSN screen
-refactor how LSN screen displays game data
-we're duping alot of functionality / code
+updated & organized Functions_Backend.LoadGame().
+updated DialogScreen to notify player that the corrupt file was overwritten.
+playtested first run case, working as expected, new files are created.
+playtested loading corrupt gamefile, working as expected.
 
-
-
-
-
-
-Handling corrupt game files
-
-if a saved game file has correct XML headers, then game will load it
-any fields that match to saveData's fields will then be loaded
-theoretically, we could load an XML file that has no correct fields,
-and the game would never know.. 
-this makes it impossible to check if the loaded data is corrupt or accurate.
-only XML with malformed opening header tags will fail to load.
-
-if we try and load a file that is corrupted, and it fails..
-simply save new gamedata to that file address
-never notify player that the game data was corrupt, just overwrite it
+bonus: any corrupt game files are silently 'fixed to new' when title screen loads.
+so the only way to get the corrupted game dialog screen is if
+a gamefile gets malformed during gameplay, outside of the title screen.
 
 
 
 
 
-autosave should happen when the player quits game from the inventory screen
+
+
+
 
 
 
@@ -98,12 +85,17 @@ autosave should happen when the player quits game from the inventory screen
 
 Autosave++
 
+autosave should happen when the player quits game from the inventory screen
+
+there should be a visual indication that autosave is happening
 this is simply text that says 'autosaving...'
 with animated periods
 pops up under the worldUI
 is handled by WorldUI
 text should appear that says 'autosaving' when autosave happens
 this should appear underneath the HUD on the bottom left
+
+
 
 
 
@@ -345,7 +337,24 @@ game ctrls screen
 	
 	
 	
-	
+Handling corrupt game files & first run setup - part 2
+
+if a saved game file has correct XML headers, then game will load it
+any fields that match to saveData's fields will then be loaded
+theoretically, we could load an XML file that has no correct fields,
+and the game would never know.. 
+this makes it impossible to check if the loaded data is corrupt or accurate.
+only XML with malformed opening header tags will fail to load.
+
+we need a way to check that the loaded xml is actually a game file
+
+create a saveData instance, set all it's fields to null
+then load the saveFile into the null saveData
+then check each field of the saveData to see if it's not null
+if any field is null, then the loaded saveFile was corrupted
+however, we can probably extract some data from the corrupt file 
+so we could prompt the user with a dialog that asks 'load uncorrupted data?'
+'the file i loaded is corrupt. should i try to recover it?'	
 	
 	
 	
