@@ -53,37 +53,36 @@ todo:
 
 
 
-Fix Audio bug that causes clipping
 
-Because the same sound effect can be called many times, at the same time..
-we use a list of sound effect instances, which are looped thru..
-and if the game finds a sound not being played on the list, it gets played.
-and any other playing other sound effect instances on the list are stopped.
-when they are stopped, then causes clipping in the audio.
-they shouldn't be stopped, they should be allowed to finish.
+Test latest version on Xbox1
 
-updated Assets.Play() to not stop a playing sound effect instance.
-playtested, working as expected. some sfx blends together.
-but this is better than the clipping that was happening prior.
+playtested on xbox1, total frame times are 2ms or less.
+firstrun / continuing / saving / loading / creating new games works.
+very happy with the testing results.
 
 
 
 
 
 
-
-
-polish
-
-we shouldn't end any sound effect, instead just skip it
-ending the sfx causes it to clip when it stops
-
-
-
-test on xbox 1
 
 
 record new gifs for version 0.5
+
+
+
+
+
+
+minor bug
+when you save a game, the LSN screen does not update the save slot
+so you save a game where you just got a crystal
+and the old game doesn't have a crystal
+after the save, the save slot should display a crystal, the current info
+this is because we're only getting the game data when the LSN screen is created
+this getting of data should be a function
+this function should be called whenever the player saves a game too
+
 
 
 
