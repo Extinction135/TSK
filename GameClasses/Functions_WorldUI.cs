@@ -17,52 +17,7 @@ namespace DungeonRun
         public static int i;
         public static int count;
 
-        public static void Move(int X, int Y)
-        {
-            //move the weapon bkg & sprite
-            MoveBkg(WorldUI.weaponBkg, X + 8, Y + 8);
-            WorldUI.currentWeapon.compSprite.position.X = X + 16;
-            WorldUI.currentWeapon.compSprite.position.Y = Y + 16;
 
-            //move the item bkg & sprite
-            MoveBkg(WorldUI.itemBkg, X + 16 * 8 + 8, Y + 8);
-            WorldUI.currentItem.compSprite.position.X = X + 16 * 8 + 16;
-            WorldUI.currentItem.compSprite.position.Y = Y + 16;
-
-            //move the hearts
-            for (i = 0; i < 9; i++)
-            {
-                WorldUI.hearts[i].position.X = X + (10 * i) + (16 * 2) + 8;
-                WorldUI.hearts[i].position.Y = Y + 8;
-            }
-
-            //move the magic meter sprites
-            for (i = 0; i < 11; i++)
-            {
-                WorldUI.meterPieces[i].position.X = X + (8 * i) + (16 * 2) + 8;
-                WorldUI.meterPieces[i].position.Y = Y + 8 + 16;
-            }
-        }
-
-        public static void MoveBkg(List<ComponentSprite> bkgList, int Xpos, int Ypos)
-        {
-            bkgList[0].position.X = Xpos;
-            bkgList[0].position.Y = Ypos;
-
-            bkgList[1].position.X = Xpos + 16;
-            bkgList[1].position.Y = Ypos;
-            bkgList[1].flipHorizontally = true;
-
-            bkgList[2].position.X = Xpos;
-            bkgList[2].position.Y = Ypos + 16;
-            bkgList[2].flipHorizontally = true;
-
-            bkgList[3].position.X = Xpos + 16;
-            bkgList[3].position.Y = Ypos + 16;
-
-            bkgList[2].rotation = Rotation.Clockwise180;
-            bkgList[3].rotation = Rotation.Clockwise180;
-        }
 
         public static void Update()
         {
@@ -179,6 +134,17 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Handle Autosave Display & animation
+
+            if (WorldUI.autosaveCounter < 13) //copy autosaving string character by character
+            { WorldUI.autosaveText.text = WorldUI.autosaving.Substring(0, WorldUI.autosaveCounter); }
+
+            if (WorldUI.autosaveCounter < 20) { WorldUI.autosaveCounter++; }
+            else { WorldUI.autosaveText.text = ""; } //stop counting, clear text
+
+            #endregion
+
         }
 
         public static void Draw()
@@ -207,6 +173,67 @@ namespace DungeonRun
                 WorldUI.frametime.text += "\nT:" + Timing.totalTime.Milliseconds;
                 Functions_Draw.Draw(WorldUI.frametime);
             }
+            Functions_Draw.Draw(WorldUI.autosaveText);
+        }
+
+
+
+        public static void Move(int X, int Y)
+        {
+            //move the weapon bkg & sprite
+            MoveBkg(WorldUI.weaponBkg, X + 8, Y + 8);
+            WorldUI.currentWeapon.compSprite.position.X = X + 16;
+            WorldUI.currentWeapon.compSprite.position.Y = Y + 16;
+
+            //move the item bkg & sprite
+            MoveBkg(WorldUI.itemBkg, X + 16 * 8 + 8, Y + 8);
+            WorldUI.currentItem.compSprite.position.X = X + 16 * 8 + 16;
+            WorldUI.currentItem.compSprite.position.Y = Y + 16;
+
+            //move the hearts
+            for (i = 0; i < 9; i++)
+            {
+                WorldUI.hearts[i].position.X = X + (10 * i) + (16 * 2) + 8;
+                WorldUI.hearts[i].position.Y = Y + 8;
+            }
+
+            //move the magic meter sprites
+            for (i = 0; i < 11; i++)
+            {
+                WorldUI.meterPieces[i].position.X = X + (8 * i) + (16 * 2) + 8;
+                WorldUI.meterPieces[i].position.Y = Y + 8 + 16;
+            }
+
+            //place frametime & autosave texts
+            WorldUI.frametime.position.X = 650 - 55;
+            WorldUI.frametime.position.Y = 41;
+            WorldUI.autosaveText.position.X = 54;
+            WorldUI.autosaveText.position.Y = 81;
+        }
+
+        public static void MoveBkg(List<ComponentSprite> bkgList, int Xpos, int Ypos)
+        {
+            bkgList[0].position.X = Xpos;
+            bkgList[0].position.Y = Ypos;
+
+            bkgList[1].position.X = Xpos + 16;
+            bkgList[1].position.Y = Ypos;
+            bkgList[1].flipHorizontally = true;
+
+            bkgList[2].position.X = Xpos;
+            bkgList[2].position.Y = Ypos + 16;
+            bkgList[2].flipHorizontally = true;
+
+            bkgList[3].position.X = Xpos + 16;
+            bkgList[3].position.Y = Ypos + 16;
+
+            bkgList[2].rotation = Rotation.Clockwise180;
+            bkgList[3].rotation = Rotation.Clockwise180;
+        }
+
+        public static void DisplayAutosave()
+        {
+            WorldUI.autosaveCounter = 0;
         }
 
     }

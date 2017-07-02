@@ -234,6 +234,9 @@ namespace DungeonRun
         public static MenuItemType heroItem;
 
         public static ComponentText frametime;
+        public static ComponentText autosaveText;
+        public static int autosaveCounter = 100;
+        public static string autosaving = "autosaving...";
 
         static WorldUI()
         {
@@ -283,9 +286,11 @@ namespace DungeonRun
             Functions_MenuItem.SetMenuItemData(heroWeapon, currentWeapon);
             Functions_MenuItem.SetMenuItemData(heroItem, currentItem);
 
-            //create the frametime text component
+            //create the frametime & autosave text components
             frametime = new ComponentText(Assets.font, "test",
-                new Vector2(640 - 55, 41), Assets.colorScheme.textLight);
+                new Vector2(0, 0), Assets.colorScheme.textLight);
+            autosaveText = new ComponentText(Assets.font, "autosaving",
+                new Vector2(0, 0), Assets.colorScheme.textLight);
 
             //move the entire worldUI
             Functions_WorldUI.Move(50, 50);

@@ -104,14 +104,16 @@ namespace DungeonRun
                     overlay.alpha = -1.5f; //delays closing state a bit
                 }   //delay gives player time to understand what's happening
                 else if (displayState == DisplayState.Closing) //fade overlay to 1.0
-                {   //set the fadeInSpeed & overlay alpha based on the exitAction
+                {
+                    if (overlay.alpha == -1.5f) //just began fading in overlay
+                    { Functions_WorldUI.DisplayAutosave(); } //show player autosave animation
+                    //set the fadeInSpeed & overlay alpha based on the exitAction
                     if (exitAction == ExitAction.Overworld)
                     {   //exits fade in immediately, and much faster
                         overlay.fadeInSpeed = 0.05f;
                         if (overlay.alpha < 0.0f) { overlay.alpha = 0.0f; }
                     }
                     else { overlay.fadeInSpeed = 0.015f; } //victory/defeat fades in much slower
-
                     //fade overlay in
                     overlay.fadeState = FadeState.FadeIn;
                     Functions_ScreenRec.Fade(overlay);
