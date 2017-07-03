@@ -440,7 +440,6 @@ namespace DungeonRun
         {
             PlaceExit(Room);
 
-
             //place decorative statues
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,

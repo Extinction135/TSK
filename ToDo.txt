@@ -42,28 +42,11 @@ todo:
 
 
 
-Improve Exit Room's Appearance
+Record + Post gifs of DungeonRun 0.5
 
-added dungeon statues to center of room, via update to Functions_Room.FinishExitRoom().
-playtested, looking better.
-
-
-
-
-
-
-
-
-
-record new gifs for version 0.5
-
-capture 1: title fades in, menu builds, select load game, choose game, dialog, in game move around, inventory, exit game
-
-capture 2: overworld map, load shop, purchase health potion from vendor, set loadout, exit shop, overworld
-
-capture 3: overworld map, load dungeon, fight to boss, die, sumamry screen, overworld map
-
-
+recorded & edited new gifs of v0.5.
+updated readme with latest gifs.
+updated versions with info and gifs.
 
 
 

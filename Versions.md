@@ -69,13 +69,25 @@ Each version of DungeonRun expands on the game's mechanics and design.
 + Created the wall statue room object, which shoots arrows.
 
 
-
-
-
-
-
-
-
+## Version 0.5 - 2017.07.03 (+44 days, +112 commits)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p5A.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p5B.gif)   
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p5C.gif)  
++ Added ability to save and load game files.
++ Added ability to create new game files, and handle corrupt game files.
++ Added title screen, with logo and background image.
++ Added load/save/new screen, which handles game files.
++ Changed how dungeons were created, in prep for RoomBuilder tool.
++ Reorganized project to allow for sharing of core game classes.
++ This shared setup allows porting of game to DirectX & OpenGL much easier.
++ Created skeleton DirectX project for RoomBuilder tool.
++ Created closing animation for menuRectangles.
++ Widgets and Screens now have opening and closing animations.
++ Created crystals widget. Changed Design of stats widget.
++ Redesigned inventory screen with different widget layout.
++ Various bug fixes, refactoring to separate data and functionality.
++ Various refactoring of classes, reduction of code, simplifications.
++ Lots of UX work on screens, and transitions between them.
 
 
 

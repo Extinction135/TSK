@@ -37,7 +37,7 @@ namespace DungeonRun
                 PlayMusic = true;
                 SpawnMobs = true;
                 ProcessAI = true;
-                DrawUDT = true; //set this false for actual release
+                DrawUDT = false; //set this false for actual release
             }
         }
     }

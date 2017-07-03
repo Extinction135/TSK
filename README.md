@@ -4,9 +4,11 @@ Will be ported to DirectX and OpenGL once completed.
 
 
 
-## Version 0.4 - 2017.05.20  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p4A.gif)  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p4B.gif)  
+## Version 0.5 - 2017.07.03   
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p5A.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p5B.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p5C.gif)   
+ 
  
 
 ## Overview  
@@ -14,6 +16,8 @@ Will be ported to DirectX and OpenGL once completed.
 + Gameplay and Design is discussed in Design.md.
 + Daily tasks/commits are planned and organized in ToDo.txt.
 + The history of commits is available back to the initial push.
+
+
 
 ## Playing the Game
 + Compiled binaries are not provided, to keep repo size small.
