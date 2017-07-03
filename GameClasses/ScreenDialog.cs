@@ -90,14 +90,17 @@ namespace DungeonRun
         }
 
         public override void HandleInput(GameTime GameTime)
-        {   //exit this screen upon start or b button press
-            if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
-                Functions_Input.IsNewButtonPress(Buttons.B) ||
-                Functions_Input.IsNewButtonPress(Buttons.A))
-            {
-                Assets.Play(Assets.sfxInventoryClose);
-                displayState = DisplayState.Closing;
-                Functions_MenuWindow.Close(Widgets.Dialog.window);
+        {
+            if (Widgets.Dialog.dialogDisplayed) //wait for the dialog to complete
+            {   //exit this screen upon start or a/b button press
+                if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
+                    Functions_Input.IsNewButtonPress(Buttons.B) ||
+                    Functions_Input.IsNewButtonPress(Buttons.A))
+                {
+                    Assets.Play(Assets.sfxInventoryClose);
+                    displayState = DisplayState.Closing;
+                    Functions_MenuWindow.Close(Widgets.Dialog.window);
+                }
             }
         }
 
@@ -115,7 +118,11 @@ namespace DungeonRun
                     if (background.fadeState == FadeState.FadeComplete)
                     { displayState = DisplayState.Opened; }
                 }   //else skip any fading
-                else { displayState = DisplayState.Opened; }
+                else
+                {   //make sure dialog widget has enough time to open
+                    if (Widgets.Dialog.window.background.displayState == DisplayState.Opened)
+                    { displayState = DisplayState.Opened; }
+                }
             }
             else if (displayState == DisplayState.Closing)
             {

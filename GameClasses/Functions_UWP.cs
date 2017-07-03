@@ -82,7 +82,6 @@ namespace DungeonRun
                 {   //load gameFile into saveData parameter
                     if (file != null)
                     {
-                        //Debug.WriteLine("file isn't null");
                         var serializer = new XmlSerializer(typeof(SaveData));
                         Stream stream = await file.OpenStreamForReadAsync();
                         using (stream)
@@ -95,21 +94,19 @@ namespace DungeonRun
                             else if (Type == GameFile.Game1)
                             {
                                 PlayerData.game1 = (SaveData)serializer.Deserialize(stream);
-                                PlayerData.current = PlayerData.game1;
+                                if (showDialogScreen) { PlayerData.current = PlayerData.game1; }
                             }
                             else if (Type == GameFile.Game2)
                             {
                                 PlayerData.game2 = (SaveData)serializer.Deserialize(stream);
-                                PlayerData.current = PlayerData.game2;
+                                if (showDialogScreen) { PlayerData.current = PlayerData.game2; }
                             }
                             else if (Type == GameFile.Game3)
                             {
                                 PlayerData.game3 = (SaveData)serializer.Deserialize(stream);
-                                PlayerData.current = PlayerData.game3;
+                                if (showDialogScreen) { PlayerData.current = PlayerData.game3; }
                             }
                         }
-                        //Debug.WriteLine("deserialize complete");
-
                         if (autoSave) //let player know file has been loaded
                         { dialogType = Dialog.GameAutoSaved; } else { dialogType = Dialog.GameLoaded; }
                     }

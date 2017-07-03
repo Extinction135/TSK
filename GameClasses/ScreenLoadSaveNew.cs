@@ -17,7 +17,7 @@ namespace DungeonRun
         ScreenRec background = new ScreenRec();
         static MenuWindow window;
         LoadSaveNewState screenState;
-        ExitAction exitAction;
+        //ExitAction exitAction;
         int i;
         //contains all text components used
         public List<ComponentText> texts;
@@ -195,23 +195,19 @@ namespace DungeonRun
             displayState = DisplayState.Opening;
         }
 
+        public override void UnloadContent()
+        {   //silently reload the latest game files
+            Functions_Backend.LoadGame(GameFile.Game1, false);
+            Functions_Backend.LoadGame(GameFile.Game2, false);
+            Functions_Backend.LoadGame(GameFile.Game3, false);
+        }
+
         public override void HandleInput(GameTime GameTime)
         {
             if (displayState == DisplayState.Opened)
-            {
-
-                #region Exit this screen upon start or b button press
-
-                if (Functions_Input.IsNewButtonPress(Buttons.B))
-                {
-                    Assets.Play(Assets.sfxInventoryClose);
-                    displayState = DisplayState.Closing;
-                    Functions_MenuWindow.Close(window);
-                    exitAction = ExitAction.ExitScreen;
-                }
-
-                #endregion
-
+            {   //exit this screen upon start or b button press
+                if (Functions_Input.IsNewButtonPress(Buttons.B)) { CloseScreen(); }
+                
 
                 #region Handle load/save/new
 
@@ -229,10 +225,18 @@ namespace DungeonRun
                         else if (currentlySelected == game3.menuItem)
                         { Functions_Backend.LoadGame(GameFile.Game3, true); }
                     }
-                    else //screenState == Save or New
-                    {   //reset playerData, if screen is in 'new game' state
+                    else//screenState == Save or New
+                    {   //reset saveDatas, if screen is in 'new game' state
                         if (screenState == LoadSaveNewState.New)
-                        { PlayerData.current = new SaveData(); } 
+                        {
+                            PlayerData.current = new SaveData();
+                            if (currentlySelected == game1.menuItem)
+                            { PlayerData.game1 = new SaveData(); }
+                            else if (currentlySelected == game2.menuItem)
+                            { PlayerData.game2 = new SaveData(); }
+                            else if (currentlySelected == game3.menuItem)
+                            { PlayerData.game3 = new SaveData(); }
+                        }
                         //save playerData
                         if (currentlySelected == game1.menuItem)
                         { Functions_Backend.SaveGame(GameFile.Game1); }
@@ -244,6 +248,8 @@ namespace DungeonRun
                         if (screenState == LoadSaveNewState.New)
                         { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameCreated)); }
                         else { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameSaved)); }
+                        
+                        UpdateCurrentDisplay();
                     }
                     //handle soundEffect
                     if (currentlySelected.type == MenuItemType.OptionsQuitGame)
@@ -303,8 +309,7 @@ namespace DungeonRun
             }
             else if (displayState == DisplayState.Closed)
             {
-                if (exitAction == ExitAction.ExitScreen)
-                { ScreenManager.RemoveScreen(this); }
+                ScreenManager.RemoveScreen(this);
             }
 
             #endregion
@@ -372,6 +377,31 @@ namespace DungeonRun
 
 
 
+        public void UpdateCurrentDisplay()
+        {
+            if (currentlySelected == game1.menuItem)
+            {
+                texts[0].text = "Game 1 - " + PlayerData.current.name;
+                game1.timeDateText.text = "time: " + PlayerData.current.time;
+                game1.timeDateText.text += "\ndate: " + PlayerData.current.date;
+                SetCrystals(PlayerData.current, game1.crystals);
+            }
+            else if (currentlySelected == game2.menuItem)
+            {
+                texts[1].text = "Game 2 - " + PlayerData.current.name;
+                game2.timeDateText.text = "time: " + PlayerData.current.time;
+                game2.timeDateText.text += "\ndate: " + PlayerData.current.date;
+                SetCrystals(PlayerData.current, game2.crystals);
+            }
+            else if (currentlySelected == game3.menuItem)
+            {
+                texts[2].text = "Game 3 - " + PlayerData.current.name;
+                game3.timeDateText.text = "time: " + PlayerData.current.time;
+                game3.timeDateText.text += "\ndate: " + PlayerData.current.date;
+                SetCrystals(PlayerData.current, game3.crystals);
+            }
+        }
+
         public void PlaceCrystals(List<MenuItem> Crystals, Vector2 Pos)
         {
             Crystals[0].compSprite.position = Pos;
@@ -382,14 +412,32 @@ namespace DungeonRun
             Crystals[5].compSprite.position = Crystals[4].compSprite.position + new Vector2(11, 0);
         }
 
-        public void SetCrystals(SaveData saveData, List<MenuItem> Crystals)
+        public void SetCrystals(SaveData SaveData, List<MenuItem> Crystals)
         {
-            if (saveData.crystal1) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[0]); }
-            if (saveData.crystal2) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[1]); }
-            if (saveData.crystal3) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[2]); }
-            if (saveData.crystal4) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[3]); }
-            if (saveData.crystal5) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[4]); }
-            if (saveData.crystal6) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[5]); }
+            if (SaveData.crystal1) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[0]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, Crystals[0]); }
+
+            if (SaveData.crystal2) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[1]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, Crystals[1]); }
+
+            if (SaveData.crystal3) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[2]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, Crystals[2]); }
+
+            if (SaveData.crystal4) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[3]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, Crystals[3]); }
+
+            if (SaveData.crystal5) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[4]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, Crystals[4]); }
+
+            if (SaveData.crystal6) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[5]); }
+            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, Crystals[5]); }
+        }
+
+        public void CloseScreen()
+        {
+            Assets.Play(Assets.sfxInventoryClose);
+            displayState = DisplayState.Closing;
+            Functions_MenuWindow.Close(window);
         }
 
     }

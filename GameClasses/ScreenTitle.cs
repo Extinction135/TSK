@@ -154,7 +154,7 @@ namespace DungeonRun
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
 
-            //silently load all game files
+            //silently load autosave file
             Functions_Backend.LoadGame(GameFile.Game1, false);
             Functions_Backend.LoadGame(GameFile.Game2, false);
             Functions_Backend.LoadGame(GameFile.Game3, false);

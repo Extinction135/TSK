@@ -18,7 +18,7 @@ namespace DungeonRun
         public ComponentText dialog;
         public String dialogString;
         public int charCount;
-
+        public Boolean dialogDisplayed = false;
 
 
         public WidgetDialog()
@@ -52,7 +52,8 @@ namespace DungeonRun
                     dialog.text += dialogString[0].ToString();
                     dialogString = dialogString.Remove(0, 1);
                     //determine what text sound effect should play based on character count
-                    if (charCount == 1) { Assets.Play(Assets.sfxTextDone); }
+                    if (charCount == 1)
+                    { Assets.Play(Assets.sfxTextDone); dialogDisplayed = true; }
                     else { Assets.Play(Assets.sfxTextLetter); }
                 }
             }
@@ -76,6 +77,7 @@ namespace DungeonRun
             //capture the dialog string, clear the dialog being drawn
             dialogString = Dialog;
             dialog.text = "";
+            dialogDisplayed = false;
         }
 
     }
