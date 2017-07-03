@@ -439,6 +439,35 @@ namespace DungeonRun
         public static void FinishExitRoom(Room Room)
         {
             PlaceExit(Room);
+
+
+            //place decorative statues
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                3 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                3 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
         }
 
         public static void FinishHubRoom(Room Room)

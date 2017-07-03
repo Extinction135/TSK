@@ -1,16 +1,8 @@
 ﻿
-
 "As we enjoy great advantages from the inventions of others,
 we should be glad for an opportunity to serve others by an invention of ours,
 and this we should do freely and generously."
 - Benjamin Franklin	
-
-
-there are 4 types of commits:
-	1. adding a feature
-	2. fixing a bug
-	3. refactoring / reorganizing
-	4. testing & profiling
 	
 Gif Capture process:
 	run game in release mode
@@ -50,27 +42,10 @@ todo:
 
 
 
-Review and Cleanup previous commit, playtest.
+Improve Exit Room's Appearance
 
-reviewed the previous commit. 
-logic checks out, confident in the commit.
-
-removed CloseScreen() from LSN Screen.
-it was only being called once, so the functionality was moved back into HandleInput().
-
-updated Functions_Backend.LoadGame()'s showDialogScreen parameter to be loadAsCurrentGame.
-this name more accurately describes what this boolean parameter represents.
-
-lots of playtesting, trying to break the save/load routines.
-working as expected, very happy with previous commit now.
-
-
-
-
-
-
-
-
+added dungeon statues to center of room, via update to Functions_Room.FinishExitRoom().
+playtested, looking better.
 
 
 
@@ -81,6 +56,16 @@ working as expected, very happy with previous commit now.
 
 
 record new gifs for version 0.5
+
+capture 1: title fades in, menu builds, select load game, choose game, dialog, in game move around, inventory, exit game
+
+capture 2: overworld map, load shop, purchase health potion from vendor, set loadout, exit shop, overworld
+
+capture 3: overworld map, load dungeon, fight to boss, die, sumamry screen, overworld map
+
+
+
+
 
 
 
