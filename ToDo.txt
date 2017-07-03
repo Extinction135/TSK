@@ -50,37 +50,19 @@ todo:
 
 
 
+Review and Cleanup previous commit, playtest.
 
+reviewed the previous commit. 
+logic checks out, confident in the commit.
 
+removed CloseScreen() from LSN Screen.
+it was only being called once, so the functionality was moved back into HandleInput().
 
+updated Functions_Backend.LoadGame()'s showDialogScreen parameter to be loadAsCurrentGame.
+this name more accurately describes what this boolean parameter represents.
 
-
-
-Fix Bug where LSN Screen does not update after a game has been saved
-
-we should be displaying the latest data from the saved file
-when you save a game, the LSN screen does not update the current save slot
-
-warning - this is a complicated update.
-in order to make this work properly, alot of stuff had to be changed.
-there was alot of trial and error with this commit, but it works now.
-the biggest hack here is that the game is reloading all game files,
-from the LSN Screen, when Screen.Unload() is called.
-this is done for complicated reasons involving the creation of a new game.
-
-the LSN screen needs the latest game files loaded, in order to display them correctly.
-however, this loading is async, which means we never know when they are loaded.
-initially, we load all the game files during the creation of the TitleScreen.
-in addition, we reload the files after the LSN screen closes, in prep for it's next opening.
-this gives the game enough time to finish loading before the LSN screen opens.
-
-updated LoadGame() to better manage where PlayerData.current points to.
-updated LSN Screen with UpdateCurrentDisplay(), which is called after player saves a game.
-the dialog screen was also updated to prevent user input / exiting of screen,
-until the dialog text is finished being displayed on screen.
-
-lots of playtesting, and i think it's working as expected.
-honestly, there needs to be more playtesting done.
+lots of playtesting, trying to break the save/load routines.
+working as expected, very happy with previous commit now.
 
 
 
@@ -91,9 +73,17 @@ honestly, there needs to be more playtesting done.
 
 
 
-heavily playtest, make sure changing game data works, LSN updates properly
+
+
+
+
+
+
 
 record new gifs for version 0.5
+
+
+
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -111,6 +101,21 @@ record new gifs for version 0.5
 
 
 
+
+
+
+
+Polish++
+less instances on sfx list for text
+more instnaces on sfx list for bomb explosions
+
+
+Bug
+when a game is loaded, we need to set the hero's loadout to be default
+sword, no item, plain cloth
+there is a bug where we can set the hero's loadout on one file,
+then load a different file, and the hero's loadout hasn't changed
+this lets the hero have a bow and fireball on a game where he doesn't have those items..
 
 
 

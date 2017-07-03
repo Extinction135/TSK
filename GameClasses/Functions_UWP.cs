@@ -30,23 +30,6 @@ namespace DungeonRun
 			return "" + (MemoryManager.AppMemoryUsage / 1024 / 1024);
         }
 
-        public static async void LoadRoomData()
-        {
-            //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
-            //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
-            //string roomDataPath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path + @"/RoomData/";
-
-            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFolder assets = await appInstalledFolder.GetFolderAsync("RoomData");
-            var files = await assets.GetFilesAsync();
-            Debug.WriteLine("filename: " + files[0].Path);
-
-            string text = await Windows.Storage.FileIO.ReadTextAsync(files[0]);
-            Debug.WriteLine("text file contents: " + text);
-        }
-
-
-
         public static void SetFilename(GameFile Type)
         {
             filename = "autoSave.xml"; //defaults to autoSave
@@ -66,7 +49,7 @@ namespace DungeonRun
             { serializer.Serialize(stream, PlayerData.current); }
         }
 
-        public static async void LoadGame(GameFile Type, Boolean showDialogScreen)
+        public static async void LoadGame(GameFile Type, Boolean loadAsCurrentGame)
         {
             SetFilename(Type);
             Boolean autoSave = false;
@@ -94,17 +77,17 @@ namespace DungeonRun
                             else if (Type == GameFile.Game1)
                             {
                                 PlayerData.game1 = (SaveData)serializer.Deserialize(stream);
-                                if (showDialogScreen) { PlayerData.current = PlayerData.game1; }
+                                if (loadAsCurrentGame) { PlayerData.current = PlayerData.game1; }
                             }
                             else if (Type == GameFile.Game2)
                             {
                                 PlayerData.game2 = (SaveData)serializer.Deserialize(stream);
-                                if (showDialogScreen) { PlayerData.current = PlayerData.game2; }
+                                if (loadAsCurrentGame) { PlayerData.current = PlayerData.game2; }
                             }
                             else if (Type == GameFile.Game3)
                             {
                                 PlayerData.game3 = (SaveData)serializer.Deserialize(stream);
-                                if (showDialogScreen) { PlayerData.current = PlayerData.game3; }
+                                if (loadAsCurrentGame) { PlayerData.current = PlayerData.game3; }
                             }
                         }
                         if (autoSave) //let player know file has been loaded
@@ -138,8 +121,8 @@ namespace DungeonRun
                 //Debug.WriteLine("file does not exist");
                 SaveGame(Type); dialogType = Dialog.GameNotFound;
             }
-            //if we should display the dialogScreen, do so with the proper dialogType
-            if (showDialogScreen) { ScreenManager.AddScreen(new ScreenDialog(dialogType)); }
+            //if loaded data is current game, notify player of loading via dialog screen
+            if (loadAsCurrentGame) { ScreenManager.AddScreen(new ScreenDialog(dialogType)); }
             //Functions_Debug.Inspect(PlayerData.saveData);
         }
 
@@ -178,5 +161,26 @@ namespace DungeonRun
         StorageFile loadFile = files[0];
         Debug.WriteLine("loaded playerData: " + files[0].Path);
         */
+
+
+
+        public static async void LoadRoomData()
+        {
+            //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
+            //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
+            //string roomDataPath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path + @"/RoomData/";
+
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFolder assets = await appInstalledFolder.GetFolderAsync("RoomData");
+            var files = await assets.GetFilesAsync();
+            Debug.WriteLine("filename: " + files[0].Path);
+
+            string text = await Windows.Storage.FileIO.ReadTextAsync(files[0]);
+            Debug.WriteLine("text file contents: " + text);
+        }
+
+
+
+
     }
 }

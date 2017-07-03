@@ -206,7 +206,12 @@ namespace DungeonRun
         {
             if (displayState == DisplayState.Opened)
             {   //exit this screen upon start or b button press
-                if (Functions_Input.IsNewButtonPress(Buttons.B)) { CloseScreen(); }
+                if (Functions_Input.IsNewButtonPress(Buttons.B))
+                {
+                    Assets.Play(Assets.sfxInventoryClose);
+                    displayState = DisplayState.Closing;
+                    Functions_MenuWindow.Close(window);
+                }
                 
 
                 #region Handle load/save/new
@@ -431,13 +436,6 @@ namespace DungeonRun
 
             if (SaveData.crystal6) { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, Crystals[5]); }
             else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, Crystals[5]); }
-        }
-
-        public void CloseScreen()
-        {
-            Assets.Play(Assets.sfxInventoryClose);
-            displayState = DisplayState.Closing;
-            Functions_MenuWindow.Close(window);
         }
 
     }
