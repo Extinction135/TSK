@@ -46,6 +46,9 @@ namespace DungeonRun
             divider2 = new MenuRectangle(new Point(0, 0), 
                 new Point(0, 0), Assets.colorScheme.windowInset);
 
+            window.lines.Add(divider1);
+            window.lines.Add(divider2);
+
             #endregion
 
 
@@ -266,6 +269,11 @@ namespace DungeonRun
         public override void Reset(int X, int Y)
         {
             //reset the room builder widget's window
+            window.lines[2].position.Y = Y + 16 * 14;
+            window.lines[3].position.Y = Y + 16 * 16;
+            Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
+
+            /*
             window.background.Reset();
             window.border.Reset();
             window.inset.Reset();
@@ -273,6 +281,7 @@ namespace DungeonRun
             window.headerLine.Reset();
             window.footerLine.Reset();
             
+
             //reset the divider lines
             divider1.position.X = 16;
             divider1.position.Y = 16 * 14;
@@ -287,6 +296,10 @@ namespace DungeonRun
             divider2.size.Y = 1;
             divider2.Reset();
             divider2.openDelay = 12;
+            */
+
+
+
 
             //set active object to first obj on objList
             SetActiveObj(0);
@@ -296,9 +309,7 @@ namespace DungeonRun
 
         public override void Update()
         {
-            window.Update();
-            divider1.Update();
-            divider2.Update();
+            Functions_MenuWindow.Update(window);
 
             if (window.interior.displayState == DisplayState.Opened)
             {

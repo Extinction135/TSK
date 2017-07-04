@@ -375,9 +375,8 @@ namespace DungeonRun
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton("draw collisions", new Point(2, 2)));
-            buttons.Add(new ComponentButton("build dungeon", new Point(68, 2)));
-            buttons.Add(new ComponentButton("max gold", new Point(127, 2)));
-            buttons.Add(new ComponentButton("dump savedata", new Point(168, 2)));
+            buttons.Add(new ComponentButton("max gold", new Point(68, 2)));
+            buttons.Add(new ComponentButton("dump savedata", new Point(109, 2)));
         }
     }
     

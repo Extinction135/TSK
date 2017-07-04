@@ -130,8 +130,6 @@ namespace DungeonRun
             dungeonScreen.displayState = DisplayState.Opening;
         }
 
-
-
         static Rectangle compRec = new Rectangle(0, 0, 0, 0);
         static Boolean RoomsNearby(Room Parent, Room Child)
         {   //place & size comparisonRec to be 2 cells larger than parent
@@ -143,7 +141,6 @@ namespace DungeonRun
             if (compRec.Intersects(Child.collision.rec))
             { return true; } else { return false; }
         }
-
 
         public static void GetDoorLocations(Room Parent, Room Child)
         {   //determine the direction child is located relative to parent
@@ -174,7 +171,6 @@ namespace DungeonRun
             if (compRec.Intersects(Child.collision.rec))
             { Poke(Direction.Down, Parent, Child); return; }
         }
-
 
         static Point poke = new Point(0, 0); //used to see if child.collision.contains() poke value
         static void Poke(Direction Dir, Room Parent, Room Child)
@@ -251,5 +247,10 @@ namespace DungeonRun
             else { dungeon.doorLocations.Add(doorPos[0]); } //choose 1st door
         }
 
+        public static void LoadShop()
+        {
+            dungeonType = DungeonType.Shop;
+            ScreenManager.ExitAndLoad(new ScreenDungeon());
+        }
     }
 }

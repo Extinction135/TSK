@@ -9,12 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
-using Windows.System;
-
 using System.IO;
-using Windows.Storage;
 using System.Xml.Serialization;
-
+using Windows.Storage; //UWP
+using Windows.System; //UWP
 
 namespace DungeonRun
 {
@@ -42,6 +40,7 @@ namespace DungeonRun
         public static async void SaveGame(GameFile Type)
         {
             SetFilename(Type);
+            //overwrite savefile
             StorageFile file = await localFolder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             var serializer = new XmlSerializer(typeof(SaveData));
             Stream stream = await file.OpenStreamForWriteAsync();
@@ -126,7 +125,20 @@ namespace DungeonRun
             //Functions_Debug.Inspect(PlayerData.saveData);
         }
 
+        public static async void LoadRoomData()
+        {
+            //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
+            //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
+            //string roomDataPath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path + @"/RoomData/";
 
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFolder assets = await appInstalledFolder.GetFolderAsync("RoomData");
+            var files = await assets.GetFilesAsync();
+            Debug.WriteLine("filename: " + files[0].Path);
+
+            string text = await Windows.Storage.FileIO.ReadTextAsync(files[0]);
+            Debug.WriteLine("text file contents: " + text);
+        }
 
         /*
         //pick the path and name to save the file to
@@ -161,26 +173,5 @@ namespace DungeonRun
         StorageFile loadFile = files[0];
         Debug.WriteLine("loaded playerData: " + files[0].Path);
         */
-
-
-
-        public static async void LoadRoomData()
-        {
-            //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
-            //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
-            //string roomDataPath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path + @"/RoomData/";
-
-            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFolder assets = await appInstalledFolder.GetFolderAsync("RoomData");
-            var files = await assets.GetFilesAsync();
-            Debug.WriteLine("filename: " + files[0].Path);
-
-            string text = await Windows.Storage.FileIO.ReadTextAsync(files[0]);
-            Debug.WriteLine("text file contents: " + text);
-        }
-
-
-
-
     }
 }

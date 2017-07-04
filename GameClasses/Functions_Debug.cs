@@ -214,16 +214,12 @@ namespace DungeonRun
                             //match the draw collisions boolean for the selected state
                             DebugMenu.buttons[DebugMenu.counter].selected = Flags.DrawCollisions;
                         }
-                        else if (DebugMenu.counter == 1) //build dungeon button
-                        {   //build dungeon based on the last dungeon type
-                            Functions_Dungeon.BuildDungeon();
-                        }
-                        else if (DebugMenu.counter == 2) //max gold button
+                        else if (DebugMenu.counter == 1) //max gold button
                         {   //set the player's gold to 99
                             PlayerData.current.gold = 99;
                             Assets.Play(Assets.sfxGoldPickup);
                         }
-                        else if (DebugMenu.counter == 3) //dump saveData button
+                        else if (DebugMenu.counter == 2) //dump saveData button
                         {
                             Inspect(PlayerData.current);
                         }

@@ -42,48 +42,89 @@ todo:
 
 
 
-Record + Post gifs of DungeonRun 0.5
+Port Game to DirectX + .Net 4.5, Get RoomBuilder Working
 
-recorded & edited new gifs of v0.5.
-updated readme with latest gifs.
-updated versions with info and gifs.
+RoomBuilder and the Game both use the same shared classes.
+RoomBuilder uses additional classes to implement it's functionality.
+However, RoomBuilder contains the entire game.
+So in order to get RoomBuilder working, we need to port to DirectX + .Net 4.5.
 
+opened the RoomBuilder project, ref'd necessary files.
+updated WidgetRoomBuilder to use Functions_MenuWindow methods.
 
+moved StartGame() from ScreenManager to Functions_Dungeon.LoadShop().
+this more accurately describes what the function does.
+updated ScreenDialog to use LoadShop().
 
+the BuildDungeon button crashes if used in RoomBuilder.
+removed DebugMenu's BuildDungeon button.
+we'll never build a dungeon from RoomBuilder.
+we can rebuild a dungeon by simply entering one, from OverworldScreen.
 
+fixed an alignment issue where RB's widget wasn't being Reset() properly.
+updated RB project's MGCB to use current content.
+RoomBuilder is now building/compiling/working properly.
 
+implemented Save/Load methods for Functions_DirectX file.
+this ported the game to DirectX & .Net 4.5 (for Windows7 & 8).
+the UWP version uses DirectX & .NetCore (Windows10).
+playtested game, there are saving/loading bugs.
 
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	release v0.5 - updates being save data + game files + screen transitions
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Polish++
-less instances on sfx list for text
-more instnaces on sfx list for bomb explosions
+updated Functions_DirectX.SaveGame().
+fixed a bug where save files were being appended to.
+this led to a corrupted state. instead they are overwritten.
+playtested, working as expected.
 
 
-Bug
-when a game is loaded, we need to set the hero's loadout to be default
-sword, no item, plain cloth
-there is a bug where we can set the hero's loadout on one file,
-then load a different file, and the hero's loadout hasn't changed
-this lets the hero have a bow and fireball on a game where he doesn't have those items..
+
+
+
+
+
+
+
+
+
+
+debug info does not dump crystals - it should
+
+
+
+
+
+
+
+
+
+
+Version 0.6 Milestones
+
+roombuilder tool allows creation of room xml data
+room builder uses shared game classes, but only subset
+has many classes that are only part of builder tool
+
+room xml data is loaded into game at boot
+this is part of Functions_Backend class
+
+dungeons are built from room xml data
+rooms have a size, based on type
+dungeons are built using CC algorithms
+
+dungeons & their enemy sets have different spritesheets, so they look different
+create enemies that fire projectiles - arrows, fireballs, bombs
+
+there are a total of 5 dungeons, and 4 crystals
+for now, make 5 dungeons that all use the 1st dungeons sprites + enemies
+each dungeon should award a crystal, check that this works
+reduce the number of crystals in crystals widget + saveData
+
+overworld dungeon icon is the boss of that dungeon
+so all dungeons should display a blob character instead of a skull
+
+
+
+
+
 
 
 
@@ -210,7 +251,7 @@ new room screen
 	one of the issues here is that we'll need to make sure the floor pool has enough sprites to create the larger rooms
 	this will also increase the drawtime on the xbox one
 	
-Version 0.6 Milestones
+
 
 	ROOM EDITOR + ROOM DATA
 	build the room editor screen
@@ -247,23 +288,39 @@ Version 0.6 Milestones
 	
 	
 	
-	
-	
-Polish++	
+Polish++
+less instances on sfx list for text
+more instnaces on sfx list for bomb explosions
+
 "press any button to play again" should be "press any button to continue"
 
 dungeon run text should blink, just like summary screen
 should this be part of the animatedTitle's functions_class as well?
 functions.Blink(Title), where title.blinkSpeed is used?
 
-overworld screen needs an opening pause
-transitioning from title screen to overworld screen
-the overworld map just appears, does not fade in at all
+Bug
+when a game is loaded, we need to set the hero's loadout to be default
+sword, no item, plain cloth
+there is a bug where we can set the hero's loadout on one file,
+then load a different file, and the hero's loadout hasn't changed
+this lets the hero have a bow and fireball on a game where he doesn't have those items..
 
-figure out why screen transitions are sometimes 'choppy' or abrupt
-is this because the screen takes time to be created? yes
-can we create all the screens at once, upon boot, so everything is smooth?
+Add hearts to vendor items
+player should be able to purchase heart pieces from the vendor, for gold
+4 heart pieces add up to a complete heart increase
+remove heart pieces from chests
+chests only contain gold, big key, or map
 
+
+
+
+	
+	
+
+
+
+
+MOAR STUFFS TO DOs
 	
 
 options widget functionality	
@@ -286,12 +343,6 @@ video ctrls screen
 game ctrls screen
 	how camera moves - follow hero or center to current room?
 	
-
-	
-	
-	
-	
-	
 	
 Handling corrupt game files & first run setup - part 2
 
@@ -313,15 +364,7 @@ so we could prompt the user with a dialog that asks 'load uncorrupted data?'
 'the file i loaded is corrupt. should i try to recover it?'	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 Polish
 
@@ -336,7 +379,7 @@ Polish
 	minor bug:
 	the loadout animates the loadout menuItems
 	when we select a laodout menuItem from inventory screen, we animate the loadout menuItem again
-	this leads to a double scaling down effect, which should happen
+	this leads to a double scaling down effect, which shouldnt happen
 	we shouldn't be able to select loadout menuItems.
 	this solves the scaling issue, and it doesn't make sense to be able to select them
 	selecting an item should only equip it
@@ -415,27 +458,10 @@ Stuff that needs to be done, but it's not terribly important rn
 	objects should inherit the movement of hero, and check collisions with all objs & actors
 	if a draggable object would collide, it doesn't move
 	
-	audio ctrls sprite could be animated (sound waves growing)
-	video ctrls sprite could be animated too
-	fireball should have a cooldown, so hero can't spam them..
-
-	later in development, when we have a game options screen,
-	the options widget will need to reset it's neighbors, so it doesn't connect to widgets not visible
-	these menuItem neighbors will be set when the inventory screen is created
-	
-	we'll reuse options window on the title screen, and info window
-
-	we need to implement the empty heart idea in the worldUI
-	this means hero should have values for current hearts, and maximum hearts
-	maximum hearts can never exceed 14
-	
 	we should include a soundFXinstance on actors that points to one of the soundFX in assets
 	then we can set this instance in ActorFunctions.SetType()
 	then later just call it generically, like Actor.AttackSound.Play().
 	same with hit sound, death sound, use sound.
-
-	add wall pillar decorations when room is built
-	doors should have decorations around them as well
 	
 	implement additional weapons / items
 	weapons : { bow, staff, axe }
@@ -458,12 +484,6 @@ Maybes / Ideas
 	then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
 
 
-	
-	
-	
-	
-	
-	
 	
 Taking it Further
 
@@ -490,7 +510,14 @@ Taking it Further
 	
 	
 	
-	
+Look at how stardew valley engages players
+	theres so much to do and explore
+	we need more to do and explore
+	should be able to have a pet, like a dog
+	should be able to speak with more people/npcs
+	should be able to manage traders, adventurers, etc.. like assassins creed blackflag minigame
+	should be able to craft advanced items, using special parts + gold
+	just a ton of additional stuff layered on top of the dungeon running, that is supporting core gameplay
 	
 	
 	

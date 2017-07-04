@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public class ScreenRoomBuilder : Screen
     {
-
         int i;
         public Room room;
         public WidgetRoomBuilder RoomBuilder;
@@ -25,7 +24,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             RoomBuilder = new WidgetRoomBuilder();
-            RoomBuilder.Reset(0, 0);
+            RoomBuilder.Reset(8, 16 * 4);
             room = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0);
 
             //clear any previous dungeon data

@@ -146,7 +146,7 @@ namespace DungeonRun
                     dialogType == Dialog.GameLoaded ||
                     dialogType == Dialog.GameNotFound ||
                     dialogType == Dialog.GameAutoSaved)
-                { ScreenManager.StartGame(); }
+                { Functions_Dungeon.LoadShop(); }
                 //or simply exit this screen
                 else { ScreenManager.RemoveScreen(this); }
             }

@@ -109,11 +109,5 @@ namespace DungeonRun
 
         public static void UnloadContent() { foreach (Screen screen in screens) { screen.UnloadContent(); } }
 
-        public static void StartGame()
-        {   //ExitAndLoad(new ScreenOverworld()); //old way
-            Functions_Dungeon.dungeonType = DungeonType.Shop;
-            ExitAndLoad(new ScreenDungeon());
-        }
-
     }
 }

@@ -36,7 +36,12 @@ namespace DungeonRun
             base.LoadContent();
             Assets.Load(GraphicsDevice, Content);
             ScreenManager.Initialize(this);
-            ScreenManager.AddScreen(new ScreenRoomBuilder());
+
+            //editor
+            //ScreenManager.ExitAndLoad(new ScreenRoomBuilder());
+            //game
+            ScreenManager.ExitAndLoad(new ScreenTitle());
+            //Functions_Backend.SaveGame(GameFile.AutoSave);
         }
 
         protected override void UnloadContent() { }

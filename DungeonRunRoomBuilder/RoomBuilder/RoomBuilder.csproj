@@ -116,6 +116,12 @@
     <Compile Include="..\..\GameClasses\Functions_MenuItem.cs">
       <Link>Classes\Functions_MenuItem.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_MenuRectangle.cs">
+      <Link>Classes\Functions_MenuRectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_MenuWindow.cs">
+      <Link>Classes\Functions_MenuWindow.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Movement.cs">
       <Link>Classes\Functions_Movement.cs</Link>
     </Compile>
@@ -130,6 +136,12 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Room.cs">
       <Link>Classes\Functions_Room.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_ScreenRec.cs">
+      <Link>Classes\Functions_ScreenRec.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_TitleAnimated.cs">
+      <Link>Classes\Functions_TitleAnimated.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_WorldUI.cs">
       <Link>Classes\Functions_WorldUI.cs</Link>
@@ -146,6 +158,9 @@
     <Compile Include="..\..\GameClasses\ScreenInventory.cs">
       <Link>Classes\ScreenInventory.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenLoadSaveNew.cs">
+      <Link>Classes\ScreenLoadSaveNew.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenManager.cs">
       <Link>Classes\ScreenManager.cs</Link>
     </Compile>
@@ -155,11 +170,17 @@
     <Compile Include="..\..\GameClasses\ScreenSummary.cs">
       <Link>Classes\ScreenSummary.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenTitle.cs">
+      <Link>Classes\ScreenTitle.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenVendor.cs">
       <Link>Classes\ScreenVendor.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Widget.cs">
       <Link>Classes\Widget.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetCrystals.cs">
+      <Link>Classes\WidgetCrystals.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetDialog.cs">
       <Link>Classes\WidgetDialog.cs</Link>
