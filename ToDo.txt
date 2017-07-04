@@ -42,38 +42,16 @@ todo:
 
 
 
-Port Game to DirectX + .Net 4.5, Get RoomBuilder Working
 
-RoomBuilder and the Game both use the same shared classes.
-RoomBuilder uses additional classes to implement it's functionality.
-However, RoomBuilder contains the entire game.
-So in order to get RoomBuilder working, we need to port to DirectX + .Net 4.5.
 
-opened the RoomBuilder project, ref'd necessary files.
-updated WidgetRoomBuilder to use Functions_MenuWindow methods.
 
-moved StartGame() from ScreenManager to Functions_Dungeon.LoadShop().
-this more accurately describes what the function does.
-updated ScreenDialog to use LoadShop().
+Refactoring/Cleaning up RomBuilder classes & Functions_Debug
 
-the BuildDungeon button crashes if used in RoomBuilder.
-removed DebugMenu's BuildDungeon button.
-we'll never build a dungeon from RoomBuilder.
-we can rebuild a dungeon by simply entering one, from OverworldScreen.
-
-fixed an alignment issue where RB's widget wasn't being Reset() properly.
-updated RB project's MGCB to use current content.
-RoomBuilder is now building/compiling/working properly.
-
-implemented Save/Load methods for Functions_DirectX file.
-this ported the game to DirectX & .Net 4.5 (for Windows7 & 8).
-the UWP version uses DirectX & .NetCore (Windows10).
-playtested game, there are saving/loading bugs.
-
-updated Functions_DirectX.SaveGame().
-fixed a bug where save files were being appended to.
-this led to a corrupted state. instead they are overwritten.
-playtested, working as expected.
+fixed an alignment issue with RBwidget's divider lines.
+removed redundant draw call for RBwidget's divider lines.
+removed divider line instances from RBwidget.
+deleted unused file 'Functions_LoadSave' from RB.
+updated Functions_debug.Inspect(SaveData) to show crystal booleans.
 
 
 
@@ -81,14 +59,9 @@ playtested, working as expected.
 
 
 
-
-
-
-
-
-debug info does not dump crystals - it should
-
-
+autosave is being called twice when we exit the game
+once from the inventory screen, when we click the exit button
+and once when the dungeon screen is unloaded
 
 
 

@@ -15,19 +15,12 @@ namespace DungeonRun
 {
     public class WidgetRoomBuilder : Widget
     {
-
-        public MenuRectangle divider1;
-        public MenuRectangle divider2;
-
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
         public ComponentSprite selectionBoxTool; //highlites the currently selected obj
-
         public GameObject activeObj; //points to a RoomObj on the obj list
         public GameObject activeTool; //points to a ToolObj on the obj list
-
         public List<GameObject> objList; //a list of objects user can select
         public int total;
-
         public List<ComponentButton> buttons;
 
 
@@ -35,19 +28,14 @@ namespace DungeonRun
         public WidgetRoomBuilder()
         {
 
-            #region Create Window and Additional Divider lines
+            #region Create Window and Divider lines
 
             window = new MenuWindow(
                 new Point(8, 16 * 4), 
                 new Point(16 * 6, 16 * 14 + 8),
                 "Room Builder");
-            divider1 = new MenuRectangle(new Point(0, 0), 
-                new Point(0, 0), Assets.colorScheme.windowInset);
-            divider2 = new MenuRectangle(new Point(0, 0), 
-                new Point(0, 0), Assets.colorScheme.windowInset);
-
-            window.lines.Add(divider1);
-            window.lines.Add(divider2);
+            window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
+            window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
 
             #endregion
 
@@ -269,38 +257,9 @@ namespace DungeonRun
         public override void Reset(int X, int Y)
         {
             //reset the room builder widget's window
-            window.lines[2].position.Y = Y + 16 * 14;
-            window.lines[3].position.Y = Y + 16 * 16;
+            window.lines[2].position.Y = Y + (16 * 10);
+            window.lines[3].position.Y = Y + (16 * 12);
             Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
-
-            /*
-            window.background.Reset();
-            window.border.Reset();
-            window.inset.Reset();
-            window.interior.Reset();
-            window.headerLine.Reset();
-            window.footerLine.Reset();
-            
-
-            //reset the divider lines
-            divider1.position.X = 16;
-            divider1.position.Y = 16 * 14;
-            divider1.size.X = 16 * 5;
-            divider1.size.Y = 1;
-            divider1.Reset();
-            divider1.openDelay = 12;
-
-            divider2.position.X = 16;
-            divider2.position.Y = 16 * 16;
-            divider2.size.X = 16 * 5;
-            divider2.size.Y = 1;
-            divider2.Reset();
-            divider2.openDelay = 12;
-            */
-
-
-
-
             //set active object to first obj on objList
             SetActiveObj(0);
             //set active tool to move tool
@@ -321,13 +280,10 @@ namespace DungeonRun
         public override void Draw()
         {
             Functions_Draw.Draw(window);
-            Functions_Draw.Draw(divider1);
-            Functions_Draw.Draw(divider2);
 
             if (window.interior.displayState == DisplayState.Opened)
             {
-                //draw objlist's sprites
-                for (i = 0; i < total; i++)
+                for (i = 0; i < total; i++) //draw objlist's sprites
                 { Functions_Draw.Draw(objList[i].compSprite); }
 
                 if (Flags.DrawCollisions)
@@ -335,13 +291,10 @@ namespace DungeonRun
                     for (i = 0; i < total; i++)
                     { Functions_Draw.Draw(objList[i].compCollision); }
                 }
-
+                for (i = 0; i < 3; i++) //draw all the buttons
+                { Functions_Draw.Draw(buttons[i]); }
                 Functions_Draw.Draw(selectionBoxObj);
                 Functions_Draw.Draw(selectionBoxTool);
-
-                //draw all the buttons
-                for (i = 0; i < 3; i++)
-                { Functions_Draw.Draw(buttons[i]); }
             }
         }
 
@@ -362,8 +315,7 @@ namespace DungeonRun
         }
 
         public void UpdateSelectionBox(ComponentSprite SelectionBox)
-        {
-            //pulse the selectionBox alpha
+        {   //pulse the selectionBox alpha
             if (SelectionBox.alpha >= 1.0f) { SelectionBox.alpha = 0.1f; }
             else { SelectionBox.alpha += 0.025f; }
             //scale the selectionBox down to 1.0

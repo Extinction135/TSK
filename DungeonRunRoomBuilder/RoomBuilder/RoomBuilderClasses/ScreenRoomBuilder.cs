@@ -78,7 +78,7 @@ namespace DungeonRun
                         RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonDown;
 
                         if (i == 0) //save btn
-                        { Functions_SaveLoad.Save(room); }
+                        { }
                         else if (i == 1) //new btn
                         { }
                         else if (i == 2) //load btn
