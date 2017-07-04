@@ -139,9 +139,7 @@ namespace DungeonRun
                 #region Handle the Options MenuItems
 
                 if (currentlySelected.type == MenuItemType.OptionsQuitGame)
-                {   //save the player's current game progress
-                    Functions_Backend.SaveGame(GameFile.AutoSave);
-                    //close dungeon screen + goto title screen
+                {   //close dungeon screen (autosaves), goto title screen
                     displayState = DisplayState.Closing;
                     exitAction = ExitAction.Title;
                     Assets.Play(Assets.sfxInventoryClose);

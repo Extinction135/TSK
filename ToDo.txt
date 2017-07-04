@@ -45,23 +45,17 @@ todo:
 
 
 
-Refactoring/Cleaning up RomBuilder classes & Functions_Debug
-
-fixed an alignment issue with RBwidget's divider lines.
-removed redundant draw call for RBwidget's divider lines.
-removed divider line instances from RBwidget.
-deleted unused file 'Functions_LoadSave' from RB.
-updated Functions_debug.Inspect(SaveData) to show crystal booleans.
 
 
+Fix issue where autosave is being called twice upon game exit
 
-
-
-
-
-autosave is being called twice when we exit the game
+when user exits game from inventory screen, autosave is called twice.
 once from the inventory screen, when we click the exit button
 and once when the dungeon screen is unloaded
+
+updated InventoryScreen.HanldeInput() to not call SaveGame().
+SaveGame() is called when the DungeonScreen is unloaded.
+playtested, working as expected.
 
 
 
