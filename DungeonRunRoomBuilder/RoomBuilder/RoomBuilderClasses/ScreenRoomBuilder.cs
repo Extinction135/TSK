@@ -31,7 +31,7 @@ namespace DungeonRun
 
         public ComponentSprite cursorSprite;
         Byte4 handFrame = new Byte4(14, 13, 0, 0);
-
+        Byte4 pointerFrame = new Byte4(14, 14, 0, 0);
 
 
 
@@ -56,6 +56,8 @@ namespace DungeonRun
             cursorSprite = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), handFrame, new Point(16, 16));
 
+            
+
             RoomBuilder.SetActiveObj(0); //set active obj to first widget obj
             RoomBuilder.SetActiveTool(RoomBuilder.moveObj); //set widet to move tool
             editorState = EditorState.MoveObj; //set screen to move state
@@ -67,8 +69,16 @@ namespace DungeonRun
         {
             Functions_Debug.HandleDebugMenuInput();
 
+            //match position of cursor sprite to cursor
             cursorSprite.position.X = Input.cursorPos.X;
             cursorSprite.position.Y = Input.cursorPos.Y;
+            if (editorState != EditorState.MoveObj)
+            {   //apply offset for pointer sprite
+                cursorSprite.position.X += 3;
+                cursorSprite.position.Y += 6;
+            }
+
+            
 
 
             #region Check Widget Objects for User Interaction
@@ -154,6 +164,18 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             Timing.Reset();
+
+            if (editorState == EditorState.MoveObj)
+            { cursorSprite.currentFrame = handFrame; }
+            else { cursorSprite.currentFrame = pointerFrame; }
+
+            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+            { }
+            else { }
+
+
+
+
 
             RoomBuilder.Update();
             //track camera to left-center of room instance
