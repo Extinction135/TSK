@@ -22,7 +22,7 @@ namespace DungeonRun
             Content.RootDirectory = "Content";
 
             //settings unique to RoomBuilder
-            IsMouseVisible = true;
+            IsMouseVisible = false;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             Window.Title = "RoomBuilder v0.1";

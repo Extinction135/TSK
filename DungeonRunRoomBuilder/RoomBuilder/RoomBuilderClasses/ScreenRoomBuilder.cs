@@ -28,6 +28,13 @@ namespace DungeonRun
         public WidgetRoomBuilder RoomBuilder;
         public EditorState editorState;
 
+
+        public ComponentSprite cursorSprite;
+        Byte4 handFrame = new Byte4(14, 13, 0, 0);
+
+
+
+
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
 
         public override void LoadContent()
@@ -45,7 +52,10 @@ namespace DungeonRun
             //hide hero offscreen
             Functions_Movement.Teleport(Pool.hero.compMove, -100, -100);
             Functions_Pool.Update(); //update the pool once
-            
+
+            cursorSprite = new ComponentSprite(Assets.mainSheet,
+                new Vector2(0, 0), handFrame, new Point(16, 16));
+
             RoomBuilder.SetActiveObj(0); //set active obj to first widget obj
             RoomBuilder.SetActiveTool(RoomBuilder.moveObj); //set widet to move tool
             editorState = EditorState.MoveObj; //set screen to move state
@@ -56,6 +66,9 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             Functions_Debug.HandleDebugMenuInput();
+
+            cursorSprite.position.X = Input.cursorPos.X;
+            cursorSprite.position.Y = Input.cursorPos.Y;
 
 
             #region Check Widget Objects for User Interaction
@@ -180,6 +193,10 @@ namespace DungeonRun
             RoomBuilder.Draw();
             Functions_Draw.DrawDebugMenu();
             Functions_Draw.DrawDebugInfo();
+
+
+            Functions_Draw.Draw(cursorSprite);
+
             ScreenManager.spriteBatch.End();
 
             Timing.stopWatch.Stop();

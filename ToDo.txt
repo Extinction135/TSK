@@ -48,17 +48,19 @@ we ready to dev RoomBuildar
 
 
 
-Continue development of RoomBuilder tool
 
-moved hero offscreen (-100, -100).
-updated RBwidget to have named instances for move, add, minus tool objects.
-updated RBwidget to have named instances for save, new, load buttons.
-reorganization of RoomBuilderWidget.
 
-created EditorState enum, added EditorState instance to RoomBuilderScreen.
-this state initializes to Move state.
-updated RBscreen.HandleInput() to set EditorState based on tool obj clicked on.
-playtested, working as expected.
+Setup custom cursor for RoomBuilder Screen
+
+hid the cursor in RoomBuilder.
+added a componentSprite instance called cursorSprite to RoomBuilder screen.
+added series of Byte4 animation lists for cursor sprites to RB screen.
+updated RBScreen.HandleInput() to place cursorSprite at cursor location.
+playtested, default open hand cursor moving and displaying properly.
+
+
+
+
 
 
 
