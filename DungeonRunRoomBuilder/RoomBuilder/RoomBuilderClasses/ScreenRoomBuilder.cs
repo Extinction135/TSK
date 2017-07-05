@@ -30,8 +30,6 @@ namespace DungeonRun
 
 
         public ComponentSprite cursorSprite;
-        Byte4 handFrame = new Byte4(14, 13, 0, 0);
-        Byte4 pointerFrame = new Byte4(14, 14, 0, 0);
 
 
 
@@ -53,11 +51,11 @@ namespace DungeonRun
             Functions_Movement.Teleport(Pool.hero.compMove, -100, -100);
             Functions_Pool.Update(); //update the pool once
 
+            //create the cursor sprite
             cursorSprite = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), handFrame, new Point(16, 16));
+                new Vector2(0, 0), new Byte4(14, 13, 0, 0), new Point(16, 16));
 
-            
-
+            //initialize the RB widget
             RoomBuilder.SetActiveObj(0); //set active obj to first widget obj
             RoomBuilder.SetActiveTool(RoomBuilder.moveObj); //set widet to move tool
             editorState = EditorState.MoveObj; //set screen to move state
@@ -69,7 +67,21 @@ namespace DungeonRun
         {
             Functions_Debug.HandleDebugMenuInput();
 
-            //match position of cursor sprite to cursor
+
+            # region Set Mouse Cursor Sprite
+
+            cursorSprite.currentFrame.Y = 14; ; //default to pointer
+            if (editorState == EditorState.MoveObj) //check/set move state
+            { cursorSprite.currentFrame.Y = 13; }
+            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+            { cursorSprite.currentFrame.X = 15; } //set clicked frame
+            else { cursorSprite.currentFrame.X = 14; }
+
+            #endregion
+
+
+            #region Match position of cursor sprite to cursor
+
             cursorSprite.position.X = Input.cursorPos.X;
             cursorSprite.position.Y = Input.cursorPos.Y;
             if (editorState != EditorState.MoveObj)
@@ -78,7 +90,7 @@ namespace DungeonRun
                 cursorSprite.position.Y += 6;
             }
 
-            
+            #endregion
 
 
             #region Check Widget Objects for User Interaction
@@ -158,31 +170,16 @@ namespace DungeonRun
 
             #endregion
 
-
         }
 
         public override void Update(GameTime GameTime)
         {
             Timing.Reset();
-
-            if (editorState == EditorState.MoveObj)
-            { cursorSprite.currentFrame = handFrame; }
-            else { cursorSprite.currentFrame = pointerFrame; }
-
-            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-            { }
-            else { }
-
-
-
-
-
             RoomBuilder.Update();
             //track camera to left-center of room instance
             Camera2D.targetPosition.X = room.center.X - 16 * 3;
             Camera2D.targetPosition.Y = room.center.Y;
             Functions_Camera2D.Update(GameTime);
-
             Timing.stopWatch.Stop();
             Timing.updateTime = Timing.stopWatch.Elapsed;
         }
@@ -215,10 +212,7 @@ namespace DungeonRun
             RoomBuilder.Draw();
             Functions_Draw.DrawDebugMenu();
             Functions_Draw.DrawDebugInfo();
-
-
             Functions_Draw.Draw(cursorSprite);
-
             ScreenManager.spriteBatch.End();
 
             Timing.stopWatch.Stop();

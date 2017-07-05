@@ -54,13 +54,17 @@ we ready to dev RoomBuildar
 
 
 
-Change cursor sprite based on selected Tool (Move, Add, Delete Obj)
 
-added additional pointerFrame Byte4 to RBscreen.
-this represents the pointer finger sprite.
-updated RBscreen.HandleInput() to better align cursor sprite to cursor position.
-this alignment changes if the sprite is the open hand or the pointer frame.
+
+Change cursor sprite if Left Mouse Button is down (click state)
+
+changed how HandleInput() manages the cursorSprite's frame, based on EditorState.
+when user clicks or holds left mouse button down, cursor sprite changes.
+upon release, and by default, the cursor sprite returns to normal.
+removed named Byte4 instances, no longer used.
 playtested, working as expected.
+
+
 
 
 
