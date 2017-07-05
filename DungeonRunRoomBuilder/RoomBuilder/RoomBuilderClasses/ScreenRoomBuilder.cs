@@ -12,12 +12,21 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
+
+
+    //the various states the room builder screen can be in
+    public enum EditorState { MoveObj, AddObj, DeleteObj }
+
+
+
+
+
     public class ScreenRoomBuilder : Screen
     {
         int i;
         public Room room;
         public WidgetRoomBuilder RoomBuilder;
-
+        public EditorState editorState;
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
 
@@ -33,10 +42,15 @@ namespace DungeonRun
             Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
             Functions_Room.BuildRoom(room);
             Functions_Dungeon.currentRoom = room;
-            //update the pool once
-            Functions_Pool.Update();
+            //hide hero offscreen
+            Functions_Movement.Teleport(Pool.hero.compMove, -100, -100);
+            Functions_Pool.Update(); //update the pool once
+            
+            RoomBuilder.SetActiveObj(0); //set active obj to first widget obj
+            RoomBuilder.SetActiveTool(RoomBuilder.moveObj); //set widet to move tool
+            editorState = EditorState.MoveObj; //set screen to move state
 
-            displayState = DisplayState.Opened;
+            displayState = DisplayState.Opened; //open the screen
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -54,10 +68,32 @@ namespace DungeonRun
                     {   //if there is a collision, set the active object to the object clicked on
                         if (RoomBuilder.objList[i].compCollision.rec.Contains(Input.cursorPos))
                         {
+
                             if (i < 40) //handle collision with room obj
                             { RoomBuilder.SetActiveObj(i); }
-                            else //handle collision with toolbar obj
-                            { RoomBuilder.SetActiveTool(i); }
+
+                            //handle collision with tool obj
+                            else if (RoomBuilder.objList[i] == RoomBuilder.moveObj)
+                            {
+                                RoomBuilder.SetActiveTool(RoomBuilder.moveObj);
+                                editorState = EditorState.MoveObj;
+                                //
+                            }
+
+                            else if (RoomBuilder.objList[i] == RoomBuilder.addObj)
+                            {
+                                RoomBuilder.SetActiveTool(RoomBuilder.addObj);
+                                editorState = EditorState.AddObj;
+                                //
+                            }
+
+                            else if (RoomBuilder.objList[i] == RoomBuilder.deleteObj)
+                            {
+                                RoomBuilder.SetActiveTool(RoomBuilder.deleteObj);
+                                editorState = EditorState.DeleteObj;
+                                //
+                            }
+
                         }
                     }
                 }
@@ -77,12 +113,21 @@ namespace DungeonRun
                     {   //any button clicked on becomes selected
                         RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonDown;
 
-                        if (i == 0) //save btn
-                        { }
-                        else if (i == 1) //new btn
-                        { }
-                        else if (i == 2) //load btn
-                        { }
+                        if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn) //save btn
+                        {
+                            //
+                            Debug.WriteLine("saving");
+                        }
+                        else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn) //new btn
+                        {
+                            //
+                            Debug.WriteLine("new room created");
+                        }
+                        else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn) //load btn
+                        {
+                            //
+                            Debug.WriteLine("loading");
+                        }
                     }
                 } //buttons not touching cursor return to button up color
                 else { RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonUp; }

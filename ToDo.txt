@@ -43,19 +43,60 @@ todo:
 
 
 
+we ready to dev RoomBuildar
 
 
 
 
-Fix issue where autosave is being called twice upon game exit
+Continue development of RoomBuilder tool
 
-when user exits game from inventory screen, autosave is called twice.
-once from the inventory screen, when we click the exit button
-and once when the dungeon screen is unloaded
+moved hero offscreen (-100, -100).
+updated RBwidget to have named instances for move, add, minus tool objects.
+updated RBwidget to have named instances for save, new, load buttons.
+reorganization of RoomBuilderWidget.
 
-updated InventoryScreen.HanldeInput() to not call SaveGame().
-SaveGame() is called when the DungeonScreen is unloaded.
+created EditorState enum, added EditorState instance to RoomBuilderScreen.
+this state initializes to Move state.
+updated RBscreen.HandleInput() to set EditorState based on tool obj clicked on.
 playtested, working as expected.
+
+
+
+
+
+
+
+draw custom cursor, to represent the tool state - grabbing, adding, deleting
+cursor should display specific frame based on editorState
+
+if in move state, then the cursor should become open hand
+if not in move state, then cursor should become pointer finger
+
+if in add state, then the selected obj should move with cursor, alinging to 16px grid
+if in delete state, then the minus symbol should move with cursor (top right placement)
+
+clicking while in move state sets cursor to fish sprite
+clicking while not in move state sets cursor to finger down pointer sprite
+
+
+
+
+
+
+
+
+
+
+
+
+get the RB widget actually working
+add selected game object to room
+delete selected obj from room
+
+move selected obj around room
+
+
+
 
 
 

@@ -15,13 +15,27 @@ namespace DungeonRun
 {
     public class WidgetRoomBuilder : Widget
     {
+        public int total;
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
         public ComponentSprite selectionBoxTool; //highlites the currently selected obj
         public GameObject activeObj; //points to a RoomObj on the obj list
         public GameObject activeTool; //points to a ToolObj on the obj list
+
         public List<GameObject> objList; //a list of objects user can select
-        public int total;
-        public List<ComponentButton> buttons;
+        //0 - 35 room objs
+        //36 - 40 enemy objs
+        //41, 42, 43 - tool objs (move, add, delete)
+        public GameObject moveObj;
+        public GameObject addObj;
+        public GameObject deleteObj;
+
+        public List<ComponentButton> buttons; //save, new, load buttons
+        public ComponentButton saveBtn;
+        public ComponentButton newBtn;
+        public ComponentButton loadBtn;
+
+
+
 
 
 
@@ -199,7 +213,7 @@ namespace DungeonRun
             #region Add Toolbar objs to ObjList
 
             //move icon - index 40
-            GameObject moveObj = new GameObject(Assets.mainSheet);
+            moveObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(moveObj);
             //set sprite position
             moveObj.compSprite.position.X = 16 * 1 + 8;
@@ -214,7 +228,7 @@ namespace DungeonRun
             objList.Add(moveObj);
 
             //add icon - index 41
-            GameObject addObj = new GameObject(Assets.mainSheet);
+            addObj = new GameObject(Assets.mainSheet);
             Functions_GameObject.ResetObject(addObj);
             //set sprite position
             addObj.compSprite.position.X = 16 * 3 + 8;
@@ -229,47 +243,50 @@ namespace DungeonRun
             objList.Add(addObj);
 
             //minus icon - index 42
-            GameObject minusObj = new GameObject(Assets.mainSheet);
-            Functions_GameObject.ResetObject(minusObj);
+            deleteObj = new GameObject(Assets.mainSheet);
+            Functions_GameObject.ResetObject(deleteObj);
             //set sprite position
-            minusObj.compSprite.position.X = 16 * 5 + 8;
-            minusObj.compSprite.position.Y = 16 * 15;
+            deleteObj.compSprite.position.X = 16 * 5 + 8;
+            deleteObj.compSprite.position.Y = 16 * 15;
             //set sprites frame
-            minusObj.compSprite.currentFrame.X = 15;
-            minusObj.compSprite.currentFrame.Y = 15;
+            deleteObj.compSprite.currentFrame.X = 15;
+            deleteObj.compSprite.currentFrame.Y = 15;
             //set collision rec
-            minusObj.compCollision.rec.X = 16 * 5 + 8 - 8;
-            minusObj.compCollision.rec.Y = 16 * 15 - 8;
+            deleteObj.compCollision.rec.X = 16 * 5 + 8 - 8;
+            deleteObj.compCollision.rec.Y = 16 * 15 - 8;
             //add object to list
-            objList.Add(minusObj);
+            objList.Add(deleteObj);
 
             #endregion
 
 
             total = objList.Count();
 
+
+            #region Create Save New Load Buttons
+
             buttons = new List<ComponentButton>();
-            buttons.Add(new ComponentButton("save", new Point(16 * 1, 16 * 16 + 8)));
-            buttons.Add(new ComponentButton("new", new Point(16 * 2 + 13, 16 * 16 + 8)));
-            buttons.Add(new ComponentButton("load", new Point(16 * 4 + 10, 16 * 16 + 8)));
+            saveBtn = new ComponentButton("save", new Point(16 * 1, 16 * 16 + 8));
+            newBtn = new ComponentButton("new", new Point(16 * 2 + 13, 16 * 16 + 8));
+            loadBtn = new ComponentButton("load", new Point(16 * 4 + 10, 16 * 16 + 8));
+            buttons.Add(saveBtn);
+            buttons.Add(newBtn);
+            buttons.Add(loadBtn);
+
+            #endregion
+
         }
 
         public override void Reset(int X, int Y)
-        {
-            //reset the room builder widget's window
+        {   //reset the room builder widget's window
             window.lines[2].position.Y = Y + (16 * 10);
             window.lines[3].position.Y = Y + (16 * 12);
             Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
-            //set active object to first obj on objList
-            SetActiveObj(0);
-            //set active tool to move tool
-            SetActiveTool(40);
         }
 
         public override void Update()
         {
             Functions_MenuWindow.Update(window);
-
             if (window.interior.displayState == DisplayState.Opened)
             {
                 UpdateSelectionBox(selectionBoxObj);
@@ -280,7 +297,6 @@ namespace DungeonRun
         public override void Draw()
         {
             Functions_Draw.Draw(window);
-
             if (window.interior.displayState == DisplayState.Opened)
             {
                 for (i = 0; i < total; i++) //draw objlist's sprites
@@ -307,9 +323,9 @@ namespace DungeonRun
             selectionBoxObj.position = activeObj.compSprite.position;
         }
 
-        public void SetActiveTool(int index)
+        public void SetActiveTool(GameObject Tool)
         {
-            activeTool = objList[index];
+            activeTool = Tool;
             selectionBoxTool.scale = 2.0f;
             selectionBoxTool.position = activeTool.compSprite.position;
         }
