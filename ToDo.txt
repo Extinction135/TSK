@@ -50,58 +50,54 @@ we ready to dev RoomBuildar
 
 
 
+Get Add Obj working for RoomBuilderScreen
 
-
-
-
-
-
-Change cursor sprite if Left Mouse Button is down (click state)
-
-changed how HandleInput() manages the cursorSprite's frame, based on EditorState.
-when user clicks or holds left mouse button down, cursor sprite changes.
-upon release, and by default, the cursor sprite returns to normal.
-removed named Byte4 instances, no longer used.
+created AlignToGrid(), which accepts X, Y and aligns to 16 pixel grid.
+refactored how RBscreen handles widget collision checks with cursor.
+added basic routine to add selected object to the room.
 playtested, working as expected.
 
 
 
 
-
-
-draw custom cursor, to represent the tool state - grabbing, adding, deleting
-cursor should display specific frame based on editorState
-
-if in move state, then the cursor should become open hand
-if not in move state, then cursor should become pointer finger
-
-if in add state, then the selected obj should move with cursor, alinging to 16px grid
-if in delete state, then the minus symbol should move with cursor (top right placement)
-
-clicking while in move state sets cursor to fish sprite
-clicking while not in move state sets cursor to finger down pointer sprite
+we can't add objects over the walls, so wall objs should be removed from creation
+this is objs 0-2
 
 
 
 
 
-
-
-
-
-
-
-
-get the RB widget actually working
 add selected game object to room
+	have a selected obj, via RBwidget.objects[]
+	add this selected obj to room at 16px grid location
+	this is done just like how we create walls
+
 delete selected obj from room
-
+	if cursor position intersects room obj
+	room obj gets released
+	
 move selected obj around room
+	if cursor pos intersects room obj, pick up / make active roomobj
+	active roomObj could be null
+	
+	if LMB is down, room obj matches cursor pos (on 16px grid)
+	else room obj is aligned to 16px grid
+
+
+
+need a function that accepts X,Y and returns X,Y that is 16px grid aligned
+we'll use it for adding, moving/dragging objects
+
+we should be treating room objs generically, with no special cases
+so all we need to do to expand the obj library is define the obj in RBwidget
 
 
 
 
 
+improve add/delete cursor display
+if in add state, then the selected obj should move with cursor, aligning to 16px grid
+if in delete state, then the minus symbol should move with cursor (top right placement)
 
 
 

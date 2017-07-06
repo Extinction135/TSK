@@ -19,6 +19,7 @@ namespace DungeonRun
 
 
 
+    
 
 
     public class ScreenRoomBuilder : Screen
@@ -93,82 +94,91 @@ namespace DungeonRun
             #endregion
 
 
-            #region Check Widget Objects for User Interaction
 
+            
+
+            
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {   //on left button click - does builder widget contain the mouse cursor's position?
+            {
+                //if mouse is contained within RB widget
                 if (RoomBuilder.window.interior.rec.Contains(Input.cursorPos))
-                {   //does any obj on the widget's objList contain the mouse position?
+                {
+
+                    #region Handle Obj / Tool Selection
+
+                    //does any obj on the widget's objList contain the mouse position?
                     for (i = 0; i < RoomBuilder.total; i++)
                     {   //if there is a collision, set the active object to the object clicked on
                         if (RoomBuilder.objList[i].compCollision.rec.Contains(Input.cursorPos))
                         {
-
-                            if (i < 40) //handle collision with room obj
-                            { RoomBuilder.SetActiveObj(i); }
-
+                            //handle collision with room obj
+                            if (i < 40) { RoomBuilder.SetActiveObj(i); }
                             //handle collision with tool obj
                             else if (RoomBuilder.objList[i] == RoomBuilder.moveObj)
                             {
                                 RoomBuilder.SetActiveTool(RoomBuilder.moveObj);
                                 editorState = EditorState.MoveObj;
-                                //
                             }
-
                             else if (RoomBuilder.objList[i] == RoomBuilder.addObj)
                             {
                                 RoomBuilder.SetActiveTool(RoomBuilder.addObj);
                                 editorState = EditorState.AddObj;
-                                //
                             }
-
                             else if (RoomBuilder.objList[i] == RoomBuilder.deleteObj)
                             {
                                 RoomBuilder.SetActiveTool(RoomBuilder.deleteObj);
                                 editorState = EditorState.DeleteObj;
-                                //
                             }
-
                         }
                     }
+
+                    #endregion
+
+                    
+                    #region Handle Button Selection
+
+                    for (i = 0; i < 3; i++)
+                    {
+                        if (RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
+                        {   //buttons clicked on become button down color
+                            RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonDown;
+                            if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn) //save btn
+                            {
+                                Debug.WriteLine("saving");
+                            }
+                            else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn) //new btn
+                            {
+                                Debug.WriteLine("new room created");
+                            }
+                            else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn) //load btn
+                            {
+                                Debug.WriteLine("loading");
+                            }
+                        } //buttons not clicked on return to button up color
+                        else { RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonUp; }
+                    }
+
+                    #endregion
+
+                }
+                //else check world interaction
+                else
+                {
+
+                    //convert cursor Pos to world pos?
+                    Point worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
+                    Point objPos = AlignToGrid(worldPos.X, worldPos.Y);
+                    GameObject objRef = Functions_Pool.GetRoomObj();
+                    Functions_Movement.Teleport(objRef.compMove, objPos.X, objPos.Y);
+                    Functions_GameObject.SetType(objRef, RoomBuilder.activeObj.type);
+                    Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
+                    Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+
+
                 }
             }
 
-            #endregion
 
-
-            #region Check Widget Buttons for User Interaction
-
-            for (i = 0; i < 3; i++)
-            {
-                if (RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
-                {   //any button containing the cursor draws with 'over' color
-                    RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonOver;
-                    if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                    {   //any button clicked on becomes selected
-                        RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonDown;
-
-                        if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn) //save btn
-                        {
-                            //
-                            Debug.WriteLine("saving");
-                        }
-                        else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn) //new btn
-                        {
-                            //
-                            Debug.WriteLine("new room created");
-                        }
-                        else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn) //load btn
-                        {
-                            //
-                            Debug.WriteLine("loading");
-                        }
-                    }
-                } //buttons not touching cursor return to button up color
-                else { RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonUp; }
-            }
-
-            #endregion
 
         }
 
@@ -218,6 +228,13 @@ namespace DungeonRun
             Timing.stopWatch.Stop();
             Timing.drawTime = Timing.stopWatch.Elapsed;
             Timing.totalTime = Timing.updateTime + Timing.drawTime;
+        }
+
+
+
+        public Point AlignToGrid(int X, int Y)
+        {
+            return new Point(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
 
     }
