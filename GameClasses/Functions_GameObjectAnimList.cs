@@ -25,7 +25,7 @@ namespace DungeonRun
             GameObjAnims = new List<List<Byte4>>
             {
 
-                #region Room Objects
+                #region Non-Editor Room Objects
 
                 //Exit
                 new List<Byte4> { new Byte4(1, 0, 0, 0) },
@@ -63,6 +63,18 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(4, 1, 0, 0) },
                 //WallStatue
                 new List<Byte4> { new Byte4(5, 1, 0, 0) },
+                //WallTorch
+                new List<Byte4> { new Byte4(7, 0, 0, 0), new Byte4(7, 1, 0, 0), new Byte4(7, 2, 0, 0) },
+
+                //BossDecal
+                new List<Byte4> { new Byte4(1, 3, 0, 0) },
+                //DebrisFloor
+                new List<Byte4> { new Byte4(7, 7, 0, 0) },
+
+                #endregion
+
+
+                #region Editor Room Objects
 
                 //PitTop
                 new List<Byte4> { new Byte4(2, 4, 0, 0) },
@@ -72,23 +84,10 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(6, 3, 0, 0) },
                 //PitTrapOpening
                 new List<Byte4> { new Byte4(6, 3, 0, 0) },
-
                 //BossStatue
                 new List<Byte4> { new Byte4(0, 3, 0, 0) },
-                //BossDecal
-                new List<Byte4> { new Byte4(1, 3, 0, 0) },
                 //Pillar
                 new List<Byte4> { new Byte4(2, 3, 0, 0) },
-                //WallTorch
-                new List<Byte4> { new Byte4(7, 0, 0, 0), new Byte4(7, 1, 0, 0), new Byte4(7, 2, 0, 0) },
-
-                //DebrisFloor
-                new List<Byte4> { new Byte4(7, 7, 0, 0) },
-
-                #endregion
-
-
-                #region Interactive Objects
 
                 //ChestGold,
                 new List<Byte4> { new Byte4(1, 6, 0, 0) },

@@ -87,55 +87,55 @@ namespace DungeonRun
 
                     if (i == 0) //first row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.WallPillar); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.WallStatue); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
-                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
-                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.FloorBombable); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Pillar); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.BlockDraggable); }
                     }
                     else if (i == 1) //second row
                     {
-                        //if (j == 0) { Functions_GameObject.SetType(obj, ObjType.WallPillar); }
-                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.WallStatue); }
-                        //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
-                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
-                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.FloorBombable); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PotSkull); }
+                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockDown); }
+                        //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockUp); }
+                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }
+                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.TorchLit); }
                     }
                     else if (i == 2) //third row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BlockSpikes); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
-                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
-                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.FloorBombable); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Lever); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ConveyorBelt); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SpikesFloor); }
+                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.SpikesFloor); }
+                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Lever); }
                     }
                     else if (i == 3) //fourth row
                     {
-                        //if (j == 0) { Functions_GameObject.SetType(obj, ObjType.WallPillar); }
-                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.WallStatue); }
-                        if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ConveyorBelt); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockBtn); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockDown); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockUp); }
                         //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.FloorBombable); }
                     }
                     else if (i == 4) //fifth row
                     {
-                        //if (j == 0) { Functions_GameObject.SetType(obj, ObjType.WallPillar); }
-                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.WallStatue); }
-                        //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BlockSpikes); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
                         //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.FloorBombable); }
                     }
                     else if (i == 5) //sixth row
                     {
-                        //if (j == 0) { Functions_GameObject.SetType(obj, ObjType.WallPillar); }
-                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.WallStatue); }
-                        //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
-                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
-                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.FloorBombable); }
+                        //if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
+                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.PitBottom); }
+                        if (j == 2) { Functions_GameObject.SetType(obj, ObjType.PitTrapReady); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Bridge); }
+                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.ice); }
                     }
                     else if (i == 6) //seventh row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PotSkull); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Switch); }
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ChestGold); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ChestEmpty); }
                         else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }

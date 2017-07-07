@@ -296,6 +296,6 @@ namespace DungeonRun
         {
             return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
-
+        
     }
 }

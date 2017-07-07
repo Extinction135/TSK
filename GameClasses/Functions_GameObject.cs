@@ -95,7 +95,9 @@ namespace DungeonRun
             Obj.type = Type;
 
 
-            #region Room Objects
+            //Non-Editor Room Objects
+
+            #region Exits
 
             if (Type == ObjType.Exit)
             {
@@ -122,6 +124,12 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 256; //sort above everything
                 Obj.compCollision.blocking = false;
             }
+
+            #endregion
+
+
+            #region Doors and Walls
+
             else if (Type == ObjType.DoorOpen ||
                 Type == ObjType.DoorBombed ||
                 Type == ObjType.DoorTrap)
@@ -151,6 +159,36 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Wall;
                 Obj.getsAI = true; //obj gets AI
             }
+            else if (Type == ObjType.WallTorch)
+            {
+                Obj.compCollision.blocking = false;
+                Obj.compSprite.zOffset = 2;
+            }
+
+
+
+            #endregion
+
+
+            #region Floor Objects
+
+            else if (Type == ObjType.BossDecal)
+            {
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+            }
+            else if (Type == ObjType.DebrisFloor)
+            {
+                Obj.compCollision.blocking = false;
+                Obj.compSprite.zOffset = -32; //sort to floor
+            }
+
+            #endregion
+
+
+            //Editor Room Objects
+
+            #region Pits
 
             else if (Type == ObjType.PitTop)
             {
@@ -170,36 +208,11 @@ namespace DungeonRun
                 Obj.compCollision.offsetY = -6;
                 Obj.compSprite.zOffset = -32; //sort to floor
             }
-            else if (Type == ObjType.BossStatue)
-            {
-                Obj.group = ObjGroup.Draggable;
-                Obj.compCollision.rec.Height = 8;
-                Obj.compCollision.offsetY = -1;
-            }
-            else if (Type == ObjType.BossDecal)
-            {
-                Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.compCollision.blocking = false;
-            }
-            else if (Type == ObjType.Pillar)
-            {
-                Obj.compSprite.zOffset = 2;
-            }
-            else if (Type == ObjType.WallTorch)
-            {
-                Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = 2;
-            }
-            else if (Type == ObjType.DebrisFloor)
-            {
-                Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = -32;
-            }
 
             #endregion
 
 
-            #region Interactive Objects
+            #region Chests
 
             else if (Type == ObjType.ChestGold || Type == ObjType.ChestKey ||
                 Type == ObjType.ChestMap || Type == ObjType.ChestHeartPiece ||
@@ -213,16 +226,21 @@ namespace DungeonRun
                 { Obj.group = ObjGroup.Chest; }
             }
 
+            #endregion
+
+
+            #region Blocks
+
+            else if (Type == ObjType.BlockDark || Type == ObjType.BlockLight)
+            {
+                Obj.compSprite.zOffset = -7;
+            }
             else if (Type == ObjType.BlockDraggable)
             {
                 Obj.compCollision.rec.Height = 12;
                 Obj.compCollision.offsetY = -4;
                 Obj.compSprite.zOffset = -7;
                 Obj.group = ObjGroup.Draggable;
-            }
-            else if (Type == ObjType.BlockDark || Type == ObjType.BlockLight)
-            {
-                Obj.compSprite.zOffset = -7;
             }
             else if (Type == ObjType.BlockSpikes)
             {
@@ -232,12 +250,12 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compMove.speed = 0.75f; //spike blocks move
             }
-            else if (Type == ObjType.Lever)
-            {
-                Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = 1;
-                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 3;
-                Obj.compSprite.zOffset = -7;
-            }
+
+            #endregion
+
+
+            #region Liftables / Throwables - Skull
+
             else if (Type == ObjType.PotSkull)
             {
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
@@ -245,24 +263,12 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -7;
                 Obj.group = ObjGroup.Liftable;
             }
-            else if (
-                Type == ObjType.SpikesFloor || 
-                Type == ObjType.Switch || 
-                Type == ObjType.Bridge)
-            {
-                Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.compCollision.blocking = false;
-            }
-            else if (Type == ObjType.Flamethrower)
-            {
-                Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.compCollision.blocking = false;
-                Obj.getsAI = true; //obj gets AI
-            }
-            else if (Type == ObjType.Bumper)
-            {
-                Obj.compCollision.blocking = false;
-            }
+
+            #endregion
+
+
+            #region Switch Blocks & Button
+
             else if (Type == ObjType.SwitchBlockBtn)
             {
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
@@ -280,11 +286,45 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
                 Obj.compSprite.zOffset = -7;
             }
+
+            #endregion
+
+
+            #region Torches
+
             else if (Type == ObjType.TorchUnlit || Type == ObjType.TorchLit)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
+            }
+
+            #endregion
+
+
+            #region Other Dungeon Objects
+
+            else if (Type == ObjType.BossStatue)
+            {
+                Obj.group = ObjGroup.Draggable;
+                Obj.compCollision.rec.Height = 8;
+                Obj.compCollision.offsetY = -1;
+            }
+            else if (Type == ObjType.Pillar)
+            {
+                Obj.compSprite.zOffset = 2;
+                Obj.compCollision.rec.Width = 8;
+                Obj.compCollision.offsetX = 4;
+            }
+            else if (Type == ObjType.Flamethrower)
+            {
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+                Obj.getsAI = true; //obj gets AI
+            }
+            else if (Type == ObjType.Bumper)
+            {
+                Obj.compCollision.blocking = false;
             }
             else if (Type == ObjType.ConveyorBelt)
             {
@@ -294,9 +334,25 @@ namespace DungeonRun
                 if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
                 else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
             }
+            else if (
+                Type == ObjType.SpikesFloor ||
+                Type == ObjType.Switch ||
+                Type == ObjType.Bridge)
+            {
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+            }
+            else if (Type == ObjType.Lever)
+            {
+                Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = 1;
+                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 3;
+                Obj.compSprite.zOffset = -7;
+            }
 
             #endregion
 
+
+            //Additional Game Objects
 
             #region Vendor & Story Objects
 

@@ -42,29 +42,34 @@ todo:
 
 
 
+Organize and Update the object available to Editor
 
+updated the creatable objects in roomBuilder widget.
+this fixes an issue where user could place wall objects.
+these objs will be procedurally added later.
 
-Get Moving Bbjects Working for RoomBuilder
-
-added grabbedObj gameObject instance to RoomBuilder.
-added routine to set grabbedObj to the clicked on roomObj in HandleInput().
-added routine to release grabbedObj in HandleInput().
-added routine to drag grabbedObj to Update().
-playtested, working as expected.
-
-
-
-if cursor pos intersects room obj, pick up / make active roomobj
-active roomObj could be null
-
-if LMB is down, room obj matches cursor pos (on 16px grid)
-else room obj is 'dropped', aligned to 16px grid
+reorganized the ObjType enum to better reflect their status in editor.
+updated Functions_GameObjectAnimList to match ObjType enum.
+reorganized Functions_GameObjects.SetType() to be in line with ObjType enums.
 
 
 
 
 
-refactor Delete + Move routine, they duplicate code
+
+Objects++
+fix collision rec for pillar
+fix frame for pit top, bottom
+fix collision rec for handle
+create ice tile (no working for now)
+add pot throwable obj
+
+
+
+
+
+we should only be able to add objects to the room, within the room rec
+not outside of the room
 
 
 
@@ -75,6 +80,70 @@ this is objs 0-2
 improve add/delete cursor display
 if in add state, then the selected obj should move with cursor, aligning to 16px grid
 if in delete state, then the minus symbol should move with cursor (top right placement)
+
+
+
+
+
+
+
+
+what is the format that we store roomData in? we need to get saving of roomdata working now
+how do we handle roomData? 
+
+roomData is populated by room builder project
+the roomData folder is simmply copied into the project's directory
+the project copys the roomData folder to it's output
+the game then loads all the roomData upon game boot
+when a room is needed, the data is copied from the loaded roomData
+
+dump the room data to XML file
+this starts with the user pressing the 'save' button from room builder screen
+this dumps the current room data to xml file in RoomData folder
+
+objects will be able to overlap
+the objects we'll be saving will be located on the pool's roomObj list
+so we can just dump that list to XML file, ignoring inactive objects
+
+
+roomData
+	type
+	list of objData
+	
+objData
+	type
+	x pos
+	y pos
+
+** we'll need to create objects that serve as actor spawn points
+** x & y pos are relative to the top left corner of room (room origin)
+
+
+ROOM EDITOR + ROOM DATA
+	build the room editor screen
+	standardize all room types + sizes
+	create the room data folder, update cs project to copy room data to output folder
+	basically the same approach as CC, but we'll be storing the room data in a slightly diff format
+	we'll only store room objects + enemy spawn locations - no floors, projectiles, etc..
+	and we'll only need to store the object's enum value
+	this will be stored in a 2d list of Column{Rows}.
+	so row1 = {0,0,0,0,0,10,10,10,0,0,0,0,0} for example, where 10 is an object type and 0 isn't.
+	this was we don't have to store position data, we just correlate rows to room width, and columns to room height
+	width and height is set based on room type, so we'll need to save room type.
+	but thats it. room type + the 2d array of int values.
+	pretty compact and efficient.
+	
+	
+	
+
+
+
+
+
+
+
+
+
 
 
 
@@ -111,77 +180,6 @@ so all dungeons should display a blob character instead of a skull
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-Develop RoomBuilder project
-
-this project can use .net XML serialization & win forms & whatever else
-because it will never run on an xbox or be player facing
-
-
-how do we handle roomData? 
-roomData is populated by room builder project
-the roomData folder is simmply copied into the project's directory
-the project copys the roomData folder to it's output
-the game then loads all the roomData upon game boot
-when a room is needed, the data is copied from the loaded roomData
-
-
-dump the room data to XML file
-this starts with the user pressing the 'save' button from room builder screen
-this dumps the current room data to xml file in RoomData folder
-
-
-to test that this works, we'll need to be able to add objects to the dev room
-for now, we will only be saving and testing the dev room type
-dont worry about other room types for now
-
-
-we'll need to be able to set the tool to move, add, and delete
-this is based on what the user clicks on in the tool area of room builder widget
-
-
-we'll need to be able to set the currently selected object
-are we doing this already?
-then based on the tool state, we can add an object to the room
-
-
-
-
-objects will be able to overlap
-the objects we'll be saving will be located on the pool's roomObj list
-so we can just dump that list to XML file, ignoring inactive objects
-
-
-roomData
-	type
-	list of objData
-	
-objData
-	type
-	x pos
-	y pos
-
-** we'll need to create objects that serve as actor spawn points
-** x & y pos are relative to the top left corner of room (room origin)
-
-
-
 standardize all room types + sizes (in constructor)
 
 load room data from XML file
@@ -197,15 +195,6 @@ load button should create a file dialog
 
 rooms will no longer have an enemy count
 instead, enemies will be placed by hand
-
-
-
-
-
-
-
-
-
 
 
 
@@ -235,23 +224,7 @@ new room screen
 	one of the issues here is that we'll need to make sure the floor pool has enough sprites to create the larger rooms
 	this will also increase the drawtime on the xbox one
 	
-
-
-	ROOM EDITOR + ROOM DATA
-	build the room editor screen
-	standardize all room types + sizes
-	create the room data folder, update cs project to copy room data to output folder
-	basically the same approach as CC, but we'll be storing the room data in a slightly diff format
-	we'll only store room objects + enemy spawn locations - no floors, projectiles, etc..
-	and we'll only need to store the object's enum value
-	this will be stored in a 2d list of Column{Rows}.
-	so row1 = {0,0,0,0,0,10,10,10,0,0,0,0,0} for example, where 10 is an object type and 0 isn't.
-	this was we don't have to store position data, we just correlate rows to room width, and columns to room height
-	width and height is set based on room type, so we'll need to save room type.
-	but thats it. room type + the 2d array of int values.
-	pretty compact and efficient.
-	
-	COMPLETE DUNGEONS
+COMPLETE DUNGEONS
 	we'll be using room editor to build up the room data folders.
 	then when we build the dungeon, we'll load all the room data into the game at once.
 	when we need a specific type of room, we just copy the necessary room data.
@@ -262,6 +235,9 @@ new room screen
 	adopt CursedCastle's roomData approach (Editor -> XML -> Randomly Choose a Room)
 	update dungeon generation routines to build complete dungeons
 	create room editor, standardize room sizes
+	
+	
+	
 	
 	
 	

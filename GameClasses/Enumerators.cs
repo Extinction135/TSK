@@ -45,14 +45,15 @@ namespace DungeonRun
 
     public enum ObjType
     {
-        //Room Objects
+        //Non-Editor Room Objects (procedurally added)
         Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
         DoorOpen, DoorBombable, DoorBombed, DoorBoss, DoorTrap, DoorShut, DoorFake,
-        WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue,
-        PitTop, PitBottom, PitTrapReady, PitTrapOpening,
-        BossStatue, BossDecal, Pillar, WallTorch, DebrisFloor,
+        WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
+        BossDecal, DebrisFloor,
 
-        //Interactive Objects - dungeon
+        //Editor Room Objects (hand-placed)
+        PitTop, PitBottom, PitTrapReady, PitTrapOpening,
+        BossStatue, Pillar,
         ChestGold, ChestKey, ChestMap, ChestHeartPiece, ChestEmpty,
         BlockDraggable, BlockDark, BlockLight, BlockSpikes,
         Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
