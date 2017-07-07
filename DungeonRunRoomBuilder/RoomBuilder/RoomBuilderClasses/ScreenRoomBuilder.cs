@@ -165,14 +165,38 @@ namespace DungeonRun
                 else
                 {
 
-                    //convert cursor Pos to world pos?
-                    Point worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
-                    Point objPos = AlignToGrid(worldPos.X, worldPos.Y);
-                    GameObject objRef = Functions_Pool.GetRoomObj();
-                    Functions_Movement.Teleport(objRef.compMove, objPos.X, objPos.Y);
-                    Functions_GameObject.SetType(objRef, RoomBuilder.activeObj.type);
-                    Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
-                    Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+                    if(editorState == EditorState.AddObj)
+                    {
+                        //convert cursor Pos to world pos
+                        Point worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
+                        Point objPos = AlignToGrid(worldPos.X, worldPos.Y);
+                        GameObject objRef = Functions_Pool.GetRoomObj();
+                        Functions_Movement.Teleport(objRef.compMove, objPos.X, objPos.Y);
+                        Functions_GameObject.SetType(objRef, RoomBuilder.activeObj.type);
+                        Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
+                        Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+                    }
+                    
+                    else if(editorState == EditorState.DeleteObj)
+                    {
+
+
+                        //convert cursor to world pos
+                        Point worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
+                        //check collisions between worldPos and all roomObjs
+                        //if collision happens, release obj
+
+                        for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+                        {
+                            if (Pool.roomObjPool[Pool.counter].active)
+                            {
+                                if (Pool.roomObjPool[Pool.counter].compCollision.rec.Contains(worldPos))
+                                { Functions_Pool.Release(Pool.roomObjPool[Pool.counter]); }
+                            }
+                        }
+
+
+                    }
 
 
                 }

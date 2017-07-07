@@ -43,28 +43,12 @@ todo:
 
 
 
-we ready to dev RoomBuildar
-
-
-
-
-
-
-Get Add Obj working for RoomBuilderScreen
-
-created AlignToGrid(), which accepts X, Y and aligns to 16 pixel grid.
-refactored how RBscreen handles widget collision checks with cursor.
-added basic routine to add selected object to the room.
-playtested, working as expected.
-
-
-
 
 we can't add objects over the walls, so wall objs should be removed from creation
 this is objs 0-2
 
 
-
+we should only be able to add objects if editorState == add
 
 
 add selected game object to room
