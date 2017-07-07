@@ -31,7 +31,7 @@ namespace DungeonRun
 
 
         public ComponentSprite cursorSprite;
-
+        public Point worldPos;
 
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
@@ -163,29 +163,19 @@ namespace DungeonRun
                 }
                 //else check world interaction
                 else
-                {
+                {   //convert cursor Pos to world pos
+                    worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
 
-                    if(editorState == EditorState.AddObj)
-                    {
-                        //convert cursor Pos to world pos
-                        Point worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
-                        Point objPos = AlignToGrid(worldPos.X, worldPos.Y);
+                    if (editorState == EditorState.AddObj)
+                    {   //place currently selected obj in room, aligned to 16px grid
                         GameObject objRef = Functions_Pool.GetRoomObj();
-                        Functions_Movement.Teleport(objRef.compMove, objPos.X, objPos.Y);
+                        objRef.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
                         Functions_GameObject.SetType(objRef, RoomBuilder.activeObj.type);
                         Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
                     }
-                    
                     else if(editorState == EditorState.DeleteObj)
-                    {
-
-
-                        //convert cursor to world pos
-                        Point worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
-                        //check collisions between worldPos and all roomObjs
-                        //if collision happens, release obj
-
+                    {   //check collisions between worldPos and roomObjs, release any colliding obj
                         for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
                         {
                             if (Pool.roomObjPool[Pool.counter].active)
@@ -194,11 +184,11 @@ namespace DungeonRun
                                 { Functions_Pool.Release(Pool.roomObjPool[Pool.counter]); }
                             }
                         }
-
+                    }
+                    else if(editorState == EditorState.MoveObj)
+                    {
 
                     }
-
-
                 }
             }
 
@@ -256,9 +246,9 @@ namespace DungeonRun
 
 
 
-        public Point AlignToGrid(int X, int Y)
+        public Vector2 AlignToGrid(int X, int Y)
         {
-            return new Point(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
+            return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
 
     }

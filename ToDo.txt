@@ -43,41 +43,33 @@ todo:
 
 
 
+Refactor RBScreen
+
+refactored AddObj and DeleteObj routines to not produce garbage.
+moved worldPos Point out of HandleInput() and into screen instance.
+playtested, working as expected.
+
+
+
+get moving objects working
+
+if cursor pos intersects room obj, pick up / make active roomobj
+active roomObj could be null
+
+if LMB is down, room obj matches cursor pos (on 16px grid)
+else room obj is 'dropped', aligned to 16px grid
+
+
+
+
+
+
+
+
+
 
 we can't add objects over the walls, so wall objs should be removed from creation
 this is objs 0-2
-
-
-we should only be able to add objects if editorState == add
-
-
-add selected game object to room
-	have a selected obj, via RBwidget.objects[]
-	add this selected obj to room at 16px grid location
-	this is done just like how we create walls
-
-delete selected obj from room
-	if cursor position intersects room obj
-	room obj gets released
-	
-move selected obj around room
-	if cursor pos intersects room obj, pick up / make active roomobj
-	active roomObj could be null
-	
-	if LMB is down, room obj matches cursor pos (on 16px grid)
-	else room obj is aligned to 16px grid
-
-
-
-need a function that accepts X,Y and returns X,Y that is 16px grid aligned
-we'll use it for adding, moving/dragging objects
-
-we should be treating room objs generically, with no special cases
-so all we need to do to expand the obj library is define the obj in RBwidget
-
-
-
-
 
 improve add/delete cursor display
 if in add state, then the selected obj should move with cursor, aligning to 16px grid
