@@ -43,15 +43,16 @@ todo:
 
 
 
-Refactor RBScreen
 
-refactored AddObj and DeleteObj routines to not produce garbage.
-moved worldPos Point out of HandleInput() and into screen instance.
+Get Moving Bbjects Working for RoomBuilder
+
+added grabbedObj gameObject instance to RoomBuilder.
+added routine to set grabbedObj to the clicked on roomObj in HandleInput().
+added routine to release grabbedObj in HandleInput().
+added routine to drag grabbedObj to Update().
 playtested, working as expected.
 
 
-
-get moving objects working
 
 if cursor pos intersects room obj, pick up / make active roomobj
 active roomObj could be null
@@ -63,7 +64,7 @@ else room obj is 'dropped', aligned to 16px grid
 
 
 
-
+refactor Delete + Move routine, they duplicate code
 
 
 

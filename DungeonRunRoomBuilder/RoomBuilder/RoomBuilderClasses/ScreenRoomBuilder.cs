@@ -32,6 +32,7 @@ namespace DungeonRun
 
         public ComponentSprite cursorSprite;
         public Point worldPos;
+        public GameObject grabbedObj;
 
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
@@ -60,6 +61,7 @@ namespace DungeonRun
             RoomBuilder.SetActiveObj(0); //set active obj to first widget obj
             RoomBuilder.SetActiveTool(RoomBuilder.moveObj); //set widet to move tool
             editorState = EditorState.MoveObj; //set screen to move state
+            grabbedObj = null;
 
             displayState = DisplayState.Opened; //open the screen
         }
@@ -67,6 +69,8 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             Functions_Debug.HandleDebugMenuInput();
+            //convert cursor Pos to world pos
+            worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
 
 
             # region Set Mouse Cursor Sprite
@@ -94,13 +98,8 @@ namespace DungeonRun
             #endregion
 
 
-
-            
-
-            
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {
-                //if mouse is contained within RB widget
+            {   //if mouse is contained within RB widget
                 if (RoomBuilder.window.interior.rec.Contains(Input.cursorPos))
                 {
 
@@ -161,10 +160,10 @@ namespace DungeonRun
                     #endregion
 
                 }
-                //else check world interaction
-                else
-                {   //convert cursor Pos to world pos
-                    worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
+                else//else check world interaction
+                {   
+
+                    #region Handle Add Object State
 
                     if (editorState == EditorState.AddObj)
                     {   //place currently selected obj in room, aligned to 16px grid
@@ -174,6 +173,12 @@ namespace DungeonRun
                         Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
                     }
+
+                    #endregion
+
+
+                    #region Handle Delete Object State
+
                     else if(editorState == EditorState.DeleteObj)
                     {   //check collisions between worldPos and roomObjs, release any colliding obj
                         for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
@@ -185,14 +190,36 @@ namespace DungeonRun
                             }
                         }
                     }
-                    else if(editorState == EditorState.MoveObj)
-                    {
 
+                    #endregion
+
+
+                    #region Handle Grab (Move) Object State
+
+                    else if (editorState == EditorState.MoveObj)
+                    {   //check collisions between worldPos and roomObjs, grab any colliding obj
+                        for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+                        {
+                            if (Pool.roomObjPool[Pool.counter].active)
+                            {
+                                if (Pool.roomObjPool[Pool.counter].compCollision.rec.Contains(worldPos))
+                                { grabbedObj = Pool.roomObjPool[Pool.counter]; }
+                            }
+                        }
                     }
+
+                    #endregion
+
                 }
             }
 
 
+            #region Handle Release Grabbed Obj
+
+            if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
+            { grabbedObj = null; }
+
+            #endregion
 
         }
 
@@ -206,6 +233,25 @@ namespace DungeonRun
             Functions_Camera2D.Update(GameTime);
             Timing.stopWatch.Stop();
             Timing.updateTime = Timing.stopWatch.Elapsed;
+
+
+            #region Handle Dragging of Grabbed Obj
+
+            if(Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+            {   //if we have a grabbedObj, match it to cursorPos if LMB is down
+                if (editorState == EditorState.MoveObj)
+                {   //match grabbed Obj pos to worldPos, aligned to 16px grid
+                    if(grabbedObj != null)
+                    {
+                        grabbedObj.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Component.Align(grabbedObj.compMove, 
+                            grabbedObj.compSprite, grabbedObj.compCollision);
+                    }
+                }
+            }
+
+            #endregion
+
         }
 
         public override void Draw(GameTime GameTime)
