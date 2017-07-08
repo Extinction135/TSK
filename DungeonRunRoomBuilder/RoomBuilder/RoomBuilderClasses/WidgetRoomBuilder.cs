@@ -127,11 +127,11 @@ namespace DungeonRun
                     }
                     else if (i == 5) //sixth row
                     {
-                        //if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
-                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.PitBottom); }
-                        if (j == 2) { Functions_GameObject.SetType(obj, ObjType.PitTrapReady); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Bridge); }
-                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.ice); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PitAnimated); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.PitBottom); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTrapReady); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Bridge); }
                     }
                     else if (i == 6) //seventh row
                     {

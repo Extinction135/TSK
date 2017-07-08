@@ -76,6 +76,8 @@ namespace DungeonRun
 
                 #region Editor Room Objects
 
+                //PitAnimated
+                new List<Byte4> { new Byte4(4, 7, 0, 0), new Byte4(5, 7, 0, 0), new Byte4(6, 7, 0, 0) },
                 //PitTop
                 new List<Byte4> { new Byte4(2, 4, 0, 0) },
                 //PitBottom

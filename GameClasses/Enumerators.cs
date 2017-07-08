@@ -52,7 +52,7 @@ namespace DungeonRun
         BossDecal, DebrisFloor,
 
         //Editor Room Objects (hand-placed)
-        PitTop, PitBottom, PitTrapReady, PitTrapOpening,
+        PitAnimated, PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, Pillar,
         ChestGold, ChestKey, ChestMap, ChestHeartPiece, ChestEmpty,
         BlockDraggable, BlockDark, BlockLight, BlockSpikes,

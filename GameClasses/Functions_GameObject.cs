@@ -190,20 +190,29 @@ namespace DungeonRun
 
             #region Pits
 
-            else if (Type == ObjType.PitTop)
+            else if (Type == ObjType.PitAnimated)
             {
-                //pits dont collide with actors
+                //this pit interacts with actor
+                Obj.compSprite.zOffset = -40; //sort under pit decorations
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compCollision.blocking = false;
+            }
+            else if (Type == ObjType.PitTop)
+            {   //this is pit decoration
                 Obj.compSprite.zOffset = -32; //sort to floor
+                //Obj.compSprite.cellSize.X = 8;
+                Obj.compSprite.cellSize.Y = 8;
             }
             else if (Type == ObjType.PitBottom)
-            {
-                //instead we'll use an animated liquid obj for collision checking
-                //pits just sit ontop of this object as decoration
+            {   //this is pit decoration
                 Obj.compSprite.zOffset = -32; //sort to floor
+                //Obj.compSprite.cellSize.X = 8;
+                Obj.compSprite.cellSize.Y = 8;
             }
             else if (
                 Type == ObjType.PitTrapReady || Type == ObjType.PitTrapOpening)
-            {
+            {   //this becomes a pit
                 Obj.compCollision.offsetX = -6;
                 Obj.compCollision.offsetY = -6;
                 Obj.compSprite.zOffset = -32; //sort to floor
@@ -313,8 +322,8 @@ namespace DungeonRun
             else if (Type == ObjType.Pillar)
             {
                 Obj.compSprite.zOffset = 2;
-                Obj.compCollision.rec.Width = 8;
-                Obj.compCollision.offsetX = 4;
+                Obj.compCollision.rec.Width = 10;
+                Obj.compCollision.offsetX = -5;
             }
             else if (Type == ObjType.Flamethrower)
             {
@@ -344,8 +353,8 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Lever)
             {
-                Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = 1;
-                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 3;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
+                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
                 Obj.compSprite.zOffset = -7;
             }
 

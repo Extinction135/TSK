@@ -42,27 +42,62 @@ todo:
 
 
 
-Organize and Update the object available to Editor
 
-updated the creatable objects in roomBuilder widget.
-this fixes an issue where user could place wall objects.
-these objs will be procedurally added later.
+Polish GameObjects for Editor Use
 
-reorganized the ObjType enum to better reflect their status in editor.
-updated Functions_GameObjectAnimList to match ObjType enum.
-reorganized Functions_GameObjects.SetType() to be in line with ObjType enums.
+fixed collision rec for pillar object.
+fixed collision rec for lever object.
+
+fixed cellsize for pit top and bottom.
+created sprite + animation for 'deadly liquid'.
+this will serve as the base for the pit objects.
+
+added PitAnimated ObjType & ObjAnimList.
+updated Functions_GameObj to handle PitAnimated.
+playtested, working but with some visual bugs.
 
 
+
+
+
+
+
+
+
+we can also have a cracked open floor obj that sits over animated liquid
+this varies the 'pit' style a bit
+
+
+
+
+
+animate the room objects in roomBuilder, so we can see their animations
+
+
+
+fix the top and bottom of pits
+they should exist as a 16x16 sprite
+we have a place for them next to animated pit at bottom
 
 
 
 
 Objects++
-fix collision rec for pillar
-fix frame for pit top, bottom
-fix collision rec for handle
+
 create ice tile (no working for now)
 add pot throwable obj
+
+
+write interaction routine for PitAnimated
+this should work similar to conveyor belt, except it pulls hero towards it's center
+
+
+
+
+
+update UWP content with DirectX content directory
+
+
 
 
 
