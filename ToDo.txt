@@ -43,27 +43,25 @@ todo:
 
 
 
-Fix visuals for Torches + Pits
-
-fixed a visual bug where lit torch had extra frame of animation.
-
-added call to Pool.Update() in RoomBuilderScreen.Update().
-this animates all the roomObjs.
-fixed a bug where created/placed objs weren't getting positioned properly.
-now they are placed using Teleport().
-
-modified the top and bottom of pits to fit into their own 16x16 sprite cells.
-updated GameObjAnimList & Functions_GameObject.SetType() for pit top & bottom.
-updated collision recs for pit top and bottom.
-playtested, pits now look correct and sort/align properly.
 
 
+
+Only process add/move/delete if user clicks within room
+
+we don't want the user adding objects outside of the room, only inside.
+same with deleting and moving objects.
+if an objet is outside of the room.rec (walls for example), the obj cannot be modified.
+this prevents the user from deleting or moving walls, which is good.
+
+updated RBscreen.HandleInput() to check if cursor is contained within currentRoom.
+if true, then add/move/delete is processed normally.
+playtested, user is limited to clicking within the room as intended.
 
 
 
 
-
-
+bug: we can't move green objects. 
+we should be teleporting objects when we move them/drop them
 
 
 we should only be able to add objects to the room, within the room rec

@@ -160,8 +160,9 @@ namespace DungeonRun
                     #endregion
 
                 }
-                else//else check world interaction
-                {   
+                //if mouse worldPos is contained within the current room, add/delete/move room objects
+                else if (Functions_Dungeon.currentRoom.collision.rec.Contains(worldPos))
+                {
 
                     #region Handle Add Object State
 
@@ -183,7 +184,7 @@ namespace DungeonRun
 
                     #region Handle Delete Object State
 
-                    else if(editorState == EditorState.DeleteObj)
+                    else if (editorState == EditorState.DeleteObj)
                     {   //check collisions between worldPos and roomObjs, release any colliding obj
                         for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
                         {
