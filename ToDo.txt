@@ -46,26 +46,16 @@ todo:
 
 
 
-Only process add/move/delete if user clicks within room
 
-we don't want the user adding objects outside of the room, only inside.
-same with deleting and moving objects.
-if an objet is outside of the room.rec (walls for example), the obj cannot be modified.
-this prevents the user from deleting or moving walls, which is good.
+Fix bug where non-blocking objects don't drag properly
 
-updated RBscreen.HandleInput() to check if cursor is contained within currentRoom.
-if true, then add/move/delete is processed normally.
-playtested, user is limited to clicking within the room as intended.
+updated dragging routine to place objects using Teleport().
+this is the same fix used when placing objects.
+this fixes bug where objs reverted to original pos upon release.
+playtested, working as expected.
 
 
 
-
-bug: we can't move green objects. 
-we should be teleporting objects when we move them/drop them
-
-
-we should only be able to add objects to the room, within the room rec
-not outside of the room
 
 
 
@@ -77,6 +67,12 @@ we should be able to turn update of objs on/off - need a button
 we can also have a cracked open floor obj that sits over animated liquid
 this varies the 'pit' style a bit
 
+
+
+we should be able to create vertical and horizontal moving spike blocks
+include an arrow over the spike block as indicator
+
+spike blocks should bounce off of bumpers like everything else does
 
 
 

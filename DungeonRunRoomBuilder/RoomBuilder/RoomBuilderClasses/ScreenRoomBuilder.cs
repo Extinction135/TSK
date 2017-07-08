@@ -252,6 +252,8 @@ namespace DungeonRun
                     if(grabbedObj != null)
                     {
                         grabbedObj.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Movement.Teleport(grabbedObj.compMove,
+                            grabbedObj.compMove.newPosition.X, grabbedObj.compMove.newPosition.Y);
                         Functions_Component.Align(grabbedObj.compMove, 
                             grabbedObj.compSprite, grabbedObj.compCollision);
                     }
