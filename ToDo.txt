@@ -43,59 +43,22 @@ todo:
 
 
 
-Polish GameObjects for Editor Use
+Fix visuals for Torches + Pits
 
-fixed collision rec for pillar object.
-fixed collision rec for lever object.
+fixed a visual bug where lit torch had extra frame of animation.
 
-fixed cellsize for pit top and bottom.
-created sprite + animation for 'deadly liquid'.
-this will serve as the base for the pit objects.
+added call to Pool.Update() in RoomBuilderScreen.Update().
+this animates all the roomObjs.
+fixed a bug where created/placed objs weren't getting positioned properly.
+now they are placed using Teleport().
 
-added PitAnimated ObjType & ObjAnimList.
-updated Functions_GameObj to handle PitAnimated.
-playtested, working but with some visual bugs.
-
-
-
+modified the top and bottom of pits to fit into their own 16x16 sprite cells.
+updated GameObjAnimList & Functions_GameObject.SetType() for pit top & bottom.
+updated collision recs for pit top and bottom.
+playtested, pits now look correct and sort/align properly.
 
 
 
-
-
-
-we can also have a cracked open floor obj that sits over animated liquid
-this varies the 'pit' style a bit
-
-
-
-
-
-animate the room objects in roomBuilder, so we can see their animations
-
-
-
-fix the top and bottom of pits
-they should exist as a 16x16 sprite
-we have a place for them next to animated pit at bottom
-
-
-
-
-Objects++
-
-create ice tile (no working for now)
-add pot throwable obj
-
-
-write interaction routine for PitAnimated
-this should work similar to conveyor belt, except it pulls hero towards it's center
-
-
-
-
-
-update UWP content with DirectX content directory
 
 
 
@@ -105,6 +68,34 @@ update UWP content with DirectX content directory
 
 we should only be able to add objects to the room, within the room rec
 not outside of the room
+
+
+
+
+
+
+we should be able to turn update of objs on/off - need a button
+
+we can also have a cracked open floor obj that sits over animated liquid
+this varies the 'pit' style a bit
+
+
+
+
+
+
+
+create ice tile (no working for now)
+add pot throwable obj
+
+write interaction routine for PitAnimated
+this should work similar to conveyor belt, except it pulls hero towards it's center
+
+update UWP content with DirectX content directory
+
+
+
+
 
 
 

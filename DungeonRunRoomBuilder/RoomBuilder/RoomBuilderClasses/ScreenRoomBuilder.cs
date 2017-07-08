@@ -168,7 +168,11 @@ namespace DungeonRun
                     if (editorState == EditorState.AddObj)
                     {   //place currently selected obj in room, aligned to 16px grid
                         GameObject objRef = Functions_Pool.GetRoomObj();
+
                         objRef.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Movement.Teleport(objRef.compMove,
+                            objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
+
                         Functions_GameObject.SetType(objRef, RoomBuilder.activeObj.type);
                         Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
@@ -227,6 +231,9 @@ namespace DungeonRun
         {
             Timing.Reset();
             RoomBuilder.Update();
+
+            Functions_Pool.Update(); //animate the roomObjs
+
             //track camera to left-center of room instance
             Camera2D.targetPosition.X = room.center.X - 16 * 3;
             Camera2D.targetPosition.Y = room.center.Y;

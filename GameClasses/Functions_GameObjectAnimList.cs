@@ -79,9 +79,9 @@ namespace DungeonRun
                 //PitAnimated
                 new List<Byte4> { new Byte4(4, 7, 0, 0), new Byte4(5, 7, 0, 0), new Byte4(6, 7, 0, 0) },
                 //PitTop
-                new List<Byte4> { new Byte4(2, 4, 0, 0) },
+                new List<Byte4> { new Byte4(2, 7, 0, 0) },
                 //PitBottom
-                new List<Byte4> { new Byte4(2, 5, 0, 0) },
+                new List<Byte4> { new Byte4(3, 7, 0, 0) },
                 //PitTrapReady
                 new List<Byte4> { new Byte4(6, 3, 0, 0) },
                 //PitTrapOpening
@@ -133,7 +133,7 @@ namespace DungeonRun
                 //TorchUnlit
                 new List<Byte4> { new Byte4(7, 3, 0, 0) },
                 //TorchLit
-                new List<Byte4> { new Byte4(7, 4, 0, 0), new Byte4(7, 5, 0, 0), new Byte4(7, 6, 0, 0), new Byte4(7, 7, 0, 0) },
+                new List<Byte4> { new Byte4(7, 4, 0, 0), new Byte4(7, 5, 0, 0), new Byte4(7, 6, 0, 0) },
                 //ConveyorBelt
                 new List<Byte4> { new Byte4(4, 6, 0, 0), new Byte4(5, 6, 0, 0), new Byte4(6, 6, 0, 0) },
 

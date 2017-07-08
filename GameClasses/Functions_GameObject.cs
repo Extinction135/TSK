@@ -198,17 +198,12 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
             }
-            else if (Type == ObjType.PitTop)
+            else if (Type == ObjType.PitTop || Type == ObjType.PitBottom)
             {   //this is pit decoration
                 Obj.compSprite.zOffset = -32; //sort to floor
-                //Obj.compSprite.cellSize.X = 8;
-                Obj.compSprite.cellSize.Y = 8;
-            }
-            else if (Type == ObjType.PitBottom)
-            {   //this is pit decoration
-                Obj.compSprite.zOffset = -32; //sort to floor
-                //Obj.compSprite.cellSize.X = 8;
-                Obj.compSprite.cellSize.Y = 8;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 8;
+                if (Type == ObjType.PitBottom) { Obj.compCollision.offsetY = 4; }
+                Obj.compCollision.blocking = false;
             }
             else if (
                 Type == ObjType.PitTrapReady || Type == ObjType.PitTrapOpening)
