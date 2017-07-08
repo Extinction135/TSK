@@ -45,20 +45,26 @@ todo:
 
 
 
+Cleanup / Refactor Collision Routines, Improve SpikeBlock interactions
 
+the following changes were applied to Functions_Collision file:
+CheckCollisions(Projectile) should actually be CheckCollisions(Object).
+because we are passing objects into this method, not just projectiles.
+changed the parameter name to Obj to reflect what the parameter actually represents.
+CheckObjPoolCollisions(Projectile) should actually be CheckObjPoolCollisions(Object).
+because we are passing objects into this method, not just projectiles.
+changed the parameter name to Obj to reflect what the parameter actually represents.
+updated CheckObjPoolCollisions() to prevent obj from colliding with itself.
 
-Fix bug where non-blocking objects don't drag properly
-
-updated dragging routine to place objects using Teleport().
-this is the same fix used when placing objects.
-this fixes bug where objs reverted to original pos upon release.
+the following changes were applied to Functions_Interaction file:
+moved spikeblock bounce into its own function, BounceSpikeBlock().
+updated Interact(ObjA, ObjB) to bounce spike blocks off of themselves.
 playtested, working as expected.
 
 
 
 
-
-
+bounce spikeblocks off of: bumpers, 
 
 
 
@@ -69,33 +75,28 @@ this varies the 'pit' style a bit
 
 
 
+
+Spikeblocks++
 we should be able to create vertical and horizontal moving spike blocks
 include an arrow over the spike block as indicator
 
 spike blocks should bounce off of bumpers like everything else does
+spike blocks should bounce off each other too
+
+spike blocks have an interaction rec, no collision rec
+spike blocks bounce off of other blocking objects
+but they should also bounce off of certain non-blocking objects
 
 
 
 
-
-
-create ice tile (no working for now)
+create ice tile (no working for now) - changes friction
 add pot throwable obj
 
 write interaction routine for PitAnimated
 this should work similar to conveyor belt, except it pulls hero towards it's center
 
-update UWP content with DirectX content directory
 
-
-
-
-
-
-
-
-we can't add objects over the walls, so wall objs should be removed from creation
-this is objs 0-2
 
 improve add/delete cursor display
 if in add state, then the selected obj should move with cursor, aligning to 16px grid
@@ -161,7 +162,7 @@ ROOM EDITOR + ROOM DATA
 
 
 
-
+update UWP content with DirectX content directory, we've modified the dungeonSheet
 
 
 

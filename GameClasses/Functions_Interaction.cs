@@ -269,29 +269,48 @@ namespace DungeonRun
             //Projectile could = Obj!, if comparing Projectile to Obj in ProjectilePool
             //no blocking checks have been done yet
 
-            if(ObjB.compCollision.blocking) //is the colliding object blocking?
+            #region Handle blocking object interactions
+
+            if (ObjB.compCollision.blocking) //is the colliding object blocking?
             {
                 if (ObjA.type == ObjType.ProjectileFireball ||
                     ObjA.type == ObjType.ProjectileArrow)
-                {
-                    ObjA.lifeCounter = ObjA.lifetime; //kill projectile
-                }
-
-                else if (ObjA.type == ObjType.BlockSpikes)
-                {   //flip the object's direction to the opposite direction
-                    ObjA.compMove.direction = Functions_Direction.GetOppositeDirection(ObjA.compMove.direction);
-                    //push the object in it's new direction, out of this collision
-                    Functions_Movement.Push(ObjA.compMove, ObjA.compMove.direction, 5.0f);
-                    Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect
-                    //show that the object has been hit
-                    Functions_Entity.SpawnEntity(
-                        ObjType.ParticleHitSparkle, 
-                        ObjA.compSprite.position.X,
-                        ObjA.compSprite.position.Y,
-                        Direction.None);
-                }
+                { ObjA.lifeCounter = ObjA.lifetime; } //kill projectile
+                else if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); }
             }
+
+            #endregion
+
+
+            #region Handle non-blocking object interactions
+
+            if (ObjA.type == ObjType.BlockSpikes)
+            {
+                if (ObjB.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); }
+            }
+
+            #endregion
+
         }
+
+
+        public static void BounceSpikeBlock(GameObject SpikeBlock)
+        {   //flip the object's direction to the opposite direction
+            SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
+            //push the object in it's new direction, out of this collision
+            Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 5.0f);
+            Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect
+                                                //show that the object has been hit
+            Functions_Entity.SpawnEntity(
+                ObjType.ParticleHitSparkle,
+                SpikeBlock.compSprite.position.X,
+                SpikeBlock.compSprite.position.Y,
+                Direction.None);
+        }
+
+
+
+
 
     }
 }

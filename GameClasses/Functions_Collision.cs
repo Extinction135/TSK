@@ -117,14 +117,17 @@ namespace DungeonRun
 
 
 
-        public static void CheckObjPoolCollisions(GameObject Projectile)
-        {
+        public static void CheckObjPoolCollisions(GameObject Obj)
+        {   //Obj could be a projectile/particle from the entity pool
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
-                {
-                    if (Projectile.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
-                    { Functions_Interaction.Interact(Projectile, Pool.roomObjPool[i]); }
+                {   //roomObj must be active
+                    if (Obj.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    {   //roomObjs cant collide with themselves
+                        if (Obj != Pool.roomObjPool[i])
+                        { Functions_Interaction.Interact(Obj, Pool.roomObjPool[i]); }
+                    }
                 }
             }
         }
@@ -142,13 +145,13 @@ namespace DungeonRun
         }
 
         public static void CheckProjectilePoolCollisions(GameObject Projectile)
-        {
+        {   //Projectile is from from the entity pool
             for (i = 0; i < Pool.entityCount; i++)
             {
                 if (Pool.entityPool[i].active)
-                {
+                {   //entityObj must be active
                     if (Projectile.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
-                    {   //projectiles shouldn't be allowed to collide with themselves
+                    {   //projectiles cant collide with themselves
                         if (Projectile != Pool.entityPool[i])
                         { Functions_Interaction.Interact(Projectile, Pool.entityPool[i]); }
                     }
@@ -187,25 +190,25 @@ namespace DungeonRun
             Actor.compMove.position.Y = Actor.compMove.newPosition.Y;
         }
 
-        public static void CheckCollisions(GameObject Projectile)
+        public static void CheckCollisions(GameObject Obj)
         {
             //do not check collisions for particles
-            if (Projectile.group == ObjGroup.Particle) { return; }
+            if (Obj.group == ObjGroup.Particle) { return; }
 
             collisionX = false; collisionY = false;
 
             //project collisionRec on X & Y axis
-            Projectile.compCollision.rec.X = (int)Projectile.compMove.newPosition.X + Projectile.compCollision.offsetX;
-            Projectile.compCollision.rec.Y = (int)Projectile.compMove.newPosition.Y + Projectile.compCollision.offsetY;
+            Obj.compCollision.rec.X = (int)Obj.compMove.newPosition.X + Obj.compCollision.offsetX;
+            Obj.compCollision.rec.Y = (int)Obj.compMove.newPosition.Y + Obj.compCollision.offsetY;
 
             //handle actor, object, projectile collisions/interactions
-            CheckObjPoolCollisions(Projectile);
-            CheckActorPoolCollisions(Projectile);
-            CheckProjectilePoolCollisions(Projectile);
+            CheckObjPoolCollisions(Obj);
+            CheckActorPoolCollisions(Obj);
+            CheckProjectilePoolCollisions(Obj);
 
             //the current position becomes the new position
-            Projectile.compMove.position.X = Projectile.compMove.newPosition.X;
-            Projectile.compMove.position.Y = Projectile.compMove.newPosition.Y;
+            Obj.compMove.position.X = Obj.compMove.newPosition.X;
+            Obj.compMove.position.Y = Obj.compMove.newPosition.Y;
         }
 
     }
