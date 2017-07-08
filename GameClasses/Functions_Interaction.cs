@@ -249,11 +249,8 @@ namespace DungeonRun
                         Functions_Direction.GetRelativeDirection(Obj, Actor),
                         10.0f);
                     //actors can collide with bumper twice per frame, due to per axis collision checks
-                    //only play the bounce sound effect if the bumper hasn't been hit this frame
-                    if (Obj.compSprite.scale < 1.5f) { Assets.Play(Assets.sfxBounce); }
-                    //if the bumper was hit this frame, scale it up
-                    Obj.compSprite.scale = 1.5f;
-                    Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Actor);
+                    BounceBumper(Obj);
+
                 }
                 //lever, floor spikes, switch, bridge, flamethrower,
                 //torch unlit, torch lit
@@ -266,7 +263,6 @@ namespace DungeonRun
         public static void Interact(GameObject ObjA, GameObject ObjB)
         {
             //Obj could be a projectile!
-            //Projectile could = Obj!, if comparing Projectile to Obj in ProjectilePool
             //no blocking checks have been done yet
 
             #region Handle blocking object interactions
@@ -284,9 +280,13 @@ namespace DungeonRun
 
             #region Handle non-blocking object interactions
 
-            if (ObjA.type == ObjType.BlockSpikes)
+            else if (ObjB.type == ObjType.BlockSpikes)
             {
-                if (ObjB.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); }
+                if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); BounceSpikeBlock(ObjB); }
+            }
+            else if(ObjB.type == ObjType.Bumper)
+            {
+                if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); BounceBumper(ObjB); }
             }
 
             #endregion
@@ -295,16 +295,26 @@ namespace DungeonRun
 
 
         public static void BounceSpikeBlock(GameObject SpikeBlock)
-        {   //flip the object's direction to the opposite direction
+        {   //flip the block's direction to the opposite direction
             SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
-            //push the object in it's new direction, out of this collision
+            //push the block in it's new direction, out of this collision
             Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 5.0f);
-            Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect
-                                                //show that the object has been hit
-            Functions_Entity.SpawnEntity(
+            Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect                               
+            Functions_Entity.SpawnEntity( //show that the object has been hit
                 ObjType.ParticleHitSparkle,
                 SpikeBlock.compSprite.position.X,
                 SpikeBlock.compSprite.position.Y,
+                Direction.None);
+        }
+
+        public static void BounceBumper(GameObject Bumper)
+        {   //only play the bounce sound effect if the bumper hasn't been hit this frame
+            if (Bumper.compSprite.scale < 1.5f) { Assets.Play(Assets.sfxBounce); }
+            Bumper.compSprite.scale = 1.5f; //scale bumper up
+            Functions_Entity.SpawnEntity(
+                ObjType.ParticleAttention,
+                Bumper.compSprite.position.X, 
+                Bumper.compSprite.position.Y, 
                 Direction.None);
         }
 

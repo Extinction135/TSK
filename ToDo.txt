@@ -45,26 +45,14 @@ todo:
 
 
 
-Cleanup / Refactor Collision Routines, Improve SpikeBlock interactions
-
-the following changes were applied to Functions_Collision file:
-CheckCollisions(Projectile) should actually be CheckCollisions(Object).
-because we are passing objects into this method, not just projectiles.
-changed the parameter name to Obj to reflect what the parameter actually represents.
-CheckObjPoolCollisions(Projectile) should actually be CheckObjPoolCollisions(Object).
-because we are passing objects into this method, not just projectiles.
-changed the parameter name to Obj to reflect what the parameter actually represents.
-updated CheckObjPoolCollisions() to prevent obj from colliding with itself.
-
 the following changes were applied to Functions_Interaction file:
-moved spikeblock bounce into its own function, BounceSpikeBlock().
-updated Interact(ObjA, ObjB) to bounce spike blocks off of themselves.
+moved bounce of bumper into it's own method, BounceBumper().
+changed particle created upon bounce to attention particle.
+updated Interact(Obj, Obj) to allow spikeblocks to bounce off of bumpers.
 playtested, working as expected.
 
 
 
-
-bounce spikeblocks off of: bumpers, 
 
 
 
