@@ -33,7 +33,7 @@ namespace DungeonRun
         public ComponentButton saveBtn;
         public ComponentButton newBtn;
         public ComponentButton loadBtn;
-
+        public ComponentButton updateBtn;
 
 
 
@@ -45,8 +45,8 @@ namespace DungeonRun
             #region Create Window and Divider lines
 
             window = new MenuWindow(
-                new Point(8, 16 * 4), 
-                new Point(16 * 6, 16 * 14 + 8),
+                new Point(8, 16 * 3), 
+                new Point(16 * 6, 16 * 15 + 8),
                 "Room Builder");
             window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
             window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
@@ -79,7 +79,7 @@ namespace DungeonRun
                     Functions_GameObject.ResetObject(obj);
                     //set the new position value for the move component
                     obj.compMove.newPosition.X = 16 + 8 + (16 * j);
-                    obj.compMove.newPosition.Y = 16 * 6 + (16 * i);
+                    obj.compMove.newPosition.Y = 16 * 5 + (16 * i);
                     Functions_GameObject.SetType(obj, ObjType.WallStraight);
 
 
@@ -151,7 +151,7 @@ namespace DungeonRun
                     obj.compCollision.rec.Width = 16;
                     obj.compCollision.rec.Height = 16;
                     obj.compCollision.rec.X = 16 + 8 + (16 * j) - 8;
-                    obj.compCollision.rec.Y = 16 * 6 + (16 * i) - 8;
+                    obj.compCollision.rec.Y = 16 * 5 + (16 * i) - 8;
                     //add the object to the list
                     objList.Add(obj); 
                 }
@@ -162,51 +162,20 @@ namespace DungeonRun
 
             #region Add Enemy objs to ObjList
 
-            //enemy1 - index 35
-            GameObject enemy1 = new GameObject(Assets.blobSheet);
-            Functions_GameObject.ResetObject(enemy1);
-            enemy1.compSprite.position.X = 16 * 1 + 8;
-            enemy1.compSprite.position.Y = 16 * 13;
-            enemy1.compCollision.rec.X = 16 * 1;
-            enemy1.compCollision.rec.Y = 16 * 13 - 8;
-            objList.Add(enemy1);
+            for (i = 1; i < 6; i++)
+            {   //add 5 eney objs as blobs under objects
+                GameObject enemyObj = new GameObject(Assets.blobSheet);
+                Functions_GameObject.ResetObject(enemyObj);
+                enemyObj.compSprite.position.X = 16 * i + 8;
+                enemyObj.compSprite.position.Y = 16 * 12;
+                enemyObj.compCollision.rec.X = 16 * i;
+                enemyObj.compCollision.rec.Y = 16 * 12 - 8;
+                objList.Add(enemyObj); //index 35-39
+            }
 
-            //enemy2 - index 36
-            GameObject enemy2 = new GameObject(Assets.blobSheet);
-            Functions_GameObject.ResetObject(enemy2);
-            enemy2.compSprite.position.X = 16 * 2 + 8;
-            enemy2.compSprite.position.Y = 16 * 13;
-            enemy2.compCollision.rec.X = 16 * 2;
-            enemy2.compCollision.rec.Y = 16 * 13 - 8;
-            objList.Add(enemy2);
-
-            //enemy3 - index 37
-            GameObject enemy3 = new GameObject(Assets.blobSheet);
-            Functions_GameObject.ResetObject(enemy3);
-            enemy3.compSprite.position.X = 16 * 3 + 8;
-            enemy3.compSprite.position.Y = 16 * 13;
-            enemy3.compCollision.rec.X = 16 * 3;
-            enemy3.compCollision.rec.Y = 16 * 13 - 8;
-            objList.Add(enemy3);
-
-            //enemy4 - index 38
-            GameObject enemy4 = new GameObject(Assets.blobSheet);
-            Functions_GameObject.ResetObject(enemy4);
-            enemy4.compSprite.position.X = 16 * 4 + 8;
-            enemy4.compSprite.position.Y = 16 * 13;
-            enemy4.compCollision.rec.X = 16 * 4;
-            enemy4.compCollision.rec.Y = 16 * 13 - 8;
-            objList.Add(enemy4);
-
-            //enemy4 - index 39
-            GameObject enemy5 = new GameObject(Assets.blobSheet);
-            Functions_GameObject.ResetObject(enemy5);
-            enemy5.compSprite.position.X = 16 * 5 + 8;
-            enemy5.compSprite.position.Y = 16 * 13;
-            enemy5.compCollision.rec.X = 16 * 5;
-            enemy5.compCollision.rec.Y = 16 * 13 - 8;
-            objList.Add(enemy5);
-
+            //we could set the enemy type like this:
+            //Functions_GameObject.SetType(objList[35], ObjType.Enemy1); //not implemented yet
+            
             #endregion
 
 
@@ -217,13 +186,13 @@ namespace DungeonRun
             Functions_GameObject.ResetObject(moveObj);
             //set sprite position
             moveObj.compSprite.position.X = 16 * 1 + 8;
-            moveObj.compSprite.position.Y = 16 * 15;
+            moveObj.compSprite.position.Y = 16 * 14;
             //set sprites frame
             moveObj.compSprite.currentFrame.X = 14;
             moveObj.compSprite.currentFrame.Y = 13;
             //set collision rec
             moveObj.compCollision.rec.X = 16 * 1 + 8 - 8;
-            moveObj.compCollision.rec.Y = 16 * 15 - 8;
+            moveObj.compCollision.rec.Y = 16 * 14 - 8;
             //add object to list
             objList.Add(moveObj);
 
@@ -232,13 +201,13 @@ namespace DungeonRun
             Functions_GameObject.ResetObject(addObj);
             //set sprite position
             addObj.compSprite.position.X = 16 * 3 + 8;
-            addObj.compSprite.position.Y = 16 * 15;
+            addObj.compSprite.position.Y = 16 * 14;
             //set sprites frame
             addObj.compSprite.currentFrame.X = 14;
             addObj.compSprite.currentFrame.Y = 15;
             //set collision rec
             addObj.compCollision.rec.X = 16 * 3 + 8 - 8;
-            addObj.compCollision.rec.Y = 16 * 15 - 8;
+            addObj.compCollision.rec.Y = 16 * 14 - 8;
             //add object to list
             objList.Add(addObj);
 
@@ -247,13 +216,13 @@ namespace DungeonRun
             Functions_GameObject.ResetObject(deleteObj);
             //set sprite position
             deleteObj.compSprite.position.X = 16 * 5 + 8;
-            deleteObj.compSprite.position.Y = 16 * 15;
+            deleteObj.compSprite.position.Y = 16 * 14;
             //set sprites frame
             deleteObj.compSprite.currentFrame.X = 15;
             deleteObj.compSprite.currentFrame.Y = 15;
             //set collision rec
             deleteObj.compCollision.rec.X = 16 * 5 + 8 - 8;
-            deleteObj.compCollision.rec.Y = 16 * 15 - 8;
+            deleteObj.compCollision.rec.Y = 16 * 14 - 8;
             //add object to list
             objList.Add(deleteObj);
 
@@ -266,12 +235,16 @@ namespace DungeonRun
             #region Create Save New Load Buttons
 
             buttons = new List<ComponentButton>();
-            saveBtn = new ComponentButton("save", new Point(16 * 1, 16 * 16 + 8));
-            newBtn = new ComponentButton("new", new Point(16 * 2 + 13, 16 * 16 + 8));
-            loadBtn = new ComponentButton("load", new Point(16 * 4 + 10, 16 * 16 + 8));
+            saveBtn = new ComponentButton("save", new Point(16 * 1, 16 * 15 + 8));
+            newBtn = new ComponentButton("new", new Point(16 * 2 + 13, 16 * 15 + 8));
+            loadBtn = new ComponentButton("load", new Point(16 * 4 + 10, 16 * 15 + 8));
             buttons.Add(saveBtn);
             buttons.Add(newBtn);
             buttons.Add(loadBtn);
+            
+            updateBtn = new ComponentButton("update room", new Point(16 * 1, 16 * 16 + 8));
+            buttons.Add(updateBtn);
+
 
             #endregion
 
@@ -307,7 +280,7 @@ namespace DungeonRun
                     for (i = 0; i < total; i++)
                     { Functions_Draw.Draw(objList[i].compCollision); }
                 }
-                for (i = 0; i < 3; i++) //draw all the buttons
+                for (i = 0; i < buttons.Count; i++) //draw all the buttons
                 { Functions_Draw.Draw(buttons[i]); }
                 Functions_Draw.Draw(selectionBoxObj);
                 Functions_Draw.Draw(selectionBoxTool);

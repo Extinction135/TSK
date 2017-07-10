@@ -34,13 +34,15 @@ namespace DungeonRun
         public Point worldPos;
         public GameObject grabbedObj;
 
+        public Boolean updateRoom = false;
+
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
 
         public override void LoadContent()
         {
             RoomBuilder = new WidgetRoomBuilder();
-            RoomBuilder.Reset(8, 16 * 4);
+            RoomBuilder.Reset(8, 16 * 3);
             room = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0);
 
             //clear any previous dungeon data
@@ -136,25 +138,36 @@ namespace DungeonRun
                     
                     #region Handle Button Selection
 
-                    for (i = 0; i < 3; i++)
-                    {
+                    for (i = 0; i < RoomBuilder.buttons.Count; i++)
+                    {   //check to see if the user has clicked on a button
                         if (RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
-                        {   //buttons clicked on become button down color
-                            RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonDown;
-                            if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn) //save btn
+                        {
+                            if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn)
                             {
                                 Debug.WriteLine("saving");
                             }
-                            else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn) //new btn
+                            else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn)
                             {
                                 Debug.WriteLine("new room created");
                             }
-                            else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn) //load btn
+                            else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)
                             {
                                 Debug.WriteLine("loading");
                             }
-                        } //buttons not clicked on return to button up color
-                        else { RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonUp; }
+                            else if (RoomBuilder.buttons[i] == RoomBuilder.updateBtn)
+                            {
+                                if (updateRoom)
+                                {
+                                    updateRoom = false;
+                                    RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonUp;
+                                }
+                                else
+                                {
+                                    updateRoom = true;
+                                    RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonDown;
+                                }
+                            }
+                        }
                     }
 
                     #endregion
@@ -226,6 +239,19 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Handle Button Over/Up States
+
+            for (i = 0; i < 3; i++)
+            {   //by default, set buttons to up color
+                RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonUp;
+                //if user hovers over a button, set button to down color
+                if (RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
+                { RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonDown; }
+            }
+
+            #endregion
+
         }
 
         public override void Update(GameTime GameTime)
@@ -233,7 +259,7 @@ namespace DungeonRun
             Timing.Reset();
             RoomBuilder.Update();
 
-            Functions_Pool.Update(); //animate the roomObjs
+            if (updateRoom) { Functions_Pool.Update(); } //animate the roomObjs
 
             //track camera to left-center of room instance
             Camera2D.targetPosition.X = room.center.X - 16 * 3;

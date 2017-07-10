@@ -43,13 +43,19 @@ todo:
 
 
 
+Add UpdateRoom Button to RBwidget, get it working
 
-Should be able to mute soundfx
-
-added Flags.PlaySoundFX Boolean.
-updated Assets.Play() to check Flags.PlaySoundFX.
-flipped Flags.PlaySoundFX to false for developing.
+fixed a visual bug where buttons color wasn't being updated properly.
+refactored roomBuilderWidget to use less code when creating editor enemy objects.
+moved RBwidget up, enlarged it's height, matched positions of objects + buttons.
+added new button below save/new/load named 'update room'.
+add boolean to RBscreen named 'updateRoom'.
+modified RBscreen.Update() to call Pool.Update() if updateRoom is true.
+updated RBscreen.HandleInput() to toggle updateBtn on/off.
 playtested, working as expected.
+the room updates only if the updateBtn is toggled on.
+
+
 
 
 
