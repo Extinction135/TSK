@@ -44,12 +44,13 @@ todo:
 
 
 
+Should be able to mute soundfx
 
-the following changes were applied to Functions_Interaction file:
-moved bounce of bumper into it's own method, BounceBumper().
-changed particle created upon bounce to attention particle.
-updated Interact(Obj, Obj) to allow spikeblocks to bounce off of bumpers.
+added Flags.PlaySoundFX Boolean.
+updated Assets.Play() to check Flags.PlaySoundFX.
+flipped Flags.PlaySoundFX to false for developing.
 playtested, working as expected.
+
 
 
 
@@ -68,17 +69,14 @@ Spikeblocks++
 we should be able to create vertical and horizontal moving spike blocks
 include an arrow over the spike block as indicator
 
-spike blocks should bounce off of bumpers like everything else does
-spike blocks should bounce off each other too
-
-spike blocks have an interaction rec, no collision rec
-spike blocks bounce off of other blocking objects
-but they should also bounce off of certain non-blocking objects
+if spikeblocks do not collide with the room rec, reverse their position
+this prevents spikeblocks from flying out a door
 
 
 
 
 create ice tile (no working for now) - changes friction
+
 add pot throwable obj
 
 write interaction routine for PitAnimated
@@ -144,6 +142,22 @@ ROOM EDITOR + ROOM DATA
 	
 	
 	
+
+	
+	
+
+Room Playtesting
+we should be able to playtest the room we're developing
+first, the room should be saved to a autosave file
+then, doors are built along each wall
+then, hero is placed in the south most door
+then user can playtest the room
+whatever changes are made during playtesting are not saved
+we can easily revert to pretesting state by loading autosave file
+
+
+
+
 
 
 

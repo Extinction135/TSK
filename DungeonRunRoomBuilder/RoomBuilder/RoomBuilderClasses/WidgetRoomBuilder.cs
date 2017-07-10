@@ -120,9 +120,9 @@ namespace DungeonRun
                     else if (i == 4) //fifth row
                     {
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BlockSpikes); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
-                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BlockSpikes); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.FloorBombable); }
                     }
                     else if (i == 5) //sixth row

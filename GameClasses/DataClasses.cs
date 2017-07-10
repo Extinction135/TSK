@@ -16,13 +16,14 @@ namespace DungeonRun
 
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
 
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
-        public static Boolean PlayMusic = true; //turns music on/off (but not soundFX)
+        public static Boolean PlayMusic = false; //turns music on/off
+        public static Boolean PlaySoundFX = false; //turns soundfx on/off
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
         public static Boolean DrawUDT = true; //draw the UpdateDrawTotal timing text?
@@ -35,6 +36,7 @@ namespace DungeonRun
                 DrawCollisions = false;
                 Paused = false;
                 PlayMusic = true;
+                PlaySoundFX = true;
                 SpawnMobs = true;
                 ProcessAI = true;
                 DrawUDT = false; //set this false for actual release
