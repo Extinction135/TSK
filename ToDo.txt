@@ -46,38 +46,32 @@ todo:
 
 
 
+Planning how Room/Obj data will be stored efficiently in XML
+
+created data classes RoomXmlData and ObjXmlData.
+created bare minimum fields necessary to store room data.
+created SaveRoomData() method in RBscreen for testing.
+created basic saving routine, iterating over all roomObjs and saving active ones.
+playtested, working as expected.
 
 
 
 
-Allow moving of objects outside of room
+save room file with XML extension
 
-updated HandleInput() to allow user to pickup objects outside of room.
-this was done because user could drop objects outside of room already.
-so that led to a state where the user couldn't pick the obj back up.
-
-
-
-we should be able to move and delete objects outside of the room rec
-
-
-
-
+update save routine to ignore walls, doors (by obj group)
+update save routine to save obj positions relative to room top left corner
 
 
 
 
 
-
-
-what is the format that we store roomData in? we need to get saving of roomdata working now
-how do we handle roomData? 
-
-roomData is populated by room builder project
 the roomData folder is simmply copied into the project's directory
-the project copys the roomData folder to it's output
+the project copys the roomData folder to it's output directory
 the game then loads all the roomData upon game boot
 when a room is needed, the data is copied from the loaded roomData
+
+
 
 dump the room data to XML file
 this starts with the user pressing the 'save' button from room builder screen
@@ -93,27 +87,21 @@ roomData
 	list of objData
 	
 objData
-	type
-	x pos
-	y pos
+	type (string or int)
+	x pos (int)
+	y pos (int)
 
 ** we'll need to create objects that serve as actor spawn points
 ** x & y pos are relative to the top left corner of room (room origin)
 
 
-ROOM EDITOR + ROOM DATA
-	build the room editor screen
-	standardize all room types + sizes
-	create the room data folder, update cs project to copy room data to output folder
-	basically the same approach as CC, but we'll be storing the room data in a slightly diff format
-	we'll only store room objects + enemy spawn locations - no floors, projectiles, etc..
-	and we'll only need to store the object's enum value
-	this will be stored in a 2d list of Column{Rows}.
-	so row1 = {0,0,0,0,0,10,10,10,0,0,0,0,0} for example, where 10 is an object type and 0 isn't.
-	this was we don't have to store position data, we just correlate rows to room width, and columns to room height
-	width and height is set based on room type, so we'll need to save room type.
-	but thats it. room type + the 2d array of int values.
-	pretty compact and efficient.
+build the room editor screen
+standardize all room types + sizes
+create the room data folder, update cs project to copy room data to output folder
+basically the same approach as CC, but we'll be storing the room data in a slightly diff format
+
+only store room objects - no floors, projectiles, doors, walls, etc..
+
 	
 	
 	
@@ -129,6 +117,14 @@ then, hero is placed in the south most door
 then user can playtest the room
 whatever changes are made during playtesting are not saved
 we can easily revert to pretesting state by loading autosave file
+
+we should be creating doors in the NSEW walls, centered to wall.
+then we should put hero in the S door.
+this will allow us to playtest the room.
+
+
+
+
 
 
 

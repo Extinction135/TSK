@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
+using System.Xml.Serialization;
+
+
 
 namespace DungeonRun
 {
@@ -144,7 +148,7 @@ namespace DungeonRun
                     #endregion
 
                     
-                    #region Handle Button Selection
+                    #region Handle Button Selection - Save, New, Load, Update
 
                     for (i = 0; i < RoomBuilder.buttons.Count; i++)
                     {   //check to see if the user has clicked on a button
@@ -152,7 +156,8 @@ namespace DungeonRun
                         {
                             if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn)
                             {
-                                Debug.WriteLine("saving");
+                                //Debug.WriteLine("saving");
+                                SaveRoomData();
                             }
                             else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn)
                             {
@@ -344,5 +349,34 @@ namespace DungeonRun
             return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
         
+        public void SaveRoomData()
+        {
+            //create RoomXmlData instance
+            RoomXmlData testData = new RoomXmlData();
+
+            //populate this instance with the room's objs
+            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+            {   //if this object is active, save it
+                if (Pool.roomObjPool[Pool.counter].active)
+                {   //later we should exclude walls, doors, etc...
+                    //and make this obj relative to room top left corner
+                    ObjXmlData objData = new ObjXmlData();
+                    objData.type = Pool.roomObjPool[Pool.counter].type;
+                    objData.posX = Pool.roomObjPool[Pool.counter].compSprite.position.X;
+                    objData.posY = Pool.roomObjPool[Pool.counter].compSprite.position.Y;
+                    testData.objs.Add(objData);
+                }
+            }
+
+            //test saving roomData
+            string localFolder = AppDomain.CurrentDomain.BaseDirectory;
+            string filename = "autosaveRoom";
+            FileStream stream = File.Open(localFolder + filename, FileMode.Create);
+            var serializer = new XmlSerializer(typeof(RoomXmlData));
+            using (stream) //save the playerData, to saveFile address
+            { serializer.Serialize(stream, testData); }
+        }
+
+
     }
 }

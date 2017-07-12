@@ -561,6 +561,22 @@ namespace DungeonRun
         }
     }
 
+    public class GameDisplayData
+    {   //this is used by LoadSaveNewScreen to display a game's data visually
+        public MenuItem menuItem = new MenuItem();
+        public ComponentSprite hero = new ComponentSprite(
+            Assets.heroSheet, new Vector2(-100, 1000),
+            new Byte4(0, 0, 0, 0), new Point(16, 16));
+        public ComponentText timeDateText = new ComponentText(
+            Assets.font, "time:/ndate:", new Vector2(-100, 1000),
+            Assets.colorScheme.textDark);
+        public List<MenuItem> crystals = new List<MenuItem>();
+    }
+
+
+
+    //SaveData Classes
+
     public class SaveData
     {   //data that will be saved/loaded from game session to session
         public string name = "new";
@@ -615,17 +631,20 @@ namespace DungeonRun
         public Boolean crystal6 = false;
     }
 
-    public class GameDisplayData
-    {   //this is used by LoadSaveNewScreen to display a game's data visually
-        public MenuItem menuItem = new MenuItem();
-        public ComponentSprite hero = new ComponentSprite(
-            Assets.heroSheet, new Vector2(-100, 1000),
-            new Byte4(0, 0, 0, 0), new Point(16, 16));
-        public ComponentText timeDateText = new ComponentText(
-            Assets.font, "time:/ndate:", new Vector2(-100, 1000),
-            Assets.colorScheme.textDark);
-        public List<MenuItem> crystals = new List<MenuItem>();
+    public class RoomXmlData
+    {
+        public RoomType type = RoomType.Dev;
+        public List<ObjXmlData> objs = new List<ObjXmlData>();
     }
+
+    public class ObjXmlData
+    {   //placed relative to room's XY pos
+        public ObjType type = ObjType.WallStraight;
+        public float posX = 0; 
+        public float posY = 0;
+    }
+
+
 
     //UI Classes
 
