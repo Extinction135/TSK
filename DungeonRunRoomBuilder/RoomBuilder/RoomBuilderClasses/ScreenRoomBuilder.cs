@@ -31,6 +31,7 @@ namespace DungeonRun
 
 
         public ComponentSprite cursorSprite;
+        public ComponentSprite addDeleteSprite;
         public Point worldPos;
         public GameObject grabbedObj;
 
@@ -58,6 +59,8 @@ namespace DungeonRun
             //create the cursor sprite
             cursorSprite = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(14, 13, 0, 0), new Point(16, 16));
+            addDeleteSprite = new ComponentSprite(Assets.mainSheet,
+                new Vector2(0, 0), new Byte4(15, 15, 0, 0), new Point(16, 16));
 
             //initialize the RB widget
             RoomBuilder.SetActiveObj(0); //set active obj to first widget obj
@@ -97,6 +100,9 @@ namespace DungeonRun
                 cursorSprite.position.Y += 6;
             }
 
+            addDeleteSprite.position.X = Input.cursorPos.X + 12;
+            addDeleteSprite.position.Y = Input.cursorPos.Y - 0;
+            
             #endregion
 
 
@@ -124,11 +130,13 @@ namespace DungeonRun
                             {
                                 RoomBuilder.SetActiveTool(RoomBuilder.addObj);
                                 editorState = EditorState.AddObj;
+                                addDeleteSprite.currentFrame.X = 14;
                             }
                             else if (RoomBuilder.objList[i] == RoomBuilder.deleteObj)
                             {
                                 RoomBuilder.SetActiveTool(RoomBuilder.deleteObj);
                                 editorState = EditorState.DeleteObj;
+                                addDeleteSprite.currentFrame.X = 15;
                             }
                         }
                     }
@@ -319,6 +327,7 @@ namespace DungeonRun
             Functions_Draw.DrawDebugMenu();
             Functions_Draw.DrawDebugInfo();
             Functions_Draw.Draw(cursorSprite);
+            if (editorState != EditorState.MoveObj) { Functions_Draw.Draw(addDeleteSprite); }
             ScreenManager.spriteBatch.End();
 
             Timing.stopWatch.Stop();

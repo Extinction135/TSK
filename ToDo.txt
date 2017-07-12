@@ -43,56 +43,36 @@ todo:
 
 
 
-Add UpdateRoom Button to RBwidget, get it working
 
-fixed a visual bug where buttons color wasn't being updated properly.
-refactored roomBuilderWidget to use less code when creating editor enemy objects.
-moved RBwidget up, enlarged it's height, matched positions of objects + buttons.
-added new button below save/new/load named 'update room'.
-add boolean to RBscreen named 'updateRoom'.
-modified RBscreen.Update() to call Pool.Update() if updateRoom is true.
-updated RBscreen.HandleInput() to toggle updateBtn on/off.
+
+Add plus/ minus sprite to Add / Delete cursor hand
+
+added a sprite to RBscreen to display a plus or minus alongside the mouse cursor.
+this is displayed when in the add or delete editorMode.
+this helps to remind user what mode they are currently in.
 playtested, working as expected.
-the room updates only if the updateBtn is toggled on.
 
 
 
 
-
-
-
-
-
-we should be able to turn update of objs on/off - need a button
-
-we can also have a cracked open floor obj that sits over animated liquid
-this varies the 'pit' style a bit
-
-
-
-
-Spikeblocks++
-we should be able to create vertical and horizontal moving spike blocks
-include an arrow over the spike block as indicator
-
-if spikeblocks do not collide with the room rec, reverse their position
-this prevents spikeblocks from flying out a door
-
-
-
-
-create ice tile (no working for now) - changes friction
-
-add pot throwable obj
-
-write interaction routine for PitAnimated
-this should work similar to conveyor belt, except it pulls hero towards it's center
 
 
 
 improve add/delete cursor display
 if in add state, then the selected obj should move with cursor, aligning to 16px grid
 if in delete state, then the minus symbol should move with cursor (top right placement)
+
+
+adding sprite instance for minus or delete state
+
+
+
+
+
+we should be able to move and delete objects outside of the room rec
+
+
+
 
 
 
@@ -160,13 +140,6 @@ then, hero is placed in the south most door
 then user can playtest the room
 whatever changes are made during playtesting are not saved
 we can easily revert to pretesting state by loading autosave file
-
-
-
-
-
-
-
 
 
 
@@ -300,7 +273,23 @@ player should be able to purchase heart pieces from the vendor, for gold
 remove heart pieces from chests
 chests only contain gold, big key, or map
 
+Cracked Floor pit opening
+we can also have a cracked open floor obj that sits over animated liquid
+this varies the 'pit' style a bit
 
+Spikeblocks++
+we should be able to create vertical and horizontal moving spike blocks
+include an arrow over the spike block as indicator
+
+if spikeblocks do not collide with the room rec, reverse their position
+this prevents spikeblocks from flying out a door
+
+create ice tile (no working for now) - changes friction
+
+add pot throwable obj
+
+write interaction routine for PitAnimated
+this should work similar to conveyor belt, except it pulls hero towards it's center
 
 
 	
