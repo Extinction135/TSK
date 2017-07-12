@@ -45,27 +45,16 @@ todo:
 
 
 
-Add plus/ minus sprite to Add / Delete cursor hand
-
-added a sprite to RBscreen to display a plus or minus alongside the mouse cursor.
-this is displayed when in the add or delete editorMode.
-this helps to remind user what mode they are currently in.
-playtested, working as expected.
 
 
 
 
 
+Allow moving of objects outside of room
 
-
-improve add/delete cursor display
-if in add state, then the selected obj should move with cursor, aligning to 16px grid
-if in delete state, then the minus symbol should move with cursor (top right placement)
-
-
-adding sprite instance for minus or delete state
-
-
+updated HandleInput() to allow user to pickup objects outside of room.
+this was done because user could drop objects outside of room already.
+so that led to a state where the user couldn't pick the obj back up.
 
 
 

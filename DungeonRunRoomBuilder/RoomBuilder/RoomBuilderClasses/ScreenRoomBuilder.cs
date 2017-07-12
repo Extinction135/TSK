@@ -181,7 +181,7 @@ namespace DungeonRun
                     #endregion
 
                 }
-                //if mouse worldPos is contained within the current room, add/delete/move room objects
+                //if mouse worldPos is contained in room, allow add/delete selected object
                 else if (Functions_Dungeon.currentRoom.collision.rec.Contains(worldPos))
                 {
 
@@ -219,24 +219,26 @@ namespace DungeonRun
 
                     #endregion
 
+                }
 
-                    #region Handle Grab (Move) Object State
+                //objects CAN be moved outside of room
 
-                    else if (editorState == EditorState.MoveObj)
-                    {   //check collisions between worldPos and roomObjs, grab any colliding obj
-                        for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+                #region Handle Grab (Move) Object State
+
+                if (editorState == EditorState.MoveObj)
+                {   //check collisions between worldPos and roomObjs, grab any colliding obj
+                    for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+                    {
+                        if (Pool.roomObjPool[Pool.counter].active)
                         {
-                            if (Pool.roomObjPool[Pool.counter].active)
-                            {
-                                if (Pool.roomObjPool[Pool.counter].compCollision.rec.Contains(worldPos))
-                                { grabbedObj = Pool.roomObjPool[Pool.counter]; }
-                            }
+                            if (Pool.roomObjPool[Pool.counter].compCollision.rec.Contains(worldPos))
+                            { grabbedObj = Pool.roomObjPool[Pool.counter]; }
                         }
                     }
-
-                    #endregion
-
                 }
+
+                #endregion
+
             }
 
 
