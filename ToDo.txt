@@ -45,16 +45,32 @@ todo:
 
 
 
-Polish the Saving routine for RoomData
 
-updated SaveRoomData() to ignore walls and doors.
-these objects are added to rooms procedurally when room is built.
-updated SaveRoomData() to save object's positions relative to room top left position.
-later when rooms are built, the room's top left position will be added back in.
-this will place the objects at their correct locations.
-playtested, working as expected.
-test data for a single room is sitting around 5-10kb.
+get loading of autoSaveRoom.xml working
 
+create room instance
+set the position of room via code
+
+load the XML, set the room type
+build the room (including doors)
+
+for all the ObjXMLdata, create gameObjs
+set gameobjs type, pos + room.pos (using objxmldata)
+
+update the room once
+
+
+
+
+
+
+
+
+
+organize the roomData into it's own folder
+the cs project should copy this folder to it's output, just like CC
+the source roomData folder should exist outside of all project directories
+should be in the main repo directory
 
 
 

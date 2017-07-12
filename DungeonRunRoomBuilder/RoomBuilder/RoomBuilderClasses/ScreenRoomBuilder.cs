@@ -16,23 +16,20 @@ using System.Xml.Serialization;
 
 namespace DungeonRun
 {
-
-
     //the various states the room builder screen can be in
     public enum EditorState { MoveObj, AddObj, DeleteObj }
 
-
-
-    
 
 
     public class ScreenRoomBuilder : Screen
     {
         int i;
         public Room room;
+        RoomXmlData roomData;
+        public static GameObject objRef;
+
         public WidgetRoomBuilder RoomBuilder;
         public EditorState editorState;
-
 
         public ComponentSprite cursorSprite;
         public ComponentSprite addDeleteSprite;
@@ -40,6 +37,7 @@ namespace DungeonRun
         public GameObject grabbedObj;
 
         public Boolean updateRoom = false;
+
 
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
@@ -155,18 +153,13 @@ namespace DungeonRun
                         if (RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
                         {
                             if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn)
-                            {
-                                //Debug.WriteLine("saving");
-                                SaveRoomData();
-                            }
+                            { SaveRoomData(); }
                             else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn)
                             {
                                 Debug.WriteLine("new room created");
                             }
                             else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)
-                            {
-                                Debug.WriteLine("loading");
-                            }
+                            { LoadRoomData(); }
                             else if (RoomBuilder.buttons[i] == RoomBuilder.updateBtn)
                             {
                                 if (updateRoom)
@@ -381,6 +374,37 @@ namespace DungeonRun
             { serializer.Serialize(stream, testData); }
         }
 
+        public void LoadRoomData()
+        {
+            string localFolder = AppDomain.CurrentDomain.BaseDirectory;
+            string filename = "autosaveRoom.xml";
+            roomData = new RoomXmlData();
+            var serializer = new XmlSerializer(typeof(RoomXmlData));
+            FileStream stream = new FileStream(localFolder + filename, FileMode.Open);
+            using (stream)
+            { roomData = (RoomXmlData)serializer.Deserialize(stream); }
+
+            //build the room
+            room = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0);
+            Functions_Room.BuildRoom(room); //releases all roomObjs, builds walls + floors
+            //build template doors (NSEW)
+
+            //create the room objs
+            for (i = 0; i < roomData.objs.Count; i++)
+            {
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    room.collision.rec.X + roomData.objs[i].posX,
+                    room.collision.rec.Y + roomData.objs[i].posY);
+                objRef.direction = Direction.Down; //we'll need to save this later
+                Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
+            }
+
+            //teleport hero to S door
+            //Functions_Movement.Teleport(Pool.hero.compMove, -100, -100);
+
+            Functions_Pool.Update(); //update roomObjs once
+        }
 
     }
 }

@@ -293,7 +293,6 @@ namespace DungeonRun
 
         }
 
-
         public static void BounceSpikeBlock(GameObject SpikeBlock)
         {   //flip the block's direction to the opposite direction
             SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
@@ -317,10 +316,6 @@ namespace DungeonRun
                 Bumper.compSprite.position.Y, 
                 Direction.None);
         }
-
-
-
-
 
     }
 }
