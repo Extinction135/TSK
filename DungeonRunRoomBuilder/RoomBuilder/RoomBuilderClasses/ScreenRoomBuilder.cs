@@ -358,19 +358,23 @@ namespace DungeonRun
             for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
             {   //if this object is active, save it
                 if (Pool.roomObjPool[Pool.counter].active)
-                {   //later we should exclude walls, doors, etc...
-                    //and make this obj relative to room top left corner
-                    ObjXmlData objData = new ObjXmlData();
-                    objData.type = Pool.roomObjPool[Pool.counter].type;
-                    objData.posX = Pool.roomObjPool[Pool.counter].compSprite.position.X;
-                    objData.posY = Pool.roomObjPool[Pool.counter].compSprite.position.Y;
-                    testData.objs.Add(objData);
+                {   //dont save walls or doors, these are added procedurally
+                    if (Pool.roomObjPool[Pool.counter].group != ObjGroup.Wall
+                        || Pool.roomObjPool[Pool.counter].group != ObjGroup.Wall)
+                    {
+                        //make this obj relative to room top left corner
+                        ObjXmlData objData = new ObjXmlData();
+                        objData.type = Pool.roomObjPool[Pool.counter].type;
+                        objData.posX = Pool.roomObjPool[Pool.counter].compSprite.position.X - room.collision.rec.X;
+                        objData.posY = Pool.roomObjPool[Pool.counter].compSprite.position.Y - room.collision.rec.Y;
+                        testData.objs.Add(objData);
+                    }
                 }
             }
 
             //test saving roomData
             string localFolder = AppDomain.CurrentDomain.BaseDirectory;
-            string filename = "autosaveRoom";
+            string filename = "autosaveRoom.xml";
             FileStream stream = File.Open(localFolder + filename, FileMode.Create);
             var serializer = new XmlSerializer(typeof(RoomXmlData));
             using (stream) //save the playerData, to saveFile address

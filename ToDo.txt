@@ -45,22 +45,22 @@ todo:
 
 
 
+Polish the Saving routine for RoomData
 
-Planning how Room/Obj data will be stored efficiently in XML
-
-created data classes RoomXmlData and ObjXmlData.
-created bare minimum fields necessary to store room data.
-created SaveRoomData() method in RBscreen for testing.
-created basic saving routine, iterating over all roomObjs and saving active ones.
+updated SaveRoomData() to ignore walls and doors.
+these objects are added to rooms procedurally when room is built.
+updated SaveRoomData() to save object's positions relative to room top left position.
+later when rooms are built, the room's top left position will be added back in.
+this will place the objects at their correct locations.
 playtested, working as expected.
+test data for a single room is sitting around 5-10kb.
 
 
 
 
-save room file with XML extension
 
-update save routine to ignore walls, doors (by obj group)
-update save routine to save obj positions relative to room top left corner
+
+
 
 
 
