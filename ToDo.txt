@@ -43,11 +43,11 @@ todo:
 
 
 
-Implement InfiniteArrows in game
+Implement InfiniteBombs in game
 
-added Flags.InfiniteArrows boolean.
-created CheckArrows() to handle checking and subtracting arrows from hero's stock.
-updated UseItem() to call CheckArrows().
+added Flags.InfiniteBombs boolean.
+created CheckBombs() to handle check and deduction of bombs.
+updated UseItem() to call CheckBombs().
 playtested, working as expected.
 
 

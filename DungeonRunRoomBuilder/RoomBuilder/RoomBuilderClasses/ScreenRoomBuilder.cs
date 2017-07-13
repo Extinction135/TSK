@@ -77,6 +77,7 @@ namespace DungeonRun
             Flags.Invincibility = true; //hero cannot die in editor
             Flags.InfiniteMagic = true; //hero has infinite magic
             Flags.InfiniteArrows = true; //hero has infinite arrows
+            Flags.InfiniteBombs = true; //hero has infinite bombs
 
             //set testing saveData
             PlayerData.current.magicFireball = true;

@@ -31,6 +31,7 @@ namespace DungeonRun
         public static Boolean Invincibility = false; //does hero take damage?
         public static Boolean InfiniteMagic = false; //enable magic cost
         public static Boolean InfiniteArrows = false; //enable arrow cost
+        public static Boolean InfiniteBombs = false; //enable bomb cost
 
         static Flags()
         {
@@ -44,9 +45,11 @@ namespace DungeonRun
                 SpawnMobs = true;
                 ProcessAI = true;
                 DrawUDT = true; //set this false for actual release
+                //cheats
                 Invincibility = false;
                 InfiniteMagic = false;
                 InfiniteArrows = false;
+                InfiniteBombs = false;
             }
         }
     }

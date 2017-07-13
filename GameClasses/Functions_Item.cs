@@ -24,9 +24,8 @@ namespace DungeonRun
             {
                 if (Actor == Pool.hero)
                 {   
-                    if (PlayerData.current.bombsCurrent > 0)
+                    if (CheckBombs())
                     {
-                        PlayerData.current.bombsCurrent--;
                         Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
                         Actor.lockTotal = 15;
                         //if hero used the last bomb, set the item to be unknown/none
@@ -166,7 +165,14 @@ namespace DungeonRun
             return false;
         }
 
-
+        static Boolean CheckBombs()
+        {   //if infinite arrows is enabled, allow
+            if (Flags.InfiniteBombs) { return true; }
+            //if hero has enough arrows to shoot, allow
+            if (PlayerData.current.bombsCurrent > 0)
+            { PlayerData.current.bombsCurrent--; return true; }
+            return false;
+        }
 
 
 
