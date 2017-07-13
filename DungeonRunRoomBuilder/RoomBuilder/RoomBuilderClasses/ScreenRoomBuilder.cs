@@ -21,7 +21,7 @@ namespace DungeonRun
 
 
 
-    public class ScreenRoomBuilder : Screen
+    public class ScreenRoomBuilder : ScreenDungeon
     {
         int i;
         public Room room;
@@ -35,8 +35,6 @@ namespace DungeonRun
         public ComponentSprite addDeleteSprite;
         public Point worldPos;
         public GameObject grabbedObj;
-
-        public Boolean updateRoom = false;
 
 
 
@@ -55,7 +53,7 @@ namespace DungeonRun
             Functions_Room.BuildRoom(room);
             Functions_Dungeon.currentRoom = room;
             //hide hero offscreen
-            Functions_Movement.Teleport(Pool.hero.compMove, -100, -100);
+            Functions_Movement.Teleport(Pool.hero.compMove, 200, 500);
             Functions_Pool.Update(); //update the pool once
 
             //create the cursor sprite
@@ -70,12 +68,16 @@ namespace DungeonRun
             editorState = EditorState.MoveObj; //set screen to move state
             grabbedObj = null;
 
+            overlay.alpha = 0.0f;
+            Functions_Dungeon.Initialize(this);
+            Flags.Debug = true; //necessary for editor operation
             displayState = DisplayState.Opened; //open the screen
         }
 
         public override void HandleInput(GameTime GameTime)
         {
-            Functions_Debug.HandleDebugMenuInput();
+            base.HandleInput(GameTime);
+            //Functions_Debug.HandleDebugMenuInput();
             //convert cursor Pos to world pos
             worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
 
@@ -162,14 +164,14 @@ namespace DungeonRun
                             { LoadRoomData(); }
                             else if (RoomBuilder.buttons[i] == RoomBuilder.updateBtn)
                             {
-                                if (updateRoom)
+                                if (Flags.Paused)
                                 {
-                                    updateRoom = false;
+                                    Flags.Paused = false;
                                     RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonUp;
                                 }
                                 else
                                 {
-                                    updateRoom = true;
+                                    Flags.Paused = true;
                                     RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonDown;
                                 }
                             }
@@ -240,6 +242,26 @@ namespace DungeonRun
             }
 
 
+            #region Handle Dragging of Grabbed Obj
+
+            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+            {   //if we have a grabbedObj, match it to cursorPos if LMB is down
+                if (editorState == EditorState.MoveObj)
+                {   //match grabbed Obj pos to worldPos, aligned to 16px grid
+                    if (grabbedObj != null)
+                    {
+                        grabbedObj.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Movement.Teleport(grabbedObj.compMove,
+                            grabbedObj.compMove.newPosition.X, grabbedObj.compMove.newPosition.Y);
+                        Functions_Component.Align(grabbedObj.compMove,
+                            grabbedObj.compSprite, grabbedObj.compCollision);
+                    }
+                }
+            }
+
+            #endregion
+
+
             #region Handle Release Grabbed Obj
 
             if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
@@ -264,75 +286,26 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-            Timing.Reset();
+            base.Update(GameTime);
             RoomBuilder.Update();
-
-            if (updateRoom) { Functions_Pool.Update(); } //animate the roomObjs
 
             //track camera to left-center of room instance
             Camera2D.targetPosition.X = room.center.X - 16 * 3;
             Camera2D.targetPosition.Y = room.center.Y;
             Functions_Camera2D.Update(GameTime);
-            Timing.stopWatch.Stop();
-            Timing.updateTime = Timing.stopWatch.Elapsed;
-
-
-            #region Handle Dragging of Grabbed Obj
-
-            if(Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-            {   //if we have a grabbedObj, match it to cursorPos if LMB is down
-                if (editorState == EditorState.MoveObj)
-                {   //match grabbed Obj pos to worldPos, aligned to 16px grid
-                    if(grabbedObj != null)
-                    {
-                        grabbedObj.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
-                        Functions_Movement.Teleport(grabbedObj.compMove,
-                            grabbedObj.compMove.newPosition.X, grabbedObj.compMove.newPosition.Y);
-                        Functions_Component.Align(grabbedObj.compMove, 
-                            grabbedObj.compSprite, grabbedObj.compCollision);
-                    }
-                }
-            }
-
-            #endregion
-
         }
 
         public override void Draw(GameTime GameTime)
         {
-            Timing.Reset();
-
-
-            #region Draw gameworld from camera's view
-
-            ScreenManager.spriteBatch.Begin(
-                        SpriteSortMode.BackToFront,
-                        BlendState.AlphaBlend,
-                        SamplerState.PointClamp,
-                        null,
-                        null,
-                        null,
-                        Camera2D.view
-                        );
-            Functions_Pool.Draw();
-            if (Flags.DrawCollisions) { Functions_Draw.Draw(Input.cursorColl); }
-            ScreenManager.spriteBatch.End();
-
-            #endregion
-
+            base.Draw(GameTime);
 
             //Draw UI, debug info + debug menu
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             RoomBuilder.Draw();
-            Functions_Draw.DrawDebugMenu();
-            Functions_Draw.DrawDebugInfo();
             Functions_Draw.Draw(cursorSprite);
             if (editorState != EditorState.MoveObj) { Functions_Draw.Draw(addDeleteSprite); }
             ScreenManager.spriteBatch.End();
-
-            Timing.stopWatch.Stop();
-            Timing.drawTime = Timing.stopWatch.Elapsed;
-            Timing.totalTime = Timing.updateTime + Timing.drawTime;
+            
         }
 
 

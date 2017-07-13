@@ -41,23 +41,155 @@ todo:
 
 
 
+Setup RoomBuilderScreen to inherit from DungeonScreen
+
+this will allow player input alongside editor input.
+this makes it easier to test interactions with objects too.
+
+updated DungonScreen.HandleInput().Inspect() to check if LeftCtrl button is down.
+this allows the editor to add/move/delete and also click inspect objects.
+
+updated RBscreen to inherit from DungeonScreen, properly calling the base methods.
+modified RBscreen's methods to work with DungeonScreen's methods.
+
+does Flags.Paused do the same thing as RBscreen.update boolean? yes it does.
+we dont need RBscreen.update anymore. instead we should be using Flags.Pause.
+removed updateRoom boolean from RBscreen. replaced refs to point to Flags.Pause.
+playtested, working as expected.
 
 
 
 
 
-get loading of autoSaveRoom.xml working
+room builder widget's objs, enemies, components should be based on the window top left position
 
-create room instance
-set the position of room via code
+the widget should be moved to the right of the screen, and room should sit under the worldUI
+this is better arrangement
 
-load the XML, set the room type
-build the room (including doors)
+the hero should not take damage while in editorMode
+the hero should have health + magic set to max each frame
 
-for all the ObjXMLdata, create gameObjs
-set gameobjs type, pos + room.pos (using objxmldata)
+when Flags.Boolean is true, the update room button should be color down
+else it should be color up
 
-update the room once
+
+
+
+
+
+
+
+Room Playtesting
+
+we'll need to allow player input, just like dungeon screen does
+we should probably just use dungeon screen as base class for room builder
+then call the appropriate base.Method() from input, update, draw
+
+this will cause the camera to center to hero tho...
+but we could center hero to room post dungeonScreen.update()
+we would also need to check to see if hero is dead, and bring him back to life
+this should be a boolean flag, so we can enable it for the game too
+
+
+we should be able to playtest the room we're developing
+first, the room should be saved to autosave file
+then, doors are built along each wall
+	this can be done by placing doorPos in the dungeon
+	then calling Functions_Room.SetDoors(Room)
+then, hero is placed in the south most door
+then user can playtest the room
+whatever changes are made during playtesting are not saved
+we can easily revert to pretesting state by loading autosave file
+
+after load, the update boolean is set false
+user must then press the 'play' button to begin playtesting
+change the 'update room' button text to 'play'
+
+
+this would make it easier to playtest interactions with objs
+
+
+in this state, player takes no damage
+
+
+
+
+
+
+
+
+complete gameobjects
+
+we'l need to be able to store the obj's direction
+how often do we need to do this? prolly all the time...
+well, actually not really - what objs use direction?
+
+these objs 
+conveyor belts - NSEW - this means there will be 4 objs saved/placed
+spike blocks - EW, NS - this menas there will be 2 objs saved/placed
+ 
+we should have an explosive barrel - of course!
+just like bomb, but stationary, waiting for collision
+
+Cracked Floor pit opening
+we can also have a cracked open floor obj that sits over animated liquid
+this varies the 'pit' style a bit
+
+Spikeblocks++
+we should be able to create vertical and horizontal moving spike blocks
+include an arrow over the spike block as indicator
+write interaction routine for PitAnimated
+this should work similar to conveyor belt, except it pulls hero towards it's center
+if spikeblocks do not collide with the room rec, reverse their position
+this prevents spikeblocks from flying out a door
+
+create ice tile (no working for now) - changes friction
+
+add pot throwable obj, just like skull obj
+
+conveyor belts should move other game objects, like consumable items
+or other objects, like bumpers and spike blocks	and explosive barrels
+
+we should be able to turn the conveyors on and off
+	this allows us to build rooms with additional complexity
+	perhaps the switch turns the conveyors on/off?
+
+
+
+
+
+
+
+EnemySpawns
+enemy1spawn, enemy2spawn, etc...
+enemies are then created at these object's locations upon load
+
+
+
+
+
+
+Room Goals
+doors should be set to trap doors
+once hero collides with them, they close
+this traps hero inside room
+
+once all enemies are defeated or switch has been flipped, trap doors become open doors
+this 'completes' the room and allows hero to exit
+
+this means that rooms should have a goal enum
+{ None, DeadEnemies, Switch, Torches }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -72,87 +204,13 @@ the cs project should copy this folder to it's output, just like CC
 the source roomData folder should exist outside of all project directories
 should be in the main repo directory
 
-
-
-
-
-
-
-
-
-
-
 the roomData folder is simmply copied into the project's directory
 the project copys the roomData folder to it's output directory
 the game then loads all the roomData upon game boot
 when a room is needed, the data is copied from the loaded roomData
 
-
-
-dump the room data to XML file
-this starts with the user pressing the 'save' button from room builder screen
-this dumps the current room data to xml file in RoomData folder
-
-objects will be able to overlap
-the objects we'll be saving will be located on the pool's roomObj list
-so we can just dump that list to XML file, ignoring inactive objects
-
-
-roomData
-	type
-	list of objData
-	
-objData
-	type (string or int)
-	x pos (int)
-	y pos (int)
-
-** we'll need to create objects that serve as actor spawn points
-** x & y pos are relative to the top left corner of room (room origin)
-
-
-build the room editor screen
 standardize all room types + sizes
-create the room data folder, update cs project to copy room data to output folder
-basically the same approach as CC, but we'll be storing the room data in a slightly diff format
-
-only store room objects - no floors, projectiles, doors, walls, etc..
-
 	
-	
-	
-
-	
-	
-
-Room Playtesting
-we should be able to playtest the room we're developing
-first, the room should be saved to a autosave file
-then, doors are built along each wall
-then, hero is placed in the south most door
-then user can playtest the room
-whatever changes are made during playtesting are not saved
-we can easily revert to pretesting state by loading autosave file
-
-we should be creating doors in the NSEW walls, centered to wall.
-then we should put hero in the S door.
-this will allow us to playtest the room.
-
-
-
-
-
-
-
-update UWP content with DirectX content directory, we've modified the dungeonSheet
-
-
-
-
-
-
-
-
 Version 0.6 Milestones
 
 roombuilder tool allows creation of room xml data
@@ -183,6 +241,12 @@ so all dungeons should display a blob character instead of a skull
 
 
 
+
+
+
+
+
+
 standardize all room types + sizes (in constructor)
 
 load room data from XML file
@@ -198,25 +262,6 @@ load button should create a file dialog
 
 rooms will no longer have an enemy count
 instead, enemies will be placed by hand
-
-
-
-
-
-
-builder screen
-	no hero input, only builder input (grab, drag, place, erase)
-	the screen doesn't animate/update objects & actors
-	the floors, room objs, and actors are drawn
-	hero is set offscreen, with no player input
-
-builder widget
-	7 rows of 5 room objects
-	1 row of 5 enemy actors
-	move, add, erase tool sprites
-	save, new, load buttons
-	save / load opens a file dialog
-	new opens the new room screen
 
 new room screen
 	there is no new room widget, it's just the screen
@@ -242,7 +287,8 @@ COMPLETE DUNGEONS
 	
 	
 	
-	
+
+update UWP content with DirectX content directory, we've modified the dungeonSheet	
 	
 	
 	
@@ -274,23 +320,6 @@ player should be able to purchase heart pieces from the vendor, for gold
 remove heart pieces from chests
 chests only contain gold, big key, or map
 
-Cracked Floor pit opening
-we can also have a cracked open floor obj that sits over animated liquid
-this varies the 'pit' style a bit
-
-Spikeblocks++
-we should be able to create vertical and horizontal moving spike blocks
-include an arrow over the spike block as indicator
-
-if spikeblocks do not collide with the room rec, reverse their position
-this prevents spikeblocks from flying out a door
-
-create ice tile (no working for now) - changes friction
-
-add pot throwable obj
-
-write interaction routine for PitAnimated
-this should work similar to conveyor belt, except it pulls hero towards it's center
 
 
 	
@@ -377,8 +406,7 @@ Polish
 	there should be a dog actor that chases the hero around
 	this dog actor is an enemy, but never attacks and has it's own AI.
 	
-	conveyor belts should move other game objects, like consumable items
-	or other objects, like bumpers and spike blocks	
+	
 
 	what if we pushed the hero a little bit in the opposite direction of the fireball being cast?
 	this would make it seem like the 'weight' of the fireball pushed him back	
@@ -389,9 +417,7 @@ Polish
 	re-mix the boss music, making drums much less prominent in the mix
 	also, mix the drums down to mono in session - we're getting phase issues when we convert to mono later
 
-	we should be able to turn the conveyors on and off
-	this allows us to build rooms with additional complexity
-	perhaps the switch turns the conveyors on/off?
+	
 	puzzle: conveyor belt that pushes the hero away from something
 	solution: hit the switch, turn the belts off, so hero can move around
 	we could even put them on a timer and play a timer tick sound, suspending the music
@@ -444,7 +470,7 @@ Stuff that needs to be done, but it's not terribly important rn
 	
 	implement additional weapons / items
 	weapons : { bow, staff, axe }
-	items : { lightning, boomerang, arrow, bomb }
+	items : { lightning, boomerang }
 	
 	
 	

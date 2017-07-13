@@ -66,7 +66,10 @@ namespace DungeonRun
                 if (Flags.Debug)
                 {   //if the game is in debug mode, dump info on clicked actor/obj
                     if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                    { Functions_Debug.Inspect(); }
+                    {   //user must hold down ctrl button to call Inspect()
+                        if (Functions_Input.IsKeyDown(Keys.LeftControl))
+                        { Functions_Debug.Inspect(); }
+                    }
                     //toggle the paused boolean
                     if (Functions_Input.IsNewKeyPress(Keys.Space))
                     { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
