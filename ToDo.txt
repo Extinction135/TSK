@@ -42,23 +42,37 @@ todo:
 
 
 
-Fix InfiniteMagic bug
 
-fixed a bug where game was deducting cost of spell when InfiniteMagic boolean was true.
-updated CheckMagic() to handle deducting magic cost too.
+Implement InfiniteArrows in game
+
+added Flags.InfiniteArrows boolean.
+created CheckArrows() to handle checking and subtracting arrows from hero's stock.
+updated UseItem() to call CheckArrows().
 playtested, working as expected.
 
 
 
 
-we need to worldUI's magic bar to display the current magic value
-it counts down still, even when we have infinite magic enabled
+
+x health
+x magic
+x arrows
+bombs
+gold
 
 
 we should implement booleans for arrows, bombs, and gold too
 hero should have infinite all these things
 we should have methods that check these values too
 and everywhere we check arrows, bombs, or gold should use these methods
+
+
+
+we should be displaying the amount of arrows, bombs in the worldUI
+this way user can see how many they have left
+
+
+
 
 
 

@@ -114,9 +114,8 @@ namespace DungeonRun
             {
                 if (Actor == Pool.hero)
                 {
-                    if (PlayerData.current.arrowsCurrent > 0)
+                    if (CheckArrows())
                     {
-                        PlayerData.current.arrowsCurrent--;
                         Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Actor);
                         Functions_Entity.SpawnEntity(ObjType.ParticleBow, Actor);
                         Actor.lockTotal = 15;
@@ -145,17 +144,31 @@ namespace DungeonRun
         }
 
 
+
         static Boolean CheckMagic(int castingCost)
-        {   //if infinite magic is enabled, cast
-            //if hero has enough magic to cast, cast
+        {   //if infinite magic is enabled, allow
             if (Flags.InfiniteMagic) { return true; }
+            //if hero has enough magic to cast, allow
             if (PlayerData.current.magicCurrent >= castingCost)
             {
                 PlayerData.current.magicCurrent -= (byte)castingCost;
                 return true;
             }
-            return false; //else hero cannot cast
+            return false; //else disallow
         }
+
+        static Boolean CheckArrows()
+        {   //if infinite arrows is enabled, allow
+            if (Flags.InfiniteArrows) { return true; }
+            //if hero has enough arrows to shoot, allow
+            if (PlayerData.current.arrowsCurrent > 0)
+            { PlayerData.current.arrowsCurrent--; return true; }
+            return false;
+        }
+
+
+
+
 
 
     }
