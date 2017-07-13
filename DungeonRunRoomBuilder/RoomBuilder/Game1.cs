@@ -43,7 +43,8 @@ namespace DungeonRun
             ScreenManager.ExitAndLoad(new ScreenTitle());
             //Functions_Backend.SaveGame(GameFile.AutoSave);
             //Flags.InfiniteGold = true;
-            Flags.CameraTracksHero = false;
+            Flags.CameraTracksHero = true;
+            //Camera2D.speed = 3f; //3 is slow/medium speed
         }
 
         protected override void UnloadContent() { }

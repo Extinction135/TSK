@@ -59,10 +59,13 @@ namespace DungeonRun
             Camera2D.targetPosition.X = (int)Camera2D.targetPosition.X;
             Camera2D.targetPosition.Y = (int)Camera2D.targetPosition.Y;
 
-            if (Camera2D.lazyMovement)
-            {   //LAZY MATCHED CAMERA - waits for hero to move outside of deadzone before following
+            if (Camera2D.tracks)
+            {   //camera gradually moves to target
                 //get distance between current and target
-                Camera2D.distance = Camera2D.targetPosition - Camera2D.currentPosition; 
+                Camera2D.distance = Camera2D.targetPosition - Camera2D.currentPosition;
+
+                //assume camera should follow, per axis
+                Camera2D.followX = true; Camera2D.followY = true;
 
                 //check to see if camera is close enough to snap positions
                 if (Math.Abs(Camera2D.distance.X) < 1)
@@ -76,9 +79,9 @@ namespace DungeonRun
                     Camera2D.followY = false;
                 }
 
-                //determine if we should track the hero, per axis (deadzone)
-                if (Math.Abs(Camera2D.distance.X) > Camera2D.deadzoneX) { Camera2D.followX = true; }
-                if (Math.Abs(Camera2D.distance.Y) > Camera2D.deadzoneY) { Camera2D.followY = true; }
+                //determine if we should track, per axis (deadzone)
+                //if (Math.Abs(Camera2D.distance.X) > Camera2D.deadzoneX) { Camera2D.followX = true; }
+                //if (Math.Abs(Camera2D.distance.Y) > Camera2D.deadzoneY) { Camera2D.followY = true; }
 
                 //if we are following, update current position based on distance and speed
                 if (Camera2D.followX)
@@ -86,7 +89,7 @@ namespace DungeonRun
                 if (Camera2D.followY)
                 { Camera2D.currentPosition.Y += Camera2D.distance.Y * Camera2D.speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
             }
-            else //FAST MATCHED CAMERA - instantly follows hero
+            else //instantly follows target
             { Camera2D.currentPosition = Camera2D.targetPosition; }
 
             //discard sub-pixel values from position

@@ -120,6 +120,18 @@ namespace DungeonRun
             Functions_Movement.StopMovement(Pool.hero.compMove);
             Pool.hero.direction = Direction.Up; //face hero up
 
+            //place cameras starting position in dungeon
+            if (Flags.CameraTracksHero) //center camera to hero
+            { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
+            else
+            {   //center hero to current room
+                Camera2D.targetPosition.X = currentRoom.center.X;
+                Camera2D.targetPosition.Y = currentRoom.center.Y;
+            }
+            //teleport camera to targetPos
+            Camera2D.currentPosition = Camera2D.targetPosition;
+
+
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();
             DungeonRecord.dungeonID = 0; //ID = 0 for now

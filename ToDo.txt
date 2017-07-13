@@ -40,16 +40,28 @@ todo:
 
 
 
-Implement Camera tracking of hero or centering to current room
 
-added Flags.CameraTracksHero boolean.
-updated DungeonScreen to check Flags.CameraTracksHero boolean.
-camera now can track center to the dungeon's current room.
-playtested, working, but needs some polish.
+Improve Camera tracking
+
+updated Functions_Camera2D.Update() to handle movement of camera.
+changed boolean name from Camera2D.lazyMovement to Camera2D.tracks.
+this better represents what the boolean does.
+updated DungeonScreen.Update() to handle Camera2d.tracks boolean.
+changed the camera speed to 3, which feels/looks better.
+playtested, working as expected, needs more polish.
+
+updated Functions_Dungeon.BuildDungeon() to initially place camera.
+either places camera on hero, or places camera centered to current room.
+this prevents the camera from 'flying in' when a dungeon is loaded.
+playtested, working as expected.
 
 
 
 
+
+
+the camera's target should be set to the hero's position when a dungeon is built
+otherwise the camera 'flys in' when a dungeon is made, and this is annoying...
 
 
 polish camera tracking

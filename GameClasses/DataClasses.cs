@@ -61,8 +61,8 @@ namespace DungeonRun
     public static class Camera2D
     {
         public static GraphicsDevice graphics = ScreenManager.game.GraphicsDevice;
-        public static Boolean lazyMovement = false;
-        public static float speed = 5f; //how fast the camera moves
+        public static Boolean tracks = false; //does camera move or teleport?
+        public static float speed = 4f; //how fast the camera moves
         public static int deadzoneX = 50;
         public static int deadzoneY = 50;
 
