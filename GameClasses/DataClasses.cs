@@ -28,6 +28,7 @@ namespace DungeonRun
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
         public static Boolean DrawUDT = true; //draw the UpdateDrawTotal timing text?
         public static Boolean Invincibility = false; //does hero take damage?
+        public static Boolean InfiniteMagic = false; //is magic cost 0?
 
         static Flags()
         {
@@ -42,6 +43,7 @@ namespace DungeonRun
                 ProcessAI = true;
                 DrawUDT = true; //set this false for actual release
                 Invincibility = false;
+                InfiniteMagic = false;
             }
         }
     }

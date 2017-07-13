@@ -43,28 +43,26 @@ todo:
 
 
 
-Implement Invincibility in game
 
-added Invincibility boolean to Flags data class.
-updated Functions_Battle.Damage() to check Invincibility boolean.
-method returns if Invincibility is enabled, preventing all damage.
-Damage() still pushes actor and sets hit state tho.
-playtested, working as expected.
+Implement UnlimitedMagic in game
 
-
-
-this should be done when damage is applied to hero
+when unlimited magic is enabled, each frame the hero's magic is set to max.
+added InfiniteMagic boolean to Flags data class.
+created CheckMagic() in Functions_Item class.
+this method handles checking the casting cost of spell, and Flags.InfiniteMagic state.
+this also generalizes how the game checks a spells cost.
+flipped infiniteMagic boolean in RBscreen.LoadContent().
 
 
 
 
-the hero should not take damage while in editorMode
-the hero should have health + magic set to max each frame
 
-when Flags.Boolean is true, the update room button should be color down
-else it should be color up
+flip magic boolean true for editor, 
 
 
+
+we should do this for arrows, bombs, and gold too
+hero should have infinite all these things
 
 
 

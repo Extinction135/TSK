@@ -75,6 +75,10 @@ namespace DungeonRun
             //editor specific flags
             Flags.Debug = true; //necessary for editor operation
             Flags.Invincibility = true; //hero cannot die in editor
+            Flags.InfiniteMagic = true; //hero has infinite magic
+
+            //set testing saveData
+            PlayerData.current.magicFireball = true;
         }
 
         public override void HandleInput(GameTime GameTime)
