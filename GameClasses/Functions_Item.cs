@@ -87,7 +87,6 @@ namespace DungeonRun
                 {
                     if (CheckMagic(1)) //the cost of fireball is 1
                     {
-                        PlayerData.current.magicCurrent-=1;
                         Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Actor);
                         Actor.lockTotal = 15;
                     }
@@ -150,7 +149,11 @@ namespace DungeonRun
         {   //if infinite magic is enabled, cast
             //if hero has enough magic to cast, cast
             if (Flags.InfiniteMagic) { return true; }
-            if (PlayerData.current.magicCurrent >= castingCost) { return true; }
+            if (PlayerData.current.magicCurrent >= castingCost)
+            {
+                PlayerData.current.magicCurrent -= (byte)castingCost;
+                return true;
+            }
             return false; //else hero cannot cast
         }
 

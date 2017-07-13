@@ -42,27 +42,23 @@ todo:
 
 
 
+Fix InfiniteMagic bug
 
-
-Implement UnlimitedMagic in game
-
-when unlimited magic is enabled, each frame the hero's magic is set to max.
-added InfiniteMagic boolean to Flags data class.
-created CheckMagic() in Functions_Item class.
-this method handles checking the casting cost of spell, and Flags.InfiniteMagic state.
-this also generalizes how the game checks a spells cost.
-flipped infiniteMagic boolean in RBscreen.LoadContent().
+fixed a bug where game was deducting cost of spell when InfiniteMagic boolean was true.
+updated CheckMagic() to handle deducting magic cost too.
+playtested, working as expected.
 
 
 
 
+we need to worldUI's magic bar to display the current magic value
+it counts down still, even when we have infinite magic enabled
 
-flip magic boolean true for editor, 
 
-
-
-we should do this for arrows, bombs, and gold too
+we should implement booleans for arrows, bombs, and gold too
 hero should have infinite all these things
+we should have methods that check these values too
+and everywhere we check arrows, bombs, or gold should use these methods
 
 
 
