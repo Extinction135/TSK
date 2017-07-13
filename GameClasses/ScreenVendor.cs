@@ -360,8 +360,8 @@ namespace DungeonRun
         }
 
         public void CompleteSale(MenuItem Item)
-        {
-            PlayerData.current.gold -= Item.price; //deduct cost
+        {   //if infinite gold is disabled, deduct item cost
+            if (!Flags.InfiniteGold) { PlayerData.current.gold -= Item.price; }
             //update various widgets affected by this purchase
             Widgets.ForSale.SetItemsForSale(vendorType.type);
             Widgets.Info.Display(currentlySelected);

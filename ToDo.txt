@@ -44,16 +44,7 @@ todo:
 
 
 
-Implement InfiniteGold in game
 
-added Flags.InfiniteGold boolean.
-updated Functions_Actor.SetHitState() to check InfiniteGold boolean.
-if InfiniteGold is false, hero will drop gold piece upon hit.
-playtested, working as expected.
-
-updated VendorScreen with CheckGold() method.
-updated VendorScreen.PurchaseItem() to call CheckGold().
-playtested, there is a bug.
 
 
 
@@ -63,7 +54,9 @@ Fix bug with purchasing items when infiniteGold is enabled
 
 bug: purchasing items still subtracts the cost of the item, if infiniteGold is enabled.
 the cost should NOT be deducted.
-
+VendorScreen.CompleteSale() to check InfiniteGold boolean.
+the cost of an item is only deducted if InfiniteGold is false.
+playtested, working as expected. bug fixed.
 
 
 
