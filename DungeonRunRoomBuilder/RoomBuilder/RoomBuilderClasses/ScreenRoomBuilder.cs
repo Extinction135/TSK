@@ -43,7 +43,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             RoomBuilder = new WidgetRoomBuilder();
-            RoomBuilder.Reset(8, 16 * 3);
+            RoomBuilder.Reset(16 * 33, 16 * 2);
             room = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0);
 
             //clear any previous dungeon data
@@ -53,7 +53,7 @@ namespace DungeonRun
             Functions_Room.BuildRoom(room);
             Functions_Dungeon.currentRoom = room;
             //hide hero offscreen
-            Functions_Movement.Teleport(Pool.hero.compMove, 200, 500);
+            Functions_Movement.Teleport(Pool.hero.compMove, 200, 50);
             Functions_Pool.Update(); //update the pool once
 
             //create the cursor sprite
@@ -164,16 +164,8 @@ namespace DungeonRun
                             { LoadRoomData(); }
                             else if (RoomBuilder.buttons[i] == RoomBuilder.updateBtn)
                             {
-                                if (Flags.Paused)
-                                {
-                                    Flags.Paused = false;
-                                    RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonUp;
-                                }
-                                else
-                                {
-                                    Flags.Paused = true;
-                                    RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonDown;
-                                }
+                                if (Flags.Paused) { Flags.Paused = false; }
+                                else { Flags.Paused = true; }
                             }
                         }
                     }
@@ -290,9 +282,15 @@ namespace DungeonRun
             RoomBuilder.Update();
 
             //track camera to left-center of room instance
-            Camera2D.targetPosition.X = room.center.X - 16 * 3;
+            Camera2D.targetPosition.X = room.center.X + 16 * 3;
             Camera2D.targetPosition.Y = room.center.Y;
             Functions_Camera2D.Update(GameTime);
+
+            //set the update room button color
+            if (Flags.Paused)
+            { RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonUp; }
+            else
+            { RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonDown; }
         }
 
         public override void Draw(GameTime GameTime)

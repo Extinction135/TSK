@@ -41,30 +41,18 @@ todo:
 
 
 
-Setup RoomBuilderScreen to inherit from DungeonScreen
 
-this will allow player input alongside editor input.
-this makes it easier to test interactions with objects too.
 
-updated DungonScreen.HandleInput().Inspect() to check if LeftCtrl button is down.
-this allows the editor to add/move/delete and also click inspect objects.
 
-updated RBscreen to inherit from DungeonScreen, properly calling the base methods.
-modified RBscreen's methods to work with DungeonScreen's methods.
-
-does Flags.Paused do the same thing as RBscreen.update boolean? yes it does.
-we dont need RBscreen.update anymore. instead we should be using Flags.Pause.
-removed updateRoom boolean from RBscreen. replaced refs to point to Flags.Pause.
+updated RBwidget.Reset() to move all the widget's roomObjs, enemy spawn objs, and buttons.
+moved RBwidget to right side of screen.
+changed how camera centers to room in editor screen.
+changed where hero is placed initially in editor screen.
+changed how 'update room' button's color is set, based on Flags.Paused boolean.
 playtested, working as expected.
 
 
 
-
-
-room builder widget's objs, enemies, components should be based on the window top left position
-
-the widget should be moved to the right of the screen, and room should sit under the worldUI
-this is better arrangement
 
 the hero should not take damage while in editorMode
 the hero should have health + magic set to max each frame

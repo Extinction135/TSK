@@ -15,7 +15,9 @@ namespace DungeonRun
 {
     public class WidgetRoomBuilder : Widget
     {
+        int j;
         public int total;
+        int counter;
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
         public ComponentSprite selectionBoxTool; //highlites the currently selected obj
         public GameObject activeObj; //points to a RoomObj on the obj list
@@ -46,7 +48,7 @@ namespace DungeonRun
 
             window = new MenuWindow(
                 new Point(8, 16 * 3), 
-                new Point(16 * 6, 16 * 15 + 8),
+                new Point(16 * 6, 16 * 16 + 8),
                 "Room Builder");
             window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
             window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
@@ -73,7 +75,7 @@ namespace DungeonRun
 
             for (i = 0; i < 7; i++) //row
             {
-                for (int j = 0; j < 5; j++) //column
+                for (j = 0; j < 5; j++) //column
                 {
                     GameObject obj = new GameObject(Assets.cursedCastleSheet);
                     Functions_GameObject.ResetObject(obj);
@@ -255,6 +257,67 @@ namespace DungeonRun
             window.lines[2].position.Y = Y + (16 * 10);
             window.lines[3].position.Y = Y + (16 * 12);
             Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
+
+            //move room objs
+            counter = 0;
+            for (i = 0; i < 7; i++) //row
+            {
+                for (j = 0; j < 5; j++) //column
+                {
+                    objList[counter].compSprite.position.X = X + 16 + 0 + (16 * j);
+                    objList[counter].compSprite.position.Y = Y + 16 * 2 + (16 * i);
+                    objList[counter].compCollision.rec.X = X + 16 + 0 + (16 * j) - 8;
+                    objList[counter].compCollision.rec.Y = Y + 16 * 2 + (16 * i) - 8;
+                    counter++;
+                }
+            }
+
+            //move enemy spawn objs
+            for (j = 0; j < 5; j++)
+            {
+                objList[counter].compSprite.position.X = X + 16 + 0 + (16 * j);
+                objList[counter].compSprite.position.Y = Y + 16 * 2 + (16 * 7);
+                objList[counter].compCollision.rec.X = X + 16 + 0 + (16 * j) - 8;
+                objList[counter].compCollision.rec.Y = Y + 16 * 2 + (16 * 7) - 8;
+                counter++;
+            }
+
+
+            #region Move buttons
+
+            moveObj.compSprite.position.X = X + 16 * 1;
+            moveObj.compSprite.position.Y = Y + 16 * 11;
+            moveObj.compCollision.rec.X = X + 16 * 1 - 8;
+            moveObj.compCollision.rec.Y = Y + 16 * 11 - 8;
+            
+            addObj.compSprite.position.X = X + 16 * 3;
+            addObj.compSprite.position.Y = Y + 16 * 11;
+            addObj.compCollision.rec.X = X + 16 * 3 - 8;
+            addObj.compCollision.rec.Y = Y + 16 * 11 - 8;
+
+            deleteObj.compSprite.position.X = X + 16 * 5;
+            deleteObj.compSprite.position.Y = Y + 16 * 11;
+            deleteObj.compCollision.rec.X = X + 16 * 5 - 8;
+            deleteObj.compCollision.rec.Y = Y + 16 * 11 - 8;
+
+            saveBtn.rec.X = X + 16 * 1 - 8;
+            saveBtn.rec.Y = Y + 16 * 12 + 8;
+            Functions_Component.CenterText(saveBtn);
+
+            newBtn.rec.X = X + 16 * 2 + 13 - 8;
+            newBtn.rec.Y = Y + 16 * 12 + 8;
+            Functions_Component.CenterText(newBtn);
+
+            loadBtn.rec.X = X + 16 * 4 + 10 - 8;
+            loadBtn.rec.Y = Y + 16 * 12 + 8;
+            Functions_Component.CenterText(loadBtn);
+
+            updateBtn.rec.X = X + 16 * 1 - 8;
+            updateBtn.rec.Y = Y + 16 * 13 + 8;
+            Functions_Component.CenterText(updateBtn);
+
+            #endregion
+
         }
 
         public override void Update()
