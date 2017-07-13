@@ -79,6 +79,7 @@ namespace DungeonRun
             Flags.InfiniteGold = true; //hero has infinite gold
             Flags.InfiniteArrows = true; //hero has infinite arrows
             Flags.InfiniteBombs = true; //hero has infinite bombs
+            Flags.CameraTracksHero = false; //center camera to dev room
 
             //set testing saveData
             PlayerData.current.magicFireball = true;
@@ -293,9 +294,9 @@ namespace DungeonRun
             RoomBuilder.Update();
 
             //track camera to left-center of room instance
-            Camera2D.targetPosition.X = room.center.X + 16 * 3;
-            Camera2D.targetPosition.Y = room.center.Y;
-            Functions_Camera2D.Update(GameTime);
+            //Camera2D.targetPosition.X = room.center.X + 16 * 3;
+            //Camera2D.targetPosition.Y = room.center.Y;
+            //Functions_Camera2D.Update(GameTime);
 
             //set the update room button color
             if (Flags.Paused)

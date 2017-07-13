@@ -27,6 +27,7 @@ namespace DungeonRun
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
         public static Boolean DrawUDT = true; //draw the UpdateDrawTotal timing text?
+        public static Boolean CameraTracksHero = true; //camera tracks hero or centers to current room
         //cheats
         public static Boolean Invincibility = false; //does hero take damage?
         public static Boolean InfiniteMagic = false; //enable magic cost
@@ -46,6 +47,7 @@ namespace DungeonRun
                 SpawnMobs = true;
                 ProcessAI = true;
                 DrawUDT = true; //set this false for actual release
+                CameraTracksHero = true;
                 //cheats
                 Invincibility = false;
                 InfiniteMagic = false;

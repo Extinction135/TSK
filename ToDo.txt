@@ -40,42 +40,38 @@ todo:
 
 
 
+Implement Camera tracking of hero or centering to current room
+
+added Flags.CameraTracksHero boolean.
+updated DungeonScreen to check Flags.CameraTracksHero boolean.
+camera now can track center to the dungeon's current room.
+playtested, working, but needs some polish.
 
 
 
 
 
 
-
-
-
-
-Fix bug with purchasing items when infiniteGold is enabled
-
-bug: purchasing items still subtracts the cost of the item, if infiniteGold is enabled.
-the cost should NOT be deducted.
-VendorScreen.CompleteSale() to check InfiniteGold boolean.
-the cost of an item is only deducted if InfiniteGold is false.
-playtested, working as expected. bug fixed.
+polish camera tracking
+camera should move if centering to room
+camera should instantly follow hero, tho
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+WorldUI++
 we should be displaying the amount of arrows, bombs in the worldUI
 this way user can see how many they have left
+
+
+Camera target++
+Camera's target is hero, but it can also be the center of the current room
+should implement this via Flag.CameraTrackHero
+if true, center to hero
+if false, center to current room
+this is implemented in DungeonScreen
+
 
 
 
@@ -86,10 +82,6 @@ this way user can see how many they have left
 
 
 Room Playtesting
-
-we'll need to allow player input, just like dungeon screen does
-we should probably just use dungeon screen as base class for room builder
-then call the appropriate base.Method() from input, update, draw
 
 this will cause the camera to center to hero tho...
 but we could center hero to room post dungeonScreen.update()
@@ -191,7 +183,7 @@ this means that rooms should have a goal enum
 
 
 
-
+Create CheatsScreen - or this could be part of game ctrls
 
 
 
@@ -532,7 +524,9 @@ Look at how stardew valley engages players
 	
 	
 	
-	
+damascus appararel / 5060.bigcartel
+- we could turn the style of the game into shirts + apparel too
+- but the style would have to be futuristic and awesome	
 	
 	
 	

@@ -42,8 +42,8 @@ namespace DungeonRun
             //game
             ScreenManager.ExitAndLoad(new ScreenTitle());
             //Functions_Backend.SaveGame(GameFile.AutoSave);
-
-            Flags.InfiniteGold = true;
+            //Flags.InfiniteGold = true;
+            Flags.CameraTracksHero = false;
         }
 
         protected override void UnloadContent() { }

@@ -146,8 +146,14 @@ namespace DungeonRun
                     Functions_Pool.Update();
                     Functions_Collision.CheckDungeonRoomCollisions();
                     Functions_WorldUI.Update();
-                    //track camera to hero
-                    Camera2D.targetPosition = Pool.hero.compSprite.position;
+                    //
+                    if (Flags.CameraTracksHero) //track camera to hero
+                    { Camera2D.targetPosition = Pool.hero.compSprite.position; }
+                    else
+                    {   //center camera to current room
+                        Camera2D.targetPosition.X = Functions_Dungeon.currentRoom.center.X;
+                        Camera2D.targetPosition.Y = Functions_Dungeon.currentRoom.center.Y;
+                    }
                     Functions_Camera2D.Update(GameTime);
                 }
             }
