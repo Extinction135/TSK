@@ -77,21 +77,20 @@ namespace DungeonRun
         }
 
         static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
-        {
-            //only damage/hit/push actors not in the hit state
+        {   //only damage/hit/push actors not in the hit state
             if (Actor.state != ActorState.Hit)
-            {   //deal damage to the actor
-                //but prevent the damage byte from underflowing the Actor.health byte
-                if (Damage > Actor.health) { Actor.health = 0; }
-                else { Actor.health -= Damage; }
-
-                //if projectile damaged hero, track the damage dealt
-                if (Actor == Pool.hero) { DungeonRecord.totalDamage += Damage; }
-
-                //set actor into hit state, push actor the projectile's direction
+            {   //set actor into hit state, push actor the projectile's direction
                 Functions_Movement.Push(Actor.compMove, Direction, Force); //sets magnitude only
                 Actor.direction = Direction; //actor's facing direction becomes direction pushed
                 Functions_Actor.SetHitState(Actor);
+
+                //check invincibility boolean
+                if (Actor == Pool.hero) { if (Flags.Invincibility) { return; } }
+                //prevent damage byte from underflowing the Actor.health byte
+                if (Damage > Actor.health) { Actor.health = 0; }
+                else { Actor.health -= Damage; }
+                //if projectile damaged hero, track the damage dealt
+                if (Actor == Pool.hero) { DungeonRecord.totalDamage += Damage; }
             }
         }
 

@@ -53,7 +53,7 @@ namespace DungeonRun
             Functions_Room.BuildRoom(room);
             Functions_Dungeon.currentRoom = room;
             //hide hero offscreen
-            Functions_Movement.Teleport(Pool.hero.compMove, 200, 50);
+            Functions_Movement.Teleport(Pool.hero.compMove, 200, 150);
             Functions_Pool.Update(); //update the pool once
 
             //create the cursor sprite
@@ -70,8 +70,11 @@ namespace DungeonRun
 
             overlay.alpha = 0.0f;
             Functions_Dungeon.Initialize(this);
-            Flags.Debug = true; //necessary for editor operation
             displayState = DisplayState.Opened; //open the screen
+
+            //editor specific flags
+            Flags.Debug = true; //necessary for editor operation
+            Flags.Invincibility = true; //hero cannot die in editor
         }
 
         public override void HandleInput(GameTime GameTime)

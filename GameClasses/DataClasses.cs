@@ -27,6 +27,7 @@ namespace DungeonRun
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
         public static Boolean DrawUDT = true; //draw the UpdateDrawTotal timing text?
+        public static Boolean Invincibility = false; //does hero take damage?
 
         static Flags()
         {
@@ -39,7 +40,8 @@ namespace DungeonRun
                 PlaySoundFX = true;
                 SpawnMobs = true;
                 ProcessAI = true;
-                DrawUDT = false; //set this false for actual release
+                DrawUDT = true; //set this false for actual release
+                Invincibility = false;
             }
         }
     }

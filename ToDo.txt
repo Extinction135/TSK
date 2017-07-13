@@ -43,13 +43,17 @@ todo:
 
 
 
+Implement Invincibility in game
 
-updated RBwidget.Reset() to move all the widget's roomObjs, enemy spawn objs, and buttons.
-moved RBwidget to right side of screen.
-changed how camera centers to room in editor screen.
-changed where hero is placed initially in editor screen.
-changed how 'update room' button's color is set, based on Flags.Paused boolean.
+added Invincibility boolean to Flags data class.
+updated Functions_Battle.Damage() to check Invincibility boolean.
+method returns if Invincibility is enabled, preventing all damage.
+Damage() still pushes actor and sets hit state tho.
 playtested, working as expected.
+
+
+
+this should be done when damage is applied to hero
 
 
 
