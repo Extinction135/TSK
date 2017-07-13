@@ -30,6 +30,7 @@ namespace DungeonRun
         //cheats
         public static Boolean Invincibility = false; //does hero take damage?
         public static Boolean InfiniteMagic = false; //enable magic cost
+        public static Boolean InfiniteGold = false; //enable infinite gold
         public static Boolean InfiniteArrows = false; //enable arrow cost
         public static Boolean InfiniteBombs = false; //enable bomb cost
 
@@ -48,6 +49,7 @@ namespace DungeonRun
                 //cheats
                 Invincibility = false;
                 InfiniteMagic = false;
+                InfiniteGold = false;
                 InfiniteArrows = false;
                 InfiniteBombs = false;
             }

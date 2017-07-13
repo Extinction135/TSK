@@ -76,6 +76,7 @@ namespace DungeonRun
             Flags.Debug = true; //necessary for editor operation
             Flags.Invincibility = true; //hero cannot die in editor
             Flags.InfiniteMagic = true; //hero has infinite magic
+            Flags.InfiniteGold = true; //hero has infinite gold
             Flags.InfiniteArrows = true; //hero has infinite arrows
             Flags.InfiniteBombs = true; //hero has infinite bombs
 

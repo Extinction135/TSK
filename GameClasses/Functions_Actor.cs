@@ -30,10 +30,13 @@ namespace DungeonRun
             if (Actor == Pool.hero)
             {
                 Assets.Play(Assets.sfxHeroHit);
-                if (PlayerData.current.gold > 0) //if hero has any gold
-                {   //drop a gold piece upon getting hit
-                    Functions_Entity.SpawnEntity(ObjType.PickupRupee, Actor);
-                    PlayerData.current.gold--;
+                if (!Flags.InfiniteGold) //continue if infiniteGold is false
+                {
+                    if (PlayerData.current.gold > 0) //if hero has any gold
+                    {   //drop a gold piece upon getting hit
+                        Functions_Entity.SpawnEntity(ObjType.PickupRupee, Actor);
+                        PlayerData.current.gold--;
+                    }
                 }
             }
             else { Assets.Play(Assets.sfxEnemyHit); }

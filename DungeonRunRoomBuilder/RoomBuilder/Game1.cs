@@ -38,10 +38,12 @@ namespace DungeonRun
             ScreenManager.Initialize(this);
 
             //editor
-            ScreenManager.ExitAndLoad(new ScreenRoomBuilder());
+            //ScreenManager.ExitAndLoad(new ScreenRoomBuilder());
             //game
-            //ScreenManager.ExitAndLoad(new ScreenTitle());
+            ScreenManager.ExitAndLoad(new ScreenTitle());
             //Functions_Backend.SaveGame(GameFile.AutoSave);
+
+            Flags.InfiniteGold = true;
         }
 
         protected override void UnloadContent() { }

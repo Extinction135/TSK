@@ -191,15 +191,20 @@ namespace DungeonRun
 
 
 
+        public Boolean CheckGold(byte cost)
+        {   //if infinite gold is enabled, allow
+            if (Flags.InfiniteGold) { return true; }
+            //if hero has enough gold to buy, allow
+            if (PlayerData.current.gold >= cost) { return true; }
+            return false; //else disallow
+        }
+
         public void PurchaseItem(MenuItem Item)
-        {
-            //the player cannot purchase an unknown item
+        {   //the player cannot purchase an unknown item
             if (Item.type == MenuItemType.Unknown) { return; }
-
             //see if hero has enough gold to purchase this item
-            if (PlayerData.current.gold >= Item.price)
+            if (CheckGold(Item.price))
             {
-
 
                 #region Items
 
@@ -349,7 +354,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-
 
             } //else, hero doesn't have enough gold to purchase the item
             else { DialogNotEnoughGold(); }
