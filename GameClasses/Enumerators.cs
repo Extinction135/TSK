@@ -19,6 +19,8 @@ namespace DungeonRun
 
     public enum MouseButtons { LeftButton, RightButton }
 
+    public enum BootRoutine { Game, RoomBuilder }
+
     public enum DisplayState { Opening, Opened, Closing, Closed }
 
     public enum LoadSaveNewState { Load, Save, New }

@@ -35,18 +35,13 @@ namespace DungeonRun
             Pool.Initialize();
 
             //GAME BOOT ROUTINE
-
-            //editor
-            //ScreenManager.ExitAndLoad(new ScreenRoomBuilder());
-
-            //game
-            ScreenManager.ExitAndLoad(new ScreenTitle());
-            //Functions_Backend.SaveGame(GameFile.AutoSave);
+            if (Flags.bootRoutine == BootRoutine.Game)
+            { ExitAndLoad(new ScreenTitle()); }
+            else if (Flags.bootRoutine == BootRoutine.RoomBuilder)
+            { ExitAndLoad(new ScreenRoomBuilder()); }
 
             //dev testing
-            //Flags.InfiniteGold = true;
-            //Flags.CameraTracksHero = true;
-            //Camera2D.speed = 3f; //3 is slow/medium speed
+            //Functions_Backend.SaveGame(GameFile.AutoSave);
         }
 
         public static void Update(GameTime GameTime)

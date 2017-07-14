@@ -223,6 +223,9 @@
     <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
       <Link>Classes\ScreenOverworld.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenRoomBuilder.cs">
+      <Link>Classes\ScreenRoomBuilder.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenSummary.cs">
       <Link>Classes\ScreenSummary.cs</Link>
     </Compile>
@@ -255,6 +258,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetOptions.cs">
       <Link>Classes\WidgetOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetRoomBuilder.cs">
+      <Link>Classes\WidgetRoomBuilder.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetStats.cs">
       <Link>Classes\WidgetStats.cs</Link>

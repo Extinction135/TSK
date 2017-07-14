@@ -19,7 +19,8 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.5f; //the version of the game
-
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
+        //game flags
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
@@ -39,7 +40,9 @@ namespace DungeonRun
         static Flags()
         {
             if (Release)
-            {   //set flags for release mode
+            {
+                bootRoutine = BootRoutine.Game;
+                //set flags for release mode
                 Debug = false;
                 DrawCollisions = false;
                 Paused = false;

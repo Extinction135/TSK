@@ -41,73 +41,38 @@ todo:
 
 
 
-Setup game boot routine to be shared between all projects
+Simplify the Boot Routine using Flags class
 
-we dont want unique boot routines for each project.
-moved setup for Game/Editor into ScreenManager.Initialize().
-this Initialize() method is shared between projects.
-this also simplifies Game1, which is not shared.
+added enum BootRoutine { Game, RoomBuilder }.
+added BootRoutine instance to Flags.
+this value will control what screen ScreenManager loads first.
 
-created Flags.Version float, to track the current version.
-this value is added to the window title across all projects.
-updated UWP and DirectX projects to display Flags.Version in window title.
-playtested, working as expected.
+updated ScreenManager.Initialize() to check Flags.bootRoutine.
+either TitleScreen or RoomBuilderScreen is added based on the check.
+both projects built.
 
 
 
 
 
 
+Fix issues with RM screen in UWP project
 
 
 
-the editor files should be shared between all projects
-no single project owns the editor files
+
+
+the editor files are shared between all projects
 the backend specific functions are implemented via Functions_Backend, like normal
 
-Editor classes should be copied into the shared game classes, then ref'd back into projects
-the DirectX project should be renamed DungeonRunDirectX
-actually, this should be created from scratch
+we need to migrate the editor's save/load functions into Functions_Backend, per project
 
-
-
-
-
-
-
-
-
-BUG
-if we're using ALOT of entities quickly, then a state happens where 
-- a bomb may just dissappear before it can explode
-- a fireball may dissappear before it hits anything
-we should be able to mark an entity as 'important' so it isn't released until it completes
-
-
-
-
-
-
-
-
-
-
-Move Editor into UWP project, seperate Editor from DirectX port
-
-refactored parts of RoomBuilderScreen.
-
-
-
-
-(reorganize the repo)
+file dialogs are built into .NetCore
+file dialogs require WinForms with DirectX project
 
 we should present the user a dialog when they want to save the room
 same with loading a room
-this is slightly easier to do in UWP, because file dialogs are baked into .NetCore
-(instead of including win forms and dealing with that mess of shit)
 
-create the directX port of the game in it's own project folder.
-roll the editor into the UWP project (RBwidget + RBscreen)
 generalize the load/save room functions into the Functions_Backend class
 - we'll need to load room files anyway when the game boots up -
 this removes them from RBscreen
@@ -120,6 +85,11 @@ the selected file address is then passed to load room
 
 for loading roomData, we collect all the files in roomData folder onto a list
 then iterate over the list, passing each address to load room
+
+
+
+
+
 
 
 
@@ -300,7 +270,14 @@ update UWP content with DirectX content directory, we've modified the dungeonShe
 	
 	
 	
-	
+BUG
+if we're using ALOT of entities quickly, then a state happens where 
+- a bomb may just dissappear before it can explode
+- a fireball may dissappear before it hits anything
+we should be able to mark an entity as 'important' so it isn't released until it completes
+
+
+
 	
 	
 	
