@@ -6,10 +6,10 @@
 
 # directories to ignore
 DungeonRunDirectX/.vs/
-DungeonRunDirectX/DungeonRunDirectX/bin/
-DungeonRunDirectX/DungeonRunDirectX/Content/obj/
-DungeonRunDirectX/DungeonRunDirectX/Content/bin/
-DungeonRunDirectX/DungeonRunDirectX/obj/
+DungeonRunDirectX/DungeonRun/bin/
+DungeonRunDirectX/DungeonRun/Content/obj/
+DungeonRunDirectX/DungeonRun/Content/bin/
+DungeonRunDirectX/DungeonRun/obj/
 
 DungeonRunUWP/.vs/
 DungeonRunUWP/DungeonRun/bin/

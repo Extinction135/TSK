@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EACD591D-CC35-4975-A0ED-6D7F2561435D}</ProjectGuid>
+    <ProjectGuid>{3764DA1B-71BC-44D7-9685-C8B30129AAAE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DungeonRunDirectX</RootNamespace>
-    <AssemblyName>DungeonRunDirectX</AssemblyName>
+    <RootNamespace>DungeonRun</RootNamespace>
+    <AssemblyName>DungeonRun</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

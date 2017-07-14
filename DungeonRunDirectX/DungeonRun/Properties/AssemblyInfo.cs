@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DungeonRunDirectX")]
-[assembly: AssemblyProduct("DungeonRunDirectX")]
+[assembly: AssemblyTitle("DungeonRun")]
+[assembly: AssemblyProduct("DungeonRun")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Microsoft")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5c867dd1-78eb-497b-8cae-fc96360c36ba")]
+[assembly: Guid("1b834d84-dc07-4000-b77d-bfc0543540c9")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -42,20 +42,14 @@ todo:
 
 
 
-Reorg DungeonRun project so RoomBuilder classes are shared
+Fix naming conventions for projects in Repo
 
-moved ScreenRoomBuilder and WidgetRoomBuilder into shared game classes folder.
-updated UWP project with latest content.
-setup monogame DirectX project, ref'd game classes.
-built, no errors. playtested, working as expected.
-
-removed RoomBuilder project from repo.
-RoomBuilder files now exist in shared classes.
-any project can now use RoomBuilder.
-updated gitignore file.
+VS solutions should all be named DungeonRun.
+each solution should exist in folder named for the projet type (UWP, DirectX).
 
 
 
+project name = DungeonRun
 
 
 
