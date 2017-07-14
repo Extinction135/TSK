@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RoomBuilder")]
-[assembly: AssemblyProduct("RoomBuilder")]
+[assembly: AssemblyTitle("DungeonRunDirectX")]
+[assembly: AssemblyProduct("DungeonRunDirectX")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Microsoft")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5a1dfd08-0db5-4d86-b819-17b18300661b")]
+[assembly: Guid("5c867dd1-78eb-497b-8cae-fc96360c36ba")]
 
 // Version information for an assembly consists of the following four values:
 //

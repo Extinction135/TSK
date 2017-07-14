@@ -41,48 +41,100 @@ todo:
 
 
 
-Improve Camera tracking
 
-updated Functions_Camera2D.Update() to handle movement of camera.
-changed boolean name from Camera2D.lazyMovement to Camera2D.tracks.
-this better represents what the boolean does.
-updated DungeonScreen.Update() to handle Camera2d.tracks boolean.
-changed the camera speed to 3, which feels/looks better.
-playtested, working as expected, needs more polish.
+Reorg DungeonRun project so RoomBuilder classes are shared
 
-updated Functions_Dungeon.BuildDungeon() to initially place camera.
-either places camera on hero, or places camera centered to current room.
-this prevents the camera from 'flying in' when a dungeon is loaded.
-playtested, working as expected.
+moved ScreenRoomBuilder and WidgetRoomBuilder into shared game classes folder.
+updated UWP project with latest content.
+setup monogame DirectX project, ref'd game classes.
+built, no errors. playtested, working as expected.
 
+removed RoomBuilder project from repo.
+RoomBuilder files now exist in shared classes.
+any project can now use RoomBuilder.
+updated gitignore file.
 
 
 
 
 
-the camera's target should be set to the hero's position when a dungeon is built
-otherwise the camera 'flys in' when a dungeon is made, and this is annoying...
 
-
-polish camera tracking
-camera should move if centering to room
-camera should instantly follow hero, tho
+we can setup the initial screen in ScreenManager.Initialize().
+this further simplifies Game1.cs, which is unique to each project
 
 
 
 
 
-WorldUI++
-we should be displaying the amount of arrows, bombs in the worldUI
-this way user can see how many they have left
+the editor files should be shared between all projects
+no single project owns the editor files
+the backend specific functions are implemented via Functions_Backend, like normal
+
+Editor classes should be copied into the shared game classes, then ref'd back into projects
+the DirectX project should be renamed DungeonRunDirectX
+actually, this should be created from scratch
 
 
-Camera target++
-Camera's target is hero, but it can also be the center of the current room
-should implement this via Flag.CameraTrackHero
-if true, center to hero
-if false, center to current room
-this is implemented in DungeonScreen
+
+
+
+
+
+
+
+BUG
+if we're using ALOT of entities quickly, then a state happens where 
+- a bomb may just dissappear before it can explode
+- a fireball may dissappear before it hits anything
+we should be able to mark an entity as 'important' so it isn't released until it completes
+
+
+
+
+
+
+
+
+
+
+Move Editor into UWP project, seperate Editor from DirectX port
+
+refactored parts of RoomBuilderScreen.
+
+
+
+
+(reorganize the repo)
+
+we should present the user a dialog when they want to save the room
+same with loading a room
+this is slightly easier to do in UWP, because file dialogs are baked into .NetCore
+(instead of including win forms and dealing with that mess of shit)
+
+create the directX port of the game in it's own project folder.
+roll the editor into the UWP project (RBwidget + RBscreen)
+generalize the load/save room functions into the Functions_Backend class
+- we'll need to load room files anyway when the game boots up -
+this removes them from RBscreen
+
+load room should accept a file address
+save room should open a file dialog
+
+load room should be wrapped by an editor method that presents a file dialog
+the selected file address is then passed to load room
+
+for loading roomData, we collect all the files in roomData folder onto a list
+then iterate over the list, passing each address to load room
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -95,32 +147,14 @@ this is implemented in DungeonScreen
 
 Room Playtesting
 
-this will cause the camera to center to hero tho...
-but we could center hero to room post dungeonScreen.update()
-we would also need to check to see if hero is dead, and bring him back to life
-this should be a boolean flag, so we can enable it for the game too
+everytime we add an object to the room, save the room data to autoSave file
 
+add doors to each wall, allowing player to leave the room
+this can be done by placing doorPos in the dungeon
+then calling Functions_Room.SetDoors(Room)
 
-we should be able to playtest the room we're developing
-first, the room should be saved to autosave file
-then, doors are built along each wall
-	this can be done by placing doorPos in the dungeon
-	then calling Functions_Room.SetDoors(Room)
-then, hero is placed in the south most door
-then user can playtest the room
 whatever changes are made during playtesting are not saved
-we can easily revert to pretesting state by loading autosave file
-
-after load, the update boolean is set false
-user must then press the 'play' button to begin playtesting
-change the 'update room' button text to 'play'
-
-
-this would make it easier to playtest interactions with objs
-
-
-in this state, player takes no damage
-
+we can easily revert to pretesting state by loading the autosave file
 
 
 
@@ -166,16 +200,9 @@ we should be able to turn the conveyors on and off
 
 
 
-
-
-
-
 EnemySpawns
 enemy1spawn, enemy2spawn, etc...
 enemies are then created at these object's locations upon load
-
-
-
 
 
 
@@ -189,22 +216,6 @@ this 'completes' the room and allows hero to exit
 
 this means that rooms should have a goal enum
 { None, DeadEnemies, Switch, Torches }
-
-
-
-
-
-
-Create CheatsScreen - or this could be part of game ctrls
-
-
-
-
-
-
-
-
-
 
 
 
@@ -247,16 +258,6 @@ so all dungeons should display a blob character instead of a skull
 
 
 
-
-
-
-
-
-
-
-
-
-
 standardize all room types + sizes (in constructor)
 
 load room data from XML file
@@ -294,10 +295,6 @@ COMPLETE DUNGEONS
 	update dungeon generation routines to build complete dungeons
 	create room editor, standardize room sizes
 	
-	
-	
-	
-
 update UWP content with DirectX content directory, we've modified the dungeonSheet	
 	
 	
@@ -307,7 +304,23 @@ update UWP content with DirectX content directory, we've modified the dungeonShe
 	
 	
 	
+	
+	
+	
+	
+	
+	
 Polish++
+
+
+Create CheatsScreen - or this could be part of game ctrls
+
+WorldUI++
+we should be displaying the amount of arrows, bombs in the worldUI
+this way user can see how many they have left
+
+
+
 less instances on sfx list for text
 more instnaces on sfx list for bomb explosions
 
@@ -354,12 +367,16 @@ title widget functionality ++
 audio ctrls screen
 	sfx volume
 	music volume
+	
 input ctrls screen
 	button mapping
+	
 video ctrls screen
 	full screen or windowed?
+	
 game ctrls screen
-	how camera moves - follow hero or center to current room?
+	how camera moves - follow hero or center to current room? 
+	we only need to flip Flags.CameraTracksHero boolean
 	
 	
 Handling corrupt game files & first run setup - part 2

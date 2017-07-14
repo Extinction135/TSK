@@ -36,6 +36,8 @@ namespace DungeonRun
         public Point worldPos;
         public GameObject grabbedObj;
 
+        string localFolder = AppDomain.CurrentDomain.BaseDirectory;
+        string filename;
 
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
@@ -292,30 +294,21 @@ namespace DungeonRun
         {
             base.Update(GameTime);
             RoomBuilder.Update();
-
-            //track camera to left-center of room instance
-            //Camera2D.targetPosition.X = room.center.X + 16 * 3;
-            //Camera2D.targetPosition.Y = room.center.Y;
-            //Functions_Camera2D.Update(GameTime);
-
             //set the update room button color
             if (Flags.Paused)
             { RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonUp; }
-            else
-            { RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonDown; }
+            else { RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonDown; }
         }
 
         public override void Draw(GameTime GameTime)
         {
             base.Draw(GameTime);
-
-            //Draw UI, debug info + debug menu
+            //draw roomBuilder, cursor sprites
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             RoomBuilder.Draw();
             Functions_Draw.Draw(cursorSprite);
             if (editorState != EditorState.MoveObj) { Functions_Draw.Draw(addDeleteSprite); }
             ScreenManager.spriteBatch.End();
-            
         }
 
 
@@ -328,7 +321,7 @@ namespace DungeonRun
         public void SaveRoomData()
         {
             //create RoomXmlData instance
-            RoomXmlData testData = new RoomXmlData();
+            roomData = new RoomXmlData();
 
             //populate this instance with the room's objs
             for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
@@ -343,24 +336,22 @@ namespace DungeonRun
                         objData.type = Pool.roomObjPool[Pool.counter].type;
                         objData.posX = Pool.roomObjPool[Pool.counter].compSprite.position.X - room.collision.rec.X;
                         objData.posY = Pool.roomObjPool[Pool.counter].compSprite.position.Y - room.collision.rec.Y;
-                        testData.objs.Add(objData);
+                        roomData.objs.Add(objData);
                     }
                 }
             }
 
             //test saving roomData
-            string localFolder = AppDomain.CurrentDomain.BaseDirectory;
-            string filename = "autosaveRoom.xml";
+            filename = "autosaveRoom.xml";
             FileStream stream = File.Open(localFolder + filename, FileMode.Create);
             var serializer = new XmlSerializer(typeof(RoomXmlData));
             using (stream) //save the playerData, to saveFile address
-            { serializer.Serialize(stream, testData); }
+            { serializer.Serialize(stream, roomData); }
         }
 
         public void LoadRoomData()
         {
-            string localFolder = AppDomain.CurrentDomain.BaseDirectory;
-            string filename = "autosaveRoom.xml";
+            filename = "autosaveRoom.xml";
             roomData = new RoomXmlData();
             var serializer = new XmlSerializer(typeof(RoomXmlData));
             FileStream stream = new FileStream(localFolder + filename, FileMode.Open);

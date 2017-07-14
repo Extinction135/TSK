@@ -5,15 +5,17 @@
 *.suo
 
 # directories to ignore
+DungeonRunDirectX/.vs/
+DungeonRunDirectX/DungeonRunDirectX/bin/
+DungeonRunDirectX/DungeonRunDirectX/Content/obj/
+DungeonRunDirectX/DungeonRunDirectX/Content/bin/
+DungeonRunDirectX/DungeonRunDirectX/obj/
+
 DungeonRunUWP/.vs/
 DungeonRunUWP/DungeonRun/bin/
 DungeonRunUWP/DungeonRun/Content/obj/
 DungeonRunUWP/DungeonRun/Content/bin/
 DungeonRunUWP/DungeonRun/obj/
 
-DungeonRunRoomBuilder/.vs/
-DungeonRunRoomBuilder/RoomBuilder/bin/
-DungeonRunRoomBuilder/RoomBuilder/Content/obj/
-DungeonRunRoomBuilder/RoomBuilder/Content/bin/
-DungeonRunRoomBuilder/RoomBuilder/obj/
+
 

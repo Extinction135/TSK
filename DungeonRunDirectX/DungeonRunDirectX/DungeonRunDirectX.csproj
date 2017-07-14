@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EAAB0185-5BEE-4634-8BA7-D252FA0A572C}</ProjectGuid>
+    <ProjectGuid>{EACD591D-CC35-4975-A0ED-6D7F2561435D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RoomBuilder</RootNamespace>
-    <AssemblyName>RoomBuilder</AssemblyName>
+    <RootNamespace>DungeonRunDirectX</RootNamespace>
+    <AssemblyName>DungeonRunDirectX</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -167,6 +167,9 @@
     <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
       <Link>Classes\ScreenOverworld.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenRoomBuilder.cs">
+      <Link>Classes\ScreenRoomBuilder.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenSummary.cs">
       <Link>Classes\ScreenSummary.cs</Link>
     </Compile>
@@ -200,14 +203,15 @@
     <Compile Include="..\..\GameClasses\WidgetOptions.cs">
       <Link>Classes\WidgetOptions.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\WidgetRoomBuilder.cs">
+      <Link>Classes\WidgetRoomBuilder.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\WidgetStats.cs">
       <Link>Classes\WidgetStats.cs</Link>
     </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoomBuilderClasses\ScreenRoomBuilder.cs" />
-    <Compile Include="RoomBuilderClasses\WidgetRoomBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
