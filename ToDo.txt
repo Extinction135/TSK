@@ -41,11 +41,11 @@ todo:
 
 
 
+Copy the DirectX projects empty Classes folder using .getkeep file
 
-Fix naming conventions for projects in Repo
+this ensures the VS solution has the proper directory structure it expects.
 
-VS solutions should all be named DungeonRun.
-each solution should exist in folder named for the projet type (UWP, DirectX).
+
 
 
 
