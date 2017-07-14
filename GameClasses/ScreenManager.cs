@@ -33,6 +33,20 @@ namespace DungeonRun
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
             Pool.Initialize();
+
+            //GAME BOOT ROUTINE
+
+            //editor
+            //ScreenManager.ExitAndLoad(new ScreenRoomBuilder());
+
+            //game
+            ScreenManager.ExitAndLoad(new ScreenTitle());
+            //Functions_Backend.SaveGame(GameFile.AutoSave);
+
+            //dev testing
+            //Flags.InfiniteGold = true;
+            //Flags.CameraTracksHero = true;
+            //Camera2D.speed = 3f; //3 is slow/medium speed
         }
 
         public static void Update(GameTime GameTime)

@@ -10,8 +10,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 
-
-
 namespace DungeonRun
 {
     public class Game1 : Game
@@ -28,23 +26,15 @@ namespace DungeonRun
         protected override void Initialize() { base.Initialize(); }
 
         protected override void LoadContent()
-        {
-            base.LoadContent();
-            Assets.Load(GraphicsDevice, Content);
-            ScreenManager.Initialize(this);
-            ScreenManager.ExitAndLoad(new ScreenTitle());
-        }
+        { base.LoadContent(); Assets.Load(GraphicsDevice, Content); ScreenManager.Initialize(this); }
 
         protected override void UnloadContent() { }
 
         protected override void Update(GameTime gameTime)
-        {
-            ScreenManager.Update(gameTime);
-            Functions_Music.Update();
-            base.Update(gameTime);
-        }
+        { ScreenManager.Update(gameTime); Functions_Music.Update(); base.Update(gameTime); }
 
-        protected override void Draw(GameTime gameTime) { ScreenManager.Draw(gameTime); base.Draw(gameTime); }
+        protected override void Draw(GameTime gameTime)
+        { ScreenManager.Draw(gameTime); base.Draw(gameTime); }
 
     }
 }

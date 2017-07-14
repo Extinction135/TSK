@@ -20,42 +20,25 @@ namespace DungeonRun
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-            //settings unique to RoomBuilder
-            IsMouseVisible = false;
+            if (Flags.Debug) { IsMouseVisible = true; } else { IsMouseVisible = false; }
+            //settings unique to DirectX
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-            Window.Title = "RoomBuilder v0.1";
+            Window.Title = "DungeonRun v" + Flags.Version;
             Window.AllowUserResizing = false;
         }
 
         protected override void Initialize() { base.Initialize(); }
 
         protected override void LoadContent()
-        {
-            base.LoadContent();
-            Assets.Load(GraphicsDevice, Content);
-            ScreenManager.Initialize(this);
-
-            //editor
-            //ScreenManager.ExitAndLoad(new ScreenRoomBuilder());
-            //game
-            ScreenManager.ExitAndLoad(new ScreenTitle());
-            //Functions_Backend.SaveGame(GameFile.AutoSave);
-            //Flags.InfiniteGold = true;
-            //Flags.CameraTracksHero = true;
-            //Camera2D.speed = 3f; //3 is slow/medium speed
-        }
+        { base.LoadContent(); Assets.Load(GraphicsDevice, Content); ScreenManager.Initialize(this); }
 
         protected override void UnloadContent() { }
 
         protected override void Update(GameTime gameTime)
-        {
-            ScreenManager.Update(gameTime);
-            Functions_Music.Update();
-            base.Update(gameTime);
-        }
+        { ScreenManager.Update(gameTime); Functions_Music.Update(); base.Update(gameTime); }
 
-        protected override void Draw(GameTime gameTime) { ScreenManager.Draw(gameTime); base.Draw(gameTime); }
+        protected override void Draw(GameTime gameTime)
+        { ScreenManager.Draw(gameTime); base.Draw(gameTime); }
     }
 }

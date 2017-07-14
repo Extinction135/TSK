@@ -41,20 +41,21 @@ todo:
 
 
 
-Copy the DirectX projects empty Classes folder using .getkeep file
+Setup game boot routine to be shared between all projects
 
-this ensures the VS solution has the proper directory structure it expects.
+we dont want unique boot routines for each project.
+moved setup for Game/Editor into ScreenManager.Initialize().
+this Initialize() method is shared between projects.
+this also simplifies Game1, which is not shared.
+
+created Flags.Version float, to track the current version.
+this value is added to the window title across all projects.
+updated UWP and DirectX projects to display Flags.Version in window title.
+playtested, working as expected.
 
 
 
 
-
-project name = DungeonRun
-
-
-
-we can setup the initial screen in ScreenManager.Initialize().
-this further simplifies Game1.cs, which is unique to each project
 
 
 

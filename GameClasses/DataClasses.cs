@@ -18,6 +18,7 @@ namespace DungeonRun
     {   // **********************************************************************************************************
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
+        public static float Version = 0.5f; //the version of the game
 
         public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
@@ -34,7 +35,7 @@ namespace DungeonRun
         public static Boolean InfiniteGold = false; //enable infinite gold
         public static Boolean InfiniteArrows = false; //enable arrow cost
         public static Boolean InfiniteBombs = false; //enable bomb cost
-
+        
         static Flags()
         {
             if (Release)
