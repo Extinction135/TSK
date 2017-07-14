@@ -128,7 +128,35 @@ namespace DungeonRun
             
         }
 
-        public static void LoadRoomData()
+
+
+
+
+        static string roomDataFilename;
+        static XmlSerializer serializer = new XmlSerializer(typeof(RoomXmlData));
+
+        public static void SaveRoomData(RoomXmlData RoomData)
+        {
+            roomDataFilename = "autosaveRoom.xml";
+            FileStream stream = File.Open(localFolder + roomDataFilename, FileMode.Create);
+            using (stream) { serializer.Serialize(stream, RoomData); }
+        }
+
+        public static RoomXmlData LoadRoomData()
+        {
+            roomDataFilename = "autosaveRoom.xml";
+            RoomXmlData RoomData = new RoomXmlData();
+            FileStream stream = new FileStream(localFolder + roomDataFilename, FileMode.Open);
+            using (stream) { RoomData = (RoomXmlData)serializer.Deserialize(stream); }
+            return RoomData;
+        }
+
+
+
+
+
+
+        public static void LoadRoomDataOLD()
         {
             //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
             //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
@@ -144,5 +172,8 @@ namespace DungeonRun
             Debug.WriteLine("text file contents: " + text);
             */
         }
+
+
+
     }
 }

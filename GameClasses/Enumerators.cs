@@ -12,7 +12,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-
     public enum Direction { Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft, None }
 
     public enum Rotation { None, Clockwise90, Clockwise180, Clockwise270 }
@@ -22,6 +21,8 @@ namespace DungeonRun
     public enum BootRoutine { Game, RoomBuilder }
 
     public enum DisplayState { Opening, Opened, Closing, Closed }
+
+    public enum EditorState { MoveObj, AddObj, DeleteObj }
 
     public enum LoadSaveNewState { Load, Save, New }
 

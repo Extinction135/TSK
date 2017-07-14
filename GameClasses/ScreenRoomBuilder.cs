@@ -16,18 +16,9 @@ using System.Xml.Serialization;
 
 namespace DungeonRun
 {
-    //the various states the room builder screen can be in
-    public enum EditorState { MoveObj, AddObj, DeleteObj }
-
-
-
     public class ScreenRoomBuilder : ScreenDungeon
     {
         int i;
-        public Room room;
-        RoomXmlData roomData;
-        public static GameObject objRef;
-
         public WidgetRoomBuilder RoomBuilder;
         public EditorState editorState;
 
@@ -35,9 +26,9 @@ namespace DungeonRun
         public ComponentSprite addDeleteSprite;
         public Point worldPos;
         public GameObject grabbedObj;
+        RoomXmlData roomData;
+        GameObject objRef;
 
-        string localFolder = AppDomain.CurrentDomain.BaseDirectory;
-        string filename;
 
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
@@ -46,32 +37,30 @@ namespace DungeonRun
         {
             RoomBuilder = new WidgetRoomBuilder();
             RoomBuilder.Reset(16 * 33, 16 * 2);
-            room = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0);
 
-            //clear any previous dungeon data
+            //create a room to work on
+            Room room = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0);
+            Functions_Dungeon.Initialize(this);
             Functions_Dungeon.dungeon = new Dungeon();
             //set the objPool texture & build the room instance
             Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
             Functions_Room.BuildRoom(room);
             Functions_Dungeon.currentRoom = room;
-            //hide hero offscreen
+            //place hero onscreen
             Functions_Movement.Teleport(Pool.hero.compMove, 200, 150);
             Functions_Pool.Update(); //update the pool once
-
             //create the cursor sprite
             cursorSprite = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(14, 13, 0, 0), new Point(16, 16));
             addDeleteSprite = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(15, 15, 0, 0), new Point(16, 16));
-
             //initialize the RB widget
             RoomBuilder.SetActiveObj(0); //set active obj to first widget obj
             RoomBuilder.SetActiveTool(RoomBuilder.moveObj); //set widet to move tool
             editorState = EditorState.MoveObj; //set screen to move state
             grabbedObj = null;
-
+            //setup the screen
             overlay.alpha = 0.0f;
-            Functions_Dungeon.Initialize(this);
             displayState = DisplayState.Opened; //open the screen
 
             //editor specific flags
@@ -162,30 +151,89 @@ namespace DungeonRun
                     #endregion
 
                     
-                    #region Handle Button Selection - Save, New, Load, Update
-
+                    //Handle Button Selection
                     for (i = 0; i < RoomBuilder.buttons.Count; i++)
                     {   //check to see if the user has clicked on a button
                         if (RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
                         {
+
+                            #region Save Button
+
                             if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn)
-                            { SaveRoomData(); }
+                            {
+                                //create RoomXmlData instance
+                                roomData = new RoomXmlData();
+                                //populate this instance with the room's objs
+                                for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+                                {
+                                    objRef = Pool.roomObjPool[Pool.counter];
+                                    //if this object is active, save it
+                                    if (objRef.active)
+                                    {   //dont save walls or doors, these are added procedurally
+                                        if (objRef.group != ObjGroup.Wall && objRef.group != ObjGroup.Door)
+                                        {   //make this obj relative to room top left corner
+                                            ObjXmlData objData = new ObjXmlData();
+                                            objData.type = objRef.type;
+                                            objData.posX = objRef.compSprite.position.X - Functions_Dungeon.currentRoom.collision.rec.X;
+                                            objData.posY = objRef.compSprite.position.Y - Functions_Dungeon.currentRoom.collision.rec.Y;
+                                            roomData.objs.Add(objData);
+                                        }
+                                    }
+                                }
+                                Functions_Backend.SaveRoomData(roomData);
+                            }
+
+                            #endregion
+
+
+                            #region New Button
+
                             else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn)
                             {
                                 Debug.WriteLine("new room created");
                             }
+
+                            #endregion
+
+
+                            #region Load Button
+
                             else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)
-                            { LoadRoomData(); }
+                            {
+                                roomData = Functions_Backend.LoadRoomData();
+                                //build the room
+                                Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0);
+                                //releases all roomObjs, builds walls + floors
+                                Functions_Room.BuildRoom(Functions_Dungeon.currentRoom); 
+                                //build template doors (NSEW)
+                                //create the room objs
+                                for (i = 0; i < roomData.objs.Count; i++)
+                                {
+                                    objRef = Functions_Pool.GetRoomObj();
+                                    Functions_Movement.Teleport(objRef.compMove,
+                                        Functions_Dungeon.currentRoom.collision.rec.X + roomData.objs[i].posX,
+                                        Functions_Dungeon.currentRoom.collision.rec.Y + roomData.objs[i].posY);
+                                    objRef.direction = Direction.Down; //we'll need to save this later
+                                    Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
+                                }
+                                Functions_Pool.Update(); //update roomObjs once
+                            }
+
+                            #endregion
+
+
+                            #region Update Button
+
                             else if (RoomBuilder.buttons[i] == RoomBuilder.updateBtn)
                             {
                                 if (Flags.Paused) { Flags.Paused = false; }
                                 else { Flags.Paused = true; }
                             }
+
+                            #endregion
+
                         }
                     }
-
-                    #endregion
-
                 }
                 //if mouse worldPos is contained in room, allow add/delete selected object
                 else if (Functions_Dungeon.currentRoom.collision.rec.Contains(worldPos))
@@ -318,67 +366,5 @@ namespace DungeonRun
             return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
         
-        public void SaveRoomData()
-        {
-            //create RoomXmlData instance
-            roomData = new RoomXmlData();
-
-            //populate this instance with the room's objs
-            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
-            {   //if this object is active, save it
-                if (Pool.roomObjPool[Pool.counter].active)
-                {   //dont save walls or doors, these are added procedurally
-                    if (Pool.roomObjPool[Pool.counter].group != ObjGroup.Wall
-                        || Pool.roomObjPool[Pool.counter].group != ObjGroup.Wall)
-                    {
-                        //make this obj relative to room top left corner
-                        ObjXmlData objData = new ObjXmlData();
-                        objData.type = Pool.roomObjPool[Pool.counter].type;
-                        objData.posX = Pool.roomObjPool[Pool.counter].compSprite.position.X - room.collision.rec.X;
-                        objData.posY = Pool.roomObjPool[Pool.counter].compSprite.position.Y - room.collision.rec.Y;
-                        roomData.objs.Add(objData);
-                    }
-                }
-            }
-
-            //test saving roomData
-            filename = "autosaveRoom.xml";
-            FileStream stream = File.Open(localFolder + filename, FileMode.Create);
-            var serializer = new XmlSerializer(typeof(RoomXmlData));
-            using (stream) //save the playerData, to saveFile address
-            { serializer.Serialize(stream, roomData); }
-        }
-
-        public void LoadRoomData()
-        {
-            filename = "autosaveRoom.xml";
-            roomData = new RoomXmlData();
-            var serializer = new XmlSerializer(typeof(RoomXmlData));
-            FileStream stream = new FileStream(localFolder + filename, FileMode.Open);
-            using (stream)
-            { roomData = (RoomXmlData)serializer.Deserialize(stream); }
-
-            //build the room
-            room = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0);
-            Functions_Room.BuildRoom(room); //releases all roomObjs, builds walls + floors
-            //build template doors (NSEW)
-
-            //create the room objs
-            for (i = 0; i < roomData.objs.Count; i++)
-            {
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    room.collision.rec.X + roomData.objs[i].posX,
-                    room.collision.rec.Y + roomData.objs[i].posY);
-                objRef.direction = Direction.Down; //we'll need to save this later
-                Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
-            }
-
-            //teleport hero to S door
-            //Functions_Movement.Teleport(Pool.hero.compMove, -100, -100);
-
-            Functions_Pool.Update(); //update roomObjs once
-        }
-
     }
 }

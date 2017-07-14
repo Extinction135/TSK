@@ -41,22 +41,27 @@ todo:
 
 
 
-Simplify the Boot Routine using Flags class
-
-added enum BootRoutine { Game, RoomBuilder }.
-added BootRoutine instance to Flags.
-this value will control what screen ScreenManager loads first.
-
-updated ScreenManager.Initialize() to check Flags.bootRoutine.
-either TitleScreen or RoomBuilderScreen is added based on the check.
-both projects built.
 
 
 
+Get Editor Saving & Loading RoomData for UWP & DirectX
+
+moved EditorState enum into Enumerators.cs.
+moved SaveRoomData() & LoadRoomData() into Functions_Backend class.
+refactored Save/LoadRoomData().
+refactored RoomBuilderScreen.
+playtested, both UWP & DirectX versions working identically.
 
 
 
-Fix issues with RM screen in UWP project
+
+
+
+
+
+
+editor should hide the mouseCursor
+
 
 
 
