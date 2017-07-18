@@ -135,14 +135,6 @@ namespace DungeonRun
 
         public static async void SaveRoomData(RoomXmlData RoomData)
         {
-            /* OLD way
-            roomDataFilename = "autosaveRoom.xml";
-            StorageFile file = await localFolder.CreateFileAsync(roomDataFilename, CreationCollisionOption.ReplaceExisting);
-            Stream stream = await file.OpenStreamForWriteAsync();
-            using (stream) { serializer.Serialize(stream, RoomData); }
-            */
-
-            //NEW way
             var savePicker = new Windows.Storage.Pickers.FileSavePicker();
             savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
             savePicker.FileTypeChoices.Add("RoomData", new List<string>() { ".xml" });
@@ -156,21 +148,7 @@ namespace DungeonRun
             }
         }
 
-
-
-
-
-
-        /*
-        static async void LoadRoomData(StorageFile DataFile, RoomXmlData RoomXmlData)
-        {
-            Stream stream = await DataFile.OpenStreamForReadAsync();
-            RoomXmlData = new RoomXmlData();
-            using (stream) { RoomXmlData = (RoomXmlData)serializer.Deserialize(stream); }
-        }
-        */
-
-        public static async void SelectRoomFile(RoomXmlData RoomXmlData, ScreenRoomBuilder RBScreen)
+        public static async void SelectRoomFile(ScreenRoomBuilder RBScreen)
         {   //select a room xml file to load into RoomXmlData
             var loadPicker = new Windows.Storage.Pickers.FileOpenPicker();
             loadPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
@@ -178,14 +156,11 @@ namespace DungeonRun
             StorageFile loadFile = await loadPicker.PickSingleFileAsync();
             if(loadFile != null)
             {   //if user selected a xml file, continue
-                RoomXmlData = new RoomXmlData();
+                RBScreen.roomData = new RoomXmlData();
                 Stream stream = await loadFile.OpenStreamForReadAsync();
-                
                 using (stream)
-                { RoomXmlData = (RoomXmlData)serializer.Deserialize(stream); }
-
-                RBScreen.roomData = RoomXmlData;
-                RBScreen.BuildFromRoomData();
+                { RBScreen.roomData = (RoomXmlData)serializer.Deserialize(stream); }
+                RBScreen.BuildRoomData();
             }
         }
 
@@ -194,7 +169,7 @@ namespace DungeonRun
 
 
 
-        public static async void LoadRoomDataOLD()
+        public static async void LoadAllRoomData()
         {
             //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
             //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
@@ -205,7 +180,7 @@ namespace DungeonRun
             var files = await assets.GetFilesAsync();
             Debug.WriteLine("filename: " + files[0].Path);
 
-            string text = await Windows.Storage.FileIO.ReadTextAsync(files[0]);
+            string text = await FileIO.ReadTextAsync(files[0]);
             Debug.WriteLine("text file contents: " + text);
         }
 

@@ -41,16 +41,12 @@ todo:
 
 
 
-Get Saving / Loading working via FileDialogs for UWP
 
-removed Functions_Backend.LoadRoomData().
-refactored SelectRoomFile() to deserialize XML data.
-playtested saving/loading room data in UWP project.
+Quick Refactor / Cleanup of Functions_UWP
 
-
-
-
-
+refactored SelectRoomFile() to use less parameters and generate less garbage.
+simpified how RBScreen.roomData is handled by SelectRoom().
+playtested, working as expected.
 
 
 
@@ -64,22 +60,20 @@ test that DirectX project copies roomdata to output properly
 
 
 
+get UWP loading all roomData from Dev folder
+this data should live globally, and be loaded once upon game boot
 
-Present the user a dialog when they want to save/load the room
+where does this data live?
 
-file dialogs are built into .NetCore
-file dialogs require WinForms with DirectX project
 
-load room should accept a file address
-save room should open a file dialog
 
-load room should be wrapped by an editor method that presents a file dialog
-the selected file address is then passed to load room
 
-for loading roomData, we collect all the files in roomData folder onto a list
-then iterate over the list, passing each address to load room
 
-the Dx solution should copy roomData to it's output folder
+
+
+
+
+
 
 editor should hide the mouseCursor for both UWP and Dx
 

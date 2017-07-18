@@ -198,7 +198,7 @@ namespace DungeonRun
 
                             //Load Button
                             else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)
-                            { Functions_Backend.SelectRoomFile(roomData, this); }
+                            { Functions_Backend.SelectRoomFile(this); }
 
 
                             #region Update Button
@@ -345,7 +345,7 @@ namespace DungeonRun
             return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
         
-        public void BuildFromRoomData()
+        public void BuildRoomData()
         {   //build the room
             Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0);
             //releases all roomObjs, builds walls + floors
