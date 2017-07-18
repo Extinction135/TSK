@@ -42,28 +42,30 @@ todo:
 
 
 
-Quick Refactor / Cleanup of Functions_UWP
+Update DirectX project to match UWP project
 
-refactored SelectRoomFile() to use less parameters and generate less garbage.
-simpified how RBScreen.roomData is handled by SelectRoom().
-playtested, working as expected.
-
-
+migrated updates from Functions_UWP to Functions_DirectX.
+this included the saving & loading of RoomData XML files.
+playtested saving & loading of RoomData XML files, working as expected.
 
 
-> migrate changes to DirectX project
-update backend directX functions
+
+
+
+
+
+
+Copying & Loading RoomData
+
 test that DirectX project copies roomdata to output properly
-
-
-
-
-
 
 get UWP loading all roomData from Dev folder
 this data should live globally, and be loaded once upon game boot
 
 where does this data live?
+
+get directX loading roomData too
+
 
 
 

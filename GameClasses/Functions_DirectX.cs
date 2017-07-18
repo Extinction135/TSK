@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 using System.IO;
 using System.Xml.Serialization;
+using System.Windows.Forms;
 
 namespace DungeonRun
 {
@@ -131,24 +132,43 @@ namespace DungeonRun
 
 
 
-
-        static string roomDataFilename;
+        
         static XmlSerializer serializer = new XmlSerializer(typeof(RoomXmlData));
 
         public static void SaveRoomData(RoomXmlData RoomData)
         {
-            roomDataFilename = "autosaveRoom.xml";
-            FileStream stream = File.Open(localFolder + roomDataFilename, FileMode.Create);
-            using (stream) { serializer.Serialize(stream, RoomData); }
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.FileName = "roomData.xml";
+            savefile.Filter = "RoomData XML (*.xml)|*.xml";
+            //dont set initial directory, defaults to last directory used
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter stream = new StreamWriter(savefile.FileName))
+                { serializer.Serialize(stream, RoomData); }
+            }
         }
 
-        public static RoomXmlData LoadRoomData()
+        public static void SelectRoomFile(ScreenRoomBuilder RBScreen)
         {
-            roomDataFilename = "autosaveRoom.xml";
-            RoomXmlData RoomData = new RoomXmlData();
-            FileStream stream = new FileStream(localFolder + roomDataFilename, FileMode.Open);
-            using (stream) { RoomData = (RoomXmlData)serializer.Deserialize(stream); }
-            return RoomData;
+            Stream stream = null;
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Title = "Open RoomData XML File";
+            openDialog.Filter = "RoomData XML files (*.xml)|*.xml";
+            //dont set initial directory, defaults to last directory used
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((stream = openDialog.OpenFile()) != null)
+                    {
+                        using (stream)
+                        { RBScreen.roomData = (RoomXmlData)serializer.Deserialize(stream); }
+                        RBScreen.BuildRoomData();
+                    }
+                }
+                catch (Exception ex)
+                { MessageBox.Show("Error: Could not read file from disk. Error: " + ex.Message); }
+            }
         }
 
 
@@ -156,7 +176,7 @@ namespace DungeonRun
 
 
 
-        public static void LoadRoomDataOLD()
+        public static void LoadAllRoomData()
         {
             //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
             //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
@@ -172,8 +192,6 @@ namespace DungeonRun
             Debug.WriteLine("text file contents: " + text);
             */
         }
-
-
 
     }
 }

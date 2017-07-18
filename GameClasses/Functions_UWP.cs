@@ -184,38 +184,5 @@ namespace DungeonRun
             Debug.WriteLine("text file contents: " + text);
         }
 
-        /*
-        //pick the path and name to save the file to
-        var savePicker = new Windows.Storage.Pickers.FileSavePicker();
-        savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
-        savePicker.FileTypeChoices.Add("PlayerDataSave", new List<string>() { ".xml" });
-        savePicker.SuggestedFileName = "PlayerDataSave";
-        StorageFile saveFile = await savePicker.PickSaveFileAsync();
-        */
-
-        /*
-        //pick the playerData.xml file to load
-        var loadPicker = new Windows.Storage.Pickers.FileOpenPicker();
-        loadPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
-        loadPicker.FileTypeFilter.Add(".xml");
-        StorageFile loadFile = await loadPicker.PickSingleFileAsync();
-        */
-
-        /*
-        //get the PlayerData folder path
-        StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-        StorageFolder assets = await appInstalledFolder.GetFolderAsync("PlayerData");
-        //get all the files in the PlayerData folder
-        //var files = await assets.GetFilesAsync();
-        //StorageFile saveFile = files[0];
-        //Debug.WriteLine("saved playerData: " + files[0].Path);
-        */
-
-        /*
-        //load the 1st playerData.xml file from PlayerData folder
-        var files = await assets.GetFilesAsync();
-        StorageFile loadFile = files[0];
-        Debug.WriteLine("loaded playerData: " + files[0].Path);
-        */
     }
 }

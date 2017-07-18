@@ -1,16 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <type>Dev</type>
   <objs>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>280</posX>
-      <posY>148</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <posX>56</posX>
-      <posY>114</posY>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
@@ -39,23 +34,18 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
-      <posX>40</posX>
-      <posY>75</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <posX>168</posX>
-      <posY>137</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
       <posX>312</posX>
-      <posY>12</posY>
+      <posY>17</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
-      <posX>200</posX>
-      <posY>57</posY>
+      <posX>296</posX>
+      <posY>17</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockSpikes</type>
+      <posX>264</posX>
+      <posY>83</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>
