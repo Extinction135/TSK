@@ -43,44 +43,41 @@ todo:
 
 
 
+updated LoadRoomData(), with string parameter for fileaddress.
+created SelectRoomFile(), which presents user with a file dialog.
+updated both functions to modify a passed RoomXmlData parameter.
 
-Get Editor Saving & Loading RoomData for UWP & DirectX
-
-moved EditorState enum into Enumerators.cs.
-moved SaveRoomData() & LoadRoomData() into Functions_Backend class.
-refactored Save/LoadRoomData().
-refactored RoomBuilderScreen.
-playtested, both UWP & DirectX versions working identically.
-
-
+created RMScreen.BuildFromRoomData().
+updated SelectRoomFile() to accept a RoomBuilderScreen parameter.
+this allows the function to be async, and call BuildFromRoomData() when ready.
+playtested, working as expected.
 
 
 
 
 
 
+create RoomData folder in the top level of the repo
 
-editor should hide the mouseCursor
+get the save dialog working
+dump some temp room data there
+test loading of this room data
 
 
 
 
 
 
-the editor files are shared between all projects
-the backend specific functions are implemented via Functions_Backend, like normal
 
-we need to migrate the editor's save/load functions into Functions_Backend, per project
+> migrate changes to DirectX project
+
+
+
+
+Present the user a dialog when they want to save/load the room
 
 file dialogs are built into .NetCore
 file dialogs require WinForms with DirectX project
-
-we should present the user a dialog when they want to save the room
-same with loading a room
-
-generalize the load/save room functions into the Functions_Backend class
-- we'll need to load room files anyway when the game boots up -
-this removes them from RBscreen
 
 load room should accept a file address
 save room should open a file dialog
@@ -91,40 +88,40 @@ the selected file address is then passed to load room
 for loading roomData, we collect all the files in roomData folder onto a list
 then iterate over the list, passing each address to load room
 
+the Dx solution should copy roomData to it's output folder
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+editor should hide the mouseCursor for both UWP and Dx
 
 
 Room Playtesting
-
-everytime we add an object to the room, save the room data to autoSave file
 
 add doors to each wall, allowing player to leave the room
 this can be done by placing doorPos in the dungeon
 then calling Functions_Room.SetDoors(Room)
 
-whatever changes are made during playtesting are not saved
-we can easily revert to pretesting state by loading the autosave file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

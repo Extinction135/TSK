@@ -142,18 +142,33 @@ namespace DungeonRun
             using (stream) { serializer.Serialize(stream, RoomData); }
         }
 
-        public static RoomXmlData LoadRoomData()
+
+
+        public static void LoadRoomData(string fileAddress, RoomXmlData RoomXmlData)
         {
-            roomDataFilename = "autosaveRoom.xml";
-            RoomXmlData RoomData = new RoomXmlData();
-            FileStream stream = new FileStream(localFolder.Path + "\\" + roomDataFilename, FileMode.Open);
-            using (stream) { RoomData = (RoomXmlData)serializer.Deserialize(stream); }
-            return RoomData;
+            //OLD way
+            //roomDataFilename = "autosaveRoom.xml";
+            //FileStream stream = new FileStream(localFolder.Path + "\\" + roomDataFilename, FileMode.Open);
+            //NEW way
+            FileStream stream = new FileStream(fileAddress, FileMode.Open);
+
+            RoomXmlData = new RoomXmlData();
+            using (stream) { RoomXmlData = (RoomXmlData)serializer.Deserialize(stream); }
+            //return RoomData;
         }
 
-
-
-
+        public static async void SelectRoomFile(RoomXmlData RoomXmlData, ScreenRoomBuilder RBScreen)
+        {   //select a room xml file to load into RoomXmlData
+            var loadPicker = new Windows.Storage.Pickers.FileOpenPicker();
+            loadPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            loadPicker.FileTypeFilter.Add(".xml");
+            StorageFile loadFile = await loadPicker.PickSingleFileAsync();
+            if(loadFile != null)
+            {   //if user selected a xml file, continue
+                LoadRoomData(loadFile.Path, RoomXmlData);
+                RBScreen.BuildFromRoomData();
+            }
+        }
 
 
 

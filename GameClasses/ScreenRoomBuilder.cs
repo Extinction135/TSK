@@ -196,30 +196,9 @@ namespace DungeonRun
                             #endregion
 
 
-                            #region Load Button
-
+                            //Load Button
                             else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)
-                            {
-                                roomData = Functions_Backend.LoadRoomData();
-                                //build the room
-                                Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0);
-                                //releases all roomObjs, builds walls + floors
-                                Functions_Room.BuildRoom(Functions_Dungeon.currentRoom); 
-                                //build template doors (NSEW)
-                                //create the room objs
-                                for (i = 0; i < roomData.objs.Count; i++)
-                                {
-                                    objRef = Functions_Pool.GetRoomObj();
-                                    Functions_Movement.Teleport(objRef.compMove,
-                                        Functions_Dungeon.currentRoom.collision.rec.X + roomData.objs[i].posX,
-                                        Functions_Dungeon.currentRoom.collision.rec.Y + roomData.objs[i].posY);
-                                    objRef.direction = Direction.Down; //we'll need to save this later
-                                    Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
-                                }
-                                Functions_Pool.Update(); //update roomObjs once
-                            }
-
-                            #endregion
+                            { Functions_Backend.SelectRoomFile(roomData, this); }
 
 
                             #region Update Button
@@ -366,5 +345,25 @@ namespace DungeonRun
             return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
         
+        public void BuildFromRoomData()
+        {   //build the room
+            Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0);
+            //releases all roomObjs, builds walls + floors
+            Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
+            //build template doors (NSEW)
+
+            //create the room objs
+            for (i = 0; i < roomData.objs.Count; i++)
+            {
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    Functions_Dungeon.currentRoom.collision.rec.X + roomData.objs[i].posX,
+                    Functions_Dungeon.currentRoom.collision.rec.Y + roomData.objs[i].posY);
+                objRef.direction = Direction.Down; //we'll need to save this later
+                Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
+            }
+            Functions_Pool.Update(); //update roomObjs once
+        }
+
     }
 }
