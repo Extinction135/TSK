@@ -42,11 +42,20 @@ todo:
 
 
 
-Update DirectX project to match UWP project
+Load all RoomData files, output each one's complete file address
 
-migrated updates from Functions_UWP to Functions_DirectX.
-this included the saving & loading of RoomData XML files.
-playtested saving & loading of RoomData XML files, working as expected.
+checked that DirectX project is copying RoomData properly to output folder.
+added call to LoadAllRoomData() from ScreenManager.Initialize().
+this happens once upon game boot.
+modified LoadAllRoomData() to iterate over roomData XML files in output/RoomData folder.
+tested, working on DirectX, but there is a saving bug on UWP.
+
+fixed a bug where UWP wasn't clearing the contents of roomData XML files.
+data was simply being overwritten, which led to a state where old data could still exist.
+this happened if the new data was shorter than the old data.
+this was fixed by calling FileIO.WriteTextAsync(StorageFile, String "").
+this deletes the storageFile's contents.
+playtested, UWP is working as expected now.
 
 
 

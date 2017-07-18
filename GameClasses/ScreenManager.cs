@@ -32,7 +32,9 @@ namespace DungeonRun
             screensToUpdate = new List<Screen>();
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
+
             Pool.Initialize();
+            Functions_Backend.LoadAllRoomData();
 
             //GAME BOOT ROUTINE
             if (Flags.bootRoutine == BootRoutine.Game)

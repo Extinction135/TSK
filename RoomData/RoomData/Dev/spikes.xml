@@ -5,47 +5,37 @@
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>280</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <posX>232</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <posX>232</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <posX>232</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <posX>232</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitBottom</type>
-      <posX>232</posX>
-      <posY>104</posY>
+      <posY>37</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
-      <posX>312</posX>
-      <posY>17</posY>
+      <posX>40</posX>
+      <posY>48</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>296</posX>
-      <posY>17</posY>
+      <posY>68</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>264</posX>
-      <posY>83</posY>
+      <posY>71</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockSpikes</type>
+      <posX>72</posX>
+      <posY>65</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockSpikes</type>
+      <posX>56</posX>
+      <posY>9</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockSpikes</type>
+      <posX>8</posX>
+      <posY>84</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

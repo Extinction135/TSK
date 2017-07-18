@@ -173,11 +173,33 @@ namespace DungeonRun
 
 
 
-
-
+        
 
         public static void LoadAllRoomData()
         {
+            List<String> roomDataFiles = Directory.GetFiles(
+                localFolder + "\\RoomData", "*.xml", 
+                SearchOption.AllDirectories
+                ).ToList();
+
+            Debug.WriteLine("loading room data...");
+            for(int i = 0; i < roomDataFiles.Count; i++)
+            {
+                Debug.WriteLine("filepath: " + roomDataFiles[i]);
+            }
+            Debug.WriteLine("load complete!");
+
+
+
+
+
+            //var serializer = new XmlSerializer(typeof(SaveData));
+            //FileStream stream = new FileStream(localFolder + filename, FileMode.Open);
+            //RBScreen.roomData = (RoomXmlData)serializer.Deserialize(stream);
+
+
+
+
             //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
             //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
             //string roomDataPath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path + @"/RoomData/";

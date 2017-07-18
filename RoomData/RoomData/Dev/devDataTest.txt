@@ -1,1 +1,0 @@
-this is to test that room data contents are copied successfully from source to output directory

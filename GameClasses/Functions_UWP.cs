@@ -142,7 +142,9 @@ namespace DungeonRun
             StorageFile saveFile = await savePicker.PickSaveFileAsync();
 
             if (saveFile != null) //the file was created when user presses 'save' button
-            {   //StorageFile file = await localFolder.CreateFileAsync(roomDataFilename, CreationCollisionOption.ReplaceExisting);
+            {   //clear the saveFile of previous data
+                await FileIO.WriteTextAsync(saveFile, "");
+                //write the saveData to the empty saveFile
                 Stream stream = await saveFile.OpenStreamForWriteAsync();
                 using (stream) { serializer.Serialize(stream, RoomData); }
             }
@@ -171,17 +173,28 @@ namespace DungeonRun
 
         public static async void LoadAllRoomData()
         {
+            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            StorageFolder RoomDataFolder = await appInstalledFolder.GetFolderAsync("RoomData");
+
+            //we need to get all roomData from all folders within RoomData
+            //rn, we only getting the DEV folder
+
+            StorageFolder DevFolder = await RoomDataFolder.GetFolderAsync("Dev");
+            var files = await DevFolder.GetFilesAsync();
+
+            Debug.WriteLine("loading room data...");
+            for (int i = 0; i < files.Count; i++)
+            {
+                Debug.WriteLine("filepath: " + files[i].Path);
+            }
+            Debug.WriteLine("load complete!");
+
             //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
             //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
             //string roomDataPath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path + @"/RoomData/";
 
-            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFolder assets = await appInstalledFolder.GetFolderAsync("RoomData");
-            var files = await assets.GetFilesAsync();
-            Debug.WriteLine("filename: " + files[0].Path);
-
-            string text = await FileIO.ReadTextAsync(files[0]);
-            Debug.WriteLine("text file contents: " + text);
+            //string text = await FileIO.ReadTextAsync(files[0]);
+            //Debug.WriteLine("text file contents: " + text);
         }
 
     }
