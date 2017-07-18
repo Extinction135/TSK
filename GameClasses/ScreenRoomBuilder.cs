@@ -26,7 +26,7 @@ namespace DungeonRun
         public ComponentSprite addDeleteSprite;
         public Point worldPos;
         public GameObject grabbedObj;
-        RoomXmlData roomData;
+        public RoomXmlData roomData;
         GameObject objRef;
 
 

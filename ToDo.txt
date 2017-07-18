@@ -41,33 +41,13 @@ todo:
 
 
 
+Get Saving / Loading working via FileDialogs for UWP
+
+removed Functions_Backend.LoadRoomData().
+refactored SelectRoomFile() to deserialize XML data.
+playtested saving/loading room data in UWP project.
 
 
-
-
-Make RoomData folder shared between UWP and DirectX projects
-
-we should be sharing this RoomData between all projects.
-each project should copy the master version of RoomData to their output folder.
-
-removed GameData folder from UWP project.
-created RoomData folder in repo.
-update UWP and DirectX projects to copy RoomData to output directories, after build.
-organized structure of RoomData folder so it copies to output with expected dir structure.
-tested that UWP copies RoomData with proper structure to output.
-
-
-
-
-
-
-
-
-
-
-get the save dialog working
-dump some temp room data there
-test loading of this room data
 
 
 
