@@ -297,7 +297,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <GameData Include="GameData\**" />
+    <GameData Include="..\..\RoomData\**" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

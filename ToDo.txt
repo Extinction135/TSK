@@ -43,21 +43,27 @@ todo:
 
 
 
-updated LoadRoomData(), with string parameter for fileaddress.
-created SelectRoomFile(), which presents user with a file dialog.
-updated both functions to modify a passed RoomXmlData parameter.
-
-created RMScreen.BuildFromRoomData().
-updated SelectRoomFile() to accept a RoomBuilderScreen parameter.
-this allows the function to be async, and call BuildFromRoomData() when ready.
-playtested, working as expected.
 
 
+Make RoomData folder shared between UWP and DirectX projects
+
+we should be sharing this RoomData between all projects.
+each project should copy the master version of RoomData to their output folder.
+
+removed GameData folder from UWP project.
+created RoomData folder in repo.
+update UWP and DirectX projects to copy RoomData to output directories, after build.
+organized structure of RoomData folder so it copies to output with expected dir structure.
+tested that UWP copies RoomData with proper structure to output.
 
 
 
 
-create RoomData folder in the top level of the repo
+
+
+
+
+
 
 get the save dialog working
 dump some temp room data there
@@ -70,6 +76,11 @@ test loading of this room data
 
 
 > migrate changes to DirectX project
+update backend directX functions
+test that DirectX project copies roomdata to output properly
+
+
+
 
 
 
