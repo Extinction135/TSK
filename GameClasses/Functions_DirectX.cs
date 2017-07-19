@@ -55,17 +55,13 @@ namespace DungeonRun
             Dialog dialogType = Dialog.Default;
             try
             {
-                //StorageFile file = await localFolder.GetFileAsync(filename); //UWP
-
 
                 #region Load the file into proper saveData instance
 
                 try
                 {   //load gameFile into saveData parameter
-                    //if (file != null) //UWP
                     {
                         var serializer = new XmlSerializer(typeof(SaveData));
-                        //Stream stream = await file.OpenStreamForReadAsync(); //UWP
                         FileStream stream = new FileStream(localFolder + filename, FileMode.Open);
 
                         using (stream)
@@ -131,8 +127,6 @@ namespace DungeonRun
 
 
 
-
-        
         static XmlSerializer serializer = new XmlSerializer(typeof(RoomXmlData));
 
         public static void SaveRoomData(RoomXmlData RoomData)
@@ -173,8 +167,6 @@ namespace DungeonRun
 
 
 
-        
-
         public static void LoadAllRoomData()
         {
             List<String> roomDataFiles = Directory.GetFiles(
@@ -186,9 +178,19 @@ namespace DungeonRun
             for(int i = 0; i < roomDataFiles.Count; i++)
             {
                 Debug.WriteLine("filepath: " + roomDataFiles[i]);
+                RoomXmlData RoomData = new RoomXmlData();
+                FileStream stream = new FileStream(roomDataFiles[i], FileMode.Open);
+                using (stream)
+                { RoomData = (RoomXmlData)serializer.Deserialize(stream); }
+                //place the loaded roomData into the correct Assets list
+                if (RoomData.type == RoomType.Boss) { Assets.roomDataBoss.Add(RoomData); }
+                else if (RoomData.type == RoomType.Column) { Assets.roomDataColumn.Add(RoomData); }
+                else if (RoomData.type == RoomType.Hub) { Assets.roomDataHub.Add(RoomData); }
+                else if (RoomData.type == RoomType.Key) { Assets.roomDataKey.Add(RoomData); }
+                else if (RoomData.type == RoomType.Row) { Assets.roomDataRow.Add(RoomData); }
+                else if (RoomData.type == RoomType.Square) { Assets.roomDataSquare.Add(RoomData); }
             }
-            Debug.WriteLine("load complete!");
-
+            Debug.WriteLine("load complete! total: " + roomDataFiles.Count);
         }
 
     }

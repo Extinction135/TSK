@@ -41,7 +41,15 @@ namespace DungeonRun
 
         //dungeon sheets
         public static Texture2D cursedCastleSheet;
-        public static Texture2D shopSheet; 
+        public static Texture2D shopSheet;
+
+        //roomData lists - handmade room data
+        public static List<RoomXmlData> roomDataHub = new List<RoomXmlData>();
+        public static List<RoomXmlData> roomDataBoss = new List<RoomXmlData>();
+        public static List<RoomXmlData> roomDataKey = new List<RoomXmlData>();
+        public static List<RoomXmlData> roomDataColumn = new List<RoomXmlData>();
+        public static List<RoomXmlData> roomDataRow = new List<RoomXmlData>();
+        public static List<RoomXmlData> roomDataSquare = new List<RoomXmlData>();
 
 
         #region Music Instances
@@ -155,7 +163,8 @@ namespace DungeonRun
             cursedCastleSheet = content.Load<Texture2D>(@"DungeonSheet");
             shopSheet = content.Load<Texture2D>(@"ShopSheet");
 
-
+            //load all roomData
+            Functions_Backend.LoadAllRoomData();
 
 
             #region Create Music instances

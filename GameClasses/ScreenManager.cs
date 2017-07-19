@@ -34,16 +34,12 @@ namespace DungeonRun
             renderSurface = new RenderTarget2D(game.GraphicsDevice, 640, 360);
 
             Pool.Initialize();
-            Functions_Backend.LoadAllRoomData();
 
             //GAME BOOT ROUTINE
             if (Flags.bootRoutine == BootRoutine.Game)
             { ExitAndLoad(new ScreenTitle()); }
             else if (Flags.bootRoutine == BootRoutine.RoomBuilder)
             { ExitAndLoad(new ScreenRoomBuilder()); }
-
-            //dev testing
-            //Functions_Backend.SaveGame(GameFile.AutoSave);
         }
 
         public static void Update(GameTime GameTime)

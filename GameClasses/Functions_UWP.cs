@@ -127,10 +127,6 @@ namespace DungeonRun
 
 
 
-
-
-
-        
         static XmlSerializer serializer = new XmlSerializer(typeof(RoomXmlData));
 
         public static async void SaveRoomData(RoomXmlData RoomData)
@@ -166,24 +162,30 @@ namespace DungeonRun
             }
         }
 
-
-
-
-
-
         public static async void LoadAllRoomData()
         {
             StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             StorageFolder RoomDataFolder = await appInstalledFolder.GetFolderAsync("RoomData");
 
-            var files = await RoomDataFolder.GetFilesAsync();
+            var roomDataFiles = await RoomDataFolder.GetFilesAsync();
 
             Debug.WriteLine("loading room data...");
-            for (int i = 0; i < files.Count; i++)
+            for (int i = 0; i < roomDataFiles.Count; i++)
             {
-                Debug.WriteLine("filepath: " + files[i].Path);
+                Debug.WriteLine("filepath: " + roomDataFiles[i].Path);
+                RoomXmlData RoomData = new RoomXmlData();
+                Stream stream = await roomDataFiles[i].OpenStreamForReadAsync();
+                using (stream)
+                { RoomData = (RoomXmlData)serializer.Deserialize(stream); }
+                //place the loaded roomData into the correct Assets list
+                if (RoomData.type == RoomType.Boss) { Assets.roomDataBoss.Add(RoomData); }
+                else if (RoomData.type == RoomType.Column) { Assets.roomDataColumn.Add(RoomData); }
+                else if (RoomData.type == RoomType.Hub) { Assets.roomDataHub.Add(RoomData); }
+                else if (RoomData.type == RoomType.Key) { Assets.roomDataKey.Add(RoomData); }
+                else if (RoomData.type == RoomType.Row) { Assets.roomDataRow.Add(RoomData); }
+                else if (RoomData.type == RoomType.Square) { Assets.roomDataSquare.Add(RoomData); }
             }
-            Debug.WriteLine("load complete!");
+            Debug.WriteLine("load complete! total: " + roomDataFiles.Count);
         }
 
     }

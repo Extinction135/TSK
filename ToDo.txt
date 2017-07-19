@@ -42,36 +42,40 @@ todo:
 
 
 
-Standardize Room Sizes and Types in prep for loading of RoomData
 
-updated roomType enumerator to better reflect the concept of what a room can be.
-moved routine for setting room size into Functions_Room.SetType().
-standardized room sizes based on room type.
-updated current RoomData XML files to be of type 'Row'.
-updated RBScreen.BuildRoomData() to with better default door alignments.
-playtested, working as expected. 
-things look better due to odd sized rooms centering doors correctly.
+Actually Load RoomData XML files, store loaded RoomXMLData in Assets
 
+removed call to LoadAllRoomData() from ScreenManager.Initialize().
+now calling LoadAllRoomData() from Assets.Load(), which makes more logical sense.
 
-
-
+created RoomXmlData lists in Assets for Hub, Boss, Key, Column, Row, and Square room types.
+we can't handmake exit, shop, or secret rooms, thats done procedurally (because they are simple).
+updated Functions_Backend.LoadAllRoomData() to actually deserialize and store RoomData XML files.
+playtested, fixed minor bug with structure of RoomData folder, working as expected.
+all XML RoomData is loaded into correct list in Assets and ready for use.
 
 
 
 
 
 
-
-i think the roomData should be stored in Assets.
-that makes the most logical sense
-
-how do we organize the roomData? by type.
-list of roomData, based on type.
-each room.type has it's own list
-
-
+we need actual room data for all room types (hub, boss, key, column, row, square).
+which means we need to be able to create 'blanks' of these room types.
+and we need to have a naming convention for the XML roomdata.
+something like - Hub_001, Key_002, etc..
 
 we should be able to create a new room via new button on RBwidget
+
+
+
+
+
+
+
+
+how do we use Assets.XMLRoomDataLists?
+we pass an element of one of these lists to 
+
 
 
 
