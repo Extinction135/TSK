@@ -42,51 +42,16 @@ todo:
 
 
 
-Load all RoomData files, output each one's complete file address
 
-checked that DirectX project is copying RoomData properly to output folder.
-added call to LoadAllRoomData() from ScreenManager.Initialize().
-this happens once upon game boot.
-modified LoadAllRoomData() to iterate over roomData XML files in output/RoomData folder.
-tested, working on DirectX, but there is a saving bug on UWP.
+Hide Mouse Cursor in RoomEditor + Game
 
-fixed a bug where UWP wasn't clearing the contents of roomData XML files.
-data was simply being overwritten, which led to a state where old data could still exist.
-this happened if the new data was shorter than the old data.
-this was fixed by calling FileIO.WriteTextAsync(StorageFile, String "").
-this deletes the storageFile's contents.
-playtested, UWP is working as expected now.
+updated UWP.Game1 to hide mouse cursor.
+updated DirectX.Game1 to hide mouse cursor too.
+playtested, working as expected.
 
 
 
 
-
-
-
-
-Copying & Loading RoomData
-
-test that DirectX project copies roomdata to output properly
-
-get UWP loading all roomData from Dev folder
-this data should live globally, and be loaded once upon game boot
-
-where does this data live?
-
-get directX loading roomData too
-
-
-
-
-
-
-
-
-
-
-
-
-editor should hide the mouseCursor for both UWP and Dx
 
 
 Room Playtesting
@@ -108,19 +73,19 @@ then calling Functions_Room.SetDoors(Room)
 
 
 
+update the readme to reflect the directX port
+
+A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
+DirectX version uses .Net 4.5 & SharpDX.
+UWP version uses .NetCore & SharpDX.
+OpenGL port coming soon.
 
 
 
+Store the RoomData in Game Data, somewhere
 
-
-
-
-
-
-
-
-
-
+should be globally accessible? only dungeon and/or roomBuilder functions need access to it
+what class/function chooses the room data to be built?
 
 
 
@@ -258,10 +223,6 @@ COMPLETE DUNGEONS
 	update dungeon generation routines to build complete dungeons
 	create room editor, standardize room sizes
 	
-update UWP content with DirectX content directory, we've modified the dungeonSheet	
-	
-	
-	
 	
 	
 	
@@ -281,6 +242,14 @@ we should be able to mark an entity as 'important' so it isn't released until it
 	
 	
 Polish++
+
+
+collision particle should center to the spike block upon collision
+
+increase obj count to 200
+increase projectile count to 150
+
+need horizontal bridges
 
 
 Create CheatsScreen - or this could be part of game ctrls

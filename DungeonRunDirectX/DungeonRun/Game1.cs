@@ -20,7 +20,7 @@ namespace DungeonRun
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            if (Flags.Debug) { IsMouseVisible = true; } else { IsMouseVisible = false; }
+            IsMouseVisible = false;
             //settings unique to DirectX
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;

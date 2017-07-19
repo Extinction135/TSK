@@ -20,7 +20,7 @@ namespace DungeonRun
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            if (Flags.Debug) { IsMouseVisible = true; } else { IsMouseVisible = false; }
+            IsMouseVisible = false;
         }
 
         protected override void Initialize() { base.Initialize(); }
