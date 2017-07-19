@@ -45,30 +45,28 @@ todo:
 
 
 
+Fix a variety of visual sorting bugs
 
-Fix door decoration placement
-
-a left/right door's decorations are placed left and right of door.
-they should be placed top and bottom of door.
-
-updated Functions_Room.DecorateDoor() to check the Door.direction.
-based on this direction, door decoration positions are set.
-this allows decorations to be placed left/right, and top/bottom around doors.
-playtested, working as expected.
+fixed sorting issues with walls + torch decorations.
+updated sorting for various doors.
+playtested, appearing as expected.
 
 
 
 
 
 
-visual bug
-the sorting of walls when hero is outside of dungeon is wrong
-hero appears over the walls, when the walls should appear over hero
 
 
 
 
 
+
+
+
+doors should center hero to them, like we did with CC
+this is based on door.direction, centering hero to the door while still allowing him to pass thru
+this is basically the pit routine too
 
 
 

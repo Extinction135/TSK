@@ -142,6 +142,9 @@ namespace DungeonRun
             else if (Type == ObjType.DoorBombable || Type == ObjType.DoorBoss ||
                 Type == ObjType.DoorShut || Type == ObjType.DoorFake)
             {
+                if (Obj.direction == Direction.Down)
+                { Obj.compSprite.zOffset = 4; }
+                else { Obj.compSprite.zOffset = 16; }
                 Obj.group = ObjGroup.Door;
             }
             else if (Type == ObjType.WallStraight || 
@@ -150,22 +153,24 @@ namespace DungeonRun
                 Type == ObjType.WallExteriorCorner ||
                 Type == ObjType.WallPillar)
             {
-                Obj.compSprite.zOffset = -32;
+                if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -32; }
+                else if (Obj.direction == Direction.Up) { Obj.compSprite.zOffset = 16; }
+                else { Obj.compSprite.zOffset = 8; }
                 Obj.group = ObjGroup.Wall;
             }
             else if (Type == ObjType.WallStatue)
             {
-                Obj.compSprite.zOffset = -32;
+                Obj.compSprite.zOffset = 24;
+                if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -16; }
                 Obj.group = ObjGroup.Wall;
                 Obj.getsAI = true; //obj gets AI
             }
             else if (Type == ObjType.WallTorch)
             {
                 Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = 2;
+                Obj.compSprite.zOffset = 24;
+                if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -16; }
             }
-
-
 
             #endregion
 
