@@ -45,21 +45,20 @@ todo:
 
 
 
-Add doors to the NSEW of the Room being built
 
-Updated RBScreen.LoadContent() to call BuildRoomData().
-this consolidates all code that builds rooms in editor.
-updated BuildRoomData() with path to handle null roomData state.
-updated BuildRoomData() with NSEW door placement routine.
+Fix door decoration placement
+
+a left/right door's decorations are placed left and right of door.
+they should be placed top and bottom of door.
+
+updated Functions_Room.DecorateDoor() to check the Door.direction.
+based on this direction, door decoration positions are set.
+this allows decorations to be placed left/right, and top/bottom around doors.
 playtested, working as expected.
 
 
 
 
-visual bug
-door torches are placed incorrectly left and right of doors that face horizontal
-we aren't checking to see if the door is facing horizontal
-this works fine for vertical doors
 
 
 visual bug
@@ -250,6 +249,13 @@ we should be able to mark an entity as 'important' so it isn't released until it
 	
 	
 Polish++
+
+
+boss door bug
+when we build the boss door's welcome mat, we need to place it based on the door.direction
+right now, it just places it south of the door, and the boss door will not always be south facing.
+
+
 
 
 collision particle should center to the spike block upon collision

@@ -24,7 +24,9 @@ namespace DungeonRun
         public static Actor actorRef;
         public static Point pos;
 
-
+        //used in DecorateDoor method
+        static Vector2 decorationPosA = new Vector2();
+        static Vector2 decorationPosB = new Vector2();
 
         public static void BuildRoom(Room Room)
         {
@@ -418,18 +420,29 @@ namespace DungeonRun
         }
 
         public static void DecorateDoor(GameObject Door, ObjType Type)
-        {   //build left wall torch/pillar/decoration
+        {
+            if (Door.direction == Direction.Up || Door.direction == Direction.Down)
+            {   //build left/right decorations if Door.direction is Up or Down
+                decorationPosA.X = Door.compSprite.position.X - 16;
+                decorationPosA.Y = Door.compSprite.position.Y;
+                decorationPosB.X = Door.compSprite.position.X + 16;
+                decorationPosB.Y = Door.compSprite.position.Y;
+            }
+            else
+            {   //build top/bottom decorations if Door.direction is Left or Right
+                decorationPosA.X = Door.compSprite.position.X;
+                decorationPosA.Y = Door.compSprite.position.Y - 16;
+                decorationPosB.X = Door.compSprite.position.X;
+                decorationPosB.Y = Door.compSprite.position.Y + 16;
+            }
+            //build wall decorationA torch/pillar/decoration
             objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                Door.compSprite.position.X - 16,
-                Door.compSprite.position.Y);
+            Functions_Movement.Teleport(objRef.compMove, decorationPosA.X, decorationPosA.Y);
             objRef.direction = Door.direction;
             Functions_GameObject.SetType(objRef, Type);
-            //build right wall torch/pillar/decoration
+            //build wall decorationB torch/pillar/decoration
             objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                Door.compSprite.position.X + 16,
-                Door.compSprite.position.Y);
+            Functions_Movement.Teleport(objRef.compMove, decorationPosB. X, decorationPosB.Y);
             objRef.direction = Door.direction;
             Functions_GameObject.SetType(objRef, Type);
         }
