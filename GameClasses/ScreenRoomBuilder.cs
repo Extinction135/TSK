@@ -348,7 +348,7 @@ namespace DungeonRun
             if (roomData != null)
             { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0); }
             else
-            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0); }
+            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomType.Row, 0); }
 
             //releases all roomObjs, builds walls + floors
             Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
@@ -358,11 +358,13 @@ namespace DungeonRun
             int posY = Functions_Dungeon.currentRoom.collision.rec.Y;
             int middleX = (Functions_Dungeon.currentRoom.size.X / 2) * 16;
             int middleY = (Functions_Dungeon.currentRoom.size.Y / 2) * 16;
+            int width = Functions_Dungeon.currentRoom.size.X * 16;
+            int height = Functions_Dungeon.currentRoom.size.Y * 16;
             //set NSEW door locations
-            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY - 8)); //Top Door
-            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY + middleY + middleY)); //Bottom Door
-            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX - 8, posY + middleY)); //Left Door
-            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX + middleX, posY + middleY)); //Right Door
+            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY - 16)); //Top Door
+            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY + height)); //Bottom Door
+            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX - 16, posY + middleY)); //Left Door
+            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + width, posY + middleY)); //Right Door
             //build & decorate doors
             Functions_Room.SetDoors(Functions_Dungeon.currentRoom);
 

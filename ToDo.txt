@@ -40,20 +40,40 @@ todo:
 
 
 
-Reorganize RoomData
 
-in order to simplify code for loading of RoomData, there should be no subDirs in RoomData.
-all XML will live simply in RoomData/, along with the readme file.
 
-updated structure of RoomData.
-updated UWP Functions_UWP.LoadAllRoomData().
-playtested, both Dx and UWP now properly iterate over all available RoomData.
+Standardize Room Sizes and Types in prep for loading of RoomData
+
+updated roomType enumerator to better reflect the concept of what a room can be.
+moved routine for setting room size into Functions_Room.SetType().
+standardized room sizes based on room type.
+updated current RoomData XML files to be of type 'Row'.
+updated RBScreen.BuildRoomData() to with better default door alignments.
+playtested, working as expected. 
+things look better due to odd sized rooms centering doors correctly.
+
+
+
+
+
+
+
 
 
 
 
 i think the roomData should be stored in Assets.
 that makes the most logical sense
+
+how do we organize the roomData? by type.
+list of roomData, based on type.
+each room.type has it's own list
+
+
+
+we should be able to create a new room via new button on RBwidget
+
+
 
 
 

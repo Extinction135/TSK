@@ -462,17 +462,8 @@ namespace DungeonRun
 
         public Room(Point Pos, RoomType Type, int ID)
         {
-            id = ID;
-            type = Type;
-            //set room size based on type
-            if (type == RoomType.Exit) { size.X = 11; size.Y = 11; }
-            else if (type == RoomType.Hub) { size.X = 20; size.Y = 10; }
-            else if (type == RoomType.Boss) { size.X = 20; size.Y = 10; }
-            else if (type == RoomType.Dev) { size.X = 20; size.Y = 10; }
-            else if (type == RoomType.Shop) { size.X = 20; size.Y = 10; }
-
-            collision.rec.Width = size.X * 16;
-            collision.rec.Height = size.Y * 16;
+            id = ID; type = Type;
+            Functions_Room.SetType(this, Type);
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
         }
     }
@@ -651,7 +642,7 @@ namespace DungeonRun
 
     public class RoomXmlData
     {
-        public RoomType type = RoomType.Dev;
+        public RoomType type = RoomType.Row;
         public List<ObjXmlData> objs = new List<ObjXmlData>();
     }
 
