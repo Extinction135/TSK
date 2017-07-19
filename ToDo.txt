@@ -40,55 +40,25 @@ todo:
 
 
 
+Reorganize RoomData
+
+in order to simplify code for loading of RoomData, there should be no subDirs in RoomData.
+all XML will live simply in RoomData/, along with the readme file.
+
+updated structure of RoomData.
+updated UWP Functions_UWP.LoadAllRoomData().
+playtested, both Dx and UWP now properly iterate over all available RoomData.
 
 
 
 
-Center Hero to Any Door he collides with
-
-for left and right facing doors, the hero sprite can move up/down and appear over nearby walls.
-this looks incorrect and breaks the visual sorting of hero to objects.
-
-in order to prevent this, the hero should not be able to move up/down when in a left/right door.
-this will still allow hero to pass thru the door, but 'locks' them to the door's center.
-this idea should also be applied to up/down doors, not just left/right doors.
-wrote door centering routine in Functions_Interaction.Interact(Actor, Obj) - Doors section.
-playtested, working, but feels weird because doors instantly align hero.
-
-this routine instantly aligns hero. hero should be centered to door gradually.
-then when the hero is close enough to the axis of the door, lock him on door axis.
-updated door centering routine to gradually pull hero to center xis, then lock him.
-playtested, working, and feels perfect. except a small issue with exit pillars..
-
-updated door centering routine to ignore exit pillars left and right.
-they were pulling hero to their center upon a collision, but they are blocking.
-this made the pillars feel 'sticky', which is not what i want at all.
-playtested, everything is working/feeling correct now. very happy.
-
-this routine actually helps the player move the hero thru a door.
-and it prevents the visual sorting bug for left/right doors.
+i think the roomData should be stored in Assets.
+that makes the most logical sense
 
 
 
 
 
-
-exit pillars should not center hero
-they are the only door type that does not do this
-
-
-
-
-
-
-
-
-update the readme to reflect the directX port
-
-A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
-DirectX version uses .Net 4.5 & SharpDX.
-UWP version uses .NetCore & SharpDX.
-OpenGL port coming soon.
 
 
 
@@ -248,6 +218,21 @@ we should be able to mark an entity as 'important' so it isn't released until it
 
 
 	
+	
+	
+	
+update the readme to reflect the directX port
+
+A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
+DirectX version uses .Net 4.5 & SharpDX.
+UWP version uses .NetCore & SharpDX.
+OpenGL port coming soon.
+
+
+
+
+
+
 	
 	
 	

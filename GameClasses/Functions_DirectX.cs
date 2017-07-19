@@ -189,30 +189,6 @@ namespace DungeonRun
             }
             Debug.WriteLine("load complete!");
 
-
-
-
-
-            //var serializer = new XmlSerializer(typeof(SaveData));
-            //FileStream stream = new FileStream(localFolder + filename, FileMode.Open);
-            //RBScreen.roomData = (RoomXmlData)serializer.Deserialize(stream);
-
-
-
-
-            //Debug.WriteLine("local folder: " + ApplicationData.Current.LocalFolder.Path);
-            //Debug.WriteLine("install folder: " + Windows.ApplicationModel.Package.Current.InstalledLocation.Path);
-            //string roomDataPath = Windows.ApplicationModel.Package.Current.InstalledLocation.Path + @"/RoomData/";
-
-            /*
-            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFolder assets = await appInstalledFolder.GetFolderAsync("RoomData");
-            var files = await assets.GetFilesAsync();
-            Debug.WriteLine("filename: " + files[0].Path);
-
-            string text = await Windows.Storage.FileIO.ReadTextAsync(files[0]);
-            Debug.WriteLine("text file contents: " + text);
-            */
         }
 
     }
