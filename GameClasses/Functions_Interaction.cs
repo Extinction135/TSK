@@ -179,6 +179,12 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.Door)
             {
+                //exit pillars have no interactions whatsoever
+                if (Obj.type == ObjType.ExitPillarLeft || Obj.type == ObjType.ExitPillarRight) { return; }
+
+
+                #region Check Collisions with Door Types
+
                 if (Obj.type == ObjType.DoorBoss)
                 {   //only hero can open boss door, and must have dungeon key
                     if (Functions_Dungeon.dungeon.bigKey && Actor == Pool.hero)
@@ -213,6 +219,32 @@ namespace DungeonRun
                         Obj.compSprite.position.Y,
                         Direction.None);
                 }
+
+                #endregion
+
+
+                #region Center Hero to Door, while allowing him to pass thru
+
+                if (Actor == Pool.hero)
+                {   //based on the door's direction, pull/center hero
+                    if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
+                    {   //gradually center hero to door
+                        Actor.compMove.magnitude.X = (Obj.compSprite.position.X - Actor.compMove.position.X) * 0.11f;
+                        //if hero is close to center of door, snap/lock hero to center of door
+                        if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
+                        { Actor.compMove.newPosition.X = Obj.compSprite.position.X; }
+                    }
+                    else
+                    {   //gradually center hero to door
+                        Actor.compMove.magnitude.Y = (Obj.compSprite.position.Y - Actor.compMove.position.Y) * 0.11f;
+                        //if hero is close to center of door, snap/lock hero to center of door
+                        if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
+                        { Actor.compMove.newPosition.Y = Obj.compSprite.position.Y; }
+                    }
+                }
+
+                #endregion
+
             }
 
             #endregion
