@@ -37,18 +37,12 @@ namespace DungeonRun
         {
             RoomBuilder = new WidgetRoomBuilder();
             RoomBuilder.Reset(16 * 33, 16 * 2);
-
-            //create a room to work on
-            Room room = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0);
             Functions_Dungeon.Initialize(this);
-            Functions_Dungeon.dungeon = new Dungeon();
-            //set the objPool texture & build the room instance
-            Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
-            Functions_Room.BuildRoom(room);
-            Functions_Dungeon.currentRoom = room;
-            //place hero onscreen
+
+            //place hero onscreen & build default empty room
             Functions_Movement.Teleport(Pool.hero.compMove, 200, 150);
-            Functions_Pool.Update(); //update the pool once
+            BuildRoomData();
+
             //create the cursor sprite
             cursorSprite = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(14, 13, 0, 0), new Point(16, 16));
@@ -346,21 +340,44 @@ namespace DungeonRun
         }
         
         public void BuildRoomData()
-        {   //build the room
-            Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0);
+        {
+            Functions_Dungeon.dungeon = new Dungeon();
+            Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
+
+            //build the room
+            if (roomData != null)
+            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0); }
+            else
+            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomType.Dev, 0); }
+
             //releases all roomObjs, builds walls + floors
             Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
-            //build template doors (NSEW)
+
+            //simplify / collect room values
+            int posX = Functions_Dungeon.currentRoom.collision.rec.X;
+            int posY = Functions_Dungeon.currentRoom.collision.rec.Y;
+            int middleX = (Functions_Dungeon.currentRoom.size.X / 2) * 16;
+            int middleY = (Functions_Dungeon.currentRoom.size.Y / 2) * 16;
+            //set NSEW door locations
+            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY - 8)); //Top Door
+            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY + middleY + middleY)); //Bottom Door
+            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX - 8, posY + middleY)); //Left Door
+            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX + middleX, posY + middleY)); //Right Door
+            //build & decorate doors
+            Functions_Room.SetDoors(Functions_Dungeon.currentRoom);
 
             //create the room objs
-            for (i = 0; i < roomData.objs.Count; i++)
-            {
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    Functions_Dungeon.currentRoom.collision.rec.X + roomData.objs[i].posX,
-                    Functions_Dungeon.currentRoom.collision.rec.Y + roomData.objs[i].posY);
-                objRef.direction = Direction.Down; //we'll need to save this later
-                Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
+            if (roomData != null)
+            {   
+                for (i = 0; i < roomData.objs.Count; i++)
+                {
+                    objRef = Functions_Pool.GetRoomObj();
+                    Functions_Movement.Teleport(objRef.compMove,
+                        Functions_Dungeon.currentRoom.collision.rec.X + roomData.objs[i].posX,
+                        Functions_Dungeon.currentRoom.collision.rec.Y + roomData.objs[i].posY);
+                    objRef.direction = Direction.Down; //we'll need to save this later
+                    Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
+                }
             }
             Functions_Pool.Update(); //update roomObjs once
         }

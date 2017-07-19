@@ -43,22 +43,30 @@ todo:
 
 
 
-Hide Mouse Cursor in RoomEditor + Game
 
-updated UWP.Game1 to hide mouse cursor.
-updated DirectX.Game1 to hide mouse cursor too.
+
+Add doors to the NSEW of the Room being built
+
+Updated RBScreen.LoadContent() to call BuildRoomData().
+this consolidates all code that builds rooms in editor.
+updated BuildRoomData() with path to handle null roomData state.
+updated BuildRoomData() with NSEW door placement routine.
 playtested, working as expected.
 
 
 
 
+visual bug
+door torches are placed incorrectly left and right of doors that face horizontal
+we aren't checking to see if the door is facing horizontal
+this works fine for vertical doors
 
 
-Room Playtesting
+visual bug
+the sorting of walls when hero is outside of dungeon is wrong
+hero appears over the walls, when the walls should appear over hero
 
-add doors to each wall, allowing player to leave the room
-this can be done by placing doorPos in the dungeon
-then calling Functions_Room.SetDoors(Room)
+
 
 
 
