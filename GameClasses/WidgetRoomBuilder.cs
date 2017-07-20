@@ -24,9 +24,7 @@ namespace DungeonRun
         public GameObject activeTool; //points to a ToolObj on the obj list
 
         public List<GameObject> objList; //a list of objects user can select
-        //0 - 35 room objs
-        //36 - 40 enemy objs
-        //41, 42, 43 - tool objs (move, add, delete)
+        //0 - 35 room objs, 36 - 40 enemy objs, 41 - 43 - tool objs (move, add, delete)
         public GameObject moveObj;
         public GameObject addObj;
         public GameObject deleteObj;

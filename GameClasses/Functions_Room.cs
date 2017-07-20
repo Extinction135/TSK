@@ -164,9 +164,6 @@ namespace DungeonRun
             //update all roomObjs, then remove overlapping objs
             Functions_Pool.UpdateRoomObjPool();
             CleanupRoom(Room); //remove overlapping objs
-            
-            //update the object pool, since we teleported objects around
-            //Functions_Pool.UpdateRoomObjPool();
             Assets.Play(Assets.sfxDoorOpen); //play the door sound
 
             stopWatch.Stop(); time = stopWatch.Elapsed;

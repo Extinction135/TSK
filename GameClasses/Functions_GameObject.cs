@@ -598,12 +598,5 @@ namespace DungeonRun
             if(Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
-        public static void Draw(GameObject Obj)
-        {
-            Functions_Draw.Draw(Obj.compSprite);
-            if (Flags.DrawCollisions)
-            { Functions_Draw.Draw(Obj.compCollision); }  
-        }
-
     }
 }

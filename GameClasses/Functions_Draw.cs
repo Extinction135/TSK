@@ -41,6 +41,26 @@ namespace DungeonRun
             }
         }
 
+        public static void Draw(GameObject Obj)
+        {
+            if (Obj.active)
+            {
+                Draw(Obj.compSprite);
+                if (Flags.DrawCollisions)
+                { Draw(Obj.compCollision); }
+            }
+        }
+
+        public static void Draw(Actor Actor)
+        {
+            if(Actor.active)
+            {
+                Draw(Actor.compSprite);
+                if (Flags.DrawCollisions)
+                { Draw(Actor.compCollision); }
+            }
+        }
+
         public static void Draw(ComponentSprite Sprite)
         {
             if (Sprite.visible)

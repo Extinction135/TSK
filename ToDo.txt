@@ -39,20 +39,25 @@ ram useage:
 todo:
 
 
-Fix bug with WallPillars not removing underlying Wall objects
-
-fixed an issue where RBScreen.BuildRoomData() was adding doors after room was built.
-this call was also decorating the doors, leading to state where wall pillars existed over walls.
-normally, a wall pillar would remove any wall it overlaps.
-this wasn't happening because we had already called CleanupRoom() from BuildRoom().
-so the change was simply to set the door locations, then call BuildRoom().
-BuildRoom() then creates the doors, and calls CleanupRoom().
-
-playtested game + editor, working as expected now.
-the wall pillars remove their underlying walls.
 
 
 
+Refactor and Cleanup how GameObjects and Actors are Drawn
+
+removed Functions_GameObject.Draw().
+created Functions_Draw.Draw(GameObject).
+it's functionality has been moved into Functions_Draw.Draw(GameObject).
+changed how Functions_Pool draws the roomObjPool and entityPool lists.
+this is now done by calling Functions_Draw.Draw(GameObject).
+this consolidates and simplifies how an object is drawn.
+
+created Functions_Draw.Draw(Actor).
+removed and migrated functionality from Functions_Actor.Draw().
+further simplified Functions_Pool.Draw().
+removed an unnecessary boolean check when drawing each floor tile sprite.
+
+playtested, working as expected.
+this fixed a debug issue where obj/actors that were inactive still had collision recs drawn.
 
 
 
@@ -61,33 +66,53 @@ the wall pillars remove their underlying walls.
 
 
 
-Allow creation of different room types in RBScreen
-we should be able to create a new room via new button on RBwidget
-we should be able to choose what type of room we want to create
-we dont need to create an entire widget/screen for this
-just add a button to widget to choose new room type, then press new to create it.
-we may need to move some buttons around / shorten the update room button...
 
-Build RoomData
+EnemySpawns
+
+has to be game objects
+but, we don't draw this obj when player is playing game
+but, we should draw this obj when user is editing room
+
+
+
+
+
+by default we dont draw the spawn objs in game
+add Flags.DrawEnemySpawns boolean to control if the enemy spawns are drawn
+
+
+
+
+we need to be able to create objs that represent where enemies spawn from in a room
+these will be invisible game objects
+when a room is built, enemies are placed at these locations based on the spawn level
+
+
+
+
+
+
+
+Build RoomData - for Hub, Boss, Key, Column, Row, Square
+
 we need actual room data for all room types (hub, boss, key, column, row, square).
 which means we need to be able to create 'blanks' of these room types.
 and we need to have a naming convention for the XML roomdata.
 something like - Hub_001, Key_002, etc..
 build a base library of roomData for all roomTypes (hub, boss, key, column, row, square).
 
-EnemySpawns
-we need to be able to create objs that represent where enemies spawn from in a room
-these will be invisible game objects
-when a room is built, enemies are placed at these locations based on the spawn level
-a level of 1 means the easier enemy is placed here, and so on
-we will have 5 levels of enemy in each dungeon
-we will need 4 additional enemy types to fill out the enemy roster
-create enemies that fire projectiles - arrows, fireballs, bombs
+
+
+for boss rooms, we procedually add the boss to the middle of the room
+and scatter debris around the room as well
 
 
 
 
 
+
+load all this roomdata into game upon boot
+instead of calling 'FinishHubRoom' we're going to build the hub room from an element on the assets.roomDataHub list
 
 Dungeon generation part1
 replace the current routine for creating hub room with random element from assets.roomDataHub
@@ -96,6 +121,11 @@ this should exist in Functions_Room as LoadRoomObjects(Room, XMLRoomData).
 we should call this method from RBScreen.BuildRoomData().
 we will use this method when we initially create the basic dungeon (for hub & boss rooms).
 exit is built procedurally, as normal. same with shop.
+
+
+
+
+
 
 Dungeon generation part2
 here is where we actually create interesting, random dungeons.
@@ -187,7 +217,11 @@ release version 0.6 with complete dungeon & enemy variety.
 
 
 
-
+EnemySpawns and Enemy Types ++
+a level of 1 means the easier enemy is placed here, and so on
+we will have 5 levels of enemy in each dungeon
+we will need 4 additional enemy types to fill out the enemy roster
+create enemies that fire projectiles - arrows, fireballs, bombs
 
 
 

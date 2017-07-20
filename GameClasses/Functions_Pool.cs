@@ -211,31 +211,19 @@ namespace DungeonRun
         {
             //floor pool
             for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
-            {
-                if (Pool.floorPool[Pool.counter].visible)
-                { Functions_Draw.Draw(Pool.floorPool[Pool.counter]); }
-            }
+            { Functions_Draw.Draw(Pool.floorPool[Pool.counter]); }
 
             //obj pool
             for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
-            {
-                if (Pool.roomObjPool[Pool.counter].active)
-                { Functions_GameObject.Draw(Pool.roomObjPool[Pool.counter]); }
-            }
+            { Functions_Draw.Draw(Pool.roomObjPool[Pool.counter]); }
 
             //projectile pool
             for (Pool.counter = 0; Pool.counter < Pool.entityCount; Pool.counter++)
-            {
-                if (Pool.entityPool[Pool.counter].active)
-                { Functions_GameObject.Draw(Pool.entityPool[Pool.counter]); }
-            }
+            { Functions_Draw.Draw(Pool.entityPool[Pool.counter]); }
 
             //actor pool
             for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
-            {
-                if (Pool.actorPool[Pool.counter].active)
-                { Functions_Actor.Draw(Pool.actorPool[Pool.counter]); }
-            }
+            { Functions_Draw.Draw(Pool.actorPool[Pool.counter]); }
 
             //match hero shadow to hero position + offset, then draw it
             Pool.heroShadow.position.X = Pool.hero.compSprite.position.X;

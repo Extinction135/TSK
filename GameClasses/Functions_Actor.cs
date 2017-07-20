@@ -327,11 +327,5 @@ namespace DungeonRun
             Functions_ActorAnimationList.SetAnimationDirection(Actor);
         }
 
-        public static void Draw(Actor Actor)
-        {
-            Functions_Draw.Draw(Actor.compSprite);
-            if (Flags.DrawCollisions) { Functions_Draw.Draw(Actor.compCollision); }
-        }
-
     }
 }
