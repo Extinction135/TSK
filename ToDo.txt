@@ -39,27 +39,23 @@ ram useage:
 todo:
 
 
+Fix bug with WallPillars not removing underlying Wall objects
+
+fixed an issue where RBScreen.BuildRoomData() was adding doors after room was built.
+this call was also decorating the doors, leading to state where wall pillars existed over walls.
+normally, a wall pillar would remove any wall it overlaps.
+this wasn't happening because we had already called CleanupRoom() from BuildRoom().
+so the change was simply to set the door locations, then call BuildRoom().
+BuildRoom() then creates the doors, and calls CleanupRoom().
+
+playtested game + editor, working as expected now.
+the wall pillars remove their underlying walls.
 
 
 
-created new mockup for RB widget.
-this mockup removes the need to create a new room screen.
-
-changed 'new' button to 'play', migrated functionality.
-changed 'update room' button to 'new room' button.
-fixed bug where 'new room' button wasn't getting mouse over color change.
-created 'room type' button, next to 'new room' button.
-implemented functionality for 'room type' button, using a roomType enum instance.
-limited the roomType values the 'room type' button can display.
-playtested, bug.
-
-fixed a bug with building roomData.objs list when objs list had 0 elements.
-playtested, working as expected.
 
 
 
-wall pillars should have a more positive zdepth/offset value
-they are conflict sorting with walls
 
 
 

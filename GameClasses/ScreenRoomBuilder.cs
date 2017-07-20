@@ -378,9 +378,6 @@ namespace DungeonRun
             else
             { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomType.Row, 0); }
 
-            //releases all roomObjs, builds walls + floors
-            Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
-
             //simplify / collect room values
             int posX = Functions_Dungeon.currentRoom.collision.rec.X;
             int posY = Functions_Dungeon.currentRoom.collision.rec.Y;
@@ -393,9 +390,8 @@ namespace DungeonRun
             Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY + height)); //Bottom Door
             Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX - 16, posY + middleY)); //Left Door
             Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + width, posY + middleY)); //Right Door
-            //build & decorate doors
-            Functions_Room.SetDoors(Functions_Dungeon.currentRoom);
-            
+            //releases all roomObjs, builds walls + floors + doors
+            Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
             //create the room objs
             if (roomData != null && roomData.objs.Count > 0)
             {   
@@ -409,7 +405,6 @@ namespace DungeonRun
                     Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
                 }
             }
-
             Functions_Pool.Update(); //update roomObjs once
         }
 

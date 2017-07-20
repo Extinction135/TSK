@@ -161,10 +161,12 @@ namespace DungeonRun
             else if (Room.type == RoomType.Boss) { FinishBossRoom(Room); }
             else if (Room.type == RoomType.Shop) { FinishShopRoom(Room); }
 
+            //update all roomObjs, then remove overlapping objs
+            Functions_Pool.UpdateRoomObjPool();
             CleanupRoom(Room); //remove overlapping objs
             
             //update the object pool, since we teleported objects around
-            Functions_Pool.UpdateRoomObjPool();
+            //Functions_Pool.UpdateRoomObjPool();
             Assets.Play(Assets.sfxDoorOpen); //play the door sound
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
