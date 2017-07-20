@@ -559,6 +559,7 @@ namespace DungeonRun
         public Direction direction = Direction.Down;
         public Boolean active = true; //does this object draw, update?
         public Boolean getsAI = false; //does this object get passed to Functions_AI.HandleObj()?
+        public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
 
         public Byte lifetime;   //how many frames this object exists for, 0 = forever/ignore
         public Byte lifeCounter;//counts up to lifetime value

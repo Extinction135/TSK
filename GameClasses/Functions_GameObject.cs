@@ -25,6 +25,7 @@ namespace DungeonRun
             Obj.lifeCounter = 0; //reset counter
             Obj.active = true; //assume this object should draw / animate
             Obj.getsAI = false; //most objects do not get any AI input
+            Obj.canBeSaved = false; //most objects cannot be saved as XML data
             //reset the sprite component
             Obj.compSprite.cellSize.X = 16 * 1; //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.Y = 16 * 1;
@@ -191,7 +192,7 @@ namespace DungeonRun
             #endregion
 
 
-            //Editor Room Objects
+            //Editor Room Objects - these objs can be saved as XML
 
             #region Pits
 
@@ -202,6 +203,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.PitTop || Type == ObjType.PitBottom)
             {   //this is pit decoration
@@ -209,6 +211,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 8;
                 if (Type == ObjType.PitBottom) { Obj.compCollision.offsetY = 4; }
                 Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
             }
             else if (
                 Type == ObjType.PitTrapReady || Type == ObjType.PitTrapOpening)
@@ -216,6 +219,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -6;
                 Obj.compCollision.offsetY = -6;
                 Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.canBeSaved = true;
             }
 
             #endregion
@@ -230,6 +234,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
                 //unopened chests get the objGroup of Chest
                 if (Type != ObjType.ChestEmpty)
                 { Obj.group = ObjGroup.Chest; }
@@ -243,6 +248,7 @@ namespace DungeonRun
             else if (Type == ObjType.BlockDark || Type == ObjType.BlockLight)
             {
                 Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.BlockDraggable)
             {
@@ -250,6 +256,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetY = -4;
                 Obj.compSprite.zOffset = -7;
                 Obj.group = ObjGroup.Draggable;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.BlockSpikes)
             {
@@ -258,6 +265,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -7;
                 Obj.compCollision.blocking = false;
                 Obj.compMove.speed = 0.75f; //spike blocks move
+                Obj.canBeSaved = true;
             }
 
             #endregion
@@ -271,6 +279,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.group = ObjGroup.Liftable;
+                Obj.canBeSaved = true;
             }
 
             #endregion
@@ -283,17 +292,20 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.SwitchBlockDown)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.SwitchBlockUp)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
                 Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
             }
 
             #endregion
@@ -306,6 +318,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
             }
 
             #endregion
@@ -318,27 +331,32 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Draggable;
                 Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.offsetY = -1;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.Pillar)
             {
                 Obj.compSprite.zOffset = 2;
                 Obj.compCollision.rec.Width = 10;
                 Obj.compCollision.offsetX = -5;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.Flamethrower)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.getsAI = true; //obj gets AI
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.Bumper)
             {
                 Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.ConveyorBelt)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
                 //directions are slightly different for this obj
                 if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
                 else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
@@ -350,12 +368,14 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
             }
             else if (Type == ObjType.Lever)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
                 Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
             }
 
             #endregion
@@ -369,6 +389,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.group = ObjGroup.EnemySpawn;
+                Obj.canBeSaved = true;
             }
 
             #endregion

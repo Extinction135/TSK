@@ -163,8 +163,8 @@ namespace DungeonRun
                                     objRef = Pool.roomObjPool[Pool.counter];
                                     //if this object is active, save it
                                     if (objRef.active)
-                                    {   //dont save walls or doors, these are added procedurally
-                                        if (objRef.group != ObjGroup.Wall && objRef.group != ObjGroup.Door)
+                                    {   
+                                        if(objRef.canBeSaved)
                                         {   //make this obj relative to room top left corner
                                             ObjXmlData objData = new ObjXmlData();
                                             objData.type = objRef.type;

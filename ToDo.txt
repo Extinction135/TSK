@@ -40,16 +40,19 @@ todo:
 
 
 
+Implement better solution for saving GameObjects
 
+currently, a check is done to prevent walls and doors from being saved as room XML data.
+this is done in RBScreen.HandleInput.Save routine.
+however, other objects like wall torches, wall pillars, etc.. get past this check.
+we need a better way to check if an object should be saved as room XML data.
 
-Polish EnemySpawn GameObject, Add EnemySpawns 2 & 3
+added canBeSaved booelan to GameObject class.
+updated RBScreen.HandleInput.Save routine to only save objs with canBeSaved true.
+updated Func_GameObj.ResetObject() to set canBeSaved false.
+updated Func_GameObj.SetType() to set canBeSaved true based on obj.type.
 
-added enemy spawns 2 and 3 to RBwidget.
-playtested, working as expected.
-updated the look/style of enemy spawn obj sprites.
-playtested, working as expected.
-
-
+playtested, working as expected. this also reduced the size of roomData XML files slightly.
 
 
 

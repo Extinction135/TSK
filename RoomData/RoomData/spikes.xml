@@ -5,37 +5,37 @@
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>280</posX>
-      <posY>37</posY>
+      <posY>55</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>40</posX>
-      <posY>48</posY>
+      <posY>44</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>296</posX>
-      <posY>68</posY>
+      <posY>23</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>264</posX>
-      <posY>71</posY>
+      <posY>17</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>72</posX>
-      <posY>65</posY>
+      <posY>25</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>56</posX>
-      <posY>9</posY>
+      <posY>81</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>8</posX>
-      <posY>84</posY>
+      <posY>8</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

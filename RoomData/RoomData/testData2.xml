@@ -3,134 +3,14 @@
   <type>Row</type>
   <objs>
     <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>-8</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>-8</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>136</posX>
-      <posY>-8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>168</posX>
-      <posY>-8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>136</posX>
-      <posY>184</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>168</posX>
-      <posY>184</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>312</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>312</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>-8</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>-8</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>136</posX>
-      <posY>-8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>168</posX>
-      <posY>-8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>136</posX>
-      <posY>184</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>168</posX>
-      <posY>184</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>312</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>312</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>-8</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>-8</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>136</posX>
-      <posY>-8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>168</posX>
-      <posY>-8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>136</posX>
-      <posY>184</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>168</posX>
-      <posY>184</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>312</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>WallTorch</type>
-      <posX>312</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>280</posX>
-      <posY>45</posY>
+      <posY>141</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>56</posX>
-      <posY>62</posY>
+      <posY>76</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SwitchBlockUp</type>
