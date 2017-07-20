@@ -1,16 +1,56 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <type>Row</type>
   <objs>
     <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>-8</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>-8</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>136</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>168</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>136</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>168</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>312</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>312</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>280</posX>
-      <posY>46</posY>
+      <posY>67</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>56</posX>
-      <posY>43</posY>
+      <posY>60</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SwitchBlockUp</type>
@@ -176,6 +216,11 @@
       <type>TorchUnlit</type>
       <posX>232</posX>
       <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>24</posX>
+      <posY>40</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

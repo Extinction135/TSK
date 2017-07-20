@@ -165,18 +165,14 @@ namespace DungeonRun
             #region Add Enemy objs to ObjList
 
             for (i = 1; i < 6; i++)
-            {   //add 5 eney objs as blobs under objects
-                GameObject enemyObj = new GameObject(Assets.blobSheet);
-                Functions_GameObject.ResetObject(enemyObj);
-                enemyObj.compSprite.position.X = 16 * i + 8;
-                enemyObj.compSprite.position.Y = 16 * 12;
-                enemyObj.compCollision.rec.X = 16 * i;
-                enemyObj.compCollision.rec.Y = 16 * 12 - 8;
-                objList.Add(enemyObj); //index 35-39
+            {
+                GameObject enemySpawn = new GameObject(Assets.mainSheet);
+                enemySpawn.compMove.newPosition.X = 16 * i + 8;
+                enemySpawn.compMove.newPosition.Y = 16 * 12;
+                Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy1);
+                Functions_Animation.Animate(enemySpawn.compAnim, enemySpawn.compSprite);
+                objList.Add(enemySpawn); //index 35-39
             }
-
-            //we could set the enemy type like this:
-            //Functions_GameObject.SetType(objList[35], ObjType.Enemy1); //not implemented yet
             
             #endregion
 

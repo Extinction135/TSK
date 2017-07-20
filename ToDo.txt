@@ -42,22 +42,30 @@ todo:
 
 
 
-Refactor and Cleanup how GameObjects and Actors are Drawn
+Create EnemySpawn game objects, add them to RBWidget (Editor)
 
-removed Functions_GameObject.Draw().
-created Functions_Draw.Draw(GameObject).
-it's functionality has been moved into Functions_Draw.Draw(GameObject).
-changed how Functions_Pool draws the roomObjPool and entityPool lists.
-this is now done by calling Functions_Draw.Draw(GameObject).
-this consolidates and simplifies how an object is drawn.
+created enemy spawn sprites for 5 levels of enemy.
+these sprites exist in the main sheet.
+updated main sheets of UWP and Dx projects.
 
-created Functions_Draw.Draw(Actor).
-removed and migrated functionality from Functions_Actor.Draw().
-further simplified Functions_Pool.Draw().
-removed an unnecessary boolean check when drawing each floor tile sprite.
+added values to ObjType enum for EnemySpawns 1, 2, 3.
+added anim list values for EnemySpawns 1, 2, 3 to Func_GameObjAnimList.
+updated Func_GameObj.SetType() with routine for EnemySpawns1, 2, 3.
 
+added EnemySpawn value to ObjGroup enum.
+updated Func_GameObj.SetType() to set EnemySpawn's ObjGroup.
+
+updated RBwidget to display enemy spawn objs instead of enemy actor sprites.
+however, this RBwidget is only displaying enemy spawn type 1 for now.
 playtested, working as expected.
-this fixed a debug issue where obj/actors that were inactive still had collision recs drawn.
+
+
+
+
+add enemy spawn 2 and 3 to editor
+remove 4/5 from editor
+
+improve the visual look of spawn objects - they should only have border, not filled center
 
 
 
@@ -75,10 +83,12 @@ but, we should draw this obj when user is editing room
 
 
 
+create enemy actor at location of enemySpawn
+
+if(Flags.bootRoutine == BootRoutine.RoomBuilder){}
+draw enemy spawns, create enemyspawn objs from roomXMLdata
 
 
-by default we dont draw the spawn objs in game
-add Flags.DrawEnemySpawns boolean to control if the enemy spawns are drawn
 
 
 

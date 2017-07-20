@@ -361,6 +361,19 @@ namespace DungeonRun
             #endregion
 
 
+            #region Enemy Spawn Objects
+
+            else if (Type == ObjType.SpawnEnemy1 || Type == ObjType.SpawnEnemy2 || Type == ObjType.SpawnEnemy3)
+            {
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.group = ObjGroup.EnemySpawn;
+            }
+
+            #endregion
+
+
             //Additional Game Objects
 
             #region Vendor & Story Objects

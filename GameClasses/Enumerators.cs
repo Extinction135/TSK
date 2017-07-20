@@ -44,7 +44,7 @@ namespace DungeonRun
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 
-    public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Pickup, Projectile, Particle, Vendor }
+    public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Pickup, Projectile, Particle, Vendor, EnemySpawn }
 
     public enum ObjType
     {
@@ -62,6 +62,9 @@ namespace DungeonRun
         Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, ConveyorBelt,
+
+        //Enemy Spawn Objects (hand-placed)
+        SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, //4 and 5 to be added later
 
         //Vendor & Story Objects
         VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment,
