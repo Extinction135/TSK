@@ -180,11 +180,12 @@ namespace DungeonRun
                             #endregion
 
 
-                            #region New Button
+                            #region Play Button
 
-                            else if (RoomBuilder.buttons[i] == RoomBuilder.newBtn)
+                            else if (RoomBuilder.buttons[i] == RoomBuilder.playBtn)
                             {
-                                Debug.WriteLine("new room created");
+                                if (Flags.Paused) { Flags.Paused = false; }
+                                else { Flags.Paused = true; }
                             }
 
                             #endregion
@@ -193,18 +194,45 @@ namespace DungeonRun
                             //Load Button
                             else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)
                             { Functions_Backend.SelectRoomFile(this); }
+                            
+                            //New Room Button
+                            else if (RoomBuilder.buttons[i] == RoomBuilder.newRoomBtn)
+                            {   //create a new room based on the type buttons state
+                                roomData = new RoomXmlData();
+                                roomData.type = RoomBuilder.roomType;
+                                BuildRoomData();
+                            }
 
 
-                            #region Update Button
+                            #region Room Type Button
 
-                            else if (RoomBuilder.buttons[i] == RoomBuilder.updateBtn)
-                            {
-                                if (Flags.Paused) { Flags.Paused = false; }
-                                else { Flags.Paused = true; }
+                            else if (RoomBuilder.buttons[i] == RoomBuilder.roomTypeBtn)
+                            {   //iterate thru a limited set of roomTypes
+                                if (RoomBuilder.roomType == RoomType.Column)
+                                { RoomBuilder.roomType = RoomType.Row; }
+
+                                else if (RoomBuilder.roomType == RoomType.Row)
+                                { RoomBuilder.roomType = RoomType.Square; }
+
+                                else if (RoomBuilder.roomType == RoomType.Square)
+                                { RoomBuilder.roomType = RoomType.Hub; }
+
+                                else if (RoomBuilder.roomType == RoomType.Hub)
+                                { RoomBuilder.roomType = RoomType.Boss; }
+
+                                else if (RoomBuilder.roomType == RoomType.Boss)
+                                { RoomBuilder.roomType = RoomType.Key; }
+
+                                else if (RoomBuilder.roomType == RoomType.Key)
+                                { RoomBuilder.roomType = RoomType.Column; }
+
+                                //set the text in button to roomType enum
+                                RoomBuilder.roomTypeBtn.compText.text = "" + RoomBuilder.roomType;
                             }
 
                             #endregion
 
+                            
                         }
                     }
                 }
@@ -299,7 +327,7 @@ namespace DungeonRun
 
             #region Handle Button Over/Up States
 
-            for (i = 0; i < 3; i++)
+            for (i = 0; i < RoomBuilder.buttons.Count; i++)
             {   //by default, set buttons to up color
                 RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonUp;
                 //if user hovers over a button, set button to down color
@@ -317,8 +345,8 @@ namespace DungeonRun
             RoomBuilder.Update();
             //set the update room button color
             if (Flags.Paused)
-            { RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonUp; }
-            else { RoomBuilder.updateBtn.currentColor = Assets.colorScheme.buttonDown; }
+            { RoomBuilder.playBtn.currentColor = Assets.colorScheme.buttonUp; }
+            else { RoomBuilder.playBtn.currentColor = Assets.colorScheme.buttonDown; }
         }
 
         public override void Draw(GameTime GameTime)
@@ -367,9 +395,9 @@ namespace DungeonRun
             Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + width, posY + middleY)); //Right Door
             //build & decorate doors
             Functions_Room.SetDoors(Functions_Dungeon.currentRoom);
-
+            
             //create the room objs
-            if (roomData != null)
+            if (roomData != null && roomData.objs.Count > 0)
             {   
                 for (i = 0; i < roomData.objs.Count; i++)
                 {
@@ -381,6 +409,7 @@ namespace DungeonRun
                     Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
                 }
             }
+
             Functions_Pool.Update(); //update roomObjs once
         }
 

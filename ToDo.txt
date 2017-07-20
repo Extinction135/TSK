@@ -42,61 +42,164 @@ todo:
 
 
 
+created new mockup for RB widget.
+this mockup removes the need to create a new room screen.
 
-Actually Load RoomData XML files, store loaded RoomXMLData in Assets
+changed 'new' button to 'play', migrated functionality.
+changed 'update room' button to 'new room' button.
+fixed bug where 'new room' button wasn't getting mouse over color change.
+created 'room type' button, next to 'new room' button.
+implemented functionality for 'room type' button, using a roomType enum instance.
+limited the roomType values the 'room type' button can display.
+playtested, bug.
 
-removed call to LoadAllRoomData() from ScreenManager.Initialize().
-now calling LoadAllRoomData() from Assets.Load(), which makes more logical sense.
-
-created RoomXmlData lists in Assets for Hub, Boss, Key, Column, Row, and Square room types.
-we can't handmake exit, shop, or secret rooms, thats done procedurally (because they are simple).
-updated Functions_Backend.LoadAllRoomData() to actually deserialize and store RoomData XML files.
-playtested, fixed minor bug with structure of RoomData folder, working as expected.
-all XML RoomData is loaded into correct list in Assets and ready for use.
-
-
-
-
+fixed a bug with building roomData.objs list when objs list had 0 elements.
+playtested, working as expected.
 
 
+
+wall pillars should have a more positive zdepth/offset value
+they are conflict sorting with walls
+
+
+
+
+
+Allow creation of different room types in RBScreen
+we should be able to create a new room via new button on RBwidget
+we should be able to choose what type of room we want to create
+we dont need to create an entire widget/screen for this
+just add a button to widget to choose new room type, then press new to create it.
+we may need to move some buttons around / shorten the update room button...
+
+Build RoomData
 we need actual room data for all room types (hub, boss, key, column, row, square).
 which means we need to be able to create 'blanks' of these room types.
 and we need to have a naming convention for the XML roomdata.
 something like - Hub_001, Key_002, etc..
+build a base library of roomData for all roomTypes (hub, boss, key, column, row, square).
 
-we should be able to create a new room via new button on RBwidget
-
-
-
-
-
-
-
-
-how do we use Assets.XMLRoomDataLists?
-we pass an element of one of these lists to 
+EnemySpawns
+we need to be able to create objs that represent where enemies spawn from in a room
+these will be invisible game objects
+when a room is built, enemies are placed at these locations based on the spawn level
+a level of 1 means the easier enemy is placed here, and so on
+we will have 5 levels of enemy in each dungeon
+we will need 4 additional enemy types to fill out the enemy roster
+create enemies that fire projectiles - arrows, fireballs, bombs
 
 
 
 
 
 
+Dungeon generation part1
+replace the current routine for creating hub room with random element from assets.roomDataHub
+we'll need to move the loading of XML objects out of RBScreen.BuildRoomData().
+this should exist in Functions_Room as LoadRoomObjects(Room, XMLRoomData).
+we should call this method from RBScreen.BuildRoomData().
+we will use this method when we initially create the basic dungeon (for hub & boss rooms).
+exit is built procedurally, as normal. same with shop.
+
+Dungeon generation part2
+here is where we actually create interesting, random dungeons.
+create a path from exit to hub.
+create a path from hub to key. place key chest in key room.
+connect boss room to hub, so player knows where boss is early on.
+use roomData to populate hub, boss, key, column, row, and square rooms.
+create a dungeon map that shows the room layout.
+if hero has the dungeon map, display the dungeon map with select button.
+
+Dungeon generation part3
+add secret rooms (via bombable walls), randomly place gold/heart piece chests
+add routine for populating secret rooms (similar to populating exit room)
+add additional unnecessary distraction rooms
+place a chest with map in random distraction room.
 
 
 
 
 
-Store the RoomData in Game Data, somewhere
 
-should be globally accessible? only dungeon and/or roomBuilder functions need access to it
-what class/function chooses the room data to be built?
+POLISH
+
+overworld dungeon icon is the boss of that dungeon
+so all dungeons should display a blob character instead of a skull
+
+collision particle should center to the spike block upon collision
+
+increase obj count to 200
+increase projectile count to 150
+
+WorldUI++
+we should be displaying the amount of arrows, bombs in the worldUI
+this way user can see how many they have left
+
+
+
+
+
+Bug Fixes
+
+BUG
+if we're using ALOT of entities quickly, then a state happens where 
+- a bomb may just dissappear before it can explode
+- a fireball may dissappear before it hits anything
+we should be able to mark an entity as 'important' so it isn't released until it completes
+
+Bug
+when a game is loaded, we need to set the hero's loadout to be default
+sword, no item, plain cloth
+there is a bug where we can set the hero's loadout on one file,
+then load a different file, and the hero's loadout hasn't changed
+this lets the hero have a bow and fireball on a game where he doesn't have those items..
+
+
+boss door bug - maybe?
+when we build the boss door's welcome mat, we need to place it based on the door.direction
+right now, it just places it south of the door, and the boss door will not always be south facing.
+ACTUALLY, the boss door will always be south facing, and be attached to the HUB room.
+so this isn't actually a bug at all.
+
+
+
+
+
+RELEASE
+update the readme to reflect the directX port
+"A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
+DirectX version uses .Net 4.5 & SharpDX.
+UWP version uses .NetCore & SharpDX.
+OpenGL port coming soon."
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+release version 0.6 with complete dungeon & enemy variety.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 complete gameobjects
 
-we'l need to be able to store the obj's direction
+we'll need to be able to store the obj's direction
 how often do we need to do this? prolly all the time...
 well, actually not really - what objs use direction?
 
@@ -110,6 +213,8 @@ just like bomb, but stationary, waiting for collision
 Cracked Floor pit opening
 we can also have a cracked open floor obj that sits over animated liquid
 this varies the 'pit' style a bit
+
+need horizontal bridges
 
 Spikeblocks++
 we should be able to create vertical and horizontal moving spike blocks
@@ -130,13 +235,24 @@ we should be able to turn the conveyors on and off
 	this allows us to build rooms with additional complexity
 	perhaps the switch turns the conveyors on/off?
 
+	
+	
+	
+Vendors++
+
+Add hearts to vendor items
+player should be able to purchase heart pieces from the vendor, for gold
+4 heart pieces add up to a complete heart increase
+remove heart pieces from chests
+chests only contain gold, big key, or map
 
 
-EnemySpawns
-enemy1spawn, enemy2spawn, etc...
-enemies are then created at these object's locations upon load
+Interaction++
 
 
+
+	
+	
 
 Room Goals
 doors should be set to trap doors
@@ -152,139 +268,37 @@ this means that rooms should have a goal enum
 
 
 
-organize the roomData into it's own folder
-the cs project should copy this folder to it's output, just like CC
-the source roomData folder should exist outside of all project directories
-should be in the main repo directory
 
-the roomData folder is simmply copied into the project's directory
-the project copys the roomData folder to it's output directory
-the game then loads all the roomData upon game boot
-when a room is needed, the data is copied from the loaded roomData
-
-standardize all room types + sizes
+DungeonDesign - Taking it Further
+	design dungeons as a whole
+	dungeons should have a theme
+	there should be 'architectural puzzles', where the dungeon changes in some way
+	this could be raising/lowering water levels
+	moving forward/backwards in time
+	destroying parts of the dungeon/rooms
+	using switches to alter the paths thru rooms, or alter the nature of rooms
+	for example, turning conveyo belts on/off, or spike traps
 	
-Version 0.6 Milestones
-
-roombuilder tool allows creation of room xml data
-room builder uses shared game classes, but only subset
-has many classes that are only part of builder tool
-
-room xml data is loaded into game at boot
-this is part of Functions_Backend class
-
-dungeons are built from room xml data
-rooms have a size, based on type
-dungeons are built using CC algorithms
-
-dungeons & their enemy sets have different spritesheets, so they look different
-create enemies that fire projectiles - arrows, fireballs, bombs
-
-there are a total of 5 dungeons, and 4 crystals
-for now, make 5 dungeons that all use the 1st dungeons sprites + enemies
-each dungeon should award a crystal, check that this works
-reduce the number of crystals in crystals widget + saveData
-
-overworld dungeon icon is the boss of that dungeon
-so all dungeons should display a blob character instead of a skull
-
-
-
-standardize all room types + sizes (in constructor)
-
-load room data from XML file
-
-create new room screen
-this is window with buttons, no widget
-new button should create a new room screen
-new room screen stores ref to builder screen
-affects the room instance in builder screen - changes room type
-
-save button should create a file dialog
-load button should create a file dialog
-
-rooms will no longer have an enemy count
-instead, enemies will be placed by hand
-
-new room screen
-	there is no new room widget, it's just the screen
-	three buttons, some text
-	arrow button cycles thru standard, row, column, exit, hub, key, boss enum values
-	create button creates a basic room of the enum value
-	cancel exits the screen
-	one of the issues here is that we'll need to make sure the floor pool has enough sprites to create the larger rooms
-	this will also increase the drawtime on the xbox one
+	in addition to these architectural puzzles, dungeons should also have a key item
+	this key item must be collected to complete the dungeon
+	for example, the hammer knocks down posts
+	the hookshot pulls hero across gaps
 	
-COMPLETE DUNGEONS
-	we'll be using room editor to build up the room data folders.
-	then when we build the dungeon, we'll load all the room data into the game at once.
-	when we need a specific type of room, we just copy the necessary room data.
-	then we place the room where we need it, and build it.
-	this is done over and over again, until the complete dungeon is built.
-	we'll use the same routines from CC to build the Exit -> Hub -> KeyPath -> BossPath layout.
-	
-	adopt CursedCastle's roomData approach (Editor -> XML -> Randomly Choose a Room)
-	update dungeon generation routines to build complete dungeons
-	create room editor, standardize room sizes
+	there are certain zelda puzzle tropes to be followed to:
+	block puzzle - move a block or series of blocks into place, to press a switch / chest / etc
+	enemy puzzle - kill all enemies / miniboss / boss
+	shooting puzzle - shoot an eye or some object with an arrow / boomerang / projectile
+	torch puzzle - light 3-4 torches
 	
 	
 	
-	
-	
-	
-	
-BUG
-if we're using ALOT of entities quickly, then a state happens where 
-- a bomb may just dissappear before it can explode
-- a fireball may dissappear before it hits anything
-we should be able to mark an entity as 'important' so it isn't released until it completes
 
-
-
-	
-	
-	
-	
-update the readme to reflect the directX port
-
-A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
-DirectX version uses .Net 4.5 & SharpDX.
-UWP version uses .NetCore & SharpDX.
-OpenGL port coming soon.
-
-
-
-
-
-
-	
-	
-	
 Polish++
 
 
-boss door bug
-when we build the boss door's welcome mat, we need to place it based on the door.direction
-right now, it just places it south of the door, and the boss door will not always be south facing.
-
-
-
-
-collision particle should center to the spike block upon collision
-
-increase obj count to 200
-increase projectile count to 150
-
-need horizontal bridges
 
 
 Create CheatsScreen - or this could be part of game ctrls
-
-WorldUI++
-we should be displaying the amount of arrows, bombs in the worldUI
-this way user can see how many they have left
-
-
 
 less instances on sfx list for text
 more instnaces on sfx list for bomb explosions
@@ -295,18 +309,9 @@ dungeon run text should blink, just like summary screen
 should this be part of the animatedTitle's functions_class as well?
 functions.Blink(Title), where title.blinkSpeed is used?
 
-Bug
-when a game is loaded, we need to set the hero's loadout to be default
-sword, no item, plain cloth
-there is a bug where we can set the hero's loadout on one file,
-then load a different file, and the hero's loadout hasn't changed
-this lets the hero have a bow and fireball on a game where he doesn't have those items..
 
-Add hearts to vendor items
-player should be able to purchase heart pieces from the vendor, for gold
-4 heart pieces add up to a complete heart increase
-remove heart pieces from chests
-chests only contain gold, big key, or map
+
+
 
 
 
@@ -366,6 +371,9 @@ so we could prompt the user with a dialog that asks 'load uncorrupted data?'
 	
 
 	
+	
+	
+	
 Polish
 
 	implement the following items:
@@ -398,8 +406,6 @@ Polish
 	there should be a dog actor that chases the hero around
 	this dog actor is an enemy, but never attacks and has it's own AI.
 	
-	
-
 	what if we pushed the hero a little bit in the opposite direction of the fireball being cast?
 	this would make it seem like the 'weight' of the fireball pushed him back	
 	
@@ -409,7 +415,6 @@ Polish
 	re-mix the boss music, making drums much less prominent in the mix
 	also, mix the drums down to mono in session - we're getting phase issues when we convert to mono later
 
-	
 	puzzle: conveyor belt that pushes the hero away from something
 	solution: hit the switch, turn the belts off, so hero can move around
 	we could even put them on a timer and play a timer tick sound, suspending the music
@@ -425,12 +430,6 @@ Polish
 
 	we could add a spear projectile for blob enemies
 
-	it would also be fairly easy to add the flamethrower obj
-	which duplicates the functionality of casting a fireball, just like hero does
-
-
-	
-	
 Stuff that needs to be done, but it's not terribly important rn	
 	
 	we need a fairy projectile
@@ -461,11 +460,8 @@ Stuff that needs to be done, but it's not terribly important rn
 	same with hit sound, death sound, use sound.
 	
 	implement additional weapons / items
-	weapons : { bow, staff, axe }
+	weapons : { staff, axe }
 	items : { lightning, boomerang }
-	
-	
-	
 	
 Maybes / Ideas	
 
@@ -482,31 +478,6 @@ Maybes / Ideas
 
 
 	
-Taking it Further
-
-	design dungeons as a whole
-	dungeons should have a theme
-	there should be 'architectural puzzles', where the dungeon changes in some way
-	this could be raising/lowering water levels
-	moving forward/backwards in time
-	destroying parts of the dungeon/rooms
-	using switches to alter the paths thru rooms, or alter the nature of rooms
-	for example, turning conveyo belts on/off, or spike traps
-	
-	in addition to these architectural puzzles, dungeons should also have a key item
-	this key item must be collected to complete the dungeon
-	for example, the hammer knocks down posts
-	the hookshot pulls hero across gaps
-	
-	there are certain zelda puzzle tropes to be followed to:
-	block puzzle - move a block or series of blocks into place, to press a switch / chest / etc
-	enemy puzzle - kill all enemies / miniboss / boss
-	shooting puzzle - shoot an eye or some object with an arrow / boomerang / projectile
-	torch puzzle - light 3-4 torches
-	
-	
-	
-	
 Look at how stardew valley engages players
 	theres so much to do and explore
 	we need more to do and explore
@@ -515,8 +486,6 @@ Look at how stardew valley engages players
 	should be able to manage traders, adventurers, etc.. like assassins creed blackflag minigame
 	should be able to craft advanced items, using special parts + gold
 	just a ton of additional stuff layered on top of the dungeon running, that is supporting core gameplay
-	
-	
 	
 damascus appararel / 5060.bigcartel
 - we could turn the style of the game into shirts + apparel too

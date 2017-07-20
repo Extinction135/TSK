@@ -33,10 +33,12 @@ namespace DungeonRun
 
         public List<ComponentButton> buttons; //save, new, load buttons
         public ComponentButton saveBtn;
-        public ComponentButton newBtn;
+        public ComponentButton playBtn;
         public ComponentButton loadBtn;
-        public ComponentButton updateBtn;
 
+        public ComponentButton newRoomBtn;
+        public ComponentButton roomTypeBtn;
+        public RoomType roomType;
 
 
 
@@ -238,15 +240,18 @@ namespace DungeonRun
 
             buttons = new List<ComponentButton>();
             saveBtn = new ComponentButton("save", new Point(16 * 1, 16 * 15 + 8));
-            newBtn = new ComponentButton("new", new Point(16 * 2 + 13, 16 * 15 + 8));
+            playBtn = new ComponentButton("play", new Point(16 * 2 + 13, 16 * 15 + 8));
             loadBtn = new ComponentButton("load", new Point(16 * 4 + 10, 16 * 15 + 8));
             buttons.Add(saveBtn);
-            buttons.Add(newBtn);
+            buttons.Add(playBtn);
             buttons.Add(loadBtn);
-            
-            updateBtn = new ComponentButton("update room", new Point(16 * 1, 16 * 16 + 8));
-            buttons.Add(updateBtn);
 
+            newRoomBtn = new ComponentButton("new room", new Point(16 * 1, 16 * 16 + 8));
+            buttons.Add(newRoomBtn);
+
+            roomType = RoomType.Column;
+            roomTypeBtn = new ComponentButton("column", new Point(16 * 4, 16 * 16 + 8));
+            buttons.Add(roomTypeBtn);
 
             #endregion
 
@@ -304,17 +309,21 @@ namespace DungeonRun
             saveBtn.rec.Y = Y + 16 * 12 + 8;
             Functions_Component.CenterText(saveBtn);
 
-            newBtn.rec.X = X + 16 * 2 + 13 - 8;
-            newBtn.rec.Y = Y + 16 * 12 + 8;
-            Functions_Component.CenterText(newBtn);
+            playBtn.rec.X = X + 16 * 2 + 13 - 8;
+            playBtn.rec.Y = Y + 16 * 12 + 8;
+            Functions_Component.CenterText(playBtn);
 
             loadBtn.rec.X = X + 16 * 4 + 10 - 8;
             loadBtn.rec.Y = Y + 16 * 12 + 8;
             Functions_Component.CenterText(loadBtn);
 
-            updateBtn.rec.X = X + 16 * 1 - 8;
-            updateBtn.rec.Y = Y + 16 * 13 + 8;
-            Functions_Component.CenterText(updateBtn);
+            newRoomBtn.rec.X = X + 16 * 1 - 8;
+            newRoomBtn.rec.Y = Y + 16 * 13 + 8;
+            Functions_Component.CenterText(newRoomBtn);
+
+            roomTypeBtn.rec.X = X + 16 * 4 - 8 - 1;
+            roomTypeBtn.rec.Y = Y + 16 * 13 + 8;
+            Functions_Component.CenterText(roomTypeBtn);
 
             #endregion
 
