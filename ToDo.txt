@@ -42,30 +42,14 @@ todo:
 
 
 
-Create EnemySpawn game objects, add them to RBWidget (Editor)
+Polish EnemySpawn GameObject, Add EnemySpawns 2 & 3
 
-created enemy spawn sprites for 5 levels of enemy.
-these sprites exist in the main sheet.
-updated main sheets of UWP and Dx projects.
-
-added values to ObjType enum for EnemySpawns 1, 2, 3.
-added anim list values for EnemySpawns 1, 2, 3 to Func_GameObjAnimList.
-updated Func_GameObj.SetType() with routine for EnemySpawns1, 2, 3.
-
-added EnemySpawn value to ObjGroup enum.
-updated Func_GameObj.SetType() to set EnemySpawn's ObjGroup.
-
-updated RBwidget to display enemy spawn objs instead of enemy actor sprites.
-however, this RBwidget is only displaying enemy spawn type 1 for now.
+added enemy spawns 2 and 3 to RBwidget.
+playtested, working as expected.
+updated the look/style of enemy spawn obj sprites.
 playtested, working as expected.
 
 
-
-
-add enemy spawn 2 and 3 to editor
-remove 4/5 from editor
-
-improve the visual look of spawn objects - they should only have border, not filled center
 
 
 

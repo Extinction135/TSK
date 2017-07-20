@@ -43,14 +43,94 @@
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>-8</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>-8</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>136</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>168</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>136</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>168</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>312</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>312</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>-8</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>-8</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>136</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>168</posX>
+      <posY>-8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>136</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>168</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>312</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>WallTorch</type>
+      <posX>312</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>280</posX>
-      <posY>67</posY>
+      <posY>45</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>56</posX>
-      <posY>60</posY>
+      <posY>62</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SwitchBlockUp</type>
@@ -221,6 +301,16 @@
       <type>SpawnEnemy1</type>
       <posX>24</posX>
       <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy2</type>
+      <posX>40</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy3</type>
+      <posX>56</posX>
+      <posY>72</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

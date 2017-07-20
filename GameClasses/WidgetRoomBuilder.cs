@@ -169,7 +169,18 @@ namespace DungeonRun
                 GameObject enemySpawn = new GameObject(Assets.mainSheet);
                 enemySpawn.compMove.newPosition.X = 16 * i + 8;
                 enemySpawn.compMove.newPosition.Y = 16 * 12;
-                Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy1);
+
+                if (i == 1)
+                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy1); }
+                else if (i == 2)
+                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
+                else if (i == 3)
+                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy3); }
+                else if (i == 4)
+                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
+                else if (i == 5)
+                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy1); }
+
                 Functions_Animation.Animate(enemySpawn.compAnim, enemySpawn.compSprite);
                 objList.Add(enemySpawn); //index 35-39
             }
