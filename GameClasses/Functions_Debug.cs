@@ -201,11 +201,7 @@ namespace DungeonRun
                 if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Inspect(); }
             }
 
-
-            //toggle the paused boolean
-            if (Functions_Input.IsNewKeyPress(Keys.Space))
-            { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
-
+            
 
             //dump the states for every active actor if Enter key is pressed
             if (Functions_Input.IsNewKeyPress(Keys.Enter))
@@ -300,8 +296,20 @@ namespace DungeonRun
 
             #endregion
 
-            
-            //f6 kill all enemies
+
+            #region F6 - Kill all active enemies
+
+            if (Functions_Input.IsNewKeyPress(Keys.F6))
+            {
+                for (i = 1; i < Pool.actorCount; i++) //skip actorPool[0] (hero)
+                {
+                    if (Pool.actorPool[i].active) //deal 1 point of damage to all active actors
+                    { Functions_Battle.Damage(Pool.actorPool[i], 1, 0.0f, Direction.Down); }
+                }
+            }
+
+            #endregion
+
 
         }
 

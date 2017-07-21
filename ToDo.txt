@@ -43,45 +43,21 @@ todo:
 
 
 
+Add 'Damage All' top menu button
 
-
-
-
-Add 'Play/Pause' top menu button
-
-added 'play/pause' button to top menu.
-added keyboard input for button using F5 key.
-this button toggles Flags.Paused boolean.
-playtested, working as expected.
-
-removed 'play' button from RBwidget.
-it's no longer needed, as this functionality is now located in topMenu.
+added 'Damage All' button to top menu.
+added keyboard input for button using F6 key.
+this button deals 1 damage to all active enemies on screen.
+this allows us to easily test killing enemies and bosses.
+playtested, and after some changes, working as expected.
 
 
 
 
 
 
-add top menu button to control draw of bottomInfo panel
-f4 draw info
 
-f5 play/pause
-
-
-we can remove play button from RBwidget
-
-
-
-
-f6 kill enemies
-
-we should be able to 'clear enemies' (releases the actor pool) - easy
-this should be part of the top menu - should KILL all active enemies - including boss
-
-
-
-
-
+if we kill the boss in editor, the summary screen appears
 
 
 

@@ -76,7 +76,7 @@ namespace DungeonRun
             if (damage > 0) { Damage(Actor, damage, force, direction); }
         }
 
-        static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
+        public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
         {   //only damage/hit/push actors not in the hit state
             if (Actor.state != ActorState.Hit)
             {   //set actor into hit state, push actor the projectile's direction
