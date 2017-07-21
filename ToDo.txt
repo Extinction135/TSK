@@ -42,13 +42,16 @@ todo:
 
 
 
-Seperately manage the Debug TopMenu and BottomInfo panels
 
-added Flags.EnableTopMenu & Flags.DrawDebugInfo booleans.
-these control the topMenu and bottomInfo, respectively.
-removed Flags.Debug boolean.
-refactored how DungeonScreen handles input for debug top menu.
-updated how DungeonScreen draws topMenu and bottomInfo, to use the new Flag booleans.
+Allow TopMenu button input using Keyboard keys F1, F2, F3
+
+made top menu button placement relative to left neighbor.
+this makes it much easier to add additional buttons to top menu.
+udpated top menu buttons with F1, F2, F3 preface, in prep for keyboard input.
+
+removed cursor input for top menu buttons.
+updated HandleTopMenuInput() to check for keyboard input.
+we are now controlling the top menu buttons using the F1, F2, F3 keys.
 playtested, working as expected.
 
 
@@ -57,21 +60,12 @@ playtested, working as expected.
 
 
 
-
-need more control over the drawing of top debug menu and bottom debug menu
-we need two booleans to control each one
+add top menu buttons to control draw of bottomInfo panel
 
 
-
-
-
-need to top menu button to hide/show debug info on bottom
-the top menu buttons should be prefaced with F1, F2, F3, F4
-so we can hit these buttons via keyboard when we need to
-
-
-
-
+add topMenu button called 'spacebar - play/pause'
+change text based on the paused boolean
+we can remove this button from RBwidget
 
 
 

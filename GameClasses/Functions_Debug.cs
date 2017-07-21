@@ -194,12 +194,13 @@ namespace DungeonRun
 
         public static void HandleTopMenuInput()
         {
+
             //if the game is in debug mode, dump info on clicked actor/obj
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {   //user must hold down ctrl button to call Inspect()
-                if (Functions_Input.IsKeyDown(Keys.LeftControl))
-                { Functions_Debug.Inspect(); }
+                if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Inspect(); }
             }
+
 
             //toggle the paused boolean
             if (Functions_Input.IsNewKeyPress(Keys.Space))
@@ -215,45 +216,40 @@ namespace DungeonRun
                     { Inspect(Pool.actorPool[Pool.counter]); }
                 }
             }
-            //check each button for user mouse button input (click + hover states)
-            for (DebugMenu.counter = 0; DebugMenu.counter < DebugMenu.buttons.Count; DebugMenu.counter++)
-            {   //check each button to see if it contains the cursor
-                if (DebugMenu.buttons[DebugMenu.counter].rec.Contains(Input.cursorPos))
-                {   //any button containing the cursor draws with 'over' color
-                    DebugMenu.buttons[DebugMenu.counter].currentColor = Assets.colorScheme.buttonOver;
-                    if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                    {   //any button clicked on becomes selected
+
+            
 
 
-                        #region Button Events
 
-                        if (DebugMenu.counter == 0) //draw collisions button
-                        {   //toggle draw collision boolean
-                            if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
-                            else { Flags.DrawCollisions = true; }
-                            //match the draw collisions boolean for the selected state
-                            DebugMenu.buttons[DebugMenu.counter].selected = Flags.DrawCollisions;
-                        }
-                        else if (DebugMenu.counter == 1) //max gold button
-                        {   //set the player's gold to 99
-                            PlayerData.current.gold = 99;
-                            Assets.Play(Assets.sfxGoldPickup);
-                        }
-                        else if (DebugMenu.counter == 2) //dump saveData button
-                        {
-                            Inspect(PlayerData.current);
-                        }
-
-                        #endregion
-
-
-                    }
-                } //buttons not touching cursor return to button up color
-                else { DebugMenu.buttons[DebugMenu.counter].currentColor = Assets.colorScheme.buttonUp; }
-                //selected buttons get the button down color
-                if (DebugMenu.buttons[DebugMenu.counter].selected)
-                { DebugMenu.buttons[DebugMenu.counter].currentColor = Assets.colorScheme.buttonDown; }
+            //map keyboard input (F1-F5) to top menu button events
+            if (Functions_Input.IsNewKeyPress(Keys.F1))
+            {
+                //toggle draw collision boolean
+                if (Flags.DrawCollisions)
+                {
+                    Flags.DrawCollisions = false;
+                    DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonUp;
+                }
+                else
+                {
+                    Flags.DrawCollisions = true;
+                    DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonDown;
+                }
             }
+
+            if (Functions_Input.IsNewKeyPress(Keys.F2))
+            {
+                //set the player's gold to 99
+                PlayerData.current.gold = 99;
+                Assets.Play(Assets.sfxGoldPickup);
+            }
+
+            if (Functions_Input.IsNewKeyPress(Keys.F3))
+            {   //dump savedata
+                Inspect(PlayerData.current);
+            }
+
+
         }
 
     }
