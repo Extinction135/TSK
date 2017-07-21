@@ -217,11 +217,12 @@ namespace DungeonRun
                 }
             }
 
+
+
+
             
+            #region F1 - Toggle Collision Rec Drawing
 
-
-
-            //map keyboard input (F1-F5) to top menu button events
             if (Functions_Input.IsNewKeyPress(Keys.F1))
             {
                 //toggle draw collision boolean
@@ -237,6 +238,11 @@ namespace DungeonRun
                 }
             }
 
+            #endregion
+
+
+            #region F2 - Max Gold
+
             if (Functions_Input.IsNewKeyPress(Keys.F2))
             {
                 //set the player's gold to 99
@@ -244,11 +250,39 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxGoldPickup);
             }
 
+            #endregion
+
+
+            #region F3 - Dump SaveData to Output
+
             if (Functions_Input.IsNewKeyPress(Keys.F3))
             {   //dump savedata
                 Inspect(PlayerData.current);
             }
 
+            #endregion
+
+
+            #region F4 - Toggle Drawing of InfoPanel
+
+            if (Functions_Input.IsNewKeyPress(Keys.F4))
+            {  
+                if (Flags.DrawDebugInfo)
+                {
+                    Flags.DrawDebugInfo = false;
+                    DebugMenu.buttons[3].currentColor = Assets.colorScheme.buttonUp;
+                }
+                else
+                {
+                    Flags.DrawDebugInfo = true;
+                    DebugMenu.buttons[3].currentColor = Assets.colorScheme.buttonDown;
+                }
+            }
+
+            #endregion
+            
+            //f5 play/pause toggle
+            //f6 kill all enemies
 
         }
 

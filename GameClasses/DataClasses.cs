@@ -399,6 +399,7 @@ namespace DungeonRun
             buttons.Add(new ComponentButton("f1 draw collisions", new Point(2, 2)));
             buttons.Add(new ComponentButton("f2 max gold", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton("f3 dump savedata", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f4 draw info", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
         }
     }
     

@@ -43,15 +43,13 @@ todo:
 
 
 
-Allow TopMenu button input using Keyboard keys F1, F2, F3
 
-made top menu button placement relative to left neighbor.
-this makes it much easier to add additional buttons to top menu.
-udpated top menu buttons with F1, F2, F3 preface, in prep for keyboard input.
+Add 'Draw Info' top menu button
 
-removed cursor input for top menu buttons.
-updated HandleTopMenuInput() to check for keyboard input.
-we are now controlling the top menu buttons using the F1, F2, F3 keys.
+added 'draw info' button to top menu.
+added keyboard input for button using F4 key.
+this button toggles Flags.DrawDebugInfo boolean.
+this hides/shows the bottom debug info panel.
 playtested, working as expected.
 
 
@@ -59,15 +57,18 @@ playtested, working as expected.
 
 
 
+add top menu button to control draw of bottomInfo panel
+f4 draw info
 
-add top menu buttons to control draw of bottomInfo panel
-
-
-add topMenu button called 'spacebar - play/pause'
-change text based on the paused boolean
-we can remove this button from RBwidget
+f5 play/pause
 
 
+we can remove play button from RBwidget
+
+
+
+
+f6 kill enemies
 
 we should be able to 'clear enemies' (releases the actor pool) - easy
 this should be part of the top menu - should KILL all active enemies - including boss
