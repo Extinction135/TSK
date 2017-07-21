@@ -37,7 +37,6 @@ namespace DungeonRun
                 Functions_Pool.SetDungeonTexture(Assets.shopSheet);
                 //create the shop room
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), RoomType.Shop, 0));
-
                 //keep the title music playing
                 Functions_Music.PlayMusic(Music.Title);
             }

@@ -157,7 +157,7 @@ namespace DungeonRun
                     {
                         using (stream)
                         { RBScreen.roomData = (RoomXmlData)serializer.Deserialize(stream); }
-                        RBScreen.BuildRoomData();
+                        RBScreen.BuildRoomData(RBScreen.roomData);
                     }
                 }
                 catch (Exception ex)

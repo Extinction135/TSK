@@ -155,11 +155,35 @@ namespace DungeonRun
             SetDoors(Room); //set the room's doors
             SetFloors(Room); //set the floortile frames based on room.type
 
+
+
+
+
+
+
+
             //pass the room to the appropriate method for completion
+
+            //procedurally finished rooms
             if (Room.type == RoomType.Exit) { FinishExitRoom(Room); }
-            else if (Room.type == RoomType.Hub) { FinishHubRoom(Room); }
-            else if (Room.type == RoomType.Boss) { FinishBossRoom(Room); }
             else if (Room.type == RoomType.Shop) { FinishShopRoom(Room); }
+            //else if (Room.type == RoomType.Secret) { FinishSecretRoom(Room); }
+
+            //rooms finished using XML roomData
+            else if (Room.type == RoomType.Column) { BuildRoomObjs(Assets.roomDataColumn[0]); }
+            else if (Room.type == RoomType.Row) { BuildRoomObjs(Assets.roomDataRow[0]); }
+            else if (Room.type == RoomType.Square) { BuildRoomObjs(Assets.roomDataSquare[0]); }
+
+            //rooms finished using XML roomData + procedurally added objects
+            else if (Room.type == RoomType.Key)
+            { BuildRoomObjs(Assets.roomDataKey[0]); } //add key chest in this room
+            else if (Room.type == RoomType.Hub)
+            { BuildRoomObjs(Assets.roomDataHub[0]); FinishHubRoom(Room); }
+            else if (Room.type == RoomType.Boss)
+            { BuildRoomObjs(Assets.roomDataBoss[0]); FinishBossRoom(Room); }
+
+
+
 
             //update all roomObjs, then remove overlapping objs
             Functions_Pool.UpdateRoomObjPool();
@@ -169,6 +193,11 @@ namespace DungeonRun
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
         }
+
+
+
+
+
 
 
 
@@ -208,36 +237,6 @@ namespace DungeonRun
                 else if (Room.type == RoomType.Exit) { Pool.floorPool[i].currentFrame.Y = 0; }
                 else if (Room.type == RoomType.Boss) { Pool.floorPool[i].currentFrame.Y = 1; }
                 else { Pool.floorPool[i].currentFrame.Y = 0; }
-            }
-        }
-
-        public static void SpawnEnemies(Room Room)
-        {
-            if (Flags.SpawnMobs)
-            {
-                //place enemies within the room
-                for (i = 0; i < 10; i++)
-                {
-                    actorRef = Functions_Pool.GetActor();
-                    //we SHOULD be checking to see if actorRef is null..
-                    //but because we reset the pool earlier in this function,
-                    //and the room's enemy count will never be larger than the total actors
-                    //we'll never get a null result from GetActor() right here
-                    Functions_Actor.SetType(actorRef, ActorType.Blob);
-                    //get a random value between the min/max size of room
-                    int randomX = Functions_Random.Int(-Room.size.X + 2, Room.size.X - 2);
-                    int randomY = Functions_Random.Int(-Room.size.Y + 2, Room.size.Y - 2);
-                    //divide random value in half
-                    randomX = randomX / 2;
-                    randomY = randomY / 2;
-                    //ensure this value isn't 0
-                    if (randomX == 0) { randomX = 1; }
-                    if (randomY == 0) { randomY = 1; }
-                    //teleport actor to center of room, apply random offset
-                    Functions_Movement.Teleport(actorRef.compMove,
-                        Room.center.X + 16 * randomX + 8,
-                        Room.center.Y + 16 * randomY + 8);
-                }
             }
         }
 
@@ -469,6 +468,14 @@ namespace DungeonRun
 
 
 
+
+
+
+
+
+
+        //rooms that are procedurally 'finished' - exit, shop, secret
+
         public static void FinishExitRoom(Room Room)
         {
             PlaceExit(Room);
@@ -500,6 +507,169 @@ namespace DungeonRun
             Functions_Movement.Teleport(objRef.compMove,
                 7 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
             Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+        }
+
+        public static void FinishShopRoom(Room Room)
+        {
+            PlaceExit(Room);
+
+
+            #region Place some test shop objects
+
+            //bookcase
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                5 * 16 + pos.X + 8,
+                0 * 16 + pos.Y + 0);
+            Functions_GameObject.SetType(objRef, ObjType.BlockDark);
+            //drawers
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8,
+                0 * 16 + pos.Y + 0);
+            Functions_GameObject.SetType(objRef, ObjType.BlockLight);
+
+            #endregion
+
+
+            //create all the vendors
+            CreateVendor(ObjType.VendorItems, new Vector2(1 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorPotions, new Vector2(4 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorMagic, new Vector2(7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorWeapons, new Vector2(10 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorArmor, new Vector2(13 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+            CreateVendor(ObjType.VendorEquipment, new Vector2(16 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
+
+            //create story vendor
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8,
+                8 * 16 + pos.Y + 0);
+            Functions_GameObject.SetType(objRef, ObjType.VendorStory);
+        }
+
+        //public static void FinishSecretRoom(RoomRoom){}
+
+        public static void FinishBossRoom(Room Room)
+        {
+            //randomly place debris around room
+            for (i = 0; i < 30; i++)
+            {
+                objRef = Functions_Pool.GetRoomObj();
+                Functions_Movement.Teleport(objRef.compMove,
+                    Functions_Random.Int(0, Room.size.X) * 16 + pos.X + 8,
+                    Functions_Random.Int(0, Room.size.Y) * 16 + pos.Y + 8);
+                objRef.direction = Direction.Down;
+                Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
+            }
+
+            //spawn a boss actor
+            actorRef = Functions_Pool.GetActor();
+            Functions_Actor.SetType(actorRef, ActorType.Boss);
+            //teleport boss to center of room
+            Functions_Movement.Teleport(actorRef.compMove,
+                Room.center.X + 8,
+                Room.center.Y + 8);
+        }
+
+
+
+
+
+
+
+        //rooms finished using XML roomData - row, column, square, boss, key, hub
+
+        public static void BuildRoomObjs(RoomXmlData RoomXmlData)
+        {
+
+            #region Create room objs & enemies
+
+            if (RoomXmlData != null && RoomXmlData.objs.Count > 0)
+            {
+                for (i = 0; i < RoomXmlData.objs.Count; i++)
+                {   //create a roomObj for each XML obj
+                    objRef = Functions_Pool.GetRoomObj();
+                    Functions_Movement.Teleport(objRef.compMove,
+                        Functions_Dungeon.currentRoom.collision.rec.X + RoomXmlData.objs[i].posX,
+                        Functions_Dungeon.currentRoom.collision.rec.Y + RoomXmlData.objs[i].posY);
+                    objRef.direction = Direction.Down; //we'll need to save this later
+                    Functions_GameObject.SetType(objRef, RoomXmlData.objs[i].type); //get type
+
+                    //create enemies at enemySpawn obj locations
+                    if (objRef.group == ObjGroup.EnemySpawn)
+                    {
+                        actorRef = Functions_Pool.GetActor();
+                        if (actorRef != null)
+                        {
+                            //we should be checking what level of enemy to create
+                            Functions_Actor.SetType(actorRef, ActorType.Blob);
+                            Functions_Movement.Teleport(actorRef.compMove,
+                                objRef.compSprite.position.X,
+                                objRef.compSprite.position.Y);
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
+
+            #region Check enemySpawn obj visibility
+
+            if (Flags.ShowEnemySpawns == false)
+            {   //find any spawnObj, set obj.active = false
+                for (i = 0; i < Pool.roomObjCount; i++)
+                {
+                    if (Pool.roomObjPool[i].group == ObjGroup.EnemySpawn)
+                    { Pool.roomObjPool[i].active = false; }
+                }
+            }
+
+            #endregion
+
+
+            //if (RoomXmlData.type == RoomType.Boss)
+            //{ } //add boss actor, scatter debris around room
+        }
+
+
+
+
+
+
+
+
+        //methods that will get deleted once XML loading works properly
+
+        public static void SpawnEnemies(Room Room)
+        {
+            if (Flags.SpawnMobs)
+            {
+                //place enemies within the room
+                for (i = 0; i < 10; i++)
+                {
+                    actorRef = Functions_Pool.GetActor();
+                    //we SHOULD be checking to see if actorRef is null..
+                    //but because we reset the pool earlier in this function,
+                    //and the room's enemy count will never be larger than the total actors
+                    //we'll never get a null result from GetActor() right here
+                    Functions_Actor.SetType(actorRef, ActorType.Blob);
+                    //get a random value between the min/max size of room
+                    int randomX = Functions_Random.Int(-Room.size.X + 2, Room.size.X - 2);
+                    int randomY = Functions_Random.Int(-Room.size.Y + 2, Room.size.Y - 2);
+                    //divide random value in half
+                    randomX = randomX / 2;
+                    randomY = randomY / 2;
+                    //ensure this value isn't 0
+                    if (randomX == 0) { randomX = 1; }
+                    if (randomY == 0) { randomY = 1; }
+                    //teleport actor to center of room, apply random offset
+                    Functions_Movement.Teleport(actorRef.compMove,
+                        Room.center.X + 16 * randomX + 8,
+                        Room.center.Y + 16 * randomY + 8);
+                }
+            }
         }
 
         public static void FinishHubRoom(Room Room)
@@ -557,6 +727,7 @@ namespace DungeonRun
             }
             */
 
+            /*
             //Create testing spike blocks
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
@@ -595,10 +766,15 @@ namespace DungeonRun
                 13 * 16 + pos.X + 8,
                 5 * 16 + pos.Y + 8);
             Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
+            */
 
             #endregion
 
 
+
+            //move this into it's own function
+            //randomly add wall statue to random wall
+       
             #region Create Wall Statues
 
             //place test wall statue object - top wall
@@ -636,69 +812,9 @@ namespace DungeonRun
             #endregion
 
 
-            SpawnEnemies(Room);
+            //SpawnEnemies(Room);
         }
 
-        public static void FinishBossRoom(Room Room)
-        {
-            //randomly place debris around room
-            for (i = 0; i < 30; i++)
-            {
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    Functions_Random.Int(0, Room.size.X) * 16 + pos.X + 8,
-                    Functions_Random.Int(0, Room.size.Y) * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
-            }
-
-            //spawn a boss actor
-            actorRef = Functions_Pool.GetActor();
-            Functions_Actor.SetType(actorRef, ActorType.Boss);
-            //teleport boss to center of room
-            Functions_Movement.Teleport(actorRef.compMove,
-                Room.center.X + 8,
-                Room.center.Y + 8);
-        }
-
-        public static void FinishShopRoom(Room Room)
-        {
-            PlaceExit(Room);
-
-
-            #region Place some test shop objects
-
-            //bookcase
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                5 * 16 + pos.X + 8,
-                0 * 16 + pos.Y + 0);
-            Functions_GameObject.SetType(objRef, ObjType.BlockDark);
-            //drawers
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8,
-                0 * 16 + pos.Y + 0);
-            Functions_GameObject.SetType(objRef, ObjType.BlockLight);
-
-            #endregion
-
-
-            //create all the vendors
-            CreateVendor(ObjType.VendorItems, new Vector2(1 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-            CreateVendor(ObjType.VendorPotions, new Vector2(4 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-            CreateVendor(ObjType.VendorMagic, new Vector2(7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-            CreateVendor(ObjType.VendorWeapons, new Vector2(10 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-            CreateVendor(ObjType.VendorArmor, new Vector2(13 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-            CreateVendor(ObjType.VendorEquipment, new Vector2(16 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
-
-            //create story vendor
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8,
-                8 * 16 + pos.Y + 0);
-            Functions_GameObject.SetType(objRef, ObjType.VendorStory);
-        }
-
+        
     }
 }

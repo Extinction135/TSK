@@ -41,12 +41,98 @@ todo:
 
 
 
-Hide EnemySpawn Objects, using a control boolean
 
-added Flags.ShowEnemySpawns boolean.
-this controls if enemySpawn objs are active, and thus drawn.
-enemy spawn objs always get created upon roomData XML build.
+
+
+Build Hub and Boss Rooms from Editor created RoomXMLData
+
+moved building of room objs and check for enemy spawns into method BuildRoomObjs(RoomXmlData).
+updated BuildRoomData() to accept RoomXmlData parameter, becoming BuildRoomData(RoomXmlData).
+this was done in prep for loading/building rooms in-game, not just in editor.
+
+moved BuildRoomObjs() into Functions_Room.
+created base roomData for Boss, Column, Hub, Key, Row, and Square rooms.
+fixed a bug where the room.type was not being passed to the roomData about to be saved.
 playtested, working as expected.
+
+updated BuildRoom() to load XML data for Hub & Boss rooms.
+playtested, working as expected.
+hub and boss rooms are built from editor made roomData, with procedural additions.
+
+
+
+
+
+
+
+
+
+
+part2 - todo
+
+replace how hub & boss room is created
+should build from xml data, not procedurally
+we can test this NOW
+
+
+
+we need to update how the basic dungeon is created:
+exit -> column -> row -> square -> hub -> boss & key
+*hub has 3 room connections, square south, boss north, key right
+this will allow us to test the building of rooms from XML data
+
+instead of choosing a random element from an xml list, choose the 0th element
+we will randomize this later, when we have more than 1 data file per room type
+
+
+
+
+
+
+
+
+procedurally add key chest to key room
+this is necessary to complete the dungeon
+
+do not procedurally add shit to hub room, as we are doing right now..
+
+we do properly add shit to boss room tho
+
+
+
+
+
+
+load all roomData into assets.xml list
+when hero enters a dungeon, we build that dungeon's layout + door locations
+when hero enters a room, we build that room
+	prebuild, we choose procedural or xmlData
+	xmlData is randomly chosen
+	basic room is built (room position, size, walls, doors)
+	interior room objs are added (from the xml)
+
+
+
+
+	
+	
+	
+Dungeon generation part1
+replace the current routine for creating hub room with random element from assets.roomDataHub
+we'll need to move the loading of XML objects out of RBScreen.BuildRoomData().
+this should exist in Functions_Room as LoadRoomObjects(Room, XMLRoomData).
+we should call this method from RBScreen.BuildRoomData().
+we will use this method when we initially create the basic dungeon (for hub & boss rooms).
+exit is built procedurally, as normal. same with shop.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -62,42 +148,6 @@ this is fine, we just need a way to get back to editor
 
 
 
-
-
-
-
-
-
-
-
-Build RoomData - for Hub, Boss, Key, Column, Row, Square
-
-we need actual room data for all room types (hub, boss, key, column, row, square).
-which means we need to be able to create 'blanks' of these room types.
-and we need to have a naming convention for the XML roomdata.
-something like - Hub_001, Key_002, etc..
-build a base library of roomData for all roomTypes (hub, boss, key, column, row, square).
-
-
-
-for boss rooms, we procedually add the boss to the middle of the room
-and scatter debris around the room as well
-
-
-
-
-
-
-load all this roomdata into game upon boot
-instead of calling 'FinishHubRoom' we're going to build the hub room from an element on the assets.roomDataHub list
-
-Dungeon generation part1
-replace the current routine for creating hub room with random element from assets.roomDataHub
-we'll need to move the loading of XML objects out of RBScreen.BuildRoomData().
-this should exist in Functions_Room as LoadRoomObjects(Room, XMLRoomData).
-we should call this method from RBScreen.BuildRoomData().
-we will use this method when we initially create the basic dungeon (for hub & boss rooms).
-exit is built procedurally, as normal. same with shop.
 
 
 

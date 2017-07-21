@@ -26,7 +26,7 @@ namespace DungeonRun
         public GameObject grabbedObj;
         public RoomXmlData roomData;
         GameObject objRef;
-        Actor actorRef;
+
 
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
@@ -39,7 +39,7 @@ namespace DungeonRun
 
             //place hero onscreen & build default empty room
             Functions_Movement.Teleport(Pool.hero.compMove, 200, 150);
-            BuildRoomData();
+            BuildRoomData(roomData);
 
             //create the cursor sprite
             cursorSprite = new ComponentSprite(Assets.mainSheet,
@@ -157,6 +157,7 @@ namespace DungeonRun
                             {
                                 //create RoomXmlData instance
                                 roomData = new RoomXmlData();
+                                roomData.type = Functions_Dungeon.currentRoom.type; //save the room type
                                 //populate this instance with the room's objs
                                 for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
                                 {
@@ -188,7 +189,7 @@ namespace DungeonRun
                             {   //create a new room based on the type buttons state
                                 roomData = new RoomXmlData();
                                 roomData.type = RoomBuilder.roomType;
-                                BuildRoomData();
+                                BuildRoomData(roomData);
                             }
 
 
@@ -222,7 +223,7 @@ namespace DungeonRun
 
 
                             else if(RoomBuilder.buttons[i] == RoomBuilder.reloadRoomBtn)
-                            { BuildRoomData(); } //assumes roomData hasn't changed since last build
+                            { BuildRoomData(roomData); } //assumes roomData hasn't changed since last build
                         }
                     }
                 }
@@ -353,17 +354,14 @@ namespace DungeonRun
             return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
         
-
-
-
-        public void BuildRoomData()
+        public void BuildRoomData(RoomXmlData RoomXmlData)
         {
             Functions_Dungeon.dungeon = new Dungeon();
             Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
 
             //build the room
-            if (roomData != null)
-            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), roomData.type, 0); }
+            if (RoomXmlData != null)
+            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomXmlData.type, 0); }
             else
             { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomType.Row, 0); }
 
@@ -381,51 +379,8 @@ namespace DungeonRun
             Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + width, posY + middleY)); //Right Door
             //releases all roomObjs, builds walls + floors + doors
             Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
-            
-
-
-            //create room objs & enemies
-            if (roomData != null && roomData.objs.Count > 0)
-            {   
-                for (i = 0; i < roomData.objs.Count; i++)
-                {   //create a roomObj for each XML obj
-                    objRef = Functions_Pool.GetRoomObj();
-                    Functions_Movement.Teleport(objRef.compMove,
-                        Functions_Dungeon.currentRoom.collision.rec.X + roomData.objs[i].posX,
-                        Functions_Dungeon.currentRoom.collision.rec.Y + roomData.objs[i].posY);
-                    objRef.direction = Direction.Down; //we'll need to save this later
-                    Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
-
-                    //create enemies at enemySpawn obj locations
-                    if (objRef.group == ObjGroup.EnemySpawn)
-                    {
-                        actorRef = Functions_Pool.GetActor();
-                        if(actorRef != null)
-                        {
-                            //we should be checking what level of enemy to create
-                            Functions_Actor.SetType(actorRef, ActorType.Blob);
-                            Functions_Movement.Teleport(actorRef.compMove,
-                                objRef.compSprite.position.X,
-                                objRef.compSprite.position.Y);
-                        }
-                    }
-                }
-            }
-
-
-
-
-            //check enemySpawn obj visibility
-            if (Flags.ShowEnemySpawns == false)
-            {   //find any spawnObj, set obj.active = false
-                for (i = 0; i < Pool.roomObjCount; i++)
-                {
-                    if (Pool.roomObjPool[i].group == ObjGroup.EnemySpawn)
-                    { Pool.roomObjPool[i].active = false; }
-                }
-            }
-
-
+            //build interior room objects from xml data
+            Functions_Room.BuildRoomObjs(RoomXmlData);
 
             Functions_Pool.Update(); //update roomObjs once
             Flags.Paused = true; //initially freeze the loaded room

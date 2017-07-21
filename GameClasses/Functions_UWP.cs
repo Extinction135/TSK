@@ -158,7 +158,7 @@ namespace DungeonRun
                 Stream stream = await loadFile.OpenStreamForReadAsync();
                 using (stream)
                 { RBScreen.roomData = (RoomXmlData)serializer.Deserialize(stream); }
-                RBScreen.BuildRoomData();
+                RBScreen.BuildRoomData(RBScreen.roomData);
             }
         }
 
