@@ -44,7 +44,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Create Dungeon
+            #region Create Basic Testing Dungeon - no randomness YET
 
             else
             {   //set the objPool texture
@@ -54,17 +54,31 @@ namespace DungeonRun
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit, 0);
                 Room hubRoom = new Room(new Point(0, 0), RoomType.Hub, 1);
                 Room bossRoom = new Room(new Point(0, 0), RoomType.Boss, 2);
+                Room keyRoom = new Room(new Point(0, 0), RoomType.Key, 3);
+                Room columnRoom = new Room(new Point(0, 0), RoomType.Column, 4);
+                Room rowRoom = new Room(new Point(0, 0), RoomType.Row, 5);
+                Room squareRoom = new Room(new Point(0, 0), RoomType.Square, 6);
+
 
                 //place/move the rooms (relative to each other)
-                Functions_Room.MoveRoom(exitRoom, 16 * 10, 16 * 100);
-                Functions_Room.MoveRoom(hubRoom, 16 * 10, exitRoom.collision.rec.Y - (16 * hubRoom.size.Y) - 16);
+                Functions_Room.MoveRoom(exitRoom, 16 * 10, 16 * 200);
+                Functions_Room.MoveRoom(columnRoom, 16 * 10, exitRoom.collision.rec.Y - (16 * columnRoom.size.Y) - 16);
+                Functions_Room.MoveRoom(rowRoom, 16 * 10, columnRoom.collision.rec.Y - (16 * rowRoom.size.Y) - 16);
+                Functions_Room.MoveRoom(squareRoom, 16 * 10, rowRoom.collision.rec.Y - (16 * squareRoom.size.Y) - 16);
+                Functions_Room.MoveRoom(hubRoom, 16 * 10, squareRoom.collision.rec.Y - (16 * hubRoom.size.Y) - 16);
                 Functions_Room.MoveRoom(bossRoom, 16 * 10, hubRoom.collision.rec.Y - (16 * bossRoom.size.Y) - 16);
+                Functions_Room.MoveRoom(keyRoom, hubRoom.collision.rec.X - (16 * keyRoom.size.X) - 16, hubRoom.collision.rec.Y);
+
 
                 //add rooms to the rooms list
-                dungeon.rooms.Add(exitRoom);
+                dungeon.rooms.Add(exitRoom); //exit room must be at index0
                 dungeon.rooms.Add(hubRoom);
                 dungeon.rooms.Add(bossRoom);
-                
+                dungeon.rooms.Add(keyRoom);
+                dungeon.rooms.Add(columnRoom);
+                dungeon.rooms.Add(rowRoom);
+                dungeon.rooms.Add(squareRoom);
+
                 //create the door location points
                 List<Room> buildList = new List<Room>();
                 //add boss room first, followed by hub room
@@ -72,8 +86,14 @@ namespace DungeonRun
                 buildList.Add(hubRoom); //at index 0 of doorLocations
                 //then add whatever other rooms exist in dungeon
                 buildList.Add(exitRoom);
+                buildList.Add(keyRoom);
+                buildList.Add(columnRoom);
+                buildList.Add(rowRoom);
+                buildList.Add(squareRoom);
 
-                while(buildList.Count() > 0)
+
+
+                while (buildList.Count() > 0)
                 {   //check first room against remaining rooms
                     for (int i = 1; i < buildList.Count(); i++)
                     {   //if the two rooms are nearby
@@ -111,7 +131,7 @@ namespace DungeonRun
             Functions_Room.BuildRoom(dungeon.rooms[0]);
             currentRoom = dungeon.rooms[0];
 
-            //place hero in the current room (room 0), in front of exit door
+            //place hero in the current room (exit room, rooms[0]) in front of exit door
             Functions_Actor.SetType(Pool.hero, ActorType.Hero);
             Functions_Movement.Teleport(Pool.hero.compMove,
                 (currentRoom.size.X / 2) * 16 + currentRoom.collision.rec.X + 8,
@@ -129,7 +149,6 @@ namespace DungeonRun
             }
             //teleport camera to targetPos
             Camera2D.currentPosition = Camera2D.targetPosition;
-
 
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();

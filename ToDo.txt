@@ -44,47 +44,15 @@ todo:
 
 
 
-Build Hub and Boss Rooms from Editor created RoomXMLData
 
-moved building of room objs and check for enemy spawns into method BuildRoomObjs(RoomXmlData).
-updated BuildRoomData() to accept RoomXmlData parameter, becoming BuildRoomData(RoomXmlData).
-this was done in prep for loading/building rooms in-game, not just in editor.
 
-moved BuildRoomObjs() into Functions_Room.
-created base roomData for Boss, Column, Hub, Key, Row, and Square rooms.
-fixed a bug where the room.type was not being passed to the roomData about to be saved.
+Change Dungeon Layout to Test All Room Types
+
+updated the layout of the dungeon.
+the new layout tests all room types, except for secret rooms.
+layout is as follows: exit -> column -> row -> square -> hub -> boss & key
+hub has 3 room connections, square south, boss north, key left.
 playtested, working as expected.
-
-updated BuildRoom() to load XML data for Hub & Boss rooms.
-playtested, working as expected.
-hub and boss rooms are built from editor made roomData, with procedural additions.
-
-
-
-
-
-
-
-
-
-
-part2 - todo
-
-replace how hub & boss room is created
-should build from xml data, not procedurally
-we can test this NOW
-
-
-
-we need to update how the basic dungeon is created:
-exit -> column -> row -> square -> hub -> boss & key
-*hub has 3 room connections, square south, boss north, key right
-this will allow us to test the building of rooms from XML data
-
-instead of choosing a random element from an xml list, choose the 0th element
-we will randomize this later, when we have more than 1 data file per room type
-
-
 
 
 
@@ -93,59 +61,16 @@ we will randomize this later, when we have more than 1 data file per room type
 
 procedurally add key chest to key room
 this is necessary to complete the dungeon
+for now, we've procedurally added it to the hub room
 
-do not procedurally add shit to hub room, as we are doing right now..
+do not procedurally add alot objs to hub room, as we are doing right now..
 
-we do properly add shit to boss room tho
-
-
-
-
-
-
-load all roomData into assets.xml list
-when hero enters a dungeon, we build that dungeon's layout + door locations
-when hero enters a room, we build that room
-	prebuild, we choose procedural or xmlData
-	xmlData is randomly chosen
-	basic room is built (room position, size, walls, doors)
-	interior room objs are added (from the xml)
-
-
-
-
-	
-	
-	
-Dungeon generation part1
-replace the current routine for creating hub room with random element from assets.roomDataHub
-we'll need to move the loading of XML objects out of RBScreen.BuildRoomData().
-this should exist in Functions_Room as LoadRoomObjects(Room, XMLRoomData).
-we should call this method from RBScreen.BuildRoomData().
-we will use this method when we initially create the basic dungeon (for hub & boss rooms).
-exit is built procedurally, as normal. same with shop.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if we kill the boss in editor, the summary screen appears
-this is fine, we just need a way to get back to editor
-
-
+we add wall statues to hub room
+but its possible these wall statues overlap door decorations
+this causes a conflict, and we shouldn't be doing it like that
+we should instead randomly choose a couple of straight wall object from the room
+and modify those to be wall statues
+this fixes the pillar overlap problem, but the torch overlap problem remains
 
 
 
@@ -157,11 +82,12 @@ this is fine, we just need a way to get back to editor
 Dungeon generation part2
 here is where we actually create interesting, random dungeons.
 create a path from exit to hub.
-create a path from hub to key. place key chest in key room.
+create a path from hub to key.
 connect boss room to hub, so player knows where boss is early on.
-use roomData to populate hub, boss, key, column, row, and square rooms.
+
 create a dungeon map that shows the room layout.
-if hero has the dungeon map, display the dungeon map with select button.
+by default, set the dungeon map to true (for testing right now)
+
 
 Dungeon generation part3
 add secret rooms (via bombable walls), randomly place gold/heart piece chests
@@ -169,6 +95,12 @@ add routine for populating secret rooms (similar to populating exit room)
 add additional unnecessary distraction rooms
 place a chest with map in random distraction room.
 
+
+handle the dungeon map boolean properly
+if hero finds the dungeon map, flip the boolean true
+by default it should be false
+we should be able to set the boolean true using a topMenu button
+if hero has the dungeon map, display the dungeon map with select button.
 
 
 
@@ -187,6 +119,10 @@ increase projectile count to 150
 WorldUI++
 we should be displaying the amount of arrows, bombs in the worldUI
 this way user can see how many they have left
+
+if we kill the boss in editor, the summary screen appears
+this is fine, we just need a way to get back to editor
+
 
 
 
