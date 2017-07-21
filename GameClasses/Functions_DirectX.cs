@@ -34,8 +34,8 @@ namespace DungeonRun
             if (Type == GameFile.Game1) { filename = "game1.xml"; }
             else if (Type == GameFile.Game2) { filename = "game2.xml"; }
             else if (Type == GameFile.Game3) { filename = "game3.xml"; }
-            //Debug.WriteLine("save/load file: " + localFolder.Path + @"\" + filename);
-            Debug.WriteLine("save/load file: " + localFolder + filename);
+            if (Flags.PrintOutput)
+            { Debug.WriteLine("folder: " + localFolder + filename); }
         }
 
         public static void SaveGame(GameFile Type)
@@ -116,13 +116,12 @@ namespace DungeonRun
             }
             catch //file does not exist, cannot be loaded, save the current data to file address
             {
-                //Debug.WriteLine("file does not exist");
+                if (Flags.PrintOutput) { Debug.WriteLine("file does not exist"); }
                 SaveGame(Type); dialogType = Dialog.GameNotFound;
             }
             //if loaded data is current game, notify player of loading via dialog screen
             if (loadAsCurrentGame) { ScreenManager.AddScreen(new ScreenDialog(dialogType)); }
             //Functions_Debug.Inspect(PlayerData.saveData);
-            
         }
 
 
@@ -161,11 +160,12 @@ namespace DungeonRun
                     }
                 }
                 catch (Exception ex)
-                { MessageBox.Show("Error: Could not read file from disk. Error: " + ex.Message); }
+                {
+                    if (Flags.PrintOutput) { Debug.WriteLine("Error: " + ex.Message); }
+                    MessageBox.Show("Error: Could not read file from disk. Error: " + ex.Message);
+                }
             }
         }
-
-
 
         public static void LoadAllRoomData()
         {
@@ -174,10 +174,10 @@ namespace DungeonRun
                 SearchOption.AllDirectories
                 ).ToList();
 
-            Debug.WriteLine("loading room data...");
+            if (Flags.PrintOutput) { Debug.WriteLine("loading room data..."); }
             for(int i = 0; i < roomDataFiles.Count; i++)
             {
-                Debug.WriteLine("filepath: " + roomDataFiles[i]);
+                if (Flags.PrintOutput) { Debug.WriteLine("filepath: " + roomDataFiles[i]); }
                 RoomXmlData RoomData = new RoomXmlData();
                 FileStream stream = new FileStream(roomDataFiles[i], FileMode.Open);
                 using (stream)
@@ -190,7 +190,7 @@ namespace DungeonRun
                 else if (RoomData.type == RoomType.Row) { Assets.roomDataRow.Add(RoomData); }
                 else if (RoomData.type == RoomType.Square) { Assets.roomDataSquare.Add(RoomData); }
             }
-            Debug.WriteLine("load complete! total: " + roomDataFiles.Count);
+            if (Flags.PrintOutput) { Debug.WriteLine("load complete! total: " + roomDataFiles.Count); }
         }
 
     }

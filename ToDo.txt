@@ -45,14 +45,15 @@ todo:
 
 
 
+why do we have readme, spikes, and testData2.xml in the project solution explorer?
 
-Change Dungeon Layout to Test All Room Types
 
-updated the layout of the dungeon.
-the new layout tests all room types, except for secret rooms.
-layout is as follows: exit -> column -> row -> square -> hub -> boss & key
-hub has 3 room connections, square south, boss north, key left.
+
+added Flags.PrintOutput boolean.
+this boolean controls all printing of output to debugger.
+updated various routines to check Flags.PrintOutput prior to output.
 playtested, working as expected.
+
 
 
 

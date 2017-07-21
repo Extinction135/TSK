@@ -156,13 +156,7 @@ namespace DungeonRun
             SetFloors(Room); //set the floortile frames based on room.type
 
 
-
-
-
-
-
-
-            //pass the room to the appropriate method for completion
+            #region Pass the room to the appropriate method for completion
 
             //procedurally finished rooms
             if (Room.type == RoomType.Exit) { FinishExitRoom(Room); }
@@ -182,7 +176,7 @@ namespace DungeonRun
             else if (Room.type == RoomType.Boss)
             { BuildRoomObjs(Assets.roomDataBoss[0]); FinishBossRoom(Room); }
 
-
+            #endregion
 
 
             //update all roomObjs, then remove overlapping objs
@@ -192,12 +186,8 @@ namespace DungeonRun
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
+            if (Flags.PrintOutput) { Debug.WriteLine("built " + Room.type + " room"); }
         }
-
-
-
-
-
 
 
 
@@ -468,12 +458,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
         //rooms that are procedurally 'finished' - exit, shop, secret
 
         public static void FinishExitRoom(Room Room)
@@ -574,10 +558,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
         //rooms finished using XML roomData - row, column, square, boss, key, hub
 
         public static void BuildRoomObjs(RoomXmlData RoomXmlData)
@@ -632,11 +612,6 @@ namespace DungeonRun
             //if (RoomXmlData.type == RoomType.Boss)
             //{ } //add boss actor, scatter debris around room
         }
-
-
-
-
-
 
 
 

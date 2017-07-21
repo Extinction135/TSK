@@ -32,6 +32,7 @@ namespace DungeonRun
         public static Boolean DrawUDT = true; //draw the UpdateDrawTotal timing text?
         public static Boolean CameraTracksHero = true; //camera tracks hero or centers to current room
         public static Boolean ShowEnemySpawns = true; //create & draw enemySpawn gameObjects?
+        public static Boolean PrintOutput = true; //print output to the debugger
         //cheats
         public static Boolean Invincibility = false; //does hero take damage?
         public static Boolean InfiniteMagic = false; //enable magic cost
@@ -56,6 +57,7 @@ namespace DungeonRun
                 DrawUDT = true; //set this false for actual release
                 CameraTracksHero = true;
                 ShowEnemySpawns = false;
+                PrintOutput = true;
                 //cheats
                 Invincibility = false;
                 InfiniteMagic = false;

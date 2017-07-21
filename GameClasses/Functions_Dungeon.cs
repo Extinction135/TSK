@@ -49,7 +49,8 @@ namespace DungeonRun
             else
             {   //set the objPool texture
                 Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
-                
+                if (Flags.PrintOutput) { Debug.WriteLine("-- creating dungeon --"); }
+
                 //create the dungeon's rooms
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit, 0);
                 Room hubRoom = new Room(new Point(0, 0), RoomType.Hub, 1);
@@ -59,7 +60,6 @@ namespace DungeonRun
                 Room rowRoom = new Room(new Point(0, 0), RoomType.Row, 5);
                 Room squareRoom = new Room(new Point(0, 0), RoomType.Square, 6);
 
-
                 //place/move the rooms (relative to each other)
                 Functions_Room.MoveRoom(exitRoom, 16 * 10, 16 * 200);
                 Functions_Room.MoveRoom(columnRoom, 16 * 10, exitRoom.collision.rec.Y - (16 * columnRoom.size.Y) - 16);
@@ -68,8 +68,7 @@ namespace DungeonRun
                 Functions_Room.MoveRoom(hubRoom, 16 * 10, squareRoom.collision.rec.Y - (16 * hubRoom.size.Y) - 16);
                 Functions_Room.MoveRoom(bossRoom, 16 * 10, hubRoom.collision.rec.Y - (16 * bossRoom.size.Y) - 16);
                 Functions_Room.MoveRoom(keyRoom, hubRoom.collision.rec.X - (16 * keyRoom.size.X) - 16, hubRoom.collision.rec.Y);
-
-
+                
                 //add rooms to the rooms list
                 dungeon.rooms.Add(exitRoom); //exit room must be at index0
                 dungeon.rooms.Add(hubRoom);
@@ -92,7 +91,7 @@ namespace DungeonRun
                 buildList.Add(squareRoom);
 
 
-
+                if (Flags.PrintOutput) { Debug.WriteLine("connecting rooms..."); }
                 while (buildList.Count() > 0)
                 {   //check first room against remaining rooms
                     for (int i = 1; i < buildList.Count(); i++)
@@ -108,6 +107,11 @@ namespace DungeonRun
                         }
                     }
                     buildList.RemoveAt(0); //remove first room
+                }
+                if (Flags.PrintOutput)
+                {
+                    Debug.WriteLine("connected " + dungeon.rooms.Count + " rooms");
+                    Debug.WriteLine("created  " + dungeon.doorLocations.Count + " doors");
                 }
 
                 //dump door locations
@@ -282,5 +286,6 @@ namespace DungeonRun
             dungeonType = DungeonType.Shop;
             ScreenManager.ExitAndLoad(new ScreenDungeon());
         }
+
     }
 }

@@ -34,7 +34,8 @@ namespace DungeonRun
             if (Type == GameFile.Game1) { filename = "game1.xml"; }
             else if (Type == GameFile.Game2) { filename = "game2.xml"; }
             else if (Type == GameFile.Game3) { filename = "game3.xml"; }
-            //Debug.WriteLine("save/load file: " + localFolder.Path + @"\" + filename);
+            if (Flags.PrintOutput)
+            { Debug.WriteLine("folder: " + localFolder + filename); }
         }
 
         public static async void SaveGame(GameFile Type)
@@ -101,7 +102,6 @@ namespace DungeonRun
 
                 catch
                 {   //create dialog screen alerting user there was problem loading file
-                    //Debug.WriteLine("problem loading");
                     //overwrite any corrupt autosave data
                     SaveGame(GameFile.AutoSave);
                     //overwrite any corrupt game file with current game data
@@ -117,7 +117,7 @@ namespace DungeonRun
             }
             catch //file does not exist, cannot be loaded, save the current data to file address
             {
-                //Debug.WriteLine("file does not exist");
+                if (Flags.PrintOutput) { Debug.WriteLine("file does not exist"); }
                 SaveGame(Type); dialogType = Dialog.GameNotFound;
             }
             //if loaded data is current game, notify player of loading via dialog screen
@@ -166,13 +166,12 @@ namespace DungeonRun
         {
             StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             StorageFolder RoomDataFolder = await appInstalledFolder.GetFolderAsync("RoomData");
-
             var roomDataFiles = await RoomDataFolder.GetFilesAsync();
 
-            Debug.WriteLine("loading room data...");
+            if (Flags.PrintOutput) { Debug.WriteLine("loading room data..."); }
             for (int i = 0; i < roomDataFiles.Count; i++)
             {
-                Debug.WriteLine("filepath: " + roomDataFiles[i].Path);
+                if (Flags.PrintOutput) { Debug.WriteLine("filepath: " + roomDataFiles[i].Path); }
                 RoomXmlData RoomData = new RoomXmlData();
                 Stream stream = await roomDataFiles[i].OpenStreamForReadAsync();
                 using (stream)
@@ -185,7 +184,7 @@ namespace DungeonRun
                 else if (RoomData.type == RoomType.Row) { Assets.roomDataRow.Add(RoomData); }
                 else if (RoomData.type == RoomType.Square) { Assets.roomDataSquare.Add(RoomData); }
             }
-            Debug.WriteLine("load complete! total: " + roomDataFiles.Count);
+            if (Flags.PrintOutput) { Debug.WriteLine("load complete! total: " + roomDataFiles.Count); }
         }
 
     }
