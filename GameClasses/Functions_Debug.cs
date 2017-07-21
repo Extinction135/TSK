@@ -280,8 +280,27 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region F5 - Toggle Paused flag
+
+            if (Functions_Input.IsNewKeyPress(Keys.F5))
+            {
+                if (Flags.Paused)
+                {
+                    Flags.Paused = false;
+                    DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown;
+                }
+                else
+                {
+                    Flags.Paused = true;
+                    DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonUp;
+                }
+            }
+
+            #endregion
+
             
-            //f5 play/pause toggle
             //f6 kill all enemies
 
         }

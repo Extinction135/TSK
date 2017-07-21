@@ -31,7 +31,6 @@ namespace DungeonRun
 
         public List<ComponentButton> buttons; //save, new, load buttons
         public ComponentButton saveBtn;
-        public ComponentButton playBtn;
         public ComponentButton loadBtn;
 
         public ComponentButton newRoomBtn;
@@ -245,10 +244,8 @@ namespace DungeonRun
 
             buttons = new List<ComponentButton>();
             saveBtn = new ComponentButton("save", new Point(0, 0));
-            playBtn = new ComponentButton("play", new Point(0, 0));
             loadBtn = new ComponentButton("load", new Point(0, 0));
             buttons.Add(saveBtn);
-            buttons.Add(playBtn);
             buttons.Add(loadBtn);
 
             newRoomBtn = new ComponentButton("new room", new Point(0, 0));
@@ -328,10 +325,6 @@ namespace DungeonRun
             saveBtn.rec.X = X + 16 * 1 - 8;
             saveBtn.rec.Y = Y + 16 * 12 + 8;
             Functions_Component.CenterText(saveBtn);
-
-            playBtn.rec.X = X + 16 * 2 + 13 - 8;
-            playBtn.rec.Y = Y + 16 * 12 + 8;
-            Functions_Component.CenterText(playBtn);
 
             loadBtn.rec.X = X + 16 * 4 + 10 - 8;
             loadBtn.rec.Y = Y + 16 * 12 + 8;

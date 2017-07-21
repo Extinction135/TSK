@@ -44,13 +44,18 @@ todo:
 
 
 
-Add 'Draw Info' top menu button
 
-added 'draw info' button to top menu.
-added keyboard input for button using F4 key.
-this button toggles Flags.DrawDebugInfo boolean.
-this hides/shows the bottom debug info panel.
+
+
+Add 'Play/Pause' top menu button
+
+added 'play/pause' button to top menu.
+added keyboard input for button using F5 key.
+this button toggles Flags.Paused boolean.
 playtested, working as expected.
+
+removed 'play' button from RBwidget.
+it's no longer needed, as this functionality is now located in topMenu.
 
 
 

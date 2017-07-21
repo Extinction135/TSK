@@ -178,18 +178,6 @@ namespace DungeonRun
 
                             #endregion
 
-
-                            #region Play Button
-
-                            else if (RoomBuilder.buttons[i] == RoomBuilder.playBtn)
-                            {
-                                if (Flags.Paused) { Flags.Paused = false; }
-                                else { Flags.Paused = true; }
-                            }
-
-                            #endregion
-
-
                             //Load Button
                             else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)
                             { Functions_Backend.SelectRoomFile(this); }
@@ -231,11 +219,9 @@ namespace DungeonRun
 
                             #endregion
 
+
                             else if(RoomBuilder.buttons[i] == RoomBuilder.reloadRoomBtn)
-                            {
-                                //assumes roomData hasn't changed since last build
-                                BuildRoomData();
-                            }
+                            { BuildRoomData(); } //assumes roomData hasn't changed since last build
                         }
                     }
                 }
@@ -346,10 +332,6 @@ namespace DungeonRun
         {
             base.Update(GameTime);
             RoomBuilder.Update();
-            //set the update room button color
-            if (Flags.Paused)
-            { RoomBuilder.playBtn.currentColor = Assets.colorScheme.buttonUp; }
-            else { RoomBuilder.playBtn.currentColor = Assets.colorScheme.buttonDown; }
         }
 
         public override void Draw(GameTime GameTime)
