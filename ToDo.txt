@@ -41,10 +41,13 @@ todo:
 
 
 
-Create Blob Enemies at EnemySpawn Obj locations upon a room build
 
-updated BuildRoomData() to create a blob enemy at the location of any enemy spawn.
-updated BuildRoomData() to initially pause the game after a load.
+Add Reload Room Button to Editor
+
+added 'reload' button to RBwidget.
+updated RBScreen to call BuildRoom() upon ReloadBtn click.
+this simply builds the room using the current roomData.
+assuming the roomData hasn't changed, this reloads the last loaded room.
 playtested, working as expected.
 
 
@@ -52,16 +55,19 @@ playtested, working as expected.
 
 
 
-we should be able to 'reload' the current room (rebuild from roomData) - super easy
+
+
 we should be able to 'clear enemies' (releases the actor pool) - easy
-
-
-
-
+this should be part of the top menu - should KILL all active enemies - including boss
 
 need to top menu button to hide/show debug info on bottom
 the top menu buttons should be prefaced with F1, F2, F3, F4
 so we can hit these buttons via keyboard when we need to
+
+
+
+
+
 
 
 

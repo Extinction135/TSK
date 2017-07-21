@@ -38,7 +38,7 @@ namespace DungeonRun
         public ComponentButton roomTypeBtn;
         public RoomType roomType;
 
-
+        public ComponentButton reloadRoomBtn;
 
 
         public WidgetRoomBuilder()
@@ -241,22 +241,24 @@ namespace DungeonRun
             total = objList.Count();
 
 
-            #region Create Save New Load Buttons
+            #region Create Save/Play/Load New/Type/Reload Buttons
 
             buttons = new List<ComponentButton>();
-            saveBtn = new ComponentButton("save", new Point(16 * 1, 16 * 15 + 8));
-            playBtn = new ComponentButton("play", new Point(16 * 2 + 13, 16 * 15 + 8));
-            loadBtn = new ComponentButton("load", new Point(16 * 4 + 10, 16 * 15 + 8));
+            saveBtn = new ComponentButton("save", new Point(0, 0));
+            playBtn = new ComponentButton("play", new Point(0, 0));
+            loadBtn = new ComponentButton("load", new Point(0, 0));
             buttons.Add(saveBtn);
             buttons.Add(playBtn);
             buttons.Add(loadBtn);
 
-            newRoomBtn = new ComponentButton("new room", new Point(16 * 1, 16 * 16 + 8));
+            newRoomBtn = new ComponentButton("new room", new Point(0, 0));
+            roomTypeBtn = new ComponentButton("column", new Point(0, 0));
+            reloadRoomBtn = new ComponentButton("reload", new Point(0, 0));
             buttons.Add(newRoomBtn);
+            buttons.Add(roomTypeBtn);
+            buttons.Add(reloadRoomBtn);
 
             roomType = RoomType.Column;
-            roomTypeBtn = new ComponentButton("column", new Point(16 * 4, 16 * 16 + 8));
-            buttons.Add(roomTypeBtn);
 
             #endregion
 
@@ -268,7 +270,9 @@ namespace DungeonRun
             window.lines[3].position.Y = Y + (16 * 12);
             Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
 
-            //move room objs
+
+            #region Move room objs
+
             counter = 0;
             for (i = 0; i < 7; i++) //row
             {
@@ -282,7 +286,11 @@ namespace DungeonRun
                 }
             }
 
-            //move enemy spawn objs
+            #endregion
+
+
+            #region Move enemy spawn objs
+
             for (j = 0; j < 5; j++)
             {
                 objList[counter].compSprite.position.X = X + 16 + 0 + (16 * j);
@@ -292,8 +300,10 @@ namespace DungeonRun
                 counter++;
             }
 
+            #endregion
 
-            #region Move buttons
+
+            #region Move Grab, Add, and Delete Icons
 
             moveObj.compSprite.position.X = X + 16 * 1;
             moveObj.compSprite.position.Y = Y + 16 * 11;
@@ -309,6 +319,11 @@ namespace DungeonRun
             deleteObj.compSprite.position.Y = Y + 16 * 11;
             deleteObj.compCollision.rec.X = X + 16 * 5 - 8;
             deleteObj.compCollision.rec.Y = Y + 16 * 11 - 8;
+
+            #endregion
+
+
+            #region Move Save/New/Load/etc Buttons
 
             saveBtn.rec.X = X + 16 * 1 - 8;
             saveBtn.rec.Y = Y + 16 * 12 + 8;
@@ -329,6 +344,10 @@ namespace DungeonRun
             roomTypeBtn.rec.X = X + 16 * 4 - 8 - 1;
             roomTypeBtn.rec.Y = Y + 16 * 13 + 8;
             Functions_Component.CenterText(roomTypeBtn);
+
+            reloadRoomBtn.rec.X = X + 16 * 1 - 8;
+            reloadRoomBtn.rec.Y = Y + 16 * 14 + 8;
+            Functions_Component.CenterText(reloadRoomBtn);
 
             #endregion
 

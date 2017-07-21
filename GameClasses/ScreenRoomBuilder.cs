@@ -230,7 +230,11 @@ namespace DungeonRun
 
                             #endregion
 
-                            
+                            else if(RoomBuilder.buttons[i] == RoomBuilder.reloadRoomBtn)
+                            {
+                                //assumes roomData hasn't changed since last build
+                                BuildRoomData();
+                            }
                         }
                     }
                 }
