@@ -41,44 +41,14 @@ todo:
 
 
 
+Hide EnemySpawn Objects, using a control boolean
 
-
-
-
-
-
-
-
-
-Ensure larger rooms (column, hub) fit onscreen properly
-
-made a minor change to how the camera centers to the current room.
-this change was made to ensure that larger rooms fit onscreen properly.
+added Flags.ShowEnemySpawns boolean.
+this controls if enemySpawn objs are active, and thus drawn.
+enemy spawn objs always get created upon roomData XML build.
 playtested, working as expected.
 
 
-
-
-
-draw enemy spawn objs if Flags.DrawEnemySpawns is true
-
-
-
-don't draw enemySpawns when player is playing game
-do draw draw enemySpawns when user is editing room
-
-if(Flags.bootRoutine == BootRoutine.RoomBuilder){}
-draw enemy spawns, create enemyspawn objs from roomXMLdata
-
-
-
-
-should be able to move camera using arrow keys while in editor
-camera should still center to room when room is built
-by default, play/update should be false upon a room build
-this way user has to enable play prior to testing
-hero should also be teleported to the top left corner of room, outside of room, upon a build
-this forces the hero to enter the room, better simulating how it would be interacted with when in a dungeon
 
 
 

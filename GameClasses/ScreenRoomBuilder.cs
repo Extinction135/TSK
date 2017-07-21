@@ -64,6 +64,7 @@ namespace DungeonRun
             Flags.InfiniteArrows = true; //hero has infinite arrows
             Flags.InfiniteBombs = true; //hero has infinite bombs
             Flags.CameraTracksHero = false; //center to room
+            Flags.ShowEnemySpawns = false; //necessary for editing
 
             //set testing saveData
             PlayerData.current.magicFireball = true;
@@ -332,9 +333,6 @@ namespace DungeonRun
         {
             base.Update(GameTime);
             RoomBuilder.Update();
-            //push camera down 1 tile
-            //Camera2D.targetPosition.Y += 16;
-            //Camera2D.currentPosition.Y += 16;
         }
 
         public override void Draw(GameTime GameTime)
@@ -355,6 +353,9 @@ namespace DungeonRun
             return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
         
+
+
+
         public void BuildRoomData()
         {
             Functions_Dungeon.dungeon = new Dungeon();
@@ -381,11 +382,13 @@ namespace DungeonRun
             //releases all roomObjs, builds walls + floors + doors
             Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
             
-            //create the room objs
+
+
+            //create room objs & enemies
             if (roomData != null && roomData.objs.Count > 0)
             {   
                 for (i = 0; i < roomData.objs.Count; i++)
-                {
+                {   //create a roomObj for each XML obj
                     objRef = Functions_Pool.GetRoomObj();
                     Functions_Movement.Teleport(objRef.compMove,
                         Functions_Dungeon.currentRoom.collision.rec.X + roomData.objs[i].posX,
@@ -393,21 +396,36 @@ namespace DungeonRun
                     objRef.direction = Direction.Down; //we'll need to save this later
                     Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
 
+                    //create enemies at enemySpawn obj locations
                     if (objRef.group == ObjGroup.EnemySpawn)
                     {
-                        //create blob enemy here
                         actorRef = Functions_Pool.GetActor();
                         if(actorRef != null)
                         {
+                            //we should be checking what level of enemy to create
                             Functions_Actor.SetType(actorRef, ActorType.Blob);
                             Functions_Movement.Teleport(actorRef.compMove,
                                 objRef.compSprite.position.X,
                                 objRef.compSprite.position.Y);
                         }
-
                     }
                 }
             }
+
+
+
+
+            //check enemySpawn obj visibility
+            if (Flags.ShowEnemySpawns == false)
+            {   //find any spawnObj, set obj.active = false
+                for (i = 0; i < Pool.roomObjCount; i++)
+                {
+                    if (Pool.roomObjPool[i].group == ObjGroup.EnemySpawn)
+                    { Pool.roomObjPool[i].active = false; }
+                }
+            }
+
+
 
             Functions_Pool.Update(); //update roomObjs once
             Flags.Paused = true; //initially freeze the loaded room

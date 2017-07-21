@@ -24,13 +24,14 @@ namespace DungeonRun
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
-        public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
+        public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
         public static Boolean PlayMusic = true; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
         public static Boolean DrawUDT = true; //draw the UpdateDrawTotal timing text?
         public static Boolean CameraTracksHero = true; //camera tracks hero or centers to current room
+        public static Boolean ShowEnemySpawns = true; //create & draw enemySpawn gameObjects?
         //cheats
         public static Boolean Invincibility = false; //does hero take damage?
         public static Boolean InfiniteMagic = false; //enable magic cost
@@ -54,6 +55,7 @@ namespace DungeonRun
                 ProcessAI = true;
                 DrawUDT = true; //set this false for actual release
                 CameraTracksHero = true;
+                ShowEnemySpawns = false;
                 //cheats
                 Invincibility = false;
                 InfiniteMagic = false;
