@@ -139,9 +139,8 @@ namespace DungeonRun
                     else
                     {   //center camera to current room
                         Camera2D.targetPosition.X = Functions_Dungeon.currentRoom.center.X;
-                        Camera2D.targetPosition.Y = Functions_Dungeon.currentRoom.center.Y;
+                        Camera2D.targetPosition.Y = Functions_Dungeon.currentRoom.center.Y + 16;
                         Camera2D.tracks = true; //move follow room to room
-                         //shouldn't be setting the speed here, this should be done in a menu
                     }
                     Functions_Camera2D.Update(GameTime);
                 }

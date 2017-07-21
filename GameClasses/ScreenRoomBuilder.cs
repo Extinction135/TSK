@@ -63,7 +63,7 @@ namespace DungeonRun
             Flags.InfiniteGold = true; //hero has infinite gold
             Flags.InfiniteArrows = true; //hero has infinite arrows
             Flags.InfiniteBombs = true; //hero has infinite bombs
-            Flags.CameraTracksHero = false; //center camera to dev room
+            Flags.CameraTracksHero = false; //center to room
 
             //set testing saveData
             PlayerData.current.magicFireball = true;
@@ -332,6 +332,9 @@ namespace DungeonRun
         {
             base.Update(GameTime);
             RoomBuilder.Update();
+            //push camera down 1 tile
+            //Camera2D.targetPosition.Y += 16;
+            //Camera2D.currentPosition.Y += 16;
         }
 
         public override void Draw(GameTime GameTime)

@@ -43,13 +43,6 @@ todo:
 
 
 
-Add 'Damage All' top menu button
-
-added 'Damage All' button to top menu.
-added keyboard input for button using F6 key.
-this button deals 1 damage to all active enemies on screen.
-this allows us to easily test killing enemies and bosses.
-playtested, and after some changes, working as expected.
 
 
 
@@ -57,8 +50,11 @@ playtested, and after some changes, working as expected.
 
 
 
-if we kill the boss in editor, the summary screen appears
+Ensure larger rooms (column, hub) fit onscreen properly
 
+made a minor change to how the camera centers to the current room.
+this change was made to ensure that larger rooms fit onscreen properly.
+playtested, working as expected.
 
 
 
@@ -85,8 +81,20 @@ hero should also be teleported to the top left corner of room, outside of room, 
 this forces the hero to enter the room, better simulating how it would be interacted with when in a dungeon
 
 
-if hero leaves the room, actor AI shouldn't update
-this is something we can do just in editor
+
+
+
+
+
+if we kill the boss in editor, the summary screen appears
+this is fine, we just need a way to get back to editor
+
+
+
+
+
+
+
 
 
 

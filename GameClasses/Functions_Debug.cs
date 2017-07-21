@@ -194,28 +194,6 @@ namespace DungeonRun
 
         public static void HandleTopMenuInput()
         {
-
-            //if the game is in debug mode, dump info on clicked actor/obj
-            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {   //user must hold down ctrl button to call Inspect()
-                if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Inspect(); }
-            }
-
-            
-
-            //dump the states for every active actor if Enter key is pressed
-            if (Functions_Input.IsNewKeyPress(Keys.Enter))
-            {
-                for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
-                {
-                    if (Pool.actorPool[Pool.counter].active)
-                    { Inspect(Pool.actorPool[Pool.counter]); }
-                }
-            }
-
-
-
-
             
             #region F1 - Toggle Collision Rec Drawing
 
@@ -309,6 +287,26 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+            //if user ctrl+LMB clicks, dump info on clicked actor/obj
+            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+            {   //user must hold down ctrl button to call Inspect()
+                if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Inspect(); }
+            }
+            //dump the states for every active actor if Enter key is pressed
+            if (Functions_Input.IsNewKeyPress(Keys.Enter))
+            {
+                for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+                {
+                    if (Pool.actorPool[Pool.counter].active)
+                    { Inspect(Pool.actorPool[Pool.counter]); }
+                }
+            }
+
+
 
 
         }
