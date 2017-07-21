@@ -5,12 +5,12 @@
     <ObjXmlData>
       <type>BlockSpikes</type>
       <posX>280</posX>
-      <posY>141</posY>
+      <posY>140</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
-      <posX>56</posX>
-      <posY>76</posY>
+      <posX>88</posX>
+      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SwitchBlockUp</type>

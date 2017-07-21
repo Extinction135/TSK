@@ -40,37 +40,38 @@ todo:
 
 
 
-Implement better solution for saving GameObjects
 
-currently, a check is done to prevent walls and doors from being saved as room XML data.
-this is done in RBScreen.HandleInput.Save routine.
-however, other objects like wall torches, wall pillars, etc.. get past this check.
-we need a better way to check if an object should be saved as room XML data.
+Create Blob Enemies at EnemySpawn Obj locations upon a room build
 
-added canBeSaved booelan to GameObject class.
-updated RBScreen.HandleInput.Save routine to only save objs with canBeSaved true.
-updated Func_GameObj.ResetObject() to set canBeSaved false.
-updated Func_GameObj.SetType() to set canBeSaved true based on obj.type.
-
-playtested, working as expected. this also reduced the size of roomData XML files slightly.
+updated BuildRoomData() to create a blob enemy at the location of any enemy spawn.
+updated BuildRoomData() to initially pause the game after a load.
+playtested, working as expected.
 
 
 
 
 
 
+we should be able to 'reload' the current room (rebuild from roomData) - super easy
+we should be able to 'clear enemies' (releases the actor pool) - easy
 
 
 
-EnemySpawns
-
-has to be game objects
-but, we don't draw this obj when player is playing game
-but, we should draw this obj when user is editing room
 
 
+need to top menu button to hide/show debug info on bottom
+the top menu buttons should be prefaced with F1, F2, F3, F4
+so we can hit these buttons via keyboard when we need to
 
-create enemy actor at location of enemySpawn
+
+
+
+draw enemy spawn objs if Flags.DrawEnemySpawns is true
+
+
+
+don't draw enemySpawns when player is playing game
+do draw draw enemySpawns when user is editing room
 
 if(Flags.bootRoutine == BootRoutine.RoomBuilder){}
 draw enemy spawns, create enemyspawn objs from roomXMLdata
@@ -78,13 +79,16 @@ draw enemy spawns, create enemyspawn objs from roomXMLdata
 
 
 
+should be able to move camera using arrow keys while in editor
+camera should still center to room when room is built
+by default, play/update should be false upon a room build
+this way user has to enable play prior to testing
+hero should also be teleported to the top left corner of room, outside of room, upon a build
+this forces the hero to enter the room, better simulating how it would be interacted with when in a dungeon
 
 
-we need to be able to create objs that represent where enemies spawn from in a room
-these will be invisible game objects
-when a room is built, enemies are placed at these locations based on the spawn level
-
-
+if hero leaves the room, actor AI shouldn't update
+this is something we can do just in editor
 
 
 

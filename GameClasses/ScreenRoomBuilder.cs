@@ -9,8 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
-using System.IO;
-using System.Xml.Serialization;
 
 
 
@@ -28,7 +26,7 @@ namespace DungeonRun
         public GameObject grabbedObj;
         public RoomXmlData roomData;
         GameObject objRef;
-
+        Actor actorRef;
 
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
@@ -392,6 +390,7 @@ namespace DungeonRun
             Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + width, posY + middleY)); //Right Door
             //releases all roomObjs, builds walls + floors + doors
             Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
+            
             //create the room objs
             if (roomData != null && roomData.objs.Count > 0)
             {   
@@ -403,9 +402,25 @@ namespace DungeonRun
                         Functions_Dungeon.currentRoom.collision.rec.Y + roomData.objs[i].posY);
                     objRef.direction = Direction.Down; //we'll need to save this later
                     Functions_GameObject.SetType(objRef, roomData.objs[i].type); //get type
+
+                    if (objRef.group == ObjGroup.EnemySpawn)
+                    {
+                        //create blob enemy here
+                        actorRef = Functions_Pool.GetActor();
+                        if(actorRef != null)
+                        {
+                            Functions_Actor.SetType(actorRef, ActorType.Blob);
+                            Functions_Movement.Teleport(actorRef.compMove,
+                                objRef.compSprite.position.X,
+                                objRef.compSprite.position.Y);
+                        }
+
+                    }
                 }
             }
+
             Functions_Pool.Update(); //update roomObjs once
+            Flags.Paused = true; //initially freeze the loaded room
         }
 
     }
