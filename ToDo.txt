@@ -42,14 +42,32 @@ todo:
 
 
 
-Add Reload Room Button to Editor
+Seperately manage the Debug TopMenu and BottomInfo panels
 
-added 'reload' button to RBwidget.
-updated RBScreen to call BuildRoom() upon ReloadBtn click.
-this simply builds the room using the current roomData.
-assuming the roomData hasn't changed, this reloads the last loaded room.
+added Flags.EnableTopMenu & Flags.DrawDebugInfo booleans.
+these control the topMenu and bottomInfo, respectively.
+removed Flags.Debug boolean.
+refactored how DungeonScreen handles input for debug top menu.
+updated how DungeonScreen draws topMenu and bottomInfo, to use the new Flag booleans.
 playtested, working as expected.
 
+
+
+
+
+
+
+
+need more control over the drawing of top debug menu and bottom debug menu
+we need two booleans to control each one
+
+
+
+
+
+need to top menu button to hide/show debug info on bottom
+the top menu buttons should be prefaced with F1, F2, F3, F4
+so we can hit these buttons via keyboard when we need to
 
 
 
@@ -60,9 +78,7 @@ playtested, working as expected.
 we should be able to 'clear enemies' (releases the actor pool) - easy
 this should be part of the top menu - should KILL all active enemies - including boss
 
-need to top menu button to hide/show debug info on bottom
-the top menu buttons should be prefaced with F1, F2, F3, F4
-so we can hit these buttons via keyboard when we need to
+
 
 
 

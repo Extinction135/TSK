@@ -192,8 +192,20 @@ namespace DungeonRun
 
 
 
-        public static void HandleDebugMenuInput()
+        public static void HandleTopMenuInput()
         {
+            //if the game is in debug mode, dump info on clicked actor/obj
+            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+            {   //user must hold down ctrl button to call Inspect()
+                if (Functions_Input.IsKeyDown(Keys.LeftControl))
+                { Functions_Debug.Inspect(); }
+            }
+
+            //toggle the paused boolean
+            if (Functions_Input.IsNewKeyPress(Keys.Space))
+            { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
+
+
             //dump the states for every active actor if Enter key is pressed
             if (Functions_Input.IsNewKeyPress(Keys.Enter))
             {

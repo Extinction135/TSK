@@ -61,23 +61,7 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Handle Debug Keyboard / Mouse Input
-
-                if (Flags.Debug)
-                {   //if the game is in debug mode, dump info on clicked actor/obj
-                    if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                    {   //user must hold down ctrl button to call Inspect()
-                        if (Functions_Input.IsKeyDown(Keys.LeftControl))
-                        { Functions_Debug.Inspect(); }
-                    }
-                    //toggle the paused boolean
-                    if (Functions_Input.IsNewKeyPress(Keys.Space))
-                    { if (Flags.Paused) { Flags.Paused = false; } else { Flags.Paused = true; } }
-                    Functions_Debug.HandleDebugMenuInput();
-                }
-
-                #endregion
-
+                if (Flags.EnableTopMenu) { Functions_Debug.HandleTopMenuInput(); }
             }
             else
             {   //screen is not opened, prevent all input mapping
@@ -195,11 +179,10 @@ namespace DungeonRun
 
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_WorldUI.Draw();
-            if (Flags.Debug)
-            {
-                Functions_Draw.DrawDebugInfo();
-                Functions_Draw.DrawDebugMenu();
-            }
+            //draw debug menu + info
+            if (Flags.EnableTopMenu) { Functions_Draw.DrawDebugMenu(); }
+            if (Flags.DrawDebugInfo) { Functions_Draw.DrawDebugInfo(); }
+            //draw the overlay rec last
             Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
 

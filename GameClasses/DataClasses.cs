@@ -21,7 +21,8 @@ namespace DungeonRun
         public static float Version = 0.5f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
         //game flags
-        public static Boolean Debug = true; //draw/enable debugging info/menu/dev input
+        public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
+        public static Boolean DrawDebugInfo = true; //draws the bottom debug info
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean Paused = false; //this shouldn't be changed here, it's controlled by user in debug mode
         public static Boolean PlayMusic = true; //turns music on/off
@@ -43,7 +44,8 @@ namespace DungeonRun
             {
                 bootRoutine = BootRoutine.Game;
                 //set flags for release mode
-                Debug = false;
+                EnableTopMenu = false;
+                DrawDebugInfo = false;
                 DrawCollisions = false;
                 Paused = false;
                 PlayMusic = true;

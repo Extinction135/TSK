@@ -56,7 +56,8 @@ namespace DungeonRun
             displayState = DisplayState.Opened; //open the screen
 
             //editor specific flags
-            Flags.Debug = true; //necessary for editor operation
+            Flags.EnableTopMenu = true; //necessary
+            Flags.DrawDebugInfo = false; //initial display, can be changed
             Flags.Invincibility = true; //hero cannot die in editor
             Flags.InfiniteMagic = true; //hero has infinite magic
             Flags.InfiniteGold = true; //hero has infinite gold
