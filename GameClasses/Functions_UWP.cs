@@ -35,7 +35,7 @@ namespace DungeonRun
             else if (Type == GameFile.Game2) { filename = "game2.xml"; }
             else if (Type == GameFile.Game3) { filename = "game3.xml"; }
             if (Flags.PrintOutput)
-            { Debug.WriteLine("folder: " + localFolder + filename); }
+            { Debug.WriteLine("folder: " + localFolder.Path + "\\" + filename); }
         }
 
         public static async void SaveGame(GameFile Type)
@@ -100,8 +100,9 @@ namespace DungeonRun
 
                 #region Handle file loading failure
 
-                catch
+                catch (Exception ex)
                 {   //create dialog screen alerting user there was problem loading file
+                    if (Flags.PrintOutput) { Debug.WriteLine("load game file error: " + ex.Message); }
                     //overwrite any corrupt autosave data
                     SaveGame(GameFile.AutoSave);
                     //overwrite any corrupt game file with current game data
@@ -115,9 +116,9 @@ namespace DungeonRun
                 #endregion
                 
             }
-            catch //file does not exist, cannot be loaded, save the current data to file address
+            catch (Exception ex)//file does not exist, cannot be loaded, save the current data to file address
             {
-                if (Flags.PrintOutput) { Debug.WriteLine("file does not exist"); }
+                if (Flags.PrintOutput) { Debug.WriteLine("file does not exist. error: " + ex.Message); }
                 SaveGame(Type); dialogType = Dialog.GameNotFound;
             }
             //if loaded data is current game, notify player of loading via dialog screen

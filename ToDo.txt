@@ -42,17 +42,52 @@ todo:
 
 
 
+Fixing VisualStudio's AfterBuild task for UWP + DirectX
+
+VisualStudio decided to replace my recursive copy of RoomData with just 3 files.
+I never told VS to do this, it just assumed that's what I wanted & modified the csproj file.
+So I changed the csproj file to afterBuild the way I wanted it to.
+This solution included all the RoomData XML files in the project, which I do not want.
+This littered the solution explorer with many XML files that I would never edit in VS.
+
+So, I used a different afterBuild approach, which copies the RoomData folder without including it in the project.
+This works the way I want it to, for the DirectX project. HOWEVER..
+
+For the UWP project, upon a fresh build, an IO error is thrown stating that the AppX/RoomData folder doesn't exist.
+And it doesn't, for a fresh build. BUT, when UWP project is built a second time, the RoomData folder exists in AppX.
+After watching the build, I can only determine that the AppX folder does not exist when we attempt to copy into it upon first run.
+OR, we don't have permission to copy into it upon first run <- unlikely, since we can copy into it's parent Debug/ directory.
+
+Neither a BeforeBuild or AfterBuild task fixes this issue.
+And there is a frustrating lack of documentation online.
+The AppX folder is related to debugging, so this *may not* be an issue for deployment (I'll test that theory later).
+In any case, not being able to copy files into the AppX folder upon a fresh build MAKES NO SENSE WHATSOEVER.
+
+I can put up with the willfully ignorant security concepts implemented in .NetCore.
+I can deal with the 'forced async' IO. I can tolerate forced 'responsive design'.
+But I draw the line with this incoherent mess of shit called the AppX folder.
+It's supposed to be the app's debugging installed location path. Great, I get that.
+Why can't I copy files and folders into it then? WHY MICROSOFT? WHY?
+And is there any documentation explaining the AppX folder in a debugging context? NO.
+So I just have to live with a fresh UWP build throwing a File.IO error? GREAT.
 
 
 
-why do we have readme, spikes, and testData2.xml in the project solution explorer?
+
+on a fresh build, the RoomData folder is not being copied to the UWP's AppX folder. WHY??????
+on a second run/build, the RoomData folder IS COPIED to the AppX folder. WHY?????
+i can only assume that the appX folder did not exist on first run, so it couldn't be copied into..
 
 
 
-added Flags.PrintOutput boolean.
-this boolean controls all printing of output to debugger.
-updated various routines to check Flags.PrintOutput prior to output.
-playtested, working as expected.
+
+
+can we copy RoomData to AppX folder postbuild?
+
+
+
+
+
 
 
 
