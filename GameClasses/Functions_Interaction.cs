@@ -127,21 +127,24 @@ namespace DungeonRun
                         Functions_Entity.SpawnEntity(ObjType.ParticleRewardGold, Actor);
                         Assets.Play(Assets.sfxReward);
                         PlayerData.current.gold += 20;
-                        ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotGold));
+                        if (Flags.ShowDialogs)
+                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotGold)); }
                     }
                     else if (Obj.type == ObjType.ChestKey)
                     {
                         Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Actor);
                         Assets.Play(Assets.sfxKeyPickup);
                         Functions_Dungeon.dungeon.bigKey = true;
-                        ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotKey));
+                        if (Flags.ShowDialogs)
+                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotKey)); }
                     }
                     else if (Obj.type == ObjType.ChestMap)
                     {
                         Functions_Entity.SpawnEntity(ObjType.ParticleRewardMap, Actor);
                         Assets.Play(Assets.sfxReward);
                         Functions_Dungeon.dungeon.map = true;
-                        ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap));
+                        if (Flags.ShowDialogs)
+                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap)); }
                     }
                     else if (Obj.type == ObjType.ChestHeartPiece)
                     {
@@ -151,7 +154,8 @@ namespace DungeonRun
                         { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartPiece, Actor); }
                         Assets.Play(Assets.sfxReward);
                         PlayerData.current.heartPieces++;
-                        ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotHeartPiece));
+                        if (Flags.ShowDialogs)
+                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotHeartPiece)); }
                     }
 
                     #endregion
@@ -188,8 +192,6 @@ namespace DungeonRun
             #endregion
 
 
-            #region Doors
-
             else if (Obj.group == ObjGroup.Door)
             {
                 //exit pillars have no interactions whatsoever
@@ -214,7 +216,8 @@ namespace DungeonRun
                         }
                         else if (Actor.state == ActorState.Interact)
                         {   //throw a dialog screen explaining hero does not have big key
-                            ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey));
+                            if (Flags.ShowDialogs)
+                            { ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey)); }
                         }
                     }
                 }
@@ -266,11 +269,6 @@ namespace DungeonRun
                 #endregion
 
             }
-
-            #endregion
-
-
-
             else if (Obj.group == ObjGroup.Object)
             {
 

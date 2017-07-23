@@ -33,6 +33,7 @@ namespace DungeonRun
         public static Boolean CameraTracksHero = true; //camera tracks hero or centers to current room
         public static Boolean ShowEnemySpawns = true; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
+        public static Boolean ShowDialogs = true; //turn dialogs on/off
         //cheats
         public static Boolean Invincibility = false; //does hero take damage?
         public static Boolean InfiniteMagic = false; //enable magic cost
@@ -57,7 +58,8 @@ namespace DungeonRun
                 DrawUDT = true; //set this false for actual release
                 CameraTracksHero = true;
                 ShowEnemySpawns = false;
-                PrintOutput = true;
+                PrintOutput = false;
+                ShowDialogs = true;
                 //cheats
                 Invincibility = false;
                 InfiniteMagic = false;

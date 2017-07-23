@@ -45,20 +45,20 @@ todo:
 
 
 
-Add dialogs for all chest rewards: gold, heart piece, dungeon map
+Add Flag Boolean to control creation of Interaction Dialogs
 
-added values for hero getting: gold, heart piece, dungeon map.
-updated chest interaction to create dialog screens for each of these events.
-updated DialogScreen with paths to handle each of these dialog values.
+added Flags.ShowDialogs boolean.
+this controls if dialog screens are created when hero interacts with an object.
+updated hero -> chest interaction with checks to Flags.ShowDialogs.
+updated hero -> boss door interaction with check to Flags.ShowDialogs.
 playtested, working as expected.
 
+turning off dialogs will be useful when players are doing speedruns.
+we can add this to the game options screen later on too.
 
 
 
 
-do we want the dungeon screen to update when these dialogs appear?
-no, then the animation is janky
-yes, then the player input is blocked
 
 add a flag boolean for suppressing dialogs - this will be useful later when doing speed runs
 
