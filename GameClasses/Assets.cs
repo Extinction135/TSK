@@ -120,6 +120,7 @@ namespace DungeonRun
         public static List<SoundEffectInstance> sfxArrowShoot;
         //
         public static List<SoundEffectInstance> sfxArrowHit;
+        public static List<SoundEffectInstance> sfxLightFire;
 
         #endregion
 
@@ -269,6 +270,8 @@ namespace DungeonRun
             //
             sfxArrowHit = new List<SoundEffectInstance>();
             SoundEffect arrowHitSrc = content.Load<SoundEffect>(@"SoundArrowHit");
+            sfxLightFire = new List<SoundEffectInstance>();
+            SoundEffect lightFireSrc = content.Load<SoundEffect>(@"SoundLightFire");
 
             #endregion
 
@@ -314,6 +317,7 @@ namespace DungeonRun
                 sfxArrowShoot.Add(arrowShootSrc.CreateInstance());
                 //
                 sfxArrowHit.Add(arrowHitSrc.CreateInstance());
+                sfxLightFire.Add(lightFireSrc.CreateInstance());
             }
 
             #endregion

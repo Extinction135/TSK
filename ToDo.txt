@@ -44,27 +44,37 @@ todo:
 
 
 
-Scatter debris around the floor in all dungeon rooms
+Various Obj Interactions & Polish
 
-created ScatterDebris(Room).
-this method scatters floor debris around the room for each floor tile.
-basing the placement on floor tiles prevents debris objs from overlapping.
-a little offset is added to the placement as well.
-this causes debris to mis-align with floor tiles, creating variation.
-updated BuildRoom() to scatter debris for all rooms except Shop.
-reorganized Functions_Room.
-playtested, bug with hub room.
+updated Interact(Actor, Obj) with path for lighting an unlit torch.
+modified the fire rate for wall statues to shoot even less.
+playtested, lighting a torch should play a sound effect, duh.
 
-if we exceed the roomObjCount max, the walls are recycled/disappear.
-so I increased roomObj count to 300, up from 150.
-there are ALOT of arrows flying around the room too.
-reduced the rate at which statues shoot arrows.
+added SoundLightFire to content.
+added lightFire sfx instances to Assets.
+updated Interact() unlight torch path to play the new LightFire sound effect.
 playtested, working as expected.
 
 
 
 
 
+
+
+
+there should be a little fireball particle created when hero lights a torch
+
+the light fire sound effect should be louder
+the reward sound effect is WAAAAY too loud
+
+we should not be able to call the same soundFX multiple times from one frame
+this causes the sfx to layer upon each other, drastically increasing their volume
+this is BAD BAD BAD
+
+
+
+
+floor spikes should push just like spike block
 
 
 

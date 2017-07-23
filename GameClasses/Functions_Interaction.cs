@@ -300,10 +300,18 @@ namespace DungeonRun
                         10.0f);
                     //actors can collide with bumper twice per frame, due to per axis collision checks
                     BounceBumper(Obj);
-
                 }
-                //lever, floor spikes, switch, bridge, flamethrower,
-                //torch unlit, torch lit
+
+                //lever, floor spikes, switch, bridge,
+
+                else if (Obj.type == ObjType.TorchUnlit)
+                {   //light the unlit torch
+                    if (Actor == Pool.hero && Actor.state == ActorState.Interact)
+                    {
+                        Functions_GameObject.SetType(Obj, ObjType.TorchLit);
+                        Assets.Play(Assets.sfxLightFire);
+                    }
+                }
 
                 #endregion
 

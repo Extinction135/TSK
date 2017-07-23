@@ -359,3 +359,9 @@
 /processorParam:TextureFormat=Color
 /build:TitleBkg.png
 
+#begin SoundLightFire.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundLightFire.wav
+

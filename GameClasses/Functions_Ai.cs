@@ -152,7 +152,7 @@ namespace DungeonRun
         {   //keep in mind this is called every frame
             if (Obj.type == ObjType.Flamethrower)
             {   
-                if (Functions_Random.Int(0, 500) > 497)
+                if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
                 {   //randomly cast fireball towards hero
                     directionToHero = GetDirectionToHero(Obj.compSprite.position);
                     Functions_Entity.SpawnEntity(ObjType.ProjectileFireball,
@@ -163,7 +163,7 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.WallStatue)
             {
-                if (Functions_Random.Int(0, 500) > 498)
+                if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
                 {   //calculate the arrow's offset to the wall state object
                     Functions_Alignment.SetOffsets(Obj, ObjType.ProjectileArrow);
                     //spawn the arrow projectile, passing the calculated offsets
