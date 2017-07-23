@@ -86,10 +86,9 @@ namespace DungeonRun
             #region InGame Dialogs
 
             else if (dialogType == Dialog.DoesNotHaveKey)
-            {   //goes to overworld screen upon close
-                dialogString = "This door is locked. You need a big key to open it.";
-                background.fade = false; foreground.fade = false; updateDungeonScreen = true;
-            }
+            { dialogString = "This door is locked. You'll need a key to open it."; }
+            else if (dialogType == Dialog.HeroGotKey)
+            { dialogString = "You found the dungeon key. It can open any door."; updateDungeonScreen = false; }
 
             #endregion
 

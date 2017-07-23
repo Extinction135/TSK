@@ -45,30 +45,31 @@ todo:
 
 
 
-updated Interact(Actor, Obj) with path for hero inspecting boss door.
-in this state, hero does not have a key to open the boss door.
+Add Dialog when Hero opens Key Chest, fix Empty Chest bug
 
-added value 'DoesNotHaveKey' to Dialog enumerator.
-updated DialogScreen with path for 'DoesNotHaveKey' value.
+added value 'HeroGotKey' to Dialog enumerator.
+added path to DialogScreen for Dialog.HeroGotKey value.
+updated Interact(Actor, Obj) to create a Dialog screen if hero opens key chest.
+playtested, working as expected.
 
-
-
-
-
-
-
-dialog explaining that hero does not have key
+fixed a bug in Interact(Actor, Obj) related to empty chests rewarding hero.
+now an empty chest does not set hero into the reward state.
+playtested, working as expected.
 
 
 
-if user presses A when facing boss door without key, popup dialog
-is narrator, explaining that you need a key to open this door
-this is interaction rec check against boss door obj
 
-when hero gets the big key, include a dialog popup explaing what it does
 
-if hero interacs with an empty chest, he holds up an empty reward
-hero should not do this, if chest is empty
+
+
+
+allow player to exit dialog screen if dialog screen is updating the dungeon screen.
+the idea here is that the hero may be in danger, and the player's input should not be blocked.
+
+
+
+
+
 
 
 

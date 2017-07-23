@@ -118,7 +118,10 @@ namespace DungeonRun
             else if (Obj.group == ObjGroup.Chest)
             {   //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
                 if (Actor == Pool.hero && Actor.state == ActorState.Interact)
-                {   //reward the hero with the chests contents
+                {
+
+                    #region Reward the hero with chest contents
+
                     if (Obj.type == ObjType.ChestGold)
                     {
                         Functions_Entity.SpawnEntity(ObjType.ParticleRewardGold, Actor);
@@ -130,6 +133,7 @@ namespace DungeonRun
                         Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Actor);
                         Assets.Play(Assets.sfxKeyPickup);
                         Functions_Dungeon.dungeon.bigKey = true;
+                        ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotKey));
                     }
                     else if (Obj.type == ObjType.ChestMap)
                     {
@@ -146,17 +150,23 @@ namespace DungeonRun
                         Assets.Play(Assets.sfxReward);
                         PlayerData.current.heartPieces++;
                     }
-                    Assets.Play(Assets.sfxChestOpen);
-                    Functions_GameObject.SetType(Obj, ObjType.ChestEmpty);
-                    Actor.state = ActorState.Reward; //set actor into reward state
-                    Actor.lockTotal = 40; //lock for a prolonged time
 
-                    //play an explosion particle to show the chest was opened
-                    Functions_Entity.SpawnEntity(
-                        ObjType.ParticleAttention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.None);
+                    #endregion
+
+
+                    if (Obj.type != ObjType.ChestEmpty)
+                    {   //if the chest is not empty, play the reward animation
+                        Assets.Play(Assets.sfxChestOpen);
+                        Functions_GameObject.SetType(Obj, ObjType.ChestEmpty);
+                        Actor.state = ActorState.Reward; //set actor into reward state
+                        Actor.lockTotal = 40; //lock for a prolonged time
+                        //play an explosion particle to show the chest was opened
+                        Functions_Entity.SpawnEntity(
+                            ObjType.ParticleAttention,
+                            Obj.compSprite.position.X,
+                            Obj.compSprite.position.Y,
+                            Direction.None);
+                    }
                 }
             }
 
@@ -200,8 +210,7 @@ namespace DungeonRun
                                 Direction.None);
                         }
                         else if (Actor.state == ActorState.Interact)
-                        {
-                            //throw a dialog screen explaining hero does not have big key
+                        {   //throw a dialog screen explaining hero does not have big key
                             ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey));
                         }
                     }
