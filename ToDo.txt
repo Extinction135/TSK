@@ -44,14 +44,20 @@ todo:
 
 
 
-Add key chest to key room
 
-updated BuildRoom() to add a key chest to key room.
-this means key room designs will not have a key chest in them.
-this will prolly change later on, but is useful for testing now.
-playtested, working as expected.
+updated Interact(Actor, Obj) with path for hero inspecting boss door.
+in this state, hero does not have a key to open the boss door.
+
+added value 'DoesNotHaveKey' to Dialog enumerator.
+updated DialogScreen with path for 'DoesNotHaveKey' value.
 
 
+
+
+
+
+
+dialog explaining that hero does not have key
 
 
 
@@ -68,7 +74,6 @@ hero should not do this, if chest is empty
 
 
 
-do not procedurally add alot objs to hub room, as we are doing right now..
 
 we add wall statues to hub room
 but its possible these wall statues overlap door decorations

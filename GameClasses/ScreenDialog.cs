@@ -35,7 +35,7 @@ namespace DungeonRun
             background.fadeOutSpeed = 0.05f;
 
 
-            #region Based on DialogType, set speaker, dialog text, and fade booleans
+            //Based on DialogType, set speaker, dialog text, and fade booleans
 
             //assume guide is speaker w/ default dialog
             speakerType = ObjType.VendorStory; 
@@ -43,8 +43,10 @@ namespace DungeonRun
             background.fade = false;
             foreground.fade = false;
             updateDungeonScreen = true;
+            
 
-            //get specific dialog
+            #region Game Saved/Loaded/Created/etc Dialogs
+
             if (dialogType == Dialog.GameSaved)
             {   //returns to inventory screen upon close
                 dialogString = "I have successfully saved the current game.";
@@ -76,6 +78,17 @@ namespace DungeonRun
             {   //goes to overworld screen upon close
                 dialogString = "I've successfully loaded your last autosaved game.";
                 background.fade = true; foreground.fade = true; updateDungeonScreen = false;
+            }
+
+            #endregion
+
+
+            #region InGame Dialogs
+
+            else if (dialogType == Dialog.DoesNotHaveKey)
+            {   //goes to overworld screen upon close
+                dialogString = "This door is locked. You need a big key to open it.";
+                background.fade = false; foreground.fade = false; updateDungeonScreen = true;
             }
 
             #endregion

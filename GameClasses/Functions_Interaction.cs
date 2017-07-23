@@ -186,16 +186,24 @@ namespace DungeonRun
                 #region Check Collisions with Door Types
 
                 if (Obj.type == ObjType.DoorBoss)
-                {   //only hero can open boss door, and must have dungeon key
-                    if (Functions_Dungeon.dungeon.bigKey && Actor == Pool.hero)
-                    {
-                        Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
-                        Assets.Play(Assets.sfxDoorOpen);
-                        Functions_Entity.SpawnEntity(
-                            ObjType.ParticleAttention,
-                            Obj.compSprite.position.X,
-                            Obj.compSprite.position.Y,
-                            Direction.None);
+                {
+                    if (Actor == Pool.hero)
+                    {   //only hero can open boss door, and must have dungeon key
+                        if (Functions_Dungeon.dungeon.bigKey)
+                        {
+                            Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
+                            Assets.Play(Assets.sfxDoorOpen);
+                            Functions_Entity.SpawnEntity(
+                                ObjType.ParticleAttention,
+                                Obj.compSprite.position.X,
+                                Obj.compSprite.position.Y,
+                                Direction.None);
+                        }
+                        else if (Actor.state == ActorState.Interact)
+                        {
+                            //throw a dialog screen explaining hero does not have big key
+                            ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey));
+                        }
                     }
                 }
                 else if (Obj.type == ObjType.Exit && Actor == Pool.hero)
