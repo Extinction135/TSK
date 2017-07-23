@@ -159,48 +159,60 @@ namespace DungeonRun
             #region Pass the room to the appropriate method for completion
 
             //procedurally finished rooms
-            if (Room.type == RoomType.Exit)
-            {
-                FinishExitRoom(Room);
-            }
-            else if (Room.type == RoomType.Shop)
+            if (Room.type == RoomType.Shop)
             {
                 FinishShopRoom(Room);
             }
-            //else if (Room.type == RoomType.Secret) { FinishSecretRoom(Room); }
-
-            //rooms finished using XML roomData + procedurally added objects
-            else if (Room.type == RoomType.Column)
+            else if (Room.type == RoomType.Exit)
             {
-                BuildRoomObjs(Assets.roomDataColumn[0]);
-                AddWallStatues(Room);
+                FinishExitRoom(Room);
+                ScatterDebris(Room);
             }
-            else if (Room.type == RoomType.Row)
+            else if (Room.type == RoomType.Secret)
             {
-                BuildRoomObjs(Assets.roomDataRow[0]);
-                AddWallStatues(Room);
+                //FinishSecretRoom(Room);
+                ScatterDebris(Room);
             }
-            else if (Room.type == RoomType.Square)
-            {
-                BuildRoomObjs(Assets.roomDataSquare[0]);
-                AddWallStatues(Room);
-            }
+            //special rooms (key, hub, boss)
             else if (Room.type == RoomType.Key)
             {
                 BuildRoomObjs(Assets.roomDataKey[0]);
                 FinishKeyRoom(Room);
                 AddWallStatues(Room);
+                ScatterDebris(Room);
             }
             else if (Room.type == RoomType.Hub)
             {
                 BuildRoomObjs(Assets.roomDataHub[0]);
                 FinishHubRoom(Room);
                 AddWallStatues(Room);
+                ScatterDebris(Room);
             }
             else if (Room.type == RoomType.Boss)
             {
                 BuildRoomObjs(Assets.roomDataBoss[0]);
                 FinishBossRoom(Room);
+                //AddWallStatues(Room); //dont add wall statues
+                ScatterDebris(Room);
+            }
+            //standard/generic rooms (column, row, square)
+            else if (Room.type == RoomType.Column)
+            {
+                BuildRoomObjs(Assets.roomDataColumn[0]);
+                AddWallStatues(Room);
+                ScatterDebris(Room);
+            }
+            else if (Room.type == RoomType.Row)
+            {
+                BuildRoomObjs(Assets.roomDataRow[0]);
+                AddWallStatues(Room);
+                ScatterDebris(Room);
+            }
+            else if (Room.type == RoomType.Square)
+            {
+                BuildRoomObjs(Assets.roomDataSquare[0]);
+                AddWallStatues(Room);
+                ScatterDebris(Room);
             }
 
             #endregion
@@ -254,36 +266,6 @@ namespace DungeonRun
                 else if (Room.type == RoomType.Exit) { Pool.floorPool[i].currentFrame.Y = 0; }
                 else if (Room.type == RoomType.Boss) { Pool.floorPool[i].currentFrame.Y = 1; }
                 else { Pool.floorPool[i].currentFrame.Y = 0; }
-            }
-        }
-
-        public static void CleanupRoom(Room Room)
-        {
-            Boolean checkObjB; //remove certain overlapping objects
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                checkObjB = false; //check to see if ObjA can delete ObjB
-                if (Pool.roomObjPool[i].active) //if ObjA is active..
-                {   //certain objects delete other objects, if they collide
-                    if (Pool.roomObjPool[i].group == ObjGroup.Door 
-                        || Pool.roomObjPool[i].group == ObjGroup.Wall)
-                    { checkObjB = true; }
-                }
-                if (checkObjB) //ObjA can delete ObjB
-                {
-                    for (j = 0; j < Pool.roomObjCount; j++)
-                    {   //if ObjB is active, and not the same object (dont compare objects with themselves)
-                        if (Pool.roomObjPool[j].active && Pool.roomObjPool[i] != Pool.roomObjPool[j])
-                        {   //check that the obj is a straight wall or wall statue
-                            if (Pool.roomObjPool[j].type == ObjType.WallStraight ||
-                                Pool.roomObjPool[j].type == ObjType.WallStatue)
-                            {   //walls that intersect ObjA get released (deleted)
-                                if (Pool.roomObjPool[i].compCollision.rec.Intersects(Pool.roomObjPool[j].compCollision.rec))
-                                { Functions_Pool.Release(Pool.roomObjPool[j]); }
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -346,6 +328,10 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+        //adds objs to room 
 
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
@@ -509,42 +495,62 @@ namespace DungeonRun
             }
         }
 
+        public static void ScatterDebris(Room Room)
+        {   //randomly place debris at each floor tile position
+            for (i = 0; i < Pool.floorCount; i++)
+            {
+                if (Pool.floorPool[i].visible)
+                {
+                    if (Functions_Random.Int(0, 100) > 90)
+                    {
+                        objRef = Functions_Pool.GetRoomObj();
+                        Functions_Movement.Teleport(objRef.compMove,
+                            Pool.floorPool[i].position.X + Functions_Random.Int(-8, 8),
+                            Pool.floorPool[i].position.Y + Functions_Random.Int(-8, 8));
+                        objRef.direction = Direction.Down; //^ offset the debris a little
+                        Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
+                    }
+                }
+            }
+        }
+
+
+
+        //removes overlapping objs from room
+
+        public static void CleanupRoom(Room Room)
+        {
+            Boolean checkObjB; //remove certain overlapping objects
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                checkObjB = false; //check to see if ObjA can delete ObjB
+                if (Pool.roomObjPool[i].active) //if ObjA is active..
+                {   //certain objects delete other objects, if they collide
+                    if (Pool.roomObjPool[i].group == ObjGroup.Door
+                        || Pool.roomObjPool[i].group == ObjGroup.Wall)
+                    { checkObjB = true; }
+                }
+                if (checkObjB) //ObjA can delete ObjB
+                {
+                    for (j = 0; j < Pool.roomObjCount; j++)
+                    {   //if ObjB is active, and not the same object (dont compare objects with themselves)
+                        if (Pool.roomObjPool[j].active && Pool.roomObjPool[i] != Pool.roomObjPool[j])
+                        {   //check that the obj is a straight wall or wall statue
+                            if (Pool.roomObjPool[j].type == ObjType.WallStraight ||
+                                Pool.roomObjPool[j].type == ObjType.WallStatue)
+                            {   //walls that intersect ObjA get released (deleted)
+                                if (Pool.roomObjPool[i].compCollision.rec.Intersects(Pool.roomObjPool[j].compCollision.rec))
+                                { Functions_Pool.Release(Pool.roomObjPool[j]); }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
 
 
         //rooms that are procedurally 'finished' - exit, shop, secret
-
-        public static void FinishExitRoom(Room Room)
-        {
-            PlaceExit(Room);
-
-            //place decorative statues
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                3 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                3 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-        }
 
         public static void FinishShopRoom(Room Room)
         {
@@ -585,22 +591,51 @@ namespace DungeonRun
             Functions_GameObject.SetType(objRef, ObjType.VendorStory);
         }
 
-        //public static void FinishSecretRoom(RoomRoom){}
+        public static void FinishExitRoom(Room Room)
+        {
+            PlaceExit(Room);
+
+            //place decorative statues
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                3 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                3 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                7 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
+            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+        }
+
+        public static void FinishSecretRoom(Room Room)
+        {   //place gold chest center to 3x3 room
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                1 * 16 + pos.X + 8,
+                1 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestGold);
+        }
 
         public static void FinishBossRoom(Room Room)
         {
-            //randomly place debris around room
-            for (i = 0; i < 30; i++)
-            {
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    Functions_Random.Int(0, Room.size.X) * 16 + pos.X + 8,
-                    Functions_Random.Int(0, Room.size.Y) * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
-            }
-
-            //spawn a boss actor
             actorRef = Functions_Pool.GetActor();
             Functions_Actor.SetType(actorRef, ActorType.Boss);
             //teleport boss to center of room
@@ -610,16 +645,13 @@ namespace DungeonRun
         }
 
         public static void FinishKeyRoom(Room Room)
-        {
-            //create a big key chest
+        {   //create a big key chest
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
                 (Room.size.X / 2) * 16 + pos.X + 8,
                 3 * 16 + pos.Y + 8);
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.ChestKey);
-
-            //AddWallStatues(Room);
         }
 
         public static void FinishHubRoom(Room Room)
@@ -647,9 +679,6 @@ namespace DungeonRun
                 7 * 16 + pos.Y + 8);
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.ChestHeartPiece);
-
-            //AddWallStatues(Room);
-            //SpawnEnemies(Room);
         }
 
 

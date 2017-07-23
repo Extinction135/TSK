@@ -43,28 +43,29 @@ todo:
 (Work on DirectX project until Release)
 
 
-Polish how wall statues are managed and placed
 
-updated WallTorch obj to be of obj.group Wall.
-updated CleanupRoom() to only remove straight walls & wall statue objects.
-updated CleanupRoom() to check doors & walls against straight walls.
-baked the wall texture into wall torch obj in dungeon sheet.
+Scatter debris around the floor in all dungeon rooms
+
+created ScatterDebris(Room).
+this method scatters floor debris around the room for each floor tile.
+basing the placement on floor tiles prevents debris objs from overlapping.
+a little offset is added to the placement as well.
+this causes debris to mis-align with floor tiles, creating variation.
+updated BuildRoom() to scatter debris for all rooms except Shop.
+reorganized Functions_Room.
+playtested, bug with hub room.
+
+if we exceed the roomObjCount max, the walls are recycled/disappear.
+so I increased roomObj count to 300, up from 150.
+there are ALOT of arrows flying around the room too.
+reduced the rate at which statues shoot arrows.
 playtested, working as expected.
 
-updated how wall statues are placed in a room.
-they are now placed at 1/3rd and 2/3rds along each wall.
-if the statue overlaps anything, it is removed in CleanupRoom().
-updated BuildRoom() to place wall statues in all rooms except shop/exit/boss.
-playtested, working as expected.
 
 
 
 
 
-make a function that sprinkles debris around the room
-this would add variety to each room
-and this is something we've already figured out how to do in boss room
-and it should be it's own function
 
 
 

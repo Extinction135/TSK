@@ -163,7 +163,7 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.WallStatue)
             {
-                if (Functions_Random.Int(0, 500) > 497)
+                if (Functions_Random.Int(0, 500) > 498)
                 {   //calculate the arrow's offset to the wall state object
                     Functions_Alignment.SetOffsets(Obj, ObjType.ProjectileArrow);
                     //spawn the arrow projectile, passing the calculated offsets

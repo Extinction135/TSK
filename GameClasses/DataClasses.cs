@@ -151,7 +151,7 @@ namespace DungeonRun
         {
             //set the pool sizes
             actorCount = 30;
-            roomObjCount = 150;
+            roomObjCount = 300;
             entityCount = 100;
             floorCount = 500;
 
