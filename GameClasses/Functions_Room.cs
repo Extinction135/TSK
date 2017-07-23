@@ -159,22 +159,49 @@ namespace DungeonRun
             #region Pass the room to the appropriate method for completion
 
             //procedurally finished rooms
-            if (Room.type == RoomType.Exit) { FinishExitRoom(Room); }
-            else if (Room.type == RoomType.Shop) { FinishShopRoom(Room); }
+            if (Room.type == RoomType.Exit)
+            {
+                FinishExitRoom(Room);
+            }
+            else if (Room.type == RoomType.Shop)
+            {
+                FinishShopRoom(Room);
+            }
             //else if (Room.type == RoomType.Secret) { FinishSecretRoom(Room); }
 
-            //rooms finished using XML roomData
-            else if (Room.type == RoomType.Column) { BuildRoomObjs(Assets.roomDataColumn[0]); }
-            else if (Room.type == RoomType.Row) { BuildRoomObjs(Assets.roomDataRow[0]); }
-            else if (Room.type == RoomType.Square) { BuildRoomObjs(Assets.roomDataSquare[0]); }
-
             //rooms finished using XML roomData + procedurally added objects
+            else if (Room.type == RoomType.Column)
+            {
+                BuildRoomObjs(Assets.roomDataColumn[0]);
+                AddWallStatues(Room);
+            }
+            else if (Room.type == RoomType.Row)
+            {
+                BuildRoomObjs(Assets.roomDataRow[0]);
+                AddWallStatues(Room);
+            }
+            else if (Room.type == RoomType.Square)
+            {
+                BuildRoomObjs(Assets.roomDataSquare[0]);
+                AddWallStatues(Room);
+            }
             else if (Room.type == RoomType.Key)
-            { BuildRoomObjs(Assets.roomDataKey[0]); FinishKeyRoom(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataKey[0]);
+                FinishKeyRoom(Room);
+                AddWallStatues(Room);
+            }
             else if (Room.type == RoomType.Hub)
-            { BuildRoomObjs(Assets.roomDataHub[0]); FinishHubRoom(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataHub[0]);
+                FinishHubRoom(Room);
+                AddWallStatues(Room);
+            }
             else if (Room.type == RoomType.Boss)
-            { BuildRoomObjs(Assets.roomDataBoss[0]); FinishBossRoom(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataBoss[0]);
+                FinishBossRoom(Room);
+            }
 
             #endregion
 
@@ -239,19 +266,17 @@ namespace DungeonRun
                 if (Pool.roomObjPool[i].active) //if ObjA is active..
                 {   //certain objects delete other objects, if they collide
                     if (Pool.roomObjPool[i].group == ObjGroup.Door 
-                        || Pool.roomObjPool[i].type == ObjType.WallStatue
-                        || Pool.roomObjPool[i].type == ObjType.WallPillar
-                        )
+                        || Pool.roomObjPool[i].group == ObjGroup.Wall)
                     { checkObjB = true; }
                 }
-
                 if (checkObjB) //ObjA can delete ObjB
                 {
                     for (j = 0; j < Pool.roomObjCount; j++)
                     {   //if ObjB is active, and not the same object (dont compare objects with themselves)
                         if (Pool.roomObjPool[j].active && Pool.roomObjPool[i] != Pool.roomObjPool[j])
-                        {   //check that the obj is a wall
-                            if (Pool.roomObjPool[j].group == ObjGroup.Wall)
+                        {   //check that the obj is a straight wall or wall statue
+                            if (Pool.roomObjPool[j].type == ObjType.WallStraight ||
+                                Pool.roomObjPool[j].type == ObjType.WallStatue)
                             {   //walls that intersect ObjA get released (deleted)
                                 if (Pool.roomObjPool[i].compCollision.rec.Intersects(Pool.roomObjPool[j].compCollision.rec))
                                 { Functions_Pool.Release(Pool.roomObjPool[j]); }
@@ -456,6 +481,34 @@ namespace DungeonRun
             Functions_GameObject.SetType(objRef, Type);
         }
 
+        public static void AddWallStatues(Room Room)
+        {   //add wall statues along 1/3rd and 2/3rds of all walls
+            int RoomThirdX = Room.collision.rec.X + (Room.size.X / 3) * 16 + 8;
+            int RoomTwoThirdsX = 16 + RoomThirdX + (Room.size.X / 3) * 16;
+            int RoomThirdY = Room.collision.rec.Y + (Room.size.Y / 3) * 16 + 8;
+            int RoomTwoThirdsY = 16 + RoomThirdY + (Room.size.Y / 3) * 16;
+            //we could also check against room centers
+            //if (obj.compSprite.position.X == Room.collision.rec.X + room.center.X)
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {
+                    if (Pool.roomObjPool[i].type == ObjType.WallStraight)
+                    {
+                        if (Pool.roomObjPool[i].compSprite.position.X == RoomThirdX ||
+                            Pool.roomObjPool[i].compSprite.position.X == RoomTwoThirdsX)
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.WallStatue); }
+
+                        else if (Pool.roomObjPool[i].compSprite.position.Y == RoomThirdY ||
+                            Pool.roomObjPool[i].compSprite.position.Y == RoomTwoThirdsY)
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.WallStatue); }
+
+                        //the wall statue inherits the proper direction from the original wall obj
+                    }
+                }
+            }
+        }
+
 
 
         //rooms that are procedurally 'finished' - exit, shop, secret
@@ -565,6 +618,8 @@ namespace DungeonRun
                 3 * 16 + pos.Y + 8);
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.ChestKey);
+
+            //AddWallStatues(Room);
         }
 
         public static void FinishHubRoom(Room Room)
@@ -593,11 +648,9 @@ namespace DungeonRun
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.ChestHeartPiece);
 
-            AddWallStatues(Room);
+            //AddWallStatues(Room);
             //SpawnEnemies(Room);
         }
-
-
 
 
 
@@ -658,7 +711,7 @@ namespace DungeonRun
 
 
 
-        //methods that will get deleted once XML loading works properly
+        //methods that are getting developed
 
         public static void SpawnEnemies(Room Room)
         {
@@ -688,58 +741,6 @@ namespace DungeonRun
                         Room.center.Y + 16 * randomY + 8);
                 }
             }
-        }
-
-        public static void AddWallStatues(Room Room)
-        {
-            //place wall statues in the middle of top, right, bottom, left walls
-
-            //randomly choose to make a straight wall a wall statue
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if(Pool.roomObjPool[i].active)
-                {
-                    if (Pool.roomObjPool[i].type == ObjType.WallStraight)
-                    {
-                        if (Functions_Random.Int(0, 100) > 90)
-                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.WallStatue); }
-                    }
-                }
-            }
-
-            /*
-            //place test wall statue object - top wall
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                8 * 16 + pos.X + 8,
-                0 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-            //place test wall statue object - left wall
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                -1 * 16 + pos.X + 8,
-                5 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Right;
-            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-            //place test wall statue object - right wall
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X + 0) * 16 + pos.X + 8,
-                7 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Left;
-            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-            //place test wall statue object - bottom wall
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                5 * 16 + pos.X + 8,
-                (Room.size.Y + 1) * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Up;
-            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-            */
         }
 
         public static void AddTestingObjs(Room Room)

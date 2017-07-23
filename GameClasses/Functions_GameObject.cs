@@ -168,9 +168,9 @@ namespace DungeonRun
             }
             else if (Type == ObjType.WallTorch)
             {
-                Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = 24;
                 if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -16; }
+                Obj.group = ObjGroup.Wall;
             }
 
             #endregion

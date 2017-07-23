@@ -43,40 +43,28 @@ todo:
 (Work on DirectX project until Release)
 
 
+Polish how wall statues are managed and placed
 
-Change how wall statues are added to rooms
+updated WallTorch obj to be of obj.group Wall.
+updated CleanupRoom() to only remove straight walls & wall statue objects.
+updated CleanupRoom() to check doors & walls against straight walls.
+baked the wall texture into wall torch obj in dungeon sheet.
+playtested, working as expected.
 
-moved the creation of WallStatues into it's own method, AddWallStatues(Room).
-moved the creation of hub room testing objects into it's own method as well.
-reorganized Functions_Room.
-updated AddWallStatues to randomly convert straight walls to statue walls.
+updated how wall statues are placed in a room.
+they are now placed at 1/3rd and 2/3rds along each wall.
+if the statue overlaps anything, it is removed in CleanupRoom().
+updated BuildRoom() to place wall statues in all rooms except shop/exit/boss.
 playtested, working as expected.
 
 
 
 
-we need to make wall torches actual wall objects
-same with wall pillars
-when we decorate a door, we add torches/pillars
-when we clean the room up, we should remove walls underneath these objects
-then later when we add wall statues, we only convert straight walls
 
-
-
-
-
-
-
-we add wall statues to hub room
-but its possible these wall statues overlap door decorations
-this causes a conflict, and we shouldn't be doing it like that
-we should instead randomly choose a couple of straight wall object from the room
-and modify those to be wall statues
-this fixes the pillar overlap problem, but the torch overlap problem remains
-
-
-
-
+make a function that sprinkles debris around the room
+this would add variety to each room
+and this is something we've already figured out how to do in boss room
+and it should be it's own function
 
 
 
