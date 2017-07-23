@@ -45,26 +45,27 @@ todo:
 
 
 
-Add Dialog when Hero opens Key Chest, fix Empty Chest bug
+Add dialogs for all chest rewards: gold, heart piece, dungeon map
 
-added value 'HeroGotKey' to Dialog enumerator.
-added path to DialogScreen for Dialog.HeroGotKey value.
-updated Interact(Actor, Obj) to create a Dialog screen if hero opens key chest.
-playtested, working as expected.
-
-fixed a bug in Interact(Actor, Obj) related to empty chests rewarding hero.
-now an empty chest does not set hero into the reward state.
+added values for hero getting: gold, heart piece, dungeon map.
+updated chest interaction to create dialog screens for each of these events.
+updated DialogScreen with paths to handle each of these dialog values.
 playtested, working as expected.
 
 
 
 
 
+do we want the dungeon screen to update when these dialogs appear?
+no, then the animation is janky
+yes, then the player input is blocked
+
+add a flag boolean for suppressing dialogs - this will be useful later when doing speed runs
 
 
+ 
+ 
 
-allow player to exit dialog screen if dialog screen is updating the dungeon screen.
-the idea here is that the hero may be in danger, and the player's input should not be blocked.
 
 
 

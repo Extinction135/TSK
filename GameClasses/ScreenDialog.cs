@@ -34,15 +34,11 @@ namespace DungeonRun
             foreground.fadeInSpeed = 0.05f;
             background.fadeOutSpeed = 0.05f;
 
-
-            //Based on DialogType, set speaker, dialog text, and fade booleans
-
-            //assume guide is speaker w/ default dialog
+            //assume speaker is guide, assume no screen fading
             speakerType = ObjType.VendorStory; 
-            dialogString = "this is the default guide text...";
             background.fade = false;
             foreground.fade = false;
-            updateDungeonScreen = true;
+            updateDungeonScreen = false; //pause dungeon
             
 
             #region Game Saved/Loaded/Created/etc Dialogs
@@ -50,34 +46,34 @@ namespace DungeonRun
             if (dialogType == Dialog.GameSaved)
             {   //returns to inventory screen upon close
                 dialogString = "I have successfully saved the current game.";
-                background.fade = true; foreground.fade = false; updateDungeonScreen = false;
+                background.fade = true; foreground.fade = false;
             }
             else if (dialogType == Dialog.GameLoadFailed)
             {   //returns to previous screen (inventory or title) upon close
                 dialogString = "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n";
                 dialogString += "The data is corrupted... I've overwritten the file with your current game.";
-                background.fade = true; foreground.fade = false; updateDungeonScreen = false;
+                background.fade = true; foreground.fade = false;
             }
             else if (dialogType == Dialog.GameCreated)
             {   //goes to overworld screen upon close
                 dialogString = "I have created a new game for you.";
-                background.fade = true; foreground.fade = true; updateDungeonScreen = false;
+                background.fade = true; foreground.fade = true;
             }
             else if (dialogType == Dialog.GameLoaded)
             {   //goes to overworld screen upon close
                 dialogString = "I have loaded the selected game file.";
-                background.fade = true; foreground.fade = true; updateDungeonScreen = false;
+                background.fade = true; foreground.fade = true;
             }
             else if (dialogType == Dialog.GameNotFound)
             {   //goes to overworld screen upon close
                 dialogString = "the selected game file was not found. I have saved your current game to the\n";
                 dialogString += "selected game slot instead.";
-                background.fade = true; foreground.fade = true; updateDungeonScreen = false;
+                background.fade = true; foreground.fade = true;
             }
             else if (dialogType == Dialog.GameAutoSaved)
             {   //goes to overworld screen upon close
                 dialogString = "I've successfully loaded your last autosaved game.";
-                background.fade = true; foreground.fade = true; updateDungeonScreen = false;
+                background.fade = true; foreground.fade = true;
             }
 
             #endregion
@@ -86,12 +82,22 @@ namespace DungeonRun
             #region InGame Dialogs
 
             else if (dialogType == Dialog.DoesNotHaveKey)
-            { dialogString = "This door is locked. You'll need a key to open it."; }
+            { dialogString = "This door is locked. You'll need a key to open it."; updateDungeonScreen = true; }
+
             else if (dialogType == Dialog.HeroGotKey)
-            { dialogString = "You found the dungeon key. It can open any door."; updateDungeonScreen = false; }
+            { dialogString = "You found the dungeon key. It can open any door."; updateDungeonScreen = true; }
+            else if (dialogType == Dialog.HeroGotGold)
+            { dialogString = "You found 20 gold."; updateDungeonScreen = true; }
+            else if (dialogType == Dialog.HeroGotHeartPiece)
+            { dialogString = "You found a piece of a heart."; updateDungeonScreen = true; }
+            else if (dialogType == Dialog.HeroGotMap)
+            { dialogString = "You found the dungeon map."; updateDungeonScreen = true; }
 
             #endregion
 
+
+            else //default dialog
+            { dialogString = "this is the default guide text..."; updateDungeonScreen = true; }
 
             //display the dialog
             Widgets.Dialog.Reset(16 * 9, 16 * 12);
@@ -102,8 +108,8 @@ namespace DungeonRun
         }
 
         public override void HandleInput(GameTime GameTime)
-        {
-            if (Widgets.Dialog.dialogDisplayed) //wait for the dialog to complete
+        {   //force player to wait for the dialog to complete
+            if (Widgets.Dialog.dialogDisplayed)
             {   //exit this screen upon start or a/b button press
                 if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
                     Functions_Input.IsNewButtonPress(Buttons.B) ||

@@ -127,6 +127,7 @@ namespace DungeonRun
                         Functions_Entity.SpawnEntity(ObjType.ParticleRewardGold, Actor);
                         Assets.Play(Assets.sfxReward);
                         PlayerData.current.gold += 20;
+                        ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotGold));
                     }
                     else if (Obj.type == ObjType.ChestKey)
                     {
@@ -140,6 +141,7 @@ namespace DungeonRun
                         Functions_Entity.SpawnEntity(ObjType.ParticleRewardMap, Actor);
                         Assets.Play(Assets.sfxReward);
                         Functions_Dungeon.dungeon.map = true;
+                        ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap));
                     }
                     else if (Obj.type == ObjType.ChestHeartPiece)
                     {
@@ -149,6 +151,7 @@ namespace DungeonRun
                         { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartPiece, Actor); }
                         Assets.Play(Assets.sfxReward);
                         PlayerData.current.heartPieces++;
+                        ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotHeartPiece));
                     }
 
                     #endregion

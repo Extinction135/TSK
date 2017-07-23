@@ -117,6 +117,7 @@ namespace DungeonRun
         Default, GameSaved, GameLoaded, GameAutoSaved,
         GameCreated, GameNotFound, GameLoadFailed,
         //Intro, Dungeon1, Dungeon2 //etc...
-        DoesNotHaveKey, HeroGotKey,
+        DoesNotHaveKey,
+        HeroGotKey, HeroGotGold, HeroGotHeartPiece, HeroGotMap,
     }
 }
