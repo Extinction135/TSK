@@ -567,6 +567,40 @@ namespace DungeonRun
             Functions_GameObject.SetType(objRef, ObjType.ChestKey);
         }
 
+        public static void FinishHubRoom(Room Room)
+        {
+            //create chest with gold reward
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X - 1) * 16 + pos.X + 8,
+                1 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestGold);
+
+            //create a map chest
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X - 1) * 16 + pos.X + 8,
+                5 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestMap);
+
+            //create a heart piece chest
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X - 1) * 16 + pos.X + 8,
+                7 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestHeartPiece);
+
+            AddWallStatues(Room);
+            //SpawnEnemies(Room);
+        }
+
+
+
+
+
         //rooms finished using XML roomData - row, column, square, boss, key, hub
 
         public static void BuildRoomObjs(RoomXmlData RoomXmlData)
@@ -656,41 +690,60 @@ namespace DungeonRun
             }
         }
 
-        public static void FinishHubRoom(Room Room)
+        public static void AddWallStatues(Room Room)
         {
+            //place wall statues in the middle of top, right, bottom, left walls
 
-            #region Create Testing Chests
-
-            //create chest with gold reward
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X - 1) * 16 + pos.X + 8,
-                1 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestGold);
-
-            //create a map chest
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X - 1) * 16 + pos.X + 8,
-                5 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestMap);
-
-            //create a heart piece chest
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X - 1) * 16 + pos.X + 8,
-                7 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestHeartPiece);
-
-            #endregion
-
-
-            #region Place Test Objects
+            //randomly choose to make a straight wall a wall statue
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if(Pool.roomObjPool[i].active)
+                {
+                    if (Pool.roomObjPool[i].type == ObjType.WallStraight)
+                    {
+                        if (Functions_Random.Int(0, 100) > 90)
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.WallStatue); }
+                    }
+                }
+            }
 
             /*
+            //place test wall statue object - top wall
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                8 * 16 + pos.X + 8,
+                0 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+            //place test wall statue object - left wall
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                -1 * 16 + pos.X + 8,
+                5 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Right;
+            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+            //place test wall statue object - right wall
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X + 0) * 16 + pos.X + 8,
+                7 * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Left;
+            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+
+            //place test wall statue object - bottom wall
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                5 * 16 + pos.X + 8,
+                (Room.size.Y + 1) * 16 - 16 + pos.Y + 8);
+            objRef.direction = Direction.Up;
+            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
+            */
+        }
+
+        public static void AddTestingObjs(Room Room)
+        {
             //place skeleton pots along left wall
             for (i = 0; i < Room.size.Y; i++)
             {
@@ -701,9 +754,7 @@ namespace DungeonRun
                 objRef.direction = Direction.Down;
                 Functions_GameObject.SetType(objRef, ObjType.PotSkull);
             }
-            */
 
-            /*
             //Create testing spike blocks
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
@@ -742,55 +793,9 @@ namespace DungeonRun
                 13 * 16 + pos.X + 8,
                 5 * 16 + pos.Y + 8);
             Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
-            */
-
-            #endregion
-
-
-
-            //move this into it's own function
-            //randomly add wall statue to random wall
-       
-            #region Create Wall Statues
-
-            //place test wall statue object - top wall
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                8 * 16 + pos.X + 8,
-                0 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-            //place test wall statue object - left wall
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                -1 * 16 + pos.X + 8,
-                5 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Right;
-            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-            //place test wall statue object - right wall
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X + 0) * 16 + pos.X + 8,
-                7 * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Left;
-            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-            //place test wall statue object - bottom wall
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                5 * 16 + pos.X + 8,
-                (Room.size.Y + 1) * 16 - 16 + pos.Y + 8);
-            objRef.direction = Direction.Up;
-            Functions_GameObject.SetType(objRef, ObjType.WallStatue);
-
-            #endregion
-
-
-            //SpawnEnemies(Room);
         }
 
-        
+
+
     }
 }

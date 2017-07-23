@@ -44,32 +44,22 @@ todo:
 
 
 
+Change how wall statues are added to rooms
 
-Add Flag Boolean to control creation of Interaction Dialogs
-
-added Flags.ShowDialogs boolean.
-this controls if dialog screens are created when hero interacts with an object.
-updated hero -> chest interaction with checks to Flags.ShowDialogs.
-updated hero -> boss door interaction with check to Flags.ShowDialogs.
+moved the creation of WallStatues into it's own method, AddWallStatues(Room).
+moved the creation of hub room testing objects into it's own method as well.
+reorganized Functions_Room.
+updated AddWallStatues to randomly convert straight walls to statue walls.
 playtested, working as expected.
 
-turning off dialogs will be useful when players are doing speedruns.
-we can add this to the game options screen later on too.
 
 
 
-
-
-add a flag boolean for suppressing dialogs - this will be useful later when doing speed runs
-
-
- 
- 
-
-
-
-
-
+we need to make wall torches actual wall objects
+same with wall pillars
+when we decorate a door, we add torches/pillars
+when we clean the room up, we should remove walls underneath these objects
+then later when we add wall statues, we only convert straight walls
 
 
 
