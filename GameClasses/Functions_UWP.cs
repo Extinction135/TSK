@@ -166,6 +166,12 @@ namespace DungeonRun
         public static async void LoadAllRoomData()
         {
             StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+            //find the RoomData folder
+            //var tryRoomData = appInstalledFolder.TryGetItemAsync("RoomData");
+            //if (tryRoomData != null) { } //roomData folder exists
+
+            //we dont know if the roomData folder exists (UWP deployment task may of overwritten it)
             StorageFolder RoomDataFolder = await appInstalledFolder.GetFolderAsync("RoomData");
             var roomDataFiles = await RoomDataFolder.GetFilesAsync();
 

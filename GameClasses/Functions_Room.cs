@@ -170,7 +170,7 @@ namespace DungeonRun
 
             //rooms finished using XML roomData + procedurally added objects
             else if (Room.type == RoomType.Key)
-            { BuildRoomObjs(Assets.roomDataKey[0]); } //add key chest in this room
+            { BuildRoomObjs(Assets.roomDataKey[0]); FinishKeyRoom(Room); }
             else if (Room.type == RoomType.Hub)
             { BuildRoomObjs(Assets.roomDataHub[0]); FinishHubRoom(Room); }
             else if (Room.type == RoomType.Boss)
@@ -556,7 +556,16 @@ namespace DungeonRun
                 Room.center.Y + 8);
         }
 
-
+        public static void FinishKeyRoom(Room Room)
+        {
+            //create a big key chest
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                (Room.size.X / 2) * 16 + pos.X + 8,
+                3 * 16 + pos.Y + 8);
+            objRef.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.ChestKey);
+        }
 
         //rooms finished using XML roomData - row, column, square, boss, key, hub
 
@@ -650,23 +659,15 @@ namespace DungeonRun
         public static void FinishHubRoom(Room Room)
         {
 
-            #region Create the Testing Chests
+            #region Create Testing Chests
 
-            //place chest gameObj in bottom right corner
+            //create chest with gold reward
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
                 (Room.size.X - 1) * 16 + pos.X + 8,
                 1 * 16 + pos.Y + 8);
             objRef.direction = Direction.Down;
             Functions_GameObject.SetType(objRef, ObjType.ChestGold);
-
-            //create a big key chest
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X - 1) * 16 + pos.X + 8,
-                3 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestKey);
 
             //create a map chest
             objRef = Functions_Pool.GetRoomObj();

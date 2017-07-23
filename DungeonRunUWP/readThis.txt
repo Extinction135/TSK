@@ -1,0 +1,13 @@
+the UWP project will build, but fail to run properly the first time.
+this is because the RoomData folder & contents don't exist in the Debug/AppX folder.
+the project WILL RUN properly upon a second build. why? read on...
+
+the deployment process for UWP app overwrites the AppX folder.
+this deployment happens after the BUILD process, so the RoomData in AppX is deleted.
+so it goes: Build -> RoomData copied to AppX. Deploy -> AppX dir overwritten completely.
+upon second run: Build -> RoomData copeid to AppX. Deploy -> No changes to AppX dir, RoomData preserved.
+
+there is no way to copy RoomData AFTER DEPLOYMENT <- thats the ideal solution..
+so, the workaround is simply to debug/deploy the project TWICE.
+the second time the project/program runs, everything works as expected.
+

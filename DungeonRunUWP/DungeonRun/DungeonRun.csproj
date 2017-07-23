@@ -20,6 +20,7 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>DungeonRun_TemporaryKey.pfx</PackageCertificateKeyFile>
     <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
+    <!-- <IncludeLayoutFilesInPackage>true</IncludeLayoutFilesInPackage> -->
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -314,27 +315,28 @@
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
   -->
+  <!-- we can't copy RoomData to Debug/AppX for UWP upon fresh build, only after first build, cause REASONS ??? -->
   
+  <!--
   <Target Name="BeforeBuild">
     <ItemGroup>
       <RoomData Include="..\..\RoomData\**" />
     </ItemGroup>
 	  <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" />
-	  <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" retries="10" RetryDelayMilliseconds="10"/>
+	  <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" />
   </Target>
+  -->
   
-  <!--
   <Target Name="AfterBuild">
     <ItemGroup>
       <RoomData Include="..\..\RoomData\**" />
     </ItemGroup>
-	  <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
-	  <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" SkipUnchangedFiles="false" retries="10"/>
+	  <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" />
+	  <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" />
   </Target>
-  -->
+  
+
   
   
 </Project>
