@@ -290,7 +290,6 @@ namespace DungeonRun
 
 
 
-
             //if user ctrl+LMB clicks, dump info on clicked actor/obj
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {   //user must hold down ctrl button to call Inspect()
@@ -305,10 +304,6 @@ namespace DungeonRun
                     { Inspect(Pool.actorPool[Pool.counter]); }
                 }
             }
-
-
-
-
         }
 
     }

@@ -52,9 +52,10 @@ namespace DungeonRun
         }
 
         public static ComponentSprite GetFloor()
-        {
+        {   //we never release a floor sprite, and floors are returned sequentially
             Pool.floorIndex++;
-            if (Pool.floorIndex == Pool.floorCount) { Pool.floorIndex = 0; }
+            if (Pool.floorIndex == Pool.floorCount)
+            { Pool.floorIndex = Pool.floorCount; } //ran out of floors to return
             Pool.floorPool[Pool.floorIndex].visible = true;
             return Pool.floorPool[Pool.floorIndex];
         }
@@ -94,6 +95,7 @@ namespace DungeonRun
         {
             for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
             { Pool.floorPool[Pool.counter].visible = false; }
+            Pool.floorIndex = 0; //reset total count
         }
 
         public static void ResetActorPoolInput()

@@ -43,9 +43,82 @@ todo:
 (Work on DirectX project until Release)
 
 
+3 moar commits!
 
 
-updated CleanupRoom() to remove debris overlapping flamethrower objects.
+
+
+Fix Counting issue with Floors
+
+updated ResetFloorPool() to set the floorIndex to 0.
+updated GetFloor() to prevent floorIndex from looping back to 0.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+implement this approach on floor pool FIRST
+
+Efficiently Using GameObjs + Floors
+
+we can use obj.active to track if an obj is currently being used or has been released
+ReleaseObj() - should set the obj.active to false 
+GetObj() - should loop thru roomObjs, find first obj with active=false, return this obj
+*we should be counting forward and looping back, not starting from index0 when checking .active property
+*this makes the method slightly faster, as it's more likely that the next obj is inactive vs. the first obj being inactive
+GetUsedCount() - loops thru roomObjs, floors and counts all active/visible to correct counter
+*this fixes the counting problems we see in info panel
+*this should be done at the end of a room build/finish
+
+Fixing the Entity Reuse problem
+if we are using a lot of entities quickly, old entities get recycled before they have a chance to complete their life
+for example, bombs can just disappear instead of exploding
+this is related to how we GetEntity(), which simply loops thru the pool, returning the next obj
+this does not check to see if the obj is inactive, which it should
+and when we ReleaseEntity(), the obj.active boolean should be set false
+
+the entity use counter will simply continue to increment as it does currently
+
+
+
+
+
+
+
+
+dungeon rewards++
+When the hero beats a dungeon, the only reward should be the dungeon crystal, no gold.
+gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
+text should read "press any button to continue"
+remove 'reward' text
+
+
+polish++
+floor spikes should push just like spike block
+collision particle should center to the spike block upon collision
+
+
+overworld++
+overworld dungeon icon is the boss of that dungeon
+so all dungeons should display a blob character instead of a skull
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -79,17 +152,14 @@ this means we don't need a heart piece graphic in the inventory screen / loadout
 * we could put this side mission item in a secret room, then check the sidemission boolean to hide it if hero returns to room
 
 
-Gold (exp)
-When the hero beats a dungeon, the only reward should be the dungeon crystal, no gold.
-gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
 
 
 
 
 
-there should be a little fireball particle created when hero lights a torch
 
-floor spikes should push just like spike block
+
+
 hero should be able to interact with level
 this interaction changes lever to off state (flipped horizontally)
 this causes all spikefloors to turn off (down animation, no collisions)
@@ -109,9 +179,8 @@ at 0, the hero dies
 
 this should also happen to enemies (instant death, no loot drop)
 
-
-
-
+we should prevent enemies from moving into pits / spikes on their own
+they should be able to be pushed into them, however
 
 
 
@@ -157,14 +226,16 @@ if hero has the dungeon map, display the dungeon map with select button.
 
 POLISH
 
-overworld dungeon icon is the boss of that dungeon
-so all dungeons should display a blob character instead of a skull
 
-collision particle should center to the spike block upon collision
+
+
 
 WorldUI++
 we should be displaying the amount of arrows, bombs in the worldUI
 this way user can see how many they have left
+
+there should be a little fireball particle created when hero lights a torch
+
 
 
 

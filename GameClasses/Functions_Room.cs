@@ -161,7 +161,7 @@ namespace DungeonRun
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
             if (Flags.PrintOutput)
-            { Debug.WriteLine("built " + Room.type + " room in " + time.Ticks + "ticks"); }
+            { Debug.WriteLine("built " + Room.type + " room in " + time.Ticks + " ticks"); }
         }
 
         public static void FinishRoom(Room Room)
@@ -196,7 +196,7 @@ namespace DungeonRun
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
             if (Flags.PrintOutput)
-            { Debug.WriteLine("finished " + Room.type + " room in " + time.Ticks + "ticks"); }
+            { Debug.WriteLine("finished " + Room.type + " room in " + time.Ticks + " ticks"); }
         }
 
 
