@@ -357,8 +357,9 @@ namespace DungeonRun
         
         public void BuildRoomData(RoomXmlData RoomXmlData)
         {
-            Functions_Dungeon.dungeon = new Dungeon();
-            Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
+            Functions_Dungeon.dungeon = new Dungeon(); //defaults to type.cursedCastle
+            //Functions_Dungeon.dungeon.type = DungeonType.CursedCastle;
+            //Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
 
             //build the room
             if (RoomXmlData != null)

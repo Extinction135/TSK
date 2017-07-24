@@ -183,10 +183,19 @@ namespace DungeonRun
             #region Vendors
 
             else if (Obj.group == ObjGroup.Vendor)
-            {   //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
+            {   //only HERO can purchase items from a vendor
                 if (Actor == Pool.hero && Actor.state == ActorState.Interact)
-                { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
-                //story vendor interaction occurs in 'Other Interactive Objects' section below
+                {   //however, some vendors do not sell items, so check for certain types
+
+                    //figure out what part of the story the hero is at, pass this dialog
+                    if (Obj.type == ObjType.VendorStory) //for now this is default dialog
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.Default)); }
+
+                    //check to make sure the obj isn't a vendor advertisement
+                    else if (Obj.type != ObjType.VendorAdvertisement)
+                    { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
+                    //vendor ads are ignored, otherwise hero can purchase items
+                }
             }
 
             #endregion
@@ -272,23 +281,9 @@ namespace DungeonRun
             else if (Obj.group == ObjGroup.Object)
             {
 
-                #region Story / Guide Object
-
-                if (Obj.type == ObjType.VendorStory)
-                {   //only HERO can interact with story vender
-                    if (Actor == Pool.hero && Actor.state == ActorState.Interact)
-                    {   //pass the story vendor to the dialog screen
-                        //figure out what part of the story the hero is at, pass this dialog
-                        ScreenManager.AddScreen(new ScreenDialog(Dialog.Default));
-                    }
-                }
-
-                #endregion
-
-
                 #region Misc Interactive Dungeon Objects
 
-                else if (Obj.type == ObjType.BlockSpikes) { Functions_Battle.Damage(Actor, Obj); }
+                if (Obj.type == ObjType.BlockSpikes) { Functions_Battle.Damage(Actor, Obj); }
                 else if (Obj.type == ObjType.ConveyorBelt)
                 {   //push actor in belt's direction
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 0.1f);

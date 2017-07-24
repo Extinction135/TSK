@@ -96,7 +96,8 @@ namespace DungeonRun
             Obj.type = Type;
 
 
-            //Non-Editor Room Objects
+
+            //Non-Editor Room Objects (dungeonsheet)
 
             #region Exits
 
@@ -192,7 +193,8 @@ namespace DungeonRun
             #endregion
 
 
-            //Editor Room Objects - these objs can be saved as XML
+
+            //Editor Room Objects - these objs can be saved as XML (dungeonsheet)
 
             #region Pits
 
@@ -387,7 +389,6 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
-                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.group = ObjGroup.EnemySpawn;
                 Obj.canBeSaved = true;
             }
@@ -395,7 +396,8 @@ namespace DungeonRun
             #endregion
 
 
-            //Additional Game Objects
+
+            //Vendor Room Objects - (mainsheet)
 
             #region Vendor & Story Objects
 
@@ -405,29 +407,31 @@ namespace DungeonRun
             {   
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
-                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -7;
-                Obj.group = ObjGroup.Vendor;
                 Obj.compAnim.speed = 20; //slow animation
+                Obj.group = ObjGroup.Vendor;
             }
             else if (Type == ObjType.VendorStory)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
-                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 0;
                 Obj.compAnim.speed = 20; //slow animation
+                Obj.group = ObjGroup.Vendor;
             }
             else if (Type == ObjType.VendorAdvertisement)
             {
-                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = 32;
                 Obj.compAnim.speed = 100; //very slow animation
+                Obj.group = ObjGroup.Vendor;
             }
 
             #endregion
 
+
+
+            //Entities - exist in Pool.EntityPool (mainsheet)
 
             #region Pickups
 
@@ -603,6 +607,23 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+            //SET OBJECT TEXTURE (spritesheet)
+            if (Obj.group == ObjGroup.Pickup || Obj.group == ObjGroup.Projectile 
+                || Obj.group == ObjGroup.Particle || Obj.group == ObjGroup.Vendor
+                || Obj.group == ObjGroup.EnemySpawn)
+            { Obj.compSprite.texture = Assets.mainSheet; }
+            else
+            {   //all other object's get assigned a dungeon texture, based on dungeon.type
+                if (Functions_Dungeon.dungeon.type == DungeonType.CursedCastle)
+                { Obj.compSprite.texture = Assets.cursedCastleSheet; }
+                //expand this to include all dungeon textures...
+                else if (Functions_Dungeon.dungeon.type == DungeonType.Shop)
+                { Obj.compSprite.texture = Assets.shopSheet; }
+            }
+
 
 
             //particles do not block upon collision

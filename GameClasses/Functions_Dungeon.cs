@@ -16,7 +16,7 @@ namespace DungeonRun
     {
 
         public static ScreenDungeon dungeonScreen;
-        public static Dungeon dungeon; //the last dungeon created
+        public static Dungeon dungeon = new Dungeon(); //the last dungeon created
         public static DungeonType dungeonType = DungeonType.CursedCastle; //changed later
         public static Room currentRoom; //points to a room on dungeon's roomList
         public static int dungeonTrack = 0;
@@ -28,14 +28,19 @@ namespace DungeonRun
         {
             dungeon = new Dungeon(); //DungeonScreen calls BuildDungeon()
             dungeon.type = dungeonType; //dungeonType is set by OverworldScreen
-            
+
+            //set all floor sprites to the appropriate dungeon texture
+            if (dungeon.type == DungeonType.CursedCastle)
+            { Functions_Pool.SetFloorTexture(Assets.cursedCastleSheet); }
+            //expand this to include all dungeon textures...
+            else if (dungeon.type == DungeonType.Shop)
+            { Functions_Pool.SetFloorTexture(Assets.shopSheet); }
+
 
             #region Create Shop
 
             if (dungeonType == DungeonType.Shop)
-            {   //set the objPool texture
-                Functions_Pool.SetDungeonTexture(Assets.shopSheet);
-                //create the shop room
+            {   //create the shop room
                 dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), RoomType.Shop, 0));
                 //keep the title music playing
                 Functions_Music.PlayMusic(Music.Title);
@@ -47,8 +52,7 @@ namespace DungeonRun
             #region Create Basic Testing Dungeon - no randomness YET
 
             else
-            {   //set the objPool texture
-                Functions_Pool.SetDungeonTexture(Assets.cursedCastleSheet);
+            {
                 if (Flags.PrintOutput) { Debug.WriteLine("-- creating dungeon --"); }
 
                 //create the dungeon's rooms

@@ -44,56 +44,48 @@ todo:
 
 
 
-Fix bug where RoomObjs are created twice
 
-split BuildRoom() into BuildRoom() and FinishRoom().
-BuildRoom() creates the floors, walls, and doors.
-FinishRoom() builds interior objs from roomData XML lists in Assets.
-updated various codepaths to call BuildRoom() then FinishRoom().
+Fix bug related to not setting RoomObjects texture correctly.
+
+Bug: we initially set all roomObjects to the dungeon texture.
+however, when we build a room, certain roomObjects get assigned the mainsheet texture.
+then later we reuse these objects as dungeon objects.
+BUT, we dont set their texture to the dungeon sheet. 
+so these objects display the wrong sprites + animations.
+
+Fix: updated Functions_GameObject.SetType() to set each obj's texture.
+this is done as a final step, based on obj.group, which is set prior.
+this was designed to work with multiple dungeon textures too.
+updated various codepaths to set obj.groups properly.
+updated Functions_Interaction.Interact(Actor, Obj) -> vendor routines.
+story vendor is now of ObjGroup.Vendor (which makes more sense anyway).
+
+removed Functions_Pool.SetDungeonTexture().
+this functionality was moved into Functions_GameObject.SetType().
+removed various calls to SetDungeonTexture().
+
+playtested, working, but with a minor bug related to floor sprites.
+bug: we are not setting the floor texture when we build room/dungeon.
+fix: created Functions_Pool.SetFloorTexture(Texture).
+updated Functions_Dungeon.BuildDungeon() to call SetFloorTexture() based on the dungeon.type.
 playtested, working as expected.
 
-updated RoomData with better room designs + enemy spawns.
-playtested, BUG.
 
 
 
 
 
+does the floor sprites change in key / boss / hub rooms?
+make sure this happens
+
+
+redesign HUB room to not have blocks that touch walls (big no no)
+nothing should touch a wall, even in the corners
 
 
 
 
 
-
-BUG: gameobjects can be assigned incorrect spritesheets.
-dungeon objects can be assigned the main spriteSheet, leading to strange visual sprites.
-
-
-
-there is a bug where roomObjs dont get the proper sheet assignment
-skull pots were assigned the main sheet for some reason...
-we should explicitly be assigning sheets somewhere - how are we doing this currently?
-
-
-when we build a room, each object we touch should have it's texture set to dungeon sheet
-
-
-
-
-all roomObjs should exist on the dungeon sheet
-we shouldn't have roomObjs exist on the mainSheet
-- vendors & vendor items
-
-
-
-
-
-
-
-
-
-add enemy spawns to the roomData
-actually kinda design some basic rooms too..
 
 there should be a little fireball particle created when hero lights a torch
 
