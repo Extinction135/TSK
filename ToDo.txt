@@ -45,32 +45,20 @@ todo:
 
 
 
-Fix bug related to not setting RoomObjects texture correctly.
 
-Bug: we initially set all roomObjects to the dungeon texture.
-however, when we build a room, certain roomObjects get assigned the mainsheet texture.
-then later we reuse these objects as dungeon objects.
-BUT, we dont set their texture to the dungeon sheet. 
-so these objects display the wrong sprites + animations.
+Fix various small bugs with RBWidget & Floor Textures
 
-Fix: updated Functions_GameObject.SetType() to set each obj's texture.
-this is done as a final step, based on obj.group, which is set prior.
-this was designed to work with multiple dungeon textures too.
-updated various codepaths to set obj.groups properly.
-updated Functions_Interaction.Interact(Actor, Obj) -> vendor routines.
-story vendor is now of ObjGroup.Vendor (which makes more sense anyway).
+updated GameObject's constructor to not take a Texture parameter.
+the Texture is set via Functions_GameObject.SetType().
+this is called at the end of the constructor.
+fixed problem where RBwidget didn't display the toolbar icons properly.
 
-removed Functions_Pool.SetDungeonTexture().
-this functionality was moved into Functions_GameObject.SetType().
-removed various calls to SetDungeonTexture().
+updated Functions_Pool.SetFloorTexture() to accept a DungeonType parameter.
+then this function sets the floor texture based on the DungeonType.
+updated call to SetFloorTexture() from Func_Dungeon.BuildDungeon() & RBScreen.BuildRoomData().
 
-playtested, working, but with a minor bug related to floor sprites.
-bug: we are not setting the floor texture when we build room/dungeon.
-fix: created Functions_Pool.SetFloorTexture(Texture).
-updated Functions_Dungeon.BuildDungeon() to call SetFloorTexture() based on the dungeon.type.
+fixed some design problems with prototype HUB XML roomData.
 playtested, working as expected.
-
-
 
 
 
@@ -79,8 +67,18 @@ does the floor sprites change in key / boss / hub rooms?
 make sure this happens
 
 
-redesign HUB room to not have blocks that touch walls (big no no)
-nothing should touch a wall, even in the corners
+floor changes on a boss room load.
+key? nope
+hub? nope
+these should change!!!
+
+
+
+
+
+
+
+
 
 
 

@@ -76,12 +76,12 @@ namespace DungeonRun
             {
                 for (j = 0; j < 5; j++) //column
                 {
-                    GameObject obj = new GameObject(Assets.cursedCastleSheet);
-                    Functions_GameObject.ResetObject(obj);
+                    GameObject obj = new GameObject();
+                    //Functions_GameObject.ResetObject(obj);
                     //set the new position value for the move component
                     obj.compMove.newPosition.X = 16 + 8 + (16 * j);
                     obj.compMove.newPosition.Y = 16 * 5 + (16 * i);
-                    Functions_GameObject.SetType(obj, ObjType.WallStraight);
+                    //Functions_GameObject.SetType(obj, ObjType.WallStraight);
 
 
                     #region Set the objects properly
@@ -165,7 +165,7 @@ namespace DungeonRun
 
             for (i = 1; i < 6; i++)
             {
-                GameObject enemySpawn = new GameObject(Assets.mainSheet);
+                GameObject enemySpawn = new GameObject();
                 enemySpawn.compMove.newPosition.X = 16 * i + 8;
                 enemySpawn.compMove.newPosition.Y = 16 * 12;
 
@@ -190,8 +190,9 @@ namespace DungeonRun
             #region Add Toolbar objs to ObjList
 
             //move icon - index 40
-            moveObj = new GameObject(Assets.mainSheet);
+            moveObj = new GameObject();
             Functions_GameObject.ResetObject(moveObj);
+            moveObj.compSprite.texture = Assets.mainSheet;
             //set sprite position
             moveObj.compSprite.position.X = 16 * 1 + 8;
             moveObj.compSprite.position.Y = 16 * 14;
@@ -205,8 +206,9 @@ namespace DungeonRun
             objList.Add(moveObj);
 
             //add icon - index 41
-            addObj = new GameObject(Assets.mainSheet);
+            addObj = new GameObject();
             Functions_GameObject.ResetObject(addObj);
+            addObj.compSprite.texture = Assets.mainSheet;
             //set sprite position
             addObj.compSprite.position.X = 16 * 3 + 8;
             addObj.compSprite.position.Y = 16 * 14;
@@ -220,8 +222,9 @@ namespace DungeonRun
             objList.Add(addObj);
 
             //minus icon - index 42
-            deleteObj = new GameObject(Assets.mainSheet);
+            deleteObj = new GameObject();
             Functions_GameObject.ResetObject(deleteObj);
+            deleteObj.compSprite.texture = Assets.mainSheet;
             //set sprite position
             deleteObj.compSprite.position.X = 16 * 5 + 8;
             deleteObj.compSprite.position.Y = 16 * 14;

@@ -283,16 +283,6 @@
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockLight</type>
-      <posX>88</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockDark</type>
-      <posX>88</posX>
-      <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>BlockDark</type>
       <posX>24</posX>
       <posY>104</posY>
@@ -445,12 +435,12 @@
     <ObjXmlData>
       <type>TorchUnlit</type>
       <posX>104</posX>
-      <posY>296</posY>
+      <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>TorchUnlit</type>
       <posX>104</posX>
-      <posY>8</posY>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>TorchUnlit</type>
@@ -464,13 +454,13 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>TorchUnlit</type>
-      <posX>296</posX>
-      <posY>8</posY>
+      <posX>280</posX>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>TorchUnlit</type>
-      <posX>296</posX>
-      <posY>296</posY>
+      <posX>280</posX>
+      <posY>280</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

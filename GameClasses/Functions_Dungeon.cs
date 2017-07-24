@@ -30,11 +30,7 @@ namespace DungeonRun
             dungeon.type = dungeonType; //dungeonType is set by OverworldScreen
 
             //set all floor sprites to the appropriate dungeon texture
-            if (dungeon.type == DungeonType.CursedCastle)
-            { Functions_Pool.SetFloorTexture(Assets.cursedCastleSheet); }
-            //expand this to include all dungeon textures...
-            else if (dungeon.type == DungeonType.Shop)
-            { Functions_Pool.SetFloorTexture(Assets.shopSheet); }
+            Functions_Pool.SetFloorTexture(dungeon.type);
 
 
             #region Create Shop
