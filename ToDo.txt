@@ -44,39 +44,23 @@ todo:
 
 
 
+Display different floor sprites for Hub, Key, and Boss Rooms
 
-
-Fix various small bugs with RBWidget & Floor Textures
-
-updated GameObject's constructor to not take a Texture parameter.
-the Texture is set via Functions_GameObject.SetType().
-this is called at the end of the constructor.
-fixed problem where RBwidget didn't display the toolbar icons properly.
-
-updated Functions_Pool.SetFloorTexture() to accept a DungeonType parameter.
-then this function sets the floor texture based on the DungeonType.
-updated call to SetFloorTexture() from Func_Dungeon.BuildDungeon() & RBScreen.BuildRoomData().
-
-fixed some design problems with prototype HUB XML roomData.
+updated Functions_Room.SetFloors().
+boss room now uses it's own unique floor sprite (#3).
+key and hub rooms use the 2nd floor sprite.
+all other rooms use the 1st floor sprite.
 playtested, working as expected.
 
 
 
 
-does the floor sprites change in key / boss / hub rooms?
-make sure this happens
-
-
-floor changes on a boss room load.
-key? nope
-hub? nope
-these should change!!!
 
 
 
-
-
-
+w should reset an object's animation counter when we get it
+or when we release it... this would keep obj animations in sync with each other
+otherwise it looks kinda janky
 
 
 

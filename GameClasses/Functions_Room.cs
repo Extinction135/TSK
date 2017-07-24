@@ -233,10 +233,11 @@ namespace DungeonRun
             for (i = 0; i < Pool.floorCount; i++)
             {   //set all the floor sprite's current frame based on the room.type
                 Pool.floorPool[i].currentFrame.X = 6;
-                if (Room.type == RoomType.Shop) { Pool.floorPool[i].currentFrame.Y = 0; }
-                else if (Room.type == RoomType.Exit) { Pool.floorPool[i].currentFrame.Y = 0; }
-                else if (Room.type == RoomType.Boss) { Pool.floorPool[i].currentFrame.Y = 1; }
-                else { Pool.floorPool[i].currentFrame.Y = 0; }
+                Pool.floorPool[i].currentFrame.Y = 0; //default to normal floor
+                //determine what floor sprite to display for special rooms
+                if (Room.type == RoomType.Hub) { Pool.floorPool[i].currentFrame.Y = 1; }
+                else if (Room.type == RoomType.Key) { Pool.floorPool[i].currentFrame.Y = 1; }
+                else if (Room.type == RoomType.Boss) { Pool.floorPool[i].currentFrame.Y = 2; }
             }
         }
 
