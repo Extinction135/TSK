@@ -22,5 +22,35 @@
       <posX>248</posX>
       <posY>136</posY>
     </ObjXmlData>
+    <ObjXmlData>
+      <type>Bumper</type>
+      <posX>152</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Bumper</type>
+      <posX>152</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Bumper</type>
+      <posX>8</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Bumper</type>
+      <posX>8</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Bumper</type>
+      <posX>296</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Bumper</type>
+      <posX>296</posX>
+      <posY>8</posY>
+    </ObjXmlData>
   </objs>
 </RoomXmlData>

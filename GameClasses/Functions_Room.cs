@@ -154,78 +154,49 @@ namespace DungeonRun
 
             SetDoors(Room); //set the room's doors
             SetFloors(Room); //set the floortile frames based on room.type
-
-
-            #region Pass the room to the appropriate method for completion
-
-            //procedurally finished rooms
-            if (Room.type == RoomType.Shop)
-            {
-                FinishShopRoom(Room);
-            }
-            else if (Room.type == RoomType.Exit)
-            {
-                FinishExitRoom(Room);
-                ScatterDebris(Room);
-            }
-            else if (Room.type == RoomType.Secret)
-            {
-                //FinishSecretRoom(Room);
-                ScatterDebris(Room);
-            }
-            //special rooms (key, hub, boss)
-            else if (Room.type == RoomType.Key)
-            {
-                BuildRoomObjs(Assets.roomDataKey[0]);
-                FinishKeyRoom(Room);
-                AddWallStatues(Room);
-                ScatterDebris(Room);
-            }
-            else if (Room.type == RoomType.Hub)
-            {
-                BuildRoomObjs(Assets.roomDataHub[0]);
-                FinishHubRoom(Room);
-                AddWallStatues(Room);
-                ScatterDebris(Room);
-            }
-            else if (Room.type == RoomType.Boss)
-            {
-                BuildRoomObjs(Assets.roomDataBoss[0]);
-                FinishBossRoom(Room);
-                //AddWallStatues(Room); //dont add wall statues
-                ScatterDebris(Room);
-            }
-            //standard/generic rooms (column, row, square)
-            else if (Room.type == RoomType.Column)
-            {
-                BuildRoomObjs(Assets.roomDataColumn[0]);
-                AddWallStatues(Room);
-                ScatterDebris(Room);
-            }
-            else if (Room.type == RoomType.Row)
-            {
-                BuildRoomObjs(Assets.roomDataRow[0]);
-                AddWallStatues(Room);
-                ScatterDebris(Room);
-            }
-            else if (Room.type == RoomType.Square)
-            {
-                BuildRoomObjs(Assets.roomDataSquare[0]);
-                AddWallStatues(Room);
-                ScatterDebris(Room);
-            }
-
-            #endregion
-
-
             //update all roomObjs, then remove overlapping objs
             Functions_Pool.UpdateRoomObjPool();
             CleanupRoom(Room); //remove overlapping objs
-            Assets.Play(Assets.sfxDoorOpen); //play the door sound
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
-            if (Flags.PrintOutput) { Debug.WriteLine("built " + Room.type + " room"); }
+            if (Flags.PrintOutput)
+            { Debug.WriteLine("built " + Room.type + " room in " + time.Ticks + "ticks"); }
+        }
+
+        public static void FinishRoom(Room Room)
+        {   //Pass the room to the appropriate method for completion
+            stopWatch.Reset(); stopWatch.Start();
+
+            //procedurally finished rooms
+            if (Room.type == RoomType.Shop) { FinishShopRoom(Room); }
+            else if (Room.type == RoomType.Exit) { FinishExitRoom(Room); }
+            else if (Room.type == RoomType.Secret) { FinishSecretRoom(Room); }
+            //special rooms (key, hub, boss)
+            else if (Room.type == RoomType.Key)
+            { BuildRoomObjs(Assets.roomDataKey[0]); FinishKeyRoom(Room); AddWallStatues(Room); }
+            else if (Room.type == RoomType.Hub)
+            { BuildRoomObjs(Assets.roomDataHub[0]); FinishHubRoom(Room); AddWallStatues(Room); }
+            else if (Room.type == RoomType.Boss)
+            { BuildRoomObjs(Assets.roomDataBoss[0]); FinishBossRoom(Room); }
+            //standard/generic rooms (column, row, square)
+            else if (Room.type == RoomType.Column)
+            { BuildRoomObjs(Assets.roomDataColumn[0]); AddWallStatues(Room); }
+            else if (Room.type == RoomType.Row)
+            { BuildRoomObjs(Assets.roomDataRow[0]); AddWallStatues(Room); }
+            else if (Room.type == RoomType.Square)
+            { BuildRoomObjs(Assets.roomDataSquare[0]); AddWallStatues(Room);  }
+            //scatter debris in all dungeon rooms, but not shop
+            if (Room.type != RoomType.Shop) { ScatterDebris(Room); }
+            //update the room objs, remove overlapping objs
+            Functions_Pool.UpdateRoomObjPool();
+            CleanupRoom(Room);
+            Assets.Play(Assets.sfxDoorOpen); //play door sfx
+
+            stopWatch.Stop(); time = stopWatch.Elapsed;
+            DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
+            if (Flags.PrintOutput)
+            { Debug.WriteLine("finished " + Room.type + " room in " + time.Ticks + "ticks"); }
         }
 
 
@@ -759,8 +730,6 @@ namespace DungeonRun
             #endregion
 
 
-            //if (RoomXmlData.type == RoomType.Boss)
-            //{ } //add boss actor, scatter debris around room
         }
 
 

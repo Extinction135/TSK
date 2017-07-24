@@ -44,13 +44,50 @@ todo:
 
 
 
+Fix bug where RoomObjs are created twice
 
-Simplify and Expand CleanupRoom()
-
-refactored CleanupRoom().
-easier to understand, and now has more object checks.
-updated CleanupRoom() to remove debris that overlaps certain objects.
+split BuildRoom() into BuildRoom() and FinishRoom().
+BuildRoom() creates the floors, walls, and doors.
+FinishRoom() builds interior objs from roomData XML lists in Assets.
+updated various codepaths to call BuildRoom() then FinishRoom().
 playtested, working as expected.
+
+updated RoomData with better room designs + enemy spawns.
+playtested, BUG.
+
+
+
+
+
+
+
+
+
+
+
+BUG: gameobjects can be assigned incorrect spritesheets.
+dungeon objects can be assigned the main spriteSheet, leading to strange visual sprites.
+
+
+
+there is a bug where roomObjs dont get the proper sheet assignment
+skull pots were assigned the main sheet for some reason...
+we should explicitly be assigning sheets somewhere - how are we doing this currently?
+
+
+when we build a room, each object we touch should have it's texture set to dungeon sheet
+
+
+
+
+all roomObjs should exist on the dungeon sheet
+we shouldn't have roomObjs exist on the mainSheet
+- vendors & vendor items
+
+
+
+
+
 
 
 

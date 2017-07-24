@@ -14,28 +14,13 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PotSkull</type>
-      <posX>232</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PotSkull</type>
-      <posX>232</posX>
+      <posX>216</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PotSkull</type>
-      <posX>232</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PotSkull</type>
-      <posX>232</posX>
+      <posX>216</posX>
       <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PotSkull</type>
-      <posX>232</posX>
-      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PotSkull</type>
@@ -49,48 +34,158 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PotSkull</type>
+      <posX>104</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PotSkull</type>
       <posX>88</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PotSkull</type>
-      <posX>72</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PotSkull</type>
-      <posX>56</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PotSkull</type>
-      <posX>56</posX>
+      <posX>88</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PotSkull</type>
-      <posX>56</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PotSkull</type>
-      <posX>56</posX>
+      <posX>88</posX>
       <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PotSkull</type>
-      <posX>56</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PotSkull</type>
-      <posX>72</posX>
-      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PotSkull</type>
       <posX>88</posX>
       <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PotSkull</type>
+      <posX>104</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>TorchUnlit</type>
+      <posX>248</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>TorchUnlit</type>
+      <posX>56</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>TorchUnlit</type>
+      <posX>56</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>TorchUnlit</type>
+      <posX>248</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <posX>280</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <posX>280</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <posX>24</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockSpikes</type>
+      <posX>248</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockSpikes</type>
+      <posX>56</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>152</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>168</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>136</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>136</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>168</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>184</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>120</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>152</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>152</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpikesFloor</type>
+      <posX>136</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpikesFloor</type>
+      <posX>152</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpikesFloor</type>
+      <posX>168</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpikesFloor</type>
+      <posX>136</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpikesFloor</type>
+      <posX>152</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpikesFloor</type>
+      <posX>168</posX>
+      <posY>136</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

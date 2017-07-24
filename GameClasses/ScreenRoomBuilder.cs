@@ -64,7 +64,7 @@ namespace DungeonRun
             Flags.InfiniteArrows = true; //hero has infinite arrows
             Flags.InfiniteBombs = true; //hero has infinite bombs
             Flags.CameraTracksHero = false; //center to room
-            Flags.ShowEnemySpawns = false; //necessary for editing
+            Flags.ShowEnemySpawns = true; //necessary for editing
 
             //set testing saveData
             PlayerData.current.magicFireball = true;
@@ -179,6 +179,7 @@ namespace DungeonRun
                             }
 
                             #endregion
+
 
                             //Load Button
                             else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)

@@ -133,6 +133,7 @@ namespace DungeonRun
 
             //build the first room in the dungeon (room with exit)
             Functions_Room.BuildRoom(dungeon.rooms[0]);
+            Functions_Room.FinishRoom(dungeon.rooms[0]);
             currentRoom = dungeon.rooms[0];
 
             //place hero in the current room (exit room, rooms[0]) in front of exit door
