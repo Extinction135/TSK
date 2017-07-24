@@ -510,6 +510,7 @@ namespace DungeonRun
                     else if (objA.type == ObjType.ConveyorBelt) { checkOverlap = true; }
                     else if (objA.type == ObjType.DebrisFloor) { checkOverlap = true; }
                     else if (objA.type == ObjType.SpikesFloor) { checkOverlap = true; }
+                    else if (objA.type == ObjType.Flamethrower) { checkOverlap = true; }
                 }
                 
                 if(checkOverlap)
@@ -533,6 +534,7 @@ namespace DungeonRun
                                 else if (objA.type == ObjType.ConveyorBelt) { removeObjB = true; }
                                 else if (objA.type == ObjType.DebrisFloor) { removeObjB = true; }
                                 else if (objA.type == ObjType.SpikesFloor) { removeObjB = true; }
+                                else if (objA.type == ObjType.Flamethrower) { removeObjB = true; }
                             }
                             if (removeObjB)
                             {   //check that objA and objB actually overlap

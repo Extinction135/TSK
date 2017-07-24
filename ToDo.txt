@@ -45,39 +45,59 @@ todo:
 
 
 
-
-Fix gameobjects to play animations in sync with each other
-
-updated Functions_GameObject.ResetObject() to ensure obj's animation starts at 0.
-this syncs up all objects to use the same animation timing.
-playtested, working as expected. 
-all spikefloors + pits animation is in sync.
+updated CleanupRoom() to remove debris overlapping flamethrower objects.
 
 
 
 
 
-w should reset an object's animation counter when we get it
-or when we release it... this would keep obj animations in sync with each other
-otherwise it looks kinda janky
+Chests++
+we can keep the key + map chests, because we can check the booleans to see if these chests should be empty
+we can simply empty these chests if we need to, so hero can't farm them and the room seems persistent
+however, we can't have heart piece chests (sold via vendor instead) or gold chests (rewarded for killing enemy or beating dungeon)
+so those two chests will have to be removed
+* the map chest will always exist in the hub room
+* the key chest will always exist in the key room
+(so we should be able to place chests in editor, but the chest type is based on the room type)
+(this allows us to create puzzles to the chest)
+
+remove all chests from hub room (procedurally added)
+create chestDefault object - this will become a map or key chest when room is built
+update HUB roomData with a chestDefault object
+update KEY roomData with a chestDefault object
+update FinishRoom() to set the chestDefault to map or key chest based on room type
 
 
 
-we shouldn't be adding testing chests to hub room
-we can add the dungeon map chest to hub room
+Update item vendor to sell heart piece / HP upgrade
+this is the only way the hero can increase his heart count
+should we sell entire hearts instead of heart pieces? yah, for 99 gold.
+this means we can get rid of heart pieces in main sheet, and only keep the whole heart sprite
+this means we don't need a heart piece graphic in the inventory screen / loadout widget
+* this opens up a slot for a side mission item that we could display here
+* this means we could only have one side mission 'assigned' at a time, tho, which is fine
+* we could put this side mission item in a secret room, then check the sidemission boolean to hide it if hero returns to room
 
-debris shouldn't overlap flamethrower objects
+
+Gold (exp)
+When the hero beats a dungeon, the only reward should be the dungeon crystal, no gold.
+gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
 
 
-
-in key room, the key chest should be placed in the center of the room vertically (it is horizontally)
 
 
 
 there should be a little fireball particle created when hero lights a torch
 
 floor spikes should push just like spike block
+hero should be able to interact with level
+this interaction changes lever to off state (flipped horizontally)
+this causes all spikefloors to turn off (down animation, no collisions)
+we will need: spikeFloorsOn, spikeFloorsOff, leverOn, levelOff
 
+leverOff should also turn off all conveyor belts
+this changes all conveyor belts to conveyorBeltOff
+this has no collision/interaction with hero
 
 
 
@@ -87,7 +107,7 @@ ends with 'you died' screen
 hero is set into hit state and scaled down to 0
 at 0, the hero dies
 
-
+this should also happen to enemies (instant death, no loot drop)
 
 
 
@@ -103,6 +123,16 @@ here is where we actually create interesting, random dungeons.
 create a path from exit to hub.
 create a path from hub to key.
 connect boss room to hub, so player knows where boss is early on.
+
+i norder for rooms to be 'consistent', we'll need to store the index selected for the XMLroomdata list
+each room should have a XMLid int. this is the xml roomData list index for this room.
+when the dungeon is created, all the room XMLid values are assigned.
+then when a room is built, we choose the xml roomData list at [XMLid].
+this means the room will be built the same each time hero enters it
+
+
+
+Dungeon Map
 
 create a dungeon map that shows the room layout.
 by default, set the dungeon map to true (for testing right now)
@@ -132,18 +162,9 @@ so all dungeons should display a blob character instead of a skull
 
 collision particle should center to the spike block upon collision
 
-increase obj count to 200
-increase projectile count to 150
-
 WorldUI++
 we should be displaying the amount of arrows, bombs in the worldUI
 this way user can see how many they have left
-
-if we kill the boss in editor, the summary screen appears
-this is fine, we just need a way to get back to editor
-
-
-
 
 
 
@@ -198,7 +219,8 @@ OpenGL port coming soon."
 release version 0.6 with complete dungeon & enemy variety.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-
+record a video playthrough of the game as it is right now
+consider updating the overworld map to look better too
 
 
 
