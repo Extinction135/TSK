@@ -44,35 +44,21 @@ todo:
 
 
 
-Various Obj Interactions & Polish
 
-updated Interact(Actor, Obj) with path for lighting an unlit torch.
-modified the fire rate for wall statues to shoot even less.
-playtested, lighting a torch should play a sound effect, duh.
+Simplify and Expand CleanupRoom()
 
-added SoundLightFire to content.
-added lightFire sfx instances to Assets.
-updated Interact() unlight torch path to play the new LightFire sound effect.
+refactored CleanupRoom().
+easier to understand, and now has more object checks.
+updated CleanupRoom() to remove debris that overlaps certain objects.
 playtested, working as expected.
 
 
 
 
-
-
-
+add enemy spawns to the roomData
+actually kinda design some basic rooms too..
 
 there should be a little fireball particle created when hero lights a torch
-
-the light fire sound effect should be louder
-the reward sound effect is WAAAAY too loud
-
-we should not be able to call the same soundFX multiple times from one frame
-this causes the sfx to layer upon each other, drastically increasing their volume
-this is BAD BAD BAD
-
-
-
 
 floor spikes should push just like spike block
 
@@ -123,6 +109,22 @@ this way user can see how many they have left
 
 if we kill the boss in editor, the summary screen appears
 this is fine, we just need a way to get back to editor
+
+
+
+
+
+
+SOUND POLISH
+
+the light fire sound effect should be louder
+the reward sound effect is WAAAAY too loud
+
+we should not be able to call the same soundFX multiple times from one frame
+this causes the sfx to layer upon each other, drastically increasing their volume
+this is BAD BAD BAD
+
+
 
 
 

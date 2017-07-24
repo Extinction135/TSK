@@ -520,27 +520,52 @@ namespace DungeonRun
 
         public static void CleanupRoom(Room Room)
         {
-            Boolean checkObjB; //remove certain overlapping objects
+            GameObject objA; //object we want to keep
+            GameObject objB; //object we want to remove
+            Boolean checkOverlap;
+            Boolean removeObjB;
+
             for (i = 0; i < Pool.roomObjCount; i++)
             {
-                checkObjB = false; //check to see if ObjA can delete ObjB
-                if (Pool.roomObjPool[i].active) //if ObjA is active..
-                {   //certain objects delete other objects, if they collide
-                    if (Pool.roomObjPool[i].group == ObjGroup.Door
-                        || Pool.roomObjPool[i].group == ObjGroup.Wall)
-                    { checkObjB = true; }
+                checkOverlap = false;
+                objA = Pool.roomObjPool[i];
+
+                if (objA.active)
+                {   //objA groups & types we check overlap for
+                    if (objA.group == ObjGroup.Door) { checkOverlap = true; }
+                    else if (objA.group == ObjGroup.Wall) { checkOverlap = true; }
+                    else if (objA.type == ObjType.PitAnimated) { checkOverlap = true; }
+                    else if (objA.type == ObjType.ConveyorBelt) { checkOverlap = true; }
+                    else if (objA.type == ObjType.DebrisFloor) { checkOverlap = true; }
+                    else if (objA.type == ObjType.SpikesFloor) { checkOverlap = true; }
                 }
-                if (checkObjB) //ObjA can delete ObjB
+                
+                if(checkOverlap)
                 {
                     for (j = 0; j < Pool.roomObjCount; j++)
-                    {   //if ObjB is active, and not the same object (dont compare objects with themselves)
-                        if (Pool.roomObjPool[j].active && Pool.roomObjPool[i] != Pool.roomObjPool[j])
-                        {   //check that the obj is a straight wall or wall statue
-                            if (Pool.roomObjPool[j].type == ObjType.WallStraight ||
-                                Pool.roomObjPool[j].type == ObjType.WallStatue)
-                            {   //walls that intersect ObjA get released (deleted)
-                                if (Pool.roomObjPool[i].compCollision.rec.Intersects(Pool.roomObjPool[j].compCollision.rec))
-                                { Functions_Pool.Release(Pool.roomObjPool[j]); }
+                    {
+                        objB = Pool.roomObjPool[j];
+                        if (objB.active && objA != objB)
+                        {
+                            removeObjB = false;
+                            if(objB.group == ObjGroup.Wall)
+                            {   //prevent walls from overlapping doors, torches, and pillars
+                                if (objA.group == ObjGroup.Door) { removeObjB = true; }
+                                if (objA.type == ObjType.WallTorch) { removeObjB = true; }
+                                if (objA.type == ObjType.WallPillar) { removeObjB = true; }
+                            }
+                            else if (objB.type == ObjType.DebrisFloor)
+                            {   //prevent debris from overlapping various objects
+                                if (objA.group == ObjGroup.Wall) { removeObjB = true; }
+                                else if (objA.type == ObjType.PitAnimated) { removeObjB = true; }
+                                else if (objA.type == ObjType.ConveyorBelt) { removeObjB = true; }
+                                else if (objA.type == ObjType.DebrisFloor) { removeObjB = true; }
+                                else if (objA.type == ObjType.SpikesFloor) { removeObjB = true; }
+                            }
+                            if (removeObjB)
+                            {   //check that objA and objB actually overlap
+                                if (objA.compCollision.rec.Intersects(objB.compCollision.rec))
+                                { Functions_Pool.Release(objB); }
                             }
                         }
                     }
