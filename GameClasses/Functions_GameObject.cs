@@ -37,6 +37,7 @@ namespace DungeonRun
             Obj.compAnim.speed = 10; //set obj's animation speed to default value
             Obj.compAnim.loop = true; //assume obj's animation loops
             Obj.compAnim.index = 0; //reset the current animation index/frame
+            Obj.compAnim.timer = 0; //reset the elapsed frames
             //reset the collision component
             Obj.compCollision.active = false; //assume this object doesn't move, shouldnt check itself for collisions vs objs
             Obj.compCollision.blocking = true; //assume the object is blocking (most are)

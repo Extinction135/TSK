@@ -44,15 +44,14 @@ todo:
 
 
 
-Display different floor sprites for Hub, Key, and Boss Rooms
-
-updated Functions_Room.SetFloors().
-boss room now uses it's own unique floor sprite (#3).
-key and hub rooms use the 2nd floor sprite.
-all other rooms use the 1st floor sprite.
-playtested, working as expected.
 
 
+Fix gameobjects to play animations in sync with each other
+
+updated Functions_GameObject.ResetObject() to ensure obj's animation starts at 0.
+this syncs up all objects to use the same animation timing.
+playtested, working as expected. 
+all spikefloors + pits animation is in sync.
 
 
 
@@ -64,14 +63,36 @@ otherwise it looks kinda janky
 
 
 
+we shouldn't be adding testing chests to hub room
+we can add the dungeon map chest to hub room
+
+debris shouldn't overlap flamethrower objects
 
 
+
+in key room, the key chest should be placed in the center of the room vertically (it is horizontally)
 
 
 
 there should be a little fireball particle created when hero lights a torch
 
 floor spikes should push just like spike block
+
+
+
+
+falling into a pit is just instant death
+hero just dies, no damage is dealt (no fairy can be used)
+ends with 'you died' screen
+hero is set into hit state and scaled down to 0
+at 0, the hero dies
+
+
+
+
+
+
+
 
 
 
@@ -158,12 +179,10 @@ then load a different file, and the hero's loadout hasn't changed
 this lets the hero have a bow and fireball on a game where he doesn't have those items..
 
 
-boss door bug - maybe?
-when we build the boss door's welcome mat, we need to place it based on the door.direction
-right now, it just places it south of the door, and the boss door will not always be south facing.
-ACTUALLY, the boss door will always be south facing, and be attached to the HUB room.
-so this isn't actually a bug at all.
 
+bug: hero creates a sword projectile on conveyor belt
+hero is moved by conveyor belt into his sword projectile
+he takes damage. this should not happen
 
 
 
