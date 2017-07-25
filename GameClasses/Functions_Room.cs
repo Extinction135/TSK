@@ -32,7 +32,6 @@ namespace DungeonRun
 
             //reset the pools + counter
             Functions_Pool.Reset();
-            Pool.counter = 0;
             //shorten the room's position reference
             pos = Room.collision.rec.Location;
 

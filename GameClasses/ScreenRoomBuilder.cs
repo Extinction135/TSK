@@ -159,9 +159,9 @@ namespace DungeonRun
                                 roomData = new RoomXmlData();
                                 roomData.type = Functions_Dungeon.currentRoom.type; //save the room type
                                 //populate this instance with the room's objs
-                                for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+                                for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
                                 {
-                                    objRef = Pool.roomObjPool[Pool.counter];
+                                    objRef = Pool.roomObjPool[Pool.roomObjCounter];
                                     //if this object is active, save it
                                     if (objRef.active)
                                     {   
@@ -254,12 +254,12 @@ namespace DungeonRun
 
                     else if (editorState == EditorState.DeleteObj)
                     {   //check collisions between worldPos and roomObjs, release any colliding obj
-                        for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+                        for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
                         {
-                            if (Pool.roomObjPool[Pool.counter].active)
+                            if (Pool.roomObjPool[Pool.roomObjCounter].active)
                             {
-                                if (Pool.roomObjPool[Pool.counter].compCollision.rec.Contains(worldPos))
-                                { Functions_Pool.Release(Pool.roomObjPool[Pool.counter]); }
+                                if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                                { Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]); }
                             }
                         }
                     }
@@ -274,12 +274,12 @@ namespace DungeonRun
 
                 if (editorState == EditorState.MoveObj)
                 {   //check collisions between worldPos and roomObjs, grab any colliding obj
-                    for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+                    for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
                     {
-                        if (Pool.roomObjPool[Pool.counter].active)
+                        if (Pool.roomObjPool[Pool.roomObjCounter].active)
                         {
-                            if (Pool.roomObjPool[Pool.counter].compCollision.rec.Contains(worldPos))
-                            { grabbedObj = Pool.roomObjPool[Pool.counter]; }
+                            if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                            { grabbedObj = Pool.roomObjPool[Pool.roomObjCounter]; }
                         }
                     }
                 }

@@ -43,7 +43,40 @@ todo:
 (Work on DirectX project until Release)
 
 
-2 moar commits!
+
+
+
+
+
+Fix issue where Entities are incorrectly recycled
+
+Issue: if the game is using entities quickly, older entities may be reassigned.
+these older entities may not have completed their lifecycle, and may still be active.
+for example, an active bomb may just disappear (and not explode) if entity churn is high.
+this shouldn't happen. GetEntity() should only return inactive entities.
+
+Fix: updated GetEntity() to only return inactive entity objects.
+GetEntity() will increment from current index looking for inactive entity.
+this check will continue for the total count of entities, looping to 0 if necessary.
+if no inactive entity is found (will never happen), then the first entity is returned.
+this allows all other entities enough time to complete their lifecycle.
+
+the scenario in which the Issue appears is very difficult to recreate.
+however, I was able to create a room where entity churn was obscene.
+testing the issue presented a new bug, related to Pool.counter.
+Pool.counter was being shared between actors, roomObjs, entities, and floors.
+this led to a state where Pool.counter was used incorrectly and exceeded a list's bounds.
+
+Fix: simply use seperate counters for actors, roomObjs, entities, and floors.
+created Pool.actorCounter, Pool.roomObjCounter, Pool.entityCounter, and Pool.floorCounter.
+updated various codepaths to use these new Pool counters.
+created StressTest.xml. playtested, working as expected.
+changed debug info to read: entities instead of pros.
+
+issue: if the entity churn is really high (stressTest high) then we can't create any entities.
+actors can't make projectiles, particles, or pickups. the game breaks.
+quick fix: increased entity count to 300, up from 100.
+playtested, working as expected, recorded stressTest.gif.
 
 
 
@@ -52,51 +85,6 @@ todo:
 
 
 
-
-Fix counting issue with RoomObjs
-
-updated GetRoomObj() to return only objects with .active = false.
-this is done by looping thru the roomObjs starting at 0, looking for inactive obj.
-added routine to count all active roomObjs at the end of CleanupRoom().
-this count only runs if the DebugInfo panel is being drawn.
-playtested, working as expected.
-
-fixed some garbage creation in CleanupRoom().
-
-
-
-
-
-
-
-
-we can't fix counting issue with entities
-but we can return an entity that has been released (inactive)
-
-
-
-
-
-
-Efficiently Using GameObjs + Floors
-
-we can use obj.active to track if an obj is currently being used or has been released
-ReleaseObj() - should set the obj.active to false 
-GetObj() - should loop thru roomObjs, find first obj with active=false, return this obj
-*we should be counting forward and looping back, not starting from index0 when checking .active property
-*this makes the method slightly faster, as it's more likely that the next obj is inactive vs. the first obj being inactive
-GetUsedCount() - loops thru roomObjs, floors and counts all active/visible to correct counter
-*this fixes the counting problems we see in info panel
-*this should be done at the end of a room build/finish
-
-Fixing the Entity Reuse problem
-if we are using a lot of entities quickly, old entities get recycled before they have a chance to complete their life
-for example, bombs can just disappear instead of exploding
-this is related to how we GetEntity(), which simply loops thru the pool, returning the next obj
-this does not check to see if the obj is inactive, which it should
-and when we ReleaseEntity(), the obj.active boolean should be set false
-
-the entity use counter will simply continue to increment as it does currently
 
 
 

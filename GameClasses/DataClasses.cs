@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.5f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -127,22 +127,26 @@ namespace DungeonRun
         public static int actorCount;           //total count of actors in pool
         public static List<Actor> actorPool;    //the actual list of actors
         public static int actorIndex;           //used to iterate thru the pool
+        public static int actorCounter = 0;
 
         //obj pool handles room objects, from dungeon & main sheet
         public static int roomObjCount;
         public static List<GameObject> roomObjPool;
         public static int roomObjIndex;
+        public static int roomObjCounter = 0;
 
         //entity pool handles projectiles/particles/pickups, only from main sheet
         public static int entityCount;
         public static List<GameObject> entityPool;
         public static int entityIndex;
+        public static int entityCounter = 0;
 
         public static int floorCount;
         public static List<ComponentSprite> floorPool;
         public static int floorIndex;
+        public static int floorCounter = 0;
 
-        public static int counter;
+        //public static int counter;
         public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero;
         public static ComponentSprite heroShadow;
@@ -152,34 +156,34 @@ namespace DungeonRun
             //set the pool sizes
             actorCount = 30;
             roomObjCount = 300;
-            entityCount = 100;
+            entityCount = 300;
             floorCount = 500;
 
             //actor pool
             actorPool = new List<Actor>();
-            for (counter = 0; counter < actorCount; counter++)
+            for (actorCounter = 0; actorCounter < actorCount; actorCounter++)
             {
                 actorPool.Add(new Actor());
-                Functions_Actor.SetType(actorPool[counter], ActorType.Hero);
-                Functions_Movement.Teleport(actorPool[counter].compMove, 0, 0);
+                Functions_Actor.SetType(actorPool[actorCounter], ActorType.Hero);
+                Functions_Movement.Teleport(actorPool[actorCounter].compMove, 0, 0);
             }
             actorIndex = 1;
 
             //room obj pool
             roomObjPool = new List<GameObject>();
-            for (counter = 0; counter < roomObjCount; counter++)
+            for (roomObjCounter = 0; roomObjCounter < roomObjCount; roomObjCounter++)
             { roomObjPool.Add(new GameObject()); }
             roomObjIndex = 0;
 
             //entity pool
             entityPool = new List<GameObject>();
-            for (counter = 0; counter < entityCount; counter++)
+            for (entityCounter = 0; entityCounter < entityCount; entityCounter++)
             { entityPool.Add(new GameObject()); }
             entityIndex = 0;
 
             //floor pool
             floorPool = new List<ComponentSprite>();
-            for (counter = 0; counter < floorCount; counter++)
+            for (floorCounter = 0; floorCounter < floorCount; floorCounter++)
             {
                 floorPool.Add(new ComponentSprite(Assets.shopSheet,
                     new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Point(16, 16)));

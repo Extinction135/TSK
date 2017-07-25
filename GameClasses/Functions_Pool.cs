@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class Functions_Pool
     {
+        static int i;
 
         public static Actor GetActor()
         {
@@ -32,28 +33,35 @@ namespace DungeonRun
         }
         
         public static GameObject GetRoomObj()
-        {
-            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+        {   //called when building/finishing room, index does not loop
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {
-                if (Pool.roomObjPool[Pool.counter].active == false)
-                {   //found an obj to return
+                if (Pool.roomObjPool[Pool.roomObjCounter].active == false)
+                {   //found an inactive obj to return
                     //reset obj to default state, hide offscreen, return it
-                    Functions_GameObject.ResetObject(Pool.roomObjPool[Pool.counter]);
-                    Pool.roomObjPool[Pool.counter].compMove.newPosition.X = -1000;
-                    return Pool.roomObjPool[Pool.counter];
+                    Functions_GameObject.ResetObject(Pool.roomObjPool[Pool.roomObjCounter]);
+                    Pool.roomObjPool[Pool.roomObjCounter].compMove.newPosition.X = -1000;
+                    return Pool.roomObjPool[Pool.roomObjCounter];
                 }
             }
             return Pool.roomObjPool[0]; //ran out of roomObjs
         }
 
         public static GameObject GetEntity()
-        {   //this is called throughout room gameplay, and will loop/reset
-            Pool.entityIndex++;
-            if (Pool.entityIndex >= Pool.entityCount) { Pool.entityIndex = 0; }
-            //reset projectile to default state, hide offscreen
-            Functions_GameObject.ResetObject(Pool.entityPool[Pool.entityIndex]);
-            Pool.entityPool[Pool.entityIndex].compMove.newPosition.X = -1000;
-            return Pool.entityPool[Pool.entityIndex];
+        {   //this is called throughout gameplay, and index loops
+            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
+            {   //loop thru the entire entity pool, but use the entityIndex, NOT Pool.counter
+                Pool.entityIndex++;
+                if (Pool.entityIndex >= Pool.entityCount) { Pool.entityIndex = 0; }
+                if (Pool.entityPool[Pool.entityIndex].active == false)
+                {   //found an inactive entity to return
+                    //reset entity to default state, hide offscreen, return it
+                    Functions_GameObject.ResetObject(Pool.entityPool[Pool.entityIndex]);
+                    Pool.entityPool[Pool.entityIndex].compMove.newPosition.X = -1000;
+                    return Pool.entityPool[Pool.entityIndex];
+                }
+            }
+            return Pool.entityPool[0]; //ran out of entities
         }
 
         public static ComponentSprite GetFloor()
@@ -77,34 +85,34 @@ namespace DungeonRun
 
         public static void ResetActorPool()
         {   //we skip resetting the hero
-            for (Pool.counter = 1; Pool.counter < Pool.actorCount; Pool.counter++)
-            { Release(Pool.actorPool[Pool.counter]); }
+            for (Pool.actorCounter = 1; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
+            { Release(Pool.actorPool[Pool.actorCounter]); }
             Pool.actorIndex = 1;
         }
 
         public static void ResetRoomObjPool()
         {
-            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
-            { Release(Pool.roomObjPool[Pool.counter]); }
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            { Release(Pool.roomObjPool[Pool.roomObjCounter]); }
         }
 
         public static void ResetEntityPool()
         {
-            for (Pool.counter = 0; Pool.counter < Pool.entityCount; Pool.counter++)
-            { Release(Pool.entityPool[Pool.counter]); }
+            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
+            { Release(Pool.entityPool[Pool.entityCounter]); }
         }
 
         public static void ResetFloorPool()
         {
-            for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
-            { Pool.floorPool[Pool.counter].visible = false; }
+            for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
+            { Pool.floorPool[Pool.floorCounter].visible = false; }
             Pool.floorIndex = 0; //reset total count
         }
 
         public static void ResetActorPoolInput()
         {
-            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
-            { Functions_Input.ResetInputData(Pool.actorPool[Pool.counter].compInput); }
+            for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
+            { Functions_Input.ResetInputData(Pool.actorPool[Pool.actorCounter].compInput); }
         }
 
         public static void Release(Actor Actor)
@@ -131,50 +139,50 @@ namespace DungeonRun
             else if (Type == DungeonType.Shop) { Texture = Assets.shopSheet; }
 
             //set the floor texture
-            for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
-            { Pool.floorPool[Pool.counter].texture = Texture; }
+            for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
+            { Pool.floorPool[Pool.floorCounter].texture = Texture; }
         }
 
         public static void UpdateRoomObjPool()
         {   //align sprite + collision comps to move comp of all active objs
-            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {
-                if (Pool.roomObjPool[Pool.counter].active)
+                if (Pool.roomObjPool[Pool.roomObjCounter].active)
                 {   //align the sprite and collision components to the move component
                     Functions_Component.Align(
-                        Pool.roomObjPool[Pool.counter].compMove, 
-                        Pool.roomObjPool[Pool.counter].compSprite, 
-                        Pool.roomObjPool[Pool.counter].compCollision);
+                        Pool.roomObjPool[Pool.roomObjCounter].compMove, 
+                        Pool.roomObjPool[Pool.roomObjCounter].compSprite, 
+                        Pool.roomObjPool[Pool.roomObjCounter].compCollision);
                     //set the current animation frame, check the animation counter
-                    Functions_Animation.Animate(Pool.roomObjPool[Pool.counter].compAnim,
-                        Pool.roomObjPool[Pool.counter].compSprite);
+                    Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
+                        Pool.roomObjPool[Pool.roomObjCounter].compSprite);
                     //set the rotation for the obj's sprite
-                    Functions_GameObject.SetRotation(Pool.roomObjPool[Pool.counter]);
+                    Functions_GameObject.SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
                 }
             }
         }
 
         public static void Move()
         {
-            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+            for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             {   //move actors in actor pool that are active and alive
                 if (
-                    Pool.actorPool[Pool.counter].active &&
-                    Pool.actorPool[Pool.counter].state != ActorState.Dead
+                    Pool.actorPool[Pool.actorCounter].active &&
+                    Pool.actorPool[Pool.actorCounter].state != ActorState.Dead
                     )
-                { Functions_Movement.Move(Pool.actorPool[Pool.counter]); }
+                { Functions_Movement.Move(Pool.actorPool[Pool.actorCounter]); }
             }
-            for (Pool.counter = 0; Pool.counter < Pool.entityCount; Pool.counter++)
+            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
             {   //move projectiles in projectile pool that are active
-                if (Pool.entityPool[Pool.counter].active)
-                { Functions_Movement.Move(Pool.entityPool[Pool.counter]); }
+                if (Pool.entityPool[Pool.entityCounter].active)
+                { Functions_Movement.Move(Pool.entityPool[Pool.entityCounter]); }
             }
-            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {   //if this object is active, and it isn't blocking, then move it
-                if (Pool.roomObjPool[Pool.counter].active)
+                if (Pool.roomObjPool[Pool.roomObjCounter].active)
                 {   //only non-blocking objects get moved, collision checked, and interaction handled
-                    if (!Pool.roomObjPool[Pool.counter].compCollision.blocking)
-                    { Functions_Movement.Move(Pool.roomObjPool[Pool.counter]); }
+                    if (!Pool.roomObjPool[Pool.roomObjCounter].compCollision.blocking)
+                    { Functions_Movement.Move(Pool.roomObjPool[Pool.roomObjCounter]); }
                 }
             }
         }
@@ -184,33 +192,33 @@ namespace DungeonRun
         public static void Update()
         {
             //actor pool
-            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+            for (i = 0; i < Pool.actorCount; i++)
             {
-                if (Pool.actorPool[Pool.counter].active)
+                if (Pool.actorPool[i].active)
                 {
-                    Functions_Actor.Update(Pool.actorPool[Pool.counter]);
-                    Functions_Animation.Animate(Pool.actorPool[Pool.counter].compAnim, 
-                        Pool.actorPool[Pool.counter].compSprite);
+                    Functions_Actor.Update(Pool.actorPool[i]);
+                    Functions_Animation.Animate(Pool.actorPool[i].compAnim, 
+                        Pool.actorPool[i].compSprite);
                 }
             }
             //room obj pool
-            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+            for (i = 0; i < Pool.roomObjCount; i++)
             {
-                if (Pool.roomObjPool[Pool.counter].active)
+                if (Pool.roomObjPool[i].active)
                 {
-                    Functions_GameObject.Update(Pool.roomObjPool[Pool.counter]);
-                    Functions_Animation.Animate(Pool.roomObjPool[Pool.counter].compAnim, 
-                        Pool.roomObjPool[Pool.counter].compSprite);
+                    Functions_GameObject.Update(Pool.roomObjPool[i]);
+                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
+                        Pool.roomObjPool[i].compSprite);
                 }
             }
-            //projectile pool
-            for (Pool.counter = 0; Pool.counter < Pool.entityCount; Pool.counter++)
+            //entity pool
+            for (i = 0; i < Pool.entityCount; i++)
             {
-                if (Pool.entityPool[Pool.counter].active)
+                if (Pool.entityPool[i].active)
                 {  
-                    Functions_GameObject.Update(Pool.entityPool[Pool.counter]);
-                    Functions_Animation.Animate(Pool.entityPool[Pool.counter].compAnim, 
-                        Pool.entityPool[Pool.counter].compSprite);
+                    Functions_GameObject.Update(Pool.entityPool[i]);
+                    Functions_Animation.Animate(Pool.entityPool[i].compAnim, 
+                        Pool.entityPool[i].compSprite);
                 }
             }
             Move();
@@ -219,20 +227,20 @@ namespace DungeonRun
         public static void Draw()
         {
             //floor pool
-            for (Pool.counter = 0; Pool.counter < Pool.floorCount; Pool.counter++)
-            { Functions_Draw.Draw(Pool.floorPool[Pool.counter]); }
+            for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
+            { Functions_Draw.Draw(Pool.floorPool[Pool.floorCounter]); }
 
-            //obj pool
-            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
-            { Functions_Draw.Draw(Pool.roomObjPool[Pool.counter]); }
+            //roomObj pool
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            { Functions_Draw.Draw(Pool.roomObjPool[Pool.roomObjCounter]); }
 
-            //projectile pool
-            for (Pool.counter = 0; Pool.counter < Pool.entityCount; Pool.counter++)
-            { Functions_Draw.Draw(Pool.entityPool[Pool.counter]); }
+            //entity pool
+            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
+            { Functions_Draw.Draw(Pool.entityPool[Pool.entityCounter]); }
 
             //actor pool
-            for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
-            { Functions_Draw.Draw(Pool.actorPool[Pool.counter]); }
+            for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
+            { Functions_Draw.Draw(Pool.actorPool[Pool.actorCounter]); }
 
             //match hero shadow to hero position + offset, then draw it
             Pool.heroShadow.position.X = Pool.hero.compSprite.position.X;

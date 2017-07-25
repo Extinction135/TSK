@@ -298,10 +298,10 @@ namespace DungeonRun
             //dump the states for every active actor if Enter key is pressed
             if (Functions_Input.IsNewKeyPress(Keys.Enter))
             {
-                for (Pool.counter = 0; Pool.counter < Pool.actorCount; Pool.counter++)
+                for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
                 {
-                    if (Pool.actorPool[Pool.counter].active)
-                    { Inspect(Pool.actorPool[Pool.counter]); }
+                    if (Pool.actorPool[Pool.actorCounter].active)
+                    { Inspect(Pool.actorPool[Pool.actorCounter]); }
                 }
             }
         }
