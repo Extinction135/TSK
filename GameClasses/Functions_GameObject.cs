@@ -219,9 +219,12 @@ namespace DungeonRun
             else if (
                 Type == ObjType.PitTrapReady || Type == ObjType.PitTrapOpening)
             {   //this becomes a pit
-                Obj.compCollision.offsetX = -6;
-                Obj.compCollision.offsetY = -6;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                //Obj.compCollision.offsetX = -6;
+                //Obj.compCollision.offsetY = -6;
                 Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
 

@@ -58,8 +58,8 @@ namespace DungeonRun
                         Pool.hero.stateLocked = true;
                         Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;
-                        //handle the interaction, likely overwrites hero.lockTotal
-                        Functions_Interaction.Interact(Pool.hero, Pool.roomObjPool[i]); 
+                        //handle the hero interaction, may overwrites hero.lockTotal
+                        Functions_Interaction.InteractHero(Pool.roomObjPool[i]); 
                     }
                 }
             }
@@ -79,7 +79,7 @@ namespace DungeonRun
                 {
                     if (Actor.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {
-                        Functions_Interaction.Interact(Actor, Pool.roomObjPool[i]);
+                        Functions_Interaction.InteractActor(Actor, Pool.roomObjPool[i]);
                         if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
                     }
                 }
@@ -127,7 +127,7 @@ namespace DungeonRun
                     if (Obj.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {   //roomObjs cant collide with themselves
                         if (Obj != Pool.roomObjPool[i])
-                        { Functions_Interaction.Interact(Obj, Pool.roomObjPool[i]); }
+                        { Functions_Interaction.InteractObject(Obj, Pool.roomObjPool[i]); }
                     }
                 }
             }
@@ -140,7 +140,7 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active)
                 {
                     if (Projectile.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    { Functions_Interaction.Interact(Pool.actorPool[i], Projectile); }
+                    { Functions_Interaction.InteractActor(Pool.actorPool[i], Projectile); }
                 }
             }
         }
@@ -154,7 +154,7 @@ namespace DungeonRun
                     if (Projectile.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
                     {   //projectiles cant collide with themselves
                         if (Projectile != Pool.entityPool[i])
-                        { Functions_Interaction.Interact(Projectile, Pool.entityPool[i]); }
+                        { Functions_Interaction.InteractObject(Projectile, Pool.entityPool[i]); }
                     }
                 }
             }

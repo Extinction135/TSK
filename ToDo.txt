@@ -45,35 +45,30 @@ todo:
 
 
 
+Improve how Hero & Actors interact with GameObjects
 
+split Interact() into InteractHero() and InteractActor().
+InteractHero() handles hero specific interactionRec interactions.
+InteractActor() handles generic actor collisionRec interactions.
+renamed Interact(Obj, Obj) to InteractObject(Obj, Obj).
+playtested, working as expected.
 
-
-
-
-Get FloorSpikes pushing and damaging hero just like Spike Blocks do
-
-updated Functions_Interaction.Interact(Actor, Obj) with path for Floor Spikes.
-updated Functions_Battle.Damage(Actor, Obj) with path for Floor Spikes.
-floor spikes interact with hero the exact same way spike blocks do.
-centered sparkle particle to spike block upon collision with another obj.
+wrote routine for handling actor interaction with pit object.
+for now, the actor is just pushed away from the pit with a dash particle effect.
+in the future, pits will pull actors into them and insta-kill them.
 playtested, working as expected.
 
 
 
-
-rewrite Interact() to focus on specific Hero interactions vs actor interactions
-
-
-
-
-seperate the interactionRec + collision interactions in Interact()
+actors aren't interacting with pits???
 
 
 
 
-polish++
-floor spikes should push just like spike block
-collision particle should center to the spike block upon collision
+
+
+
+
 
 
 overworld++

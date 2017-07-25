@@ -57,24 +57,158 @@ namespace DungeonRun
             }
         }
 
-        public static void Interact(Actor Actor, GameObject Obj)
-        {
-            //the Obj is non-blocking
+
+
+        public static void InteractHero(GameObject Obj)
+        {   //this is the hero's interactionRec colliding with Obj
+            //we know this is hero, and hero is in ActorState.Interact
+            
+            #region Liftable objects
+
+            if (Obj.group == ObjGroup.Liftable)
+            {
+                //pickup object over hero's head
+            }
+
+            #endregion
+
+
+            #region Draggable objects
+
+            else if (Obj.group == ObjGroup.Draggable)
+            {
+                //BlockDraggable
+                //begin dragging object
+            }
+
+            #endregion
+
+
+            #region Chests
+
+            else if (Obj.group == ObjGroup.Chest)
+            {
+
+                #region Reward the hero with chest contents
+
+                if (Obj.type == ObjType.ChestGold)
+                {
+                    Functions_Entity.SpawnEntity(ObjType.ParticleRewardGold, Pool.hero);
+                    Assets.Play(Assets.sfxReward);
+                    PlayerData.current.gold += 20;
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotGold)); }
+                }
+                else if (Obj.type == ObjType.ChestKey)
+                {
+                    Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Pool.hero);
+                    Assets.Play(Assets.sfxKeyPickup);
+                    Functions_Dungeon.dungeon.bigKey = true;
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotKey)); }
+                }
+                else if (Obj.type == ObjType.ChestMap)
+                {
+                    Functions_Entity.SpawnEntity(ObjType.ParticleRewardMap, Pool.hero);
+                    Assets.Play(Assets.sfxReward);
+                    Functions_Dungeon.dungeon.map = true;
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap)); }
+                }
+                else if (Obj.type == ObjType.ChestHeartPiece)
+                {
+                    if (WorldUI.pieceCounter == 3) //if this completes a heart, display the full heart reward
+                    { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartFull, Pool.hero); }
+                    else //this does not complete a heart, display the heart piece reward
+                    { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartPiece, Pool.hero); }
+                    Assets.Play(Assets.sfxReward);
+                    PlayerData.current.heartPieces++;
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotHeartPiece)); }
+                }
+
+                #endregion
+
+
+                if (Obj.type != ObjType.ChestEmpty)
+                {   //if the chest is not empty, play the reward animation
+                    Assets.Play(Assets.sfxChestOpen);
+                    Functions_GameObject.SetType(Obj, ObjType.ChestEmpty);
+                    Pool.hero.state = ActorState.Reward; //set actor into reward state
+                    Pool.hero.lockTotal = 40; //lock for a prolonged time
+                    Functions_Entity.SpawnEntity( //show the chest was opened
+                        ObjType.ParticleAttention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.None);
+                }
+            }
+
+            #endregion
+
+
+            #region Vendors
+
+            else if (Obj.group == ObjGroup.Vendor)
+            {   //some vendors do not sell items, so check vendor types
+                if (Obj.type == ObjType.VendorStory) //for now this is default dialog
+                {   //figure out what part of the story the hero is at, pass this dialog
+                    ScreenManager.AddScreen(new ScreenDialog(Dialog.Default));
+                }
+                //check to make sure the obj isn't a vendor advertisement
+                else if (Obj.type != ObjType.VendorAdvertisement)
+                { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
+                //vendor ad objects are ignored
+            }
+
+            #endregion
+
+
+            #region Boss Door
+
+            else if (Obj.type == ObjType.DoorBoss)
+            {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
+                if (Functions_Dungeon.dungeon.bigKey == false)
+                {
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey)); }
+                }
+            }
+
+            #endregion
+
+
+            #region Misc Interactive Dungeon Objects
+
+            else if (Obj.type == ObjType.TorchUnlit)
+            {   //light the unlit torch
+                Functions_GameObject.SetType(Obj, ObjType.TorchLit);
+                Assets.Play(Assets.sfxLightFire);
+            }
+            else if (Obj.type == ObjType.Lever)
+            {
+                //flip lever horizontally on/off
+                //this turns floorSpikes, conveyorBelts on/off
+            }
+
+            #endregion
+
+        }
+
+
+
+        public static void InteractActor(Actor Actor, GameObject Obj)
+        {   //the Obj is non-blocking
             //particle Objs never interact with actors or reach this function
             //objectGroups are checked in order of most commonly interacted with
 
-            //this function handles hero collisions AND hero interactionRec collisions
-
-            //most projectiles deal damage to actors upon a collision/interaction
-            if (Obj.group == ObjGroup.Projectile) { Functions_Battle.Damage(Actor, Obj); }
-
-
-            #region Pickups
-
-            else if (Obj.group == ObjGroup.Pickup)
+            if(Actor == Pool.hero) //certain objects only interact with hero
             {
-                if (Actor == Pool.hero) //only the hero can pickup hearts or rupees
-                {
+
+                #region Pickups
+
+                if (Obj.group == ObjGroup.Pickup)
+                {   //only the hero can pickup hearts or rupees
                     if (Obj.type == ObjType.PickupHeart)
                     { Actor.health++; Assets.Play(Assets.sfxHeartPickup); }
                     else if (Obj.type == ObjType.PickupRupee)
@@ -88,131 +222,22 @@ namespace DungeonRun
                     //end the items life
                     Obj.lifetime = 1; Obj.lifeCounter = 2;
                 }
-            }
 
-            #endregion
-
-
-            #region Liftable objects
-
-            else if (Obj.group == ObjGroup.Liftable)
-            {
-                //pot skulls
-            }
-
-            #endregion
+                #endregion
 
 
-            #region Draggable objects
+                #region Doors
 
-            else if (Obj.group == ObjGroup.Draggable)
-            {
-                //BlockDraggable
-            }
-
-            #endregion
-
-
-            #region Chests
-
-            else if (Obj.group == ObjGroup.Chest)
-            {   //only HERO can open chests, and he must do so via the InteractionRec (A Button Press)
-                if (Actor == Pool.hero && Actor.state == ActorState.Interact)
+                else if (Obj.group == ObjGroup.Door)
                 {
-
-                    #region Reward the hero with chest contents
-
-                    if (Obj.type == ObjType.ChestGold)
-                    {
-                        Functions_Entity.SpawnEntity(ObjType.ParticleRewardGold, Actor);
-                        Assets.Play(Assets.sfxReward);
-                        PlayerData.current.gold += 20;
-                        if (Flags.ShowDialogs)
-                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotGold)); }
-                    }
-                    else if (Obj.type == ObjType.ChestKey)
-                    {
-                        Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Actor);
-                        Assets.Play(Assets.sfxKeyPickup);
-                        Functions_Dungeon.dungeon.bigKey = true;
-                        if (Flags.ShowDialogs)
-                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotKey)); }
-                    }
-                    else if (Obj.type == ObjType.ChestMap)
-                    {
-                        Functions_Entity.SpawnEntity(ObjType.ParticleRewardMap, Actor);
-                        Assets.Play(Assets.sfxReward);
-                        Functions_Dungeon.dungeon.map = true;
-                        if (Flags.ShowDialogs)
-                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap)); }
-                    }
-                    else if (Obj.type == ObjType.ChestHeartPiece)
-                    {
-                        if (WorldUI.pieceCounter == 3) //if this completes a heart, display the full heart reward
-                        { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartFull, Actor); }
-                        else //this does not complete a heart, display the heart piece reward
-                        { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartPiece, Actor); }
-                        Assets.Play(Assets.sfxReward);
-                        PlayerData.current.heartPieces++;
-                        if (Flags.ShowDialogs)
-                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotHeartPiece)); }
-                    }
-
-                    #endregion
+                    //exit pillars have no interactions whatsoever
+                    if (Obj.type == ObjType.ExitPillarLeft || Obj.type == ObjType.ExitPillarRight) { return; }
 
 
-                    if (Obj.type != ObjType.ChestEmpty)
-                    {   //if the chest is not empty, play the reward animation
-                        Assets.Play(Assets.sfxChestOpen);
-                        Functions_GameObject.SetType(Obj, ObjType.ChestEmpty);
-                        Actor.state = ActorState.Reward; //set actor into reward state
-                        Actor.lockTotal = 40; //lock for a prolonged time
-                        //play an explosion particle to show the chest was opened
-                        Functions_Entity.SpawnEntity(
-                            ObjType.ParticleAttention,
-                            Obj.compSprite.position.X,
-                            Obj.compSprite.position.Y,
-                            Direction.None);
-                    }
-                }
-            }
+                    #region Check Collisions with Door Types
 
-            #endregion
-
-
-            #region Vendors
-
-            else if (Obj.group == ObjGroup.Vendor)
-            {   //only HERO can purchase items from a vendor
-                if (Actor == Pool.hero && Actor.state == ActorState.Interact)
-                {   //however, some vendors do not sell items, so check for certain types
-
-                    //figure out what part of the story the hero is at, pass this dialog
-                    if (Obj.type == ObjType.VendorStory) //for now this is default dialog
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.Default)); }
-
-                    //check to make sure the obj isn't a vendor advertisement
-                    else if (Obj.type != ObjType.VendorAdvertisement)
-                    { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
-                    //vendor ads are ignored, otherwise hero can purchase items
-                }
-            }
-
-            #endregion
-
-
-            else if (Obj.group == ObjGroup.Door)
-            {
-                //exit pillars have no interactions whatsoever
-                if (Obj.type == ObjType.ExitPillarLeft || Obj.type == ObjType.ExitPillarRight) { return; }
-
-
-                #region Check Collisions with Door Types
-
-                if (Obj.type == ObjType.DoorBoss)
-                {
-                    if (Actor == Pool.hero)
-                    {   //only hero can open boss door, and must have dungeon key
+                    if (Obj.type == ObjType.DoorBoss)
+                    {   //hero must have dungeon key to open boss door
                         if (Functions_Dungeon.dungeon.bigKey)
                         {
                             Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
@@ -223,42 +248,33 @@ namespace DungeonRun
                                 Obj.compSprite.position.Y,
                                 Direction.None);
                         }
-                        else if (Actor.state == ActorState.Interact)
-                        {   //throw a dialog screen explaining hero does not have big key
-                            if (Flags.ShowDialogs)
-                            { ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey)); }
+                    }
+                    else if (Obj.type == ObjType.Exit)
+                    {   //only hero can exit dungeon
+                        if (Functions_Dungeon.dungeonScreen.displayState == DisplayState.Opened)
+                        {   //if dungeon screen is open, close it, perform interaction ONCE
+                            DungeonRecord.beatDungeon = false;
+                            Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Overworld;
+                            Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
+                            //stop movement, prevents overlap with exit
+                            Functions_Movement.StopMovement(Pool.hero.compMove);
+                            Assets.Play(Assets.sfxDoorOpen);
                         }
                     }
-                }
-                else if (Obj.type == ObjType.Exit && Actor == Pool.hero)
-                {   //only hero can exit dungeon
-                    if (Functions_Dungeon.dungeonScreen.displayState == DisplayState.Opened)
-                    {   //if dungeon screen is open, close it, perform interaction ONCE
-                        DungeonRecord.beatDungeon = false;
-                        Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Overworld;
-                        Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
-                        //stop movement, prevents overlap with exit
-                        Functions_Movement.StopMovement(Pool.hero.compMove);
-                        Assets.Play(Assets.sfxDoorOpen);
+                    else if (Obj.type == ObjType.DoorTrap)
+                    {   //trap doors push ALL actors
+                        Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
+                        Functions_Entity.SpawnEntity(
+                            ObjType.ParticleDashPuff,
+                            Obj.compSprite.position.X,
+                            Obj.compSprite.position.Y,
+                            Direction.None);
                     }
-                }
-                else if (Obj.type == ObjType.DoorTrap)
-                {   //trap doors push ALL actors
-                    Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
-                    Functions_Entity.SpawnEntity(
-                        ObjType.ParticleDashPuff,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.None);
-                }
 
-                #endregion
+                    #endregion
 
 
-                #region Center Hero to Door, while allowing him to pass thru
-
-                if (Actor == Pool.hero)
-                {   //based on the door's direction, pull/center hero
+                    //center Hero to Door, while still allowing him to pass thru
                     if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
                     {   //gradually center hero to door
                         Actor.compMove.magnitude.X = (Obj.compSprite.position.X - Actor.compMove.position.X) * 0.11f;
@@ -277,14 +293,19 @@ namespace DungeonRun
 
                 #endregion
 
+
+                //switch
+                //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
             }
-            else if (Obj.group == ObjGroup.Object)
+            
+            //these objects interact with all actors in the same manner
+            if (Obj.group == ObjGroup.Projectile) { Functions_Battle.Damage(Actor, Obj); }
+            else if (Obj.group == ObjGroup.Object) 
             {
 
-                #region Misc Interactive Dungeon Objects
-
+                
                 if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloor)
-                {
+                {   //damage push actor away from spikes
                     Functions_Battle.Damage(Actor, Obj);
                 }
                 else if (Obj.type == ObjType.ConveyorBelt)
@@ -292,7 +313,7 @@ namespace DungeonRun
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 0.1f);
                 }
                 else if (Obj.type == ObjType.Bumper)
-                {
+                {   //bounce/push actor away from bumper
                     Functions_Movement.Push(Actor.compMove,
                         Functions_Direction.GetRelativeDirection(Obj, Actor),
                         10.0f);
@@ -300,23 +321,30 @@ namespace DungeonRun
                     BounceBumper(Obj);
                 }
 
-                //lever, floor spikes, switch, bridge,
 
-                else if (Obj.type == ObjType.TorchUnlit)
-                {   //light the unlit torch
-                    if (Actor == Pool.hero && Actor.state == ActorState.Interact)
-                    {
-                        Functions_GameObject.SetType(Obj, ObjType.TorchLit);
-                        Assets.Play(Assets.sfxLightFire);
-                    }
+                else if (Obj.type == ObjType.PitAnimated)
+                {   //push actor away from pit with a dash particle
+                    Functions_Movement.Push(Actor.compMove,
+                        Functions_Direction.GetRelativeDirection(Obj, Actor),
+                        1.0f);
+                    Functions_Entity.SpawnEntity(
+                        ObjType.ParticleDashPuff,
+                        Actor.compSprite.position.X,
+                        Actor.compSprite.position.Y,
+                        Direction.None);
                 }
+                //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
 
-                #endregion
 
+
+                //ice tile, amplifies the actor's magnitude value in it's current direction
+                //or we could modify the friction applied to the magnitude, however we choose to do it
             }
         }
 
-        public static void Interact(GameObject ObjA, GameObject ObjB)
+
+
+        public static void InteractObject(GameObject ObjA, GameObject ObjB)
         {
             //Obj could be a projectile!
             //no blocking checks have been done yet
@@ -348,6 +376,8 @@ namespace DungeonRun
             #endregion
 
         }
+
+
 
         public static void BounceSpikeBlock(GameObject SpikeBlock)
         {   //flip the block's direction to the opposite direction
