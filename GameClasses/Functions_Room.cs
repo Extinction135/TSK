@@ -440,7 +440,7 @@ namespace DungeonRun
             {
                 if (Pool.floorPool[i].visible)
                 {
-                    if (Functions_Random.Int(0, 100) > 90)
+                    if (Functions_Random.Int(0, 100) > 80)
                     {
                         objRef = Functions_Pool.GetRoomObj();
                         Functions_Movement.Teleport(objRef.compMove,
@@ -508,14 +508,8 @@ namespace DungeonRun
                 {   //objA groups & types we check overlap for
                     if (objA.group == ObjGroup.Door) { checkOverlap = true; }
                     else if (objA.group == ObjGroup.Wall) { checkOverlap = true; }
-                    else if (objA.type == ObjType.PitAnimated) { checkOverlap = true; }
-                    else if (objA.type == ObjType.ConveyorBeltOn) { checkOverlap = true; }
-                    else if (objA.type == ObjType.ConveyorBeltOff) { checkOverlap = true; }
-                    else if (objA.type == ObjType.DebrisFloor) { checkOverlap = true; }
-                    else if (objA.type == ObjType.SpikesFloorOn) { checkOverlap = true; }
-                    else if (objA.type == ObjType.SpikesFloorOff) { checkOverlap = true; }
-                    else if (objA.type == ObjType.Flamethrower) { checkOverlap = true; }
-                }
+                    else if (objA.group == ObjGroup.Object) { checkOverlap = true; }
+                }   //we are not checking liftable/draggable obj collisions with debris
                 
                 if(checkOverlap)
                 {
@@ -534,13 +528,7 @@ namespace DungeonRun
                             else if (objB.type == ObjType.DebrisFloor)
                             {   //prevent debris from overlapping various objects
                                 if (objA.group == ObjGroup.Wall) { removeObjB = true; }
-                                else if (objA.type == ObjType.PitAnimated) { removeObjB = true; }
-                                else if (objA.type == ObjType.ConveyorBeltOn) { removeObjB = true; }
-                                else if (objA.type == ObjType.ConveyorBeltOff) { removeObjB = true; }
-                                else if (objA.type == ObjType.DebrisFloor) { removeObjB = true; }
-                                else if (objA.type == ObjType.SpikesFloorOn) { removeObjB = true; }
-                                else if (objA.type == ObjType.SpikesFloorOff) { removeObjB = true; }
-                                else if (objA.type == ObjType.Flamethrower) { removeObjB = true; }
+                                else if (objA.group == ObjGroup.Object) { removeObjB = true; }
                             }
                             if (removeObjB)
                             {   //check that objA and objB actually overlap

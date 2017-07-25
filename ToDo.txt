@@ -49,30 +49,20 @@ todo:
 
 
 
-Sync up multiple levers, include conveyor belts in lever activation
 
-added ConveyorBeltOn & ConveyorBeltOff vaues to ObjType enum.
-added animLists for each value too.
-updated Func_GameObj.SetType() with path for both values.
-updated InteractActor() with path for On object.
-updated ActivateLeverObjects() to toggle conveyor belts on/off.
-updated the zOffset value for lever so it sorts better visually against the hero.
-updated InteractHero() to center attention particle to lever object.
 
-reduced how much push is applied to actors when they collide with spikeFloors.
-this allows actors/hero to dash/move over spikeFloors, at the cost of taking damage.
-playtested, polished, working as expected.
 
-updated ActivateLeverObjects() to toggle other lever objects on/off.
-this keeps all levers in a room in sync with each other, in case there is more than one.
-this also means we don't have to toggle the lever obj from InteractHero(), reducing code.
+dungeon statue? overlaps debris just fine? is dungeon statue of group.obj? wtf?
+
+
+
+
+Refactor / Simplify CleanupRoom()
+
+updated CleanupRoom() to consider ObjGroup types Wall, Door, and Object.
+this reduces the amount of specific obj v debris checks and makes it more generic.
+increased the amount of debris generated in ScatterDebris().
 playtested, working as expected.
-
-
-
-
-
-
 
 
 
@@ -81,6 +71,14 @@ playtested, working as expected.
 for CLeanupRoom(), when we are comparing debris against other objects, can we not just do a Obj.group == group.Object?
 we dont want debris colliding with any objects, really....
 
+
+
+
+
+spikefloors should have a slightly smaller collisionRec
+not 16x16, but more like 14x14 or 12x12
+so it doesn't feel as cheap when you collide with them
+you have to be very close to them to trigger the damage push
 
 
 
