@@ -283,7 +283,10 @@ namespace DungeonRun
 
                 #region Misc Interactive Dungeon Objects
 
-                if (Obj.type == ObjType.BlockSpikes) { Functions_Battle.Damage(Actor, Obj); }
+                if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloor)
+                {
+                    Functions_Battle.Damage(Actor, Obj);
+                }
                 else if (Obj.type == ObjType.ConveyorBelt)
                 {   //push actor in belt's direction
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 0.1f);
@@ -354,8 +357,8 @@ namespace DungeonRun
             Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect                               
             Functions_Entity.SpawnEntity( //show that the object has been hit
                 ObjType.ParticleHitSparkle,
-                SpikeBlock.compSprite.position.X,
-                SpikeBlock.compSprite.position.Y,
+                SpikeBlock.compSprite.position.X + 4,
+                SpikeBlock.compSprite.position.Y + 4,
                 Direction.None);
         }
 
