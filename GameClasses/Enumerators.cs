@@ -48,12 +48,12 @@ namespace DungeonRun
 
     public enum ObjType
     {
+        //ROOM OBJECTS
         //Non-Editor Room Objects (procedurally added)
         Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
         DoorOpen, DoorBombable, DoorBombed, DoorBoss, DoorTrap, DoorShut, DoorFake,
         WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
         BossDecal, DebrisFloor,
-
         //Editor Room Objects (hand-placed)
         PitAnimated, PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, Pillar,
@@ -62,33 +62,27 @@ namespace DungeonRun
         Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, ConveyorBelt,
-
         //Enemy Spawn Objects (hand-placed)
         SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, //4 and 5 to be added later
-
         //Vendor & Story Objects
         VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment,
         VendorAdvertisement,
         VendorStory,
 
+        //ENTITIES
         //Pickups - collide with hero
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, 
-
         //Projectiles - collide with actors
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion, ProjectileArrow,
-
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleFairy,
         ParticleBow,
-
         ParticleHealthPotion, ParticleMagicPotion, ParticleFairyBottle,
-
         //Particles - rewards
         ParticleRewardGold, ParticleRewardKey, ParticleRewardMap,
         ParticleRewardHeartPiece, ParticleRewardHeartFull,
-
     }
 
     public enum MenuItemType

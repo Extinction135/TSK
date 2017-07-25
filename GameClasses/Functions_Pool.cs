@@ -32,13 +32,18 @@ namespace DungeonRun
         }
         
         public static GameObject GetRoomObj()
-        {   //only class that calls GetObj() is DungeonFunctions, during room building
-            Pool.roomObjIndex++;
-            if (Pool.roomObjIndex == Pool.roomObjCount) { Pool.roomObjIndex = 0; }
-            //reset obj to default state, hide offscreen
-            Functions_GameObject.ResetObject(Pool.roomObjPool[Pool.roomObjIndex]);
-            Pool.roomObjPool[Pool.roomObjIndex].compMove.newPosition.X = -1000;
-            return Pool.roomObjPool[Pool.roomObjIndex];
+        {
+            for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
+            {
+                if (Pool.roomObjPool[Pool.counter].active == false)
+                {   //found an obj to return
+                    //reset obj to default state, hide offscreen, return it
+                    Functions_GameObject.ResetObject(Pool.roomObjPool[Pool.counter]);
+                    Pool.roomObjPool[Pool.counter].compMove.newPosition.X = -1000;
+                    return Pool.roomObjPool[Pool.counter];
+                }
+            }
+            return Pool.roomObjPool[0]; //ran out of roomObjs
         }
 
         public static GameObject GetEntity()
@@ -81,14 +86,12 @@ namespace DungeonRun
         {
             for (Pool.counter = 0; Pool.counter < Pool.roomObjCount; Pool.counter++)
             { Release(Pool.roomObjPool[Pool.counter]); }
-            Pool.roomObjIndex = 0;
         }
 
         public static void ResetEntityPool()
         {
             for (Pool.counter = 0; Pool.counter < Pool.entityCount; Pool.counter++)
             { Release(Pool.entityPool[Pool.counter]); }
-            Pool.entityIndex = 0;
         }
 
         public static void ResetFloorPool()

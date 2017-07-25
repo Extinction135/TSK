@@ -43,17 +43,25 @@ todo:
 (Work on DirectX project until Release)
 
 
-3 moar commits!
+2 moar commits!
 
 
 
 
-Fix Counting issue with Floors
 
-updated ResetFloorPool() to set the floorIndex to 0.
-updated GetFloor() to prevent floorIndex from looping back to 0.
+
+
+
+
+Fix counting issue with RoomObjs
+
+updated GetRoomObj() to return only objects with .active = false.
+this is done by looping thru the roomObjs starting at 0, looking for inactive obj.
+added routine to count all active roomObjs at the end of CleanupRoom().
+this count only runs if the DebugInfo panel is being drawn.
 playtested, working as expected.
 
+fixed some garbage creation in CleanupRoom().
 
 
 
@@ -61,7 +69,14 @@ playtested, working as expected.
 
 
 
-implement this approach on floor pool FIRST
+
+we can't fix counting issue with entities
+but we can return an entity that has been released (inactive)
+
+
+
+
+
 
 Efficiently Using GameObjs + Floors
 

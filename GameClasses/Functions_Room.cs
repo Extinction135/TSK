@@ -24,10 +24,6 @@ namespace DungeonRun
         public static Actor actorRef;
         public static Point pos;
 
-        //used in DecorateDoor method
-        static Vector2 decorationPosA = new Vector2();
-        static Vector2 decorationPosB = new Vector2();
-
 
 
         public static void BuildRoom(Room Room)
@@ -411,34 +407,6 @@ namespace DungeonRun
             Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
         }
 
-        public static void DecorateDoor(GameObject Door, ObjType Type)
-        {
-            if (Door.direction == Direction.Up || Door.direction == Direction.Down)
-            {   //build left/right decorations if Door.direction is Up or Down
-                decorationPosA.X = Door.compSprite.position.X - 16;
-                decorationPosA.Y = Door.compSprite.position.Y;
-                decorationPosB.X = Door.compSprite.position.X + 16;
-                decorationPosB.Y = Door.compSprite.position.Y;
-            }
-            else
-            {   //build top/bottom decorations if Door.direction is Left or Right
-                decorationPosA.X = Door.compSprite.position.X;
-                decorationPosA.Y = Door.compSprite.position.Y - 16;
-                decorationPosB.X = Door.compSprite.position.X;
-                decorationPosB.Y = Door.compSprite.position.Y + 16;
-            }
-            //build wall decorationA torch/pillar/decoration
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove, decorationPosA.X, decorationPosA.Y);
-            objRef.direction = Door.direction;
-            Functions_GameObject.SetType(objRef, Type);
-            //build wall decorationB torch/pillar/decoration
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove, decorationPosB. X, decorationPosB.Y);
-            objRef.direction = Door.direction;
-            Functions_GameObject.SetType(objRef, Type);
-        }
-
         public static void AddWallStatues(Room Room)
         {   //add wall statues along 1/3rd and 2/3rds of all walls
             int RoomThirdX = Room.collision.rec.X + (Room.size.X / 3) * 16 + 8;
@@ -488,15 +456,50 @@ namespace DungeonRun
 
 
 
+        //decorates a door on left/right or top/bottom
+
+        static Vector2 decorationPosA = new Vector2();
+        static Vector2 decorationPosB = new Vector2();
+
+        public static void DecorateDoor(GameObject Door, ObjType Type)
+        {
+            if (Door.direction == Direction.Up || Door.direction == Direction.Down)
+            {   //build left/right decorations if Door.direction is Up or Down
+                decorationPosA.X = Door.compSprite.position.X - 16;
+                decorationPosA.Y = Door.compSprite.position.Y;
+                decorationPosB.X = Door.compSprite.position.X + 16;
+                decorationPosB.Y = Door.compSprite.position.Y;
+            }
+            else
+            {   //build top/bottom decorations if Door.direction is Left or Right
+                decorationPosA.X = Door.compSprite.position.X;
+                decorationPosA.Y = Door.compSprite.position.Y - 16;
+                decorationPosB.X = Door.compSprite.position.X;
+                decorationPosB.Y = Door.compSprite.position.Y + 16;
+            }
+            //build wall decorationA torch/pillar/decoration
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove, decorationPosA.X, decorationPosA.Y);
+            objRef.direction = Door.direction;
+            Functions_GameObject.SetType(objRef, Type);
+            //build wall decorationB torch/pillar/decoration
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove, decorationPosB.X, decorationPosB.Y);
+            objRef.direction = Door.direction;
+            Functions_GameObject.SetType(objRef, Type);
+        }
+
+
+
         //removes overlapping objs from room
+
+        static GameObject objA; //object we want to keep
+        static GameObject objB; //object we want to remove
+        static Boolean checkOverlap;
+        static Boolean removeObjB;
 
         public static void CleanupRoom(Room Room)
         {
-            GameObject objA; //object we want to keep
-            GameObject objB; //object we want to remove
-            Boolean checkOverlap;
-            Boolean removeObjB;
-
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 checkOverlap = false;
@@ -544,6 +547,13 @@ namespace DungeonRun
                         }
                     }
                 }
+            }
+
+            if (Flags.DrawDebugInfo)
+            {   //get the count of active roomObjs, if debug info is visible
+                Pool.roomObjIndex = 0;
+                for (i = 0; i < Pool.roomObjCount; i++)
+                { if (Pool.roomObjPool[i].active) { Pool.roomObjIndex++; } }
             }
         }
 
@@ -821,8 +831,6 @@ namespace DungeonRun
                 5 * 16 + pos.Y + 8);
             Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
         }
-
-
 
     }
 }
