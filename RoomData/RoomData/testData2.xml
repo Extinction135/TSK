@@ -163,16 +163,6 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ChestGold</type>
-      <posX>152</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ChestEmpty</type>
-      <posX>200</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>TorchUnlit</type>
       <posX>232</posX>
       <posY>136</posY>

@@ -233,17 +233,13 @@ namespace DungeonRun
 
             #region Chests
 
-            else if (Type == ObjType.ChestGold || Type == ObjType.ChestKey ||
-                Type == ObjType.ChestMap || Type == ObjType.ChestHeartPiece ||
-                Type == ObjType.ChestEmpty)
+            else if ( Type == ObjType.ChestKey || Type == ObjType.ChestMap || Type == ObjType.ChestEmpty)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                //unopened chests get the objGroup of Chest
-                if (Type != ObjType.ChestEmpty)
-                { Obj.group = ObjGroup.Chest; }
+                Obj.group = ObjGroup.Chest;
             }
 
             #endregion

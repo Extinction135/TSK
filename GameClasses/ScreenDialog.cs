@@ -79,17 +79,12 @@ namespace DungeonRun
             #endregion
 
 
-            #region InGame Dialogs
+            #region Dungeon Dialogs
 
             else if (dialogType == Dialog.DoesNotHaveKey)
             { dialogString = "This door is locked. You'll need a key to open it."; updateDungeonScreen = true; }
-
             else if (dialogType == Dialog.HeroGotKey)
             { dialogString = "You found the dungeon key. It can open any door."; updateDungeonScreen = true; }
-            else if (dialogType == Dialog.HeroGotGold)
-            { dialogString = "You found 20 gold."; updateDungeonScreen = true; }
-            else if (dialogType == Dialog.HeroGotHeartPiece)
-            { dialogString = "You found a piece of a heart."; updateDungeonScreen = true; }
             else if (dialogType == Dialog.HeroGotMap)
             { dialogString = "You found the dungeon map."; updateDungeonScreen = true; }
 

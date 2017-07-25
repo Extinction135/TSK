@@ -91,15 +91,7 @@ namespace DungeonRun
 
                 #region Reward the hero with chest contents
 
-                if (Obj.type == ObjType.ChestGold)
-                {
-                    Functions_Entity.SpawnEntity(ObjType.ParticleRewardGold, Pool.hero);
-                    Assets.Play(Assets.sfxReward);
-                    PlayerData.current.gold += 20;
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotGold)); }
-                }
-                else if (Obj.type == ObjType.ChestKey)
+                if (Obj.type == ObjType.ChestKey)
                 {
                     Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Pool.hero);
                     Assets.Play(Assets.sfxKeyPickup);
@@ -114,17 +106,6 @@ namespace DungeonRun
                     Functions_Dungeon.dungeon.map = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap)); }
-                }
-                else if (Obj.type == ObjType.ChestHeartPiece)
-                {
-                    if (WorldUI.pieceCounter == 3) //if this completes a heart, display the full heart reward
-                    { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartFull, Pool.hero); }
-                    else //this does not complete a heart, display the heart piece reward
-                    { Functions_Entity.SpawnEntity(ObjType.ParticleRewardHeartPiece, Pool.hero); }
-                    Assets.Play(Assets.sfxReward);
-                    PlayerData.current.heartPieces++;
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotHeartPiece)); }
                 }
 
                 #endregion
@@ -194,8 +175,6 @@ namespace DungeonRun
             #endregion
 
         }
-
-
 
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //the Obj is non-blocking
@@ -297,8 +276,10 @@ namespace DungeonRun
                 //switch
                 //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
             }
-            
-            //these objects interact with all actors in the same manner
+
+
+            #region These objects interact with ALL actors
+
             if (Obj.group == ObjGroup.Projectile) { Functions_Battle.Damage(Actor, Obj); }
             else if (Obj.group == ObjGroup.Object) 
             {
@@ -340,9 +321,10 @@ namespace DungeonRun
                 //ice tile, amplifies the actor's magnitude value in it's current direction
                 //or we could modify the friction applied to the magnitude, however we choose to do it
             }
+
+            #endregion
+
         }
-
-
 
         public static void InteractObject(GameObject ObjA, GameObject ObjB)
         {

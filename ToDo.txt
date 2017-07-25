@@ -45,46 +45,24 @@ todo:
 
 
 
-Improve how Hero & Actors interact with GameObjects
 
-split Interact() into InteractHero() and InteractActor().
-InteractHero() handles hero specific interactionRec interactions.
-InteractActor() handles generic actor collisionRec interactions.
-renamed Interact(Obj, Obj) to InteractObject(Obj, Obj).
+Remove HeartPiece & Gold Chests, improve handling of Key & Map chests
+
+when the player opens a key/map chest, that chest should stay open.
+player only gets gold from killing enemies.
+soon player will be able to purchase heart piece upgrades from item vendor.
+
+removed chestGold and chestHeartPiece enums + obj animLists.
+updated various codepaths that referenced the removed chest types.
+removed dialogs for hero got gold, hero got heart piece.
+updated key & hub roomData to contain key/map chests.
+updated FinishHubRoom() to set any chest objects within room to ChestMap or ChestEmpty.
+this is based on the dungeon.map boolean.
+updated FinishKeyRoom() to set any chest objects withing room to Chestkey or ChestEmpty.
+this is based on the dungeon.bigKey boolean.
 playtested, working as expected.
 
-wrote routine for handling actor interaction with pit object.
-for now, the actor is just pushed away from the pit with a dash particle effect.
-in the future, pits will pull actors into them and insta-kill them.
-playtested, working as expected.
 
-
-
-actors aren't interacting with pits???
-
-
-
-
-
-
-
-
-
-
-overworld++
-overworld dungeon icon is the boss of that dungeon
-so all dungeons should display a blob character instead of a skull
-
-
-
-
-
-
-i'd like a LOC counter for the game classes folder
-
-1kb = 1024 chars
-game classes folder = 521kb
-521 * 1024 = 533,504 characters in game classes
 
 
 
@@ -108,6 +86,22 @@ create chestDefault object - this will become a map or key chest when room is bu
 update HUB roomData with a chestDefault object
 update KEY roomData with a chestDefault object
 update FinishRoom() to set the chestDefault to map or key chest based on room type
+
+
+
+
+
+
+
+
+
+we need to get level working, so we can actually beat the current dungeon
+
+
+
+
+
+
 
 
 
@@ -270,6 +264,56 @@ consider updating the overworld map to look better too
 
 
 
+
+
+
+
+
+
+
+overworld++
+overworld dungeon icon is the boss of that dungeon
+so all dungeons should display a blob character instead of a skull
+
+
+instead of crystals, we should collect boss's heads.
+this is the same icon that appears on the overworld map for the dungeon
+this would appear in inventory screen where the crystals are, but there will only be 4
+
+for now, implement 4 dungeons that all use the blob boss
+these should be located on the overworld screen
+change the overworld map to something more interesting
+place the dungeon entrances in different locations
+
+the 4 dungeon types: forest, desert, cave, mountain
+the last dungeon type: cursed castle
+
+upon collection of 4 boss heads, the final dungeon opens
+the blob boss head is actually an eye, the bosses eye
+for now, the player will collect 4 eyes
+
+crystals widget should be renamed 'bosses defeated', bossesWidget
+
+we'll need to update the game display data + the LSN screen to reflect the update away from crystals
+we can also make the overworld map wider, to better fill the frame out
+
+
+
+
+
+
+
+
+
+
+
+
+
+i'd like a LOC counter for the game classes folder
+
+1kb = 1024 chars
+game classes folder = 521kb
+521 * 1024 = 533,504 characters in game classes
 
 
 Fixing the UWP project RoomData issue

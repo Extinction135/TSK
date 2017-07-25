@@ -57,7 +57,7 @@ namespace DungeonRun
         //Editor Room Objects (hand-placed)
         PitAnimated, PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, Pillar,
-        ChestGold, ChestKey, ChestMap, ChestHeartPiece, ChestEmpty,
+        ChestKey, ChestMap, ChestEmpty,
         BlockDraggable, BlockDark, BlockLight, BlockSpikes,
         Lever, PotSkull, SpikesFloor, Bumper, Flamethrower, Switch, Bridge,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
@@ -112,6 +112,6 @@ namespace DungeonRun
         GameCreated, GameNotFound, GameLoadFailed,
         //Intro, Dungeon1, Dungeon2 //etc...
         DoesNotHaveKey,
-        HeroGotKey, HeroGotGold, HeroGotHeartPiece, HeroGotMap,
+        HeroGotKey, HeroGotMap
     }
 }

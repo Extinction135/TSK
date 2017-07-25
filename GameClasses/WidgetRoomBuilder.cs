@@ -137,7 +137,7 @@ namespace DungeonRun
                     else if (i == 6) //seventh row
                     {
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Switch); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ChestGold); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ChestKey); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ChestEmpty); }
                         else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }
                         else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.TorchLit); }

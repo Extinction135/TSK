@@ -633,13 +633,9 @@ namespace DungeonRun
         }
 
         public static void FinishSecretRoom(Room Room)
-        {   //place gold chest center to 3x3 room
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                1 * 16 + pos.X + 8,
-                1 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestGold);
+        {   
+            //what goes in a secret room? not chests
+            //perhaps a secret vendor? or vendors?
         }
 
         public static void FinishBossRoom(Room Room)
@@ -653,40 +649,37 @@ namespace DungeonRun
         }
 
         public static void FinishKeyRoom(Room Room)
-        {   //create a big key chest
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X / 2) * 16 + pos.X + 8,
-                3 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestKey);
+        {
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //find any chest objects in the key room
+                    if (Pool.roomObjPool[i].group == ObjGroup.Chest)
+                    {   //check the dungeon.bigKey boolean to see if this chest should be filled
+                        if (Functions_Dungeon.dungeon.bigKey)
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestEmpty); }
+                        else //if hero has found the map, this chest is empty, else it has a key
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestKey); }
+                    }
+                }
+            }
         }
 
         public static void FinishHubRoom(Room Room)
         {
-            //create chest with gold reward
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X - 1) * 16 + pos.X + 8,
-                1 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestGold);
-
-            //create a map chest
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X - 1) * 16 + pos.X + 8,
-                5 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestMap);
-
-            //create a heart piece chest
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                (Room.size.X - 1) * 16 + pos.X + 8,
-                7 * 16 + pos.Y + 8);
-            objRef.direction = Direction.Down;
-            Functions_GameObject.SetType(objRef, ObjType.ChestHeartPiece);
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //find any chest objects in the hub room
+                    if (Pool.roomObjPool[i].group == ObjGroup.Chest)
+                    {   //check the dungeon.map boolean to see if this chest should be filled
+                        if (Functions_Dungeon.dungeon.map)
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestEmpty); }
+                        else //if hero has found the map, this chest is empty, else it has a map
+                        { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestMap); }
+                    }
+                }
+            }
         }
 
 
@@ -743,93 +736,5 @@ namespace DungeonRun
 
 
         }
-
-
-
-        //methods that are getting developed
-
-        public static void SpawnEnemies(Room Room)
-        {
-            if (Flags.SpawnMobs)
-            {
-                //place enemies within the room
-                for (i = 0; i < 10; i++)
-                {
-                    actorRef = Functions_Pool.GetActor();
-                    //we SHOULD be checking to see if actorRef is null..
-                    //but because we reset the pool earlier in this function,
-                    //and the room's enemy count will never be larger than the total actors
-                    //we'll never get a null result from GetActor() right here
-                    Functions_Actor.SetType(actorRef, ActorType.Blob);
-                    //get a random value between the min/max size of room
-                    int randomX = Functions_Random.Int(-Room.size.X + 2, Room.size.X - 2);
-                    int randomY = Functions_Random.Int(-Room.size.Y + 2, Room.size.Y - 2);
-                    //divide random value in half
-                    randomX = randomX / 2;
-                    randomY = randomY / 2;
-                    //ensure this value isn't 0
-                    if (randomX == 0) { randomX = 1; }
-                    if (randomY == 0) { randomY = 1; }
-                    //teleport actor to center of room, apply random offset
-                    Functions_Movement.Teleport(actorRef.compMove,
-                        Room.center.X + 16 * randomX + 8,
-                        Room.center.Y + 16 * randomY + 8);
-                }
-            }
-        }
-
-        public static void AddTestingObjs(Room Room)
-        {
-            //place skeleton pots along left wall
-            for (i = 0; i < Room.size.Y; i++)
-            {
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    0 * 16 + pos.X + 8,
-                    i * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.PotSkull);
-            }
-
-            //Create testing spike blocks
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8,
-                3 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BlockSpikes);
-
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8,
-                7 * 16 + pos.Y + 8);
-            objRef.compMove.direction = Direction.Right;
-            Functions_GameObject.SetType(objRef, ObjType.BlockSpikes);
-
-            //place conveyor belt
-            for (i = 0; i < Room.size.Y; i++)
-            {
-                objRef = Functions_Pool.GetRoomObj();
-                Functions_Movement.Teleport(objRef.compMove,
-                    15 * 16 + pos.X + 8,
-                    i * 16 + pos.Y + 8);
-                objRef.direction = Direction.Down;
-                Functions_GameObject.SetType(objRef, ObjType.ConveyorBelt);
-            }
-
-            //place bumper
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                13 * 16 + pos.X + 8,
-                3 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.Bumper);
-
-            //place flamethrower
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                13 * 16 + pos.X + 8,
-                5 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.Flamethrower);
-        }
-
     }
 }
