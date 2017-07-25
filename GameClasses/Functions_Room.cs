@@ -741,9 +741,11 @@ namespace DungeonRun
 
 
 
+        //methods that alter roomObjs
+
         public static void ActivateLeverObjects()
         {
-            Assets.Play(Assets.sfxMetallicTap); //this should be the switch sound
+            Assets.Play(Assets.sfxSwitch);
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
@@ -752,6 +754,7 @@ namespace DungeonRun
                     { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SpikesFloorOff); }
                     else if (Pool.roomObjPool[i].type == ObjType.SpikesFloorOff)
                     { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SpikesFloorOn); }
+                    //soon, locate and toggle conveyor belt objects
                 }
             }
         }

@@ -365,3 +365,9 @@
 /processorParam:Quality=Best
 /build:SoundLightFire.wav
 
+#begin SoundSwitch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSwitch.wav
+

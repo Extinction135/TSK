@@ -43,41 +43,18 @@ todo:
 (Work on DirectX project until Release)
 
 
-Get Lever turning SpikeFloors on and off
-
-when the hero interacts with a lever, it flips between on and off.
-when the lever is on, spikeFloor objects should animate and damage actors.
-when the lever is off, spikeFloor objects should not animate or damage actors.
-
-added ObjType LeverOn & LeverOff + animLists.
-added ObjType SpikesFloorOn & SpikesFloorOff + animLists.
-updated Functions_GameObject.SetType() with paths for new objs.
-updated Functions_Interaction.HeroInterat() to check for lever interaction.
-created Functions_Room.ActivateLeverObjects() to handle toggling lever related objs.
-updated all roomData XML to use leverOff + spikesFloorOn roomObjs.
-playtested, levers + spikeFloors working as expected.
 
 
 
 
+Polish Lever and SpikeFloor interactions / sprites
 
+fixed the lever sprite to be centered, so it flips (in place) properly.
+added an attention particle when the hero flips a lever on/off.
+added Switch sound fx to project, added instances to Assets.
+updated ActivateLeverObjects() to call switch sound.
+playtested, working as expected.
 
-
-
-
-
-> playtest
-
-
-lever sprite should flip horizontally perfectly
-it seems like it doesn't take up the full 16px, or is misaligned
-
-an attention particle should appear when we flip the lever
-
-
-
-
-add a switch soundfx to project, call this from ActivateLeverObjects().
 
 
 
@@ -88,6 +65,11 @@ add a switch soundfx to project, call this from ActivateLeverObjects().
 leverOff should also turn off all conveyor belts
 this changes all conveyor belts to conveyorBeltOff
 this has no collision/interaction with hero
+
+
+
+
+
 
 
 
