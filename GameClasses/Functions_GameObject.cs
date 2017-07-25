@@ -363,9 +363,15 @@ namespace DungeonRun
                 if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
                 else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
             }
-            else if (
-                Type == ObjType.SpikesFloorOn || Type == ObjType.SpikesFloorOff ||
-                Type == ObjType.Switch || Type == ObjType.Bridge)
+            else if (Type == ObjType.SpikesFloorOn || Type == ObjType.SpikesFloorOff)
+            {
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+            }
+            else if (Type == ObjType.Switch || Type == ObjType.Bridge)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
