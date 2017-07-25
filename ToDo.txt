@@ -47,12 +47,25 @@ todo:
 
 
 
-Polish Lever and SpikeFloor interactions / sprites
 
-fixed the lever sprite to be centered, so it flips (in place) properly.
-added an attention particle when the hero flips a lever on/off.
-added Switch sound fx to project, added instances to Assets.
-updated ActivateLeverObjects() to call switch sound.
+
+Sync up multiple levers, include conveyor belts in lever activation
+
+added ConveyorBeltOn & ConveyorBeltOff vaues to ObjType enum.
+added animLists for each value too.
+updated Func_GameObj.SetType() with path for both values.
+updated InteractActor() with path for On object.
+updated ActivateLeverObjects() to toggle conveyor belts on/off.
+updated the zOffset value for lever so it sorts better visually against the hero.
+updated InteractHero() to center attention particle to lever object.
+
+reduced how much push is applied to actors when they collide with spikeFloors.
+this allows actors/hero to dash/move over spikeFloors, at the cost of taking damage.
+playtested, polished, working as expected.
+
+updated ActivateLeverObjects() to toggle other lever objects on/off.
+this keeps all levers in a room in sync with each other, in case there is more than one.
+this also means we don't have to toggle the lever obj from InteractHero(), reducing code.
 playtested, working as expected.
 
 
@@ -62,13 +75,11 @@ playtested, working as expected.
 
 
 
-leverOff should also turn off all conveyor belts
-this changes all conveyor belts to conveyorBeltOff
-this has no collision/interaction with hero
 
 
 
-
+for CLeanupRoom(), when we are comparing debris against other objects, can we not just do a Obj.group == group.Object?
+we dont want debris colliding with any objects, really....
 
 
 

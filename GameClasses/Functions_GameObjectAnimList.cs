@@ -115,6 +115,10 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0) },
                 //SpikesFloorOff
                 new List<Byte4> { new Byte4(2, 5, 0, 0), new Byte4(2, 5, 0, 0) },
+                //ConveyorBeltOn
+                new List<Byte4> { new Byte4(4, 6, 0, 0), new Byte4(5, 6, 0, 0), new Byte4(6, 6, 0, 0) },
+                //ConveyorBeltOff
+                new List<Byte4> { new Byte4(4, 6, 0, 0), new Byte4(4, 6, 0, 0), new Byte4(4, 6, 0, 0) },
 
                 //PotSkull
                 new List<Byte4> { new Byte4(0, 6, 0, 0) },
@@ -136,8 +140,7 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(7, 3, 0, 0) },
                 //TorchLit
                 new List<Byte4> { new Byte4(7, 4, 0, 0), new Byte4(7, 5, 0, 0), new Byte4(7, 6, 0, 0) },
-                //ConveyorBelt
-                new List<Byte4> { new Byte4(4, 6, 0, 0), new Byte4(5, 6, 0, 0), new Byte4(6, 6, 0, 0) },
+                
 
                 //SpawnEnemy1
                 new List<Byte4> { new Byte4(0, 15, 0, 0) },

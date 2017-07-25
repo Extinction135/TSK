@@ -167,16 +167,12 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxLightFire);
             }
             else if (Obj.type == ObjType.LeverOff || Obj.type == ObjType.LeverOn)
-            {
-                if (Obj.type == ObjType.LeverOn) //toggle the lever on/off
-                { Functions_GameObject.SetType(Obj, ObjType.LeverOff); }
-                else { Functions_GameObject.SetType(Obj, ObjType.LeverOn); }
-                //activate all lever objects, call attention to the lever
+            {   //activate all lever objects (including lever), call attention to change
                 Functions_Room.ActivateLeverObjects();
                 Functions_Entity.SpawnEntity( 
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y - 4,
+                        Obj.compSprite.position.Y,
                         Direction.None);
             }
 
@@ -295,7 +291,7 @@ namespace DungeonRun
                 {   //damage push actor away from spikes
                     Functions_Battle.Damage(Actor, Obj);
                 }
-                else if (Obj.type == ObjType.ConveyorBelt)
+                else if (Obj.type == ObjType.ConveyorBeltOn)
                 {   //push actor in belt's direction
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 0.1f);
                 }

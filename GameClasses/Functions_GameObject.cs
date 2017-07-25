@@ -354,7 +354,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
-            else if (Type == ObjType.ConveyorBelt)
+            else if (Type == ObjType.ConveyorBeltOn || Type == ObjType.ConveyorBeltOff)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
@@ -375,7 +375,7 @@ namespace DungeonRun
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
-                Obj.compSprite.zOffset = -7;
+                Obj.compSprite.zOffset = -3;
                 Obj.canBeSaved = true;
             }
 

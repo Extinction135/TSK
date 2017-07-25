@@ -59,12 +59,14 @@ namespace DungeonRun
         BossStatue, Pillar,
         ChestKey, ChestMap, ChestEmpty,
         BlockDraggable, BlockDark, BlockLight, BlockSpikes,
-
-        LeverOn, LeverOff, SpikesFloorOn, SpikesFloorOff,
-
+        //lever + lever activated objects
+        LeverOn, LeverOff,
+        SpikesFloorOn, SpikesFloorOff,
+        ConveyorBeltOn, ConveyorBeltOff,
+        //
         PotSkull, Bumper, Flamethrower, Switch, Bridge,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
-        TorchUnlit, TorchLit, ConveyorBelt,
+        TorchUnlit, TorchLit, 
         //Enemy Spawn Objects (hand-placed)
         SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, //4 and 5 to be added later
         //Vendor & Story Objects

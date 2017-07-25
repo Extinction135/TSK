@@ -509,7 +509,8 @@ namespace DungeonRun
                     if (objA.group == ObjGroup.Door) { checkOverlap = true; }
                     else if (objA.group == ObjGroup.Wall) { checkOverlap = true; }
                     else if (objA.type == ObjType.PitAnimated) { checkOverlap = true; }
-                    else if (objA.type == ObjType.ConveyorBelt) { checkOverlap = true; }
+                    else if (objA.type == ObjType.ConveyorBeltOn) { checkOverlap = true; }
+                    else if (objA.type == ObjType.ConveyorBeltOff) { checkOverlap = true; }
                     else if (objA.type == ObjType.DebrisFloor) { checkOverlap = true; }
                     else if (objA.type == ObjType.SpikesFloorOn) { checkOverlap = true; }
                     else if (objA.type == ObjType.SpikesFloorOff) { checkOverlap = true; }
@@ -534,7 +535,8 @@ namespace DungeonRun
                             {   //prevent debris from overlapping various objects
                                 if (objA.group == ObjGroup.Wall) { removeObjB = true; }
                                 else if (objA.type == ObjType.PitAnimated) { removeObjB = true; }
-                                else if (objA.type == ObjType.ConveyorBelt) { removeObjB = true; }
+                                else if (objA.type == ObjType.ConveyorBeltOn) { removeObjB = true; }
+                                else if (objA.type == ObjType.ConveyorBeltOff) { removeObjB = true; }
                                 else if (objA.type == ObjType.DebrisFloor) { removeObjB = true; }
                                 else if (objA.type == ObjType.SpikesFloorOn) { removeObjB = true; }
                                 else if (objA.type == ObjType.SpikesFloorOff) { removeObjB = true; }
@@ -749,12 +751,21 @@ namespace DungeonRun
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
-                {   //find any spikeFloor objects in the room, toggle them
-                    if (Pool.roomObjPool[i].type == ObjType.SpikesFloorOn)
+                {   //sync all lever objects
+                    if (Pool.roomObjPool[i].type == ObjType.LeverOff)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.LeverOn); }
+                    else if (Pool.roomObjPool[i].type == ObjType.LeverOn)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.LeverOff); }
+                    //find any spikeFloor objects in the room, toggle them
+                    else if (Pool.roomObjPool[i].type == ObjType.SpikesFloorOn)
                     { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SpikesFloorOff); }
                     else if (Pool.roomObjPool[i].type == ObjType.SpikesFloorOff)
                     { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SpikesFloorOn); }
-                    //soon, locate and toggle conveyor belt objects
+                    //locate and toggle conveyor belt objects
+                    else if (Pool.roomObjPool[i].type == ObjType.ConveyorBeltOn)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ConveyorBeltOff); }
+                    else if (Pool.roomObjPool[i].type == ObjType.ConveyorBeltOff)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ConveyorBeltOn); }
                 }
             }
         }

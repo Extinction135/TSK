@@ -68,17 +68,17 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBelt</type>
+      <type>ConveyorBeltOn</type>
       <posX>88</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBelt</type>
+      <type>ConveyorBeltOn</type>
       <posX>88</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBelt</type>
+      <type>ConveyorBeltOn</type>
       <posX>88</posX>
       <posY>136</posY>
     </ObjXmlData>
