@@ -63,7 +63,7 @@ namespace DungeonRun
 
             #region Objects
 
-            else if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloor)
+            else if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloorOn)
             {   //push actor away from spikes
                 damage = 1; force = 10.0f;
                 direction = Functions_Direction.GetRelativeDirection(Obj, Actor);

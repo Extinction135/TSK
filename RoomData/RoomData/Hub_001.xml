@@ -163,52 +163,52 @@
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>120</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>136</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>152</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>168</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>184</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>120</posX>
       <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>120</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>184</posX>
       <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SpikesFloor</type>
+      <type>SpikesFloorOn</type>
       <posX>184</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Lever</type>
+      <type>LeverOff</type>
       <posX>56</posX>
       <posY>24</posY>
     </ObjXmlData>

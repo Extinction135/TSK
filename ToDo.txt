@@ -43,24 +43,19 @@ todo:
 (Work on DirectX project until Release)
 
 
+Get Lever turning SpikeFloors on and off
 
+when the hero interacts with a lever, it flips between on and off.
+when the lever is on, spikeFloor objects should animate and damage actors.
+when the lever is off, spikeFloor objects should not animate or damage actors.
 
-
-Remove HeartPiece & Gold Chests, improve handling of Key & Map chests
-
-when the player opens a key/map chest, that chest should stay open.
-player only gets gold from killing enemies.
-soon player will be able to purchase heart piece upgrades from item vendor.
-
-removed chestGold and chestHeartPiece enums + obj animLists.
-updated various codepaths that referenced the removed chest types.
-removed dialogs for hero got gold, hero got heart piece.
-updated key & hub roomData to contain key/map chests.
-updated FinishHubRoom() to set any chest objects within room to ChestMap or ChestEmpty.
-this is based on the dungeon.map boolean.
-updated FinishKeyRoom() to set any chest objects withing room to Chestkey or ChestEmpty.
-this is based on the dungeon.bigKey boolean.
-playtested, working as expected.
+added ObjType LeverOn & LeverOff + animLists.
+added ObjType SpikesFloorOn & SpikesFloorOff + animLists.
+updated Functions_GameObject.SetType() with paths for new objs.
+updated Functions_Interaction.HeroInterat() to check for lever interaction.
+created Functions_Room.ActivateLeverObjects() to handle toggling lever related objs.
+updated all roomData XML to use leverOff + spikesFloorOn roomObjs.
+playtested, levers + spikeFloors working as expected.
 
 
 
@@ -71,21 +66,18 @@ playtested, working as expected.
 
 
 
-Chests++
-we can keep the key + map chests, because we can check the booleans to see if these chests should be empty
-we can simply empty these chests if we need to, so hero can't farm them and the room seems persistent
-however, we can't have heart piece chests (sold via vendor instead) or gold chests (rewarded for killing enemy or beating dungeon)
-so those two chests will have to be removed
-* the map chest will always exist in the hub room
-* the key chest will always exist in the key room
-(so we should be able to place chests in editor, but the chest type is based on the room type)
-(this allows us to create puzzles to the chest)
+> playtest
 
-remove all chests from hub room (procedurally added)
-create chestDefault object - this will become a map or key chest when room is built
-update HUB roomData with a chestDefault object
-update KEY roomData with a chestDefault object
-update FinishRoom() to set the chestDefault to map or key chest based on room type
+
+lever sprite should flip horizontally perfectly
+it seems like it doesn't take up the full 16px, or is misaligned
+
+an attention particle should appear when we flip the lever
+
+
+
+
+add a switch soundfx to project, call this from ActivateLeverObjects().
 
 
 
@@ -93,11 +85,9 @@ update FinishRoom() to set the chestDefault to map or key chest based on room ty
 
 
 
-
-
-we need to get level working, so we can actually beat the current dungeon
-
-
+leverOff should also turn off all conveyor belts
+this changes all conveyor belts to conveyorBeltOff
+this has no collision/interaction with hero
 
 
 
@@ -123,14 +113,7 @@ this means we don't need a heart piece graphic in the inventory screen / loadout
 
 
 
-hero should be able to interact with level
-this interaction changes lever to off state (flipped horizontally)
-this causes all spikefloors to turn off (down animation, no collisions)
-we will need: spikeFloorsOn, spikeFloorsOff, leverOn, levelOff
 
-leverOff should also turn off all conveyor belts
-this changes all conveyor belts to conveyorBeltOff
-this has no collision/interaction with hero
 
 
 

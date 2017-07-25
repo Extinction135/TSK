@@ -106,12 +106,18 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(1, 4, 0, 0) },
                 //BlockSpikes
                 new List<Byte4> { new Byte4(3, 5, 0, 0) },
-                //Lever
+
+                //LeverOn
                 new List<Byte4> { new Byte4(0, 5, 0, 0) },
+                //LeverOff
+                new List<Byte4> { new Byte4(0, 5, 1, 0) },
+                //SpikesFloorOn
+                new List<Byte4> { new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0) },
+                //SpikesFloorOff
+                new List<Byte4> { new Byte4(2, 5, 0, 0), new Byte4(2, 5, 0, 0) },
+
                 //PotSkull
                 new List<Byte4> { new Byte4(0, 6, 0, 0) },
-                //SpikesFloor
-                new List<Byte4> { new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0) },
                 //Bumper
                 new List<Byte4> { new Byte4(4, 5, 0, 0) },
                 //Flamethrower

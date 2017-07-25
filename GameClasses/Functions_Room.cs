@@ -511,7 +511,8 @@ namespace DungeonRun
                     else if (objA.type == ObjType.PitAnimated) { checkOverlap = true; }
                     else if (objA.type == ObjType.ConveyorBelt) { checkOverlap = true; }
                     else if (objA.type == ObjType.DebrisFloor) { checkOverlap = true; }
-                    else if (objA.type == ObjType.SpikesFloor) { checkOverlap = true; }
+                    else if (objA.type == ObjType.SpikesFloorOn) { checkOverlap = true; }
+                    else if (objA.type == ObjType.SpikesFloorOff) { checkOverlap = true; }
                     else if (objA.type == ObjType.Flamethrower) { checkOverlap = true; }
                 }
                 
@@ -535,7 +536,8 @@ namespace DungeonRun
                                 else if (objA.type == ObjType.PitAnimated) { removeObjB = true; }
                                 else if (objA.type == ObjType.ConveyorBelt) { removeObjB = true; }
                                 else if (objA.type == ObjType.DebrisFloor) { removeObjB = true; }
-                                else if (objA.type == ObjType.SpikesFloor) { removeObjB = true; }
+                                else if (objA.type == ObjType.SpikesFloorOn) { removeObjB = true; }
+                                else if (objA.type == ObjType.SpikesFloorOff) { removeObjB = true; }
                                 else if (objA.type == ObjType.Flamethrower) { removeObjB = true; }
                             }
                             if (removeObjB)
@@ -736,5 +738,25 @@ namespace DungeonRun
 
 
         }
+
+
+
+        public static void ActivateLeverObjects()
+        {
+            Assets.Play(Assets.sfxMetallicTap); //this should be the switch sound
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //find any spikeFloor objects in the room, toggle them
+                    if (Pool.roomObjPool[i].type == ObjType.SpikesFloorOn)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SpikesFloorOff); }
+                    else if (Pool.roomObjPool[i].type == ObjType.SpikesFloorOff)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SpikesFloorOn); }
+                }
+            }
+        }
+
+
+
     }
 }

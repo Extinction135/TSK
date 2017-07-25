@@ -364,15 +364,14 @@ namespace DungeonRun
                 else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
             }
             else if (
-                Type == ObjType.SpikesFloor ||
-                Type == ObjType.Switch ||
-                Type == ObjType.Bridge)
+                Type == ObjType.SpikesFloorOn || Type == ObjType.SpikesFloorOff ||
+                Type == ObjType.Switch || Type == ObjType.Bridge)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
-            else if (Type == ObjType.Lever)
+            else if (Type == ObjType.LeverOn || Type == ObjType.LeverOff)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;

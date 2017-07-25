@@ -166,10 +166,15 @@ namespace DungeonRun
                 Functions_GameObject.SetType(Obj, ObjType.TorchLit);
                 Assets.Play(Assets.sfxLightFire);
             }
-            else if (Obj.type == ObjType.Lever)
+            else if (Obj.type == ObjType.LeverOff)
             {
-                //flip lever horizontally on/off
-                //this turns floorSpikes, conveyorBelts on/off
+                Functions_GameObject.SetType(Obj, ObjType.LeverOn);
+                Functions_Room.ActivateLeverObjects();
+            }
+            else if (Obj.type == ObjType.LeverOn)
+            {
+                Functions_GameObject.SetType(Obj, ObjType.LeverOff);
+                Functions_Room.ActivateLeverObjects();
             }
 
             #endregion
@@ -283,9 +288,7 @@ namespace DungeonRun
             if (Obj.group == ObjGroup.Projectile) { Functions_Battle.Damage(Actor, Obj); }
             else if (Obj.group == ObjGroup.Object) 
             {
-
-                
-                if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloor)
+                if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloorOn)
                 {   //damage push actor away from spikes
                     Functions_Battle.Damage(Actor, Obj);
                 }
@@ -384,6 +387,9 @@ namespace DungeonRun
                 Bumper.compSprite.position.Y, 
                 Direction.None);
         }
+
+        
+
 
     }
 }
