@@ -139,7 +139,7 @@ namespace DungeonRun
             //check if hero has any vendor items, via PlayerData.saveData.(itemBoolean)
             if (VendorType == ObjType.VendorItems)
             {
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemHeart, menuItems[0]);
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb3Pack, menuItems[2]);
                 

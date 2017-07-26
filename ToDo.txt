@@ -46,31 +46,19 @@ todo:
 
 
 
-Discard using heart pieces to represent Hero's total heart count
-
-removed MenuItemType InventoryHeartPieces.
-removed InventoryHeartPieces path from Func_MenuItem.SetMenuItemData().
-removed routine for setting heart pieces from LoadoutWidget.
-heart pieces loadout is now an unknown menuItem.
-changed saveData.heartPieces to saveData.heartsTotal.
-updated WorldUI to operate on saveData.heartsTotal.
-playtested, working as expected.
-
-Cleanup Enumerator values
-
-removed ObjType ParticleRewardHeartPiece, ParticleRewardHeartFull.
-removed ObjType ParticleRewardGold.
-removed corresponding GameObj AnimLists.
-
-Prep for ItemVendor selling ItemHeart product
-
-added MenuItemType ItemHeart.
-updated Func_MenuItem.SetMenuItemData() with path for ItemHeart.
-priced at 75 gold.
 
 
 
+updated ForSaleWidget to display ItemHeart as #1 product in VendorItems.
+updated VendorScreen.PurchaseItem() with path for ItemHeart.
+created DialogMaxHearts() to notify player they have reached the max hearts.
+this prevents the player from purchasing heart upgrade if they have 9 hearts.
 
+> playtest
+
+
+
+update vendor advertisements to display the full heart piece
 
 
 

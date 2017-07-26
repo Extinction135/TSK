@@ -208,7 +208,16 @@ namespace DungeonRun
 
                 #region Items
 
-                if (Item.type == MenuItemType.ItemBomb || Item.type == MenuItemType.ItemBomb3Pack)
+                if (Item.type == MenuItemType.ItemHeart)
+                {   //check that hero is not at max hearts value (9)
+                    if (PlayerData.current.heartsTotal < 9)
+                    {   //increment saveData's total hearts
+                        PlayerData.current.heartsTotal++;
+                        CompleteSale(Item);
+                    }
+                    else { DialogMaxHearts(); }
+                }
+                else if (Item.type == MenuItemType.ItemBomb || Item.type == MenuItemType.ItemBomb3Pack)
                 {   //check to see if hero is full on bombs
                     if (PlayerData.current.bombsCurrent < PlayerData.current.bombsMax)
                     {   //check to see how many bombs hero is purchasing
@@ -355,6 +364,7 @@ namespace DungeonRun
 
                 #endregion
 
+
             } //else, hero doesn't have enough gold to purchase the item
             else { DialogNotEnoughGold(); }
         }
@@ -395,6 +405,13 @@ namespace DungeonRun
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
                     "you have already purchased this item.");
+            Assets.Play(Assets.sfxError);
+        }
+
+        public void DialogMaxHearts()
+        {
+            Widgets.Dialog.DisplayDialog(vendorType.type,
+                    "you have reached the maximum amount of hearts.");
             Assets.Play(Assets.sfxError);
         }
 
