@@ -21,6 +21,10 @@ namespace DungeonRun
         public static Room currentRoom; //points to a room on dungeon's roomList
         public static int dungeonTrack = 0;
 
+        //were the 1st room is placed in dungeon.rooms list
+        public static Point buildPosition = new Point(16 * 10, 16 * 200); 
+
+
 
         public static void Initialize(ScreenDungeon DungeonScreen) { dungeonScreen = DungeonScreen; }
 
@@ -37,7 +41,10 @@ namespace DungeonRun
 
             if (dungeonType == DungeonType.Shop)
             {   //create the shop room
-                dungeon.rooms.Add(new Room(new Point(16 * 10, 16 * 21), RoomType.Shop, 0));
+                Room shopRoom = new Room(new Point(0, 0), RoomType.Shop, 0);
+                Functions_Room.MoveRoom(shopRoom, buildPosition.X, buildPosition.Y);
+                dungeon.rooms.Add(shopRoom); //exit room must be at index0
+
                 //keep the title music playing
                 Functions_Music.PlayMusic(Music.Title);
             }
@@ -61,7 +68,7 @@ namespace DungeonRun
                 Room squareRoom = new Room(new Point(0, 0), RoomType.Square, 6);
 
                 //place/move the rooms (relative to each other)
-                Functions_Room.MoveRoom(exitRoom, 16 * 10, 16 * 200);
+                Functions_Room.MoveRoom(exitRoom, buildPosition.X, buildPosition.Y);
                 Functions_Room.MoveRoom(columnRoom, 16 * 10, exitRoom.collision.rec.Y - (16 * columnRoom.size.Y) - 16);
                 Functions_Room.MoveRoom(rowRoom, 16 * 10, columnRoom.collision.rec.Y - (16 * rowRoom.size.Y) - 16);
                 Functions_Room.MoveRoom(squareRoom, 16 * 10, rowRoom.collision.rec.Y - (16 * squareRoom.size.Y) - 16);

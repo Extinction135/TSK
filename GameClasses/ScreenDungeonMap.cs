@@ -17,7 +17,7 @@ namespace DungeonRun
         ScreenRec background = new ScreenRec();
         public static MenuWindow window;
         public Rectangle dungeonBkg;
-        //public List<Rectangle> rooms;
+        public List<Rectangle> rooms;
         public int i;
 
 
@@ -38,6 +38,43 @@ namespace DungeonRun
                 window.background.position.X + 8,
                 window.background.position.Y + 20,
                 16 * 7, 16 * 7);
+
+            //place every room from dungeon.rooms list into rooms list
+            rooms = new List<Rectangle>();
+            for (i = 0; i < Functions_Dungeon.dungeon.rooms.Count; i++)
+            {
+                Rectangle dungeonRoom = new Rectangle(0, 0, 0, 0);
+                //get the room size
+                dungeonRoom.Width = Functions_Dungeon.dungeon.rooms[i].size.X;
+                dungeonRoom.Height = Functions_Dungeon.dungeon.rooms[i].size.Y;
+                //get the room position
+                dungeonRoom.X = Functions_Dungeon.dungeon.rooms[i].collision.rec.X;
+                dungeonRoom.Y = Functions_Dungeon.dungeon.rooms[i].collision.rec.Y;
+                //subtract the build position
+                dungeonRoom.X -= Functions_Dungeon.buildPosition.X;
+                dungeonRoom.Y -= Functions_Dungeon.buildPosition.Y;
+                //reduce position 16:1
+                dungeonRoom.X = dungeonRoom.X / 16;
+                dungeonRoom.Y = dungeonRoom.Y / 16;
+                //add the map offset
+                dungeonRoom.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
+                dungeonRoom.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
+                //add to the map rooms
+                rooms.Add(dungeonRoom);
+            }
+
+
+            //display all the dungeon doors
+
+
+            //display hero as a small white square
+            //place this square centered to the current room
+            
+            
+
+
+
+
 
             //open the screen
             displayState = DisplayState.Opening;
@@ -99,9 +136,16 @@ namespace DungeonRun
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, dungeonBkg,
                     Assets.colorScheme.windowInset);
-
                 //draw room recs
+                for (i = 0; i < rooms.Count; i++)
+                {
+                    ScreenManager.spriteBatch.Draw(
+                        Assets.dummyTexture, rooms[i],
+                        Assets.colorScheme.buttonDown);
+                }
+                //draw dungeon doors
 
+                //draw hero rec
             }
             ScreenManager.spriteBatch.End();
         }

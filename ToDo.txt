@@ -46,15 +46,18 @@ todo:
 
 
 
+Display the dungeon's room layout in map
 
+created List<Rectangle> called rooms in DungeonMapScreen.
+updated Functions_Dungeon to use a buildPosition point.
+this point determines where the initial room is built.
+updated BuildDungeon() to  use buildPosition.
+all dungeon rooms are built relative to the initial room.
 
-Create basic DungeonMap display
-
-created ScreenDungeonMap, based on ScreenOverworld.
-updated DungeonScreen.HandleInput() to create a new DungeonMapScreen upon back button press.
-modified the position and size of DungeonMap window to fit under WorldUI hud.
-DungeonMap screen exits if user presses any button.
+created routine to copy and reposition dungeon.rooms to map.rooms in DungeonMapScreen.
+this routine uses the dungeon.buildPosition to reposition rooms to map.
 playtested, working as expected.
+
 
 
 
