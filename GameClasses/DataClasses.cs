@@ -521,6 +521,10 @@ namespace DungeonRun
 
         public Color textLight = new Color(255, 255, 255);
         public Color textDark = new Color(0, 0, 0);
+
+        public Color mapBkg = new Color(130, 130, 130);
+        public Color mapVisited = new Color(100, 100, 100);
+        public Color mapNotVisited = new Color(120, 120, 120);
     }
 
     //GameData Classes

@@ -44,26 +44,24 @@ todo:
 
 
 
-Display the visited Dungeon Rooms and Doors in Map
 
-created Door data class.
-removed CollisionComponent from Room class.
-it was overkill and we were only using the rectangle instance from CollisionComponent.
-updated various codepaths that referenced Room.collision to use Room.rec.
-updated CheckDungeonRoomCollisions() to flip Room.visited to true upon hero collision.
-removed id from Room class, as it was not being used in an intelligent manner.
-updated Functions_Room.SetDoors() to use dungeon.doors list.
-updated Functions_Draw.Draw(Dungeon) to use dungeon.doors list.
-updated Functions_Collision.CheckDungeonRoomCollisions() to also check dungeon.door collisions.
-this check sets the door.visited boolean true upon collision with hero.
 
-updated room placement routine in map to check .visited boolean.
-now the map will only display rooms that have been visited, by default.
-updated map screen with door placement routine, based on room placement routine.
-visited doors will now be displayed on map.
-updated BuildDungeon() to set initial room.visited true.
-playtested, rooms + doors show up on map as hero explores/collides with them.
+Improve DungeonMap Display
 
+updated map building routine to check if hero has collected the dungeon map.
+if so, every room and door is added to the map's room & door lists.
+this means they will be drawn on the map.
+
+created ColorScheme.mapBkg, .mapVisited, .mapNotVisited instances.
+converted mapScreen.rooms & doors to be lists of type Room and Door.
+we need to store the .visited boolean in these lists so we can draw them correctly later on.
+playtested, map is displaying normally.
+
+updated DungeonMapScreen.Draw() to check dungeon.map and room/door.visited.
+rooms & doors are drawn if hero has visited them, or if hero has map.
+rooms & doors are drawn different colors based on their .visited boolean.
+unvisited room/doors are drawn lighter than visited doors/rooms.
+playtested, working as expected.
 
 
 
@@ -71,42 +69,7 @@ playtested, rooms + doors show up on map as hero explores/collides with them.
 
 
 
-
-
-MAP COLORS ++
-
-we need colors in colorScheme class specifically for :
-mapBkg, 
-roomVisited, roomNotVisited,
-doorVisited, doorNotVisited,
-
-
-
-
-
-
-
-
-MAP ++
-
-display all the dungeon doors, based on the dungeon.doors list locations
-*this is not as easy as placing rectangles at each door location point
-*thats because we dont know which doors hero has visited
-*so we either have to display all of them, or none of them
-
-**however, we can modify how we manage doors in dungeon to make this possible
-we'll need a data structure that is a rec, plus a .visited boolean
-a room will use this struct as well as a door, so we could call it a MapComponent.
-if hero collides with a room or door, then the MapComp.visited flips to true.
-in map, if a room or door has been visited, then it is added to the drawn rectangles list.
-both rooms and doors exist on this list, and are drawn using the same color.
-
-if dungeon.map is true, then display all rooms & doors in dungeon
-else display the rooms & doors hero has visited
-
-dont display the dungeon map if hero is in the shop (or non-dungeon)
-by default, the dungeon.map will be false, in this case
-so the map scren wouldn't display if hero was in the shop
+draw the hero's current room location on map
 
 add a rectagle isntance to map screen named currentRoom
 this is a blinking white rec that is 1x1 pixels
@@ -114,6 +77,17 @@ when creating rooms on room list, check to see if room[i] == dungeon.currentRoom
 if so, set the currentRoom rec centered to that room
 always draw the currentRoom rec as white, and blink fade it in/out
 this will show the player the current room they occupy in the dungeon
+
+
+
+
+
+
+
+add a cheat that provides hero with dungeon map ALWAYS
+add a cheat that provides hero with dungeon key ALWAYS
+
+
 
 
 

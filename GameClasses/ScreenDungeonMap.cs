@@ -17,8 +17,9 @@ namespace DungeonRun
         ScreenRec background = new ScreenRec();
         public static MenuWindow window;
         public Rectangle dungeonBkg;
-        public List<Rectangle> rooms;
-        public List<Rectangle> doors;
+        public List<Room> rooms;
+        public List<Door> doors;
+        public Color mapColor;
         public int i;
 
 
@@ -40,52 +41,64 @@ namespace DungeonRun
                 window.background.position.Y + 20,
                 16 * 7, 16 * 7);
 
-            //place every room from dungeon.rooms list into rooms list
-            rooms = new List<Rectangle>();
+
+            #region Collect all the dungeon rooms
+
+            rooms = new List<Room>();
             for (i = 0; i < Functions_Dungeon.dungeon.rooms.Count; i++)
             {
-                Rectangle dungeonRoom = new Rectangle(0, 0, 0, 0);
+                Room dungeonRoom = new Room(new Point(0, 0), Functions_Dungeon.dungeon.rooms[i].type);
                 //get the room size
-                dungeonRoom.Width = Functions_Dungeon.dungeon.rooms[i].size.X;
-                dungeonRoom.Height = Functions_Dungeon.dungeon.rooms[i].size.Y;
+                dungeonRoom.rec.Width = Functions_Dungeon.dungeon.rooms[i].size.X;
+                dungeonRoom.rec.Height = Functions_Dungeon.dungeon.rooms[i].size.Y;
                 //get the room position
-                dungeonRoom.X = Functions_Dungeon.dungeon.rooms[i].rec.X;
-                dungeonRoom.Y = Functions_Dungeon.dungeon.rooms[i].rec.Y;
+                dungeonRoom.rec.X = Functions_Dungeon.dungeon.rooms[i].rec.X;
+                dungeonRoom.rec.Y = Functions_Dungeon.dungeon.rooms[i].rec.Y;
                 //subtract the build position
-                dungeonRoom.X -= Functions_Dungeon.buildPosition.X;
-                dungeonRoom.Y -= Functions_Dungeon.buildPosition.Y;
+                dungeonRoom.rec.X -= Functions_Dungeon.buildPosition.X;
+                dungeonRoom.rec.Y -= Functions_Dungeon.buildPosition.Y;
                 //reduce position 16:1
-                dungeonRoom.X = dungeonRoom.X / 16;
-                dungeonRoom.Y = dungeonRoom.Y / 16;
+                dungeonRoom.rec.X = dungeonRoom.rec.X / 16;
+                dungeonRoom.rec.Y = dungeonRoom.rec.Y / 16;
                 //add the map offset
-                dungeonRoom.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
-                dungeonRoom.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
-                //add to the map rooms
-                if (Functions_Dungeon.dungeon.rooms[i].visited)
-                { rooms.Add(dungeonRoom); }
+                dungeonRoom.rec.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
+                dungeonRoom.rec.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
+                //grab the visited boolean
+                dungeonRoom.visited = Functions_Dungeon.dungeon.rooms[i].visited;
+                rooms.Add(dungeonRoom);
             }
 
-            //display all the dungeon doors
-            doors = new List<Rectangle>();
+            #endregion
+
+
+            #region Collect all the dungeon doors
+
+            doors = new List<Door>();
             for (i = 0; i < Functions_Dungeon.dungeon.doors.Count; i++)
             {
-                Rectangle dungeonDoor = new Rectangle(0, 0, 1, 1);
+                Door dungeonDoor = new Door(new Point());
+                //map doors are always 1x1 pixels
+                dungeonDoor.rec.Width = 1;
+                dungeonDoor.rec.Height = 1;
                 //get the door position
-                dungeonDoor.X = Functions_Dungeon.dungeon.doors[i].rec.X;
-                dungeonDoor.Y = Functions_Dungeon.dungeon.doors[i].rec.Y;
+                dungeonDoor.rec.X = Functions_Dungeon.dungeon.doors[i].rec.X;
+                dungeonDoor.rec.Y = Functions_Dungeon.dungeon.doors[i].rec.Y;
                 //subtract the build position
-                dungeonDoor.X -= Functions_Dungeon.buildPosition.X;
-                dungeonDoor.Y -= Functions_Dungeon.buildPosition.Y;
+                dungeonDoor.rec.X -= Functions_Dungeon.buildPosition.X;
+                dungeonDoor.rec.Y -= Functions_Dungeon.buildPosition.Y;
                 //reduce position 16:1
-                dungeonDoor.X = dungeonDoor.X / 16;
-                dungeonDoor.Y = dungeonDoor.Y / 16;
+                dungeonDoor.rec.X = dungeonDoor.rec.X / 16;
+                dungeonDoor.rec.Y = dungeonDoor.rec.Y / 16;
                 //add the map offset
-                dungeonDoor.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
-                dungeonDoor.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
-                //add to the map doors
-                if (Functions_Dungeon.dungeon.doors[i].visited)
-                { doors.Add(dungeonDoor); }
+                dungeonDoor.rec.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
+                dungeonDoor.rec.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
+                //grab the visited boolean
+                dungeonDoor.visited = Functions_Dungeon.dungeon.doors[i].visited;
+                doors.Add(dungeonDoor);
             }
+
+            #endregion
+
 
             //display hero as a small white square
             //place this square centered to the current room
@@ -149,21 +162,56 @@ namespace DungeonRun
             {   //draw dungeon background
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, dungeonBkg,
-                    Assets.colorScheme.windowInset);
-                //draw room recs
+                    Assets.colorScheme.mapBkg);
+
+                #region Draw dungeon rooms
+
                 for (i = 0; i < rooms.Count; i++)
-                {
-                    ScreenManager.spriteBatch.Draw(
-                        Assets.dummyTexture, rooms[i],
-                        Assets.colorScheme.buttonDown);
+                {   //do we need to draw this room?
+                    if (rooms[i].visited || Functions_Dungeon.dungeon.map)
+                    {
+                        if (rooms[i].visited)
+                        {   //draw visited rooms with Visited color
+                            ScreenManager.spriteBatch.Draw(
+                                Assets.dummyTexture, rooms[i].rec, 
+                                Assets.colorScheme.mapVisited);
+                        }
+                        else//hero has map
+                        {   //draw unvisited rooms with NotVisited color
+                            ScreenManager.spriteBatch.Draw(
+                                Assets.dummyTexture, rooms[i].rec, 
+                                Assets.colorScheme.mapNotVisited);
+                        }
+                    }
                 }
-                //draw dungeon doors
+
+                #endregion
+
+
+                #region Draw dungeon doors
+
                 for (i = 0; i < doors.Count; i++)
-                {
-                    ScreenManager.spriteBatch.Draw(
-                        Assets.dummyTexture, doors[i],
-                        Assets.colorScheme.buttonDown);
+                {   //do we need to draw this door?
+                    if (doors[i].visited || Functions_Dungeon.dungeon.map)
+                    {
+                        if (doors[i].visited)
+                        {   //draw visited doors with Visited color
+                            ScreenManager.spriteBatch.Draw(
+                                Assets.dummyTexture, doors[i].rec,
+                                Assets.colorScheme.mapVisited);
+                        }
+                        else//hero has map
+                        {   //draw unvisited doors with NotVisited color
+                            ScreenManager.spriteBatch.Draw(
+                                Assets.dummyTexture, doors[i].rec,
+                                Assets.colorScheme.mapNotVisited);
+                        }
+                    }
                 }
+
+                #endregion
+
+
                 //draw hero rec
             }
             ScreenManager.spriteBatch.End();
