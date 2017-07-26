@@ -24,19 +24,15 @@ namespace DungeonRun
 
             #region Update & Limit Hero's Hearts
 
-            //reset maxHearts and pieceCounter, we will calculate them for this frame
-            WorldUI.maxHearts = 0; WorldUI.pieceCounter = 0;
-            //determine the max hearts that hero has, based on heart pieces
-            for (i = 0; i < PlayerData.current.heartPieces; i++)
-            {
-                WorldUI.pieceCounter++; //hearts are groups of 4 pieces
-                if (WorldUI.pieceCounter == 4)
-                { WorldUI.maxHearts++; WorldUI.pieceCounter = 0; }
-            }
-            //clip maxHearts to 14, match hero's health
-            if (WorldUI.maxHearts > 9) { WorldUI.maxHearts = 9; }
-            Pool.hero.maxHealth = WorldUI.maxHearts; //match maxHearts to maxHealth
-            if (Pool.hero.health > WorldUI.maxHearts) { Pool.hero.health = WorldUI.maxHearts; }
+            //clip max/total Hearts to 9
+            if (PlayerData.current.heartsTotal > 9)
+            { PlayerData.current.heartsTotal = 9; }
+            //assign maxHearts
+            WorldUI.maxHearts = PlayerData.current.heartsTotal;
+            //match maxHearts to maxHealth, clip current health to max value
+            Pool.hero.maxHealth = WorldUI.maxHearts; 
+            if (Pool.hero.health > WorldUI.maxHearts)
+            { Pool.hero.health = WorldUI.maxHearts; }
             //animate (scale) the hero's hearts
             WorldUI.currentHeartCount = Pool.hero.health; //get the current heart count
             if (WorldUI.currentHeartCount != WorldUI.lastHeartCount) //if current does not equal last

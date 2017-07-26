@@ -46,24 +46,39 @@ todo:
 
 
 
+Discard using heart pieces to represent Hero's total heart count
+
+removed MenuItemType InventoryHeartPieces.
+removed InventoryHeartPieces path from Func_MenuItem.SetMenuItemData().
+removed routine for setting heart pieces from LoadoutWidget.
+heart pieces loadout is now an unknown menuItem.
+changed saveData.heartPieces to saveData.heartsTotal.
+updated WorldUI to operate on saveData.heartsTotal.
+playtested, working as expected.
+
+Cleanup Enumerator values
+
+removed ObjType ParticleRewardHeartPiece, ParticleRewardHeartFull.
+removed ObjType ParticleRewardGold.
+removed corresponding GameObj AnimLists.
+
+Prep for ItemVendor selling ItemHeart product
+
+added MenuItemType ItemHeart.
+updated Func_MenuItem.SetMenuItemData() with path for ItemHeart.
+priced at 75 gold.
 
 
 
-Polish SpikeFloor CollisionRec Size
-
-changed the size of spikeFloor's collisionRec, so collisions dont feel 'cheap'.
-they are sized 10x10 instead of 16x16, so it's much easier to walk closely to them.
-this makes it easier to navigate spikeFloor mazes, like the default Key room.
-playtested, feeling good.
 
 
 
 
 
+Update item vendor to sell heart piece / HP upgrade
 
-
-
-
+add ItemHeart to ItemVendor as product #1
+sells for 75 gold
 
 
 
@@ -83,24 +98,6 @@ this means we don't need a heart piece graphic in the inventory screen / loadout
 
 
 
-
-
-
-
-
-
-
-
-falling into a pit is just instant death
-hero just dies, no damage is dealt (no fairy can be used)
-ends with 'you died' screen
-hero is set into hit state and scaled down to 0
-at 0, the hero dies
-
-this should also happen to enemies (instant death, no loot drop)
-
-we should prevent enemies from moving into pits / spikes on their own
-they should be able to be pushed into them, however
 
 
 
@@ -145,10 +142,6 @@ if hero has the dungeon map, display the dungeon map with select button.
 
 
 POLISH
-
-
-
-
 
 WorldUI++
 we should be displaying the amount of arrows, bombs in the worldUI
@@ -223,6 +216,36 @@ consider updating the overworld map to look better too
 
 
 
+
+
+
+
+
+boss dialog + boss phaases
+
+initially the boss should popup a dialog mocking player
+after boss hits half health, another dialog should popup
+this one talks about boss changing tactics
+"you're better than i expected"
+in the 2nd phase, the boss moves AWAY from the hero
+so its harder for the hero to hit the boss
+in first phase, the boss just randomly moves around
+
+
+
+
+
+PITS++
+falling into a pit is just instant death
+hero just dies, no damage is dealt (no fairy can be used)
+ends with 'you died' screen
+hero is set into hit state and scaled down to 0
+at 0, the hero dies
+
+this should also happen to enemies (instant death, no loot drop)
+
+we should prevent enemies from moving into pits / spikes on their own
+they should be able to be pushed into them, however
 
 
 

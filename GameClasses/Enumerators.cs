@@ -86,14 +86,13 @@ namespace DungeonRun
         ParticleBow,
         ParticleHealthPotion, ParticleMagicPotion, ParticleFairyBottle,
         //Particles - rewards
-        ParticleRewardGold, ParticleRewardKey, ParticleRewardMap,
-        ParticleRewardHeartPiece, ParticleRewardHeartFull,
+        ParticleRewardKey, ParticleRewardMap,
     }
 
     public enum MenuItemType
     {
         Unknown,
-        InventoryGold, InventoryHeartPieces, InventoryMap, InventoryKey,
+        InventoryGold, InventoryMap, InventoryKey,
         StatsHealth, StatsMagic, StatsAgility, Stats4,
         CrystalFilled, CrystalEmpty,
 
@@ -101,7 +100,8 @@ namespace DungeonRun
         OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls, OptionsGameCtrls,
         OptionsSaveGame, OptionsHelpInfo,
 
-        ItemBoomerang, ItemBomb, ItemBomb3Pack, ItemArrowPack,
+        ItemHeart, ItemBomb, ItemBomb3Pack, ItemArrowPack,
+        ItemBoomerang,
 
         BottleEmpty, BottleHealth, BottleMagic, BottleFairy,
 

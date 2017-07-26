@@ -597,11 +597,9 @@ namespace DungeonRun
             }
 
             //Particles - Rewards & Bottles
-            else if (Type == ObjType.ParticleRewardGold ||
+            else if (
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
-                Type == ObjType.ParticleRewardHeartPiece ||
-                Type == ObjType.ParticleRewardHeartFull ||
                 Type == ObjType.ParticleHealthPotion ||
                 Type == ObjType.ParticleMagicPotion ||
                 Type == ObjType.ParticleFairyBottle)

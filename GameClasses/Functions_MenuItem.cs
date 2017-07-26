@@ -60,12 +60,12 @@ namespace DungeonRun
 
             #region Item menuItems
 
-            if (Type == MenuItemType.ItemBoomerang)
+            if (Type == MenuItemType.ItemHeart)
             {
-                MenuItem.name = "Magic Boomerang";
-                MenuItem.description = "A magical boomerang.";
+                MenuItem.name = "Heart Piece";
+                MenuItem.description = "Increases maximum \nhealth by 1.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 5, 0, 0) };
-                MenuItem.price = 50;
+                MenuItem.price = 75;
             }
             else if (Type == MenuItemType.ItemBomb)
             {
@@ -87,6 +87,13 @@ namespace DungeonRun
                 MenuItem.description = "A set of 20 arrows, \nfor 20 gold.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 8, 0, 0) };
                 MenuItem.price = 20;
+            }
+            else if (Type == MenuItemType.ItemBoomerang)
+            {
+                MenuItem.name = "Magic Boomerang";
+                MenuItem.description = "A magical boomerang.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 5, 0, 0) };
+                MenuItem.price = 50;
             }
 
             #endregion
@@ -249,12 +256,6 @@ namespace DungeonRun
                 MenuItem.description = "The total amount\nof gold collected.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4>
                 { new Byte4(11, 7, 0, 0), new Byte4(12, 7, 0, 0), new Byte4(13, 7, 0, 0), new Byte4(14, 7, 0, 0) };
-            }
-            else if (Type == MenuItemType.InventoryHeartPieces)
-            {
-                MenuItem.name = "Heart Pieces";
-                MenuItem.description = "The number of heart\npieces you've collected.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 6, 0, 0) };
             }
             else if (Type == MenuItemType.InventoryKey)
             {

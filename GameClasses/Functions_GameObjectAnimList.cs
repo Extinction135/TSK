@@ -236,20 +236,11 @@ namespace DungeonRun
                 //ParticleFairyBottle
                 new List<Byte4> { new Byte4(6, 9, 0, 0) },
 
-
-
-
                 //Rewards
-                //ParticleReward20Gold
-                new List<Byte4> { new Byte4(13, 5, 0, 0) },
                 //ParticleRewardKey,
                 new List<Byte4> { new Byte4(12, 5, 0, 0) },
                 //ParticleRewardMap,
                 new List<Byte4> { new Byte4(11, 5, 0, 0) },
-                //ParticleRewardHeartPiece
-                new List<Byte4> { new Byte4(14, 5, 0, 0) },
-                //ParticleRewardHeartFull
-                new List<Byte4> { new Byte4(15, 5, 0, 0) },
 
                 #endregion
 

@@ -88,11 +88,6 @@ namespace DungeonRun
             Functions_MenuItem.SetNeighbors(menuItems, 4);
 
             UpdateLoadout();
-            //set the inventory heart pieces frame, based on the number of heart pieces hero has
-            //add the piece counter to the current X frame, pieceCounter will always be less than 5
-            menuItems[5].compAnim.currentAnimation = new List<Byte4>
-            { new Byte4((byte)(11 + WorldUI.pieceCounter), 6, 0, 0) };
-            Functions_Animation.Animate(menuItems[5].compAnim, menuItems[5].compSprite);
 
             //display the player's gold, place gold display with gold menuItem
             goldTracker = PlayerData.current.gold;
@@ -152,7 +147,7 @@ namespace DungeonRun
 
             //set the gold, hearts, and dungeon items
             Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryHeartPieces, menuItems[5]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[5]); //unused for now
             if (Functions_Dungeon.dungeon.map) //if player found the map, display it
             { Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
             else { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }

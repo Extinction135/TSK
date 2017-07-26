@@ -96,11 +96,9 @@ namespace DungeonRun
             #region Reward & Bottle Particles
 
             //place reward particles above actor's head
-            else if (Type == ObjType.ParticleRewardGold ||
+            else if (
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
-                Type == ObjType.ParticleRewardHeartFull ||
-                Type == ObjType.ParticleRewardHeartPiece ||
                 Type == ObjType.ParticleFairy ||
                 Type == ObjType.ParticleHealthPotion ||
                 Type == ObjType.ParticleMagicPotion ||

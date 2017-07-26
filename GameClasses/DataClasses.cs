@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.5f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -256,7 +256,6 @@ namespace DungeonRun
         public static int lastHeartCount = 3;
         public static int currentHeartCount = 3;
         public static byte maxHearts = 0;
-        public static int pieceCounter = 0;
 
         public static List<ComponentSprite> meterPieces;
 
@@ -610,7 +609,7 @@ namespace DungeonRun
         public string date = "00.00.0000";
 
         public int gold = 99;
-        public byte heartPieces = 4 * 3; //sets max health
+        public byte heartsTotal = 3; //sets max health
 
         public byte magicCurrent = 3;
         public byte magicUnlocked = 3;
