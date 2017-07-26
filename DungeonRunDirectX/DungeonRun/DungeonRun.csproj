@@ -155,6 +155,9 @@
     <Compile Include="..\..\GameClasses\ScreenDungeon.cs">
       <Link>Classes\ScreenDungeon.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenDungeonMap.cs">
+      <Link>Classes\ScreenDungeonMap.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenInventory.cs">
       <Link>Classes\ScreenInventory.cs</Link>
     </Compile>
@@ -235,12 +238,10 @@
   <Target Name="BeforeBuild">
   </Target>
   -->
-
   <Target Name="AfterBuild">
     <ItemGroup>
       <RoomData Include="..\..\RoomData\**" />
     </ItemGroup>
-      <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)"  DestinationFolder="$(OutDir)\%(RecursiveDir)"  SkipUnchangedFiles="false"/>
+    <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
   </Target>
-
 </Project>

@@ -54,9 +54,12 @@ namespace DungeonRun
 
                 //map player input to hero
                 Functions_Input.MapPlayerInput(Pool.hero.compInput);
-                //open the inventory screen if player presses start button
+                //open inventory screen if player presses start button
                 if (Functions_Input.IsNewButtonPress(Buttons.Start))
                 { ScreenManager.AddScreen(new ScreenInventory()); }
+                //open dungeon map screen if player presses back button
+                else if (Functions_Input.IsNewButtonPress(Buttons.Back))
+                { ScreenManager.AddScreen(new ScreenDungeonMap()); }
 
                 #endregion
 

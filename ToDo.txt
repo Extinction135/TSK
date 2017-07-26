@@ -48,20 +48,30 @@ todo:
 
 
 
+Create basic DungeonMap display
 
-
-
-
-
-
-Improve the packing of Gold/Rupee sprite in main sheet
-
-moved the gold sprite animation into the menu sprites section.
-repacked it vertically for a better fit.
-updated Func_MenuItem.SetMenuItemData() to reflect new sprite placement.
+created ScreenDungeonMap, based on ScreenOverworld.
+updated DungeonScreen.HandleInput() to create a new DungeonMapScreen upon back button press.
+modified the position and size of DungeonMap window to fit under WorldUI hud.
+DungeonMap screen exits if user presses any button.
 playtested, working as expected.
 
 
+
+
+
+
+
+iterate over all the Dungeon.rooms, displaying them visually using rectangles
+the first room is the exit, this room is placed bottom center of map
+
+
+
+if dungeon.map is true, then display all rooms in dungeon
+else display the rooms hero has visited
+we will need to add a .visited boolean to room class.
+when hero collides with a room, the visited boolean is flipped true.
+when a room is created, the visited boolean defaults to false.
 
 
 
@@ -84,17 +94,11 @@ this means the room will be built the same each time hero enters it
 
 
 
-Dungeon Map
-
-create a dungeon map that shows the room layout.
-by default, set the dungeon map to true (for testing right now)
-
 
 Dungeon generation part3
-add secret rooms (via bombable walls), randomly place gold/heart piece chests
+add secret rooms (via bombable walls)
 add routine for populating secret rooms (similar to populating exit room)
 add additional unnecessary distraction rooms
-place a chest with map in random distraction room.
 
 
 handle the dungeon map boolean properly
