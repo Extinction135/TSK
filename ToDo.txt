@@ -52,47 +52,14 @@ todo:
 
 
 
-Polish Heart Item + Purchasing of Heart Item
 
-when hero purchases a heart, the worldUI should get an update (from vendor screen).
-we should also set the hero's health to the max health value (refill hearts).
-fix the visual bug that displays the boomerang sprite instead of the heart sprite.
-include heart item in the Item Vendor's advertisement.
 
-updated VendorScreen to call Update() on WorldUI.
-updated VendorScreen to set hero.health to hero.maxHealth.
-removed heart pieces + 20 rupee reward from mainSheet.
-moved full heart sprite into item sprite section.
-updated Item Vendor Advertisement to display full heart sprite.
+Improve the packing of Gold/Rupee sprite in main sheet
+
+moved the gold sprite animation into the menu sprites section.
+repacked it vertically for a better fit.
+updated Func_MenuItem.SetMenuItemData() to reflect new sprite placement.
 playtested, working as expected.
-
-
-
-
-
-
-
-update vendor advertisements to display the full heart piece
-the full heart menuItem sprite displays as a boomerang.
-we're waiting on a sprite repack to update this
-REPACK MAIN SHEET - remove heart pieces, keep full heart
-remove 20 rupee reward?
-
-
-
-
-
-
-Update item vendor to sell heart piece / HP upgrade
-this is the only way the hero can increase his heart count
-should we sell entire hearts instead of heart pieces? yah, for 99 gold.
-this means we can get rid of heart pieces in main sheet, and only keep the whole heart sprite
-this means we don't need a heart piece graphic in the inventory screen / loadout widget
-* this opens up a slot for a side mission item that we could display here
-* this means we could only have one side mission 'assigned' at a time, tho, which is fine
-* we could put this side mission item in a secret room, then check the sidemission boolean to hide it if hero returns to room
-
-
 
 
 

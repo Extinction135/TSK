@@ -255,7 +255,7 @@ namespace DungeonRun
                 MenuItem.name = "Total Gold";
                 MenuItem.description = "The total amount\nof gold collected.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4>
-                { new Byte4(11, 7, 0, 0), new Byte4(12, 7, 0, 0), new Byte4(13, 7, 0, 0), new Byte4(14, 7, 0, 0) };
+                { new Byte4(14, 4, 0, 0), new Byte4(14, 5, 0, 0), new Byte4(14, 6, 0, 0), new Byte4(14, 7, 0, 0) };
             }
             else if (Type == MenuItemType.InventoryKey)
             {
