@@ -326,7 +326,7 @@ namespace DungeonRun
 
             if (VendorType == ObjType.VendorItems)
             {   //add all the items from the main sheet
-                //objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //boomerang
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //heart
                 objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0)); //bomb
                 objRef.compAnim.currentAnimation.Add(new Byte4(5, 7, 0, 0)); //bombs
                 objRef.compAnim.currentAnimation.Add(new Byte4(5, 8, 0, 0)); //arrows

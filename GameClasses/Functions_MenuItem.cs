@@ -92,7 +92,7 @@ namespace DungeonRun
             {
                 MenuItem.name = "Magic Boomerang";
                 MenuItem.description = "A magical boomerang.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 5, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(5, 9, 0, 0) };
                 MenuItem.price = 50;
             }
 

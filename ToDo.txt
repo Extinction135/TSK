@@ -49,24 +49,35 @@ todo:
 
 
 
-updated ForSaleWidget to display ItemHeart as #1 product in VendorItems.
-updated VendorScreen.PurchaseItem() with path for ItemHeart.
-created DialogMaxHearts() to notify player they have reached the max hearts.
-this prevents the player from purchasing heart upgrade if they have 9 hearts.
 
-> playtest
+
+
+Polish Heart Item + Purchasing of Heart Item
+
+when hero purchases a heart, the worldUI should get an update (from vendor screen).
+we should also set the hero's health to the max health value (refill hearts).
+fix the visual bug that displays the boomerang sprite instead of the heart sprite.
+include heart item in the Item Vendor's advertisement.
+
+updated VendorScreen to call Update() on WorldUI.
+updated VendorScreen to set hero.health to hero.maxHealth.
+removed heart pieces + 20 rupee reward from mainSheet.
+moved full heart sprite into item sprite section.
+updated Item Vendor Advertisement to display full heart sprite.
+playtested, working as expected.
+
+
+
+
 
 
 
 update vendor advertisements to display the full heart piece
+the full heart menuItem sprite displays as a boomerang.
+we're waiting on a sprite repack to update this
+REPACK MAIN SHEET - remove heart pieces, keep full heart
+remove 20 rupee reward?
 
-
-
-
-Update item vendor to sell heart piece / HP upgrade
-
-add ItemHeart to ItemVendor as product #1
-sells for 75 gold
 
 
 
