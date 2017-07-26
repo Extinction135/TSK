@@ -18,6 +18,7 @@ namespace DungeonRun
         public static MenuWindow window;
         public Rectangle dungeonBkg;
         public List<Rectangle> rooms;
+        public List<Rectangle> doors;
         public int i;
 
 
@@ -48,8 +49,8 @@ namespace DungeonRun
                 dungeonRoom.Width = Functions_Dungeon.dungeon.rooms[i].size.X;
                 dungeonRoom.Height = Functions_Dungeon.dungeon.rooms[i].size.Y;
                 //get the room position
-                dungeonRoom.X = Functions_Dungeon.dungeon.rooms[i].collision.rec.X;
-                dungeonRoom.Y = Functions_Dungeon.dungeon.rooms[i].collision.rec.Y;
+                dungeonRoom.X = Functions_Dungeon.dungeon.rooms[i].rec.X;
+                dungeonRoom.Y = Functions_Dungeon.dungeon.rooms[i].rec.Y;
                 //subtract the build position
                 dungeonRoom.X -= Functions_Dungeon.buildPosition.X;
                 dungeonRoom.Y -= Functions_Dungeon.buildPosition.Y;
@@ -60,21 +61,34 @@ namespace DungeonRun
                 dungeonRoom.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
                 dungeonRoom.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
                 //add to the map rooms
-                rooms.Add(dungeonRoom);
+                if (Functions_Dungeon.dungeon.rooms[i].visited)
+                { rooms.Add(dungeonRoom); }
             }
 
-
             //display all the dungeon doors
-
+            doors = new List<Rectangle>();
+            for (i = 0; i < Functions_Dungeon.dungeon.doors.Count; i++)
+            {
+                Rectangle dungeonDoor = new Rectangle(0, 0, 1, 1);
+                //get the door position
+                dungeonDoor.X = Functions_Dungeon.dungeon.doors[i].rec.X;
+                dungeonDoor.Y = Functions_Dungeon.dungeon.doors[i].rec.Y;
+                //subtract the build position
+                dungeonDoor.X -= Functions_Dungeon.buildPosition.X;
+                dungeonDoor.Y -= Functions_Dungeon.buildPosition.Y;
+                //reduce position 16:1
+                dungeonDoor.X = dungeonDoor.X / 16;
+                dungeonDoor.Y = dungeonDoor.Y / 16;
+                //add the map offset
+                dungeonDoor.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
+                dungeonDoor.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
+                //add to the map doors
+                if (Functions_Dungeon.dungeon.doors[i].visited)
+                { doors.Add(dungeonDoor); }
+            }
 
             //display hero as a small white square
             //place this square centered to the current room
-            
-            
-
-
-
-
 
             //open the screen
             displayState = DisplayState.Opening;
@@ -144,7 +158,12 @@ namespace DungeonRun
                         Assets.colorScheme.buttonDown);
                 }
                 //draw dungeon doors
-
+                for (i = 0; i < doors.Count; i++)
+                {
+                    ScreenManager.spriteBatch.Draw(
+                        Assets.dummyTexture, doors[i],
+                        Assets.colorScheme.buttonDown);
+                }
                 //draw hero rec
             }
             ScreenManager.spriteBatch.End();

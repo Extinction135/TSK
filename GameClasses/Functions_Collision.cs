@@ -26,13 +26,14 @@ namespace DungeonRun
         {
             for (i = 0; i < Functions_Dungeon.dungeon.rooms.Count; i++)
             {   //if the current room is not the room we are checking against, then continue
-                if (Functions_Dungeon.currentRoom.id != Functions_Dungeon.dungeon.rooms[i].id)
+                if (Functions_Dungeon.currentRoom != Functions_Dungeon.dungeon.rooms[i])
                 {   //if hero collides with this room rec, set it to be currentRoom, build the room
-                    if (Pool.hero.compCollision.rec.Intersects(Functions_Dungeon.dungeon.rooms[i].collision.rec))
+                    if (Pool.hero.compCollision.rec.Intersects(Functions_Dungeon.dungeon.rooms[i].rec))
                     {
                         Functions_Dungeon.currentRoom = Functions_Dungeon.dungeon.rooms[i];
                         Functions_Room.BuildRoom(Functions_Dungeon.dungeon.rooms[i]);
                         Functions_Room.FinishRoom(Functions_Dungeon.dungeon.rooms[i]);
+                        Functions_Dungeon.dungeon.rooms[i].visited = true; //hero has visited this room
                         if (Functions_Dungeon.currentRoom.type == RoomType.Boss)
                         {   //if hero just entered the boss room, play the boss intro & music
                             Assets.Play(Assets.sfxBossIntro);
@@ -40,6 +41,12 @@ namespace DungeonRun
                         }
                     }
                 }
+            }
+            //check hero collision against dungeon.doors too
+            for (i = 0; i < Functions_Dungeon.dungeon.doors.Count; i++)
+            {
+                if (Pool.hero.compCollision.rec.Intersects(Functions_Dungeon.dungeon.doors[i].rec))
+                { Functions_Dungeon.dungeon.doors[i].visited = true; } //hero has visited this door
             }
         }
 

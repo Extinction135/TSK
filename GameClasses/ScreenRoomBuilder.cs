@@ -169,8 +169,8 @@ namespace DungeonRun
                                         {   //make this obj relative to room top left corner
                                             ObjXmlData objData = new ObjXmlData();
                                             objData.type = objRef.type;
-                                            objData.posX = objRef.compSprite.position.X - Functions_Dungeon.currentRoom.collision.rec.X;
-                                            objData.posY = objRef.compSprite.position.Y - Functions_Dungeon.currentRoom.collision.rec.Y;
+                                            objData.posX = objRef.compSprite.position.X - Functions_Dungeon.currentRoom.rec.X;
+                                            objData.posY = objRef.compSprite.position.Y - Functions_Dungeon.currentRoom.rec.Y;
                                             roomData.objs.Add(objData);
                                         }
                                     }
@@ -229,7 +229,7 @@ namespace DungeonRun
                     }
                 }
                 //if mouse worldPos is contained in room, allow add/delete selected object
-                else if (Functions_Dungeon.currentRoom.collision.rec.Contains(worldPos))
+                else if (Functions_Dungeon.currentRoom.rec.Contains(worldPos))
                 {
 
                     #region Handle Add Object State
@@ -363,22 +363,24 @@ namespace DungeonRun
 
             //build the room
             if (RoomXmlData != null)
-            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomXmlData.type, 0); }
+            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomXmlData.type); }
             else
-            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomType.Row, 0); }
+            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomType.Row); }
 
             //simplify / collect room values
-            int posX = Functions_Dungeon.currentRoom.collision.rec.X;
-            int posY = Functions_Dungeon.currentRoom.collision.rec.Y;
+            int posX = Functions_Dungeon.currentRoom.rec.X;
+            int posY = Functions_Dungeon.currentRoom.rec.Y;
             int middleX = (Functions_Dungeon.currentRoom.size.X / 2) * 16;
             int middleY = (Functions_Dungeon.currentRoom.size.Y / 2) * 16;
             int width = Functions_Dungeon.currentRoom.size.X * 16;
             int height = Functions_Dungeon.currentRoom.size.Y * 16;
-            //set NSEW door locations
-            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY - 16)); //Top Door
-            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + middleX, posY + height)); //Bottom Door
-            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX - 16, posY + middleY)); //Left Door
-            Functions_Dungeon.dungeon.doorLocations.Add(new Point(posX + width, posY + middleY)); //Right Door
+
+            //set NSEW doors
+            Functions_Dungeon.dungeon.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
+            Functions_Dungeon.dungeon.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
+            Functions_Dungeon.dungeon.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
+            Functions_Dungeon.dungeon.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
+
             //releases all roomObjs, builds walls + floors + doors
             Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
             //build interior room objects from xml data

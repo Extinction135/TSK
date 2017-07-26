@@ -468,27 +468,36 @@ namespace DungeonRun
 
     public class Room
     {
-        public ComponentCollision collision = new ComponentCollision();
+        public Rectangle rec = new Rectangle(0, 0, 0, 0);
+        public Boolean visited = false;
         public Byte2 size = new Byte2(0, 0);
         public Point center = new Point(0, 0);
         public RoomType type;
-        public int id;
 
-        public Room(Point Pos, RoomType Type, int ID)
+        public Room(Point Pos, RoomType Type)
         {
-            id = ID; type = Type;
+            type = Type;
             Functions_Room.SetType(this, Type);
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
         }
     }
 
+    public class Door
+    {
+        public Rectangle rec = new Rectangle(0, 0, 16, 16);
+        public Boolean visited = false;
+        public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
+    }
+
     public class Dungeon
     {
         public List<Room> rooms = new List<Room>();
+        public List<Door> doors = new List<Door>();
+        //public List<Point> doorLocations = new List<Point>();
+
         public Boolean bigKey = false;
         public Boolean map = false;
         public DungeonType type = DungeonType.CursedCastle;
-        public List<Point> doorLocations = new List<Point>();
     }
 
     public class ColorScheme

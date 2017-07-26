@@ -18,25 +18,19 @@ namespace DungeonRun
 
         public static void Draw(Dungeon Dungeon)
         {   //draw the dungeon's room collision recs
-            for (int i = 0; i < Dungeon.rooms.Count; i++)
+            for (i = 0; i < Dungeon.rooms.Count; i++)
             {
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, 
-                    Dungeon.rooms[i].collision.rec,
+                    Dungeon.rooms[i].rec,
                     Assets.colorScheme.roomRec);
             }
-
-            //draw the dungeon door locations too
-            for (int i = 0; i < Dungeon.doorLocations.Count; i++)
+            //draw the dungeon doors
+            for (i = 0; i < Dungeon.doors.Count; i++)
             {
-                Rectangle doorPosRec = new Rectangle(0, 0, 16, 16);
-
-                doorPosRec.X = Dungeon.doorLocations[i].X;
-                doorPosRec.Y = Dungeon.doorLocations[i].Y;
-
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,
-                    doorPosRec,
+                    Dungeon.doors[i].rec,
                     Assets.colorScheme.interaction);
             }
         }

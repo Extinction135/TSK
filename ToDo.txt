@@ -44,37 +44,77 @@ todo:
 
 
 
+Display the visited Dungeon Rooms and Doors in Map
 
+created Door data class.
+removed CollisionComponent from Room class.
+it was overkill and we were only using the rectangle instance from CollisionComponent.
+updated various codepaths that referenced Room.collision to use Room.rec.
+updated CheckDungeonRoomCollisions() to flip Room.visited to true upon hero collision.
+removed id from Room class, as it was not being used in an intelligent manner.
+updated Functions_Room.SetDoors() to use dungeon.doors list.
+updated Functions_Draw.Draw(Dungeon) to use dungeon.doors list.
+updated Functions_Collision.CheckDungeonRoomCollisions() to also check dungeon.door collisions.
+this check sets the door.visited boolean true upon collision with hero.
 
-Display the dungeon's room layout in map
-
-created List<Rectangle> called rooms in DungeonMapScreen.
-updated Functions_Dungeon to use a buildPosition point.
-this point determines where the initial room is built.
-updated BuildDungeon() to  use buildPosition.
-all dungeon rooms are built relative to the initial room.
-
-created routine to copy and reposition dungeon.rooms to map.rooms in DungeonMapScreen.
-this routine uses the dungeon.buildPosition to reposition rooms to map.
-playtested, working as expected.
-
-
-
-
-
-
-
-
-iterate over all the Dungeon.rooms, displaying them visually using rectangles
-the first room is the exit, this room is placed bottom center of map
+updated room placement routine in map to check .visited boolean.
+now the map will only display rooms that have been visited, by default.
+updated map screen with door placement routine, based on room placement routine.
+visited doors will now be displayed on map.
+updated BuildDungeon() to set initial room.visited true.
+playtested, rooms + doors show up on map as hero explores/collides with them.
 
 
 
-if dungeon.map is true, then display all rooms in dungeon
-else display the rooms hero has visited
-we will need to add a .visited boolean to room class.
-when hero collides with a room, the visited boolean is flipped true.
-when a room is created, the visited boolean defaults to false.
+
+
+
+
+
+
+
+MAP COLORS ++
+
+we need colors in colorScheme class specifically for :
+mapBkg, 
+roomVisited, roomNotVisited,
+doorVisited, doorNotVisited,
+
+
+
+
+
+
+
+
+MAP ++
+
+display all the dungeon doors, based on the dungeon.doors list locations
+*this is not as easy as placing rectangles at each door location point
+*thats because we dont know which doors hero has visited
+*so we either have to display all of them, or none of them
+
+**however, we can modify how we manage doors in dungeon to make this possible
+we'll need a data structure that is a rec, plus a .visited boolean
+a room will use this struct as well as a door, so we could call it a MapComponent.
+if hero collides with a room or door, then the MapComp.visited flips to true.
+in map, if a room or door has been visited, then it is added to the drawn rectangles list.
+both rooms and doors exist on this list, and are drawn using the same color.
+
+if dungeon.map is true, then display all rooms & doors in dungeon
+else display the rooms & doors hero has visited
+
+dont display the dungeon map if hero is in the shop (or non-dungeon)
+by default, the dungeon.map will be false, in this case
+so the map scren wouldn't display if hero was in the shop
+
+add a rectagle isntance to map screen named currentRoom
+this is a blinking white rec that is 1x1 pixels
+when creating rooms on room list, check to see if room[i] == dungeon.currentRoom
+if so, set the currentRoom rec centered to that room
+always draw the currentRoom rec as white, and blink fade it in/out
+this will show the player the current room they occupy in the dungeon
+
 
 
 
@@ -89,7 +129,7 @@ create a path from exit to hub.
 create a path from hub to key.
 connect boss room to hub, so player knows where boss is early on.
 
-i norder for rooms to be 'consistent', we'll need to store the index selected for the XMLroomdata list
+in order for rooms to be 'consistent', we'll need to store the index selected for the XMLroomdata list
 each room should have a XMLid int. this is the xml roomData list index for this room.
 when the dungeon is created, all the room XMLid values are assigned.
 then when a room is built, we choose the xml roomData list at [XMLid].
@@ -108,7 +148,10 @@ handle the dungeon map boolean properly
 if hero finds the dungeon map, flip the boolean true
 by default it should be false
 we should be able to set the boolean true using a topMenu button
-if hero has the dungeon map, display the dungeon map with select button.
+
+
+
+
 
 
 
@@ -190,6 +233,28 @@ consider updating the overworld map to look better too
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dungeons should have names.
+the dungeon name should be displayed on the map screen's map.
+dungeon names could be randomly generated from a list.
 
 
 

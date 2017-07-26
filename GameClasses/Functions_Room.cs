@@ -33,7 +33,7 @@ namespace DungeonRun
             //reset the pools + counter
             Functions_Pool.Reset();
             //shorten the room's position reference
-            pos = Room.collision.rec.Location;
+            pos = Room.rec.Location;
 
 
             #region Build the room
@@ -211,14 +211,14 @@ namespace DungeonRun
             else if (Type == RoomType.Square) { Room.size.X = 11; Room.size.Y = 11; }
             else if (Type == RoomType.Secret) { Room.size.X = 3; Room.size.Y = 3; }
             //set collision rec size
-            Room.collision.rec.Width = Room.size.X * 16;
-            Room.collision.rec.Height = Room.size.Y * 16;
+            Room.rec.Width = Room.size.X * 16;
+            Room.rec.Height = Room.size.Y * 16;
         }
 
         public static void MoveRoom(Room Room, int X, int Y)
         {
-            Room.collision.rec.X = X;
-            Room.collision.rec.Y = Y;
+            Room.rec.X = X;
+            Room.rec.Y = Y;
             Room.center.X = X + (Room.size.X / 2) * 16;
             Room.center.Y = Y + (Room.size.Y / 2) * 16;
         }
@@ -243,19 +243,19 @@ namespace DungeonRun
                 if (Pool.roomObjPool[i].active)
                 {   
                     if (Pool.roomObjPool[i].group == ObjGroup.Wall)
-                    {   //check to see if wall collides with any doorPos point from dungeon
-                        for (int g = 0; g < Functions_Dungeon.dungeon.doorLocations.Count; g++)
+                    {   //check to see if wall collides with any door from dungeon
+                        for (j = 0; j < Functions_Dungeon.dungeon.doors.Count; j++)
                         {
-                            if(Pool.roomObjPool[i].compCollision.rec.Contains(Functions_Dungeon.dungeon.doorLocations[g]))
+                            if(Pool.roomObjPool[i].compCollision.rec.Contains(Functions_Dungeon.dungeon.doors[j].rec.Location))
                             {
-                                //if current room is boss room, then door is trap door
+                                //if current room is boss room, then room door is trap door
                                 if (Room.type == RoomType.Boss)
                                 {
                                     Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap);
                                     DecorateDoor(Pool.roomObjPool[i], ObjType.WallPillar);
                                 }
-                                //if room is hub, and the doorLocation is 0 (boss door), then door is boss door
-                                else if (Room.type == RoomType.Hub && g == 0)
+                                //if room is hub, and dungeon.door is 0 (boss door), then room door is boss door
+                                else if (Room.type == RoomType.Hub && j == 0)
                                 {
                                     Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBoss);
                                     DecorateDoor(Pool.roomObjPool[i], ObjType.WallPillar);
@@ -408,9 +408,9 @@ namespace DungeonRun
 
         public static void AddWallStatues(Room Room)
         {   //add wall statues along 1/3rd and 2/3rds of all walls
-            int RoomThirdX = Room.collision.rec.X + (Room.size.X / 3) * 16 + 8;
+            int RoomThirdX = Room.rec.X + (Room.size.X / 3) * 16 + 8;
             int RoomTwoThirdsX = 16 + RoomThirdX + (Room.size.X / 3) * 16;
-            int RoomThirdY = Room.collision.rec.Y + (Room.size.Y / 3) * 16 + 8;
+            int RoomThirdY = Room.rec.Y + (Room.size.Y / 3) * 16 + 8;
             int RoomTwoThirdsY = 16 + RoomThirdY + (Room.size.Y / 3) * 16;
             //we could also check against room centers
             //if (obj.compSprite.position.X == Room.collision.rec.X + room.center.X)
@@ -689,8 +689,8 @@ namespace DungeonRun
                 {   //create a roomObj for each XML obj
                     objRef = Functions_Pool.GetRoomObj();
                     Functions_Movement.Teleport(objRef.compMove,
-                        Functions_Dungeon.currentRoom.collision.rec.X + RoomXmlData.objs[i].posX,
-                        Functions_Dungeon.currentRoom.collision.rec.Y + RoomXmlData.objs[i].posY);
+                        Functions_Dungeon.currentRoom.rec.X + RoomXmlData.objs[i].posX,
+                        Functions_Dungeon.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
                     objRef.direction = Direction.Down; //we'll need to save this later
                     Functions_GameObject.SetType(objRef, RoomXmlData.objs[i].type); //get type
 
