@@ -47,22 +47,18 @@ todo:
 
 
 
-Updated management of Bombs to be more LttP-like
 
-fixed a preference where the hero's item was changed to nothing/unknown.
-this happened when the hero used the last bomb in his inventory.
-now, the item doesn't change, it remains the bomb item.
-updated UseItem() to play an error sound if hero trys to place bomb, if he has 0 bombs
-refactored InventoryWidget to always draw bomb item + bomb amount display.
+Improve the sale of ArrowPacks
+
+ArrowPacks should always appear for sale from ItemVendor.
+however, hero should only be able to purchase ArrowPacks if he has bow.
+
+created VendorScreen.DialogNeedsBow(), for use in arrow purchasing routine.
+updated arrow pack purchasing routine to check and see if hero has bow weapon.
+if hero doesn't have a bow, he can't purchase arrows.
+updated ForSaleWidget to always display item ArrowPack.
 playtested, working as expected.
 
-
-
-
-
-
-item vendor should always display arrows in widget
-however, we should be checking if hero has bow, and popping error dialog if he doesn't
 
 
 

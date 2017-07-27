@@ -142,9 +142,7 @@ namespace DungeonRun
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemHeart, menuItems[0]);
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb3Pack, menuItems[2]);
-                
-                if (PlayerData.current.weaponBow) //if hero has bow weapon, arrows are for sale
-                { Functions_MenuItem.SetMenuItemData(MenuItemType.ItemArrowPack, menuItems[3]); }
+                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemArrowPack, menuItems[3]);
             }
             else if (VendorType == ObjType.VendorPotions)
             {

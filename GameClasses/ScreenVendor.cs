@@ -232,13 +232,17 @@ namespace DungeonRun
                     else { DialogCarryingMaxAmount(); }
                 }
                 else if (Item.type == MenuItemType.ItemArrowPack)
-                {   //check to see if hero is full on arrows
-                    if (PlayerData.current.arrowsCurrent < PlayerData.current.arrowsMax)
-                    {   //increment the arrows, complete the sale
-                        PlayerData.current.arrowsCurrent += 20;
-                        CompleteSale(Item);
+                {   //check to see if hero has a bow weapon
+                    if (PlayerData.current.weaponBow)
+                    {   //check to see if hero is full on arrows
+                        if (PlayerData.current.arrowsCurrent < PlayerData.current.arrowsMax)
+                        {   //increment the arrows, complete the sale
+                            PlayerData.current.arrowsCurrent += 20;
+                            CompleteSale(Item);
+                        }
+                        else { DialogCarryingMaxAmount(); }
                     }
-                    else { DialogCarryingMaxAmount(); }
+                    else { DialogNeedsBow(); }
                 }
 
                 #endregion
@@ -414,6 +418,13 @@ namespace DungeonRun
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
                     "you have reached the maximum amount of hearts.");
+            Assets.Play(Assets.sfxError);
+        }
+
+        public void DialogNeedsBow()
+        {
+            Widgets.Dialog.DisplayDialog(vendorType.type,
+                    "you need a bow before you can shoot these arrows.");
             Assets.Play(Assets.sfxError);
         }
 
