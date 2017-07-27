@@ -525,6 +525,7 @@ namespace DungeonRun
         public Color mapBkg = new Color(130, 130, 130);
         public Color mapVisited = new Color(100, 100, 100);
         public Color mapNotVisited = new Color(120, 120, 120);
+        public Color mapCurrentRoom = new Color(200, 200, 200);
     }
 
     //GameData Classes

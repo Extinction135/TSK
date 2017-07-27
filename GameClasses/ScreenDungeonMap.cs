@@ -19,6 +19,8 @@ namespace DungeonRun
         public Rectangle dungeonBkg;
         public List<Room> rooms;
         public List<Door> doors;
+        public Rectangle currentRoom;
+        public float currentRoomAlpha = 0.0f;
         public Color mapColor;
         public int i;
 
@@ -40,6 +42,7 @@ namespace DungeonRun
                 window.background.position.X + 8,
                 window.background.position.Y + 20,
                 16 * 7, 16 * 7);
+            currentRoom = new Rectangle(0, 0, 1, 1);
 
 
             #region Collect all the dungeon rooms
@@ -66,6 +69,12 @@ namespace DungeonRun
                 //grab the visited boolean
                 dungeonRoom.visited = Functions_Dungeon.dungeon.rooms[i].visited;
                 rooms.Add(dungeonRoom);
+                //check to see if this room is the currentRoom
+                if(Functions_Dungeon.dungeon.rooms[i] == Functions_Dungeon.currentRoom)
+                {   //match currentRoom properties to dungeonRoom
+                    currentRoom.X = dungeonRoom.rec.X + (dungeonRoom.rec.Width / 2);
+                    currentRoom.Y = dungeonRoom.rec.Y + (dungeonRoom.rec.Height / 2);
+                }
             }
 
             #endregion
@@ -164,6 +173,7 @@ namespace DungeonRun
                     Assets.dummyTexture, dungeonBkg,
                     Assets.colorScheme.mapBkg);
 
+
                 #region Draw dungeon rooms
 
                 for (i = 0; i < rooms.Count; i++)
@@ -212,7 +222,13 @@ namespace DungeonRun
                 #endregion
 
 
-                //draw hero rec
+                //draw currentRoom rec
+                ScreenManager.spriteBatch.Draw(
+                    Assets.dummyTexture, currentRoom,
+                    Assets.colorScheme.mapCurrentRoom * currentRoomAlpha);
+                //pulse the alpha value
+                if (currentRoomAlpha < 1.0) { currentRoomAlpha += 0.05f; }
+                else { currentRoomAlpha = 0.0f; }
             }
             ScreenManager.spriteBatch.End();
         }

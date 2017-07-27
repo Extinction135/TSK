@@ -46,21 +46,13 @@ todo:
 
 
 
-Improve DungeonMap Display
+Display the Current Room that Hero occupies on Dungeon Map
 
-updated map building routine to check if hero has collected the dungeon map.
-if so, every room and door is added to the map's room & door lists.
-this means they will be drawn on the map.
-
-created ColorScheme.mapBkg, .mapVisited, .mapNotVisited instances.
-converted mapScreen.rooms & doors to be lists of type Room and Door.
-we need to store the .visited boolean in these lists so we can draw them correctly later on.
-playtested, map is displaying normally.
-
-updated DungeonMapScreen.Draw() to check dungeon.map and room/door.visited.
-rooms & doors are drawn if hero has visited them, or if hero has map.
-rooms & doors are drawn different colors based on their .visited boolean.
-unvisited room/doors are drawn lighter than visited doors/rooms.
+created Rectangle instance DungeonScreen.currentRoom.
+currentRoom rec is drawn a lighter white color.
+currentRoom rec is placed at the center of the currently occupied dungeon room.
+added colorScheme.mapCurrentRoom color value.
+added alpha float value to control pulsing/fading of currentRoom rec.
 playtested, working as expected.
 
 
@@ -69,23 +61,58 @@ playtested, working as expected.
 
 
 
-draw the hero's current room location on map
-
-add a rectagle isntance to map screen named currentRoom
-this is a blinking white rec that is 1x1 pixels
-when creating rooms on room list, check to see if room[i] == dungeon.currentRoom
-if so, set the currentRoom rec centered to that room
-always draw the currentRoom rec as white, and blink fade it in/out
-this will show the player the current room they occupy in the dungeon
-
-
-
-
 
 
 
 add a cheat that provides hero with dungeon map ALWAYS
-add a cheat that provides hero with dungeon key ALWAYS
+
+handle the dungeon map boolean properly
+if hero finds the dungeon map, flip the boolean true
+by default it should be false
+we should be able to set the boolean true using a topMenu button
+
+hero should not be able to open map while in a shop dungeon
+so, we need to check to dungeon.type in the back button press of dungeonScreen.handleInput()
+
+for debugging, it would be nice to have map icons for boss, key, hub rooms
+
+
+
+
+
+
+
+
+
+
+
+WorldUI++
+we should be displaying the amount of arrows, bombs in the worldUI
+this way user can see how many they have left
+
+there should be a little fireball particle created when hero lights a torch
+
+Bug
+when a game is loaded, we need to set the hero's loadout to be default
+sword, no item, plain cloth
+there is a bug where we can set the hero's loadout on one file,
+then load a different file, and the hero's loadout hasn't changed
+this lets the hero have a bow and fireball on a game where he doesn't have those items..
+
+bug: hero creates a sword projectile on conveyor belt
+hero is moved by conveyor belt into his sword projectile
+he takes damage. this should not happen
+we can mark a projectile as friendly/enemy using boolean
+hero can then only take damage from enemy projectiles
+or, certain projectiles move with the conveyorbelt
+this would be the case with bombs, weapon swings, etc...
+but not flying projectiles, like fireball or arrow
+
+
+
+
+
+
 
 
 
@@ -109,35 +136,10 @@ when the dungeon is created, all the room XMLid values are assigned.
 then when a room is built, we choose the xml roomData list at [XMLid].
 this means the room will be built the same each time hero enters it
 
-
-
-
 Dungeon generation part3
 add secret rooms (via bombable walls)
 add routine for populating secret rooms (similar to populating exit room)
 add additional unnecessary distraction rooms
-
-
-handle the dungeon map boolean properly
-if hero finds the dungeon map, flip the boolean true
-by default it should be false
-we should be able to set the boolean true using a topMenu button
-
-
-
-
-
-
-
-
-
-POLISH
-
-WorldUI++
-we should be displaying the amount of arrows, bombs in the worldUI
-this way user can see how many they have left
-
-there should be a little fireball particle created when hero lights a torch
 
 
 
@@ -150,35 +152,6 @@ the reward sound effect is WAAAAY too loud
 we should not be able to call the same soundFX multiple times from one frame
 this causes the sfx to layer upon each other, drastically increasing their volume
 this is BAD BAD BAD
-
-
-
-
-
-
-
-
-Bug Fixes
-
-BUG
-if we're using ALOT of entities quickly, then a state happens where 
-- a bomb may just dissappear before it can explode
-- a fireball may dissappear before it hits anything
-we should be able to mark an entity as 'important' so it isn't released until it completes
-
-Bug
-when a game is loaded, we need to set the hero's loadout to be default
-sword, no item, plain cloth
-there is a bug where we can set the hero's loadout on one file,
-then load a different file, and the hero's loadout hasn't changed
-this lets the hero have a bow and fireball on a game where he doesn't have those items..
-
-
-
-bug: hero creates a sword projectile on conveyor belt
-hero is moved by conveyor belt into his sword projectile
-he takes damage. this should not happen
-
 
 
 
