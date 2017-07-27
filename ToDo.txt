@@ -45,35 +45,24 @@ todo:
 
 
 
-Display the amount of arrows and bombs Hero has in WorldUI
-
-updated Functions_WorldUI.Update() to set the visibility of weapon & item amounts.
-this is based on the weapon and item that hero has equipped.
-the amount display is visible for the weapon: bow, and the item: bombs.
-each amount display's value is set based on the weapon or item equipped.
-playtested, working beautifully.
 
 
+Updated management of Bombs to be more LttP-like
 
-so, what happens when hero runs out of bombs/arrows?
-
-
-arrows: weapon stays, error plays - correct
-bombs: becomes empty object - incorrect
+fixed a preference where the hero's item was changed to nothing/unknown.
+this happened when the hero used the last bomb in his inventory.
+now, the item doesn't change, it remains the bomb item.
+updated UseItem() to play an error sound if hero trys to place bomb, if he has 0 bombs
+refactored InventoryWidget to always draw bomb item + bomb amount display.
+playtested, working as expected.
 
 
 
 
-when hero runs out of bombs, just play error sound
-dont change the item to nothing
-
-when hero runs out of arrows, just play the error sound
-dont chane the weapon to nothing
-
-this mimics LttP
 
 
-
+item vendor should always display arrows in widget
+however, we should be checking if hero has bow, and popping error dialog if he doesn't
 
 
 

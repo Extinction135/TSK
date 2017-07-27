@@ -28,10 +28,8 @@ namespace DungeonRun
                     {
                         Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
                         Actor.lockTotal = 15;
-                        //if hero used the last bomb, set the item to be unknown/none
-                        if (PlayerData.current.bombsCurrent == 0)
-                        { Actor.item = MenuItemType.Unknown; }
                     }
+                    else { Assets.Play(Assets.sfxError); }
                 }
                 else
                 {

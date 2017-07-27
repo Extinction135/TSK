@@ -42,7 +42,7 @@ namespace DungeonRun
             //create menuitems
             menuItems = new List<MenuItem>();
             for (i = 0; i < 25; i++) { menuItems.Add(new MenuItem()); }
-            //create bomb amount display
+            //create amount displays
             bombsDisplay = new ComponentAmountDisplay(0, 0, 0);
             arrowsDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
@@ -77,9 +77,11 @@ namespace DungeonRun
             { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[i]); }
             //set the menuItem's neighbors
             Functions_MenuItem.SetNeighbors(menuItems, 5);
-            //set the amount displays to be hidden, initially
-            bombsDisplay.visible = false;
-            arrowsDisplay.visible = false;
+            //align the amount displays
+            Functions_Component.Align(bombsDisplay, menuItems[1].compSprite);
+            Functions_Component.Align(arrowsDisplay, menuItems[11].compSprite);
+            bombsDisplay.visible = true; //bomb amount is always displayed
+            arrowsDisplay.visible = false; //arrow amount is displayed if hero has bow
             //set the inventory widget's menuItems based on saveData booleans
             SetInventoryMenuItems();
         }
@@ -111,15 +113,10 @@ namespace DungeonRun
             #region Items
 
             //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-            
-            if (PlayerData.current.bombsCurrent > 0)
-            {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
-                Functions_Component.Align(bombsDisplay, menuItems[1].compSprite);
-                //if hero has bombs, display the number of bombs + draw display amount
-                Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
-                bombsDisplay.visible = true;
-            }
+
+            //display the hero's bombs + amount
+            Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
+            Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
 
             #endregion
 
@@ -165,7 +162,6 @@ namespace DungeonRun
             if (PlayerData.current.weaponBow)
             {
                 Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
-                Functions_Component.Align(arrowsDisplay, menuItems[11].compSprite);
                 //if hero has arrows, display the number of arrows + draw display amount
                 Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
                 arrowsDisplay.visible = true;
