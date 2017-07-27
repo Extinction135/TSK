@@ -44,34 +44,22 @@ todo:
 
 
 
+Add Room Icons to Map, to improve readability when debugging
 
-
-
-
-
-
-
-
-
-Add keyboard shortcut to toggle map cheat & map on/off
-
-added top menu button to enable/disable map cheating.
-updated Functions_Debug.HandleTopMenuInput() with path for map cheat button.
-reorganized/refactored how HandleTopMeuInput() sets each buttons color.
+created ComponentText instances for letters B, K, H, E.
+these represent the Boss, Key, Hub, and Exit rooms on the map.
+updated MapScreen to check Flags.MapCheat, prior to placing the room icons.
+this means the room icons only display if that cheat is enabled.
+if the cheat is not enabled, then getting the map only displays the room locations.
+this is the intended behavior, based on LttP dungeon map functionality.
 playtested, working as expected.
 
+updated DungeonMapScreen to display "Shop Map" as window title, if hero is in shop.
+later on, we can add multiple rooms to shop and treat it just like a dungeon.
 
 
 
 
-
-
-
-
-hero should not be able to open map while in a shop dungeon
-so, we need to check to dungeon.type in the back button press of dungeonScreen.handleInput()
-
-for debugging, it would be nice to have map icons for boss, key, hub rooms
 
 
 
