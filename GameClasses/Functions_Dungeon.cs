@@ -142,6 +142,8 @@ namespace DungeonRun
                 currentRoom.rec.Y + (currentRoom.size.Y - 1) * 16);
             Functions_Movement.StopMovement(Pool.hero.compMove);
             Pool.hero.direction = Direction.Up; //face hero up
+            //check to see if dungeon map should be given to hero upon spawn
+            if (Flags.MapCheat) { dungeon.map = true; } else { dungeon.map = false; }
 
             //place cameras starting position in dungeon
             if (Flags.CameraTracksHero) //center camera to hero

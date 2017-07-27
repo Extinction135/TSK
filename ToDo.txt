@@ -46,13 +46,14 @@ todo:
 
 
 
-Display the Current Room that Hero occupies on Dungeon Map
 
-created Rectangle instance DungeonScreen.currentRoom.
-currentRoom rec is drawn a lighter white color.
-currentRoom rec is placed at the center of the currently occupied dungeon room.
-added colorScheme.mapCurrentRoom color value.
-added alpha float value to control pulsing/fading of currentRoom rec.
+
+Add a cheat that always provides the Dungeon Map
+
+added Flags.MapCheat boolean.
+this boolean sets dungeon.map true/false when a dungeon is built.
+this allows the hero to spawn in a dungeon with the dungeon map, showing all rooms.
+updated BuildDungeon() to set dungeon.map based on Flags.MapCheat boolean.
 playtested, working as expected.
 
 
@@ -62,13 +63,6 @@ playtested, working as expected.
 
 
 
-
-
-add a cheat that provides hero with dungeon map ALWAYS
-
-handle the dungeon map boolean properly
-if hero finds the dungeon map, flip the boolean true
-by default it should be false
 we should be able to set the boolean true using a topMenu button
 
 hero should not be able to open map while in a shop dungeon
