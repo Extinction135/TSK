@@ -48,12 +48,16 @@ todo:
 
 
 
-Add a cheat that always provides the Dungeon Map
 
-added Flags.MapCheat boolean.
-this boolean sets dungeon.map true/false when a dungeon is built.
-this allows the hero to spawn in a dungeon with the dungeon map, showing all rooms.
-updated BuildDungeon() to set dungeon.map based on Flags.MapCheat boolean.
+
+
+
+
+Add keyboard shortcut to toggle map cheat & map on/off
+
+added top menu button to enable/disable map cheating.
+updated Functions_Debug.HandleTopMenuInput() with path for map cheat button.
+reorganized/refactored how HandleTopMeuInput() sets each buttons color.
 playtested, working as expected.
 
 
@@ -63,7 +67,6 @@ playtested, working as expected.
 
 
 
-we should be able to set the boolean true using a topMenu button
 
 hero should not be able to open map while in a shop dungeon
 so, we need to check to dungeon.type in the back button press of dungeonScreen.handleInput()

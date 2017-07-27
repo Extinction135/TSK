@@ -198,18 +198,9 @@ namespace DungeonRun
             #region F1 - Toggle Collision Rec Drawing
 
             if (Functions_Input.IsNewKeyPress(Keys.F1))
-            {
-                //toggle draw collision boolean
-                if (Flags.DrawCollisions)
-                {
-                    Flags.DrawCollisions = false;
-                    DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonUp;
-                }
-                else
-                {
-                    Flags.DrawCollisions = true;
-                    DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonDown;
-                }
+            {   //toggle draw collision boolean
+                if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
+                else { Flags.DrawCollisions = true; }
             }
 
             #endregion
@@ -218,8 +209,7 @@ namespace DungeonRun
             #region F2 - Max Gold
 
             if (Functions_Input.IsNewKeyPress(Keys.F2))
-            {
-                //set the player's gold to 99
+            {   //set the player's gold to 99
                 PlayerData.current.gold = 99;
                 Assets.Play(Assets.sfxGoldPickup);
             }
@@ -241,16 +231,8 @@ namespace DungeonRun
 
             if (Functions_Input.IsNewKeyPress(Keys.F4))
             {  
-                if (Flags.DrawDebugInfo)
-                {
-                    Flags.DrawDebugInfo = false;
-                    DebugMenu.buttons[3].currentColor = Assets.colorScheme.buttonUp;
-                }
-                else
-                {
-                    Flags.DrawDebugInfo = true;
-                    DebugMenu.buttons[3].currentColor = Assets.colorScheme.buttonDown;
-                }
+                if (Flags.DrawDebugInfo) { Flags.DrawDebugInfo = false; }
+                else { Flags.DrawDebugInfo = true; }
             }
 
             #endregion
@@ -260,22 +242,14 @@ namespace DungeonRun
 
             if (Functions_Input.IsNewKeyPress(Keys.F5))
             {
-                if (Flags.Paused)
-                {
-                    Flags.Paused = false;
-                    DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown;
-                }
-                else
-                {
-                    Flags.Paused = true;
-                    DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonUp;
-                }
+                if (Flags.Paused) { Flags.Paused = false; }
+                else { Flags.Paused = true; }
             }
 
             #endregion
 
 
-            #region F6 - Kill all active enemies
+            #region F6 - Damage all active enemies
 
             if (Functions_Input.IsNewKeyPress(Keys.F6))
             {
@@ -285,6 +259,47 @@ namespace DungeonRun
                     { Functions_Battle.Damage(Pool.actorPool[i], 1, 0.0f, Direction.Down); }
                 }
             }
+
+            #endregion
+
+
+            #region F7 - Toggle Map Cheat & Map
+
+            if (Functions_Input.IsNewKeyPress(Keys.F7))
+            {
+                if (Flags.MapCheat)
+                {   //turn off mapCheat, take away map
+                    Flags.MapCheat = false;
+                    Functions_Dungeon.dungeon.map = false;
+                }
+                else
+                {   //turn on mapCheat, give hero map
+                    Flags.MapCheat = true;
+                    Functions_Dungeon.dungeon.map = true;
+                }
+            }
+
+            #endregion
+
+
+
+            #region Set button colors based on what they represent
+
+            if (Flags.DrawCollisions)
+            { DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonDown; }
+            else { DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonUp; }
+
+            if (Flags.DrawDebugInfo)
+            { DebugMenu.buttons[3].currentColor = Assets.colorScheme.buttonDown; }
+            else { DebugMenu.buttons[3].currentColor = Assets.colorScheme.buttonUp; }
+
+            if (Flags.Paused)
+            { DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown; }
+            else { DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonUp; }
+
+            if (Flags.MapCheat)
+            { DebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown; }
+            else { DebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp; }
 
             #endregion
 
