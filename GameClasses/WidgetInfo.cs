@@ -50,7 +50,7 @@ namespace DungeonRun
             infoItem.compSprite.position.X = X + 16 * 3 + 4;
             infoItem.compSprite.position.Y = Y + 16 * 2;
             //align the goldAmount display to the infoItem
-            Functions_Component.Move(goldDisplay, infoItem);
+            Functions_Component.Align(goldDisplay, infoItem.compSprite);
         }
 
         public override void Update()

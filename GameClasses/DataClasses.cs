@@ -267,6 +267,8 @@ namespace DungeonRun
         public static MenuItem currentItem;
         public static MenuItemType heroWeapon;
         public static MenuItemType heroItem;
+        public static ComponentAmountDisplay weaponAmount; //weapon ammo
+        public static ComponentAmountDisplay itemAmount; //item ammo
 
         public static ComponentText frametime;
         public static ComponentText autosaveText;
@@ -314,6 +316,8 @@ namespace DungeonRun
             //create the current weapon & item menuItems
             currentWeapon = new MenuItem();
             currentItem = new MenuItem();
+            weaponAmount = new ComponentAmountDisplay(99, -100, -100);
+            itemAmount = new ComponentAmountDisplay(99, -100, -100);
 
             //get the hero's current weapon and item
             heroWeapon = Pool.hero.weapon;

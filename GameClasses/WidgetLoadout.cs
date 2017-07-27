@@ -92,7 +92,7 @@ namespace DungeonRun
             //display the player's gold, place gold display with gold menuItem
             goldTracker = PlayerData.current.gold;
             Functions_Component.UpdateAmount(goldDisplay, goldTracker);
-            Functions_Component.Move(goldDisplay, menuItems[4]);
+            Functions_Component.Align(goldDisplay, menuItems[4].compSprite);
         }
 
         public override void Update()

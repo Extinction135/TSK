@@ -92,7 +92,7 @@ namespace DungeonRun
             Functions_MenuItem.SetNeighbors(menuItems, 5);
             //place the amounts relative to the menuItems
             for (i = 0; i < 10; i++)
-            { Functions_Component.Move(amounts[i], menuItems[i]); }
+            { Functions_Component.Align(amounts[i], menuItems[i].compSprite); }
         }
 
         public override void Update()

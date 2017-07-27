@@ -44,18 +44,6 @@ todo:
 
 
 
-Add Room Icons to Map, to improve readability when debugging
-
-created ComponentText instances for letters B, K, H, E.
-these represent the Boss, Key, Hub, and Exit rooms on the map.
-updated MapScreen to check Flags.MapCheat, prior to placing the room icons.
-this means the room icons only display if that cheat is enabled.
-if the cheat is not enabled, then getting the map only displays the room locations.
-this is the intended behavior, based on LttP dungeon map functionality.
-playtested, working as expected.
-
-updated DungeonMapScreen to display "Shop Map" as window title, if hero is in shop.
-later on, we can add multiple rooms to shop and treat it just like a dungeon.
 
 
 
@@ -66,14 +54,52 @@ later on, we can add multiple rooms to shop and treat it just like a dungeon.
 
 
 
+Create Display Amounts for Weapon & Item in WorldUI
+
+changed Functions_Component.Move() to Align().
+changed paramters from MenuItem to ComponentSprite.
+this way we can use this function for anything with a sprite comp.
+updated various codepaths that ref'd Move().
+
+added weaponAmount and itemAmount CompAmountDisplays to WorldUI class.
+updated Functions_WorldUI.Move() to place amounts to weapon/item sprites.
+updated Functions_WorldUI.Draw() to draw display amounts.
+playtested, weapon & item amount displays are placed & drawing correctly.
 
 
 
 
 
-WorldUI++
-we should be displaying the amount of arrows, bombs in the worldUI
-this way user can see how many they have left
+set the display amounts properly, based on what the hero has equipped
+this will be done in worldUI.update()
+
+display the proper amount of arrows, if weapon is bow
+display the proper amount of bombs, if item is bombs
+
+
+
+
+
+
+when hero runs out of bombs, just play error sound
+dont change the item to nothing
+
+when hero runs out of arrows, just play the error sound
+dont chane the weapon to nothing
+
+this mimics LttP
+
+
+
+
+
+
+ 
+
+
+
+
+
 
 there should be a little fireball particle created when hero lights a torch
 

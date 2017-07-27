@@ -161,7 +161,9 @@ namespace DungeonRun
                 Functions_Draw.Draw(WorldUI.itemBkg[i]);
             }
             Functions_Draw.Draw(WorldUI.currentWeapon.compSprite);
+            Functions_Draw.Draw(WorldUI.weaponAmount);
             Functions_Draw.Draw(WorldUI.currentItem.compSprite);
+            Functions_Draw.Draw(WorldUI.itemAmount);
             Functions_Draw.Draw(WorldUI.autosaveText);
             if (Flags.DrawUDT)
             {
@@ -176,15 +178,17 @@ namespace DungeonRun
 
         public static void Move(int X, int Y)
         {
-            //move the weapon bkg & sprite
+            //move the weapon bkg & sprite & amount display
             MoveBkg(WorldUI.weaponBkg, X + 8, Y + 8);
             WorldUI.currentWeapon.compSprite.position.X = X + 16;
             WorldUI.currentWeapon.compSprite.position.Y = Y + 16;
+            Functions_Component.Align(WorldUI.weaponAmount, WorldUI.currentWeapon.compSprite);
 
-            //move the item bkg & sprite
+            //move the item bkg & sprite & amount display
             MoveBkg(WorldUI.itemBkg, X + 16 * 8 + 8, Y + 8);
             WorldUI.currentItem.compSprite.position.X = X + 16 * 8 + 16;
             WorldUI.currentItem.compSprite.position.Y = Y + 16;
+            Functions_Component.Align(WorldUI.itemAmount, WorldUI.currentItem.compSprite);
 
             //move the hearts
             for (i = 0; i < 9; i++)

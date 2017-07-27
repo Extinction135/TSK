@@ -64,10 +64,10 @@ namespace DungeonRun
             //MenuItemFunctions.SetMenuItemData(MenuItemType.StatsAgility, menuItems[2]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.StatsLuck, menuItems[3]);
             //place amount displays
-            Functions_Component.Move(healthLevel, menuItems[0]);
-            Functions_Component.Move(magicLevel, menuItems[1]);
-            Functions_Component.Move(agilityLevel, menuItems[2]);
-            Functions_Component.Move(luckLevel, menuItems[3]);
+            Functions_Component.Align(healthLevel, menuItems[0].compSprite);
+            Functions_Component.Align(magicLevel, menuItems[1].compSprite);
+            Functions_Component.Align(agilityLevel, menuItems[2].compSprite);
+            Functions_Component.Align(luckLevel, menuItems[3].compSprite);
             //set amount displays value
             Functions_Component.UpdateAmount(healthLevel, 0);
             Functions_Component.UpdateAmount(magicLevel, 0);

@@ -115,7 +115,7 @@ namespace DungeonRun
             if (PlayerData.current.bombsCurrent > 0)
             {
                 Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
-                Functions_Component.Move(bombsDisplay, menuItems[1]);
+                Functions_Component.Align(bombsDisplay, menuItems[1].compSprite);
                 //if hero has bombs, display the number of bombs + draw display amount
                 Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
                 bombsDisplay.visible = true;
@@ -165,7 +165,7 @@ namespace DungeonRun
             if (PlayerData.current.weaponBow)
             {
                 Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
-                Functions_Component.Move(arrowsDisplay, menuItems[11]);
+                Functions_Component.Align(arrowsDisplay, menuItems[11].compSprite);
                 //if hero has arrows, display the number of arrows + draw display amount
                 Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
                 arrowsDisplay.visible = true;
