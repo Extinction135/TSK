@@ -92,6 +92,19 @@ namespace DungeonRun
             #endregion
 
 
+            #region Limit Hero's arrows, bombs, & gold
+
+            if (PlayerData.current.arrowsCurrent > PlayerData.current.arrowsMax)
+            { PlayerData.current.arrowsCurrent = PlayerData.current.arrowsMax; }
+
+            if (PlayerData.current.bombsCurrent > PlayerData.current.bombsMax)
+            { PlayerData.current.bombsCurrent = PlayerData.current.bombsMax; }
+
+            if (PlayerData.current.gold > 99) { PlayerData.current.gold = 99; }
+
+            #endregion
+
+
             #region Update & Animate Weapon and Item
 
             //weapon and item routines
@@ -106,27 +119,30 @@ namespace DungeonRun
                 Functions_MenuItem.SetMenuItemData(WorldUI.heroItem, WorldUI.currentItem);
             }
 
+            //check weapon type to see if we should display the weapon's remaining ammo
+            if(WorldUI.heroWeapon == MenuItemType.WeaponBow)
+            {
+                Functions_Component.UpdateAmount(WorldUI.weaponAmount, PlayerData.current.arrowsCurrent);
+                WorldUI.weaponAmount.visible = true;
+            }
+            else { WorldUI.weaponAmount.visible = false; }
+
+            //check item type to see if we should display the item's remaining ammo
+            if (WorldUI.heroItem == MenuItemType.ItemBomb)
+            {
+                Functions_Component.UpdateAmount(WorldUI.itemAmount, PlayerData.current.bombsCurrent);
+                WorldUI.itemAmount.visible = true;
+            }
+            else { WorldUI.itemAmount.visible = false; }
+
             //if the hero has an item equipped, then draw it
-            if (WorldUI.heroItem == MenuItemType.Unknown)
-            { WorldUI.currentItem.compSprite.visible = false; }
-            else { WorldUI.currentItem.compSprite.visible = true; }
+            if (WorldUI.heroItem != MenuItemType.Unknown)
+            { WorldUI.currentItem.compSprite.visible = true; }
+            else { WorldUI.currentItem.compSprite.visible = false; }
 
             //animate (and scale) the current weapon + item
             Functions_Animation.Animate(WorldUI.currentWeapon.compAnim, WorldUI.currentWeapon.compSprite);
             Functions_Animation.Animate(WorldUI.currentItem.compAnim, WorldUI.currentItem.compSprite);
-
-            #endregion
-
-
-            #region Limit Hero's arrows, bombs, & gold
-
-            if (PlayerData.current.arrowsCurrent > PlayerData.current.arrowsMax)
-            { PlayerData.current.arrowsCurrent = PlayerData.current.arrowsMax; }
-
-            if (PlayerData.current.bombsCurrent > PlayerData.current.bombsMax)
-            { PlayerData.current.bombsCurrent = PlayerData.current.bombsMax; }
-
-            if (PlayerData.current.gold > 99) { PlayerData.current.gold = 99; }
 
             #endregion
 
@@ -161,9 +177,9 @@ namespace DungeonRun
                 Functions_Draw.Draw(WorldUI.itemBkg[i]);
             }
             Functions_Draw.Draw(WorldUI.currentWeapon.compSprite);
-            Functions_Draw.Draw(WorldUI.weaponAmount);
             Functions_Draw.Draw(WorldUI.currentItem.compSprite);
-            Functions_Draw.Draw(WorldUI.itemAmount);
+            if (WorldUI.weaponAmount.visible) { Functions_Draw.Draw(WorldUI.weaponAmount); }
+            if (WorldUI.itemAmount.visible) { Functions_Draw.Draw(WorldUI.itemAmount); }
             Functions_Draw.Draw(WorldUI.autosaveText);
             if (Flags.DrawUDT)
             {

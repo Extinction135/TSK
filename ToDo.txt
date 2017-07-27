@@ -45,38 +45,21 @@ todo:
 
 
 
+Display the amount of arrows and bombs Hero has in WorldUI
+
+updated Functions_WorldUI.Update() to set the visibility of weapon & item amounts.
+this is based on the weapon and item that hero has equipped.
+the amount display is visible for the weapon: bow, and the item: bombs.
+each amount display's value is set based on the weapon or item equipped.
+playtested, working beautifully.
 
 
 
+so, what happens when hero runs out of bombs/arrows?
 
 
-
-
-
-
-Create Display Amounts for Weapon & Item in WorldUI
-
-changed Functions_Component.Move() to Align().
-changed paramters from MenuItem to ComponentSprite.
-this way we can use this function for anything with a sprite comp.
-updated various codepaths that ref'd Move().
-
-added weaponAmount and itemAmount CompAmountDisplays to WorldUI class.
-updated Functions_WorldUI.Move() to place amounts to weapon/item sprites.
-updated Functions_WorldUI.Draw() to draw display amounts.
-playtested, weapon & item amount displays are placed & drawing correctly.
-
-
-
-
-
-set the display amounts properly, based on what the hero has equipped
-this will be done in worldUI.update()
-
-display the proper amount of arrows, if weapon is bow
-display the proper amount of bombs, if item is bombs
-
-
+arrows: weapon stays, error plays - correct
+bombs: becomes empty object - incorrect
 
 
 
