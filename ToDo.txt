@@ -48,28 +48,29 @@ todo:
 
 
 
-Improve the sale of ArrowPacks
 
-ArrowPacks should always appear for sale from ItemVendor.
-however, hero should only be able to purchase ArrowPacks if he has bow.
-
-created VendorScreen.DialogNeedsBow(), for use in arrow purchasing routine.
-updated arrow pack purchasing routine to check and see if hero has bow weapon.
-if hero doesn't have a bow, he can't purchase arrows.
-updated ForSaleWidget to always display item ArrowPack.
-playtested, working as expected.
 
 
 
 
  
+Improve the action of lighting an unlit torch
+
+when hero lights an unlit torch, a fire particle should appear in the torch.
+updated Functions_Interaction.Interact() to create a fire particle in torch lighting routine.
+the fire particle is placed to look like it's centered to the unlit torch object.
+playtested, looking really good.
 
 
 
 
 
 
-there should be a little fireball particle created when hero lights a torch
+
+
+
+
+
 
 Bug
 when a game is loaded, we need to set the hero's loadout to be default

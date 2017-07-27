@@ -164,6 +164,10 @@ namespace DungeonRun
             else if (Obj.type == ObjType.TorchUnlit)
             {   //light the unlit torch
                 Functions_GameObject.SetType(Obj, ObjType.TorchLit);
+                Functions_Entity.SpawnEntity(ObjType.ParticleFire,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y - 7,
+                    Direction.None);
                 Assets.Play(Assets.sfxLightFire);
             }
             else if (Obj.type == ObjType.LeverOff || Obj.type == ObjType.LeverOn)
