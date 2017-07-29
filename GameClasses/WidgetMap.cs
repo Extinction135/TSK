@@ -97,6 +97,13 @@ namespace DungeonRun
                                 Assets.dummyTexture, rooms[i].rec,
                                 Assets.colorScheme.mapNotVisited);
                         }
+
+                        if(rooms[i].rec.Contains(currentRoom))
+                        {
+                            ScreenManager.spriteBatch.Draw(
+                                Assets.dummyTexture, rooms[i].rec,
+                                Assets.colorScheme.mapCurrentRoom);
+                        }
                     }
                 }
 
@@ -136,7 +143,7 @@ namespace DungeonRun
                 //draw currentRoom rec
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture, currentRoom,
-                    Assets.colorScheme.mapCurrentRoom * currentRoomAlpha);
+                    Assets.colorScheme.mapBlinker * currentRoomAlpha);
                 //pulse the alpha value
                 if (currentRoomAlpha < 1.0) { currentRoomAlpha += 0.05f; }
                 else { currentRoomAlpha = 0.0f; }

@@ -45,21 +45,16 @@ todo:
 
 
 
-Fix MapWidget bugs, display current room on Map
 
-fixed bug where room icons were not being placed properly upon a map widget close/open.
-fixed bug where map wasn't properly placed upon creation.
 
-changed MapWidget.SyncRooms() to SyncVisible().
-updated SyncVisible() to get visible boolean for all dungeon rooms + doors.
-updated SyncVisible() to get the current room from dungeon.rooms.
-added call to SyncVisible() from CheckDungeonRoomCollisions().
-the map widget will be sync'd each time the hero moves between rooms.
-this allows the map widget to update visited rooms as hero visits them (realtime).
-when we build a new dungeon, MapWidget.SyncToDungeon() is called.
-SyncToDungeon() also calls SyncVisible(), so the exit/spawn room appears correctly.
+Polish MapWidget
 
-playtested, working as expected.
+removed ScreenDungeonMap class, this has been replaced by MapWidget.
+added ColorScheme.mapBlinker, for the blinking white rec centered to current room.
+changed ColorScheme.mapCurrentRoom to black color.
+this was done to make the currently occupied room stand out more on map.
+updated MapWidget.Draw() to draw the currentRoom using ColorScheme.mapCurrentRoom color.
+updated all map colors. playtested, working as expected.
 
 
 
@@ -67,30 +62,16 @@ playtested, working as expected.
 
 
 
-draw the current room darker than others
-this can be done by checking to see if currentRoom rec is contained within the room we're drawing
-if so, draw this room at a darker color
+make MapWidget sexier
 
-
-
-
-
-remove dungeon screen map class 
-
-
-
-
-
-from dungeon screen, back button opens the map widget, if its closed
-back button also closes the map widget, if its open
-the map widget should be drawn from dungeon screen if it's state isn't closed
-
-
-when a dungeon is created, the mapWidget is updated with a new room list
-the current room is updated each time a room is built
-
-
-
+should have a semi-transparent black background (not window)
+no title, no window
+rooms draw white, with opacity varied
+unvisited room = 30%
+visited room = 60%
+current room = 90%
+keep the blinking center rec @ 100 opacity
+map should draw on the bottom left or right of screen
 
 
 
