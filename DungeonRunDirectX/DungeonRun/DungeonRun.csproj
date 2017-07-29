@@ -203,6 +203,9 @@
     <Compile Include="..\..\GameClasses\WidgetLoadout.cs">
       <Link>Classes\WidgetLoadout.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\WidgetMap.cs">
+      <Link>Classes\WidgetMap.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\WidgetOptions.cs">
       <Link>Classes\WidgetOptions.cs</Link>
     </Compile>

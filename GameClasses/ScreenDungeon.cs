@@ -57,9 +57,21 @@ namespace DungeonRun
                 //open inventory screen if player presses start button
                 if (Functions_Input.IsNewButtonPress(Buttons.Start))
                 { ScreenManager.AddScreen(new ScreenInventory()); }
-                //open dungeon map screen if player presses back button
+
+                //open map widget if player presses back button
                 else if (Functions_Input.IsNewButtonPress(Buttons.Back))
-                { ScreenManager.AddScreen(new ScreenDungeonMap()); }
+                {
+                    if (Widgets.Map.window.interior.displayState == DisplayState.Closed)
+                    {
+                        Widgets.Map.Reset(0, 0);
+                        Assets.Play(Assets.sfxMapOpen);
+                    }
+                    else if(Widgets.Map.window.interior.displayState == DisplayState.Opened)
+                    {
+                        Functions_MenuWindow.Close(Widgets.Map.window);
+                        Assets.Play(Assets.sfxInventoryClose);
+                    }
+                }
 
                 #endregion
 
@@ -133,6 +145,7 @@ namespace DungeonRun
                     Functions_Pool.Update();
                     Functions_Collision.CheckDungeonRoomCollisions();
                     Functions_WorldUI.Update();
+                    Widgets.Map.Update();
                     //
                     if (Flags.CameraTracksHero) //track camera to hero
                     {
@@ -181,6 +194,7 @@ namespace DungeonRun
 
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_WorldUI.Draw();
+            Widgets.Map.Draw();
             //draw debug menu + info
             if (Flags.EnableTopMenu) { Functions_Draw.DrawDebugMenu(); }
             if (Flags.DrawDebugInfo) { Functions_Draw.DrawDebugInfo(); }

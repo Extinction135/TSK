@@ -89,13 +89,13 @@ namespace DungeonRun
                 mapRoom.visited = dungeonRoom.visited;
                 rooms.Add(mapRoom);
                 //check to see if this room is the currentRoom
-                if(dungeonRoom == Functions_Dungeon.currentRoom)
+                if (dungeonRoom == Functions_Dungeon.currentRoom)
                 {   //match currentRoom properties to dungeonRoom
                     currentRoom.X = mapRoom.rec.X + (mapRoom.rec.Width / 2);
                     currentRoom.Y = mapRoom.rec.Y + (mapRoom.rec.Height / 2);
                 }
                 //display map icons, if we are map cheating (or debugging)
-                if(Flags.MapCheat)
+                if (Flags.MapCheat)
                 {   //check to see if this room gets an icon
                     iconPos = new Vector2( //the center of the current mapRoom
                         mapRoom.rec.X + (mapRoom.rec.Width / 2) - 1,

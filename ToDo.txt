@@ -45,6 +45,32 @@ todo:
 
 
 
+Migrate DungeonMapScreen to the MapWidget
+
+the MapWidget should display over the game and not block input.
+this allows the player to navigate the dungeon with the map displayed.
+
+created WidgetMap class.
+added WidgetMap to global Widgets list.
+created WidgetMap.SyncToDungeon().
+created WidgetMap.GetCurrentRoom().
+added call to WidgetMap.SyncToDungeon() from end of BuildDugeon().
+playtested, MapWidget working as expected, with a few bugs.
+
+
+
+
+
+
+the room icons dont appear on a close/open
+
+get current room blinking
+
+add call to GetCurrentRoom() from BuildRoom()
+this may cause some issues with editor, if dev room is not current room
+it SHOULD be
+this also means that dev dungeon is composed of the dev room only
+we should be reseting dungeon upon a editor room builds
 
 
 
@@ -53,13 +79,13 @@ todo:
 
 
 
- 
-Improve the action of lighting an unlit torch
+from dungeon screen, back button opens the map widget, if its closed
+back button also closes the map widget, if its open
+the map widget should be drawn from dungeon screen if it's state isn't closed
 
-when hero lights an unlit torch, a fire particle should appear in the torch.
-updated Functions_Interaction.Interact() to create a fire particle in torch lighting routine.
-the fire particle is placed to look like it's centered to the unlit torch object.
-playtested, looking really good.
+
+when a dungeon is created, the mapWidget is updated with a new room list
+the current room is updated each time a room is built
 
 
 
@@ -79,12 +105,16 @@ there is a bug where we can set the hero's loadout on one file,
 then load a different file, and the hero's loadout hasn't changed
 this lets the hero have a bow and fireball on a game where he doesn't have those items..
 
-bug: hero creates a sword projectile on conveyor belt
+
+
+
+
+Bug
+hero creates a sword projectile on conveyor belt
 hero is moved by conveyor belt into his sword projectile
 he takes damage. this should not happen
-we can mark a projectile as friendly/enemy using boolean
-hero can then only take damage from enemy projectiles
-or, certain projectiles move with the conveyorbelt
+
+certain projectiles should move with the conveyorbelt
 this would be the case with bombs, weapon swings, etc...
 but not flying projectiles, like fireball or arrow
 

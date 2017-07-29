@@ -144,6 +144,8 @@ namespace DungeonRun
             Pool.hero.direction = Direction.Up; //face hero up
             //check to see if dungeon map should be given to hero upon spawn
             if (Flags.MapCheat) { dungeon.map = true; } else { dungeon.map = false; }
+            //sync MapWidget to the newly created dungeon
+            Widgets.Map.SyncToDungeon();
 
             //place cameras starting position in dungeon
             if (Flags.CameraTracksHero) //center camera to hero

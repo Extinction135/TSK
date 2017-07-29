@@ -153,6 +153,7 @@ namespace DungeonRun
             Functions_Pool.UpdateRoomObjPool();
             CleanupRoom(Room); //remove overlapping objs
 
+
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
             if (Flags.PrintOutput)
