@@ -31,21 +31,22 @@ namespace DungeonRun
 
         public WidgetMap()
         {
-            window = new MenuWindow(new Point(-100, -100), new Point(0, 0), "init");
+            window = new MenuWindow(new Point(0, 0), new Point(0, 0), "init"); 
             //create dungeon bkg, current room instance
-            dungeonBkg = new Rectangle(0, 0, 0, 0);
-            currentRoom = new Rectangle(0, 0, 1, 1);
+            dungeonBkg = new Rectangle(-100, -100, 0, 0);
+            currentRoom = new Rectangle(-100, -100, 1, 1);
             //create room icons (for debugging)
             bossIcon = new ComponentText(Assets.font, "B", new Vector2(-100, -100), Assets.colorScheme.textDark);
             keyIcon = new ComponentText(Assets.font, "K", new Vector2(-100, -100), Assets.colorScheme.textDark);
             hubIcon = new ComponentText(Assets.font, "H", new Vector2(-100, -100), Assets.colorScheme.textDark);
             exitIcon = new ComponentText(Assets.font, "E", new Vector2(-100, -100), Assets.colorScheme.textDark);
-            //initially this widget starts out closed
-            window.interior.displayState = DisplayState.Closed;
+            //properly set the placement of the widget
+            Reset(0, 0);
+            Functions_MenuWindow.Close(window);
         }
 
         public override void Reset(int X, int Y)
-        {   //parameters X and Y are ignored for this function
+        {   //parameters X and Y are ignored for this method
             Functions_MenuWindow.ResetAndMove(window,
                 (int)WorldUI.currentWeapon.compSprite.position.X,
                 (int)WorldUI.currentWeapon.compSprite.position.Y + 22, 
@@ -58,12 +59,7 @@ namespace DungeonRun
             dungeonBkg.Height = 16 * 7;
             dungeonBkg.X = window.background.position.X + 8;
             dungeonBkg.Y = window.background.position.Y + 20;
-            //reset icon texts
-            bossIcon.position.X = -100;
-            keyIcon.position.X = -100;
-            hubIcon.position.X = -100;
-            exitIcon.position.X = -100;
-            //we dont change the position of rooms or doors
+            //we dont change the position of rooms or doors here
             //thats done in the SyncToDungeon() method below
         }
 
@@ -149,8 +145,6 @@ namespace DungeonRun
 
 
 
-
-
         public void SyncToDungeon()
         {
 
@@ -159,6 +153,12 @@ namespace DungeonRun
             rooms = new List<Room>();
             Vector2 iconPos;
             Room dungeonRoom;
+
+            //reset the icon positions
+            bossIcon.position.X = -100;
+            keyIcon.position.X = -100;
+            hubIcon.position.X = -100;
+            exitIcon.position.X = -100;
 
             for (i = 0; i < Functions_Dungeon.dungeon.rooms.Count; i++)
             {
@@ -179,8 +179,7 @@ namespace DungeonRun
                 //add the map offset
                 mapRoom.rec.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
                 mapRoom.rec.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
-                //grab the visited boolean
-                mapRoom.visited = dungeonRoom.visited;
+                //add the mapRoom to rooms list
                 rooms.Add(mapRoom);
                 //display map icons, if we are map cheating (or debugging)
                 if (Flags.MapCheat)
@@ -219,29 +218,34 @@ namespace DungeonRun
                 //add the map offset
                 dungeonDoor.rec.X += dungeonBkg.X + (dungeonBkg.Width / 2) - 8;
                 dungeonDoor.rec.Y += dungeonBkg.Y + (dungeonBkg.Height / 2) + 32;
-                //grab the visited boolean
-                dungeonDoor.visited = Functions_Dungeon.dungeon.doors[i].visited;
+                //add door to doors list
                 doors.Add(dungeonDoor);
             }
 
             #endregion
 
+
+            SyncVisible();
         }
 
-        public void GetCurrentRoom()
-        {   //rooms list is identical copy of dungeon.rooms
+        public void SyncVisible()
+        {   
+            currentRoom.X = -100; currentRoom.Y = -100; //hide current room
+            //rooms list is identical copy of dungeon.rooms
             for (i = 0; i < Functions_Dungeon.dungeon.rooms.Count; i++)
-            {
+            {   //sync the visited rooms
+                rooms[i].visited = Functions_Dungeon.dungeon.rooms[i].visited;
+                //set currentRoom position 
                 if (Functions_Dungeon.dungeon.rooms[i] == Functions_Dungeon.currentRoom)
                 {   //match currentRoom properties to rooms[i] (current room)
                     currentRoom.X = rooms[i].rec.X + (rooms[i].rec.Width / 2);
                     currentRoom.Y = rooms[i].rec.Y + (rooms[i].rec.Height / 2);
                 }
-            }
+            } 
+            //sync the visited doors
+            for (i = 0; i < Functions_Dungeon.dungeon.doors.Count; i++)
+            { doors[i].visited = Functions_Dungeon.dungeon.doors[i].visited; }
         }
-
-        //sync to dungeon should be called when a dungeon is built
-        //get current room should be called when a room is built
 
     }
 }

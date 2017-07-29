@@ -108,7 +108,10 @@ namespace DungeonRun
                 else if (displayState == DisplayState.Closing) //fade overlay to 1.0
                 {
                     if (overlay.alpha == -1.5f) //just began fading in overlay
-                    { Functions_WorldUI.DisplayAutosave(); } //show player autosave animation
+                    {   //events that happen when hero exits dungeon/game
+                        Functions_WorldUI.DisplayAutosave();
+                        Functions_MenuWindow.Close(Widgets.Map.window);
+                    }
                     //set the fadeInSpeed & overlay alpha based on the exitAction
                     if (exitAction == ExitAction.Overworld)
                     {   //exits fade in immediately, and much faster
@@ -146,7 +149,6 @@ namespace DungeonRun
                     Functions_Collision.CheckDungeonRoomCollisions();
                     Functions_WorldUI.Update();
                     Widgets.Map.Update();
-                    //
                     if (Flags.CameraTracksHero) //track camera to hero
                     {
                         Camera2D.tracks = false; //teleport follow hero

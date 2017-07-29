@@ -35,12 +35,13 @@ namespace DungeonRun
 
             //set all floor sprites to the appropriate dungeon texture
             Functions_Pool.SetFloorTexture(dungeon.type);
+            if (Flags.PrintOutput) { Debug.WriteLine("-- creating dungeon --"); }
 
 
             #region Create Shop
 
             if (dungeonType == DungeonType.Shop)
-            {   //create the shop room
+            {   //create the dungeon's rooms
                 Room shopRoom = new Room(new Point(0, 0), RoomType.Shop);
                 Functions_Room.MoveRoom(shopRoom, buildPosition.X, buildPosition.Y);
                 dungeon.rooms.Add(shopRoom); //exit room must be at index0
@@ -55,10 +56,7 @@ namespace DungeonRun
             #region Create Basic Testing Dungeon - no randomness YET
 
             else
-            {
-                if (Flags.PrintOutput) { Debug.WriteLine("-- creating dungeon --"); }
-
-                //create the dungeon's rooms
+            {   //create the dungeon's rooms
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit);
                 Room hubRoom = new Room(new Point(0, 0), RoomType.Hub);
                 Room bossRoom = new Room(new Point(0, 0), RoomType.Boss);
@@ -131,10 +129,10 @@ namespace DungeonRun
 
 
             //build the first room in the dungeon (room with exit)
-            Functions_Room.BuildRoom(dungeon.rooms[0]);
-            Functions_Room.FinishRoom(dungeon.rooms[0]);
             dungeon.rooms[0].visited = true; //hero spawns in this room
             currentRoom = dungeon.rooms[0];
+            Functions_Room.BuildRoom(dungeon.rooms[0]);
+            Functions_Room.FinishRoom(dungeon.rooms[0]);
             //place hero in the current room (exit room, rooms[0]) in front of exit door
             Functions_Actor.SetType(Pool.hero, ActorType.Hero);
             Functions_Movement.Teleport(Pool.hero.compMove,

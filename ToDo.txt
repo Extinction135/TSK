@@ -45,35 +45,37 @@ todo:
 
 
 
-Migrate DungeonMapScreen to the MapWidget
+Fix MapWidget bugs, display current room on Map
 
-the MapWidget should display over the game and not block input.
-this allows the player to navigate the dungeon with the map displayed.
+fixed bug where room icons were not being placed properly upon a map widget close/open.
+fixed bug where map wasn't properly placed upon creation.
 
-created WidgetMap class.
-added WidgetMap to global Widgets list.
-created WidgetMap.SyncToDungeon().
-created WidgetMap.GetCurrentRoom().
-added call to WidgetMap.SyncToDungeon() from end of BuildDugeon().
-playtested, MapWidget working as expected, with a few bugs.
+changed MapWidget.SyncRooms() to SyncVisible().
+updated SyncVisible() to get visible boolean for all dungeon rooms + doors.
+updated SyncVisible() to get the current room from dungeon.rooms.
+added call to SyncVisible() from CheckDungeonRoomCollisions().
+the map widget will be sync'd each time the hero moves between rooms.
+this allows the map widget to update visited rooms as hero visits them (realtime).
+when we build a new dungeon, MapWidget.SyncToDungeon() is called.
+SyncToDungeon() also calls SyncVisible(), so the exit/spawn room appears correctly.
 
-
-
-
-
-
-the room icons dont appear on a close/open
-
-get current room blinking
-
-add call to GetCurrentRoom() from BuildRoom()
-this may cause some issues with editor, if dev room is not current room
-it SHOULD be
-this also means that dev dungeon is composed of the dev room only
-we should be reseting dungeon upon a editor room builds
+playtested, working as expected.
 
 
 
+
+
+
+
+draw the current room darker than others
+this can be done by checking to see if currentRoom rec is contained within the room we're drawing
+if so, draw this room at a darker color
+
+
+
+
+
+remove dungeon screen map class 
 
 
 
