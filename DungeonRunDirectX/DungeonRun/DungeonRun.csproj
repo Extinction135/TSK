@@ -155,6 +155,9 @@
     <Compile Include="..\..\GameClasses\ScreenDungeon.cs">
       <Link>Classes\ScreenDungeon.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenDungeonMap.cs">
+      <Link>Classes\ScreenDungeonMap.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenInventory.cs">
       <Link>Classes\ScreenInventory.cs</Link>
     </Compile>
@@ -199,9 +202,6 @@
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetLoadout.cs">
       <Link>Classes\WidgetLoadout.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\WidgetMap.cs">
-      <Link>Classes\WidgetMap.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetOptions.cs">
       <Link>Classes\WidgetOptions.cs</Link>

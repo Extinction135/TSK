@@ -31,6 +31,5 @@ namespace DungeonRun
         public static WidgetOptions Options = new WidgetOptions();
         public static WidgetStats Stats = new WidgetStats();
         public static WidgetCrystals Crystals = new WidgetCrystals();
-        public static WidgetMap Map = new WidgetMap();
     }
 }

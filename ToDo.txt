@@ -44,34 +44,58 @@ todo:
 
 
 
+Upgrade Map with Scroll Sprites, revert to being a screen
+
+created sprite based map mockup.
+added map sprites to main sheet.
+rebuilt ScreenDungeonMap class.
+exported mainsheet to dX project.
+removed Functions_Map class.
+cleaned up various codepaths that ref'd Map class.
+playtested, DungeonMap screen is displaying properly again.
+however, this time the rooms are centered to the screen.
+
+updated Dialog displayed when hero finds the dungeon map.
+updated DungeonMap screen with scroll background sprites.
+updated DungeonScreen to only create MapScreen if hero has dungeon.map.
+changed color of current room in map to just be visited color.
+added top text 'dungeon map'. added top header line.
+playtested, looking great and working as expected.
 
 
 
-Polish MapWidget
-
-removed ScreenDungeonMap class, this has been replaced by MapWidget.
-added ColorScheme.mapBlinker, for the blinking white rec centered to current room.
-changed ColorScheme.mapCurrentRoom to black color.
-this was done to make the currently occupied room stand out more on map.
-updated MapWidget.Draw() to draw the currentRoom using ColorScheme.mapCurrentRoom color.
-updated all map colors. playtested, working as expected.
 
 
 
+move creation of scroll pillars into function
+move CreateScrollColumn() into function class
+
+
+
+> animate scroll & header line in/out on dungeon map screen
 
 
 
 
-make MapWidget sexier
+update the overworld screen to use the scroll sprite for background
+improve the overworld mockup -> use a different background image
+ALL MAPS should use the scroll background, for consistency
 
-should have a semi-transparent black background (not window)
-no title, no window
-rooms draw white, with opacity varied
-unvisited room = 30%
-visited room = 60%
-current room = 90%
-keep the blinking center rec @ 100 opacity
-map should draw on the bottom left or right of screen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -188,6 +212,15 @@ consider updating the overworld map to look better too
 
 
 
+we could also use the map scroll sprites as a display for letters
+from the hero's wife or whatever
+this could serve as a way to remind player of story too
+player could read a scroll and get caught up on the main plot points
+> wife leaves hero, hero'c cause/journey
+> invitation to final tournament, with 4 boss head requirements
+
+these scrolls could also popup when the hero gets them
+displaying alot of dialog / story plot points
 
 
 

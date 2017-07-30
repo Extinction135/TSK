@@ -420,7 +420,7 @@ namespace DungeonRun
             buttons.Add(new ComponentButton("f7 map cheat", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
         }
     }
-    
+
 
 
     //Instanced Classes
@@ -529,11 +529,9 @@ namespace DungeonRun
         public Color textLight = new Color(255, 255, 255);
         public Color textDark = new Color(0, 0, 0);
 
+        public Color mapNotVisited = new Color(110, 110, 110); 
+        public Color mapVisited = new Color(70, 70, 70);
         public Color mapBlinker = new Color(255, 255, 255);
-        public Color mapBkg = new Color(130, 130, 130);
-        public Color mapNotVisited = new Color(115, 115, 115);
-        public Color mapVisited = new Color(60, 60, 60);
-        public Color mapCurrentRoom = new Color(0, 0, 0);
     }
 
     //GameData Classes

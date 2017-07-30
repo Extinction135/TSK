@@ -57,20 +57,11 @@ namespace DungeonRun
                 //open inventory screen if player presses start button
                 if (Functions_Input.IsNewButtonPress(Buttons.Start))
                 { ScreenManager.AddScreen(new ScreenInventory()); }
-
                 //open map widget if player presses back button
                 else if (Functions_Input.IsNewButtonPress(Buttons.Back))
-                {
-                    if (Widgets.Map.window.interior.displayState == DisplayState.Closed)
-                    {
-                        Widgets.Map.Reset(0, 0);
-                        Assets.Play(Assets.sfxMapOpen);
-                    }
-                    else if(Widgets.Map.window.interior.displayState == DisplayState.Opened)
-                    {
-                        Functions_MenuWindow.Close(Widgets.Map.window);
-                        Assets.Play(Assets.sfxInventoryClose);
-                    }
+                {   //check to see if hero has found the dungeon map
+                    if (Functions_Dungeon.dungeon.map)
+                    { ScreenManager.AddScreen(new ScreenDungeonMap()); }
                 }
 
                 #endregion
@@ -110,7 +101,6 @@ namespace DungeonRun
                     if (overlay.alpha == -1.5f) //just began fading in overlay
                     {   //events that happen when hero exits dungeon/game
                         Functions_WorldUI.DisplayAutosave();
-                        Functions_MenuWindow.Close(Widgets.Map.window);
                     }
                     //set the fadeInSpeed & overlay alpha based on the exitAction
                     if (exitAction == ExitAction.Overworld)
@@ -148,7 +138,6 @@ namespace DungeonRun
                     Functions_Pool.Update();
                     Functions_Collision.CheckDungeonRoomCollisions();
                     Functions_WorldUI.Update();
-                    Widgets.Map.Update();
                     if (Flags.CameraTracksHero) //track camera to hero
                     {
                         Camera2D.tracks = false; //teleport follow hero
@@ -196,7 +185,6 @@ namespace DungeonRun
 
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_WorldUI.Draw();
-            Widgets.Map.Draw();
             //draw debug menu + info
             if (Flags.EnableTopMenu) { Functions_Draw.DrawDebugMenu(); }
             if (Flags.DrawDebugInfo) { Functions_Draw.DrawDebugInfo(); }

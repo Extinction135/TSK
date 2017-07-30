@@ -86,7 +86,11 @@ namespace DungeonRun
             else if (dialogType == Dialog.HeroGotKey)
             { dialogString = "You found the dungeon key. It can open any door."; updateDungeonScreen = true; }
             else if (dialogType == Dialog.HeroGotMap)
-            { dialogString = "You found the dungeon map."; updateDungeonScreen = true; }
+            {
+                dialogString = "You found the dungeon map! This map reveals the location of all rooms.";
+                dialogString += "\nPress the SELECT or BACK button to view this dungeon map.";
+                updateDungeonScreen = true;
+            }
 
             #endregion
 
