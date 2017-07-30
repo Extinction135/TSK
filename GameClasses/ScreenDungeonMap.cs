@@ -18,6 +18,9 @@ namespace DungeonRun
         int i;
         int j;
 
+        ComponentText title;
+        MenuRectangle headerLine;
+
         public List<Room> rooms;
         public List<Door> doors;
         public Rectangle marker = new Rectangle(-100, -100, 1, 1); //marks current room
@@ -30,12 +33,13 @@ namespace DungeonRun
         public List<ComponentSprite> leftScroll = new List<ComponentSprite>();
         public List<ComponentSprite> rightScroll = new List<ComponentSprite>();
         public List<ComponentSprite> scrollBkg = new List<ComponentSprite>();
+        Vector2 startPos = new Vector2(16 * 14, 16 * 6);
+        Vector2 endPos;
         Vector2 columnPos = new Vector2(16 * 14, 16 * 6); //scroll top left pos
         int scrollHeight = 10;
         int scrollWidth = 11;
+        int animSpeed = 8;
 
-        ComponentText title;
-        MenuRectangle headerLine;
 
         public ScreenDungeonMap() { this.name = "DungeonMap"; }
 
@@ -63,8 +67,9 @@ namespace DungeonRun
                 Functions_Component.CreateScrollColumn(true, false, scrollHeight, columnPos, scrollBkg);
             }
             //create right scroll
-            columnPos += new Vector2(16, 0);
-            Functions_Component.CreateScrollColumn(false, true, scrollHeight, columnPos, rightScroll);
+            Functions_Component.CreateScrollColumn(false, true, scrollHeight, startPos + new Vector2(32, 0), rightScroll);
+            //set right scroll's end position
+            endPos = new Vector2(startPos.X + ((scrollWidth + 1) * 16), startPos.Y);
 
             //create rooms and doors lists
             rooms = new List<Room>();
@@ -182,20 +187,40 @@ namespace DungeonRun
             {   //fade background in
                 background.fadeState = FadeState.FadeIn;
                 Functions_ScreenRec.Fade(background);
-                if (background.fadeState == FadeState.FadeComplete)
-                { displayState = DisplayState.Opened; }
+
+                //animate the right pillar to the right
+                if (rightScroll[0].position.X < endPos.X)
+                {   //animate the rightScroll right
+                    for (i = 0; i < rightScroll.Count; i++)
+                    {
+                        rightScroll[i].position.X += (endPos.X - rightScroll[i].position.X) / animSpeed;
+                        rightScroll[i].position.X += 1;
+                        if (rightScroll[i].position.X > endPos.X)
+                        { rightScroll[i].position.X = endPos.X; }
+                    }
+                }
+                else { displayState = DisplayState.Opened; }
             }
             else if (displayState == DisplayState.Closing)
             {   //fade background out
                 background.fadeState = FadeState.FadeOut;
                 Functions_ScreenRec.Fade(background);
-                if (background.fadeState == FadeState.FadeComplete)
-                { displayState = DisplayState.Closed; }
+
+                //animate the left pillar to the right
+                if (leftScroll[0].position.X < endPos.X - 32)
+                {   //animate the rightScroll right
+                    for (i = 0; i < leftScroll.Count; i++)
+                    {
+                        leftScroll[i].position.X += (endPos.X - leftScroll[i].position.X) / animSpeed;
+                        leftScroll[i].position.X += 1;
+                        if (leftScroll[i].position.X > endPos.X - 32)
+                        { leftScroll[i].position.X = endPos.X - 32; }
+                    }
+                }
+                else { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
-            {
-                ScreenManager.RemoveScreen(this);
-            }
+            { ScreenManager.RemoveScreen(this); }
 
             #endregion
 
@@ -208,17 +233,27 @@ namespace DungeonRun
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_Draw.Draw(background);
-            if (displayState == DisplayState.Opened)
+
+            if(displayState == DisplayState.Opening)
             {
-                //draw scroll backgrounds
+                for (i = 0; i < scrollBkg.Count; i++)
+                {   //if bkg sprite is left of animating right scroll, draw
+                    if (scrollBkg[i].position.X < rightScroll[0].position.X)
+                    { Functions_Draw.Draw(scrollBkg[i]); }
+                }
+            }
+            else if(displayState == DisplayState.Closing)
+            {
+                for (i = 0; i < scrollBkg.Count; i++)
+                {   //if bkg sprite is right of animating left scroll, draw
+                    if (scrollBkg[i].position.X > leftScroll[0].position.X)
+                    { Functions_Draw.Draw(scrollBkg[i]); }
+                }
+            }
+            else if (displayState == DisplayState.Opened)
+            {   //draw everything if screen is open
                 for (i = 0; i < scrollBkg.Count; i++)
                 { Functions_Draw.Draw(scrollBkg[i]); }
-                //draw scroll pillars / ends
-                for (i = 0; i < leftScroll.Count; i++)
-                {   //these lists will always have same count
-                    Functions_Draw.Draw(leftScroll[i]);
-                    Functions_Draw.Draw(rightScroll[i]);
-                }
 
                 Functions_Draw.Draw(title);
                 Functions_Draw.Draw(headerLine);
@@ -291,32 +326,16 @@ namespace DungeonRun
                 #endregion
 
             }
+
+            //always draw scroll pillars / ends
+            for (i = 0; i < leftScroll.Count; i++)
+            {   //these lists will always have same count
+                Functions_Draw.Draw(leftScroll[i]);
+                Functions_Draw.Draw(rightScroll[i]);
+            }
+
             ScreenManager.spriteBatch.End();
         }
-
-
-        /*
-        public void CreateScrollColumn(Vector2 Pos)
-        {
-            for (i = 0; i < scrollHeight; i++)
-            {   //create a blank sprite
-                ComponentSprite sprite = new ComponentSprite(
-                    Assets.mainSheet, new Vector2(0, 0),
-                    new Byte4(0, 0, 0, 0), new Point(16, 16));
-                //set blank's pos
-                sprite.position.X = Pos.X;
-                sprite.position.Y = Pos.Y + (16 * i);
-                //set blank's frame
-                if (i == 0) { sprite.currentFrame = new Byte4(14, 0, 0, 0); } //head
-                else if (i == scrollHeight - 1) { sprite.currentFrame = new Byte4(14, 2, 0, 0); } //tail
-                else { sprite.currentFrame = new Byte4(14, 1, 0, 0); } //mid section
-                //add modified blank to list
-                scrollBkg.Add(sprite);
-            }
-        }
-        */
-
-
 
     }
 }

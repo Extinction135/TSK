@@ -46,28 +46,23 @@ todo:
 
 
 
-Refactored how scroll sprites are created
-
-moved CreateScrollColumn() into Functions_Component.
-this makes the method globally accessible.
-modified CSC() to build scroll pillars and backgrounds.
-updated DungeonMap screen to use CSC().
-playtested, working as expected.
 
 
+Animate the dungeon map's scroll open and closed
 
-
-
-
-
-> animate scroll & header line in/out on dungeon map screen
+updated DungeonMap to animate right scroll to right on opening.
+updated Dungeonmap to animate left scroll to left on closing.
+updated DungeonMap to draw bkg sprites based on their position.
+this position is compared to the left/right scrolls based on display state.
+this makes the scroll appear to open and close.
+playtested, looking really good and working as expected.
 
 
 
 
 update the overworld screen to use the scroll sprite for background
+animate the scroll just like dungeon map screen
 improve the overworld mockup -> use a different background image
-ALL MAPS should use the scroll background, for consistency
 
 
 
