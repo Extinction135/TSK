@@ -46,66 +46,25 @@ namespace DungeonRun
             displayState = DisplayState.Opening;
             Assets.Play(Assets.sfxMapOpen);
 
-            title = new ComponentText(Assets.font, 
-                "Dungeon Map", columnPos + new Vector2(20, 6), 
+            title = new ComponentText(Assets.font,
+                "Dungeon Map", columnPos + new Vector2(20, 6),
                 Assets.colorScheme.textDark);
             headerLine = new MenuRectangle(
-                new Point((int)title.position.X + 0, (int)title.position.Y + 14), 
-                new Point(16 * scrollWidth - 23, 1), 
+                new Point((int)title.position.X + 0, (int)title.position.Y + 14),
+                new Point(16 * scrollWidth - 23, 1),
                 Assets.colorScheme.windowInset);
 
-
-            #region Create left scroll
-
-            for (i = 0; i < scrollHeight; i++)
-            {   //create a blank sprite
-                ComponentSprite sprite = new ComponentSprite(
-                    Assets.mainSheet, new Vector2(0, 0), 
-                    new Byte4(0, 0, 0, 0), new Point(32, 16));
-                //set blank's pos
-                sprite.position.X = columnPos.X;
-                sprite.position.Y = columnPos.Y + (16 * i);
-                //set blank's frame
-                if (i == 0) { sprite.currentFrame = new Byte4(6, 0, 0, 0); } //head
-                else if (i == scrollHeight - 1) { sprite.currentFrame = new Byte4(6, 2, 0, 0); } //tail
-                else { sprite.currentFrame = new Byte4(6, 1, 0, 0); } //mid section
-                //add modified blank to list
-                leftScroll.Add(sprite);
-            }
-
-            #endregion
-
-
+            //create left scroll
+            Functions_Component.CreateScrollColumn(false, false, scrollHeight, columnPos, leftScroll);
+            //create scroll's background columns
             for (j = 0; j < scrollWidth; j++)
-            {   //create scroll's background columns
+            {   
                 columnPos += new Vector2(16, 0);
-                CreateScrollColumn(columnPos);
+                Functions_Component.CreateScrollColumn(true, false, scrollHeight, columnPos, scrollBkg);
             }
-
-
-            #region Create right scroll
-
+            //create right scroll
             columnPos += new Vector2(16, 0);
-            for (i = 0; i < scrollHeight; i++)
-            {   //create a blank sprite
-                ComponentSprite sprite = new ComponentSprite(
-                    Assets.mainSheet, new Vector2(0, 0),
-                    new Byte4(0, 0, 0, 0), new Point(32, 16));
-                //set blank's pos
-                sprite.position.X = columnPos.X;
-                sprite.position.Y = columnPos.Y + (16 * i);
-                //set blank's frame
-                if (i == 0) { sprite.currentFrame = new Byte4(6, 0, 0, 0); } //head
-                else if (i == scrollHeight - 1) { sprite.currentFrame = new Byte4(6, 2, 0, 0); } //tail
-                else { sprite.currentFrame = new Byte4(6, 1, 0, 0); } //mid section
-                //flip blank
-                sprite.flipHorizontally = true;
-                //add modified blank to list
-                rightScroll.Add(sprite);
-            }
-
-            #endregion
-
+            Functions_Component.CreateScrollColumn(false, true, scrollHeight, columnPos, rightScroll);
 
             //create rooms and doors lists
             rooms = new List<Room>();
@@ -249,7 +208,7 @@ namespace DungeonRun
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_Draw.Draw(background);
-            if(displayState == DisplayState.Opened)
+            if (displayState == DisplayState.Opened)
             {
                 //draw scroll backgrounds
                 for (i = 0; i < scrollBkg.Count; i++)
@@ -334,9 +293,9 @@ namespace DungeonRun
             }
             ScreenManager.spriteBatch.End();
         }
-        
 
 
+        /*
         public void CreateScrollColumn(Vector2 Pos)
         {
             for (i = 0; i < scrollHeight; i++)
@@ -355,6 +314,9 @@ namespace DungeonRun
                 scrollBkg.Add(sprite);
             }
         }
+        */
+
+
 
     }
 }

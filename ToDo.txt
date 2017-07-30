@@ -44,31 +44,19 @@ todo:
 
 
 
-Upgrade Map with Scroll Sprites, revert to being a screen
 
-created sprite based map mockup.
-added map sprites to main sheet.
-rebuilt ScreenDungeonMap class.
-exported mainsheet to dX project.
-removed Functions_Map class.
-cleaned up various codepaths that ref'd Map class.
-playtested, DungeonMap screen is displaying properly again.
-however, this time the rooms are centered to the screen.
 
-updated Dialog displayed when hero finds the dungeon map.
-updated DungeonMap screen with scroll background sprites.
-updated DungeonScreen to only create MapScreen if hero has dungeon.map.
-changed color of current room in map to just be visited color.
-added top text 'dungeon map'. added top header line.
-playtested, looking great and working as expected.
+Refactored how scroll sprites are created
+
+moved CreateScrollColumn() into Functions_Component.
+this makes the method globally accessible.
+modified CSC() to build scroll pillars and backgrounds.
+updated DungeonMap screen to use CSC().
+playtested, working as expected.
 
 
 
 
-
-
-move creation of scroll pillars into function
-move CreateScrollColumn() into function class
 
 
 

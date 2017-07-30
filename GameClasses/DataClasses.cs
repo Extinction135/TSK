@@ -529,7 +529,7 @@ namespace DungeonRun
         public Color textLight = new Color(255, 255, 255);
         public Color textDark = new Color(0, 0, 0);
 
-        public Color mapNotVisited = new Color(110, 110, 110); 
+        public Color mapNotVisited = new Color(130, 130, 130); 
         public Color mapVisited = new Color(70, 70, 70);
         public Color mapBlinker = new Color(255, 255, 255);
     }

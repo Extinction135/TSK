@@ -79,5 +79,29 @@ namespace DungeonRun
             Text.position.X = (int)X - (textWidth / 2);
         }
 
+
+
+        public static void CreateScrollColumn(Boolean Bkg, Boolean Flip, int Height, Vector2 Pos, List<ComponentSprite> List)
+        {
+            byte xFrame = 6;
+            if (Bkg) { xFrame = 14; }
+            for (int i = 0; i < Height; i++)
+            {   //create a blank sprite
+                ComponentSprite sprite = new ComponentSprite(
+                    Assets.mainSheet, new Vector2(0, 0),
+                    new Byte4(0, 0, 0, 0), new Point(32, 16));
+                if (Bkg) { sprite.cellSize.X = 16; }
+                UpdateCellSize(sprite);
+                sprite.position.X = Pos.X; //set blank's pos
+                sprite.position.Y = Pos.Y + (16 * i);
+                //set sprite's frame
+                if (i == 0) { sprite.currentFrame = new Byte4(xFrame, 0, 0, 0); } //head
+                else if (i == Height - 1) { sprite.currentFrame = new Byte4(xFrame, 2, 0, 0); } //tail
+                else { sprite.currentFrame = new Byte4(xFrame, 1, 0, 0); } //mid section
+                sprite.flipHorizontally = Flip;
+                List.Add(sprite); //add mod blank to list
+            }
+        }
+
     }
 }
