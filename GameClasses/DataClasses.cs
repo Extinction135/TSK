@@ -549,6 +549,7 @@ namespace DungeonRun
         public Vector2 startPos;
         public Vector2 endPos;
         public int animSpeed = 8;
+
         public Scroll(Vector2 StartPos, int Width, int Height)
         {
             startPos = StartPos;

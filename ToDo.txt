@@ -44,24 +44,8 @@ todo:
 
 
 
+* complete design of new overworld map
 
-Update Overworld Screen to use a Scroll background
-
-updated Overworld Screen to use Scroll data class & Functions_Scroll.
-this replaces the window instance that OverworldScreen was using.
-since this is a map, it should be consistent with the other map (dungeon map).
-playtested, working as expected.
-this was done in prep for the new overworld map that's in development rn.
-
-
-
-
-
-
-
-design a new overworld map using chrono trigger map sprites
-this should be a wide island with MANY locations on it
-we'll fill these locations out later on, but the overall island shape needs to be complete
 areas for:
 	cursed castle, 
 	desert temple, 
@@ -70,36 +54,27 @@ areas for:
 	townA, 
 	townB, 
 	colliseum
-	etc.. ?
 
 	
 	
 
 
+	
+Fix Hero Loadout Bug
+
+Bug: the hero's loadout is never reset.
+In game1, player can set hero's loadout to items that don't exist in game2.
+Then player can load game2, and hero will still have these items equipped.
+Even tho hero doesn't have these items in inventory in game2.
+
+Fix: reset hero's loadout to starting loadout upon a game load/create.
+the easiest place to do this was in the DialogScreen's closing routine.
+the hero's loadout is reset to sword, bomb, cloth armor, and no equipment.
+playtested, working as expected. bug fixed.
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Bug
-when a game is loaded, we need to set the hero's loadout to be default
-sword, no item, plain cloth
-there is a bug where we can set the hero's loadout on one file,
-then load a different file, and the hero's loadout hasn't changed
-this lets the hero have a bow and fireball on a game where he doesn't have those items..
 
 
 

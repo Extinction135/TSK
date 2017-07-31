@@ -163,7 +163,15 @@ namespace DungeonRun
                     dialogType == Dialog.GameLoaded ||
                     dialogType == Dialog.GameNotFound ||
                     dialogType == Dialog.GameAutoSaved)
-                { Functions_Dungeon.LoadShop(); }
+                {
+                    //reset the hero's loadout (reset from previous game)
+                    Pool.hero.weapon = MenuItemType.WeaponSword;
+                    Pool.hero.item = MenuItemType.ItemBomb;
+                    Pool.hero.armor = MenuItemType.ArmorCloth;
+                    Pool.hero.equipment = MenuItemType.Unknown;
+                    //load shop level
+                    Functions_Dungeon.LoadShop();
+                }
                 //or simply exit this screen
                 else { ScreenManager.RemoveScreen(this); }
             }
