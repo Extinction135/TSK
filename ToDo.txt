@@ -44,27 +44,19 @@ todo:
 
 
 
-Create proper data class and function class for Scroll
 
-this will allow us to reuse scroll for the Overworld Screen.
+Update Overworld Screen to use a Scroll background
 
-created Functions_Scroll class.
-renamed CreateScrollColumn() to CreateColumn(), moved into Functions_Scroll.
-created Scroll data class.
-added AnimateOpen(), AnimateClosed(), and Draw() methods to Functions_Scroll.
-refactored + changed DungeonMapScreen to use Scroll data class + Functions_Scroll.
+updated Overworld Screen to use Scroll data class & Functions_Scroll.
+this replaces the window instance that OverworldScreen was using.
+since this is a map, it should be consistent with the other map (dungeon map).
 playtested, working as expected.
+this was done in prep for the new overworld map that's in development rn.
 
 
 
 
 
-
-
-
-
-
-later on we'll reuse this for the overworld screen
 
 
 design a new overworld map using chrono trigger map sprites
@@ -80,14 +72,8 @@ areas for:
 	colliseum
 	etc.. ?
 
-update the overworld screen to use the scroll sprite for background
-animate the scroll just like dungeon map screen
-improve the overworld mockup -> use a different background image
-
-
-
-
-
+	
+	
 
 
 

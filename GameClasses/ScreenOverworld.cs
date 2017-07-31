@@ -16,9 +16,8 @@ namespace DungeonRun
     {
         ScreenRec background = new ScreenRec();
         ScreenRec overlay = new ScreenRec();
-        public static MenuWindow window;
+        public Scroll scroll;
         public static ComponentSprite map;
-        public static ComponentText selectedLocation;
 
         //pointers to the locations
         public MenuItem Shop;
@@ -43,19 +42,20 @@ namespace DungeonRun
         {
             background.alpha = 1.0f;
             overlay.alpha = 1.0f;
-            
-            window = new MenuWindow(new Point(16 * 11 + 8, 16 * 1 + 8),
-                new Point(16 * 17, 16 * 19), "Overworld Map");
+            overlay.fadeInSpeed = 0.03f; //fade in slow
+
+            scroll = new Scroll(new Vector2(16 * 10, 16 * 2), 18, 19);
+            //open the scroll
+            scroll.displayState = DisplayState.Opening;
+            Assets.Play(Assets.sfxMapOpen);
+
             //determine the top left position of the map texture/sprite
-            Vector2 mapTopLeft = new Vector2(window.border.position.X + 7, window.border.position.Y + 24);
+            Vector2 mapTopLeft = scroll.startPos + new Vector2(16+4, 24);
+            //Vector2 mapTopLeft = new Vector2(window.border.position.X + 7, window.border.position.Y + 24);
             map = new ComponentSprite(Assets.overworldSheet,
                 mapTopLeft, new Byte4(0, 0, 0, 0), new Point(256, 256));
             map.position.X += map.cellSize.X / 2;
             map.position.Y += map.cellSize.Y / 2;
-            selectedLocation = new ComponentText(Assets.font, "Dungeon 1", 
-                new Vector2(window.border.position.X + 16 * 7 + 8, window.lines[1].position.Y - 1), 
-                Assets.colorScheme.textDark);
-            Assets.Play(Assets.sfxMapOpen);
 
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet,
@@ -169,10 +169,6 @@ namespace DungeonRun
             previouslySelected = DungeonCursedCastle;
             //get the current location's name
             GetCurrentLocationName(currentlySelected);
-            //reset the index
-            i = 0;
-            //open the screen
-            displayState = DisplayState.Opening;
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
             //fill hero's health up to max - prevents drum track from playing
@@ -181,7 +177,7 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
-            if (displayState == DisplayState.Opened)
+            if (scroll.displayState == DisplayState.Opened)
             {   //only allow input if the screen has opened completely
                 //get the previouslySelected menuItem
                 previouslySelected = currentlySelected;
@@ -211,45 +207,21 @@ namespace DungeonRun
                 {
                     Assets.Play(Assets.sfxMenuItem); //play selection sfx
                     Assets.Play(Assets.sfxInventoryClose); //play closing sfx
-                    displayState = DisplayState.Closing; //begin closing the screen
+                    scroll.displayState = DisplayState.Closing; //close scroll
                 }
             }
         }
 
         public override void Update(GameTime GameTime)
         {
-
-            #region Handle Screen State
-
-            if (displayState == DisplayState.Opening)
+            if (scroll.displayState == DisplayState.Opening)
             {   //fade overlay out
                 overlay.fadeState = FadeState.FadeOut;
                 Functions_ScreenRec.Fade(overlay);
-                if (overlay.fadeState == FadeState.FadeComplete)
-                { displayState = DisplayState.Opened; }
+                Functions_Scroll.AnimateOpen(scroll);
             }
-            else if (displayState == DisplayState.Closing)
-            {   //fade overlay in
-                overlay.fadeState = FadeState.FadeIn;
-                Functions_ScreenRec.Fade(overlay);
-                if (overlay.fadeState == FadeState.FadeComplete)
-                { displayState = DisplayState.Closed; }
-            }
-            else if (displayState == DisplayState.Closed)
-            {   //set the type of dungeon we are about to build/load
-                if (currentlySelected == Shop)
-                { Functions_Dungeon.dungeonType = DungeonType.Shop; }
-                else { Functions_Dungeon.dungeonType = DungeonType.CursedCastle; }
-                //dungeon is built by dungeon screen
-                ScreenManager.ExitAndLoad(new ScreenDungeon());
-            }
-
-            #endregion
-
-
-            Functions_MenuWindow.Update(window);
-            if (displayState != DisplayState.Opening)
-            {   //if screen is opened, closing, or closed, pulse the selectionBox alpha
+            else if(scroll.displayState == DisplayState.Opened)
+            {   //pulse the alpha of the selection box
                 if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
                 else { selectionBox.alpha += 0.025f; }
                 //match the position of the selectionBox to the currently selected menuItem
@@ -258,17 +230,30 @@ namespace DungeonRun
                 if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
                 else { selectionBox.scale = 1.0f; }
             }
+            else if (scroll.displayState == DisplayState.Closing)
+            {   //fade overlay in
+                overlay.fadeState = FadeState.FadeIn;
+                Functions_ScreenRec.Fade(overlay);
+                Functions_Scroll.AnimateClosed(scroll);
+            }
+            else if (scroll.displayState == DisplayState.Closed)
+            {   //set the type of dungeon we are about to build/load
+                if (currentlySelected == Shop)
+                { Functions_Dungeon.dungeonType = DungeonType.Shop; }
+                else { Functions_Dungeon.dungeonType = DungeonType.CursedCastle; }
+                //dungeon is built by dungeon screen
+                ScreenManager.ExitAndLoad(new ScreenDungeon());
+            }
         }
 
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_Draw.Draw(background);
-            Functions_Draw.Draw(window);
-            if (window.interior.displayState == DisplayState.Opened)
+            Functions_Scroll.Draw(scroll);
+            if (scroll.displayState == DisplayState.Opened)
             {
                 Functions_Draw.Draw(map);
-                Functions_Draw.Draw(selectedLocation);
                 Functions_Draw.Draw(selectionBox);
             }
             Functions_Draw.Draw(overlay);
@@ -277,11 +262,8 @@ namespace DungeonRun
 
 
 
-        public static void GetCurrentLocationName(MenuItem Location)
-        {   //get the location name, center it to the window/screen
-            selectedLocation.text = Location.name;
-            Functions_Component.CenterText(selectedLocation, selectedLocation.font, 320);
-        }
+        public void GetCurrentLocationName(MenuItem Location)
+        { scroll.title.text = "Overworld Map - " + Location.name; }
 
     }
 }

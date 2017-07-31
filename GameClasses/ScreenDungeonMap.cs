@@ -40,6 +40,7 @@ namespace DungeonRun
             //create scroll instance
             scroll = new Scroll(new Vector2(16 * 14, 16 * 6), 11, 10);
             scroll.displayState = DisplayState.Opening;
+            scroll.title.text = "Dungeon Map";
 
             //create rooms and doors lists
             rooms = new List<Room>();
@@ -150,9 +151,6 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
-
-            #region Handle Screen State
-
             if (scroll.displayState == DisplayState.Opening)
             {   //fade background in
                 background.fadeState = FadeState.FadeIn;
@@ -167,9 +165,6 @@ namespace DungeonRun
             }
             else if (scroll.displayState == DisplayState.Closed)
             { ScreenManager.RemoveScreen(this); }
-
-            #endregion
-
         }
 
         public override void Draw(GameTime GameTime)
