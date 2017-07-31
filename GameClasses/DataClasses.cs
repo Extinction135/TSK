@@ -534,6 +534,52 @@ namespace DungeonRun
         public Color mapBlinker = new Color(255, 255, 255);
     }
 
+    public class Scroll
+    {
+        public List<ComponentSprite> leftScroll = new List<ComponentSprite>();
+        public List<ComponentSprite> rightScroll = new List<ComponentSprite>();
+        public List<ComponentSprite> scrollBkg = new List<ComponentSprite>();
+        public Point size; //width and height of scroll (in tiles/sprites, not pixels)
+        public int i;
+
+        public ComponentText title;
+        public Rectangle headerline;
+        public DisplayState displayState = DisplayState.Opening;
+
+        public Vector2 startPos;
+        public Vector2 endPos;
+        public int animSpeed = 8;
+        public Scroll(Vector2 StartPos, int Width, int Height)
+        {
+            startPos = StartPos;
+            size.X = Width; size.Y = Height;
+            //create the left, right rolled paper edges + center sprites
+            Vector2 columnPos = new Vector2();
+            columnPos.X = startPos.X;
+            columnPos.Y = startPos.Y;
+            //create left scroll
+            Functions_Scroll.CreateColumn(false, false, size.Y, columnPos, leftScroll);
+            //create right scroll
+            Functions_Scroll.CreateColumn(false, true, size.Y, columnPos + new Vector2(32, 0), rightScroll);
+            //create scroll's background columns, for width of scroll
+            for (i = 0; i < size.X; i++)
+            {
+                columnPos += new Vector2(16, 0);
+                Functions_Scroll.CreateColumn(true, false, size.Y, columnPos, scrollBkg);
+            }
+            //set the endPos
+            endPos = new Vector2(startPos.X + ((size.X + 1) * 16), startPos.Y);
+            //create title + header line
+            title = new ComponentText(Assets.font, "title",
+                startPos + new Vector2(20, 6), 
+                Assets.colorScheme.textDark);
+            headerline = new Rectangle( //Assets.colorScheme.windowInset
+                new Point((int)title.position.X + 0, (int)title.position.Y + 14),
+                new Point(16 * size.X - 23, 1));
+        }
+    }
+
+
     //GameData Classes
 
     public class Actor

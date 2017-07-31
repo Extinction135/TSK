@@ -15,11 +15,8 @@ namespace DungeonRun
     public class ScreenDungeonMap : Screen
     {
         ScreenRec background = new ScreenRec();
+        Scroll scroll;
         int i;
-        int j;
-
-        ComponentText title;
-        MenuRectangle headerLine;
 
         public List<Room> rooms;
         public List<Door> doors;
@@ -30,15 +27,6 @@ namespace DungeonRun
         public ComponentText hubIcon = new ComponentText(Assets.font, "H", new Vector2(), Assets.colorScheme.textDark);
         public ComponentText exitIcon = new ComponentText(Assets.font, "E", new Vector2(), Assets.colorScheme.textDark);
 
-        public List<ComponentSprite> leftScroll = new List<ComponentSprite>();
-        public List<ComponentSprite> rightScroll = new List<ComponentSprite>();
-        public List<ComponentSprite> scrollBkg = new List<ComponentSprite>();
-        Vector2 startPos = new Vector2(16 * 14, 16 * 6);
-        Vector2 endPos;
-        Vector2 columnPos = new Vector2(16 * 14, 16 * 6); //scroll top left pos
-        int scrollHeight = 10;
-        int scrollWidth = 11;
-        int animSpeed = 8;
 
 
         public ScreenDungeonMap() { this.name = "DungeonMap"; }
@@ -47,29 +35,11 @@ namespace DungeonRun
         {
             background.alpha = 0.0f; //fade bkg in
             background.maxAlpha = 0.6f;
-            displayState = DisplayState.Opening;
             Assets.Play(Assets.sfxMapOpen);
 
-            title = new ComponentText(Assets.font,
-                "Dungeon Map", columnPos + new Vector2(20, 6),
-                Assets.colorScheme.textDark);
-            headerLine = new MenuRectangle(
-                new Point((int)title.position.X + 0, (int)title.position.Y + 14),
-                new Point(16 * scrollWidth - 23, 1),
-                Assets.colorScheme.windowInset);
-
-            //create left scroll
-            Functions_Component.CreateScrollColumn(false, false, scrollHeight, columnPos, leftScroll);
-            //create scroll's background columns
-            for (j = 0; j < scrollWidth; j++)
-            {   
-                columnPos += new Vector2(16, 0);
-                Functions_Component.CreateScrollColumn(true, false, scrollHeight, columnPos, scrollBkg);
-            }
-            //create right scroll
-            Functions_Component.CreateScrollColumn(false, true, scrollHeight, startPos + new Vector2(32, 0), rightScroll);
-            //set right scroll's end position
-            endPos = new Vector2(startPos.X + ((scrollWidth + 1) * 16), startPos.Y);
+            //create scroll instance
+            scroll = new Scroll(new Vector2(16 * 14, 16 * 6), 11, 10);
+            scroll.displayState = DisplayState.Opening;
 
             //create rooms and doors lists
             rooms = new List<Room>();
@@ -167,13 +137,13 @@ namespace DungeonRun
 
         public override void HandleInput(GameTime GameTime)
         {
-            if (displayState == DisplayState.Opened)
+            if (scroll.displayState == DisplayState.Opened)
             {
                 if (Functions_Input.IsNewButtonPress(Buttons.Back) ||
                     Functions_Input.IsNewButtonPress(Buttons.B))
                 {
                     Assets.Play(Assets.sfxInventoryClose);
-                    displayState = DisplayState.Closing;
+                    scroll.displayState = DisplayState.Closing;
                 }
             }
         }
@@ -183,81 +153,32 @@ namespace DungeonRun
 
             #region Handle Screen State
 
-            if (displayState == DisplayState.Opening)
+            if (scroll.displayState == DisplayState.Opening)
             {   //fade background in
                 background.fadeState = FadeState.FadeIn;
                 Functions_ScreenRec.Fade(background);
-
-                //animate the right pillar to the right
-                if (rightScroll[0].position.X < endPos.X)
-                {   //animate the rightScroll right
-                    for (i = 0; i < rightScroll.Count; i++)
-                    {
-                        rightScroll[i].position.X += (endPos.X - rightScroll[i].position.X) / animSpeed;
-                        rightScroll[i].position.X += 1;
-                        if (rightScroll[i].position.X > endPos.X)
-                        { rightScroll[i].position.X = endPos.X; }
-                    }
-                }
-                else { displayState = DisplayState.Opened; }
+                Functions_Scroll.AnimateOpen(scroll);
             }
-            else if (displayState == DisplayState.Closing)
+            else if (scroll.displayState == DisplayState.Closing)
             {   //fade background out
                 background.fadeState = FadeState.FadeOut;
                 Functions_ScreenRec.Fade(background);
-
-                //animate the left pillar to the right
-                if (leftScroll[0].position.X < endPos.X - 32)
-                {   //animate the rightScroll right
-                    for (i = 0; i < leftScroll.Count; i++)
-                    {
-                        leftScroll[i].position.X += (endPos.X - leftScroll[i].position.X) / animSpeed;
-                        leftScroll[i].position.X += 1;
-                        if (leftScroll[i].position.X > endPos.X - 32)
-                        { leftScroll[i].position.X = endPos.X - 32; }
-                    }
-                }
-                else { displayState = DisplayState.Closed; }
+                Functions_Scroll.AnimateClosed(scroll);
             }
-            else if (displayState == DisplayState.Closed)
+            else if (scroll.displayState == DisplayState.Closed)
             { ScreenManager.RemoveScreen(this); }
 
             #endregion
 
-
-            if (displayState == DisplayState.Opened)
-            { Functions_MenuRectangle.Update(headerLine); }
         }
 
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_Draw.Draw(background);
-
-            if(displayState == DisplayState.Opening)
-            {
-                for (i = 0; i < scrollBkg.Count; i++)
-                {   //if bkg sprite is left of animating right scroll, draw
-                    if (scrollBkg[i].position.X < rightScroll[0].position.X)
-                    { Functions_Draw.Draw(scrollBkg[i]); }
-                }
-            }
-            else if(displayState == DisplayState.Closing)
-            {
-                for (i = 0; i < scrollBkg.Count; i++)
-                {   //if bkg sprite is right of animating left scroll, draw
-                    if (scrollBkg[i].position.X > leftScroll[0].position.X)
-                    { Functions_Draw.Draw(scrollBkg[i]); }
-                }
-            }
-            else if (displayState == DisplayState.Opened)
-            {   //draw everything if screen is open
-                for (i = 0; i < scrollBkg.Count; i++)
-                { Functions_Draw.Draw(scrollBkg[i]); }
-
-                Functions_Draw.Draw(title);
-                Functions_Draw.Draw(headerLine);
-
+            Functions_Scroll.Draw(scroll);
+            if (scroll.displayState == DisplayState.Opened)
+            {   //draw map if scroll is open
 
                 #region Draw dungeon rooms
 
@@ -326,14 +247,6 @@ namespace DungeonRun
                 #endregion
 
             }
-
-            //always draw scroll pillars / ends
-            for (i = 0; i < leftScroll.Count; i++)
-            {   //these lists will always have same count
-                Functions_Draw.Draw(leftScroll[i]);
-                Functions_Draw.Draw(rightScroll[i]);
-            }
-
             ScreenManager.spriteBatch.End();
         }
 

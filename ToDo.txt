@@ -44,21 +44,41 @@ todo:
 
 
 
+Create proper data class and function class for Scroll
+
+this will allow us to reuse scroll for the Overworld Screen.
+
+created Functions_Scroll class.
+renamed CreateScrollColumn() to CreateColumn(), moved into Functions_Scroll.
+created Scroll data class.
+added AnimateOpen(), AnimateClosed(), and Draw() methods to Functions_Scroll.
+refactored + changed DungeonMapScreen to use Scroll data class + Functions_Scroll.
+playtested, working as expected.
 
 
 
 
-Animate the dungeon map's scroll open and closed
-
-updated DungeonMap to animate right scroll to right on opening.
-updated Dungeonmap to animate left scroll to left on closing.
-updated DungeonMap to draw bkg sprites based on their position.
-this position is compared to the left/right scrolls based on display state.
-this makes the scroll appear to open and close.
-playtested, looking really good and working as expected.
 
 
 
+
+
+
+later on we'll reuse this for the overworld screen
+
+
+design a new overworld map using chrono trigger map sprites
+this should be a wide island with MANY locations on it
+we'll fill these locations out later on, but the overall island shape needs to be complete
+areas for:
+	cursed castle, 
+	desert temple, 
+	mountain caves, 
+	forest shrine, 
+	townA, 
+	townB, 
+	colliseum
+	etc.. ?
 
 update the overworld screen to use the scroll sprite for background
 animate the scroll just like dungeon map screen

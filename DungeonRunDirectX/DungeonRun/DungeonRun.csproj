@@ -140,6 +140,9 @@
     <Compile Include="..\..\GameClasses\Functions_ScreenRec.cs">
       <Link>Classes\Functions_ScreenRec.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Scroll.cs">
+      <Link>Classes\Functions_Scroll.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_TitleAnimated.cs">
       <Link>Classes\Functions_TitleAnimated.cs</Link>
     </Compile>
