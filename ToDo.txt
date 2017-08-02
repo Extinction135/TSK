@@ -47,30 +47,88 @@ todo:
 * complete design of new overworld map
 
 areas for:
-	cursed castle, 
-	desert temple, 
-	mountain caves, 
-	forest shrine, 
-	townA, 
-	townB, 
-	colliseum
+cursed castle, 
+desert temple, 
+mountain caves, 
+forest shrine, 
+townA, 
+...townB, 
+...colliseum
+
+
+
+
+
+Create Random Dungeon Generation Algorithm
+
+the algorithm must build a path from exit room to hub room.
+the algorithm must add a path to the key room.
+the algorithm must ensure the boss room is always connected via a south door.
+the algorithm must ensure that all paths connect properly.
+the algorithm must create interesting, unique room layouts.
+the algorithm must be fast, so no flood filling or A* pathfinding.
+
+changed BuildDungeon -> Create Dungeon routine to place rooms randomly.
+Bug: updated Poke() method to properly place Right Doors.	
+created basic dungeon generation algorithm.
+updated algorithm to prevent boss room from connecting with rooms other than hub.
+modififed map to allow more space to display the dungeon layout.
+lots of playtesting and fiddling with routines, but working as expected.
+
+
+
+
+
+we need to be timing the creation of the dungeon
+this has a place in the info panel - 'dung: 0'
+
+
+
 
 	
 	
+we should be able to mark a door with a type
+each door should have a type, like secret, boss, trap, etc...
+this is based on the two rooms that were connected
+we already have a door.type, 
+so it may just be as easy as setting the door type when we get the positions
+then when we build the doors later (in build room) we simply transfer the door.type
 
 
 	
-Fix Hero Loadout Bug
+	
+	
+	
+	
+	
 
-Bug: the hero's loadout is never reset.
-In game1, player can set hero's loadout to items that don't exist in game2.
-Then player can load game2, and hero will still have these items equipped.
-Even tho hero doesn't have these items in inventory in game2.
+in order for rooms to be 'consistent', we'll need to store the index selected for the XMLroomdata list
+each room should have a XMLid int. this is the xml roomData list index for this room.
+when the dungeon is created, all the room XMLid values are assigned.
+then when a room is built, we choose the xml roomData list at [XMLid].
+this means the room will be built the same each time hero enters it
 
-Fix: reset hero's loadout to starting loadout upon a game load/create.
-the easiest place to do this was in the DialogScreen's closing routine.
-the hero's loadout is reset to sword, bomb, cloth armor, and no equipment.
-playtested, working as expected. bug fixed.
+
+
+
+
+
+
+we should probably make dungeon global, instead of burying it in Functions_Dungeon.dungeon
+and it should prolly be called Level. since its more than a dungeon
+
+
+
+
+
+
+Dungeon generation part3
+add secret rooms (via bombable walls)
+add routine for populating secret rooms (similar to populating exit room)
+add additional unnecessary distraction rooms
+
+if hero strikes a secret door, play a hollow sound
+if hero strikes a fake secret door, play a filled 'tink' sound (metallic tap)
 
 
 
@@ -91,36 +149,6 @@ but not flying projectiles, like fireball or arrow
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dungeon generation part2
-here is where we actually create interesting, random dungeons.
-create a path from exit to hub.
-create a path from hub to key.
-connect boss room to hub, so player knows where boss is early on.
-
-in order for rooms to be 'consistent', we'll need to store the index selected for the XMLroomdata list
-each room should have a XMLid int. this is the xml roomData list index for this room.
-when the dungeon is created, all the room XMLid values are assigned.
-then when a room is built, we choose the xml roomData list at [XMLid].
-this means the room will be built the same each time hero enters it
-
-Dungeon generation part3
-add secret rooms (via bombable walls)
-add routine for populating secret rooms (similar to populating exit room)
-add additional unnecessary distraction rooms
 
 
 

@@ -53,57 +53,98 @@ namespace DungeonRun
             #endregion
 
 
-            #region Create Basic Testing Dungeon - no randomness YET
+            #region Create Dungeon
 
             else
-            {   //create the dungeon's rooms
+            {
+                //create the exit room
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit);
-                Room hubRoom = new Room(new Point(0, 0), RoomType.Hub);
-                Room bossRoom = new Room(new Point(0, 0), RoomType.Boss);
-                Room keyRoom = new Room(new Point(0, 0), RoomType.Key);
-                Room columnRoom = new Room(new Point(0, 0), RoomType.Column);
-                Room rowRoom = new Room(new Point(0, 0), RoomType.Row);
-                Room squareRoom = new Room(new Point(0, 0), RoomType.Square);
-
-                //place/move the rooms (relative to each other)
                 Functions_Room.MoveRoom(exitRoom, buildPosition.X, buildPosition.Y);
-                Functions_Room.MoveRoom(columnRoom, 16 * 10, exitRoom.rec.Y - (16 * columnRoom.size.Y) - 16);
-                Functions_Room.MoveRoom(rowRoom, 16 * 10, columnRoom.rec.Y - (16 * rowRoom.size.Y) - 16);
-                Functions_Room.MoveRoom(squareRoom, 16 * 10, rowRoom.rec.Y - (16 * squareRoom.size.Y) - 16);
-                Functions_Room.MoveRoom(hubRoom, 16 * 10, squareRoom.rec.Y - (16 * hubRoom.size.Y) - 16);
-                Functions_Room.MoveRoom(bossRoom, 16 * 10, hubRoom.rec.Y - (16 * bossRoom.size.Y) - 16);
-                Functions_Room.MoveRoom(keyRoom, hubRoom.rec.X - (16 * keyRoom.size.X) - 16, hubRoom.rec.Y);
-                
-                //add rooms to the rooms list
                 dungeon.rooms.Add(exitRoom); //exit room must be at index0
-                dungeon.rooms.Add(hubRoom);
-                dungeon.rooms.Add(bossRoom);
-                dungeon.rooms.Add(keyRoom);
-                dungeon.rooms.Add(columnRoom);
-                dungeon.rooms.Add(rowRoom);
-                dungeon.rooms.Add(squareRoom);
+                int last = dungeon.rooms.Count() - 1;
+                int i;
 
-                //create the door location points
+                //create a north path to the hub room (keeps hub centered to map)
+                for (i = 0; i < 2; i++)
+                {
+                    last = dungeon.rooms.Count() - 1;
+                    Room room = new Room(new Point(0, 0), GetRandomRoomType());
+                    Functions_Room.MoveRoom(room, dungeon.rooms[last].rec.X, dungeon.rooms[last].rec.Y - (16 * room.size.Y) - 16);
+                    dungeon.rooms.Add(room);
+                }
+                //create hub north of last room
+                last = dungeon.rooms.Count() - 1;
+                Room hubRoom = new Room(new Point(0, 0), RoomType.Hub);
+                Functions_Room.MoveRoom(hubRoom, dungeon.rooms[last].rec.X, dungeon.rooms[last].rec.Y - (16 * hubRoom.size.Y) - 16);
+                dungeon.rooms.Add(hubRoom);
+                //place boss north of hub room
+                Room bossRoom = new Room(new Point(0, 0), RoomType.Boss);
+                Functions_Room.MoveRoom(bossRoom, hubRoom.rec.X, hubRoom.rec.Y - (16 * bossRoom.size.Y) - 16);
+                dungeon.rooms.Add(bossRoom);
+
+                //create the start of key path from a room that isn't exit / boss / hub
+                Room keyPathStart = new Room(new Point(0, 0), GetRandomRoomType());
+                int random = Functions_Random.Int(1, dungeon.rooms.Count() - 2);
+                AddRoom(dungeon.rooms[random], keyPathStart, 20, true);
+                //create a random path to the key room from key path start room (last room)
+                for (i = 0; i < 2; i++)
+                {
+                    last = dungeon.rooms.Count() - 1;
+                    Room room = new Room(new Point(0, 0), GetRandomRoomType());
+                    AddRoom(dungeon.rooms[last], room, 20, false);
+                }
+                //create key randomly around last room
+                last = dungeon.rooms.Count() - 1;
+                Room keyRoom = new Room(new Point(0, 0), RoomType.Key);
+                AddRoom(dungeon.rooms[last], keyRoom, 20, true);
+
+                //randomly add rooms around exit room
+                for (i = 0; i < 2; i++)
+                {
+                    last = dungeon.rooms.Count() - 1;
+                    Room room = new Room(new Point(0, 0), GetRandomRoomType());
+                    AddRoom(dungeon.rooms[0], room, 20, true);
+                }
+                AddMoreRooms();
+                AddMoreRooms();
+
+
+
+
+
+                #region Create the door location points (buildList)
+
                 List<Room> buildList = new List<Room>();
-                //add boss room first, followed by hub room
-                buildList.Add(bossRoom); //the boss door pos should be
-                buildList.Add(hubRoom); //at index 0 of doorLocations
-                //then add whatever other rooms exist in dungeon
-                buildList.Add(exitRoom);
-                buildList.Add(keyRoom);
-                buildList.Add(columnRoom);
-                buildList.Add(rowRoom);
-                buildList.Add(squareRoom);
+                buildList.Add(bossRoom); //boss room MUST be at index 0
+                buildList.Add(hubRoom); //hub room MUST be at index 1
+                for (i = 0; i < dungeon.rooms.Count; i++)
+                {   //then add all other dungeon rooms
+                    if (dungeon.rooms[i].type == RoomType.Boss) { } //ignore
+                    else if (dungeon.rooms[i].type == RoomType.Hub) { } //ignore
+                    else { buildList.Add(dungeon.rooms[i]); } //add dungeon room
+                }
+
+                #endregion
+
+
+                #region Connect Rooms with Doors
 
                 if (Flags.PrintOutput) { Debug.WriteLine("connecting rooms..."); }
+                Boolean connectRooms;
                 while (buildList.Count() > 0)
                 {   //check first room against remaining rooms
-                    for (int i = 1; i < buildList.Count(); i++)
-                    {   //if the two rooms are nearby
-                        //create door between these two rooms
-                        if (RoomsNearby(buildList[0], buildList[i]))
-                        { GetDoorLocations(buildList[0], buildList[i]); }
-
+                    for (i = 1; i < buildList.Count(); i++)
+                    {
+                        connectRooms = true;
+                        //only the boss room can connect to the hub room
+                        if (buildList[0].type == RoomType.Boss && buildList[i].type != RoomType.Hub)
+                        { connectRooms = false; }
+                        
+                        if(connectRooms)
+                        {   //if the two rooms are nearby, create door between them
+                            if (RoomsNearby(buildList[0], buildList[i]))
+                            { GetDoorLocations(buildList[0], buildList[i]); }
+                        }
                         //Debug.WriteLine("rooms nearby: " + RoomsNearby(buildList[0], buildList[i]));
                         //Debug.WriteLine("parent: " + buildList[0].type);
                         //Debug.WriteLine("child: " + buildList[i].type);
@@ -116,6 +157,9 @@ namespace DungeonRun
                     Debug.WriteLine("created  " + dungeon.doors.Count + " doors");
                 }
 
+                #endregion
+
+
                 //choose the dungeon track
                 if (dungeonTrack == 0) { Functions_Music.PlayMusic(Music.DungeonA); }
                 else if (dungeonTrack == 1) { Functions_Music.PlayMusic(Music.DungeonB); }
@@ -127,6 +171,8 @@ namespace DungeonRun
 
             #endregion
 
+
+            #region Finish Level (Dungeon or Shop)
 
             //build the first room in the dungeon (room with exit)
             dungeon.rooms[0].visited = true; //hero spawns in this room
@@ -142,7 +188,6 @@ namespace DungeonRun
             Pool.hero.direction = Direction.Up; //face hero up
             //check to see if dungeon map should be given to hero upon spawn
             if (Flags.MapCheat) { dungeon.map = true; } else { dungeon.map = false; }
-
             //place cameras starting position in dungeon
             if (Flags.CameraTracksHero) //center camera to hero
             { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
@@ -153,15 +198,16 @@ namespace DungeonRun
             }
             //teleport camera to targetPos
             Camera2D.currentPosition = Camera2D.targetPosition;
-
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();
             DungeonRecord.dungeonID = 0; //ID = 0 for now
             DungeonRecord.timer.Start(); //start the record timer
-
             //fade the dungeon screen out from black, revealing the new level
             dungeonScreen.overlay.alpha = 1.0f;
             dungeonScreen.displayState = DisplayState.Opening;
+
+            #endregion
+
         }
 
         static Rectangle compRec = new Rectangle(0, 0, 0, 0);
@@ -208,20 +254,24 @@ namespace DungeonRun
 
         static Point poke = new Point(0, 0); //used to see if child.collision.contains() poke value
         static void Poke(Direction Dir, Room Parent, Room Child)
-        {
+        {   
+            //no room can connect/build a south door to exit
+            if (Parent.type == RoomType.Exit && Dir == Direction.Down) { return; }
+            if (Child.type == RoomType.Exit && Dir == Direction.Up) { return; }
+
             List<Point> doorPos = new List<Point>(); //a list of possible door positions
 
 
             #region Check Left
 
             if (Dir == Direction.Left)
-            {   //iterate vertically left of parent from top left corner
+            {   //iterate vertically down parent from top left corner
                 for (int i = 0; i < Parent.size.Y; i++)
                 {
                     poke.X = Parent.rec.X - 24;
                     poke.Y = Parent.rec.Y + i * 16;
                     if (Child.rec.Contains(poke))
-                    { poke.X += 8;  doorPos.Add(poke); }
+                    { poke.X += 8; doorPos.Add(poke); }
                 }
             }
 
@@ -231,13 +281,13 @@ namespace DungeonRun
             #region Check Right
 
             else if(Dir == Direction.Right)
-            {   //iterate vertically left of parent from top right corner
+            {   //iterate vertically down parent from top right corner
                 for (int i = 0; i < Parent.size.Y; i++)
                 {
                     poke.X = Parent.rec.X + Parent.rec.Width + 24;
                     poke.Y = Parent.rec.Y + i * 16;
                     if (Child.rec.Contains(poke))
-                    { poke.X -= 8; doorPos.Add(poke); }
+                    { poke.X -= 8; poke.X -= 16; doorPos.Add(poke); }
                 }
             }
 
@@ -287,6 +337,77 @@ namespace DungeonRun
             dungeonType = DungeonType.Shop;
             ScreenManager.ExitAndLoad(new ScreenDungeon());
         }
+
+
+
+
+        public static RoomType GetRandomRoomType()
+        {   //return a column, row, or square RoomType
+            int random = Functions_Random.Int(0, 3);
+            if (random == 0) { return RoomType.Column; }
+            else if (random == 1) { return RoomType.Row; }
+            else { return RoomType.Square; }
+        }
+
+
+        public static Boolean AddRoom(Room Parent, Room Child, int Attempts, Boolean ignoreSouth)
+        {
+            int attempt = 0;
+            Boolean collision;
+            for (attempt = 0; attempt < Attempts; attempt++)
+            {   //inherit parent's position
+                Child.rec.X = Parent.rec.X;
+                Child.rec.Y = Parent.rec.Y;
+                int direction; //get the offset direction
+                if (ignoreSouth) //should we ignore south direction?
+                { direction = Functions_Random.Int(1, 4); } //ignore south
+                else { direction = Functions_Random.Int(1, 5); } //include south
+                //randomize placement of child in relation to parent
+                if (direction == 1) { Child.rec.X += Parent.rec.Width + 16; } //place right
+                else if (direction == 2) { Child.rec.Y -= Child.rec.Height + 16; } //place up
+                else if (direction == 3) { Child.rec.X -= Child.rec.Width + 16; } //place left
+                else if (direction == 4) { Child.rec.Y += Parent.rec.Height + 16; } //place down
+
+                collision = false;
+                //below we check to make sure the room isn't overlapping another room
+                //we do this by inflating the rec by two tiles, then checking collisions, then deflating
+                //this ensures that the room has a 16px border on all edges and never touches another room
+
+                //inflate
+                Child.rec.Width += 32; Child.rec.Height += 32;
+                Child.rec.X -= 16; Child.rec.Y -= 16;
+                //check to see if child collides with any room
+                for (int i = 0; i < dungeon.rooms.Count; i++)
+                { if (Child.rec.Intersects(dungeon.rooms[i].rec)) { collision = true; } }
+                //deflate
+                Child.rec.Width -= 32; Child.rec.Height -= 32;
+                Child.rec.X += 16; Child.rec.Y += 16;
+
+                if (!collision) //if there wasn't a room collision, add room to rooms list
+                { dungeon.rooms.Add(Child); return true; }
+            }
+            return false; //we didn't successfully place the child room
+        }
+
+
+        public static void AddMoreRooms()
+        {   //randomly add additional rooms to all rooms except exit/boss/key
+            int coreRoomCount = dungeon.rooms.Count;
+            for (int i = 0; i < coreRoomCount; i++)
+            {
+                if (dungeon.rooms[i].type == RoomType.Exit) { }
+                else if (dungeon.rooms[i].type == RoomType.Boss) { }
+                else if (dungeon.rooms[i].type == RoomType.Key) { }
+                else
+                {
+                    Room room = new Room(new Point(0, 0), GetRandomRoomType());
+                    AddRoom(dungeon.rooms[i], room, 10, false);
+                }
+            }
+        }
+
+
+
 
     }
 }

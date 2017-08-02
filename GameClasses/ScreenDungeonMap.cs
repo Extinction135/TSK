@@ -38,9 +38,11 @@ namespace DungeonRun
             Assets.Play(Assets.sfxMapOpen);
 
             //create scroll instance
-            scroll = new Scroll(new Vector2(16 * 14, 16 * 6), 11, 10);
+            scroll = new Scroll(new Vector2(16 * 12, 16 * 4), 15, 14);
             scroll.displayState = DisplayState.Opening;
             scroll.title.text = "Dungeon Map";
+
+            int verticalOffset = 16; //how far map is pushed up/down from screen center
 
             //create rooms and doors lists
             rooms = new List<Room>();
@@ -77,8 +79,8 @@ namespace DungeonRun
                 mapRoom.rec.X = mapRoom.rec.X / 16;
                 mapRoom.rec.Y = mapRoom.rec.Y / 16;
                 //center to screen
-                mapRoom.rec.X += (640 / 2) - 8;
-                mapRoom.rec.Y += (360 / 2) + 32;
+                mapRoom.rec.X += (640 / 2) - 8; //horizontal offset
+                mapRoom.rec.Y += (360 / 2) + verticalOffset; //vertical offset
                 //get visibility
                 mapRoom.visited = dungeonRoom.visited;
                 //set marker to currentRoom position 
@@ -125,7 +127,7 @@ namespace DungeonRun
                 dungeonDoor.rec.Y = dungeonDoor.rec.Y / 16;
                 //center to screen
                 dungeonDoor.rec.X += (640 / 2) - 8;
-                dungeonDoor.rec.Y += (360 / 2) + 32;
+                dungeonDoor.rec.Y += (360 / 2) + verticalOffset;
                 //get visibility
                 dungeonDoor.visited = Functions_Dungeon.dungeon.doors[i].visited;
                 //add door to doors list
