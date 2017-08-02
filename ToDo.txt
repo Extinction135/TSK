@@ -59,28 +59,17 @@ townA,
 
 
 
-Create Random Dungeon Generation Algorithm
-
-the algorithm must build a path from exit room to hub room.
-the algorithm must add a path to the key room.
-the algorithm must ensure the boss room is always connected via a south door.
-the algorithm must ensure that all paths connect properly.
-the algorithm must create interesting, unique room layouts.
-the algorithm must be fast, so no flood filling or A* pathfinding.
-
-changed BuildDungeon -> Create Dungeon routine to place rooms randomly.
-Bug: updated Poke() method to properly place Right Doors.	
-created basic dungeon generation algorithm.
-updated algorithm to prevent boss room from connecting with rooms other than hub.
-modififed map to allow more space to display the dungeon layout.
-lots of playtesting and fiddling with routines, but working as expected.
 
 
 
+Display Dungeon Generation Time (in ticks)
 
-
-we need to be timing the creation of the dungeon
-this has a place in the info panel - 'dung: 0'
+updated Dungeon Generation routine with stopwatch and timespan.
+upon completion, dungeon generation routine sets debugInfo.dungeonTime value.
+this value is displayed in the debugInfo panel.
+this value is also written to output, if game is printing output.
+playtested, working as expected.
+generation time is around 10,000 ticks (@ 1ms).
 
 
 

@@ -14,6 +14,8 @@ namespace DungeonRun
 {
     public static class Functions_Dungeon
     {
+        public static Stopwatch stopWatch = new Stopwatch();
+        public static TimeSpan time;
 
         public static ScreenDungeon dungeonScreen;
         public static Dungeon dungeon = new Dungeon(); //the last dungeon created
@@ -56,7 +58,9 @@ namespace DungeonRun
             #region Create Dungeon
 
             else
-            {
+            {   //start timing dungeon generation
+                stopWatch.Reset(); stopWatch.Start();
+
                 //create the exit room
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit);
                 Functions_Room.MoveRoom(exitRoom, buildPosition.X, buildPosition.Y);
@@ -107,9 +111,6 @@ namespace DungeonRun
                 }
                 AddMoreRooms();
                 AddMoreRooms();
-
-
-
 
 
                 #region Create the door location points (buildList)
@@ -167,6 +168,12 @@ namespace DungeonRun
                 //cycle thru dungeon tracks
                 dungeonTrack++;
                 if (dungeonTrack > 2) { dungeonTrack = 0; }
+
+                //collect the elapsed ticks for dungeon generation
+                stopWatch.Stop(); time = stopWatch.Elapsed;
+                DebugInfo.dungeonTime = time.Ticks;
+                if (Flags.PrintOutput)
+                { Debug.WriteLine("dungeon generated in " + time.Ticks + " ticks"); }
             }
 
             #endregion
