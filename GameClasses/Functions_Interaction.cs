@@ -217,8 +217,9 @@ namespace DungeonRun
 
                 else if (Obj.group == ObjGroup.Door)
                 {
-                    //exit pillars have no interactions whatsoever
+                    //exit pillars & bombable doors have no interactions whatsoever
                     if (Obj.type == ObjType.ExitPillarLeft || Obj.type == ObjType.ExitPillarRight) { return; }
+                    if (Obj.type == ObjType.DoorBombable) { return; }
 
 
                     #region Check Collisions with Door Types

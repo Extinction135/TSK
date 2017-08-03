@@ -67,19 +67,13 @@ for example, locations inside the castle should be inaccessible until the hero g
 
 
 
-Add Secret Rooms to Dungeon
 
-added DoorType enumerator with values for Open, Boss, and Secret.
-added DoorType field to Door data class.
-updated Functions_Poke() to set dungeon.door based on Parent/Child room.type.
-heavily modififed Functions_Dungeon.SetDoors().
-moved boss door floor decals into FinishHubRoom().
-created Functions_Dungeon.AddSecretRooms().
-updated dunGen routine to call AddSecretRooms().
-playtested, working mostly as expected. needs polish, minor bugs.
 
-fixed bug where secret rooms could be added to exit & boss rooms.
-this didn't make sense, and doors wouldn't be built between the rooms.
+Prevent Bombable Doors from centering Hero
+
+fixed a bug where bombable doors would pull hero to their center.
+for doors that can be passed thru, this is correct behavior.
+but a bombable door cannot be passed thru, and made the wall feel 'sticky'.
 playtested, working as expected.
 
 
@@ -87,11 +81,6 @@ playtested, working as expected.
 
 
 
-
-
-
-
-bombable doors shouldn't center hero
 
 secret rooms + bombable doors should only appear on dungeon map if they have been visited
 or if the Flags.mapCheat is true
@@ -103,6 +92,10 @@ boss door no longer needs to be index 0, in the buildList
 
 
 
+
+
+
+sword projectiles (any projectile) should sort on top layer over all other sprites
 
 
 
