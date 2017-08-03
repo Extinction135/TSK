@@ -181,7 +181,7 @@ namespace DungeonRun
             else if (Room.type == RoomType.Row)
             { BuildRoomObjs(Assets.roomDataRow[0]); AddWallStatues(Room); }
             else if (Room.type == RoomType.Square)
-            { BuildRoomObjs(Assets.roomDataSquare[0]); AddWallStatues(Room);  }
+            { BuildRoomObjs(Assets.roomDataSquare[0]); AddWallStatues(Room); }
             //scatter debris in all dungeon rooms, but not shop
             if (Room.type != RoomType.Shop) { ScatterDebris(Room); }
             //update the room objs, remove overlapping objs
@@ -242,52 +242,38 @@ namespace DungeonRun
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
-                {   
+                {
                     if (Pool.roomObjPool[i].group == ObjGroup.Wall)
                     {   //check to see if wall collides with any door from dungeon
                         for (j = 0; j < Functions_Dungeon.dungeon.doors.Count; j++)
                         {
-                            if(Pool.roomObjPool[i].compCollision.rec.Contains(Functions_Dungeon.dungeon.doors[j].rec.Location))
+                            if (Pool.roomObjPool[i].compCollision.rec.Contains(Functions_Dungeon.dungeon.doors[j].rec.Location))
                             {
-                                //if current room is boss room, then room door is trap door
+                                //set the room's doors based on the dungeon.door.type
+                                if (Functions_Dungeon.dungeon.doors[j].type == DoorType.Bombable)
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBombable); }
+                                else if (Functions_Dungeon.dungeon.doors[j].type == DoorType.Bombed)
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBombed); }
+                                else if (Functions_Dungeon.dungeon.doors[j].type == DoorType.Boss)
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBoss); }
+                                else //all other doorTypes default to open
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen); }
+
+                                //set the door decorations (bombed/bombable doors dont get decorations)
+                                if (Pool.roomObjPool[i].type == ObjType.DoorBoss)
+                                { DecorateDoor(Pool.roomObjPool[i], ObjType.WallPillar); }
+                                else if (Pool.roomObjPool[i].type == ObjType.DoorOpen)
+                                { DecorateDoor(Pool.roomObjPool[i], ObjType.WallTorch); }
+
+                                //finally, override door types based on specific room.type
                                 if (Room.type == RoomType.Boss)
-                                {
+                                {   //all doors inside boss room are trap doors (push hero + close)
                                     Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap);
-                                    DecorateDoor(Pool.roomObjPool[i], ObjType.WallPillar);
-                                }
-                                //if room is hub, and dungeon.door is 0 (boss door), then room door is boss door
-                                else if (Room.type == RoomType.Hub && j == 0)
-                                {
-                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBoss);
-                                    DecorateDoor(Pool.roomObjPool[i], ObjType.WallPillar);
-
-                                    //build the boss welcome mat (left)
-                                    objRef = Functions_Pool.GetRoomObj();
-                                    Functions_Movement.Teleport(objRef.compMove,
-                                        Pool.roomObjPool[i].compSprite.position.X - 8,
-                                        Pool.roomObjPool[i].compSprite.position.Y + 16);
-                                    objRef.direction = Direction.Down;
-                                    Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-                                    //build the boss welcome mat (right)
-                                    objRef = Functions_Pool.GetRoomObj();
-                                    Functions_Movement.Teleport(objRef.compMove,
-                                        Pool.roomObjPool[i].compSprite.position.X + 8,
-                                        Pool.roomObjPool[i].compSprite.position.Y + 16);
-                                    objRef.direction = Direction.Down;
-                                    objRef.compSprite.flipHorizontally = true;
-                                    Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-                                }
-                                //all other rooms simply have open doors
-                                else
-                                {
-                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen);
-                                    DecorateDoor(Pool.roomObjPool[i], ObjType.WallTorch);
                                 }
 
-                                //sort the object that became a door
+                                //sort door object
                                 Functions_Component.SetZdepth(Pool.roomObjPool[i].compSprite);
-
-                                //place a floor tile underneath this door
+                                //place a floor tile underneath door
                                 floorRef = Functions_Pool.GetFloor();
                                 floorRef.position = Pool.roomObjPool[i].compSprite.position;
                             }
@@ -296,6 +282,8 @@ namespace DungeonRun
                 }
             }
         }
+        
+
 
 
 
@@ -511,8 +499,8 @@ namespace DungeonRun
                     else if (objA.group == ObjGroup.Wall) { checkOverlap = true; }
                     else if (objA.group == ObjGroup.Object) { checkOverlap = true; }
                 }   //we are not checking liftable/draggable obj collisions with debris
-                
-                if(checkOverlap)
+
+                if (checkOverlap)
                 {
                     for (j = 0; j < Pool.roomObjCount; j++)
                     {
@@ -520,7 +508,7 @@ namespace DungeonRun
                         if (objB.active && objA != objB)
                         {
                             removeObjB = false;
-                            if(objB.group == ObjGroup.Wall)
+                            if (objB.group == ObjGroup.Wall)
                             {   //prevent walls from overlapping doors, torches, and pillars
                                 if (objA.group == ObjGroup.Door) { removeObjB = true; }
                                 if (objA.type == ObjType.WallTorch) { removeObjB = true; }
@@ -626,7 +614,7 @@ namespace DungeonRun
         }
 
         public static void FinishSecretRoom(Room Room)
-        {   
+        {
             //what goes in a secret room? not chests
             //perhaps a secret vendor? or vendors?
         }
@@ -670,6 +658,23 @@ namespace DungeonRun
                         { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestEmpty); }
                         else //if hero has found the map, this chest is empty, else it has a map
                         { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestMap); }
+                    }
+                    else if (Pool.roomObjPool[i].type == ObjType.DoorBoss)
+                    {   //build the boss welcome mat (left)
+                        objRef = Functions_Pool.GetRoomObj();
+                        Functions_Movement.Teleport(objRef.compMove,
+                            Pool.roomObjPool[i].compSprite.position.X - 8,
+                            Pool.roomObjPool[i].compSprite.position.Y + 16);
+                        objRef.direction = Direction.Down;
+                        Functions_GameObject.SetType(objRef, ObjType.BossDecal);
+                        //build the boss welcome mat (right)
+                        objRef = Functions_Pool.GetRoomObj();
+                        Functions_Movement.Teleport(objRef.compMove,
+                            Pool.roomObjPool[i].compSprite.position.X + 8,
+                            Pool.roomObjPool[i].compSprite.position.Y + 16);
+                        objRef.direction = Direction.Down;
+                        objRef.compSprite.flipHorizontally = true;
+                        Functions_GameObject.SetType(objRef, ObjType.BossDecal);
                     }
                 }
             }

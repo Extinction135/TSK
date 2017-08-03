@@ -45,37 +45,92 @@ todo:
 
 
 * complete design of new overworld map
+- location dots
+- path between location dots
+- hero sprite placed (mockup)
 
-areas for:
-cursed castle, 
-desert temple, 
-mountain caves, 
-forest shrine, 
-townA, 
-...townB, 
-...colliseum
+update overworld map image
+update overworld map locations + selection neighbors
+
+display hero with walking animation at the currently selected location
+include selection box, blinking, with scaling animation
+there should also be an arrow that animates down, over the hero's head
+
+when user moves between locations, hero should walk in that direction to that location
+this is reminiscent of super mario world, and mario moving between levels
+consider adding little white dots to show the paths between locations
+some locations can be 'locked off' until the connecting location is beaten / triggered
+for example, locations inside the castle should be inaccessible until the hero gains gate access.
 
 
 
 
 
 
+Add Secret Rooms to Dungeon
 
+added DoorType enumerator with values for Open, Boss, and Secret.
+added DoorType field to Door data class.
+updated Functions_Poke() to set dungeon.door based on Parent/Child room.type.
+heavily modififed Functions_Dungeon.SetDoors().
+moved boss door floor decals into FinishHubRoom().
+created Functions_Dungeon.AddSecretRooms().
+updated dunGen routine to call AddSecretRooms().
+playtested, working mostly as expected. needs polish, minor bugs.
 
-Display Dungeon Generation Time (in ticks)
-
-updated Dungeon Generation routine with stopwatch and timespan.
-upon completion, dungeon generation routine sets debugInfo.dungeonTime value.
-this value is displayed in the debugInfo panel.
-this value is also written to output, if game is printing output.
+fixed bug where secret rooms could be added to exit & boss rooms.
+this didn't make sense, and doors wouldn't be built between the rooms.
 playtested, working as expected.
-generation time is around 10,000 ticks (@ 1ms).
 
 
 
 
-	
-	
+
+
+
+
+
+
+bombable doors shouldn't center hero
+
+secret rooms + bombable doors should only appear on dungeon map if they have been visited
+or if the Flags.mapCheat is true
+
+
+
+
+boss door no longer needs to be index 0, in the buildList
+
+
+
+
+
+
+
+
+
+we need to create fake bombable doors, using WallStraightCracked
+which could be shortened to WallCracked.
+
+
+
+later on, when bomb explosion collides with dungeon.door
+we set the dungeon.door type to bombed
+we will need to check bomb collisions against dungeon.doors list
+and update the DoorType
+
+
+
+
+when we build the boss floor mats, this should exist in FinishBossRoom(), not SetDoors.
+
+
+
+
+
+
+Add secret rooms connected via bombable doors
+
 we should be able to mark a door with a type
 each door should have a type, like secret, boss, trap, etc...
 this is based on the two rooms that were connected
@@ -83,13 +138,37 @@ we already have a door.type,
 so it may just be as easy as setting the door type when we get the positions
 then when we build the doors later (in build room) we simply transfer the door.type
 
+secret rooms are 3x3 rooms added onto non-core rooms (exit, hub, boss, key).
+they cannot connect to core rooms, in any direction.
+they can have multiple connections, so they may connect non-core rooms.
+these rooms are connected using bombable doors
 
-	
-	
-	
-	
-	
-	
+if hero strikes a bombable door, play a hollow sound
+if hero strikes a fake bombable door, play a filled 'tink' sound (metallic tap)
+this fake bombable door is actually just a wall sprite
+we take a normal wall and change it to look bombable
+
+bomb explosions should be able to collapse bombable doors, making them passable
+when we collapse a bombable door, we update the ROOM obj and the DUNGEON.DOORS obj
+this makes the collapse consistent!!! 
+otherwise hero would get stuck in a bombable door upon secret room exit
+
+
+
+
+
+
+Functions_Room.ActivateLeverObjects() prolly should go in the
+
+
+We could also move alot of methods out of Functions_Room and into a new class
+called Functions_Doors
+
+
+
+
+
+
 
 in order for rooms to be 'consistent', we'll need to store the index selected for the XMLroomdata list
 each room should have a XMLid int. this is the xml roomData list index for this room.
@@ -97,6 +176,8 @@ when the dungeon is created, all the room XMLid values are assigned.
 then when a room is built, we choose the xml roomData list at [XMLid].
 this means the room will be built the same each time hero enters it
 
+in order to test room 'consistency', we'll need to add more roomData
+boss, hub, key, column, square, row
 
 
 
@@ -104,27 +185,7 @@ this means the room will be built the same each time hero enters it
 
 
 we should probably make dungeon global, instead of burying it in Functions_Dungeon.dungeon
-and it should prolly be called Level. since its more than a dungeon
-
-
-
-
-
-
-Dungeon generation part3
-add secret rooms (via bombable walls)
-add routine for populating secret rooms (similar to populating exit room)
-add additional unnecessary distraction rooms
-
-if hero strikes a secret door, play a hollow sound
-if hero strikes a fake secret door, play a filled 'tink' sound (metallic tap)
-
-
-
-
-
-
-
+and it should prolly be called Level. since its going to become more than a dungeon
 
 
 Bug
@@ -153,6 +214,57 @@ this is BAD BAD BAD
 
 
 
+
+
+
+
+
+
+
+
+
+
+Test deployment of Game on XBOX ONE
+if loading xml room data fails, we'll need to store this data in .cs files
+so we'll need to convert the XML data into .CS files
+
+
+
+
+Write a RoomDataXML converter for UWP project (we can use for all projects too)
+
+so we have all these great XML files
+we load those files in and parse them to RoomXmlData objects.
+we need to convert the XML data to .cs files.
+these CS files can then be included into the project, 
+then exported to output directory,
+then loaded into the game at runtime.
+and this is much faster than parsing XML each time game loads
+and VS will check to make sure these CS files are syntax compliant
+
+there should be files for: hub, key, boss, square, column, row
+these are monolithic, code-generated files, with thousands of lines
+simply "Add as link" these files into the project
+then using a flag boolean, the backend will load them instead of the xml roomData
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 RELEASE
 update the readme to reflect the directX port
 "A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
@@ -165,7 +277,6 @@ release version 0.6 with complete dungeon & enemy variety.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 record a video playthrough of the game as it is right now
-consider updating the overworld map to look better too
 
 
 
@@ -186,6 +297,20 @@ consider updating the overworld map to look better too
 
 
 
+
+
+
+
+
+
+
+
+the exit rooms should be different for each dungeon type
+but they should be the same for the dungeon type they represent
+so the dungeon type feels consistent, but there is variety between dungeon types
+
+create additional dungeon sprite sheets for the other 3 dungeons
+don't worry about additional enemies or bosses tho, just use the blobs
 
 
 
@@ -243,10 +368,6 @@ they should be able to be pushed into them, however
 
 
 
-overworld++
-overworld dungeon icon is the boss of that dungeon
-so all dungeons should display a blob character instead of a skull
-
 
 instead of crystals, we should collect boss's heads.
 this is the same icon that appears on the overworld map for the dungeon
@@ -286,16 +407,6 @@ i'd like a LOC counter for the game classes folder
 1kb = 1024 chars
 game classes folder = 521kb
 521 * 1024 = 533,504 characters in game classes
-
-
-Fixing the UWP project RoomData issue
-we can create a method that takes the loaded xml lists and writes them to a .cs file
-then we can include this .cs file (or files) in the UWP project
-this way we bypass the need to copy the XML roomdata to the installed directory
-instead, the xml roomdata is compiled as a class and then fed into the Assets.xmlRoomData lists
-we may even want to do this for all projects, since it's likely faster than loading + parsing XML
-
-
 
 
 
@@ -350,19 +461,6 @@ we should be able to turn the conveyors on and off
 
 	
 	
-	
-Vendors++
-
-Add hearts to vendor items
-player should be able to purchase heart pieces from the vendor, for gold
-4 heart pieces add up to a complete heart increase
-remove heart pieces from chests
-chests only contain gold, big key, or map
-
-
-Interaction++
-
-
 
 	
 	
@@ -405,12 +503,9 @@ DungeonDesign - Taking it Further
 	
 	
 	
-
-Polish++
-
-
-
-
+	
+	
+	
 Create CheatsScreen - or this could be part of game ctrls
 
 less instances on sfx list for text

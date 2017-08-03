@@ -55,11 +55,13 @@ namespace DungeonRun
             #endregion
 
 
-            #region Create Dungeon
-
+            //Create Dungeon
             else
             {   //start timing dungeon generation
                 stopWatch.Reset(); stopWatch.Start();
+
+
+                #region Generate the Dungeon
 
                 //create the exit room
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit);
@@ -109,8 +111,16 @@ namespace DungeonRun
                     Room room = new Room(new Point(0, 0), GetRandomRoomType());
                     AddRoom(dungeon.rooms[0], room, 20, true);
                 }
+
                 AddMoreRooms();
                 AddMoreRooms();
+                AddSecretRooms();
+
+
+
+
+
+                #endregion
 
 
                 #region Create the door location points (buildList)
@@ -161,11 +171,11 @@ namespace DungeonRun
                 #endregion
 
 
-                //choose the dungeon track
+                //choose the dungeon music
                 if (dungeonTrack == 0) { Functions_Music.PlayMusic(Music.DungeonA); }
                 else if (dungeonTrack == 1) { Functions_Music.PlayMusic(Music.DungeonB); }
                 else if (dungeonTrack == 2) { Functions_Music.PlayMusic(Music.DungeonC); }
-                //cycle thru dungeon tracks
+                //cycle thru dungeon music tracks
                 dungeonTrack++;
                 if (dungeonTrack > 2) { dungeonTrack = 0; }
 
@@ -175,8 +185,6 @@ namespace DungeonRun
                 if (Flags.PrintOutput)
                 { Debug.WriteLine("dungeon generated in " + time.Ticks + " ticks"); }
             }
-
-            #endregion
 
 
             #region Finish Level (Dungeon or Shop)
@@ -214,6 +222,7 @@ namespace DungeonRun
             dungeonScreen.displayState = DisplayState.Opening;
 
             #endregion
+
 
         }
 
@@ -333,10 +342,20 @@ namespace DungeonRun
             #endregion
 
 
-            if (doorPos.Count > 2) //choose middle door position
-            { dungeon.doors.Add(new Door(doorPos[(int)doorPos.Count / 2])); }
-            else //choose 1st door
-            { dungeon.doors.Add(new Door(doorPos[0])); } 
+            //select the door
+            int chosenIndex = 0; //default choose first door position
+            if (doorPos.Count > 2) //but if we have 3 or more door positions,
+            { chosenIndex = doorPos.Count / 2; } //choose the middle one
+
+            //set the type of the door, based on parent & child type
+            Door door = new Door(doorPos[chosenIndex]);
+            if (Parent.type == RoomType.Boss) { door.type = DoorType.Boss; }
+            else if (Child.type == RoomType.Boss) { door.type = DoorType.Boss; }
+            if (Parent.type == RoomType.Secret) { door.type = DoorType.Bombable; }
+            else if (Child.type == RoomType.Secret) { door.type = DoorType.Bombable; }
+
+            //add the door to dungeon.doors list
+            dungeon.doors.Add(door);
         }
 
         public static void LoadShop()
@@ -345,9 +364,6 @@ namespace DungeonRun
             ScreenManager.ExitAndLoad(new ScreenDungeon());
         }
 
-
-
-
         public static RoomType GetRandomRoomType()
         {   //return a column, row, or square RoomType
             int random = Functions_Random.Int(0, 3);
@@ -355,7 +371,6 @@ namespace DungeonRun
             else if (random == 1) { return RoomType.Row; }
             else { return RoomType.Square; }
         }
-
 
         public static Boolean AddRoom(Room Parent, Room Child, int Attempts, Boolean ignoreSouth)
         {
@@ -397,6 +412,10 @@ namespace DungeonRun
         }
 
 
+
+
+
+
         public static void AddMoreRooms()
         {   //randomly add additional rooms to all rooms except exit/boss/key
             int coreRoomCount = dungeon.rooms.Count;
@@ -412,6 +431,24 @@ namespace DungeonRun
                 }
             }
         }
+
+        public static void AddSecretRooms()
+        {   //randomly add secret rooms to all rooms except exit/boss/secret
+            int coreRoomCount = dungeon.rooms.Count;
+            for (int i = 0; i < coreRoomCount; i++)
+            {
+                if (dungeon.rooms[i].type == RoomType.Exit) { }
+                else if (dungeon.rooms[i].type == RoomType.Boss) { }
+                else if (dungeon.rooms[i].type == RoomType.Secret) { }
+                else
+                {
+                    Room room = new Room(new Point(0, 0), RoomType.Secret);
+                    AddRoom(dungeon.rooms[i], room, 10, false);
+                }
+            }
+        }
+
+
 
 
 

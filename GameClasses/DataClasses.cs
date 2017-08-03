@@ -494,14 +494,13 @@ namespace DungeonRun
         public Rectangle rec = new Rectangle(0, 0, 16, 16);
         public Boolean visited = false;
         public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
+        public DoorType type = DoorType.Open;
     }
 
     public class Dungeon
     {
         public List<Room> rooms = new List<Room>();
         public List<Door> doors = new List<Door>();
-        //public List<Point> doorLocations = new List<Point>();
-
         public Boolean bigKey = false;
         public Boolean map = false;
         public DungeonType type = DungeonType.CursedCastle;

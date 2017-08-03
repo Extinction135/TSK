@@ -20,7 +20,11 @@ namespace DungeonRun
 
     public enum BootRoutine { Game, RoomBuilder }
 
+
+
     public enum DisplayState { Opening, Opened, Closing, Closed }
+
+    public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
 
     public enum EditorState { MoveObj, AddObj, DeleteObj }
 
@@ -32,13 +36,17 @@ namespace DungeonRun
 
     public enum ExitAction { Title, Summary, Overworld, QuitGame, ExitScreen }
 
-    public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 
-    public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
+
+    public enum DungeonType { CursedCastle, Shop }
+
+    public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 
     public enum RoomType { Exit, Hub, Boss, Key, Shop, Column, Row, Square, Secret }
 
-    public enum DungeonType { CursedCastle, Shop }
+    public enum DoorType { Open, Boss, Bombable, Bombed }
+
+    
 
     public enum ActorType { Hero, Blob, Boss, }
 
