@@ -342,10 +342,28 @@ namespace DungeonRun
 
             if (ObjB.compCollision.blocking) //is the colliding object blocking?
             {
-                if (ObjA.type == ObjType.ProjectileFireball ||
-                    ObjA.type == ObjType.ProjectileArrow)
-                { ObjA.lifeCounter = ObjA.lifetime; } //kill projectile
-                else if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); }
+
+                if (ObjA.group == ObjGroup.Projectile)
+                {
+                    if (ObjA.type == ObjType.ProjectileFireball 
+                        || ObjA.type == ObjType.ProjectileArrow)
+                    {   //kill projectile upon blocking collision
+                        ObjA.lifeCounter = ObjA.lifetime;
+                    } 
+                    else if(ObjA.type == ObjType.ProjectileExplosion)
+                    {   //explosions can alter certain gameobjects
+                        if(ObjB.type == ObjType.DoorBombable)
+                        {   //collapse the room.door
+                            Functions_GameObject.SetType(ObjB, ObjType.DoorBombed);
+                            Assets.Play(Assets.sfxChestOpen); //play secret sound fx
+                            CollapseDungeonDoor(ObjA); //collapse the dungeon.door
+                        }
+                    }
+                }
+                else
+                {
+                    if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); }
+                }
             }
 
             #endregion
@@ -364,6 +382,21 @@ namespace DungeonRun
 
             #endregion
 
+        }
+
+        static void CollapseDungeonDoor(GameObject Obj)
+        {   //some gameobjects can collapse bombable dungeon.doors
+            if (Obj.type == ObjType.ProjectileExplosion)
+            {
+                for(int i = 0; i < Functions_Dungeon.dungeon.doors.Count; i++)
+                {   //if this explosion collides with any dungeon.door that is of type.bombable
+                    if (Functions_Dungeon.dungeon.doors[i].type == DoorType.Bombable)
+                    {   //change this door type to type.bombed
+                        if (Obj.compCollision.rec.Intersects(Functions_Dungeon.dungeon.doors[i].rec))
+                        { Functions_Dungeon.dungeon.doors[i].type = DoorType.Bombed; }
+                    }
+                }
+            }
         }
 
 
@@ -391,7 +424,6 @@ namespace DungeonRun
                 Bumper.compSprite.position.Y, 
                 Direction.None);
         }
-
         
 
 

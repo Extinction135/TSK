@@ -68,12 +68,17 @@ for example, locations inside the castle should be inaccessible until the hero g
 
 
 
+Make Explosion projectiles collapse Bombable Doors
 
-Prevent Bombable Doors from centering Hero
+added path for explosion projectiles to collapse bombable doors.
+this path was added in Funtions_Interaction.InteractObject(ObjA, ObjB).
+playtested, explosions collapse bombable doors.
 
-fixed a bug where bombable doors would pull hero to their center.
-for doors that can be passed thru, this is correct behavior.
-but a bombable door cannot be passed thru, and made the wall feel 'sticky'.
+created CollapseDungeonDoor() in Functions_Interaction.
+this method checks collisions between explosions and dungeon.doors.
+if an explosion collides with a bombable door, it becomes a bombed door.
+since rooms are now built using the dungeon.doors.type..
+blowing up a bombable door remains consistent for the life of the dungeon.
 playtested, working as expected.
 
 
@@ -82,78 +87,36 @@ playtested, working as expected.
 
 
 
+
+
+
+
+
+
+bombable doors aren't sorting properly (NSEW)
+they should sort just like a wall does
+
+collapsing a bombable door should play the secret soundfx
+
 secret rooms + bombable doors should only appear on dungeon map if they have been visited
 or if the Flags.mapCheat is true
 
-
-
-
-boss door no longer needs to be index 0, in the buildList
-
-
-
-
-
-
-sword projectiles (any projectile) should sort on top layer over all other sprites
-
-
-
-
-
+boss door no longer needs to be index 0, in the buildList, RIGHT?
 
 we need to create fake bombable doors, using WallStraightCracked
 which could be shortened to WallCracked.
 
-
-
-later on, when bomb explosion collides with dungeon.door
-we set the dungeon.door type to bombed
-we will need to check bomb collisions against dungeon.doors list
-and update the DoorType
-
-
-
-
-when we build the boss floor mats, this should exist in FinishBossRoom(), not SetDoors.
-
-
-
-
-
-
-Add secret rooms connected via bombable doors
-
-we should be able to mark a door with a type
-each door should have a type, like secret, boss, trap, etc...
-this is based on the two rooms that were connected
-we already have a door.type, 
-so it may just be as easy as setting the door type when we get the positions
-then when we build the doors later (in build room) we simply transfer the door.type
-
-secret rooms are 3x3 rooms added onto non-core rooms (exit, hub, boss, key).
-they cannot connect to core rooms, in any direction.
-they can have multiple connections, so they may connect non-core rooms.
-these rooms are connected using bombable doors
-
 if hero strikes a bombable door, play a hollow sound
-if hero strikes a fake bombable door, play a filled 'tink' sound (metallic tap)
-this fake bombable door is actually just a wall sprite
-we take a normal wall and change it to look bombable
-
-bomb explosions should be able to collapse bombable doors, making them passable
-when we collapse a bombable door, we update the ROOM obj and the DUNGEON.DOORS obj
-this makes the collapse consistent!!! 
-otherwise hero would get stuck in a bombable door upon secret room exit
+if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
 
 
 
 
 
 
-Functions_Room.ActivateLeverObjects() prolly should go in the
 
 
+Functions_Room.ActivateLeverObjects() prolly should go in diff class
 We could also move alot of methods out of Functions_Room and into a new class
 called Functions_Doors
 
@@ -214,7 +177,7 @@ this is BAD BAD BAD
 
 
 
-
+sword projectiles (any projectile) should sort on top layer over all other sprites
 
 
 Test deployment of Game on XBOX ONE

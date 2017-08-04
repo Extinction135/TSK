@@ -39,7 +39,7 @@ namespace DungeonRun
         public static Boolean InfiniteMagic = false; //enable magic cost
         public static Boolean InfiniteGold = false; //enable infinite gold
         public static Boolean InfiniteArrows = false; //enable arrow cost
-        public static Boolean InfiniteBombs = false; //enable bomb cost
+        public static Boolean InfiniteBombs = true; //enable bomb cost
         public static Boolean MapCheat = true; //sets dungeon.map true when dungeon is built
         
         static Flags()
