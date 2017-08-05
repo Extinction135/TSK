@@ -133,8 +133,7 @@ namespace DungeonRun
 
             #region Doors and Walls
 
-            else if (Type == ObjType.DoorOpen ||
-                Type == ObjType.DoorBombed ||
+            else if (Type == ObjType.DoorOpen || Type == ObjType.DoorBombed || 
                 Type == ObjType.DoorTrap)
             {
                 Obj.compCollision.blocking = false;
@@ -144,10 +143,10 @@ namespace DungeonRun
             }
             else if (Type == ObjType.DoorBombable || Type == ObjType.DoorBoss ||
                 Type == ObjType.DoorShut || Type == ObjType.DoorFake)
-            {
-                if (Obj.direction == Direction.Down)
-                { Obj.compSprite.zOffset = 4; }
-                else { Obj.compSprite.zOffset = 16; }
+            {   //these objs use same sorting as walls
+                if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -32; }
+                else if (Obj.direction == Direction.Up) { Obj.compSprite.zOffset = 16; }
+                else { Obj.compSprite.zOffset = 8; }
                 Obj.group = ObjGroup.Door;
             }
             else if (Type == ObjType.WallStraight || 

@@ -45,9 +45,8 @@ todo:
 
 
 * complete design of new overworld map
-- location dots
-- path between location dots
-- hero sprite placed (mockup)
+- ship at colliseum port ?
+- improve connections / roads so they feel better
 
 update overworld map image
 update overworld map locations + selection neighbors
@@ -62,23 +61,27 @@ consider adding little white dots to show the paths between locations
 some locations can be 'locked off' until the connecting location is beaten / triggered
 for example, locations inside the castle should be inaccessible until the hero gains gate access.
 
+the overworld map should change too, based on things the player does, like super mario world's map does
 
 
 
 
 
 
-Make Explosion projectiles collapse Bombable Doors
 
-added path for explosion projectiles to collapse bombable doors.
-this path was added in Funtions_Interaction.InteractObject(ObjA, ObjB).
-playtested, explosions collapse bombable doors.
 
-created CollapseDungeonDoor() in Functions_Interaction.
-this method checks collisions between explosions and dungeon.doors.
-if an explosion collides with a bombable door, it becomes a bombed door.
-since rooms are now built using the dungeon.doors.type..
-blowing up a bombable door remains consistent for the life of the dungeon.
+
+
+
+
+
+
+
+
+Improve the Sorting of Bombable Walls
+
+modified doors: bombable, boss, shut, and fake to use same offsets as walls.
+this makes sense, because they exist along walls and generally occupy the same space.
 playtested, working as expected.
 
 
@@ -86,6 +89,9 @@ playtested, working as expected.
 
 
 
+walls can exist on their own layer, they dont need to be sorted
+in fact, they can exist on the floor layer, since they never overlap floors!
+this means we dont need to sort them
 
 
 
@@ -95,6 +101,14 @@ playtested, working as expected.
 
 bombable doors aren't sorting properly (NSEW)
 they should sort just like a wall does
+
+
+boss door shouldn't center hero either
+
+
+
+
+
 
 collapsing a bombable door should play the secret soundfx
 
@@ -108,6 +122,24 @@ which could be shortened to WallCracked.
 
 if hero strikes a bombable door, play a hollow sound
 if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
+
+
+
+
+
+
+
+
+
+we may be able to add an optimization..
+the only objects that should be sent to the InteractObject() function..
+should be objects that MOVE..
+so: projectiles, spikeblocks.. 
+where do we call InteractObj() from?
+we SHOULDN'T BE SENDING EVERY GAMEOBJ HERE EACH FRAME
+MOST OBJS HAVE NO INTERACTIONS WITH OTHER OBJS
+
+
 
 
 
@@ -142,6 +174,14 @@ boss, hub, key, column, square, row
 
 we should probably make dungeon global, instead of burying it in Functions_Dungeon.dungeon
 and it should prolly be called Level. since its going to become more than a dungeon
+the issue is that we'll need to be 'cleaning' the level/dungeon prior to building it
+this will happen when we use the editor as well, each time we create/load a room
+
+
+
+
+
+
 
 
 Bug
@@ -152,6 +192,9 @@ he takes damage. this should not happen
 certain projectiles should move with the conveyorbelt
 this would be the case with bombs, weapon swings, etc...
 but not flying projectiles, like fireball or arrow
+
+sword projectiles (any projectile) should sort on top layer over all other sprites
+
 
 
 
@@ -177,10 +220,15 @@ this is BAD BAD BAD
 
 
 
-sword projectiles (any projectile) should sort on top layer over all other sprites
+
 
 
 Test deployment of Game on XBOX ONE
+
+we'll need to match the UWP project to the DirectX project
+we've added new classes to DirectX project.
+i dont think anything has changed with how the backend class works, but check it
+
 if loading xml room data fails, we'll need to store this data in .cs files
 so we'll need to convert the XML data into .CS files
 
@@ -222,6 +270,7 @@ then using a flag boolean, the backend will load them instead of the xml roomDat
 
 
 RELEASE
+record new GIFs
 update the readme to reflect the directX port
 "A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
 DirectX version uses .Net 4.5 & SharpDX.
@@ -232,7 +281,6 @@ OpenGL port coming soon."
 release version 0.6 with complete dungeon & enemy variety.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-record a video playthrough of the game as it is right now
 
 
 
@@ -245,6 +293,27 @@ record a video playthrough of the game as it is right now
 
 
 
+
+
+v0.7 goals
+
+replace overworld map
+get hero sprite moving between locations on the new overworld map
+get hero sprite correctly animating when moving
+
+build more non-dungeon levels: towns, castle, forest, etc..
+some should be non-combat
+build colliseum level
+build left town levels: A, B, C, + Church
+build Old Town level
+build castle gate level
+build right town level
+build tent town level
+build cathedral level
+build monument level
+build center island home level
+
+create dungeon variations: old ruins castle, cave, forest, big castle
 
 
 
