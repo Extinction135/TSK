@@ -78,20 +78,17 @@ the overworld map should change too, based on things the player does, like super
 
 
 
-Improve the Sorting of Bombable Walls
+Simplify the sorting of all doors, walls, + wall objects
 
-modified doors: bombable, boss, shut, and fake to use same offsets as walls.
-this makes sense, because they exist along walls and generally occupy the same space.
-playtested, working as expected.
+updated ResetFloorPool() to sort all floor sprites to layer 0.999990.
+changed closed door objects to have a zOffset of -256.
+changed wall objects to have a zOffset of -256.
+this sorts closed doors + walls very low (behind hero).
+changed open door objects to have a zOffset of +256.
+this sort open doors very high (above hero).
 
-
-
-
-
-
-walls can exist on their own layer, they dont need to be sorted
-in fact, they can exist on the floor layer, since they never overlap floors!
-this means we dont need to sort them
+this was done so that projectiles will sort over walls and closed doors.
+this looks visually correct.
 
 
 
@@ -99,16 +96,15 @@ this means we dont need to sort them
 
 
 
-bombable doors aren't sorting properly (NSEW)
-they should sort just like a wall does
+
+
+
+
+
+
 
 
 boss door shouldn't center hero either
-
-
-
-
-
 
 collapsing a bombable door should play the secret soundfx
 

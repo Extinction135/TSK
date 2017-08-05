@@ -105,7 +105,10 @@ namespace DungeonRun
         public static void ResetFloorPool()
         {
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
-            { Pool.floorPool[Pool.floorCounter].visible = false; }
+            {
+                Pool.floorPool[Pool.floorCounter].visible = false;
+                Pool.floorPool[Pool.floorCounter].zDepth = 0.999990f; //sort to lowest level
+            }
             Pool.floorIndex = 0; //reset total count
         }
 
@@ -143,7 +146,7 @@ namespace DungeonRun
             { Pool.floorPool[Pool.floorCounter].texture = Texture; }
         }
 
-        public static void UpdateRoomObjPool()
+        public static void UpdateRoomObjPool() //this should be called 'AlignRoomObjPool'
         {   //align sprite + collision comps to move comp of all active objs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {

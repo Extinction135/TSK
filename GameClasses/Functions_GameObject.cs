@@ -137,16 +137,13 @@ namespace DungeonRun
                 Type == ObjType.DoorTrap)
             {
                 Obj.compCollision.blocking = false;
-                if (Obj.direction == Direction.Down)
-                { Obj.compSprite.zOffset = 4; } else { Obj.compSprite.zOffset = 16; }
+                Obj.compSprite.zOffset = +256; //sort very high (over / in front of hero)
                 Obj.group = ObjGroup.Door;
             }
             else if (Type == ObjType.DoorBombable || Type == ObjType.DoorBoss ||
                 Type == ObjType.DoorShut || Type == ObjType.DoorFake)
-            {   //these objs use same sorting as walls
-                if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -32; }
-                else if (Obj.direction == Direction.Up) { Obj.compSprite.zOffset = 16; }
-                else { Obj.compSprite.zOffset = 8; }
+            {
+                Obj.compSprite.zOffset = -256; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
             }
             else if (Type == ObjType.WallStraight || 
@@ -155,22 +152,18 @@ namespace DungeonRun
                 Type == ObjType.WallExteriorCorner ||
                 Type == ObjType.WallPillar)
             {
-                if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -32; }
-                else if (Obj.direction == Direction.Up) { Obj.compSprite.zOffset = 16; }
-                else { Obj.compSprite.zOffset = 8; }
+                Obj.compSprite.zOffset = -256; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
             }
             else if (Type == ObjType.WallStatue)
             {
-                Obj.compSprite.zOffset = 24;
-                if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -16; }
+                Obj.compSprite.zOffset = -128; //sort low, but over walls
                 Obj.group = ObjGroup.Wall;
                 Obj.getsAI = true; //obj gets AI
             }
             else if (Type == ObjType.WallTorch)
             {
-                Obj.compSprite.zOffset = 24;
-                if (Obj.direction == Direction.Down) { Obj.compSprite.zOffset = -16; }
+                Obj.compSprite.zOffset = -128; //sort low, but over walls
                 Obj.group = ObjGroup.Wall;
             }
 
@@ -181,13 +174,13 @@ namespace DungeonRun
 
             else if (Type == ObjType.BossDecal)
             {
-                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compSprite.zOffset = -32; //sort low, but over floor
                 Obj.compCollision.blocking = false;
             }
             else if (Type == ObjType.DebrisFloor)
             {
                 Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compSprite.zOffset = -32; //sort low, but over floor
             }
 
             #endregion
