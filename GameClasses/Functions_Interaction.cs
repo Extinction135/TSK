@@ -302,19 +302,16 @@ namespace DungeonRun
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 0.1f);
                 }
                 else if (Obj.type == ObjType.Bumper)
-                {   //bounce/push actor away from bumper
+                {   //bounce actor off of bumper
                     Functions_Movement.Push(Actor.compMove,
-                        Functions_Direction.GetRelativeDirection(Obj, Actor),
+                        Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position), 
                         10.0f);
-                    //actors can collide with bumper twice per frame, due to per axis collision checks
-                    BounceBumper(Obj);
+                    AnimateBumper(Obj);
                 }
-
-
                 else if (Obj.type == ObjType.PitAnimated)
                 {   //push actor away from pit with a dash particle
                     Functions_Movement.Push(Actor.compMove,
-                        Functions_Direction.GetRelativeDirection(Obj, Actor),
+                        Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position),
                         1.0f);
                     Functions_Entity.SpawnEntity(
                         ObjType.ParticleDashPuff,
@@ -346,12 +343,7 @@ namespace DungeonRun
             {   //handle projectile interactions
                 if (ObjB.compCollision.blocking)
                 {   //handle blocking collisions
-                    if (ObjA.type == ObjType.ProjectileFireball
-                        || ObjA.type == ObjType.ProjectileArrow)
-                    {   //kill projectile upon blocking collision
-                        ObjA.lifeCounter = ObjA.lifetime;
-                    }
-                    else if (ObjA.type == ObjType.ProjectileExplosion)
+                    if (ObjA.type == ObjType.ProjectileExplosion)
                     {   //explosions can alter certain gameobjects
                         if (ObjB.type == ObjType.DoorBombable)
                         {   //collapse the room.door
@@ -360,24 +352,19 @@ namespace DungeonRun
                             Assets.Play(Assets.sfxShatter);
                         }
                     }
+                    else
+                    {   //some projectiles die upon collision
+                        KillProjectileUponCollision(ObjA);
+                    }
                 }
                 else
                 {   //handle non-blocking collisions
 
                     //if a sword projectile collides with a conveyor belt, it should be pushed
-
-                    //if a projectile collides with a spikeblock, it should die
-                    if (ObjB.type == ObjType.BlockSpikes)
-                    {
-                        if (ObjA.type == ObjType.ProjectileFireball
-                        || ObjA.type == ObjType.ProjectileArrow)
-                        {   //kill projectile upon blocking collision
-                            ObjA.lifeCounter = ObjA.lifetime;
-                        }
-
-                        //theres a better way to handle killing projectiles
-                        //this should be moved into a method like KillProjectileUponCollision()
-                    }
+                    
+                    //some projectiles die upon collision
+                    if (ObjB.type == ObjType.BlockSpikes) { KillProjectileUponCollision(ObjA); }
+                    else if (ObjB.type == ObjType.Bumper) { BounceOffBumper(ObjA, ObjB); }
                 }
             }
 
@@ -396,11 +383,13 @@ namespace DungeonRun
                 {   //handle non-blocking collisions
                     if (ObjB.type == ObjType.BlockSpikes)
                     {
-                        if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); BounceSpikeBlock(ObjB); }
+                        if (ObjA.type == ObjType.BlockSpikes)
+                        { BounceSpikeBlock(ObjA); BounceSpikeBlock(ObjB); }
                     }
                     else if (ObjB.type == ObjType.Bumper)
                     {
-                        if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); BounceBumper(ObjB); }
+                        if (ObjA.type == ObjType.BlockSpikes)
+                        { BounceOffBumper(ObjA, ObjB); }
                     }
                 }
                 
@@ -427,6 +416,16 @@ namespace DungeonRun
 
 
 
+        
+        
+        
+        public static void KillProjectileUponCollision(GameObject Projectile)
+        {   //these projectiles die upon a collision with another object
+            if (Projectile.type == ObjType.ProjectileFireball
+                || Projectile.type == ObjType.ProjectileArrow)
+            { Projectile.lifeCounter = Projectile.lifetime; }
+        }
+
         public static void BounceSpikeBlock(GameObject SpikeBlock)
         {   //flip the block's direction to the opposite direction
             SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
@@ -440,17 +439,31 @@ namespace DungeonRun
                 Direction.None);
         }
 
-        public static void BounceBumper(GameObject Bumper)
+        public static void BounceOffBumper(GameObject Obj, GameObject Bumper)
+        {   //set object's direction to be opposite direction, update the obj's rotation
+            Obj.compMove.direction = Functions_Direction.GetOppositeDirection(Obj.compMove.direction);
+            Obj.direction = Obj.compMove.direction;
+            Functions_GameObject.SetRotation(Obj);
+            //stop all movement, then push
+            Functions_Movement.StopMovement(Obj.compMove);
+            Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 10.0f);
+            AnimateBumper(Bumper);
+        }
+
+        public static void AnimateBumper(GameObject Bumper)
         {   //only play the bounce sound effect if the bumper hasn't been hit this frame
-            if (Bumper.compSprite.scale < 1.5f) { Assets.Play(Assets.sfxBounce); }
+            if (Bumper.compSprite.scale < 1.4f) { Assets.Play(Assets.sfxBounce); }
             Bumper.compSprite.scale = 1.5f; //scale bumper up
             Functions_Entity.SpawnEntity(
                 ObjType.ParticleAttention,
-                Bumper.compSprite.position.X, 
-                Bumper.compSprite.position.Y, 
+                Bumper.compSprite.position.X,
+                Bumper.compSprite.position.Y,
                 Direction.None);
         }
-        
+
+
+
+
 
 
     }

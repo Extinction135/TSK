@@ -66,13 +66,13 @@ namespace DungeonRun
             else if (Obj.type == ObjType.BlockSpikes)
             {   //hard push actor away from spikes
                 damage = 1; force = 10.0f;
-                direction = Functions_Direction.GetRelativeDirection(Obj, Actor);
+                direction = Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position);
             }
             else if(Obj.type == ObjType.SpikesFloorOn)
             {   //medium push actor in the actor's moving direction
                 damage = 1; force = 4.0f;
                 //direction = Actor.direction;
-                direction = Functions_Direction.GetRelativeDirection(Obj, Actor);
+                direction = Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position);
             }
 
             #endregion

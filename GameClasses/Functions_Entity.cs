@@ -36,6 +36,7 @@ namespace DungeonRun
             if (Type == ObjType.ProjectileFireball || 
                 Type == ObjType.ProjectileSword ||
                 Type == ObjType.ProjectileArrow ||
+                Type == ObjType.ProjectileBomb ||
                 Type == ObjType.ParticleBow)
             {
                 obj.direction = Functions_Direction.GetCardinalDirection(Direction);
@@ -44,8 +45,12 @@ namespace DungeonRun
 
             //teleport the projectile to the proper location
             Functions_Movement.Teleport(obj.compMove, X, Y);
-            //set the type, rotation, cellsize, & alignment as last step
+            //set the type, rotation, cellsize, & alignment
             Functions_GameObject.SetType(obj, Type);
+
+            //bombs are pushed, and slide into a resting position
+            if (Type == ObjType.ProjectileBomb)
+            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f); }
         }
 
         public static void HandleBirthEvent(GameObject Obj)
@@ -56,7 +61,7 @@ namespace DungeonRun
 
             if (Obj.type == ObjType.ProjectileBomb)
             {
-                SpawnEntity(ObjType.ParticleAttention,
+                SpawnEntity(ObjType.ParticleDashPuff,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
@@ -128,13 +133,6 @@ namespace DungeonRun
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
                 Assets.Play(Assets.sfxArrowHit);
-                //spawn an arrow pickup item (so hero can reuse arrows, if he's quick)
-                /*
-                SpawnEntity(ObjType.PickupArrow,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y - 2, 
-                    Direction.Down);
-                */
             }
 
             #endregion

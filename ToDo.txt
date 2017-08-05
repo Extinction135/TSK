@@ -71,24 +71,17 @@ the overworld map should change too, based on things the player does, like super
 
 
 
-Various refactoring & improvements / Interaction() optimization
 
-changed UpdateRoomObjPool() to AlignRoomObjs() in Functions_Pool.
-this more accurately describes what the method does.
 
-added interacts boolean value to GameObject class.
-updated ResetObject() to set .interacts boolean to false.
-updated Functions_GameObj.SetType() to set .interacts booleans for..
-all projectiles, spike block, and conveyor belt objects.
 
-updated CheckObjPoolCollisions() to check .interacts value.
-changed CheckProjectilePoolCollisions() to CheckEntityPoolCollisions().
-updated CheckEntityPoolCollisions() to check .interacts value.
 
-refactored InteractObject(ObjA, ObjB) to be clearer / easier to understand.
-updated method to kill projectiles that collide with spike blocks.
-playtested, working as expected.
+changed zOffset values for doors + walls + wall objs to within +32 & -32.
+this fixes an issue where these objects didn't appear in a room created in roomBuilder.
 
+updated RoomBuilderScreen() to use Functions_Dungeon.buildPosition.
+this position is used when a room is created or loaded.
+changed where hero is placed upon screen creation.
+updated RoomBuilderScreen to add dev room to dungeon.rooms list.
 
 
 
@@ -98,18 +91,54 @@ playtested, working as expected.
 
 issues with room builder:
 
-we can set the wall + door objects to just be -32 or -16 for zOffset
-they dont need to be a massive number
 
 
 
-we should be creating the room at position that is the same as dungeon.buildPosition
-use this value to create the room
+Improve Projectile Collisions
+
+created KillProjectileUponCollision(Projectile).
+this handles the projectiles death upon a collision.
+
+updated Interact(Obj, Obj) to bounce spikeblocks and projectiles off of bumpers.
+updated spikeBlock sprite to not have shadows.
+this was done so that when the spikeblock is rotated, it appears the same.
+updated BounceOffBumper(Obj, Bumper) to set the bounced object's direction and rotation.
+changed BounceBumper() to AnimateBumper(), to better reflect it's purpose.
+
+updated SpawnEntity() to set bomb's direction to be actor's facing direction.
+updated SpawnEntity() to give bombs an initial push, so they slide into place.
+changed bomb's birth particle to dash particle.
+lots of playtesting to make sure everything works.
+tested that bombs bounce off bumpers properly.
 
 
 
-we can't see the tool icons
 
+
+
+
+
+
+
+
+Improve Bomb Projectiles
+
+
+
+bombs should scale up as they exist, to a point, then reset to 1.0
+this makes them look like they are pulsing, drawing attention to them more
+
+bombs should check collisions and StopMovement() upon a blocking collision
+
+
+
+
+bombs should inherit the actor's facing direction
+
+
+
+
+explosion projectiles should be ignored by bumper..
 
 
 
@@ -121,38 +150,11 @@ would like to see the ticks for update and draw in the hud display
 
 
 
-the draw loop still sits around 12k even when drawing a secret room?
-we are only drawing visible sprites, right? where is this draw time coming from?
-from all the string concats and debug info drawings
-
-
-
-
-
-
-
-
 
 
 a conveyor belt interacts with other objects
 the conveyor belt should affect the actors/objs move component
 it should not directly affect the actor/obj
-
-
-
-
-
-only certain objects interact with other objects.
-
-
-
-which objects interact? all projectiles, blockSpikes
-
-
-
-
-
-
 
 
 
@@ -167,21 +169,6 @@ which could be shortened to WallCracked.
 if hero strikes a bombable door, play a hollow sound
 if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
 
-
-
-
-
-
-
-
-
-we may be able to add an optimization..
-the only objects that should be sent to the InteractObject() function..
-should be objects that MOVE..
-so: projectiles, spikeblocks.. 
-where do we call InteractObj() from?
-we SHOULDN'T BE SENDING EVERY GAMEOBJ HERE EACH FRAME
-MOST OBJS HAVE NO INTERACTIONS WITH OTHER OBJS
 
 
 

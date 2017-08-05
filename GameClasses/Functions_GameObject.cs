@@ -50,10 +50,15 @@ namespace DungeonRun
             Obj.compMove.magnitude.X = 0; //discard any previous magnitude
             Obj.compMove.magnitude.Y = 0; //
             Obj.compMove.speed = 0.0f; //assume this object doesn't move
+            Obj.compMove.friction = 0.75f; //normal friction
         }
 
         public static void SetRotation(GameObject Obj)
         {   //sprites are created facing Down, but we will need to set the spite rotation based on direction
+
+            //some objects refuse SetRotation()
+            if (Obj.type == ObjType.ProjectileBomb) { return; }
+
             Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
             if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
             else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
@@ -138,13 +143,13 @@ namespace DungeonRun
                 Type == ObjType.DoorTrap)
             {
                 Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = +256; //sort very high (over / in front of hero)
+                Obj.compSprite.zOffset = +32; //sort very high (over / in front of hero)
                 Obj.group = ObjGroup.Door;
             }
             else if (Type == ObjType.DoorBombable || Type == ObjType.DoorBoss ||
                 Type == ObjType.DoorShut || Type == ObjType.DoorFake)
             {
-                Obj.compSprite.zOffset = -256; //sort very low (behind hero)
+                Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
             }
             else if (Type == ObjType.WallStraight || 
@@ -153,18 +158,18 @@ namespace DungeonRun
                 Type == ObjType.WallExteriorCorner ||
                 Type == ObjType.WallPillar)
             {
-                Obj.compSprite.zOffset = -256; //sort very low (behind hero)
+                Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
             }
             else if (Type == ObjType.WallStatue)
             {
-                Obj.compSprite.zOffset = -128; //sort low, but over walls
+                Obj.compSprite.zOffset = -16; //sort low, but over walls
                 Obj.group = ObjGroup.Wall;
                 Obj.getsAI = true; //obj gets AI
             }
             else if (Type == ObjType.WallTorch)
             {
-                Obj.compSprite.zOffset = -128; //sort low, but over walls
+                Obj.compSprite.zOffset = -16; //sort low, but over walls
                 Obj.group = ObjGroup.Wall;
             }
 
@@ -347,7 +352,6 @@ namespace DungeonRun
             {
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
-
             }
             else if (Type == ObjType.ConveyorBeltOn || Type == ObjType.ConveyorBeltOff)
             {

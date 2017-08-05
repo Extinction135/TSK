@@ -37,9 +37,12 @@ namespace DungeonRun
             RoomBuilder.Reset(16 * 33, 16 * 2);
             Functions_Dungeon.Initialize(this);
 
-            //place hero onscreen & build default empty room
-            Functions_Movement.Teleport(Pool.hero.compMove, 200, 150);
+            //build default empty room
             BuildRoomData(roomData);
+            //place hero outside of room at top left corner
+            Functions_Movement.Teleport(Pool.hero.compMove,
+                Functions_Dungeon.buildPosition.X - 32,
+                Functions_Dungeon.buildPosition.Y + 32);
 
             //create the cursor sprite
             cursorSprite = new ComponentSprite(Assets.mainSheet,
@@ -166,9 +169,10 @@ namespace DungeonRun
                                     if (objRef.active)
                                     {   
                                         if(objRef.canBeSaved)
-                                        {   //make this obj relative to room top left corner
+                                        {   
                                             ObjXmlData objData = new ObjXmlData();
                                             objData.type = objRef.type;
+                                            //set saved obj's position relative to room's top left corner
                                             objData.posX = objRef.compSprite.position.X - Functions_Dungeon.currentRoom.rec.X;
                                             objData.posY = objRef.compSprite.position.Y - Functions_Dungeon.currentRoom.rec.Y;
                                             roomData.objs.Add(objData);
@@ -363,9 +367,15 @@ namespace DungeonRun
 
             //build the room
             if (RoomXmlData != null)
-            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomXmlData.type); }
+            { Functions_Dungeon.currentRoom = new Room(Functions_Dungeon.buildPosition, RoomXmlData.type); }
             else
-            { Functions_Dungeon.currentRoom = new Room(new Point(16 * 5, 16 * 5), RoomType.Row); }
+            { Functions_Dungeon.currentRoom = new Room(Functions_Dungeon.buildPosition, RoomType.Row); }
+            
+            //add this room to the dungeon.rooms list
+            Functions_Dungeon.dungeon.rooms.Add(Functions_Dungeon.currentRoom);
+            Functions_Dungeon.currentRoom.visited = true;
+            if (Flags.MapCheat) { Functions_Dungeon.dungeon.map = true; }
+            else { Functions_Dungeon.dungeon.map = false; }
 
             //simplify / collect room values
             int posX = Functions_Dungeon.currentRoom.rec.X;
@@ -387,7 +397,7 @@ namespace DungeonRun
             Functions_Room.BuildRoomObjs(RoomXmlData);
 
             Functions_Pool.Update(); //update roomObjs once
-            Flags.Paused = true; //initially freeze the loaded room
+            Flags.Paused = false; //initially freeze the loaded room
         }
 
     }
