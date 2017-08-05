@@ -262,6 +262,7 @@ namespace DungeonRun
                     #endregion
 
 
+                    if (Obj.type == ObjType.DoorBoss) { return; } //boss doors do not center hero
                     //center Hero to Door, while still allowing him to pass thru
                     if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
                     {   //gradually center hero to door

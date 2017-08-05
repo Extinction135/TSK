@@ -78,24 +78,16 @@ the overworld map should change too, based on things the player does, like super
 
 
 
-Simplify the sorting of all doors, walls, + wall objects
-
-updated ResetFloorPool() to sort all floor sprites to layer 0.999990.
-changed closed door objects to have a zOffset of -256.
-changed wall objects to have a zOffset of -256.
-this sorts closed doors + walls very low (behind hero).
-changed open door objects to have a zOffset of +256.
-this sort open doors very high (above hero).
-
-this was done so that projectiles will sort over walls and closed doors.
-this looks visually correct.
 
 
 
 
 
+BossDoors shouldn't center Hero
 
-
+updated InteractActor(Actor, Obj) to not center hero to bossDoors.
+this made the boss door feel sticky, just like how bombable doors used to feel.
+playtested, working as expected.
 
 
 
