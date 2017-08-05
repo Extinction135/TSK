@@ -356,8 +356,8 @@ namespace DungeonRun
                         if(ObjB.type == ObjType.DoorBombable)
                         {   //collapse the room.door
                             Functions_GameObject.SetType(ObjB, ObjType.DoorBombed);
-                            Assets.Play(Assets.sfxChestOpen); //play secret sound fx
                             CollapseDungeonDoor(ObjA); //collapse the dungeon.door
+                            Assets.Play(Assets.sfxShatter);
                         }
                     }
                 }

@@ -67,6 +67,12 @@ the overworld map should change too, based on things the player does, like super
 
 
 
+Improve the bombable door collapsing sound effect
+
+added 'soundShatter' to content project.
+added 'shatter' sfx instances to Assets.
+updated bombable door routine to play new shatter soundfx.
+playtested, working and sounding correct.
 
 
 
@@ -76,33 +82,9 @@ the overworld map should change too, based on things the player does, like super
 
 
 
-
-
-
-Simplify Dungeon Generation Routine
-
-because we are checking room.type in Poke()..
-we no longer require the boss room to be at index 0 of the build list.
-nor do is it necessary to have hub room as index 1 of the build list.
-removed codepath that set buildList index 0 and index 1.
-playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-collapsing a bombable door should play the secret soundfx
 
 secret rooms + bombable doors should only appear on dungeon map if they have been visited
 or if the Flags.mapCheat is true
-
 
 
 we need to create fake bombable doors, using WallStraightCracked

@@ -371,3 +371,9 @@
 /processorParam:Quality=Best
 /build:SoundSwitch.wav
 
+#begin SoundShatter.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundShatter.wav
+
