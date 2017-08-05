@@ -445,7 +445,9 @@ namespace DungeonRun
         }
 
         public static void BounceOffBumper(GameObject Obj, GameObject Bumper)
-        {   //set object's direction to be opposite direction, update the obj's rotation
+        {   //some objects cannot be bounced
+            if(Obj.type == ObjType.ProjectileExplosion) { return; }
+            //set object's direction to be opposite direction, update the obj's rotation
             Obj.compMove.direction = Functions_Direction.GetOppositeDirection(Obj.compMove.direction);
             Obj.direction = Obj.compMove.direction;
             Functions_GameObject.SetRotation(Obj);

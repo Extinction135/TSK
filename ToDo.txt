@@ -98,17 +98,6 @@ issues with room builder:
 
 
 
-Improve Bomb Projectiles
-
-fixed a bug where bumper's set an object's speed to 0.
-this caused the object to 'slide' to stillness after bumper collision.
-
-changed the Offset for bomb projectile when actor throws a bomb.
-updated InteractObject() to StopMovement() on a bomb that collides with a blocking object.
-increased the initial push / velocity of a bomb being thrown.
-updated KillProjectileUponCollision() to kill bombs as well.
-this means bombs explode when spikeblocks hit them, which is intended.
-lots of playtesting, working as expected.
 
 
 
@@ -116,9 +105,16 @@ lots of playtesting, working as expected.
 
 
 
+Fix Explosions vs. Bumpers bug
+
+fixed a bug where bumpers would bounce explosions.
+but since explosions didn't have any speed, they didn't move.
+so the explosion stayed still while the bumper freaked out, continuously bouncing.
+playtested, working as expected.
 
 
-explosion projectiles should be ignored by bumper..
+
+
 
 
 
