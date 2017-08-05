@@ -155,6 +155,32 @@ namespace DungeonRun
 
             Timing.stopWatch.Stop();
             Timing.updateTime = Timing.stopWatch.Elapsed;
+
+
+            #region Calculate Average Update and Draw Times
+
+            if(Flags.DrawUDT)
+            {
+                DebugInfo.frameCounter++;
+                if (DebugInfo.frameCounter > DebugInfo.framesTotal)
+                {   //reset the counter + total ticks
+                    DebugInfo.frameCounter = 0;
+                    DebugInfo.updateTicks = 0;
+                    DebugInfo.drawTicks = 0;
+                }
+                else if (DebugInfo.frameCounter == DebugInfo.framesTotal)
+                {   //calculate the average ticks
+                    DebugInfo.updateAvg = DebugInfo.updateTicks / DebugInfo.framesTotal;
+                    DebugInfo.drawAvg = DebugInfo.drawTicks / DebugInfo.framesTotal;
+                }
+                //collect tick times
+                DebugInfo.updateTicks += Timing.updateTime.Ticks;
+                DebugInfo.drawTicks += Timing.drawTime.Ticks;
+            }
+
+            #endregion
+
+
         }
 
         public override void Draw(GameTime GameTime)

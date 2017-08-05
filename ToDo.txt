@@ -97,19 +97,13 @@ issues with room builder:
 
 
 
+Improve the UDT Display
 
 
-
-
-
-
-
-
-Fix Explosions vs. Bumpers bug
-
-fixed a bug where bumpers would bounce explosions.
-but since explosions didn't have any speed, they didn't move.
-so the explosion stayed still while the bumper freaked out, continuously bouncing.
+updated DungeonScreen to calculate average ticks for update + draw loops.
+this routine was moved out of Functions_Draw.DrawDebugInfo().
+updated WorldUI's frameTime to display average update/draw ticks + total tile ms.
+this provides a more accurate timing of the game in a release state.
 playtested, working as expected.
 
 
@@ -122,7 +116,15 @@ playtested, working as expected.
 
 
 
+
+
+
+
+
+
 would like to see the ticks for update and draw in the hud display
+because then we remove the debug info draw time
+
 
 
 

@@ -167,23 +167,7 @@ namespace DungeonRun
         public static void DrawDebugInfo()
         {
 
-            #region Calculate Update + Draw Times, Frame Times, and Ram useage
-
-            DebugInfo.frameCounter++;
-            if (DebugInfo.frameCounter > DebugInfo.framesTotal)
-            {   //reset the counter + total ticks
-                DebugInfo.frameCounter = 0;
-                DebugInfo.updateTicks = 0;
-                DebugInfo.drawTicks = 0;
-            }
-            else if (DebugInfo.frameCounter == DebugInfo.framesTotal)
-            {   //calculate the average ticks
-                DebugInfo.updateAvg = DebugInfo.updateTicks / DebugInfo.framesTotal;
-                DebugInfo.drawAvg = DebugInfo.drawTicks / DebugInfo.framesTotal;
-            }
-            //collect tick times
-            DebugInfo.updateTicks += Timing.updateTime.Ticks;
-            DebugInfo.drawTicks += Timing.drawTime.Ticks;
+            #region Draw Frame Times and Ram useage
 
             //average over framesTotal
             DebugInfo.timingText.text = "u: " + DebugInfo.updateAvg;
