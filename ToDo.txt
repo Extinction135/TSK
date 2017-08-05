@@ -94,46 +94,26 @@ issues with room builder:
 
 
 
-Improve Projectile Collisions
-
-created KillProjectileUponCollision(Projectile).
-this handles the projectiles death upon a collision.
-
-updated Interact(Obj, Obj) to bounce spikeblocks and projectiles off of bumpers.
-updated spikeBlock sprite to not have shadows.
-this was done so that when the spikeblock is rotated, it appears the same.
-updated BounceOffBumper(Obj, Bumper) to set the bounced object's direction and rotation.
-changed BounceBumper() to AnimateBumper(), to better reflect it's purpose.
-
-updated SpawnEntity() to set bomb's direction to be actor's facing direction.
-updated SpawnEntity() to give bombs an initial push, so they slide into place.
-changed bomb's birth particle to dash particle.
-lots of playtesting to make sure everything works.
-tested that bombs bounce off bumpers properly.
-
-
-
-
-
-
-
 
 
 
 
 Improve Bomb Projectiles
 
+fixed a bug where bumper's set an object's speed to 0.
+this caused the object to 'slide' to stillness after bumper collision.
+
+changed the Offset for bomb projectile when actor throws a bomb.
+updated InteractObject() to StopMovement() on a bomb that collides with a blocking object.
+increased the initial push / velocity of a bomb being thrown.
+updated KillProjectileUponCollision() to kill bombs as well.
+this means bombs explode when spikeblocks hit them, which is intended.
+lots of playtesting, working as expected.
 
 
-bombs should scale up as they exist, to a point, then reset to 1.0
-this makes them look like they are pulsing, drawing attention to them more
-
-bombs should check collisions and StopMovement() upon a blocking collision
 
 
 
-
-bombs should inherit the actor's facing direction
 
 
 

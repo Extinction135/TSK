@@ -71,9 +71,7 @@ namespace DungeonRun
 
             #region Projectiles
 
-            else if (
-                Type == ObjType.ProjectileFireball ||
-                Type == ObjType.ProjectileBomb ||
+            else if (Type == ObjType.ProjectileFireball ||
                 Type == ObjType.ProjectileArrow)
             {   //place projectile outside of actor's hitbox
                 if (cardinal == Direction.Down) { offsetY = 14; }
@@ -81,8 +79,14 @@ namespace DungeonRun
                 else if (cardinal == Direction.Right) { offsetX = 11; offsetY = 2; }
                 else if (cardinal == Direction.Left) { offsetX = -11; offsetY = 2; }
             }
-            else if (
-                Type == ObjType.ProjectileSword)
+            else if (Type == ObjType.ProjectileBomb)
+            {   //bombs are placed closer to the actor
+                if (cardinal == Direction.Down) { offsetY = 4; }
+                else if (cardinal == Direction.Up) { offsetY = 0; }
+                else if (cardinal == Direction.Right) { offsetX = 4; offsetY = 2; }
+                else if (cardinal == Direction.Left) { offsetX = -4; offsetY = 2; }
+            }
+            else if (Type == ObjType.ProjectileSword)
             {   //place projectile outside of actor's hitbox, in actor's hand
                 if (cardinal == Direction.Down) { offsetX = -1; offsetY = 15; }
                 else if (cardinal == Direction.Up) { offsetX = 1; offsetY = -12; }

@@ -50,7 +50,7 @@ namespace DungeonRun
 
             //bombs are pushed, and slide into a resting position
             if (Type == ObjType.ProjectileBomb)
-            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f); }
+            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
         }
 
         public static void HandleBirthEvent(GameObject Obj)

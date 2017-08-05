@@ -352,6 +352,10 @@ namespace DungeonRun
                             Assets.Play(Assets.sfxShatter);
                         }
                     }
+                    else if(ObjA.type == ObjType.ProjectileBomb)
+                    {   //stop bombs from moving thru blocking objects
+                        Functions_Movement.StopMovement(ObjA.compMove);
+                    }
                     else
                     {   //some projectiles die upon collision
                         KillProjectileUponCollision(ObjA);
@@ -422,7 +426,8 @@ namespace DungeonRun
         public static void KillProjectileUponCollision(GameObject Projectile)
         {   //these projectiles die upon a collision with another object
             if (Projectile.type == ObjType.ProjectileFireball
-                || Projectile.type == ObjType.ProjectileArrow)
+                || Projectile.type == ObjType.ProjectileArrow
+                || Projectile.type == ObjType.ProjectileBomb)
             { Projectile.lifeCounter = Projectile.lifetime; }
         }
 
@@ -444,8 +449,9 @@ namespace DungeonRun
             Obj.compMove.direction = Functions_Direction.GetOppositeDirection(Obj.compMove.direction);
             Obj.direction = Obj.compMove.direction;
             Functions_GameObject.SetRotation(Obj);
-            //stop all movement, then push
-            Functions_Movement.StopMovement(Obj.compMove);
+            //stop obj's movement (not obj's speed tho), then push
+            Obj.compMove.magnitude.X = 0;
+            Obj.compMove.magnitude.Y = 0;
             Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 10.0f);
             AnimateBumper(Bumper);
         }
