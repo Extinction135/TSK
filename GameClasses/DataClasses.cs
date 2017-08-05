@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.5f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -640,6 +640,7 @@ namespace DungeonRun
         public Boolean active = true; //does this object draw, update?
         public Boolean getsAI = false; //does this object get passed to Functions_AI.HandleObj()?
         public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
+        public Boolean interacts = false; //does this obj get passed to Interact(ObjA, ObjB) method?
 
         public Byte lifetime;   //how many frames this object exists for, 0 = forever/ignore
         public Byte lifeCounter;//counts up to lifetime value

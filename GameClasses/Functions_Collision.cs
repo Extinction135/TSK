@@ -127,6 +127,7 @@ namespace DungeonRun
 
         public static void CheckObjPoolCollisions(GameObject Obj)
         {   //Obj could be a projectile/particle from the entity pool
+            if (Obj.interacts == false) { return; } //Obj must be interactive
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
@@ -152,12 +153,13 @@ namespace DungeonRun
             }
         }
 
-        public static void CheckProjectilePoolCollisions(GameObject Projectile)
+        public static void CheckEntityPoolCollisions(GameObject Projectile)
         {   //Projectile is from from the entity pool
+            if (Projectile.interacts == false) { return; } //Projectile must be interactive
             for (i = 0; i < Pool.entityCount; i++)
             {
                 if (Pool.entityPool[i].active)
-                {   //entityObj must be active
+                {   //entityObj must be active & Projectile must be interactive
                     if (Projectile.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
                     {   //projectiles cant collide with themselves
                         if (Projectile != Pool.entityPool[i])
@@ -212,7 +214,7 @@ namespace DungeonRun
             //handle actor, object, projectile collisions/interactions
             CheckObjPoolCollisions(Obj);
             CheckActorPoolCollisions(Obj);
-            CheckProjectilePoolCollisions(Obj);
+            CheckEntityPoolCollisions(Obj);
 
             //the current position becomes the new position
             Obj.compMove.position.X = Obj.compMove.newPosition.X;

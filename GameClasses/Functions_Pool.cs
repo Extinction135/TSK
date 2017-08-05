@@ -146,7 +146,7 @@ namespace DungeonRun
             { Pool.floorPool[Pool.floorCounter].texture = Texture; }
         }
 
-        public static void UpdateRoomObjPool() //this should be called 'AlignRoomObjPool'
+        public static void AlignRoomObjs()
         {   //align sprite + collision comps to move comp of all active objs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {

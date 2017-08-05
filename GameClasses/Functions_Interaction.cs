@@ -336,24 +336,24 @@ namespace DungeonRun
 
         public static void InteractObject(GameObject ObjA, GameObject ObjB)
         {
-            //Obj could be a projectile!
+            //ObjA is a RoomObj or Entity (projectile)
             //no blocking checks have been done yet
+            //obj.interacts = projectiles, block spikes, conveyor belt
 
-            #region Handle blocking object interactions
+            #region Entity Projectile Interaction
 
-            if (ObjB.compCollision.blocking) //is the colliding object blocking?
-            {
-
-                if (ObjA.group == ObjGroup.Projectile)
-                {
-                    if (ObjA.type == ObjType.ProjectileFireball 
+            if (ObjA.group == ObjGroup.Projectile)
+            {   //handle projectile interactions
+                if (ObjB.compCollision.blocking)
+                {   //handle blocking collisions
+                    if (ObjA.type == ObjType.ProjectileFireball
                         || ObjA.type == ObjType.ProjectileArrow)
                     {   //kill projectile upon blocking collision
                         ObjA.lifeCounter = ObjA.lifetime;
-                    } 
-                    else if(ObjA.type == ObjType.ProjectileExplosion)
+                    }
+                    else if (ObjA.type == ObjType.ProjectileExplosion)
                     {   //explosions can alter certain gameobjects
-                        if(ObjB.type == ObjType.DoorBombable)
+                        if (ObjB.type == ObjType.DoorBombable)
                         {   //collapse the room.door
                             Functions_GameObject.SetType(ObjB, ObjType.DoorBombed);
                             CollapseDungeonDoor(ObjA); //collapse the dungeon.door
@@ -362,23 +362,48 @@ namespace DungeonRun
                     }
                 }
                 else
-                {
-                    if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); }
+                {   //handle non-blocking collisions
+
+                    //if a sword projectile collides with a conveyor belt, it should be pushed
+
+                    //if a projectile collides with a spikeblock, it should die
+                    if (ObjB.type == ObjType.BlockSpikes)
+                    {
+                        if (ObjA.type == ObjType.ProjectileFireball
+                        || ObjA.type == ObjType.ProjectileArrow)
+                        {   //kill projectile upon blocking collision
+                            ObjA.lifeCounter = ObjA.lifetime;
+                        }
+
+                        //theres a better way to handle killing projectiles
+                        //this should be moved into a method like KillProjectileUponCollision()
+                    }
                 }
             }
 
             #endregion
 
 
-            #region Handle non-blocking object interactions
+            #region Non-Entity RoomObj Interaction
 
-            else if (ObjB.type == ObjType.BlockSpikes)
-            {
-                if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); BounceSpikeBlock(ObjB); }
-            }
-            else if(ObjB.type == ObjType.Bumper)
-            {
-                if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); BounceBumper(ObjB); }
+            else
+            {   //handle non-projectile interactions
+                if (ObjB.compCollision.blocking)
+                {   //handle blocking collisions
+                    if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); }
+                }
+                else
+                {   //handle non-blocking collisions
+                    if (ObjB.type == ObjType.BlockSpikes)
+                    {
+                        if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); BounceSpikeBlock(ObjB); }
+                    }
+                    else if (ObjB.type == ObjType.Bumper)
+                    {
+                        if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); BounceBumper(ObjB); }
+                    }
+                }
+                
             }
 
             #endregion

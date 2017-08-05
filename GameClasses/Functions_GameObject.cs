@@ -26,6 +26,7 @@ namespace DungeonRun
             Obj.active = true; //assume this object should draw / animate
             Obj.getsAI = false; //most objects do not get any AI input
             Obj.canBeSaved = false; //most objects cannot be saved as XML data
+            Obj.interacts = false; //most objects receive interactions, do no actively interact
             //reset the sprite component
             Obj.compSprite.cellSize.X = 16 * 1; //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.Y = 16 * 1;
@@ -260,6 +261,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compMove.speed = 0.75f; //spike blocks move
                 Obj.canBeSaved = true;
+                Obj.interacts = true; //obj actively interacts with other objs
             }
 
             #endregion
@@ -345,12 +347,14 @@ namespace DungeonRun
             {
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
+
             }
             else if (Type == ObjType.ConveyorBeltOn || Type == ObjType.ConveyorBeltOff)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
+                Obj.interacts = true; //obj actively interacts with other objs
                 //directions are slightly different for this obj
                 if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
                 else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
@@ -453,7 +457,6 @@ namespace DungeonRun
             else if (Type == ObjType.ProjectileSword)
             {
                 Obj.compSprite.zOffset = 16;
-                Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
@@ -465,7 +468,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 16;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
@@ -476,7 +478,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -4; //sort to floor
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
@@ -486,7 +487,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 16;
                 Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
                 Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
-                Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 5; //in frames
@@ -497,7 +497,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 16;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
@@ -619,10 +618,17 @@ namespace DungeonRun
                 { Obj.compSprite.texture = Assets.shopSheet; }
             }
 
+            //Handle Obj Group properties
+            if (Obj.group == ObjGroup.Particle)
+            {   //particles do not block
+                Obj.compCollision.blocking = false;
+            }
+            else if(Obj.group == ObjGroup.Projectile)
+            {   //all projectiles interact & do not block
+                Obj.interacts = true; 
+                Obj.compCollision.blocking = false;
+            }
 
-
-            //particles do not block upon collision
-            if (Obj.group == ObjGroup.Particle) { Obj.compCollision.blocking = false; }
             SetRotation(Obj);
             Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type
             Functions_Component.UpdateCellSize(Obj.compSprite);

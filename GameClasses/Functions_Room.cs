@@ -150,7 +150,7 @@ namespace DungeonRun
             SetDoors(Room); //set the room's doors
             SetFloors(Room); //set the floortile frames based on room.type
             //update all roomObjs, then remove overlapping objs
-            Functions_Pool.UpdateRoomObjPool();
+            Functions_Pool.AlignRoomObjs();
             CleanupRoom(Room); //remove overlapping objs
 
 
@@ -185,7 +185,7 @@ namespace DungeonRun
             //scatter debris in all dungeon rooms, but not shop
             if (Room.type != RoomType.Shop) { ScatterDebris(Room); }
             //update the room objs, remove overlapping objs
-            Functions_Pool.UpdateRoomObjPool();
+            Functions_Pool.AlignRoomObjs();
             CleanupRoom(Room);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
 

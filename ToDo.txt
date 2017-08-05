@@ -67,12 +67,86 @@ the overworld map should change too, based on things the player does, like super
 
 
 
-Improve the bombable door collapsing sound effect
 
-added 'soundShatter' to content project.
-added 'shatter' sfx instances to Assets.
-updated bombable door routine to play new shatter soundfx.
-playtested, working and sounding correct.
+
+
+
+Various refactoring & improvements / Interaction() optimization
+
+changed UpdateRoomObjPool() to AlignRoomObjs() in Functions_Pool.
+this more accurately describes what the method does.
+
+added interacts boolean value to GameObject class.
+updated ResetObject() to set .interacts boolean to false.
+updated Functions_GameObj.SetType() to set .interacts booleans for..
+all projectiles, spike block, and conveyor belt objects.
+
+updated CheckObjPoolCollisions() to check .interacts value.
+changed CheckProjectilePoolCollisions() to CheckEntityPoolCollisions().
+updated CheckEntityPoolCollisions() to check .interacts value.
+
+refactored InteractObject(ObjA, ObjB) to be clearer / easier to understand.
+updated method to kill projectiles that collide with spike blocks.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+issues with room builder:
+
+we can set the wall + door objects to just be -32 or -16 for zOffset
+they dont need to be a massive number
+
+
+
+we should be creating the room at position that is the same as dungeon.buildPosition
+use this value to create the room
+
+
+
+we can't see the tool icons
+
+
+
+
+
+
+
+
+would like to see the ticks for update and draw in the hud display
+
+
+
+the draw loop still sits around 12k even when drawing a secret room?
+we are only drawing visible sprites, right? where is this draw time coming from?
+from all the string concats and debug info drawings
+
+
+
+
+
+
+
+
+
+
+a conveyor belt interacts with other objects
+the conveyor belt should affect the actors/objs move component
+it should not directly affect the actor/obj
+
+
+
+
+
+only certain objects interact with other objects.
+
+
+
+which objects interact? all projectiles, blockSpikes
 
 
 
