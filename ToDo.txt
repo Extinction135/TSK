@@ -69,41 +69,14 @@ the overworld map should change too, based on things the player does, like super
 
 
 
+Add Cracked Walls to Dungeon
 
+cracked walls look exactly like bombable doors.
+except they can't be blown up or changed into a bombed door.
+they are fakes, to keep the player guessing.
 
-
-
-
-
-changed zOffset values for doors + walls + wall objs to within +32 & -32.
-this fixes an issue where these objects didn't appear in a room created in roomBuilder.
-
-updated RoomBuilderScreen() to use Functions_Dungeon.buildPosition.
-this position is used when a room is created or loaded.
-changed where hero is placed upon screen creation.
-updated RoomBuilderScreen to add dev room to dungeon.rooms list.
-
-
-
-
-
-
-
-issues with room builder:
-
-
-
-
-
-
-
-Improve the UDT Display
-
-
-updated DungeonScreen to calculate average ticks for update + draw loops.
-this routine was moved out of Functions_Draw.DrawDebugInfo().
-updated WorldUI's frameTime to display average update/draw ticks + total tile ms.
-this provides a more accurate timing of the game in a release state.
+created AddCrackedWalls() to Functions_Room.
+updated FinishRoom() to call AddCrackedWalls() for all rooms except Shop.
 playtested, working as expected.
 
 
@@ -114,43 +87,8 @@ playtested, working as expected.
 
 
 
-
-
-
-
-
-
-
-
-would like to see the ticks for update and draw in the hud display
-because then we remove the debug info draw time
-
-
-
-
-
-
-a conveyor belt interacts with other objects
-the conveyor belt should affect the actors/objs move component
-it should not directly affect the actor/obj
-
-
-
-
-secret rooms + bombable doors should only appear on dungeon map if they have been visited
-or if the Flags.mapCheat is true
-
-
-we need to create fake bombable doors, using WallStraightCracked
-which could be shortened to WallCracked.
-
 if hero strikes a bombable door, play a hollow sound
 if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
-
-
-
-
-
 
 
 

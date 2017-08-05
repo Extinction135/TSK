@@ -182,8 +182,12 @@ namespace DungeonRun
             { BuildRoomObjs(Assets.roomDataRow[0]); AddWallStatues(Room); }
             else if (Room.type == RoomType.Square)
             { BuildRoomObjs(Assets.roomDataSquare[0]); AddWallStatues(Room); }
-            //scatter debris in all dungeon rooms, but not shop
-            if (Room.type != RoomType.Shop) { ScatterDebris(Room); }
+            //dungeon rooms get debris + cracked walls
+            if (Room.type != RoomType.Shop)
+            {
+                ScatterDebris(Room);
+                AddCrackedWalls(Room);
+            }
             //update the room objs, remove overlapping objs
             Functions_Pool.AlignRoomObjs();
             CleanupRoom(Room);
@@ -282,12 +286,10 @@ namespace DungeonRun
                 }
             }
         }
-        
+ 
 
 
-
-
-        //adds objs to room 
+        //adds/changes objs in room 
 
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
@@ -438,6 +440,18 @@ namespace DungeonRun
                         objRef.direction = Direction.Down; //^ offset the debris a little
                         Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
                     }
+                }
+            }
+        }
+
+        public static void AddCrackedWalls(Room Room)
+        {   //randomly change straight walls into cracked walls
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active && Pool.roomObjPool[i].type == ObjType.WallStraight)
+                {
+                    if (Functions_Random.Int(0, 100) > 93)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.WallStraightCracked); }
                 }
             }
         }
