@@ -116,26 +116,13 @@ namespace DungeonRun
                 AddMoreRooms();
                 AddSecretRooms();
 
-
-
-
-
                 #endregion
 
 
-                #region Create the door location points (buildList)
-
+                //create the build list
                 List<Room> buildList = new List<Room>();
-                buildList.Add(bossRoom); //boss room MUST be at index 0
-                buildList.Add(hubRoom); //hub room MUST be at index 1
                 for (i = 0; i < dungeon.rooms.Count; i++)
-                {   //then add all other dungeon rooms
-                    if (dungeon.rooms[i].type == RoomType.Boss) { } //ignore
-                    else if (dungeon.rooms[i].type == RoomType.Hub) { } //ignore
-                    else { buildList.Add(dungeon.rooms[i]); } //add dungeon room
-                }
-
-                #endregion
+                { buildList.Add(dungeon.rooms[i]); }
 
 
                 #region Connect Rooms with Doors
