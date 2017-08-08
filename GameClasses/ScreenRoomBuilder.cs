@@ -363,7 +363,7 @@ namespace DungeonRun
         {
             Functions_Dungeon.dungeon = new Dungeon(); //defaults to type.cursedCastle
             //this can be whatever texture we want later
-            Functions_Pool.SetFloorTexture(DungeonType.CursedCastle); 
+            Functions_Pool.SetFloorTexture(LevelType.CursedCastle); 
 
             //build the room
             if (RoomXmlData != null)

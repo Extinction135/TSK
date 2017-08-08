@@ -239,8 +239,8 @@ namespace DungeonRun
             else if (scroll.displayState == DisplayState.Closed)
             {   //set the type of dungeon we are about to build/load
                 if (currentlySelected == Shop)
-                { Functions_Dungeon.dungeonType = DungeonType.Shop; }
-                else { Functions_Dungeon.dungeonType = DungeonType.CursedCastle; }
+                { Functions_Dungeon.dungeonType = LevelType.Shop; }
+                else { Functions_Dungeon.dungeonType = LevelType.CursedCastle; }
                 //dungeon is built by dungeon screen
                 ScreenManager.ExitAndLoad(new ScreenDungeon());
             }

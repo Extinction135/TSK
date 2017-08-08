@@ -503,7 +503,7 @@ namespace DungeonRun
         public List<Door> doors = new List<Door>();
         public Boolean bigKey = false;
         public Boolean map = false;
-        public DungeonType type = DungeonType.CursedCastle;
+        public LevelType type = LevelType.CursedCastle;
     }
 
     public class ColorScheme
@@ -578,6 +578,7 @@ namespace DungeonRun
                 new Point(16 * size.X - 23, 1));
         }
     }
+
 
 
     //GameData Classes
@@ -737,6 +738,30 @@ namespace DungeonRun
     }
 
 
+    //Map Classes
+
+    public class MapLocation
+    {
+        public ComponentSprite compSprite;
+        public Boolean isLevel = false; //is level or connector location?
+        public LevelType levelType = LevelType.Shop;
+        public String name = "";
+        //cardinal neighbors this location links with
+        public MapLocation neighborUp;
+        public MapLocation neighborRight;
+        public MapLocation neighborDown;
+        public MapLocation neighborLeft;
+        public MapLocation(Boolean IsLevel, Vector2 Position)
+        {
+            isLevel = IsLevel;
+            compSprite = new ComponentSprite(Assets.mainSheet,
+                Position, new Byte4(15, 10, 0, 0), new Point(16, 8));
+            //determine if location should use small or large sprite
+            if (IsLevel) { compSprite.currentFrame.Y = 11; }
+            neighborUp = this; neighborDown = this;
+            neighborLeft = this; neighborRight = this;
+        }
+    }
 
     //UI Classes
 
@@ -933,6 +958,8 @@ namespace DungeonRun
             rotationValue = 0.0f;
         }
     }
+
+
 
     //UI Components
 

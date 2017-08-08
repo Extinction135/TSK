@@ -19,7 +19,7 @@ namespace DungeonRun
 
         public static ScreenDungeon dungeonScreen;
         public static Dungeon dungeon = new Dungeon(); //the last dungeon created
-        public static DungeonType dungeonType = DungeonType.CursedCastle; //changed later
+        public static LevelType dungeonType = LevelType.CursedCastle; //changed later
         public static Room currentRoom; //points to a room on dungeon's roomList
         public static int dungeonTrack = 0;
 
@@ -42,7 +42,7 @@ namespace DungeonRun
 
             #region Create Shop
 
-            if (dungeonType == DungeonType.Shop)
+            if (dungeonType == LevelType.Shop)
             {   //create the dungeon's rooms
                 Room shopRoom = new Room(new Point(0, 0), RoomType.Shop);
                 Functions_Room.MoveRoom(shopRoom, buildPosition.X, buildPosition.Y);
@@ -347,7 +347,7 @@ namespace DungeonRun
 
         public static void LoadShop()
         {
-            dungeonType = DungeonType.Shop;
+            dungeonType = LevelType.Shop;
             ScreenManager.ExitAndLoad(new ScreenDungeon());
         }
 

@@ -133,13 +133,13 @@ namespace DungeonRun
 
 
         
-        public static void SetFloorTexture(DungeonType Type)
+        public static void SetFloorTexture(LevelType Type)
         {   //set the floor pool texture based on dungeon type
             Texture2D Texture = Assets.cursedCastleSheet;
 
-            if (Type == DungeonType.CursedCastle) { Texture = Assets.cursedCastleSheet; }
+            if (Type == LevelType.CursedCastle) { Texture = Assets.cursedCastleSheet; }
             //expand this to include all dungeon textures...
-            else if (Type == DungeonType.Shop) { Texture = Assets.shopSheet; }
+            else if (Type == LevelType.Shop) { Texture = Assets.shopSheet; }
 
             //set the floor texture
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)

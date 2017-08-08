@@ -44,24 +44,60 @@ todo:
 
 
 
-* complete design of new overworld map
-- ship at colliseum port ?
-- improve connections / roads so they feel better
 
-update overworld map image
-update overworld map locations + selection neighbors
+Implement New Overworld Map Screen - Part 1
 
-display hero with walking animation at the currently selected location
-include selection box, blinking, with scaling animation
-there should also be an arrow that animates down, over the hero's head
+updated the overworld texture.
+updated map size in OverworldScreen.
+updated scroll background size for overworld screen.
+changed dialog screen to goto Overworld Screen upon exit to game.
+added map sprites to main sheet.
+
+changed DungeonType enum to LevelType enum.
+this better represents what the enum models.
+created MapLocation data class.
+created basic map location path: collisuem, connector, gate, castle.
+(this was done in the OverworldScreen).
+added Hero Actor instance to OverworldScreen, placed at colliseum location.
+playtested, hero + locations draw properly and with player input.
+
+
+
+
+
+
+
+turn off player input, this needs to be handled custom for the map screen
+pressing a direction teleports hero to that location's neighbor
+
+
+next, we'll move hero to the locations neighbor gradually
+
+then we'll animate hero's direction / animation based on the neighbor selected
+this should allow hero to animate between locations gracefully
+
+
+
+
+
+
+
+
+
+
+
+get new overworldmap screen working
+
+background image + scroll
+add location dots to main sheet
+place location dots on map (locations create levels)
+place connector dots on map (connectors dont create levels)
+create hero sprite on map (with animations)
+when player moves joystick, hero should move to location / connector
+this will be based on nsew neighbors
 
 when user moves between locations, hero should walk in that direction to that location
 this is reminiscent of super mario world, and mario moving between levels
-consider adding little white dots to show the paths between locations
-some locations can be 'locked off' until the connecting location is beaten / triggered
-for example, locations inside the castle should be inaccessible until the hero gains gate access.
-
-the overworld map should change too, based on things the player does, like super mario world's map does
 
 
 
@@ -69,15 +105,11 @@ the overworld map should change too, based on things the player does, like super
 
 
 
-Add Cracked Walls to Dungeon
 
-cracked walls look exactly like bombable doors.
-except they can't be blown up or changed into a bombed door.
-they are fakes, to keep the player guessing.
 
-created AddCrackedWalls() to Functions_Room.
-updated FinishRoom() to call AddCrackedWalls() for all rooms except Shop.
-playtested, working as expected.
+
+
+
 
 
 
@@ -90,17 +122,8 @@ playtested, working as expected.
 if hero strikes a bombable door, play a hollow sound
 if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
 
-
-
-
-
-
-Functions_Room.ActivateLeverObjects() prolly should go in diff class
-We could also move alot of methods out of Functions_Room and into a new class
-called Functions_Doors
-
-
-
+this is a : sword projectile collision check against objects of type door bombable + wall cracked
+we'll need to add the hollow sound - we've already got the metallic tink sound
 
 
 
@@ -131,7 +154,26 @@ this will happen when we use the editor as well, each time we create/load a room
 
 
 
-Bug
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Conveyor Belts ++
 hero creates a sword projectile on conveyor belt
 hero is moved by conveyor belt into his sword projectile
 he takes damage. this should not happen
@@ -140,7 +182,9 @@ certain projectiles should move with the conveyorbelt
 this would be the case with bombs, weapon swings, etc...
 but not flying projectiles, like fireball or arrow
 
-sword projectiles (any projectile) should sort on top layer over all other sprites
+most objects should move if on a conveyor belt
+objs that shouldn't move: doors, walls, floor decals, pits, levers, flror spikes,
+conveyor belts, enemy spawns, vendors, air born projectiles, particles
 
 
 
@@ -158,6 +202,13 @@ we should not be able to call the same soundFX multiple times from one frame
 this causes the sfx to layer upon each other, drastically increasing their volume
 this is BAD BAD BAD
 
+we should have a quene of sfx to play next frame
+then process that que each frame
+so if a sfx instance is already on the que, it gets ignored
+this way we can only play one kind of sfx instance per frame
+on the next frame, sure, let the sfx play again
+but this prevents the doubling up of sfx sounds on the same frame
+
 
 
 
@@ -174,6 +225,7 @@ Test deployment of Game on XBOX ONE
 
 we'll need to match the UWP project to the DirectX project
 we've added new classes to DirectX project.
+we've added new content to the project as well.
 i dont think anything has changed with how the backend class works, but check it
 
 if loading xml room data fails, we'll need to store this data in .cs files
