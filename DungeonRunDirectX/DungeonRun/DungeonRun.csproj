@@ -173,9 +173,6 @@
     <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
       <Link>Classes\ScreenOverworld.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\ScreenOverworldNew.cs">
-      <Link>Classes\ScreenOverworldNew.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\ScreenRoomBuilder.cs">
       <Link>Classes\ScreenRoomBuilder.cs</Link>
     </Compile>

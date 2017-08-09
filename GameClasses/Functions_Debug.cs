@@ -267,16 +267,10 @@ namespace DungeonRun
 
             if (Functions_Input.IsNewKeyPress(Keys.F7))
             {
-                if (Flags.MapCheat)
-                {   //turn off mapCheat, take away map
-                    Flags.MapCheat = false;
-                    Functions_Dungeon.dungeon.map = false;
-                }
-                else
-                {   //turn on mapCheat, give hero map
-                    Flags.MapCheat = true;
-                    Functions_Dungeon.dungeon.map = true;
-                }
+                if (Flags.MapCheat) //turn off mapCheat, take away map
+                { Flags.MapCheat = false; Level.map = false; }
+                else //turn on mapCheat, give hero map
+                { Flags.MapCheat = true; Level.map = true; }
             }
 
             #endregion

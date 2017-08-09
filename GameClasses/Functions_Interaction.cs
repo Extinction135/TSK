@@ -95,7 +95,7 @@ namespace DungeonRun
                 {
                     Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Pool.hero);
                     Assets.Play(Assets.sfxKeyPickup);
-                    Functions_Dungeon.dungeon.bigKey = true;
+                    Level.bigKey = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotKey)); }
                 }
@@ -103,7 +103,7 @@ namespace DungeonRun
                 {
                     Functions_Entity.SpawnEntity(ObjType.ParticleRewardMap, Pool.hero);
                     Assets.Play(Assets.sfxReward);
-                    Functions_Dungeon.dungeon.map = true;
+                    Level.map = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap)); }
                 }
@@ -149,7 +149,7 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.DoorBoss)
             {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
-                if (Functions_Dungeon.dungeon.bigKey == false)
+                if (Level.bigKey == false)
                 {
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey)); }
@@ -226,7 +226,7 @@ namespace DungeonRun
 
                     if (Obj.type == ObjType.DoorBoss)
                     {   //hero must have dungeon key to open boss door
-                        if (Functions_Dungeon.dungeon.bigKey)
+                        if (Level.bigKey)
                         {
                             Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
                             Assets.Play(Assets.sfxDoorOpen);
@@ -407,12 +407,12 @@ namespace DungeonRun
         {   //some gameobjects can collapse bombable dungeon.doors
             if (Obj.type == ObjType.ProjectileExplosion)
             {
-                for(int i = 0; i < Functions_Dungeon.dungeon.doors.Count; i++)
+                for(int i = 0; i < Level.doors.Count; i++)
                 {   //if this explosion collides with any dungeon.door that is of type.bombable
-                    if (Functions_Dungeon.dungeon.doors[i].type == DoorType.Bombable)
+                    if (Level.doors[i].type == DoorType.Bombable)
                     {   //change this door type to type.bombed
-                        if (Obj.compCollision.rec.Intersects(Functions_Dungeon.dungeon.doors[i].rec))
-                        { Functions_Dungeon.dungeon.doors[i].type = DoorType.Bombed; }
+                        if (Obj.compCollision.rec.Intersects(Level.doors[i].rec))
+                        { Level.doors[i].type = DoorType.Bombed; }
                     }
                 }
             }

@@ -62,9 +62,9 @@ namespace DungeonRun
             exitIcon.position.X = -100;
             marker.X = -100;
 
-            for (i = 0; i < Functions_Dungeon.dungeon.rooms.Count; i++)
+            for (i = 0; i < Level.rooms.Count; i++)
             {
-                dungeonRoom = Functions_Dungeon.dungeon.rooms[i];
+                dungeonRoom = Level.rooms[i];
                 Room mapRoom = new Room(new Point(0, 0), dungeonRoom.type);
                 //get the room size
                 mapRoom.rec.Width = dungeonRoom.size.X;
@@ -110,15 +110,15 @@ namespace DungeonRun
             #region Collect all the dungeon doors
 
             doors = new List<Door>();
-            for (i = 0; i < Functions_Dungeon.dungeon.doors.Count; i++)
+            for (i = 0; i < Level.doors.Count; i++)
             {
                 Door dungeonDoor = new Door(new Point());
                 //map doors are always 1x1 pixels
                 dungeonDoor.rec.Width = 1;
                 dungeonDoor.rec.Height = 1;
                 //get the door position
-                dungeonDoor.rec.X = Functions_Dungeon.dungeon.doors[i].rec.X;
-                dungeonDoor.rec.Y = Functions_Dungeon.dungeon.doors[i].rec.Y;
+                dungeonDoor.rec.X = Level.doors[i].rec.X;
+                dungeonDoor.rec.Y = Level.doors[i].rec.Y;
                 //subtract the build position
                 dungeonDoor.rec.X -= Functions_Dungeon.buildPosition.X;
                 dungeonDoor.rec.Y -= Functions_Dungeon.buildPosition.Y;
@@ -129,7 +129,7 @@ namespace DungeonRun
                 dungeonDoor.rec.X += (640 / 2) - 8;
                 dungeonDoor.rec.Y += (360 / 2) + verticalOffset;
                 //get visibility
-                dungeonDoor.visited = Functions_Dungeon.dungeon.doors[i].visited;
+                dungeonDoor.visited = Level.doors[i].visited;
                 //add door to doors list
                 doors.Add(dungeonDoor);
             }
@@ -181,7 +181,7 @@ namespace DungeonRun
 
                 for (i = 0; i < rooms.Count; i++)
                 {   //do we need to draw this room?
-                    if (rooms[i].visited || Functions_Dungeon.dungeon.map)
+                    if (rooms[i].visited || Level.map)
                     {
                         if (rooms[i].visited)
                         {   //draw visited rooms with Visited color
@@ -205,7 +205,7 @@ namespace DungeonRun
 
                 for (i = 0; i < doors.Count; i++)
                 {   //do we need to draw this door?
-                    if (doors[i].visited || Functions_Dungeon.dungeon.map)
+                    if (doors[i].visited || Level.map)
                     {
                         if (doors[i].visited)
                         {   //draw visited doors with Visited color

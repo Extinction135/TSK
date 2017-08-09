@@ -16,21 +16,21 @@ namespace DungeonRun
     {
         static int i;
 
-        public static void Draw(Dungeon Dungeon)
+        public static void DrawLevel()
         {   //draw the dungeon's room collision recs
-            for (i = 0; i < Dungeon.rooms.Count; i++)
-            {
-                ScreenManager.spriteBatch.Draw(
-                    Assets.dummyTexture, 
-                    Dungeon.rooms[i].rec,
-                    Assets.colorScheme.roomRec);
-            }
-            //draw the dungeon doors
-            for (i = 0; i < Dungeon.doors.Count; i++)
+            for (i = 0; i < Level.rooms.Count; i++)
             {
                 ScreenManager.spriteBatch.Draw(
                     Assets.dummyTexture,
-                    Dungeon.doors[i].rec,
+                    Level.rooms[i].rec,
+                    Assets.colorScheme.roomRec);
+            }
+            //draw the dungeon doors
+            for (i = 0; i < Level.doors.Count; i++)
+            {
+                ScreenManager.spriteBatch.Draw(
+                    Assets.dummyTexture,
+                    Level.doors[i].rec,
                     Assets.colorScheme.interaction);
             }
         }

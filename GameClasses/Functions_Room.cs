@@ -249,16 +249,16 @@ namespace DungeonRun
                 {
                     if (Pool.roomObjPool[i].group == ObjGroup.Wall)
                     {   //check to see if wall collides with any door from dungeon
-                        for (j = 0; j < Functions_Dungeon.dungeon.doors.Count; j++)
+                        for (j = 0; j < Level.doors.Count; j++)
                         {
-                            if (Pool.roomObjPool[i].compCollision.rec.Contains(Functions_Dungeon.dungeon.doors[j].rec.Location))
+                            if (Pool.roomObjPool[i].compCollision.rec.Contains(Level.doors[j].rec.Location))
                             {
                                 //set the room's doors based on the dungeon.door.type
-                                if (Functions_Dungeon.dungeon.doors[j].type == DoorType.Bombable)
+                                if (Level.doors[j].type == DoorType.Bombable)
                                 { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBombable); }
-                                else if (Functions_Dungeon.dungeon.doors[j].type == DoorType.Bombed)
+                                else if (Level.doors[j].type == DoorType.Bombed)
                                 { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBombed); }
-                                else if (Functions_Dungeon.dungeon.doors[j].type == DoorType.Boss)
+                                else if (Level.doors[j].type == DoorType.Boss)
                                 { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBoss); }
                                 else //all other doorTypes default to open
                                 { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen); }
@@ -651,7 +651,7 @@ namespace DungeonRun
                 {   //find any chest objects in the key room
                     if (Pool.roomObjPool[i].group == ObjGroup.Chest)
                     {   //check the dungeon.bigKey boolean to see if this chest should be filled
-                        if (Functions_Dungeon.dungeon.bigKey)
+                        if (Level.bigKey)
                         { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestEmpty); }
                         else //if hero has found the map, this chest is empty, else it has a key
                         { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestKey); }
@@ -668,7 +668,7 @@ namespace DungeonRun
                 {   //find any chest objects in the hub room
                     if (Pool.roomObjPool[i].group == ObjGroup.Chest)
                     {   //check the dungeon.map boolean to see if this chest should be filled
-                        if (Functions_Dungeon.dungeon.map)
+                        if (Level.map)
                         { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestEmpty); }
                         else //if hero has found the map, this chest is empty, else it has a map
                         { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ChestMap); }

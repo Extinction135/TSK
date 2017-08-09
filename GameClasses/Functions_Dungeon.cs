@@ -18,8 +18,7 @@ namespace DungeonRun
         public static TimeSpan time;
 
         public static ScreenDungeon dungeonScreen;
-        public static Dungeon dungeon = new Dungeon(); //the last dungeon created
-        public static LevelType dungeonType = LevelType.CursedCastle; //changed later
+
         public static Room currentRoom; //points to a room on dungeon's roomList
         public static int dungeonTrack = 0;
 
@@ -30,23 +29,36 @@ namespace DungeonRun
 
         public static void Initialize(ScreenDungeon DungeonScreen) { dungeonScreen = DungeonScreen; }
 
+
+
+        public static void ResetLevel()
+        {   //level type is set by overworld & dialog screens
+            Level.rooms = new List<Room>();
+            Level.doors = new List<Door>();
+            Level.bigKey = false;
+            Level.map = false;
+        }
+
+
+
+
+
         public static void BuildDungeon()
         {
-            dungeon = new Dungeon(); //DungeonScreen calls BuildDungeon()
-            dungeon.type = dungeonType; //dungeonType is set by OverworldScreen
+            ResetLevel();
 
             //set all floor sprites to the appropriate dungeon texture
-            Functions_Pool.SetFloorTexture(dungeon.type);
+            Functions_Pool.SetFloorTexture(Level.type);
             if (Flags.PrintOutput) { Debug.WriteLine("-- creating dungeon --"); }
 
 
             #region Create Shop
 
-            if (dungeonType == LevelType.Shop)
+            if (Level.type == LevelType.Shop)
             {   //create the dungeon's rooms
                 Room shopRoom = new Room(new Point(0, 0), RoomType.Shop);
                 Functions_Room.MoveRoom(shopRoom, buildPosition.X, buildPosition.Y);
-                dungeon.rooms.Add(shopRoom); //exit room must be at index0
+                Level.rooms.Add(shopRoom); //exit room must be at index0
 
                 //keep the title music playing
                 Functions_Music.PlayMusic(Music.Title);
@@ -66,50 +78,50 @@ namespace DungeonRun
                 //create the exit room
                 Room exitRoom = new Room(new Point(0, 0), RoomType.Exit);
                 Functions_Room.MoveRoom(exitRoom, buildPosition.X, buildPosition.Y);
-                dungeon.rooms.Add(exitRoom); //exit room must be at index0
-                int last = dungeon.rooms.Count() - 1;
+                Level.rooms.Add(exitRoom); //exit room must be at index0
+                int last = Level.rooms.Count() - 1;
                 int i;
 
                 //create a north path to the hub room (keeps hub centered to map)
                 for (i = 0; i < 2; i++)
                 {
-                    last = dungeon.rooms.Count() - 1;
+                    last = Level.rooms.Count() - 1;
                     Room room = new Room(new Point(0, 0), GetRandomRoomType());
-                    Functions_Room.MoveRoom(room, dungeon.rooms[last].rec.X, dungeon.rooms[last].rec.Y - (16 * room.size.Y) - 16);
-                    dungeon.rooms.Add(room);
+                    Functions_Room.MoveRoom(room, Level.rooms[last].rec.X, Level.rooms[last].rec.Y - (16 * room.size.Y) - 16);
+                    Level.rooms.Add(room);
                 }
                 //create hub north of last room
-                last = dungeon.rooms.Count() - 1;
+                last = Level.rooms.Count() - 1;
                 Room hubRoom = new Room(new Point(0, 0), RoomType.Hub);
-                Functions_Room.MoveRoom(hubRoom, dungeon.rooms[last].rec.X, dungeon.rooms[last].rec.Y - (16 * hubRoom.size.Y) - 16);
-                dungeon.rooms.Add(hubRoom);
+                Functions_Room.MoveRoom(hubRoom, Level.rooms[last].rec.X, Level.rooms[last].rec.Y - (16 * hubRoom.size.Y) - 16);
+                Level.rooms.Add(hubRoom);
                 //place boss north of hub room
                 Room bossRoom = new Room(new Point(0, 0), RoomType.Boss);
                 Functions_Room.MoveRoom(bossRoom, hubRoom.rec.X, hubRoom.rec.Y - (16 * bossRoom.size.Y) - 16);
-                dungeon.rooms.Add(bossRoom);
+                Level.rooms.Add(bossRoom);
 
                 //create the start of key path from a room that isn't exit / boss / hub
                 Room keyPathStart = new Room(new Point(0, 0), GetRandomRoomType());
-                int random = Functions_Random.Int(1, dungeon.rooms.Count() - 2);
-                AddRoom(dungeon.rooms[random], keyPathStart, 20, true);
+                int random = Functions_Random.Int(1, Level.rooms.Count() - 2);
+                AddRoom(Level.rooms[random], keyPathStart, 20, true);
                 //create a random path to the key room from key path start room (last room)
                 for (i = 0; i < 2; i++)
                 {
-                    last = dungeon.rooms.Count() - 1;
+                    last = Level.rooms.Count() - 1;
                     Room room = new Room(new Point(0, 0), GetRandomRoomType());
-                    AddRoom(dungeon.rooms[last], room, 20, false);
+                    AddRoom(Level.rooms[last], room, 20, false);
                 }
                 //create key randomly around last room
-                last = dungeon.rooms.Count() - 1;
+                last = Level.rooms.Count() - 1;
                 Room keyRoom = new Room(new Point(0, 0), RoomType.Key);
-                AddRoom(dungeon.rooms[last], keyRoom, 20, true);
+                AddRoom(Level.rooms[last], keyRoom, 20, true);
 
                 //randomly add rooms around exit room
                 for (i = 0; i < 2; i++)
                 {
-                    last = dungeon.rooms.Count() - 1;
+                    last = Level.rooms.Count() - 1;
                     Room room = new Room(new Point(0, 0), GetRandomRoomType());
-                    AddRoom(dungeon.rooms[0], room, 20, true);
+                    AddRoom(Level.rooms[0], room, 20, true);
                 }
 
                 AddMoreRooms();
@@ -121,8 +133,8 @@ namespace DungeonRun
 
                 //create the build list
                 List<Room> buildList = new List<Room>();
-                for (i = 0; i < dungeon.rooms.Count; i++)
-                { buildList.Add(dungeon.rooms[i]); }
+                for (i = 0; i < Level.rooms.Count; i++)
+                { buildList.Add(Level.rooms[i]); }
 
 
                 #region Connect Rooms with Doors
@@ -151,8 +163,8 @@ namespace DungeonRun
                 }
                 if (Flags.PrintOutput)
                 {
-                    Debug.WriteLine("connected " + dungeon.rooms.Count + " rooms");
-                    Debug.WriteLine("created  " + dungeon.doors.Count + " doors");
+                    Debug.WriteLine("connected " + Level.rooms.Count + " rooms");
+                    Debug.WriteLine("created  " + Level.doors.Count + " doors");
                 }
 
                 #endregion
@@ -177,10 +189,10 @@ namespace DungeonRun
             #region Finish Level (Dungeon or Shop)
 
             //build the first room in the dungeon (room with exit)
-            dungeon.rooms[0].visited = true; //hero spawns in this room
-            currentRoom = dungeon.rooms[0];
-            Functions_Room.BuildRoom(dungeon.rooms[0]);
-            Functions_Room.FinishRoom(dungeon.rooms[0]);
+            Level.rooms[0].visited = true; //hero spawns in this room
+            currentRoom = Level.rooms[0];
+            Functions_Room.BuildRoom(Level.rooms[0]);
+            Functions_Room.FinishRoom(Level.rooms[0]);
             //place hero in the current room (exit room, rooms[0]) in front of exit door
             Functions_Actor.SetType(Pool.hero, ActorType.Hero);
             Functions_Movement.Teleport(Pool.hero.compMove,
@@ -189,7 +201,7 @@ namespace DungeonRun
             Functions_Movement.StopMovement(Pool.hero.compMove);
             Pool.hero.direction = Direction.Up; //face hero up
             //check to see if dungeon map should be given to hero upon spawn
-            if (Flags.MapCheat) { dungeon.map = true; } else { dungeon.map = false; }
+            if (Flags.MapCheat) { Level.map = true; } else { Level.map = false; }
             //place cameras starting position in dungeon
             if (Flags.CameraTracksHero) //center camera to hero
             { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
@@ -341,14 +353,8 @@ namespace DungeonRun
             if (Parent.type == RoomType.Secret) { door.type = DoorType.Bombable; }
             else if (Child.type == RoomType.Secret) { door.type = DoorType.Bombable; }
 
-            //add the door to dungeon.doors list
-            dungeon.doors.Add(door);
-        }
-
-        public static void LoadShop()
-        {
-            dungeonType = LevelType.Shop;
-            ScreenManager.ExitAndLoad(new ScreenDungeon());
+            //add the door to Level.doors list
+            Level.doors.Add(door);
         }
 
         public static RoomType GetRandomRoomType()
@@ -386,59 +392,51 @@ namespace DungeonRun
                 Child.rec.Width += 32; Child.rec.Height += 32;
                 Child.rec.X -= 16; Child.rec.Y -= 16;
                 //check to see if child collides with any room
-                for (int i = 0; i < dungeon.rooms.Count; i++)
-                { if (Child.rec.Intersects(dungeon.rooms[i].rec)) { collision = true; } }
+                for (int i = 0; i < Level.rooms.Count; i++)
+                { if (Child.rec.Intersects(Level.rooms[i].rec)) { collision = true; } }
                 //deflate
                 Child.rec.Width -= 32; Child.rec.Height -= 32;
                 Child.rec.X += 16; Child.rec.Y += 16;
 
                 if (!collision) //if there wasn't a room collision, add room to rooms list
-                { dungeon.rooms.Add(Child); return true; }
+                { Level.rooms.Add(Child); return true; }
             }
             return false; //we didn't successfully place the child room
         }
 
 
 
-
-
-
         public static void AddMoreRooms()
         {   //randomly add additional rooms to all rooms except exit/boss/key
-            int coreRoomCount = dungeon.rooms.Count;
+            int coreRoomCount = Level.rooms.Count;
             for (int i = 0; i < coreRoomCount; i++)
             {
-                if (dungeon.rooms[i].type == RoomType.Exit) { }
-                else if (dungeon.rooms[i].type == RoomType.Boss) { }
-                else if (dungeon.rooms[i].type == RoomType.Key) { }
+                if (Level.rooms[i].type == RoomType.Exit) { }
+                else if (Level.rooms[i].type == RoomType.Boss) { }
+                else if (Level.rooms[i].type == RoomType.Key) { }
                 else
                 {
                     Room room = new Room(new Point(0, 0), GetRandomRoomType());
-                    AddRoom(dungeon.rooms[i], room, 10, false);
+                    AddRoom(Level.rooms[i], room, 10, false);
                 }
             }
         }
 
         public static void AddSecretRooms()
         {   //randomly add secret rooms to all rooms except exit/boss/secret
-            int coreRoomCount = dungeon.rooms.Count;
+            int coreRoomCount = Level.rooms.Count;
             for (int i = 0; i < coreRoomCount; i++)
             {
-                if (dungeon.rooms[i].type == RoomType.Exit) { }
-                else if (dungeon.rooms[i].type == RoomType.Boss) { }
-                else if (dungeon.rooms[i].type == RoomType.Secret) { }
+                if (Level.rooms[i].type == RoomType.Exit) { }
+                else if (Level.rooms[i].type == RoomType.Boss) { }
+                else if (Level.rooms[i].type == RoomType.Secret) { }
                 else
                 {
                     Room room = new Room(new Point(0, 0), RoomType.Secret);
-                    AddRoom(dungeon.rooms[i], room, 10, false);
+                    AddRoom(Level.rooms[i], room, 10, false);
                 }
             }
         }
-
-
-
-
-
 
     }
 }

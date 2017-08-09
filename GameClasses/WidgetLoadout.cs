@@ -148,10 +148,10 @@ namespace DungeonRun
             //set the gold, hearts, and dungeon items
             Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
             Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[5]); //unused for now
-            if (Functions_Dungeon.dungeon.map) //if player found the map, display it
+            if (Level.map) //if player found the map, display it
             { Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
             else { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }
-            if (Functions_Dungeon.dungeon.bigKey) //if player found the key, display it
+            if (Level.bigKey) //if player found the key, display it
             { Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
             else { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
         }

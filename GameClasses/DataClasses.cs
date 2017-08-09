@@ -421,6 +421,14 @@ namespace DungeonRun
         }
     }
 
+    public static class Level
+    {
+        public static List<Room> rooms = new List<Room>();
+        public static List<Door> doors = new List<Door>();
+        public static Boolean bigKey = false;
+        public static Boolean map = false;
+        public static LevelType type = LevelType.CursedCastle;
+    }
 
 
     //Instanced Classes
@@ -495,15 +503,6 @@ namespace DungeonRun
         public Boolean visited = false;
         public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
         public DoorType type = DoorType.Open;
-    }
-
-    public class Dungeon
-    {
-        public List<Room> rooms = new List<Room>();
-        public List<Door> doors = new List<Door>();
-        public Boolean bigKey = false;
-        public Boolean map = false;
-        public LevelType type = LevelType.CursedCastle;
     }
 
     public class ColorScheme
@@ -738,13 +737,14 @@ namespace DungeonRun
     }
 
 
+
     //Map Classes
 
     public class MapLocation
     {
         public ComponentSprite compSprite;
         public Boolean isLevel = false; //is level or connector location?
-        public LevelType levelType = LevelType.Shop;
+        public LevelType levelType = LevelType.Connector;
         public String name = "";
         //cardinal neighbors this location links with
         public MapLocation neighborUp;
@@ -762,6 +762,8 @@ namespace DungeonRun
             neighborLeft = this; neighborRight = this;
         }
     }
+
+
 
     //UI Classes
 

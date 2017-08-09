@@ -60,7 +60,7 @@ namespace DungeonRun
                 //open map widget if player presses back button
                 else if (Functions_Input.IsNewButtonPress(Buttons.Back))
                 {   //check to see if hero has found the dungeon map
-                    if (Functions_Dungeon.dungeon.map)
+                    if (Level.map)
                     { ScreenManager.AddScreen(new ScreenDungeonMap()); }
                 }
 
@@ -123,7 +123,7 @@ namespace DungeonRun
                     //handle exit action
                     if (exitAction == ExitAction.Summary)
                     { ScreenManager.ExitAndLoad(new ScreenSummary()); }
-                    else if(exitAction == ExitAction.Overworld)
+                    else if(exitAction == ExitAction.Overworld) //pass previous level type as starting map location
                     { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
                     else if(exitAction == ExitAction.Title)
                     { ScreenManager.ExitAndLoad(new ScreenTitle()); }
@@ -136,7 +136,7 @@ namespace DungeonRun
                 if (displayState != DisplayState.Closed)
                 {   //update and move actors, objects, projectiles, and camera
                     Functions_Pool.Update();
-                    Functions_Collision.CheckDungeonRoomCollisions();
+                    Functions_Collision.CheckLevelRoomCollisions();
                     Functions_WorldUI.Update();
                     if (Flags.CameraTracksHero) //track camera to hero
                     {
@@ -199,7 +199,7 @@ namespace DungeonRun
             if (Flags.DrawCollisions)
             {
                 Functions_Draw.Draw(Input.cursorColl);
-                Functions_Draw.Draw(Functions_Dungeon.dungeon);
+                Functions_Draw.DrawLevel();
                 Functions_Draw.Draw(Functions_Interaction.interactionRec);
             }
             ScreenManager.spriteBatch.End();

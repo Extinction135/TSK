@@ -45,28 +45,25 @@ todo:
 
 
 
-Implement New Overworld Map Screen - Part 2
+Implement New Overworld Map Screen - Part 3
 
-removed the required parameter GameTime from Functions_Input.Update().
-this parameter was not being used at all.
-
-created currentLocation instance + cardinal direction instance.
-updated NewOverworldScreen.HandleInput() to move hero around locations.
-this movement routine uses currentLocation and cardinal input direction.
-playtested, hero teleports to the currentLocation correctly.
-
-implemented map movement routine for hero, based on Camera2D movement routine.
-when hero reaches location, hero's animation is set to idle, facing down.
-when the hero moves to a new location, hero's animation is set to walking.
-hero faces the direction of the new location.
-playtested, hero 'walks' between locations correctly.
-
-created routine to check if hero has just arrived at a new location.
-if so, the map title is updated to the location's name.
-improved movement routines so hero can't change locations mid-movement.
-simplified movment routines as well.
+increased hero's movement speed between locations.
+created routine to load levels based on the location.levelType.
+this makes the load routine generic and scales well.
 playtested, working as expected.
 
+removed old overworld map screen, replaced with new overworld screen.
+updated GameClasses folder as well.
+
+renamed Dungeon data class to Level data class, made it global.
+lots of refactoring to use the global Level instance.
+updated OverworldMap screen to use Level.type as starting location.
+this means map will always start hero at the last level location.
+
+added Connector value to LevelType enum.
+this value denots that a location has no level type, essentially.
+this removes the location from starting location consideration.
+playtested, overworld properly places hero at last level map location.
 
 
 
@@ -74,12 +71,46 @@ playtested, working as expected.
 
 
 
-hero should move a little bit faster
+change hero moving to hero dashing on overworld screen
+create a little dash puff when hero initially starts moving off a location
+this reflects how hero moves in game
 
-we should be able to actually load levels, like old overworld screen
 
-add more locations + connectors
 
+
+create all map locations 
+all locations will be of type connector, except colliseum and castle
+
+once all locations are placed, remove red dot bkg from map texture.
+
+
+
+
+
+reorganize all classes that refer to Dungeon, should be called Level
+screen dugneon should be called screen level
+functions_dungeon should be called functions_level
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+make additional level types:
+
+gate, castle, castle left, castle right, right town
+
+colliseum, center town, forest dungeon, ship
+
+left town 1, left town 2, left town 3, cave dungeon, left bottom church, left fort dungeon
 
 
 
@@ -115,15 +146,6 @@ this means the room will be built the same each time hero enters it
 in order to test room 'consistency', we'll need to add more roomData
 boss, hub, key, column, square, row
 
-
-
-
-
-
-we should probably make dungeon global, instead of burying it in Functions_Dungeon.dungeon
-and it should prolly be called Level. since its going to become more than a dungeon
-the issue is that we'll need to be 'cleaning' the level/dungeon prior to building it
-this will happen when we use the editor as well, each time we create/load a room
 
 
 

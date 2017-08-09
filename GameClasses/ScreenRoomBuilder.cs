@@ -361,8 +361,9 @@ namespace DungeonRun
         
         public void BuildRoomData(RoomXmlData RoomXmlData)
         {
-            Functions_Dungeon.dungeon = new Dungeon(); //defaults to type.cursedCastle
+            Functions_Dungeon.ResetLevel();
             //this can be whatever texture we want later
+            Level.type = LevelType.CursedCastle;
             Functions_Pool.SetFloorTexture(LevelType.CursedCastle); 
 
             //build the room
@@ -372,10 +373,10 @@ namespace DungeonRun
             { Functions_Dungeon.currentRoom = new Room(Functions_Dungeon.buildPosition, RoomType.Row); }
             
             //add this room to the dungeon.rooms list
-            Functions_Dungeon.dungeon.rooms.Add(Functions_Dungeon.currentRoom);
+            Level.rooms.Add(Functions_Dungeon.currentRoom);
             Functions_Dungeon.currentRoom.visited = true;
-            if (Flags.MapCheat) { Functions_Dungeon.dungeon.map = true; }
-            else { Functions_Dungeon.dungeon.map = false; }
+            if (Flags.MapCheat) { Level.map = true; }
+            else { Level.map = false; }
 
             //simplify / collect room values
             int posX = Functions_Dungeon.currentRoom.rec.X;
@@ -386,10 +387,10 @@ namespace DungeonRun
             int height = Functions_Dungeon.currentRoom.size.Y * 16;
 
             //set NSEW doors
-            Functions_Dungeon.dungeon.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
-            Functions_Dungeon.dungeon.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
-            Functions_Dungeon.dungeon.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
-            Functions_Dungeon.dungeon.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
+            Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
+            Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
+            Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
+            Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
 
             //releases all roomObjs, builds walls + floors + doors
             Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
