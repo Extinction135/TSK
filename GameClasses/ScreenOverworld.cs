@@ -25,7 +25,7 @@ namespace DungeonRun
         Direction cardinal;
         MapLocation currentLocation;
         Vector2 distance; //used in map movement routine
-        float speed = 0.2f; //how fast hero moves between locations
+        float speed = 0.1f; //how fast hero moves between locations
 
 
 
@@ -49,64 +49,75 @@ namespace DungeonRun
             map.position.Y = map.cellSize.Y / 2;
 
 
-
-
-
             #region Create locations
 
-            MapLocation castle = new MapLocation(true, new Vector2(442, 135));
-            MapLocation gate = new MapLocation(false, new Vector2(421, 160));
+            locations = new List<MapLocation>();
+
             MapLocation colliseum = new MapLocation(true, new Vector2(306, 195));
+            locations.Add(colliseum);
             MapLocation colliseumRight = new MapLocation(false, new Vector2(365, 175));
+            locations.Add(colliseumRight);
+            MapLocation gate = new MapLocation(false, new Vector2(421, 160));
+            locations.Add(gate);
+            MapLocation castle = new MapLocation(true, new Vector2(442, 135));
+            locations.Add(castle);
+            MapLocation leftCastleTown = new MapLocation(false, new Vector2(431, 111));
+            locations.Add(leftCastleTown);
+            MapLocation rightCastleTown = new MapLocation(false, new Vector2(482, 137));
+            locations.Add(rightCastleTown);
+            MapLocation wallConnector = new MapLocation(false, new Vector2(465, 187));
+            locations.Add(wallConnector);
+            MapLocation rightTown = new MapLocation(false, new Vector2(514, 189));
+            locations.Add(rightTown);
+            MapLocation centerTown = new MapLocation(false, new Vector2(339, 141));
+            locations.Add(centerTown);
+            MapLocation ship = new MapLocation(false, new Vector2(281, 234));
+            locations.Add(ship);
+
+
+            //colliseum left connector
+            //forest dungeon
+            //left town 1, 2, 3, and church
+            //cave dungeon
+            //left island connector
+            //ruined castle dungeon
 
             #endregion
 
 
-            #region Set mapLocation's names + level types
-
-            //level locations
-            castle.name = "Castle";
-            castle.levelType = LevelType.CursedCastle;
-
-            colliseum.name = "Colliseum";
+            //set level types
+            castle.levelType = LevelType.Castle;
             colliseum.levelType = LevelType.Shop;
-
-            //connectors
-            gate.name = "Gate";
-            gate.levelType = LevelType.Connector;
-
-            colliseumRight.name = "Road";
-            colliseumRight.levelType = LevelType.Connector;
-
-            #endregion
-
+            
 
             #region Set maplocation's neighbors
 
+            rightCastleTown.neighborLeft = castle;
+            castle.neighborRight = rightCastleTown;
+            leftCastleTown.neighborRight = castle;
+            leftCastleTown.neighborDown = castle;
+            castle.neighborLeft = leftCastleTown;
+            castle.neighborUp = leftCastleTown;
+            
             castle.neighborDown = gate;
-            castle.neighborLeft = gate;
-
             gate.neighborUp = castle;
+
             gate.neighborLeft = colliseumRight;
+            gate.neighborRight = wallConnector;
+            wallConnector.neighborLeft = gate;
+            wallConnector.neighborRight = rightTown;
+            rightTown.neighborLeft = wallConnector;
 
             colliseumRight.neighborRight = gate;
             colliseumRight.neighborLeft = colliseum;
+            colliseumRight.neighborUp = centerTown;
+            centerTown.neighborDown = colliseumRight;
 
             colliseum.neighborRight = colliseumRight;
+            colliseum.neighborDown = ship;
+            ship.neighborUp = colliseum;
 
             #endregion
-
-
-            #region Add locations to locations list
-
-            locations = new List<MapLocation>();
-            locations.Add(castle);
-            locations.Add(gate);
-            locations.Add(colliseum);
-            locations.Add(colliseumRight);
-
-            #endregion
-
 
 
             #region Set Starting Location
@@ -117,7 +128,6 @@ namespace DungeonRun
                 if (locations[i].levelType == Level.type)
                 { currentLocation = locations[i]; }
             }
-            UpdateTitle();
 
             hero = new Actor();
             //set hero at the current location
@@ -211,10 +221,9 @@ namespace DungeonRun
                 if (hero.state == ActorState.Move)
                 {   //if hero just reached destination.. (moving + position match)
                     if (hero.compMove.position == hero.compMove.newPosition)
-                    {   //set hero's animation to idle down, update map title
+                    {   //set hero's animation to idle down
                         hero.state = ActorState.Idle;
                         hero.direction = Direction.Down;
-                        UpdateTitle();
                     }
                 }
 
@@ -224,6 +233,7 @@ namespace DungeonRun
                 Functions_ActorAnimationList.SetAnimationGroup(hero);
                 Functions_ActorAnimationList.SetAnimationDirection(hero);
                 Functions_Animation.Animate(hero.compAnim, hero.compSprite);
+                scroll.title.text = "Overworld Map - " + currentLocation.levelType;
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in
@@ -254,11 +264,6 @@ namespace DungeonRun
             Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
         }
-
-
-
-        public void UpdateTitle()
-        { scroll.title.text = "Overworld Map - " + currentLocation.name; }
 
     }
 }

@@ -38,7 +38,7 @@ namespace DungeonRun
 
 
 
-    public enum LevelType { Connector, CursedCastle, Shop }
+    public enum LevelType { Road, Castle, Shop }
 
     public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 

@@ -45,25 +45,18 @@ todo:
 
 
 
-Implement New Overworld Map Screen - Part 3
+Create All Map Locations = Part 1
 
-increased hero's movement speed between locations.
-created routine to load levels based on the location.levelType.
-this makes the load routine generic and scales well.
+created additional map locations: castle town left, castle town right,
+wall connected, right town, center town, ship.
+
+changed LevelType enum values to { Road, Castle, Shop }.
+updated OverworldScreen to display Map title + Location.type.
+removed the name string from map location.
+
+updated neighbor connections for all locations.
 playtested, working as expected.
 
-removed old overworld map screen, replaced with new overworld screen.
-updated GameClasses folder as well.
-
-renamed Dungeon data class to Level data class, made it global.
-lots of refactoring to use the global Level instance.
-updated OverworldMap screen to use Level.type as starting location.
-this means map will always start hero at the last level location.
-
-added Connector value to LevelType enum.
-this value denots that a location has no level type, essentially.
-this removes the location from starting location consideration.
-playtested, overworld properly places hero at last level map location.
 
 
 
@@ -71,9 +64,7 @@ playtested, overworld properly places hero at last level map location.
 
 
 
-change hero moving to hero dashing on overworld screen
-create a little dash puff when hero initially starts moving off a location
-this reflects how hero moves in game
+
 
 
 
@@ -95,22 +86,11 @@ functions_dungeon should be called functions_level
 
 
 
-
-
-
-
-
-
-
-
-
-make additional level types:
-
-gate, castle, castle left, castle right, right town
-
-colliseum, center town, forest dungeon, ship
-
-left town 1, left town 2, left town 3, cave dungeon, left bottom church, left fort dungeon
+** can we implement these particles using the entity pool?
+* it does exist at this time, and we could draw it from overworld screen
+create a little dash puff when hero initially starts moving off a location
+create wave sprite animation, scatter around map in water areas
+create animated flag sprites, add to top of castle + towns
 
 
 
@@ -124,9 +104,8 @@ left town 1, left town 2, left town 3, cave dungeon, left bottom church, left fo
 
 
 
-
-
-
+secret rooms tend to prefer connecting on the top left corner
+they rarely connect in the center of rooms, which they should be doing
 
 if hero strikes a bombable door, play a hollow sound
 if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
@@ -296,9 +275,6 @@ release version 0.6 with complete dungeon & enemy variety.
 
 v0.7 goals
 
-replace overworld map
-get hero sprite moving between locations on the new overworld map
-get hero sprite correctly animating when moving
 
 build more non-dungeon levels: towns, castle, forest, etc..
 some should be non-combat
@@ -317,8 +293,16 @@ create dungeon variations: old ruins castle, cave, forest, big castle
 
 
 
+make additional level types:
 
+gate, castle, castle left, castle right, right town
 
+colliseum, center town, forest dungeon, ship
+
+left town 1, left town 2, left town 3, cave dungeon, left bottom church, left fort dungeon
+
+tent town, cathedral connector, catherdral, 
+bottom right water connector, center island, monument connector, monument
 
 
 

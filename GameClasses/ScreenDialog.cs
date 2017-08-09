@@ -169,11 +169,8 @@ namespace DungeonRun
                     Pool.hero.item = MenuItemType.ItemBomb;
                     Pool.hero.armor = MenuItemType.ArmorCloth;
                     Pool.hero.equipment = MenuItemType.Unknown;
-
-                    //load shop level
-                    //Functions_Dungeon.LoadShop();
                     //load overworld map, starting at shop
-                    Level.type = LevelType.Shop; //starting level is shop
+                    Level.type = LevelType.Shop;
                     ScreenManager.ExitAndLoad(new ScreenOverworld());
                 }
                 //or simply exit this screen

@@ -363,8 +363,8 @@ namespace DungeonRun
         {
             Functions_Dungeon.ResetLevel();
             //this can be whatever texture we want later
-            Level.type = LevelType.CursedCastle;
-            Functions_Pool.SetFloorTexture(LevelType.CursedCastle); 
+            Level.type = LevelType.Castle;
+            Functions_Pool.SetFloorTexture(LevelType.Castle); 
 
             //build the room
             if (RoomXmlData != null)

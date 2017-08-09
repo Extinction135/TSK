@@ -615,7 +615,7 @@ namespace DungeonRun
             { Obj.compSprite.texture = Assets.mainSheet; }
             else
             {   //all other object's get assigned a dungeon texture, based on dungeon.type
-                if (Level.type == LevelType.CursedCastle)
+                if (Level.type == LevelType.Castle)
                 { Obj.compSprite.texture = Assets.cursedCastleSheet; }
                 //expand this to include all dungeon textures...
                 else if (Level.type == LevelType.Shop)

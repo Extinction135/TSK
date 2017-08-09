@@ -427,7 +427,7 @@ namespace DungeonRun
         public static List<Door> doors = new List<Door>();
         public static Boolean bigKey = false;
         public static Boolean map = false;
-        public static LevelType type = LevelType.CursedCastle;
+        public static LevelType type = LevelType.Castle;
     }
 
 
@@ -744,8 +744,7 @@ namespace DungeonRun
     {
         public ComponentSprite compSprite;
         public Boolean isLevel = false; //is level or connector location?
-        public LevelType levelType = LevelType.Connector;
-        public String name = "";
+        public LevelType levelType = LevelType.Road;
         //cardinal neighbors this location links with
         public MapLocation neighborUp;
         public MapLocation neighborRight;
