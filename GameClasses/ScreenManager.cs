@@ -45,7 +45,7 @@ namespace DungeonRun
         public static void Update(GameTime GameTime)
         {
             gameTime = GameTime;
-            Functions_Input.Update(GameTime);
+            Functions_Input.Update();
 
             screensToUpdate.Clear();
             screensToUpdate.AddRange(screens);

@@ -115,7 +115,7 @@ namespace DungeonRun
             else { return false; }
         }
 
-        public static void Update(GameTime gameTime)
+        public static void Update()
         {
             Input.lastKeyboardState = Input.currentKeyboardState;
             Input.lastMouseState = Input.currentMouseState;

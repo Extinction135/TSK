@@ -22,6 +22,10 @@ namespace DungeonRun
         public int i;
 
         public Actor hero;
+        Direction cardinal;
+        MapLocation currentLocation;
+        Vector2 distance; //used in map movement routine
+        float speed = 0.1f; //how fast hero moves between locations
 
 
         public ScreenOverworldNew() { this.name = "OverworldScreen"; }
@@ -56,6 +60,16 @@ namespace DungeonRun
             #endregion
 
 
+            #region Set mapLocation's names
+
+            castle.name = "Castle";
+            gate.name = "Gate";
+            colliseum.name = "Colliseum";
+            colliseumRight.name = "Road";
+
+            #endregion
+
+
             #region Set maplocation's neighbors
 
             castle.neighborDown = gate;
@@ -83,11 +97,24 @@ namespace DungeonRun
             #endregion
 
 
+
+
+
+            currentLocation = colliseum;
+            UpdateTitle();
+
             hero = new Actor();
-            Functions_Movement.Teleport(hero.compMove, 
-                colliseum.compSprite.position.X, 
-                colliseum.compSprite.position.Y - 8);
+            //set hero at the current location
+            Functions_Movement.Teleport(hero.compMove,
+                currentLocation.compSprite.position.X,
+                currentLocation.compSprite.position.Y - 8);
             Functions_Component.Align(hero.compMove, hero.compSprite, hero.compCollision);
+
+            // * in the future, we should place hero at the location of the level he left
+
+
+
+
 
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
@@ -101,7 +128,31 @@ namespace DungeonRun
             {   //only allow input if the screen has opened completely
 
 
-                Functions_Input.MapPlayerInput(hero.compInput);
+                #region Change Locations based on Input
+
+                //hero can only move to a new location, if hero is at a location
+                if(hero.compMove.position == hero.compMove.newPosition)
+                {   //check to see if the gamePad direction is a new direction
+                    if (Input.gamePadDirection != Input.lastGamePadDirection)
+                    {   //get the cardinal direction of the gamepad input
+                        cardinal = Functions_Direction.GetCardinalDirection(Input.gamePadDirection);
+                        //set the currentLocation based on cardinal direction
+                        if (cardinal == Direction.Up)
+                        { currentLocation = currentLocation.neighborUp; }
+                        if (cardinal == Direction.Right)
+                        { currentLocation = currentLocation.neighborRight; }
+                        if (cardinal == Direction.Down)
+                        { currentLocation = currentLocation.neighborDown; }
+                        if (cardinal == Direction.Left)
+                        { currentLocation = currentLocation.neighborLeft; }
+                        //change hero's animation to moving, inherit cardinal direction
+                        hero.state = ActorState.Move;
+                        hero.direction = cardinal;
+                    }
+                }
+
+                #endregion
+
 
             }
         }
@@ -117,9 +168,47 @@ namespace DungeonRun
             else if(scroll.displayState == DisplayState.Opened)
             {
 
-                Functions_Actor.Update(hero);
-                Functions_Animation.Animate(hero.compAnim, hero.compSprite);
+                #region Map Movement Routine
 
+                //get hero's newPosition
+                hero.compMove.newPosition.X = currentLocation.compSprite.position.X;
+                hero.compMove.newPosition.Y = currentLocation.compSprite.position.Y - 8;
+
+                //get distance between hero and location
+                distance = hero.compMove.newPosition - hero.compMove.position;
+
+                //check to see if hero is close enough to snap positions
+                if (Math.Abs(distance.X) < 1)
+                { hero.compMove.position.X = hero.compMove.newPosition.X; }
+                if (Math.Abs(distance.Y) < 1)
+                { hero.compMove.position.Y = hero.compMove.newPosition.Y; }
+                //move hero towards location
+                if (hero.compMove.position.X != hero.compMove.newPosition.X)
+                { hero.compMove.position.X += distance.X * speed; }
+                if (hero.compMove.position.Y != hero.compMove.newPosition.Y)
+                { hero.compMove.position.Y += distance.Y * speed; }
+
+                //align hero's sprite to current move position
+                hero.compSprite.position.X = (int)hero.compMove.position.X;
+                hero.compSprite.position.Y = (int)hero.compMove.position.Y;
+
+                //check to see if hero just arrived at a location
+                if (hero.state == ActorState.Move)
+                {   //if hero just reached destination.. (moving + position match)
+                    if (hero.compMove.position == hero.compMove.newPosition)
+                    {   //set hero's animation to idle down, update map title
+                        hero.state = ActorState.Idle;
+                        hero.direction = Direction.Down;
+                        UpdateTitle();
+                    }
+                }
+
+                #endregion
+
+
+                Functions_ActorAnimationList.SetAnimationGroup(hero);
+                Functions_ActorAnimationList.SetAnimationDirection(hero);
+                Functions_Animation.Animate(hero.compAnim, hero.compSprite);
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in
@@ -159,8 +248,8 @@ namespace DungeonRun
 
 
 
-        public void GetCurrentLocationName(MapLocation Location)
-        { scroll.title.text = "Overworld Map - " + Location.name; }
+        public void UpdateTitle()
+        { scroll.title.text = "Overworld Map - " + currentLocation.name; }
 
     }
 }

@@ -45,36 +45,27 @@ todo:
 
 
 
-Implement New Overworld Map Screen - Part 1
+Implement New Overworld Map Screen - Part 2
 
-updated the overworld texture.
-updated map size in OverworldScreen.
-updated scroll background size for overworld screen.
-changed dialog screen to goto Overworld Screen upon exit to game.
-added map sprites to main sheet.
+removed the required parameter GameTime from Functions_Input.Update().
+this parameter was not being used at all.
 
-changed DungeonType enum to LevelType enum.
-this better represents what the enum models.
-created MapLocation data class.
-created basic map location path: collisuem, connector, gate, castle.
-(this was done in the OverworldScreen).
-added Hero Actor instance to OverworldScreen, placed at colliseum location.
-playtested, hero + locations draw properly and with player input.
+created currentLocation instance + cardinal direction instance.
+updated NewOverworldScreen.HandleInput() to move hero around locations.
+this movement routine uses currentLocation and cardinal input direction.
+playtested, hero teleports to the currentLocation correctly.
 
+implemented map movement routine for hero, based on Camera2D movement routine.
+when hero reaches location, hero's animation is set to idle, facing down.
+when the hero moves to a new location, hero's animation is set to walking.
+hero faces the direction of the new location.
+playtested, hero 'walks' between locations correctly.
 
-
-
-
-
-
-turn off player input, this needs to be handled custom for the map screen
-pressing a direction teleports hero to that location's neighbor
-
-
-next, we'll move hero to the locations neighbor gradually
-
-then we'll animate hero's direction / animation based on the neighbor selected
-this should allow hero to animate between locations gracefully
+created routine to check if hero has just arrived at a new location.
+if so, the map title is updated to the location's name.
+improved movement routines so hero can't change locations mid-movement.
+simplified movment routines as well.
+playtested, working as expected.
 
 
 
@@ -83,24 +74,11 @@ this should allow hero to animate between locations gracefully
 
 
 
+hero should move a little bit faster
 
+we should be able to actually load levels, like old overworld screen
 
-
-get new overworldmap screen working
-
-background image + scroll
-add location dots to main sheet
-place location dots on map (locations create levels)
-place connector dots on map (connectors dont create levels)
-create hero sprite on map (with animations)
-when player moves joystick, hero should move to location / connector
-this will be based on nsew neighbors
-
-when user moves between locations, hero should walk in that direction to that location
-this is reminiscent of super mario world, and mario moving between levels
-
-
-
+add more locations + connectors
 
 
 
