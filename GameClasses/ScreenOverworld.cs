@@ -55,6 +55,8 @@ namespace DungeonRun
 
             MapLocation colliseum = new MapLocation(true, new Vector2(306, 195));
             locations.Add(colliseum);
+            MapLocation ship = new MapLocation(false, new Vector2(281, 234));
+            locations.Add(ship);
             MapLocation colliseumRight = new MapLocation(false, new Vector2(365, 175));
             locations.Add(colliseumRight);
             MapLocation gate = new MapLocation(false, new Vector2(421, 160));
@@ -71,16 +73,28 @@ namespace DungeonRun
             locations.Add(rightTown);
             MapLocation centerTown = new MapLocation(false, new Vector2(339, 141));
             locations.Add(centerTown);
-            MapLocation ship = new MapLocation(false, new Vector2(281, 234));
-            locations.Add(ship);
+            
+            MapLocation colliseumLeft = new MapLocation(false, new Vector2(258, 178));
+            locations.Add(colliseumLeft);
+            MapLocation forestDungeon = new MapLocation(false, new Vector2(265, 125));
+            locations.Add(forestDungeon);
+            MapLocation caveDungeon = new MapLocation(false, new Vector2(166, 150));
+            locations.Add(caveDungeon);
+            MapLocation leftTown3 = new MapLocation(false, new Vector2(182, 179));
+            locations.Add(leftTown3);
+            MapLocation leftTown2 = new MapLocation(false, new Vector2(126, 182));
+            locations.Add(leftTown2);
+            MapLocation leftTown1 = new MapLocation(false, new Vector2(115, 219));
+            locations.Add(leftTown1);
+            MapLocation leftTownChurch = new MapLocation(false, new Vector2(174, 255));
+            locations.Add(leftTownChurch);
+            MapLocation leftIslandConnector = new MapLocation(false, new Vector2(175, 296));
+            locations.Add(leftIslandConnector);
+            MapLocation castleRuins = new MapLocation(false, new Vector2(117, 275));
+            locations.Add(castleRuins);
 
 
-            //colliseum left connector
-            //forest dungeon
-            //left town 1, 2, 3, and church
-            //cave dungeon
-            //left island connector
-            //ruined castle dungeon
+            //tent town, left tt connector, cathedral, right island connector, monument connector, monument, center island
 
             #endregion
 
@@ -114,8 +128,34 @@ namespace DungeonRun
             centerTown.neighborDown = colliseumRight;
 
             colliseum.neighborRight = colliseumRight;
+            colliseum.neighborLeft = colliseumLeft;
             colliseum.neighborDown = ship;
             ship.neighborUp = colliseum;
+
+            colliseumLeft.neighborRight = colliseum;
+            colliseumLeft.neighborUp = forestDungeon;
+            colliseumLeft.neighborLeft = leftTown3;
+            forestDungeon.neighborDown = colliseumLeft;
+
+            leftTown3.neighborRight = colliseumLeft;
+            leftTown3.neighborUp = caveDungeon;
+            leftTown3.neighborLeft = leftTown2;
+            caveDungeon.neighborDown = leftTown3;
+
+            leftTown2.neighborRight = leftTown3;
+            leftTown2.neighborDown = leftTown1;
+            leftTown1.neighborUp = leftTown2;
+            leftTown1.neighborDown = leftTownChurch;
+            leftTown1.neighborRight = leftTownChurch;
+            leftTownChurch.neighborUp = leftTown1;
+            leftTownChurch.neighborLeft = leftTown1;
+            leftTownChurch.neighborDown = leftIslandConnector;
+            leftIslandConnector.neighborUp = leftTownChurch;
+            leftIslandConnector.neighborLeft = castleRuins;
+            castleRuins.neighborRight = leftIslandConnector;
+
+
+
 
             #endregion
 

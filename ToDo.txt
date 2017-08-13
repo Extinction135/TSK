@@ -44,17 +44,11 @@ todo:
 
 
 
+Add additional map locations to OverWorld Screen
 
-Create All Map Locations = Part 1
-
-created additional map locations: castle town left, castle town right,
-wall connected, right town, center town, ship.
-
-changed LevelType enum values to { Road, Castle, Shop }.
-updated OverworldScreen to display Map title + Location.type.
-removed the name string from map location.
-
-updated neighbor connections for all locations.
+added map locations: colliseum left, forest dungeon, left town 1/2/3,
+cave dungeon, left town church, left island connector, castleRuins.
+set neighbors for added locations.
 playtested, working as expected.
 
 
@@ -63,16 +57,29 @@ playtested, working as expected.
 
 
 
+Create All Map Locations - Part 2
+
+create additional map locations:
+
+left town 1, left town 2, left town 3, cave dungeon, left bottom church, left fort dungeon
+
+tent town, cathedral connector, catherdral, 
+bottom right water connector, center island, monument connector, monument
 
 
-
-
-
-
-create all map locations 
-all locations will be of type connector, except colliseum and castle
+connect all locations using neighbors
+for now, allow neighbor connection between right town and tent town (pass thru forest)
 
 once all locations are placed, remove red dot bkg from map texture.
+
+
+
+
+
+
+
+
+
 
 
 
