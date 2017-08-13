@@ -47,27 +47,21 @@ todo:
 
 
 
-Add animated sprites to Overworld Map - part 1
+Add animated sprites to Overworld Map - part 2
 
-updated the map texture, removing the red placeholder dots.
+changed how actors are initially placed (they are now placed offscreen upon creation).
 
-Overworld Screen now updates and draws Pool.
-tested particle creation, life, and display with a fire particle.
-playtested, working as expected.
 
-moved explosion + fire sprite down in main sheet.
-updated explosion + fire frames in Functions_GameObjectAnimList.
-playtested, working as expected.
+added ParticleMapWave value to ObjType enum.
+added animList for ParticleMapWave to Functions_GameObjAnimList.
+added path for ParticleMapWave to Functions_GameObj.SetType()
+added test wave particle to overworld map, working as expected.
 
-added enum value ParticleMapFlag to ObjType.
-added animList value for ParticleMapFlag to Functions_GameObjectAnimList.
-added path for ParticleMapFlag to Functions_GameObject.SetType().
-playtested, map flag particle animating + drawing as expected.
-
-removed flags from castle in overworld texture.
-placed flag particles on top of castle.
-added flags to colliseum + old town.
-playtested, drawing as expected.
+created list of vector2s called WaveSpawnPositions.
+wrote Wave Generation Routine, which simple selects a location from the spawn position list.
+then applies a random offset to that position, then places a wave particle there.
+this causes waves to appear in a general location, but with variation.
+playtested, working as expected, looking great.
 
 
 
@@ -75,13 +69,13 @@ playtested, drawing as expected.
 
 
 
-add waves around map in water
 add tiny firepit animated sprite to tent town
 
+add tiny smoke particles coming out of some houses
 
 
-
-
+add 'floating' animation to ship (should bob up and down)
+this means it needs to be a sprite in the main sheet
 
 
 

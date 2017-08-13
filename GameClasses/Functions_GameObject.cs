@@ -558,6 +558,14 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.compAnim.speed = 10; //in frames
             }
+            else if (Type == ObjType.ParticleMapWave)
+            {
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 4; //nonstandard size
+                Obj.group = ObjGroup.Particle;
+                Obj.compAnim.speed = 15; //in frames
+                Obj.lifetime = (byte)(Obj.compAnim.speed * 4); //there are 4 frames of animation
+                Obj.compAnim.loop = false;
+            }
 
             //Particles - normal size
             else if (Type == ObjType.ParticleExplosion)

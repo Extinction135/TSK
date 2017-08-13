@@ -27,7 +27,8 @@ namespace DungeonRun
         Vector2 distance; //used in map movement routine
         float speed = 0.1f; //how fast hero moves between locations
 
-
+        List<Vector2> waveSpawnPositions;
+        Vector2 wavePos; //points to one of the vector2s in waveSpawnPositions list
 
 
         public ScreenOverworld() { this.name = "OverworldScreen"; }
@@ -39,7 +40,6 @@ namespace DungeonRun
             overlay.fadeInSpeed = 0.03f; //fade in slow
 
             scroll = new Scroll(new Vector2(16 * 3 - 8, 16 * 2 + 4), 34, 19);
-            //open the scroll
             scroll.displayState = DisplayState.Opening;
             Assets.Play(Assets.sfxMapOpen);
 
@@ -212,6 +212,7 @@ namespace DungeonRun
             Pool.hero.health = Pool.hero.maxHealth;
 
 
+            #region Add Animated Particles / Sprites to Map
 
             //create castle flags
             Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 451 + 8, 97 + 6, Direction.None);
@@ -225,6 +226,24 @@ namespace DungeonRun
             Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 320 + 8, 113 + 6, Direction.None); //old town
             Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 357 + 8, 99 + 6, Direction.None); //old town
             Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 305 + 8, 147 + 6, Direction.None); //colliseum
+
+            //create a list of positions where to place waves
+            waveSpawnPositions = new List<Vector2>();
+            waveSpawnPositions.Add(new Vector2(334 + 8, 238 + 6));
+            waveSpawnPositions.Add(new Vector2(207 + 8, 226 + 6));
+            waveSpawnPositions.Add(new Vector2(260 + 8, 254 + 6));
+            waveSpawnPositions.Add(new Vector2(360 + 8, 270 + 6));
+            waveSpawnPositions.Add(new Vector2(407 + 8, 277 + 6));
+            waveSpawnPositions.Add(new Vector2(237 + 8, 293 + 6));
+            waveSpawnPositions.Add(new Vector2(089 + 8, 305 + 6));
+            waveSpawnPositions.Add(new Vector2(557 + 8, 259 + 6));
+            waveSpawnPositions.Add(new Vector2(555 + 8, 125 + 6));
+            waveSpawnPositions.Add(new Vector2(506 + 8, 090 + 6));
+            waveSpawnPositions.Add(new Vector2(120 + 8, 090 + 6));
+            waveSpawnPositions.Add(new Vector2(094 + 8, 121 + 6));
+
+            #endregion
+
 
         }
 
@@ -318,6 +337,21 @@ namespace DungeonRun
                 Functions_Animation.Animate(hero.compAnim, hero.compSprite);
                 scroll.title.text = "Overworld Map - " + currentLocation.levelType;
 
+
+                #region Wave Generation Routine
+                
+                if(Functions_Random.Int(0, 100) > 80)
+                {   //randomly create a wave particle at a wave spawn location with random offset
+                    wavePos = waveSpawnPositions[Functions_Random.Int(0, waveSpawnPositions.Count)];
+                    Functions_Entity.SpawnEntity(ObjType.ParticleMapWave,
+                        wavePos.X + Functions_Random.Int(-12, 12),
+                        wavePos.Y + Functions_Random.Int(-12, 12), 
+                        Direction.None);
+                }
+
+                #endregion
+
+
                 Functions_Pool.Update();
             }
             else if (scroll.displayState == DisplayState.Closing)
@@ -342,10 +376,10 @@ namespace DungeonRun
             if (scroll.displayState == DisplayState.Opened)
             {
                 Functions_Draw.Draw(map);
-                for(i = 0; i < locations.Count; i++)
+                Functions_Pool.Draw();
+                for (i = 0; i < locations.Count; i++)
                 { Functions_Draw.Draw(locations[i].compSprite); }
                 Functions_Draw.Draw(hero.compSprite);
-                Functions_Pool.Draw();
             }
             Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();

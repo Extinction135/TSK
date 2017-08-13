@@ -167,7 +167,7 @@ namespace DungeonRun
             {
                 actorPool.Add(new Actor());
                 Functions_Actor.SetType(actorPool[actorCounter], ActorType.Hero);
-                Functions_Movement.Teleport(actorPool[actorCounter].compMove, 0, 0);
+                Functions_Movement.Teleport(actorPool[actorCounter].compMove, -100, -100);
             }
             actorIndex = 1;
 
@@ -622,7 +622,7 @@ namespace DungeonRun
         {
             compSprite = new ComponentSprite(Assets.heroSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(16, 16));
             Functions_Actor.SetType(this, ActorType.Hero);//default to hero actor
-            Functions_Movement.Teleport(this.compMove, compSprite.position.X, compSprite.position.Y);
+            Functions_Movement.Teleport(compMove, compSprite.position.X, compSprite.position.Y);
         }
     }
 
@@ -882,7 +882,7 @@ namespace DungeonRun
 
     public class ComponentCollision
     {   //allows an object or actor to collide with other objects or actors
-        public Rectangle rec = new Rectangle(100, 100, 16, 16); //used in collision checking
+        public Rectangle rec = new Rectangle(0, 0, 16, 16); //used in collision checking
         public int offsetX = 0; //offsets rec from sprite.position
         public int offsetY = 0; //offsets rec from sprite.position
         public Boolean blocking = true; //impassable or interactive
@@ -891,8 +891,8 @@ namespace DungeonRun
 
     public class ComponentMovement
     {   //allows an object or actor to move, with speed and friction
-        public Vector2 position = new Vector2(100, 100); //current position of actor/object
-        public Vector2 newPosition = new Vector2(100, 100); //projected position
+        public Vector2 position = new Vector2(0, 0); //current position of actor/object
+        public Vector2 newPosition = new Vector2(0, 0); //projected position
         public Direction direction = Direction.Down; //the direction actor/obj is moving
         public Vector2 magnitude = new Vector2(0, 0); //how much actor/obj moves each frames
         public float speed = 0.0f; //controls magnitude
