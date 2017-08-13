@@ -200,7 +200,7 @@ namespace DungeonRun
                 //ProjectileBomb
                 new List<Byte4> { new Byte4(4, 11, 0, 0), new Byte4(4, 12, 0, 0) },
                 //ProjectileExplosion
-                new List<Byte4> { new Byte4(5, 0, 0, 0), new Byte4(5, 0, 0, 0), new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0) },
+                new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
                 //ProjectileArrow
                 new List<Byte4> { new Byte4(4, 7, 0, 0) },
 
@@ -217,13 +217,16 @@ namespace DungeonRun
                 //ParticleHitSparkle
                 new List<Byte4> { new Byte4(8, 1, 0, 0), new Byte4(9, 1, 0, 0) },
 
+                //ParticleMapFlag
+                new List<Byte4> { new Byte4(16, 0, 0, 0), new Byte4(17, 0, 0, 0), new Byte4(18, 0, 0, 0), new Byte4(19, 0, 0, 0) },
+
                 //NormalSize
                 //ParticleExplosion
-                new List<Byte4> { new Byte4(5, 0, 0, 0), new Byte4(5, 0, 0, 0), new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0) },
+                new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
                 //ParticleAttention
                 new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) },
                 //ParticleFire
-                new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
+                new List<Byte4> { new Byte4(5, 3, 0, 0), new Byte4(6, 3, 0, 0), new Byte4(7, 3, 0, 0) },
                 //ParticleFairy
                 new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) },
                 //ParticleBow

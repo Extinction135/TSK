@@ -44,13 +44,39 @@ todo:
 
 
 
-Add additional map locations to OverWorld Screen, part 2
 
-added map locations: tentTown, tentTownLeft, cathedral,
-rightIslandConnector, monumentConnector, monument, centerIsland.
-set neighbors for added locations.
+
+
+Add animated sprites to Overworld Map - part 1
+
+updated the map texture, removing the red placeholder dots.
+
+Overworld Screen now updates and draws Pool.
+tested particle creation, life, and display with a fire particle.
 playtested, working as expected.
 
+moved explosion + fire sprite down in main sheet.
+updated explosion + fire frames in Functions_GameObjectAnimList.
+playtested, working as expected.
+
+added enum value ParticleMapFlag to ObjType.
+added animList value for ParticleMapFlag to Functions_GameObjectAnimList.
+added path for ParticleMapFlag to Functions_GameObject.SetType().
+playtested, map flag particle animating + drawing as expected.
+
+removed flags from castle in overworld texture.
+placed flag particles on top of castle.
+added flags to colliseum + old town.
+playtested, drawing as expected.
+
+
+
+
+
+
+
+add waves around map in water
+add tiny firepit animated sprite to tent town
 
 
 
@@ -59,7 +85,8 @@ playtested, working as expected.
 
 
 
-once all locations are placed, remove red dot bkg from map texture.
+
+
 
 
 
@@ -77,24 +104,6 @@ once all locations are placed, remove red dot bkg from map texture.
 reorganize all classes that refer to Dungeon, should be called Level
 screen dugneon should be called screen level
 functions_dungeon should be called functions_level
-
-
-
-
-
-** can we implement these particles using the entity pool?
-* it does exist at this time, and we could draw it from overworld screen
-create a little dash puff when hero initially starts moving off a location
-create wave sprite animation, scatter around map in water areas
-create animated flag sprites, add to top of castle + towns
-
-
-
-
-
-
-
-
 
 
 

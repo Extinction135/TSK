@@ -551,6 +551,14 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
             }
 
+            //Particles - Map
+            else if (Type == ObjType.ParticleMapFlag)
+            {
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 4; //nonstandard size
+                Obj.group = ObjGroup.Particle;
+                Obj.compAnim.speed = 10; //in frames
+            }
+
             //Particles - normal size
             else if (Type == ObjType.ParticleExplosion)
             {

@@ -210,6 +210,22 @@ namespace DungeonRun
             Functions_Music.PlayMusic(Music.Title);
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = Pool.hero.maxHealth;
+
+
+
+            //create castle flags
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 451 + 8, 97 + 6, Direction.None);
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 468 + 8, 106 + 6, Direction.None);
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 485 + 8, 98 + 6, Direction.None);
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 464 + 8, 82 + 6, Direction.None);
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 474 + 8, 79 + 6, Direction.None);
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 465 + 8, 71 + 6, Direction.None);
+            //create additional flags
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 334 + 8, 97 + 6, Direction.None); //old town
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 320 + 8, 113 + 6, Direction.None); //old town
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 357 + 8, 99 + 6, Direction.None); //old town
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 305 + 8, 147 + 6, Direction.None); //colliseum
+
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -301,6 +317,8 @@ namespace DungeonRun
                 Functions_ActorAnimationList.SetAnimationDirection(hero);
                 Functions_Animation.Animate(hero.compAnim, hero.compSprite);
                 scroll.title.text = "Overworld Map - " + currentLocation.levelType;
+
+                Functions_Pool.Update();
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in
@@ -327,6 +345,7 @@ namespace DungeonRun
                 for(i = 0; i < locations.Count; i++)
                 { Functions_Draw.Draw(locations[i].compSprite); }
                 Functions_Draw.Draw(hero.compSprite);
+                Functions_Pool.Draw();
             }
             Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
