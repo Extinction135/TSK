@@ -59,6 +59,8 @@ namespace DungeonRun
             locations.Add(ship);
             MapLocation colliseumRight = new MapLocation(false, new Vector2(365, 175));
             locations.Add(colliseumRight);
+            MapLocation centerTown = new MapLocation(false, new Vector2(339, 141));
+            locations.Add(centerTown);
             MapLocation gate = new MapLocation(false, new Vector2(421, 160));
             locations.Add(gate);
             MapLocation castle = new MapLocation(true, new Vector2(442, 135));
@@ -71,8 +73,6 @@ namespace DungeonRun
             locations.Add(wallConnector);
             MapLocation rightTown = new MapLocation(false, new Vector2(514, 189));
             locations.Add(rightTown);
-            MapLocation centerTown = new MapLocation(false, new Vector2(339, 141));
-            locations.Add(centerTown);
             
             MapLocation colliseumLeft = new MapLocation(false, new Vector2(258, 178));
             locations.Add(colliseumLeft);
@@ -93,8 +93,20 @@ namespace DungeonRun
             MapLocation castleRuins = new MapLocation(false, new Vector2(117, 275));
             locations.Add(castleRuins);
 
-
-            //tent town, left tt connector, cathedral, right island connector, monument connector, monument, center island
+            MapLocation tentTown = new MapLocation(false, new Vector2(483, 256));
+            locations.Add(tentTown);
+            MapLocation tentTownLeft = new MapLocation(false, new Vector2(447, 228));
+            locations.Add(tentTownLeft);
+            MapLocation cathedral = new MapLocation(false, new Vector2(396, 245));
+            locations.Add(cathedral);
+            MapLocation rightIslandConnector = new MapLocation(false, new Vector2(430, 300));
+            locations.Add(rightIslandConnector);
+            MapLocation monumentConnector = new MapLocation(false, new Vector2(485, 308));
+            locations.Add(monumentConnector);
+            MapLocation monument = new MapLocation(false, new Vector2(543, 298));
+            locations.Add(monument);
+            MapLocation centerIsland = new MapLocation(false, new Vector2(344, 293));
+            locations.Add(centerIsland);
 
             #endregion
 
@@ -102,7 +114,7 @@ namespace DungeonRun
             //set level types
             castle.levelType = LevelType.Castle;
             colliseum.levelType = LevelType.Shop;
-            
+
 
             #region Set maplocation's neighbors
 
@@ -154,8 +166,23 @@ namespace DungeonRun
             leftIslandConnector.neighborLeft = castleRuins;
             castleRuins.neighborRight = leftIslandConnector;
 
+            rightTown.neighborDown = tentTown;
+            tentTown.neighborUp = rightTown;
+            tentTown.neighborLeft = tentTownLeft;
+            tentTown.neighborDown = rightIslandConnector;
 
+            tentTownLeft.neighborRight = tentTown;
+            tentTownLeft.neighborLeft = cathedral;
+            cathedral.neighborRight = tentTownLeft;
 
+            rightIslandConnector.neighborUp = tentTown;
+            rightIslandConnector.neighborRight = monumentConnector;
+            rightIslandConnector.neighborLeft = centerIsland;
+            centerIsland.neighborRight = rightIslandConnector;
+
+            monumentConnector.neighborLeft = rightIslandConnector;
+            monumentConnector.neighborRight = monument;
+            monument.neighborLeft = monumentConnector;
 
             #endregion
 
@@ -163,7 +190,7 @@ namespace DungeonRun
             #region Set Starting Location
 
             //figure out the starting location based on previousLevel instance
-            for(i = 0; i < locations.Count; i++)
+            for (i = 0; i < locations.Count; i++)
             {
                 if (locations[i].levelType == Level.type)
                 { currentLocation = locations[i]; }

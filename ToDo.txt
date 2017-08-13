@@ -44,10 +44,10 @@ todo:
 
 
 
-Add additional map locations to OverWorld Screen
+Add additional map locations to OverWorld Screen, part 2
 
-added map locations: colliseum left, forest dungeon, left town 1/2/3,
-cave dungeon, left town church, left island connector, castleRuins.
+added map locations: tentTown, tentTownLeft, cathedral,
+rightIslandConnector, monumentConnector, monument, centerIsland.
 set neighbors for added locations.
 playtested, working as expected.
 
@@ -57,18 +57,7 @@ playtested, working as expected.
 
 
 
-Create All Map Locations - Part 2
 
-create additional map locations:
-
-left town 1, left town 2, left town 3, cave dungeon, left bottom church, left fort dungeon
-
-tent town, cathedral connector, catherdral, 
-bottom right water connector, center island, monument connector, monument
-
-
-connect all locations using neighbors
-for now, allow neighbor connection between right town and tent town (pass thru forest)
 
 once all locations are placed, remove red dot bkg from map texture.
 
