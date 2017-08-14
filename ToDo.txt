@@ -47,21 +47,17 @@ todo:
 
 
 
-Add animated sprites to Overworld Map - part 2
+Add animated sprites to Overworld Map - part 3
 
-changed how actors are initially placed (they are now placed offscreen upon creation).
+added campfire sprites to main sheet.
+added ParticleMapCampfire value to ObjType enum.
+added animList for ParticleMapCampfire.
+added path for ParticleMapCampfire in Functions_GameObject.SetType().
+added campfire particle to tent town location on map.
+added campfires to center island, left island (castle ruins).
+playtested, working as expected.
 
-
-added ParticleMapWave value to ObjType enum.
-added animList for ParticleMapWave to Functions_GameObjAnimList.
-added path for ParticleMapWave to Functions_GameObj.SetType()
-added test wave particle to overworld map, working as expected.
-
-created list of vector2s called WaveSpawnPositions.
-wrote Wave Generation Routine, which simple selects a location from the spawn position list.
-then applies a random offset to that position, then places a wave particle there.
-this causes waves to appear in a general location, but with variation.
-playtested, working as expected, looking great.
+improved coastline pixels on map to be more consistent.
 
 
 
@@ -69,13 +65,15 @@ playtested, working as expected, looking great.
 
 
 
-add tiny firepit animated sprite to tent town
 
 add tiny smoke particles coming out of some houses
 
 
 add 'floating' animation to ship (should bob up and down)
 this means it needs to be a sprite in the main sheet
+
+make castlel ruins look more 'ruiny'
+add fire pit to castle ruins, center island,
 
 
 

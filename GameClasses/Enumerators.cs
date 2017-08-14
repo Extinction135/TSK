@@ -90,8 +90,8 @@ namespace DungeonRun
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,
         //Particles - map
-        ParticleMapFlag, ParticleMapWave,
-        //ParticleMapFirepit
+        ParticleMapFlag, ParticleMapWave, ParticleMapCampfire,
+        //
 
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleFairy,

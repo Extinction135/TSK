@@ -221,6 +221,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(16, 0, 0, 0), new Byte4(17, 0, 0, 0), new Byte4(18, 0, 0, 0), new Byte4(19, 0, 0, 0) },
                 //ParticleMapWave
                 new List<Byte4> { new Byte4(16, 1, 0, 0), new Byte4(17, 1, 0, 0), new Byte4(18, 1, 0, 0), new Byte4(19, 1, 0, 0) },
+                //ParticleMapCampfire
+                new List<Byte4> { new Byte4(16, 1, 0, 0), new Byte4(17, 1, 0, 0), new Byte4(18, 1, 0, 0), new Byte4(19, 1, 0, 0) },
 
                 //NormalSize
                 //ParticleExplosion

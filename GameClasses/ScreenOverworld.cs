@@ -242,6 +242,12 @@ namespace DungeonRun
             waveSpawnPositions.Add(new Vector2(120 + 8, 090 + 6));
             waveSpawnPositions.Add(new Vector2(094 + 8, 121 + 6));
 
+            //create map campfires
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 505, 257, Direction.None); //tent town
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 299, 297, Direction.None); //center island
+            Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 109, 266, Direction.None); //left island / castle ruins
+            
+            
             #endregion
 
 
