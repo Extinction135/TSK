@@ -25,9 +25,9 @@ namespace DungeonRun
         {
             overlay.alpha = 1.0f;
             overlay.fadeOutSpeed = 0.025f;
-
-            Functions_Dungeon.Initialize(this);
-            Functions_Dungeon.BuildDungeon();
+            //register this dungeon screen with Functions_Dungeon
+            Functions_Dungeon.dungeonScreen = this;
+            Functions_Dungeon.BuildLevel();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
             //open the screen
             displayState = DisplayState.Opening;

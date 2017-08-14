@@ -45,40 +45,17 @@ todo:
 
 
 
+Improve Placement of Secret Rooms in Dungeon
 
-
-Add animated sprites to Overworld Map - part 3
-
-added campfire sprites to main sheet.
-added ParticleMapCampfire value to ObjType enum.
-added animList for ParticleMapCampfire.
-added path for ParticleMapCampfire in Functions_GameObject.SetType().
-added campfire particle to tent town location on map.
-added campfires to center island, left island (castle ruins).
+secret rooms always connect to other rooms in predictable places.
+for exmple, the top left or right of rooms.
+added routine to randomize placement of secret rooms more.
+this prevents secret room from always appearing in specific locations.
 playtested, working as expected.
 
-improved coastline pixels on map to be more consistent.
-
-
-
-
-
-
-
-
-add tiny smoke particles coming out of some houses
-
-
-add 'floating' animation to ship (should bob up and down)
-this means it needs to be a sprite in the main sheet
-
-make castlel ruins look more 'ruiny'
-add fire pit to castle ruins, center island,
-
-
-
-
-
+changed Functions_Dungeon.BuildDungeon() to BuildLevel().
+removed Functions_Dungeon.Initialize().
+playtested, working as expected.
 
 
 
@@ -101,8 +78,7 @@ functions_dungeon should be called functions_level
 
 
 
-secret rooms tend to prefer connecting on the top left corner
-they rarely connect in the center of rooms, which they should be doing
+
 
 if hero strikes a bombable door, play a hollow sound
 if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
@@ -307,6 +283,12 @@ bottom right water connector, center island, monument connector, monument
 
 
 
+add tiny smoke particles coming out of some houses
+
+add 'floating' animation to ship (should bob up and down)
+this means it needs to be a sprite in the main sheet
+
+make castlel ruins look more 'ruiny'
 
 
 

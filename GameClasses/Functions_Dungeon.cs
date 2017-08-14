@@ -22,12 +22,8 @@ namespace DungeonRun
         public static Room currentRoom; //points to a room on dungeon's roomList
         public static int dungeonTrack = 0;
 
-        //were the 1st room is placed in dungeon.rooms list
+        //where the exit room is placed in dungeon.rooms list
         public static Point buildPosition = new Point(16 * 10, 16 * 200); 
-
-
-
-        public static void Initialize(ScreenDungeon DungeonScreen) { dungeonScreen = DungeonScreen; }
 
 
 
@@ -39,14 +35,9 @@ namespace DungeonRun
             Level.map = false;
         }
 
-
-
-
-
-        public static void BuildDungeon()
+        public static void BuildLevel()
         {
             ResetLevel();
-
             //set all floor sprites to the appropriate dungeon texture
             Functions_Pool.SetFloorTexture(Level.type);
             if (Flags.PrintOutput) { Debug.WriteLine("-- creating dungeon --"); }
@@ -67,7 +58,8 @@ namespace DungeonRun
             #endregion
 
 
-            //Create Dungeon
+            #region  Create Dungeon
+
             else
             {   //start timing dungeon generation
                 stopWatch.Reset(); stopWatch.Start();
@@ -185,6 +177,8 @@ namespace DungeonRun
                 { Debug.WriteLine("dungeon generated in " + time.Ticks + " ticks"); }
             }
 
+            #endregion
+
 
             #region Finish Level (Dungeon or Shop)
 
@@ -224,6 +218,8 @@ namespace DungeonRun
 
 
         }
+
+
 
         static Rectangle compRec = new Rectangle(0, 0, 0, 0);
         static Boolean RoomsNearby(Room Parent, Room Child)
@@ -382,6 +378,18 @@ namespace DungeonRun
                 else if (direction == 2) { Child.rec.Y -= Child.rec.Height + 16; } //place up
                 else if (direction == 3) { Child.rec.X -= Child.rec.Width + 16; } //place left
                 else if (direction == 4) { Child.rec.Y += Parent.rec.Height + 16; } //place down
+                //randomize placement of secret rooms more
+                if (Child.type == RoomType.Secret) 
+                {
+                    if (direction == 2 || direction == 4)
+                    {   //if direction is up or down, move child room right random amount less than parent's width
+                        Child.rec.X += Functions_Random.Int(0, Parent.size.X) * 16;
+                    }
+                    else
+                    {   //if direction is L/R, move child room down random amount less than parent's height
+                        Child.rec.Y += Functions_Random.Int(0, Parent.size.Y) * 16;
+                    }
+                }
 
                 collision = false;
                 //below we check to make sure the room isn't overlapping another room
@@ -403,8 +411,6 @@ namespace DungeonRun
             }
             return false; //we didn't successfully place the child room
         }
-
-
 
         public static void AddMoreRooms()
         {   //randomly add additional rooms to all rooms except exit/boss/key

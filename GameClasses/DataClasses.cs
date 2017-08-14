@@ -485,7 +485,7 @@ namespace DungeonRun
     {
         public Rectangle rec = new Rectangle(0, 0, 0, 0);
         public Boolean visited = false;
-        public Byte2 size = new Byte2(0, 0);
+        public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
         public Point center = new Point(0, 0);
         public RoomType type;
 

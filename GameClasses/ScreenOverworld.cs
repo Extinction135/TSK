@@ -27,7 +27,7 @@ namespace DungeonRun
         Vector2 distance; //used in map movement routine
         float speed = 0.1f; //how fast hero moves between locations
 
-        List<Vector2> waveSpawnPositions;
+        List<Vector2> waveSpawnPositions; //where wave particles can spawn
         Vector2 wavePos; //points to one of the vector2s in waveSpawnPositions list
 
 
@@ -246,7 +246,6 @@ namespace DungeonRun
             Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 505, 257, Direction.None); //tent town
             Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 299, 297, Direction.None); //center island
             Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 109, 266, Direction.None); //left island / castle ruins
-            
             
             #endregion
 

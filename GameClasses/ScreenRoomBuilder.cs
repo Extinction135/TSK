@@ -35,7 +35,8 @@ namespace DungeonRun
         {
             RoomBuilder = new WidgetRoomBuilder();
             RoomBuilder.Reset(16 * 33, 16 * 2);
-            Functions_Dungeon.Initialize(this);
+            //register this dungeon screen with Functions_Dungeon
+            Functions_Dungeon.dungeonScreen = this;
 
             //build default empty room
             BuildRoomData(roomData);
