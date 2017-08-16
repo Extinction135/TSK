@@ -12,22 +12,22 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class ScreenDungeon : Screen
+    public class ScreenLevel : Screen
     {
         public ScreenRec overlay = new ScreenRec();
         public ExitAction exitAction;
 
 
 
-        public ScreenDungeon() { this.name = "DungeonScreen"; }
+        public ScreenLevel() { this.name = "DungeonScreen"; }
 
         public override void LoadContent()
         {
             overlay.alpha = 1.0f;
             overlay.fadeOutSpeed = 0.025f;
-            //register this dungeon screen with Functions_Dungeon
-            Functions_Dungeon.dungeonScreen = this;
-            Functions_Dungeon.BuildLevel();
+            //register this dungeon screen with Functions_Level
+            Functions_Level.levelScreen = this;
+            Functions_Level.BuildLevel();
             //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
             //open the screen
             displayState = DisplayState.Opening;
@@ -61,7 +61,7 @@ namespace DungeonRun
                 else if (Functions_Input.IsNewButtonPress(Buttons.Back))
                 {   //check to see if hero has found the dungeon map
                     if (Level.map)
-                    { ScreenManager.AddScreen(new ScreenDungeonMap()); }
+                    { ScreenManager.AddScreen(new ScreenLevelMap()); }
                 }
 
                 #endregion
@@ -145,8 +145,8 @@ namespace DungeonRun
                     }
                     else
                     {   //center camera to current room
-                        Camera2D.targetPosition.X = Functions_Dungeon.currentRoom.center.X;
-                        Camera2D.targetPosition.Y = Functions_Dungeon.currentRoom.center.Y + 16;
+                        Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
+                        Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y + 16;
                         Camera2D.tracks = true; //move follow room to room
                     }
                     Functions_Camera2D.Update(GameTime);

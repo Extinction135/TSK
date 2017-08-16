@@ -369,7 +369,7 @@ namespace DungeonRun
             {   //set the type of level dungeon screen is about to build
                 Level.type = currentLocation.levelType;
                 //load the dungeon screen, building the level
-                ScreenManager.ExitAndLoad(new ScreenDungeon());
+                ScreenManager.ExitAndLoad(new ScreenLevel());
             }
         }
 

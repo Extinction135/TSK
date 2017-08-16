@@ -89,9 +89,6 @@
     <Compile Include="..\..\GameClasses\Functions_Draw.cs">
       <Link>Classes\Functions_Draw.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_Dungeon.cs">
-      <Link>Classes\Functions_Dungeon.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Entity.cs">
       <Link>Classes\Functions_Entity.cs</Link>
     </Compile>
@@ -109,6 +106,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Item.cs">
       <Link>Classes\Functions_Item.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Level.cs">
+      <Link>Classes\Functions_Level.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Loot.cs">
       <Link>Classes\Functions_Loot.cs</Link>
@@ -155,14 +155,14 @@
     <Compile Include="..\..\GameClasses\ScreenDialog.cs">
       <Link>Classes\ScreenDialog.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\ScreenDungeon.cs">
-      <Link>Classes\ScreenDungeon.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\ScreenDungeonMap.cs">
-      <Link>Classes\ScreenDungeonMap.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\ScreenInventory.cs">
       <Link>Classes\ScreenInventory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenLevel.cs">
+      <Link>Classes\ScreenLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenLevelMap.cs">
+      <Link>Classes\ScreenLevelMap.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenLoadSaveNew.cs">
       <Link>Classes\ScreenLoadSaveNew.cs</Link>

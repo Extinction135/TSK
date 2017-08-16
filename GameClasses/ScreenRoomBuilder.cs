@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class ScreenRoomBuilder : ScreenDungeon
+    public class ScreenRoomBuilder : ScreenLevel
     {
         int i;
         public WidgetRoomBuilder RoomBuilder;
@@ -35,15 +35,15 @@ namespace DungeonRun
         {
             RoomBuilder = new WidgetRoomBuilder();
             RoomBuilder.Reset(16 * 33, 16 * 2);
-            //register this dungeon screen with Functions_Dungeon
-            Functions_Dungeon.dungeonScreen = this;
+            //register this dungeon screen with Functions_Level
+            Functions_Level.levelScreen = this;
 
             //build default empty room
             BuildRoomData(roomData);
             //place hero outside of room at top left corner
             Functions_Movement.Teleport(Pool.hero.compMove,
-                Functions_Dungeon.buildPosition.X - 32,
-                Functions_Dungeon.buildPosition.Y + 32);
+                Functions_Level.buildPosition.X - 32,
+                Functions_Level.buildPosition.Y + 32);
 
             //create the cursor sprite
             cursorSprite = new ComponentSprite(Assets.mainSheet,
@@ -161,7 +161,7 @@ namespace DungeonRun
                             {
                                 //create RoomXmlData instance
                                 roomData = new RoomXmlData();
-                                roomData.type = Functions_Dungeon.currentRoom.type; //save the room type
+                                roomData.type = Functions_Level.currentRoom.type; //save the room type
                                 //populate this instance with the room's objs
                                 for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
                                 {
@@ -174,8 +174,8 @@ namespace DungeonRun
                                             ObjXmlData objData = new ObjXmlData();
                                             objData.type = objRef.type;
                                             //set saved obj's position relative to room's top left corner
-                                            objData.posX = objRef.compSprite.position.X - Functions_Dungeon.currentRoom.rec.X;
-                                            objData.posY = objRef.compSprite.position.Y - Functions_Dungeon.currentRoom.rec.Y;
+                                            objData.posX = objRef.compSprite.position.X - Functions_Level.currentRoom.rec.X;
+                                            objData.posY = objRef.compSprite.position.Y - Functions_Level.currentRoom.rec.Y;
                                             roomData.objs.Add(objData);
                                         }
                                     }
@@ -234,7 +234,7 @@ namespace DungeonRun
                     }
                 }
                 //if mouse worldPos is contained in room, allow add/delete selected object
-                else if (Functions_Dungeon.currentRoom.rec.Contains(worldPos))
+                else if (Functions_Level.currentRoom.rec.Contains(worldPos))
                 {
 
                     #region Handle Add Object State
@@ -362,30 +362,30 @@ namespace DungeonRun
         
         public void BuildRoomData(RoomXmlData RoomXmlData)
         {
-            Functions_Dungeon.ResetLevel();
+            Functions_Level.ResetLevel();
             //this can be whatever texture we want later
             Level.type = LevelType.Castle;
             Functions_Pool.SetFloorTexture(LevelType.Castle); 
 
             //build the room
             if (RoomXmlData != null)
-            { Functions_Dungeon.currentRoom = new Room(Functions_Dungeon.buildPosition, RoomXmlData.type); }
+            { Functions_Level.currentRoom = new Room(Functions_Level.buildPosition, RoomXmlData.type); }
             else
-            { Functions_Dungeon.currentRoom = new Room(Functions_Dungeon.buildPosition, RoomType.Row); }
+            { Functions_Level.currentRoom = new Room(Functions_Level.buildPosition, RoomType.Row); }
             
             //add this room to the dungeon.rooms list
-            Level.rooms.Add(Functions_Dungeon.currentRoom);
-            Functions_Dungeon.currentRoom.visited = true;
+            Level.rooms.Add(Functions_Level.currentRoom);
+            Functions_Level.currentRoom.visited = true;
             if (Flags.MapCheat) { Level.map = true; }
             else { Level.map = false; }
 
             //simplify / collect room values
-            int posX = Functions_Dungeon.currentRoom.rec.X;
-            int posY = Functions_Dungeon.currentRoom.rec.Y;
-            int middleX = (Functions_Dungeon.currentRoom.size.X / 2) * 16;
-            int middleY = (Functions_Dungeon.currentRoom.size.Y / 2) * 16;
-            int width = Functions_Dungeon.currentRoom.size.X * 16;
-            int height = Functions_Dungeon.currentRoom.size.Y * 16;
+            int posX = Functions_Level.currentRoom.rec.X;
+            int posY = Functions_Level.currentRoom.rec.Y;
+            int middleX = (Functions_Level.currentRoom.size.X / 2) * 16;
+            int middleY = (Functions_Level.currentRoom.size.Y / 2) * 16;
+            int width = Functions_Level.currentRoom.size.X * 16;
+            int height = Functions_Level.currentRoom.size.Y * 16;
 
             //set NSEW doors
             Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
@@ -394,7 +394,7 @@ namespace DungeonRun
             Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
 
             //releases all roomObjs, builds walls + floors + doors
-            Functions_Room.BuildRoom(Functions_Dungeon.currentRoom);
+            Functions_Room.BuildRoom(Functions_Level.currentRoom);
             //build interior room objects from xml data
             Functions_Room.BuildRoomObjs(RoomXmlData);
 

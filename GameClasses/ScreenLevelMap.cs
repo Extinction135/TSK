@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class ScreenDungeonMap : Screen
+    public class ScreenLevelMap : Screen
     {
         ScreenRec background = new ScreenRec();
         Scroll scroll;
@@ -29,7 +29,7 @@ namespace DungeonRun
 
 
 
-        public ScreenDungeonMap() { this.name = "DungeonMap"; }
+        public ScreenLevelMap() { this.name = "DungeonMap"; }
 
         public override void LoadContent()
         {
@@ -73,8 +73,8 @@ namespace DungeonRun
                 mapRoom.rec.X = dungeonRoom.rec.X;
                 mapRoom.rec.Y = dungeonRoom.rec.Y;
                 //subtract the build position
-                mapRoom.rec.X -= Functions_Dungeon.buildPosition.X;
-                mapRoom.rec.Y -= Functions_Dungeon.buildPosition.Y;
+                mapRoom.rec.X -= Functions_Level.buildPosition.X;
+                mapRoom.rec.Y -= Functions_Level.buildPosition.Y;
                 //reduce position 16:1
                 mapRoom.rec.X = mapRoom.rec.X / 16;
                 mapRoom.rec.Y = mapRoom.rec.Y / 16;
@@ -84,7 +84,7 @@ namespace DungeonRun
                 //get visibility
                 mapRoom.visited = dungeonRoom.visited;
                 //set marker to currentRoom position 
-                if (dungeonRoom == Functions_Dungeon.currentRoom)
+                if (dungeonRoom == Functions_Level.currentRoom)
                 {   //match currentRoom properties to rooms[i] (current room)
                     marker.X = mapRoom.rec.X + (mapRoom.rec.Width / 2);
                     marker.Y = mapRoom.rec.Y + (mapRoom.rec.Height / 2);
@@ -120,8 +120,8 @@ namespace DungeonRun
                 dungeonDoor.rec.X = Level.doors[i].rec.X;
                 dungeonDoor.rec.Y = Level.doors[i].rec.Y;
                 //subtract the build position
-                dungeonDoor.rec.X -= Functions_Dungeon.buildPosition.X;
-                dungeonDoor.rec.Y -= Functions_Dungeon.buildPosition.Y;
+                dungeonDoor.rec.X -= Functions_Level.buildPosition.X;
+                dungeonDoor.rec.Y -= Functions_Level.buildPosition.Y;
                 //reduce position 16:1
                 dungeonDoor.rec.X = dungeonDoor.rec.X / 16;
                 dungeonDoor.rec.Y = dungeonDoor.rec.Y / 16;

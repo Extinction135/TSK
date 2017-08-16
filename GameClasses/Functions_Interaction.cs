@@ -239,11 +239,11 @@ namespace DungeonRun
                     }
                     else if (Obj.type == ObjType.Exit)
                     {   //only hero can exit dungeon
-                        if (Functions_Dungeon.dungeonScreen.displayState == DisplayState.Opened)
+                        if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
                         {   //if dungeon screen is open, close it, perform interaction ONCE
                             DungeonRecord.beatDungeon = false;
-                            Functions_Dungeon.dungeonScreen.exitAction = ExitAction.Overworld;
-                            Functions_Dungeon.dungeonScreen.displayState = DisplayState.Closing;
+                            Functions_Level.levelScreen.exitAction = ExitAction.Overworld;
+                            Functions_Level.levelScreen.displayState = DisplayState.Closing;
                             //stop movement, prevents overlap with exit
                             Functions_Movement.StopMovement(Pool.hero.compMove);
                             Assets.Play(Assets.sfxDoorOpen);

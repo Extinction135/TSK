@@ -12,12 +12,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class Functions_Dungeon
+    public static class Functions_Level
     {
         public static Stopwatch stopWatch = new Stopwatch();
         public static TimeSpan time;
 
-        public static ScreenDungeon dungeonScreen;
+        public static ScreenLevel levelScreen;
 
         public static Room currentRoom; //points to a room on dungeon's roomList
         public static int dungeonTrack = 0;
@@ -211,8 +211,8 @@ namespace DungeonRun
             DungeonRecord.dungeonID = 0; //ID = 0 for now
             DungeonRecord.timer.Start(); //start the record timer
             //fade the dungeon screen out from black, revealing the new level
-            dungeonScreen.overlay.alpha = 1.0f;
-            dungeonScreen.displayState = DisplayState.Opening;
+            levelScreen.overlay.alpha = 1.0f;
+            levelScreen.displayState = DisplayState.Opening;
 
             #endregion
 

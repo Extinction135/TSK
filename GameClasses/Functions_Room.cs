@@ -709,8 +709,8 @@ namespace DungeonRun
                 {   //create a roomObj for each XML obj
                     objRef = Functions_Pool.GetRoomObj();
                     Functions_Movement.Teleport(objRef.compMove,
-                        Functions_Dungeon.currentRoom.rec.X + RoomXmlData.objs[i].posX,
-                        Functions_Dungeon.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
+                        Functions_Level.currentRoom.rec.X + RoomXmlData.objs[i].posX,
+                        Functions_Level.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
                     objRef.direction = Direction.Down; //we'll need to save this later
                     Functions_GameObject.SetType(objRef, RoomXmlData.objs[i].type); //get type
 

@@ -26,15 +26,15 @@ namespace DungeonRun
         {
             for (i = 0; i < Level.rooms.Count; i++)
             {   //if the current room is not the room we are checking against, then continue
-                if (Functions_Dungeon.currentRoom != Level.rooms[i])
+                if (Functions_Level.currentRoom != Level.rooms[i])
                 {   //if hero collides with this room rec, set it to be currentRoom, build the room
                     if (Pool.hero.compCollision.rec.Intersects(Level.rooms[i].rec))
                     {
-                        Functions_Dungeon.currentRoom = Level.rooms[i];
+                        Functions_Level.currentRoom = Level.rooms[i];
                         Level.rooms[i].visited = true;
                         Functions_Room.BuildRoom(Level.rooms[i]);
                         Functions_Room.FinishRoom(Level.rooms[i]);
-                        if (Functions_Dungeon.currentRoom.type == RoomType.Boss)
+                        if (Functions_Level.currentRoom.type == RoomType.Boss)
                         {   //if hero just entered the boss room, play the boss intro & music
                             Assets.Play(Assets.sfxBossIntro);
                             Functions_Music.PlayMusic(Music.Boss);

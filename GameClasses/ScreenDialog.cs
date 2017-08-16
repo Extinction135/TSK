@@ -183,8 +183,8 @@ namespace DungeonRun
             Widgets.Dialog.Update();
             if(updateDungeonScreen) //if we should update dungeon screen,
             {   //& if the dungeon screen exists, do so
-                if (Functions_Dungeon.dungeonScreen != null)
-                { Functions_Dungeon.dungeonScreen.Update(GameTime); }
+                if (Functions_Level.levelScreen != null)
+                { Functions_Level.levelScreen.Update(GameTime); }
             }
         }
 

@@ -43,24 +43,16 @@ todo:
 (Work on DirectX project until Release)
 
 
+Update class and instance names to use the "Level" keyword
 
+the game creates levels, not dungeons. 
+using the keyword "Dungeon" is conceptually misleading.
 
-Improve Placement of Secret Rooms in Dungeon
-
-secret rooms always connect to other rooms in predictable places.
-for exmple, the top left or right of rooms.
-added routine to randomize placement of secret rooms more.
-this prevents secret room from always appearing in specific locations.
+changed Functions_Dungeon to Functions_Level.
+changed ScreenDungeon to ScreenLevel.
+changed ScreenDungeonMap to ScreenLevelMap.
+changed Functions_Level.dungeonScreen to levelScreen.
 playtested, working as expected.
-
-changed Functions_Dungeon.BuildDungeon() to BuildLevel().
-removed Functions_Dungeon.Initialize().
-playtested, working as expected.
-
-
-
-
-
 
 
 
@@ -80,15 +72,6 @@ functions_dungeon should be called functions_level
 
 
 
-if hero strikes a bombable door, play a hollow sound
-if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
-
-this is a : sword projectile collision check against objects of type door bombable + wall cracked
-we'll need to add the hollow sound - we've already got the metallic tink sound
-
-
-
-
 in order for rooms to be 'consistent', we'll need to store the index selected for the XMLroomdata list
 each room should have a XMLid int. this is the xml roomData list index for this room.
 when the dungeon is created, all the room XMLid values are assigned.
@@ -97,48 +80,6 @@ this means the room will be built the same each time hero enters it
 
 in order to test room 'consistency', we'll need to add more roomData
 boss, hub, key, column, square, row
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Conveyor Belts ++
-hero creates a sword projectile on conveyor belt
-hero is moved by conveyor belt into his sword projectile
-he takes damage. this should not happen
-
-certain projectiles should move with the conveyorbelt
-this would be the case with bombs, weapon swings, etc...
-but not flying projectiles, like fireball or arrow
-
-most objects should move if on a conveyor belt
-objs that shouldn't move: doors, walls, floor decals, pits, levers, flror spikes,
-conveyor belts, enemy spawns, vendors, air born projectiles, particles
-
-
 
 
 
@@ -166,13 +107,6 @@ but this prevents the doubling up of sfx sounds on the same frame
 
 
 
-
-
-
-
-
-
-
 Test deployment of Game on XBOX ONE
 
 we'll need to match the UWP project to the DirectX project
@@ -182,9 +116,6 @@ i dont think anything has changed with how the backend class works, but check it
 
 if loading xml room data fails, we'll need to store this data in .cs files
 so we'll need to convert the XML data into .CS files
-
-
-
 
 Write a RoomDataXML converter for UWP project (we can use for all projects too)
 
@@ -201,16 +132,6 @@ there should be files for: hub, key, boss, square, column, row
 these are monolithic, code-generated files, with thousands of lines
 simply "Add as link" these files into the project
 then using a flag boolean, the backend will load them instead of the xml roomData
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -262,6 +183,42 @@ build monument level
 build center island home level
 
 create dungeon variations: old ruins castle, cave, forest, big castle
+
+
+
+
+
+
+
+
+
+Conveyor Belts ++
+hero creates a sword projectile on conveyor belt
+hero is moved by conveyor belt into his sword projectile
+he takes damage. this should not happen
+
+certain projectiles should move with the conveyorbelt
+this would be the case with bombs, weapon swings, etc...
+but not flying projectiles, like fireball or arrow
+
+most objects should move if on a conveyor belt
+objs that shouldn't move: doors, walls, floor decals, pits, levers, flror spikes,
+conveyor belts, enemy spawns, vendors, air born projectiles, particles
+
+
+
+
+
+
+if hero strikes a bombable door, play a hollow sound
+if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
+
+this is a : sword projectile collision check against objects of type door bombable + wall cracked
+we'll need to add the hollow sound - we've already got the metallic tink soundFX
+
+
+
+
 
 
 
