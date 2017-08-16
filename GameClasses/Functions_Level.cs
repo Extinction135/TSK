@@ -85,6 +85,7 @@ namespace DungeonRun
                 //create hub north of last room
                 last = Level.rooms.Count() - 1;
                 Room hubRoom = new Room(new Point(0, 0), RoomType.Hub);
+                
                 Functions_Room.MoveRoom(hubRoom, Level.rooms[last].rec.X, Level.rooms[last].rec.Y - (16 * hubRoom.size.Y) - 16);
                 Level.rooms.Add(hubRoom);
                 //place boss north of hub room
@@ -218,6 +219,10 @@ namespace DungeonRun
 
 
         }
+
+
+
+        
 
 
 

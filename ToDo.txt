@@ -43,15 +43,25 @@ todo:
 (Work on DirectX project until Release)
 
 
-Update class and instance names to use the "Level" keyword
 
-the game creates levels, not dungeons. 
-using the keyword "Dungeon" is conceptually misleading.
+Store each room's xmlRoomData index with the room instance
 
-changed Functions_Dungeon to Functions_Level.
-changed ScreenDungeon to ScreenLevel.
-changed ScreenDungeonMap to ScreenLevelMap.
-changed Functions_Level.dungeonScreen to levelScreen.
+each room should have a XMLid int. this is the xml roomData list index for this room.
+when the dungeon is created, all the room XMLid values are assigned.
+then when a room is built, we choose the xmlRoomData list at [XMLid].
+this means the room will be built the same each time hero enters it.
+
+added XMLid int instance to room class.
+updated FinishRoom() to use Room.XMLid as index for target RoomXmlData list.
+this means each room will consistently be built using it's XMLid.
+this XMLid value is used as an index to a xmlRoomData list, in Assets.
+
+created Functions_Room.SetRoomXMLid(Room).
+this method randomly chooses an int value between 0 and the count of xmlRoomData list.
+the target xmlRoomData list is based on the room.type value.
+added call to SetRoomXMLid() to Room.constructor() method.
+
+added Room.XMLid value to output from FinishRoom().
 playtested, working as expected.
 
 
@@ -61,22 +71,6 @@ playtested, working as expected.
 
 
 
-
-reorganize all classes that refer to Dungeon, should be called Level
-screen dugneon should be called screen level
-functions_dungeon should be called functions_level
-
-
-
-
-
-
-
-in order for rooms to be 'consistent', we'll need to store the index selected for the XMLroomdata list
-each room should have a XMLid int. this is the xml roomData list index for this room.
-when the dungeon is created, all the room XMLid values are assigned.
-then when a room is built, we choose the xml roomData list at [XMLid].
-this means the room will be built the same each time hero enters it
 
 in order to test room 'consistency', we'll need to add more roomData
 boss, hub, key, column, square, row

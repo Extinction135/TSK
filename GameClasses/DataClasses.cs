@@ -487,6 +487,7 @@ namespace DungeonRun
         public Boolean visited = false;
         public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
         public Point center = new Point(0, 0);
+        public int XMLid = 0; //index of xmlRoomData list used to build/finish room
         public RoomType type;
 
         public Room(Point Pos, RoomType Type)
@@ -494,6 +495,7 @@ namespace DungeonRun
             type = Type;
             Functions_Room.SetType(this, Type);
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
+            Functions_Room.SetRoomXMLid(this); //get random xml id value
         }
     }
 

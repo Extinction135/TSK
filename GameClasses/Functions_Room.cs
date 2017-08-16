@@ -170,18 +170,38 @@ namespace DungeonRun
             else if (Room.type == RoomType.Secret) { FinishSecretRoom(Room); }
             //special rooms (key, hub, boss)
             else if (Room.type == RoomType.Key)
-            { BuildRoomObjs(Assets.roomDataKey[0]); FinishKeyRoom(Room); AddWallStatues(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataKey[Room.XMLid]);
+                FinishKeyRoom(Room);
+                AddWallStatues(Room);
+            }
             else if (Room.type == RoomType.Hub)
-            { BuildRoomObjs(Assets.roomDataHub[0]); FinishHubRoom(Room); AddWallStatues(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataHub[Room.XMLid]);
+                FinishHubRoom(Room);
+                AddWallStatues(Room);
+            }
             else if (Room.type == RoomType.Boss)
-            { BuildRoomObjs(Assets.roomDataBoss[0]); FinishBossRoom(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataBoss[Room.XMLid]);
+                FinishBossRoom(Room);
+            }
             //standard/generic rooms (column, row, square)
             else if (Room.type == RoomType.Column)
-            { BuildRoomObjs(Assets.roomDataColumn[0]); AddWallStatues(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataColumn[Room.XMLid]);
+                AddWallStatues(Room);
+            }
             else if (Room.type == RoomType.Row)
-            { BuildRoomObjs(Assets.roomDataRow[0]); AddWallStatues(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataRow[Room.XMLid]);
+                AddWallStatues(Room);
+            }
             else if (Room.type == RoomType.Square)
-            { BuildRoomObjs(Assets.roomDataSquare[0]); AddWallStatues(Room); }
+            {
+                BuildRoomObjs(Assets.roomDataSquare[Room.XMLid]);
+                AddWallStatues(Room);
+            }
             //dungeon rooms get debris + cracked walls
             if (Room.type != RoomType.Shop)
             {
@@ -196,10 +216,21 @@ namespace DungeonRun
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
             if (Flags.PrintOutput)
-            { Debug.WriteLine("finished " + Room.type + " room in " + time.Ticks + " ticks"); }
+            { Debug.WriteLine("finished " + Room.type + " room (id:" + Room.XMLid + ") in " + time.Ticks + " ticks"); }
         }
 
 
+        public static void SetRoomXMLid(Room Room)
+        {   //based on the room type, set the xml value between 0 and relative xmlRoomData list count
+            int count = 1;
+            if (Room.type == RoomType.Boss) { count = Assets.roomDataBoss.Count; }
+            else if (Room.type == RoomType.Column) { count = Assets.roomDataColumn.Count; }
+            else if (Room.type == RoomType.Hub) { count = Assets.roomDataHub.Count; }
+            else if (Room.type == RoomType.Key) { count = Assets.roomDataKey.Count; }
+            else if (Room.type == RoomType.Row) { count = Assets.roomDataRow.Count; }
+            else if (Room.type == RoomType.Square) { count = Assets.roomDataSquare.Count; }
+            Room.XMLid = Functions_Random.Int(0, count);
+        }
 
         public static void SetType(Room Room, RoomType Type)
         {
