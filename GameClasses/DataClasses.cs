@@ -76,24 +76,20 @@ namespace DungeonRun
     {
         public static GraphicsDevice graphics = ScreenManager.game.GraphicsDevice;
         public static Boolean tracks = false; //does camera move or teleport?
-        public static float speed = 4f; //how fast the camera moves
-        public static int deadzoneX = 50;
-        public static int deadzoneY = 50;
-
-        public static Matrix view = Matrix.Identity;
-        public static float targetZoom = 1.0f;
-        public static float zoomSpeed = 0.05f;
         public static Vector2 currentPosition = Vector2.Zero;
         public static Vector2 targetPosition = Vector2.Zero;
+        public static float speed = 0.1f; //how fast the camera moves
+        public static Vector2 distance;
 
+        public static float targetZoom = 1.0f;
+        public static float currentZoom = 1.0f;
+        public static float zoomSpeed = 0.05f;
+
+        public static Matrix view = Matrix.Identity;
         public static Matrix matRotation = Matrix.CreateRotationZ(0.0f);
         public static Matrix matZoom;
         public static Vector3 translateCenter;
         public static Vector3 translateBody;
-        public static float currentZoom = 1.0f;
-        public static Vector2 distance;
-        public static Boolean followX = true;
-        public static Boolean followY = true;
     }
 
     public static class PlayerData
@@ -157,9 +153,9 @@ namespace DungeonRun
         {
             //set the pool sizes
             actorCount = 30;
-            roomObjCount = 300;
-            entityCount = 300;
             floorCount = 500;
+            roomObjCount = 500;
+            entityCount = 300;
 
             //actor pool
             actorPool = new List<Actor>();

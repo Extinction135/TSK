@@ -4,23 +4,23 @@
   <objs>
     <ObjXmlData>
       <type>TorchUnlit</type>
-      <posX>168</posX>
-      <posY>8</posY>
+      <posX>152</posX>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>TorchUnlit</type>
-      <posX>8</posX>
-      <posY>8</posY>
+      <posX>24</posX>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>TorchUnlit</type>
-      <posX>8</posX>
-      <posY>168</posY>
+      <posX>24</posX>
+      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>TorchUnlit</type>
-      <posX>168</posX>
-      <posY>168</posY>
+      <posX>152</posX>
+      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Bumper</type>
@@ -89,13 +89,8 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
-      <posX>152</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>SpawnEnemy1</type>
-      <posX>24</posX>
-      <posY>56</posY>
+      <posX>88</posX>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
@@ -104,23 +99,33 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
-      <posX>120</posX>
+      <posX>72</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>104</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>104</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <posX>72</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
-      <posX>8</posX>
-      <posY>152</posY>
+      <posX>88</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
-      <posX>152</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>SpawnEnemy1</type>
-      <posX>56</posX>
-      <posY>136</posY>
+      <posX>104</posX>
+      <posY>104</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

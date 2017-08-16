@@ -53,7 +53,7 @@ namespace DungeonRun
                     Matrix.CreateTranslation(Camera2D.translateCenter);
         }
 
-        public static void Update(GameTime GameTime)
+        public static void Update()
         {
             //discard sub-pixel values from position
             Camera2D.targetPosition.X = (int)Camera2D.targetPosition.X;
@@ -63,31 +63,15 @@ namespace DungeonRun
             {   //camera gradually moves to target
                 //get distance between current and target
                 Camera2D.distance = Camera2D.targetPosition - Camera2D.currentPosition;
-
-                //assume camera should follow, per axis
-                Camera2D.followX = true; Camera2D.followY = true;
-
-                //check to see if camera is close enough to snap positions
+                //check to see if camera is close enough to snap, or should move
                 if (Math.Abs(Camera2D.distance.X) < 1)
-                {
-                    Camera2D.currentPosition.X = Camera2D.targetPosition.X;
-                    Camera2D.followX = false;
-                }
+                { Camera2D.currentPosition.X = Camera2D.targetPosition.X; }
+                else //camera should move
+                { Camera2D.currentPosition.X += Camera2D.distance.X * Camera2D.speed; }
                 if (Math.Abs(Camera2D.distance.Y) < 1)
-                {
-                    Camera2D.currentPosition.Y = Camera2D.targetPosition.Y;
-                    Camera2D.followY = false;
-                }
-
-                //determine if we should track, per axis (deadzone)
-                //if (Math.Abs(Camera2D.distance.X) > Camera2D.deadzoneX) { Camera2D.followX = true; }
-                //if (Math.Abs(Camera2D.distance.Y) > Camera2D.deadzoneY) { Camera2D.followY = true; }
-
-                //if we are following, update current position based on distance and speed
-                if (Camera2D.followX)
-                { Camera2D.currentPosition.X += Camera2D.distance.X * Camera2D.speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
-                if (Camera2D.followY)
-                { Camera2D.currentPosition.Y += Camera2D.distance.Y * Camera2D.speed * (float)GameTime.ElapsedGameTime.TotalSeconds; }
+                { Camera2D.currentPosition.Y = Camera2D.targetPosition.Y; }
+                else //camera should move
+                { Camera2D.currentPosition.Y += Camera2D.distance.Y * Camera2D.speed; }
             }
             else //instantly follows target
             { Camera2D.currentPosition = Camera2D.targetPosition; }
@@ -96,6 +80,10 @@ namespace DungeonRun
             Camera2D.currentPosition.X = (int)Camera2D.currentPosition.X;
             Camera2D.currentPosition.Y = (int)Camera2D.currentPosition.Y;
 
+            //Debug.WriteLine("cam target:" + Camera2D.targetPosition.X + ", " + Camera2D.targetPosition.Y);
+            //Debug.WriteLine("cam curr:" + Camera2D.currentPosition.X + ", " + Camera2D.currentPosition.Y);
+            //Debug.WriteLine("cam distance:" + Camera2D.distance.X + ", " + Camera2D.distance.Y);
+
             if (Camera2D.currentZoom != Camera2D.targetZoom)
             {   //gradually match the zoom
                 if (Camera2D.currentZoom > Camera2D.targetZoom) { Camera2D.currentZoom -= Camera2D.zoomSpeed; } //zoom out
@@ -103,6 +91,7 @@ namespace DungeonRun
                 if (Math.Abs((Camera2D.currentZoom - Camera2D.targetZoom)) < 0.05f)
                 { Camera2D.currentZoom = Camera2D.targetZoom; } //limit zoom
             }
+
             SetView();
         }
 

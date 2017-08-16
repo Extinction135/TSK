@@ -44,36 +44,25 @@ todo:
 
 
 
-Store each room's xmlRoomData index with the room instance
-
-each room should have a XMLid int. this is the xml roomData list index for this room.
-when the dungeon is created, all the room XMLid values are assigned.
-then when a room is built, we choose the xmlRoomData list at [XMLid].
-this means the room will be built the same each time hero enters it.
-
-added XMLid int instance to room class.
-updated FinishRoom() to use Room.XMLid as index for target RoomXmlData list.
-this means each room will consistently be built using it's XMLid.
-this XMLid value is used as an index to a xmlRoomData list, in Assets.
-
-created Functions_Room.SetRoomXMLid(Room).
-this method randomly chooses an int value between 0 and the count of xmlRoomData list.
-the target xmlRoomData list is based on the room.type value.
-added call to SetRoomXMLid() to Room.constructor() method.
-
-added Room.XMLid value to output from FinishRoom().
-playtested, working as expected.
 
 
 
 
 
+Various Refactoring & Creating Additional RoomData
+
+fixed a minor bug where tool icon weren't sorted properly in roomBuilderWidget.
+updated RoomBuilder to center camera to room, everytime a room is loaded.
+refactored Camera2D to use the movement routines created in OverworldScreen.
+fixed a bug where room's center was not being updated from AddRoom() method.
+
+created additional xml room data for all handmade room types.
+removed stress test level from roomData.
+increaseed size of roomobj pool to 500.
+lots of playtesting, working as expected.
 
 
 
-
-in order to test room 'consistency', we'll need to add more roomData
-boss, hub, key, column, square, row
 
 
 

@@ -399,7 +399,13 @@ namespace DungeonRun
             Functions_Room.BuildRoomObjs(RoomXmlData);
 
             Functions_Pool.Update(); //update roomObjs once
-            Flags.Paused = false; //initially freeze the loaded room
+
+            //center camera to room, pause game
+            Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
+            Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y + 16;
+            Camera2D.currentPosition = Camera2D.targetPosition;
+            Flags.Paused = true;
+            Functions_Camera2D.Update();
         }
 
     }

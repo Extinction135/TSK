@@ -196,6 +196,7 @@ namespace DungeonRun
             //set sprite position
             moveObj.compSprite.position.X = 16 * 1 + 8;
             moveObj.compSprite.position.Y = 16 * 14;
+            Functions_Component.SetZdepth(moveObj.compSprite);
             //set sprites frame
             moveObj.compSprite.currentFrame.X = 14;
             moveObj.compSprite.currentFrame.Y = 13;
@@ -212,6 +213,7 @@ namespace DungeonRun
             //set sprite position
             addObj.compSprite.position.X = 16 * 3 + 8;
             addObj.compSprite.position.Y = 16 * 14;
+            Functions_Component.SetZdepth(addObj.compSprite);
             //set sprites frame
             addObj.compSprite.currentFrame.X = 14;
             addObj.compSprite.currentFrame.Y = 15;
@@ -228,6 +230,7 @@ namespace DungeonRun
             //set sprite position
             deleteObj.compSprite.position.X = 16 * 5 + 8;
             deleteObj.compSprite.position.Y = 16 * 14;
+            Functions_Component.SetZdepth(deleteObj.compSprite);
             //set sprites frame
             deleteObj.compSprite.currentFrame.X = 15;
             deleteObj.compSprite.currentFrame.Y = 15;

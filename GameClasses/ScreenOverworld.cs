@@ -314,6 +314,7 @@ namespace DungeonRun
                 { hero.compMove.position.X = hero.compMove.newPosition.X; }
                 if (Math.Abs(distance.Y) < 1)
                 { hero.compMove.position.Y = hero.compMove.newPosition.Y; }
+
                 //move hero towards location
                 if (hero.compMove.position.X != hero.compMove.newPosition.X)
                 { hero.compMove.position.X += distance.X * speed; }

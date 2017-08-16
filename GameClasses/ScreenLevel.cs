@@ -149,7 +149,7 @@ namespace DungeonRun
                         Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y + 16;
                         Camera2D.tracks = true; //move follow room to room
                     }
-                    Functions_Camera2D.Update(GameTime);
+                    Functions_Camera2D.Update();
                 }
             }
 
