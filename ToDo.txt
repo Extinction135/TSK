@@ -29,7 +29,7 @@ adding music:
 	music should be compressed down to 22K sample rate, mono.
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 adding sound effects:
-	sound effects should be compressed down to 16K sample rate, mono, 16bit
+	sound effects should be compressed down to 22K sample rate, mono, 16bit
 	
 ram useage:
 	82mb on Win10. 98mb on XboxOne.
@@ -47,17 +47,13 @@ todo:
 
 
 
+Improve Sound Effects Quality
 
-
-
-Add a Quit Sound Effect
-
-added SoundQuit to content project.
-added sfxQuit instance to Assets.
-added calls to sfxQuit from Inventory Screen & Title Screen.
-these calls happen upon player choosing a quit menuItem.
-playtested, working as expected.
-
+playtested, with speakers & headphones.
+the audio sample rate of 16k is noticeable on headphones.
+there is quality loss, so go back to 22k for sound effects.
+resampled sound effects from 44.1k to 22k for DirectX project.
+playtested again, sounds much better.
 
 
 
@@ -66,12 +62,29 @@ playtested, working as expected.
 
 
 
+Improve Enemy sound fx
+
+added SoundBlobDash
+
+blob enemies need a squish sound for when they dash
+we should be doing this by playing the Actor.dash sfx
+which means that actors should have various sound effect instances for dash, hit, death
+
+menu_Erase should be used for boss hit death sound
 
 
-fix sound effect levels
 
-playtest, determine if other sound fx are too loud/soft
-this should be done using speakers + headphones
+
+
+Improve Menu Selection sound fx
+
+menu_Select should be used when player selects a file to load/create/save to (from LSN screen)
+
+
+
+
+
+
 
 
 
