@@ -407,3 +407,9 @@
 /processorParam:Quality=Best
 /build:SoundWindowOpen.wav
 
+#begin SoundMapWalking.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundMapWalking.wav
+

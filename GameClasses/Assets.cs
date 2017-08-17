@@ -124,6 +124,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxQuit;
         public static SoundEffectInstance sfxBlobDash;
         public static SoundEffectInstance sfxSelectFile;
+        public static SoundEffectInstance sfxMapWalking;
 
         #endregion
 
@@ -288,6 +289,9 @@ namespace DungeonRun
             sfxBlobDash = blobDashSrc.CreateInstance();
             SoundEffect selectFileSrc = content.Load<SoundEffect>(@"SoundSelectFile");
             sfxSelectFile = selectFileSrc.CreateInstance();
+            SoundEffect mapWalkingSrc = content.Load<SoundEffect>(@"SoundMapWalking");
+            sfxMapWalking = mapWalkingSrc.CreateInstance();
+            //
 
             #endregion
 

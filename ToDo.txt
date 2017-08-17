@@ -51,21 +51,23 @@ todo:
 
 
 
+Improve Player Interaction with Overworld Screen
+
+created SoundMapWalking file, added to content project.
+created sfxMapWalking instance in Assets.
+
+updated OverworldScreen to play sfxMapWalking when hero leaves a location.
+dash particle is now created when hero leaves a location.
+
+added call to sfxTextLetter when hero arrives at the target location.
+attention particle is now created when hero arrives at target location on map.
+
+playtested, looking and sounding great.
 
 
 
 
 
-Allow Inventory to be accessible from Overworld Screen
-
-the player should be able to open their inventory while on overworld map.
-this allows them to set their loadout, inspect items, and set game options.
-otherwise, the player must enter a level to do these things.
-and that's not terribly convenient.
-
-updated overworld screen with check for start button press.
-upon start button press, an inventory screen is added.
-playtested, working as expected, and very usefull as well.
 
 
 
@@ -73,7 +75,6 @@ playtested, working as expected, and very usefull as well.
 
 
 
-there should be a walking / skitter sound when hero moves away from a location on overworld
 
 
 add KeyCheat to flags. upon dungeon creation, check for key cheat, set level.key true.

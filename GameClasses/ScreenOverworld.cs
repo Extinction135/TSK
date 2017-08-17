@@ -280,7 +280,11 @@ namespace DungeonRun
                             //change hero's animation to moving, inherit cardinal direction
                             hero.state = ActorState.Move;
                             hero.direction = cardinal;
-                            Assets.Play(Assets.sfxTextLetter);
+                            Assets.Play(Assets.sfxMapWalking);
+                            Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff,
+                                hero.compSprite.position.X,
+                                hero.compSprite.position.Y + 4, //at feet
+                                Direction.None);
                         }
                     }
                     //check to see if player wants to load a level
@@ -344,8 +348,12 @@ namespace DungeonRun
                     {   //set hero's animation to idle down
                         hero.state = ActorState.Idle;
                         hero.direction = Direction.Down;
-                        //no arrival at location sound effect (too busy)
                         currentLocation = targetLocation;
+                        Assets.Play(Assets.sfxTextLetter);
+                        Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                            hero.compSprite.position.X,
+                            hero.compSprite.position.Y + 6, //at feet
+                            Direction.None);
                     }
                 }
 
