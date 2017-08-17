@@ -23,7 +23,9 @@ namespace DungeonRun
 
         public Actor hero;
         Direction cardinal;
-        MapLocation currentLocation;
+        MapLocation currentLocation; //where hero is currently
+        MapLocation targetLocation; //where hero is going to
+
         Vector2 distance; //used in map movement routine
         float speed = 0.1f; //how fast hero moves between locations
 
@@ -195,6 +197,8 @@ namespace DungeonRun
                 if (locations[i].levelType == Level.type)
                 { currentLocation = locations[i]; }
             }
+            //set target to current (no initial target)
+            targetLocation = currentLocation;
 
             hero = new Actor();
             //set hero at the current location
@@ -256,25 +260,28 @@ namespace DungeonRun
         {
             if (scroll.displayState == DisplayState.Opened)
             {   //only allow input if the screen has opened completely..
-                //only allow player input if hero currently occupies a map location
                 if(hero.compMove.position == hero.compMove.newPosition)
-                {   //change Locations based on Input
+                {   //only allow player input if hero currently occupies a map location
                     if (Input.gamePadDirection != Input.lastGamePadDirection)
                     {   //get the cardinal direction of new gamepad input
                         cardinal = Functions_Direction.GetCardinalDirection(Input.gamePadDirection);
                         //set the currentLocation based on cardinal direction
                         if (cardinal == Direction.Up)
-                        { currentLocation = currentLocation.neighborUp; }
+                        { targetLocation = currentLocation.neighborUp; }
                         if (cardinal == Direction.Right)
-                        { currentLocation = currentLocation.neighborRight; }
+                        { targetLocation = currentLocation.neighborRight; }
                         if (cardinal == Direction.Down)
-                        { currentLocation = currentLocation.neighborDown; }
+                        { targetLocation = currentLocation.neighborDown; }
                         if (cardinal == Direction.Left)
-                        { currentLocation = currentLocation.neighborLeft; }
-                        //change hero's animation to moving, inherit cardinal direction
-                        hero.state = ActorState.Move;
-                        hero.direction = cardinal;
-                        //Assets.Play(Assets.sfxTextLetter);
+                        { targetLocation = currentLocation.neighborLeft; }
+                        //mapLocation neighbors point to self mapLocation by default
+                        if (currentLocation != targetLocation)
+                        {   //if mapLocation doesn't point to itself, then hero can move to target location
+                            //change hero's animation to moving, inherit cardinal direction
+                            hero.state = ActorState.Move;
+                            hero.direction = cardinal;
+                            Assets.Play(Assets.sfxTextLetter);
+                        }
                     }
                     //check to see if player wants to load a level
                     if(Functions_Input.IsNewButtonPress(Buttons.A))
@@ -284,6 +291,7 @@ namespace DungeonRun
                             hero.state = ActorState.Reward;
                             hero.direction = Direction.Down;
                             scroll.displayState = DisplayState.Closing;
+                            Assets.Play(Assets.sfxTextDone);
                         }
                     }
                 }
@@ -304,8 +312,8 @@ namespace DungeonRun
                 #region Map Movement Routine
 
                 //get hero's newPosition
-                hero.compMove.newPosition.X = currentLocation.compSprite.position.X;
-                hero.compMove.newPosition.Y = currentLocation.compSprite.position.Y - 8;
+                hero.compMove.newPosition.X = targetLocation.compSprite.position.X;
+                hero.compMove.newPosition.Y = targetLocation.compSprite.position.Y - 8;
 
                 //get distance between hero and location
                 distance = hero.compMove.newPosition - hero.compMove.position;
@@ -333,7 +341,8 @@ namespace DungeonRun
                     {   //set hero's animation to idle down
                         hero.state = ActorState.Idle;
                         hero.direction = Direction.Down;
-                        Assets.Play(Assets.sfxTextDone);
+                        //no arrival at location sound effect (too busy)
+                        currentLocation = targetLocation;
                     }
                 }
 

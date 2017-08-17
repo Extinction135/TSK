@@ -47,36 +47,38 @@ todo:
 
 
 
-Improve sound effects
 
-edited multiple explosions sfx to fade out.
-resampled all sfx to 22k mono from 44.1k source.
-playtested, working as expected, in dungeon sfx sound much better.
+Add sound effects to Overworld Screen
 
+added targetLocation to OverworldScreen.
+updated movment routines to use targetLocation.
+this allows screen to track if target location is different than current location.
+if target location is different, the screen plays the text sound effect.
+this provides audio feedback for player when they 'leave' a location.
 
-
-
-
-
-
-
-
-
-need sound effects for the overworld
-as player moves between locations
-when player arrives at a location
-when player presses A button to load a location
+once hero arrives at target location, player can enter level by pressing A button.
+when this A button press occurs, the text done sound effect is played.
+this provides audio feedback for player when they 'enter' a location.
+playtested, working as expected.
 
 
-play end game/quit game sound effect (saveQuit sfx)
+
+
+
+
+
+
+
+
+play saveQuit sfx upon quit game (inventory screen and title screen)
+
+
+
 
 
 
 
 fix sound effect levels
-
-the light fire sound effect should be louder
-the reward sound effect is WAAAAY too loud
 
 playtest, determine if other sound fx are too loud/soft
 this should be done using speakers + headphones
