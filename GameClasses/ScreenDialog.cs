@@ -102,7 +102,7 @@ namespace DungeonRun
             Widgets.Dialog.Reset(16 * 9, 16 * 12);
             Widgets.Dialog.DisplayDialog(speakerType, dialogString);
             //play the opening soundFX
-            Assets.Play(Assets.sfxInventoryOpen);
+            Assets.Play(Assets.sfxWindowOpen);
             displayState = DisplayState.Opening;
         }
 
@@ -114,7 +114,7 @@ namespace DungeonRun
                     Functions_Input.IsNewButtonPress(Buttons.B) ||
                     Functions_Input.IsNewButtonPress(Buttons.A))
                 {
-                    Assets.Play(Assets.sfxInventoryClose);
+                    Assets.Play(Assets.sfxWindowClose);
                     displayState = DisplayState.Closing;
                     Functions_MenuWindow.Close(Widgets.Dialog.window);
                 }

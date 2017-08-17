@@ -193,6 +193,7 @@ namespace DungeonRun
             previouslySelected = game1.menuItem;
             //open the screen
             displayState = DisplayState.Opening;
+            Assets.Play(Assets.sfxWindowOpen);
         }
 
         public override void UnloadContent()
@@ -208,13 +209,13 @@ namespace DungeonRun
             {   //exit this screen upon start or b button press
                 if (Functions_Input.IsNewButtonPress(Buttons.B))
                 {
-                    Assets.Play(Assets.sfxInventoryClose);
+                    Assets.Play(Assets.sfxWindowClose);
                     displayState = DisplayState.Closing;
                     Functions_MenuWindow.Close(window);
                 }
                 
 
-                #region Handle load/save/new
+                #region Handle load/save/new & quit
 
                 //only allow input if the screen has opened completely
                 else if (
@@ -253,13 +254,9 @@ namespace DungeonRun
                         if (screenState == LoadSaveNewState.New)
                         { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameCreated)); }
                         else { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameSaved)); }
-                        
                         UpdateCurrentDisplay();
                     }
-                    //handle soundEffect
-                    if (currentlySelected.type == MenuItemType.OptionsQuitGame)
-                    { Assets.Play(Assets.sfxInventoryClose); }
-                    else { Assets.Play(Assets.sfxMenuItem); }
+                    Assets.Play(Assets.sfxSelectFile);
                 }
 
                 #endregion

@@ -151,9 +151,9 @@ namespace DungeonRun
                 new Point(16, 16));
             //open the screen
             displayState = DisplayState.Opening;
+            
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
-
             //silently load autosave file
             Functions_Backend.LoadGame(GameFile.Game1, false);
             Functions_Backend.LoadGame(GameFile.Game2, false);
@@ -188,7 +188,6 @@ namespace DungeonRun
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {
                         displayState = DisplayState.Closing; //fadeout, remove screen
-                        Assets.Play(Assets.sfxQuit);
                     } 
 
                     else if (currentlySelected.type == MenuItemType.OptionsAudioCtrls)
@@ -212,8 +211,10 @@ namespace DungeonRun
 
 
                     //handle soundEffect
+                    if (currentlySelected.type == MenuItemType.OptionsContinue)
+                    { Assets.Play(Assets.sfxSelectFile); }
                     if (currentlySelected.type == MenuItemType.OptionsQuitGame)
-                    { Assets.Play(Assets.sfxInventoryClose); }
+                    { Assets.Play(Assets.sfxQuit); }
                     else { Assets.Play(Assets.sfxMenuItem); }
                 }
                 //get the previouslySelected menuItem
@@ -252,7 +253,10 @@ namespace DungeonRun
                 overlay.fadeState = FadeState.FadeOut;
                 Functions_ScreenRec.Fade(overlay);
                 if (overlay.fadeState == FadeState.FadeComplete)
-                { displayState = DisplayState.Opened; }
+                {
+                    displayState = DisplayState.Opened;
+                    Assets.Play(Assets.sfxWindowOpen);
+                }
             }
             else if (displayState == DisplayState.Opened)
             {   //animate titles in

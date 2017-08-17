@@ -145,7 +145,7 @@ namespace DungeonRun
                 if (Functions_Input.IsNewButtonPress(Buttons.Back) ||
                     Functions_Input.IsNewButtonPress(Buttons.B))
                 {
-                    Assets.Play(Assets.sfxInventoryClose);
+                    Assets.Play(Assets.sfxWindowClose);
                     scroll.displayState = DisplayState.Closing;
                 }
             }

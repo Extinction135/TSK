@@ -124,7 +124,7 @@ namespace DungeonRun
                 new Vector2(0, 0), new Byte4(15, 7, 0, 0), 
                 new Point(16, 16));
             //play the opening soundFX
-            Assets.Play(Assets.sfxInventoryOpen);
+            Assets.Play(Assets.sfxWindowOpen);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -162,7 +162,7 @@ namespace DungeonRun
             else if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
                 Functions_Input.IsNewButtonPress(Buttons.B))
             {
-                Assets.Play(Assets.sfxInventoryClose);
+                Assets.Play(Assets.sfxWindowClose);
                 displayState = DisplayState.Closing;
                 Functions_MenuWindow.Close(Widgets.Loadout.window);
                 Functions_MenuWindow.Close(Widgets.Stats.window);

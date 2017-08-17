@@ -292,6 +292,7 @@ namespace DungeonRun
                             hero.direction = Direction.Down;
                             scroll.displayState = DisplayState.Closing;
                             Assets.Play(Assets.sfxTextDone);
+                            Assets.Play(Assets.sfxWindowClose);
                         }
                     }
                 }

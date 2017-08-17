@@ -99,8 +99,8 @@ namespace DungeonRun
         public static SoundEffectInstance sfxHeartPickup;
         public static SoundEffectInstance sfxGoldPickup;
         public static SoundEffectInstance sfxMenuItem;
-        public static SoundEffectInstance sfxInventoryOpen;
-        public static SoundEffectInstance sfxInventoryClose;
+        public static SoundEffectInstance sfxWindowOpen;
+        public static SoundEffectInstance sfxWindowClose;
 
         public static SoundEffectInstance sfxBossHit;
         public static SoundEffectInstance sfxExplosion;
@@ -123,6 +123,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxExplosionsMultiple;
         public static SoundEffectInstance sfxQuit;
         public static SoundEffectInstance sfxBlobDash;
+        public static SoundEffectInstance sfxSelectFile;
 
         #endregion
 
@@ -241,10 +242,10 @@ namespace DungeonRun
             sfxGoldPickup = goldPickupSrc.CreateInstance();
             SoundEffect menuItemSrc = content.Load<SoundEffect>(@"SoundSelectMenuItem");
             sfxMenuItem = menuItemSrc.CreateInstance();
-            SoundEffect inventoryOpenSrc = content.Load<SoundEffect>(@"SoundInventoryOpen");
-            sfxInventoryOpen = inventoryOpenSrc.CreateInstance();
-            SoundEffect inventoryCloseSrc = content.Load<SoundEffect>(@"SoundInventoryClose");
-            sfxInventoryClose = inventoryCloseSrc.CreateInstance();
+            SoundEffect windowOpenSrc = content.Load<SoundEffect>(@"SoundWindowOpen");
+            sfxWindowOpen = windowOpenSrc.CreateInstance();
+            SoundEffect windowCloseSrc = content.Load<SoundEffect>(@"SoundWindowClose");
+            sfxWindowClose = windowCloseSrc.CreateInstance();
             //
             SoundEffect bossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
             sfxBossHit = bossHitSrc.CreateInstance();
@@ -285,6 +286,8 @@ namespace DungeonRun
             sfxQuit = quitSrc.CreateInstance();
             SoundEffect blobDashSrc = content.Load<SoundEffect>(@"SoundBlobDash");
             sfxBlobDash = blobDashSrc.CreateInstance();
+            SoundEffect selectFileSrc = content.Load<SoundEffect>(@"SoundSelectFile");
+            sfxSelectFile = selectFileSrc.CreateInstance();
 
             #endregion
 

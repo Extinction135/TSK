@@ -281,18 +281,6 @@
 /processorParam:Quality=Best
 /build:SoundHeroKill.wav
 
-#begin SoundInventoryClose.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundInventoryClose.wav
-
-#begin SoundInventoryOpen.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundInventoryOpen.wav
-
 #begin SoundKeyPickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -400,4 +388,22 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundHeroDash.wav
+
+#begin SoundSelectFile.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSelectFile.wav
+
+#begin SoundWindowClose.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundWindowClose.wav
+
+#begin SoundWindowOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundWindowOpen.wav
 

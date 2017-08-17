@@ -55,45 +55,49 @@ todo:
 
 
 
-
-Improve Enemy sound fx
-
-added SoundBlobDash to content project.
-added sfxBlobDash instance to Assets.
-renamed Assets.sfxDash to Assets.sfxHeroDash.
-
-updated Functions_Actor.SetType() to set each actor's sound effects.
-updated Functions_Actor.Update() to play each actor's dash sfx upon dash.
-playtested, working as expected.
-
-updated Functions_Actor.SetHitState() to play() Actor.sfxHit.
-updated Functions_Actor.SetDeathState() to play() Actor.sfxDeath.
-playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Improve Menu Selection sound fx
 
-menu_Select should be used when player selects a file to load/create/save to (from LSN screen)
+added SoundSelectFile to content project.
+added sfxSelectFile instance to Assets.
+updated LSN Screen to play selectFile sfx upon file selection.
+updated Title Screen to play selectFile sfx upon continue selection.
+
+renamed Assets.sfxInventoryOpen to Assets.sfxWindowOpen.
+renamed Assets.sfxInventoryClose to Assets.sfxWindowClose.
+renamed SoundInventoryOpen to SoundWindowOpen.
+renamed SoundInventoryClose to SoundWindowClose.
+
+added call to play WindowOpen sfx from TitleScreen.LoadContent().
+added call to play WindowOpen sfx from LSNScreen.LoadContent().
+added call to play WindowClose sfx from OverworldScreen.HandleInput().
+playtested, working as expected.
+
+
+
+
+
+
+
+we should be able to open inventory screen from overworld screen
+
+
+
+
+
+
 
 
 
 add KeyCheat to flags. upon dungeon creation, check for key cheat, set level.key true.
 
+so we don't have to always go get the key to test boss battle
+
+
+
+add overworld music
+add shop music (town music)
+
+when we play music, we should be using
 
 
 
