@@ -28,9 +28,11 @@ adding a new particle/projectile:
 adding music:
 	music should be compressed down to 22K sample rate, mono.
 	files are then saved to .ogg and added to content pipeline, built on high quality.
+adding sound effects:
+	sound effects should be compressed down to 16K sample rate, mono, 16bit
 	
 ram useage:
-	98mb on Win10. 98mb on XboxOne.
+	82mb on Win10. 98mb on XboxOne.
 	
 	
 	
@@ -48,25 +50,52 @@ todo:
 
 
 
-fix collision bug
 
-implement collision checking for both axis projection, in addition to per axis
-this should come before per axis, and bail/return if both axis collision is true
-this should only be done for the hero actor, if we can (pass boolean into method)
+Fix SoundFX Bugs, Improve Boss Death sound effects
+
+removed the sound effect instance lists from Assets.
+replaced those lists with singular sound effect instances.
+rewrote Assets.Play() to handle single sfx instance.
+playtested, working as expected.
+
+added SoundBossHitDeath, SoundExplosionsMultiple to content project.
+created folder of source sound effects @ 44.1k, trimmed and reset volumes.
+copied source sfx into directX project, resampled to 16k mono @ 16bit.
+
+added sfxBossHitDeath, sfxExplosionsMultiple Asset instances.
+updated Functions_Actor.SetDeathState() -> Boss Death.
+BossHitDeath and MultipleExplosions sound effects are played now when boss is defeated.
+
+playtested, working, but needs some improvements.
 
 
 
 
 
-Fix sound effect bug
 
-we should not be able to call the same soundFX multiple times from one frame
-this causes the sfx to layer upon each other, drastically increasing their volume
-this is BAD BAD BAD
 
-so instead, we should only have one instance of each soundfx
-a soundfx should not be able to layerupon itself
-for the boss explosions, we will create a specific longer multi-explosion soundfx
+
+
+multiple explosions should fade out, be quieter
+
+resample the sfx to 22k mono
+
+
+
+
+
+
+
+
+
+
+need sound effects for the overworld
+as player moves between locations
+when player arrives at a location
+when player presses A button to load a location
+
+
+play end game/quit game sound effect (saveQuit sfx)
 
 
 

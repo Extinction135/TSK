@@ -78,11 +78,8 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Assets.Play(Assets.sfxEnemyKill); //death sfx
-
-                //boss explosions are handled in Update()
-                //explosions are called perpetually across frames
-                //this makes the explosions appear to be sequential
-                //this is closer to the original LttP implementation
+                Assets.Play(Assets.sfxBossHitDeath);
+                Assets.Play(Assets.sfxExplosionsMultiple);
             }
 
             #endregion
@@ -273,14 +270,12 @@ namespace DungeonRun
                     if (Actor.type == ActorType.Boss)
                     {   //dead bosses perpetually explode
                         if(Functions_Random.Int(0,100) > 75) //randomly create explosions
-                        {   //randomly place explosion around boss
+                        {   //randomly place explosions around boss
                             Functions_Entity.SpawnEntity(
                                 ObjType.ParticleExplosion,
                                 Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
                                 Actor.compSprite.position.Y + Functions_Random.Int(-16, 16),
                                 Direction.None);
-                            //play corresponding explosion sound effect too
-                            Assets.Play(Assets.sfxExplosion);
                         }
                     }
 

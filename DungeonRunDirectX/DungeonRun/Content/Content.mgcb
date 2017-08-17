@@ -377,3 +377,15 @@
 /processorParam:Quality=Best
 /build:SoundShatter.wav
 
+#begin SoundExplosionsMultiple.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundExplosionsMultiple.wav
+
+#begin SoundBossHitDeath.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBossHitDeath.wav
+

@@ -18,8 +18,6 @@ namespace DungeonRun
 
         public static ContentManager content;
         public static Texture2D dummyTexture;
-        static int listSize = 5;
-        static int i;
 
         //fonts
         public static SpriteFont font;
@@ -78,64 +76,63 @@ namespace DungeonRun
         #endregion
 
 
-        #region Soundfx Instance Lists
+        #region Soundfx Instances
 
-        //monogame defaults to 1024 max sound effect instances in sound effect instance pool
-        //the number of lists * listSize SHOULD be less than 1024
+        public static SoundEffectInstance sfxDash;
+        public static SoundEffectInstance sfxSwordSwipe;
+        public static SoundEffectInstance sfxEnemyHit;
+        public static SoundEffectInstance sfxHeroHit;
+        public static SoundEffectInstance sfxEnemyKill;
 
-        public static List<SoundEffectInstance> sfxDash;
-        public static List<SoundEffectInstance> sfxSwordSwipe;
-        public static List<SoundEffectInstance> sfxEnemyHit;
-        public static List<SoundEffectInstance> sfxHeroHit;
-        public static List<SoundEffectInstance> sfxEnemyKill;
-        //
-        public static List<SoundEffectInstance> sfxHeroKill;
-        public static List<SoundEffectInstance> sfxBeatDungeon;
-        public static List<SoundEffectInstance> sfxDoorOpen;
-        public static List<SoundEffectInstance> sfxKeyPickup;
-        public static List<SoundEffectInstance> sfxBossIntro;
-        //
-        public static List<SoundEffectInstance> sfxChestOpen;
-        public static List<SoundEffectInstance> sfxReward;
-        public static List<SoundEffectInstance> sfxTextLetter;
-        public static List<SoundEffectInstance> sfxTextDone;
-        public static List<SoundEffectInstance> sfxExitSummary;
-        //
-        public static List<SoundEffectInstance> sfxHeartPickup;
-        public static List<SoundEffectInstance> sfxGoldPickup;
-        public static List<SoundEffectInstance> sfxMenuItem;
-        public static List<SoundEffectInstance> sfxInventoryOpen;
-        public static List<SoundEffectInstance> sfxInventoryClose;
-        //
-        public static List<SoundEffectInstance> sfxBossHit;
-        public static List<SoundEffectInstance> sfxExplosion;
-        public static List<SoundEffectInstance> sfxFireballCast;
-        public static List<SoundEffectInstance> sfxFireballDeath;
-        public static List<SoundEffectInstance> sfxMetallicTap;
-        //
-        public static List<SoundEffectInstance> sfxBounce;
-        public static List<SoundEffectInstance> sfxMapOpen;
-        public static List<SoundEffectInstance> sfxError;
-        public static List<SoundEffectInstance> sfxBombDrop;
-        public static List<SoundEffectInstance> sfxArrowShoot;
-        //
-        public static List<SoundEffectInstance> sfxArrowHit;
-        public static List<SoundEffectInstance> sfxLightFire;
-        public static List<SoundEffectInstance> sfxSwitch;
-        public static List<SoundEffectInstance> sfxShatter;
+        public static SoundEffectInstance sfxHeroKill;
+        public static SoundEffectInstance sfxBeatDungeon;
+        public static SoundEffectInstance sfxDoorOpen;
+        public static SoundEffectInstance sfxKeyPickup;
+        public static SoundEffectInstance sfxBossIntro;
+
+        public static SoundEffectInstance sfxChestOpen;
+        public static SoundEffectInstance sfxReward;
+        public static SoundEffectInstance sfxTextLetter;
+        public static SoundEffectInstance sfxTextDone;
+        public static SoundEffectInstance sfxExitSummary;
+
+        public static SoundEffectInstance sfxHeartPickup;
+        public static SoundEffectInstance sfxGoldPickup;
+        public static SoundEffectInstance sfxMenuItem;
+        public static SoundEffectInstance sfxInventoryOpen;
+        public static SoundEffectInstance sfxInventoryClose;
+
+        public static SoundEffectInstance sfxBossHit;
+        public static SoundEffectInstance sfxExplosion;
+        public static SoundEffectInstance sfxFireballCast;
+        public static SoundEffectInstance sfxFireballDeath;
+        public static SoundEffectInstance sfxMetallicTap;
+
+        public static SoundEffectInstance sfxBounce;
+        public static SoundEffectInstance sfxMapOpen;
+        public static SoundEffectInstance sfxError;
+        public static SoundEffectInstance sfxBombDrop;
+        public static SoundEffectInstance sfxArrowShoot;
+
+        public static SoundEffectInstance sfxArrowHit;
+        public static SoundEffectInstance sfxLightFire;
+        public static SoundEffectInstance sfxSwitch;
+        public static SoundEffectInstance sfxShatter;
+        public static SoundEffectInstance sfxBossHitDeath;
+
+        public static SoundEffectInstance sfxExplosionsMultiple;
+
         #endregion
 
 
-        public static void Play(List<SoundEffectInstance> List)
+
+        public static void Play(SoundEffectInstance Ins)
         {
-            if(Flags.PlaySoundFX)
+            if (Flags.PlaySoundFX)
             {
-                for (i = 0; i < listSize; i++)
-                {   //find a sfx instance not playing, play it, exit loop
-                    if (List[i].State == SoundState.Stopped)
-                    { List[i].Play(); i = listSize; }
-                    //else { List[i].Stop(); } //causes clipping
-                }
+                Ins.IsLooped = false;
+                Ins.Volume = 1.0f;
+                Ins.Play();
             }
         }
 
@@ -203,131 +200,88 @@ namespace DungeonRun
 
             #region Create the soundfx instance lists + sources
 
-            sfxDash = new List<SoundEffectInstance>();
             SoundEffect dashSrc = content.Load<SoundEffect>(@"SoundDash");
-            sfxSwordSwipe = new List<SoundEffectInstance>();
+            sfxDash = dashSrc.CreateInstance();
             SoundEffect swordSwipeSrc = content.Load<SoundEffect>(@"SoundSwordSwipe");
-            sfxEnemyHit = new List<SoundEffectInstance>();
+            sfxSwordSwipe = swordSwipeSrc.CreateInstance();
             SoundEffect enemyHitSrc = content.Load<SoundEffect>(@"SoundEnemyHit");
-            sfxHeroHit = new List<SoundEffectInstance>();
+            sfxEnemyHit = enemyHitSrc.CreateInstance();
             SoundEffect heroHitSrc = content.Load<SoundEffect>(@"SoundHeroHit");
-            sfxEnemyKill = new List<SoundEffectInstance>();
+            sfxHeroHit = heroHitSrc.CreateInstance();
             SoundEffect enemyKillSrc = content.Load<SoundEffect>(@"SoundEnemyKill");
+            sfxEnemyKill = enemyKillSrc.CreateInstance();
             //
-            sfxHeroKill = new List<SoundEffectInstance>();
             SoundEffect heroKillSrc = content.Load<SoundEffect>(@"SoundHeroKill");
-            sfxBeatDungeon = new List<SoundEffectInstance>();
+            sfxHeroKill = heroKillSrc.CreateInstance();
             SoundEffect beatDuneonSrc = content.Load<SoundEffect>(@"SoundBeatDungeon");
-            sfxDoorOpen = new List<SoundEffectInstance>();
+            sfxBeatDungeon = beatDuneonSrc.CreateInstance();
             SoundEffect doorOpenSrc = content.Load<SoundEffect>(@"SoundDoorOpen");
-            sfxKeyPickup = new List<SoundEffectInstance>();
+            sfxDoorOpen = doorOpenSrc.CreateInstance();
             SoundEffect keyPickupSrc = content.Load<SoundEffect>(@"SoundKeyPickup");
-            sfxBossIntro = new List<SoundEffectInstance>();
+            sfxKeyPickup = keyPickupSrc.CreateInstance();
             SoundEffect bossIntroSrc = content.Load<SoundEffect>(@"SoundBossIntro");
+            sfxBossIntro = bossIntroSrc.CreateInstance();
             //
-            sfxChestOpen = new List<SoundEffectInstance>();
             SoundEffect chestOpenSrc = content.Load<SoundEffect>(@"SoundChestOpen");
-            sfxReward = new List<SoundEffectInstance>();
+            sfxChestOpen = chestOpenSrc.CreateInstance();
             SoundEffect rewardSrc = content.Load<SoundEffect>(@"SoundReward");
-            sfxTextLetter = new List<SoundEffectInstance>();
+            sfxReward = rewardSrc.CreateInstance();
             SoundEffect textLetterSrc = content.Load<SoundEffect>(@"SoundTextLetter");
-            sfxTextDone = new List<SoundEffectInstance>();
+            sfxTextLetter = textLetterSrc.CreateInstance();
             SoundEffect textDoneSrc = content.Load<SoundEffect>(@"SoundTextDone");
-            sfxExitSummary = new List<SoundEffectInstance>();
+            sfxTextDone = textDoneSrc.CreateInstance();
             SoundEffect exitSummarySrc = content.Load<SoundEffect>(@"SoundExitSummary");
+            sfxExitSummary = exitSummarySrc.CreateInstance();
             //
-            sfxHeartPickup = new List<SoundEffectInstance>();
             SoundEffect heartPickupSrc = content.Load<SoundEffect>(@"SoundHeartPickup");
-            sfxGoldPickup = new List<SoundEffectInstance>();
+            sfxHeartPickup = heartPickupSrc.CreateInstance();
             SoundEffect goldPickupSrc = content.Load<SoundEffect>(@"SoundGoldPickup");
-            sfxMenuItem = new List<SoundEffectInstance>();
+            sfxGoldPickup = goldPickupSrc.CreateInstance();
             SoundEffect menuItemSrc = content.Load<SoundEffect>(@"SoundSelectMenuItem");
-            sfxInventoryOpen = new List<SoundEffectInstance>();
+            sfxMenuItem = menuItemSrc.CreateInstance();
             SoundEffect inventoryOpenSrc = content.Load<SoundEffect>(@"SoundInventoryOpen");
-            sfxInventoryClose = new List<SoundEffectInstance>();
+            sfxInventoryOpen = inventoryOpenSrc.CreateInstance();
             SoundEffect inventoryCloseSrc = content.Load<SoundEffect>(@"SoundInventoryClose");
+            sfxInventoryClose = inventoryCloseSrc.CreateInstance();
             //
-            sfxBossHit = new List<SoundEffectInstance>();
             SoundEffect bossHitSrc = content.Load<SoundEffect>(@"SoundBossHit");
-            sfxExplosion = new List<SoundEffectInstance>();
+            sfxBossHit = bossHitSrc.CreateInstance();
             SoundEffect sfxExplosionSrc = content.Load<SoundEffect>(@"SoundExplosion");
-            sfxFireballCast = new List<SoundEffectInstance>();
+            sfxExplosion = sfxExplosionSrc.CreateInstance();
             SoundEffect fireballCastSrc = content.Load<SoundEffect>(@"SoundFireballCast");
-            sfxFireballDeath = new List<SoundEffectInstance>();
+            sfxFireballCast = fireballCastSrc.CreateInstance();
             SoundEffect fireballDeathSrc = content.Load<SoundEffect>(@"SoundFireballDeath");
-            sfxMetallicTap = new List<SoundEffectInstance>();
+            sfxFireballDeath = fireballDeathSrc.CreateInstance();
             SoundEffect metallicTapSrc = content.Load<SoundEffect>(@"SoundMetallicTap");
+            sfxMetallicTap = metallicTapSrc.CreateInstance();
             //
-            sfxBounce = new List<SoundEffectInstance>();
             SoundEffect bounceSrc = content.Load<SoundEffect>(@"SoundBounce");
-            sfxMapOpen = new List<SoundEffectInstance>();
+            sfxBounce = bounceSrc.CreateInstance();
             SoundEffect mapOpenSrc = content.Load<SoundEffect>(@"SoundMapOpen");
-            sfxError = new List<SoundEffectInstance>();
+            sfxMapOpen = mapOpenSrc.CreateInstance();
             SoundEffect errorSrc = content.Load<SoundEffect>(@"SoundError");
-            sfxBombDrop = new List<SoundEffectInstance>();
+            sfxError = errorSrc.CreateInstance();
             SoundEffect bombDropSrc = content.Load<SoundEffect>(@"SoundBombDrop");
-            sfxArrowShoot = new List<SoundEffectInstance>();
+            sfxBombDrop = bombDropSrc.CreateInstance();
             SoundEffect arrowShootSrc = content.Load<SoundEffect>(@"SoundArrowShoot");
+            sfxArrowShoot = arrowShootSrc.CreateInstance();
             //
-            sfxArrowHit = new List<SoundEffectInstance>();
             SoundEffect arrowHitSrc = content.Load<SoundEffect>(@"SoundArrowHit");
-            sfxLightFire = new List<SoundEffectInstance>();
+            sfxArrowHit = arrowHitSrc.CreateInstance();
             SoundEffect lightFireSrc = content.Load<SoundEffect>(@"SoundLightFire");
-            sfxSwitch = new List<SoundEffectInstance>();
+            sfxLightFire = lightFireSrc.CreateInstance();
             SoundEffect switchSrc = content.Load<SoundEffect>(@"SoundSwitch");
-            sfxShatter = new List<SoundEffectInstance>();
+            sfxSwitch = switchSrc.CreateInstance();
             SoundEffect shatterSrc = content.Load<SoundEffect>(@"SoundShatter");
+            sfxShatter = shatterSrc.CreateInstance();
+            SoundEffect bossHitDeathSrc = content.Load<SoundEffect>(@"SoundBossHitDeath");
+            sfxBossHitDeath = bossHitDeathSrc.CreateInstance();
+            //
+            SoundEffect explosionsMultipleSrc = content.Load<SoundEffect>(@"SoundExplosionsMultiple");
+            sfxExplosionsMultiple = explosionsMultipleSrc.CreateInstance();
 
             #endregion
 
-
-            #region Populate the instance lists
-
-            for (i = 0; i < listSize; i++)
-            {
-                sfxDash.Add(dashSrc.CreateInstance());
-                sfxSwordSwipe.Add(swordSwipeSrc.CreateInstance());
-                sfxEnemyHit.Add(enemyHitSrc.CreateInstance());
-                sfxHeroHit.Add(heroHitSrc.CreateInstance());
-                sfxEnemyKill.Add(enemyKillSrc.CreateInstance());
-                //
-                sfxHeroKill.Add(heroKillSrc.CreateInstance());
-                sfxBeatDungeon.Add(beatDuneonSrc.CreateInstance());
-                sfxDoorOpen.Add(doorOpenSrc.CreateInstance());
-                sfxKeyPickup.Add(keyPickupSrc.CreateInstance());
-                sfxBossIntro.Add(bossIntroSrc.CreateInstance());
-                //
-                sfxChestOpen.Add(chestOpenSrc.CreateInstance());
-                sfxReward.Add(rewardSrc.CreateInstance());
-                sfxTextLetter.Add(textLetterSrc.CreateInstance());
-                sfxTextDone.Add(textDoneSrc.CreateInstance());
-                sfxExitSummary.Add(exitSummarySrc.CreateInstance());
-                //
-                sfxHeartPickup.Add(heartPickupSrc.CreateInstance());
-                sfxGoldPickup.Add(goldPickupSrc.CreateInstance());
-                sfxMenuItem.Add(menuItemSrc.CreateInstance());
-                sfxInventoryOpen.Add(inventoryOpenSrc.CreateInstance());
-                sfxInventoryClose.Add(inventoryCloseSrc.CreateInstance());
-                //
-                sfxBossHit.Add(bossHitSrc.CreateInstance());
-                sfxExplosion.Add(sfxExplosionSrc.CreateInstance());
-                sfxFireballCast.Add(fireballCastSrc.CreateInstance());
-                sfxFireballDeath.Add(fireballDeathSrc.CreateInstance());
-                sfxMetallicTap.Add(metallicTapSrc.CreateInstance());
-                //
-                sfxBounce.Add(bounceSrc.CreateInstance());
-                sfxMapOpen.Add(mapOpenSrc.CreateInstance());
-                sfxError.Add(errorSrc.CreateInstance());
-                sfxBombDrop.Add(bombDropSrc.CreateInstance());
-                sfxArrowShoot.Add(arrowShootSrc.CreateInstance());
-                //
-                sfxArrowHit.Add(arrowHitSrc.CreateInstance());
-                sfxLightFire.Add(lightFireSrc.CreateInstance());
-                sfxSwitch.Add(switchSrc.CreateInstance());
-                sfxShatter.Add(shatterSrc.CreateInstance());
-            }
-
-            #endregion
 
         }
 
