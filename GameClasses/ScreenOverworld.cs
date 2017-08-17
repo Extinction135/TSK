@@ -295,6 +295,8 @@ namespace DungeonRun
                             Assets.Play(Assets.sfxWindowClose);
                         }
                     }
+                    else if (Functions_Input.IsNewButtonPress(Buttons.Start))
+                    { ScreenManager.AddScreen(new ScreenInventory()); }
                 }
             }
         }

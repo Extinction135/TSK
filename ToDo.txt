@@ -55,22 +55,17 @@ todo:
 
 
 
-Improve Menu Selection sound fx
 
-added SoundSelectFile to content project.
-added sfxSelectFile instance to Assets.
-updated LSN Screen to play selectFile sfx upon file selection.
-updated Title Screen to play selectFile sfx upon continue selection.
+Allow Inventory to be accessible from Overworld Screen
 
-renamed Assets.sfxInventoryOpen to Assets.sfxWindowOpen.
-renamed Assets.sfxInventoryClose to Assets.sfxWindowClose.
-renamed SoundInventoryOpen to SoundWindowOpen.
-renamed SoundInventoryClose to SoundWindowClose.
+the player should be able to open their inventory while on overworld map.
+this allows them to set their loadout, inspect items, and set game options.
+otherwise, the player must enter a level to do these things.
+and that's not terribly convenient.
 
-added call to play WindowOpen sfx from TitleScreen.LoadContent().
-added call to play WindowOpen sfx from LSNScreen.LoadContent().
-added call to play WindowClose sfx from OverworldScreen.HandleInput().
-playtested, working as expected.
+updated overworld screen with check for start button press.
+upon start button press, an inventory screen is added.
+playtested, working as expected, and very usefull as well.
 
 
 
@@ -78,14 +73,7 @@ playtested, working as expected.
 
 
 
-we should be able to open inventory screen from overworld screen
-
-
-
-
-
-
-
+there should be a walking / skitter sound when hero moves away from a location on overworld
 
 
 add KeyCheat to flags. upon dungeon creation, check for key cheat, set level.key true.
