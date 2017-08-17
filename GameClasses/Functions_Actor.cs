@@ -25,11 +25,10 @@ namespace DungeonRun
             Actor.lockTotal = 15;
             //display the hit effect particle
             Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Actor);
+            Assets.Play(Actor.sfxHit); //play actor hit sound fx
 
-            //play hero/enemy hit sound effect
             if (Actor == Pool.hero)
             {
-                Assets.Play(Assets.sfxHeroHit);
                 if (!Flags.InfiniteGold) //continue if infiniteGold is false
                 {
                     if (PlayerData.current.gold > 0) //if hero has any gold
@@ -39,9 +38,6 @@ namespace DungeonRun
                     }
                 }
             }
-            else { Assets.Play(Assets.sfxEnemyHit); }
-            //if the actor hit was the boss, also play the boss hit sound
-            if (Actor.type == ActorType.Boss) { Assets.Play(Assets.sfxBossHit); }
         }
 
         public static void SetDeathState(Actor Actor)
@@ -50,13 +46,8 @@ namespace DungeonRun
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 255;
-
-            if (Actor == Pool.hero)
-            {   //play hero death sfx
-                Assets.Play(Assets.sfxHeroKill);
-                //track hero deaths here
-            }   //track enemy deaths
-            else { DungeonRecord.enemyCount++; }
+            Assets.Play(Actor.sfxDeath); //play actor death sound fx
+            if (Actor != Pool.hero) { DungeonRecord.enemyCount++; } //track enemy deaths
 
 
             #region Enemy Specific Death Effects
@@ -67,7 +58,6 @@ namespace DungeonRun
                 Functions_Entity.SpawnEntity(ObjType.ParticleExplosion, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Functions_Loot.SpawnLoot(Actor.compSprite.position);
-                Assets.Play(Assets.sfxEnemyKill); //death sfx
             }
             else if (Actor.type == ActorType.Boss)
             {
@@ -77,9 +67,7 @@ namespace DungeonRun
                 Functions_Level.levelScreen.displayState = DisplayState.Closing;
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
-                Assets.Play(Assets.sfxEnemyKill); //death sfx
-                Assets.Play(Assets.sfxBossHitDeath);
-                Assets.Play(Assets.sfxExplosionsMultiple);
+                Assets.Play(Assets.sfxExplosionsMultiple); //play explosions
             }
 
             #endregion
@@ -149,6 +137,10 @@ namespace DungeonRun
                 //do not update/change the hero's weapon/item/armor/equipment
                 Actor.walkSpeed = 0.35f;
                 Actor.dashSpeed = 0.90f;
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxHeroDash;
+                Actor.sfxHit = Assets.sfxHeroHit;
+                Actor.sfxDeath = Assets.sfxHeroKill;
             }
             else if (Type == ActorType.Blob)
             {
@@ -159,6 +151,10 @@ namespace DungeonRun
 
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxBlobDash;
+                Actor.sfxHit = Assets.sfxEnemyHit;
+                Actor.sfxDeath = Assets.sfxEnemyKill;
             }
             else if (Type == ActorType.Boss)
             {
@@ -174,6 +170,11 @@ namespace DungeonRun
                 Actor.compSprite.cellSize.Y = 32;
                 //the boss actor has a lower sorting point that normal actors
                 Actor.compSprite.zOffset = 12;
+
+                //set actor sound effects
+                Actor.sfxDash = Assets.sfxBlobDash;
+                Actor.sfxHit = Assets.sfxBossHit;
+                Actor.sfxDeath = Assets.sfxBossHitDeath;
             }
 
             #endregion
@@ -221,7 +222,7 @@ namespace DungeonRun
                     Actor.stateLocked = true;
                     Actor.compMove.speed = Actor.dashSpeed;
                     Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Actor);
-                    if (Actor == Pool.hero) { Assets.Play(Assets.sfxDash); }
+                    Assets.Play(Actor.sfxDash);
                 }
                 else if (Actor.state == ActorState.Attack)
                 {

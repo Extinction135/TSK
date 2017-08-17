@@ -47,13 +47,7 @@ todo:
 
 
 
-Improve Sound Effects Quality
 
-playtested, with speakers & headphones.
-the audio sample rate of 16k is noticeable on headphones.
-there is quality loss, so go back to 22k for sound effects.
-resampled sound effects from 44.1k to 22k for DirectX project.
-playtested again, sounds much better.
 
 
 
@@ -64,13 +58,29 @@ playtested again, sounds much better.
 
 Improve Enemy sound fx
 
-added SoundBlobDash
+added SoundBlobDash to content project.
+added sfxBlobDash instance to Assets.
+renamed Assets.sfxDash to Assets.sfxHeroDash.
 
-blob enemies need a squish sound for when they dash
-we should be doing this by playing the Actor.dash sfx
-which means that actors should have various sound effect instances for dash, hit, death
+updated Functions_Actor.SetType() to set each actor's sound effects.
+updated Functions_Actor.Update() to play each actor's dash sfx upon dash.
+playtested, working as expected.
 
-menu_Erase should be used for boss hit death sound
+updated Functions_Actor.SetHitState() to play() Actor.sfxHit.
+updated Functions_Actor.SetDeathState() to play() Actor.sfxDeath.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -82,7 +92,7 @@ menu_Select should be used when player selects a file to load/create/save to (fr
 
 
 
-
+add KeyCheat to flags. upon dungeon creation, check for key cheat, set level.key true.
 
 
 

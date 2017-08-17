@@ -616,6 +616,11 @@ namespace DungeonRun
         public MenuItemType armor = MenuItemType.Unknown;
         public MenuItemType equipment = MenuItemType.Unknown;
 
+        //actor sound effects
+        public SoundEffectInstance sfxDash;
+        public SoundEffectInstance sfxHit;
+        public SoundEffectInstance sfxDeath;
+
         public Actor()
         {
             compSprite = new ComponentSprite(Assets.heroSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(16, 16));

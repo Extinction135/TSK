@@ -78,7 +78,7 @@ namespace DungeonRun
 
         #region Soundfx Instances
 
-        public static SoundEffectInstance sfxDash;
+        public static SoundEffectInstance sfxHeroDash;
         public static SoundEffectInstance sfxSwordSwipe;
         public static SoundEffectInstance sfxEnemyHit;
         public static SoundEffectInstance sfxHeroHit;
@@ -122,6 +122,7 @@ namespace DungeonRun
 
         public static SoundEffectInstance sfxExplosionsMultiple;
         public static SoundEffectInstance sfxQuit;
+        public static SoundEffectInstance sfxBlobDash;
 
         #endregion
 
@@ -201,8 +202,8 @@ namespace DungeonRun
 
             #region Create the soundfx instance lists + sources
 
-            SoundEffect dashSrc = content.Load<SoundEffect>(@"SoundDash");
-            sfxDash = dashSrc.CreateInstance();
+            SoundEffect heroDashSrc = content.Load<SoundEffect>(@"SoundHeroDash");
+            sfxHeroDash = heroDashSrc.CreateInstance();
             SoundEffect swordSwipeSrc = content.Load<SoundEffect>(@"SoundSwordSwipe");
             sfxSwordSwipe = swordSwipeSrc.CreateInstance();
             SoundEffect enemyHitSrc = content.Load<SoundEffect>(@"SoundEnemyHit");
@@ -282,6 +283,8 @@ namespace DungeonRun
             sfxExplosionsMultiple = explosionsMultipleSrc.CreateInstance();
             SoundEffect quitSrc = content.Load<SoundEffect>(@"SoundQuit");
             sfxQuit = quitSrc.CreateInstance();
+            SoundEffect blobDashSrc = content.Load<SoundEffect>(@"SoundBlobDash");
+            sfxBlobDash = blobDashSrc.CreateInstance();
 
             #endregion
 
