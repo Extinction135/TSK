@@ -274,6 +274,7 @@ namespace DungeonRun
                         //change hero's animation to moving, inherit cardinal direction
                         hero.state = ActorState.Move;
                         hero.direction = cardinal;
+                        //Assets.Play(Assets.sfxTextLetter);
                     }
                     //check to see if player wants to load a level
                     if(Functions_Input.IsNewButtonPress(Buttons.A))
@@ -332,6 +333,7 @@ namespace DungeonRun
                     {   //set hero's animation to idle down
                         hero.state = ActorState.Idle;
                         hero.direction = Direction.Down;
+                        Assets.Play(Assets.sfxTextDone);
                     }
                 }
 

@@ -47,38 +47,11 @@ todo:
 
 
 
+Improve sound effects
 
-
-
-
-Fix SoundFX Bugs, Improve Boss Death sound effects
-
-removed the sound effect instance lists from Assets.
-replaced those lists with singular sound effect instances.
-rewrote Assets.Play() to handle single sfx instance.
-playtested, working as expected.
-
-added SoundBossHitDeath, SoundExplosionsMultiple to content project.
-created folder of source sound effects @ 44.1k, trimmed and reset volumes.
-copied source sfx into directX project, resampled to 16k mono @ 16bit.
-
-added sfxBossHitDeath, sfxExplosionsMultiple Asset instances.
-updated Functions_Actor.SetDeathState() -> Boss Death.
-BossHitDeath and MultipleExplosions sound effects are played now when boss is defeated.
-
-playtested, working, but needs some improvements.
-
-
-
-
-
-
-
-
-
-multiple explosions should fade out, be quieter
-
-resample the sfx to 22k mono
+edited multiple explosions sfx to fade out.
+resampled all sfx to 22k mono from 44.1k source.
+playtested, working as expected, in dungeon sfx sound much better.
 
 
 
