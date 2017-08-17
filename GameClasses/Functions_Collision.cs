@@ -19,6 +19,7 @@ namespace DungeonRun
         static Boolean collision = false;
         static Boolean collisionX;
         static Boolean collisionY;
+        static Boolean collisionXY;
 
 
 
@@ -172,29 +173,44 @@ namespace DungeonRun
 
 
         public static void CheckCollisions(Actor Actor)
-        {
-            collisionX = false; collisionY = false;
+        {   //most frames, an actor isn't colliding with anything
+            collisionX = false; collisionY = false; collisionXY = false;
 
-            //project collisionRec on X axis
+            //project on both X and Y axis
             Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X + Actor.compCollision.offsetX;
-            //check object and actor collisions/interactions
-            if (CheckObjPoolCollisions(Actor)) { collisionX = true; }
-            if (CheckActorPoolCollisions(Actor)) { collisionX = true; }
-            //unproject collisionRec on X axis
-            Actor.compCollision.rec.X = (int)Actor.compMove.position.X + Actor.compCollision.offsetX;
-            
-            //project collisionRec on Y axis
             Actor.compCollision.rec.Y = (int)Actor.compMove.newPosition.Y + Actor.compCollision.offsetY;
-            //get actor, object, projectile collisions
             //check object and actor collisions/interactions
-            if (CheckObjPoolCollisions(Actor)) { collisionY = true; }
-            if (CheckActorPoolCollisions(Actor)) { collisionY = true; }
-            //unproject collisionRec on Y axis
+            if (CheckObjPoolCollisions(Actor)) { collisionXY = true; }
+            if (CheckActorPoolCollisions(Actor)) { collisionXY = true; }
+            //unproject on both X and Y axis
+            Actor.compCollision.rec.X = (int)Actor.compMove.position.X + Actor.compCollision.offsetX;
             Actor.compCollision.rec.Y = (int)Actor.compMove.position.Y + Actor.compCollision.offsetY;
+            
+            if(collisionXY) //actor has collided with obj/actor, on atleast one axis, determine which axis
+            {   
+                //project collisionRec on X axis
+                Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X + Actor.compCollision.offsetX;
+                //check object and actor collisions/interactions
+                if (CheckObjPoolCollisions(Actor)) { collisionX = true; }
+                if (CheckActorPoolCollisions(Actor)) { collisionX = true; }
+                //unproject collisionRec on X axis
+                Actor.compCollision.rec.X = (int)Actor.compMove.position.X + Actor.compCollision.offsetX;
 
-            //if there was a collision, the new position reverts to the old position
-            if (collisionX) { Actor.compMove.newPosition.X = Actor.compMove.position.X; }
-            if (collisionY) { Actor.compMove.newPosition.Y = Actor.compMove.position.Y; }
+                //project collisionRec on Y axis
+                Actor.compCollision.rec.Y = (int)Actor.compMove.newPosition.Y + Actor.compCollision.offsetY;
+                //check object and actor collisions/interactions
+                if (CheckObjPoolCollisions(Actor)) { collisionY = true; }
+                if (CheckActorPoolCollisions(Actor)) { collisionY = true; }
+                //unproject collisionRec on Y axis
+                Actor.compCollision.rec.Y = (int)Actor.compMove.position.Y + Actor.compCollision.offsetY;
+
+                //if there was a collision, the new position reverts to the old position
+                if (collisionX) { Actor.compMove.newPosition.X = Actor.compMove.position.X; }
+                if (collisionY) { Actor.compMove.newPosition.Y = Actor.compMove.position.Y; }
+                //we know there was a X&Y collision, but per axis check doesn't catch it, revert to old pos
+                if (!collisionX & !collisionY) { Actor.compMove.newPosition = Actor.compMove.position; }
+            }
+
             //the current position becomes the new position
             Actor.compMove.position.X = Actor.compMove.newPosition.X;
             Actor.compMove.position.Y = Actor.compMove.newPosition.Y;

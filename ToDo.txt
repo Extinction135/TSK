@@ -48,42 +48,40 @@ todo:
 
 
 
+fix collision bug
 
-Various Refactoring & Creating Additional RoomData
-
-fixed a minor bug where tool icon weren't sorted properly in roomBuilderWidget.
-updated RoomBuilder to center camera to room, everytime a room is loaded.
-refactored Camera2D to use the movement routines created in OverworldScreen.
-fixed a bug where room's center was not being updated from AddRoom() method.
-
-created additional xml room data for all handmade room types.
-removed stress test level from roomData.
-increaseed size of roomobj pool to 500.
-lots of playtesting, working as expected.
+implement collision checking for both axis projection, in addition to per axis
+this should come before per axis, and bail/return if both axis collision is true
+this should only be done for the hero actor, if we can (pass boolean into method)
 
 
 
 
 
-
-
-
-
-SOUND POLISH
-
-the light fire sound effect should be louder
-the reward sound effect is WAAAAY too loud
+Fix sound effect bug
 
 we should not be able to call the same soundFX multiple times from one frame
 this causes the sfx to layer upon each other, drastically increasing their volume
 this is BAD BAD BAD
 
-we should have a quene of sfx to play next frame
-then process that que each frame
-so if a sfx instance is already on the que, it gets ignored
-this way we can only play one kind of sfx instance per frame
-on the next frame, sure, let the sfx play again
-but this prevents the doubling up of sfx sounds on the same frame
+so instead, we should only have one instance of each soundfx
+a soundfx should not be able to layerupon itself
+for the boss explosions, we will create a specific longer multi-explosion soundfx
+
+
+
+
+fix sound effect levels
+
+the light fire sound effect should be louder
+the reward sound effect is WAAAAY too loud
+
+playtest, determine if other sound fx are too loud/soft
+this should be done using speakers + headphones
+
+
+
+
 
 
 
@@ -126,6 +124,10 @@ then using a flag boolean, the backend will load them instead of the xml roomDat
 
 RELEASE
 record new GIFs
+	title screen -> overworld -> dungeon -> dungeon map -> multiple rooms
+	multiple rooms -> boss fight -> loses -> summary screen -> overworld
+	overworld -> shop -> overworld
+	
 update the readme to reflect the directX port
 "A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
 DirectX version uses .Net 4.5 & SharpDX.
@@ -133,7 +135,7 @@ UWP version uses .NetCore & SharpDX.
 OpenGL port coming soon."
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-release version 0.6 with complete dungeon & enemy variety.
+release version 0.6 with complete dungeon & room editor & overworld
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -167,7 +169,8 @@ build center island home level
 
 create dungeon variations: old ruins castle, cave, forest, big castle
 
-
+we'll need a level editor to do this properly
+and we'll need alot more gameobjects to make these levels look good
 
 
 
