@@ -188,6 +188,7 @@ namespace DungeonRun
                     else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                     {
                         displayState = DisplayState.Closing; //fadeout, remove screen
+                        Assets.Play(Assets.sfxQuit);
                     } 
 
                     else if (currentlySelected.type == MenuItemType.OptionsAudioCtrls)

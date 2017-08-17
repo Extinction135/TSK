@@ -142,7 +142,7 @@ namespace DungeonRun
                 {   //close dungeon screen (autosaves), goto title screen
                     displayState = DisplayState.Closing;
                     exitAction = ExitAction.Title;
-                    Assets.Play(Assets.sfxInventoryClose);
+                    Assets.Play(Assets.sfxQuit);
                 }
                 else if (currentlySelected.type == MenuItemType.OptionsSaveGame)
                 {

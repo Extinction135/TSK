@@ -389,3 +389,9 @@
 /processorParam:Quality=Best
 /build:SoundBossHitDeath.wav
 
+#begin SoundQuit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundQuit.wav
+

@@ -121,6 +121,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxBossHitDeath;
 
         public static SoundEffectInstance sfxExplosionsMultiple;
+        public static SoundEffectInstance sfxQuit;
 
         #endregion
 
@@ -279,6 +280,8 @@ namespace DungeonRun
             //
             SoundEffect explosionsMultipleSrc = content.Load<SoundEffect>(@"SoundExplosionsMultiple");
             sfxExplosionsMultiple = explosionsMultipleSrc.CreateInstance();
+            SoundEffect quitSrc = content.Load<SoundEffect>(@"SoundQuit");
+            sfxQuit = quitSrc.CreateInstance();
 
             #endregion
 

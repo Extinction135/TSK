@@ -48,29 +48,19 @@ todo:
 
 
 
-Add sound effects to Overworld Screen
 
-added targetLocation to OverworldScreen.
-updated movment routines to use targetLocation.
-this allows screen to track if target location is different than current location.
-if target location is different, the screen plays the text sound effect.
-this provides audio feedback for player when they 'leave' a location.
 
-once hero arrives at target location, player can enter level by pressing A button.
-when this A button press occurs, the text done sound effect is played.
-this provides audio feedback for player when they 'enter' a location.
+Add a Quit Sound Effect
+
+added SoundQuit to content project.
+added sfxQuit instance to Assets.
+added calls to sfxQuit from Inventory Screen & Title Screen.
+these calls happen upon player choosing a quit menuItem.
 playtested, working as expected.
 
 
 
 
-
-
-
-
-
-
-play saveQuit sfx upon quit game (inventory screen and title screen)
 
 
 
