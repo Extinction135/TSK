@@ -50,33 +50,6 @@ todo:
 
 
 
-
-Improve Player Interaction with Overworld Screen
-
-created SoundMapWalking file, added to content project.
-created sfxMapWalking instance in Assets.
-
-updated OverworldScreen to play sfxMapWalking when hero leaves a location.
-dash particle is now created when hero leaves a location.
-
-added call to sfxTextLetter when hero arrives at the target location.
-attention particle is now created when hero arrives at target location on map.
-
-playtested, looking and sounding great.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 add KeyCheat to flags. upon dungeon creation, check for key cheat, set level.key true.
 
 so we don't have to always go get the key to test boss battle
@@ -85,8 +58,7 @@ so we don't have to always go get the key to test boss battle
 
 add overworld music
 add shop music (town music)
-
-when we play music, we should be using
+title screeen plays title music
 
 
 

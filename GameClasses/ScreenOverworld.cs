@@ -28,9 +28,9 @@ namespace DungeonRun
 
         Vector2 distance; //used in map movement routine
         float speed = 0.1f; //how fast hero moves between locations
-
         List<Vector2> waveSpawnPositions; //where wave particles can spawn
         Vector2 wavePos; //points to one of the vector2s in waveSpawnPositions list
+
 
 
         public ScreenOverworld() { this.name = "OverworldScreen"; }

@@ -90,4 +90,20 @@ Each version of DungeonRun expands on the game's mechanics and design.
 + Lots of UX work on screens, and transitions between them.
 
 
+## Version 0.6 - 2017.08.19 (+47 days, +164 commits)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p6A.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p6B.gif)   
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p6C.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p6D.gif)  
++ Added RoomBuilder (editor), ability to save/load rooms as XML.
++ Updated Overworld with new map and animated sprites.
++ Created Dungeon Generation routine.
++ Complete, randomly generated dungeons are now created.
++ Added dungeon map to show room layout + connections.
++ Implemented various cheats in-game via Flags class.
++ Tons of visual & audio improvemtents, bug fixes.
+
+
+
+
 
