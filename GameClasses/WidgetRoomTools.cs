@@ -26,6 +26,8 @@ namespace DungeonRun
         public ComponentButton roomTypeBtn;
         public ComponentButton reloadRoomBtn;
 
+        public ComponentText roomNameText;
+
 
 
         public WidgetRoomTools()
@@ -47,6 +49,7 @@ namespace DungeonRun
             buttons.Add(reloadRoomBtn);
 
             roomType = RoomType.Column;
+            roomNameText = new ComponentText(Assets.font, "filename", new Vector2(0, 0), Assets.colorScheme.textDark);
         }
 
         public override void Reset(int X, int Y)
@@ -57,6 +60,10 @@ namespace DungeonRun
             saveBtn.rec.X = X + 16 * 1 - 8;
             saveBtn.rec.Y = Y + 16 * 1 + 8;
             Functions_Component.CenterText(saveBtn);
+
+            reloadRoomBtn.rec.X = X + 16 * 1 + 17;
+            reloadRoomBtn.rec.Y = Y + 16 * 1 + 8;
+            Functions_Component.CenterText(reloadRoomBtn);
 
             loadBtn.rec.X = X + 16 * 4 + 10 - 8;
             loadBtn.rec.Y = Y + 16 * 1 + 8;
@@ -70,9 +77,8 @@ namespace DungeonRun
             roomTypeBtn.rec.Y = Y + 16 * 2 + 8;
             Functions_Component.CenterText(roomTypeBtn);
 
-            reloadRoomBtn.rec.X = X + 16 * 1 - 8;
-            reloadRoomBtn.rec.Y = Y + 16 * 3 + 8;
-            Functions_Component.CenterText(reloadRoomBtn);
+            roomNameText.position.X = X + 16 * 1 - 8;
+            roomNameText.position.Y = Y + 16 * 3 + 5;
         }
 
         public void HandleInput()
@@ -207,6 +213,7 @@ namespace DungeonRun
             {
                 for (i = 0; i < buttons.Count; i++) //draw all the buttons
                 { Functions_Draw.Draw(buttons[i]); }
+                Functions_Draw.Draw(roomNameText);
             }
         }
 

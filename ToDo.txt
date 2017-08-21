@@ -44,22 +44,47 @@ todo:
 v0.7 goals
 
 
-2
+1
+
+
+
+Display loaded room filename in RoomTools widget
+
+moved where reloadRoomButton is placed in RoomTools widget.
+updated Functions_Backend.SelectRoomFile() to set RoomTools.roomName to filename loaded.
+this was updated for both Functions_UWP and Functions_DirectX.
+playtested on UWP & DX, working as expected.
 
 
 
 
 
 
-Get SpikeBlocks moving & rotating properly
 
-removed second instance of spikeblock from ObjectTools Widget.
-updated ObjectTools.RotateActiveObj() with path for SpikeBlocks.
-in this path, we are setting the obj.compMove.direction & obj.direction.
 
-slowed down the movement speed of spikeblocks.
-updated WidgetRoomTools' Save routine to save obj.direction to xml.
-playtested, spikeblocks move properly now.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -76,20 +101,6 @@ eventually passing thru it (if more 2nd block collisions happen)
 *we can turn off spikeblock collisions with other spikeblocks
 *or, better idea?
 * spike blocks can only collide once, a double collision ruins the bounce
-
-
-
-
-
-
-
-
-Room Names ++
-display room name in room tools, next to reload button
-set the room.name to be the filename when roomData is loaded
-so you know what file you loaded
-when room is new, set room.name to new
-
 
 
 

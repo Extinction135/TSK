@@ -159,6 +159,9 @@ namespace DungeonRun
                 Stream stream = await loadFile.OpenStreamForReadAsync();
                 using (stream)
                 { Widgets.RoomTools.roomData = (RoomXmlData)serializer.Deserialize(stream); }
+                //store filename in RoomTools widget
+                Widgets.RoomTools.roomNameText.text = loadFile.Name;
+                //build the loaded roomData
                 Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
             }
         }
