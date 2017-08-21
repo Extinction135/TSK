@@ -44,30 +44,38 @@ todo:
 v0.7 goals
 
 
-3
-
-
-
-
-Implement Rotation functionality for ObjectTools Widget
-
-added rotateObj GameObject instance to WidgetObjectTools.
-added RotateObj value to ObjToolState enum.
-renamed addDeleteSprite to toolTipSprite.
-updated HandleInput() with routine for RotateObj.
-also sets the cursor toolTip sprite's frame to rotate sprite.
-playtested, working as expected.
-
-upgraded WidgetObjectTools.HandleInput() to rotate selected objects.
-simplified Functions_GameObject.SetRotation().
-lots of playtesting, refactoring, debugging.
-conveyor belts + bridges being handled properly via widget.
+2
 
 
 
 
 
 
+Get SpikeBlocks moving & rotating properly
+
+removed second instance of spikeblock from ObjectTools Widget.
+updated ObjectTools.RotateActiveObj() with path for SpikeBlocks.
+in this path, we are setting the obj.compMove.direction & obj.direction.
+
+slowed down the movement speed of spikeblocks.
+updated WidgetRoomTools' Save routine to save obj.direction to xml.
+playtested, spikeblocks move properly now.
+
+
+
+
+
+
+SB bug
+if a spikeblock hits an object, at the same time another spikeblock hits obj,
+the spikeblocks will collide/overlap, and reverse their direction
+if this happens after the block has bounced off of obj, the block will reverse into obj 
+this cauess the block to bury itself into obj, 
+eventually passing thru it (if more 2nd block collisions happen)
+
+*we can turn off spikeblock collisions with other spikeblocks
+*or, better idea?
+* spike blocks can only collide once, a double collision ruins the bounce
 
 
 
@@ -76,22 +84,13 @@ conveyor belts + bridges being handled properly via widget.
 
 
 
-spikeblocks do not rotate movement properly
+Room Names ++
+display room name in room tools, next to reload button
+set the room.name to be the filename when roomData is loaded
+so you know what file you loaded
+when room is new, set room.name to new
 
-bridges do not rotate properly either
 
-
-
-
-Rotation++
-move add and delete icons to right
-add rotation tool icon button
-when rotation tool is selected, display rotation sprite/frame with cursor
-set ObjToolState to Rotate (this will be a new enum value)
-
-add routine to rotate selected object
-check the obj.type, only rotate selected types
-based on type, the obj rotate differently
 
 
 
@@ -101,15 +100,6 @@ based on type, the obj rotate differently
 
 
 Roomobjects++
-
-
-
-objs that can be rotated:
-conveyor belts - up, right, down, left
-spike blocks - down, right
-bridges - down, right
- 
- 
  
 we should have an explosive barrel - of course!
 just like bomb, but stationary, waiting for collision

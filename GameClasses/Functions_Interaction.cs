@@ -304,24 +304,27 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.Bumper)
                 {   //bounce actor off of bumper
                     Functions_Movement.Push(Actor.compMove,
-                        Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position), 
-                        10.0f);
+                        Functions_Direction.GetRelativeDirection(
+                            Obj.compSprite.position, 
+                            Actor.compSprite.position), 
+                            10.0f);
                     AnimateBumper(Obj);
                 }
                 else if (Obj.type == ObjType.PitAnimated)
                 {   //push actor away from pit with a dash particle
                     Functions_Movement.Push(Actor.compMove,
-                        Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position),
-                        1.0f);
+                        Functions_Direction.GetRelativeDirection(
+                            Obj.compSprite.position, 
+                            Actor.compSprite.position),
+                            1.0f);
                     Functions_Entity.SpawnEntity(
                         ObjType.ParticleDashPuff,
                         Actor.compSprite.position.X,
                         Actor.compSprite.position.Y,
                         Direction.None);
                 }
+
                 //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
-
-
 
                 //ice tile, amplifies the actor's magnitude value in it's current direction
                 //or we could modify the friction applied to the magnitude, however we choose to do it
@@ -403,6 +406,8 @@ namespace DungeonRun
 
         }
 
+
+
         static void CollapseDungeonDoor(GameObject Obj)
         {   //some gameobjects can collapse bombable dungeon.doors
             if (Obj.type == ObjType.ProjectileExplosion)
@@ -418,11 +423,6 @@ namespace DungeonRun
             }
         }
 
-
-
-        
-        
-        
         public static void KillProjectileUponCollision(GameObject Projectile)
         {   //these projectiles die upon a collision with another object
             if (Projectile.type == ObjType.ProjectileFireball
@@ -434,8 +434,10 @@ namespace DungeonRun
         public static void BounceSpikeBlock(GameObject SpikeBlock)
         {   //flip the block's direction to the opposite direction
             SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
+            SpikeBlock.compMove.magnitude.X = 0;
+            SpikeBlock.compMove.magnitude.Y = 0;
             //push the block in it's new direction, out of this collision
-            Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 5.0f);
+            Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 4.0f);
             Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect                               
             Functions_Entity.SpawnEntity( //show that the object has been hit
                 ObjType.ParticleHitSparkle,
@@ -468,11 +470,6 @@ namespace DungeonRun
                 Bumper.compSprite.position.Y,
                 Direction.None);
         }
-
-
-
-
-
 
     }
 }

@@ -262,7 +262,8 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
                 Obj.compSprite.zOffset = -7;
                 Obj.compCollision.blocking = false;
-                Obj.compMove.speed = 0.75f; //spike blocks move
+                Obj.compMove.speed = 0.6f; //spike blocks move
+                Obj.compMove.direction = Obj.direction; //in obj.direction
                 Obj.canBeSaved = true;
                 Obj.interacts = true; //obj actively interacts with other objs
             }

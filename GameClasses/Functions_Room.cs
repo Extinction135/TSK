@@ -744,12 +744,8 @@ namespace DungeonRun
                     Functions_Movement.Teleport(objRef.compMove,
                         Functions_Level.currentRoom.rec.X + RoomXmlData.objs[i].posX,
                         Functions_Level.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
-
-                    //assume obj direction is down
-                    objRef.direction = Direction.Down; //we'll need to save this later
-                    if (RoomXmlData.objs[i].direction != Direction.Down)
-                    { objRef.direction = RoomXmlData.objs[i].direction; }
-
+                    //get obj direction
+                    objRef.direction = RoomXmlData.objs[i].direction;
                     //finally, set roomObj.type to xmlObj.type
                     Functions_GameObject.SetType(objRef, RoomXmlData.objs[i].type);
 

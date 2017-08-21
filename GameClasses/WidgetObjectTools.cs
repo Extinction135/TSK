@@ -138,9 +138,9 @@ namespace DungeonRun
                     else if (i == 4) //fifth row
                     {
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BlockSpikes); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BlockSpikes); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
+                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.FloorBombable); }
                     }
                     else if (i == 5) //sixth row
@@ -472,6 +472,7 @@ namespace DungeonRun
                             objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
                         //set obj direction + type from stored values
                         objRef.direction = currentObjDirection;
+                        objRef.compMove.direction = currentObjDirection;
                         Functions_GameObject.SetType(objRef, currentObjType);
                         //align & set animation frame
                         Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
@@ -638,7 +639,7 @@ namespace DungeonRun
         }
 
         public void RotateActiveObj()
-        {   //rotate activeObj differently based on type
+        {   //set activeObj's obj.direction based on type
             if (activeObj.type == ObjType.BlockSpikes
                 || activeObj.type == ObjType.Bridge)
             {   //flip between horizontal and vertical directions
@@ -655,6 +656,15 @@ namespace DungeonRun
                 else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
                 else { activeObj.direction = Direction.Up; }
             }
+
+            //set object's move component direction based on type
+            if (activeObj.type == ObjType.BlockSpikes)
+            {   //flip between horizontal and vertical directions
+                if (activeObj.compMove.direction == Direction.Up || activeObj.compMove.direction == Direction.Down)
+                { activeObj.compMove.direction = Direction.Left; }
+                else { activeObj.compMove.direction = Direction.Down; }
+            }
+
             //set the rotation of the sprite based on obj.direction                                              
             Functions_GameObject.SetRotation(activeObj);
             GetActiveObjInfo(); //update display sprite

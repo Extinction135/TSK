@@ -107,6 +107,7 @@ namespace DungeonRun
                                         {
                                             ObjXmlData objData = new ObjXmlData();
                                             objData.type = objRef.type;
+                                            objData.direction = objRef.direction;
                                             //set saved obj's position relative to room's top left corner
                                             objData.posX = objRef.compSprite.position.X - Functions_Level.currentRoom.rec.X;
                                             objData.posY = objRef.compSprite.position.Y - Functions_Level.currentRoom.rec.Y;
