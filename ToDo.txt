@@ -44,17 +44,41 @@ todo:
 v0.7 goals
 
 
-4
+3
 
 
-Improve Deleting of object in RoomBuilder
 
-updated WidgetObjectTools.HandleInput() to allow drag deleting of room objects.
+
+Implement Rotation functionality for ObjectTools Widget
+
+added rotateObj GameObject instance to WidgetObjectTools.
+added RotateObj value to ObjToolState enum.
+renamed addDeleteSprite to toolTipSprite.
+updated HandleInput() with routine for RotateObj.
+also sets the cursor toolTip sprite's frame to rotate sprite.
 playtested, working as expected.
 
+upgraded WidgetObjectTools.HandleInput() to rotate selected objects.
+simplified Functions_GameObject.SetRotation().
+lots of playtesting, refactoring, debugging.
+conveyor belts + bridges being handled properly via widget.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+spikeblocks do not rotate movement properly
+
+bridges do not rotate properly either
 
 
 

@@ -22,11 +22,12 @@ namespace DungeonRun
         public ObjToolState objToolState;
 
         public ComponentSprite cursorSprite;
-        public ComponentSprite addDeleteSprite;
+        public ComponentSprite toolTipSprite;
 
         public ComponentSprite currentObj; //represents selected obj in widget or room
-        public ComponentText currentObjTypeText;
         public ObjType currentObjType;
+        public ComponentText currentObjTypeText;
+        public Direction currentObjDirection;
         public ComponentText currentObjDirectionText;
 
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
@@ -39,6 +40,7 @@ namespace DungeonRun
         public int objListTotal;
         //0 - 35 room objs, 36 - 40 enemy objs, 41 - 43 - tool objs (move, add, delete)
         public GameObject moveObj;
+        public GameObject rotateObj;
         public GameObject addObj;
         public GameObject deleteObj;
 
@@ -60,7 +62,7 @@ namespace DungeonRun
             //create cursor sprites
             cursorSprite = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(14, 13, 0, 0), new Point(16, 16));
-            addDeleteSprite = new ComponentSprite(Assets.mainSheet,
+            toolTipSprite = new ComponentSprite(Assets.mainSheet,
                 new Vector2(0, 0), new Byte4(15, 15, 0, 0), new Point(16, 16));
 
             //create current obj components
@@ -208,52 +210,57 @@ namespace DungeonRun
             moveObj = new GameObject();
             Functions_GameObject.ResetObject(moveObj);
             moveObj.compSprite.texture = Assets.mainSheet;
-            //set sprite position
+            //set sprite position, frame, collision rec
             moveObj.compSprite.position.X = 16 * 1 + 8;
             moveObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(moveObj.compSprite);
-            //set sprites frame
             moveObj.compSprite.currentFrame.X = 14;
             moveObj.compSprite.currentFrame.Y = 13;
-            //set collision rec
             moveObj.compCollision.rec.X = 16 * 1 + 8 - 8;
             moveObj.compCollision.rec.Y = 16 * 14 - 8;
-            //add object to list
-            objList.Add(moveObj);
+            objList.Add(moveObj); //add object to list
 
-            //add icon - index 41
+            //rotateObj
+            rotateObj = new GameObject();
+            Functions_GameObject.ResetObject(rotateObj);
+            rotateObj.compSprite.texture = Assets.mainSheet;
+            //set sprite position, frame, collision rec
+            rotateObj.compSprite.position.X = 16 * 3 + 8;
+            rotateObj.compSprite.position.Y = 16 * 14;
+            Functions_Component.SetZdepth(rotateObj.compSprite);
+            rotateObj.compSprite.currentFrame.X = 13;
+            rotateObj.compSprite.currentFrame.Y = 15;
+            rotateObj.compCollision.rec.X = 16 * 3 + 8 - 8;
+            rotateObj.compCollision.rec.Y = 16 * 14 - 8;
+            objList.Add(rotateObj); //add object to list
+
+            //add icon
             addObj = new GameObject();
             Functions_GameObject.ResetObject(addObj);
             addObj.compSprite.texture = Assets.mainSheet;
-            //set sprite position
-            addObj.compSprite.position.X = 16 * 3 + 8;
+            //set sprite position, frame, collision rec
+            addObj.compSprite.position.X = 16 * 4 + 8;
             addObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(addObj.compSprite);
-            //set sprites frame
             addObj.compSprite.currentFrame.X = 14;
             addObj.compSprite.currentFrame.Y = 15;
-            //set collision rec
-            addObj.compCollision.rec.X = 16 * 3 + 8 - 8;
+            addObj.compCollision.rec.X = 16 * 4 + 8 - 8;
             addObj.compCollision.rec.Y = 16 * 14 - 8;
-            //add object to list
-            objList.Add(addObj);
+            objList.Add(addObj); //add object to list
 
-            //minus icon - index 42
+            //minus icon
             deleteObj = new GameObject();
             Functions_GameObject.ResetObject(deleteObj);
             deleteObj.compSprite.texture = Assets.mainSheet;
-            //set sprite position
+            //set sprite position, frame, collision rec
             deleteObj.compSprite.position.X = 16 * 5 + 8;
             deleteObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(deleteObj.compSprite);
-            //set sprites frame
             deleteObj.compSprite.currentFrame.X = 15;
             deleteObj.compSprite.currentFrame.Y = 15;
-            //set collision rec
             deleteObj.compCollision.rec.X = 16 * 5 + 8 - 8;
             deleteObj.compCollision.rec.Y = 16 * 14 - 8;
-            //add object to list
-            objList.Add(deleteObj);
+            objList.Add(deleteObj); //add object to list
 
             #endregion
 
@@ -327,7 +334,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Move Grab, Add, and Delete Icons
+            #region Move Grab, Rotate, Add, and Delete Icons
 
             offset = 16 * 9;
 
@@ -336,9 +343,14 @@ namespace DungeonRun
             moveObj.compCollision.rec.X = X + 16 * 1 - 8;
             moveObj.compCollision.rec.Y = Y + +offset + yPos - 8;
 
-            addObj.compSprite.position.X = X + 16 * 3;
+            rotateObj.compSprite.position.X = X + 16 * 3;
+            rotateObj.compSprite.position.Y = Y + offset + yPos;
+            rotateObj.compCollision.rec.X = X + 16 * 3 - 8;
+            rotateObj.compCollision.rec.Y = Y + +offset + yPos - 8;
+
+            addObj.compSprite.position.X = X + 16 * 4;
             addObj.compSprite.position.Y = Y + +offset + yPos;
-            addObj.compCollision.rec.X = X + 16 * 3 - 8;
+            addObj.compCollision.rec.X = X + 16 * 4 - 8;
             addObj.compCollision.rec.Y = Y + +offset + yPos - 8;
 
             deleteObj.compSprite.position.X = X + 16 * 5;
@@ -379,8 +391,8 @@ namespace DungeonRun
                 cursorSprite.position.Y += 6;
             }
 
-            addDeleteSprite.position.X = Input.cursorPos.X + 12;
-            addDeleteSprite.position.Y = Input.cursorPos.Y - 0;
+            toolTipSprite.position.X = Input.cursorPos.X + 12;
+            toolTipSprite.position.Y = Input.cursorPos.Y - 0;
 
             #endregion
 
@@ -388,24 +400,10 @@ namespace DungeonRun
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
 
-                #region Handle Grab (Move) Object State
+                #region Handle Grab/Move RoomObject State
 
                 if (objToolState == ObjToolState.MoveObj)
-                {
-                    for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-                    {
-                        if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                        {   //check collisions between worldPos and roomObjs, grab any colliding obj
-                            if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                            {   //set both grabbedObj and activeObj
-                                grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
-                                activeObj = Pool.roomObjPool[Pool.roomObjCounter];
-                                GetActiveObjInfo();
-                                selectionBoxObj.scale = 2.0f;
-                            }
-                        }
-                    }
-                }
+                { GrabRoomObject(); }
 
                 #endregion
 
@@ -427,6 +425,8 @@ namespace DungeonRun
                                 selectionBoxObj.position = activeObj.compSprite.position;
                                 selectionBoxObj.scale = 2.0f;
                                 GetActiveObjInfo();
+                                //if we are in rotate mode, rotate the activeObj
+                                if (objToolState == ObjToolState.RotateObj) { RotateActiveObj(); }
                             }
                             //handle collision with tool obj
                             else if (objList[i] == moveObj)
@@ -434,17 +434,23 @@ namespace DungeonRun
                                 SetActiveTool(moveObj);
                                 objToolState = ObjToolState.MoveObj;
                             }
+                            else if (objList[i] == rotateObj)
+                            {
+                                SetActiveTool(rotateObj);
+                                objToolState = ObjToolState.RotateObj;
+                                toolTipSprite.currentFrame.X = 13;
+                            }
                             else if (objList[i] == addObj)
                             {
                                 SetActiveTool(addObj);
                                 objToolState = ObjToolState.AddObj;
-                                addDeleteSprite.currentFrame.X = 14;
+                                toolTipSprite.currentFrame.X = 14;
                             }
                             else if (objList[i] == deleteObj)
                             {
                                 SetActiveTool(deleteObj);
                                 objToolState = ObjToolState.DeleteObj;
-                                addDeleteSprite.currentFrame.X = 15;
+                                toolTipSprite.currentFrame.X = 15;
                             }
                         }
                     }
@@ -464,10 +470,22 @@ namespace DungeonRun
                         objRef.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
                         Functions_Movement.Teleport(objRef.compMove,
                             objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
-                        //set the type based on last value of currentObjType, align, set animation frame
+                        //set obj direction + type from stored values
+                        objRef.direction = currentObjDirection;
                         Functions_GameObject.SetType(objRef, currentObjType);
+                        //align & set animation frame
                         Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+                    }
+
+                    #endregion
+
+
+                    #region Handle Rotate RoomObject State
+
+                    else if (objToolState == ObjToolState.RotateObj)
+                    {
+                        if (GrabRoomObject()) { RotateActiveObj(); }
                     }
 
                     #endregion
@@ -560,7 +578,7 @@ namespace DungeonRun
                 Functions_Draw.Draw(selectionBoxObj);
                 Functions_Draw.Draw(selectionBoxTool);
             }
-            if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(addDeleteSprite); }
+            if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
             Functions_Draw.Draw(cursorSprite);
         }
 
@@ -588,12 +606,58 @@ namespace DungeonRun
 
         public void GetActiveObjInfo()
         {
-            currentObjType = activeObj.type; //store the type value
+            currentObjType = activeObj.type; //store type value
+            currentObjDirection = activeObj.direction; //store direction value
+            currentObjTypeText.text = "" + currentObjType;
+            currentObjDirectionText.text = "dir: " + currentObjDirection;
+            //set the display sprite's fields
             currentObj.texture = activeObj.compSprite.texture;
             currentObj.currentFrame = activeObj.compSprite.currentFrame;
             currentObj.rotationValue = activeObj.compSprite.rotationValue;
-            currentObjTypeText.text = "" + currentObjType;
-            currentObjDirectionText.text = "dir: " + activeObj.direction;
+            //rotate the display sprite
+            Functions_Component.SetSpriteRotation(currentObj, currentObjDirection);
+        }
+
+        public Boolean GrabRoomObject()
+        {
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            {   //loop thru all room objects, checking collisions with cursor's worldPos
+                if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                {   //check collisions between worldPos and roomObjs, grab any colliding obj
+                    if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                    {   //set both grabbedObj and activeObj
+                        grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
+                        activeObj = Pool.roomObjPool[Pool.roomObjCounter];
+                        GetActiveObjInfo();
+                        selectionBoxObj.scale = 2.0f;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void RotateActiveObj()
+        {   //rotate activeObj differently based on type
+            if (activeObj.type == ObjType.BlockSpikes
+                || activeObj.type == ObjType.Bridge)
+            {   //flip between horizontal and vertical directions
+                if (activeObj.direction == Direction.Up || activeObj.direction == Direction.Down)
+                { activeObj.direction = Direction.Left; }
+                else { activeObj.direction = Direction.Down; }
+            }
+            else if (activeObj.type == ObjType.ConveyorBeltOn
+                || activeObj.type == ObjType.ConveyorBeltOff)
+            {   //flip thru cardinal directions
+                activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
+                if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
+                else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
+                else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
+                else { activeObj.direction = Direction.Up; }
+            }
+            //set the rotation of the sprite based on obj.direction                                              
+            Functions_GameObject.SetRotation(activeObj);
+            GetActiveObjInfo(); //update display sprite
         }
 
     }

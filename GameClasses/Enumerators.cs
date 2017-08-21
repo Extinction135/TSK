@@ -26,7 +26,7 @@ namespace DungeonRun
 
     public enum FadeState { FadeIn, FadeComplete, FadeOut, Silent }
 
-    public enum ObjToolState { MoveObj, AddObj, DeleteObj }
+    public enum ObjToolState { MoveObj, RotateObj, AddObj, DeleteObj }
 
     public enum LoadSaveNewState { Load, Save, New }
 

@@ -55,5 +55,6 @@ namespace DungeonRun
                 else { return Direction.UpLeft; }
             }
         }
+
     }
 }

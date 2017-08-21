@@ -54,20 +54,18 @@ namespace DungeonRun
         }
 
         public static void SetRotation(GameObject Obj)
-        {   //sprites are created facing Down, but we will need to set the spite rotation based on direction
+        {   //rotate all objects + projectiles normally for all cardinal directions
+            Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
 
-            //some objects refuse SetRotation()
-            if (Obj.type == ObjType.ProjectileBomb) { return; }
-
-            Obj.compSprite.rotation = Rotation.None; //reset sprite rotation to default DOWN
-            if (Obj.direction == Direction.Up) { Obj.compSprite.rotation = Rotation.Clockwise180; }
-            else if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
-            else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
-            //some objects flip based on their direction
+            //handle object/projectile specific cases
             if (Obj.type == ObjType.ProjectileSword)
-            {
+            {   //some projectiles flip based on their direction
                 if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
                 { Obj.compSprite.flipHorizontally = true; }
+            }
+            else if (Obj.type == ObjType.ProjectileBomb)
+            {   //some projectiles only face Direction.Down
+                Obj.compSprite.rotation = Rotation.None;
             }
         }
 
@@ -359,9 +357,6 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.interacts = true; //obj actively interacts with other objs
-                //directions are slightly different for this obj
-                if (Obj.direction == Direction.Right) { Obj.compSprite.rotation = Rotation.Clockwise270; }
-                else if (Obj.direction == Direction.Left) { Obj.compSprite.rotation = Rotation.Clockwise90; }
             }
             else if (Type == ObjType.SpikesFloorOn || Type == ObjType.SpikesFloorOff)
             {

@@ -79,5 +79,13 @@ namespace DungeonRun
             Text.position.X = (int)X - (textWidth / 2);
         }
 
+        public static void SetSpriteRotation(ComponentSprite Sprite, Direction Direction)
+        {   //this assumes the sprite was designed facing down in the spritesheet
+            if (Direction == Direction.Up) { Sprite.rotation = Rotation.Clockwise180; }
+            else if (Direction == Direction.Right) { Sprite.rotation = Rotation.Clockwise270; }
+            else if (Direction == Direction.Left) { Sprite.rotation = Rotation.Clockwise90; }
+            else { Sprite.rotation = Rotation.None; }
+        }
+
     }
 }
