@@ -32,7 +32,7 @@ adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
 	
 ram useage:
-	82mb on Win10. 98mb on XboxOne.
+	82mb on Win10. 102.7mb on XboxOne.
 	
 	
 	
@@ -41,25 +41,33 @@ ram useage:
 todo:
 
 
-
-(Work on DirectX project until Release)
-
-
-
-
-update the readme to reflect the directX port
-"A 2D zelda-like, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.
-DirectX version uses .Net 4.5 & SharpDX.
-UWP version uses .NetCore & SharpDX.
-OpenGL port coming soon."
-
-
-
-
-
-
-
 v0.7 goals
+
+
+
+
+Test UWP version on Xbox One
+
+updated UWP version to match DirectX version.
+playtested, working as expected.
+deployed to xbox one, tested, working.
+frametimes normally around 1ms, max was 3ms.
+
+
+
+
+
+Fix Back / B Button map bug
+
+in release mode, when the player picks up the map, pressing B button displays the map.
+this shouldn't be happening, the back/select button displays the map.
+this is reproducible on xboxone and UWP pc versions.
+however, this bug doesn't show up on the directX version.
+
+
+
+on xbone, when the B button is released, the select button is triggered?
+
 
 
 
@@ -117,7 +125,7 @@ this varies the 'pit' style a bit
 
 horizontal bridges
 
-create ice tile (no working for now) - changes friction
+create ice tile - changes friction
 
 add in a randomly moving fireball enemy
 this is just like spikeblock except the obj.direction is chosen randomly upon collision

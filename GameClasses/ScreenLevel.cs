@@ -58,8 +58,15 @@ namespace DungeonRun
                 if (Functions_Input.IsNewButtonPress(Buttons.Start))
                 { ScreenManager.AddScreen(new ScreenInventory()); }
                 //open map widget if player presses back button
-                else if (Functions_Input.IsNewButtonPress(Buttons.Back))
-                {   //check to see if hero has found the dungeon map
+                if (Functions_Input.IsNewButtonPress(Buttons.Back))
+                {
+
+                    //dump the current state of the controller 
+                    //Debug.WriteLine("back button: " + Input.currentGamePadState.Buttons.Back.ToString());
+                    //Debug.WriteLine("b button: " + Input.currentGamePadState.Buttons.B.ToString());
+
+
+                    //check to see if hero has found the dungeon map
                     if (Level.map)
                     { ScreenManager.AddScreen(new ScreenLevelMap()); }
                 }

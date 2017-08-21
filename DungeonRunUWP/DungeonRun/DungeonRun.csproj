@@ -143,9 +143,6 @@
     <Compile Include="..\..\GameClasses\Functions_Draw.cs">
       <Link>Classes\Functions_Draw.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_Dungeon.cs">
-      <Link>Classes\Functions_Dungeon.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Entity.cs">
       <Link>Classes\Functions_Entity.cs</Link>
     </Compile>
@@ -163,6 +160,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Item.cs">
       <Link>Classes\Functions_Item.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Level.cs">
+      <Link>Classes\Functions_Level.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Loot.cs">
       <Link>Classes\Functions_Loot.cs</Link>
@@ -194,6 +194,9 @@
     <Compile Include="..\..\GameClasses\Functions_ScreenRec.cs">
       <Link>Classes\Functions_ScreenRec.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Scroll.cs">
+      <Link>Classes\Functions_Scroll.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_TitleAnimated.cs">
       <Link>Classes\Functions_TitleAnimated.cs</Link>
     </Compile>
@@ -209,11 +212,14 @@
     <Compile Include="..\..\GameClasses\ScreenDialog.cs">
       <Link>Classes\ScreenDialog.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\ScreenDungeon.cs">
-      <Link>Classes\ScreenDungeon.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\ScreenInventory.cs">
       <Link>Classes\ScreenInventory.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenLevel.cs">
+      <Link>Classes\ScreenLevel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenLevelMap.cs">
+      <Link>Classes\ScreenLevelMap.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenLoadSaveNew.cs">
       <Link>Classes\ScreenLoadSaveNew.cs</Link>
@@ -317,7 +323,6 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   -->
   <!-- we can't copy RoomData to Debug/AppX for UWP upon fresh build, only after first build, cause REASONS ??? -->
-  
   <!--
   <Target Name="BeforeBuild">
     <ItemGroup>
@@ -327,16 +332,11 @@
 	  <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" />
   </Target>
   -->
-  
   <Target Name="AfterBuild">
     <ItemGroup>
       <RoomData Include="..\..\RoomData\**" />
     </ItemGroup>
-	  <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" />
-	  <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" />
+    <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" />
+    <Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\AppX\%(RecursiveDir)" />
   </Target>
-  
-
-  
-  
 </Project>

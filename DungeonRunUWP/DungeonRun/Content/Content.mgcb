@@ -209,12 +209,6 @@
 /processorParam:Quality=Best
 /build:SoundChestOpen.wav
 
-#begin SoundDash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundDash.wav
-
 #begin SoundDoorOpen.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -287,18 +281,6 @@
 /processorParam:Quality=Best
 /build:SoundHeroKill.wav
 
-#begin SoundInventoryClose.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundInventoryClose.wav
-
-#begin SoundInventoryOpen.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundInventoryOpen.wav
-
 #begin SoundKeyPickup.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -364,4 +346,70 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundLightFire.wav
+
+#begin SoundBlobDash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBlobDash.wav
+
+#begin SoundBossHitDeath.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBossHitDeath.wav
+
+#begin SoundExplosionsMultiple.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundExplosionsMultiple.wav
+
+#begin SoundHeroDash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundHeroDash.wav
+
+#begin SoundMapWalking.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundMapWalking.wav
+
+#begin SoundQuit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundQuit.wav
+
+#begin SoundSelectFile.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSelectFile.wav
+
+#begin SoundShatter.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundShatter.wav
+
+#begin SoundSwitch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSwitch.wav
+
+#begin SoundWindowClose.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundWindowClose.wav
+
+#begin SoundWindowOpen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundWindowOpen.wav
 
