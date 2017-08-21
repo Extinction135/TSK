@@ -29,8 +29,8 @@ namespace DungeonRun
 
         public static Point ConvertWorldToScreen(int x, int y)
         {   //subtract world position of top left screen position from x,y
-            point.X = x - (int)Camera2D.currentPosition.X - 640 / 2;
-            point.Y = y - (int)Camera2D.currentPosition.Y - 360 / 2;
+            point.X = x - ((int)Camera2D.currentPosition.X - 640 / 2);
+            point.Y = y - ((int)Camera2D.currentPosition.Y - 360 / 2);
             //this final value is the screen position of the world position
             return point;
         }

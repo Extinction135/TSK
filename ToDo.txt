@@ -44,27 +44,22 @@ todo:
 v0.7 goals
 
 
-6
+5
 
 
 
 
 
+Build the CurrentObj display for Object Tool Widget
 
-Implement New Room Builder Mockup in-game
+created sprite and text components in ObjectTool widget.
+fixed bug with Functions_Camera2D.ConvertWorldToScreen().
+modified ObjTool selection routines to show currently selected object.
+this works for both objects on objList and in-room objects.
 
-removed instance to RoomBuilder widget from RoomBuilder screen.
-created global instance of RoomBuilder widget in global Widget class.
-this is how all other widgets are created and referenced.
 
-renamed RoomBuilder widget to ObjectTools widget.
-created global instance of RoomTools widget in global Widget class.
-seperated buttons from ObjectTools, and into RoomTools.
 
-renamed EditorState enum to ObjToolState, better describes purpose.
-tons of refactoring to seperate RoomTools + ObjectTools + RoomBuilderScreen.
-updated Functions_Backend.SelectRoomFile() for UWP and DirectX.
-playtested, working as expected.
+playtest
 
 
 
@@ -77,12 +72,31 @@ playtested, working as expected.
 
 
 
-update rooom builder to allow rotation of selected room object
-think / design room builder widgets with modularity in mind
 
-we will be reusing widget for level editor
 
-work on editor/builder mockups
+CurrentObj++
+
+add current obj sprite to object tools widget
+add current obj text to obj tools widget
+when user selects an obj from widget, set current sprite + text
+when user selects an obj from room, set current sprite + text
+
+
+
+
+
+Rotation++
+move add and delete icons to right
+add rotation tool icon button
+when rotation tool is selected, display rotation sprite/frame with cursor
+set ObjToolState to Rotate (this will be a new enum value)
+
+add routine to rotate selected object
+check the obj.type, only rotate selected types
+based on type, the obj rotate differently
+
+
+
 
 
 
