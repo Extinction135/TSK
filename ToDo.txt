@@ -44,29 +44,28 @@ todo:
 v0.7 goals
 
 
-
-
-Mockup new version of RoomBuilder, redesign widgets
-
-created new mockup for Room Builder, with seperate widgets.
-one widget is for moving, adding, deleting objects.
-the other widget is for saving, loading, creating rooms.
-this was done with modularity in mind, as we'll use obj widget in level editor later on.
-also redesigned obj widget to display the currently selected obj, + name and direction.
-
-created rotate icon sprite, saved to main sheet.
-updated UWP's mainsheet.
-
-created WidgetRoomTools class, linked to UWP project.
-changed filename of WidgetRoomBuilder to WidgetObjectTools.
+6
 
 
 
 
 
 
-seperate RoomTools from ObjectTools
-seperate functionality of Widgets from RoomBuilderScreen
+Implement New Room Builder Mockup in-game
+
+removed instance to RoomBuilder widget from RoomBuilder screen.
+created global instance of RoomBuilder widget in global Widget class.
+this is how all other widgets are created and referenced.
+
+renamed RoomBuilder widget to ObjectTools widget.
+created global instance of RoomTools widget in global Widget class.
+seperated buttons from ObjectTools, and into RoomTools.
+
+renamed EditorState enum to ObjToolState, better describes purpose.
+tons of refactoring to seperate RoomTools + ObjectTools + RoomBuilderScreen.
+updated Functions_Backend.SelectRoomFile() for UWP and DirectX.
+playtested, working as expected.
+
 
 
 

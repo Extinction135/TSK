@@ -16,45 +16,25 @@ namespace DungeonRun
 {
     public class ScreenRoomBuilder : ScreenLevel
     {
-        int i;
-        public WidgetRoomBuilder RoomBuilder;
-        public EditorState editorState;
-
-        public ComponentSprite cursorSprite;
-        public ComponentSprite addDeleteSprite;
-        public Point worldPos;
-        public GameObject grabbedObj;
-        public RoomXmlData roomData;
-        GameObject objRef;
-
-
 
         public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
 
         public override void LoadContent()
         {
-            RoomBuilder = new WidgetRoomBuilder();
-            RoomBuilder.Reset(16 * 33, 16 * 2);
-            //register this dungeon screen with Functions_Level
+            //place the object tools + room tools widgets
+            Widgets.ObjectTools.Reset(16 * 33, 16 * 1);
+            Widgets.RoomTools.Reset(16 * 33, 16 * 16);
+
+            //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
 
-            //build default empty room
-            BuildRoomData(roomData);
+            //build default empty row room (pass null)
+            Widgets.RoomTools.BuildRoomData(null);
             //place hero outside of room at top left corner
             Functions_Movement.Teleport(Pool.hero.compMove,
                 Functions_Level.buildPosition.X - 32,
                 Functions_Level.buildPosition.Y + 32);
 
-            //create the cursor sprite
-            cursorSprite = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(14, 13, 0, 0), new Point(16, 16));
-            addDeleteSprite = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(15, 15, 0, 0), new Point(16, 16));
-            //initialize the RB widget
-            RoomBuilder.SetActiveObj(0); //set active obj to first widget obj
-            RoomBuilder.SetActiveTool(RoomBuilder.moveObj); //set widet to move tool
-            editorState = EditorState.MoveObj; //set screen to move state
-            grabbedObj = null;
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
@@ -78,334 +58,24 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             base.HandleInput(GameTime);
-            //Functions_Debug.HandleDebugMenuInput();
-            //convert cursor Pos to world pos
-            worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
-
-
-            # region Set Mouse Cursor Sprite
-
-            cursorSprite.currentFrame.Y = 14; ; //default to pointer
-            if (editorState == EditorState.MoveObj) //check/set move state
-            { cursorSprite.currentFrame.Y = 13; }
-            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-            { cursorSprite.currentFrame.X = 15; } //set clicked frame
-            else { cursorSprite.currentFrame.X = 14; }
-
-            #endregion
-
-
-            #region Match position of cursor sprite to cursor
-
-            cursorSprite.position.X = Input.cursorPos.X;
-            cursorSprite.position.Y = Input.cursorPos.Y;
-            if (editorState != EditorState.MoveObj)
-            {   //apply offset for pointer sprite
-                cursorSprite.position.X += 3;
-                cursorSprite.position.Y += 6;
-            }
-
-            addDeleteSprite.position.X = Input.cursorPos.X + 12;
-            addDeleteSprite.position.Y = Input.cursorPos.Y - 0;
-            
-            #endregion
-
-
-            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {   //if mouse is contained within RB widget
-                if (RoomBuilder.window.interior.rec.Contains(Input.cursorPos))
-                {
-
-                    #region Handle Obj / Tool Selection
-
-                    //does any obj on the widget's objList contain the mouse position?
-                    for (i = 0; i < RoomBuilder.total; i++)
-                    {   //if there is a collision, set the active object to the object clicked on
-                        if (RoomBuilder.objList[i].compCollision.rec.Contains(Input.cursorPos))
-                        {
-                            //handle collision with room obj
-                            if (i < 40) { RoomBuilder.SetActiveObj(i); }
-                            //handle collision with tool obj
-                            else if (RoomBuilder.objList[i] == RoomBuilder.moveObj)
-                            {
-                                RoomBuilder.SetActiveTool(RoomBuilder.moveObj);
-                                editorState = EditorState.MoveObj;
-                            }
-                            else if (RoomBuilder.objList[i] == RoomBuilder.addObj)
-                            {
-                                RoomBuilder.SetActiveTool(RoomBuilder.addObj);
-                                editorState = EditorState.AddObj;
-                                addDeleteSprite.currentFrame.X = 14;
-                            }
-                            else if (RoomBuilder.objList[i] == RoomBuilder.deleteObj)
-                            {
-                                RoomBuilder.SetActiveTool(RoomBuilder.deleteObj);
-                                editorState = EditorState.DeleteObj;
-                                addDeleteSprite.currentFrame.X = 15;
-                            }
-                        }
-                    }
-
-                    #endregion
-
-                    
-                    //Handle Button Selection
-                    for (i = 0; i < RoomBuilder.buttons.Count; i++)
-                    {   //check to see if the user has clicked on a button
-                        if (RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
-                        {
-
-                            #region Save Button
-
-                            if (RoomBuilder.buttons[i] == RoomBuilder.saveBtn)
-                            {
-                                //create RoomXmlData instance
-                                roomData = new RoomXmlData();
-                                roomData.type = Functions_Level.currentRoom.type; //save the room type
-                                //populate this instance with the room's objs
-                                for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-                                {
-                                    objRef = Pool.roomObjPool[Pool.roomObjCounter];
-                                    //if this object is active, save it
-                                    if (objRef.active)
-                                    {   
-                                        if(objRef.canBeSaved)
-                                        {   
-                                            ObjXmlData objData = new ObjXmlData();
-                                            objData.type = objRef.type;
-                                            //set saved obj's position relative to room's top left corner
-                                            objData.posX = objRef.compSprite.position.X - Functions_Level.currentRoom.rec.X;
-                                            objData.posY = objRef.compSprite.position.Y - Functions_Level.currentRoom.rec.Y;
-                                            roomData.objs.Add(objData);
-                                        }
-                                    }
-                                }
-                                Functions_Backend.SaveRoomData(roomData);
-                            }
-
-                            #endregion
-
-
-                            //Load Button
-                            else if (RoomBuilder.buttons[i] == RoomBuilder.loadBtn)
-                            { Functions_Backend.SelectRoomFile(this); }
-                            
-                            //New Room Button
-                            else if (RoomBuilder.buttons[i] == RoomBuilder.newRoomBtn)
-                            {   //create a new room based on the type buttons state
-                                roomData = new RoomXmlData();
-                                roomData.type = RoomBuilder.roomType;
-                                BuildRoomData(roomData);
-                            }
-
-
-                            #region Room Type Button
-
-                            else if (RoomBuilder.buttons[i] == RoomBuilder.roomTypeBtn)
-                            {   //iterate thru a limited set of roomTypes
-                                if (RoomBuilder.roomType == RoomType.Column)
-                                { RoomBuilder.roomType = RoomType.Row; }
-
-                                else if (RoomBuilder.roomType == RoomType.Row)
-                                { RoomBuilder.roomType = RoomType.Square; }
-
-                                else if (RoomBuilder.roomType == RoomType.Square)
-                                { RoomBuilder.roomType = RoomType.Hub; }
-
-                                else if (RoomBuilder.roomType == RoomType.Hub)
-                                { RoomBuilder.roomType = RoomType.Boss; }
-
-                                else if (RoomBuilder.roomType == RoomType.Boss)
-                                { RoomBuilder.roomType = RoomType.Key; }
-
-                                else if (RoomBuilder.roomType == RoomType.Key)
-                                { RoomBuilder.roomType = RoomType.Column; }
-
-                                //set the text in button to roomType enum
-                                RoomBuilder.roomTypeBtn.compText.text = "" + RoomBuilder.roomType;
-                            }
-
-                            #endregion
-
-
-                            else if(RoomBuilder.buttons[i] == RoomBuilder.reloadRoomBtn)
-                            { BuildRoomData(roomData); } //assumes roomData hasn't changed since last build
-                        }
-                    }
-                }
-                //if mouse worldPos is contained in room, allow add/delete selected object
-                else if (Functions_Level.currentRoom.rec.Contains(worldPos))
-                {
-
-                    #region Handle Add Object State
-
-                    if (editorState == EditorState.AddObj)
-                    {   //place currently selected obj in room, aligned to 16px grid
-                        GameObject objRef = Functions_Pool.GetRoomObj();
-
-                        objRef.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
-                        Functions_Movement.Teleport(objRef.compMove,
-                            objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
-
-                        Functions_GameObject.SetType(objRef, RoomBuilder.activeObj.type);
-                        Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
-                        Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
-                    }
-
-                    #endregion
-
-
-                    #region Handle Delete Object State
-
-                    else if (editorState == EditorState.DeleteObj)
-                    {   //check collisions between worldPos and roomObjs, release any colliding obj
-                        for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-                        {
-                            if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                            {
-                                if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                                { Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]); }
-                            }
-                        }
-                    }
-
-                    #endregion
-
-                }
-
-                //objects CAN be moved outside of room
-
-                #region Handle Grab (Move) Object State
-
-                if (editorState == EditorState.MoveObj)
-                {   //check collisions between worldPos and roomObjs, grab any colliding obj
-                    for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-                    {
-                        if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                        {
-                            if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                            { grabbedObj = Pool.roomObjPool[Pool.roomObjCounter]; }
-                        }
-                    }
-                }
-
-                #endregion
-
-            }
-
-
-            #region Handle Dragging of Grabbed Obj
-
-            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-            {   //if we have a grabbedObj, match it to cursorPos if LMB is down
-                if (editorState == EditorState.MoveObj)
-                {   //match grabbed Obj pos to worldPos, aligned to 16px grid
-                    if (grabbedObj != null)
-                    {
-                        grabbedObj.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
-                        Functions_Movement.Teleport(grabbedObj.compMove,
-                            grabbedObj.compMove.newPosition.X, grabbedObj.compMove.newPosition.Y);
-                        Functions_Component.Align(grabbedObj.compMove,
-                            grabbedObj.compSprite, grabbedObj.compCollision);
-                    }
-                }
-            }
-
-            #endregion
-
-
-            #region Handle Release Grabbed Obj
-
-            if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
-            { grabbedObj = null; }
-
-            #endregion
-
-
-            #region Handle Button Over/Up States
-
-            for (i = 0; i < RoomBuilder.buttons.Count; i++)
-            {   //by default, set buttons to up color
-                RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonUp;
-                //if user hovers over a button, set button to down color
-                if (RoomBuilder.buttons[i].rec.Contains(Input.cursorPos))
-                { RoomBuilder.buttons[i].currentColor = Assets.colorScheme.buttonDown; }
-            }
-
-            #endregion
-
+            Widgets.ObjectTools.HandleInput();
+            Widgets.RoomTools.HandleInput();
         }
 
         public override void Update(GameTime GameTime)
         {
             base.Update(GameTime);
-            RoomBuilder.Update();
+            Widgets.ObjectTools.Update();
+            Widgets.RoomTools.Update();
         }
 
         public override void Draw(GameTime GameTime)
         {
             base.Draw(GameTime);
-            //draw roomBuilder, cursor sprites
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            RoomBuilder.Draw();
-            Functions_Draw.Draw(cursorSprite);
-            if (editorState != EditorState.MoveObj) { Functions_Draw.Draw(addDeleteSprite); }
+            Widgets.RoomTools.Draw();
+            Widgets.ObjectTools.Draw();
             ScreenManager.spriteBatch.End();
-        }
-
-
-
-        public Vector2 AlignToGrid(int X, int Y)
-        {
-            return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
-        }
-        
-        public void BuildRoomData(RoomXmlData RoomXmlData)
-        {
-            Functions_Level.ResetLevel();
-            //this can be whatever texture we want later
-            Level.type = LevelType.Castle;
-            Functions_Pool.SetFloorTexture(LevelType.Castle); 
-
-            //build the room
-            if (RoomXmlData != null)
-            { Functions_Level.currentRoom = new Room(Functions_Level.buildPosition, RoomXmlData.type); }
-            else
-            { Functions_Level.currentRoom = new Room(Functions_Level.buildPosition, RoomType.Row); }
-            
-            //add this room to the dungeon.rooms list
-            Level.rooms.Add(Functions_Level.currentRoom);
-            Functions_Level.currentRoom.visited = true;
-            if (Flags.MapCheat) { Level.map = true; }
-            else { Level.map = false; }
-
-            //simplify / collect room values
-            int posX = Functions_Level.currentRoom.rec.X;
-            int posY = Functions_Level.currentRoom.rec.Y;
-            int middleX = (Functions_Level.currentRoom.size.X / 2) * 16;
-            int middleY = (Functions_Level.currentRoom.size.Y / 2) * 16;
-            int width = Functions_Level.currentRoom.size.X * 16;
-            int height = Functions_Level.currentRoom.size.Y * 16;
-
-            //set NSEW doors
-            Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
-            Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
-            Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
-            Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
-
-            //releases all roomObjs, builds walls + floors + doors
-            Functions_Room.BuildRoom(Functions_Level.currentRoom);
-            //build interior room objects from xml data
-            Functions_Room.BuildRoomObjs(RoomXmlData);
-
-            Functions_Pool.Update(); //update roomObjs once
-
-            //center camera to room, pause game
-            Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
-            Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y + 16;
-            Camera2D.currentPosition = Camera2D.targetPosition;
-            Flags.Paused = true;
-            Functions_Camera2D.Update();
         }
 
     }

@@ -13,46 +13,50 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class WidgetRoomBuilder : Widget
+    public class WidgetObjectTools : Widget
     {
         int j;
-        public int total;
         int counter;
+
+        public ComponentSprite cursorSprite;
+        public ComponentSprite addDeleteSprite;
+        public Point worldPos;
+
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
         public ComponentSprite selectionBoxTool; //highlites the currently selected obj
         public GameObject activeObj; //points to a RoomObj on the obj list
         public GameObject activeTool; //points to a ToolObj on the obj list
 
         public List<GameObject> objList; //a list of objects user can select
+        public int objListTotal;
         //0 - 35 room objs, 36 - 40 enemy objs, 41 - 43 - tool objs (move, add, delete)
         public GameObject moveObj;
         public GameObject addObj;
         public GameObject deleteObj;
 
-        public List<ComponentButton> buttons; //save, new, load buttons
-        public ComponentButton saveBtn;
-        public ComponentButton loadBtn;
-
-        public ComponentButton newRoomBtn;
-        public ComponentButton roomTypeBtn;
-        public RoomType roomType;
-
-        public ComponentButton reloadRoomBtn;
+        public ObjToolState objToolState; //move, add, or delete obj
+        public GameObject grabbedObj; //obj that is picked up/dragged/dropped in level
 
 
-        public WidgetRoomBuilder()
+
+        public WidgetObjectTools()
         {
 
             #region Create Window and Divider lines
 
-            window = new MenuWindow(
-                new Point(8, 16 * 3), 
-                new Point(16 * 6, 16 * 16 + 8),
-                "Room Builder");
+            window = new MenuWindow(new Point(0, 0), 
+                new Point(16 * 6, 16 * 15), "Object Tools");
             window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
             window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
 
             #endregion
+
+
+            //create the cursor sprite
+            cursorSprite = new ComponentSprite(Assets.mainSheet,
+                new Vector2(0, 0), new Byte4(14, 13, 0, 0), new Point(16, 16));
+            addDeleteSprite = new ComponentSprite(Assets.mainSheet,
+                new Vector2(0, 0), new Byte4(15, 15, 0, 0), new Point(16, 16));
 
 
             #region Create the SelectionBoxes
@@ -243,35 +247,23 @@ namespace DungeonRun
             #endregion
 
 
-            total = objList.Count();
+            objListTotal = objList.Count();
 
-
-            #region Create Save/Play/Load New/Type/Reload Buttons
-
-            buttons = new List<ComponentButton>();
-            saveBtn = new ComponentButton("save", new Point(0, 0));
-            loadBtn = new ComponentButton("load", new Point(0, 0));
-            buttons.Add(saveBtn);
-            buttons.Add(loadBtn);
-
-            newRoomBtn = new ComponentButton("new room", new Point(0, 0));
-            roomTypeBtn = new ComponentButton("column", new Point(0, 0));
-            reloadRoomBtn = new ComponentButton("reload", new Point(0, 0));
-            buttons.Add(newRoomBtn);
-            buttons.Add(roomTypeBtn);
-            buttons.Add(reloadRoomBtn);
-
-            roomType = RoomType.Column;
-
-            #endregion
-
+            //initialize the widget
+            SetActiveObj(0); //initialize active obj to 0 obj
+            SetActiveTool(moveObj); //initialize to move tool
+            objToolState = ObjToolState.MoveObj; //initialize to move state
+            grabbedObj = null;
         }
 
         public override void Reset(int X, int Y)
         {   //reset the room builder widget's window
-            window.lines[2].position.Y = Y + (16 * 10);
-            window.lines[3].position.Y = Y + (16 * 12);
+            window.lines[2].position.Y = Y + (16 * 3); //top divider (below current obj display)
+            window.lines[3].position.Y = Y + (16 * 12); //bottom divider (above tools)
             Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
+
+            int yPos = 16 * 4; //controls Y position of roomObjs, enemy spawn objs
+            int offset; //controls position of enemy spawn objs, tool icons
 
 
             #region Move room objs
@@ -282,9 +274,9 @@ namespace DungeonRun
                 for (j = 0; j < 5; j++) //column
                 {
                     objList[counter].compSprite.position.X = X + 16 + 0 + (16 * j);
-                    objList[counter].compSprite.position.Y = Y + 16 * 2 + (16 * i);
+                    objList[counter].compSprite.position.Y = Y + yPos + (16 * i);
                     objList[counter].compCollision.rec.X = X + 16 + 0 + (16 * j) - 8;
-                    objList[counter].compCollision.rec.Y = Y + 16 * 2 + (16 * i) - 8;
+                    objList[counter].compCollision.rec.Y = Y + yPos + (16 * i) - 8;
                     counter++;
                 }
             }
@@ -294,12 +286,14 @@ namespace DungeonRun
 
             #region Move enemy spawn objs
 
+            offset = 16 * 7;
+
             for (j = 0; j < 5; j++)
             {
                 objList[counter].compSprite.position.X = X + 16 + 0 + (16 * j);
-                objList[counter].compSprite.position.Y = Y + 16 * 2 + (16 * 7);
+                objList[counter].compSprite.position.Y = Y + yPos + offset;
                 objList[counter].compCollision.rec.X = X + 16 + 0 + (16 * j) - 8;
-                objList[counter].compCollision.rec.Y = Y + 16 * 2 + (16 * 7) - 8;
+                objList[counter].compCollision.rec.Y = Y + yPos + offset - 8;
                 counter++;
             }
 
@@ -308,45 +302,185 @@ namespace DungeonRun
 
             #region Move Grab, Add, and Delete Icons
 
+            offset = 16 * 9;
+
             moveObj.compSprite.position.X = X + 16 * 1;
-            moveObj.compSprite.position.Y = Y + 16 * 11;
+            moveObj.compSprite.position.Y = Y + offset + yPos;
             moveObj.compCollision.rec.X = X + 16 * 1 - 8;
-            moveObj.compCollision.rec.Y = Y + 16 * 11 - 8;
+            moveObj.compCollision.rec.Y = Y + +offset + yPos - 8;
             
             addObj.compSprite.position.X = X + 16 * 3;
-            addObj.compSprite.position.Y = Y + 16 * 11;
+            addObj.compSprite.position.Y = Y + +offset + yPos;
             addObj.compCollision.rec.X = X + 16 * 3 - 8;
-            addObj.compCollision.rec.Y = Y + 16 * 11 - 8;
+            addObj.compCollision.rec.Y = Y + +offset + yPos - 8;
 
             deleteObj.compSprite.position.X = X + 16 * 5;
-            deleteObj.compSprite.position.Y = Y + 16 * 11;
+            deleteObj.compSprite.position.Y = Y + +offset + yPos;
             deleteObj.compCollision.rec.X = X + 16 * 5 - 8;
-            deleteObj.compCollision.rec.Y = Y + 16 * 11 - 8;
+            deleteObj.compCollision.rec.Y = Y + +offset + yPos - 8;
+
+            #endregion
+
+        }
+
+        public void HandleInput()
+        {
+            //convert cursor Pos to world pos
+            worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
+            //Functions_Debug.HandleDebugMenuInput();
+
+
+            #region Set Mouse Cursor Sprite
+
+            cursorSprite.currentFrame.Y = 14; ; //default to pointer
+            if (objToolState == ObjToolState.MoveObj) //check/set move state
+            { cursorSprite.currentFrame.Y = 13; }
+            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+            { cursorSprite.currentFrame.X = 15; } //set clicked frame
+            else { cursorSprite.currentFrame.X = 14; }
 
             #endregion
 
 
-            #region Move Save/New/Load/etc Buttons
+            #region Match position of cursor sprite to cursor
 
-            saveBtn.rec.X = X + 16 * 1 - 8;
-            saveBtn.rec.Y = Y + 16 * 12 + 8;
-            Functions_Component.CenterText(saveBtn);
+            cursorSprite.position.X = Input.cursorPos.X;
+            cursorSprite.position.Y = Input.cursorPos.Y;
+            if (objToolState != ObjToolState.MoveObj)
+            {   //apply offset for pointer sprite
+                cursorSprite.position.X += 3;
+                cursorSprite.position.Y += 6;
+            }
 
-            loadBtn.rec.X = X + 16 * 4 + 10 - 8;
-            loadBtn.rec.Y = Y + 16 * 12 + 8;
-            Functions_Component.CenterText(loadBtn);
+            addDeleteSprite.position.X = Input.cursorPos.X + 12;
+            addDeleteSprite.position.Y = Input.cursorPos.Y - 0;
 
-            newRoomBtn.rec.X = X + 16 * 1 - 8;
-            newRoomBtn.rec.Y = Y + 16 * 13 + 8;
-            Functions_Component.CenterText(newRoomBtn);
+            #endregion
 
-            roomTypeBtn.rec.X = X + 16 * 4 - 8 - 1;
-            roomTypeBtn.rec.Y = Y + 16 * 13 + 8;
-            Functions_Component.CenterText(roomTypeBtn);
 
-            reloadRoomBtn.rec.X = X + 16 * 1 - 8;
-            reloadRoomBtn.rec.Y = Y + 16 * 14 + 8;
-            Functions_Component.CenterText(reloadRoomBtn);
+            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+            {   //if mouse is contained within widget
+                if (window.interior.rec.Contains(Input.cursorPos))
+                {
+
+                    #region Handle Obj / Tool Selection
+
+                    //does any obj on the widget's objList contain the mouse position?
+                    for (i = 0; i < objListTotal; i++)
+                    {   //if there is a collision, set the active object to the object clicked on
+                        if (objList[i].compCollision.rec.Contains(Input.cursorPos))
+                        {
+                            //handle collision with room obj
+                            if (i < 40) { SetActiveObj(i); }
+                            //handle collision with tool obj
+                            else if (objList[i] == moveObj)
+                            {
+                                SetActiveTool(moveObj);
+                                objToolState = ObjToolState.MoveObj;
+                            }
+                            else if (objList[i] == addObj)
+                            {
+                                SetActiveTool(addObj);
+                                objToolState = ObjToolState.AddObj;
+                                addDeleteSprite.currentFrame.X = 14;
+                            }
+                            else if (objList[i] == deleteObj)
+                            {
+                                SetActiveTool(deleteObj);
+                                objToolState = ObjToolState.DeleteObj;
+                                addDeleteSprite.currentFrame.X = 15;
+                            }
+                        }
+                    }
+
+                    #endregion
+
+                }
+                //if mouse worldPos is contained in room, allow add/delete selected object
+                else if (Functions_Level.currentRoom.rec.Contains(worldPos))
+                {
+
+                    #region Handle Add Object State
+
+                    if (objToolState == ObjToolState.AddObj)
+                    {   //place currently selected obj in room, aligned to 16px grid
+                        GameObject objRef = Functions_Pool.GetRoomObj();
+
+                        objRef.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Movement.Teleport(objRef.compMove,
+                            objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
+
+                        Functions_GameObject.SetType(objRef, activeObj.type);
+                        Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
+                        Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+                    }
+
+                    #endregion
+
+
+                    #region Handle Delete Object State
+
+                    else if (objToolState == ObjToolState.DeleteObj)
+                    {   //check collisions between worldPos and roomObjs, release any colliding obj
+                        for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+                        {
+                            if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                            {
+                                if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                                { Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]); }
+                            }
+                        }
+                    }
+
+                    #endregion
+
+                }
+
+                //objects CAN be moved outside of room
+
+                #region Handle Grab (Move) Object State
+
+                if (objToolState == ObjToolState.MoveObj)
+                {   //check collisions between worldPos and roomObjs, grab any colliding obj
+                    for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+                    {
+                        if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                        {
+                            if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                            { grabbedObj = Pool.roomObjPool[Pool.roomObjCounter]; }
+                        }
+                    }
+                }
+
+                #endregion
+
+            }
+
+
+            #region Handle Dragging of Grabbed Obj
+
+            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+            {   //if we have a grabbedObj, match it to cursorPos if LMB is down
+                if (objToolState == ObjToolState.MoveObj)
+                {   //match grabbed Obj pos to worldPos, aligned to 16px grid
+                    if (grabbedObj != null)
+                    {
+                        grabbedObj.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
+                        Functions_Movement.Teleport(grabbedObj.compMove,
+                            grabbedObj.compMove.newPosition.X, grabbedObj.compMove.newPosition.Y);
+                        Functions_Component.Align(grabbedObj.compMove,
+                            grabbedObj.compSprite, grabbedObj.compCollision);
+                    }
+                }
+            }
+
+            #endregion
+
+
+            #region Handle Release Grabbed Obj
+
+            if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
+            { grabbedObj = null; }
 
             #endregion
 
@@ -359,6 +493,8 @@ namespace DungeonRun
             {
                 UpdateSelectionBox(selectionBoxObj);
                 UpdateSelectionBox(selectionBoxTool);
+                selectionBoxObj.position = activeObj.compSprite.position;
+                selectionBoxTool.position = activeTool.compSprite.position;
             }
         }
 
@@ -367,19 +503,19 @@ namespace DungeonRun
             Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
-                for (i = 0; i < total; i++) //draw objlist's sprites
+                for (i = 0; i < objListTotal; i++) //draw objlist's sprites
                 { Functions_Draw.Draw(objList[i].compSprite); }
 
                 if (Flags.DrawCollisions)
                 {   //draw objlist's collision recs
-                    for (i = 0; i < total; i++)
+                    for (i = 0; i < objListTotal; i++)
                     { Functions_Draw.Draw(objList[i].compCollision); }
                 }
-                for (i = 0; i < buttons.Count; i++) //draw all the buttons
-                { Functions_Draw.Draw(buttons[i]); }
                 Functions_Draw.Draw(selectionBoxObj);
                 Functions_Draw.Draw(selectionBoxTool);
             }
+            if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(addDeleteSprite); }
+            Functions_Draw.Draw(cursorSprite);
         }
 
 
@@ -388,14 +524,12 @@ namespace DungeonRun
         {
             activeObj = objList[index];
             selectionBoxObj.scale = 2.0f;
-            selectionBoxObj.position = activeObj.compSprite.position;
         }
 
         public void SetActiveTool(GameObject Tool)
         {
             activeTool = Tool;
             selectionBoxTool.scale = 2.0f;
-            selectionBoxTool.position = activeTool.compSprite.position;
         }
 
         public void UpdateSelectionBox(ComponentSprite SelectionBox)
@@ -405,6 +539,11 @@ namespace DungeonRun
             //scale the selectionBox down to 1.0
             if (SelectionBox.scale > 1.0f) { SelectionBox.scale -= 0.07f; }
             else { SelectionBox.scale = 1.0f; }
+        }
+
+        public Vector2 AlignToGrid(int X, int Y)
+        {
+            return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
 
     }

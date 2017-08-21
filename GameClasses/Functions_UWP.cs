@@ -147,7 +147,7 @@ namespace DungeonRun
             }
         }
 
-        public static async void SelectRoomFile(ScreenRoomBuilder RBScreen)
+        public static async void SelectRoomFile()
         {   //select a room xml file to load into RoomXmlData
             var loadPicker = new Windows.Storage.Pickers.FileOpenPicker();
             loadPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
@@ -155,11 +155,11 @@ namespace DungeonRun
             StorageFile loadFile = await loadPicker.PickSingleFileAsync();
             if(loadFile != null)
             {   //if user selected a xml file, continue
-                RBScreen.roomData = new RoomXmlData();
+                Widgets.RoomTools.roomData = new RoomXmlData();
                 Stream stream = await loadFile.OpenStreamForReadAsync();
                 using (stream)
-                { RBScreen.roomData = (RoomXmlData)serializer.Deserialize(stream); }
-                RBScreen.BuildRoomData(RBScreen.roomData);
+                { Widgets.RoomTools.roomData = (RoomXmlData)serializer.Deserialize(stream); }
+                Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
             }
         }
 

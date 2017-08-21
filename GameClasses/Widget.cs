@@ -31,5 +31,8 @@ namespace DungeonRun
         public static WidgetOptions Options = new WidgetOptions();
         public static WidgetStats Stats = new WidgetStats();
         public static WidgetCrystals Crystals = new WidgetCrystals();
+        //editor/builder widgets
+        public static WidgetObjectTools ObjectTools = new WidgetObjectTools();
+        public static WidgetRoomTools RoomTools = new WidgetRoomTools();
     }
 }

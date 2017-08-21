@@ -141,7 +141,7 @@ namespace DungeonRun
             }
         }
 
-        public static void SelectRoomFile(ScreenRoomBuilder RBScreen)
+        public static void SelectRoomFile()
         {
             Stream stream = null;
             OpenFileDialog openDialog = new OpenFileDialog();
@@ -155,8 +155,8 @@ namespace DungeonRun
                     if ((stream = openDialog.OpenFile()) != null)
                     {
                         using (stream)
-                        { RBScreen.roomData = (RoomXmlData)serializer.Deserialize(stream); }
-                        RBScreen.BuildRoomData(RBScreen.roomData);
+                        { Widgets.RoomTools.roomData = (RoomXmlData)serializer.Deserialize(stream); }
+                        Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
                     }
                 }
                 catch (Exception ex)
