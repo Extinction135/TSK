@@ -1,79 +1,94 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <type>Square</type>
   <objs>
     <ObjXmlData>
       <type>BlockDark</type>
+      <direction>Down</direction>
       <posX>40</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
+      <direction>Down</direction>
       <posX>136</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>88</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
+      <direction>Down</direction>
       <posX>40</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
+      <direction>Down</direction>
       <posX>136</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>88</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>104</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>72</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
+      <direction>Down</direction>
       <posX>136</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
+      <direction>Down</direction>
       <posX>40</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>72</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>104</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>104</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>88</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SpawnEnemy1</type>
+      <direction>Down</direction>
       <posX>72</posX>
       <posY>104</posY>
     </ObjXmlData>

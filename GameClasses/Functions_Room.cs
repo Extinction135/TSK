@@ -740,11 +740,18 @@ namespace DungeonRun
                 for (i = 0; i < RoomXmlData.objs.Count; i++)
                 {   //create a roomObj for each XML obj
                     objRef = Functions_Pool.GetRoomObj();
+                    //move roomObj to xmlObj's position (with room offset)
                     Functions_Movement.Teleport(objRef.compMove,
                         Functions_Level.currentRoom.rec.X + RoomXmlData.objs[i].posX,
                         Functions_Level.currentRoom.rec.Y + RoomXmlData.objs[i].posY);
+
+                    //assume obj direction is down
                     objRef.direction = Direction.Down; //we'll need to save this later
-                    Functions_GameObject.SetType(objRef, RoomXmlData.objs[i].type); //get type
+                    if (RoomXmlData.objs[i].direction != Direction.Down)
+                    { objRef.direction = RoomXmlData.objs[i].direction; }
+
+                    //finally, set roomObj.type to xmlObj.type
+                    Functions_GameObject.SetType(objRef, RoomXmlData.objs[i].type);
 
                     //create enemies at enemySpawn obj locations
                     if (objRef.group == ObjGroup.EnemySpawn)

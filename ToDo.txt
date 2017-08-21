@@ -47,33 +47,11 @@ v0.7 goals
 
 
 
+Load and Save XML Objects with a Direction field
 
-
-Change how Map is opened, due to UWP + Monogame Back Bug
-
-see previous commit for more detail about Back Bug.
-basically, we can't rely on the Back button press.
-the Back button is set to pressed upon a B button release.
-so a B button release will trigger whatever code we have for Back button press.
-
-instead, we'll use the Left Shoulder button to open the Map Screen.
-we'll also open the Inventory Screen with the Right Shoulder button.
-we'll still open the Inventory Screen with Start button too.
-this makes things more consistent. 
-
-updated Functions_Input.MapPlayerInput() with these changes.
+added Direction field to ObjXmlData.
+updated all RoomData xml files to have Direction fields (load & resave).
 playtested, working as expected.
-
-updated InventoryScreen to exit upon start, b button, or right shoulder button presses.
-updated MapScreen to exit upon start, b button, or left shoulder button presses.
-playtested, working as expected.
-
-
-
-
-
-
-
 
 
 
@@ -84,13 +62,26 @@ playtested, working as expected.
 
 Roomobjects++
 
-we'll need to be able to store the obj's direction
-how often do we need to do this? prolly all the time...
-well, actually not really - what objs use direction?
+
 
 these objs 
 conveyor belts - NSEW - this means there will be 4 objs saved/placed
 spike blocks - EW, NS - this menas there will be 2 objs saved/placed
+ 
+ 
+ 
+when we load an object from xml data, the obj.direction should default to Down
+then we can check if the xml data has a direction and pass it to obj
+this way we dont have to update the xml data, or store a bunch of down directions
+
+we will only save obj.direction if the direction != down
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 we should have an explosive barrel - of course!
 just like bomb, but stationary, waiting for collision
