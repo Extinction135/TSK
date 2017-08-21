@@ -46,12 +46,7 @@ v0.7 goals
 
 
 
-Test UWP version on Xbox One
 
-updated UWP version to match DirectX version.
-playtested, working as expected.
-deployed to xbox one, tested, working.
-frametimes normally around 1ms, max was 3ms.
 
 
 
@@ -59,47 +54,61 @@ frametimes normally around 1ms, max was 3ms.
 
 Fix Back / B Button map bug
 
-in release mode, when the player picks up the map, pressing B button displays the map.
+Discovery
+in UWP, when the player picks up the map, pressing B button displays the map.
 this shouldn't be happening, the back/select button displays the map.
 this is reproducible on xboxone and UWP pc versions.
 however, this bug doesn't show up on the directX version.
+this bug happens in release + testing modes.
+
+Debugging
+UWP version is getting confused between B button and Back button presses.
+pressing the B button triggers the Back button's state to be pressed upon the release of B button.
+this happens on both official XboxOne controllers and RockCandy 360 controllers.
+so I don't think it's a controller bug / issue.
+
+Testing
+wrote multiple tests to determine / narrow down what's causing the bug.
+upon B button press / release, the Back button's state is seen as Pressed.
+this check can be seen in Functions_Input.MapPlayerInput().
+specifically, we're getting a fresh copy of gamepad 1's state.
+then checking the back button, which returns as Pressed.
+this happens upon a B button press, and makes absolutely no sense.
+
+pushed checking example for proof of bug. (this push breaks player input, btw).
+bug cannot be fixed currently.
 
 
 
-on xbone, when the B button is released, the select button is triggered?
 
 
 
 
 
-Test deployment of Game on XBOX ONE
-
-we'll need to match the UWP project to the DirectX project
-we've added new classes to DirectX project.
-we've added new content to the project as well.
-i dont think anything has changed with how the backend class works, but check it
-
-if loading xml room data fails, we'll need to store this data in .cs files
-so we'll need to convert the XML data into .CS files
-
-Write a RoomDataXML converter for UWP project (we can use for all projects too)
-
-so we have all these great XML files
-we load those files in and parse them to RoomXmlData objects.
-we need to convert the XML data to .cs files.
-these CS files can then be included into the project, 
-then exported to output directory,
-then loaded into the game at runtime.
-and this is much faster than parsing XML each time game loads
-and VS will check to make sure these CS files are syntax compliant
-
-there should be files for: hub, key, boss, square, column, row
-these are monolithic, code-generated files, with thousands of lines
-simply "Add as link" these files into the project
-then using a flag boolean, the backend will load them instead of the xml roomData
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+is button down is being called twice from level screen
+first time thru, the B button is only pressed
+second time, back button is pressed
+
+from map screen, pressing B button only triggers b button pressed, returning to level screen
+where is the button press getting triggered twice?
 
 
 

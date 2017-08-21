@@ -29,10 +29,53 @@ namespace DungeonRun
             ResetInputData(CompInput); //reset the input component
             //map controller input to input component
             CompInput.direction = Input.gamePadDirection;
+
+            //somewhere in here we are calling IsNewButtonPress() twice
+            //and setting back button pressed upon a B button press
+
+            /*
+            //works, calls once
             if (IsNewButtonPress(Buttons.X)) { CompInput.attack = true; }
             else if (IsNewButtonPress(Buttons.Y)) { CompInput.use = true; }
             else if (IsNewButtonPress(Buttons.B)) { CompInput.dash = true; }
             else if (IsNewButtonPress(Buttons.A)) { CompInput.interact = true; }
+
+            //works, calls once
+            else if (IsNewButtonPress(Buttons.Start))
+            { ScreenManager.AddScreen(new ScreenInventory()); }
+            */
+
+            //fails, calls twice
+            //if (IsNewButtonPress(Buttons.Back))
+            //{   
+                //check to see if hero has found the dungeon map
+                //if (Level.map) { ScreenManager.AddScreen(new ScreenLevelMap()); }
+            //}
+            
+            /*
+            //does checking the back button with different code work?
+            //no, this section is called upon B button press/release too
+            if(Input.currentGamePadState.IsButtonDown(Buttons.Back))
+            {
+                if(Input.lastGamePadState.IsButtonUp(Buttons.Back))
+                { Debug.WriteLine("this should not happen on B button press."); }
+            }
+            */
+
+            /*
+            //does this check work? no, still called from B button press!!
+            if(Input.currentGamePadState.Buttons.Back == ButtonState.Pressed)
+            {
+                //if(Input.lastGamePadState.Buttons.Back == ButtonState.Released)
+                { Debug.WriteLine("this should not happen on B button press."); }
+            }
+            */
+
+            //what if we get a fresh instance of the gamepad? NOPE
+            GamePadState check = GamePad.GetState(PlayerIndex.One);
+            if(check.Buttons.Back == ButtonState.Pressed)
+            { Debug.WriteLine("this should not happen on B button press."); }
+
         }
 
         public static void SetInputState(ComponentInput CompInput, Actor Actor)
@@ -61,7 +104,22 @@ namespace DungeonRun
         { return (Input.lastKeyboardState.IsKeyDown(key) && Input.currentKeyboardState.IsKeyUp(key)); }
 
         public static bool IsNewButtonPress(Buttons button)
-        { return (Input.currentGamePadState.IsButtonDown(button) && Input.lastGamePadState.IsButtonUp(button)); }
+        {
+            /*
+            if(Input.currentGamePadState.IsButtonDown(button) && Input.lastGamePadState.IsButtonUp(button))
+            {
+                Debug.WriteLine("calling screen: " + ScreenManager.screens.Last().name);
+                //dump info on controller
+                Debug.WriteLine("back button: " + Input.currentGamePadState.Buttons.Back.ToString());
+                Debug.WriteLine("start button: " + Input.currentGamePadState.Buttons.Start.ToString());
+                Debug.WriteLine("a button: " + Input.currentGamePadState.Buttons.A.ToString());
+                Debug.WriteLine("b button: " + Input.currentGamePadState.Buttons.B.ToString());
+                Debug.WriteLine("x button: " + Input.currentGamePadState.Buttons.X.ToString());
+                Debug.WriteLine("y button: " + Input.currentGamePadState.Buttons.Y.ToString());
+            }
+            */
+            return (Input.currentGamePadState.IsButtonDown(button) && Input.lastGamePadState.IsButtonUp(button));
+        }
 
         public static bool IsNewButtonRelease(Buttons button)
         { return (Input.lastGamePadState.IsButtonDown(button) && Input.currentGamePadState.IsButtonUp(button)); }

@@ -19,7 +19,7 @@ namespace DungeonRun
 
 
 
-        public ScreenLevel() { this.name = "DungeonScreen"; }
+        public ScreenLevel() { this.name = "LevelScreen"; }
 
         public override void LoadContent()
         {
@@ -37,43 +37,15 @@ namespace DungeonRun
         {
             if (displayState == DisplayState.Opened)
             {   //input maps only when screen is open
-
-                #region Handle AI Input
-
+                //Handle AI Input
                 if (Flags.ProcessAI)
                 {   //process AI for up to 3 actors per frame
                     Functions_Ai.SetActorInput();
                     Functions_Ai.SetActorInput();
                     Functions_Ai.SetActorInput();
                 }
-
-                #endregion
-
-
-                #region Handle Player Input
-
                 //map player input to hero
                 Functions_Input.MapPlayerInput(Pool.hero.compInput);
-                //open inventory screen if player presses start button
-                if (Functions_Input.IsNewButtonPress(Buttons.Start))
-                { ScreenManager.AddScreen(new ScreenInventory()); }
-                //open map widget if player presses back button
-                if (Functions_Input.IsNewButtonPress(Buttons.Back))
-                {
-
-                    //dump the current state of the controller 
-                    //Debug.WriteLine("back button: " + Input.currentGamePadState.Buttons.Back.ToString());
-                    //Debug.WriteLine("b button: " + Input.currentGamePadState.Buttons.B.ToString());
-
-
-                    //check to see if hero has found the dungeon map
-                    if (Level.map)
-                    { ScreenManager.AddScreen(new ScreenLevelMap()); }
-                }
-
-                #endregion
-
-
                 if (Flags.EnableTopMenu) { Functions_Debug.HandleTopMenuInput(); }
             }
             else

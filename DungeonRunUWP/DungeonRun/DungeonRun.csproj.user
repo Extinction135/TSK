@@ -6,7 +6,7 @@
     <UseAuthentication>false</UseAuthentication>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <RemoteDebugEnabled>true</RemoteDebugEnabled>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
     <AuthenticationMode>Universal</AuthenticationMode>
     <CreateCleanLayout>false</CreateCleanLayout>
     <RemoteDebugMachine>XboxOne</RemoteDebugMachine>

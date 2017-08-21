@@ -16,7 +16,7 @@ namespace DungeonRun
 
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.6f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
