@@ -46,15 +46,44 @@ v0.7 goals
 
 
 
+Mockup new version of RoomBuilder, redesign widgets
 
-Load and Save XML Objects with a Direction field
+created new mockup for Room Builder, with seperate widgets.
+one widget is for moving, adding, deleting objects.
+the other widget is for saving, loading, creating rooms.
+this was done with modularity in mind, as we'll use obj widget in level editor later on.
+also redesigned obj widget to display the currently selected obj, + name and direction.
 
-added Direction field to ObjXmlData.
-updated all RoomData xml files to have Direction fields (load & resave).
-playtested, working as expected.
+created rotate icon sprite, saved to main sheet.
+updated UWP's mainsheet.
+
+created WidgetRoomTools class, linked to UWP project.
+changed filename of WidgetRoomBuilder to WidgetObjectTools.
 
 
 
+
+
+
+seperate RoomTools from ObjectTools
+seperate functionality of Widgets from RoomBuilderScreen
+
+
+
+
+
+
+
+
+
+
+
+update rooom builder to allow rotation of selected room object
+think / design room builder widgets with modularity in mind
+
+we will be reusing widget for level editor
+
+work on editor/builder mockups
 
 
 
@@ -64,22 +93,10 @@ Roomobjects++
 
 
 
-these objs 
-conveyor belts - NSEW - this means there will be 4 objs saved/placed
-spike blocks - EW, NS - this menas there will be 2 objs saved/placed
- 
- 
- 
-when we load an object from xml data, the obj.direction should default to Down
-then we can check if the xml data has a direction and pass it to obj
-this way we dont have to update the xml data, or store a bunch of down directions
-
-we will only save obj.direction if the direction != down
- 
- 
- 
- 
- 
+objs that can be rotated:
+conveyor belts - up, right, down, left
+spike blocks - down, right
+bridges - down, right
  
  
  

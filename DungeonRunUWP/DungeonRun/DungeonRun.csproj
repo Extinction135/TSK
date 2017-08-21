@@ -263,11 +263,14 @@
     <Compile Include="..\..\GameClasses\WidgetLoadout.cs">
       <Link>Classes\WidgetLoadout.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\WidgetObjectTools.cs">
+      <Link>Classes\WidgetObjectTools.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\WidgetOptions.cs">
       <Link>Classes\WidgetOptions.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\WidgetRoomBuilder.cs">
-      <Link>Classes\WidgetRoomBuilder.cs</Link>
+    <Compile Include="..\..\GameClasses\WidgetRoomTools.cs">
+      <Link>Classes\WidgetRoomTools.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetStats.cs">
       <Link>Classes\WidgetStats.cs</Link>
