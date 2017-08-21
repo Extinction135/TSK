@@ -386,9 +386,32 @@ namespace DungeonRun
 
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {   //if mouse is contained within widget, select active obj
-                if (window.interior.rec.Contains(Input.cursorPos))
+            {
+
+                #region Handle Grab (Move) Object State
+
+                if (objToolState == ObjToolState.MoveObj)
                 {
+                    for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+                    {
+                        if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                        {   //check collisions between worldPos and roomObjs, grab any colliding obj
+                            if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                            {   //set both grabbedObj and activeObj
+                                grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
+                                activeObj = Pool.roomObjPool[Pool.roomObjCounter];
+                                GetActiveObjInfo();
+                                selectionBoxObj.scale = 2.0f;
+                            }
+                        }
+                    }
+                }
+
+                #endregion
+
+
+                if (window.interior.rec.Contains(Input.cursorPos))
+                {   //if mouse is contained within widget, select active obj
 
                     #region Handle Obj / Tool Selection
 
@@ -429,9 +452,8 @@ namespace DungeonRun
                     #endregion
 
                 }
-                //if mouse worldPos is within room, allow add/delete of active object
                 else if (Functions_Level.currentRoom.rec.Contains(worldPos))
-                {
+                {   //if mouse worldPos is within room, allow adding of active object
 
                     #region Handle Add Object State
 
@@ -450,58 +472,17 @@ namespace DungeonRun
 
                     #endregion
 
-
-                    #region Handle Delete Object State
-
-                    else if (objToolState == ObjToolState.DeleteObj)
-                    {   //check collisions between worldPos and roomObjs, release any colliding obj
-                        for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-                        {
-                            if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                            {
-                                if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                                { Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]); }
-                            }
-                        }
-                    }
-
-                    #endregion
-
                 }
-
-                
-                #region Handle Grab (Move) Object State
-
-                if (objToolState == ObjToolState.MoveObj)
-                {   
-                    for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-                    {
-                        if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                        {   //check collisions between worldPos and roomObjs, grab any colliding obj
-                            if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                            {   //set both grabbedObj and activeObj
-                                grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
-                                activeObj = Pool.roomObjPool[Pool.roomObjCounter];
-                                GetActiveObjInfo();
-                                selectionBoxObj.scale = 2.0f;
-                            }
-                        }
-                    }
-                }
-
-                #endregion
-
             }
-
-
-            #region Handle Dragging of Grabbed Obj
-
             if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-            {   //if we have a grabbedObj, match it to cursorPos if LMB is down
+            {
+
+                #region Handle Dragging Object State
+
                 if (objToolState == ObjToolState.MoveObj)
-                {   //match grabbed Obj pos to worldPos, aligned to 16px grid
+                {   //if we are in Move state,
                     if (grabbedObj != null)
-                    {   
+                    {   //match grabbed Obj pos to worldPos, aligned to 16px grid
                         grabbedObj.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
                         Functions_Movement.Teleport(grabbedObj.compMove,
                             grabbedObj.compMove.newPosition.X, grabbedObj.compMove.newPosition.Y);
@@ -515,18 +496,37 @@ namespace DungeonRun
                         selectionBoxObj.position.Y = screenPos.Y;
                     }
                 }
+
+                #endregion
+
+
+                #region Handle Deleting Objects State
+
+                else if (objToolState == ObjToolState.DeleteObj)
+                {   //check collisions between worldPos and roomObjs, release any colliding obj
+                    for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+                    {
+                        if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                        {
+                            if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                            { Functions_Pool.Release(Pool.roomObjPool[Pool.roomObjCounter]); }
+                        }
+                    }
+                }
+
+                #endregion
+
             }
-
-            #endregion
-
-
-            #region Handle Release Grabbed Obj
-
             if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
-            { grabbedObj = null; }
+            {
 
-            #endregion
+                #region Handle Release Grabbed Obj
 
+                grabbedObj = null;
+
+                #endregion
+
+            }
         }
 
         public override void Update()

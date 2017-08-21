@@ -44,42 +44,16 @@ todo:
 v0.7 goals
 
 
-5
+4
+
+
+Improve Deleting of object in RoomBuilder
+
+updated WidgetObjectTools.HandleInput() to allow drag deleting of room objects.
+playtested, working as expected.
 
 
 
-
-
-Build the CurrentObj display for Object Tool Widget
-
-created sprite and text components in ObjectTool widget.
-fixed bug with Functions_Camera2D.ConvertWorldToScreen().
-modified ObjTool selection routines to show currently selected object.
-this works for both objects on objList and in-room objects.
-
-
-
-playtest
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-CurrentObj++
-
-add current obj sprite to object tools widget
-add current obj text to obj tools widget
-when user selects an obj from widget, set current sprite + text
-when user selects an obj from room, set current sprite + text
 
 
 
@@ -245,7 +219,7 @@ title screeen plays title music
 
 
 
-
+explosion sound needs to be shorter
 
 
 
