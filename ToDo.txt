@@ -32,7 +32,7 @@ adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
 	
 ram useage:
-	82mb on Win10. 102.7mb on XboxOne.
+	109mb on Win10. 102.7mb on XboxOne.
 	
 	
 	
@@ -49,34 +49,24 @@ v0.7 goals
 
 
 
+Change how Map is opened, due to UWP + Monogame Back Bug
 
+see previous commit for more detail about Back Bug.
+basically, we can't rely on the Back button press.
+the Back button is set to pressed upon a B button release.
+so a B button release will trigger whatever code we have for Back button press.
 
+instead, we'll use the Left Shoulder button to open the Map Screen.
+we'll also open the Inventory Screen with the Right Shoulder button.
+we'll still open the Inventory Screen with Start button too.
+this makes things more consistent. 
 
-Fix Back / B Button map bug
+updated Functions_Input.MapPlayerInput() with these changes.
+playtested, working as expected.
 
-Discovery
-in UWP, when the player picks up the map, pressing B button displays the map.
-this shouldn't be happening, the back/select button displays the map.
-this is reproducible on xboxone and UWP pc versions.
-however, this bug doesn't show up on the directX version.
-this bug happens in release + testing modes.
-
-Debugging
-UWP version is getting confused between B button and Back button presses.
-pressing the B button triggers the Back button's state to be pressed upon the release of B button.
-this happens on both official XboxOne controllers and RockCandy 360 controllers.
-so I don't think it's a controller bug / issue.
-
-Testing
-wrote multiple tests to determine / narrow down what's causing the bug.
-upon B button press / release, the Back button's state is seen as Pressed.
-this check can be seen in Functions_Input.MapPlayerInput().
-specifically, we're getting a fresh copy of gamepad 1's state.
-then checking the back button, which returns as Pressed.
-this happens upon a B button press, and makes absolutely no sense.
-
-pushed checking example for proof of bug. (this push breaks player input, btw).
-bug cannot be fixed currently.
+updated InventoryScreen to exit upon start, b button, or right shoulder button presses.
+updated MapScreen to exit upon start, b button, or left shoulder button presses.
+playtested, working as expected.
 
 
 
@@ -86,29 +76,6 @@ bug cannot be fixed currently.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-is button down is being called twice from level screen
-first time thru, the B button is only pressed
-second time, back button is pressed
-
-from map screen, pressing B button only triggers b button pressed, returning to level screen
-where is the button press getting triggered twice?
 
 
 

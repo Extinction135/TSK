@@ -158,9 +158,10 @@ namespace DungeonRun
 
                 else { SetLoadout(); }
             }
-            //exit this screen upon start or b button press
-            else if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
-                Functions_Input.IsNewButtonPress(Buttons.B))
+            //exit this screen upon start / b button / right shoulder button press
+            else if (Functions_Input.IsNewButtonPress(Buttons.Start) 
+                || Functions_Input.IsNewButtonPress(Buttons.B)
+                || Functions_Input.IsNewButtonPress(Buttons.RightShoulder))
             {
                 Assets.Play(Assets.sfxWindowClose);
                 displayState = DisplayState.Closing;
