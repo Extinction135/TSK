@@ -44,7 +44,7 @@ namespace DungeonRun
             //open map with left shoulder button
             else if (IsNewButtonPress(Buttons.LeftShoulder))
             { if (Level.map) { ScreenManager.AddScreen(new ScreenLevelMap()); } }
-            //back/select button isn't used foro map due to a bug with UWP + Monogame,
+            //back/select button isn't used for map due to a bug with UWP + Monogame,
             //where upon a B button release the Back button state is incorrectly set to Pressed.
         }
 
