@@ -47,18 +47,11 @@ todo:
 
 
 
-
-
-
-add KeyCheat to flags. upon dungeon creation, check for key cheat, set level.key true.
-
-so we don't have to always go get the key to test boss battle
-
-
-
-add overworld music
-add shop music (town music)
-title screeen plays title music
+update the readme to reflect the directX port
+"A 2D zelda-like, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.
+DirectX version uses .Net 4.5 & SharpDX.
+UWP version uses .NetCore & SharpDX.
+OpenGL port coming soon."
 
 
 
@@ -66,6 +59,7 @@ title screeen plays title music
 
 
 
+v0.7 goals
 
 
 
@@ -104,236 +98,7 @@ then using a flag boolean, the backend will load them instead of the xml roomDat
 
 
 
-RELEASE
-record new GIFs
-	title screen -> overworld -> dungeon -> dungeon map -> multiple rooms
-	multiple rooms -> boss fight -> loses -> summary screen -> overworld
-	overworld -> shop -> overworld
-	
-update the readme to reflect the directX port
-"A 2D zelda clone, using Monogame 3.6, for XboxOne, Windows7, 8, & 10.
-DirectX version uses .Net 4.5 & SharpDX.
-UWP version uses .NetCore & SharpDX.
-OpenGL port coming soon."
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-release version 0.6 with complete dungeon & room editor & overworld
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-v0.7 goals
-
-
-build more non-dungeon levels: towns, castle, forest, etc..
-some should be non-combat
-build colliseum level
-build left town levels: A, B, C, + Church
-build Old Town level
-build castle gate level
-build right town level
-build tent town level
-build cathedral level
-build monument level
-build center island home level
-
-create dungeon variations: old ruins castle, cave, forest, big castle
-
-we'll need a level editor to do this properly
-and we'll need alot more gameobjects to make these levels look good
-
-
-
-
-
-
-
-Conveyor Belts ++
-hero creates a sword projectile on conveyor belt
-hero is moved by conveyor belt into his sword projectile
-he takes damage. this should not happen
-
-certain projectiles should move with the conveyorbelt
-this would be the case with bombs, weapon swings, etc...
-but not flying projectiles, like fireball or arrow
-
-most objects should move if on a conveyor belt
-objs that shouldn't move: doors, walls, floor decals, pits, levers, flror spikes,
-conveyor belts, enemy spawns, vendors, air born projectiles, particles
-
-
-
-
-
-
-if hero strikes a bombable door, play a hollow sound
-if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
-
-this is a : sword projectile collision check against objects of type door bombable + wall cracked
-we'll need to add the hollow sound - we've already got the metallic tink soundFX
-
-
-
-
-
-
-
-
-make additional level types:
-
-gate, castle, castle left, castle right, right town
-
-colliseum, center town, forest dungeon, ship
-
-left town 1, left town 2, left town 3, cave dungeon, left bottom church, left fort dungeon
-
-tent town, cathedral connector, catherdral, 
-bottom right water connector, center island, monument connector, monument
-
-
-
-
-
-
-
-add tiny smoke particles coming out of some houses
-
-add 'floating' animation to ship (should bob up and down)
-this means it needs to be a sprite in the main sheet
-
-make castlel ruins look more 'ruiny'
-
-
-
-the exit rooms should be different for each dungeon type
-but they should be the same for the dungeon type they represent
-so the dungeon type feels consistent, but there is variety between dungeon types
-
-create additional dungeon sprite sheets for the other 3 dungeons
-don't worry about additional enemies or bosses tho, just use the blobs
-
-
-
-
-
-
-
-we could also use the map scroll sprites as a display for letters
-from the hero's wife or whatever
-this could serve as a way to remind player of story too
-player could read a scroll and get caught up on the main plot points
-> wife leaves hero, hero'c cause/journey
-> invitation to final tournament, with 4 boss head requirements
-
-these scrolls could also popup when the hero gets them
-displaying alot of dialog / story plot points
-
-
-
-
-dungeons should have names.
-the dungeon name should be displayed on the map screen's map.
-dungeon names could be randomly generated from a list.
-
-
-
-
-boss dialog + boss phaases
-
-initially the boss should popup a dialog mocking player
-after boss hits half health, another dialog should popup
-this one talks about boss changing tactics
-"you're better than i expected"
-in the 2nd phase, the boss moves AWAY from the hero
-so its harder for the hero to hit the boss
-in first phase, the boss just randomly moves around
-
-
-
-
-
-PITS++
-falling into a pit is just instant death
-hero just dies, no damage is dealt (no fairy can be used)
-ends with 'you died' screen
-hero is set into hit state and scaled down to 0
-at 0, the hero dies
-
-this should also happen to enemies (instant death, no loot drop)
-
-we should prevent enemies from moving into pits / spikes on their own
-they should be able to be pushed into them, however
-
-
-
-
-
-
-instead of crystals, we should collect boss's heads.
-this is the same icon that appears on the overworld map for the dungeon
-this would appear in inventory screen where the crystals are, but there will only be 4
-
-for now, implement 4 dungeons that all use the blob boss
-these should be located on the overworld screen
-change the overworld map to something more interesting
-place the dungeon entrances in different locations
-
-the 4 dungeon types: forest, desert, cave, mountain
-the last dungeon type: cursed castle
-
-upon collection of 4 boss heads, the final dungeon opens
-the blob boss head is actually an eye, the bosses eye
-for now, the player will collect 4 eyes
-
-crystals widget should be renamed 'bosses defeated', bossesWidget
-
-we'll need to update the game display data + the LSN screen to reflect the update away from crystals
-we can also make the overworld map wider, to better fill the frame out
-
-
-
-
-
-
-
-
-
-
-
-
-
-i'd like a LOC counter for the game classes folder
-
-1kb = 1024 chars
-game classes folder = 521kb
-521 * 1024 = 533,504 characters in game classes
-
-
-
-
-EnemySpawns and Enemy Types ++
-a level of 1 means the easier enemy is placed here, and so on
-we will have 5 levels of enemy in each dungeon
-we will need 4 additional enemy types to fill out the enemy roster
-create enemies that fire projectiles - arrows, fireballs, bombs
-
-
-
-
-
-complete gameobjects
+Roomobjects++
 
 we'll need to be able to store the obj's direction
 how often do we need to do this? prolly all the time...
@@ -350,7 +115,13 @@ Cracked Floor pit opening
 we can also have a cracked open floor obj that sits over animated liquid
 this varies the 'pit' style a bit
 
-need horizontal bridges
+horizontal bridges
+
+create ice tile (no working for now) - changes friction
+
+add in a randomly moving fireball enemy
+this is just like spikeblock except the obj.direction is chosen randomly upon collision
+the direction cannot be the current direction however, and can only be cardinal	
 
 Spikeblocks++
 we should be able to create vertical and horizontal moving spike blocks
@@ -360,20 +131,202 @@ this should work similar to conveyor belt, except it pulls hero towards it's cen
 if spikeblocks do not collide with the room rec, reverse their position
 this prevents spikeblocks from flying out a door
 
-create ice tile (no working for now) - changes friction
-
-add pot throwable obj, just like skull obj
-
-conveyor belts should move other game objects, like consumable items
-or other objects, like bumpers and spike blocks	and explosive barrels
-
+Conveyor Belts ++
+hero creates a sword projectile on conveyor belt
+hero is moved by conveyor belt into his sword projectile
+he takes damage. this should not happen
+certain projectiles should move with the conveyorbelt
+this would be the case with bombs, weapon swings, etc...
+but not flying projectiles, like fireball or arrow
+most objects should move if on a conveyor belt
+objs that shouldn't move: doors, walls, floor decals, pits, levers, flror spikes,
+conveyor belts, enemy spawns, vendors, air born projectiles, particles
 we should be able to turn the conveyors on and off
-	this allows us to build rooms with additional complexity
-	perhaps the switch turns the conveyors on/off?
+the lever turns conveyors on/off
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dungeons++
+link cave and forest dungeons from the overworld map
+create dungeon sprite sheet for cave + forest levels
+create enemies unique to the cave + forest
+create bosses unique to the cave + forest
+create old castle ruins dungeon as well
+
+
+Outdoor Levels
+outdoor levels are handmade, and not rectangular in design
+so they can't be generated procedurally 
+we'll need to create a "level editor" similar to room editor
+lvl editor will have more objects to place
+lvl editor will also place floortiles
+*which means we need to save floortiles to XML
+*which means we need to load floors + rooom objs from XML
+*this XML should be seperate from roomDataXML
+*levelXML? these can be loaded into Assets.LevelData list
+
+outdoor levels to build (part 1):
+colliseum 
+left town A, B, C, + Church
+castle gate
+ship
+
+
+Outdoor level objects
+level objects exist in a level sheet, which is a dungeon sheet
+however, a level sheet doesn't necessarily have to follow the dungeon sheet layout
+this is because outdoor levels will have unique objects, and no dungeon objects
+each level will have it's own unique objects, which will be enum ObjType values
+which means that Obj.SetType() will grow alot...
+consider creating Obj.SetDungeonObj() and Obj.SetLevelObj()
+this would help to break up the monolithic SetType() 
+SetDungeonObj() and SetLevelObj() would be called from SetType() based on ObjGroup/Type
+
+
+OutDoor Levels ++
+For each dungeon, we need an outdoor level that displays the dungeon entrance
+this makes it feel like the player is entering the dungeon, instead of just spawning into it
+cave, forest, castle ruins, castle entrance
+
+
+Dungeons (bombable doors)++
+once the dungeon's doors are created, some should randomly be changed to bombable
+this will help to conceal various paths thru the dungeon and make it more interesting / nonlinear
+bombable doors shouldn't appear on the map
+secret rooms shouldn't appear on the map
+simply ignore drawing of bombable doors + secret rooms
+- Play soundfx when hero strikes a bombable door -
+if hero strikes a bombable door, play a hollow sound
+if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
+this is a : sword projectile collision check against objects of type door bombable + wall cracked
+we'll need to add the hollow sound - we've already got the metallic tink soundFX
+
+
+Music++
+add overworld music
+add shop music (town music)
+title screeen plays title music
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Overworld++
+add tiny smoke particles coming out of some houses
+add 'floating' animation to ship (should bob up and down)
+this means it needs to be a sprite in the main sheet
+make castlel ruins look more 'ruiny'
+
+
+Dungeons++
+the exit rooms should be different for each dungeon type
+but they should be the same for the dungeon type they represent
+so the dungeon type feels consistent, but there is variety between dungeon types
+dungeons should have names.
+the dungeon name should be displayed on the map.
+dungeon names could be randomly generated from a list.
+
+
+Letters / Notes 
+we could also use the map scroll sprites as a display for letters
+from the hero's wife or whatever
+this could serve as a way to remind player of story too
+player could read a scroll and get caught up on the main plot points
+> wife leaves hero, hero'c cause/journey
+> invitation to final tournament, with 4 boss head requirements
+these scrolls could also popup when the hero gets them
+displaying alot of dialog / story plot points
+
+
+Boss dialog + Boss phases
+initially the boss should popup a dialog mocking player
+after boss hits half health, another dialog should popup
+this one talks about boss changing tactics
+"you're better than i expected"
+in the 2nd phase, the boss moves AWAY from the hero
+so its harder for the hero to hit the boss
+in first phase, the boss just randomly moves around
+
+
+PITS++
+falling into a pit is just instant death
+hero just dies, no damage is dealt (no fairy can be used)
+ends with 'you died' screen
+hero is set into hit state and scaled down to 0
+at 0, the hero dies
+this should also happen to enemies (instant death, no loot drop)
+we should prevent enemies from moving into pits / spikes on their own
+they should be able to be pushed into them, however
+
+
+Boss Heads -> Crystals
+instead of crystals, we should collect boss's heads.
+this is the same icon that appears on the overworld map for the dungeon
+this would appear in inventory screen where the crystals are, but there will only be 4
+these should be located on the overworld screen
+upon collection of 4 boss heads, the final dungeon opens
+the blob boss head is actually an eye, the bosses eye
+for now, the player will collect 4 eyes
+crystals widget should be renamed 'bosses defeated', bossesWidget
+we'll need to update the game display data + the LSN screen to reflect the update away from crystals
+we can also make the overworld map wider, to better fill the frame out
+
+
+EnemySpawns and Enemy Types ++
+a level of 1 means the easier enemy is placed here, and so on
+we will have 3 levels of enemy in each dungeon
+we will need 2 additional enemy types to fill out the enemy roster
+create enemies that fire projectiles - arrows, fireballs, bombs
+
+
+
+
+
+
+	
 
 	
 	
-
+	
 	
 	
 
