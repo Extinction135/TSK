@@ -43,20 +43,57 @@ todo:
 v0.7 goals
 
 
-7
+6
+
+
+
+Decrease Frametimes while keeping all functionality - part 1
+
+removed CheckEntityPoolCollisions() from object collision checking.
+this reduces the loop checks from 6 to 4, decreasing frametimes.
+this also stops duplicate collision checking that was happening,
+between roomObjs vs. entities, and entities vs. roomObjs.
+rewrote InteractObject() based on concept that a projectile will never be ObjB in check.
+
+renamed ObjA to ActiveObj in InteractObject().
+renamed ObjB to PassiveObj in InteractObject().
+this better defines their nature in the method.
+
+playtested, working as expected.
 
 
 
 
 
 
-Improve Spikeblock 
 
-improved the spikeblock sprite with some center details.
-updated Functions_Debuge.Inspect(Sprite Component) with rotation + rotation value info.
-updated Functions_GameObject.SetRotation() to set spike block rotation to none.
-spikeblock was getting rotated 90 degrees, if it was moving left/right.
-this caused the new shadows on the sprite to look incorrect.
+we can split the roomObj pool collision checks in half,
+process every other obj each frame
+
+
+
+
+
+move the dev rooms into a seperate folder in project, useful for testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+we should be able to set the direction of block spike to NSEW, not just hori/vert.
+
+
+
+
+
 
 
 

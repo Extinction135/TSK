@@ -151,6 +151,11 @@ namespace DungeonRun
             return collision;
         }
 
+
+
+
+
+        /*
         public static Boolean CheckEntityPoolCollisions(GameObject Obj)
         {
             collision = false; //assume no collision
@@ -170,6 +175,11 @@ namespace DungeonRun
             }
             return collision;
         }
+        */
+
+
+
+
 
         
 
@@ -227,7 +237,7 @@ namespace DungeonRun
             //check actor, object, entity collisions/interactions
             if (CheckActorPoolCollisions(Obj)) { collisionX = true; }
             if (CheckObjPoolCollisions(Obj)) { collisionX = true; }
-            if (CheckEntityPoolCollisions(Obj)) { collisionX = true; }
+            //if (CheckEntityPoolCollisions(Obj)) { collisionX = true; }
             //unproject X
             Obj.compCollision.rec.X = (int)Obj.compMove.position.X + Obj.compCollision.offsetX;
 
@@ -236,7 +246,7 @@ namespace DungeonRun
             //check actor, object, entity collisions/interactions
             if (CheckActorPoolCollisions(Obj)) { collisionY = true; }
             if (CheckObjPoolCollisions(Obj)) { collisionY = true; }
-            if (CheckEntityPoolCollisions(Obj)) { collisionY = true; }
+            //if (CheckEntityPoolCollisions(Obj)) { collisionY = true; }
             //unproject Y
             Obj.compCollision.rec.Y = (int)Obj.compMove.position.Y + Obj.compCollision.offsetY;
 

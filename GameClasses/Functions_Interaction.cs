@@ -332,85 +332,115 @@ namespace DungeonRun
 
         }
 
-        public static void InteractObject(GameObject ObjA, GameObject ObjB)
+        public static void InteractObject(GameObject ActiveObj, GameObject PassiveObj)
         {
-            //ObjA is a RoomObj or Entity (projectile)
-            //no blocking checks have been done yet
-            //ObjA is the active checking object
+            //ObjA is RoomObj or Entity (projectile)
+            //ObjB can never be an entity (projectile)
 
+            //Handle Projectile Interactions
+            if (ActiveObj.group == ObjGroup.Projectile)
+            {
 
-            #region Entity Projectile Interactions
+                #region Handle Blocking Interactions
 
-            if (ObjA.group == ObjGroup.Projectile)
-            {   //handle projectile interactions with blocking gameobjects
-                if (ObjB.compCollision.blocking)
-                {
-                    if (ObjA.type == ObjType.ProjectileExplosion)
+                if (PassiveObj.compCollision.blocking)
+                {   //handle blocking interactions with projectiles
+                    if (ActiveObj.type == ObjType.ProjectileExplosion)
                     {   //explosions alter certain gameobjects
-                        if (ObjB.type == ObjType.DoorBombable)
+                        if (PassiveObj.type == ObjType.DoorBombable)
                         {   //collapse the room.door
-                            Functions_GameObject.SetType(ObjB, ObjType.DoorBombed);
-                            CollapseDungeonDoor(ObjA); //collapse the dungeon.door
+                            Functions_GameObject.SetType(PassiveObj, ObjType.DoorBombed);
+                            CollapseDungeonDoor(ActiveObj); //collapse the dungeon.door
                             Assets.Play(Assets.sfxShatter);
                         }
                     }
-                    else if(ObjA.type == ObjType.ProjectileBomb)
+                    else if (ActiveObj.type == ObjType.ProjectileBomb)
                     {   //stop bombs from moving thru blocking objects
-                        Functions_Movement.StopMovement(ObjA.compMove);
+                        Functions_Movement.StopMovement(ActiveObj.compMove);
                     }
                     else
-                    {   //most projectiles die upon collision
-                        KillProjectileUponCollision(ObjA);
-                    }
+                    { KillProjectileUponCollision(ActiveObj); }
                 }
-            }
 
-            #endregion
+                #endregion
 
 
-            #region Non-Entity RoomObj Interactions
+                #region Handle Non-Blocking Interactions
 
-            else
-            {   //handle non-projectile interactions (checked by type)
-                if(ObjA.type == ObjType.ConveyorBeltOn)
-                {   //belt move objects the same way we move actors
-                    if (ObjB.compMove.moveable)
-                    {   //if objB is moveable and on ground, move it
-                        if (ObjB.compMove.grounded)
-                        { ConveyorBeltPush(ObjB.compMove, ObjA); }
-                    }
-                }
-                else if(ObjA.type == ObjType.BlockSpikes)
-                {
-                    if (ObjB.compCollision.blocking) { BounceSpikeBlock(ObjA); }
-                    else if (ObjB.group == ObjGroup.Projectile) { KillProjectileUponCollision(ObjB); }
-                    else if (ObjB.type == ObjType.BlockSpikes) { } //ignore spikeblock collisions
-                }
-                else if(ObjA.type == ObjType.Bumper)
-                {
-                    if (Math.Abs(ObjB.compMove.magnitude.X) > 0 || Math.Abs(ObjB.compMove.magnitude.Y) > 0)
-                    {
-                        //if ObjB is moving, stop it's movement, then bounce it
-                        ObjB.compMove.magnitude.X = 0;
-                        ObjB.compMove.magnitude.Y = 0;
-                        BounceOffBumper(ObjB.compMove, ObjA);
+                else
+                {   //handle non-blocking interactions with projectiles
+                    if (PassiveObj.type == ObjType.Bumper)
+                    {   //bounce projectile
+                        //stop projectile movement, bounce it
+                        ActiveObj.compMove.magnitude.X = 0;
+                        ActiveObj.compMove.magnitude.Y = 0;
+                        BounceOffBumper(ActiveObj.compMove, PassiveObj);
                         //move the object out of collision with the bumper post-bounce
-                        Functions_Movement.ProjectMovement(ObjB.compMove);
-                        Functions_Component.Align(ObjB.compMove, ObjB.compSprite, ObjB.compCollision);
+                        Functions_Movement.ProjectMovement(ActiveObj.compMove);
+                        Functions_Component.Align(ActiveObj.compMove, ActiveObj.compSprite, ActiveObj.compCollision);
                         //handle rotating the bounced object, if it is a projectile
-                        if (ObjB.group == ObjGroup.Projectile)
-                        {   //set the obj's direction
-                            ObjB.direction = ObjB.compMove.direction;
-                            Functions_GameObject.SetRotation(ObjB);
+                        ActiveObj.direction = ActiveObj.compMove.direction;
+                        Functions_GameObject.SetRotation(ActiveObj);
+                    }
+                    else if (PassiveObj.type == ObjType.BlockSpikes)
+                    { KillProjectileUponCollision(ActiveObj); }
+                    else if(PassiveObj.type == ObjType.ConveyorBeltOn)
+                    { 
+                        if (ActiveObj.compMove.moveable)
+                        {   //if objB is moveable and on ground, move it
+                            if (ActiveObj.compMove.grounded)
+                            { ConveyorBeltPush(ActiveObj.compMove, PassiveObj); }
                         }
                     }
                 }
 
-                //other obj types here
+                #endregion
+
             }
+            //Handle Non-Projectile Interactions
+            else
+            {
 
-            #endregion
+                #region Handle Blocking Interactions
 
+                if (PassiveObj.compCollision.blocking)
+                {
+                    if (ActiveObj.type == ObjType.BlockSpikes) { BounceSpikeBlock(ActiveObj); }
+                }
+
+                #endregion
+
+
+                #region Handle Non-Blocking Interactions
+
+                else
+                {
+                    if (ActiveObj.type == ObjType.ConveyorBeltOn)
+                    {   //belt move objects the same way we move actors
+                        if (PassiveObj.compMove.moveable)
+                        {   //if objB is moveable and on ground, move it
+                            if (PassiveObj.compMove.grounded)
+                            { ConveyorBeltPush(PassiveObj.compMove, ActiveObj); }
+                        }
+                    }
+                    else if (ActiveObj.type == ObjType.Bumper)
+                    {
+                        if (Math.Abs(PassiveObj.compMove.magnitude.X) > 0 || Math.Abs(PassiveObj.compMove.magnitude.Y) > 0)
+                        {   //if ObjB is moving, stop it's movement, then bounce it
+                            PassiveObj.compMove.magnitude.X = 0;
+                            PassiveObj.compMove.magnitude.Y = 0;
+                            BounceOffBumper(PassiveObj.compMove, ActiveObj);
+                            //move the object out of collision with the bumper post-bounce
+                            Functions_Movement.ProjectMovement(PassiveObj.compMove);
+                            Functions_Component.Align(PassiveObj.compMove, 
+                                PassiveObj.compSprite, PassiveObj.compCollision);
+                        }
+                    }
+                }
+
+                #endregion
+
+            }
         }
 
 
