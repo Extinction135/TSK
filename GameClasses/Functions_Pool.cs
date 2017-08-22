@@ -16,6 +16,8 @@ namespace DungeonRun
     {
         static int i;
 
+
+
         public static Actor GetActor()
         {
             Pool.actorIndex++;
@@ -169,6 +171,8 @@ namespace DungeonRun
 
         public static void Update()
         {
+            Pool.collisionsCount = 0;
+
 
             #region Actor pool
 
@@ -198,7 +202,41 @@ namespace DungeonRun
             #endregion
 
 
+            #region Entity pool
+
+            for (i = 0; i < Pool.entityCount; i++)
+            {
+                if (Pool.entityPool[i].active)
+                {
+                    Functions_GameObject.Update(Pool.entityPool[i]);
+                    Functions_Animation.Animate(Pool.entityPool[i].compAnim,
+                        Pool.entityPool[i].compSprite);
+
+                    //project movement
+                    if (Pool.entityPool[i].compMove.moveable)
+                    { Functions_Movement.ProjectMovement(Pool.entityPool[i].compMove); }
+
+                    //certain object groups dont check their collisions against other objects
+                    if (Pool.entityPool[i].group == ObjGroup.Particle)
+                    { }
+                    else //all other objects check their collisions
+                    { Functions_Collision.CheckCollisions(Pool.entityPool[i]); }
+
+                    //resolve movement
+                    Functions_Component.Align(
+                        Pool.entityPool[i].compMove,
+                        Pool.entityPool[i].compSprite,
+                        Pool.entityPool[i].compCollision);
+                }
+            }
+
+            #endregion
+
+
             #region Room obj pool
+
+            //check roomObj pool last, because this flips obj.compCollision.collisionChecked to true
+            //if we checked entities last, all roomObjs would be skipped because collChecked would be true
 
             for (i = 0; i < Pool.roomObjCount; i++)
             {
@@ -224,40 +262,9 @@ namespace DungeonRun
 
                     //resolve movement
                     Functions_Component.Align(
-                        Pool.roomObjPool[i].compMove, 
-                        Pool.roomObjPool[i].compSprite, 
+                        Pool.roomObjPool[i].compMove,
+                        Pool.roomObjPool[i].compSprite,
                         Pool.roomObjPool[i].compCollision);
-                }
-            }
-
-            #endregion
-
-
-            #region Entity pool
-
-            for (i = 0; i < Pool.entityCount; i++)
-            {
-                if (Pool.entityPool[i].active)
-                {  
-                    Functions_GameObject.Update(Pool.entityPool[i]);
-                    Functions_Animation.Animate(Pool.entityPool[i].compAnim, 
-                        Pool.entityPool[i].compSprite);
-                    
-                    //project movement
-                    if (Pool.entityPool[i].compMove.moveable)
-                    { Functions_Movement.ProjectMovement(Pool.entityPool[i].compMove); }
-
-                    //certain object groups dont check their collisions against other objects
-                    if (Pool.entityPool[i].group == ObjGroup.Particle) 
-                    { }
-                    else //all other objects check their collisions
-                    { Functions_Collision.CheckCollisions(Pool.entityPool[i]); }
-
-                    //resolve movement
-                    Functions_Component.Align(
-                        Pool.entityPool[i].compMove, 
-                        Pool.entityPool[i].compSprite, 
-                        Pool.entityPool[i].compCollision);
                 }
             }
 

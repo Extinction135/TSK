@@ -43,38 +43,19 @@ todo:
 v0.7 goals
 
 
-6
-
-
-
-Decrease Frametimes while keeping all functionality - part 1
-
-removed CheckEntityPoolCollisions() from object collision checking.
-this reduces the loop checks from 6 to 4, decreasing frametimes.
-this also stops duplicate collision checking that was happening,
-between roomObjs vs. entities, and entities vs. roomObjs.
-rewrote InteractObject() based on concept that a projectile will never be ObjB in check.
-
-renamed ObjA to ActiveObj in InteractObject().
-renamed ObjB to PassiveObj in InteractObject().
-this better defines their nature in the method.
-
-playtested, working as expected.
+5
 
 
 
 
+Display how many collisions checks are being done per frame
 
-
-
-we can split the roomObj pool collision checks in half,
-process every other obj each frame
-
-
-
-
-
-move the dev rooms into a seperate folder in project, useful for testing
+added CollisionCount int to Pool class.
+this tracks how many collisions occur per frame.
+updated worldUI to draw collisionCount.
+updated collision checking routines to count collisions with active objects + actors.
+using stress test level, total collisions are around 164,000 per frame.
+with a frame time of about 30,000 ticks, or 3 ms.
 
 
 
@@ -84,6 +65,31 @@ move the dev rooms into a seperate folder in project, useful for testing
 
 
 
+
+we are checking each roomObj against every other roomObj
+this means that ObjA is checked against ObjB twice
+we dont need to do this. how can we stop doing this?
+
+
+
+
+obj.collisionChecked (boolean)
+
+at start of collcheck, set all roomObjs.collChecked to false
+
+collision checking starts
+check obj.collCheck, if true skip this obj (it's been checked)
+else, continue collision checking obj
+at end, set obj.collCheck true
+
+
+
+
+
+
+
+could we do this for collision components?
+then use this same approach for actors?
 
 
 

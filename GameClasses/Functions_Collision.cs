@@ -67,7 +67,7 @@ namespace DungeonRun
                         Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;
                         //handle the hero interaction, may overwrites hero.lockTotal
-                        Functions_Interaction.InteractHero(Pool.roomObjPool[i]); 
+                        Functions_Interaction.InteractHero(Pool.roomObjPool[i]);
                     }
                 }
             }
@@ -90,6 +90,7 @@ namespace DungeonRun
                         Functions_Interaction.InteractActor(Actor, Pool.roomObjPool[i]);
                         if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
                     }
+                    Pool.collisionsCount++;
                 }
             }
             return collision;
@@ -109,6 +110,7 @@ namespace DungeonRun
                             if (Actor != Pool.actorPool[i]) { collision = true; }
                         }
                     }
+                    Pool.collisionsCount++;
                 }
             }
             return collision; 
@@ -129,6 +131,7 @@ namespace DungeonRun
                             if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
                         }
                     }
+                    Pool.collisionsCount++;
                 }
             }
             return collision;
@@ -146,42 +149,13 @@ namespace DungeonRun
                         Functions_Interaction.InteractActor(Pool.actorPool[i], Obj);
                         collision = true;
                     }
+                    Pool.collisionsCount++;
                 }
             }
             return collision;
         }
-
-
-
-
-
-        /*
-        public static Boolean CheckEntityPoolCollisions(GameObject Obj)
-        {
-            collision = false; //assume no collision
-            for (i = 0; i < Pool.entityCount; i++)
-            {
-                if (Pool.entityPool[i].active) //entityObj must be active
-                {   //check for overlap
-                    if (Obj.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
-                    {   //projectiles cant collide with themselves
-                        if (Obj != Pool.entityPool[i])
-                        {   //handle interaction, check to see if collision is blocking
-                            Functions_Interaction.InteractObject(Obj, Pool.entityPool[i]);
-                            if (Pool.entityPool[i].compCollision.blocking) { collision = true; }
-                        }
-                    }
-                }
-            }
-            return collision;
-        }
-        */
-
-
-
-
-
         
+
 
         public static void CheckCollisions(Actor Actor)
         {   //most frames, an actor isn't colliding with anything
@@ -237,7 +211,6 @@ namespace DungeonRun
             //check actor, object, entity collisions/interactions
             if (CheckActorPoolCollisions(Obj)) { collisionX = true; }
             if (CheckObjPoolCollisions(Obj)) { collisionX = true; }
-            //if (CheckEntityPoolCollisions(Obj)) { collisionX = true; }
             //unproject X
             Obj.compCollision.rec.X = (int)Obj.compMove.position.X + Obj.compCollision.offsetX;
 
@@ -246,7 +219,6 @@ namespace DungeonRun
             //check actor, object, entity collisions/interactions
             if (CheckActorPoolCollisions(Obj)) { collisionY = true; }
             if (CheckObjPoolCollisions(Obj)) { collisionY = true; }
-            //if (CheckEntityPoolCollisions(Obj)) { collisionY = true; }
             //unproject Y
             Obj.compCollision.rec.Y = (int)Obj.compMove.position.Y + Obj.compCollision.offsetY;
 

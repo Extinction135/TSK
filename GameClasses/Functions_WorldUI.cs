@@ -183,7 +183,8 @@ namespace DungeonRun
             Functions_Draw.Draw(WorldUI.autosaveText);
             if (Flags.DrawUDT)
             {
-                WorldUI.frametime.text = "U:" + DebugInfo.updateAvg;
+                WorldUI.frametime.text = "\nC:" + Pool.collisionsCount;
+                WorldUI.frametime.text += "\nU:" + DebugInfo.updateAvg;
                 WorldUI.frametime.text += "\nD:" + DebugInfo.drawAvg;
                 WorldUI.frametime.text += "\nT:" + Timing.totalTime.Milliseconds + " ms";
                 Functions_Draw.Draw(WorldUI.frametime);
@@ -221,8 +222,8 @@ namespace DungeonRun
             }
 
             //place frametime & autosave texts
-            WorldUI.frametime.position.X = 216;
-            WorldUI.frametime.position.Y = 50;
+            WorldUI.frametime.position.X = 4;
+            WorldUI.frametime.position.Y = 10;
             WorldUI.autosaveText.position.X = 54;
             WorldUI.autosaveText.position.Y = 81;
         }

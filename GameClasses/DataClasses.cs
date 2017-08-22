@@ -144,10 +144,11 @@ namespace DungeonRun
         public static int floorIndex;
         public static int floorCounter = 0;
 
-        //public static int counter;
         public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero;
         public static ComponentSprite heroShadow;
+
+        public static int collisionsCount = 0; //tracks how many collisions occur per frame
 
         public static void Initialize()
         {
