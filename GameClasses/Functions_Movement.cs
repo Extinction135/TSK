@@ -42,20 +42,35 @@ namespace DungeonRun
             if (Actor.armor == MenuItemType.ArmorChest) { Actor.compMove.speed *= 0.88f; }
             //cape armor increases movement
             else if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
-
-            ProjectMovement(Actor.compMove);
-            Functions_Collision.CheckCollisions(Actor);
-            Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
+            //ensure this actor is alive
+            if (Actor.state != ActorState.Dead)
+            {
+                ProjectMovement(Actor.compMove);
+                Functions_Collision.CheckCollisions(Actor);
+                Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
+            }
         }
 
         public static void Move(GameObject Obj)
-        {   //particles never move or check collisions
-            if (Obj.group != ObjGroup.Particle)
-            {
+        {
+
+
+            //conveyorbelt isn't getting interactions because it isn't moveable
+            //check collisions calls interaction upon a collision
+            //only moving objects get a collision check, and conveyorbelt isn't moving
+
+            if (Obj.compMove.moveable)
+            {   //if object is moveable, move it, check collisions, align sprite + collisionRec
                 ProjectMovement(Obj.compMove);
-                Functions_Collision.CheckCollisions(Obj);
+                
             }
+
+            Functions_Collision.CheckCollisions(Obj);
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
+
+
+
+
         }
 
         public static void ProjectMovement(ComponentMovement Move)

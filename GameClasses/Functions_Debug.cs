@@ -108,6 +108,9 @@ namespace DungeonRun
             output += "\tmagnitudeY:" + Move.magnitude.Y;
             output += "\tspeed:" + Move.speed;
             output += "\tfriction:" + Move.friction;
+            output += "\n";
+            output += "\tmoveable:" + Move.moveable;
+            output += "\tgrounded:" + Move.grounded;
             Debug.WriteLine(output);
         }
 

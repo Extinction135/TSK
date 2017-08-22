@@ -26,7 +26,6 @@ namespace DungeonRun
             Obj.active = true; //assume this object should draw / animate
             Obj.getsAI = false; //most objects do not get any AI input
             Obj.canBeSaved = false; //most objects cannot be saved as XML data
-            Obj.moveable = false; //most objects cannot be moved by a conveyorbelt
             //reset the sprite component
             Obj.compSprite.cellSize.X = 16 * 1; //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.Y = 16 * 1;
@@ -51,6 +50,8 @@ namespace DungeonRun
             Obj.compMove.magnitude.Y = 0; //
             Obj.compMove.speed = 0.0f; //assume this object doesn't move
             Obj.compMove.friction = 0.75f; //normal friction
+            Obj.compMove.moveable = false; //most objects cant be moved
+            Obj.compMove.grounded = true; //most objects exist on the ground
         }
 
         public static void SetRotation(GameObject Obj)
@@ -229,14 +230,14 @@ namespace DungeonRun
 
             #region Chests
 
-            else if ( Type == ObjType.ChestKey || Type == ObjType.ChestMap || Type == ObjType.ChestEmpty)
+            else if (Type == ObjType.ChestKey || Type == ObjType.ChestMap || Type == ObjType.ChestEmpty)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 Obj.group = ObjGroup.Chest;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
 
             #endregion
@@ -248,7 +249,7 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.BlockDraggable)
             {
@@ -257,7 +258,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -7;
                 Obj.group = ObjGroup.Draggable;
                 Obj.canBeSaved = true;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.BlockSpikes)
             {
@@ -268,6 +269,7 @@ namespace DungeonRun
                 Obj.compMove.speed = 0.6f; //spike blocks move
                 Obj.compMove.direction = Obj.direction; //in obj.direction
                 Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
             }
 
             #endregion
@@ -282,7 +284,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -7;
                 Obj.group = ObjGroup.Liftable;
                 Obj.canBeSaved = true;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
 
             #endregion
@@ -296,7 +298,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.SwitchBlockDown)
             {
@@ -323,7 +325,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
 
             #endregion
@@ -337,7 +339,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.offsetY = -1;
                 Obj.canBeSaved = true;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.Pillar)
             {
@@ -352,13 +354,12 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.getsAI = true; //obj gets AI
                 Obj.canBeSaved = true;
-                Obj.moveable = true; //can be moved by conveyorbelt
             }
             else if (Type == ObjType.Bumper)
             {
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.ConveyorBeltOn || Type == ObjType.ConveyorBeltOff)
             {
@@ -454,7 +455,7 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Pickup;
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
 
             #endregion
@@ -470,7 +471,7 @@ namespace DungeonRun
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
                 SetWeaponCollisions(Obj); //set collisions based on direction
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.ProjectileFireball)
             {
@@ -481,6 +482,8 @@ namespace DungeonRun
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compMove.speed = 1.5f; //fireballs move slow
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
             }
             else if (Type == ObjType.ProjectileBomb)
             {
@@ -490,7 +493,7 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.ProjectileExplosion)
             {
@@ -501,6 +504,7 @@ namespace DungeonRun
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = false;
+                Obj.compMove.grounded = false; //obj is airborne
             }
             else if (Type == ObjType.ProjectileArrow)
             {
@@ -511,6 +515,8 @@ namespace DungeonRun
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compMove.speed = 2.25f; //arrow move fast
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
                 //set collision rec based on direction
                 if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
                 {
@@ -606,7 +612,7 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.ParticleFairy)
             {
@@ -622,7 +628,7 @@ namespace DungeonRun
                 Obj.lifetime = 15; //in frames
                 Obj.compAnim.speed = 10; //in frames
                 Obj.compAnim.loop = false;
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
 
             //Particles - Rewards & Bottles
@@ -636,7 +642,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 40; //in frames
-                Obj.moveable = true; //can be moved by conveyorbelt
+                Obj.compMove.moveable = true;
             }
 
             #endregion

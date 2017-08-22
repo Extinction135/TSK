@@ -164,42 +164,11 @@ namespace DungeonRun
                 }
             }
         }
-
-        public static void Move()
-        {
-            for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
-            {   //move actors in actor pool that are active and alive
-                if (
-                    Pool.actorPool[Pool.actorCounter].active &&
-                    Pool.actorPool[Pool.actorCounter].state != ActorState.Dead
-                    )
-                { Functions_Movement.Move(Pool.actorPool[Pool.actorCounter]); }
-            }
-            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
-            {   //move projectiles in projectile pool that are active
-                if (Pool.entityPool[Pool.entityCounter].active)
-                { Functions_Movement.Move(Pool.entityPool[Pool.entityCounter]); }
-            }
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            {   //if this object is active, and it isn't blocking, then move it
-                if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                {   //some objects do not move, ever, at all, for any reason
-                    if (Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.Door
-                        || Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.Wall
-                        || Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.Particle
-                        || Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.Vendor
-                        || Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.EnemySpawn)
-                    { }
-                    else //all other objects do 
-                    { Functions_Movement.Move(Pool.roomObjPool[Pool.roomObjCounter]); }
-                }
-            }
-        }
-
+        
 
 
         public static void Update()
-        {
+        {   //update, animate, then move each pool
             //actor pool
             for (i = 0; i < Pool.actorCount; i++)
             {
@@ -208,6 +177,7 @@ namespace DungeonRun
                     Functions_Actor.Update(Pool.actorPool[i]);
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, 
                         Pool.actorPool[i].compSprite);
+                    Functions_Movement.Move(Pool.actorPool[i]);
                 }
             }
             //room obj pool
@@ -218,6 +188,7 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
                         Pool.roomObjPool[i].compSprite);
+                    Functions_Movement.Move(Pool.roomObjPool[i]);
                 }
             }
             //entity pool
@@ -228,9 +199,9 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.entityPool[i]);
                     Functions_Animation.Animate(Pool.entityPool[i].compAnim, 
                         Pool.entityPool[i].compSprite);
+                    Functions_Movement.Move(Pool.entityPool[i]);
                 }
             }
-            Move();
         }
 
         public static void Draw()

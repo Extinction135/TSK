@@ -382,7 +382,11 @@ namespace DungeonRun
             {   //handle non-projectile interactions (checked by type)
                 if(ObjA.type == ObjType.ConveyorBeltOn)
                 {   //belt move objects the same way we move actors
-                    if(ObjB.moveable) { ConveyorBeltPush(ObjB.compMove, ObjA); }
+                    if (ObjB.compMove.moveable)
+                    {   //if objB is moveable and on ground, move it
+                        if (ObjB.compMove.grounded)
+                        { ConveyorBeltPush(ObjB.compMove, ObjA); }
+                    }
                 }
                 else if(ObjA.type == ObjType.BlockSpikes)
                 {

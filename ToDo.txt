@@ -43,35 +43,75 @@ todo:
 v0.7 goals
 
 
-12
+11
+
+
+
+
+Improve how Objects & Actors move
+
+consolidated Functions_Pool.Move() into Functions_Pool.Update().
+
+created ComponentMovement booleans moveable & grounded.
+these better model if an object/actor is in air or on ground.
+and if the obj/actor is moveable.
+these values also conceptually belong to the move component, and not obj/actor.
+this means objs/actors share these concepts, instead of being implemented individually.
+updated various routines to set and check compMove.moveable & compMove.grounded.
 
 
 
 
 
 
-Get GameObjects moving along ConveyorBelts
 
-added "moveable" Boolean to GameObject class.
-updated ResetObject() to set Obj.moveable false.
-updated SetType() to set moveable boolean true for specific gameobjects.
+Rewarite / Refactor Movement, Collision, Interaction Systems to be clearer
 
-created ConveyorBeltPush(moveComponent, beltObj) to push both actors and objects.
-this means we push actors and objects the same way, using the same force.
-updated InteractActor() and InteractObj() to both use ConveyorBeltPush().
-InteractObj() checks if colliding obj is moveable, prior to belt pushing it.
-refactored InteractObject() to be clearer and focus more on ObjA.
-playtested, bugs.
+for actors + objs,
+- update (state + lifetime stuff)
+- animate (handle animation + timer)
 
-removed "interacts" boolean from gameobject. 
-instead we'll handle object interactions by type/group/blocking values.
-moving bumpers now bounce off of stationary bumpers.
-updated Functions_Pool.Move() to allow more objects to move, and thus interact.
-playtested, objects are properly moving along conveyor belts now.
+- project movement
+- check collisions
+- handle interactions (may alter magnitude, direction of objs)
+- resolve movement (align to newPos or oldPos)
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+objects that have a magnitude should check collisions, always
+and if the collide with a blocking object, they shouldn't move
+
+
+
+
+
+improve the bumper collision routine to bounce any object that has a magnitude
+this means the object was moving and should continue to move
+
+
+
+
+obj.moveable = this object can move
+obj.onGround = obj is on ground or in air
 
 
 
