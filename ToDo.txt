@@ -43,16 +43,30 @@ todo:
 v0.7 goals
 
 
-8
+7
 
 
 
-when hero throws a bomb south, it doesn't slide?
-i'm guessing because it collides with the hero it stops movement
-which means the bomb needs to spawn further from hero
 
-shooting arrows left and right causes the same problem
-arrows collide with hero
+
+
+Improve Spikeblock 
+
+improved the spikeblock sprite with some center details.
+updated Functions_Debuge.Inspect(Sprite Component) with rotation + rotation value info.
+updated Functions_GameObject.SetRotation() to set spike block rotation to none.
+spikeblock was getting rotated 90 degrees, if it was moving left/right.
+this caused the new shadows on the sprite to look incorrect.
+
+
+
+
+
+
+
+room doors should be blocking, but hero should be able to pass thru them
+this would prevent projectiles, actors, and room objects from leaving the room
+
 
 
 
@@ -68,14 +82,7 @@ instead of looping 0 to count
 
 
 
-Roomobjects++
 
-we should be able to turn the conveyors on and off
-the lever turns conveyors on/off, as well as floor spikes
-
-
-Spikeblocks++
-improve the spikeblock sprite with some center details
 
 Explosive Barrel
 we should have an explosive barrel - of course!

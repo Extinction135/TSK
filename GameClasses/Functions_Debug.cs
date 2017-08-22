@@ -145,10 +145,13 @@ namespace DungeonRun
             output += "\tcurrentFrame:" + Sprite.currentFrame.X + ", " + Sprite.currentFrame.Y + ", " + Sprite.currentFrame.flipHori;
             output += "\tcellSize:" + Sprite.cellSize.X + ", " + Sprite.cellSize.Y;
             output += "\n";
-            output += "\tspriteEffect:" + Sprite.spriteEffect;
-            output += "\tflipHorizontally:" + Sprite.flipHorizontally;
             output += "\tvisible:" + Sprite.visible;
             output += "\torigin:" + Sprite.origin.X + ", " + Sprite.origin.Y;
+            output += "\n";
+            output += "\tspriteEffect:" + Sprite.spriteEffect;
+            output += "\tflipHorizontally:" + Sprite.flipHorizontally;
+            output += "\trotation:" + Sprite.rotation;
+            output += "\trotation value:" + Sprite.rotationValue;
             Debug.WriteLine(output);
         }
 

@@ -64,8 +64,9 @@ namespace DungeonRun
                 if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
                 { Obj.compSprite.flipHorizontally = true; }
             }
-            else if (Obj.type == ObjType.ProjectileBomb)
-            {   //some projectiles only face Direction.Down
+            else if (Obj.type == ObjType.ProjectileBomb
+                || Obj.type == ObjType.BlockSpikes)
+            {   //some objects only face Direction.Down
                 Obj.compSprite.rotation = Rotation.None;
             }
         }
