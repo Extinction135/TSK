@@ -116,18 +116,18 @@ namespace DungeonRun
             return collision; 
         }
 
-        public static Boolean CheckObjPoolCollisions(GameObject Obj)
+        public static Boolean CheckObjPoolCollisions(GameObject Entity)
         {
             collision = false; //assume no collision
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active) //roomObj must be active
                 {   //check for overlap
-                    if (Obj.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    if (Entity.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {   //roomObjs cant collide with themselves
-                        if (Obj != Pool.roomObjPool[i])
+                        if (Entity != Pool.roomObjPool[i])
                         {   //handle interaction, check to see if collision is blocking
-                            Functions_Interaction.InteractObject(Obj, Pool.roomObjPool[i]);
+                            Functions_Interaction.InteractObject(Entity, Pool.roomObjPool[i]);
                             if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
                         }
                     }
@@ -137,16 +137,16 @@ namespace DungeonRun
             return collision;
         }
 
-        public static Boolean CheckActorPoolCollisions(GameObject Obj)
+        public static Boolean CheckActorPoolCollisions(GameObject Entity)
         {
             collision = false; //assume no collision
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active) //actor must be active
                 {   //check for overlap
-                    if (Obj.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
+                    if (Entity.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                     {   //handle interaction, actors are always blocking
-                        Functions_Interaction.InteractActor(Pool.actorPool[i], Obj);
+                        Functions_Interaction.InteractActor(Pool.actorPool[i], Entity);
                         collision = true;
                     }
                     Pool.collisionsCount++;
@@ -202,33 +202,33 @@ namespace DungeonRun
             Actor.compMove.position.Y = Actor.compMove.newPosition.Y;
         }
 
-        public static void CheckCollisions(GameObject Obj)
+        public static void CheckCollisions(GameObject Entity)
         {
             collisionX = false; collisionY = false; //check per axis
 
             //project X
-            Obj.compCollision.rec.X = (int)Obj.compMove.newPosition.X + Obj.compCollision.offsetX;
+            Entity.compCollision.rec.X = (int)Entity.compMove.newPosition.X + Entity.compCollision.offsetX;
             //check actor, object, entity collisions/interactions
-            if (CheckActorPoolCollisions(Obj)) { collisionX = true; }
-            if (CheckObjPoolCollisions(Obj)) { collisionX = true; }
+            if (CheckActorPoolCollisions(Entity)) { collisionX = true; }
+            if (CheckObjPoolCollisions(Entity)) { collisionX = true; }
             //unproject X
-            Obj.compCollision.rec.X = (int)Obj.compMove.position.X + Obj.compCollision.offsetX;
+            Entity.compCollision.rec.X = (int)Entity.compMove.position.X + Entity.compCollision.offsetX;
 
             //project Y
-            Obj.compCollision.rec.Y = (int)Obj.compMove.newPosition.Y + Obj.compCollision.offsetY;
+            Entity.compCollision.rec.Y = (int)Entity.compMove.newPosition.Y + Entity.compCollision.offsetY;
             //check actor, object, entity collisions/interactions
-            if (CheckActorPoolCollisions(Obj)) { collisionY = true; }
-            if (CheckObjPoolCollisions(Obj)) { collisionY = true; }
+            if (CheckActorPoolCollisions(Entity)) { collisionY = true; }
+            if (CheckObjPoolCollisions(Entity)) { collisionY = true; }
             //unproject Y
-            Obj.compCollision.rec.Y = (int)Obj.compMove.position.Y + Obj.compCollision.offsetY;
+            Entity.compCollision.rec.Y = (int)Entity.compMove.position.Y + Entity.compCollision.offsetY;
 
             //if there was a collision, revert to previous position, per axis
-            if (collisionX) { Obj.compMove.newPosition.X = Obj.compMove.position.X; }
-            if (collisionY) { Obj.compMove.newPosition.Y = Obj.compMove.position.Y; }
+            if (collisionX) { Entity.compMove.newPosition.X = Entity.compMove.position.X; }
+            if (collisionY) { Entity.compMove.newPosition.Y = Entity.compMove.position.Y; }
 
             //the current position becomes the new position
-            Obj.compMove.position.X = Obj.compMove.newPosition.X;
-            Obj.compMove.position.Y = Obj.compMove.newPosition.Y;
+            Entity.compMove.position.X = Entity.compMove.newPosition.X;
+            Entity.compMove.position.Y = Entity.compMove.newPosition.Y;
         }
 
     }

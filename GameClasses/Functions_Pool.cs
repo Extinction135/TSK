@@ -233,9 +233,7 @@ namespace DungeonRun
             #endregion
 
 
-            
-            #region Room obj pool
-
+            //Room obj pool
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
@@ -243,34 +241,8 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
                         Pool.roomObjPool[i].compSprite);
-
-                    /*
-                    //project movement
-                    if (Pool.roomObjPool[i].compMove.moveable)
-                    { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
-
-                    //certain object groups dont check their collisions against other objects
-                    if (Pool.roomObjPool[i].group == ObjGroup.Wall
-                        || Pool.roomObjPool[i].group == ObjGroup.Door
-                        || Pool.roomObjPool[i].group == ObjGroup.Pickup
-                        || Pool.roomObjPool[i].group == ObjGroup.Vendor
-                        || Pool.roomObjPool[i].group == ObjGroup.EnemySpawn)
-                    { }
-                    else //all other objects check their collisions
-                    { Functions_Collision.CheckCollisions(Pool.roomObjPool[i]); }
-
-                    //resolve movement
-                    Functions_Component.Align(
-                        Pool.roomObjPool[i].compMove,
-                        Pool.roomObjPool[i].compSprite,
-                        Pool.roomObjPool[i].compCollision);
-                    */
                 }
             }
-
-            #endregion
-            
-
         }
 
         public static void Draw()

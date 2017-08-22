@@ -43,36 +43,23 @@ todo:
 v0.7 goals
 
 
-4
+3
 
 
 
 
 
 
+Refactoring based on updated actors + entity collision system
 
-Reduce Collision Checks each Frame
+updated CheckCollisions(GameObject Obj) to use (GameObject Entity).
+this is because we're no longer sending roomObjs + entities to it.
+we're only sending objects from the entity pool (projectiles).
 
-we can save a ton of checks if we just stop checking roomObjs against roomObjs.
-we can continue checking actors + entities normally.
-this means roomObjs can't move, or collide with other roomObjs.
-so, if we turn off roomObj collisions, we lose:
-spikeblocks moving around
-conveyor belts moving room objects, pickups
-but, that's it.
+this renaming of parameters was also applied to:
+Functions_Collision.CheckObjPoolCollisions().
+Functions_Collision.CheckActorPoolCollisions().
 
-turned off roomObj collisions with roomObjs.
-stress test room went from 160,000 collisions to 10,000 collisions.
-frame times dropped from 3ms back to 0ms, around 6,000 ticks.
-
-
-
-
-
-InteractObject()
-since we aren't checking roomObjs vs. roomObjs, 
-we need to cleanup InteractObject().
-remove all paths that handle roomObj vs. roomObj interactions.
 
 
 
@@ -100,7 +87,10 @@ when we load a roomXML data file, place hero outside of room at top left
 
 
 
-
+InteractObject()
+since we aren't checking roomObjs vs. roomObjs, 
+we need to cleanup InteractObject().
+remove all paths that handle roomObj vs. roomObj interactions.
 
 
 

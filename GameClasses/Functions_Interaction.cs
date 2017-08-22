@@ -334,7 +334,7 @@ namespace DungeonRun
 
         public static void InteractObject(GameObject ActiveObj, GameObject PassiveObj)
         {
-            //ObjA is RoomObj or Entity (projectile)
+            //ObjA is Entity (projectile)
             //ObjB can never be an entity (projectile)
 
             //Handle Projectile Interactions
