@@ -388,12 +388,16 @@ namespace DungeonRun
                 }
                 else
                 {   //handle non-blocking collisions
+
+                    /*
                     if (ObjB.type == ObjType.BlockSpikes)
                     {
                         if (ObjA.type == ObjType.BlockSpikes)
-                        { BounceSpikeBlock(ObjA); BounceSpikeBlock(ObjB); }
+                        { BounceSpikeBlock(ObjA); } //BounceSpikeBlock(ObjB);
                     }
-                    else if (ObjB.type == ObjType.Bumper)
+                    */
+
+                    if (ObjB.type == ObjType.Bumper)
                     {
                         if (ObjA.type == ObjType.BlockSpikes)
                         { BounceOffBumper(ObjA, ObjB); }

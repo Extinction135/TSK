@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <type>Square</type>
   <objs>
@@ -167,13 +167,13 @@
     <ObjXmlData>
       <type>BlockSpikes</type>
       <direction>Left</direction>
-      <posX>86</posX>
+      <posX>88</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockSpikes</type>
       <direction>Left</direction>
-      <posX>56</posX>
+      <posX>88</posX>
       <posY>152</posY>
     </ObjXmlData>
   </objs>

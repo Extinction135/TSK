@@ -15,7 +15,6 @@ Gif Capture process:
 	test in browser to ensure proper fps
 
 CTRL + M, O = collapse functions/regions
-CTRL + M, P = expand functions/regions
 
 adding a new particle/projectile:
 	add new gameObject type for PP
@@ -44,63 +43,33 @@ todo:
 v0.7 goals
 
 
-1
-
-
-
-Display loaded room filename in RoomTools widget
-
-moved where reloadRoomButton is placed in RoomTools widget.
-updated Functions_Backend.SelectRoomFile() to set RoomTools.roomName to filename loaded.
-this was updated for both Functions_UWP and Functions_DirectX.
-playtested on UWP & DX, working as expected.
+13
 
 
 
 
+this commit is ready to push
 
 
+Fix SpikeBlock Bug
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SB bug
 if a spikeblock hits an object, at the same time another spikeblock hits obj,
-the spikeblocks will collide/overlap, and reverse their direction
-if this happens after the block has bounced off of obj, the block will reverse into obj 
-this cauess the block to bury itself into obj, 
-eventually passing thru it (if more 2nd block collisions happen)
+the spikeblocks will collide/overlap, and each will reverse their direction..
+if this happens after the block has bounced off of obj, the block will reverse into the obj.
+this cauess the block to bury itself into obj, colliding while inside it.
+eventually spikeblock will pass thru obj (if more spikeblock collisions happen).
+this is certainly not the intended behavior.
 
-*we can turn off spikeblock collisions with other spikeblocks
-*or, better idea?
-* spike blocks can only collide once, a double collision ruins the bounce
+the simplest solution is to ignore collisions between spikeblocks.
+updated Functions_Interaction.Interact(Obj, Obj) to ignore spikeblock collisions.
+spikeblocks still collide with bumpers and blocking objects.
+playtested, working as expected.
+
+
+
+
+
+
 
 
 
@@ -112,41 +81,64 @@ eventually passing thru it (if more 2nd block collisions happen)
 
 Roomobjects++
  
+Conveyor Belts++
+conveyor belts should move any object that touches them
+this includes projectiles, spikeblocks, etc...
+with the exceptions: pits, pit decorations, floor cracks, conveyor belts, floor decals,
+fireballs, arrows, doors, walls, levers, switches, floor spikes, enemy spawns, vendors, particles
+*we may want to add a moveable boolean to gameobject
+*then the conveyor belt interaction could check obj.movable
+*this boolean could be set in gameobj.setType().
+
+we should be able to turn the conveyors on and off
+the lever turns conveyors on/off, as well as floor spikes
+
+Spikeblocks++
+improve the spikeblock sprite with some center details
+
+Explosive Barrel
 we should have an explosive barrel - of course!
 just like bomb, but stationary, waiting for collision
+
+
+Cracked Floor Obj
+upon collision with hero, this becomes PitCollapsing obj
+
+Pit Collapsing Obj
+if this object isn't colliding with hero, it collapses (chagnes) into a Pit obj
+and it places pit teeth at top and bottom of pit upon collapse
 
 Cracked Floor pit opening
 we can also have a cracked open floor obj that sits over animated liquid
 this varies the 'pit' style a bit
 
-horizontal bridges
+Ice tile
+changes friction, which affects how quickly an obj/actor slows down
+this should affect the moveComponent of objects + actors the same way
 
-create ice tile - changes friction
-
-add in a randomly moving fireball enemy
+wanderingFire obj
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
 
-Spikeblocks++
-we should be able to create vertical and horizontal moving spike blocks
-include an arrow over the spike block as indicator
+protectiveFire obj
+just like wandering fire, except checks to see that it's colliding with an obj
+if it doesn't collide with an obj, it rotates right and moves in that direction
+this means it will travel clockwise along perimeter of stationary group of objects
+
+Pits++
 write interaction routine for PitAnimated
 this should work similar to conveyor belt, except it pulls hero towards it's center
-if spikeblocks do not collide with the room rec, reverse their position
-this prevents spikeblocks from flying out a door
 
-Conveyor Belts ++
-hero creates a sword projectile on conveyor belt
-hero is moved by conveyor belt into his sword projectile
-he takes damage. this should not happen
-certain projectiles should move with the conveyorbelt
-this would be the case with bombs, weapon swings, etc...
-but not flying projectiles, like fireball or arrow
-most objects should move if on a conveyor belt
-objs that shouldn't move: doors, walls, floor decals, pits, levers, flror spikes,
-conveyor belts, enemy spawns, vendors, air born projectiles, particles
-we should be able to turn the conveyors on and off
-the lever turns conveyors on/off
+Keep Objects inside Room
+if any object doesn't collide with room rec, 
+	roomObjs reverse their move direction 
+	projectiles are killed
+this will prevent moving objs from flying thru a door
+
+Circling Stars
+just like Lttp, the circling stars turns hero into an enemy actor type
+except, it's not on a timer. hero becomes enemy actor type until Circling stars collides with hero again.
+this is a check: if hero.type != hero, become enemy, else become hero.
 
 
 
@@ -161,11 +153,113 @@ the lever turns conveyors on/off
 
 
 Dungeons++
-link cave and forest dungeons from the overworld map
-create dungeon sprite sheet for cave + forest levels
-create enemies unique to the cave + forest
-create bosses unique to the cave + forest
-create old castle ruins dungeon as well
+link cave, forest, old castle dungeons from the overworld map
+create dungeon sprite sheet for cave + forest + old castle levels
+create enemies unique to the cave + forest + old castle
+create bosses unique to the cave + forest + old castle
+
+Enemies++
+create tier 1, 2, 3 level enemies for all dungeons (they can be larger if you want)
+dungeons should have an enemy list for each tier
+then upon room build, randomly choose an enemy type from the correct tier list
+for example, forest dungeon tier 1 enemies: blob, rat, snake
+when room builds, any of these 3 enemy types can spawn on a tier 1 spawn obj
+create enemies that fire projectiles - arrows, fireballs, bombs
+
+
+
+Dungeons (bombable doors)++
+once the dungeon's doors are created, some should randomly be changed to bombable
+this will help to conceal various paths thru the dungeon and make it more interesting / nonlinear
+bombable doors shouldn't appear on the map
+secret rooms shouldn't appear on the map
+simply ignore drawing of bombable doors + secret rooms
+- Play soundfx when hero strikes a bombable door -
+if hero strikes a bombable door, play a hollow sound
+if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
+this is a : sword projectile collision check against objects of type door bombable + wall cracked
+we'll need to add the hollow sound - we've already got the metallic tink soundFX
+
+Music++
+add overworld music
+add shop music (town music)
+title screeen plays title music
+
+explosion sound needs to be shorter
+
+
+Dungeons++
+the exit rooms should be different for each dungeon type
+but they should be the same for the dungeon type they represent
+so the dungeon type feels consistent, but there is variety between dungeon types
+dungeons should have names.
+the dungeon name should be displayed on the map.
+dungeon names could be randomly generated from a list.
+
+Boss dialog + Boss phases
+initially the boss should popup a dialog mocking player
+after boss hits half health, another dialog should popup
+this one talks about boss changing tactics
+"you're better than i expected"
+in the 2nd phase, the boss moves AWAY from the hero
+so its harder for the hero to hit the boss
+in first phase, the boss just randomly moves around
+
+PITS++
+falling into a pit is just instant death
+hero just dies, no damage is dealt (no fairy can be used)
+ends with 'you died' screen
+hero is set into hit state and scaled down to 0
+at 0, the hero dies
+this should also happen to enemies (instant death, no loot drop)
+we should prevent enemies from moving into pits / spikes on their own
+they should be able to be pushed into them, however
+
+
+Boss Heads -> Crystals
+instead of crystals, we should collect boss's heads.
+this is the same icon that appears on the overworld map for the dungeon
+this would appear in inventory screen where the crystals are, but there will only be 4
+these should be located on the overworld screen
+upon collection of 4 boss heads, the final dungeon opens
+the blob boss head is actually an eye, the bosses eye
+for now, the player will collect 4 eyes
+crystals widget should be renamed 'bosses defeated', bossesWidget
+we'll need to update the game display data + the LSN screen to reflect the update away from crystals
+we can also make the overworld map wider, to better fill the frame out
+
+
+Room Goals
+doors should be set to trap doors
+once hero collides with them, they close
+this traps hero inside room
+once all enemies are defeated or switch has been flipped, trap doors become open doors
+this 'completes' the room and allows hero to exit
+this means that rooms should have a goal enum
+{ None, DeadEnemies, Switch, Torches }
+
+
+dungeon rewards++
+When the hero beats a dungeon, the only reward should be the bosses head, no gold.
+gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
+text should read "press any button to continue"
+remove 'reward' text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v0.8 goals
 
 
 Outdoor Levels
@@ -202,58 +296,6 @@ For each dungeon, we need an outdoor level that displays the dungeon entrance
 this makes it feel like the player is entering the dungeon, instead of just spawning into it
 cave, forest, castle ruins, castle entrance
 
-
-Dungeons (bombable doors)++
-once the dungeon's doors are created, some should randomly be changed to bombable
-this will help to conceal various paths thru the dungeon and make it more interesting / nonlinear
-bombable doors shouldn't appear on the map
-secret rooms shouldn't appear on the map
-simply ignore drawing of bombable doors + secret rooms
-- Play soundfx when hero strikes a bombable door -
-if hero strikes a bombable door, play a hollow sound
-if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
-this is a : sword projectile collision check against objects of type door bombable + wall cracked
-we'll need to add the hollow sound - we've already got the metallic tink soundFX
-
-
-Music++
-add overworld music
-add shop music (town music)
-title screeen plays title music
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-explosion sound needs to be shorter
-
-
-
-
-
-
-
-
-
 Overworld++
 add tiny smoke particles coming out of some houses
 add 'floating' animation to ship (should bob up and down)
@@ -261,14 +303,22 @@ this means it needs to be a sprite in the main sheet
 make castlel ruins look more 'ruiny'
 
 
-Dungeons++
-the exit rooms should be different for each dungeon type
-but they should be the same for the dungeon type they represent
-so the dungeon type feels consistent, but there is variety between dungeon types
-dungeons should have names.
-the dungeon name should be displayed on the map.
-dungeon names could be randomly generated from a list.
 
+
+
+
+
+
+
+
+
+
+
+
+
+v0.9 goals
+
+complete story outline + plot
 
 Letters / Notes 
 we could also use the map scroll sprites as a display for letters
@@ -281,174 +331,64 @@ these scrolls could also popup when the hero gets them
 displaying alot of dialog / story plot points
 
 
-Boss dialog + Boss phases
-initially the boss should popup a dialog mocking player
-after boss hits half health, another dialog should popup
-this one talks about boss changing tactics
-"you're better than i expected"
-in the 2nd phase, the boss moves AWAY from the hero
-so its harder for the hero to hit the boss
-in first phase, the boss just randomly moves around
+implement dialog system and event booleans to track events in game
 
-
-PITS++
-falling into a pit is just instant death
-hero just dies, no damage is dealt (no fairy can be used)
-ends with 'you died' screen
-hero is set into hit state and scaled down to 0
-at 0, the hero dies
-this should also happen to enemies (instant death, no loot drop)
-we should prevent enemies from moving into pits / spikes on their own
-they should be able to be pushed into them, however
-
-
-Boss Heads -> Crystals
-instead of crystals, we should collect boss's heads.
-this is the same icon that appears on the overworld map for the dungeon
-this would appear in inventory screen where the crystals are, but there will only be 4
-these should be located on the overworld screen
-upon collection of 4 boss heads, the final dungeon opens
-the blob boss head is actually an eye, the bosses eye
-for now, the player will collect 4 eyes
-crystals widget should be renamed 'bosses defeated', bossesWidget
-we'll need to update the game display data + the LSN screen to reflect the update away from crystals
-we can also make the overworld map wider, to better fill the frame out
-
-
-EnemySpawns and Enemy Types ++
-a level of 1 means the easier enemy is placed here, and so on
-we will have 3 levels of enemy in each dungeon
-we will need 2 additional enemy types to fill out the enemy roster
-create enemies that fire projectiles - arrows, fireballs, bombs
+Create CheatsScreen - or this could be part of game ctrls
 
 
 
 
 
 
-	
 
-	
-	
-	
-	
-	
 
-Room Goals
-doors should be set to trap doors
-once hero collides with them, they close
-this traps hero inside room
-
-once all enemies are defeated or switch has been flipped, trap doors become open doors
-this 'completes' the room and allows hero to exit
-
-this means that rooms should have a goal enum
-{ None, DeadEnemies, Switch, Torches }
 
 
 
 
 
 DungeonDesign - Taking it Further
-	design dungeons as a whole
-	dungeons should have a theme
-	there should be 'architectural puzzles', where the dungeon changes in some way
-	this could be raising/lowering water levels
-	moving forward/backwards in time
-	destroying parts of the dungeon/rooms
-	using switches to alter the paths thru rooms, or alter the nature of rooms
-	for example, turning conveyo belts on/off, or spike traps
-	
-	in addition to these architectural puzzles, dungeons should also have a key item
-	this key item must be collected to complete the dungeon
-	for example, the hammer knocks down posts
-	the hookshot pulls hero across gaps
-	
-	there are certain zelda puzzle tropes to be followed to:
-	block puzzle - move a block or series of blocks into place, to press a switch / chest / etc
-	enemy puzzle - kill all enemies / miniboss / boss
-	shooting puzzle - shoot an eye or some object with an arrow / boomerang / projectile
-	torch puzzle - light 3-4 torches
-	
-	
+design dungeons as a whole
+dungeons should have a theme
+there should be 'architectural puzzles', where the dungeon changes in some way
+this could be raising/lowering water levels
+moving forward/backwards in time
+destroying parts of the dungeon/rooms
+using switches to alter the paths thru rooms, or alter the nature of rooms
+for example, turning conveyo belts on/off, or spike traps
+
+in addition to these architectural puzzles, dungeons should also have a key item
+this key item must be collected to complete the dungeon
+for example, the hammer knocks down posts
+the hookshot pulls hero across gaps
+
+there are certain zelda puzzle tropes to be followed to:
+block puzzle - move a block or series of blocks into place, to press a switch / chest / etc
+enemy puzzle - kill all enemies / miniboss / boss
+shooting puzzle - shoot an eye or some object with an arrow / boomerang / projectile
+torch puzzle - light 3-4 torches
 	
 	
 	
 	
-Create CheatsScreen - or this could be part of game ctrls
-
-less instances on sfx list for text
-more instnaces on sfx list for bomb explosions
-
-"press any button to play again" should be "press any button to continue"
-
-dungeon run text should blink, just like summary screen
-should this be part of the animatedTitle's functions_class as well?
-functions.Blink(Title), where title.blinkSpeed is used?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Story Design + Story Issues
-
-
-(will we be using crystals?)
-dungeon rewards++
-When the hero beats a dungeon, the only reward should be the dungeon crystal, no gold.
-gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
-text should read "press any button to continue"
-remove 'reward' text
-
-hero should be rewarded the dungeon crystal too
-set into reward animation, with crystal over hero's head
-this happens as the boss explodes, popup a dialog screen
-explaining that hero has recieved a crystal
-player exits the dialog, the screen fades to black
-
-if hero already has this crystal, then skip the reward/dialog
-boss explodes, screen fades to black
-
-
-
-
-
-
-
 	
 	
-
 
 
 
 MOAR STUFFS TO DOs
 	
 
-options widget functionality	
-	save game autosaves for now
-	quit game exits all screens and loads title screen
-	load game creates load screen
 	
 title widget functionality ++
-	new game resets player data, autosaves, and creates overworld screen
-	load game - calls the load game screen
-	audio/input/video/game ctrls - does nothing for now
+	audio/input/video/game ctrls - creates appropriate screen
 
 audio ctrls screen
 	sfx volume
 	music volume
 	
 input ctrls screen
-	button mapping
+	bvisual representation of button controls
 	
 video ctrls screen
 	full screen or windowed?
@@ -456,6 +396,9 @@ video ctrls screen
 game ctrls screen
 	how camera moves - follow hero or center to current room? 
 	we only need to flip Flags.CameraTracksHero boolean
+	
+	
+	
 	
 	
 Handling corrupt game files & first run setup - part 2
@@ -489,9 +432,7 @@ Polish
 	item boomerang - just like LttP boomerang, hits an enemy for 1, can 'collect' pickups
 	weapon staff - creates a magic orb projectile, if magic is max, else has an attack of 0, but pushes
 	equipment pearl - wtf does this do in game?	
-	
-	we need an enemy that shoots arrows (new enemy type, not just blob with bow)
-	we need an enemy that shoot fireballs (new enemy type, wizard?)	
+
 
 	minor bug:
 	the loadout animates the loadout menuItems
@@ -596,9 +537,5 @@ Look at how stardew valley engages players
 	should be able to craft advanced items, using special parts + gold
 	just a ton of additional stuff layered on top of the dungeon running, that is supporting core gameplay
 	
-damascus appararel / 5060.bigcartel
-- we could turn the style of the game into shirts + apparel too
-- but the style would have to be futuristic and awesome	
-	
-	
+
 	
