@@ -43,39 +43,7 @@ todo:
 v0.7 goals
 
 
-9
-
-
-
-
-Fix Bumper Interactions / Collisions
-
-rewrote BounceOffBumper() to handle MovementComponent instead of obj or actor.
-this means actors and objs use the same method for bumper bouncing.
-updated InteractObject() to move objects colliding with a bumper out of collision, post bounce.
-this fixes object interaction with bumpers and make the bounce predictable and stable.
-playtested, working as expected.
-
-objets/actors/pickups move with conveyor belts and bounce off bumpers.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+8
 
 
 
@@ -85,13 +53,6 @@ which means the bomb needs to spawn further from hero
 
 shooting arrows left and right causes the same problem
 arrows collide with hero
-
-
-
-
-
-
-
 
 
 

@@ -59,7 +59,7 @@ namespace DungeonRun
             #region Pickups
 
             else if (Type == ObjType.PickupRupee)
-            {   //place the dropped rupee away from hero, cardinal = pushed direction
+            {   //place the dropped rupee away from actor, cardinal = direction actor was pushed
                 if (cardinal == Direction.Down) { offsetX = 4; offsetY = -12; }
                 else if (cardinal == Direction.Up) { offsetX = 4; offsetY = 15; }
                 else if (cardinal == Direction.Right) { offsetX = -14; offsetY = 4; }
@@ -71,17 +71,23 @@ namespace DungeonRun
 
             #region Projectiles
 
-            else if (Type == ObjType.ProjectileFireball ||
-                Type == ObjType.ProjectileArrow)
+            else if (Type == ObjType.ProjectileFireball)
             {   //place projectile outside of actor's hitbox
                 if (cardinal == Direction.Down) { offsetY = 14; }
                 else if (cardinal == Direction.Up) { offsetY = -9; }
                 else if (cardinal == Direction.Right) { offsetX = 11; offsetY = 2; }
                 else if (cardinal == Direction.Left) { offsetX = -11; offsetY = 2; }
             }
+            else if(Type == ObjType.ProjectileArrow)
+            {   //place projectile outside of actor's hitbox
+                if (cardinal == Direction.Down) { offsetY = 14; }
+                else if (cardinal == Direction.Up) { offsetY = -9; }
+                else if (cardinal == Direction.Right) { offsetX = 13; offsetY = 2; }
+                else if (cardinal == Direction.Left) { offsetX = -13; offsetY = 2; }
+            }
             else if (Type == ObjType.ProjectileBomb)
             {   //bombs are placed closer to the actor
-                if (cardinal == Direction.Down) { offsetY = 4; }
+                if (cardinal == Direction.Down) { offsetY = 6; }
                 else if (cardinal == Direction.Up) { offsetY = 0; }
                 else if (cardinal == Direction.Right) { offsetX = 4; offsetY = 2; }
                 else if (cardinal == Direction.Left) { offsetX = -4; offsetY = 2; }
