@@ -43,19 +43,7 @@ todo:
 v0.7 goals
 
 
-5
-
-
-
-
-Display how many collisions checks are being done per frame
-
-added CollisionCount int to Pool class.
-this tracks how many collisions occur per frame.
-updated worldUI to draw collisionCount.
-updated collision checking routines to count collisions with active objects + actors.
-using stress test level, total collisions are around 164,000 per frame.
-with a frame time of about 30,000 ticks, or 3 ms.
+4
 
 
 
@@ -63,65 +51,108 @@ with a frame time of about 30,000 ticks, or 3 ms.
 
 
 
+Reduce Collision Checks each Frame
 
+we can save a ton of checks if we just stop checking roomObjs against roomObjs.
+we can continue checking actors + entities normally.
+this means roomObjs can't move, or collide with other roomObjs.
+so, if we turn off roomObj collisions, we lose:
+spikeblocks moving around
+conveyor belts moving room objects, pickups
+but, that's it.
 
-
-we are checking each roomObj against every other roomObj
-this means that ObjA is checked against ObjB twice
-we dont need to do this. how can we stop doing this?
-
-
-
-
-obj.collisionChecked (boolean)
-
-at start of collcheck, set all roomObjs.collChecked to false
-
-collision checking starts
-check obj.collCheck, if true skip this obj (it's been checked)
-else, continue collision checking obj
-at end, set obj.collCheck true
+turned off roomObj collisions with roomObjs.
+stress test room went from 160,000 collisions to 10,000 collisions.
+frame times dropped from 3ms back to 0ms, around 6,000 ticks.
 
 
 
 
 
-
-
-could we do this for collision components?
-then use this same approach for actors?
-
-
-
-
-we should be able to set the direction of block spike to NSEW, not just hori/vert.
+InteractObject()
+since we aren't checking roomObjs vs. roomObjs, 
+we need to cleanup InteractObject().
+remove all paths that handle roomObj vs. roomObj interactions.
 
 
 
 
 
 
+Fix Room Collision Bug
+create 16x16 collision rec for hero, matched to sprite
+check this rec's against room.recs, to set level.currentRoom
+this fixes bug where hero can appear outside of room/door 
 
-
-
-
-
-
-room doors should be blocking, but hero should be able to pass thru them
-this would prevent projectiles, actors, and room objects from leaving the room
-
-
-
-
-
-
-
-
+Fix Door Bug
+using this 16x16 collision rec, check collisions with doors
+if hero's 16x16 rec collides with an open door, then door.compCollision.blocking = false
+else the door is blocking
+(this keeps projectiles + enemies from leaving the room or passing thru doors)
 
 Editor++
-when we grab an object, we should grab the 'top most' object
-which means we'll need to loop thru the pool backwards (count to 0)
-instead of looping 0 to count
+when we load a roomXML data file, place hero outside of room at top left
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Projectiles++
+we should have mobile spikeblocks..
+can we do this using projectiles? of course
+spikeblock is a projectile with 255 lifetime
+this 255 value is special, meaning the projectile lasts lifetime of room
+we can also model various roomObjs like this as well, for example dark/lite blocks
+so we could 'fake' roomObjs moving around on conveyor belts (using projectiles)
+
+we'll need to make sure that pickups don't have a lifetime of 255.
+they can have a lifetime of 254 instead.
+
+
+
+
+ObjectTools++
+
+designate a line for projectiles in object tools widget
+this will display all the projectiles, and make them selectable
+and allow us to place projectiles where we want to, with the direction we want to
+we should be able to set the direction of blockspike to NSEW, not just hori/vert.
+these projectiles should exist above enemy spawns
+
+
+Add More Persistent Projectiles
+
+wanderingFire obj
+this is just like spikeblock except the obj.direction is chosen randomly upon collision
+the direction cannot be the current direction however, and can only be cardinal	
+
+protectiveFire obj
+just like wandering fire, except checks to see that it's colliding with an obj
+if it doesn't collide with an obj, it rotates right and moves in that direction
+this means it will travel clockwise along perimeter of stationary group of objects
+
+
+
+
+
+
 
 
 
@@ -147,24 +178,9 @@ Ice tile
 changes friction, which affects how quickly an obj/actor slows down
 this should affect the moveComponent of objects + actors the same way
 
-wanderingFire obj
-this is just like spikeblock except the obj.direction is chosen randomly upon collision
-the direction cannot be the current direction however, and can only be cardinal	
-
-protectiveFire obj
-just like wandering fire, except checks to see that it's colliding with an obj
-if it doesn't collide with an obj, it rotates right and moves in that direction
-this means it will travel clockwise along perimeter of stationary group of objects
-
 Pits++
 write interaction routine for PitAnimated
 this should work similar to conveyor belt, except it pulls hero towards it's center
-
-Keep Objects inside Room
-if any object doesn't collide with room rec, 
-	roomObjs reverse their move direction 
-	projectiles are killed
-this will prevent moving objs from flying thru a door
 
 Circling Stars
 just like Lttp, the circling stars turns hero into an enemy actor type

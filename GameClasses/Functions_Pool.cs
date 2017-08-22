@@ -233,10 +233,8 @@ namespace DungeonRun
             #endregion
 
 
+            
             #region Room obj pool
-
-            //check roomObj pool last, because this flips obj.compCollision.collisionChecked to true
-            //if we checked entities last, all roomObjs would be skipped because collChecked would be true
 
             for (i = 0; i < Pool.roomObjCount; i++)
             {
@@ -246,6 +244,7 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
                         Pool.roomObjPool[i].compSprite);
 
+                    /*
                     //project movement
                     if (Pool.roomObjPool[i].compMove.moveable)
                     { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
@@ -265,10 +264,12 @@ namespace DungeonRun
                         Pool.roomObjPool[i].compMove,
                         Pool.roomObjPool[i].compSprite,
                         Pool.roomObjPool[i].compCollision);
+                    */
                 }
             }
 
             #endregion
+            
 
         }
 
