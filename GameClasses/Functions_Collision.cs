@@ -219,7 +219,7 @@ namespace DungeonRun
         }
 
         public static void CheckCollisions(GameObject Obj)
-        {   
+        {
             collisionX = false; collisionY = false; //check per axis
 
             //project X

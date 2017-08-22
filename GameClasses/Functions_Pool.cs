@@ -207,6 +207,7 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
                         Pool.roomObjPool[i].compSprite);
+
                     //project movement
                     if (Pool.roomObjPool[i].compMove.moveable)
                     { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
@@ -241,6 +242,7 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.entityPool[i]);
                     Functions_Animation.Animate(Pool.entityPool[i].compAnim, 
                         Pool.entityPool[i].compSprite);
+                    
                     //project movement
                     if (Pool.entityPool[i].compMove.moveable)
                     { Functions_Movement.ProjectMovement(Pool.entityPool[i].compMove); }

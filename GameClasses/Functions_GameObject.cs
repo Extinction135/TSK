@@ -270,6 +270,7 @@ namespace DungeonRun
                 Obj.compMove.direction = Obj.direction; //in obj.direction
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //in air
             }
 
             #endregion

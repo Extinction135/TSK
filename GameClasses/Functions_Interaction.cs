@@ -305,13 +305,8 @@ namespace DungeonRun
                     ConveyorBeltPush(Actor.compMove, Obj);
                 }
                 else if (Obj.type == ObjType.Bumper)
-                {   //bounce actor off of bumper
-                    Functions_Movement.Push(Actor.compMove,
-                        Functions_Direction.GetRelativeDirection(
-                            Obj.compSprite.position, 
-                            Actor.compSprite.position), 
-                            10.0f);
-                    AnimateBumper(Obj);
+                {
+                    BounceOffBumper(Actor.compMove, Obj);
                 }
                 else if (Obj.type == ObjType.PitAnimated)
                 {   //push actor away from pit with a dash particle
@@ -337,13 +332,10 @@ namespace DungeonRun
 
         }
 
-
-
         public static void InteractObject(GameObject ObjA, GameObject ObjB)
         {
             //ObjA is a RoomObj or Entity (projectile)
             //no blocking checks have been done yet
-            //obj.interacts = projectiles, block spikes, conveyor belt
             //ObjA is the active checking object
 
 
@@ -396,13 +388,21 @@ namespace DungeonRun
                 }
                 else if(ObjA.type == ObjType.Bumper)
                 {
-                    if (ObjB.group == ObjGroup.Projectile) { BounceOffBumper(ObjB, ObjA); }
-                    else if (ObjB.type == ObjType.BlockSpikes) { BounceOffBumper(ObjB, ObjA); }
-                    else if (ObjB.type == ObjType.Bumper)
-                    {   //if ObjB (bumper) is moving, then bounce it, else ignore
-                        if (Math.Abs(ObjB.compMove.magnitude.X) > 0 || Math.Abs(ObjB.compMove.magnitude.Y) > 0)
-                        { BounceOffBumper(ObjB, ObjA); }
-                        
+                    if (Math.Abs(ObjB.compMove.magnitude.X) > 0 || Math.Abs(ObjB.compMove.magnitude.Y) > 0)
+                    {
+                        //if ObjB is moving, stop it's movement, then bounce it
+                        ObjB.compMove.magnitude.X = 0;
+                        ObjB.compMove.magnitude.Y = 0;
+                        BounceOffBumper(ObjB.compMove, ObjA);
+                        //move the object out of collision with the bumper post-bounce
+                        Functions_Movement.ProjectMovement(ObjB.compMove);
+                        Functions_Component.Align(ObjB.compMove, ObjB.compSprite, ObjB.compCollision);
+                        //handle rotating the bounced object, if it is a projectile
+                        if (ObjB.group == ObjGroup.Projectile)
+                        {   //set the obj's direction
+                            ObjB.direction = ObjB.compMove.direction;
+                            Functions_GameObject.SetRotation(ObjB);
+                        }
                     }
                 }
 
@@ -453,24 +453,17 @@ namespace DungeonRun
                 Direction.None);
         }
 
-        public static void BounceOffBumper(GameObject Obj, GameObject Bumper)
-        {   //some objects cannot be bounced
-            if(Obj.type == ObjType.ProjectileExplosion) { return; }
-            AnimateBumper(Bumper);
-            //set object's direction to be opposite direction, update the obj's rotation
-            Obj.compMove.direction = Functions_Direction.GetOppositeDirection(Obj.compMove.direction);
-            Obj.direction = Obj.compMove.direction;
-            Functions_GameObject.SetRotation(Obj);
-            //stop obj's movement (not obj's speed tho), then push
-            Obj.compMove.magnitude.X = 0;
-            Obj.compMove.magnitude.Y = 0;
-            Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 10.0f);
-        }
-
-        public static void AnimateBumper(GameObject Bumper)
-        {   //only play the bounce sound effect if the bumper hasn't been hit this frame
-            if (Bumper.compSprite.scale < 1.4f) { Assets.Play(Assets.sfxBounce); }
-            Bumper.compSprite.scale = 1.5f; //scale bumper up
+        public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
+        {   //bounce opposite direction
+            compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
+            //if the direction is none, then get a direction between bumper and collider
+            if (compMove.direction == Direction.None)
+            { compMove.direction = Functions_Direction.GetRelativeDirection(Bumper.compSprite.position, compMove.position); }
+            //push collider in direction
+            Functions_Movement.Push(compMove, compMove.direction, 10.0f);
+            //handle the bumper animation
+            Bumper.compSprite.scale = 1.5f;
+            Assets.Play(Assets.sfxBounce);
             Functions_Entity.SpawnEntity(
                 ObjType.ParticleAttention,
                 Bumper.compSprite.position.X,
@@ -481,7 +474,6 @@ namespace DungeonRun
         public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)
         {   //based on belt's direction, push moveComp by amount
             Functions_Movement.Push(compMove, belt.direction, 0.1f);
-            compMove.direction = belt.direction;
         }
 
 
