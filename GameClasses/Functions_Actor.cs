@@ -104,7 +104,6 @@ namespace DungeonRun
             Actor.equipment = MenuItemType.Unknown;
         }
 
-
         public static void SetType(Actor Actor, ActorType Type)
         {
             Actor.type = Type;
@@ -188,8 +187,6 @@ namespace DungeonRun
             Functions_Component.UpdateCellSize(Actor.compSprite);
             Functions_Component.CenterOrigin(Actor.compSprite);
         }
-
-
 
         public static void Update(Actor Actor)
         {
@@ -321,6 +318,12 @@ namespace DungeonRun
             //set actor animation and direction
             Functions_ActorAnimationList.SetAnimationGroup(Actor);
             Functions_ActorAnimationList.SetAnimationDirection(Actor);
+
+            //alter actor's speed based on loadout
+            //chest armor reduces movement
+            if (Actor.armor == MenuItemType.ArmorChest) { Actor.compMove.speed *= 0.88f; }
+            //cape armor increases movement
+            else if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
         }
 
     }

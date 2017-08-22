@@ -76,17 +76,17 @@ namespace DungeonRun
             return collision;
         }
 
-
+        
 
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
             collision = false; //assume no collision
             for (i = 0; i < Pool.roomObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
-                {
+                if (Pool.roomObjPool[i].active) //roomObj must be active
+                {   //check for overlap
                     if (Actor.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
-                    {
+                    {   //handle interaction, check to see if collision is blocking
                         Functions_Interaction.InteractActor(Actor, Pool.roomObjPool[i]);
                         if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
                     }
@@ -100,79 +100,83 @@ namespace DungeonRun
             collision = false; //assume no collision
             for (i = 0; i < Pool.actorCount; i++)
             {
-                if (Pool.actorPool[i].active)
+                if (Pool.actorPool[i].active) //actor must be active
                 {   //only check collisions with hero
                     if (Actor.type == ActorType.Hero || Pool.actorPool[i].type == ActorType.Hero)
-                    {   //check for overlap, actors cannot collide with themselves
+                    {   //check for overlap
                         if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                        { if (Actor != Pool.actorPool[i]) { collision = true; } }
+                        {   //actors cannot collide with themselves
+                            if (Actor != Pool.actorPool[i]) { collision = true; }
+                        }
                     }
-
-                    /* THE OLD WAY
-                    //actors always block/collide with each other, but not with themselves
-                    if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    { if (Actor != Pool.actorPool[i]) { collision = true; } }
-                    //if this was a collision between a blob and the boss, ignore it
-                    if (Actor.type == ActorType.Blob && Pool.actorPool[i].type == ActorType.Boss)
-                    { collision = false; }
-                    //if this was a collision between the boss and a blob, ignore it
-                    else if (Actor.type == ActorType.Boss && Pool.actorPool[i].type == ActorType.Blob)
-                    { collision = false; }
-                    */
                 }
             }
             return collision; 
         }
 
-
-
-        public static void CheckObjPoolCollisions(GameObject Obj)
-        {   //Obj could be a projectile/particle from the entity pool
+        public static Boolean CheckObjPoolCollisions(GameObject Obj)
+        {
+            collision = false; //assume no collision
             for (i = 0; i < Pool.roomObjCount; i++)
             {
-                if (Pool.roomObjPool[i].active)
-                {   //roomObj must be active
+                if (Pool.roomObjPool[i].active) //roomObj must be active
+                {   //check for overlap
                     if (Obj.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {   //roomObjs cant collide with themselves
                         if (Obj != Pool.roomObjPool[i])
-                        { Functions_Interaction.InteractObject(Obj, Pool.roomObjPool[i]); }
+                        {   //handle interaction, check to see if collision is blocking
+                            Functions_Interaction.InteractObject(Obj, Pool.roomObjPool[i]);
+                            if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
+                        }
                     }
                 }
             }
+            return collision;
         }
 
-        public static void CheckActorPoolCollisions(GameObject Projectile)
+        public static Boolean CheckActorPoolCollisions(GameObject Obj)
         {
+            collision = false; //assume no collision
             for (i = 0; i < Pool.actorCount; i++)
             {
-                if (Pool.actorPool[i].active)
-                {
-                    if (Projectile.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    { Functions_Interaction.InteractActor(Pool.actorPool[i], Projectile); }
-                }
-            }
-        }
-
-        public static void CheckEntityPoolCollisions(GameObject Projectile)
-        {   //Projectile is from from the entity pool
-            for (i = 0; i < Pool.entityCount; i++)
-            {
-                if (Pool.entityPool[i].active)
-                {   //entityObj must be active & Projectile must be interactive
-                    if (Projectile.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
-                    {   //projectiles cant collide with themselves
-                        if (Projectile != Pool.entityPool[i])
-                        { Functions_Interaction.InteractObject(Projectile, Pool.entityPool[i]); }
+                if (Pool.actorPool[i].active) //actor must be active
+                {   //check for overlap
+                    if (Obj.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
+                    {   //handle interaction, actors are always blocking
+                        Functions_Interaction.InteractActor(Pool.actorPool[i], Obj);
+                        collision = true;
                     }
                 }
             }
+            return collision;
         }
 
+        public static Boolean CheckEntityPoolCollisions(GameObject Obj)
+        {
+            collision = false; //assume no collision
+            for (i = 0; i < Pool.entityCount; i++)
+            {
+                if (Pool.entityPool[i].active) //entityObj must be active
+                {   //check for overlap
+                    if (Obj.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
+                    {   //projectiles cant collide with themselves
+                        if (Obj != Pool.entityPool[i])
+                        {   //handle interaction, check to see if collision is blocking
+                            Functions_Interaction.InteractObject(Obj, Pool.entityPool[i]);
+                            if (Pool.entityPool[i].compCollision.blocking) { collision = true; }
+                        }
+                    }
+                }
+            }
+            return collision;
+        }
 
+        
 
         public static void CheckCollisions(Actor Actor)
         {   //most frames, an actor isn't colliding with anything
-            collisionX = false; collisionY = false; collisionXY = false;
+            collisionX = false; collisionY = false; //check per axis
+            collisionXY = false; //and diagonal check
 
             //project on both X and Y axis
             Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X + Actor.compCollision.offsetX;
@@ -215,20 +219,30 @@ namespace DungeonRun
         }
 
         public static void CheckCollisions(GameObject Obj)
-        {
-            //do not check collisions for particles
-            if (Obj.group == ObjGroup.Particle) { return; }
+        {   
+            collisionX = false; collisionY = false; //check per axis
 
-            collisionX = false; collisionY = false;
-
-            //project collisionRec on X & Y axis
+            //project X
             Obj.compCollision.rec.X = (int)Obj.compMove.newPosition.X + Obj.compCollision.offsetX;
-            Obj.compCollision.rec.Y = (int)Obj.compMove.newPosition.Y + Obj.compCollision.offsetY;
+            //check actor, object, entity collisions/interactions
+            if (CheckActorPoolCollisions(Obj)) { collisionX = true; }
+            if (CheckObjPoolCollisions(Obj)) { collisionX = true; }
+            if (CheckEntityPoolCollisions(Obj)) { collisionX = true; }
+            //unproject X
+            Obj.compCollision.rec.X = (int)Obj.compMove.position.X + Obj.compCollision.offsetX;
 
-            //handle actor, object, projectile collisions/interactions
-            CheckObjPoolCollisions(Obj);
-            CheckActorPoolCollisions(Obj);
-            CheckEntityPoolCollisions(Obj);
+            //project Y
+            Obj.compCollision.rec.Y = (int)Obj.compMove.newPosition.Y + Obj.compCollision.offsetY;
+            //check actor, object, entity collisions/interactions
+            if (CheckActorPoolCollisions(Obj)) { collisionY = true; }
+            if (CheckObjPoolCollisions(Obj)) { collisionY = true; }
+            if (CheckEntityPoolCollisions(Obj)) { collisionY = true; }
+            //unproject Y
+            Obj.compCollision.rec.Y = (int)Obj.compMove.position.Y + Obj.compCollision.offsetY;
+
+            //if there was a collision, revert to previous position, per axis
+            if (collisionX) { Obj.compMove.newPosition.X = Obj.compMove.position.X; }
+            if (collisionY) { Obj.compMove.newPosition.Y = Obj.compMove.position.Y; }
 
             //the current position becomes the new position
             Obj.compMove.position.X = Obj.compMove.newPosition.X;

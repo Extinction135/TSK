@@ -168,8 +168,10 @@ namespace DungeonRun
 
 
         public static void Update()
-        {   //update, animate, then move each pool
-            //actor pool
+        {
+
+            #region Actor pool
+
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active)
@@ -177,10 +179,27 @@ namespace DungeonRun
                     Functions_Actor.Update(Pool.actorPool[i]);
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, 
                         Pool.actorPool[i].compSprite);
-                    Functions_Movement.Move(Pool.actorPool[i]);
+
+                    if (Pool.actorPool[i].state != ActorState.Dead)
+                    {
+                        //project movement
+                        Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove);
+                        //collision & interaction check
+                        Functions_Collision.CheckCollisions(Pool.actorPool[i]);
+                        //resolve movement
+                        Functions_Component.Align(
+                            Pool.actorPool[i].compMove, 
+                            Pool.actorPool[i].compSprite, 
+                            Pool.actorPool[i].compCollision);
+                    }
                 }
             }
-            //room obj pool
+
+            #endregion
+
+
+            #region Room obj pool
+
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
@@ -188,10 +207,33 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
                         Pool.roomObjPool[i].compSprite);
-                    Functions_Movement.Move(Pool.roomObjPool[i]);
+                    //project movement
+                    if (Pool.roomObjPool[i].compMove.moveable)
+                    { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
+
+                    //certain object groups dont check their collisions against other objects
+                    if (Pool.roomObjPool[i].group == ObjGroup.Wall
+                        || Pool.roomObjPool[i].group == ObjGroup.Door
+                        || Pool.roomObjPool[i].group == ObjGroup.Pickup
+                        || Pool.roomObjPool[i].group == ObjGroup.Vendor
+                        || Pool.roomObjPool[i].group == ObjGroup.EnemySpawn)
+                    { }
+                    else //all other objects check their collisions
+                    { Functions_Collision.CheckCollisions(Pool.roomObjPool[i]); }
+
+                    //resolve movement
+                    Functions_Component.Align(
+                        Pool.roomObjPool[i].compMove, 
+                        Pool.roomObjPool[i].compSprite, 
+                        Pool.roomObjPool[i].compCollision);
                 }
             }
-            //entity pool
+
+            #endregion
+
+
+            #region Entity pool
+
             for (i = 0; i < Pool.entityCount; i++)
             {
                 if (Pool.entityPool[i].active)
@@ -199,9 +241,26 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.entityPool[i]);
                     Functions_Animation.Animate(Pool.entityPool[i].compAnim, 
                         Pool.entityPool[i].compSprite);
-                    Functions_Movement.Move(Pool.entityPool[i]);
+                    //project movement
+                    if (Pool.entityPool[i].compMove.moveable)
+                    { Functions_Movement.ProjectMovement(Pool.entityPool[i].compMove); }
+
+                    //certain object groups dont check their collisions against other objects
+                    if (Pool.entityPool[i].group == ObjGroup.Particle) 
+                    { }
+                    else //all other objects check their collisions
+                    { Functions_Collision.CheckCollisions(Pool.entityPool[i]); }
+
+                    //resolve movement
+                    Functions_Component.Align(
+                        Pool.entityPool[i].compMove, 
+                        Pool.entityPool[i].compSprite, 
+                        Pool.entityPool[i].compCollision);
                 }
             }
+
+            #endregion
+
         }
 
         public static void Draw()

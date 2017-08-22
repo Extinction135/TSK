@@ -43,41 +43,38 @@ todo:
 v0.7 goals
 
 
-11
-
-
-
-
-Improve how Objects & Actors move
-
-consolidated Functions_Pool.Move() into Functions_Pool.Update().
-
-created ComponentMovement booleans moveable & grounded.
-these better model if an object/actor is in air or on ground.
-and if the obj/actor is moveable.
-these values also conceptually belong to the move component, and not obj/actor.
-this means objs/actors share these concepts, instead of being implemented individually.
-updated various routines to set and check compMove.moveable & compMove.grounded.
+10
 
 
 
 
 
+Rewrite / Refactor Movement, Collision, Interaction Systems to be clearer
 
+seperated collision checking from movement projection.
+seperated movement resolution from collision checking.
 
-Rewarite / Refactor Movement, Collision, Interaction Systems to be clearer
+updated obj collision routines to match actor collision routines.
+this should prevent objects from colliding/moving into each other.
 
-for actors + objs,
-- update (state + lifetime stuff)
-- animate (handle animation + timer)
-
-- project movement
-- check collisions
-- handle interactions (may alter magnitude, direction of objs)
-- resolve movement (align to newPos or oldPos)
+playtested, objects now move on conveyor belts and collide with each other.
 
 
 
+
+
+
+
+
+
+interactions with bumpers happen twice now, because of object per axis collision checking
+we'll need to rethink how we're handling bumpers
+with actors, its not a problem because
+
+
+
+
+in interact(objA, objB), objA has a magnitude and is thus moving
 
 
 

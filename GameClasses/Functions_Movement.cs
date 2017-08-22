@@ -14,10 +14,7 @@ namespace DungeonRun
 {
     public static class Functions_Movement
     {
-
         static float maxMagnitude = 7.0f;
-
-
 
         public static void Push(ComponentMovement Move, Direction Direction, float Amount)
         {
@@ -34,43 +31,6 @@ namespace DungeonRun
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
             else if (Direction == Direction.UpRight)
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
-        }
-
-        public static void Move(Actor Actor)
-        {
-            //chest armor reduces movement
-            if (Actor.armor == MenuItemType.ArmorChest) { Actor.compMove.speed *= 0.88f; }
-            //cape armor increases movement
-            else if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
-            //ensure this actor is alive
-            if (Actor.state != ActorState.Dead)
-            {
-                ProjectMovement(Actor.compMove);
-                Functions_Collision.CheckCollisions(Actor);
-                Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
-            }
-        }
-
-        public static void Move(GameObject Obj)
-        {
-
-
-            //conveyorbelt isn't getting interactions because it isn't moveable
-            //check collisions calls interaction upon a collision
-            //only moving objects get a collision check, and conveyorbelt isn't moving
-
-            if (Obj.compMove.moveable)
-            {   //if object is moveable, move it, check collisions, align sprite + collisionRec
-                ProjectMovement(Obj.compMove);
-                
-            }
-
-            Functions_Collision.CheckCollisions(Obj);
-            Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
-
-
-
-
         }
 
         public static void ProjectMovement(ComponentMovement Move)
