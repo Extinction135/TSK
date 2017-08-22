@@ -290,7 +290,10 @@ namespace DungeonRun
 
             #region These objects interact with ALL actors
 
-            if (Obj.group == ObjGroup.Projectile) { Functions_Battle.Damage(Actor, Obj); }
+            if (Obj.group == ObjGroup.Projectile)
+            {
+                Functions_Battle.Damage(Actor, Obj);
+            }
             else if (Obj.group == ObjGroup.Object) 
             {
                 if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloorOn)
@@ -298,8 +301,8 @@ namespace DungeonRun
                     Functions_Battle.Damage(Actor, Obj);
                 }
                 else if (Obj.type == ObjType.ConveyorBeltOn)
-                {   //push actor in belt's direction
-                    Functions_Movement.Push(Actor.compMove, Obj.direction, 0.1f);
+                {   //belt move actors the same way we move objects
+                    ConveyorBeltPush(Actor.compMove, Obj);
                 }
                 else if (Obj.type == ObjType.Bumper)
                 {   //bounce actor off of bumper
@@ -334,20 +337,24 @@ namespace DungeonRun
 
         }
 
+
+
         public static void InteractObject(GameObject ObjA, GameObject ObjB)
         {
             //ObjA is a RoomObj or Entity (projectile)
             //no blocking checks have been done yet
             //obj.interacts = projectiles, block spikes, conveyor belt
+            //ObjA is the active checking object
 
-            #region Entity Projectile Interaction
+
+            #region Entity Projectile Interactions
 
             if (ObjA.group == ObjGroup.Projectile)
-            {   //handle projectile interactions
+            {   //handle projectile interactions with blocking gameobjects
                 if (ObjB.compCollision.blocking)
-                {   //handle blocking collisions
+                {
                     if (ObjA.type == ObjType.ProjectileExplosion)
-                    {   //explosions can alter certain gameobjects
+                    {   //explosions alter certain gameobjects
                         if (ObjB.type == ObjType.DoorBombable)
                         {   //collapse the room.door
                             Functions_GameObject.SetType(ObjB, ObjType.DoorBombed);
@@ -360,50 +367,42 @@ namespace DungeonRun
                         Functions_Movement.StopMovement(ObjA.compMove);
                     }
                     else
-                    {   //some projectiles die upon collision
+                    {   //most projectiles die upon collision
                         KillProjectileUponCollision(ObjA);
                     }
-                }
-                else
-                {   //handle non-blocking collisions
-
-                    //if a sword projectile collides with a conveyor belt, it should be pushed
-                    
-                    //some projectiles die upon collision
-                    if (ObjB.type == ObjType.BlockSpikes) { KillProjectileUponCollision(ObjA); }
-                    else if (ObjB.type == ObjType.Bumper) { BounceOffBumper(ObjA, ObjB); }
                 }
             }
 
             #endregion
 
 
-            #region Non-Entity RoomObj Interaction
+            #region Non-Entity RoomObj Interactions
 
             else
-            {   //handle non-projectile interactions
-                if (ObjB.compCollision.blocking)
-                {   //handle blocking collisions
-                    if (ObjA.type == ObjType.BlockSpikes) { BounceSpikeBlock(ObjA); }
+            {   //handle non-projectile interactions (checked by type)
+                if(ObjA.type == ObjType.ConveyorBeltOn)
+                {   //belt move objects the same way we move actors
+                    if(ObjB.moveable) { ConveyorBeltPush(ObjB.compMove, ObjA); }
                 }
-                else
-                {   //handle non-blocking collisions
-
-                    /*
-                    if (ObjB.type == ObjType.BlockSpikes)
-                    {
-                        if (ObjA.type == ObjType.BlockSpikes)
-                        { BounceSpikeBlock(ObjA); } //BounceSpikeBlock(ObjB);
-                    }
-                    */
-
-                    if (ObjB.type == ObjType.Bumper)
-                    {
-                        if (ObjA.type == ObjType.BlockSpikes)
-                        { BounceOffBumper(ObjA, ObjB); }
+                else if(ObjA.type == ObjType.BlockSpikes)
+                {
+                    if (ObjB.compCollision.blocking) { BounceSpikeBlock(ObjA); }
+                    else if (ObjB.group == ObjGroup.Projectile) { KillProjectileUponCollision(ObjB); }
+                    else if (ObjB.type == ObjType.BlockSpikes) { } //ignore spikeblock collisions
+                }
+                else if(ObjA.type == ObjType.Bumper)
+                {
+                    if (ObjB.group == ObjGroup.Projectile) { BounceOffBumper(ObjB, ObjA); }
+                    else if (ObjB.type == ObjType.BlockSpikes) { BounceOffBumper(ObjB, ObjA); }
+                    else if (ObjB.type == ObjType.Bumper)
+                    {   //if ObjB (bumper) is moving, then bounce it, else ignore
+                        if (Math.Abs(ObjB.compMove.magnitude.X) > 0 || Math.Abs(ObjB.compMove.magnitude.Y) > 0)
+                        { BounceOffBumper(ObjB, ObjA); }
+                        
                     }
                 }
-                
+
+                //other obj types here
             }
 
             #endregion
@@ -453,6 +452,7 @@ namespace DungeonRun
         public static void BounceOffBumper(GameObject Obj, GameObject Bumper)
         {   //some objects cannot be bounced
             if(Obj.type == ObjType.ProjectileExplosion) { return; }
+            AnimateBumper(Bumper);
             //set object's direction to be opposite direction, update the obj's rotation
             Obj.compMove.direction = Functions_Direction.GetOppositeDirection(Obj.compMove.direction);
             Obj.direction = Obj.compMove.direction;
@@ -461,7 +461,6 @@ namespace DungeonRun
             Obj.compMove.magnitude.X = 0;
             Obj.compMove.magnitude.Y = 0;
             Functions_Movement.Push(Obj.compMove, Obj.compMove.direction, 10.0f);
-            AnimateBumper(Bumper);
         }
 
         public static void AnimateBumper(GameObject Bumper)
@@ -474,6 +473,13 @@ namespace DungeonRun
                 Bumper.compSprite.position.Y,
                 Direction.None);
         }
+
+        public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)
+        {   //based on belt's direction, push moveComp by amount
+            Functions_Movement.Push(compMove, belt.direction, 0.1f);
+            compMove.direction = belt.direction;
+        }
+
 
     }
 }

@@ -639,14 +639,15 @@ namespace DungeonRun
         public ComponentAnimation compAnim = new ComponentAnimation();
         public ComponentMovement compMove = new ComponentMovement();
 
-        public Direction direction = Direction.Down;
+        public Direction direction = Direction.Down; //direction obj/sprite is facing
         public Boolean active = true; //does this object draw, update?
         public Boolean getsAI = false; //does this object get passed to Functions_AI.HandleObj()?
         public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
-        public Boolean interacts = false; //does this obj get passed to Interact(ObjA, ObjB) method?
+        //public Boolean interacts = false; //does this obj get passed to Interact(ObjA, ObjB) method?
+        public Boolean moveable = false; //can this object be moved by a conveyorbelt?
 
-        public Byte lifetime;   //how many frames this object exists for, 0 = forever/ignore
-        public Byte lifeCounter;//counts up to lifetime value
+        public Byte lifetime; //how many frames this object exists for, 0 = forever/ignore
+        public Byte lifeCounter; //counts up to lifetime value
 
         public GameObject()
         {   //initialize to default value - data is changed later

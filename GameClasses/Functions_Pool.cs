@@ -183,8 +183,14 @@ namespace DungeonRun
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {   //if this object is active, and it isn't blocking, then move it
                 if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                {   //only non-blocking objects get moved, collision checked, and interaction handled
-                    if (!Pool.roomObjPool[Pool.roomObjCounter].compCollision.blocking)
+                {   //some objects do not move, ever, at all, for any reason
+                    if (Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.Door
+                        || Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.Wall
+                        || Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.Particle
+                        || Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.Vendor
+                        || Pool.roomObjPool[Pool.roomObjCounter].group == ObjGroup.EnemySpawn)
+                    { }
+                    else //all other objects do 
                     { Functions_Movement.Move(Pool.roomObjPool[Pool.roomObjCounter]); }
                 }
             }

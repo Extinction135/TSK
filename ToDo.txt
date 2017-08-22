@@ -43,36 +43,67 @@ todo:
 v0.7 goals
 
 
-13
-
-
-
-
-this commit is ready to push
-
-
-Fix SpikeBlock Bug
-
-if a spikeblock hits an object, at the same time another spikeblock hits obj,
-the spikeblocks will collide/overlap, and each will reverse their direction..
-if this happens after the block has bounced off of obj, the block will reverse into the obj.
-this cauess the block to bury itself into obj, colliding while inside it.
-eventually spikeblock will pass thru obj (if more spikeblock collisions happen).
-this is certainly not the intended behavior.
-
-the simplest solution is to ignore collisions between spikeblocks.
-updated Functions_Interaction.Interact(Obj, Obj) to ignore spikeblock collisions.
-spikeblocks still collide with bumpers and blocking objects.
-playtested, working as expected.
+12
 
 
 
 
 
 
+Get GameObjects moving along ConveyorBelts
+
+added "moveable" Boolean to GameObject class.
+updated ResetObject() to set Obj.moveable false.
+updated SetType() to set moveable boolean true for specific gameobjects.
+
+created ConveyorBeltPush(moveComponent, beltObj) to push both actors and objects.
+this means we push actors and objects the same way, using the same force.
+updated InteractActor() and InteractObj() to both use ConveyorBeltPush().
+InteractObj() checks if colliding obj is moveable, prior to belt pushing it.
+refactored InteractObject() to be clearer and focus more on ObjA.
+playtested, bugs.
+
+removed "interacts" boolean from gameobject. 
+instead we'll handle object interactions by type/group/blocking values.
+moving bumpers now bounce off of stationary bumpers.
+updated Functions_Pool.Move() to allow more objects to move, and thus interact.
+playtested, objects are properly moving along conveyor belts now.
 
 
 
+
+
+
+
+
+objects that are push by belt should check collisions with other objects
+this should be based on their magnitude
+if an object has a magnitude, check it's collisions with all other objects (roomObjs & entities)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ifi an actor is attacking/using item, then their magnitude could be set to 0
+since it seems that projectiles aren't moving along conveyor belts with actors
+
+
+
+
+when we grab an object, we should grab the 'top most' object
+which means we'll need to loop thru the pool backwards (count to 0)
+instead of looping 0 to count
 
 
 
@@ -92,6 +123,28 @@ fireballs, arrows, doors, walls, levers, switches, floor spikes, enemy spawns, v
 
 we should be able to turn the conveyors on and off
 the lever turns conveyors on/off, as well as floor spikes
+
+
+
+
+
+
+
+bring clarity to the InteractObj() method
+we should only care about ObjA's group/type/etc..
+
+
+
+
+
+
+
+
+
+
+
+should we be bouncing actors and objects the same way off of bumpers?
+
 
 Spikeblocks++
 improve the spikeblock sprite with some center details

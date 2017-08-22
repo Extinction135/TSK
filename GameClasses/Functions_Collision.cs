@@ -128,7 +128,6 @@ namespace DungeonRun
 
         public static void CheckObjPoolCollisions(GameObject Obj)
         {   //Obj could be a projectile/particle from the entity pool
-            if (Obj.interacts == false) { return; } //Obj must be interactive
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
@@ -156,7 +155,6 @@ namespace DungeonRun
 
         public static void CheckEntityPoolCollisions(GameObject Projectile)
         {   //Projectile is from from the entity pool
-            if (Projectile.interacts == false) { return; } //Projectile must be interactive
             for (i = 0; i < Pool.entityCount; i++)
             {
                 if (Pool.entityPool[i].active)
