@@ -57,9 +57,12 @@ namespace DungeonRun
                 if (Pool.heroRec.Intersects(Level.doors[i].rec))
                 {   //track doors hero has visited
                     Level.doors[i].visited = true; 
-                    //set the current room's spawnPos to the last door hero collided with
-                    Functions_Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
-                    Functions_Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
+                    if(Level.doors[i].type == DoorType.Open
+                        || Level.doors[i].type == DoorType.Bombed)
+                    {   //set the current room's spawnPos to the last open door hero collided with
+                        Functions_Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
+                        Functions_Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
+                    }
                 } 
             }
 
