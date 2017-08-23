@@ -153,7 +153,6 @@ namespace DungeonRun
             Functions_Pool.AlignRoomObjs();
             CleanupRoom(Room); //remove overlapping objs
 
-
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
             if (Flags.PrintOutput)
@@ -213,12 +212,39 @@ namespace DungeonRun
             CleanupRoom(Room);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
 
+
+
+
+
+
+
+
+
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
             if (Flags.PrintOutput)
             { Debug.WriteLine("finished " + Room.type + " room (id:" + Room.XMLid + ") in " + time.Ticks + " ticks"); }
         }
 
+        public static void SpawnHeroInCurrentRoom()
+        {   //teleport hero to currentRoom's spawn position
+            Functions_Movement.Teleport(Pool.hero.compMove, 
+                Functions_Level.currentRoom.spawnPos.X,
+                Functions_Level.currentRoom.spawnPos.Y);
+            Functions_Movement.StopMovement(Pool.hero.compMove);
+            //set camera's target to hero or room based on flag boolean
+            if (Flags.CameraTracksHero) //center camera to hero
+            { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
+            else
+            {   //center camera to current room
+                Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
+                Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y;
+            }
+            //teleport camera to targetPos, update camera view
+            Camera2D.currentPosition.X = Camera2D.targetPosition.X;
+            Camera2D.currentPosition.Y = Camera2D.targetPosition.Y;
+            Functions_Camera2D.Update();
+        }
 
 
         public static void SetRoomXMLid(Room Room)
@@ -408,6 +434,9 @@ namespace DungeonRun
                 (Room.size.X / 2) * 16 + pos.X + 8,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
             Functions_GameObject.SetType(objRef, ObjType.Exit);
+            //set the room.spawnPos to pos above exit door obj
+            Room.spawnPos.X = (Room.size.X / 2) * 16 + Room.rec.X + 8;
+            Room.spawnPos.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
 
             //place the exit light fx over exit obj
             objRef = Functions_Pool.GetRoomObj();
@@ -780,7 +809,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
         }
 

@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.6f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -488,6 +488,7 @@ namespace DungeonRun
         public Point center = new Point(0, 0);
         public int XMLid = 0; //index of xmlRoomData list used to build/finish room
         public RoomType type;
+        public Vector2 spawnPos; //where hero can spawn in this room (last door passed thru or exit)
 
         public Room(Point Pos, RoomType Type)
         {
@@ -495,6 +496,7 @@ namespace DungeonRun
             Functions_Room.SetType(this, Type);
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
             Functions_Room.SetRoomXMLid(this); //get random xml id value
+            spawnPos = new Vector2(0, 0); //this value isn't used (updated later)
         }
     }
 

@@ -43,25 +43,7 @@ todo:
 v0.7 goals
 
 
-1
-
-
-
-
-
-
-Fix Door Bug
-
-to prevent enemies and entities from passing thru doors and escaping the room,
-we have made open and bombed doors blocking.
-however, we check hero's position against each door's position,
-and if he's close enough, we set the door to be passable (non-blocking).
-this allows the hero to pass thru the door.
-if the hero is too far away from the door, then the door is set to blocking.
-
-updated Functions_Collision.CheckRoomCollision() to check hero.pos vs. doors.pos.
-also sets door.blocking true/false. playtested, working as expected.
-reorganized Functions_Collision.CheckRoomCollision().
+13
 
 
 
@@ -71,11 +53,51 @@ reorganized Functions_Collision.CheckRoomCollision().
 
 
 
-Track Last Door Hero passed thru
+Track where Hero spawns in each Room, Standardize Spawning Routine
 
-because we collide with doors, we can know the last door that hero passed thru
-so when hero falls into a pit, we can respawn him at the last door he walked thru
-we'll simply need to track a door instance somewhere (maybe room?)
+added Vector2 spawnPos to Room class.
+this will track where hero can spawn in a particular room.
+this is set to the last passed thru door's pos, or exit door's pos.
+we can also use this in editor to spawn hero outside of room for testing.
+
+updated Functions_Room.PlaceExit() to set Room.spawnPos above Exit Door obj.
+this handles Exit & Shop Rooms.
+updated CheckRoomCollision() to set currentRoom.spawnPos to last door hero collided with.
+this tracks which door hero entered/exited the room from.
+
+created Functions_Room.SpawnHeroInCurrentRoom().
+this teleports hero to currentRoom.spawnPos, and centers camera.
+updated Functions_Level.BuildLevel() to call SpawnHeroInCurrentRoom().
+upon levelBuild() complete, the hero's type is set to hero.
+this is to ensure player starts this level with hero in 'normal' state.
+updated WidgetRoomTools.BuildRoomData() to call SpawnHeroInCurrentRoom().
+
+playtested, roomEditor + Game working as expected.
+
+
+
+
+
+
+
+
+
+
+
+call SpawnHeroInCurrentRoom() after hero has fallen into a pit.
+
+
+
+
+
+unlit torches should have a width of 16 (not 14)
+and an Xoffset of 8
+
+
+
+
+
+
 
 Implement Pits
 write interaction routine for PitAnimated

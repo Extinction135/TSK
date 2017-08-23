@@ -180,32 +180,15 @@ namespace DungeonRun
             #endregion
 
 
-            #region Finish Level (Dungeon or Shop)
+            #region Finish Level
 
             //build the first room in the dungeon (room with exit)
             Level.rooms[0].visited = true; //hero spawns in this room
             currentRoom = Level.rooms[0];
             Functions_Room.BuildRoom(Level.rooms[0]);
             Functions_Room.FinishRoom(Level.rooms[0]);
-            //place hero in the current room (exit room, rooms[0]) in front of exit door
-            Functions_Actor.SetType(Pool.hero, ActorType.Hero);
-            Functions_Movement.Teleport(Pool.hero.compMove,
-                (currentRoom.size.X / 2) * 16 + currentRoom.rec.X + 8,
-                currentRoom.rec.Y + (currentRoom.size.Y - 1) * 16);
-            Functions_Movement.StopMovement(Pool.hero.compMove);
-            Pool.hero.direction = Direction.Up; //face hero up
             //check to see if dungeon map should be given to hero upon spawn
             if (Flags.MapCheat) { Level.map = true; } else { Level.map = false; }
-            //place cameras starting position in dungeon
-            if (Flags.CameraTracksHero) //center camera to hero
-            { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
-            else
-            {   //center hero to current room
-                Camera2D.targetPosition.X = currentRoom.center.X;
-                Camera2D.targetPosition.Y = currentRoom.center.Y;
-            }
-            //teleport camera to targetPos
-            Camera2D.currentPosition = Camera2D.targetPosition;
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();
             DungeonRecord.dungeonID = 0; //ID = 0 for now
@@ -217,6 +200,10 @@ namespace DungeonRun
             #endregion
 
 
+            //ensure hero is ActorType.Hero (in case his type was changed elsewhere)
+            Functions_Actor.SetType(Pool.hero, ActorType.Hero);
+            Functions_Room.SpawnHeroInCurrentRoom(); //spawn hero in exit room
+            Pool.hero.direction = Direction.Up; //face hero up
         }
 
 

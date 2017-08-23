@@ -327,8 +327,8 @@ namespace DungeonRun
 
             else if (Type == ObjType.TorchUnlit || Type == ObjType.TorchLit)
             {
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;

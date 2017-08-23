@@ -53,6 +53,8 @@ namespace DungeonRun
             //set testing saveData
             PlayerData.current.magicFireball = true;
             PlayerData.current.weaponBow = true;
+
+            Flags.Paused = false; //unpause editor initially
         }
 
         public override void HandleInput(GameTime GameTime)

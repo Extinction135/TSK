@@ -257,14 +257,15 @@ namespace DungeonRun
             //build interior room objects from xml data
             Functions_Room.BuildRoomObjs(RoomXmlData);
             //update roomObjs once
-            Functions_Pool.Update(); 
+            Functions_Pool.Update();
 
-            //center camera to room, pause game
-            Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
-            Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y + 8;
-            Camera2D.currentPosition = Camera2D.targetPosition;
+            //set spawnPos outside TopLeft of newly built room
+            Functions_Level.currentRoom.spawnPos.X = Functions_Level.currentRoom.rec.X - 32;
+            Functions_Level.currentRoom.spawnPos.Y = Functions_Level.currentRoom.rec.Y;
+            Functions_Room.SpawnHeroInCurrentRoom(); //spawn hero in room
+            Functions_Actor.SetType(Pool.hero, ActorType.Hero); //revert to hero type
+            Pool.hero.direction = Direction.Down; //face hero down
             Flags.Paused = true;
-            Functions_Camera2D.Update();
         }
 
 
