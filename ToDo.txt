@@ -43,31 +43,7 @@ todo:
 v0.7 goals
 
 
-2
-
-
-
-Fix Room Collision Bug
-
-when hero exits a room through a north door, hero can appear outside the door.
-this happens because the hero's collision isn't touching the north room rec yet.
-so the hero appears to be beyond the door, standing outside of room.
-this is a very minor bug, but it needs to be fixed.
-
-create 16x16 collision rec for hero, match to hero sprite each frame.
-check this rec's against room.recs, to set level.currentRoom.
-
-added heroRec to Pool data class.
-updated Functions_Pool.Update() to match heroRec to hero's sprite position.
-renamed Functions_Collision.CheckLevelRoomCollision() to CheckRoomCollision().
-updated Functions_Pool.Update() to call CheckRoomCollision().
-removed this call from LevelScreen.Update().
-updated Functions_Collision.CheckRoomCollision() to use heroRec instead of hero.compCollision.
-playtested, working as expected.
-
-
-
-
+1
 
 
 
@@ -75,30 +51,51 @@ playtested, working as expected.
 
 
 Fix Door Bug
-using this 16x16 collision rec, check collisions with doors
-if hero's 16x16 rec collides with an open door, then door.compCollision.blocking = false
-else the door is blocking
-(this keeps projectiles + enemies from leaving the room or passing thru doors)
+
+to prevent enemies and entities from passing thru doors and escaping the room,
+we have made open and bombed doors blocking.
+however, we check hero's position against each door's position,
+and if he's close enough, we set the door to be passable (non-blocking).
+this allows the hero to pass thru the door.
+if the hero is too far away from the door, then the door is set to blocking.
+
+updated Functions_Collision.CheckRoomCollision() to check hero.pos vs. doors.pos.
+also sets door.blocking true/false. playtested, working as expected.
+reorganized Functions_Collision.CheckRoomCollision().
 
 
 
 
 
 
+
+
+
+Track Last Door Hero passed thru
+
+because we collide with doors, we can know the last door that hero passed thru
+so when hero falls into a pit, we can respawn him at the last door he walked thru
+we'll simply need to track a door instance somewhere (maybe room?)
+
+Implement Pits
+write interaction routine for PitAnimated
+this should work similar to conveyor belt, except it pulls hero towards it's center
+if actor isn't hero, actor simply dies (doesn't drop loot)
+if actor is hero, then hero takes 1 damage and respawns at last door he passed thru
+
+Cracked Floor Obj
+upon collision with hero, this becomes PitCollapsing obj
+
+Pit Collapsing Obj
+if this object isn't colliding with hero, it collapses (chagnes) into a Pit obj
+and it places pit teeth at top and bottom of pit upon collapse
 
 Systems Cleanup
 - cleanup all systems that operated under roomObj collisions
-
 InteractObject()
 since we aren't checking roomObjs vs. roomObjs, 
 we need to cleanup InteractObject().
 remove all paths that handle roomObj vs. roomObj interactions.
-
-
-
-
-
-
 
 Editor++
 when we load a roomXML data file, place hero outside of room at top left
@@ -166,25 +163,9 @@ Explosive Barrel
 we should have an explosive barrel - of course!
 just like bomb, but stationary, waiting for collision
 
-
-Cracked Floor Obj
-upon collision with hero, this becomes PitCollapsing obj
-
-Pit Collapsing Obj
-if this object isn't colliding with hero, it collapses (chagnes) into a Pit obj
-and it places pit teeth at top and bottom of pit upon collapse
-
-Cracked Floor pit opening
-we can also have a cracked open floor obj that sits over animated liquid
-this varies the 'pit' style a bit
-
 Ice tile
 changes friction, which affects how quickly an obj/actor slows down
 this should affect the moveComponent of objects + actors the same way
-
-Pits++
-write interaction routine for PitAnimated
-this should work similar to conveyor belt, except it pulls hero towards it's center
 
 Circling Stars
 just like Lttp, the circling stars turns hero into an enemy actor type

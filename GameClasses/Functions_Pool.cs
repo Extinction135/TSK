@@ -199,13 +199,13 @@ namespace DungeonRun
                 }
             }
 
-
             //match hero's rec to hero's sprite
             Pool.heroRec.X = (int)Pool.hero.compSprite.position.X - 8;
             Pool.heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
             //check the heroRec's collisions with Level rooms
             Functions_Collision.CheckRoomCollision();
 
+            //check door collisions
 
             #endregion
 

@@ -25,6 +25,9 @@ namespace DungeonRun
 
         public static void CheckRoomCollision()
         {
+
+            #region Handle Hero transferring between Level.Rooms
+
             for (i = 0; i < Level.rooms.Count; i++)
             {   //if the current room is not the room we are checking against, then continue
                 if (Functions_Level.currentRoom != Level.rooms[i])
@@ -43,12 +46,41 @@ namespace DungeonRun
                     }
                 }
             }
-            //check heroRec collision against Level.doors too
+
+            #endregion
+
+
+            #region Track Doors that Hero has visited
+
             for (i = 0; i < Level.doors.Count; i++)
-            {
+            {   //check heroRec collision against Level.doors
                 if (Pool.heroRec.Intersects(Level.doors[i].rec))
-                { Level.doors[i].visited = true; } //hero has visited this door
+                { Level.doors[i].visited = true; } //hero has visited door
             }
+
+            #endregion
+
+
+            #region Open/Close Doors for Hero
+
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active) //roomObj must be active
+                {
+                    if(Pool.roomObjPool[i].type == ObjType.DoorOpen || Pool.roomObjPool[i].type == ObjType.DoorBombed)
+                    {   //set open/bombed doors to blocking or non-blocking
+                        Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
+                        if (Math.Abs(Pool.hero.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
+                        {   //compare hero to door sprite positions, unblock door if hero is close enough
+                            if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
+                            { Pool.roomObjPool[i].compCollision.blocking = false; }
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
         }
 
         public static Boolean CheckInteractionRecCollisions()
