@@ -145,8 +145,9 @@ namespace DungeonRun
         public static int floorCounter = 0;
 
         public static int activeActor = 1; //tracks the current actor being handled by AI
-        public static Actor hero;
+        public static Actor hero; //points to actorPool[0]
         public static ComponentSprite heroShadow;
+        public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
 
         public static int collisionsCount = 0; //tracks how many collisions occur per frame
 
@@ -203,9 +204,10 @@ namespace DungeonRun
             hero.armor = MenuItemType.ArmorCloth;
             hero.equipment = MenuItemType.Unknown;
 
-            //create the hero's shadow
+            //create the hero's shadow + rec
             heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;
+            heroRec = new Rectangle(0, 0, 16, 16);
         }
 
     }

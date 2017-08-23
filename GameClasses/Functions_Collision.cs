@@ -23,13 +23,13 @@ namespace DungeonRun
 
 
 
-        public static void CheckLevelRoomCollisions()
+        public static void CheckRoomCollision()
         {
             for (i = 0; i < Level.rooms.Count; i++)
             {   //if the current room is not the room we are checking against, then continue
                 if (Functions_Level.currentRoom != Level.rooms[i])
-                {   //if hero collides with this room rec, set it to be currentRoom, build the room
-                    if (Pool.hero.compCollision.rec.Intersects(Level.rooms[i].rec))
+                {   //if heroRec collides with room rec, set it as currentRoom, build room
+                    if (Pool.heroRec.Intersects(Level.rooms[i].rec))
                     {
                         Functions_Level.currentRoom = Level.rooms[i];
                         Level.rooms[i].visited = true;
@@ -43,10 +43,10 @@ namespace DungeonRun
                     }
                 }
             }
-            //check hero collision against Level.doors too
+            //check heroRec collision against Level.doors too
             for (i = 0; i < Level.doors.Count; i++)
             {
-                if (Pool.hero.compCollision.rec.Intersects(Level.doors[i].rec))
+                if (Pool.heroRec.Intersects(Level.doors[i].rec))
                 { Level.doors[i].visited = true; } //hero has visited this door
             }
         }

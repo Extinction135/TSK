@@ -43,33 +43,36 @@ todo:
 v0.7 goals
 
 
-3
-
-
-
-
-
-
-Refactoring based on updated actors + entity collision system
-
-updated CheckCollisions(GameObject Obj) to use (GameObject Entity).
-this is because we're no longer sending roomObjs + entities to it.
-we're only sending objects from the entity pool (projectiles).
-
-this renaming of parameters was also applied to:
-Functions_Collision.CheckObjPoolCollisions().
-Functions_Collision.CheckActorPoolCollisions().
-
-
-
-
+2
 
 
 
 Fix Room Collision Bug
-create 16x16 collision rec for hero, matched to sprite
-check this rec's against room.recs, to set level.currentRoom
-this fixes bug where hero can appear outside of room/door 
+
+when hero exits a room through a north door, hero can appear outside the door.
+this happens because the hero's collision isn't touching the north room rec yet.
+so the hero appears to be beyond the door, standing outside of room.
+this is a very minor bug, but it needs to be fixed.
+
+create 16x16 collision rec for hero, match to hero sprite each frame.
+check this rec's against room.recs, to set level.currentRoom.
+
+added heroRec to Pool data class.
+updated Functions_Pool.Update() to match heroRec to hero's sprite position.
+renamed Functions_Collision.CheckLevelRoomCollision() to CheckRoomCollision().
+updated Functions_Pool.Update() to call CheckRoomCollision().
+removed this call from LevelScreen.Update().
+updated Functions_Collision.CheckRoomCollision() to use heroRec instead of hero.compCollision.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
 
 Fix Door Bug
 using this 16x16 collision rec, check collisions with doors
@@ -77,20 +80,31 @@ if hero's 16x16 rec collides with an open door, then door.compCollision.blocking
 else the door is blocking
 (this keeps projectiles + enemies from leaving the room or passing thru doors)
 
-Editor++
-when we load a roomXML data file, place hero outside of room at top left
 
 
 
 
 
 
-
+Systems Cleanup
+- cleanup all systems that operated under roomObj collisions
 
 InteractObject()
 since we aren't checking roomObjs vs. roomObjs, 
 we need to cleanup InteractObject().
 remove all paths that handle roomObj vs. roomObj interactions.
+
+
+
+
+
+
+
+Editor++
+when we load a roomXML data file, place hero outside of room at top left
+
+
+
 
 
 

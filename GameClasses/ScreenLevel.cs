@@ -115,7 +115,6 @@ namespace DungeonRun
                 if (displayState != DisplayState.Closed)
                 {   //update and move actors, objects, projectiles, and camera
                     Functions_Pool.Update();
-                    Functions_Collision.CheckLevelRoomCollisions();
                     Functions_WorldUI.Update();
                     if (Flags.CameraTracksHero) //track camera to hero
                     {
