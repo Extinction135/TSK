@@ -352,8 +352,8 @@ namespace DungeonRun
                     {   //actor has reached 0% scale, has fallen into pit completely
                         if (Actor == Pool.hero)
                         {   //send hero back to last door he passed thru
-                            Assets.Play(Actor.sfxHit); //play hero's hit sfx
-                            //Assets.Play(Actor.sfxHit); //play actor land sfx
+                            //Assets.Play(Actor.sfxHit); //play hero's hit sfx
+                            Assets.Play(Assets.sfxActorLand); //play actor land sfx
                             Functions_Room.SpawnHeroInCurrentRoom(); 
                             //direct player's attention to hero's respawn pos
                             Functions_Entity.SpawnEntity(

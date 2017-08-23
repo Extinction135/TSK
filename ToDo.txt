@@ -51,34 +51,60 @@ v0.7 goals
 
 
 
-Add Actor Fall Sound Effect to Pit Interaction
-
-added SoundActorFall to content project.
-added SoundEffectInstance sfxActorFall to Assets.
-updated Pit Interact() to call actor falling sound effect.
-this occurs once actor has been centered to the pit obj.
-playtested, working as expected.
-
-more polishing of fall routine to look/sound/animate better.
-playtested, working as expected.
 
 
 
 
+Add Actor Landing Sound Effect to Pit Interaction
+
+added SoundActorLand to content project.
+added SoundEffectInstance sfxActorLand to Assets.
+updated Pit interaction with Hero to play ActorLand sound effect.
+this happens at the end of pit interaction, when hero respawns.
+playtested, working and sounding correct.
+
+
+
+
+bug: if hero collides with a closed boss door, then falls into a pit
+he will respawn -inside of- the bos door, stuck forever
+we should ignore boss door checks when we set the spawnPos
+only normal doors set spawnPos
+
+
+
+
+Get Projectiles interacting with Pits
+
+if projectile.compMove.grounded, then should fall into pit, else ignore (flyover)
+*a sword projectile is airborne* - make sure this is set properly in obj.setType().
+should pull projectile into pit center
+should scale projectile down to 0
+should play actorFall sound (rename to sfxFallingThrow)
 
 
 
 
 
-add land sound effect
+Improve Hero falling into Pit++
+when hero 'lands' after a pit fall, he should be put into a sitting position
+then he should take a few frames to 'standup', before finally returning to standing idle
+this should all be facing south
+this should be an animation list + state
+this state and animation should exist for all non-boss actors
+
+Add a button to top menu that sets the hero's ActorType.
+should enumerate thru available actor types, ignoring bosses of course.
+test that hero can still function as a blob.
+blob should have all animations that hero has.
+sprite sheet should look the same.
 
 
 
 
-polish the pit falling routine:
 
-add falling sound effect, add call from pit interact()
 
+Bug:
 if two actors fall into a pit at the same time,
 their collision recs wont overlap, and thus will perpetually 'fall' in place
 

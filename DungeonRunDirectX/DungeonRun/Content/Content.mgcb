@@ -419,3 +419,9 @@
 /processorParam:Quality=Best
 /build:SoundActorFall.wav
 
+#begin SoundActorLand.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundActorLand.wav
+
