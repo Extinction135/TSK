@@ -329,8 +329,12 @@ namespace DungeonRun
             if (doorPos.Count > 2) //but if we have 3 or more door positions,
             { chosenIndex = doorPos.Count / 2; } //choose the middle one
 
-            //set the type of the door, based on parent & child type
+            //set the type of the door
             Door door = new Door(doorPos[chosenIndex]);
+            door.type = DoorType.Open; //defaults to open
+            //randomly convert some open doors to bombable doors
+            if (Functions_Random.Int(0, 101) > 80) { door.type = DoorType.Bombable; }
+            //convert doors based on parent and child room types
             if (Parent.type == RoomType.Boss) { door.type = DoorType.Boss; }
             else if (Child.type == RoomType.Boss) { door.type = DoorType.Boss; }
             if (Parent.type == RoomType.Secret) { door.type = DoorType.Bombable; }

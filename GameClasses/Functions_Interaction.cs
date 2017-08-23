@@ -16,6 +16,9 @@ namespace DungeonRun
     {
 
         public static ComponentCollision interactionRec = new ComponentCollision();
+        static Vector2 posRef = new Vector2();
+
+
 
         public static void ClearHeroInteractionRec()
         {   //move the interaction rec offscreen
@@ -443,6 +446,7 @@ namespace DungeonRun
                         if (PassiveObj.type == ObjType.DoorBombable)
                         { Assets.Play(Assets.sfxTapHollow); } //play hollow
                         else { Assets.Play(Assets.sfxTapMetallic); } //play metallic
+                        
                     }
                 }
 
