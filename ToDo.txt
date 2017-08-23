@@ -48,21 +48,42 @@ v0.7 goals
 
 
 
-Improve Sword Projectile
 
-when sword collides with a blocking object, create a hit sparkle particle at tip of sword.
-updated InteractObject() -> Sword to place hit sparkle particle upon blocking collision.
-this is based on the sword's direction at the time.
-playtested, working as expected.
+Refine InteractObject()
+changed InteractObject.ActiveObj to InteractObject.Projectile.
+changed InteractObject.Passive to InteractObject.RoomObj.
 
-fixed a bug where sword projectiles were bouncing off of bumpers.
-updated InteractObj() -> Bumper to check for Swords, bail from method if true.
-playtested, working as expected.
+Refine HandleBirthEvent()
+updated Functions_Entity.HandleBirthEvent() to play sword swipe sfx for sword.
+removed call to play sword swipe fx from Functions_Item.UseItem().
 
-increased how often cracked walls appear in dungeon again.
-increased probability connecting open doors become bombable doors.
-this just adds interest to the rooms, instead of having open doors everywhere.
-playtested, working as expected. rooms much more interesting.
+updated Functions_Entity.HandleBirthEvent() to handle sfx for bottles.
+updated all bottle particles to follow naming convention ParticleBottle_____.
+created ParticleBottleEmpty.
+updated Functions_GameObject.SetType() to handle all bottle particles.
+
+
+create ParticleBottleEmpty
+
+rename ParticleBottleHealth, ParticleBottleMagic, ParticleBottleFairy
+
+
+
+
+
+
+updated UseBottle, removing the Type check as it was unnecessary.
+a bottle that has been used will always become an empty bottle.
+even if the bottle was empty.
+
+
+
+
+
+
+
+when sword projectile hits an actor, we should place a hit sparkle at sword tip
+just like how we plcae them upon roomobject collision
 
 
 

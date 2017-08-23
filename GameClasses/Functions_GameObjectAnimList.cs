@@ -236,11 +236,13 @@ namespace DungeonRun
                 //ParticleBow
                 new List<Byte4> { new Byte4(4, 6, 0, 0) },
 
-                //ParticleHealthPotion
+                //ParticleBottleEmpty
+                new List<Byte4> { new Byte4(6, 5, 0, 0) },
+                //ParticleBottleHealth
                 new List<Byte4> { new Byte4(6, 6, 0, 0) },
-                //ParticleMagicPotion
+                //ParticleBottleMagic
                 new List<Byte4> { new Byte4(6, 7, 0, 0) },
-                //ParticleFairyBottle
+                //ParticleBottleFairy
                 new List<Byte4> { new Byte4(6, 9, 0, 0) },
 
                 //Rewards

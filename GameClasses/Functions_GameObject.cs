@@ -641,9 +641,10 @@ namespace DungeonRun
             else if (
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
-                Type == ObjType.ParticleHealthPotion ||
-                Type == ObjType.ParticleMagicPotion ||
-                Type == ObjType.ParticleFairyBottle)
+                Type == ObjType.ParticleBottleEmpty ||
+                Type == ObjType.ParticleBottleFairy ||
+                Type == ObjType.ParticleBottleHealth ||
+                Type == ObjType.ParticleBottleMagic)
             {
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;

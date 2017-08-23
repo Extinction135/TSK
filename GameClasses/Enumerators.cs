@@ -96,7 +96,7 @@ namespace DungeonRun
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleFairy,
         ParticleBow,
-        ParticleHealthPotion, ParticleMagicPotion, ParticleFairyBottle,
+        ParticleBottleEmpty, ParticleBottleHealth, ParticleBottleMagic, ParticleBottleFairy,
         //Particles - rewards
         ParticleRewardKey, ParticleRewardMap,
     }

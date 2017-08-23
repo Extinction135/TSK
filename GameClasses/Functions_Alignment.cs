@@ -21,7 +21,8 @@ namespace DungeonRun
 
 
         public static void SetOffsets(GameObject Obj, ObjType Type)
-        {
+        {   //an object has spawned a projectile or particle
+
             offsetX = 0; offsetY = 0; //reset offsets
             cardinal = Functions_Direction.GetCardinalDirection(Obj.direction);
 
@@ -42,9 +43,10 @@ namespace DungeonRun
 
             #region Particles
 
-            //center horizontally, place near actor's feet
-            if (Type == ObjType.ParticleDashPuff) { offsetX = 4; offsetY = 8; }
-
+            if (Type == ObjType.ParticleDashPuff)
+            {   //center horizontally, place near actor's feet
+                offsetX = 4; offsetY = 8;
+            }
             else if (Type == ObjType.ParticleBow)
             {   //place bow particle in the actor's hands
                 if (cardinal == Direction.Down) { offsetY = 6; }
@@ -71,14 +73,7 @@ namespace DungeonRun
 
             #region Projectiles
 
-            else if (Type == ObjType.ProjectileFireball)
-            {   //place projectile outside of actor's hitbox
-                if (cardinal == Direction.Down) { offsetY = 14; }
-                else if (cardinal == Direction.Up) { offsetY = -9; }
-                else if (cardinal == Direction.Right) { offsetX = 11; offsetY = 2; }
-                else if (cardinal == Direction.Left) { offsetX = -11; offsetY = 2; }
-            }
-            else if(Type == ObjType.ProjectileArrow)
+            else if (Type == ObjType.ProjectileArrow)
             {   //place projectile outside of actor's hitbox
                 if (cardinal == Direction.Down) { offsetY = 14; }
                 else if (cardinal == Direction.Up) { offsetY = -9; }
@@ -91,6 +86,13 @@ namespace DungeonRun
                 else if (cardinal == Direction.Up) { offsetY = 0; }
                 else if (cardinal == Direction.Right) { offsetX = 4; offsetY = 2; }
                 else if (cardinal == Direction.Left) { offsetX = -4; offsetY = 2; }
+            }
+            else if (Type == ObjType.ProjectileFireball)
+            {   //place projectile outside of actor's hitbox
+                if (cardinal == Direction.Down) { offsetY = 14; }
+                else if (cardinal == Direction.Up) { offsetY = -9; }
+                else if (cardinal == Direction.Right) { offsetX = 11; offsetY = 2; }
+                else if (cardinal == Direction.Left) { offsetX = -11; offsetY = 2; }
             }
             else if (Type == ObjType.ProjectileSword)
             {   //place projectile outside of actor's hitbox, in actor's hand
@@ -105,15 +107,17 @@ namespace DungeonRun
 
             #region Reward & Bottle Particles
 
-            //place reward particles above actor's head
             else if (
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleFairy ||
-                Type == ObjType.ParticleHealthPotion ||
-                Type == ObjType.ParticleMagicPotion ||
-                Type == ObjType.ParticleFairyBottle)
-            { offsetY = -14; }
+                Type == ObjType.ParticleBottleEmpty ||
+                Type == ObjType.ParticleBottleFairy ||
+                Type == ObjType.ParticleBottleHealth ||
+                Type == ObjType.ParticleBottleMagic)
+            {   //place reward particles above actor's head
+                offsetY = -14;
+            }
 
             #endregion
 

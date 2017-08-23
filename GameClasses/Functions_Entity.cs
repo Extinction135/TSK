@@ -53,43 +53,72 @@ namespace DungeonRun
             { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
         }
 
-        public static void HandleBirthEvent(GameObject Obj)
-        {   //Obj is from the Entity pool
 
+
+        public static void HandleBirthEvent(GameObject Projectile)
+        {
 
             #region Projectiles
 
-            if (Obj.type == ObjType.ProjectileBomb)
-            {
-                SpawnEntity(ObjType.ParticleDashPuff,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-                Assets.Play(Assets.sfxBombDrop);
-            }
-            else if (Obj.type == ObjType.ProjectileFireball)
-            {   //place smoke puff centered to fireball
-                SpawnEntity(ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y + 4,
-                    Direction.None);
-                Assets.Play(Assets.sfxFireballCast);
-            }
-            else if (Obj.type == ObjType.ProjectileArrow)
+            if (Projectile.type == ObjType.ProjectileArrow)
             {
                 Assets.Play(Assets.sfxArrowShoot);
             }
-            else if (Obj.type == ObjType.ProjectileExplosion)
-            {   //place smoke puff above explosion
-                SpawnEntity(ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y - 8,
+            else if (Projectile.type == ObjType.ProjectileBomb)
+            {   
+                Assets.Play(Assets.sfxBombDrop);
+                //bomb is initially sliding upon birth
+                SpawnEntity(ObjType.ParticleDashPuff,
+                    Projectile.compSprite.position.X + 0,
+                    Projectile.compSprite.position.Y + 0,
                     Direction.None);
+            }
+            else if (Projectile.type == ObjType.ProjectileExplosion)
+            {   
                 Assets.Play(Assets.sfxExplosion);
+                //place smoke puff above explosion
+                SpawnEntity(ObjType.ParticleSmokePuff,
+                    Projectile.compSprite.position.X + 4,
+                    Projectile.compSprite.position.Y - 8,
+                    Direction.None);
+            }
+            else if (Projectile.type == ObjType.ProjectileFireball)
+            {   
+                Assets.Play(Assets.sfxFireballCast);
+                //place smoke puff centered to fireball
+                SpawnEntity(ObjType.ParticleSmokePuff,
+                    Projectile.compSprite.position.X + 4,
+                    Projectile.compSprite.position.Y + 4,
+                    Direction.None);
+            }
+            else if (Projectile.type == ObjType.ProjectileSword)
+            {   
+                Assets.Play(Assets.sfxSwordSwipe);
             }
 
             #endregion
 
+
+            #region Particles
+
+            else if (Projectile.type == ObjType.ParticleBottleEmpty)
+            {
+                Assets.Play(Assets.sfxError); 
+            }
+            else if (Projectile.type == ObjType.ParticleBottleHealth)
+            {
+                Assets.Play(Assets.sfxBeatDungeon);
+            }
+            else if (Projectile.type == ObjType.ParticleBottleMagic)
+            {
+                Assets.Play(Assets.sfxBeatDungeon);
+            }
+            else if (Projectile.type == ObjType.ParticleBottleFairy)
+            {
+                Assets.Play(Assets.sfxBeatDungeon);
+            }
+
+            #endregion
 
         }
 
@@ -103,10 +132,14 @@ namespace DungeonRun
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
             }
-
-
-            #region Projectiles
-
+            else if (Obj.type == ObjType.ProjectileArrow)
+            {
+                SpawnEntity(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+                Assets.Play(Assets.sfxArrowHit);
+            }
             else if (Obj.type == ObjType.ProjectileBomb)
             {   //create explosion projectile
                 SpawnEntity(ObjType.ProjectileExplosion,
@@ -114,6 +147,7 @@ namespace DungeonRun
                     Obj.compSprite.position.Y,
                     Direction.None);
             }
+            //explosion
             else if (Obj.type == ObjType.ProjectileFireball)
             {
                 SpawnEntity(ObjType.ParticleExplosion,
@@ -126,18 +160,7 @@ namespace DungeonRun
                     Direction.None);
                 Assets.Play(Assets.sfxFireballDeath);
             }
-            else if (Obj.type == ObjType.ProjectileArrow)
-            {
-                SpawnEntity(ObjType.ParticleAttention,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-                Assets.Play(Assets.sfxArrowHit);
-            }
-
-            #endregion
-
-
+            //sword
         }
 
     }

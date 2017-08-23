@@ -386,25 +386,17 @@ namespace DungeonRun
 
         }
 
-        public static void InteractObject(GameObject ActiveObj, GameObject PassiveObj)
-        {   //ObjA is Entity (projectile or pickup), ObjB is RoomObject
-
-
-            //ActiveObj should be named Projectile
-            //PassiveObj should be named RoomObj
-
-
-
-
+        public static void InteractObject(GameObject Projectile, GameObject RoomObj)
+        {
             //Handle Blocking Interactions (only with projectiles)
-            if (PassiveObj.compCollision.blocking)
+            if (RoomObj.compCollision.blocking)
             {
 
                 #region Arrow
 
-                if (ActiveObj.type == ObjType.ProjectileArrow)
+                if (Projectile.type == ObjType.ProjectileArrow)
                 {   //arrows die upon blocking collision
-                    KillProjectileUponCollision(ActiveObj);
+                    KillProjectileUponCollision(Projectile);
                 }
 
                 #endregion
@@ -412,9 +404,9 @@ namespace DungeonRun
 
                 #region Bomb
 
-                else if (ActiveObj.type == ObjType.ProjectileBomb)
+                else if (Projectile.type == ObjType.ProjectileBomb)
                 {   //stop bombs from moving thru blocking objects
-                    Functions_Movement.StopMovement(ActiveObj.compMove);
+                    Functions_Movement.StopMovement(Projectile.compMove);
                 }
 
                 #endregion
@@ -422,12 +414,12 @@ namespace DungeonRun
 
                 #region Explosion
 
-                else if (ActiveObj.type == ObjType.ProjectileExplosion)
+                else if (Projectile.type == ObjType.ProjectileExplosion)
                 {   //explosions alter certain gameobjects
-                    if (PassiveObj.type == ObjType.DoorBombable)
+                    if (RoomObj.type == ObjType.DoorBombable)
                     {   //collapse the room.door
-                        Functions_GameObject.SetType(PassiveObj, ObjType.DoorBombed);
-                        CollapseDungeonDoor(ActiveObj); //collapse the dungeon.door
+                        Functions_GameObject.SetType(RoomObj, ObjType.DoorBombed);
+                        CollapseDungeonDoor(Projectile); //collapse the dungeon.door
                         Assets.Play(Assets.sfxShatter);
                     }
                 }
@@ -437,9 +429,9 @@ namespace DungeonRun
 
                 #region Fireball
 
-                else if(ActiveObj.type == ObjType.ProjectileFireball)
+                else if(Projectile.type == ObjType.ProjectileFireball)
                 {   //fireballs die upon blocking collision
-                    KillProjectileUponCollision(ActiveObj);
+                    KillProjectileUponCollision(Projectile);
                 }
 
                 #endregion
@@ -447,21 +439,21 @@ namespace DungeonRun
 
                 #region Sword
 
-                else if(ActiveObj.type == ObjType.ProjectileSword)
+                else if(Projectile.type == ObjType.ProjectileSword)
                 {   //sword swipe causes soundfx to blocking objects
-                    if(ActiveObj.lifeCounter == 1)
+                    if(Projectile.lifeCounter == 1)
                     {   //if sword projectile is brand new, play collision sfx
-                        if (PassiveObj.type == ObjType.DoorBombable)
+                        if (RoomObj.type == ObjType.DoorBombable)
                         { Assets.Play(Assets.sfxTapHollow); } //play hollow
                         else { Assets.Play(Assets.sfxTapMetallic); }
                         //set posRef to sword's position
-                        posRef.X = ActiveObj.compSprite.position.X;
-                        posRef.Y = ActiveObj.compSprite.position.Y;
+                        posRef.X = Projectile.compSprite.position.X;
+                        posRef.Y = Projectile.compSprite.position.Y;
                         //set posRef to end of sword
-                        if (ActiveObj.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
-                        else if (ActiveObj.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
-                        else if (ActiveObj.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
-                        else if (ActiveObj.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
+                        if (Projectile.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
+                        else if (Projectile.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
+                        else if (Projectile.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
+                        else if (Projectile.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
                         //spawn hit particle at posRef
                         Functions_Entity.SpawnEntity(
                             ObjType.ParticleHitSparkle,
@@ -478,24 +470,24 @@ namespace DungeonRun
 
                 #region Bumper
 
-                if (PassiveObj.type == ObjType.Bumper)
+                if (RoomObj.type == ObjType.Bumper)
                 {
                     //some projectiles cannot be bounced off bumper
-                    if (ActiveObj.type == ObjType.ProjectileSword)
+                    if (Projectile.type == ObjType.ProjectileSword)
                     { return; }
 
                     //stop projectile movement, bounce it
-                    ActiveObj.compMove.magnitude.X = 0;
-                    ActiveObj.compMove.magnitude.Y = 0;
-                    BounceOffBumper(ActiveObj.compMove, PassiveObj);
+                    Projectile.compMove.magnitude.X = 0;
+                    Projectile.compMove.magnitude.Y = 0;
+                    BounceOffBumper(Projectile.compMove, RoomObj);
                     //move projectile out of collision with the bumper post-bounce
-                    Functions_Movement.ProjectMovement(ActiveObj.compMove);
-                    Functions_Component.Align(ActiveObj.compMove, ActiveObj.compSprite, ActiveObj.compCollision);
+                    Functions_Movement.ProjectMovement(Projectile.compMove);
+                    Functions_Component.Align(Projectile.compMove, Projectile.compSprite, Projectile.compCollision);
                     //rotate bounced projectiles (ActiveObj could be a pickup)
-                    if(ActiveObj.group == ObjGroup.Projectile)
+                    if(Projectile.group == ObjGroup.Projectile)
                     {
-                        ActiveObj.direction = ActiveObj.compMove.direction;
-                        Functions_GameObject.SetRotation(ActiveObj);
+                        Projectile.direction = Projectile.compMove.direction;
+                        Functions_GameObject.SetRotation(Projectile);
                     } 
                 }
 
@@ -504,9 +496,9 @@ namespace DungeonRun
 
                 #region BlockSpikes
 
-                else if (PassiveObj.type == ObjType.BlockSpikes)
+                else if (RoomObj.type == ObjType.BlockSpikes)
                 {
-                    KillProjectileUponCollision(ActiveObj);
+                    KillProjectileUponCollision(Projectile);
                 }
 
                 #endregion
@@ -514,12 +506,12 @@ namespace DungeonRun
 
                 #region ConveyorBelt
 
-                else if(PassiveObj.type == ObjType.ConveyorBeltOn)
+                else if(RoomObj.type == ObjType.ConveyorBeltOn)
                 {   //if Projectile is moveable and on ground, move it
-                    if (ActiveObj.compMove.moveable)
+                    if (Projectile.compMove.moveable)
                     {   
-                        if (ActiveObj.compMove.grounded)
-                        { ConveyorBeltPush(ActiveObj.compMove, PassiveObj); }
+                        if (Projectile.compMove.grounded)
+                        { ConveyorBeltPush(Projectile.compMove, RoomObj); }
                     }
                 }
 

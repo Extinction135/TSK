@@ -44,33 +44,31 @@ namespace DungeonRun
             #region Bottles - only hero can use bottles
 
             else if (Type == MenuItemType.BottleEmpty)
-            {
-                Actor.state = ActorState.Idle;
-                Actor.stateLocked = false;
-                Actor.lockTotal = 0;
-                Assets.Play(Assets.sfxError);
+            {   //no effect
+                Functions_Entity.SpawnEntity(ObjType.ParticleBottleEmpty, Actor);
+                UseBottle(Actor);
             }
             else if (Type == MenuItemType.BottleHealth)
             {   //refill actor's health, draw attention, soundfx, update boolean
                 Actor.health = Actor.maxHealth;
-                Functions_Entity.SpawnEntity(ObjType.ParticleHealthPotion, Actor);
                 PlayerData.current.bottleHealth = false;
-                UseBottle(Type, Actor);
+                Functions_Entity.SpawnEntity(ObjType.ParticleBottleHealth, Actor);
+                UseBottle(Actor);
             }
             else if (Type == MenuItemType.BottleMagic)
             {   //refill the actor's magic
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleMagicPotion, Actor);
                 PlayerData.current.bottleMagic = false;
-                UseBottle(Type, Actor);
+                Functions_Entity.SpawnEntity(ObjType.ParticleBottleMagic, Actor);
+                UseBottle(Actor);
             }
             else if (Type == MenuItemType.BottleFairy)
             {   //refill the actor's health and magic
                 Actor.health = Actor.maxHealth;
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleFairyBottle, Actor);
                 PlayerData.current.bottleFairy = false;
-                UseBottle(Type, Actor);
+                Functions_Entity.SpawnEntity(ObjType.ParticleBottleFairy, Actor);
+                UseBottle(Actor);
             }
 
             #endregion
@@ -104,7 +102,6 @@ namespace DungeonRun
             else if (Type == MenuItemType.WeaponSword)
             {
                 Functions_Entity.SpawnEntity(ObjType.ProjectileSword, Actor);
-                Assets.Play(Assets.sfxSwordSwipe);
                 Actor.lockTotal = 15;
             }
             else if (Type == MenuItemType.WeaponBow)
@@ -131,11 +128,10 @@ namespace DungeonRun
 
         }
 
-        static void UseBottle(MenuItemType Type, Actor Actor)
+        static void UseBottle(Actor Actor)
         {
             Functions_Entity.SpawnEntity(ObjType.ParticleAttention, Actor);
-            if (Actor.item == Type) { Actor.item = MenuItemType.BottleEmpty; }
-            Assets.Play(Assets.sfxBeatDungeon); //need a refill sound effect
+            Actor.item = MenuItemType.BottleEmpty;
             Actor.state = ActorState.Reward;
             Actor.lockTotal = 40;
         }
