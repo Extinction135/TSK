@@ -333,7 +333,7 @@ namespace DungeonRun
             Door door = new Door(doorPos[chosenIndex]);
             door.type = DoorType.Open; //defaults to open
             //randomly convert some open doors to bombable doors
-            if (Functions_Random.Int(0, 101) > 80) { door.type = DoorType.Bombable; }
+            if (Functions_Random.Int(0, 101) > 70) { door.type = DoorType.Bombable; }
             //convert doors based on parent and child room types
             if (Parent.type == RoomType.Boss) { door.type = DoorType.Boss; }
             else if (Child.type == RoomType.Boss) { door.type = DoorType.Boss; }

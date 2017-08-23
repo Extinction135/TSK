@@ -43,42 +43,27 @@ todo:
 v0.7 goals
 
 
-6
+5
 
 
 
-Add more bombable doors and cracked walls to dungeons
 
-updated Functions_Level.Poke() to randomly set some open doors to be bombable.
-this means that some open doors that would normally connect between rooms,
-will now look like cracked walls, and obscures the critical path thru dungeon.
+Improve Sword Projectile
 
-updated Functions_Room.AddCrackedWalls() to convert more walls into cracked walls.
-this increases the amount of decoy bombable doors in each room.
+when sword collides with a blocking object, create a hit sparkle particle at tip of sword.
+updated InteractObject() -> Sword to place hit sparkle particle upon blocking collision.
+this is based on the sword's direction at the time.
 playtested, working as expected.
 
+fixed a bug where sword projectiles were bouncing off of bumpers.
+updated InteractObj() -> Bumper to check for Swords, bail from method if true.
+playtested, working as expected.
 
+increased how often cracked walls appear in dungeon again.
+increased probability connecting open doors become bombable doors.
+this just adds interest to the rooms, instead of having open doors everywhere.
+playtested, working as expected. rooms much more interesting.
 
-
-//set posRef to sword's position
-posRef.X = ActiveObj.compSprite.position.X;
-posRef.Y = ActiveObj.compSprite.position.Y;
-//set posRef to end of sword
-if (ActiveObj.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
-else if (ActiveObj.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
-else if (ActiveObj.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
-else if (ActiveObj.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
-//spawn hit particle at posRef
-Functions_Entity.SpawnEntity(
-	ObjType.ParticleHitSparkle,
-	posRef.X, posRef.Y, Direction.None);
-
-
-
-
-
-
-sword projectiles should not bounce off of bumpers
 
 
 

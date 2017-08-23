@@ -905,7 +905,7 @@ namespace DungeonRun
         public Vector2 magnitude = new Vector2(0, 0); //how much actor/obj moves each frames
         public float speed = 0.0f; //controls magnitude
         public float friction = 0.75f; //reduces magnitude each frame
-        public Boolean moveable = false; //stationary or moveable?
+        public Boolean moveable = false; //can be moved by conveyorbelts, if on ground
         public Boolean grounded = true; //on ground or in air?
     }
 

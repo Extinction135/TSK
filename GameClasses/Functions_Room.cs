@@ -512,7 +512,7 @@ namespace DungeonRun
             {
                 if (Pool.roomObjPool[i].active && Pool.roomObjPool[i].type == ObjType.WallStraight)
                 {
-                    if (Functions_Random.Int(0, 100) > 90)
+                    if (Functions_Random.Int(0, 100) > 85)
                     { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.WallStraightCracked); }
                 }
             }

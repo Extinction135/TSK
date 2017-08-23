@@ -388,6 +388,14 @@ namespace DungeonRun
 
         public static void InteractObject(GameObject ActiveObj, GameObject PassiveObj)
         {   //ObjA is Entity (projectile or pickup), ObjB is RoomObject
+
+
+            //ActiveObj should be named Projectile
+            //PassiveObj should be named RoomObj
+
+
+
+
             //Handle Blocking Interactions (only with projectiles)
             if (PassiveObj.compCollision.blocking)
             {
@@ -445,8 +453,19 @@ namespace DungeonRun
                     {   //if sword projectile is brand new, play collision sfx
                         if (PassiveObj.type == ObjType.DoorBombable)
                         { Assets.Play(Assets.sfxTapHollow); } //play hollow
-                        else { Assets.Play(Assets.sfxTapMetallic); } //play metallic
-                        
+                        else { Assets.Play(Assets.sfxTapMetallic); }
+                        //set posRef to sword's position
+                        posRef.X = ActiveObj.compSprite.position.X;
+                        posRef.Y = ActiveObj.compSprite.position.Y;
+                        //set posRef to end of sword
+                        if (ActiveObj.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
+                        else if (ActiveObj.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
+                        else if (ActiveObj.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
+                        else if (ActiveObj.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
+                        //spawn hit particle at posRef
+                        Functions_Entity.SpawnEntity(
+                            ObjType.ParticleHitSparkle,
+                            posRef.X, posRef.Y, Direction.None);
                     }
                 }
 
@@ -460,7 +479,12 @@ namespace DungeonRun
                 #region Bumper
 
                 if (PassiveObj.type == ObjType.Bumper)
-                {   //stop projectile movement, bounce it
+                {
+                    //some projectiles cannot be bounced off bumper
+                    if (ActiveObj.type == ObjType.ProjectileSword)
+                    { return; }
+
+                    //stop projectile movement, bounce it
                     ActiveObj.compMove.magnitude.X = 0;
                     ActiveObj.compMove.magnitude.Y = 0;
                     BounceOffBumper(ActiveObj.compMove, PassiveObj);
@@ -472,8 +496,7 @@ namespace DungeonRun
                     {
                         ActiveObj.direction = ActiveObj.compMove.direction;
                         Functions_GameObject.SetRotation(ActiveObj);
-                    }
-                    
+                    } 
                 }
 
                 #endregion
