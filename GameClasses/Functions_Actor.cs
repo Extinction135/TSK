@@ -18,14 +18,12 @@ namespace DungeonRun
         public static void SetHitState(Actor Actor)
         {   //bail if actor is already dead (dont hit dead actors)
             if (Actor.state == ActorState.Dead) { return; }
-            //else lock actor into hit state
+            //else lock actor into hit state, play actor hit soundfx
             Actor.state = ActorState.Hit;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
-            //display the hit effect particle
-            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Actor);
-            Assets.Play(Actor.sfxHit); //play actor hit sound fx
+            Assets.Play(Actor.sfxHit);
 
             if (Actor == Pool.hero)
             {

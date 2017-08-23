@@ -16,7 +16,6 @@ namespace DungeonRun
     {
 
         public static ComponentCollision interactionRec = new ComponentCollision();
-        static Vector2 posRef = new Vector2();
 
 
 
@@ -296,6 +295,10 @@ namespace DungeonRun
             if (Obj.group == ObjGroup.Projectile)
             {
                 Functions_Battle.Damage(Actor, Obj);
+                if (Obj.type == ObjType.ProjectileSword)
+                {   //spawn a hit sparkle particle on sword
+                    Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
+                }
             }
             else if (Obj.group == ObjGroup.Object) 
             {
@@ -446,18 +449,8 @@ namespace DungeonRun
                         if (RoomObj.type == ObjType.DoorBombable)
                         { Assets.Play(Assets.sfxTapHollow); } //play hollow
                         else { Assets.Play(Assets.sfxTapMetallic); }
-                        //set posRef to sword's position
-                        posRef.X = Projectile.compSprite.position.X;
-                        posRef.Y = Projectile.compSprite.position.Y;
-                        //set posRef to end of sword
-                        if (Projectile.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
-                        else if (Projectile.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
-                        else if (Projectile.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
-                        else if (Projectile.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
-                        //spawn hit particle at posRef
-                        Functions_Entity.SpawnEntity(
-                            ObjType.ParticleHitSparkle,
-                            posRef.X, posRef.Y, Direction.None);
+                        //spawn a hit sparkle particle on sword
+                        Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Projectile);
                     }
                 }
 

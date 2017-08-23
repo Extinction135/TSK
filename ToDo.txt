@@ -43,38 +43,27 @@ todo:
 v0.7 goals
 
 
-5
+4
 
 
+Consolidate + Clarify how Entities are spawned for Actors + RoomObjects.
 
+created Functions_Entity.SpawnEntity(ObjType, GameObject).
+this aligns the passed entity type to the GameObject, based on the Obj.Type.
+moved GetDirectionToHero() from Functions_Ai to Functions_Direction.
+updated InteractObject() -> sword to call SpawnEntity().
+updated Functions_Ai.HandleObj() -> to call SpawnEntity().
+refactored & cleaned up Functions_Ai.HandleObj().
 
+migrated all alignment code from Functions_Alignment into Functions_Entity.
+this was done for both SpawnEntity(to Obj) and SpawnEntity(to Actor).
 
-Refine InteractObject()
-changed InteractObject.ActiveObj to InteractObject.Projectile.
-changed InteractObject.Passive to InteractObject.RoomObj.
+removed codepath that created a hit sparkle particle everytime an actor was hit.
+instead, we are creating hit sparkle particles on swords when they collide with actors.
+this is consistent with how hit particles are created on swords when they collide with objects.
 
-Refine HandleBirthEvent()
-updated Functions_Entity.HandleBirthEvent() to play sword swipe sfx for sword.
-removed call to play sword swipe fx from Functions_Item.UseItem().
-
-updated Functions_Entity.HandleBirthEvent() to handle sfx for bottles.
-updated all bottle particles to follow naming convention ParticleBottle_____.
-created ParticleBottleEmpty.
-updated Functions_GameObject.SetType() to handle all bottle particles.
-
-
-create ParticleBottleEmpty
-
-rename ParticleBottleHealth, ParticleBottleMagic, ParticleBottleFairy
-
-
-
-
-
-
-updated UseBottle, removing the Type check as it was unnecessary.
-a bottle that has been used will always become an empty bottle.
-even if the bottle was empty.
+removed Functions_Alignment.cs from Repo.
+playtested, working as expected.
 
 
 
@@ -82,8 +71,10 @@ even if the bottle was empty.
 
 
 
-when sword projectile hits an actor, we should place a hit sparkle at sword tip
-just like how we plcae them upon roomobject collision
+fireballs should be able to blow up bombable walls
+
+
+
 
 
 
@@ -97,12 +88,6 @@ bombable doors shouldn't appear on the map
 secret rooms shouldn't appear on the map
 simply ignore drawing of bombable doors + secret rooms
 
-
-
-
-projectile soundfx should be handled thru the birth and death events exclusively
-also, pretty sure that Functions_Entity should be Functions_Projectiles
-since it only operates on projectiles
 
 
 

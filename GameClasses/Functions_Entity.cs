@@ -14,20 +14,159 @@ namespace DungeonRun
 {
     public static class Functions_Entity
     {
+        static Vector2 posRef = new Vector2();
+        static Direction direction;
+
+
+
+        public static void SpawnEntity(ObjType Type, GameObject Object)
+        {   //entities are spawned relative to Object, based on Object.type
+            //set position reference to Object's sprite position
+            posRef.X = Object.compSprite.position.X;
+            posRef.Y = Object.compSprite.position.Y;
+            //direction is set based on Object.type
+
+
+            #region Sword
+
+            //we could spawn a fireball here if we wanted to (which is how we'll handle the staff weapon)
+
+            if (Object.type == ObjType.ProjectileSword)
+            {   //place entity at tip of sword, based on direction
+                if (Object.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
+                else if (Object.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
+                else if (Object.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
+                else if (Object.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
+                direction = Object.direction;
+            }
+
+            #endregion
+
+
+            #region FlameThrower
+
+            else if(Object.type == ObjType.Flamethrower)
+            {   //shoots fireball (or whatever) at their position, facing towards the hero
+                direction = Functions_Direction.GetDirectionToHero(Object.compSprite.position);
+            }
+
+            #endregion
+
+
+            #region Wall Statue
+
+            else if (Object.type == ObjType.WallStatue)
+            {   //shoots arrow (or whatever) in it's facing direction, outside of obj's hitbox
+                if (Object.direction == Direction.Down) { posRef.Y += 16; }
+                else if (Object.direction == Direction.Up) { posRef.Y -= 16; }
+                else if (Object.direction == Direction.Right) { posRef.X += 16; }
+                else if (Object.direction == Direction.Left) { posRef.X -= 16; }
+                direction = Object.direction;
+            }
+
+            #endregion
+
+
+            SpawnEntity(Type, posRef.X, posRef.Y, direction);
+        }
 
         public static void SpawnEntity(ObjType Type, Actor Actor)
-        {   //set the offsets for projectile's spawn, based on actor type and direction
-            Functions_Alignment.SetOffsets(Actor, Type);
-            //pass the calculated offsets to the SpawnEntity() method
-            SpawnEntity(Type,
-                Actor.compSprite.position.X + Functions_Alignment.offsetX,
-                Actor.compSprite.position.Y + Functions_Alignment.offsetY,
-                Actor.direction);
+        {   //entities are spawned relative to actor, based on passed objType
+            //set position reference to Actor's sprite position
+            posRef.X = Actor.compSprite.position.X;
+            posRef.Y = Actor.compSprite.position.Y;
+            //get the actor's facing direction as cardinal direction
+            direction = Functions_Direction.GetCardinalDirection(Actor.direction);
+
+
+            #region Particles
+
+            if (Type == ObjType.ParticleDashPuff)
+            {   //center horizontally, place near actor's feet
+                posRef.X += 4; posRef.Y += 8;
+            }
+            else if (Type == ObjType.ParticleBow)
+            {   //place bow particle in the actor's hands
+                if (direction == Direction.Down) { posRef.Y += 6; }
+                else if (direction == Direction.Up) { posRef.Y -= 6; }
+                else if (direction == Direction.Right) { posRef.X += 6; }
+                else if (direction == Direction.Left) { posRef.X -= 6; }
+            }
+
+            #endregion
+
+
+            #region Pickups
+
+            else if (Type == ObjType.PickupRupee)
+            {   //place dropped rupee away from hero, cardinal = direction actor was pushed
+                if (direction == Direction.Down) { posRef.X += 4; posRef.Y -= 12; } //place above
+                else if (direction == Direction.Up) { posRef.X += 4; posRef.Y += 15; } //place below
+                else if (direction == Direction.Right) { posRef.X -= 14; posRef.Y += 4; } //place left
+                else if (direction == Direction.Left) { posRef.X += 14; posRef.Y += 4; } //place right
+            }
+
+            #endregion
+
+
+            #region Projectiles
+
+            else if (Type == ObjType.ProjectileArrow)
+            {   //place projectile outside of actor's hitbox
+                if (direction == Direction.Down) { posRef.Y += 14; }
+                else if (direction == Direction.Up) { posRef.Y -= 9; }
+                else if (direction == Direction.Right) { posRef.X += 13; posRef.Y += 2; }
+                else if (direction == Direction.Left) { posRef.X -= 13; posRef.Y += 2; }
+            }
+            else if (Type == ObjType.ProjectileBomb)
+            {   //bombs are placed closer to the actor
+                if (direction == Direction.Down) { posRef.Y += 6; }
+                else if (direction == Direction.Up) { posRef.Y += 0; }
+                else if (direction == Direction.Right) { posRef.X += 4; posRef.Y += 2; }
+                else if (direction == Direction.Left) { posRef.X -= 4; posRef.Y += 2; }
+            }
+            else if (Type == ObjType.ProjectileFireball)
+            {   //place projectile outside of actor's hitbox
+                if (direction == Direction.Down) { posRef.Y += 13; }
+                else if (direction == Direction.Up) { posRef.Y -= 9; }
+                else if (direction == Direction.Right) { posRef.X += 11; posRef.Y += 2; }
+                else if (direction == Direction.Left) { posRef.X -= 11; posRef.Y += 2; }
+            }
+            else if (Type == ObjType.ProjectileSword)
+            {   //place projectile outside of actor's hitbox, in actor's hand
+                if (direction == Direction.Down) { posRef.X -= 1; posRef.Y += 15; }
+                else if (direction == Direction.Up) { posRef.X += 1; posRef.Y -= 12; }
+                else if (direction == Direction.Right) { posRef.X += 14; }
+                else if (direction == Direction.Left) { posRef.X -= 14; }
+            }
+
+            #endregion
+
+
+            #region Reward & Bottle Particles
+
+            else if (
+                Type == ObjType.ParticleRewardKey ||
+                Type == ObjType.ParticleRewardMap ||
+                Type == ObjType.ParticleFairy ||
+                Type == ObjType.ParticleBottleEmpty ||
+                Type == ObjType.ParticleBottleFairy ||
+                Type == ObjType.ParticleBottleHealth ||
+                Type == ObjType.ParticleBottleMagic)
+            {   //place reward particles above actor's head
+                posRef.Y -= 14;
+            }
+
+            #endregion
+
+
+            SpawnEntity(Type, posRef.X, posRef.Y, direction);
         }
 
         public static void SpawnEntity(ObjType Type, float X, float Y, Direction Direction)
-        {   //this method spawns a projectile at the X, Y location, with a cardinal direction
+        {   //actually spawns Entity at the X, Y location, with direction
             GameObject obj = Functions_Pool.GetEntity();
+
             //default this projectile/particle to Down direction
             obj.direction = Direction.Down;
             obj.compMove.direction = Direction.Down;
@@ -39,8 +178,8 @@ namespace DungeonRun
                 Type == ObjType.ProjectileBomb ||
                 Type == ObjType.ParticleBow)
             {
-                obj.direction = Functions_Direction.GetCardinalDirection(Direction);
-                obj.compMove.direction = Functions_Direction.GetCardinalDirection(Direction);
+                obj.direction = Direction;
+                obj.compMove.direction = Direction;
             }
 
             //teleport the projectile to the proper location
@@ -123,8 +262,7 @@ namespace DungeonRun
         }
 
         public static void HandleDeathEvent(GameObject Obj)
-        {   //Obj is from the Entity pool
-
+        {
             if (Obj.group == ObjGroup.Pickup)
             {   //when an item pickup dies, display an attention particle
                 SpawnEntity(ObjType.ParticleAttention,
@@ -132,6 +270,10 @@ namespace DungeonRun
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
             }
+
+
+            #region Projectiles
+
             else if (Obj.type == ObjType.ProjectileArrow)
             {
                 SpawnEntity(ObjType.ParticleAttention,
@@ -161,6 +303,9 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxFireballDeath);
             }
             //sword
+
+            #endregion
+
         }
 
     }

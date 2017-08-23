@@ -15,38 +15,11 @@ namespace DungeonRun
     public static class Functions_Ai
     {
         static Actor Actor;
-        static Direction directionToHero;
-
         static Vector2 actorPos;
-        static Vector2 heroPos;
-
         static int xDistance;
         static int yDistance;
 
 
-
-        static Direction GetDirectionToHero(Vector2 Pos)
-        {
-            //get hero's position
-            heroPos = Pool.hero.compSprite.position;
-            //get the x and y distances between starting position and hero
-            xDistance = (int)Math.Abs(heroPos.X - Pos.X);
-            yDistance = (int)Math.Abs(heroPos.Y - Pos.Y);
-
-            //determine the axis hero is closest on
-            if (xDistance < yDistance)
-            { 
-                if (heroPos.Y > Pos.Y)
-                { return Direction.Down; }
-                else { return Direction.Up; }
-            }
-            else
-            {
-                if (heroPos.X > Pos.X)
-                { return Direction.Right; }
-                else { return Direction.Left; }
-            }
-        }
 
         public static void SetActorInput()
         {
@@ -62,6 +35,9 @@ namespace DungeonRun
             Functions_Input.ResetInputData(Actor.compInput);
             //get actor sprite position
             actorPos = Actor.compSprite.position;
+            //get the x & y distances between actor and hero
+            xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - actorPos.X);
+            yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - actorPos.Y);
 
 
             #region Boss AI
@@ -90,14 +66,11 @@ namespace DungeonRun
 
             else //blob
             {
-                //get the direction to hero
-                directionToHero = GetDirectionToHero(actorPos);
-
                 //determine if actor is close enough to hero to chase
                 int chaseRadius = 16 * 6;
                 if (yDistance < chaseRadius && xDistance < chaseRadius)
                 {   //actor is close enough to hero to chase, move towards the hero
-                    Actor.compInput.direction = directionToHero;
+                    Actor.compInput.direction = Functions_Direction.GetDirectionToHero(actorPos);
                 }
                 else
                 {   //choose a random direction to move in
@@ -153,25 +126,12 @@ namespace DungeonRun
             if (Obj.type == ObjType.Flamethrower)
             {   
                 if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
-                {   //randomly cast fireball towards hero
-                    directionToHero = GetDirectionToHero(Obj.compSprite.position);
-                    Functions_Entity.SpawnEntity(ObjType.ProjectileFireball,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        directionToHero);
-                }
+                { Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Obj); }
             }
             else if (Obj.type == ObjType.WallStatue)
             {
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
-                {   //calculate the arrow's offset to the wall state object
-                    Functions_Alignment.SetOffsets(Obj, ObjType.ProjectileArrow);
-                    //spawn the arrow projectile, passing the calculated offsets
-                    Functions_Entity.SpawnEntity(ObjType.ProjectileArrow,
-                        Obj.compSprite.position.X + Functions_Alignment.offsetX,
-                        Obj.compSprite.position.Y + Functions_Alignment.offsetY,
-                        Obj.direction); //fire in the obj's facing direction
-                }
+                { Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Obj); }
             }
         }
 

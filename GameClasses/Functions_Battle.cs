@@ -31,11 +31,17 @@ namespace DungeonRun
 
             #region Projectiles
 
-            //bombs don't push or hurt actors
-            if (Obj.type == ObjType.ProjectileBomb) { return; }
-            else if (Obj.type == ObjType.ProjectileSword)
-            {   //swords deal 1 damage, push 6
-                damage = 1; force = 6.0f; direction = Obj.direction;
+            if (Obj.type == ObjType.ProjectileArrow)
+            {   //arrows deal 1 damage, push 4, and die
+                damage = 1; force = 4.0f; direction = Obj.direction;
+                Obj.lifeCounter = Obj.lifetime;
+                //check to see if damage should be modified
+                if (Actor.armor == MenuItemType.ArmorChest)
+                { damage = 0; Assets.Play(Assets.sfxTapMetallic); }
+            }
+            else if (Obj.type == ObjType.ProjectileBomb)
+            {   //bombs don't push or hurt actors
+                return;
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {   //fireballs deal 2 damage, push 10, and die
@@ -49,13 +55,9 @@ namespace DungeonRun
                 //check to see if damage should be modified
                 if (Actor.armor == MenuItemType.ArmorChest) { damage = 1; }
             }
-            else if (Obj.type == ObjType.ProjectileArrow)
-            {   //arrows deal 1 damage, push 4, and die
-                damage = 1; force = 4.0f; direction = Obj.direction;
-                Obj.lifeCounter = Obj.lifetime;
-                //check to see if damage should be modified
-                if (Actor.armor == MenuItemType.ArmorChest)
-                { damage = 0; Assets.Play(Assets.sfxTapMetallic); }
+            else if (Obj.type == ObjType.ProjectileSword)
+            {   //swords deal 1 damage, push 6
+                damage = 1; force = 6.0f; direction = Obj.direction;
             }
 
             #endregion
@@ -70,7 +72,7 @@ namespace DungeonRun
             }
             else if(Obj.type == ObjType.SpikesFloorOn)
             {   //medium push actor in the actor's moving direction
-                damage = 1; force = 4.0f;
+                damage = 1; force = 5.0f;
                 //direction = Actor.direction;
                 direction = Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position);
             }

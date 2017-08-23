@@ -59,9 +59,6 @@
     <Compile Include="..\..\GameClasses\Functions_Ai.cs">
       <Link>Classes\Functions_Ai.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_Alignment.cs">
-      <Link>Classes\Functions_Alignment.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Animation.cs">
       <Link>Classes\Functions_Animation.cs</Link>
     </Compile>

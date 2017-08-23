@@ -14,6 +14,9 @@ namespace DungeonRun
 {
     public static class Functions_Direction
     {
+        static int xDistance;
+        static int yDistance;
+
 
         public static Direction GetCardinalDirection(Direction Direction)
         {   //converts a diagonal direction to a cardinal direction
@@ -53,6 +56,25 @@ namespace DungeonRun
                 if (PosB.X > PosA.X)
                 { return Direction.UpRight; }
                 else { return Direction.UpLeft; }
+            }
+        }
+
+        public static Direction GetDirectionToHero(Vector2 Pos)
+        {   //get the x and y distances between starting position and hero
+            xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Pos.X);
+            yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Pos.Y);
+            //determine the axis hero is closest on
+            if (xDistance < yDistance)
+            {
+                if (Pool.hero.compSprite.position.Y > Pos.Y)
+                { return Direction.Down; }
+                else { return Direction.Up; }
+            }
+            else
+            {
+                if (Pool.hero.compSprite.position.X > Pos.X)
+                { return Direction.Right; }
+                else { return Direction.Left; }
             }
         }
 
