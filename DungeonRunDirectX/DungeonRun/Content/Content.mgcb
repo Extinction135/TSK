@@ -293,12 +293,6 @@
 /processorParam:Quality=Best
 /build:SoundMapOpen.wav
 
-#begin SoundMetallicTap.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundMetallicTap.wav
-
 #begin SoundReward.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -424,4 +418,16 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundActorLand.wav
+
+#begin SoundTapHollow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTapHollow.wav
+
+#begin SoundTapMetallic.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTapMetallic.wav
 

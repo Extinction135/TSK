@@ -55,7 +55,7 @@ namespace DungeonRun
                 Obj.lifeCounter = Obj.lifetime;
                 //check to see if damage should be modified
                 if (Actor.armor == MenuItemType.ArmorChest)
-                { damage = 0; Assets.Play(Assets.sfxMetallicTap); }
+                { damage = 0; Assets.Play(Assets.sfxTapMetallic); }
             }
 
             #endregion

@@ -43,25 +43,21 @@ todo:
 v0.7 goals
 
 
-8
+7
 
 
 
 
+Play Hollow Soundfx when sword strikes a BombableDoor
 
+renamed SoundMetallicTap to SoundTapMetallic.
+added SoundTapHollow to content project.
+renamed sfxMetallicTap to sfxTapMetallic in Assets.
+added sfxTapHollow to Assets.
+added call to hollow sfx from Projectile Sword interaction with bombable doors.
 
-
-
-
-
-Cleanup InteractObject() based on latest collision system updates
-
-rewrote/simplified InteractObject(ActiveObj, PassiveObj). 
-ActiveObj will always be a projectile.
-PassiveObj will always be a RoomObject.
-added path to handle sword projectile colliding with cracked walls.
-this causes sword to play metallicTap sound fx.
-later we'll add a hollow soundfx when sword collides with bombable doors.
+updated InteractObj() -> Sword to only play collision soundfx if projectile is brand new.
+this prevents soundfx from being spammed as sword completes animation.
 playtested, working as expected.
 
 
@@ -72,9 +68,23 @@ playtested, working as expected.
 
 
 
-we should use a specific sound for sword swipe hitting a roomObject
+
+we should use a specific sound for sword swipe hitting a cracked wall
 it should have a long tail, and sound different than the metallic tap
-we also need a hollow hit sound
+we also need a hollow hit sound, for sword collisions with bombable doors
+
+Dungeons (bombable doors)++
+once the dungeon's doors are created, some should randomly be changed to bombable
+this will help to conceal various paths thru the dungeon and make it more interesting / nonlinear
+bombable doors shouldn't appear on the map
+secret rooms shouldn't appear on the map
+simply ignore drawing of bombable doors + secret rooms
+
+
+
+
+
+
 
 
 
@@ -118,36 +128,12 @@ their collision recs wont overlap, and thus will perpetually 'fall' in place
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 Cracked Floor Obj
 upon collision with hero, this becomes PitCollapsing obj
 
 Pit Collapsing Obj
 if this object isn't colliding with hero, it collapses (chagnes) into a Pit obj
 and it places pit teeth at top and bottom of pit upon collapse
-
-Systems Cleanup
-- cleanup all systems that operated under roomObj collisions
-InteractObject()
-since we aren't checking roomObjs vs. roomObjs, 
-we need to cleanup InteractObject().
-remove all paths that handle roomObj vs. roomObj interactions.
-
-Editor++
-when we load a roomXML data file, place hero outside of room at top left
-
-
-
 
 
 
@@ -243,20 +229,6 @@ then upon room build, randomly choose an enemy type from the correct tier list
 for example, forest dungeon tier 1 enemies: blob, rat, snake
 when room builds, any of these 3 enemy types can spawn on a tier 1 spawn obj
 create enemies that fire projectiles - arrows, fireballs, bombs
-
-
-
-Dungeons (bombable doors)++
-once the dungeon's doors are created, some should randomly be changed to bombable
-this will help to conceal various paths thru the dungeon and make it more interesting / nonlinear
-bombable doors shouldn't appear on the map
-secret rooms shouldn't appear on the map
-simply ignore drawing of bombable doors + secret rooms
-- Play soundfx when hero strikes a bombable door -
-if hero strikes a bombable door, play a hollow sound
-if hero strikes a cracked wall, play a filled 'tink' sound (metallic tap)
-this is a : sword projectile collision check against objects of type door bombable + wall cracked
-we'll need to add the hollow sound - we've already got the metallic tink soundFX
 
 Music++
 add overworld music

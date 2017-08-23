@@ -438,10 +438,12 @@ namespace DungeonRun
 
                 else if(ActiveObj.type == ObjType.ProjectileSword)
                 {   //sword swipe causes soundfx to blocking objects
-                    //if (PassiveObj.type == ObjType.DoorBombable)
-                    //{ Assets.Play(Assets.sfxMetallicTap); } //play hollow soundfx
-                    if (PassiveObj.type == ObjType.WallStraightCracked)
-                    { Assets.Play(Assets.sfxMetallicTap); } //play metallic soundfx
+                    if(ActiveObj.lifeCounter == 1)
+                    {   //if sword projectile is brand new, play collision sfx
+                        if (PassiveObj.type == ObjType.DoorBombable)
+                        { Assets.Play(Assets.sfxTapHollow); } //play hollow
+                        else { Assets.Play(Assets.sfxTapMetallic); } //play metallic
+                    }
                 }
 
                 #endregion
@@ -561,7 +563,7 @@ namespace DungeonRun
             SpikeBlock.compMove.magnitude.Y = 0;
             //push the block in it's new direction, out of this collision
             Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 4.0f);
-            Assets.Play(Assets.sfxMetallicTap); //play the 'clink' sound effect                               
+            Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect                               
             Functions_Entity.SpawnEntity( //show that the object has been hit
                 ObjType.ParticleHitSparkle,
                 SpikeBlock.compSprite.position.X + 4,

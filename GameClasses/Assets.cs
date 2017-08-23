@@ -106,7 +106,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxExplosion;
         public static SoundEffectInstance sfxFireballCast;
         public static SoundEffectInstance sfxFireballDeath;
-        public static SoundEffectInstance sfxMetallicTap;
+        public static SoundEffectInstance sfxTapMetallic;
 
         public static SoundEffectInstance sfxBounce;
         public static SoundEffectInstance sfxMapOpen;
@@ -128,6 +128,7 @@ namespace DungeonRun
 
         public static SoundEffectInstance sfxActorFall;
         public static SoundEffectInstance sfxActorLand;
+        public static SoundEffectInstance sfxTapHollow;
 
         #endregion
 
@@ -259,8 +260,8 @@ namespace DungeonRun
             sfxFireballCast = fireballCastSrc.CreateInstance();
             SoundEffect fireballDeathSrc = content.Load<SoundEffect>(@"SoundFireballDeath");
             sfxFireballDeath = fireballDeathSrc.CreateInstance();
-            SoundEffect metallicTapSrc = content.Load<SoundEffect>(@"SoundMetallicTap");
-            sfxMetallicTap = metallicTapSrc.CreateInstance();
+            SoundEffect tapMetallicSrc = content.Load<SoundEffect>(@"SoundTapMetallic");
+            sfxTapMetallic = tapMetallicSrc.CreateInstance();
             //
             SoundEffect bounceSrc = content.Load<SoundEffect>(@"SoundBounce");
             sfxBounce = bounceSrc.CreateInstance();
@@ -299,7 +300,8 @@ namespace DungeonRun
             sfxActorFall = actorFallSrc.CreateInstance();
             SoundEffect actorLandSrc = content.Load<SoundEffect>(@"SoundActorLand");
             sfxActorLand = actorLandSrc.CreateInstance();
-
+            SoundEffect tapHollowSrc = content.Load<SoundEffect>(@"SoundTapHollow");
+            sfxTapHollow = tapHollowSrc.CreateInstance();
 
             #endregion
 
