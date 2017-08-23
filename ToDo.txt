@@ -43,7 +43,7 @@ todo:
 v0.7 goals
 
 
-12
+8
 
 
 
@@ -54,23 +54,27 @@ v0.7 goals
 
 
 
+Cleanup InteractObject() based on latest collision system updates
 
-
-
-
-Fix Pit->Door Bug
-
-Bug: if hero collides with a closed boss door, then falls into a pit..
-he will respawn -inside of- the boss door, stuck forever.
-this will also happen with bombable doors.
-we should ignore closed door checks when we set the room.spawnPos.
-only open doors set spawnPos.
-
-updated CheckRoomCollision() Door Tracking routine to ignore boss & bombable doors.
-this means only open and bombed doors set the room.spawnPos.
+rewrote/simplified InteractObject(ActiveObj, PassiveObj). 
+ActiveObj will always be a projectile.
+PassiveObj will always be a RoomObject.
+added path to handle sword projectile colliding with cracked walls.
+this causes sword to play metallicTap sound fx.
+later we'll add a hollow soundfx when sword collides with bombable doors.
 playtested, working as expected.
 
 
+
+
+
+
+
+
+
+we should use a specific sound for sword swipe hitting a roomObject
+it should have a long tail, and sound different than the metallic tap
+we also need a hollow hit sound
 
 
 
