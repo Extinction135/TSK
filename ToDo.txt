@@ -43,39 +43,19 @@ todo:
 v0.7 goals
 
 
-4
+
+3
 
 
-Consolidate + Clarify how Entities are spawned for Actors + RoomObjects.
 
-created Functions_Entity.SpawnEntity(ObjType, GameObject).
-this aligns the passed entity type to the GameObject, based on the Obj.Type.
-moved GetDirectionToHero() from Functions_Ai to Functions_Direction.
-updated InteractObject() -> sword to call SpawnEntity().
-updated Functions_Ai.HandleObj() -> to call SpawnEntity().
-refactored & cleaned up Functions_Ai.HandleObj().
 
-migrated all alignment code from Functions_Alignment into Functions_Entity.
-this was done for both SpawnEntity(to Obj) and SpawnEntity(to Actor).
+Allow Fireballs to destroy BombableDoors
 
-removed codepath that created a hit sparkle particle everytime an actor was hit.
-instead, we are creating hit sparkle particles on swords when they collide with actors.
-this is consistent with how hit particles are created on swords when they collide with objects.
-
-removed Functions_Alignment.cs from Repo.
+updated CollapseDungeonDoor(), removing the check for explosion.
+fireballs would be ignored if this check existed.
+updated InteractObject() to allow fireballs to collapse bombable doors.
+updated CollapseDungeonDoor(), reducing duplicate code elsewhere.
 playtested, working as expected.
-
-
-
-
-
-
-
-fireballs should be able to blow up bombable walls
-
-
-
-
 
 
 

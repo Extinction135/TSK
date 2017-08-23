@@ -418,13 +418,9 @@ namespace DungeonRun
                 #region Explosion
 
                 else if (Projectile.type == ObjType.ProjectileExplosion)
-                {   //explosions alter certain gameobjects
+                {   //explosions alter certain roomObjects
                     if (RoomObj.type == ObjType.DoorBombable)
-                    {   //collapse the room.door
-                        Functions_GameObject.SetType(RoomObj, ObjType.DoorBombed);
-                        CollapseDungeonDoor(Projectile); //collapse the dungeon.door
-                        Assets.Play(Assets.sfxShatter);
-                    }
+                    { CollapseDungeonDoor(RoomObj, Projectile); }
                 }
 
                 #endregion
@@ -433,7 +429,10 @@ namespace DungeonRun
                 #region Fireball
 
                 else if(Projectile.type == ObjType.ProjectileFireball)
-                {   //fireballs die upon blocking collision
+                {   //fireballs alter certain roomObjects
+                    if (RoomObj.type == ObjType.DoorBombable)
+                    { CollapseDungeonDoor(RoomObj, Projectile); }
+                    //fireballs die upon blocking collision
                     KillProjectileUponCollision(Projectile);
                 }
 
@@ -518,17 +517,17 @@ namespace DungeonRun
 
 
 
-        static void CollapseDungeonDoor(GameObject Obj)
-        {   //some gameobjects can collapse bombable dungeon.doors
-            if (Obj.type == ObjType.ProjectileExplosion)
-            {
-                for(int i = 0; i < Level.doors.Count; i++)
-                {   //if this explosion collides with any dungeon.door that is of type.bombable
-                    if (Level.doors[i].type == DoorType.Bombable)
-                    {   //change this door type to type.bombed
-                        if (Obj.compCollision.rec.Intersects(Level.doors[i].rec))
-                        { Level.doors[i].type = DoorType.Bombed; }
-                    }
+        static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
+        {   //update the door roomObject, change to doorBombed, play soundfx
+            Functions_GameObject.SetType(Door, ObjType.DoorBombed);
+            Assets.Play(Assets.sfxShatter);
+            //update the dungeon.doors list, change colliding door to bombed
+            for (int i = 0; i < Level.doors.Count; i++)
+            {   //if this explosion collides with any dungeon.door that is of type.bombable
+                if (Level.doors[i].type == DoorType.Bombable)
+                {   //change this door type to type.bombed
+                    if (Projectile.compCollision.rec.Intersects(Level.doors[i].rec))
+                    { Level.doors[i].type = DoorType.Bombed; }
                 }
             }
         }
