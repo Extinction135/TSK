@@ -314,7 +314,10 @@ namespace DungeonRun
                     #region Continuous collision (each frame)
 
                     //gradually pull actor into pit's center, lock actor into hit state, prevent movement
-                    Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.2f;
+                    Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
+                    //if this is the first frame that actor collides with pit, play fall sound effect
+                    if (Actor.state != ActorState.Hit) { Assets.Play(Assets.sfxActorFall); }
+                    //lock actor into hit state
                     Actor.state = ActorState.Hit;
                     Actor.stateLocked = true;
                     Actor.lockCounter = 0;
@@ -328,14 +331,11 @@ namespace DungeonRun
                         {
                             if (Actor.compSprite.scale == 1.0f) //begin actor falling state
                             {
-                                //play falling sound effect
-                                Assets.Play(Assets.sfxBombDrop);
-
-                                //actor has 'slipped' into pit, noted via dash particle
+                                //play rising smoke puff to reinforce that actor has fallen into pit
                                 Functions_Entity.SpawnEntity(
-                                    ObjType.ParticleDashPuff,
-                                    Actor.compSprite.position.X,
-                                    Actor.compSprite.position.Y + 6,
+                                    ObjType.ParticleSmokePuff,
+                                    Obj.compSprite.position.X + 4,
+                                    Obj.compSprite.position.Y - 10,
                                     Direction.None);
                             }
                             //continue falling state, scaling actor down
@@ -353,6 +353,7 @@ namespace DungeonRun
                         if (Actor == Pool.hero)
                         {   //send hero back to last door he passed thru
                             Assets.Play(Actor.sfxHit); //play hero's hit sfx
+                            //Assets.Play(Actor.sfxHit); //play actor land sfx
                             Functions_Room.SpawnHeroInCurrentRoom(); 
                             //direct player's attention to hero's respawn pos
                             Functions_Entity.SpawnEntity(
@@ -360,25 +361,12 @@ namespace DungeonRun
                                 Functions_Level.currentRoom.spawnPos.X,
                                 Functions_Level.currentRoom.spawnPos.Y,
                                 Direction.None);
-                            /*
-                            //set hero into a sitting animation for a bit
-                            Pool.hero.compSprite.currentFrame.X = 1;
-                            Pool.hero.compSprite.currentFrame.Y = 3;
-                            Actor.lockCounter = 0;
-                            Actor.lockTotal = 30;
-                            */
                         }
                         else
                         {   //handle enemy pit death (no loot, insta-death)
                             Assets.Play(Actor.sfxDeath); //play actor death sfx
                             Functions_Pool.Release(Actor); //release this actor back to pool
                         }
-                        //play rising smoke puff to reinforce that actor has fallen into pit
-                        Functions_Entity.SpawnEntity(
-                            ObjType.ParticleSmokePuff,
-                            Obj.compSprite.position.X + 4,
-                            Obj.compSprite.position.Y - 6,
-                            Direction.None);
                     }
 
                     #endregion

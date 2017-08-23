@@ -50,42 +50,27 @@ v0.7 goals
 
 
 
-Get Actors falling into Pit Objects correctly
 
-changed how actors interact() with AnimatedPits.
-Pit pulls Actor to Pit center upon collision (each frame).
+Add Actor Fall Sound Effect to Pit Interaction
 
-Upon initial collision, a smoke puff is created above the pit.
-Pit then scales colliding actor's sprite down to 0 overtime.
-Pit sets and stateLocks Actor into Hit state.
-At 0% scale, the actor is checked to see if he's hero or enemy.
-If hero, we call Functions_Room.SpawnHeroInCurrentRoom().
-We also place an attention particle at hero's respawn position.
-increased zOffset for AttentionParticle so it will sort over doors and pretty mcuh everything else.
-If enemy, we play actor death soundfx, then Release() the actor.
+added SoundActorFall to content project.
+added SoundEffectInstance sfxActorFall to Assets.
+updated Pit Interact() to call actor falling sound effect.
+this occurs once actor has been centered to the pit obj.
+playtested, working as expected.
 
-because we are scaling actors down upon pit collisions,
-we'll need to ensure we scale actors back up to 100% later on.
-updated SpawnHeroInCurrentRoom() to set hero.compSprite.scale to 100%.
-updated Functions_Pool.GetActor() to set Actor.compSprite.scale to 100%.
-
-bug: actors wont scale down to 0% because Animate() scales spriteComponents up or down to 100%.
-solution: seperate the scaling routines from Animate(), call them when needed.
-
-created ScaleSpriteComponent(SpriteComp), with scaling routine.
-updated paths that needed MenuItems scaled up/down (most UI scales menuItems up upon selection).
-updated Pool.Update() to scale entities & roomObjs up/down per frame.
-for example, the bumper is scaled up upon collision and should animate scale down to 100%.
-but we purposefully DO NOT scale actors up/down per frame, in Functions_Pool.Update().
-
-playtested that hero properly falls into pits, working as expected.
-playtested that enemies properly fall into pits as well.
+more polishing of fall routine to look/sound/animate better.
+playtested, working as expected.
 
 
 
 
 
 
+
+
+
+add land sound effect
 
 
 

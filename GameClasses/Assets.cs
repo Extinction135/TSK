@@ -126,6 +126,8 @@ namespace DungeonRun
         public static SoundEffectInstance sfxSelectFile;
         public static SoundEffectInstance sfxMapWalking;
 
+        public static SoundEffectInstance sfxActorFall;
+
         #endregion
 
 
@@ -292,6 +294,8 @@ namespace DungeonRun
             SoundEffect mapWalkingSrc = content.Load<SoundEffect>(@"SoundMapWalking");
             sfxMapWalking = mapWalkingSrc.CreateInstance();
             //
+            SoundEffect actorFallSrc = content.Load<SoundEffect>(@"SoundActorFall");
+            sfxActorFall = actorFallSrc.CreateInstance();
 
             #endregion
 

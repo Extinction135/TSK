@@ -413,3 +413,9 @@
 /processorParam:Quality=Best
 /build:SoundMapWalking.wav
 
+#begin SoundActorFall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundActorFall.wav
+
