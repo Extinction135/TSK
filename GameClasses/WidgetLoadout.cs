@@ -99,12 +99,14 @@ namespace DungeonRun
         {
             Functions_MenuWindow.Update(window);
             //scale the loadout sprites back down to 1.0
-            Functions_Animation.Animate(item.compAnim, item.compSprite);
-            Functions_Animation.Animate(weapon.compAnim, weapon.compSprite);
-            Functions_Animation.Animate(armor.compAnim, armor.compSprite);
-            Functions_Animation.Animate(equipment.compAnim, equipment.compSprite);
+            Functions_Animation.ScaleSpriteComponent(item.compSprite);
+            Functions_Animation.ScaleSpriteComponent(weapon.compSprite);
+            Functions_Animation.ScaleSpriteComponent(armor.compSprite);
+            Functions_Animation.ScaleSpriteComponent(equipment.compSprite);
             //animate the gold menuItem to grab the player's attention
             Functions_Animation.Animate(menuItems[4].compAnim, menuItems[4].compSprite);
+            Functions_Animation.ScaleSpriteComponent(menuItems[4].compSprite);
+
             if (goldTracker != PlayerData.current.gold)
             {   //count the gold amount up or down
                 if (goldTracker < PlayerData.current.gold) { goldTracker++; }

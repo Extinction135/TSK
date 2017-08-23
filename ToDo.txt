@@ -43,7 +43,43 @@ todo:
 v0.7 goals
 
 
-13
+12
+
+
+
+
+
+
+Get Actors falling into Pit Objects correctly
+
+changed how actors interact() with AnimatedPits.
+Pit pulls Actor to Pit center upon collision (each frame).
+
+Upon initial collision, a smoke puff is created above the pit.
+Pit then scales colliding actor's sprite down to 0 overtime.
+Pit sets and stateLocks Actor into Hit state.
+At 0% scale, the actor is checked to see if he's hero or enemy.
+If hero, we call Functions_Room.SpawnHeroInCurrentRoom().
+We also place an attention particle at hero's respawn position.
+increased zOffset for AttentionParticle so it will sort over doors and pretty mcuh everything else.
+If enemy, we play actor death soundfx, then Release() the actor.
+
+because we are scaling actors down upon pit collisions,
+we'll need to ensure we scale actors back up to 100% later on.
+updated SpawnHeroInCurrentRoom() to set hero.compSprite.scale to 100%.
+updated Functions_Pool.GetActor() to set Actor.compSprite.scale to 100%.
+
+bug: actors wont scale down to 0% because Animate() scales spriteComponents up or down to 100%.
+solution: seperate the scaling routines from Animate(), call them when needed.
+
+created ScaleSpriteComponent(SpriteComp), with scaling routine.
+updated paths that needed MenuItems scaled up/down (most UI scales menuItems up upon selection).
+updated Pool.Update() to scale entities & roomObjs up/down per frame.
+for example, the bumper is scaled up upon collision and should animate scale down to 100%.
+but we purposefully DO NOT scale actors up/down per frame, in Functions_Pool.Update().
+
+playtested that hero properly falls into pits, working as expected.
+playtested that enemies properly fall into pits as well.
 
 
 
@@ -53,26 +89,13 @@ v0.7 goals
 
 
 
-Track where Hero spawns in each Room, Standardize Spawning Routine
 
-added Vector2 spawnPos to Room class.
-this will track where hero can spawn in a particular room.
-this is set to the last passed thru door's pos, or exit door's pos.
-we can also use this in editor to spawn hero outside of room for testing.
+polish the pit falling routine:
 
-updated Functions_Room.PlaceExit() to set Room.spawnPos above Exit Door obj.
-this handles Exit & Shop Rooms.
-updated CheckRoomCollision() to set currentRoom.spawnPos to last door hero collided with.
-this tracks which door hero entered/exited the room from.
+add falling sound effect, add call from pit interact()
 
-created Functions_Room.SpawnHeroInCurrentRoom().
-this teleports hero to currentRoom.spawnPos, and centers camera.
-updated Functions_Level.BuildLevel() to call SpawnHeroInCurrentRoom().
-upon levelBuild() complete, the hero's type is set to hero.
-this is to ensure player starts this level with hero in 'normal' state.
-updated WidgetRoomTools.BuildRoomData() to call SpawnHeroInCurrentRoom().
-
-playtested, roomEditor + Game working as expected.
+if two actors fall into a pit at the same time,
+their collision recs wont overlap, and thus will perpetually 'fall' in place
 
 
 
@@ -84,26 +107,11 @@ playtested, roomEditor + Game working as expected.
 
 
 
-call SpawnHeroInCurrentRoom() after hero has fallen into a pit.
 
 
 
 
 
-unlit torches should have a width of 16 (not 14)
-and an Xoffset of 8
-
-
-
-
-
-
-
-Implement Pits
-write interaction routine for PitAnimated
-this should work similar to conveyor belt, except it pulls hero towards it's center
-if actor isn't hero, actor simply dies (doesn't drop loot)
-if actor is hero, then hero takes 1 damage and respawns at last door he passed thru
 
 Cracked Floor Obj
 upon collision with hero, this becomes PitCollapsing obj

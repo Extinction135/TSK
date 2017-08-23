@@ -29,6 +29,7 @@ namespace DungeonRun
             if (!Pool.actorPool[Pool.actorIndex].active)
             {
                 Pool.actorPool[Pool.actorIndex].active = true;
+                Pool.actorPool[Pool.actorIndex].compSprite.scale = 1.0f;
                 return Pool.actorPool[Pool.actorIndex];
             }
             return null;
@@ -181,8 +182,8 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active)
                 {
                     Functions_Actor.Update(Pool.actorPool[i]);
-                    Functions_Animation.Animate(Pool.actorPool[i].compAnim, 
-                        Pool.actorPool[i].compSprite);
+                    Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
+                    //we don't scale actors back to 100% each frame, this is done in GetActor()
 
                     if (Pool.actorPool[i].state != ActorState.Dead)
                     {
@@ -217,8 +218,8 @@ namespace DungeonRun
                 if (Pool.entityPool[i].active)
                 {
                     Functions_GameObject.Update(Pool.entityPool[i]);
-                    Functions_Animation.Animate(Pool.entityPool[i].compAnim,
-                        Pool.entityPool[i].compSprite);
+                    Functions_Animation.Animate(Pool.entityPool[i].compAnim, Pool.entityPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteComponent(Pool.entityPool[i].compSprite);
 
                     //project movement
                     if (Pool.entityPool[i].compMove.moveable)
@@ -249,6 +250,7 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
                         Pool.roomObjPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteComponent(Pool.roomObjPool[i].compSprite);
                 }
             }
         }

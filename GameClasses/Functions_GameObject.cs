@@ -205,8 +205,8 @@ namespace DungeonRun
             {
                 //this pit interacts with actor
                 Obj.compSprite.zOffset = -40; //sort under pit decorations
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
@@ -606,7 +606,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleAttention)
             {
-                Obj.compSprite.zOffset = 32;
+                Obj.compSprite.zOffset = 1024;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames

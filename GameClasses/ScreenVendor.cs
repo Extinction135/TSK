@@ -169,10 +169,12 @@ namespace DungeonRun
             else { selectionBox.alpha += 0.025f; }
             //match the position of the selectionBox to the currently selected menuItem
             selectionBox.position = currentlySelected.compSprite.position;
-            Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
             //scale the selectionBox down to 1.0
             if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
             else { selectionBox.scale = 1.0f; }
+            //animate and scale the currentlySelected menuItem
+            Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
+            Functions_Animation.ScaleSpriteComponent(currentlySelected.compSprite);
         }
 
         public override void Draw(GameTime GameTime)

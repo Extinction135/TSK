@@ -57,6 +57,7 @@ namespace DungeonRun
         {
             Functions_MenuWindow.Update(window);
             Functions_Animation.Animate(infoItem.compAnim, infoItem.compSprite);
+            Functions_Animation.ScaleSpriteComponent(infoItem.compSprite); //does this need to be scaled?
         }
 
         public override void Draw()

@@ -30,6 +30,10 @@ namespace DungeonRun
                 Anim.timer = 0; //reset animation timer
                 Anim.index++; //increment index to next frame
             }
+        }
+
+        public static void ScaleSpriteComponent(ComponentSprite Sprite)
+        {
             //animate the scale back to 1.0f
             if (Sprite.scale > 1.0f) { Sprite.scale -= 0.07f; }
             else if (Sprite.scale < 1.0f) { Sprite.scale = 1.0f; }

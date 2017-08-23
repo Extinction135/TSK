@@ -232,6 +232,7 @@ namespace DungeonRun
                 Functions_Level.currentRoom.spawnPos.X,
                 Functions_Level.currentRoom.spawnPos.Y);
             Functions_Movement.StopMovement(Pool.hero.compMove);
+            Pool.hero.compSprite.scale = 1.0f; //rescale hero to 100%
             //set camera's target to hero or room based on flag boolean
             if (Flags.CameraTracksHero) //center camera to hero
             { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
