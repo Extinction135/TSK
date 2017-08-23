@@ -32,11 +32,22 @@ namespace DungeonRun
             }
         }
 
-        public static void ScaleSpriteComponent(ComponentSprite Sprite)
-        {
-            //animate the scale back to 1.0f
-            if (Sprite.scale > 1.0f) { Sprite.scale -= 0.07f; }
-            else if (Sprite.scale < 1.0f) { Sprite.scale = 1.0f; }
+        public static void ScaleSpriteUp(ComponentSprite Sprite)
+        {   //scale sprite up to 1.0, lock to 1.0
+            if (Sprite.scale < 1.0f)
+            {
+                Sprite.scale += 0.07f;
+                if (Sprite.scale > 1.0f) { Sprite.scale = 1.0f; }
+            }
+        }
+
+        public static void ScaleSpriteDown(ComponentSprite Sprite)
+        {   //scale sprite down to 1.0, lock to 1.0
+            if (Sprite.scale > 1.0f)
+            {
+                Sprite.scale -= 0.07f;
+                if (Sprite.scale < 1.0f) { Sprite.scale = 1.0f; }
+            }
         }
 
     }

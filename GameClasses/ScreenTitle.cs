@@ -293,7 +293,7 @@ namespace DungeonRun
                 if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
                 else { selectionBox.scale = 1.0f; }
                 //scale currently selected menuItem back down to 1.0
-                Functions_Animation.ScaleSpriteComponent(currentlySelected.compSprite);
+                Functions_Animation.ScaleSpriteDown(currentlySelected.compSprite);
             }
         }
 

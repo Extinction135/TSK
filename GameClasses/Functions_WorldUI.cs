@@ -142,9 +142,9 @@ namespace DungeonRun
 
             //animate (and scale) the current weapon + item
             Functions_Animation.Animate(WorldUI.currentWeapon.compAnim, WorldUI.currentWeapon.compSprite);
-            Functions_Animation.ScaleSpriteComponent(WorldUI.currentWeapon.compSprite);
+            Functions_Animation.ScaleSpriteDown(WorldUI.currentWeapon.compSprite);
             Functions_Animation.Animate(WorldUI.currentItem.compAnim, WorldUI.currentItem.compSprite);
-            Functions_Animation.ScaleSpriteComponent(WorldUI.currentItem.compSprite);
+            Functions_Animation.ScaleSpriteDown(WorldUI.currentItem.compSprite);
 
             #endregion
 

@@ -44,6 +44,7 @@ namespace DungeonRun
                     //reset obj to default state, hide offscreen, return it
                     Functions_GameObject.ResetObject(Pool.roomObjPool[Pool.roomObjCounter]);
                     Pool.roomObjPool[Pool.roomObjCounter].compMove.newPosition.X = -1000;
+                    Pool.roomObjPool[Pool.roomObjCounter].compSprite.scale = 1.0f;
                     return Pool.roomObjPool[Pool.roomObjCounter];
                 }
             }
@@ -61,6 +62,7 @@ namespace DungeonRun
                     //reset entity to default state, hide offscreen, return it
                     Functions_GameObject.ResetObject(Pool.entityPool[Pool.entityIndex]);
                     Pool.entityPool[Pool.entityIndex].compMove.newPosition.X = -1000;
+                    Pool.entityPool[Pool.entityIndex].compSprite.scale = 1.0f;
                     return Pool.entityPool[Pool.entityIndex];
                 }
             }
@@ -183,7 +185,7 @@ namespace DungeonRun
                 {
                     Functions_Actor.Update(Pool.actorPool[i]);
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
-                    //we don't scale actors back to 100% each frame, this is done in GetActor()
+                    Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
 
                     if (Pool.actorPool[i].state != ActorState.Dead)
                     {
@@ -219,7 +221,7 @@ namespace DungeonRun
                 {
                     Functions_GameObject.Update(Pool.entityPool[i]);
                     Functions_Animation.Animate(Pool.entityPool[i].compAnim, Pool.entityPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteComponent(Pool.entityPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.entityPool[i].compSprite);
 
                     //project movement
                     if (Pool.entityPool[i].compMove.moveable)
@@ -250,7 +252,7 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
                         Pool.roomObjPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteComponent(Pool.roomObjPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
                 }
             }
         }

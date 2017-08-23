@@ -478,6 +478,7 @@ namespace DungeonRun
                 Obj.compAnim.loop = false;
                 SetWeaponCollisions(Obj); //set collisions based on direction
                 Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
             }
             else if (Type == ObjType.ProjectileFireball)
             {

@@ -266,7 +266,7 @@ namespace DungeonRun
             if (currentlySelected.type != MenuItemType.InventoryGold) //inventory gold animates already
             {
                 Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
-                Functions_Animation.ScaleSpriteComponent(currentlySelected.compSprite);
+                Functions_Animation.ScaleSpriteDown(currentlySelected.compSprite);
             }
             //this prevents inventory gold from getting animated twice per frame
         }

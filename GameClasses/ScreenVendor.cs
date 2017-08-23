@@ -174,7 +174,7 @@ namespace DungeonRun
             else { selectionBox.scale = 1.0f; }
             //animate and scale the currentlySelected menuItem
             Functions_Animation.Animate(currentlySelected.compAnim, currentlySelected.compSprite);
-            Functions_Animation.ScaleSpriteComponent(currentlySelected.compSprite);
+            Functions_Animation.ScaleSpriteDown(currentlySelected.compSprite);
         }
 
         public override void Draw(GameTime GameTime)

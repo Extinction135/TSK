@@ -341,7 +341,7 @@ namespace DungeonRun
                                 Functions_Entity.SpawnEntity(
                                     ObjType.ParticleSmokePuff,
                                     Obj.compSprite.position.X + 4,
-                                    Obj.compSprite.position.Y - 10,
+                                    Obj.compSprite.position.Y - 8,
                                     Direction.None);
                             }
                             //continue falling state, scaling actor down
@@ -510,7 +510,40 @@ namespace DungeonRun
                 #endregion
 
 
-                //Pit
+                #region Pits
+
+                else if(RoomObj.type == ObjType.PitAnimated)
+                {
+                    if(Projectile.compMove.grounded)
+                    {
+                        //gradually pull object into pit's center
+                        Projectile.compMove.magnitude = (RoomObj.compSprite.position - Projectile.compSprite.position) * 0.25f;
+                        //if obj is near to pit center, begin/continue falling state
+                        if (Math.Abs(Projectile.compSprite.position.X - RoomObj.compSprite.position.X) < 2)
+                        {
+                            if (Math.Abs(Projectile.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
+                            {
+                                if (Projectile.compSprite.scale == 1.0f) //begin actor falling state
+                                {
+                                    Assets.Play(Assets.sfxActorFall);
+                                    //play rising smoke puff to reinforce that object has fallen into pit
+                                    Functions_Entity.SpawnEntity(
+                                        ObjType.ParticleSmokePuff,
+                                        RoomObj.compSprite.position.X + 4,
+                                        RoomObj.compSprite.position.Y - 8,
+                                        Direction.None);
+                                }
+                                //continue falling state, scaling object down
+                                Projectile.compSprite.scale -= 0.03f;
+                            }
+                        }
+                        //when a projectile hits 0 scale, simply release it
+                        if (Projectile.compSprite.scale < 0.0f)
+                        { Functions_Pool.Release(Projectile); }
+                    }
+                }
+
+                #endregion
 
             }
         }

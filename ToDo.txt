@@ -44,17 +44,24 @@ v0.7 goals
 
 
 
-3
+1
 
 
 
 
-Allow Fireballs to destroy BombableDoors
+Get Projectiles interacting with Pits
 
-updated CollapseDungeonDoor(), removing the check for explosion.
-fireballs would be ignored if this check existed.
-updated InteractObject() to allow fireballs to collapse bombable doors.
-updated CollapseDungeonDoor(), reducing duplicate code elsewhere.
+created Functions_Animation.ScaleSpriteUp() and ScaleSpriteDown().
+removed Functions_Animation.ScaleSpriteComponent().
+
+updated GetRoomObj() to set Obj scale to 1.0.
+updated GetEntity() to set Entity obj scale to 1.0.
+
+updated Functions_Pool.Update() to scale actors, entities, roomObj sprites down to 100%.
+updated various codepaths to use ScaleSpriteDown().
+updated InteractObject() with Pit routine, which handles all entities
+entities that are grounded are pulled into the pit, scaled to 0, and released.
+updated Sword obj to be airborne (obj.compMove.grounded = false).
 playtested, working as expected.
 
 
@@ -64,13 +71,14 @@ playtested, working as expected.
 
 
 
-bombable doors shouldn't appear on the map
-secret rooms shouldn't appear on the map
-simply ignore drawing of bombable doors + secret rooms
 
 
 
 
+do we really need to center objects and actors to pits?
+this makes them appear to 'curve' into pits, which looks weird..
+but if they're colliding, then a scale down would look correct
+we may not need to pull actors/objects into pits afterall...
 
 
 
@@ -82,6 +90,20 @@ if projectile.compMove.grounded, then should fall into pit, else ignore (flyover
 should pull projectile into pit center
 should scale projectile down to 0
 should play actorFall sound (rename to sfxFallingThrow)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
