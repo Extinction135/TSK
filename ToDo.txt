@@ -44,32 +44,20 @@ v0.7 goals
 
 
 
-10
+9
 
 
 
 
 
 
-
-
-Implement Actor vs ObjPool Collision Check Optimization
-
-currently, actors can interact() with blocking roomObjects.
-which doesn't make sense, because a blocking object simply prevents actors from 
-passing thru it, no interaction beyond that should occur.
-non-blocking objects are only objects that can be interacted() with.
-updated CheckObjPoolCollisions(Actor) to only pass non-blocking objs to Interact().
-blocking objs simply block, and have no interaction with actor.
-removed un-needed code from InteractActor() due to new non-blocking routine.
-
-added TrapDoor section to InteractObject().
-section kills any projectiles that collide with TrapDoor.
-because TrapDoor is non-blocking, projectiles could pass thru it.
-this would let projectiles outside of room, which we don't want.
-
-
-playtest, checking boss door and trap doors
+Added a button to top debug menu that sets the hero's ActorType.
+this iterates thru Hero, Blob, and Boss actor types.
+this allows us to playtest the different actor types as hero.
+playtested, working as expected.
+even playing as the boss blob basically works.
+the only issues are due to his size, as projectiles collide with him upon creation.
+but, the hero will never be of boss actor type.
 
 
 
@@ -97,11 +85,7 @@ and it places pit teeth at top and bottom of pit upon collapse
 
 
 
-Add a button to top menu that sets the hero's ActorType.
-should enumerate thru available actor types, ignoring bosses of course.
-test that hero can still function as a blob.
-blob should have all animations that hero has.
-sprite sheet should look the same.
+
 
 
 projectiles exist on the main sheet

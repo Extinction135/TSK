@@ -417,6 +417,7 @@ namespace DungeonRun
             buttons.Add(new ComponentButton("f5 play/pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton("f6 damage all", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton("f7 map cheat", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f8 hero type", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
         }
     }
 
