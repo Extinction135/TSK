@@ -44,28 +44,20 @@ v0.7 goals
 
 
 
-12
+11
 
 
 
 
+Simplify BossDoor Interaction
 
-Fix Sword Hit Particle Bug
+changed how hero interacts with bossDoor.
+player must now press A button while hero is facing bossDoor to open it.
+this occurs via an InteractionRec collision, removing bossDoor from actor collision.
+this was done because the bossDoor is blocking, and we want to remove all
+blocking objects from the Interact(Actor, Obj) method in prep for an optimization.
 
-when a sword projectile hits an actor, it spawns a hit particle at the swords tip.
-however, this was being done each frame, so the sword spawned about 100 particles.
-the fix is to check the sword.lifeCounter value, making sure the lifeCounter = 1.
-this limits the hit sparkle spawn to the first frame of sword's existence.
-this is the same approach used when checking sword collisions with blocking roomObjs.
-this fixes the creation of 100s of particles upon a sword collision with actor.
-playtested, working. 
 
-but, this sword interaction still creates 2 sparkles.
-this is because the projectile's collision system checks collisions per axis.
-so, i modified CheckCollisions(Entity) to perform a single projection collision check.
-this prevents projectiles from interacting with actors twice per frame.
-this also saves some ticks per frame.
-playtested, working as expected.
 
 
 
@@ -77,6 +69,15 @@ actors can't interact with blocking roomObjs.
 so why do we call interact() with actor collides with them?
 this is an optimization we can implement
 
+
+except, the boss door is blocking, and hero's collision with it opens it
+we could split interact into blocking collision and non-blocking collision methods
+hmmmm... or the boss door could be non-blocking and push hero away from it if he doesn't have the key
+or player should have to face hero at bossdoor and press A button (interact with it)
+
+
+with trap doors, they are non-blocking, so a projectile can pass thru them
+we dont want that, they should be blocking like other doors
 
 
 

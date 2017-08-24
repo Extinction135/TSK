@@ -150,9 +150,19 @@ namespace DungeonRun
             #region Boss Door
 
             else if (Obj.type == ObjType.DoorBoss)
-            {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
-                if (Level.bigKey == false)
-                {
+            {
+                if (Level.bigKey)
+                {   //hero must have dungeon key to open boss door
+                    Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
+                    Assets.Play(Assets.sfxDoorOpen);
+                    Functions_Entity.SpawnEntity(
+                        ObjType.ParticleAttention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.None);
+                }
+                else
+                {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey)); }
                 }
@@ -226,20 +236,7 @@ namespace DungeonRun
 
                     #region Check Collisions with Door Types
 
-                    if (Obj.type == ObjType.DoorBoss)
-                    {   //hero must have dungeon key to open boss door
-                        if (Level.bigKey)
-                        {
-                            Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
-                            Assets.Play(Assets.sfxDoorOpen);
-                            Functions_Entity.SpawnEntity(
-                                ObjType.ParticleAttention,
-                                Obj.compSprite.position.X,
-                                Obj.compSprite.position.Y,
-                                Direction.None);
-                        }
-                    }
-                    else if (Obj.type == ObjType.Exit)
+                    if (Obj.type == ObjType.Exit)
                     {   //only hero can exit dungeon
                         if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
                         {   //if dungeon screen is open, close it, perform interaction ONCE
