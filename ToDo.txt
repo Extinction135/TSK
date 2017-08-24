@@ -44,41 +44,42 @@ v0.7 goals
 
 
 
-13
+12
 
 
 
 
-Fix Pit COllision Bug
 
-if two actors collide, they are prevented from moving through each other.
-this is the foundation of the collision system for actors.
-however, when two actors are being pulled into a pit at the same time,
-they collide, and their movement into the pit is canceled out.
-this leads to a state where two actors hover over the pit, never falling in,
-stuck in a hit state where they are unmove-able. this is bad.
+Fix Sword Hit Particle Bug
 
-so, the fix is to update the actor colliding with the pit,
-in a manner that does not check collisions. ignore collisions, basically.
-but since this interaction is happening from a collision check,
-we can't just projectMovement() and then align()...
-because the parent collision check will revert the actor back to 
-the compMove.position and ignore the compMove.newPosition.
+when a sword projectile hits an actor, it spawns a hit particle at the swords tip.
+however, this was being done each frame, so the sword spawned about 100 particles.
+the fix is to check the sword.lifeCounter value, making sure the lifeCounter = 1.
+this limits the hit sparkle spawn to the first frame of sword's existence.
+this is the same approach used when checking sword collisions with blocking roomObjs.
+this fixes the creation of 100s of particles upon a sword collision with actor.
+playtested, working. 
 
-the fix is to set the compMove.position directly using the actor's magnitude.
-then set the compMove.newPosition to compMove.position, then Align() components.
-this force-moves the actor into the pit, ignoring any blocking collisions.
-updated Interact() -> Pit routine with force-move code for actors.
+but, this sword interaction still creates 2 sparkles.
+this is because the projectile's collision system checks collisions per axis.
+so, i modified CheckCollisions(Entity) to perform a single projection collision check.
+this prevents projectiles from interacting with actors twice per frame.
+this also saves some ticks per frame.
 playtested, working as expected.
 
 
 
 
 
+are there roomObjs that aren't blocking?
+
+actors can't interact with blocking roomObjs.
+so why do we call interact() with actor collides with them?
+this is an optimization we can implement
 
 
 
-we're creating waaaaay to many sword hit sparkles upon collision with actor
+
 
 
 
@@ -156,7 +157,8 @@ fairy is a projectile that moves in a random direction and has a lifetime of 254
 fairys should be created very rarely from enemy deaths (update loot routine)
 
 
-
+update conveyor belts to center projectiles to the moving axis
+this aligns the obj to the middle of the conveyor belt, while still moving along the belts direction
 
 
 ObjectTools++

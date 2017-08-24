@@ -296,8 +296,13 @@ namespace DungeonRun
             {
                 Functions_Battle.Damage(Actor, Obj);
                 if (Obj.type == ObjType.ProjectileSword)
-                {   //spawn a hit sparkle particle on sword
-                    Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
+                {   
+                    if (Obj.lifeCounter == 1)
+                    {   //if sword projectile is brand new, spawn hit particle
+                        Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
+
+                        Debug.WriteLine("sword hit sparkle created");
+                    }
                 }
             }
             else if (Obj.group == ObjGroup.Object) 

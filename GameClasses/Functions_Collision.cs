@@ -198,9 +198,9 @@ namespace DungeonRun
 
 
         public static void CheckCollisions(Actor Actor)
-        {   //most frames, an actor isn't colliding with anything
-            collisionX = false; collisionY = false; //check per axis
-            collisionXY = false; //and diagonal check
+        {   //most frames, an actor isn't colliding with anything, so do diagonal check first
+            //triple projection collision check (X&Y, X, Y axis)
+            collisionX = false; collisionY = false; collisionXY = false; //horizontal, vertical, and diagonal check
 
             //project on both X and Y axis
             Actor.compCollision.rec.X = (int)Actor.compMove.newPosition.X + Actor.compCollision.offsetX;
@@ -243,29 +243,24 @@ namespace DungeonRun
         }
 
         public static void CheckCollisions(GameObject Entity)
-        {
-            collisionX = false; collisionY = false; //check per axis
+        {   //single projection collision check (X&Y axis)
+            collisionXY = false;
 
-            //project X
+            //project X&Y
             Entity.compCollision.rec.X = (int)Entity.compMove.newPosition.X + Entity.compCollision.offsetX;
+            Entity.compCollision.rec.Y = (int)Entity.compMove.newPosition.Y + Entity.compCollision.offsetY;
             //check actor, object, entity collisions/interactions
             if (CheckActorPoolCollisions(Entity)) { collisionX = true; }
             if (CheckObjPoolCollisions(Entity)) { collisionX = true; }
-            //unproject X
+            //unproject X&Y
             Entity.compCollision.rec.X = (int)Entity.compMove.position.X + Entity.compCollision.offsetX;
-
-            //project Y
-            Entity.compCollision.rec.Y = (int)Entity.compMove.newPosition.Y + Entity.compCollision.offsetY;
-            //check actor, object, entity collisions/interactions
-            if (CheckActorPoolCollisions(Entity)) { collisionY = true; }
-            if (CheckObjPoolCollisions(Entity)) { collisionY = true; }
-            //unproject Y
             Entity.compCollision.rec.Y = (int)Entity.compMove.position.Y + Entity.compCollision.offsetY;
-
             //if there was a collision, revert to previous position, per axis
-            if (collisionX) { Entity.compMove.newPosition.X = Entity.compMove.position.X; }
-            if (collisionY) { Entity.compMove.newPosition.Y = Entity.compMove.position.Y; }
-
+            if (collisionXY)
+            {
+                Entity.compMove.newPosition.X = Entity.compMove.position.X;
+                Entity.compMove.newPosition.Y = Entity.compMove.position.Y;
+            }
             //the current position becomes the new position
             Entity.compMove.position.X = Entity.compMove.newPosition.X;
             Entity.compMove.position.Y = Entity.compMove.newPosition.Y;
