@@ -319,11 +319,16 @@ namespace DungeonRun
 
                     #region Continuous collision (each frame)
 
-                    //gradually pull actor into pit's center, lock actor into hit state, prevent movement
+                    //gradually pull actor into pit's center, manually update the actor's position
                     Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
+                    //force actor to move into pit (through any blocking collisions)
+                    Actor.compMove.position += Actor.compMove.magnitude;
+                    Actor.compMove.newPosition = Actor.compMove.position;
+                    Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
+
                     //if this is the first frame that actor collides with pit, play fall sound effect
                     if (Actor.state != ActorState.Hit) { Assets.Play(Assets.sfxActorFall); }
-                    //lock actor into hit state
+                    //lock actor into hit state, prevent movement
                     Actor.state = ActorState.Hit;
                     Actor.stateLocked = true;
                     Actor.lockCounter = 0;
@@ -515,15 +520,14 @@ namespace DungeonRun
                 else if(RoomObj.type == ObjType.PitAnimated)
                 {
                     if(Projectile.compMove.grounded)
-                    {
-                        //gradually pull object into pit's center
+                    {   //pull projectile into pit's center, project movement, align projectile to new pos
                         Projectile.compMove.magnitude = (RoomObj.compSprite.position - Projectile.compSprite.position) * 0.25f;
                         //if obj is near to pit center, begin/continue falling state
                         if (Math.Abs(Projectile.compSprite.position.X - RoomObj.compSprite.position.X) < 2)
                         {
                             if (Math.Abs(Projectile.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
                             {
-                                if (Projectile.compSprite.scale == 1.0f) //begin actor falling state
+                                if (Projectile.compSprite.scale == 1.0f) //begin falling state
                                 {
                                     Assets.Play(Assets.sfxActorFall);
                                     //play rising smoke puff to reinforce that object has fallen into pit

@@ -44,24 +44,31 @@ v0.7 goals
 
 
 
-1
+13
 
 
 
 
-Get Projectiles interacting with Pits
+Fix Pit COllision Bug
 
-created Functions_Animation.ScaleSpriteUp() and ScaleSpriteDown().
-removed Functions_Animation.ScaleSpriteComponent().
+if two actors collide, they are prevented from moving through each other.
+this is the foundation of the collision system for actors.
+however, when two actors are being pulled into a pit at the same time,
+they collide, and their movement into the pit is canceled out.
+this leads to a state where two actors hover over the pit, never falling in,
+stuck in a hit state where they are unmove-able. this is bad.
 
-updated GetRoomObj() to set Obj scale to 1.0.
-updated GetEntity() to set Entity obj scale to 1.0.
+so, the fix is to update the actor colliding with the pit,
+in a manner that does not check collisions. ignore collisions, basically.
+but since this interaction is happening from a collision check,
+we can't just projectMovement() and then align()...
+because the parent collision check will revert the actor back to 
+the compMove.position and ignore the compMove.newPosition.
 
-updated Functions_Pool.Update() to scale actors, entities, roomObj sprites down to 100%.
-updated various codepaths to use ScaleSpriteDown().
-updated InteractObject() with Pit routine, which handles all entities
-entities that are grounded are pulled into the pit, scaled to 0, and released.
-updated Sword obj to be airborne (obj.compMove.grounded = false).
+the fix is to set the compMove.position directly using the actor's magnitude.
+then set the compMove.newPosition to compMove.position, then Align() components.
+this force-moves the actor into the pit, ignoring any blocking collisions.
+updated Interact() -> Pit routine with force-move code for actors.
 playtested, working as expected.
 
 
@@ -71,68 +78,7 @@ playtested, working as expected.
 
 
 
-
-
-
-
-do we really need to center objects and actors to pits?
-this makes them appear to 'curve' into pits, which looks weird..
-but if they're colliding, then a scale down would look correct
-we may not need to pull actors/objects into pits afterall...
-
-
-
-
-Get Projectiles interacting with Pits
-
-if projectile.compMove.grounded, then should fall into pit, else ignore (flyover)
-*a sword projectile is airborne* - make sure this is set properly in obj.setType().
-should pull projectile into pit center
-should scale projectile down to 0
-should play actorFall sound (rename to sfxFallingThrow)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Improve Hero falling into Pit++
-when hero 'lands' after a pit fall, he should be put into a sitting position
-then he should take a few frames to 'standup', before finally returning to standing idle
-this should all be facing south
-this should be an animation list + state
-this state and animation should exist for all non-boss actors
-
-Add a button to top menu that sets the hero's ActorType.
-should enumerate thru available actor types, ignoring bosses of course.
-test that hero can still function as a blob.
-blob should have all animations that hero has.
-sprite sheet should look the same.
-
-
-
-
-
-
-Bug:
-if two actors fall into a pit at the same time,
-their collision recs wont overlap, and thus will perpetually 'fall' in place
-
-
-
+we're creating waaaaay to many sword hit sparkles upon collision with actor
 
 
 
@@ -153,6 +99,45 @@ and it places pit teeth at top and bottom of pit upon collapse
 
 
 
+Add a button to top menu that sets the hero's ActorType.
+should enumerate thru available actor types, ignoring bosses of course.
+test that hero can still function as a blob.
+blob should have all animations that hero has.
+sprite sheet should look the same.
+
+
+projectiles exist on the main sheet
+so some dungeon objects will need to be moved to the main sheet
+this will free up space on the dungeon sheet for other roomObjs!! yay
+-spikeblock
+
+how else can we free up space in the dungeon sheet?
+we could reduce the number of floor tiles to 2, regular and special
+that frees up one space.
+we can use openDoors instead of bombed doors - they almost look identical
+we could create debris at the door's location when it's bombed open
+this also simplifies the open/bombed door checks throughout codebase
+that frees up one space
+instead of animated pits, we could use a single tile
+then later on we can have pits randomly spawn a bubble particle to add animation back in
+this would also vary the animation timing, and bubble placement, so it's an improvement
+this frees up two spaces
+we could get rid of draggable blocks, and instead make the dungeon statues the only draggable roomObjs
+this frees up one space
+
+
+
+we can also better pack the mainsheet to create room for additional projectiles
+we should pack all projectiles together in the same area
+this means we need to move all item sprites over two tiles to the right
+and then update their animList values
+
+
+
+
+
+
+
 
 
 Projectiles++
@@ -165,6 +150,11 @@ so we could 'fake' roomObjs moving around on conveyor belts (using projectiles)
 
 we'll need to make sure that pickups don't have a lifetime of 255.
 they can have a lifetime of 254 instead.
+
+Fairy Projectile
+fairy is a projectile that moves in a random direction and has a lifetime of 254
+fairys should be created very rarely from enemy deaths (update loot routine)
+
 
 
 
@@ -211,6 +201,13 @@ Circling Stars
 just like Lttp, the circling stars turns hero into an enemy actor type
 except, it's not on a timer. hero becomes enemy actor type until Circling stars collides with hero again.
 this is a check: if hero.type != hero, become enemy, else become hero.
+
+DungeonPillars++
+dungeon pillars should be two tiles tall, with a 16x16 collision rec at base of pillar
+this makes the pillars much larger and adds some variation to the room objects in terms of size
+they can also be used to give rooms more character, and create the illusion of depth
+(because hero can walk behind them)
+this is a very easy sprite to design, but is more difficult to display in object tools widget
 
 
 
@@ -367,7 +364,12 @@ make castlel ruins look more 'ruiny'
 
 
 
-
+Improve Hero falling into Pit++
+when hero 'lands' after a pit fall, he should be put into a sitting position
+then he should take a few frames to 'standup', before finally returning to standing idle
+this should all be facing south
+this should be an animation list + state
+this state and animation should exist for all non-boss actors
 
 
 

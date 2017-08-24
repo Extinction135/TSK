@@ -43,8 +43,6 @@ namespace DungeonRun
             else { Display.amount.text = "" + Value; }
         }
 
-
-
         public static void CenterOrigin(ComponentSprite Sprite)
         {
             Sprite.origin.X = Sprite.cellSize.X * 0.5f;
