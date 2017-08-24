@@ -44,18 +44,7 @@ v0.7 goals
 
 
 
-11
-
-
-
-
-Simplify BossDoor Interaction
-
-changed how hero interacts with bossDoor.
-player must now press A button while hero is facing bossDoor to open it.
-this occurs via an InteractionRec collision, removing bossDoor from actor collision.
-this was done because the bossDoor is blocking, and we want to remove all
-blocking objects from the Interact(Actor, Obj) method in prep for an optimization.
+10
 
 
 
@@ -63,21 +52,28 @@ blocking objects from the Interact(Actor, Obj) method in prep for an optimizatio
 
 
 
-are there roomObjs that aren't blocking?
 
-actors can't interact with blocking roomObjs.
-so why do we call interact() with actor collides with them?
-this is an optimization we can implement
+Implement Actor vs ObjPool Collision Check Optimization
+
+currently, actors can interact() with blocking roomObjects.
+which doesn't make sense, because a blocking object simply prevents actors from 
+passing thru it, no interaction beyond that should occur.
+non-blocking objects are only objects that can be interacted() with.
+updated CheckObjPoolCollisions(Actor) to only pass non-blocking objs to Interact().
+blocking objs simply block, and have no interaction with actor.
+removed un-needed code from InteractActor() due to new non-blocking routine.
+
+added TrapDoor section to InteractObject().
+section kills any projectiles that collide with TrapDoor.
+because TrapDoor is non-blocking, projectiles could pass thru it.
+this would let projectiles outside of room, which we don't want.
 
 
-except, the boss door is blocking, and hero's collision with it opens it
-we could split interact into blocking collision and non-blocking collision methods
-hmmmm... or the boss door could be non-blocking and push hero away from it if he doesn't have the key
-or player should have to face hero at bossdoor and press A button (interact with it)
+playtest, checking boss door and trap doors
 
 
-with trap doors, they are non-blocking, so a projectile can pass thru them
-we dont want that, they should be blocking like other doors
+
+
 
 
 

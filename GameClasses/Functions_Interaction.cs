@@ -197,11 +197,9 @@ namespace DungeonRun
         }
 
         public static void InteractActor(Actor Actor, GameObject Obj)
-        {   //the Obj is non-blocking
-            //particle Objs never interact with actors or reach this function
-            //objectGroups are checked in order of most commonly interacted with
-
-            if(Actor == Pool.hero) //certain objects only interact with hero
+        {   //Obj is non-blocking, can be Entity or RoomObj
+            //these objects interact with HERO
+            if (Actor == Pool.hero) 
             {
 
                 #region Pickups
@@ -228,16 +226,9 @@ namespace DungeonRun
                 #region Doors
 
                 else if (Obj.group == ObjGroup.Door)
-                {
-                    //exit pillars & bombable doors have no interactions whatsoever
-                    if (Obj.type == ObjType.ExitPillarLeft || Obj.type == ObjType.ExitPillarRight) { return; }
-                    if (Obj.type == ObjType.DoorBombable) { return; }
-
-
-                    #region Check Collisions with Door Types
-
+                {   //handle hero interaction with exit door
                     if (Obj.type == ObjType.Exit)
-                    {   //only hero can exit dungeon
+                    {
                         if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
                         {   //if dungeon screen is open, close it, perform interaction ONCE
                             DungeonRecord.beatDungeon = false;
@@ -248,20 +239,6 @@ namespace DungeonRun
                             Assets.Play(Assets.sfxDoorOpen);
                         }
                     }
-                    else if (Obj.type == ObjType.DoorTrap)
-                    {   //trap doors push ALL actors
-                        Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
-                        Functions_Entity.SpawnEntity(
-                            ObjType.ParticleDashPuff,
-                            Obj.compSprite.position.X,
-                            Obj.compSprite.position.Y,
-                            Direction.None);
-                    }
-
-                    #endregion
-
-
-                    if (Obj.type == ObjType.DoorBoss) { return; } //boss doors do not center hero
                     //center Hero to Door, while still allowing him to pass thru
                     if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
                     {   //gradually center hero to door
@@ -285,115 +262,139 @@ namespace DungeonRun
                 //switch
                 //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
             }
-
-
-            #region These objects interact with ALL actors
-
-            if (Obj.group == ObjGroup.Projectile)
+            //these objects interact with ALL ACTORS
             {
-                Functions_Battle.Damage(Actor, Obj);
-                if (Obj.type == ObjType.ProjectileSword)
-                {   
-                    if (Obj.lifeCounter == 1)
-                    {   //if sword projectile is brand new, spawn hit particle
-                        Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
 
-                        Debug.WriteLine("sword hit sparkle created");
+                #region Projectiles
+
+                if (Obj.group == ObjGroup.Projectile)
+                {
+                    Functions_Battle.Damage(Actor, Obj);
+                    if (Obj.type == ObjType.ProjectileSword)
+                    {
+                        if (Obj.lifeCounter == 1)
+                        {   //if sword projectile is brand new, spawn hit particle
+                            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
+                        }
                     }
                 }
-            }
-            else if (Obj.group == ObjGroup.Object) 
-            {
-                if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloorOn)
-                {   //damage push actor away from spikes
-                    Functions_Battle.Damage(Actor, Obj);
-                }
-                else if (Obj.type == ObjType.ConveyorBeltOn)
-                {   //belt move actors the same way we move objects
-                    ConveyorBeltPush(Actor.compMove, Obj);
-                }
-                else if (Obj.type == ObjType.Bumper)
+
+                #endregion
+
+
+                #region Doors
+
+                else if (Obj.group == ObjGroup.Door)
                 {
-                    BounceOffBumper(Actor.compMove, Obj);
+                    if (Obj.type == ObjType.DoorTrap)
+                    {   //trap doors push ALL actors
+                        Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
+                        Functions_Entity.SpawnEntity(
+                            ObjType.ParticleDashPuff,
+                            Obj.compSprite.position.X,
+                            Obj.compSprite.position.Y,
+                            Direction.None);
+                    }
                 }
-                else if (Obj.type == ObjType.PitAnimated)
+
+                #endregion
+
+
+                #region Objects
+
+                else if (Obj.group == ObjGroup.Object)
                 {
-
-                    #region Continuous collision (each frame)
-
-                    //gradually pull actor into pit's center, manually update the actor's position
-                    Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
-                    //force actor to move into pit (through any blocking collisions)
-                    Actor.compMove.position += Actor.compMove.magnitude;
-                    Actor.compMove.newPosition = Actor.compMove.position;
-                    Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
-
-                    //if this is the first frame that actor collides with pit, play fall sound effect
-                    if (Actor.state != ActorState.Hit) { Assets.Play(Assets.sfxActorFall); }
-                    //lock actor into hit state, prevent movement
-                    Actor.state = ActorState.Hit;
-                    Actor.stateLocked = true;
-                    Actor.lockCounter = 0;
-                    Actor.lockTotal = 45;
-                    Actor.compMove.speed = 0.0f;
-
-                    //if actor is near to pit center, begin/continue falling state
-                    if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
+                    if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloorOn)
+                    {   //damage push actor away from spikes
+                        Functions_Battle.Damage(Actor, Obj);
+                    }
+                    else if (Obj.type == ObjType.ConveyorBeltOn)
+                    {   //belt move actors the same way we move objects
+                        ConveyorBeltPush(Actor.compMove, Obj);
+                    }
+                    else if (Obj.type == ObjType.Bumper)
                     {
-                        if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
+                        BounceOffBumper(Actor.compMove, Obj);
+                    }
+                    else if (Obj.type == ObjType.PitAnimated)
+                    {
+
+                        #region Continuous collision (each frame)
+
+                        //gradually pull actor into pit's center, manually update the actor's position
+                        Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
+                        //force actor to move into pit (through any blocking collisions)
+                        Actor.compMove.position += Actor.compMove.magnitude;
+                        Actor.compMove.newPosition = Actor.compMove.position;
+                        Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
+
+                        //if this is the first frame that actor collides with pit, play fall sound effect
+                        if (Actor.state != ActorState.Hit) { Assets.Play(Assets.sfxActorFall); }
+                        //lock actor into hit state, prevent movement
+                        Actor.state = ActorState.Hit;
+                        Actor.stateLocked = true;
+                        Actor.lockCounter = 0;
+                        Actor.lockTotal = 45;
+                        Actor.compMove.speed = 0.0f;
+
+                        //if actor is near to pit center, begin/continue falling state
+                        if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
                         {
-                            if (Actor.compSprite.scale == 1.0f) //begin actor falling state
+                            if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
                             {
-                                //play rising smoke puff to reinforce that actor has fallen into pit
+                                if (Actor.compSprite.scale == 1.0f) //begin actor falling state
+                                {
+                                    //play rising smoke puff to reinforce that actor has fallen into pit
+                                    Functions_Entity.SpawnEntity(
+                                        ObjType.ParticleSmokePuff,
+                                        Obj.compSprite.position.X + 4,
+                                        Obj.compSprite.position.Y - 8,
+                                        Direction.None);
+                                }
+                                //continue falling state, scaling actor down
+                                Actor.compSprite.scale -= 0.03f;
+                            }
+                        }
+
+                        #endregion
+
+
+                        #region End State of actor -> pit collision
+
+                        if (Actor.compSprite.scale < 0.0f)
+                        {   //actor has reached 0% scale, has fallen into pit completely
+                            if (Actor == Pool.hero)
+                            {   //send hero back to last door he passed thru
+                                //Assets.Play(Actor.sfxHit); //play hero's hit sfx
+                                Assets.Play(Assets.sfxActorLand); //play actor land sfx
+                                Functions_Room.SpawnHeroInCurrentRoom();
+                                //direct player's attention to hero's respawn pos
                                 Functions_Entity.SpawnEntity(
-                                    ObjType.ParticleSmokePuff,
-                                    Obj.compSprite.position.X + 4,
-                                    Obj.compSprite.position.Y - 8,
+                                    ObjType.ParticleAttention,
+                                    Functions_Level.currentRoom.spawnPos.X,
+                                    Functions_Level.currentRoom.spawnPos.Y,
                                     Direction.None);
                             }
-                            //continue falling state, scaling actor down
-                            Actor.compSprite.scale -= 0.03f;
+                            else
+                            {   //handle enemy pit death (no loot, insta-death)
+                                Assets.Play(Actor.sfxDeath); //play actor death sfx
+                                Functions_Pool.Release(Actor); //release this actor back to pool
+                            }
                         }
+
+                        #endregion
+
                     }
 
-                    #endregion
+                    //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
 
-
-                    #region End State of actor -> pit collision
-
-                    if (Actor.compSprite.scale < 0.0f)
-                    {   //actor has reached 0% scale, has fallen into pit completely
-                        if (Actor == Pool.hero)
-                        {   //send hero back to last door he passed thru
-                            //Assets.Play(Actor.sfxHit); //play hero's hit sfx
-                            Assets.Play(Assets.sfxActorLand); //play actor land sfx
-                            Functions_Room.SpawnHeroInCurrentRoom(); 
-                            //direct player's attention to hero's respawn pos
-                            Functions_Entity.SpawnEntity(
-                                ObjType.ParticleAttention,
-                                Functions_Level.currentRoom.spawnPos.X,
-                                Functions_Level.currentRoom.spawnPos.Y,
-                                Direction.None);
-                        }
-                        else
-                        {   //handle enemy pit death (no loot, insta-death)
-                            Assets.Play(Actor.sfxDeath); //play actor death sfx
-                            Functions_Pool.Release(Actor); //release this actor back to pool
-                        }
-                    }
-
-                    #endregion
-
+                    //ice tile, amplifies the actor's magnitude value in it's current direction
+                    //or we could modify the friction applied to the magnitude, however we choose to do it
                 }
 
-                //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
+                #endregion
 
-                //ice tile, amplifies the actor's magnitude value in it's current direction
-                //or we could modify the friction applied to the magnitude, however we choose to do it
             }
-
-            #endregion
-
         }
 
         public static void InteractObject(GameObject Projectile, GameObject RoomObj)
@@ -547,6 +548,17 @@ namespace DungeonRun
                         if (Projectile.compSprite.scale < 0.0f)
                         { Functions_Pool.Release(Projectile); }
                     }
+                }
+
+                #endregion
+
+
+                #region Trap Door
+
+                else if (RoomObj.type == ObjType.DoorTrap)
+                {   //trap doors push actors in the door's facing direction, into the room
+                    //projectiles should not move thru this door, and be destroyed upon collision
+                    KillProjectileUponCollision(Projectile);
                 }
 
                 #endregion
