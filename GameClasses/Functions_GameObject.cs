@@ -65,7 +65,7 @@ namespace DungeonRun
                 { Obj.compSprite.flipHorizontally = true; }
             }
             else if (Obj.type == ObjType.ProjectileBomb
-                || Obj.type == ObjType.BlockSpikes)
+                || Obj.type == ObjType.ProjectileSpikeBlock)
             {   //some objects only face Direction.Down
                 Obj.compSprite.rotation = Rotation.None;
             }
@@ -264,18 +264,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Draggable;
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
-            }
-            else if (Type == ObjType.BlockSpikes)
-            {
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
-                Obj.compSprite.zOffset = -7;
-                Obj.compCollision.blocking = false;
-                Obj.compMove.speed = 0.6f; //spike blocks move
-                Obj.compMove.direction = Obj.direction; //in obj.direction
-                Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //in air
             }
 
             #endregion
@@ -535,6 +523,20 @@ namespace DungeonRun
                     Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -2;
                     Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 4;
                 }
+            }
+            else if (Type == ObjType.ProjectileSpikeBlock)
+            {
+                Obj.compSprite.zOffset = -7;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 0; //lasts for life of room
+                Obj.compCollision.blocking = false;
+                Obj.compMove.speed = 0.6f; //spike blocks move
+                Obj.compMove.direction = Obj.direction; //set moving direction
+                Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //in air
             }
 
             #endregion

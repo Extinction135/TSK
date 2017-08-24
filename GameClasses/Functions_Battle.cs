@@ -55,6 +55,11 @@ namespace DungeonRun
                 //check to see if damage should be modified
                 if (Actor.armor == MenuItemType.ArmorChest) { damage = 1; }
             }
+            else if (Obj.type == ObjType.ProjectileSpikeBlock)
+            {   //hard push actor away from spikes
+                damage = 1; force = 10.0f;
+                direction = Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position);
+            }
             else if (Obj.type == ObjType.ProjectileSword)
             {   //swords deal 1 damage, push 6
                 damage = 1; force = 6.0f; direction = Obj.direction;
@@ -65,11 +70,6 @@ namespace DungeonRun
 
             #region Objects
 
-            else if (Obj.type == ObjType.BlockSpikes)
-            {   //hard push actor away from spikes
-                damage = 1; force = 10.0f;
-                direction = Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position);
-            }
             else if(Obj.type == ObjType.SpikesFloorOn)
             {   //medium push actor in the actor's moving direction
                 damage = 1; force = 5.0f;

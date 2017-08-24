@@ -123,18 +123,6 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>SpawnEnemy1</type>
       <direction>Down</direction>
       <posX>152</posX>

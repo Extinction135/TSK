@@ -44,20 +44,7 @@ v0.7 goals
 
 
 
-9
-
-
-
-
-
-
-Added a button to top debug menu that sets the hero's ActorType.
-this iterates thru Hero, Blob, and Boss actor types.
-this allows us to playtest the different actor types as hero.
-playtested, working as expected.
-even playing as the boss blob basically works.
-the only issues are due to his size, as projectiles collide with him upon creation.
-but, the hero will never be of boss actor type.
+8
 
 
 
@@ -67,13 +54,54 @@ but, the hero will never be of boss actor type.
 
 
 
+Make Spikeblock a Projectile, not a RoomObj
 
-Cracked Floor Obj
-upon collision with hero, this becomes PitCollapsing obj
+if we set a projectile's lifetime value to 0, then it will last forever.
+this is how we will handle the lifetime of spikeblock.
 
-Pit Collapsing Obj
-if this object isn't colliding with hero, it collapses (chagnes) into a Pit obj
-and it places pit teeth at top and bottom of pit upon collapse
+removed BlockSpike ObjType. added ProjectileSpikeBlock ObjType value.
+updated the GameObjAnimLists to reflect changed ObjType enum.
+updated Obj.SetType() with path for ProjectileSpikeBlock.
+moved spikeBlock sprite from dungeonSheet to mainSheet.
+
+updated BuildRoomObjs() to handle both roomObjects AND entities (projectiles).
+this must be done, because we're going to save spikeBlock projectiles to room xml.
+renamed BuildRoomObjs() to BuildRoomXmlData(), which better represents it's purpose.
+
+updated WidgetRoomTools.HandleInput() -> Save Room routine.
+this now saves active, saveable objects from both RoomObject and Entity pools.
+this means that saveable projectiles will appear in the XML data.
+
+reorganized object tools widget to place projectiles on their own row over enemy spawns.
+updated GrabRoomObject() to grab entities and roomObjs.
+vastly simplified and improved GetActiveObjInfo().
+updated Selecting, Adding, Deleting, Grabbing, Dragging, and Dropping routines.
+these routines now handle RoomObjects AND Entities (Projectiles).
+simplified how the active/current object is represented in ObjectTools widget.
+this is done using an actual gameObject, instead of a sprite + Direction + ObjType.
+
+removed all BlockSpike data from RoomData XML and TestingRooms XML.
+
+
+
+
+we got the loading working (of roomXmlData + projectiles)
+we got the saving working (of roomObjs and projectiles)
+
+projectileSpikeBlocks should bounce off of bumpers, pass over pits, and bounce off trap doors
+> playtest
+
+should be able to place SpikeBlocks
+
+
+ready to push Porjectile commit above ^
+
+
+
+
+
+left ctrl + click isn't dumping info on projectiles!
+it should - updated () to check entity list
 
 
 
@@ -88,10 +116,11 @@ and it places pit teeth at top and bottom of pit upon collapse
 
 
 
-projectiles exist on the main sheet
-so some dungeon objects will need to be moved to the main sheet
-this will free up space on the dungeon sheet for other roomObjs!! yay
--spikeblock
+
+
+
+
+
 
 how else can we free up space in the dungeon sheet?
 we could reduce the number of floor tiles to 2, regular and special
@@ -109,6 +138,15 @@ this frees up one space
 
 
 
+
+
+
+
+
+
+
+
+
 we can also better pack the mainsheet to create room for additional projectiles
 we should pack all projectiles together in the same area
 this means we need to move all item sprites over two tiles to the right
@@ -116,7 +154,12 @@ and then update their animList values
 
 
 
+Cracked Floor Obj
+upon collision with hero, this becomes PitCollapsing obj
 
+Pit Collapsing Obj
+if this object isn't colliding with hero, it collapses (chagnes) into a Pit obj
+and it places pit teeth at top and bottom of pit upon collapse
 
 
 

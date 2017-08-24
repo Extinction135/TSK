@@ -16,7 +16,6 @@ namespace DungeonRun
     public class WidgetRoomTools : Widget
     {
         public RoomXmlData roomData; //the roomData loaded & built
-        GameObject objRef; //used in save routine
         public RoomType roomType;
 
         public List<ComponentButton> buttons; //save, new, load buttons
@@ -102,25 +101,15 @@ namespace DungeonRun
                                 //create RoomXmlData instance
                                 roomData = new RoomXmlData();
                                 roomData.type = Functions_Level.currentRoom.type; //save the room type
-                                //populate this instance with the room's objs
+
+                                //populate roomData with roomObjs
                                 for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-                                {
-                                    objRef = Pool.roomObjPool[Pool.roomObjCounter];
-                                    //if this object is active, save it
-                                    if (objRef.active)
-                                    {
-                                        if (objRef.canBeSaved)
-                                        {
-                                            ObjXmlData objData = new ObjXmlData();
-                                            objData.type = objRef.type;
-                                            objData.direction = objRef.direction;
-                                            //set saved obj's position relative to room's top left corner
-                                            objData.posX = objRef.compSprite.position.X - Functions_Level.currentRoom.rec.X;
-                                            objData.posY = objRef.compSprite.position.Y - Functions_Level.currentRoom.rec.Y;
-                                            roomData.objs.Add(objData);
-                                        }
-                                    }
-                                }
+                                { SaveObject(Pool.roomObjPool[Pool.roomObjCounter], roomData); }
+
+                                //populate roomData with entities
+                                for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
+                                { SaveObject(Pool.entityPool[Pool.entityCounter], roomData); }
+
                                 Functions_Backend.SaveRoomData(roomData);
                             }
 
@@ -219,6 +208,24 @@ namespace DungeonRun
 
 
 
+
+        public void SaveObject(GameObject Obj, RoomXmlData RoomData)
+        {
+            if (Obj.active)
+            {   //if this object is active & can be saved
+                if (Obj.canBeSaved)
+                {   //translate Obj to ObjXmlData, add it to the roomData.objs list
+                    ObjXmlData objData = new ObjXmlData();
+                    objData.type = Obj.type;
+                    objData.direction = Obj.direction;
+                    //set saved obj's position relative to room's top left corner
+                    objData.posX = Obj.compSprite.position.X - Functions_Level.currentRoom.rec.X;
+                    objData.posY = Obj.compSprite.position.Y - Functions_Level.currentRoom.rec.Y;
+                    RoomData.objs.Add(objData);
+                }
+            }
+        }
+
         public void BuildRoomData(RoomXmlData RoomXmlData)
         {
             Functions_Level.ResetLevel();
@@ -254,8 +261,8 @@ namespace DungeonRun
 
             //releases all roomObjs, builds walls + floors + doors
             Functions_Room.BuildRoom(Functions_Level.currentRoom);
-            //build interior room objects from xml data
-            Functions_Room.BuildRoomObjs(RoomXmlData);
+            //build the xml data
+            Functions_Room.BuildRoomXmlData(RoomXmlData);
             //update roomObjs once
             Functions_Pool.Update();
 

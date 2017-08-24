@@ -693,30 +693,6 @@
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>248</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>248</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Bumper</type>
       <direction>Down</direction>
       <posX>232</posX>

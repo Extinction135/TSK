@@ -152,29 +152,5 @@
       <posX>104</posX>
       <posY>104</posY>
     </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Left</direction>
-      <posX>88</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Left</direction>
-      <posX>88</posX>
-      <posY>152</posY>
-    </ObjXmlData>
   </objs>
 </RoomXmlData>

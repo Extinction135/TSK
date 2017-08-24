@@ -66,7 +66,7 @@ namespace DungeonRun
         PitAnimated, PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, Pillar,
         ChestKey, ChestMap, ChestEmpty,
-        BlockDraggable, BlockDark, BlockLight, BlockSpikes,
+        BlockDraggable, BlockDark, BlockLight,
         //lever + lever activated objects
         LeverOn, LeverOff,
         SpikesFloorOn, SpikesFloorOff,
@@ -87,6 +87,7 @@ namespace DungeonRun
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, 
         //Projectiles - collide with actors
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion, ProjectileArrow,
+        ProjectileSpikeBlock,
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle,
         //Particles - map

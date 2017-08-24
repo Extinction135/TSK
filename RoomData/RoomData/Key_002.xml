@@ -129,12 +129,6 @@
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>TorchUnlit</type>
       <direction>Down</direction>
       <posX>56</posX>
@@ -145,12 +139,6 @@
       <direction>Down</direction>
       <posX>56</posX>
       <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockSpikes</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>

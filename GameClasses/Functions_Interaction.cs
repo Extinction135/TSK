@@ -304,7 +304,7 @@ namespace DungeonRun
 
                 else if (Obj.group == ObjGroup.Object)
                 {
-                    if (Obj.type == ObjType.BlockSpikes || Obj.type == ObjType.SpikesFloorOn)
+                    if (Obj.type == ObjType.SpikesFloorOn)
                     {   //damage push actor away from spikes
                         Functions_Battle.Damage(Actor, Obj);
                     }
@@ -447,6 +447,16 @@ namespace DungeonRun
                 #endregion
 
 
+                #region SpikeBlock
+
+                else if(Projectile.type == ObjType.ProjectileSpikeBlock)
+                {
+                    BounceSpikeBlock(Projectile);
+                }
+
+                #endregion
+
+
                 #region Sword
 
                 else if(Projectile.type == ObjType.ProjectileSword)
@@ -473,8 +483,7 @@ namespace DungeonRun
                 if (RoomObj.type == ObjType.Bumper)
                 {
                     //some projectiles cannot be bounced off bumper
-                    if (Projectile.type == ObjType.ProjectileSword)
-                    { return; }
+                    if (Projectile.type == ObjType.ProjectileSword) { return; }
 
                     //stop projectile movement, bounce it
                     Projectile.compMove.magnitude.X = 0;
@@ -489,16 +498,6 @@ namespace DungeonRun
                         Projectile.direction = Projectile.compMove.direction;
                         Functions_GameObject.SetRotation(Projectile);
                     } 
-                }
-
-                #endregion
-
-
-                #region BlockSpikes
-
-                else if (RoomObj.type == ObjType.BlockSpikes)
-                {
-                    KillProjectileUponCollision(Projectile);
                 }
 
                 #endregion
@@ -557,8 +556,10 @@ namespace DungeonRun
 
                 else if (RoomObj.type == ObjType.DoorTrap)
                 {   //trap doors push actors in the door's facing direction, into the room
-                    //projectiles should not move thru this door, and be destroyed upon collision
-                    KillProjectileUponCollision(Projectile);
+                    //projectiles should not move thru this door - bounce or be destroyed
+                    if (Projectile.type == ObjType.ProjectileSpikeBlock)
+                    { BounceSpikeBlock(Projectile); }
+                    else { KillProjectileUponCollision(Projectile); }
                 }
 
                 #endregion
@@ -614,23 +615,19 @@ namespace DungeonRun
             Functions_Movement.Push(compMove, belt.direction, 0.1f);
         }
 
-
-
-
-        //unused for now
         public static void BounceSpikeBlock(GameObject SpikeBlock)
-        {   //flip the block's direction to the opposite direction
+        {
+            //based on the spikeBlocks moving direction, we know what side it collided on
+            //and we can place a hit sparkle centered to that edge/side
+
+            Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect
+
+            //flip the block's direction to the opposite direction
             SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
             SpikeBlock.compMove.magnitude.X = 0;
             SpikeBlock.compMove.magnitude.Y = 0;
             //push the block in it's new direction, out of this collision
             Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 4.0f);
-            Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect                               
-            Functions_Entity.SpawnEntity( //show that the object has been hit
-                ObjType.ParticleHitSparkle,
-                SpikeBlock.compSprite.position.X + 4,
-                SpikeBlock.compSprite.position.Y + 4,
-                Direction.None);
         }
 
     }

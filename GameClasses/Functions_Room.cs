@@ -170,35 +170,35 @@ namespace DungeonRun
             //special rooms (key, hub, boss)
             else if (Room.type == RoomType.Key)
             {
-                BuildRoomObjs(Assets.roomDataKey[Room.XMLid]);
+                BuildRoomXmlData(Assets.roomDataKey[Room.XMLid]);
                 FinishKeyRoom(Room);
                 AddWallStatues(Room);
             }
             else if (Room.type == RoomType.Hub)
             {
-                BuildRoomObjs(Assets.roomDataHub[Room.XMLid]);
+                BuildRoomXmlData(Assets.roomDataHub[Room.XMLid]);
                 FinishHubRoom(Room);
                 AddWallStatues(Room);
             }
             else if (Room.type == RoomType.Boss)
             {
-                BuildRoomObjs(Assets.roomDataBoss[Room.XMLid]);
+                BuildRoomXmlData(Assets.roomDataBoss[Room.XMLid]);
                 FinishBossRoom(Room);
             }
             //standard/generic rooms (column, row, square)
             else if (Room.type == RoomType.Column)
             {
-                BuildRoomObjs(Assets.roomDataColumn[Room.XMLid]);
+                BuildRoomXmlData(Assets.roomDataColumn[Room.XMLid]);
                 AddWallStatues(Room);
             }
             else if (Room.type == RoomType.Row)
             {
-                BuildRoomObjs(Assets.roomDataRow[Room.XMLid]);
+                BuildRoomXmlData(Assets.roomDataRow[Room.XMLid]);
                 AddWallStatues(Room);
             }
             else if (Room.type == RoomType.Square)
             {
-                BuildRoomObjs(Assets.roomDataSquare[Room.XMLid]);
+                BuildRoomXmlData(Assets.roomDataSquare[Room.XMLid]);
                 AddWallStatues(Room);
             }
             //dungeon rooms get debris + cracked walls
@@ -760,7 +760,7 @@ namespace DungeonRun
 
         //rooms finished using XML roomData - row, column, square, boss, key, hub
 
-        public static void BuildRoomObjs(RoomXmlData RoomXmlData)
+        public static void BuildRoomXmlData(RoomXmlData RoomXmlData)
         {
 
             #region Create room objs & enemies
@@ -768,8 +768,13 @@ namespace DungeonRun
             if (RoomXmlData != null && RoomXmlData.objs.Count > 0)
             {
                 for (i = 0; i < RoomXmlData.objs.Count; i++)
-                {   //create a roomObj for each XML obj
-                    objRef = Functions_Pool.GetRoomObj();
+                {   
+                    //we store roomObjs & projectiles in roomXmlData
+                    //based on the roomXmlData.obj.type, get an entity or a roomObj
+                    if(RoomXmlData.objs[i].type == ObjType.ProjectileSpikeBlock)
+                    { objRef = Functions_Pool.GetEntity(); }
+                    else { objRef = Functions_Pool.GetRoomObj(); }
+                    
                     //move roomObj to xmlObj's position (with room offset)
                     Functions_Movement.Teleport(objRef.compMove,
                         Functions_Level.currentRoom.rec.X + RoomXmlData.objs[i].posX,
@@ -784,8 +789,7 @@ namespace DungeonRun
                     {
                         actorRef = Functions_Pool.GetActor();
                         if (actorRef != null)
-                        {
-                            //we should be checking what level of enemy to create
+                        {   //we should be checking what level of enemy to create
                             Functions_Actor.SetType(actorRef, ActorType.Blob);
                             Functions_Movement.Teleport(actorRef.compMove,
                                 objRef.compSprite.position.X,

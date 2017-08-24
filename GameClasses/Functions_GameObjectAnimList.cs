@@ -104,8 +104,6 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(0, 4, 0, 0) },
                 //BlockLight
                 new List<Byte4> { new Byte4(1, 4, 0, 0) },
-                //BlockSpikes
-                new List<Byte4> { new Byte4(3, 5, 0, 0) },
 
                 //LeverOn
                 new List<Byte4> { new Byte4(0, 5, 0, 0) },
@@ -203,6 +201,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
                 //ProjectileArrow
                 new List<Byte4> { new Byte4(4, 7, 0, 0) },
+                //ProjectileSpikeBlock
+                new List<Byte4> { new Byte4(0, 10, 0, 0) },
 
                 #endregion
 
