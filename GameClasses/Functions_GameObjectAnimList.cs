@@ -75,7 +75,7 @@ namespace DungeonRun
                 #region Editor Room Objects
 
                 //PitAnimated
-                new List<Byte4> { new Byte4(4, 7, 0, 0) },
+                new List<Byte4> { new Byte4(1, 7, 0, 0) },
                 //PitTop
                 new List<Byte4> { new Byte4(2, 7, 0, 0) },
                 //PitBottom
@@ -212,8 +212,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) },
                 //ParticleHitSparkle
                 new List<Byte4> { new Byte4(8, 1, 0, 0), new Byte4(9, 1, 0, 0) },
-                //ParticleBubble
-                new List<Byte4> { new Byte4(6, 0, 0, 0), new Byte4(7, 0, 0, 0), new Byte4(8, 0, 0, 0), new Byte4(9, 0, 0, 0) },
+                //ParticlePitAnimation
+                new List<Byte4> { new Byte4(0, 14, 0, 0), new Byte4(1, 14, 0, 0), new Byte4(0, 15, 0, 0), new Byte4(1, 15, 0, 0) },
 
                 //ParticleMapFlag
                 new List<Byte4> { new Byte4(16, 0, 0, 0), new Byte4(17, 0, 0, 0), new Byte4(18, 0, 0, 0), new Byte4(19, 0, 0, 0) },

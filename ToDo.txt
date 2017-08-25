@@ -44,22 +44,7 @@ v0.7 goals
 
 
 
-13
-
-
-
-
-Optimize Animated Pit Bubbles
-
-renamed ParticleBubble to ParticlePitAnimation.
-because in the future this animation may not necessarily be a bubble.
-we may change the animation in the dungeon sheet to be something else.
-like lava bubbling, or waves, or whatever. 
-so the name needs to be generic.
-increased lifetime of ParticlePitAnimation to 255, so they last longer.
-decreased how often these particles are created in Pits.
-this has the net effect of using less particles to display about the same amount.
-playtested, various polishing of values, working/looking great.
+12
 
 
 
@@ -67,18 +52,59 @@ playtested, various polishing of values, working/looking great.
 
 
 
+Redesign How GameObject Textures are Assigned in Obj.SetType()
+
+redesigned how textures are assigned for gameobjects to allow some particles to use dungeon sheet.
+updated Obj.SetType() to default obj.texture to a dungeonsheet, based on Level.type.
+then set the mainSheet texture for GameObjects the use it, in the type check.
+this allows us to use either sheet for any gameObj.
+
+moved pit bubble animation into dungeon sheet (for theme-ing purposes).
+repacked pit and pit related sprites in dungeon sheet.
+updated ObjAnimList for ParticlePitAnimation + Pit.
+playtested, noted visual bug.
+
+Obj's sprite frame wasn't set until the next animation frame elapsed.
+this happened after a SetType() call. 
+fix is to set Obj.sprite.currentFrame to first anim frame at end of SetType().
+updated ToolsWidget's Tools with currentAnimation lists + call to Animate().
+playtested, working as expected, no visual pop-in when pit bubbles are created.
 
 
-Pit Animation++
-move the pit bubble sprite animation into the dungeon sheet
-* which means this projectile will use the dungeon sheet, not main sheet
-** so we need to redesign how we're setting the textures for entities
-this allows us to group the pit and bubble colors together on one sheet
-and the bubble sprite animation doesn't have to be bubbles, it can be whatever
-so we should rename ParticleBubble to ParticlePitAnimation
-and rename PitAnimated to simply Pit
 
-repack the DungeonSheet, placing all Pit related sprites on one row together (bottom row)
+
+
+
+
+
+
+how else can we free up space in the dungeon sheet?
+we could reduce the number of floor tiles to 2, regular and special
+that frees up one space.
+
+we could also redesign how we are setting roomObj textures
+we could move the conveyor belt into the main sheet, freeing up 3 frames in dungeon sheet
+it's impossible to theme the conveyor belt per dungeon, because the sprite is so simple
+we could move bumper to main sheet
+torch lit/unlit
+colored block up/down/switch
+floor spikes, lever
+ice tile
+chest closed/open
+that would free up alot of space in dungeon sheet
+and we could simply set the objects texture based on it's type instead of group
+it would be a choice between dungeonSheet (pointer) and mainSheet.
+and we'd need to only set the dungeonSheet pointer prior to calling SetType().
+*** holdon, we're already doing this for NPCs... !!!
+to test that this works, we'd need another dungeon sheet tho...
+
+
+
+
+
+
+
+
 
 
 
@@ -128,27 +154,6 @@ we could use this for collapsing doors, and when objects are destroyed, like pot
 
 
 
-
-
-how else can we free up space in the dungeon sheet?
-we could reduce the number of floor tiles to 2, regular and special
-that frees up one space.
-
-we could also redesign how we are setting roomObj textures
-we could move the conveyor belt into the main sheet, freeing up 3 frames in dungeon sheet
-it's impossible to theme the conveyor belt per dungeon, because the sprite is so simple
-we could move bumper to main sheet
-torch lit/unlit
-colored block up/down/switch
-floor spikes, lever
-ice tile
-chest closed/open
-that would free up alot of space in dungeon sheet
-and we could simply set the objects texture based on it's type instead of group
-it would be a choice between dungeonSheet (pointer) and mainSheet.
-and we'd need to only set the dungeonSheet pointer prior to calling SetType().
-*** holdon, we're already doing this for NPCs... !!!
-to test that this works, we'd need another dungeon sheet tho...
 
 
 

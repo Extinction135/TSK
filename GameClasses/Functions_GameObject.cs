@@ -120,8 +120,20 @@ namespace DungeonRun
             Obj.type = Type;
 
 
+            #region Assign Dungeon Sheet as Default Texture
 
-            //Non-Editor Room Objects (dungeonsheet)
+            if (Level.type == LevelType.Castle)
+            { Obj.compSprite.texture = Assets.cursedCastleSheet; }
+            //expand this to include all dungeon textures...
+            else if (Level.type == LevelType.Shop)
+            { Obj.compSprite.texture = Assets.shopSheet; }
+
+            //in type check, we assign mainSheet for objs that require it
+
+            #endregion
+
+
+            //Non-Editor Room Objects
 
             #region Exits
 
@@ -214,8 +226,7 @@ namespace DungeonRun
             #endregion
 
 
-
-            //Editor Room Objects - these objs can be saved as XML (dungeonsheet)
+            //Editor Room Objects
 
             #region Pits
 
@@ -279,7 +290,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Liftables / Throwables - Skull
+            #region Liftables / Throwables
 
             else if (Type == ObjType.PotSkull)
             {
@@ -406,6 +417,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.SpawnEnemy1 || Type == ObjType.SpawnEnemy2 || Type == ObjType.SpawnEnemy3)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.EnemySpawn;
@@ -415,15 +427,15 @@ namespace DungeonRun
             #endregion
 
 
-
-            //Vendor Room Objects - (mainsheet)
+            //Vendor Room Objects
 
             #region Vendor & Story Objects
 
             else if (Type == ObjType.VendorItems || Type == ObjType.VendorPotions ||
                 Type == ObjType.VendorMagic || Type == ObjType.VendorWeapons ||
                 Type == ObjType.VendorArmor || Type == ObjType.VendorEquipment)
-            {   
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
@@ -432,6 +444,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.VendorStory)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -440,6 +453,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.VendorAdvertisement)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = 32;
                 Obj.compAnim.speed = 100; //very slow animation
@@ -449,8 +463,7 @@ namespace DungeonRun
             #endregion
 
 
-
-            //Entities - exist in Pool.EntityPool (mainsheet)
+            //Entities
 
             #region Pickups
 
@@ -458,6 +471,7 @@ namespace DungeonRun
                 Type == ObjType.PickupMagic || Type == ObjType.PickupArrow ||
                 Type == ObjType.PickupBomb)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.cellSize.X = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
@@ -563,6 +577,7 @@ namespace DungeonRun
             //Particles - small
             else if (Type == ObjType.ParticleDashPuff)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = -8;
                 Obj.group = ObjGroup.Particle;
@@ -572,6 +587,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleSmokePuff)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
@@ -581,6 +597,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleHitSparkle)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
@@ -601,12 +618,14 @@ namespace DungeonRun
             //Particles - Map
             else if (Type == ObjType.ParticleMapFlag)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 4; //nonstandard size
                 Obj.group = ObjGroup.Particle;
                 Obj.compAnim.speed = 10; //in frames
             }
             else if (Type == ObjType.ParticleMapWave)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 4; //nonstandard size
                 Obj.group = ObjGroup.Particle;
                 Obj.compAnim.speed = 15; //in frames
@@ -615,6 +634,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleMapCampfire)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.group = ObjGroup.Particle;
                 Obj.compAnim.speed = 6; //in frames
@@ -625,6 +645,7 @@ namespace DungeonRun
             //Particles - normal size
             else if (Type == ObjType.ParticleExplosion)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
@@ -633,6 +654,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleAttention)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 1024;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
@@ -641,6 +663,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleFire)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 12;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 100; //in frames
@@ -649,6 +672,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleFairy)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 50; //in frames
@@ -656,6 +680,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ParticleBow)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 15; //in frames
@@ -673,6 +698,7 @@ namespace DungeonRun
                 Type == ObjType.ParticleBottleHealth ||
                 Type == ObjType.ParticleBottleMagic)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 40; //in frames
@@ -682,34 +708,23 @@ namespace DungeonRun
             #endregion
 
 
-
-            //SET OBJECT TEXTURE (spritesheet)
-            if (Obj.group == ObjGroup.Pickup || Obj.group == ObjGroup.Projectile 
-                || Obj.group == ObjGroup.Particle || Obj.group == ObjGroup.Vendor
-                || Obj.group == ObjGroup.EnemySpawn)
-            { Obj.compSprite.texture = Assets.mainSheet; }
-            else
-            {   //all other object's get assigned a dungeon texture, based on dungeon.type
-                if (Level.type == LevelType.Castle)
-                { Obj.compSprite.texture = Assets.cursedCastleSheet; }
-                //expand this to include all dungeon textures...
-                else if (Level.type == LevelType.Shop)
-                { Obj.compSprite.texture = Assets.shopSheet; }
-            }
-
             //Handle Obj Group properties
             if (Obj.group == ObjGroup.Particle)
             {   //particles do not block
                 Obj.compCollision.blocking = false;
             }
             else if(Obj.group == ObjGroup.Projectile)
-            {   //all projectiles do not block
+            {   //all projectiles do not block + are on mainsheet
                 Obj.compCollision.blocking = false;
+                Obj.compSprite.texture = Assets.mainSheet;
             }
 
             SetRotation(Obj);
             Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type
             Functions_Component.UpdateCellSize(Obj.compSprite);
+
+            Obj.compSprite.currentFrame = Obj.compAnim.currentAnimation[0]; //goto 1st anim frame
+
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 

@@ -209,10 +209,10 @@ namespace DungeonRun
             moveObj.compSprite.position.X = 16 * 1 + 8;
             moveObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(moveObj.compSprite);
-            moveObj.compSprite.currentFrame.X = 14;
-            moveObj.compSprite.currentFrame.Y = 13;
             moveObj.compCollision.rec.X = 16 * 1 + 8 - 8;
             moveObj.compCollision.rec.Y = 16 * 14 - 8;
+            moveObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 13, 0, 0) };
+            Functions_Animation.Animate(moveObj.compAnim, moveObj.compSprite);
             objList.Add(moveObj); //add object to list
 
             //rotateObj
@@ -223,10 +223,10 @@ namespace DungeonRun
             rotateObj.compSprite.position.X = 16 * 3 + 8;
             rotateObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(rotateObj.compSprite);
-            rotateObj.compSprite.currentFrame.X = 13;
-            rotateObj.compSprite.currentFrame.Y = 15;
             rotateObj.compCollision.rec.X = 16 * 3 + 8 - 8;
             rotateObj.compCollision.rec.Y = 16 * 14 - 8;
+            rotateObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(13, 15, 0, 0) };
+            Functions_Animation.Animate(rotateObj.compAnim, rotateObj.compSprite);
             objList.Add(rotateObj); //add object to list
 
             //add icon
@@ -237,10 +237,10 @@ namespace DungeonRun
             addObj.compSprite.position.X = 16 * 4 + 8;
             addObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(addObj.compSprite);
-            addObj.compSprite.currentFrame.X = 14;
-            addObj.compSprite.currentFrame.Y = 15;
             addObj.compCollision.rec.X = 16 * 4 + 8 - 8;
             addObj.compCollision.rec.Y = 16 * 14 - 8;
+            addObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 15, 0, 0) };
+            Functions_Animation.Animate(addObj.compAnim, addObj.compSprite);
             objList.Add(addObj); //add object to list
 
             //minus icon
@@ -251,10 +251,10 @@ namespace DungeonRun
             deleteObj.compSprite.position.X = 16 * 5 + 8;
             deleteObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(deleteObj.compSprite);
-            deleteObj.compSprite.currentFrame.X = 15;
-            deleteObj.compSprite.currentFrame.Y = 15;
             deleteObj.compCollision.rec.X = 16 * 5 + 8 - 8;
             deleteObj.compCollision.rec.Y = 16 * 14 - 8;
+            deleteObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 15, 0, 0) };
+            Functions_Animation.Animate(deleteObj.compAnim, deleteObj.compSprite);
             objList.Add(deleteObj); //add object to list
 
             #endregion
