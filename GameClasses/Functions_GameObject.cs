@@ -380,11 +380,13 @@ namespace DungeonRun
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compAnim.speed = 10; //in frames
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
             else if (Type == ObjType.SpikesFloorOn || Type == ObjType.SpikesFloorOff)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compSprite.zOffset = -32; //sort to floor
@@ -405,6 +407,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.LeverOn || Type == ObjType.LeverOff)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = 2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
                 Obj.compSprite.zOffset = -3;

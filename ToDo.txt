@@ -44,22 +44,31 @@ v0.7 goals
 
 
 
-10
+9
 
 
 
 
 
-Move Conveyor Belts from DungeonSheet to MainSheet
+Move FloorSpikes and Lever into Mainsheet, Improve ConveyorBelt animation
 
-moved conveyBelt sprite into mainSheet.
-updated Obj.Setype() to set belt's texture to mainSheet.
-updated ObjAnimLists for conveyor belts.
-playtested, working as expected.
+moved floor spikes + lever into mainsheet.
+updated ObjAnimList for lever + spikes.
+updated Obj.SetType() for lever + spikes.
+playtested, sprites appearing normally.
+
+reduced conveyorBelt animation to 2 frames.
+these two frames are also seamless.
+updated ConveyorBelt ObjAnimList.
+playtested, looking great!
 
 
 
 
+
+
+
+when spikeblock hits something south, +2y axis on sparkle
 
 move cracked floor tile into mainSheet, out of dungeonSheet
 (PitTrapReady + PitTrapOpening)
@@ -68,7 +77,7 @@ move cracked floor tile into mainSheet, out of dungeonSheet
 
 
 
-when spikeblock hits something south, +2y axis on sparkle
+
 
 
 
@@ -77,7 +86,6 @@ when spikeblock hits something south, +2y axis on sparkle
 we could move bumper to main sheet
 torch lit/unlit
 colored block up/down/switch
-floor spikes, lever
 ice tile
 chest closed/open
 that would free up alot of space in dungeon sheet

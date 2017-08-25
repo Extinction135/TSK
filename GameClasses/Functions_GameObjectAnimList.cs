@@ -102,17 +102,17 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(1, 4, 0, 0) },
 
                 //LeverOn
-                new List<Byte4> { new Byte4(0, 5, 0, 0) },
+                new List<Byte4> { new Byte4(5, 14, 0, 0) },
                 //LeverOff
-                new List<Byte4> { new Byte4(0, 5, 1, 0) },
+                new List<Byte4> { new Byte4(5, 14, 1, 0) },
                 //SpikesFloorOn
-                new List<Byte4> { new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0) },
+                new List<Byte4> { new Byte4(6, 14, 0, 0), new Byte4(7, 14, 0, 0) },
                 //SpikesFloorOff
-                new List<Byte4> { new Byte4(2, 5, 0, 0), new Byte4(2, 5, 0, 0) },
+                new List<Byte4> { new Byte4(7, 14, 0, 0), new Byte4(7, 14, 0, 0) },
                 //ConveyorBeltOn
-                new List<Byte4> { new Byte4(5, 15, 0, 0), new Byte4(6, 15, 0, 0), new Byte4(7, 15, 0, 0) },
+                new List<Byte4> { new Byte4(5, 15, 0, 0), new Byte4(6, 15, 0, 0) },
                 //ConveyorBeltOff
-                new List<Byte4> { new Byte4(5, 15, 0, 0), new Byte4(6, 15, 0, 0), new Byte4(7, 15, 0, 0) },
+                new List<Byte4> { new Byte4(5, 15, 0, 0), new Byte4(5, 15, 0, 0) },
 
                 //PotSkull
                 new List<Byte4> { new Byte4(0, 6, 0, 0) },
