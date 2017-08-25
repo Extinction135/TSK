@@ -221,7 +221,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort low, but over floor
                 Obj.compCollision.blocking = false;
             }
-            else if (Type == ObjType.DebrisFloor)
+            else if (Type == ObjType.DebrisBlood || Type == ObjType.DebrisRock)
             {
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = -32; //sort low, but over floor

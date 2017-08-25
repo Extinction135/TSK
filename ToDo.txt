@@ -44,27 +44,77 @@ v0.7 goals
 
 
 
-7
+6
 
 
 
-DungeonSheet Optimizations + Repacking
+Create better looking debris when BombableDoor collapses
 
-moved ice tile to mainSheet (its not implemented yet)
-moved bridge ObjType into section with Pit ObjType for better conceptual grouping.
-repacked dungeon sheet placing bridge next to pit.
-updated ObjAnimList for Bridge, and Pit Teeth.
-playtested, working as expected.
-
-
-
-
+added RockDebris sprite to DungeonSheet.
+renamed DebrisFloor to DebrisBlood.
+added DebrisRock value to ObjType enum.
+added ObjAnimList for DebrisRock.
+updated Obj.SetType() with DebrisRock path.
+updated CollapseDungeonDoor() to place DebrisRock at door position.
+playtested, and it's not looking that great actually.
 
 
 
-force move 
-sometimes we have to force move actors or objects (actos-pits, objects-spikeblock bounce)
-we should standardize this force move into a function, and make it part of Functions_Movement
+
+
+
+
+Create Better Rock Debris
+
+remove DebrisBlood and DebrisRock from game, in their current incarnation.
+
+instead, we'll have a small 8px rock debris object.
+this object will inherit any colliding actor's magnitude.
+this object is a projectile, with a lifetime of 0.
+
+when we blow up a door, it creates several rock debris projectiles.
+when we blow up a dungeon statue, it creates several rock debris projs.
+when we blow up a block, it creates several rock debris projs.
+this obj should be able to be moved by conveyor belts as well.
+
+we should randomly scatter rock debris around each dungeon room, making sure it doesn't overlap.
+because it's dungeon specific, it should exist in the dungeon sheet.
+and we can have multiple variations of the rock sprite, randomly choosing one upon setType().
+
+
+
+
+
+
+
+
+
+
+rock debris
+this is 8x8 rock sprite, with lifetime of 255
+this also inherits colliding actor's magnitude
+and can be moved by conveyor belts
+
+
+
+
+
+
+
+
+
+skeleton debris
+doesn't move on it's own, but can be moved by conveyor belts
+upon collision with sword, fireball, arrow, etc.. this projectile is destroyed
+this projectile can be pushed by hero or actors as well, it's "pushable"
+it should inherit the magnitude of any actor that collides with it
+this happens in the projectile -> actor interaction check
+
+
+
+
+
+
 
 
 
@@ -130,19 +180,6 @@ remove that obj from the widget
 
 
 
-
-
-
-Cracked Floor Obj
-upon collision with hero, this becomes PitCollapsing obj
-
-Pit Collapsing Obj
-if this object isn't colliding with hero, it collapses (chagnes) into a Pit obj
-and it places pit teeth at top and bottom of pit upon collapse
-
-
-
-
 Fairy Projectile
 fairy is a projectile that moves in a random direction and has a lifetime of 254
 fairys should be created very rarely from enemy deaths (update loot routine)
@@ -156,17 +193,7 @@ this aligns the obj to the middle of the conveyor belt, while still moving along
 
 Add More Persistent Projectiles
 
-skeleton debris
-doesn't move on it's own, but can be moved by conveyor belts
-upon collision with sword, fireball, arrow, etc.. this projectile is destroyed
-this projectile can be pushed by hero or actors as well, it's "pushable"
-it should inherit the magnitude of any actor that collides with it
-this happens in the projectile -> actor interaction check
 
-rock debris
-this is 8x8 rock sprite, with lifetime of 255
-this also inherits colliding actor's magnitude
-and can be moved by conveyor belts
 
 wanderingFire obj
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
@@ -209,6 +236,10 @@ this is a very easy sprite to design, but is more difficult to display in object
 
 
 
+
+force move 
+sometimes we have to force move actors or objects (actos-pits, objects-spikeblock bounce)
+we should standardize this force move into a function, and make it part of Functions_Movement
 
 
 

@@ -499,7 +499,10 @@ namespace DungeonRun
                         Functions_Movement.Teleport(objRef.compMove,
                             Pool.floorPool[i].position.X + Functions_Random.Int(-8, 8),
                             Pool.floorPool[i].position.Y + Functions_Random.Int(-8, 8));
-                        Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
+                        //randomly choose the type of debris to create
+                        if (Functions_Random.Int(0, 100) > 50)
+                        { Functions_GameObject.SetType(objRef, ObjType.DebrisBlood); }
+                        else { Functions_GameObject.SetType(objRef, ObjType.DebrisRock); }
                     }
                 }
             }
@@ -589,7 +592,8 @@ namespace DungeonRun
                                 if (objA.type == ObjType.WallTorch) { removeObjB = true; }
                                 if (objA.type == ObjType.WallPillar) { removeObjB = true; }
                             }
-                            else if (objB.type == ObjType.DebrisFloor)
+                            else if (objB.type == ObjType.DebrisBlood
+                                || objB.type == ObjType.DebrisRock)
                             {   //prevent debris from overlapping various objects
                                 if (objA.group == ObjGroup.Wall) { removeObjB = true; }
                                 else if (objA.group == ObjGroup.Object) { removeObjB = true; }

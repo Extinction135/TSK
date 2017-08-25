@@ -611,7 +611,7 @@ namespace DungeonRun
             Functions_Movement.Teleport(objRef.compMove,
                 Door.compSprite.position.X,
                 Door.compSprite.position.Y);
-            Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
+            Functions_GameObject.SetType(objRef, ObjType.DebrisRock);
             //draw attention to the collapsing door
             Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
                 Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);
