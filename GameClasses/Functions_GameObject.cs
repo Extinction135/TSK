@@ -156,7 +156,7 @@ namespace DungeonRun
 
             #region Doors and Walls
 
-            else if (Type == ObjType.DoorOpen || Type == ObjType.DoorBombed)
+            else if (Type == ObjType.DoorOpen)
             {
                 Obj.compSprite.zOffset = +32; //sort very high (over / in front of hero)
                 Obj.group = ObjGroup.Door;

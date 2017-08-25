@@ -44,7 +44,7 @@ namespace DungeonRun
 
     public enum RoomType { Exit, Hub, Boss, Key, Shop, Column, Row, Square, Secret }
 
-    public enum DoorType { Open, Boss, Bombable, Bombed }
+    public enum DoorType { Open, Boss, Bombable }
 
     
 
@@ -59,7 +59,7 @@ namespace DungeonRun
         //ROOM OBJECTS
         //Non-Editor Room Objects (procedurally added)
         Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
-        DoorOpen, DoorBombable, DoorBombed, DoorBoss, DoorTrap, DoorShut, DoorFake,
+        DoorOpen, DoorBombable, DoorBoss, DoorTrap, DoorShut, DoorFake,
         WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
         BossDecal, DebrisFloor,
         //Editor Room Objects (hand-placed)

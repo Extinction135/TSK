@@ -44,35 +44,39 @@ v0.7 goals
 
 
 
-3
+2
+
+
+
+
+Simplify + Optimize BombedDoors
+
+we can use openDoors instead of bombed doors - they almost look identical.
+we could create debris at the door's location when it's bombed open.
+this also simplifies the open/bombed door checks throughout codebase.
+this frees up one space in dungeon sheet.
+
+removed DoorBombed value from ObjType enum.
+removed DoorBombed objAnimList.
+removed DoorBombed from Obj.SetType().
+removed DoorBombed from Door Opening routine.
+updated CollapseDungeonDoor() to set bombed door to DoorType.Open.
+
+removed DoorType.Bombed. 
+bombed doors are now modeled simply as DoorType.Open.
+playtested, working as expected.
 
 
 
 
 
 
+Improve Collapse of Bombable Doors
 
+when we collapse a bombed door, there needs to be more visual fanfare
+there should be debris created at door location
+there should be more explosions and particles
 
-
-
-Remove Draggable Block from Game
-
-the DungeonStatue is now the only draggable object in game.
-
-removed draggable block sprite from dungeon sheet.
-removed BlockDraggable value from ObjType enum.
-removed BlockDraggable objAnimList.
-removed BlockDraggable from Obj.SetType().
-removed BlockDraggable from ObjectToolsWidget.
-this frees up 1 frame in dungeon sheet.
-
-
-
-
-
-
-on object toolsl widget, we would never be able to place an empty chest
-remove that obj from the widget
 
 
 
@@ -80,14 +84,26 @@ remove that obj from the widget
 how else can we free up space in the dungeon sheet?
 we could reduce the number of floor tiles to 2, regular and special
 that frees up one space.
-we can use openDoors instead of bombed doors - they almost look identical
-we could create debris at the door's location when it's bombed open
-this also simplifies the open/bombed door checks throughout codebase
-that frees up one space
 
-we could get rid of draggable blocks, and instead make the dungeon statues the only draggable roomObjs
-this frees up one space
 
+
+
+
+
+chests ++
+
+if chest exists in hub room, it rewards the map
+if chest exists in key room, it rewards the key
+> if chest exists in room not hub/key, it rewards ???
+> if more than 1 chest exists in hub/key room, the extra chests reward ???
+* we need a default chest reward, like gold
+*** but player would be able to spam open chests then, since they would be reset upon room build..
+so we can't have default rewards, or chests outside hub/room, or more than 1 chest in a room..
+so we need to prevent editor from being able to place a chest in a room that isn't hub/key
+and only 1 chest should be able to be in hub/key room
+
+on object tools widget, we would never be able to place an empty chest
+remove that obj from the widget
 
 
 

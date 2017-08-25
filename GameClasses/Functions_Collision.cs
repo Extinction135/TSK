@@ -57,8 +57,7 @@ namespace DungeonRun
                 if (Pool.heroRec.Intersects(Level.doors[i].rec))
                 {   //track doors hero has visited
                     Level.doors[i].visited = true; 
-                    if(Level.doors[i].type == DoorType.Open
-                        || Level.doors[i].type == DoorType.Bombed)
+                    if(Level.doors[i].type == DoorType.Open)
                     {   //set the current room's spawnPos to the last open door hero collided with
                         Functions_Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
                         Functions_Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
@@ -75,7 +74,7 @@ namespace DungeonRun
             {
                 if (Pool.roomObjPool[i].active) //roomObj must be active
                 {
-                    if(Pool.roomObjPool[i].type == ObjType.DoorOpen || Pool.roomObjPool[i].type == ObjType.DoorBombed)
+                    if(Pool.roomObjPool[i].type == ObjType.DoorOpen)
                     {   //set open/bombed doors to blocking or non-blocking
                         Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
                         if (Math.Abs(Pool.hero.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)

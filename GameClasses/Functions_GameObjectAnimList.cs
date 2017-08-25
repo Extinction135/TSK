@@ -40,8 +40,6 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(3, 0, 0, 0) },
                 //DoorBombable
                 new List<Byte4> { new Byte4(4, 2, 0, 0) },
-                //DoorBombed
-                new List<Byte4> { new Byte4(3, 2, 0, 0) },
                 //DoorBoss
                 new List<Byte4> { new Byte4(3, 3, 0, 0) },
                 //DoorTrap

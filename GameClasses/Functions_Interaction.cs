@@ -571,7 +571,7 @@ namespace DungeonRun
 
         static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
         {   //update the door roomObject, change to doorBombed, play soundfx
-            Functions_GameObject.SetType(Door, ObjType.DoorBombed);
+            Functions_GameObject.SetType(Door, ObjType.DoorOpen);
             Assets.Play(Assets.sfxShatter);
             //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < Level.doors.Count; i++)
@@ -579,7 +579,7 @@ namespace DungeonRun
                 if (Level.doors[i].type == DoorType.Bombable)
                 {   //change this door type to type.bombed
                     if (Projectile.compCollision.rec.Intersects(Level.doors[i].rec))
-                    { Level.doors[i].type = DoorType.Bombed; }
+                    { Level.doors[i].type = DoorType.Open; }
                 }
             }
         }

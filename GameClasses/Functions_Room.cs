@@ -315,11 +315,11 @@ namespace DungeonRun
                                 //set the room's doors based on the dungeon.door.type
                                 if (Level.doors[j].type == DoorType.Bombable)
                                 { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBombable); }
-                                else if (Level.doors[j].type == DoorType.Bombed)
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBombed); }
+
                                 else if (Level.doors[j].type == DoorType.Boss)
                                 { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorBoss); }
-                                else //all other doorTypes default to open
+
+                                else //all other doorTypes are Open
                                 { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen); }
 
                                 //set the door decorations (bombed/bombable doors dont get decorations)
