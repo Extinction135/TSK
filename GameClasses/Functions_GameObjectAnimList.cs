@@ -66,10 +66,7 @@ namespace DungeonRun
 
                 //BossDecal
                 new List<Byte4> { new Byte4(1, 3, 0, 0) },
-                //DebrisBlood
-                new List<Byte4> { new Byte4(7, 7, 0, 0) },
-                //DebrisRock
-                new List<Byte4> { new Byte4(6, 7, 0, 0) },
+                
 
                 #endregion
 
@@ -207,6 +204,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(4, 7, 0, 0) },
                 //ProjectileSpikeBlock
                 new List<Byte4> { new Byte4(0, 10, 0, 0) },
+                //ProjectileDebrisRock
+                new List<Byte4> { new Byte4(15, 15, 0, 0) },
 
                 #endregion
 

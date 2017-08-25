@@ -302,12 +302,22 @@ namespace DungeonRun
 
                 if (Obj.group == ObjGroup.Projectile)
                 {
-                    Functions_Battle.Damage(Actor, Obj);
-                    if (Obj.type == ObjType.ProjectileSword)
+                    if (Obj.type == ObjType.ProjectileDebrisRock)
+                    {   //if the rock isn't moving, actor just collided with it, inherit actor's magnitude
+                        if (Obj.compMove.magnitude.X == 0) //kick rock on X
+                        { Obj.compMove.magnitude.X = Actor.compMove.magnitude.X * 7.0f; }
+                        if (Obj.compMove.magnitude.Y == 0) //kick rock on Y
+                        { Obj.compMove.magnitude.Y = Actor.compMove.magnitude.Y * 7.0f; }
+                    }
+                    else
                     {
-                        if (Obj.lifeCounter == 1)
-                        {   //if sword projectile is brand new, spawn hit particle
-                            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
+                        Functions_Battle.Damage(Actor, Obj);
+                        if (Obj.type == ObjType.ProjectileSword)
+                        {
+                            if (Obj.lifeCounter == 1)
+                            {   //if sword projectile is brand new, spawn hit particle
+                                Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
+                            }
                         }
                     }
                 }
@@ -506,6 +516,18 @@ namespace DungeonRun
 
                 #endregion
 
+
+                #region Rock Debris
+
+                else if (Projectile.type == ObjType.ProjectileDebrisRock)
+                {   //revert to previous position (treat as a blocking interaction)
+                    Projectile.compMove.newPosition.X = Projectile.compMove.position.X;
+                    Projectile.compMove.newPosition.Y = Projectile.compMove.position.Y;
+                }
+
+                #endregion
+
+
             }
             //Handle Non-Blocking Interactions (with projectiles & pickups)
             else
@@ -590,6 +612,9 @@ namespace DungeonRun
                 else if (RoomObj.type == ObjType.DoorTrap)
                 {   //trap doors push actors in the door's facing direction, into the room
                     //projectiles should not move thru this door - bounce or be destroyed
+                    //revert to previous position (treat as a blocking interaction)
+                    Projectile.compMove.newPosition.X = Projectile.compMove.position.X;
+                    Projectile.compMove.newPosition.Y = Projectile.compMove.position.Y;
                     if (Projectile.type == ObjType.ProjectileSpikeBlock)
                     { BounceSpikeBlock(Projectile); }
                     else { KillProjectileUponCollision(Projectile); }
@@ -606,12 +631,13 @@ namespace DungeonRun
         {   //update the door roomObject, change to doorBombed, play soundfx
             Functions_GameObject.SetType(Door, ObjType.DoorOpen);
             Assets.Play(Assets.sfxShatter);
-            //create a debris roomObj at door position
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
+
+            //create a debris rock projectile at door position
+            Functions_Entity.SpawnEntity(ObjType.ProjectileDebrisRock,
                 Door.compSprite.position.X,
-                Door.compSprite.position.Y);
-            Functions_GameObject.SetType(objRef, ObjType.DebrisRock);
+                Door.compSprite.position.Y,
+                Direction.Down);
+
             //draw attention to the collapsing door
             Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
                 Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);

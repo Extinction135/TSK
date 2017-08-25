@@ -488,21 +488,17 @@ namespace DungeonRun
         }
 
         public static void ScatterDebris(Room Room)
-        {   //randomly place debris at each floor tile position
+        {   
             for (i = 0; i < Pool.floorCount; i++)
             {
                 if (Pool.floorPool[i].visible)
                 {
-                    if (Functions_Random.Int(0, 100) > 80)
-                    {
-                        objRef = Functions_Pool.GetRoomObj();
-                        Functions_Movement.Teleport(objRef.compMove,
-                            Pool.floorPool[i].position.X + Functions_Random.Int(-8, 8),
-                            Pool.floorPool[i].position.Y + Functions_Random.Int(-8, 8));
-                        //randomly choose the type of debris to create
-                        if (Functions_Random.Int(0, 100) > 50)
-                        { Functions_GameObject.SetType(objRef, ObjType.DebrisBlood); }
-                        else { Functions_GameObject.SetType(objRef, ObjType.DebrisRock); }
+                    if (Functions_Random.Int(0, 100) > 90)
+                    {   //randomly place rock debris in room
+                        Functions_Entity.SpawnEntity(ObjType.ProjectileDebrisRock,
+                            Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
+                            Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
+                            Direction.Down);
                     }
                 }
             }
@@ -580,6 +576,9 @@ namespace DungeonRun
 
                 if (checkOverlap)
                 {
+
+                    #region Check RoomObjs Overlap
+
                     for (j = 0; j < Pool.roomObjCount; j++)
                     {
                         objB = Pool.roomObjPool[j];
@@ -589,14 +588,8 @@ namespace DungeonRun
                             if (objB.group == ObjGroup.Wall)
                             {   //prevent walls from overlapping doors, torches, and pillars
                                 if (objA.group == ObjGroup.Door) { removeObjB = true; }
-                                if (objA.type == ObjType.WallTorch) { removeObjB = true; }
-                                if (objA.type == ObjType.WallPillar) { removeObjB = true; }
-                            }
-                            else if (objB.type == ObjType.DebrisBlood
-                                || objB.type == ObjType.DebrisRock)
-                            {   //prevent debris from overlapping various objects
-                                if (objA.group == ObjGroup.Wall) { removeObjB = true; }
-                                else if (objA.group == ObjGroup.Object) { removeObjB = true; }
+                                else if (objA.type == ObjType.WallTorch) { removeObjB = true; }
+                                else if (objA.type == ObjType.WallPillar) { removeObjB = true; }
                             }
                             if (removeObjB)
                             {   //check that objA and objB actually overlap
@@ -605,6 +598,39 @@ namespace DungeonRun
                             }
                         }
                     }
+
+                    #endregion
+
+
+                    #region Check Entitiy Overlaps
+
+                    for (j = 0; j < Pool.entityCount; j++)
+                    {
+                        objB = Pool.entityPool[j];
+                        if (objB.active)
+                        {
+                            removeObjB = false;
+                            if (objB.type == ObjType.ProjectileDebrisRock)
+                            {   //remove debris that overlaps with most objects
+                                if (objA.group == ObjGroup.Object) { removeObjB = true; }
+                                else if (objA.group == ObjGroup.Wall) { removeObjB = true; }
+                                else if (objA.group == ObjGroup.Door) { removeObjB = true; }
+                                else if (objA.group == ObjGroup.Draggable) { removeObjB = true; }
+                                else if (objA.group == ObjGroup.Chest) { removeObjB = true; }
+                                else if (objA.group == ObjGroup.Liftable) { removeObjB = true; }
+                                //keep debris on conveyor belts
+                                if (objA.type == ObjType.ConveyorBeltOn) { removeObjB = false; }
+                            }
+                            if (removeObjB)
+                            {   //check that objA and objB actually overlap
+                                if (objA.compCollision.rec.Intersects(objB.compCollision.rec))
+                                { Functions_Pool.Release(objB); }
+                            }
+                        }
+                    }
+
+                    #endregion
+
                 }
             }
 

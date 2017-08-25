@@ -217,6 +217,15 @@ namespace DungeonRun
             //bombs are pushed, and slide into a resting position
             if (Type == ObjType.ProjectileBomb)
             { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
+
+            //some projectiles get their current frame randomly assigned (for variation)
+            if(Type == ObjType.ProjectileDebrisRock)
+            {   //is assigned 15,15 - randomize down to 14,14
+                List <Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
+                if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
+                if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].Y = 14; }
+                obj.compAnim.currentAnimation = rockFrame;
+            }
         }
 
 

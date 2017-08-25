@@ -61,7 +61,7 @@ namespace DungeonRun
         Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
         DoorOpen, DoorBombable, DoorBoss, DoorTrap, DoorShut, DoorFake,
         WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
-        BossDecal, DebrisBlood, DebrisRock,
+        BossDecal, 
         //Editor Room Objects (hand-placed)
         PitAnimated, Bridge, PitTop, PitBottom, PitTrap, 
 
@@ -88,9 +88,9 @@ namespace DungeonRun
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, 
         //Projectiles - collide with actors
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion, ProjectileArrow,
-        ProjectileSpikeBlock,
+        ProjectileSpikeBlock, ProjectileDebrisRock,
         //Particles - small
-        ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation,
+        ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation, 
         //Particles - map
         ParticleMapFlag, ParticleMapWave, ParticleMapCampfire,
         //

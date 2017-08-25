@@ -221,12 +221,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort low, but over floor
                 Obj.compCollision.blocking = false;
             }
-            else if (Type == ObjType.DebrisBlood || Type == ObjType.DebrisRock)
-            {
-                Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = -32; //sort low, but over floor
-                Obj.direction = Direction.Down; //always down
-            }
 
             #endregion
 
@@ -503,6 +497,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.ProjectileSword)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 18; //in frames
@@ -514,6 +509,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileFireball)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 16;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -526,6 +522,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileBomb)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -4; //sort to floor
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -536,6 +533,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileExplosion)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 16;
                 Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
                 Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
@@ -547,6 +545,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileArrow)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 16;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -570,6 +569,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileSpikeBlock)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -7;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
@@ -582,6 +582,22 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
             }
+
+            else if (Type == ObjType.ProjectileDebrisRock)
+            {
+                Obj.compSprite.zOffset = -24; //sort low, but over floor
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 0; //lasts for life of room
+                Obj.compCollision.blocking = false;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = true; //in air
+                Obj.direction = Direction.Down; //always faces down
+            }
+
+
 
             #endregion
 
@@ -728,9 +744,8 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
             }
             else if(Obj.group == ObjGroup.Projectile)
-            {   //all projectiles do not block + are on mainsheet
+            {   //all projectiles do not block
                 Obj.compCollision.blocking = false;
-                Obj.compSprite.texture = Assets.mainSheet;
             }
 
             SetRotation(Obj);

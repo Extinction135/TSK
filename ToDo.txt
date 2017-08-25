@@ -44,42 +44,75 @@ v0.7 goals
 
 
 
-6
-
-
-
-Create better looking debris when BombableDoor collapses
-
-added RockDebris sprite to DungeonSheet.
-renamed DebrisFloor to DebrisBlood.
-added DebrisRock value to ObjType enum.
-added ObjAnimList for DebrisRock.
-updated Obj.SetType() with DebrisRock path.
-updated CollapseDungeonDoor() to place DebrisRock at door position.
-playtested, and it's not looking that great actually.
-
-
-
-
+5
 
 
 
 Create Better Rock Debris
 
-remove DebrisBlood and DebrisRock from game, in their current incarnation.
+renamed DebrisRock to ProjectileDebrisRock.
+updated ProjectileDebrisRock sprite, ObjAnimList, SetType() path.
+removed DebrisBlood value from ObjType enum.
 
-instead, we'll have a small 8px rock debris object.
-this object will inherit any colliding actor's magnitude.
-this object is a projectile, with a lifetime of 0.
+updated ScatterDebris() to spawn ProjectileDebrisRocks around room.
+updated CleanupRoom() to check ProjectileDebrisRock overlaps with roomObjs.
+overlapping rock debris is released / deleted.
+
+updated SpawnEntity() to randomly choose which rock sprite is used in DungeonSheet.
+updated CollapseDungeonDoor() with path for ProjectileDebrisRock.
+playtested, working as expected.
+
+improved rock debris sprites.
+updated InteractActor() to handle kicking of rock debris.
+if rock debris' magnitude is 0, inherit the actor's magnitude.
+this causes the rock to travel in the actor's moving direction upon initial collision.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+RockDebris Interaction++
+
+make rock sprites bigger
+make collision recs smaller
+create dash smoke upon initial collision with rock debris
+this should happen at the rock's position
+
 
 when we blow up a door, it creates several rock debris projectiles.
 when we blow up a dungeon statue, it creates several rock debris projs.
 when we blow up a block, it creates several rock debris projs.
+these rocks should explode push in the direction the bomb was traveling last.
+this will cause them to appear to be pushed by the blast.
+
+
 this obj should be able to be moved by conveyor belts as well.
 
-we should randomly scatter rock debris around each dungeon room, making sure it doesn't overlap.
-because it's dungeon specific, it should exist in the dungeon sheet.
-and we can have multiple variations of the rock sprite, randomly choosing one upon setType().
+
+
+
+
+
+
+
+
+
+
+Codebase Simplification
+so when we get and Obj from the roomObj list, we teleport it, then align it.
+we do this over and over again. but not for entities.
+for entities we have the SpawnEntity() method, which does this for us.
+we should have a SpawnRoomObj() method that has GetObj(), Teleport(), and Align() baked into it.
+this will reduce the number of lines in the codebase and simplify placing a RoomObj.
+
+
+
+
+
 
 
 
