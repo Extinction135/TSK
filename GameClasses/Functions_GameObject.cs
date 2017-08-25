@@ -96,6 +96,23 @@ namespace DungeonRun
             }
         }
 
+        public static void Update(GameObject Obj)
+        {
+            if (Obj.lifetime > 0) //if the obj has a lifetime, count it
+            {
+                Obj.lifeCounter++; //increment the life counter of the gameobject
+                //handle the object's birth & death events
+                if (Obj.lifeCounter == 2) { Functions_Entity.HandleBirthEvent(Obj); }
+                if (Obj.lifeCounter >= Obj.lifetime)
+                {   //any dead object is released
+                    Functions_Entity.HandleDeathEvent(Obj);
+                    Functions_Pool.Release(Obj);
+                }
+            }
+            //certain objects get AI input
+            if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
+        }
+
 
 
         public static void SetType(GameObject Obj, ObjType Type)
@@ -687,25 +704,6 @@ namespace DungeonRun
             Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type
             Functions_Component.UpdateCellSize(Obj.compSprite);
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
-        }
-
-
-
-        public static void Update(GameObject Obj)
-        {
-            if(Obj.lifetime > 0) //if the obj has a lifetime, count it
-            {  
-                Obj.lifeCounter++; //increment the life counter of the gameobject
-                //handle the object's birth & death events
-                if (Obj.lifeCounter == 2) { Functions_Entity.HandleBirthEvent(Obj); }
-                if (Obj.lifeCounter >= Obj.lifetime)
-                {   //any dead object is released
-                    Functions_Entity.HandleDeathEvent(Obj);
-                    Functions_Pool.Release(Obj);
-                }
-            }
-            //certain objects get AI input
-            if(Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
     }

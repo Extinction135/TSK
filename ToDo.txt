@@ -44,75 +44,34 @@ v0.7 goals
 
 
 
-8
+7
+
+
+
+Fix Bug with Rotating SpikeBlock
+
+
+when a spikeblock collided with a blocking object, BounceSpikeBlock() was called.
+in this method, the block was pushed in the opposite direction it was traveling.
+however, because it was colliding with an object, spikeblock's newPosition was
+reverted to the old position, so spikeblock didn't properly bounce in certain conditions.
+one of these conditions was changing it's rotation.
+upon a rotation change, spikeblocks would fly thru blocking objects, due to double
+interactions with the colliding object each frame. the spikeblocks direction would
+be flipped to opposite, then flipped back (upon the second collision).
+
+the fix to this is the same fix that was done to actors being pulled into pits.
+we simply update the spikeblock's compMove.position + newPos, then align.
+this 'force moves' the spikeblock, ignoring the blocking collision it's currently in.
+playtested, working as expected. 
+
+spikeblocks can now be rotated in any random direction and still collide properly.
+also updated Inspect() to check Entity pool.
 
 
 
 
-
-
-
-
-
-Make Spikeblock a Projectile, not a RoomObj
-
-if we set a projectile's lifetime value to 0, then it will last forever.
-this is how we will handle the lifetime of spikeblock.
-
-removed BlockSpike ObjType. added ProjectileSpikeBlock ObjType value.
-updated the GameObjAnimLists to reflect changed ObjType enum.
-updated Obj.SetType() with path for ProjectileSpikeBlock.
-moved spikeBlock sprite from dungeonSheet to mainSheet.
-
-updated BuildRoomObjs() to handle both roomObjects AND entities (projectiles).
-this must be done, because we're going to save spikeBlock projectiles to room xml.
-renamed BuildRoomObjs() to BuildRoomXmlData(), which better represents it's purpose.
-
-updated WidgetRoomTools.HandleInput() -> Save Room routine.
-this now saves active, saveable objects from both RoomObject and Entity pools.
-this means that saveable projectiles will appear in the XML data.
-
-reorganized object tools widget to place projectiles on their own row over enemy spawns.
-updated GrabRoomObject() to grab entities and roomObjs.
-vastly simplified and improved GetActiveObjInfo().
-updated Selecting, Adding, Deleting, Grabbing, Dragging, and Dropping routines.
-these routines now handle RoomObjects AND Entities (Projectiles).
-simplified how the active/current object is represented in ObjectTools widget.
-this is done using an actual gameObject, instead of a sprite + Direction + ObjType.
-
-removed all BlockSpike data from RoomData XML and TestingRooms XML.
-
-
-
-
-we got the loading working (of roomXmlData + projectiles)
-we got the saving working (of roomObjs and projectiles)
-
-projectileSpikeBlocks should bounce off of bumpers, pass over pits, and bounce off trap doors
-> playtest
-
-should be able to place SpikeBlocks
-
-
-ready to push Porjectile commit above ^
-
-
-
-
-
-left ctrl + click isn't dumping info on projectiles!
-it should - updated () to check entity list
-
-
-
-
-
-
-
-
-
-
-
+Improve SpikeBlock Collisions with properly placed Hit Particles
 
 
 

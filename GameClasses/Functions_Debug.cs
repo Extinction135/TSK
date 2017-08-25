@@ -19,13 +19,22 @@ namespace DungeonRun
 
         public static void Inspect()
         {   //check if any object or actor collide with cursor collision component, pass to Inspect()
-            //check mouse click position for any objects
+            //check mouse click position for any room objects
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
                 {
                     if (Input.cursorColl.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     { Inspect(Pool.roomObjPool[i]); }
+                }
+            }
+            //check mouse click position for any entity objects
+            for (i = 0; i < Pool.entityCount; i++)
+            {
+                if (Pool.entityPool[i].active)
+                {
+                    if (Input.cursorColl.rec.Intersects(Pool.entityPool[i].compCollision.rec))
+                    { Inspect(Pool.entityPool[i]); }
                 }
             }
             //check mouse click position for any actors
