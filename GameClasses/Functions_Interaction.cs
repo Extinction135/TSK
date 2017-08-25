@@ -16,7 +16,7 @@ namespace DungeonRun
     {
 
         public static ComponentCollision interactionRec = new ComponentCollision();
-
+        public static GameObject objRef;
 
 
         public static void ClearHeroInteractionRec()
@@ -573,6 +573,16 @@ namespace DungeonRun
         {   //update the door roomObject, change to doorBombed, play soundfx
             Functions_GameObject.SetType(Door, ObjType.DoorOpen);
             Assets.Play(Assets.sfxShatter);
+            //create a debris roomObj at door position
+            objRef = Functions_Pool.GetRoomObj();
+            Functions_Movement.Teleport(objRef.compMove,
+                Door.compSprite.position.X,
+                Door.compSprite.position.Y);
+            Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
+            //draw attention to the collapsing door
+            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);
+
             //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < Level.doors.Count; i++)
             {   //if this explosion collides with any dungeon.door that is of type.bombable

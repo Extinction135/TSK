@@ -208,6 +208,7 @@ namespace DungeonRun
             {
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = -32; //sort low, but over floor
+                Obj.direction = Direction.Down; //always down
             }
 
             #endregion

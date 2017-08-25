@@ -499,7 +499,6 @@ namespace DungeonRun
                         Functions_Movement.Teleport(objRef.compMove,
                             Pool.floorPool[i].position.X + Functions_Random.Int(-8, 8),
                             Pool.floorPool[i].position.Y + Functions_Random.Int(-8, 8));
-                        objRef.direction = Direction.Down; //^ offset the debris a little
                         Functions_GameObject.SetType(objRef, ObjType.DebrisFloor);
                     }
                 }

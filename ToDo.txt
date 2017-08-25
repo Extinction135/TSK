@@ -44,38 +44,49 @@ v0.7 goals
 
 
 
-2
-
-
-
-
-Simplify + Optimize BombedDoors
-
-we can use openDoors instead of bombed doors - they almost look identical.
-we could create debris at the door's location when it's bombed open.
-this also simplifies the open/bombed door checks throughout codebase.
-this frees up one space in dungeon sheet.
-
-removed DoorBombed value from ObjType enum.
-removed DoorBombed objAnimList.
-removed DoorBombed from Obj.SetType().
-removed DoorBombed from Door Opening routine.
-updated CollapseDungeonDoor() to set bombed door to DoorType.Open.
-
-removed DoorType.Bombed. 
-bombed doors are now modeled simply as DoorType.Open.
-playtested, working as expected.
+1
 
 
 
 
 
 
-Improve Collapse of Bombable Doors
+
+Improve Collapse of Bombable Doors - part 1
 
 when we collapse a bombed door, there needs to be more visual fanfare
-there should be debris created at door location
-there should be more explosions and particles
+
+updated CollapseDungeonDoor() to place roomObj debris at bombed door location.
+the method also creates an attention particle at door location.
+repacked the DungeonSheet, now that we've removed the BombedDoor sprite.
+the BossDoor was moved up 1 frame.
+playtested, working as expected, door collapse looks better.
+
+
+
+
+
+
+
+Improve Collapse of Bombable Doors - part 2
+
+the debris that is placed at bombed doors looks like blood/enemy debris
+it should look like rock debris. we need to make a rock-like debris roomObj.
+then we can place that debris at bombed door locations.
+we can also scatter that debris through-out rooms for more room-floor variation.
+
+we could create a big smoke poof particle
+then place this particle at the location of collapsing door
+this would cover the door for a few frames, then disappear
+
+we could create small rock-like debris
+then create a method that creates several pieces of rock debris around a position
+this would be an explosion of rock debris
+we could use this for collapsing doors, and when objects are destroyed, like pots
+
+
+
+
 
 
 
