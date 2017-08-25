@@ -616,19 +616,15 @@ namespace DungeonRun
         }
 
         public static void BounceSpikeBlock(GameObject SpikeBlock)
-        {
-            //based on the spikeBlocks moving direction, we know what side it collided on
-            //and we can place a hit sparkle centered to that edge/side
-
+        {   //spawn a hit particle along spikeBlock's colliding edge
+            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, SpikeBlock);
             Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect
-
-
             //flip the block's direction to the opposite direction
             SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
             SpikeBlock.compMove.magnitude.X = 0;
             SpikeBlock.compMove.magnitude.Y = 0;
             //push the block in it's new direction, out of this collision
-            Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 4.0f);
+            Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 2.0f);
             //force move spikeblock to it's new position, ignoring collisions
             SpikeBlock.compMove.position += SpikeBlock.compMove.magnitude;
             SpikeBlock.compMove.newPosition = SpikeBlock.compMove.position;

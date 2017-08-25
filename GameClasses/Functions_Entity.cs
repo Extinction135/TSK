@@ -67,6 +67,20 @@ namespace DungeonRun
             #endregion
 
 
+            #region SpikeBlock
+
+            else if(Object.type == ObjType.ProjectileSpikeBlock)
+            {   //spikeblocks create hit particles upon their colliding (bounced) edge
+                if (Object.compMove.direction == Direction.Down) { posRef.X += 4; posRef.Y += 8; }
+                else if (Object.compMove.direction == Direction.Up) { posRef.X += 4; posRef.Y -= 4; }
+                else if (Object.compMove.direction == Direction.Right) { posRef.X += 8; posRef.Y += 4; }
+                else if (Object.compMove.direction == Direction.Left) { posRef.X -= 4; posRef.Y += 4; }
+                direction = Object.compMove.direction;
+            }
+
+            #endregion
+
+
             SpawnEntity(Type, posRef.X, posRef.Y, direction);
         }
 

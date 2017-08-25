@@ -44,38 +44,26 @@ v0.7 goals
 
 
 
-7
+6
 
 
 
-Fix Bug with Rotating SpikeBlock
 
-
-when a spikeblock collided with a blocking object, BounceSpikeBlock() was called.
-in this method, the block was pushed in the opposite direction it was traveling.
-however, because it was colliding with an object, spikeblock's newPosition was
-reverted to the old position, so spikeblock didn't properly bounce in certain conditions.
-one of these conditions was changing it's rotation.
-upon a rotation change, spikeblocks would fly thru blocking objects, due to double
-interactions with the colliding object each frame. the spikeblocks direction would
-be flipped to opposite, then flipped back (upon the second collision).
-
-the fix to this is the same fix that was done to actors being pulled into pits.
-we simply update the spikeblock's compMove.position + newPos, then align.
-this 'force moves' the spikeblock, ignoring the blocking collision it's currently in.
-playtested, working as expected. 
-
-spikeblocks can now be rotated in any random direction and still collide properly.
-also updated Inspect() to check Entity pool.
 
 
 
 
 Improve SpikeBlock Collisions with properly placed Hit Particles
 
+when SpikeBlock bounces off an object, place a hit particle along it's colliding edge.
+updated Functions_Entity.SpawnEntity(Type, Obj) with path for SpikeBlock.
+this checks the block's direction and places the particle correctly.
+playtested, working as expected. looks great.
 
 
 
+
+when we check for grabbing (in room editre), we should ignore particles
 
 
 
