@@ -587,14 +587,13 @@ namespace DungeonRun
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
             }
-            else if (Type == ObjType.ParticleBubble)
+            else if (Type == ObjType.ParticlePitAnimation)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = -63; //sort over pits, under pit teeth
                 Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 48; //in frames
-                Obj.compAnim.speed = 12; //in frames
-                Obj.compAnim.loop = false;
+                Obj.lifetime = 10*4*6; //speed * anim frames * loops
+                Obj.compAnim.speed = 10; //in frames
             }
 
 

@@ -89,7 +89,7 @@ namespace DungeonRun
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion, ProjectileArrow,
         ProjectileSpikeBlock,
         //Particles - small
-        ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticleBubble,
+        ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation,
         //Particles - map
         ParticleMapFlag, ParticleMapWave, ParticleMapCampfire,
         //

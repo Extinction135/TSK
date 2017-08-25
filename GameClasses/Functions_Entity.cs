@@ -72,8 +72,8 @@ namespace DungeonRun
             else if(Object.type == ObjType.PitAnimated)
             {   //randomly offset where the bubble particle is placed
                 posRef.X += 4; posRef.Y += 4; //because bubble is 8x8 size
-                posRef.X += Functions_Random.Int(-4, 5);
-                posRef.Y += Functions_Random.Int(-4, 5);
+                posRef.X += Functions_Random.Int(-3, 4);
+                posRef.Y += Functions_Random.Int(-3, 4);
                 direction = Direction.None;
             }
 

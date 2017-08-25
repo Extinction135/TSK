@@ -44,7 +44,22 @@ v0.7 goals
 
 
 
-1
+13
+
+
+
+
+Optimize Animated Pit Bubbles
+
+renamed ParticleBubble to ParticlePitAnimation.
+because in the future this animation may not necessarily be a bubble.
+we may change the animation in the dungeon sheet to be something else.
+like lava bubbling, or waves, or whatever. 
+so the name needs to be generic.
+increased lifetime of ParticlePitAnimation to 255, so they last longer.
+decreased how often these particles are created in Pits.
+this has the net effect of using less particles to display about the same amount.
+playtested, various polishing of values, working/looking great.
 
 
 
@@ -52,18 +67,32 @@ v0.7 goals
 
 
 
-Improve Collapse of Bombable Doors - part 1
-
-when we collapse a bombed door, there needs to be more visual fanfare
-
-updated CollapseDungeonDoor() to place roomObj debris at bombed door location.
-the method also creates an attention particle at door location.
-repacked the DungeonSheet, now that we've removed the BombedDoor sprite.
-the BossDoor was moved up 1 frame.
-playtested, working as expected, door collapse looks better.
 
 
+Pit Animation++
+move the pit bubble sprite animation into the dungeon sheet
+* which means this projectile will use the dungeon sheet, not main sheet
+** so we need to redesign how we're setting the textures for entities
+this allows us to group the pit and bubble colors together on one sheet
+and the bubble sprite animation doesn't have to be bubbles, it can be whatever
+so we should rename ParticleBubble to ParticlePitAnimation
+and rename PitAnimated to simply Pit
 
+repack the DungeonSheet, placing all Pit related sprites on one row together (bottom row)
+
+
+
+
+
+
+
+
+
+
+
+force move 
+sometimes we have to force move actors or objects (actos-pits, objects-spikeblock bounce)
+we should standardize this force move into a function, and make it part of Functions_Movement
 
 
 
@@ -92,9 +121,35 @@ we could use this for collapsing doors, and when objects are destroyed, like pot
 
 
 
+
+
+
+
+
+
+
+
+
 how else can we free up space in the dungeon sheet?
 we could reduce the number of floor tiles to 2, regular and special
 that frees up one space.
+
+we could also redesign how we are setting roomObj textures
+we could move the conveyor belt into the main sheet, freeing up 3 frames in dungeon sheet
+it's impossible to theme the conveyor belt per dungeon, because the sprite is so simple
+we could move bumper to main sheet
+torch lit/unlit
+colored block up/down/switch
+floor spikes, lever
+ice tile
+chest closed/open
+that would free up alot of space in dungeon sheet
+and we could simply set the objects texture based on it's type instead of group
+it would be a choice between dungeonSheet (pointer) and mainSheet.
+and we'd need to only set the dungeonSheet pointer prior to calling SetType().
+*** holdon, we're already doing this for NPCs... !!!
+to test that this works, we'd need another dungeon sheet tho...
+
 
 
 
@@ -126,12 +181,6 @@ remove that obj from the widget
 
 
 
-we can also better pack the mainsheet to create room for additional projectiles
-we should pack all projectiles together in the same area
-this means we need to move all item sprites over two tiles to the right
-and then update their animList values
-
-
 
 Cracked Floor Obj
 upon collision with hero, this becomes PitCollapsing obj
@@ -143,46 +192,35 @@ and it places pit teeth at top and bottom of pit upon collapse
 
 
 
-
-Projectiles++
-we should have mobile spikeblocks..
-can we do this using projectiles? of course
-spikeblock is a projectile with 255 lifetime
-this 255 value is special, meaning the projectile lasts lifetime of room
-we can also model various roomObjs like this as well, for example dark/lite blocks
-so we could 'fake' roomObjs moving around on conveyor belts (using projectiles)
-
-we'll need to make sure that pickups don't have a lifetime of 255.
-they can have a lifetime of 254 instead.
-
 Fairy Projectile
 fairy is a projectile that moves in a random direction and has a lifetime of 254
 fairys should be created very rarely from enemy deaths (update loot routine)
-
 
 update conveyor belts to center projectiles to the moving axis
 this aligns the obj to the middle of the conveyor belt, while still moving along the belts direction
 
 
-ObjectTools++
 
-designate a line for projectiles in object tools widget
-this will display all the projectiles, and make them selectable
-and allow us to place projectiles where we want to, with the direction we want to
-we should be able to set the direction of blockspike to NSEW, not just hori/vert.
-these projectiles should exist above enemy spawns
 
 
 Add More Persistent Projectiles
+
+skeleton debris
+doesn't move on it's own, but can be moved by conveyor belts
+upon collision with sword, fireball, arrow, etc.. this projectile is destroyed
+this projectile can be pushed by hero or actors as well, it's "pushable"
+it should inherit the magnitude of any actor that collides with it
+this happens in the projectile -> actor interaction check
+
+rock debris
+this is 8x8 rock sprite, with lifetime of 255
+this also inherits colliding actor's magnitude
+and can be moved by conveyor belts
 
 wanderingFire obj
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
 
-protectiveFire obj
-just like wandering fire, except checks to see that it's colliding with an obj
-if it doesn't collide with an obj, it rotates right and moves in that direction
-this means it will travel clockwise along perimeter of stationary group of objects
 
 
 
@@ -239,6 +277,7 @@ then upon room build, randomly choose an enemy type from the correct tier list
 for example, forest dungeon tier 1 enemies: blob, rat, snake
 when room builds, any of these 3 enemy types can spawn on a tier 1 spawn obj
 create enemies that fire projectiles - arrows, fireballs, bombs
+we need a flying enemy - like a BAT
 
 Music++
 add overworld music
