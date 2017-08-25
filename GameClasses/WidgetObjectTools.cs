@@ -140,7 +140,7 @@ namespace DungeonRun
                     }
                     else if (i == 5) //sixth row - Pits and Pit Accessories
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PitTrapReady); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PitTrap); }
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.PitAnimated); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Bridge); }
                         else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }

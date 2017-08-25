@@ -84,7 +84,7 @@ namespace DungeonRun
 
             else if(Object.type == ObjType.ProjectileSpikeBlock)
             {   //spikeblocks create hit particles upon their colliding (bounced) edge
-                if (Object.compMove.direction == Direction.Down) { posRef.X += 4; posRef.Y += 8; }
+                if (Object.compMove.direction == Direction.Down) { posRef.X += 4; posRef.Y += 10; }
                 else if (Object.compMove.direction == Direction.Up) { posRef.X += 4; posRef.Y -= 4; }
                 else if (Object.compMove.direction == Direction.Right) { posRef.X += 8; posRef.Y += 4; }
                 else if (Object.compMove.direction == Direction.Left) { posRef.X -= 4; posRef.Y += 4; }

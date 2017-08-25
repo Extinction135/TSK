@@ -63,7 +63,7 @@ namespace DungeonRun
         WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
         BossDecal, DebrisFloor,
         //Editor Room Objects (hand-placed)
-        PitAnimated, PitTop, PitBottom, PitTrapReady, PitTrapOpening,
+        PitAnimated, PitTop, PitBottom, PitTrap,
         BossStatue, Pillar,
         ChestKey, ChestMap, ChestEmpty,
         BlockDark, BlockLight,

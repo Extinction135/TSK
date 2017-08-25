@@ -80,10 +80,9 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(2, 7, 0, 0) },
                 //PitBottom
                 new List<Byte4> { new Byte4(3, 7, 0, 0) },
-                //PitTrapReady
-                new List<Byte4> { new Byte4(6, 3, 0, 0) },
-                //PitTrapOpening
-                new List<Byte4> { new Byte4(6, 3, 0, 0) },
+                //PitTrap
+                new List<Byte4> { new Byte4(7, 15, 0, 0) },
+
                 //BossStatue
                 new List<Byte4> { new Byte4(0, 3, 0, 0) },
                 //Pillar

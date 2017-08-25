@@ -44,36 +44,22 @@ v0.7 goals
 
 
 
-9
+8
 
 
 
 
+Get PitTraps Working
 
-Move FloorSpikes and Lever into Mainsheet, Improve ConveyorBelt animation
+moved cracked floor sprite into MainSheet.
+exported new version of mainsheet.
+updated ObjAnimLists for PitTraps.
+updated Obj.SetType() for PitTraps.
 
-moved floor spikes + lever into mainsheet.
-updated ObjAnimList for lever + spikes.
-updated Obj.SetType() for lever + spikes.
-playtested, sprites appearing normally.
-
-reduced conveyorBelt animation to 2 frames.
-these two frames are also seamless.
-updated ConveyorBelt ObjAnimList.
-playtested, looking great!
-
-
-
-
-
-
-
-when spikeblock hits something south, +2y axis on sparkle
-
-move cracked floor tile into mainSheet, out of dungeonSheet
-(PitTrapReady + PitTrapOpening)
-
-
+renamed PitTrapOpening to PitTrap. removed PitTrapReady.
+updated InteractActor() to handle hero stepping on PitTrap.
+PitTraps become Pits upon collision.
+playtested, working as expected.
 
 
 

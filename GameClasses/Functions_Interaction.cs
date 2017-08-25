@@ -261,6 +261,39 @@ namespace DungeonRun
 
                 //switch
                 //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
+
+                #region Objects
+
+                if (Obj.type == ObjType.PitTrap)
+                {   //if hero collides with a PitTrapReady, it starts to open
+                    Functions_GameObject.SetType(Obj, ObjType.PitAnimated);
+                    Assets.Play(Assets.sfxShatter); //play collapse sound
+                    //draw attention to the collapsed floor
+                    Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                        Obj.compSprite.position.X, 
+                        Obj.compSprite.position.Y, 
+                        Direction.Down);
+                    Functions_Entity.SpawnEntity(ObjType.ParticleSmokePuff,
+                        Obj.compSprite.position.X + 4, 
+                        Obj.compSprite.position.Y - 8, 
+                        Direction.Down);
+                    //create pit teeth over new pit obj
+                    objRef = Functions_Pool.GetRoomObj();
+                    Functions_Movement.Teleport(objRef.compMove,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Functions_GameObject.SetType(objRef, ObjType.PitTop);
+
+                    objRef = Functions_Pool.GetRoomObj();
+                    Functions_Movement.Teleport(objRef.compMove,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Functions_GameObject.SetType(objRef, ObjType.PitBottom);
+                    return; //bail from interaction check
+                }
+
+                #endregion
+
             }
             //these objects interact with ALL ACTORS
             {

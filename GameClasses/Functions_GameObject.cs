@@ -69,6 +69,11 @@ namespace DungeonRun
             {   //some objects only face Direction.Down
                 Obj.compSprite.rotation = Rotation.None;
             }
+            else if(Obj.type == ObjType.PitTrap)
+            {   //some objects are randomly rotated
+                Obj.direction = (Direction)Functions_Random.Int(0, 9);
+                Obj.direction = Functions_Direction.GetCardinalDirection(Obj.direction);
+            }
         }
 
         public static void SetWeaponCollisions(GameObject Obj)
@@ -248,13 +253,11 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
-            else if (
-                Type == ObjType.PitTrapReady || Type == ObjType.PitTrapOpening)
-            {   //this becomes a pit
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                //Obj.compCollision.offsetX = -6;
-                //Obj.compCollision.offsetY = -6;
+            else if (Type == ObjType.PitTrap)
+            {   //this becomes a pit upon collision with hero
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compCollision.offsetX = -10; Obj.compCollision.offsetY = -10;
+                Obj.compCollision.rec.Width = 20; Obj.compCollision.rec.Height = 20;
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
