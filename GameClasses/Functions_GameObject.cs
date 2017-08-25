@@ -221,15 +221,16 @@ namespace DungeonRun
             else if (Type == ObjType.PitAnimated)
             {
                 //this pit interacts with actor
-                Obj.compSprite.zOffset = -40; //sort under pit decorations
+                Obj.compSprite.zOffset = -64; //sort under pit teeth
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
+                Obj.getsAI = true;
             }
             else if (Type == ObjType.PitTop || Type == ObjType.PitBottom)
-            {   //this is pit decoration
-                Obj.compSprite.zOffset = -32; //sort to floor
+            {
+                Obj.compSprite.zOffset = -60; //sort above pits & pit bubbles
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 8;
                 if (Type == ObjType.PitBottom) { Obj.compCollision.offsetY = 4; }
                 Obj.compCollision.blocking = false;
@@ -386,9 +387,15 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
-            else if (Type == ObjType.Switch || Type == ObjType.Bridge)
+            else if (Type == ObjType.Switch)
             {
                 Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+            }
+            else if (Type == ObjType.Bridge)
+            {
+                Obj.compSprite.zOffset = -62; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
@@ -587,6 +594,15 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
+            }
+            else if (Type == ObjType.ParticleBubble)
+            {
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.zOffset = -63; //sort over pits, under pit teeth
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 48; //in frames
+                Obj.compAnim.speed = 12; //in frames
+                Obj.compAnim.loop = false;
             }
 
 

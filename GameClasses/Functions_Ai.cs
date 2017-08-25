@@ -133,6 +133,11 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
                 { Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Obj); }
             }
+            else if(Obj.type == ObjType.PitAnimated)
+            {
+                if (Functions_Random.Int(0, 500) > 495) //occasionally bubbles
+                { Functions_Entity.SpawnEntity(ObjType.ParticleBubble, Obj); }
+            }
         }
 
     }

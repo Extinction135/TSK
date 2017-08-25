@@ -44,22 +44,36 @@ v0.7 goals
 
 
 
-5
+4
 
 
 
 
 
 
+Improve & Optimize Pits
 
 
-Improve Picking Up Room Objects in Editor
+instead of having the pits animated thru 16x16 frames, use a single black frame.
+then add a bubble particle over the black frame, varying the bubble's position and timing.
+this adds more variation to the pits animation, and frees 2 frames in dungeon sheet.
 
-shouldn't be able to grab particles or pickups in editor.
-there was an issue where i couldn't pickup an obj because a particle overlapped it.
-it was annoying, and i don't see a reason why i would ever need to pickup a particle.
-updated ObjectToolsWidget.GrabRoomObject() to ignore particles & pickups in Entity Pool.
-playtested, working as expected.
+reduced pit sprite animation to a single frame in dungeon sheet.
+updated GameObjAnimList to reflect single frame pit sprite.
+
+created pit bubble sprite animation in main sheet.
+added ParticleBubble value to ObjType enum.
+added ParticleBubble animList.
+added path for ParticleBubble to Obj.SetType().
+
+updated Functions_Ai.HandleObj() with path for PitAnimated obj.
+this randomly calls SpawnEntity(), passing bubble particle and pit references.
+updated SpawnEntity() with path for PitAnimated.
+this randomly offsets the bubble particle from center of pit, adding position variation.
+updated the sorting values of pits, bubbles, pit teeth, and bridges.
+bubbles sort over pits. bridges sort over bubbles. pit teeth sort over bridges.
+playtested, working as expected, looking great.
+
 
 
 
@@ -76,10 +90,7 @@ we can use openDoors instead of bombed doors - they almost look identical
 we could create debris at the door's location when it's bombed open
 this also simplifies the open/bombed door checks throughout codebase
 that frees up one space
-instead of animated pits, we could use a single tile
-then later on we can have pits randomly spawn a bubble particle to add animation back in
-this would also vary the animation timing, and bubble placement, so it's an improvement
-this frees up two spaces
+
 we could get rid of draggable blocks, and instead make the dungeon statues the only draggable roomObjs
 this frees up one space
 
