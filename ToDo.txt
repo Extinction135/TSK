@@ -44,54 +44,17 @@ v0.7 goals
 
 
 
-8
+7
 
 
 
+DungeonSheet Optimizations + Repacking
 
-Get PitTraps Working
-
-moved cracked floor sprite into MainSheet.
-exported new version of mainsheet.
-updated ObjAnimLists for PitTraps.
-updated Obj.SetType() for PitTraps.
-
-renamed PitTrapOpening to PitTrap. removed PitTrapReady.
-updated InteractActor() to handle hero stepping on PitTrap.
-PitTraps become Pits upon collision.
+moved ice tile to mainSheet (its not implemented yet)
+moved bridge ObjType into section with Pit ObjType for better conceptual grouping.
+repacked dungeon sheet placing bridge next to pit.
+updated ObjAnimList for Bridge, and Pit Teeth.
 playtested, working as expected.
-
-
-
-
-
-
-
-
-
-we could move bumper to main sheet
-torch lit/unlit
-colored block up/down/switch
-ice tile
-chest closed/open
-that would free up alot of space in dungeon sheet
-and we could simply set the objects texture based on it's type instead of group
-it would be a choice between dungeonSheet (pointer) and mainSheet.
-and we'd need to only set the dungeonSheet pointer prior to calling SetType().
-*** holdon, we're already doing this for NPCs... !!!
-to test that this works, we'd need another dungeon sheet tho...
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

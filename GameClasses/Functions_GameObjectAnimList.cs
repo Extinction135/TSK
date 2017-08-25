@@ -76,10 +76,12 @@ namespace DungeonRun
 
                 //PitAnimated
                 new List<Byte4> { new Byte4(1, 7, 0, 0) },
-                //PitTop
+                //Bridge
                 new List<Byte4> { new Byte4(2, 7, 0, 0) },
-                //PitBottom
+                //PitTop
                 new List<Byte4> { new Byte4(3, 7, 0, 0) },
+                //PitBottom
+                new List<Byte4> { new Byte4(4, 7, 0, 0) },
                 //PitTrap
                 new List<Byte4> { new Byte4(7, 15, 0, 0) },
 
@@ -121,8 +123,7 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(5, 5, 0, 0) },
                 //Switch
                 new List<Byte4> { new Byte4(3, 6, 0, 0) },
-                //Bridge
-                new List<Byte4> { new Byte4(6, 5, 0, 0) },
+                
                 //SwitchBlockBtn
                 new List<Byte4> { new Byte4(3, 4, 0, 0) },
                 //SwitchBlockDown
@@ -134,7 +135,6 @@ namespace DungeonRun
                 //TorchLit
                 new List<Byte4> { new Byte4(7, 4, 0, 0), new Byte4(7, 5, 0, 0), new Byte4(7, 6, 0, 0) },
                 
-
                 //SpawnEnemy1
                 new List<Byte4> { new Byte4(0, 15, 0, 0) },
                 //SpawnEnemy2

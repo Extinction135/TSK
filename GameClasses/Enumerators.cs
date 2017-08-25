@@ -63,7 +63,8 @@ namespace DungeonRun
         WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
         BossDecal, DebrisFloor,
         //Editor Room Objects (hand-placed)
-        PitAnimated, PitTop, PitBottom, PitTrap,
+        PitAnimated, Bridge, PitTop, PitBottom, PitTrap, 
+
         BossStatue, Pillar,
         ChestKey, ChestMap, ChestEmpty,
         BlockDark, BlockLight,
@@ -72,7 +73,7 @@ namespace DungeonRun
         SpikesFloorOn, SpikesFloorOff,
         ConveyorBeltOn, ConveyorBeltOff,
         //
-        PotSkull, Bumper, Flamethrower, Switch, Bridge,
+        PotSkull, Bumper, Flamethrower, Switch,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, 
         //Enemy Spawn Objects (hand-placed)
