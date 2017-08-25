@@ -429,22 +429,29 @@ namespace DungeonRun
 
             //Vendor Room Objects
 
-            #region Vendor & Story Objects
+            #region Shop Objects
 
+            else if (Type == ObjType.Bookcase1 || Type == ObjType.Bookcase2)
+            {
+                Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
+                Obj.group = ObjGroup.Draggable;
+            }
+            else if (Type == ObjType.TableStone)
+            {
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
+                Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
+                Obj.group = ObjGroup.Draggable;
+            }
+            //Vendors
             else if (Type == ObjType.VendorItems || Type == ObjType.VendorPotions ||
                 Type == ObjType.VendorMagic || Type == ObjType.VendorWeapons ||
-                Type == ObjType.VendorArmor || Type == ObjType.VendorEquipment)
+                Type == ObjType.VendorArmor || Type == ObjType.VendorEquipment
+                || Type == ObjType.VendorStory)
             {
-                Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
-                Obj.compSprite.zOffset = -7;
-                Obj.compAnim.speed = 20; //slow animation
-                Obj.group = ObjGroup.Vendor;
-            }
-            else if (Type == ObjType.VendorStory)
-            {
-                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.texture = Assets.shopSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = 0;
@@ -722,9 +729,7 @@ namespace DungeonRun
             SetRotation(Obj);
             Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type
             Functions_Component.UpdateCellSize(Obj.compSprite);
-
             Obj.compSprite.currentFrame = Obj.compAnim.currentAnimation[0]; //goto 1st anim frame
-
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 

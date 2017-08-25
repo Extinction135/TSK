@@ -77,10 +77,10 @@ namespace DungeonRun
         TorchUnlit, TorchLit, 
         //Enemy Spawn Objects (hand-placed)
         SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, //4 and 5 to be added later
-        //Vendor & Story Objects
-        VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment,
+        //Shop Object
+        Bookcase1, Bookcase2, TableStone,
+        VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment, VendorStory,
         VendorAdvertisement,
-        VendorStory,
 
         //ENTITIES
         //Pickups - collide with hero

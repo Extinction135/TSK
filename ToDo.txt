@@ -44,32 +44,29 @@ v0.7 goals
 
 
 
-12
+11
 
 
 
 
 
+Fix The Mess that is Shop GameObjects
 
+this includes bookcases, table, and shop NPCs.
 
-Redesign How GameObject Textures are Assigned in Obj.SetType()
+moved vendor sprites into Shop Sheet.
+moved guide sprite into Shop Sheet.
+updated ObjAnimLists for vendors.
+updated Obj.SetType() for vendors.
 
-redesigned how textures are assigned for gameobjects to allow some particles to use dungeon sheet.
-updated Obj.SetType() to default obj.texture to a dungeonsheet, based on Level.type.
-then set the mainSheet texture for GameObjects the use it, in the type check.
-this allows us to use either sheet for any gameObj.
+add Bookcase1, Bookcase2, TableStone values to ObjType.
+added GameObjAnimLists for these types.
+updated SetType() with paths for these types.
+updated FinishShopRoom() to place bookcases.
+updated CreateVendor() to place stone tables.
 
-moved pit bubble animation into dungeon sheet (for theme-ing purposes).
-repacked pit and pit related sprites in dungeon sheet.
-updated ObjAnimList for ParticlePitAnimation + Pit.
-playtested, noted visual bug.
-
-Obj's sprite frame wasn't set until the next animation frame elapsed.
-this happened after a SetType() call. 
-fix is to set Obj.sprite.currentFrame to first anim frame at end of SetType().
-updated ToolsWidget's Tools with currentAnimation lists + call to Animate().
-playtested, working as expected, no visual pop-in when pit bubbles are created.
-
+exported main, dungeon, shop sheets to dX project.
+playtested, working as expected.
 
 
 
@@ -78,11 +75,15 @@ playtested, working as expected, no visual pop-in when pit bubbles are created.
 
 
 
-how else can we free up space in the dungeon sheet?
-we could reduce the number of floor tiles to 2, regular and special
-that frees up one space.
 
-we could also redesign how we are setting roomObj textures
+move cracked floor tile into mainSheet, out of dungeonSheet
+(PitTrapReady + PitTrapOpening)
+
+
+
+
+
+
 we could move the conveyor belt into the main sheet, freeing up 3 frames in dungeon sheet
 it's impossible to theme the conveyor belt per dungeon, because the sprite is so simple
 we could move bumper to main sheet

@@ -362,7 +362,7 @@ namespace DungeonRun
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
                 Position.X + 16, Position.Y);
-            Functions_GameObject.SetType(objRef, ObjType.SwitchBlockUp);
+            Functions_GameObject.SetType(objRef, ObjType.TableStone);
 
             //place vendor advertisement
             objRef = Functions_Pool.GetRoomObj();
@@ -628,13 +628,13 @@ namespace DungeonRun
             Functions_Movement.Teleport(objRef.compMove,
                 5 * 16 + pos.X + 8,
                 0 * 16 + pos.Y + 0);
-            Functions_GameObject.SetType(objRef, ObjType.BlockDark);
+            Functions_GameObject.SetType(objRef, ObjType.Bookcase1);
             //drawers
             objRef = Functions_Pool.GetRoomObj();
             Functions_Movement.Teleport(objRef.compMove,
                 7 * 16 + pos.X + 8,
                 0 * 16 + pos.Y + 0);
-            Functions_GameObject.SetType(objRef, ObjType.BlockLight);
+            Functions_GameObject.SetType(objRef, ObjType.Bookcase2);
 
             #endregion
 

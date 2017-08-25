@@ -146,25 +146,32 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Vendor & Story Objects
+                #region Shop Objects
+
+                //Bookcase1
+                new List<Byte4> { new Byte4(0, 4, 0, 0) },
+                //Bookcase2
+                new List<Byte4> { new Byte4(1, 4, 0, 0) },
+                //TableStone
+                new List<Byte4> { new Byte4(5, 4, 0, 0) },
 
                 //VendorItems
-                new List<Byte4> { new Byte4(5, 15, 0, 0), new Byte4(5, 15, 1, 0) },
+                new List<Byte4> { new Byte4(0, 7, 0, 0), new Byte4(0, 7, 1, 0) },
                 //VendorPotions
-                new List<Byte4> { new Byte4(6, 15, 0, 0), new Byte4(6, 15, 1, 0) },
+                new List<Byte4> { new Byte4(1, 7, 0, 0), new Byte4(1, 7, 1, 0) },
                 //VendorMagic
-                new List<Byte4> { new Byte4(7, 15, 0, 0), new Byte4(7, 15, 1, 0) },
+                new List<Byte4> { new Byte4(2, 7, 0, 0), new Byte4(2, 7, 1, 0) },
                 //VendorWeapons
-                new List<Byte4> { new Byte4(8, 15, 0, 0), new Byte4(8, 15, 1, 0) },
+                new List<Byte4> { new Byte4(3, 7, 0, 0), new Byte4(3, 7, 1, 0) },
                 //VendorArmor
-                new List<Byte4> { new Byte4(9, 15, 0, 0), new Byte4(9, 15, 1, 0) },
+                new List<Byte4> { new Byte4(4, 7, 0, 0), new Byte4(4, 7, 1, 0) },
                 //VendorEquipment
-                new List<Byte4> { new Byte4(10, 15, 0, 0), new Byte4(10, 15, 1, 0) },
+                new List<Byte4> { new Byte4(5, 7, 0, 0), new Byte4(5, 7, 1, 0) },
+                //VendorStory
+                new List<Byte4> { new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0) },
+                
                 //VendorAdvertisement
                 new List<Byte4> { new Byte4(5, 5, 0, 0) },
-                
-                //VendorStory
-                new List<Byte4> { new Byte4(11, 15, 0, 0), new Byte4(11, 15, 1, 0) },
 
                 #endregion
 

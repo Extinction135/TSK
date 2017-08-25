@@ -33,8 +33,8 @@ namespace DungeonRun
         {   //align this widgets component to Position + Size
             Functions_MenuWindow.ResetAndMove(window, X, Y,
                 new Point(16 * 22, 16 * 4), "Hello!");
-            speaker.compMove.newPosition.X = X + 16 * 1;
-            speaker.compMove.newPosition.Y = Y + 16 * 2;
+            Functions_Movement.Teleport(speaker.compMove, X + 16 * 1, Y + 16 * 2);
+            Functions_Component.Align(speaker.compMove, speaker.compSprite, speaker.compCollision);
             dialog.position.X = X + 16 * 2;
             dialog.position.Y = Y + 16 * 1 + 4;
         }
