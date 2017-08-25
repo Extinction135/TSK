@@ -98,8 +98,6 @@ namespace DungeonRun
                 //ChestEmpty
                 new List<Byte4> { new Byte4(2, 6, 0, 0) },
 
-                //BlockDraggable
-                new List<Byte4> { new Byte4(2, 4, 0, 0) },
                 //BlockDark
                 new List<Byte4> { new Byte4(0, 4, 0, 0) },
                 //BlockLight

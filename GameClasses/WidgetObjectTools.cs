@@ -104,7 +104,7 @@ namespace DungeonRun
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Pillar); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
                         else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.BlockDraggable); }
+                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
                     }
                     else if (i == 1) //second row
                     {

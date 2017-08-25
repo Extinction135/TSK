@@ -66,7 +66,7 @@ namespace DungeonRun
         PitAnimated, PitTop, PitBottom, PitTrapReady, PitTrapOpening,
         BossStatue, Pillar,
         ChestKey, ChestMap, ChestEmpty,
-        BlockDraggable, BlockDark, BlockLight,
+        BlockDark, BlockLight,
         //lever + lever activated objects
         LeverOn, LeverOff,
         SpikesFloorOn, SpikesFloorOff,

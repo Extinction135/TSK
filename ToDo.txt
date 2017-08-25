@@ -44,41 +44,35 @@ v0.7 goals
 
 
 
-4
+3
 
 
 
 
 
 
-Improve & Optimize Pits
 
 
-instead of having the pits animated thru 16x16 frames, use a single black frame.
-then add a bubble particle over the black frame, varying the bubble's position and timing.
-this adds more variation to the pits animation, and frees 2 frames in dungeon sheet.
 
-reduced pit sprite animation to a single frame in dungeon sheet.
-updated GameObjAnimList to reflect single frame pit sprite.
 
-created pit bubble sprite animation in main sheet.
-added ParticleBubble value to ObjType enum.
-added ParticleBubble animList.
-added path for ParticleBubble to Obj.SetType().
+Remove Draggable Block from Game
 
-updated Functions_Ai.HandleObj() with path for PitAnimated obj.
-this randomly calls SpawnEntity(), passing bubble particle and pit references.
-updated SpawnEntity() with path for PitAnimated.
-this randomly offsets the bubble particle from center of pit, adding position variation.
-updated the sorting values of pits, bubbles, pit teeth, and bridges.
-bubbles sort over pits. bridges sort over bubbles. pit teeth sort over bridges.
-playtested, working as expected, looking great.
+the DungeonStatue is now the only draggable object in game.
+
+removed draggable block sprite from dungeon sheet.
+removed BlockDraggable value from ObjType enum.
+removed BlockDraggable objAnimList.
+removed BlockDraggable from Obj.SetType().
+removed BlockDraggable from ObjectToolsWidget.
+this frees up 1 frame in dungeon sheet.
 
 
 
 
 
 
+on object toolsl widget, we would never be able to place an empty chest
+remove that obj from the widget
 
 
 

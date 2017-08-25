@@ -274,15 +274,6 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
             }
-            else if (Type == ObjType.BlockDraggable)
-            {
-                Obj.compCollision.rec.Height = 12;
-                Obj.compCollision.offsetY = -4;
-                Obj.compSprite.zOffset = -7;
-                Obj.group = ObjGroup.Draggable;
-                Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
-            }
 
             #endregion
 
