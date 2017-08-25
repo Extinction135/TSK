@@ -378,6 +378,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ConveyorBeltOn || Type == ObjType.ConveyorBeltOff)
             {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;

@@ -44,33 +44,18 @@ v0.7 goals
 
 
 
-11
+10
 
 
 
 
 
-Fix The Mess that is Shop GameObjects
+Move Conveyor Belts from DungeonSheet to MainSheet
 
-this includes bookcases, table, and shop NPCs.
-
-moved vendor sprites into Shop Sheet.
-moved guide sprite into Shop Sheet.
-updated ObjAnimLists for vendors.
-updated Obj.SetType() for vendors.
-
-add Bookcase1, Bookcase2, TableStone values to ObjType.
-added GameObjAnimLists for these types.
-updated SetType() with paths for these types.
-updated FinishShopRoom() to place bookcases.
-updated CreateVendor() to place stone tables.
-
-exported main, dungeon, shop sheets to dX project.
+moved conveyBelt sprite into mainSheet.
+updated Obj.Setype() to set belt's texture to mainSheet.
+updated ObjAnimLists for conveyor belts.
 playtested, working as expected.
-
-
-
-
 
 
 
@@ -83,9 +68,12 @@ move cracked floor tile into mainSheet, out of dungeonSheet
 
 
 
+when spikeblock hits something south, +2y axis on sparkle
 
-we could move the conveyor belt into the main sheet, freeing up 3 frames in dungeon sheet
-it's impossible to theme the conveyor belt per dungeon, because the sprite is so simple
+
+
+
+
 we could move bumper to main sheet
 torch lit/unlit
 colored block up/down/switch
