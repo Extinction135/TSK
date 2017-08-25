@@ -44,7 +44,7 @@ v0.7 goals
 
 
 
-6
+5
 
 
 
@@ -53,17 +53,17 @@ v0.7 goals
 
 
 
-Improve SpikeBlock Collisions with properly placed Hit Particles
+Improve Picking Up Room Objects in Editor
 
-when SpikeBlock bounces off an object, place a hit particle along it's colliding edge.
-updated Functions_Entity.SpawnEntity(Type, Obj) with path for SpikeBlock.
-this checks the block's direction and places the particle correctly.
-playtested, working as expected. looks great.
+shouldn't be able to grab particles or pickups in editor.
+there was an issue where i couldn't pickup an obj because a particle overlapped it.
+it was annoying, and i don't see a reason why i would ever need to pickup a particle.
+updated ObjectToolsWidget.GrabRoomObject() to ignore particles & pickups in Entity Pool.
+playtested, working as expected.
 
 
 
 
-when we check for grabbing (in room editre), we should ignore particles
 
 
 

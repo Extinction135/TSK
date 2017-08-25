@@ -24,20 +24,9 @@ namespace DungeonRun
         public ComponentSprite cursorSprite;
         public ComponentSprite toolTipSprite;
 
-
-        //it would be simpler to just have use a gameObject to store selected obj's values
         public GameObject currentObjRef;
         public ComponentText currentObjTypeText;
         public ComponentText currentObjDirectionText;
-        /*
-        public ComponentSprite currentObj; //represents selected obj in widget or room
-        public ObjType currentObjType;
-        public ObjGroup currentObjGroup;
-        public ComponentText currentObjTypeText;
-        public Direction currentObjDirection;
-        public ComponentText currentObjDirectionText;
-        */
-
 
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
         public ComponentSprite selectionBoxTool; //highlites the currently selected obj
@@ -647,14 +636,17 @@ namespace DungeonRun
             for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
             {   //loop thru entity pool, checking collisions with cursor's worldPos
                 if (Pool.entityPool[Pool.entityCounter].active)
-                {   //check collisions between worldPos and obj, grab any colliding obj
-                    if (Pool.entityPool[Pool.entityCounter].compCollision.rec.Contains(worldPos))
-                    {   //set both grabbedObj and activeObj
-                        grabbedObj = Pool.entityPool[Pool.entityCounter];
-                        activeObj = Pool.entityPool[Pool.entityCounter];
-                        GetActiveObjInfo();
-                        selectionBoxObj.scale = 2.0f;
-                        return true;
+                {   //check collisions between worldPos and obj, grab any colliding projectile
+                    if(Pool.entityPool[Pool.entityCounter].group == ObjGroup.Projectile)
+                    {
+                        if (Pool.entityPool[Pool.entityCounter].compCollision.rec.Contains(worldPos))
+                        {   //set both grabbedObj and activeObj
+                            grabbedObj = Pool.entityPool[Pool.entityCounter];
+                            activeObj = Pool.entityPool[Pool.entityCounter];
+                            GetActiveObjInfo();
+                            selectionBoxObj.scale = 2.0f;
+                            return true;
+                        }
                     }
                 }
             }
