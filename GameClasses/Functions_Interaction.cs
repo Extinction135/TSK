@@ -473,6 +473,8 @@ namespace DungeonRun
                 {   //explosions alter certain roomObjects
                     if (RoomObj.type == ObjType.DoorBombable)
                     { CollapseDungeonDoor(RoomObj, Projectile); }
+                    else if (RoomObj.type == ObjType.BossStatue)
+                    { BlowUpRoomObject(RoomObj); }
                 }
 
                 #endregion
@@ -702,6 +704,58 @@ namespace DungeonRun
             SpikeBlock.compMove.newPosition = SpikeBlock.compMove.position;
             Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
         }
+
+        public static void BlowUpRoomObject(GameObject RoomObj)
+        {   //spawn explosion, smoke puff, and rock debris, play shatter sound
+            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                RoomObj.compSprite.position.X,
+                RoomObj.compSprite.position.Y, 
+                Direction.Down);
+            ScatterRockDebris(RoomObj.compSprite.position);
+            Assets.Play(Assets.sfxShatter);
+            Functions_Pool.Release(RoomObj); //release the obj
+        }
+
+
+
+        public static void ScatterRockDebris(Vector2 Pos)
+        {   //add up to 4 rocks randomly around the passed Pos value
+
+            //if (Explode)
+            //{ } //pass direction to spawnEntity call
+
+            Functions_Entity.SpawnEntity(
+                ObjType.ProjectileDebrisRock,
+                Pos.X, Pos.Y, Direction.Down);
+
+
+
+            if (Functions_Random.Int(0, 100) > 30)
+            {   //sometimes  add another rock
+                Functions_Entity.SpawnEntity(
+                    ObjType.ProjectileDebrisRock,
+                    Pos.X + Functions_Random.Int(4, 8),
+                    Pos.Y + Functions_Random.Int(4, 8),
+                    Direction.Down);
+            }
+            if (Functions_Random.Int(0, 100) > 60)
+            {   //sometimes add another rock
+                Functions_Entity.SpawnEntity(
+                    ObjType.ProjectileDebrisRock,
+                    Pos.X + Functions_Random.Int(-8, -4),
+                    Pos.Y + Functions_Random.Int(-8, -4),
+                    Direction.Down);
+            }
+            if (Functions_Random.Int(0, 100) > 90)
+            {   //sometimes add another rock
+                Functions_Entity.SpawnEntity(
+                    ObjType.ProjectileDebrisRock,
+                    Pos.X + Functions_Random.Int(-4, 4),
+                    Pos.Y + Functions_Random.Int(-4, 4),
+                    Direction.Down);
+            }
+        }
+
 
     }
 }

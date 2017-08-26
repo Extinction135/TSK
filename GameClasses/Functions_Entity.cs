@@ -203,7 +203,8 @@ namespace DungeonRun
                 Type == ObjType.ProjectileSword ||
                 Type == ObjType.ProjectileArrow ||
                 Type == ObjType.ProjectileBomb ||
-                Type == ObjType.ParticleBow)
+                Type == ObjType.ParticleBow ||
+                Type == ObjType.ProjectileDebrisRock)
             {
                 obj.direction = Direction;
                 obj.compMove.direction = Direction;
@@ -219,12 +220,19 @@ namespace DungeonRun
             { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
 
             //some projectiles get their current frame randomly assigned (for variation)
-            if(Type == ObjType.ProjectileDebrisRock)
+            else if(Type == ObjType.ProjectileDebrisRock)
             {   //is assigned 15,15 - randomize down to 14,14
                 List <Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].Y = 14; }
                 obj.compAnim.currentAnimation = rockFrame;
+                //set rock's initial magnitude based on direction
+                if (obj.direction == Direction.Up) { obj.compMove.magnitude.Y = -10.0f; }
+                else if (obj.direction == Direction.Down) { obj.compMove.magnitude.Y = +10.0f; }
+                else if (obj.direction == Direction.Left) { obj.compMove.magnitude.X = -10.0f; }
+                else if (obj.direction == Direction.Right) { obj.compMove.magnitude.X = +10.0f; }
+                else { obj.compMove.magnitude.X = 0; obj.compMove.magnitude.Y = 0; } //stationary
+
             }
         }
 

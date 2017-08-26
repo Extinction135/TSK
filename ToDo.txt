@@ -44,7 +44,32 @@ v0.7 goals
 
 
 
-4
+3
+
+
+
+
+
+
+Improve how RockDebris is Scattered, Implement DungeonStatue destruction
+
+created Functions_Interaction.ScatterRockDebris().
+this handles scattering a few rocks around a passed position.
+modififed how rock are scattered so they are more grouped up into bunches.
+
+updated Functions_Room.ScatterDebris() to call ScatterRockDebris().
+reduced how many rocks are placed in each room, reducing the overall collisions per frame.
+
+created Functions_Interaction.BlowUpRoomObject().
+this handles the destruction of any room object.
+it creates an explosion particle, a smoke puff, rock debris.
+plays a shatter sound, and releases the room obj.
+
+updated InteractObj() to call BlowUpRoomObj() if an explosion collides with DungeonStatue obj.
+this allows hero to blow up dungeon statues.
+but they'll respawn in the room if hero exits and re-enters.
+
+playtested, working, but statue destruction doesn't look like i want it to.
 
 
 
@@ -52,35 +77,30 @@ v0.7 goals
 
 
 
-Rock Debris ++
 
-make the collision recs of pits larger.
-this prevents a state where a rock could not get pulled into a pit.
-because the rock's collisionrec is small, it could fit inbetween pit recs.
-this caused the rock to just sit, hovering over a pit. which was bad.
-updated ScatterDebris to add additional rocks sometimes.
-decreased the inherited magnitude from actor collisions with rocks.
-removed rocks from the bumper bounce routine.
-improved rock sprites to be larger.
-lots of playtesting and rock interaction. looking good.
+i want a destroyed debris object.
+the dungeon statue should become the destroyed version upon destruction.
+any object that can be destroyed should become this object.
+this object should look like a pile of rocks.
 
 
 
 
 
 
-RockDebris Interaction++
+when we blow up a door, door debris should fall to the ground.
+this is a custom particle just for door.
 
-make rock sprites bigger
 
-when we blow up a door, it creates several rock debris projectiles.
+
 when we blow up a dungeon statue, it creates several rock debris projs.
+plus an explosion + attention particle + smoke poof
+
+
 when we blow up a block, it creates several rock debris projs.
 these rocks should explode push in the direction the bomb was traveling last.
 this will cause them to appear to be pushed by the blast.
 
-
-this obj should be able to be moved by conveyor belts as well.
 
 
 

@@ -492,33 +492,9 @@ namespace DungeonRun
             for (i = 0; i < Pool.floorCount; i++)
             {
                 if (Pool.floorPool[i].visible)
-                {
-                    if (Functions_Random.Int(0, 100) > 90)
-                    {   //randomly place rock debris in room
-                        Functions_Entity.SpawnEntity(
-                            ObjType.ProjectileDebrisRock,
-                            Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
-                            Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
-                            Direction.Down);
-                        //half the time, add another rock
-                        if (Functions_Random.Int(0, 100) > 50)
-                        {
-                            Functions_Entity.SpawnEntity(
-                                ObjType.ProjectileDebrisRock,
-                                Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
-                                Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
-                                Direction.Down);
-                        }
-                        //half the time, add another rock
-                        if (Functions_Random.Int(0, 100) > 50)
-                        {
-                            Functions_Entity.SpawnEntity(
-                                ObjType.ProjectileDebrisRock,
-                                Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
-                                Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
-                                Direction.Down);
-                        }
-                    }
+                {   //randomly scatter rock piles on floor tiles
+                    if (Functions_Random.Int(0, 100) > 95)
+                    { Functions_Interaction.ScatterRockDebris(Pool.floorPool[i].position); }
                 }
             }
         }
