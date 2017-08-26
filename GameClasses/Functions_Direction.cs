@@ -78,5 +78,19 @@ namespace DungeonRun
             }
         }
 
+        public static Direction GetRandomCardinal()
+        {
+            if (Functions_Random.Int(0, 100) > 50)
+            {
+                if (Functions_Random.Int(0, 100) > 50)
+                { return Direction.Up; } else { return Direction.Down; }
+            }
+            else
+            {
+                if (Functions_Random.Int(0, 100) > 50)
+                { return Direction.Left; } else { return Direction.Right; }
+            }
+        }
+
     }
 }

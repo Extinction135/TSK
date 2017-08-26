@@ -594,7 +594,6 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = true;
-                Obj.direction = Direction.Down; //always faces down
             }
 
 

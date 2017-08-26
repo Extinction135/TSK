@@ -494,7 +494,7 @@ namespace DungeonRun
                 if (Pool.floorPool[i].visible)
                 {   //randomly scatter rock piles on floor tiles
                     if (Functions_Random.Int(0, 100) > 95)
-                    { Functions_Interaction.ScatterRockDebris(Pool.floorPool[i].position); }
+                    { Functions_Interaction.ScatterRockDebris(Pool.floorPool[i].position, false); }
                 }
             }
         }

@@ -194,9 +194,8 @@ namespace DungeonRun
         {   //actually spawns Entity at the X, Y location, with direction
             GameObject obj = Functions_Pool.GetEntity();
 
-            //default this projectile/particle to Down direction
-            obj.direction = Direction.Down;
-            obj.compMove.direction = Direction.Down;
+
+            #region Set Object's Direction
 
             //certain projectiles/particles get a cardinal direction, others dont
             if (Type == ObjType.ProjectileFireball || 
@@ -209,15 +208,31 @@ namespace DungeonRun
                 obj.direction = Direction;
                 obj.compMove.direction = Direction;
             }
+            else
+            {   //other objects default to down
+                obj.direction = Direction.Down;
+                obj.compMove.direction = Direction.Down;
+            }
+
+            #endregion
+
 
             //teleport the projectile to the proper location
             Functions_Movement.Teleport(obj.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment
             Functions_GameObject.SetType(obj, Type);
 
+
+            #region Give Bombs an Initial Push (slide them)
+
             //bombs are pushed, and slide into a resting position
             if (Type == ObjType.ProjectileBomb)
             { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
+
+            #endregion
+
+
+            #region Modify RockDebris Projectiles Animation Frame + Slide them
 
             //some projectiles get their current frame randomly assigned (for variation)
             else if(Type == ObjType.ProjectileDebrisRock)
@@ -226,14 +241,12 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].Y = 14; }
                 obj.compAnim.currentAnimation = rockFrame;
-                //set rock's initial magnitude based on direction
-                if (obj.direction == Direction.Up) { obj.compMove.magnitude.Y = -10.0f; }
-                else if (obj.direction == Direction.Down) { obj.compMove.magnitude.Y = +10.0f; }
-                else if (obj.direction == Direction.Left) { obj.compMove.magnitude.X = -10.0f; }
-                else if (obj.direction == Direction.Right) { obj.compMove.magnitude.X = +10.0f; }
-                else { obj.compMove.magnitude.X = 0; obj.compMove.magnitude.Y = 0; } //stationary
-
+                //push rock debris in their direction
+                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f);
             }
+
+            #endregion
+
         }
 
 

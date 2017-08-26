@@ -44,35 +44,30 @@ v0.7 goals
 
 
 
-3
+2
+
+
+
+Improve Object Explosions
+
+updated ScatterRockDebris() to push rock debris in a random direction.
+this is based on a control boolean passed into the function.
+updated BlowUpRoomObject() to pass true for push parameter to ScatterRockDebris().
+when an object is destroyed multiple rock debris fly out from it's center.
+this helps to sell the explosion effect.
+
+updated Functions_Room.ScatterDebris to pass false for push parameter to ScatterRockDebris().
+this ensures that when a room is built, the scatter rock debris doesn't initally move.
+removed shadows from rock debris sprites, modified sprites further to be non-directional.
+this included removing the top-down lighting and randomizing the textures more.
+lots of playtesting, looking good.
 
 
 
 
 
-
-Improve how RockDebris is Scattered, Implement DungeonStatue destruction
-
-created Functions_Interaction.ScatterRockDebris().
-this handles scattering a few rocks around a passed position.
-modififed how rock are scattered so they are more grouped up into bunches.
-
-updated Functions_Room.ScatterDebris() to call ScatterRockDebris().
-reduced how many rocks are placed in each room, reducing the overall collisions per frame.
-
-created Functions_Interaction.BlowUpRoomObject().
-this handles the destruction of any room object.
-it creates an explosion particle, a smoke puff, rock debris.
-plays a shatter sound, and releases the room obj.
-
-updated InteractObj() to call BlowUpRoomObj() if an explosion collides with DungeonStatue obj.
-this allows hero to blow up dungeon statues.
-but they'll respawn in the room if hero exits and re-enters.
-
-playtested, working, but statue destruction doesn't look like i want it to.
-
-
-
+do we have a duplicate function that gets a random cardinal direction?
+search for 'cardinal' in project
 
 
 
@@ -85,6 +80,8 @@ this object should look like a pile of rocks.
 
 
 
+bring back blood debris, with more of a top down view
+scatter it thru dungeon rooms like we used to, for variation
 
 
 

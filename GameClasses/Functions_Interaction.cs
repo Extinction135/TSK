@@ -711,48 +711,43 @@ namespace DungeonRun
                 RoomObj.compSprite.position.X,
                 RoomObj.compSprite.position.Y, 
                 Direction.Down);
-            ScatterRockDebris(RoomObj.compSprite.position);
+            ScatterRockDebris(RoomObj.compSprite.position, true);
+            ScatterRockDebris(RoomObj.compSprite.position, true);
             Assets.Play(Assets.sfxShatter);
             Functions_Pool.Release(RoomObj); //release the obj
         }
 
+        public static void ScatterRockDebris(Vector2 Pos, Boolean Push)
+        {   //add up to 4 rocks randomly around the passed Pos value, with option to push them
+            Direction pushDir = Direction.None;
 
-
-        public static void ScatterRockDebris(Vector2 Pos)
-        {   //add up to 4 rocks randomly around the passed Pos value
-
-            //if (Explode)
-            //{ } //pass direction to spawnEntity call
-
+            if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
             Functions_Entity.SpawnEntity(
                 ObjType.ProjectileDebrisRock,
-                Pos.X, Pos.Y, Direction.Down);
-
-
-
-            if (Functions_Random.Int(0, 100) > 30)
+                Pos.X, Pos.Y, pushDir);
+            if (Functions_Random.Int(0, 100) > 20)
             {   //sometimes  add another rock
+                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
                 Functions_Entity.SpawnEntity(
                     ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(4, 8),
-                    Pos.Y + Functions_Random.Int(4, 8),
-                    Direction.Down);
+                    Pos.Y + Functions_Random.Int(4, 8), pushDir);
             }
-            if (Functions_Random.Int(0, 100) > 60)
+            if (Functions_Random.Int(0, 100) > 40)
             {   //sometimes add another rock
+                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
                 Functions_Entity.SpawnEntity(
                     ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(-8, -4),
-                    Pos.Y + Functions_Random.Int(-8, -4),
-                    Direction.Down);
+                    Pos.Y + Functions_Random.Int(-8, -4), pushDir);
             }
-            if (Functions_Random.Int(0, 100) > 90)
+            if (Functions_Random.Int(0, 100) > 60)
             {   //sometimes add another rock
+                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
                 Functions_Entity.SpawnEntity(
                     ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(-4, 4),
-                    Pos.Y + Functions_Random.Int(-4, 4),
-                    Direction.Down);
+                    Pos.Y + Functions_Random.Int(-4, 4), pushDir);
             }
         }
 
