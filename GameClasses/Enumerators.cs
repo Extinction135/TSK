@@ -61,7 +61,7 @@ namespace DungeonRun
         Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
         DoorOpen, DoorBombable, DoorBoss, DoorTrap, DoorShut, DoorFake,
         WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
-        BossDecal, 
+        BossDecal, FloorDebrisBlood,
         //Editor Room Objects (hand-placed)
         PitAnimated, Bridge, PitTop, PitBottom, PitTrap, 
 

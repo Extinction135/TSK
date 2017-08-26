@@ -44,30 +44,46 @@ v0.7 goals
 
 
 
-2
+1
 
 
 
-Improve Object Explosions
+Bring Back Blood Debris
 
-updated ScatterRockDebris() to push rock debris in a random direction.
-this is based on a control boolean passed into the function.
-updated BlowUpRoomObject() to pass true for push parameter to ScatterRockDebris().
-when an object is destroyed multiple rock debris fly out from it's center.
-this helps to sell the explosion effect.
-
-updated Functions_Room.ScatterDebris to pass false for push parameter to ScatterRockDebris().
-this ensures that when a room is built, the scatter rock debris doesn't initally move.
-removed shadows from rock debris sprites, modified sprites further to be non-directional.
-this included removing the top-down lighting and randomizing the textures more.
-lots of playtesting, looking good.
+added the blood debris sprite back into dungeon sheet.
+added FloorDebrisBlood value to ObjType enum.
+added ObjAnimList for FloorDebrisBlood.
+added path to SetType() for FloorDebrisBlood.
+updated Room.ScatterDebris() to randomly place Blood Debris around rooms.
+playtested, working as expected.
 
 
 
 
 
-do we have a duplicate function that gets a random cardinal direction?
-search for 'cardinal' in project
+how does the game feel if we just turn off rock projectile interactions with actors?
+(dont cling to actors when they collide)
+
+
+
+
+
+Codebase Simplification
+so when we get and Obj from the roomObj list, we teleport it, then align it.
+we do this over and over again. but not for entities.
+for entities we have the SpawnEntity() method, which does this for us.
+we should have a SpawnRoomObj() method that has GetObj(), Teleport(), and Align() baked into it.
+this will reduce the number of lines in the codebase and simplify placing a RoomObj.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,12 +93,6 @@ i want a destroyed debris object.
 the dungeon statue should become the destroyed version upon destruction.
 any object that can be destroyed should become this object.
 this object should look like a pile of rocks.
-
-
-
-bring back blood debris, with more of a top down view
-scatter it thru dungeon rooms like we used to, for variation
-
 
 
 when we blow up a door, door debris should fall to the ground.
@@ -114,12 +124,7 @@ we're simply replacing the smoke poof with the splash
 
 
 
-Codebase Simplification
-so when we get and Obj from the roomObj list, we teleport it, then align it.
-we do this over and over again. but not for entities.
-for entities we have the SpawnEntity() method, which does this for us.
-we should have a SpawnRoomObj() method that has GetObj(), Teleport(), and Align() baked into it.
-this will reduce the number of lines in the codebase and simplify placing a RoomObj.
+
 
 
 

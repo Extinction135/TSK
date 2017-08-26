@@ -632,7 +632,7 @@ namespace DungeonRun
 
 
 
-        static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
+        public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
         {   //update the door roomObject, change to doorBombed, play soundfx
             Functions_GameObject.SetType(Door, ObjType.DoorOpen);
             Assets.Play(Assets.sfxShatter);
@@ -720,7 +720,7 @@ namespace DungeonRun
         public static void ScatterRockDebris(Vector2 Pos, Boolean Push)
         {   //add up to 4 rocks randomly around the passed Pos value, with option to push them
             Direction pushDir = Direction.None;
-
+            int spread = 6;
             if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
             Functions_Entity.SpawnEntity(
                 ObjType.ProjectileDebrisRock,
@@ -730,24 +730,24 @@ namespace DungeonRun
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
                 Functions_Entity.SpawnEntity(
                     ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(4, 8),
-                    Pos.Y + Functions_Random.Int(4, 8), pushDir);
+                    Pos.X + Functions_Random.Int(-spread, spread),
+                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
             if (Functions_Random.Int(0, 100) > 40)
             {   //sometimes add another rock
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
                 Functions_Entity.SpawnEntity(
                     ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(-8, -4),
-                    Pos.Y + Functions_Random.Int(-8, -4), pushDir);
+                    Pos.X + Functions_Random.Int(-spread, spread),
+                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
             if (Functions_Random.Int(0, 100) > 60)
             {   //sometimes add another rock
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
                 Functions_Entity.SpawnEntity(
                     ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(-4, 4),
-                    Pos.Y + Functions_Random.Int(-4, 4), pushDir);
+                    Pos.X + Functions_Random.Int(-spread, spread),
+                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
         }
 

@@ -71,8 +71,11 @@ namespace DungeonRun
             }
             else if(Obj.type == ObjType.PitTrap)
             {   //some objects are randomly rotated
-                Obj.direction = (Direction)Functions_Random.Int(0, 9);
-                Obj.direction = Functions_Direction.GetCardinalDirection(Obj.direction);
+                Obj.direction = Functions_Direction.GetRandomCardinal();
+            }
+            else if(Obj.type == ObjType.FloorDebrisBlood)
+            {   //some objects are randomly flipped horizontally
+                Obj.compSprite.flipHorizontally = true;
             }
         }
 
@@ -217,7 +220,14 @@ namespace DungeonRun
             #region Floor Objects
 
             else if (Type == ObjType.BossDecal)
-            {
+            {   
+                Obj.compSprite.zOffset = -32; //sort low, but over floor
+                Obj.compCollision.blocking = false;
+            }
+            else if(Type == ObjType.FloorDebrisBlood)
+            {   //collision rec is smaller so more debris is left when room is cleanedUp()
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compSprite.zOffset = -32; //sort low, but over floor
                 Obj.compCollision.blocking = false;
             }

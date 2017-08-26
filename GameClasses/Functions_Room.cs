@@ -495,6 +495,14 @@ namespace DungeonRun
                 {   //randomly scatter rock piles on floor tiles
                     if (Functions_Random.Int(0, 100) > 95)
                     { Functions_Interaction.ScatterRockDebris(Pool.floorPool[i].position, false); }
+                    if (Functions_Random.Int(0, 100) > 80)
+                    {
+                        objRef = Functions_Pool.GetRoomObj();
+                        Functions_Movement.Teleport(objRef.compMove,
+                            Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
+                            Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4));
+                        Functions_GameObject.SetType(objRef, ObjType.FloorDebrisBlood);
+                    }
                 }
             }
         }

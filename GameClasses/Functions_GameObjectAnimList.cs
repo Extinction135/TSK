@@ -66,7 +66,8 @@ namespace DungeonRun
 
                 //BossDecal
                 new List<Byte4> { new Byte4(1, 3, 0, 0) },
-                
+                //FloorDebrisBlood
+                new List<Byte4> { new Byte4(6, 7, 0, 0) },
 
                 #endregion
 
