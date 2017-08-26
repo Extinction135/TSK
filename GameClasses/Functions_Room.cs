@@ -495,10 +495,29 @@ namespace DungeonRun
                 {
                     if (Functions_Random.Int(0, 100) > 90)
                     {   //randomly place rock debris in room
-                        Functions_Entity.SpawnEntity(ObjType.ProjectileDebrisRock,
+                        Functions_Entity.SpawnEntity(
+                            ObjType.ProjectileDebrisRock,
                             Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
                             Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
                             Direction.Down);
+                        //half the time, add another rock
+                        if (Functions_Random.Int(0, 100) > 50)
+                        {
+                            Functions_Entity.SpawnEntity(
+                                ObjType.ProjectileDebrisRock,
+                                Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
+                                Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
+                                Direction.Down);
+                        }
+                        //half the time, add another rock
+                        if (Functions_Random.Int(0, 100) > 50)
+                        {
+                            Functions_Entity.SpawnEntity(
+                                ObjType.ProjectileDebrisRock,
+                                Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
+                                Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
+                                Direction.Down);
+                        }
                     }
                 }
             }

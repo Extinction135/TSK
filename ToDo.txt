@@ -44,31 +44,25 @@ v0.7 goals
 
 
 
-5
+4
 
 
 
-Create Better Rock Debris
-
-renamed DebrisRock to ProjectileDebrisRock.
-updated ProjectileDebrisRock sprite, ObjAnimList, SetType() path.
-removed DebrisBlood value from ObjType enum.
-
-updated ScatterDebris() to spawn ProjectileDebrisRocks around room.
-updated CleanupRoom() to check ProjectileDebrisRock overlaps with roomObjs.
-overlapping rock debris is released / deleted.
-
-updated SpawnEntity() to randomly choose which rock sprite is used in DungeonSheet.
-updated CollapseDungeonDoor() with path for ProjectileDebrisRock.
-playtested, working as expected.
-
-improved rock debris sprites.
-updated InteractActor() to handle kicking of rock debris.
-if rock debris' magnitude is 0, inherit the actor's magnitude.
-this causes the rock to travel in the actor's moving direction upon initial collision.
-playtested, working as expected.
 
 
+
+
+Rock Debris ++
+
+make the collision recs of pits larger.
+this prevents a state where a rock could not get pulled into a pit.
+because the rock's collisionrec is small, it could fit inbetween pit recs.
+this caused the rock to just sit, hovering over a pit. which was bad.
+updated ScatterDebris to add additional rocks sometimes.
+decreased the inherited magnitude from actor collisions with rocks.
+removed rocks from the bumper bounce routine.
+improved rock sprites to be larger.
+lots of playtesting and rock interaction. looking good.
 
 
 
@@ -78,10 +72,6 @@ playtested, working as expected.
 RockDebris Interaction++
 
 make rock sprites bigger
-make collision recs smaller
-create dash smoke upon initial collision with rock debris
-this should happen at the rock's position
-
 
 when we blow up a door, it creates several rock debris projectiles.
 when we blow up a dungeon statue, it creates several rock debris projs.
@@ -95,6 +85,11 @@ this obj should be able to be moved by conveyor belts as well.
 
 
 
+create water splash particle
+spawn this particle when something falls into a pit
+this particle should sort on a top layer, over actors
+keep the scaling down of actors/objs
+we're simply replacing the smoke poof with the splash
 
 
 

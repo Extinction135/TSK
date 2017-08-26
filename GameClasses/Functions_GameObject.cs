@@ -233,8 +233,8 @@ namespace DungeonRun
             {
                 //this pit interacts with actor
                 Obj.compSprite.zOffset = -64; //sort under pit teeth
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.getsAI = true;
@@ -587,13 +587,13 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -24; //sort low, but over floor
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
-                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8; //wonky, but needed
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 0; //lasts for life of room
                 Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
-                Obj.compMove.grounded = true; //in air
+                Obj.compMove.grounded = true;
                 Obj.direction = Direction.Down; //always faces down
             }
 

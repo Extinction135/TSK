@@ -259,9 +259,6 @@ namespace DungeonRun
                 #endregion
 
 
-                //switch
-                //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
-
                 #region Objects
 
                 if (Obj.type == ObjType.PitTrap)
@@ -292,6 +289,9 @@ namespace DungeonRun
                     return; //bail from interaction check
                 }
 
+                //switch
+                //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
+
                 #endregion
 
             }
@@ -304,10 +304,11 @@ namespace DungeonRun
                 {
                     if (Obj.type == ObjType.ProjectileDebrisRock)
                     {   //if the rock isn't moving, actor just collided with it, inherit actor's magnitude
-                        if (Obj.compMove.magnitude.X == 0) //kick rock on X
-                        { Obj.compMove.magnitude.X = Actor.compMove.magnitude.X * 7.0f; }
-                        if (Obj.compMove.magnitude.Y == 0) //kick rock on Y
-                        { Obj.compMove.magnitude.Y = Actor.compMove.magnitude.Y * 7.0f; }
+                        if (Obj.compMove.magnitude.X == 0 & Obj.compMove.magnitude.Y == 0)
+                        {   //inherit actor's magnitude multiplied alot, so the rock quickly moves away
+                            Obj.compMove.magnitude.X = Actor.compMove.magnitude.X * 5.0f;
+                            Obj.compMove.magnitude.Y = Actor.compMove.magnitude.Y * 5.0f;
+                        }
                     }
                     else
                     {
@@ -538,7 +539,9 @@ namespace DungeonRun
                 if (RoomObj.type == ObjType.Bumper)
                 {
                     //some projectiles cannot be bounced off bumper
-                    if (Projectile.type == ObjType.ProjectileSword) { return; }
+                    if (Projectile.type == ObjType.ProjectileSword
+                        || Projectile.type == ObjType.ProjectileDebrisRock)
+                    { return; }
 
                     //stop projectile movement, bounce it
                     Projectile.compMove.magnitude.X = 0;
