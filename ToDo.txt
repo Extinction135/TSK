@@ -44,25 +44,20 @@ v0.7 goals
 
 
 
-1
-
-
-
-Bring Back Blood Debris
-
-added the blood debris sprite back into dungeon sheet.
-added FloorDebrisBlood value to ObjType enum.
-added ObjAnimList for FloorDebrisBlood.
-added path to SetType() for FloorDebrisBlood.
-updated Room.ScatterDebris() to randomly place Blood Debris around rooms.
-playtested, working as expected.
+13v
 
 
 
 
 
-how does the game feel if we just turn off rock projectile interactions with actors?
-(dont cling to actors when they collide)
+Improve Rock Debris Look/Feel
+
+reduced rock debris lifetime.
+removed rock debris from Room.ScatterDebris().
+turned off interactions between rockDebris + actors.
+increased how many rock debris projectiles are created in Interact.BlowUpRoomObject().
+playtested, looking/feeling better.
+
 
 
 
@@ -76,42 +71,13 @@ we should have a SpawnRoomObj() method that has GetObj(), Teleport(), and Align(
 this will reduce the number of lines in the codebase and simplify placing a RoomObj.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-i want a destroyed debris object.
+Destroyed Debris object
 the dungeon statue should become the destroyed version upon destruction.
 any object that can be destroyed should become this object.
 this object should look like a pile of rocks.
 
 
-when we blow up a door, door debris should fall to the ground.
-this is a custom particle just for door.
-
-
-
-when we blow up a dungeon statue, it creates several rock debris projs.
-plus an explosion + attention particle + smoke poof
-
-
-when we blow up a block, it creates several rock debris projs.
-these rocks should explode push in the direction the bomb was traveling last.
-this will cause them to appear to be pushed by the blast.
-
-
-
-
-
+Improve Falling Into Pit Animation
 create water splash particle
 spawn this particle when something falls into a pit
 this particle should sort on a top layer, over actors
@@ -119,137 +85,46 @@ keep the scaling down of actors/objs
 we're simply replacing the smoke poof with the splash
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-rock debris
-this is 8x8 rock sprite, with lifetime of 255
-this also inherits colliding actor's magnitude
-and can be moved by conveyor belts
-
-
-
-
-
-
-
-
-
-skeleton debris
-doesn't move on it's own, but can be moved by conveyor belts
-upon collision with sword, fireball, arrow, etc.. this projectile is destroyed
-this projectile can be pushed by hero or actors as well, it's "pushable"
-it should inherit the magnitude of any actor that collides with it
-this happens in the projectile -> actor interaction check
-
-
-
-
-
-
-
-
-
-
 Improve Collapse of Bombable Doors - part 2
-
-the debris that is placed at bombed doors looks like blood/enemy debris
-it should look like rock debris. we need to make a rock-like debris roomObj.
-then we can place that debris at bombed door locations.
-we can also scatter that debris through-out rooms for more room-floor variation.
-
-we could create a big smoke poof particle
-then place this particle at the location of collapsing door
-this would cover the door for a few frames, then disappear
-
-we could create small rock-like debris
-then create a method that creates several pieces of rock debris around a position
-this would be an explosion of rock debris
-we could use this for collapsing doors, and when objects are destroyed, like pots
+when we blow up a door, door debris should fall to the ground.
+this is a custom particle just for door.
 
 
+Force Move 
+sometimes we have to force move actors or objects (actos-pits, objects-spikeblock bounce)
+we should standardize this force move into a function, and make it part of Functions_Movement
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-chests ++
-
-if chest exists in hub room, it rewards the map
-if chest exists in key room, it rewards the key
-> if chest exists in room not hub/key, it rewards ???
-> if more than 1 chest exists in hub/key room, the extra chests reward ???
-* we need a default chest reward, like gold
-*** but player would be able to spam open chests then, since they would be reset upon room build..
+Editor + Chests (room checking)
 so we can't have default rewards, or chests outside hub/room, or more than 1 chest in a room..
 so we need to prevent editor from being able to place a chest in a room that isn't hub/key
 and only 1 chest should be able to be in hub/key room
 
+
+ObjTools Widget++
 on object tools widget, we would never be able to place an empty chest
 remove that obj from the widget
 
 
-
-
-
-
-
-
-
-Fairy Projectile
-fairy is a projectile that moves in a random direction and has a lifetime of 254
-fairys should be created very rarely from enemy deaths (update loot routine)
-
-update conveyor belts to center projectiles to the moving axis
-this aligns the obj to the middle of the conveyor belt, while still moving along the belts direction
-
-
-
+Ice tile
+changes friction, which affects how quickly an obj/actor slows down
+this should affect the moveComponent of objects + actors the same way
 
 
 Add More Persistent Projectiles
 
+Circling Stars
+just like Lttp, the circling stars turns hero into an enemy actor type
+except, it's not on a timer. hero becomes enemy actor type until Circling stars collides with hero again.
+this is a check: if hero.type != hero, become enemy, else become hero.
 
-
-wanderingFire obj
+WanderingFire 
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
 
-
+Fairy Projectile
+fairy is a projectile that moves in a random direction and has a lifetime of 255
+fairys should be created very rarely from enemy deaths (update loot routine)
 
 
 
@@ -264,16 +139,8 @@ Explosive Barrel
 we should have an explosive barrel - of course!
 just like bomb, but stationary, waiting for collision
 
-Ice tile
-changes friction, which affects how quickly an obj/actor slows down
-this should affect the moveComponent of objects + actors the same way
 
-Circling Stars
-just like Lttp, the circling stars turns hero into an enemy actor type
-except, it's not on a timer. hero becomes enemy actor type until Circling stars collides with hero again.
-this is a check: if hero.type != hero, become enemy, else become hero.
-
-DungeonPillars++
+DungeonPillars++ ?
 dungeon pillars should be two tiles tall, with a 16x16 collision rec at base of pillar
 this makes the pillars much larger and adds some variation to the room objects in terms of size
 they can also be used to give rooms more character, and create the illusion of depth
@@ -282,14 +149,13 @@ this is a very easy sprite to design, but is more difficult to display in object
 
 
 
+we need more game objects before we can make other dungeons
+this is because we want to naill-down the layout of the dungeon sheet prior to expanding
 
 
 
 
 
-force move 
-sometimes we have to force move actors or objects (actos-pits, objects-spikeblock bounce)
-we should standardize this force move into a function, and make it part of Functions_Movement
 
 
 

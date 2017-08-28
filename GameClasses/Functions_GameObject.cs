@@ -600,7 +600,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8; //wonky, but needed
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 0; //lasts for life of room
+                Obj.lifetime = 20;
                 Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = true;

@@ -302,6 +302,8 @@ namespace DungeonRun
 
                 if (Obj.group == ObjGroup.Projectile)
                 {
+                    /*
+                    //move rocks with actors upon a collision
                     if (Obj.type == ObjType.ProjectileDebrisRock)
                     {   //if the rock isn't moving, actor just collided with it, inherit actor's magnitude
                         if (Obj.compMove.magnitude.X == 0 & Obj.compMove.magnitude.Y == 0)
@@ -311,6 +313,8 @@ namespace DungeonRun
                         }
                     }
                     else
+                    */
+
                     {
                         Functions_Battle.Damage(Actor, Obj);
                         if (Obj.type == ObjType.ProjectileSword)
@@ -637,15 +641,11 @@ namespace DungeonRun
             Functions_GameObject.SetType(Door, ObjType.DoorOpen);
             Assets.Play(Assets.sfxShatter);
 
-            //create a debris rock projectile at door position
-            Functions_Entity.SpawnEntity(ObjType.ProjectileDebrisRock,
-                Door.compSprite.position.X,
-                Door.compSprite.position.Y,
-                Direction.Down);
-
             //draw attention to the collapsing door
             Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
                 Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);
+            //ScatterRockDebris(Door.compSprite.position, true);
+            //ScatterRockDebris(Door.compSprite.position, true);
 
             //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < Level.doors.Count; i++)
@@ -711,6 +711,7 @@ namespace DungeonRun
                 RoomObj.compSprite.position.X,
                 RoomObj.compSprite.position.Y, 
                 Direction.Down);
+            ScatterRockDebris(RoomObj.compSprite.position, true);
             ScatterRockDebris(RoomObj.compSprite.position, true);
             ScatterRockDebris(RoomObj.compSprite.position, true);
             Assets.Play(Assets.sfxShatter);
