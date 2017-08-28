@@ -184,7 +184,7 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.LeverOff || Obj.type == ObjType.LeverOn)
             {   //activate all lever objects (including lever), call attention to change
-                Functions_Room.ActivateLeverObjects();
+                Functions_RoomObject.ActivateLeverObjects();
                 Functions_Entity.SpawnEntity( 
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,

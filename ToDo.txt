@@ -44,26 +44,16 @@ v0.7 goals
 
 
 
-12
+11
 
 
 
 
-Simplify + Standardize how roomobjects are spawned
+Populate Functions_RoomObject
 
-created Functions_RoomObject class.
-created Functions_RoomObject.SpawnRoomObj().
-this accepts the same parameters as Functions_Entity.SpawnEntity().
-updated various codepaths to use SpawnRoomObj().
-this reduced the total lines of code in the codebase,
-and simplified/standardized how a RoomObject is spawned into a room.
+moved Room.ActivateLeverObjects() into Functions_RoomObject.
+moved Room.DecorateDoor() into Functions_RoomObject.
 
-
-
-
-Functions_RoomObject
-should have Room.ActivateLeverObjects() in it, since these are room objs.
-Room.DecorateDoor() could be moved into Fun_RoomObjs too
 
 
 
@@ -73,6 +63,14 @@ blood debris overlap pits
 also overlap boss floor decals
 which is bad
 what CAN debris overlap? conveyorbelts
+
+
+
+
+
+
+
+
 
 
 
