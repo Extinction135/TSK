@@ -44,19 +44,45 @@ v0.7 goals
 
 
 
-13v
+12
+
+
+
+
+Simplify + Standardize how roomobjects are spawned
+
+created Functions_RoomObject class.
+created Functions_RoomObject.SpawnRoomObj().
+this accepts the same parameters as Functions_Entity.SpawnEntity().
+updated various codepaths to use SpawnRoomObj().
+this reduced the total lines of code in the codebase,
+and simplified/standardized how a RoomObject is spawned into a room.
+
+
+
+
+Functions_RoomObject
+should have Room.ActivateLeverObjects() in it, since these are room objs.
+Room.DecorateDoor() could be moved into Fun_RoomObjs too
 
 
 
 
 
-Improve Rock Debris Look/Feel
+blood debris overlap pits
+also overlap boss floor decals
+which is bad
+what CAN debris overlap? conveyorbelts
 
-reduced rock debris lifetime.
-removed rock debris from Room.ScatterDebris().
-turned off interactions between rockDebris + actors.
-increased how many rock debris projectiles are created in Interact.BlowUpRoomObject().
-playtested, looking/feeling better.
+
+
+if an actor overlaps two pits at the exact same time
+they can be pulled into each pit, resulting in a cancelled out pull
+leaving actor hovering over pits, which is bad
+
+
+
+
 
 
 
@@ -64,11 +90,12 @@ playtested, looking/feeling better.
 
 
 Codebase Simplification
-so when we get and Obj from the roomObj list, we teleport it, then align it.
-we do this over and over again. but not for entities.
-for entities we have the SpawnEntity() method, which does this for us.
-we should have a SpawnRoomObj() method that has GetObj(), Teleport(), and Align() baked into it.
-this will reduce the number of lines in the codebase and simplify placing a RoomObj.
+GameObj.SetWeaponCollisions() is really a part of SpawnEntity()
+it's setting an entity projectiles compCollision based on the obj direction
+
+
+
+
 
 
 Destroyed Debris object

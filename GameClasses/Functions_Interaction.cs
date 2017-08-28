@@ -275,17 +275,14 @@ namespace DungeonRun
                         Obj.compSprite.position.Y - 8, 
                         Direction.Down);
                     //create pit teeth over new pit obj
-                    objRef = Functions_Pool.GetRoomObj();
-                    Functions_Movement.Teleport(objRef.compMove,
+                    Functions_RoomObject.SpawnRoomObj(ObjType.PitTop,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    Functions_GameObject.SetType(objRef, ObjType.PitTop);
-
-                    objRef = Functions_Pool.GetRoomObj();
-                    Functions_Movement.Teleport(objRef.compMove,
+                        Obj.compSprite.position.Y, 
+                        Direction.Down);
+                    Functions_RoomObject.SpawnRoomObj(ObjType.PitBottom,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    Functions_GameObject.SetType(objRef, ObjType.PitBottom);
+                        Obj.compSprite.position.Y,
+                        Direction.Down);
                     return; //bail from interaction check
                 }
 

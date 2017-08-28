@@ -53,30 +53,27 @@ namespace DungeonRun
                     if (j == 0)
                     {
                         //top row
-                        objRef = Functions_Pool.GetRoomObj();
-                        Functions_Movement.Teleport(objRef.compMove,
-                            i * 16 + pos.X + 8,
-                            0 * 16 - 16 + pos.Y + 8);
-                        objRef.direction = Direction.Down;
-                        Functions_GameObject.SetType(objRef, ObjType.WallStraight);
+                        Functions_RoomObject.SpawnRoomObj(
+                            ObjType.WallStraight,
+                            i * 16 + pos.X + 8, 
+                            0 * 16 - 16 + pos.Y + 8, 
+                            Direction.Down);
 
                         if (i == 0)
                         {   //topleft corner
-                            objRef = Functions_Pool.GetRoomObj();
-                            Functions_Movement.Teleport(objRef.compMove,
-                                -16 + pos.X + 8,
-                                -16 + pos.Y + 8);
-                            objRef.direction = Direction.Down;
-                            Functions_GameObject.SetType(objRef, ObjType.WallInteriorCorner);
+                            Functions_RoomObject.SpawnRoomObj(
+                                ObjType.WallInteriorCorner,
+                                -16 + pos.X + 8, 
+                                -16 + pos.Y + 8, 
+                                Direction.Down);
                         }
                         else if (i == Room.size.X - 1)
                         {   //topright corner
-                            objRef = Functions_Pool.GetRoomObj();
-                            Functions_Movement.Teleport(objRef.compMove,
+                            Functions_RoomObject.SpawnRoomObj(
+                                ObjType.WallInteriorCorner,
                                 Room.size.X * 16 + pos.X + 8,
-                                -16 + pos.Y + 8);
-                            objRef.direction = Direction.Left;
-                            Functions_GameObject.SetType(objRef, ObjType.WallInteriorCorner);
+                                -16 + pos.Y + 8,
+                                Direction.Left);
                         }
                     }
 
@@ -88,30 +85,27 @@ namespace DungeonRun
                     else if (j == Room.size.Y - 1)
                     {
                         //bottom row
-                        objRef = Functions_Pool.GetRoomObj();
-                        Functions_Movement.Teleport(objRef.compMove,
+                        Functions_RoomObject.SpawnRoomObj(
+                            ObjType.WallStraight,
                             i * 16 + pos.X + 8,
-                            Room.size.Y * 16 + pos.Y + 8);
-                        objRef.direction = Direction.Up;
-                        Functions_GameObject.SetType(objRef, ObjType.WallStraight);
+                            Room.size.Y * 16 + pos.Y + 8,
+                            Direction.Up);
 
                         if (i == 0)
                         {   //bottom left corner
-                            objRef = Functions_Pool.GetRoomObj();
-                            Functions_Movement.Teleport(objRef.compMove,
+                            Functions_RoomObject.SpawnRoomObj(
+                                ObjType.WallInteriorCorner,
                                 -16 + pos.X + 8,
-                                Room.size.Y * 16 + pos.Y + 8);
-                            objRef.direction = Direction.Right;
-                            Functions_GameObject.SetType(objRef, ObjType.WallInteriorCorner);
+                                Room.size.Y * 16 + pos.Y + 8,
+                                Direction.Right);
                         }
                         else if (i == Room.size.X - 1)
                         {   //bottom right corner
-                            objRef = Functions_Pool.GetRoomObj();
-                            Functions_Movement.Teleport(objRef.compMove,
+                            Functions_RoomObject.SpawnRoomObj(
+                                ObjType.WallInteriorCorner,
                                 Room.size.X * 16 + pos.X + 8,
-                                Room.size.Y * 16 + pos.Y + 8);
-                            objRef.direction = Direction.Up;
-                            Functions_GameObject.SetType(objRef, ObjType.WallInteriorCorner);
+                                Room.size.Y * 16 + pos.Y + 8,
+                                Direction.Up);
                         }
                     }
 
@@ -122,21 +116,19 @@ namespace DungeonRun
 
                     if (i == 0)
                     {   //left side
-                        objRef = Functions_Pool.GetRoomObj();
-                        Functions_Movement.Teleport(objRef.compMove,
+                        Functions_RoomObject.SpawnRoomObj(
+                            ObjType.WallStraight,
                             i * 16 - 16 + pos.X + 8,
-                            j * 16 + pos.Y + 8);
-                        objRef.direction = Direction.Right;
-                        Functions_GameObject.SetType(objRef, ObjType.WallStraight);
+                            j * 16 + pos.Y + 8,
+                            Direction.Right);
                     }
                     else if (i == Room.size.X - 1)
                     {   //right side
-                        objRef = Functions_Pool.GetRoomObj();
-                        Functions_Movement.Teleport(objRef.compMove,
+                        Functions_RoomObject.SpawnRoomObj(
+                            ObjType.WallStraight,
                             i * 16 + 16 + pos.X + 8,
-                            j * 16 + pos.Y + 8);
-                        objRef.direction = Direction.Left;
-                        Functions_GameObject.SetType(objRef, ObjType.WallStraight);
+                            j * 16 + pos.Y + 8,
+                            Direction.Left);
                     }
 
                     #endregion
@@ -353,22 +345,16 @@ namespace DungeonRun
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
             //place vendor
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                Position.X, Position.Y);
-            Functions_GameObject.SetType(objRef, VendorType);
+            Functions_RoomObject.SpawnRoomObj(VendorType,
+                Position.X, Position.Y, Direction.Down);
 
             //place stone table
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                Position.X + 16, Position.Y);
-            Functions_GameObject.SetType(objRef, ObjType.TableStone);
+            Functions_RoomObject.SpawnRoomObj(ObjType.TableStone,
+                Position.X + 16, Position.Y, Direction.Down);
 
             //place vendor advertisement
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                Position.X + 16, Position.Y - 6);
-            Functions_GameObject.SetType(objRef, ObjType.VendorAdvertisement);
+            Functions_RoomObject.SpawnRoomObj(ObjType.VendorAdvertisement,
+                Position.X + 16, Position.Y - 6, Direction.Down);
             objRef.compAnim.currentAnimation = new List<Byte4>();
 
 
@@ -430,33 +416,30 @@ namespace DungeonRun
         public static void PlaceExit(Room Room)
         {
             //create the exit
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
+            Functions_RoomObject.SpawnRoomObj(ObjType.Exit,
                 (Room.size.X / 2) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-            Functions_GameObject.SetType(objRef, ObjType.Exit);
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2, 
+                Direction.Down);
+
             //set the room.spawnPos to pos above exit door obj
             Room.spawnPos.X = (Room.size.X / 2) * 16 + Room.rec.X + 8;
             Room.spawnPos.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
 
             //place the exit light fx over exit obj
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
+            Functions_RoomObject.SpawnRoomObj(ObjType.ExitLightFX,
                 (Room.size.X / 2) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 1);
-            Functions_GameObject.SetType(objRef, ObjType.ExitLightFX);
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 1,
+                Direction.Down);
 
             //create exit pillars
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
+            Functions_RoomObject.SpawnRoomObj(ObjType.ExitPillarLeft,
                 (Room.size.X / 2) * 16 + pos.X + 8 - 16,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-            Functions_GameObject.SetType(objRef, ObjType.ExitPillarLeft);
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
+                Direction.Down);
+            Functions_RoomObject.SpawnRoomObj(ObjType.ExitPillarRight,
                 (Room.size.X / 2) * 16 + pos.X + 8 + 16,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 2);
-            Functions_GameObject.SetType(objRef, ObjType.ExitPillarRight);
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
+                Direction.Down);
         }
 
         public static void AddWallStatues(Room Room)
@@ -497,11 +480,10 @@ namespace DungeonRun
                     //{ Functions_Interaction.ScatterRockDebris(Pool.floorPool[i].position, false); }
                     if (Functions_Random.Int(0, 100) > 80)
                     {
-                        objRef = Functions_Pool.GetRoomObj();
-                        Functions_Movement.Teleport(objRef.compMove,
+                        Functions_RoomObject.SpawnRoomObj(ObjType.FloorDebrisBlood,
                             Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
-                            Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4));
-                        Functions_GameObject.SetType(objRef, ObjType.FloorDebrisBlood);
+                            Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
+                            Direction.Down);
                     }
                 }
             }
@@ -543,15 +525,11 @@ namespace DungeonRun
                 decorationPosB.Y = Door.compSprite.position.Y + 16;
             }
             //build wall decorationA torch/pillar/decoration
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove, decorationPosA.X, decorationPosA.Y);
-            objRef.direction = Door.direction;
-            Functions_GameObject.SetType(objRef, Type);
+            Functions_RoomObject.SpawnRoomObj(Type,
+                decorationPosA.X, decorationPosA.Y, Door.direction);
             //build wall decorationB torch/pillar/decoration
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove, decorationPosB.X, decorationPosB.Y);
-            objRef.direction = Door.direction;
-            Functions_GameObject.SetType(objRef, Type);
+            Functions_RoomObject.SpawnRoomObj(Type,
+                decorationPosB.X, decorationPosB.Y, Door.direction);
         }
 
 
@@ -657,17 +635,13 @@ namespace DungeonRun
             #region Place some test shop objects
 
             //bookcase
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
+            Functions_RoomObject.SpawnRoomObj(ObjType.Bookcase1,
                 5 * 16 + pos.X + 8,
-                0 * 16 + pos.Y + 0);
-            Functions_GameObject.SetType(objRef, ObjType.Bookcase1);
+                0 * 16 + pos.Y + 0, Direction.Down);
             //drawers
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
+            Functions_RoomObject.SpawnRoomObj(ObjType.Bookcase2,
                 7 * 16 + pos.X + 8,
-                0 * 16 + pos.Y + 0);
-            Functions_GameObject.SetType(objRef, ObjType.Bookcase2);
+                0 * 16 + pos.Y + 0, Direction.Down);
 
             #endregion
 
@@ -681,11 +655,9 @@ namespace DungeonRun
             CreateVendor(ObjType.VendorEquipment, new Vector2(16 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
 
             //create story vendor
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
+            Functions_RoomObject.SpawnRoomObj(ObjType.VendorStory,
                 7 * 16 + pos.X + 8,
-                8 * 16 + pos.Y + 0);
-            Functions_GameObject.SetType(objRef, ObjType.VendorStory);
+                8 * 16 + pos.Y + 0, Direction.Down);
         }
 
         public static void FinishExitRoom(Room Room)
@@ -693,32 +665,18 @@ namespace DungeonRun
             PlaceExit(Room);
 
             //place decorative statues
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                3 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                3 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
-            objRef = Functions_Pool.GetRoomObj();
-            Functions_Movement.Teleport(objRef.compMove,
-                7 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8);
-            Functions_GameObject.SetType(objRef, ObjType.BossStatue);
+            Functions_RoomObject.SpawnRoomObj(ObjType.BossStatue,
+                3 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8, Direction.Down);
+            Functions_RoomObject.SpawnRoomObj(ObjType.BossStatue,
+                7 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8, Direction.Down);
+            Functions_RoomObject.SpawnRoomObj(ObjType.BossStatue,
+                3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8, Direction.Down);
+            Functions_RoomObject.SpawnRoomObj(ObjType.BossStatue,
+                7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8, Direction.Down);
+            Functions_RoomObject.SpawnRoomObj(ObjType.BossStatue,
+                3 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8, Direction.Down);
+            Functions_RoomObject.SpawnRoomObj(ObjType.BossStatue,
+                7 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8, Direction.Down);
         }
 
         public static void FinishSecretRoom(Room Room)
@@ -769,13 +727,11 @@ namespace DungeonRun
                     }
                     else if (Pool.roomObjPool[i].type == ObjType.DoorBoss)
                     {   //build the boss welcome mat (left)
-                        objRef = Functions_Pool.GetRoomObj();
-                        Functions_Movement.Teleport(objRef.compMove,
+                        Functions_RoomObject.SpawnRoomObj(ObjType.BossDecal,
                             Pool.roomObjPool[i].compSprite.position.X - 8,
-                            Pool.roomObjPool[i].compSprite.position.Y + 16);
-                        objRef.direction = Direction.Down;
-                        Functions_GameObject.SetType(objRef, ObjType.BossDecal);
-                        //build the boss welcome mat (right)
+                            Pool.roomObjPool[i].compSprite.position.Y + 16,
+                            Direction.Down);
+                        //build the boss welcome mat (right) - old way
                         objRef = Functions_Pool.GetRoomObj();
                         Functions_Movement.Teleport(objRef.compMove,
                             Pool.roomObjPool[i].compSprite.position.X + 8,
