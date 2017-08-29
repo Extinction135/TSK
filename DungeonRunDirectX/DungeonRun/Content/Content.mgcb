@@ -431,3 +431,9 @@
 /processorParam:Quality=Best
 /build:SoundTapMetallic.wav
 
+#begin SoundSplash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSplash.wav
+

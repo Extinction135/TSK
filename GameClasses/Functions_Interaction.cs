@@ -386,7 +386,7 @@ namespace DungeonRun
                             if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
                             {
                                 if (Actor.compSprite.scale == 1.0f) //begin actor falling state
-                                { PlayPitFx(Obj); } //fall sfx, splash fx + sfx
+                                { Assets.Play(Assets.sfxActorFall); } 
                                 //continue falling state, scaling actor down
                                 Actor.compSprite.scale -= 0.03f;
                             }
@@ -399,6 +399,7 @@ namespace DungeonRun
 
                         if (Actor.compSprite.scale < 0.0f)
                         {   //actor has reached 0% scale, has fallen into pit completely
+                            PlayPitFx(Obj); //fall sfx, splash fx + sfx
                             if (Actor == Pool.hero)
                             {   //send hero back to last door he passed thru
                                 //Assets.Play(Actor.sfxHit); //play hero's hit sfx
@@ -582,14 +583,17 @@ namespace DungeonRun
                             if (Math.Abs(Projectile.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
                             {
                                 if (Projectile.compSprite.scale == 1.0f) //begin falling state
-                                { PlayPitFx(RoomObj); } //fall sfx, splash fx + sfx
+                                { Assets.Play(Assets.sfxActorFall); }
                                 //continue falling state, scaling object down
                                 Projectile.compSprite.scale -= 0.03f;
                             }
                         }
                         //when a projectile hits 0 scale, simply release it
                         if (Projectile.compSprite.scale < 0.0f)
-                        { Functions_Pool.Release(Projectile); }
+                        {
+                            Functions_Pool.Release(Projectile);
+                            PlayPitFx(RoomObj); //fall sfx, splash fx + sfx
+                        }
                     }
                 }
 
@@ -738,10 +742,6 @@ namespace DungeonRun
                 Pit.compSprite.position.X ,
                 Pit.compSprite.position.Y - 4,
                 Direction.None);
-            Assets.Play(Assets.sfxActorFall);
-            //splash sound effect here
-
-
         }
 
     }

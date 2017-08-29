@@ -49,16 +49,16 @@ v0.7 goals
 
 
 
-Add Splash Particle, Improve Falling into Pit
+Improve Pit Splash Effect
 
-created ParticleSplash value in ObjType enum.
-added ObjAnimList for ParticleSplash.
-added SetType() path for ParticleSplash.
+added SoundSplash to content project.
+added sfxSplash instance to Assets.
+updated HandleBirthEvent() -> SplashParticle to play splash sound fx.
+improved Interact() -> Pits to play splash effect after obj/actor has fallen into pit.
+playtested, looking and working great.
 
-added PlayPitFx() to InteractionFunctions.
-updated interaction with pit vs actor/obj to call PlayPitFx().
-moved fall sound effect into PlayPitFx().
-playtested, working as expected.
+
+
 
 
 

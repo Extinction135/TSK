@@ -129,6 +129,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxActorFall;
         public static SoundEffectInstance sfxActorLand;
         public static SoundEffectInstance sfxTapHollow;
+        public static SoundEffectInstance sfxSplash;
 
         #endregion
 
@@ -302,6 +303,8 @@ namespace DungeonRun
             sfxActorLand = actorLandSrc.CreateInstance();
             SoundEffect tapHollowSrc = content.Load<SoundEffect>(@"SoundTapHollow");
             sfxTapHollow = tapHollowSrc.CreateInstance();
+            SoundEffect splashSrc = content.Load<SoundEffect>(@"SoundSplash");
+            sfxSplash = splashSrc.CreateInstance();
 
             #endregion
 

@@ -364,6 +364,10 @@ namespace DungeonRun
             {
                 Assets.Play(Assets.sfxBeatDungeon);
             }
+            else if(Projectile.type == ObjType.ParticleSplash)
+            {
+                Assets.Play(Assets.sfxSplash);
+            }
 
             #endregion
 
