@@ -107,6 +107,11 @@ namespace DungeonRun
                 dialogString = "You cannot add a map chest to a non-hub room!";
                 background.fade = true;
             }
+            else if (dialogType == Dialog.CantAddMoreChests)
+            {
+                dialogString = "You cannot add more than 1 chest to a room!";
+                background.fade = true;
+            }
 
             #endregion
 

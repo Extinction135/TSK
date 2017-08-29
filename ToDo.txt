@@ -44,35 +44,19 @@ v0.7 goals
 
 
 
-2
+1
 
 
 
 
 
 
-Editor ++
+Editor++
 
-on object tools widget, we would never be able to place an empty chest.
-removed empty hest obj from widget.
-added ChestMap obj to ObjTools Widget.
-added a check into RoomBuilder that prevents adding a key chest to a non-key room.
-added check to prevent adding a map chest to non-hub room as well.
-this creates a dialog screen alerting editor to the check.
+added routine to check and see if there are other chests in the current room.
+if so, dialog screen opens explaining to editor that there cannot be multiple chests in a room.
+fixed a bug with adding map and key chests.
 playtested, working as expected.
-
-
-
-
-
-
-
-
-Editor + Chests (room checking)
-so we can't have default rewards, or chests outside hub/room, or more than 1 chest in a room..
-so we need to prevent editor from being able to place a chest in a room that isn't hub/key
-and only 1 chest should be able to be in hub/key room
-
 
 
 

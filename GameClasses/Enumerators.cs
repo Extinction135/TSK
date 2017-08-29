@@ -134,6 +134,6 @@ namespace DungeonRun
         HeroGotKey, HeroGotMap,
 
         //Editor Dialogs
-        CantAddKeyChest, CantAddMapChest,
+        CantAddKeyChest, CantAddMapChest, CantAddMoreChests,
     }
 }

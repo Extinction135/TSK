@@ -463,24 +463,36 @@ namespace DungeonRun
                     if (objToolState == ObjToolState.AddObj)
                     {
 
-
                         #region Check to see if we can add this type of Obj to this type of Room
 
                         if (currentObjRef.type == ObjType.ChestKey)
-                        {
+                        {   //we can only add key chests to key rooms
                             if (Functions_Level.currentRoom.type != RoomType.Key)
-                            { ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddKeyChest)); }
-                            return; //dont add chest
+                            {
+                                ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddKeyChest));
+                                return; //dont add chest
+                            }
                         }
                         else if (currentObjRef.type == ObjType.ChestMap)
-                        {
+                        {   //we can only add map chests to hub rooms
                             if (Functions_Level.currentRoom.type != RoomType.Hub)
-                            { ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddMapChest)); }
-                            return; //dont add chest
+                            {
+                                ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddMapChest));
+                                return; //dont add chest
+                            }
                         }
-
-                        //we cannot have more than one chest in a room
-
+                        if (currentObjRef.group == ObjGroup.Chest)
+                        {   //we cannot have more than one chest in a room
+                            for (j = 0; j < Pool.roomObjCount; j++)
+                            {   //check all roomObjs for an active chest
+                                if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].group == ObjGroup.Chest)
+                                {
+                                    ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddMoreChests));
+                                    return; //dont add chest
+                                }
+                            }
+                        }
+                    
                         #endregion
 
 
@@ -498,9 +510,7 @@ namespace DungeonRun
                         objRef.direction = currentObjRef.direction;
                         objRef.compMove.direction = currentObjRef.direction;
                         Functions_GameObject.SetType(objRef, currentObjRef.type);
-
-                        //align & set animation frame
-                        //Functions_Component.Align(objRef.compMove, objRef.compSprite, objRef.compCollision);
+                        //set animation frame
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
                     }
 
