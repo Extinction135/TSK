@@ -79,31 +79,6 @@ namespace DungeonRun
             }
         }
 
-        public static void SetWeaponCollisions(GameObject Obj)
-        {   //set the weapons's collision rec + offsets to the sprite's dimensions
-            //these values are based off the sword sprite's dimentions
-            if (Obj.direction == Direction.Up)
-            {
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 15;
-            }
-            else if (Obj.direction == Direction.Down)
-            {
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-            }
-            else if (Obj.direction == Direction.Left)
-            {
-                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
-                Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
-            }
-            else //right
-            {
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
-                Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
-            }
-        }
-
         public static void Update(GameObject Obj)
         {
             if (Obj.lifetime > 0) //if the obj has a lifetime, count it
@@ -517,7 +492,6 @@ namespace DungeonRun
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
-                SetWeaponCollisions(Obj); //set collisions based on direction
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
             }
@@ -569,17 +543,6 @@ namespace DungeonRun
                 Obj.compMove.speed = 2.25f; //arrow move fast
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
-                //set collision rec based on direction
-                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
-                {
-                    Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -6;
-                    Obj.compCollision.rec.Width = 4; Obj.compCollision.rec.Height = 12;
-                }
-                else //left or right
-                {
-                    Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -2;
-                    Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 4;
-                }
             }
             else if (Type == ObjType.ProjectileSpikeBlock)
             {
@@ -596,7 +559,6 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
             }
-
             else if (Type == ObjType.ProjectileDebrisRock)
             {
                 Obj.compSprite.zOffset = -24; //sort low, but over floor

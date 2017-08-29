@@ -217,16 +217,68 @@ namespace DungeonRun
             #endregion
 
 
-            //teleport the projectile to the proper location
+            //teleport the object to the proper location
             Functions_Movement.Teleport(obj.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment
             Functions_GameObject.SetType(obj, Type);
 
 
+
+            //handle specific projectile characteristics
+
+            #region  Set arrow collision rec based on direction
+
+            if (Type == ObjType.ProjectileArrow)
+            {
+                //set collision rec based on direction
+                if (obj.direction == Direction.Up || obj.direction == Direction.Down)
+                {
+                    obj.compCollision.offsetX = -2; obj.compCollision.offsetY = -6;
+                    obj.compCollision.rec.Width = 4; obj.compCollision.rec.Height = 12;
+                }
+                else //left or right
+                {
+                    obj.compCollision.offsetX = -6; obj.compCollision.offsetY = -2;
+                    obj.compCollision.rec.Width = 12; obj.compCollision.rec.Height = 4;
+                }
+            }
+
+            #endregion
+
+
+            #region Set sword collision rec based on direction
+
+            else if (Type == ObjType.ProjectileSword)
+            {
+                if (obj.direction == Direction.Up)
+                {
+                    obj.compCollision.offsetX = -4; obj.compCollision.offsetY = -4;
+                    obj.compCollision.rec.Width = 10; obj.compCollision.rec.Height = 15;
+                }
+                else if (obj.direction == Direction.Down)
+                {
+                    obj.compCollision.offsetX = -4; obj.compCollision.offsetY = -5;
+                    obj.compCollision.rec.Width = 10; obj.compCollision.rec.Height = 10;
+                }
+                else if (obj.direction == Direction.Left)
+                {
+                    obj.compCollision.offsetX = -4; obj.compCollision.offsetY = -3;
+                    obj.compCollision.rec.Width = 11; obj.compCollision.rec.Height = 10;
+                }
+                else //right
+                {
+                    obj.compCollision.offsetX = -7; obj.compCollision.offsetY = -3;
+                    obj.compCollision.rec.Width = 11; obj.compCollision.rec.Height = 10;
+                }
+            }
+
+            #endregion
+
+
             #region Give Bombs an Initial Push (slide them)
 
             //bombs are pushed, and slide into a resting position
-            if (Type == ObjType.ProjectileBomb)
+            else if (Type == ObjType.ProjectileBomb)
             { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
 
             #endregion
