@@ -95,6 +95,22 @@ namespace DungeonRun
             #endregion
 
 
+            #region Editor Dialogs
+
+            else if (dialogType == Dialog.CantAddKeyChest)
+            {
+                dialogString = "You cannot add a key chest to a non-key room!";
+                background.fade = true;
+            }
+            else if (dialogType == Dialog.CantAddMapChest)
+            {
+                dialogString = "You cannot add a map chest to a non-hub room!";
+                background.fade = true;
+            }
+
+            #endregion
+
+
             else //default dialog
             { dialogString = "this is the default guide text..."; updateDungeonScreen = true; }
 

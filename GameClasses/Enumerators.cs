@@ -131,6 +131,9 @@ namespace DungeonRun
         GameCreated, GameNotFound, GameLoadFailed,
         //Intro, Dungeon1, Dungeon2 //etc...
         DoesNotHaveKey,
-        HeroGotKey, HeroGotMap
+        HeroGotKey, HeroGotMap,
+
+        //Editor Dialogs
+        CantAddKeyChest, CantAddMapChest,
     }
 }

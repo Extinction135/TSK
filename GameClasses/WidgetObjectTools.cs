@@ -134,7 +134,7 @@ namespace DungeonRun
                     {
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Switch); }
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ChestKey); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ChestEmpty); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ChestMap); }
                         else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }
                         else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.TorchLit); }
                     }
@@ -462,6 +462,28 @@ namespace DungeonRun
 
                     if (objToolState == ObjToolState.AddObj)
                     {
+
+
+                        #region Check to see if we can add this type of Obj to this type of Room
+
+                        if (currentObjRef.type == ObjType.ChestKey)
+                        {
+                            if (Functions_Level.currentRoom.type != RoomType.Key)
+                            { ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddKeyChest)); }
+                            return; //dont add chest
+                        }
+                        else if (currentObjRef.type == ObjType.ChestMap)
+                        {
+                            if (Functions_Level.currentRoom.type != RoomType.Hub)
+                            { ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddMapChest)); }
+                            return; //dont add chest
+                        }
+
+                        //we cannot have more than one chest in a room
+
+                        #endregion
+
+
                         GameObject objRef;
                         //get an object from the entity pool or roomObj pool
                         if (currentObjRef.group == ObjGroup.Projectile)
