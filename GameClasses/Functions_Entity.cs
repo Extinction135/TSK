@@ -175,7 +175,6 @@ namespace DungeonRun
             else if (
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
-                Type == ObjType.ParticleFairy ||
                 Type == ObjType.ParticleBottleEmpty ||
                 Type == ObjType.ParticleBottleFairy ||
                 Type == ObjType.ParticleBottleHealth ||
