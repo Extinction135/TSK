@@ -199,18 +199,10 @@ namespace DungeonRun
                 ScatterDebris(Room);
                 AddCrackedWalls(Room);
             }
-            //update the room objs, remove overlapping objs
+            //align + remove overlapping objs
             Functions_Pool.AlignRoomObjs();
             CleanupRoom(Room);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
-
-
-
-
-
-
-
-
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
@@ -435,80 +427,45 @@ namespace DungeonRun
 
         static GameObject objA; //object we want to keep
         static GameObject objB; //object we want to remove
-        static Boolean checkOverlap;
         static Boolean removeObjB;
 
         public static void CleanupRoom(Room Room)
         {
             for (i = 0; i < Pool.roomObjCount; i++)
             {
-                checkOverlap = false;
                 objA = Pool.roomObjPool[i];
-
                 if (objA.active)
-                {   //objA groups & types we check overlap for
-                    if (objA.group == ObjGroup.Door) { checkOverlap = true; }
-                    else if (objA.group == ObjGroup.Wall) { checkOverlap = true; }
-                    else if (objA.group == ObjGroup.Object) { checkOverlap = true; }
-                }   //we are not checking liftable/draggable obj collisions with debris
-
-                if (checkOverlap)
-                {
-
-                    #region Check RoomObjs Overlap
-
+                {   //loop thru roomObjs checking A against B
                     for (j = 0; j < Pool.roomObjCount; j++)
                     {
                         objB = Pool.roomObjPool[j];
-                        if (objB.active && objA != objB)
-                        {
-                            removeObjB = false;
-                            if (objB.group == ObjGroup.Wall)
-                            {   //prevent walls from overlapping doors, torches, and pillars
-                                if (objA.group == ObjGroup.Door) { removeObjB = true; }
-                                else if (objA.type == ObjType.WallTorch) { removeObjB = true; }
-                                else if (objA.type == ObjType.WallPillar) { removeObjB = true; }
-                            }
-                            if (removeObjB)
-                            {   //check that objA and objB actually overlap
-                                if (objA.compCollision.rec.Intersects(objB.compCollision.rec))
-                                { Functions_Pool.Release(objB); }
-                            }
-                        }
-                    }
-
-                    #endregion
-
-
-                    #region Check Entitiy Overlaps
-
-                    for (j = 0; j < Pool.entityCount; j++)
-                    {
-                        objB = Pool.entityPool[j];
                         if (objB.active)
-                        {
-                            removeObjB = false;
-                            if (objB.type == ObjType.ProjectileDebrisRock)
-                            {   //remove debris that overlaps with most objects
-                                if (objA.group == ObjGroup.Object) { removeObjB = true; }
-                                else if (objA.group == ObjGroup.Wall) { removeObjB = true; }
-                                else if (objA.group == ObjGroup.Door) { removeObjB = true; }
-                                else if (objA.group == ObjGroup.Draggable) { removeObjB = true; }
-                                else if (objA.group == ObjGroup.Chest) { removeObjB = true; }
-                                else if (objA.group == ObjGroup.Liftable) { removeObjB = true; }
-                                //keep debris on conveyor belts
-                                if (objA.type == ObjType.ConveyorBeltOn) { removeObjB = false; }
-                            }
-                            if (removeObjB)
-                            {   //check that objA and objB actually overlap
-                                if (objA.compCollision.rec.Intersects(objB.compCollision.rec))
-                                { Functions_Pool.Release(objB); }
+                        {   //make sure we aren't checking an object against itself
+                            if (objA != objB)
+                            {
+                                removeObjB = false;
+                                //these are roomObjects we remove, if they overlap ANY other roomObject
+                                if (objB.group == ObjGroup.Wall)
+                                {
+                                    removeObjB = true;
+                                    //keep these walls
+                                    if (objB.type == ObjType.WallPillar) { removeObjB = false; }
+                                }
+                                else if (objB.type == ObjType.FloorDebrisBlood)
+                                {
+                                    removeObjB = true;
+                                    //allow overlap with these objects
+                                    if (objA.type == ObjType.ConveyorBeltOn) { removeObjB = false; }
+                                    else if (objA.type == ObjType.ConveyorBeltOff) { removeObjB = false; }
+                                }
+                                if (removeObjB)
+                                {   //check that objA and objB actually overlap
+                                    if (objA.compCollision.rec.Intersects(objB.compCollision.rec))
+                                    { Functions_Pool.Release(objB); }
+                                }
                             }
                         }
                     }
-
-                    #endregion
-
                 }
             }
 

@@ -44,27 +44,22 @@ v0.7 goals
 
 
 
-11
-
-
-
-
-Populate Functions_RoomObject
-
-moved Room.ActivateLeverObjects() into Functions_RoomObject.
-moved Room.DecorateDoor() into Functions_RoomObject.
+10
 
 
 
 
 
 
-blood debris overlap pits
-also overlap boss floor decals
-which is bad
-what CAN debris overlap? conveyorbelts
+Improve / Simplify CleanupRoom()
 
+blood debris should be able to overlap with conveyorbelts.
 
+rewrote CleanupRoom().
+updated RoomBuilder to scatter debris and place cracked walls in loaded xml room files
+this made it easier to check CleanupRoom().
+checkd and improved all roomData and testRooms.
+playtestedd, working as expected.
 
 
 

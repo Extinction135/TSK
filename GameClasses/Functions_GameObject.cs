@@ -253,7 +253,11 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -60; //sort above pits & pit bubbles
                 Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 8;
-                if (Type == ObjType.PitBottom) { Obj.compCollision.offsetY = 4; }
+                if (Type == ObjType.PitBottom)
+                {
+                    Obj.compCollision.offsetY = 4;
+                    Obj.compCollision.rec.Height = 4;
+                }
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
