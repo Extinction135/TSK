@@ -44,37 +44,20 @@ v0.7 goals
 
 
 
-8
+7
 
 
 
 
-Improve Pit Splash Effect
+Polish Pit Interaction with Hero
 
-added SoundSplash to content project.
-added sfxSplash instance to Assets.
-updated HandleBirthEvent() -> SplashParticle to play splash sound fx.
-improved Interact() -> Pits to play splash effect after obj/actor has fallen into pit.
-playtested, looking and working great.
+when hero collides with a pit, the hero's shadow is visible.
+this looks visually incorrect, as the shadow should be under hero at all times.
+so we simply hide the hero's shadow if he collides with a pit.
+when the pit collision is over, we unhide hero's shadow.
 
-
-
-
-
-
-
-
-hero's shadow should not be visible if hero collides with a pit
-upon respawn, hero's shadow should become visible again.
-
-
-
-
-
-add a splash sound fx
-
-
-
+updated Interact() -> Pit vs Hero to hide/unhide hero's shadow.
+playtested, working as expected.
 
 
 
