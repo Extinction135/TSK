@@ -202,7 +202,8 @@ namespace DungeonRun
                 Type == ObjType.ProjectileArrow ||
                 Type == ObjType.ProjectileBomb ||
                 Type == ObjType.ParticleBow ||
-                Type == ObjType.ProjectileDebrisRock)
+                Type == ObjType.ProjectileDebrisRock ||
+                Type == ObjType.ParticleDoorCollapse)
             {
                 obj.direction = Direction;
                 obj.compMove.direction = Direction;

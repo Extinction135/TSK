@@ -687,17 +687,12 @@ namespace DungeonRun
             else if (Type == ObjType.ParticleDoorCollapse)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = -32;
                 Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 12; //in frames
-                Obj.lifetime = 12 * 4; //speed * animFrames
+                Obj.compAnim.speed = 8; //in frames
+                Obj.lifetime = 0;
                 Obj.compAnim.loop = false;
             }
-
-
-            //ParticleDoorCollapse
-
-
 
 
 

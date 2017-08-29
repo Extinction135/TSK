@@ -44,27 +44,21 @@ v0.7 goals
 
 
 
-4
-
-
-
-
-Add DoorCollapse Particle to Improve Bombing Doors Open
-
-created a collapsing door particle effect sprite.
-created ParticleDoorCollapse value in ObjType enum.
-added ObjAnimList for DoorCollapse particle.
-added path in Obj.SetType() for DoorCollapse.
-updated CollapseDungeonDoor() to play DoorCollapse particle.
-playtestd, working, but with some bugs.
+3
 
 
 
 
 
-needs to be faster
-should inherit the doors direction as well
-this particle has a direction
+
+Polish Door Collapse Effect
+
+increased the speed of door collapse particle.
+door collapse particle inherits direction of door as well.
+improved door collapsing sprite.
+playtested, working as expected.
+
+
 
 
 

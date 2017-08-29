@@ -629,12 +629,11 @@ namespace DungeonRun
             Assets.Play(Assets.sfxShatter);
 
             //draw attention to the collapsing door
-            //Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
-            //    Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);
-
+            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);
             //display door collapse animation
             Functions_Entity.SpawnEntity(ObjType.ParticleDoorCollapse,
-                Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);
+                Door.compSprite.position.X, Door.compSprite.position.Y, Door.direction);
 
             //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < Level.doors.Count; i++)
