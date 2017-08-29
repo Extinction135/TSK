@@ -373,8 +373,6 @@ namespace DungeonRun
                         Actor.compMove.newPosition = Actor.compMove.position;
                         Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
 
-                        //if this is the first frame that actor collides with pit, play fall sound effect
-                        if (Actor.state != ActorState.Hit) { Assets.Play(Assets.sfxActorFall); }
                         //lock actor into hit state, prevent movement
                         Actor.state = ActorState.Hit;
                         Actor.stateLocked = true;
@@ -388,14 +386,7 @@ namespace DungeonRun
                             if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
                             {
                                 if (Actor.compSprite.scale == 1.0f) //begin actor falling state
-                                {
-                                    //play rising smoke puff to reinforce that actor has fallen into pit
-                                    Functions_Entity.SpawnEntity(
-                                        ObjType.ParticleSmokePuff,
-                                        Obj.compSprite.position.X + 4,
-                                        Obj.compSprite.position.Y - 8,
-                                        Direction.None);
-                                }
+                                { PlayPitFx(Obj); } //fall sfx, splash fx + sfx
                                 //continue falling state, scaling actor down
                                 Actor.compSprite.scale -= 0.03f;
                             }
@@ -591,15 +582,7 @@ namespace DungeonRun
                             if (Math.Abs(Projectile.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
                             {
                                 if (Projectile.compSprite.scale == 1.0f) //begin falling state
-                                {
-                                    Assets.Play(Assets.sfxActorFall);
-                                    //play rising smoke puff to reinforce that object has fallen into pit
-                                    Functions_Entity.SpawnEntity(
-                                        ObjType.ParticleSmokePuff,
-                                        RoomObj.compSprite.position.X + 4,
-                                        RoomObj.compSprite.position.Y - 8,
-                                        Direction.None);
-                                }
+                                { PlayPitFx(RoomObj); } //fall sfx, splash fx + sfx
                                 //continue falling state, scaling object down
                                 Projectile.compSprite.scale -= 0.03f;
                             }
@@ -749,6 +732,17 @@ namespace DungeonRun
             }
         }
 
+        public static void PlayPitFx(GameObject Pit)
+        {   //play splash particle and sound effect
+            Functions_Entity.SpawnEntity(ObjType.ParticleSplash,
+                Pit.compSprite.position.X ,
+                Pit.compSprite.position.Y - 4,
+                Direction.None);
+            Assets.Play(Assets.sfxActorFall);
+            //splash sound effect here
+
+
+        }
 
     }
 }

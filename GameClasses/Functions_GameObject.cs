@@ -675,6 +675,16 @@ namespace DungeonRun
                 Obj.compAnim.speed = 7; //in frames
                 Obj.compMove.moveable = true;
             }
+
+            else if(Type == ObjType.ParticleSplash)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = 1024;
+                Obj.group = ObjGroup.Particle;
+                Obj.compAnim.speed = 10; //in frames
+                Obj.lifetime = 10 * 5; //speed * animFrames
+                Obj.compAnim.loop = false;
+            }
             else if (Type == ObjType.ParticleBow)
             {
                 Obj.compSprite.texture = Assets.mainSheet;

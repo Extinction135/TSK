@@ -44,20 +44,63 @@ v0.7 goals
 
 
 
-9
+8
 
 
 
-Improve how Projectile Collisions are set
 
-removed SetWeaponCollisions() from Functions_GameObject.
-conceptually, this routine belongs to SpawnEntity().
-integrated setting the sword projectile's collisionRec into SpawnEntity().
-it fit into the section dealing with specific projectile characteristics.
-this routine sets all projectile characteristics.
-moved routine for setting arrow's collision rec into SpawnEntity().
-before this change, projectile collisionRec functionality was scattered throughout the codebase.
-this consolidates it all into one place.
+Add Splash Particle, Improve Falling into Pit
+
+created ParticleSplash value in ObjType enum.
+added ObjAnimList for ParticleSplash.
+added SetType() path for ParticleSplash.
+
+added PlayPitFx() to InteractionFunctions.
+updated interaction with pit vs actor/obj to call PlayPitFx().
+moved fall sound effect into PlayPitFx().
+playtested, working as expected.
+
+
+
+
+
+hero's shadow should not be visible if hero collides with a pit
+upon respawn, hero's shadow should become visible again.
+
+
+
+
+
+add a splash sound fx
+
+
+
+
+
+
+
+
+
+
+
+
+need sound effect for spikes
+something light and simple, like "chh chh"
+
+
+
+
+
+
+
+
+
+
+
+Improve Collapse of Bombable Doors - part 2
+when we blow up a door, door debris should fall to the ground.
+this is a custom particle just for door.
+
 
 
 
@@ -72,17 +115,10 @@ any object that can be destroyed should become this object.
 this object should look like a pile of rocks.
 
 
-Improve Falling Into Pit Animation
-create water splash particle
-spawn this particle when something falls into a pit
-this particle should sort on a top layer, over actors
-keep the scaling down of actors/objs
-we're simply replacing the smoke poof with the splash
 
 
-Improve Collapse of Bombable Doors - part 2
-when we blow up a door, door debris should fall to the ground.
-this is a custom particle just for door.
+
+
 
 
 Force Move 
