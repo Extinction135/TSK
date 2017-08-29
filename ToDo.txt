@@ -44,34 +44,38 @@ v0.7 goals
 
 
 
-7
+4
 
 
 
 
-Polish Pit Interaction with Hero
+Add DoorCollapse Particle to Improve Bombing Doors Open
 
-when hero collides with a pit, the hero's shadow is visible.
-this looks visually incorrect, as the shadow should be under hero at all times.
-so we simply hide the hero's shadow if he collides with a pit.
-when the pit collision is over, we unhide hero's shadow.
-
-updated Interact() -> Pit vs Hero to hide/unhide hero's shadow.
-playtested, working as expected.
-
-
-
-
+created a collapsing door particle effect sprite.
+created ParticleDoorCollapse value in ObjType enum.
+added ObjAnimList for DoorCollapse particle.
+added path in Obj.SetType() for DoorCollapse.
+updated CollapseDungeonDoor() to play DoorCollapse particle.
+playtestd, working, but with some bugs.
 
 
 
 
 
-need sound effect for spikes
-something light and simple, like "chh chh"
+needs to be faster
+should inherit the doors direction as well
+this particle has a direction
 
 
 
+
+
+
+
+
+Fairy Projectile
+fairy is a projectile that moves in a random direction and has a lifetime of 255
+fairys should be created very rarely from enemy deaths (update loot routine)
 
 
 
@@ -104,9 +108,6 @@ this object should look like a pile of rocks.
 
 
 
-Force Move 
-sometimes we have to force move actors or objects (actos-pits, objects-spikeblock bounce)
-we should standardize this force move into a function, and make it part of Functions_Movement
 
 
 Editor + Chests (room checking)
@@ -136,9 +137,7 @@ WanderingFire
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
 
-Fairy Projectile
-fairy is a projectile that moves in a random direction and has a lifetime of 255
-fairys should be created very rarely from enemy deaths (update loot routine)
+
 
 
 

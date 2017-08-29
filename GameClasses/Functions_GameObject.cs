@@ -675,7 +675,6 @@ namespace DungeonRun
                 Obj.compAnim.speed = 7; //in frames
                 Obj.compMove.moveable = true;
             }
-
             else if(Type == ObjType.ParticleSplash)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
@@ -685,6 +684,23 @@ namespace DungeonRun
                 Obj.lifetime = 10 * 5; //speed * animFrames
                 Obj.compAnim.loop = false;
             }
+            else if (Type == ObjType.ParticleDoorCollapse)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = 0;
+                Obj.group = ObjGroup.Particle;
+                Obj.compAnim.speed = 12; //in frames
+                Obj.lifetime = 12 * 4; //speed * animFrames
+                Obj.compAnim.loop = false;
+            }
+
+
+            //ParticleDoorCollapse
+
+
+
+
+
             else if (Type == ObjType.ParticleBow)
             {
                 Obj.compSprite.texture = Assets.mainSheet;

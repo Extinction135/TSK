@@ -243,6 +243,8 @@ namespace DungeonRun
                     new Byte4(2, 2, 0, 0), new Byte4(3, 2, 0, 0),
                     new Byte4(4, 2, 0, 0)
                 },
+                //ParticleDoorCollapse
+                new List<Byte4> { new Byte4(1, 1, 0, 0), new Byte4(2, 1, 0, 0), new Byte4(3, 1, 0, 0), new Byte4(4, 1, 0, 0) },
 
 
                 //ParticleBow
