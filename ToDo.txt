@@ -44,18 +44,37 @@ v0.7 goals
 
 
 
-1
+13
 
 
 
 
 
+Implement Fairy
 
-Editor++
+added PickupFairy value to ObjType enum.
+added ObjAnimList for PickupFairy.
+updated Obj.SetType() with path for FairyPickup.
+updated Functions_Loot.SpawnLoot() with path for FairyPickup.
+updated Functions_Ai.HandleObj().
+updated InteractActor() to handle FairyPickup.
+if hero collides with fairy, his health is fully restored.
+added Fairy Pickup Object to ObjectTools Widget.
 
-added routine to check and see if there are other chests in the current room.
-if so, dialog screen opens explaining to editor that there cannot be multiple chests in a room.
-fixed a bug with adding map and key chests.
+changed parameter name InteractObject(Projectile) to InteractObject(Entity).
+this more accurately represents what this parameter gameobj can be.
+
+playtested, working, but fairys can fly thru walls.
+the reason this happens is because the fairy is a pickup, 
+and pickups aren't collision checked.
+if we want the fairy to get collision checks, then it needs to be a projectile.
+
+changed PickupFairy to ProjectileFairy throughout codebase.
+updated Functions_Interaction to handle ProjectileFairy.
+playtested, working much better. fairys dont fly thru walls anymore.
+
+but, we need to create an attention particle when hero collides with them.
+updated HandleDeathEvent() to spawn Attention particle upon hero collision with fairy.
 playtested, working as expected.
 
 
@@ -63,14 +82,24 @@ playtested, working as expected.
 
 
 
+Fix Bottles, Add NET, Implement Fairy Capturing
+
+instead of having a bottle specific to each potion,
+we should be able to put any potion in any bottle,
+along with fairys.. and we should be able to 'capture' fairys
+using the NET weapon.
+if NET collides with fairy, put fairy in bottle, display capture dialog screen (freeze game)
+NET is a weapon, and deals no damage to enemies
+if no bottle is available, then dialog screen tells player so (freeze game)
+upon collision, kill NET weapon projectile
+
+we should be able to purchase the NET from the weapons vendor..
 
 
 
 
 
-Fairy Projectile
-fairy is a projectile that moves in a random direction and has a lifetime of 255
-fairys should be created very rarely from enemy deaths (update loot routine)
+
 
 
 
@@ -83,18 +112,6 @@ Destroyed Debris object
 the dungeon statue should become the destroyed version upon destruction.
 any object that can be destroyed should become this object.
 this object should look like a pile of rocks.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

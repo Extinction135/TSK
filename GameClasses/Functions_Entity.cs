@@ -416,6 +416,14 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxFireballDeath);
             }
             //sword
+            //rock debris
+            else if (Obj.type == ObjType.ProjectileFairy)
+            {   //when hero picks up fairy, display an attention particle
+                SpawnEntity(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+            }
 
             #endregion
 

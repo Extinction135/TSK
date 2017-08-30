@@ -85,10 +85,11 @@ namespace DungeonRun
 
         //ENTITIES
         //Pickups - collide with hero
-        PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, 
+        PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
         //Projectiles - collide with actors
         ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion, ProjectileArrow,
         ProjectileSpikeBlock, ProjectileDebrisRock,
+        ProjectileFairy,
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation, 
         //Particles - map
