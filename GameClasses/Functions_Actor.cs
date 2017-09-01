@@ -45,7 +45,8 @@ namespace DungeonRun
             Actor.lockCounter = 0;
             Actor.lockTotal = 255;
             Assets.Play(Actor.sfxDeath); //play actor death sound fx
-            if (Actor != Pool.hero) { DungeonRecord.enemyCount++; } //track enemy deaths
+            if (Actor.type == ActorType.Blob || Actor.type == ActorType.Boss)
+            { DungeonRecord.enemyCount++; } //track enemy deaths
 
 
             #region Enemy Specific Death Effects
@@ -66,6 +67,11 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Assets.Play(Assets.sfxExplosionsMultiple); //play explosions
+            }
+            else if(Actor.type == ActorType.Fairy)
+            {
+                Functions_Entity.SpawnEntity(ObjType.ParticleExplosion, Actor);
+                Functions_Pool.Release(Actor);
             }
 
             #endregion
@@ -208,9 +214,10 @@ namespace DungeonRun
             Actor.state = ActorState.Idle;
             Actor.direction = Direction.Down;
             Actor.compMove.direction = Direction.None;
+            Actor.compMove.grounded = true; //most actors move on ground
             //reset actor's collisions
             Actor.compCollision.active = true;
-            Actor.compCollision.blocking = true; //actors always block
+            Actor.compCollision.blocking = true;
             SetCollisionRec(Actor);
             //reset actor's sprite zDepth
             Actor.compSprite.zOffset = 0;
@@ -224,7 +231,6 @@ namespace DungeonRun
             if (Type == ActorType.Hero)
             {
                 Actor.compSprite.texture = Assets.heroSheet;
-                Actor.maxHealth = 14;
                 //do not update/change the hero's weapon/item/armor/equipment
                 Actor.walkSpeed = 0.35f;
                 Actor.dashSpeed = 0.90f;
@@ -236,10 +242,9 @@ namespace DungeonRun
             else if (Type == ActorType.Blob)
             {
                 Actor.compSprite.texture = Assets.blobSheet;
-                Actor.maxHealth = 1;
+                Actor.health = 1;
                 ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponSword;
-
                 Actor.walkSpeed = 0.05f;
                 Actor.dashSpeed = 0.30f;
                 //set actor sound effects
@@ -250,9 +255,8 @@ namespace DungeonRun
             else if (Type == ActorType.Boss)
             {
                 Actor.compSprite.texture = Assets.bossSheet;
-                Actor.maxHealth = 10;
+                Actor.health = 10;
                 ResetActorLoadout(Actor);
-
                 Actor.walkSpeed = 0.50f;
                 Actor.dashSpeed = 1.00f;
 
@@ -267,12 +271,22 @@ namespace DungeonRun
                 Actor.sfxHit = Assets.sfxBossHit;
                 Actor.sfxDeath = Assets.sfxBossHitDeath;
             }
+            else if (Type == ActorType.Fairy)
+            {   //non-combatant actor
+                Actor.compSprite.texture = Assets.mainSheet;
+                Actor.health = 1;
+                ResetActorLoadout(Actor);
+                Actor.walkSpeed = 0.3f;
+                Actor.dashSpeed = 0.3f;
+                //set actor sound effects
+                Actor.sfxDash = null;
+                Actor.sfxHit = null;
+                Actor.sfxDeath = Assets.sfxHeartPickup;
+                Actor.compMove.grounded = false; //actor flys in air
+            }
 
             #endregion
-
-
-            //set actor's health
-            Actor.health = Actor.maxHealth;
+            
 
             Functions_ActorAnimationList.SetAnimationGroup(Actor);
             Functions_ActorAnimationList.SetAnimationDirection(Actor);

@@ -64,7 +64,7 @@ namespace DungeonRun
 
             #region Blob AI
 
-            else //blob
+            else if (Actor.type == ActorType.Blob)
             {
                 //determine if actor is close enough to hero to chase
                 int chaseRadius = 16 * 6;
@@ -106,13 +106,11 @@ namespace DungeonRun
 
             #region Fairy AI
 
-            /*
-            else if (Obj.type == ObjType.ProjectileFairy)
-            {   //randomly move in a random direction
-                if (Functions_Random.Int(0, 500) > 450)
-                { Obj.compMove.direction = (Direction)Functions_Random.Int(0, 8); }
+            else if (Actor.type == ActorType.Fairy)
+            {   //choose a random direction to move in
+                if (Functions_Random.Int(0, 100) > 50)
+                { Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8); }
             }
-            */
 
             #endregion
 

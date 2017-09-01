@@ -48,7 +48,7 @@ namespace DungeonRun
 
     
 
-    public enum ActorType { Hero, Blob, Boss, }
+    public enum ActorType { Hero, Blob, Boss, Fairy }
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 
@@ -76,8 +76,9 @@ namespace DungeonRun
         PotSkull, Bumper, Flamethrower, Switch,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, 
-        //Enemy Spawn Objects (hand-placed)
-        SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, //4 and 5 to be added later
+        //Actor Spawn Objects (hand-placed)
+        SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, 
+        SpawnFairy,
         //Shop Object
         Bookcase1, Bookcase2, TableStone,
         VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment, VendorStory,

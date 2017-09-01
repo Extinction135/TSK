@@ -135,12 +135,15 @@ namespace DungeonRun
                 //TorchLit
                 new List<Byte4> { new Byte4(7, 4, 0, 0), new Byte4(7, 5, 0, 0), new Byte4(7, 6, 0, 0) },
                 
+                //Actor Spawn Objects
                 //SpawnEnemy1
                 new List<Byte4> { new Byte4(0, 15, 0, 0) },
                 //SpawnEnemy2
                 new List<Byte4> { new Byte4(1, 15, 0, 0) },
                 //SpawnEnemy3
                 new List<Byte4> { new Byte4(2, 15, 0, 0) },
+                //SpawnFairy
+                new List<Byte4> { new Byte4(3, 15, 0, 0) },
 
                 #endregion
 
@@ -280,10 +283,9 @@ namespace DungeonRun
         }
 
         public static void SetAnimationList(GameObject Obj)
-        {
-            //we could do this by checking the obj.type, but that doesn't scale well
+        {   //we could do this by checking the obj.type, but that doesn't scale well
             //instead we extract the enum type value and set the animation using that int
-            //this requires that the GameObjAnims list match the ObjType definition exactly
+            //this requires that the GameObjAnims list match the ObjType enum defs exactly
             index = (int)Obj.type; //get the type int value
             Obj.compAnim.currentAnimation = GameObjAnims[index]; //set animation based on index
         }

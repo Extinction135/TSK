@@ -403,7 +403,8 @@ namespace DungeonRun
 
             #region Enemy Spawn Objects
 
-            else if (Type == ObjType.SpawnEnemy1 || Type == ObjType.SpawnEnemy2 || Type == ObjType.SpawnEnemy3)
+            else if (Type == ObjType.SpawnEnemy1 || Type == ObjType.SpawnEnemy2 
+                || Type == ObjType.SpawnEnemy3 || Type == ObjType.SpawnFairy)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -32; //sort to floor

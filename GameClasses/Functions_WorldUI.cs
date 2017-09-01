@@ -29,8 +29,7 @@ namespace DungeonRun
             { PlayerData.current.heartsTotal = 9; }
             //assign maxHearts
             WorldUI.maxHearts = PlayerData.current.heartsTotal;
-            //match maxHearts to maxHealth, clip current health to max value
-            Pool.hero.maxHealth = WorldUI.maxHearts; 
+            //clip hero.health to maxHearts value
             if (Pool.hero.health > WorldUI.maxHearts)
             { Pool.hero.health = WorldUI.maxHearts; }
             //animate (scale) the hero's hearts

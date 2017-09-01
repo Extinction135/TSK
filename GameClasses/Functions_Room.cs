@@ -630,8 +630,16 @@ namespace DungeonRun
                     {
                         actorRef = Functions_Pool.GetActor();
                         if (actorRef != null)
-                        {   //we should be checking what level of enemy to create
-                            Functions_Actor.SetType(actorRef, ActorType.Blob);
+                        {   //create actor based on spawn type
+                            if(objRef.type == ObjType.SpawnEnemy1)
+                            { Functions_Actor.SetType(actorRef, ActorType.Blob); }
+                            else if(objRef.type == ObjType.SpawnEnemy2)
+                            { Functions_Actor.SetType(actorRef, ActorType.Blob); }
+                            else if (objRef.type == ObjType.SpawnEnemy3)
+                            { Functions_Actor.SetType(actorRef, ActorType.Blob); }
+                            else if (objRef.type == ObjType.SpawnFairy)
+                            { Functions_Actor.SetType(actorRef, ActorType.Fairy); }
+                            //place actor at spawn point
                             Functions_Movement.Teleport(actorRef.compMove,
                                 objRef.compSprite.position.X,
                                 objRef.compSprite.position.Y);

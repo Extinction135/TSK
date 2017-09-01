@@ -216,7 +216,7 @@ namespace DungeonRun
                     {   //increment saveData's total hearts
                         PlayerData.current.heartsTotal++;
                         Functions_WorldUI.Update(); //show the newly purchased heart
-                        Pool.hero.health = Pool.hero.maxHealth; //refill hearts
+                        Pool.hero.health = PlayerData.current.heartsTotal; //refill hearts
                         CompleteSale(Item);
                     }
                     else { DialogMaxHearts(); }

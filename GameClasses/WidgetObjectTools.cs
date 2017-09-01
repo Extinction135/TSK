@@ -173,7 +173,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Add Enemy objs to ObjList
+            #region Add Enemy Spawns to ObjList
 
             for (i = 1; i < 6; i++)
             {
@@ -188,7 +188,7 @@ namespace DungeonRun
                 else if (i == 3)
                 { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy3); }
                 else if (i == 4)
-                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
+                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnFairy); }
                 else if (i == 5)
                 { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy1); }
 

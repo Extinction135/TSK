@@ -213,7 +213,7 @@ namespace DungeonRun
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
             //fill hero's health up to max - prevents drum track from playing
-            Pool.hero.health = Pool.hero.maxHealth;
+            Pool.hero.health = PlayerData.current.heartsTotal;
             //grab the hero's current loadout
             Functions_Actor.SetHeroLoadout();
 

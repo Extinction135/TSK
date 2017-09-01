@@ -139,9 +139,12 @@ namespace DungeonRun
         {
             if (Flags.PlaySoundFX)
             {
-                Ins.IsLooped = false;
-                Ins.Volume = 1.0f;
-                Ins.Play();
+                if (Ins != null)
+                {
+                    Ins.IsLooped = false;
+                    Ins.Volume = 1.0f;
+                    Ins.Play();
+                }
             }
         }
 

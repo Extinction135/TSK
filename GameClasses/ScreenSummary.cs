@@ -90,7 +90,7 @@ namespace DungeonRun
             
             Functions_Music.PlayMusic(Music.Title); //play title music
             //fill hero's health up to max - prevents drum track from playing
-            Pool.hero.health = Pool.hero.maxHealth;
+            Pool.hero.health = PlayerData.current.heartsTotal;
             //reward player gold, if dungeon was completed
             if (DungeonRecord.beatDungeon)
             { rewardTotal = 99; } else { rewardTotal = 0; }

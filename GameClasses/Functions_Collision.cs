@@ -141,15 +141,19 @@ namespace DungeonRun
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active) //actor must be active
-                {   //only check collisions with hero
-                    if (Actor.type == ActorType.Hero || Pool.actorPool[i].type == ActorType.Hero)
-                    {   //check for overlap
-                        if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                        {   //actors cannot collide with themselves
-                            if (Actor != Pool.actorPool[i]) { collision = true; }
+                {   //actors cannot collide with themselves
+                    if (Actor != Pool.actorPool[i])
+                    {   //only check collisions with hero
+                        if (Actor.type == ActorType.Hero || Pool.actorPool[i].type == ActorType.Hero)
+                        {   //check for overlap
+                            if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
+                            {   //handle any actor vs actor interaction, return collision
+                                if (Actor == Pool.hero) { Functions_Interaction.InteractHero(Pool.actorPool[i]); }
+                                collision = true;
+                            }
                         }
+                        Pool.collisionsCount++;
                     }
-                    Pool.collisionsCount++;
                 }
             }
             return collision; 
@@ -184,7 +188,7 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active) //actor must be active
                 {   //check for overlap
                     if (Entity.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                    {   //handle interaction, actors are always blocking
+                    {   //handle interaction
                         Functions_Interaction.InteractActor(Pool.actorPool[i], Entity);
                         collision = true;
                     }

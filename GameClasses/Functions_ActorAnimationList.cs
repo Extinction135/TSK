@@ -22,6 +22,7 @@ namespace DungeonRun
             //assume default animation speed and looping
             Actor.compAnim.speed = 10;
             Actor.compAnim.loop = true;
+
             //set animation group based on actor state
             if (Actor.state == ActorState.Idle) { Actor.animGroup = Actor.animList.idle; }
             else if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.move; }
@@ -41,6 +42,9 @@ namespace DungeonRun
                 else { Actor.animGroup = Actor.animList.death; }
             }
             else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
+
+            //some actors have limited animations
+            if (Actor.type == ActorType.Fairy) { Actor.animGroup = Actor.animList.fairy; }
         }
 
         public static void SetAnimationDirection(Actor Actor)
@@ -123,6 +127,12 @@ namespace DungeonRun
             actorAnims.reward.right = actorAnims.reward.down;
             actorAnims.reward.left = actorAnims.reward.down;
 
+            //fairy animations
+            actorAnims.fairy = new AnimationGroup();
+            actorAnims.fairy.down = new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) };
+            actorAnims.fairy.up = new List<Byte4> { new Byte4(12, 3, 1, 0), new Byte4(13, 3, 1, 0) };
+            actorAnims.fairy.right = new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) };
+            actorAnims.fairy.left = new List<Byte4> { new Byte4(12, 3, 1, 0), new Byte4(13, 3, 1, 0) };
         }
 
     }

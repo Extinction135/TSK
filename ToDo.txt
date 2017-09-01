@@ -44,21 +44,51 @@ v0.7 goals
 
 
 
-8
+6
+
+
+
+Implement Fairy Actors
+
+fairy actors randomly float around.
+upon collision with hero, they restore hero's health.
+
+added Fairy value to ActorType enum.
+added Fairy AnimationGroup to actorAnims.
+added Fairy to Functions_Actor.SetType().
+added Fairy to Functions_Ai.SetActorInput().
+
+added SpawnFairy value to ObjType.
+added path for SpawnFairy to GameObj.SetType().
+added ObjAnimList for SpawnFairy.
+updated ObjectToolsWidget to place fairySpawn.
+
+created a testing level for fairys.
+added path for Fairy to Actor.SetDeathState().
+created InteractHero(Actor) to handle Hero vs Actor interactions.
+added path for Fairy to InteractHero(Actor).
+updated CheckActorPoolCollisions() to pass colliding actors to InteractHero(Actor).
+
+updated actor's default moving to be ground-based.
+this is done via the actor.compMove.grounded boolean.
+updated InteractActor(Actor, Obj) to consider grounded boolean.
+if an actor isn't grounded (flying), then they are not affected by
+spikeFloors, conveyorBelts, or pits.
+updated Actor.SetType() to make fairy flying (grounded = false).
+
+updated Roombuilder with methods for setting testing flags + loadout.
+updated InteractActor(Actor, Obj) to ignore projectile collisions with fairys.
+this basically means fairys can't be killed, only absorbed by hero.
+
+removed actor.maxHealth from codebase.
+updated various paths that used maxHealth.
+fixed a bug where hero's health was set to max when a room was loaded in editor.
+this fix allowed me to test absorbing a fairy, which works.
+lots of playtesting, working well.
 
 
 
 
-Add Combo Potion to Game
-
-added ParticleBottleCombo value to ObjType.
-added BottleCombo value to MenuItemType.
-updated various methods to use new ObjType and MenuItemType.
-
-removed FairyBottle from SetItemsForSale().
-
-renamed MenuItem.SetMenuItemData() to SetType().
-this makes it consistent with GameObj.SetType() and Actor.SetType().
 
 
 
@@ -67,6 +97,7 @@ this makes it consistent with GameObj.SetType() and Actor.SetType().
 
 
 
+we need fairy soundfx for when fairy dies/hit
 
 
 
@@ -76,34 +107,23 @@ we can capture some actors using a net and empty bottle.
 the first of these actors is the fairy actor.
 so we need to create the fairy actor
 
-
-
-
-how do we check net projectile collision with fairy projectile?
-we dont check projectiles against projectiles!
-fairy could be an actor?
-
-this means we need to convert fairy projectile to actor
-which means fairy will be an actorType
-
-
-
-
-
-
-add a swipe sound effect for net
-
-
-
-
-
-
 implement capturing fairys
-this is a collision check between NET and FAIRY projectile
+this is a collision check between NET and FAIRY actor
 if this collision is true, then check to see if hero has an empty bottle
-fill bottle with fairy, kill fairy projectile, pop dialog alerting player to fairy capture
+fill bottle with fairy, kill fairy actor, pop dialog alerting player to fairy capture
 else pop dialog alerting player they have no empty bottles to place fairy in
 make sure to freeze game during these dialogs
+
+
+
+
+
+
+
+
+
+NET++
+add a swipe sound effect for net
 
 
 improve dialog screen 
@@ -112,28 +132,9 @@ this allows the hero to be set into a reward state, if he gets rewarded (key/map
 update map/key get to freeze game (but allow enough time to transition into reward state)
 
 
-polish fairy economy
-we shouldn't be able to purchase fairys from potion vendor.
-fairys should only be attainable by capturing fairy projectiles using NET.
-we can also place fairy projectiles in dungeon rooms
-fairys should only restore hero's health to maxHealth (no magic restore)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+BOTTLES
 we also need to clarify how hero purchases a BOTTLE
 can he just purchase a potion and get the bottle for free?
-
 should hero just start off with bottles?
 
 
@@ -156,6 +157,12 @@ should hero just start off with bottles?
 
 
 
+
+WorldUI++
+when the hero's health changes, the worldUI should animate hearts individually
+if the hero gains 5 health, each heart should scale up, then animate down
+once that heart's scale reaches 1.0, then the next heart can animate
+this sequential scaling should happen anytime hero's health changes
 
 
 

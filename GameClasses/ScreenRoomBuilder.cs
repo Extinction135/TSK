@@ -38,22 +38,8 @@ namespace DungeonRun
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
-
-            //editor specific flags
-            Flags.EnableTopMenu = true; //necessary
-            Flags.DrawDebugInfo = false; //initial display, can be changed
-            Flags.Invincibility = true; //hero cannot die in editor
-            Flags.InfiniteMagic = true; //hero has infinite magic
-            Flags.InfiniteGold = true; //hero has infinite gold
-            Flags.InfiniteArrows = true; //hero has infinite arrows
-            Flags.InfiniteBombs = true; //hero has infinite bombs
-            Flags.CameraTracksHero = false; //center to room
-            Flags.ShowEnemySpawns = true; //necessary for editing
-
-            //set testing saveData
-            PlayerData.current.magicFireball = true;
-            PlayerData.current.weaponBow = true;
-
+            SetEditorFlags();
+            SetEditorLoadout();
             Flags.Paused = false; //unpause editor initially
         }
 
@@ -80,5 +66,47 @@ namespace DungeonRun
             ScreenManager.spriteBatch.End();
         }
 
+
+
+        public void SetEditorFlags()
+        {   //editor specific flags
+            Flags.EnableTopMenu = true; //necessary
+            Flags.DrawDebugInfo = false; //initial display, can be changed
+            Flags.Invincibility = true; //hero cannot die in editor
+            Flags.InfiniteMagic = true; //hero has infinite magic
+            Flags.InfiniteGold = true; //hero has infinite gold
+            Flags.InfiniteArrows = true; //hero has infinite arrows
+            Flags.InfiniteBombs = true; //hero has infinite bombs
+            Flags.CameraTracksHero = false; //center to room
+            Flags.ShowEnemySpawns = true; //necessary for editing
+        }
+
+        public void SetEditorLoadout()
+        {   //unlock most/all items
+            PlayerData.current = new SaveData();
+
+            PlayerData.current.heartsTotal = 9;
+            Pool.hero.health = 3;
+            PlayerData.current.bombsCurrent = 99;
+            PlayerData.current.arrowsCurrent = 99;
+
+            //set items
+            PlayerData.current.bottleA = 2;
+            PlayerData.current.bottleB = 3;
+            PlayerData.current.bottleC = 4;
+            PlayerData.current.magicFireball = true;
+
+            //set weapons
+            PlayerData.current.weaponBow = true;
+            PlayerData.current.weaponNet = true;
+
+            //set armor
+            PlayerData.current.armorChest = true;
+            PlayerData.current.armorCape = true;
+            PlayerData.current.armorRobe = true;
+
+            //set equipment
+            PlayerData.current.equipmentRing = true;
+        }
     }
 }

@@ -107,7 +107,7 @@ namespace DungeonRun
             }
             else if (bottleValue == 2) 
             {   //use health potion
-                Pool.hero.health = Pool.hero.maxHealth;
+                Pool.hero.health = PlayerData.current.heartsTotal;
                 Functions_Entity.SpawnEntity(ObjType.ParticleBottleHealth, Pool.hero);
             }
             else if (bottleValue == 3)
@@ -117,13 +117,13 @@ namespace DungeonRun
             }
             else if (bottleValue == 4)
             {   //use combo potion
-                Pool.hero.health = Pool.hero.maxHealth;
+                Pool.hero.health = PlayerData.current.heartsTotal;
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
                 Functions_Entity.SpawnEntity(ObjType.ParticleBottleCombo, Pool.hero);
             }
             else if (bottleValue == 5)
             {   //use fairy in a bottle
-                Pool.hero.health = Pool.hero.maxHealth;
+                Pool.hero.health = PlayerData.current.heartsTotal;
                 Functions_Entity.SpawnEntity(ObjType.ParticleBottleFairy, Pool.hero);
             }
 
