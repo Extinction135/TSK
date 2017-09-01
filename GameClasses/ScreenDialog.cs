@@ -17,7 +17,6 @@ namespace DungeonRun
         public Dialog dialogType = Dialog.Default;
         public ObjType speakerType;
         public String dialogString;
-        Boolean updateDungeonScreen;
         ScreenRec background = new ScreenRec();
         ScreenRec foreground = new ScreenRec();
 
@@ -38,7 +37,6 @@ namespace DungeonRun
             speakerType = ObjType.VendorStory; 
             background.fade = false;
             foreground.fade = false;
-            updateDungeonScreen = false; //pause dungeon
             
 
             #region Game Saved/Loaded/Created/etc Dialogs
@@ -82,14 +80,13 @@ namespace DungeonRun
             #region Dungeon Dialogs
 
             else if (dialogType == Dialog.DoesNotHaveKey)
-            { dialogString = "This door is locked. You'll need a key to open it."; updateDungeonScreen = true; }
+            { dialogString = "This door is locked. You'll need a key to open it."; }
             else if (dialogType == Dialog.HeroGotKey)
-            { dialogString = "You found the dungeon key. It can open any door."; updateDungeonScreen = true; }
+            { dialogString = "You found the dungeon key. It can open any door."; }
             else if (dialogType == Dialog.HeroGotMap)
             {
                 dialogString = "You found the dungeon map! This map reveals the location of all rooms.";
                 dialogString += "\nPress the SELECT or BACK button to view this dungeon map.";
-                updateDungeonScreen = true;
             }
 
             #endregion
@@ -117,7 +114,7 @@ namespace DungeonRun
 
 
             else //default dialog
-            { dialogString = "this is the default guide text..."; updateDungeonScreen = true; }
+            { dialogString = "this is the default guide text..."; }
 
             //display the dialog
             Widgets.Dialog.Reset(16 * 9, 16 * 12);
@@ -125,6 +122,12 @@ namespace DungeonRun
             //play the opening soundFX
             Assets.Play(Assets.sfxWindowOpen);
             displayState = DisplayState.Opening;
+
+            //display hero's current animation 
+            //he may of been set into an animation just as dialog screen was created
+            Functions_ActorAnimationList.SetAnimationGroup(Pool.hero);
+            Functions_ActorAnimationList.SetAnimationDirection(Pool.hero);
+            Functions_Animation.Animate(Pool.hero.compAnim, Pool.hero.compSprite);
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -196,11 +199,6 @@ namespace DungeonRun
 
 
             Widgets.Dialog.Update();
-            if(updateDungeonScreen) //if we should update dungeon screen,
-            {   //& if the dungeon screen exists, do so
-                if (Functions_Level.levelScreen != null)
-                { Functions_Level.levelScreen.Update(GameTime); }
-            }
         }
 
         public override void Draw(GameTime GameTime)

@@ -44,47 +44,31 @@ v0.7 goals
 
 
 
-6
+5
 
 
 
-Implement Fairy Actors
 
-fairy actors randomly float around.
-upon collision with hero, they restore hero's health.
+DialogScreen++
 
-added Fairy value to ActorType enum.
-added Fairy AnimationGroup to actorAnims.
-added Fairy to Functions_Actor.SetType().
-added Fairy to Functions_Ai.SetActorInput().
+removed boolean PauseDungeonScreen from DialogScreen.
+this boolean controlled if the Dungeon/Level screen received updates from DialogScreen.
+this was being done so that the hero could finish his animation.
+for example, when the hero open the map chest, he got the map.
+he holds it above it his head (reward anim) and dialog screen opens.
+however, if we pause the level screen, then the hero doesn't have enough time
+to transition into his reward animation, so it looks wrong.
 
-added SpawnFairy value to ObjType.
-added path for SpawnFairy to GameObj.SetType().
-added ObjAnimList for SpawnFairy.
-updated ObjectToolsWidget to place fairySpawn.
+updated DialogScreen to set hero into his current animation when the screen opens.
+this solves the problem of the hero's sprite being displayed incorrectly.
+plus, we no longer have to update the level screen (unpause game).
+if we continued to run the game while the dialog screen was open,
+it prevented player from passing input to hero, while enemies were still moving around.
+this led to a state where the enemies could attack and kill the hero,
+and the player couldn't do anything about it, which sucks.
+so that had to be fixed.
 
-created a testing level for fairys.
-added path for Fairy to Actor.SetDeathState().
-created InteractHero(Actor) to handle Hero vs Actor interactions.
-added path for Fairy to InteractHero(Actor).
-updated CheckActorPoolCollisions() to pass colliding actors to InteractHero(Actor).
-
-updated actor's default moving to be ground-based.
-this is done via the actor.compMove.grounded boolean.
-updated InteractActor(Actor, Obj) to consider grounded boolean.
-if an actor isn't grounded (flying), then they are not affected by
-spikeFloors, conveyorBelts, or pits.
-updated Actor.SetType() to make fairy flying (grounded = false).
-
-updated Roombuilder with methods for setting testing flags + loadout.
-updated InteractActor(Actor, Obj) to ignore projectile collisions with fairys.
-this basically means fairys can't be killed, only absorbed by hero.
-
-removed actor.maxHealth from codebase.
-updated various paths that used maxHealth.
-fixed a bug where hero's health was set to max when a room was loaded in editor.
-this fix allowed me to test absorbing a fairy, which works.
-lots of playtesting, working well.
+playtested, working as expected.
 
 
 
@@ -97,26 +81,16 @@ lots of playtesting, working well.
 
 
 
-we need fairy soundfx for when fairy dies/hit
+Fairies++
 
+fairy actors should also spawn as part of Functions_Loot.
+we need fairy soundfx for when fairy dies (absorbed or captured).
 
-
-
-how do captured actors work?
-we can capture some actors using a net and empty bottle.
-the first of these actors is the fairy actor.
-so we need to create the fairy actor
-
-implement capturing fairys
-this is a collision check between NET and FAIRY actor
-if this collision is true, then check to see if hero has an empty bottle
-fill bottle with fairy, kill fairy actor, pop dialog alerting player to fairy capture
-else pop dialog alerting player they have no empty bottles to place fairy in
-make sure to freeze game during these dialogs
-
-
-
-
+implement capturing fairy actors in bottles
+this is done by checking a net projectile collision against fairy collisionRec
+if true, check to see if hero has empty bottle (else no bottle dialog)
+if true, fairy actor dies, bottle gets filled with fairy, fairy captured dialog
+* make sure to freeze game during these dialogs *
 
 
 
@@ -124,38 +98,6 @@ make sure to freeze game during these dialogs
 
 NET++
 add a swipe sound effect for net
-
-
-improve dialog screen 
-if we freeze game during dialog, the game should be allowed to elapse a few frames before freezing
-this allows the hero to be set into a reward state, if he gets rewarded (key/map) prior to dialog display
-update map/key get to freeze game (but allow enough time to transition into reward state)
-
-
-BOTTLES
-we also need to clarify how hero purchases a BOTTLE
-can he just purchase a potion and get the bottle for free?
-should hero just start off with bottles?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 WorldUI++
@@ -166,6 +108,46 @@ this sequential scaling should happen anytime hero's health changes
 
 
 
+
+
+
+
+Implement Boomerang
+this is a projectile that flys in a thrown direction
+then upon hitting something colliding, returns to hero
+if the something it hits is a pickup obj or fairy obj, 
+then that obj/actor travels with boomerang back to hero
+this item should be sold by the items vendor (for now)
+if boomerang hits an actor that isn't fairy, it should push that actor, but deal no damage
+
+boomerang's return
+we'll have to get the direction to hero, like we do in Functions_Ai
+the move the boomrang in that direction
+the boomerang will continuously spin, so it doesn't have a movement direction
+we'll need to update the rotationValue for boomerang each animation frame
+
+attachment
+how do we attach an obj/actor to boomerang? i dunno
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BOTTLES
+we also need to clarify how hero purchases a BOTTLE
+can he just purchase a potion and get the bottle for free?
+should hero just start off with bottles?
+we can easily sell bottles from potion vendor, or create a bottle vendor
+which seems 1 dimensional, because that vendor will quickly get used up and ignored
 
 
 Destroyed Debris object
