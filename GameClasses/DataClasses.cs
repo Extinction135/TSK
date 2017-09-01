@@ -192,18 +192,8 @@ namespace DungeonRun
 
             //reset all the pools
             Functions_Pool.Reset();
-
             //create an easy to remember reference to the player/hero actor
             hero = actorPool[0];
-            //set the hero's initial loadout
-            //we shouldn't really be doing this here, it's buried in the pool class which makes no sense
-            //it'd be better to set the hero's loadOut when gameData is loaded
-            //and by default we should load gameData set to the new game values
-            hero.weapon = MenuItemType.WeaponSword;
-            hero.item = MenuItemType.Unknown;
-            hero.armor = MenuItemType.ArmorCloth;
-            hero.equipment = MenuItemType.Unknown;
-
             //create the hero's shadow + rec
             heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;
@@ -701,7 +691,7 @@ namespace DungeonRun
 
 
         //the hero's last selected item
-        //0=bombs, 1=boomerang, 2=bottle2, 3=bottle3, 4=bottle4
+        //0=boomerang, 1=bombs, 2=bottle2, 3=bottle3, 4=bottle4
         //5=fireball, 6=???, 7=???, 8=???, 9???
         public byte currentItem = 0; 
 
@@ -736,11 +726,11 @@ namespace DungeonRun
 
         public byte currentEquipment = 0;
         //0=ring, 1=pearl, 2=necklace, 3=glove, 4=pin
-        public Boolean equipmentRing = false;
-        //pearl
-        //necklace
-        //glove
-        //pin
+        public Boolean equipmentRing = true;
+        public Boolean equipmentPearl = false;
+        public Boolean equipmentNecklace = false;
+        public Boolean equipmentGlove = false;
+        public Boolean equipmentPin = false;
 
 
 

@@ -28,7 +28,7 @@ namespace DungeonRun
             //register this dungeon screen with Functions_Level
             Functions_Level.levelScreen = this;
             Functions_Level.BuildLevel();
-            //ActorFunctions.SetType(Pool.hero, Actor.Type.Blob);
+            Functions_Actor.SetHeroLoadout();
             //open the screen
             displayState = DisplayState.Opening;
         }

@@ -44,30 +44,24 @@ v0.7 goals
 
 
 
-13
+12
 
 
 
 
-Remodel how Bottles are Saved
 
-removed all boolean related to Bottles from SaveData.
-created 3 bytes to represent each of the three bottles, in SaveData.
-updated various codepaths to use the new bottle byte values.
+Load/Set Hero's Loadout Properly
 
-created IventoryWidget.SetBottleSprite(MenuItem, Byte).
-this handles setting the bottle's sprite based on the current playerData instance.
+created SetHeroLoadout() in Functions_Actor.
+updated ScreenLevel.LoadContent() to call SetHeroLoadout().
+this ensures that whenever a level screen is created,
+the hero will load his loadout from the player.current SaveData instance.
+this SaveData instance is set via the LoadSaveNew screen.
 
-added (Bytes) currentItem, currentWeapon, currentArmor, currentEquipment to saveData.
-this will allow us to save the hero's loadout, while also solving a bottle problem.
-updated InventoryScreen.SetLoadOut() to set the value for currentItem/Weapon/Armor/Equipment.
-updated VendorScreen.PurchaseItem() to handle new bottle data scheme.
-added VendorScreen.DialogBottlesFull().
+updated organization of saveData to make item[0] bombs, instead of boomerang.
+updated saveData to allow hero to start with lucky ring unlocked.
 
-playtested, working as expected, with a few small bugs.
-
-fixed a bug where the hero's item wasn't set upon potion purchase.
-fixed a bug where the hero'c currentItem wasn't set upon potion purchase.
+playtested, working as expected.
 
 
 
@@ -77,20 +71,16 @@ fixed a bug where the hero'c currentItem wasn't set upon potion purchase.
 
 
 
-
-we are not loading the bottle data properly (or item, weapon, armor, equipment data)
-
-
+we should be autosaving after a savegame / loadgame
+this will set the game's current data, thus setting the hero's current loadout
 
 
 
 
 
 
-Save/Load the Hero's loadout
 
-we'll need to set hero's loadout when a game is loaded as well
-update inventory widget to properly display hero's loadout (based on current bytes)
+
 
 
 

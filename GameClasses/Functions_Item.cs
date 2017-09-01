@@ -14,13 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_Item
     {
-
-
-
-
-
-
-
         public static void UseItem(MenuItemType Type, Actor Actor)
         {   //all actors can use items, magic, and weapons
 
@@ -101,8 +94,6 @@ namespace DungeonRun
 
         }
 
-
-        
         public static void UseBottle(Byte bottleID, Byte bottleValue)
         {   //only hero can use bottles
             if(bottleValue == 1)
@@ -142,13 +133,6 @@ namespace DungeonRun
                 || Pool.hero.item == MenuItemType.BottleFairy)
             { Pool.hero.item = MenuItemType.BottleEmpty; }
         }
-
-
-        
-        //useWeapon()
-        //we shoe-horned weapons into the above useItem() method
-        
-
 
         static Boolean CheckMagic(int castingCost)
         {   //if infinite magic is enabled, allow

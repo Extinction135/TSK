@@ -293,9 +293,9 @@ namespace DungeonRun
         {   //check to see what currentlySelected points to, set loadout value + hero item/weapon/armor/equipment
 
             //non-magic items
-            if (currentlySelected == Widgets.Inventory.menuItems[0]) //boomerang
+            if (currentlySelected == Widgets.Inventory.menuItems[0]) //bombs
             { PlayerData.current.currentItem = 0; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[1]) //bombs
+            else if (currentlySelected == Widgets.Inventory.menuItems[1]) //boomerang
             { PlayerData.current.currentItem = 1; Pool.hero.item = currentlySelected.type; }
             else if (currentlySelected == Widgets.Inventory.menuItems[2]) //bottle1
             { PlayerData.current.currentItem = 2; Pool.hero.item = currentlySelected.type; }

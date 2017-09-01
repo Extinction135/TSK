@@ -78,7 +78,7 @@ namespace DungeonRun
             //set the menuItem's neighbors
             Functions_MenuItem.SetNeighbors(menuItems, 5);
             //align the amount displays
-            Functions_Component.Align(bombsDisplay, menuItems[1].compSprite);
+            Functions_Component.Align(bombsDisplay, menuItems[0].compSprite);
             Functions_Component.Align(arrowsDisplay, menuItems[11].compSprite);
             bombsDisplay.visible = true; //bomb amount is always displayed
             arrowsDisplay.visible = false; //arrow amount is displayed if hero has bow
@@ -121,11 +121,11 @@ namespace DungeonRun
 
             #region Items
 
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[0]);
-
             //display the hero's bombs + amount
-            Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
+            Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[0]);
             Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
+
+            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[1]);
 
             #endregion
 
