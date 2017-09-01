@@ -107,6 +107,15 @@ namespace DungeonRun
 
 
 
+        public void SetBottleSprite(MenuItem menuItem, Byte value)
+        {
+            if (value == 0) { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItem); }
+            else if (value == 1) { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItem); }
+            else if (value == 2) { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItem); }
+            else if (value == 3) { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItem); }
+            else if (value == 4) { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItem); }
+        }
+
         public void SetInventoryMenuItems()
         {
 
@@ -123,21 +132,9 @@ namespace DungeonRun
 
             #region Bottles
 
-            //set the empty bottles based on booleans
-            if (PlayerData.current.bottle1)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[2]); }
-            if (PlayerData.current.bottle2)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[3]); }
-            if (PlayerData.current.bottle3)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItems[4]); }
-
-            //set the filled bottles based on booleans
-            if (PlayerData.current.bottleHealth)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[2]); }
-            if (PlayerData.current.bottleMagic)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[3]); }
-            if (PlayerData.current.bottleFairy)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[4]); }
+            SetBottleSprite(menuItems[2], PlayerData.current.bottleA);
+            SetBottleSprite(menuItems[3], PlayerData.current.bottleB);
+            SetBottleSprite(menuItems[4], PlayerData.current.bottleC);
 
             #endregion
 
@@ -160,9 +157,8 @@ namespace DungeonRun
             Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponSword, menuItems[10]);
 
             if (PlayerData.current.weaponBow)
-            {
+            {   //if hero has arrows, display the number of arrows + draw display amount
                 Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
-                //if hero has arrows, display the number of arrows + draw display amount
                 Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
                 arrowsDisplay.visible = true;
             }

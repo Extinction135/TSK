@@ -49,33 +49,77 @@ v0.7 goals
 
 
 
+Remodel how Bottles are Saved
 
-Implement Fairy
+removed all boolean related to Bottles from SaveData.
+created 3 bytes to represent each of the three bottles, in SaveData.
+updated various codepaths to use the new bottle byte values.
 
-added PickupFairy value to ObjType enum.
-added ObjAnimList for PickupFairy.
-updated Obj.SetType() with path for FairyPickup.
-updated Functions_Loot.SpawnLoot() with path for FairyPickup.
-updated Functions_Ai.HandleObj().
-updated InteractActor() to handle FairyPickup.
-if hero collides with fairy, his health is fully restored.
-added Fairy Pickup Object to ObjectTools Widget.
+created IventoryWidget.SetBottleSprite(MenuItem, Byte).
+this handles setting the bottle's sprite based on the current playerData instance.
 
-changed parameter name InteractObject(Projectile) to InteractObject(Entity).
-this more accurately represents what this parameter gameobj can be.
+added (Bytes) currentItem, currentWeapon, currentArmor, currentEquipment to saveData.
+this will allow us to save the hero's loadout, while also solving a bottle problem.
+updated InventoryScreen.SetLoadOut() to set the value for currentItem/Weapon/Armor/Equipment.
+updated VendorScreen.PurchaseItem() to handle new bottle data scheme.
+added VendorScreen.DialogBottlesFull().
 
-playtested, working, but fairys can fly thru walls.
-the reason this happens is because the fairy is a pickup, 
-and pickups aren't collision checked.
-if we want the fairy to get collision checks, then it needs to be a projectile.
+playtested, working as expected, with a few small bugs.
 
-changed PickupFairy to ProjectileFairy throughout codebase.
-updated Functions_Interaction to handle ProjectileFairy.
-playtested, working much better. fairys dont fly thru walls anymore.
+fixed a bug where the hero's item wasn't set upon potion purchase.
+fixed a bug where the hero'c currentItem wasn't set upon potion purchase.
 
-but, we need to create an attention particle when hero collides with them.
-updated HandleDeathEvent() to spawn Attention particle upon hero collision with fairy.
-playtested, working as expected.
+
+
+
+
+
+
+
+
+
+we are not loading the bottle data properly (or item, weapon, armor, equipment data)
+
+
+
+
+
+
+
+
+Save/Load the Hero's loadout
+
+we'll need to set hero's loadout when a game is loaded as well
+update inventory widget to properly display hero's loadout (based on current bytes)
+
+
+
+
+
+the bookcases in shop overlap the back wall, causing the walls to disappear
+the bookcases collision recs should match the objects they used to represent
+(they should be smaller vertically)
+
+
+
+
+
+
+
+sprint1:
+
+remodel bottles and their contents
+how do we model bottles and their contents?
+
+we store if hero has bottle1, 2, 3 using saveData.bottle1 boolean
+we can store the contents of bottle1 using a byte,
+like this: saveData.bottle1contents = 0; //which would be empty
+bottle1contents = 1; //which could be health potion, 2=magic, 3=combo, 4=fairy
+
+then we can check for a bottle that has a byte of 0, in order to fill it
+
+
+
 
 
 
@@ -94,9 +138,16 @@ if no bottle is available, then dialog screen tells player so (freeze game)
 upon collision, kill NET weapon projectile
 
 we should be able to purchase the NET from the weapons vendor..
+create dungeon rooms with fairys in them
 
 
 
+
+
+
+
+we also need to clarify how hero purchases a BOTTLE
+can he just purchase a potion and get the bottle for free?
 
 
 

@@ -254,36 +254,30 @@ namespace DungeonRun
 
                 else if (Item.type == MenuItemType.BottleHealth)
                 {
-                    if (!PlayerData.current.bottleHealth)
-                    {
-                        PlayerData.current.bottle1 = true;
-                        PlayerData.current.bottleHealth = true;
-                        Pool.hero.item = Item.type;
+                    if (FillEmptyBottle(2)) //if we can fill a bottle
+                    {   //set hero's item, complete the sale
+                        Pool.hero.item = MenuItemType.BottleHealth;
                         CompleteSale(Item);
                     }
-                    else { DialogCarryingMaxAmount(); }
+                    else { DialogBottlesFull(); } //else alert player
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
                 {
-                    if (!PlayerData.current.bottleMagic)
-                    {
-                        PlayerData.current.bottle2 = true;
-                        PlayerData.current.bottleMagic = true;
-                        Pool.hero.item = Item.type;
+                    if (FillEmptyBottle(3)) //if we can fill a bottle
+                    {   //set hero's item, complete the sale
+                        Pool.hero.item = MenuItemType.BottleMagic;
                         CompleteSale(Item);
                     }
-                    else { DialogCarryingMaxAmount(); }
+                    else { DialogBottlesFull(); } //else alert player
                 }
                 else if (Item.type == MenuItemType.BottleFairy)
                 {
-                    if (!PlayerData.current.bottleFairy)
-                    {
-                        PlayerData.current.bottle3 = true;
-                        PlayerData.current.bottleFairy = true;
-                        Pool.hero.item = Item.type;
+                    if (FillEmptyBottle(4)) //if we can fill a bottle
+                    {   //set hero's item, complete the sale
+                        Pool.hero.item = MenuItemType.BottleFairy;
                         CompleteSale(Item);
-                    }
-                    else { DialogCarryingMaxAmount(); }
+                    } 
+                    else { DialogBottlesFull(); } //else alert player
                 }
 
                 #endregion
@@ -388,6 +382,33 @@ namespace DungeonRun
             DialogPurchaseThankyou();
         }
 
+        public Boolean FillEmptyBottle(byte fillValue)
+        {   //find a bottle with a value of 1 (empty), fill it
+            if (PlayerData.current.bottleA == 1)
+            {
+                PlayerData.current.bottleA = fillValue;
+                PlayerData.current.currentItem = 2; //bottleA
+                return true;
+            }
+            else if (PlayerData.current.bottleB == 1)
+            {
+                PlayerData.current.bottleB = fillValue;
+                PlayerData.current.currentItem = 3; //bottleB
+                return true;
+            }
+            else if (PlayerData.current.bottleC == 1)
+            {
+                PlayerData.current.bottleC = fillValue;
+                PlayerData.current.currentItem = 4; //bottleC
+                return true;
+            }
+            else { return false; } //did not find an empty bottle
+        }
+
+
+
+
+
         public void DialogNotEnoughGold()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
@@ -406,6 +427,13 @@ namespace DungeonRun
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
                     "you are carrying the maximum amount of this item.");
+            Assets.Play(Assets.sfxError);
+        }
+
+        public void DialogBottlesFull()
+        {
+            Widgets.Dialog.DisplayDialog(vendorType.type,
+                    "you do not have an empty bottle available to fill.");
             Assets.Play(Assets.sfxError);
         }
 

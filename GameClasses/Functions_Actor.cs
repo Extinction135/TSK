@@ -232,8 +232,23 @@ namespace DungeonRun
                     { 
                         Actor.stateLocked = true;
                         Functions_Movement.StopMovement(Actor.compMove);
-                        Functions_Item.UseItem(Actor.item, Actor);
-                        if (Actor == Pool.hero) { WorldUI.currentItem.compSprite.scale = 2.0f; }
+                        
+                        //check hero specific cases
+                        if (Actor == Pool.hero)
+                        {   //bottles are handled seperately
+                            if (PlayerData.current.currentItem == 2) //bottle1
+                            { Functions_Item.UseBottle(1, PlayerData.current.bottleA); }
+                            else if (PlayerData.current.currentItem == 3) //bottle2
+                            { Functions_Item.UseBottle(2, PlayerData.current.bottleB); }
+                            else if (PlayerData.current.currentItem == 4) //bottle3
+                            { Functions_Item.UseBottle(3, PlayerData.current.bottleC); }
+                            //item is not a bottle
+                            else { Functions_Item.UseItem(Actor.item, Actor); }
+                            //scale up worldUI item sprite
+                            WorldUI.currentItem.compSprite.scale = 2.0f;
+                        }
+                        //useItem() is generalized for actors as well
+                        else { Functions_Item.UseItem(Actor.item, Actor); }
                     }
                     else { Actor.state = ActorState.Idle; } //no item to use
                 }
@@ -292,9 +307,11 @@ namespace DungeonRun
                                     Actor.compSprite.position.X,
                                     Actor.compSprite.position.Y,
                                     Direction.None);
-                            //check to see if hero can use fairy bottle to selfrez
-                            if (PlayerData.current.bottleFairy)
-                            { Functions_Item.UseItem(MenuItemType.BottleFairy, Actor); }
+
+                            //check to see if hero can use fairy bottle to self-rez
+                            if (PlayerData.current.bottleA == 4) { Functions_Item.UseBottle(1, 4); }
+                            else if (PlayerData.current.bottleB == 4) { Functions_Item.UseBottle(2, 4); }
+                            else if (PlayerData.current.bottleC == 4) { Functions_Item.UseBottle(3, 4); }
                             else
                             {   //player has died, failed the dungeon
                                 DungeonRecord.beatDungeon = false;

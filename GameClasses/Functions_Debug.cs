@@ -164,6 +164,16 @@ namespace DungeonRun
             Debug.WriteLine(output);
         }
 
+        public static void InspectBottle(Byte value)
+        {
+            output += "\n  bottle contents: ";
+            if (value == 0) { output += "locked"; }
+            else if (value == 1) { output += "empty"; }
+            else if (value == 2) { output += "health"; }
+            else if (value == 3) { output += "magic"; }
+            else if (value == 4) { output += "fairy"; }
+        }
+
         public static void Inspect(SaveData SaveData)
         {
             output = "\n\n---- SAVE DATA DUMP ----";
@@ -175,23 +185,23 @@ namespace DungeonRun
 
             output += "\n  -- Items --"; ;
             output += "\n  has boomerang: " + PlayerData.current.itemBoomerang;
+            output += "\n  Bottles A, B, C: ";
+            InspectBottle(PlayerData.current.bottleA);
+            InspectBottle(PlayerData.current.bottleB);
+            InspectBottle(PlayerData.current.bottleC);
 
-            output += "\n  has bottle1: " + PlayerData.current.bottle1;
-            output += "\n  has bottle2: " + PlayerData.current.bottle2;
-            output += "\n  has bottle3: " + PlayerData.current.bottle3;
-
-            output += "\n  has bottleHealth: " + PlayerData.current.bottleHealth;
-            output += "\n  has bottleMagic: " + PlayerData.current.bottleMagic;
-            output += "\n  has bottleFairy: " + PlayerData.current.bottleFairy;
-
+            output += "\n  -- Magic Items --"; ;
             output += "\n  has magicFireball: " + PlayerData.current.magicFireball;
 
+            output += "\n  -- Weapons --"; ;
             output += "\n  has weaponBow: " + PlayerData.current.weaponBow;
 
+            output += "\n  -- Armor --"; ;
             output += "\n  has armorChest: " + PlayerData.current.armorChest;
             output += "\n  has armorCape: " + PlayerData.current.armorCape;
             output += "\n  has armorRobe: " + PlayerData.current.armorRobe;
 
+            output += "\n  -- Equipment --"; ;
             output += "\n  has equipmentRing: " + PlayerData.current.equipmentRing;
 
             output += "\n  -- Crystals --"; ;

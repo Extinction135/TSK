@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -696,31 +696,53 @@ namespace DungeonRun
         public byte arrowsCurrent = 10; //testing
         public byte arrowsMax = 99;
 
+
+
+
+
+        //the hero's last selected item
+        //0=bombs, 1=boomerang, 2=bottle2, 3=bottle3, 4=bottle4
+        //5=fireball, 6=???, 7=???, 8=???, 9???
+        public byte currentItem = 0; 
+
         public Boolean itemBoomerang = false;
         //itemBomb
 
-        public Boolean bottle1 = false;
-        public Boolean bottle2 = false;
-        public Boolean bottle3 = false;
-        public Boolean bottleHealth = false;
-        public Boolean bottleMagic = false;
-        public Boolean bottleFairy = false;
+        //bottle contents represented by byte
+        //0=not owned, 1=empty, 2=health, 3=magic, 4=fairy
+        public byte bottleA = 1;
+        public byte bottleB = 1;
+        public byte bottleC = 1;
 
         public Boolean magicFireball = false;
         //portal
 
+
+
+        public byte currentWeapon = 0;
+        //0=sword, 1=bow, 2=???, 3=???, 4=???
         public Boolean weaponBow = false;
         //axe
 
+
+
+        public byte currentArmor = 0;
+        //0=tunic, 1=chest, 2=cape, 3=robe, 4=???
         public Boolean armorChest = false;
         public Boolean armorCape = false;
         public Boolean armorRobe = false;
 
+
+
+        public byte currentEquipment = 0;
+        //0=ring, 1=pearl, 2=necklace, 3=glove, 4=pin
         public Boolean equipmentRing = false;
         //pearl
         //necklace
         //glove
         //pin
+
+
 
         //crystal booleans
         public Boolean crystal1 = false;
