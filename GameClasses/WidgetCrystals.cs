@@ -60,28 +60,28 @@ namespace DungeonRun
             #region Set the menuItem's data (filled or empty crystals)
 
             if (PlayerData.current.crystal1)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[0]); }
-            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[0]); }
+            { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, menuItems[0]); }
+            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, menuItems[0]); }
 
             if (PlayerData.current.crystal2)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[1]); }
-            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[1]); }
+            { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, menuItems[1]); }
+            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, menuItems[1]); }
 
             if (PlayerData.current.crystal3)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[2]); }
-            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[2]); }
+            { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, menuItems[2]); }
+            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, menuItems[2]); }
 
             if (PlayerData.current.crystal4)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[3]); }
-            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[3]); }
+            { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, menuItems[3]); }
+            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, menuItems[3]); }
 
             if (PlayerData.current.crystal5)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[4]); }
-            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[4]); }
+            { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, menuItems[4]); }
+            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, menuItems[4]); }
 
             if (PlayerData.current.crystal6)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalFilled, menuItems[5]); }
-            else { Functions_MenuItem.SetMenuItemData(MenuItemType.CrystalEmpty, menuItems[5]); }
+            { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, menuItems[5]); }
+            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, menuItems[5]); }
 
             #endregion
 

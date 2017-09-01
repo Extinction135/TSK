@@ -86,12 +86,11 @@ namespace DungeonRun
         //ENTITIES
         //Pickups - collide with hero
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
-        //Projectiles - collide with actors
-        //items
-        ProjectileBomb, ProjectileFireball, 
-        //weapons
+        //Projectiles -items
+        ProjectileBomb, ProjectileFireball,
+        //Projectiles -weapons
         ProjectileSword, ProjectileArrow, ProjectileNet,
-        //other
+        //Projectiles -other
         ProjectileExplosion, ProjectileSpikeBlock, ProjectileDebrisRock,
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation, 
@@ -102,7 +101,7 @@ namespace DungeonRun
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleSplash, ParticleDoorCollapse,
         ParticleBow,
-        ParticleBottleEmpty, ParticleBottleHealth, ParticleBottleMagic, ParticleBottleFairy,
+        ParticleBottleEmpty, ParticleBottleHealth, ParticleBottleMagic, ParticleBottleCombo, ParticleBottleFairy,
         //Particles - rewards
         ParticleRewardKey, ParticleRewardMap,
     }
@@ -121,10 +120,10 @@ namespace DungeonRun
         ItemHeart, ItemBomb, ItemBomb3Pack, ItemArrowPack,
         ItemBoomerang,
 
-        BottleEmpty, BottleHealth, BottleMagic, BottleFairy,
+        BottleEmpty, BottleHealth, BottleMagic, BottleCombo, BottleFairy,
 
         MagicFireball,
-        WeaponSword, WeaponBow, WeaponNet, //WeaponStaff, //WeaponAxe, //,
+        WeaponSword, WeaponBow, WeaponNet, //WeaponStaff, //WeaponAxe
         ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
         EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
     }

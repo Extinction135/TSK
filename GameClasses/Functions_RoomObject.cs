@@ -114,7 +114,6 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.VendorPotions)
             {   //add all the potions from the main sheet
-                //objRef.compAnim.currentAnimation.Add(new Byte4(6, 5, 0, 0)); //empty bottle
                 objRef.compAnim.currentAnimation.Add(new Byte4(6, 6, 0, 0)); //health
                 objRef.compAnim.currentAnimation.Add(new Byte4(6, 7, 0, 0)); //magic
                 objRef.compAnim.currentAnimation.Add(new Byte4(6, 8, 0, 0)); //combo

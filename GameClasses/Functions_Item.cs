@@ -116,9 +116,14 @@ namespace DungeonRun
                 Functions_Entity.SpawnEntity(ObjType.ParticleBottleMagic, Pool.hero);
             }
             else if (bottleValue == 4)
-            {   //use fairy in a bottle
+            {   //use combo potion
                 Pool.hero.health = Pool.hero.maxHealth;
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
+                Functions_Entity.SpawnEntity(ObjType.ParticleBottleCombo, Pool.hero);
+            }
+            else if (bottleValue == 5)
+            {   //use fairy in a bottle
+                Pool.hero.health = Pool.hero.maxHealth;
                 Functions_Entity.SpawnEntity(ObjType.ParticleBottleFairy, Pool.hero);
             }
 
@@ -135,6 +140,7 @@ namespace DungeonRun
             //if hero's item is a bottle, set it to be empty
             if (Pool.hero.item == MenuItemType.BottleHealth
                 || Pool.hero.item == MenuItemType.BottleMagic
+                || Pool.hero.item == MenuItemType.BottleCombo
                 || Pool.hero.item == MenuItemType.BottleFairy)
             { Pool.hero.item = MenuItemType.BottleEmpty; }
         }

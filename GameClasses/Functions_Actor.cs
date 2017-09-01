@@ -122,11 +122,31 @@ namespace DungeonRun
             { Pool.hero.item = MenuItemType.ItemBoomerang; }
             //set item to bottle (based on bottle contents)
             else if (PlayerData.current.currentItem == 2)
-            { Pool.hero.item = MenuItemType.BottleEmpty; }
+            {
+                if (PlayerData.current.bottleA == 1) { Pool.hero.item = MenuItemType.BottleEmpty; }
+                else if (PlayerData.current.bottleA == 2) { Pool.hero.item = MenuItemType.BottleHealth; }
+                else if (PlayerData.current.bottleA == 3) { Pool.hero.item = MenuItemType.BottleMagic; }
+                else if (PlayerData.current.bottleA == 4) { Pool.hero.item = MenuItemType.BottleCombo; }
+                else if (PlayerData.current.bottleA == 5) { Pool.hero.item = MenuItemType.BottleFairy; }
+            }
             else if (PlayerData.current.currentItem == 3)
-            { Pool.hero.item = MenuItemType.BottleEmpty; }
+            {
+                if (PlayerData.current.bottleB == 1) { Pool.hero.item = MenuItemType.BottleEmpty; }
+                else if (PlayerData.current.bottleB == 2) { Pool.hero.item = MenuItemType.BottleHealth; }
+                else if (PlayerData.current.bottleB == 3) { Pool.hero.item = MenuItemType.BottleMagic; }
+                else if (PlayerData.current.bottleB == 4) { Pool.hero.item = MenuItemType.BottleCombo; }
+                else if (PlayerData.current.bottleB == 5) { Pool.hero.item = MenuItemType.BottleFairy; }
+            }
             else if (PlayerData.current.currentItem == 4)
-            { Pool.hero.item = MenuItemType.BottleEmpty; }
+            {
+                if (PlayerData.current.bottleC == 1) { Pool.hero.item = MenuItemType.BottleEmpty; }
+                else if (PlayerData.current.bottleC == 2) { Pool.hero.item = MenuItemType.BottleHealth; }
+                else if (PlayerData.current.bottleC == 3) { Pool.hero.item = MenuItemType.BottleMagic; }
+                else if (PlayerData.current.bottleC == 4) { Pool.hero.item = MenuItemType.BottleCombo; }
+                else if (PlayerData.current.bottleC == 5) { Pool.hero.item = MenuItemType.BottleFairy; }
+            }
+
+
             //magic items
             else if (PlayerData.current.currentItem == 5)
             { Pool.hero.item = MenuItemType.MagicFireball; }

@@ -51,7 +51,7 @@ namespace DungeonRun
             }
         }
 
-        public static void SetMenuItemData(MenuItemType Type, MenuItem MenuItem)
+        public static void SetType(MenuItemType Type, MenuItem MenuItem)
         {
             //set the MenuItem data based on the passed Type
             MenuItem.type = Type;
@@ -122,10 +122,17 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 7, 0, 0) };
                 MenuItem.price = 20;
             }
+            else if (Type == MenuItemType.BottleCombo)
+            {
+                MenuItem.name = "Combo Potion";
+                MenuItem.description = "Fully restores all\nhearts and magic.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 8, 0, 0) };
+                MenuItem.price = 50;
+            }
             else if (Type == MenuItemType.BottleFairy)
             {
                 MenuItem.name = "Fairy in a Bottle";
-                MenuItem.description = "Restores health and \nmagic, even from death.";
+                MenuItem.description = "Fully restores health, \neven from death.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 9, 0, 0) };
                 MenuItem.price = 50;
             }

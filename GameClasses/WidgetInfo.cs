@@ -46,7 +46,7 @@ namespace DungeonRun
             description.position.X = X + 8;
             description.position.Y = Y + 16 * 3;
             //reset the infoItem to unknown, align it
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, infoItem);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, infoItem);
             infoItem.compSprite.position.X = X + 16 * 3 + 4;
             infoItem.compSprite.position.Y = Y + 16 * 2;
             //align the goldAmount display to the infoItem

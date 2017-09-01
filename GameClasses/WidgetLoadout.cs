@@ -134,7 +134,7 @@ namespace DungeonRun
         {
             if (Item.type != Type)
             {
-                Functions_MenuItem.SetMenuItemData(Type, Item);
+                Functions_MenuItem.SetType(Type, Item);
                 Item.compSprite.scale = 2.0f;
             }
         }
@@ -148,14 +148,14 @@ namespace DungeonRun
             SetLoadoutItem(equipment, Pool.hero.equipment);
 
             //set the gold, hearts, and dungeon items
-            Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryGold, menuItems[4]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[5]); //unused for now
+            Functions_MenuItem.SetType(MenuItemType.InventoryGold, menuItems[4]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[5]); //unused for now
             if (Level.map) //if player found the map, display it
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryMap, menuItems[6]); }
-            else { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[6]); }
+            { Functions_MenuItem.SetType(MenuItemType.InventoryMap, menuItems[6]); }
+            else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[6]); }
             if (Level.bigKey) //if player found the key, display it
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.InventoryKey, menuItems[7]); }
-            else { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[7]); }
+            { Functions_MenuItem.SetType(MenuItemType.InventoryKey, menuItems[7]); }
+            else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[7]); }
         }
 
     }

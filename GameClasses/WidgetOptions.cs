@@ -93,15 +93,15 @@ namespace DungeonRun
 
             #region Set the menuItem's data
 
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsSaveGame, menuItems[0]);
+            Functions_MenuItem.SetType(MenuItemType.OptionsSaveGame, menuItems[0]);
             menuItems[0].compSprite.rotation = Rotation.Clockwise180;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsHelpInfo, menuItems[1]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsVideoCtrls, menuItems[2]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsGameCtrls, menuItems[3]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsAudioCtrls, menuItems[4]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsInputCtrls, menuItems[5]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsLoadGame, menuItems[6]);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsQuitGame, menuItems[7]);
+            Functions_MenuItem.SetType(MenuItemType.OptionsHelpInfo, menuItems[1]);
+            Functions_MenuItem.SetType(MenuItemType.OptionsVideoCtrls, menuItems[2]);
+            Functions_MenuItem.SetType(MenuItemType.OptionsGameCtrls, menuItems[3]);
+            Functions_MenuItem.SetType(MenuItemType.OptionsAudioCtrls, menuItems[4]);
+            Functions_MenuItem.SetType(MenuItemType.OptionsInputCtrls, menuItems[5]);
+            Functions_MenuItem.SetType(MenuItemType.OptionsLoadGame, menuItems[6]);
+            Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, menuItems[7]);
 
             #endregion
 

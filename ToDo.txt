@@ -48,21 +48,22 @@ v0.7 goals
 
 
 
-Remove Fairy Projectile from Game
 
-updated various codepaths, removing all refs to fairy projectile.
-we will model the fairy as an actor in a future commit.
+Add Combo Potion to Game
+
+added ParticleBottleCombo value to ObjType.
+added BottleCombo value to MenuItemType.
+updated various methods to use new ObjType and MenuItemType.
+
+removed FairyBottle from SetItemsForSale().
+
+renamed MenuItem.SetMenuItemData() to SetType().
+this makes it consistent with GameObj.SetType() and Actor.SetType().
 
 
 
 
 
-
-add combo potion
-this is the mixed health/magic potion below magic potion sprite in main sheet
-this should be purchasable from potion vendor
-this restores health and magic
-should cost more than health + magic, because it fits in one bottle
 
 
 

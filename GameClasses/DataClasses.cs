@@ -311,8 +311,8 @@ namespace DungeonRun
             //get the hero's current weapon and item
             heroWeapon = Pool.hero.weapon;
             heroItem = Pool.hero.item;
-            Functions_MenuItem.SetMenuItemData(heroWeapon, currentWeapon);
-            Functions_MenuItem.SetMenuItemData(heroItem, currentItem);
+            Functions_MenuItem.SetType(heroWeapon, currentWeapon);
+            Functions_MenuItem.SetType(heroItem, currentItem);
 
             //create the frametime & autosave text components
             frametime = new ComponentText(Assets.font, "test",
@@ -685,11 +685,7 @@ namespace DungeonRun
 
         public byte arrowsCurrent = 10; //testing
         public byte arrowsMax = 99;
-
-
-
-
-
+       
         //the hero's last selected item
         //0=boomerang, 1=bombs, 2=bottle2, 3=bottle3, 4=bottle4
         //5=fireball, 6=???, 7=???, 8=???, 9???
@@ -699,7 +695,7 @@ namespace DungeonRun
         //itemBomb
 
         //bottle contents represented by byte
-        //0=not owned, 1=empty, 2=health, 3=magic, 4=fairy
+        //0=not owned, 1=empty, 2=health, 3=magic, 4=combo, 5=fairy
         public byte bottleA = 1;
         public byte bottleB = 1;
         public byte bottleC = 1;
@@ -715,8 +711,7 @@ namespace DungeonRun
         public Boolean weaponNet = false;
 
 
-
-
+        
         public byte currentArmor = 0;
         //0=tunic, 1=chest, 2=cape, 3=robe, 4=???
         public Boolean armorChest = false;
@@ -808,7 +803,7 @@ namespace DungeonRun
                 new Vector2(-100, 1000),
                 new Byte4(15, 5, 0, 0),
                 new Point(16, 16));
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, this);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, this);
             neighborUp = this; neighborDown = this;
             neighborLeft = this; neighborRight = this;
         }

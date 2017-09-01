@@ -176,9 +176,10 @@ namespace DungeonRun
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleBottleEmpty ||
-                Type == ObjType.ParticleBottleFairy ||
                 Type == ObjType.ParticleBottleHealth ||
-                Type == ObjType.ParticleBottleMagic)
+                Type == ObjType.ParticleBottleMagic ||
+                Type == ObjType.ParticleBottleCombo ||
+                Type == ObjType.ParticleBottleFairy)
             {   //place reward particles above actor's head
                 posRef.Y -= 14;
             }
@@ -363,6 +364,10 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxBeatDungeon);
             }
             else if (Projectile.type == ObjType.ParticleBottleMagic)
+            {
+                Assets.Play(Assets.sfxBeatDungeon);
+            }
+            else if (Projectile.type == ObjType.ParticleBottleCombo)
             {
                 Assets.Play(Assets.sfxBeatDungeon);
             }

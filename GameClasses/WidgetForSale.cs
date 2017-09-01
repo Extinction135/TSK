@@ -42,23 +42,23 @@ namespace DungeonRun
 
             menuItems[0].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[0].compSprite.position.Y = window.background.position.Y + 16 * 2;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[0]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[0]);
 
             menuItems[1].compSprite.position.X = menuItems[0].compSprite.position.X + 24;
             menuItems[1].compSprite.position.Y = menuItems[0].compSprite.position.Y;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[1]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[1]);
 
             menuItems[2].compSprite.position.X = menuItems[1].compSprite.position.X + 24;
             menuItems[2].compSprite.position.Y = menuItems[0].compSprite.position.Y;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[2]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[2]);
 
             menuItems[3].compSprite.position.X = menuItems[2].compSprite.position.X + 24;
             menuItems[3].compSprite.position.Y = menuItems[0].compSprite.position.Y;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[3]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[3]);
 
             menuItems[4].compSprite.position.X = menuItems[3].compSprite.position.X + 24;
             menuItems[4].compSprite.position.Y = menuItems[0].compSprite.position.Y;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[4]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[4]);
 
             #endregion
 
@@ -67,23 +67,23 @@ namespace DungeonRun
 
             menuItems[5].compSprite.position.X = window.background.position.X + 16 * 1;
             menuItems[5].compSprite.position.Y = window.background.position.Y + 16 * 3 + 8;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[5]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[5]);
 
             menuItems[6].compSprite.position.X = menuItems[5].compSprite.position.X + 24;
             menuItems[6].compSprite.position.Y = menuItems[5].compSprite.position.Y;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[6]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[6]);
 
             menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X + 24;
             menuItems[7].compSprite.position.Y = menuItems[5].compSprite.position.Y;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[7]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[7]);
 
             menuItems[8].compSprite.position.X = menuItems[7].compSprite.position.X + 24;
             menuItems[8].compSprite.position.Y = menuItems[5].compSprite.position.Y;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[8]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[8]);
 
             menuItems[9].compSprite.position.X = menuItems[8].compSprite.position.X + 24;
             menuItems[9].compSprite.position.Y = menuItems[5].compSprite.position.Y;
-            Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[9]);
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[9]);
 
             #endregion
 
@@ -119,7 +119,7 @@ namespace DungeonRun
         { 
             for (i = 0; i < 10; i++)
             {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[i]);
+                Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[i]);
                 amounts[i].amount.text = "";
                 amounts[i].visible = false;
             }
@@ -139,39 +139,39 @@ namespace DungeonRun
             //check if hero has any vendor items, via PlayerData.saveData.(itemBoolean)
             if (VendorType == ObjType.VendorItems)
             {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemHeart, menuItems[0]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[1]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb3Pack, menuItems[2]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ItemArrowPack, menuItems[3]);
+                Functions_MenuItem.SetType(MenuItemType.ItemHeart, menuItems[0]);
+                Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.ItemBomb3Pack, menuItems[2]);
+                Functions_MenuItem.SetType(MenuItemType.ItemArrowPack, menuItems[3]);
             }
             else if (VendorType == ObjType.VendorPotions)
             {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItems[0]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItems[1]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItems[2]);
+                Functions_MenuItem.SetType(MenuItemType.BottleHealth, menuItems[0]);
+                Functions_MenuItem.SetType(MenuItemType.BottleMagic, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.BottleCombo, menuItems[2]);
             }
             else if (VendorType == ObjType.VendorMagic)
             {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.MagicFireball, menuItems[0]);
+                Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[0]);
             }
             else if (VendorType == ObjType.VendorWeapons)
             {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponBow, menuItems[0]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponNet, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.WeaponBow, menuItems[0]);
+                Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[1]);
             }
             else if (VendorType == ObjType.VendorArmor)
             {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorChest, menuItems[0]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCape, menuItems[1]);
-                Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[2]);
+                Functions_MenuItem.SetType(MenuItemType.ArmorChest, menuItems[0]);
+                Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.ArmorRobe, menuItems[2]);
             }
             else if (VendorType == ObjType.VendorEquipment)
             {
-                Functions_MenuItem.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[1]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[2]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[3]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, menuItems[4]);
+                Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[0]);
+                //MenuItemFunctions.SetType(MenuItemType.EquipmentPearl, menuItems[1]);
+                //MenuItemFunctions.SetType(MenuItemType.EquipmentNecklace, menuItems[2]);
+                //MenuItemFunctions.SetType(MenuItemType.EquipmentGlove, menuItems[3]);
+                //MenuItemFunctions.SetType(MenuItemType.EquipmentPin, menuItems[4]);
             }
 
 

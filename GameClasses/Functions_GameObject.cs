@@ -96,8 +96,6 @@ namespace DungeonRun
             if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
-
-
         public static void SetType(GameObject Obj, ObjType Type)
         {   //Obj.direction should be set prior to this method running
             Obj.type = Type;
@@ -727,9 +725,10 @@ namespace DungeonRun
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleBottleEmpty ||
-                Type == ObjType.ParticleBottleFairy ||
                 Type == ObjType.ParticleBottleHealth ||
-                Type == ObjType.ParticleBottleMagic)
+                Type == ObjType.ParticleBottleMagic ||
+                Type == ObjType.ParticleBottleCombo ||
+                Type == ObjType.ParticleBottleFairy)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 32;

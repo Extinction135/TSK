@@ -66,14 +66,14 @@ namespace DungeonRun
 
             menuItems = new List<MenuItem>();
             //set the menuItem data
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsContinue, contGame);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsNewGame, newGame);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsLoadGame, loadGame);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsQuitGame, quitGame);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsAudioCtrls, audioCtrls);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsInputCtrls, inputCtrls);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsVideoCtrls, videoCtrls);
-            Functions_MenuItem.SetMenuItemData(MenuItemType.OptionsGameCtrls, gameCtrls);
+            Functions_MenuItem.SetType(MenuItemType.OptionsContinue, contGame);
+            Functions_MenuItem.SetType(MenuItemType.OptionsNewGame, newGame);
+            Functions_MenuItem.SetType(MenuItemType.OptionsLoadGame, loadGame);
+            Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, quitGame);
+            Functions_MenuItem.SetType(MenuItemType.OptionsAudioCtrls, audioCtrls);
+            Functions_MenuItem.SetType(MenuItemType.OptionsInputCtrls, inputCtrls);
+            Functions_MenuItem.SetType(MenuItemType.OptionsVideoCtrls, videoCtrls);
+            Functions_MenuItem.SetType(MenuItemType.OptionsGameCtrls, gameCtrls);
             //customize the continue game menuItem sprite
             contGame.compSprite.rotation = Rotation.Clockwise90;
             //add the menuItems to the menuItems list

@@ -214,8 +214,6 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(0, 10, 0, 0) },
                 //ProjectileDebrisRock
                 new List<Byte4> { new Byte4(15, 15, 0, 0) },
-                //ProjectileFairy
-                new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) },
 
                 #endregion
 
@@ -265,6 +263,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(6, 6, 0, 0) },
                 //ParticleBottleMagic
                 new List<Byte4> { new Byte4(6, 7, 0, 0) },
+                //ParticleBottleCombo
+                new List<Byte4> { new Byte4(6, 8, 0, 0) },
                 //ParticleBottleFairy
                 new List<Byte4> { new Byte4(6, 9, 0, 0) },
 

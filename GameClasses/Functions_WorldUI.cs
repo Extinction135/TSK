@@ -111,12 +111,12 @@ namespace DungeonRun
             if (WorldUI.heroWeapon != Pool.hero.weapon)
             {   //check to see if hero's weapon has changed, update worldUI to new weapon
                 WorldUI.heroWeapon = Pool.hero.weapon;
-                Functions_MenuItem.SetMenuItemData(WorldUI.heroWeapon, WorldUI.currentWeapon);
+                Functions_MenuItem.SetType(WorldUI.heroWeapon, WorldUI.currentWeapon);
             }
             if (WorldUI.heroItem != Pool.hero.item)
             {   //check to see if hero's item has changed, update worldUI to new item
                 WorldUI.heroItem = Pool.hero.item;
-                Functions_MenuItem.SetMenuItemData(WorldUI.heroItem, WorldUI.currentItem);
+                Functions_MenuItem.SetType(WorldUI.heroItem, WorldUI.currentItem);
             }
 
             //check weapon type to see if we should display the weapon's remaining ammo

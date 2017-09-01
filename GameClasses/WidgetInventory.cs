@@ -74,7 +74,7 @@ namespace DungeonRun
             PlaceRow(20, X + 16 * 1, Y + 16 * 12 + 8);
             //reset the menuItems
             for (i = 0; i < menuItems.Count; i++)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItems[i]); }
+            { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[i]); }
             //set the menuItem's neighbors
             Functions_MenuItem.SetNeighbors(menuItems, 5);
             //align the amount displays
@@ -109,11 +109,12 @@ namespace DungeonRun
 
         public void SetBottleSprite(MenuItem menuItem, Byte value)
         {
-            if (value == 0) { Functions_MenuItem.SetMenuItemData(MenuItemType.Unknown, menuItem); }
-            else if (value == 1) { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleEmpty, menuItem); }
-            else if (value == 2) { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleHealth, menuItem); }
-            else if (value == 3) { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleMagic, menuItem); }
-            else if (value == 4) { Functions_MenuItem.SetMenuItemData(MenuItemType.BottleFairy, menuItem); }
+            if (value == 0) { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItem); }
+            else if (value == 1) { Functions_MenuItem.SetType(MenuItemType.BottleEmpty, menuItem); }
+            else if (value == 2) { Functions_MenuItem.SetType(MenuItemType.BottleHealth, menuItem); }
+            else if (value == 3) { Functions_MenuItem.SetType(MenuItemType.BottleMagic, menuItem); }
+            else if (value == 4) { Functions_MenuItem.SetType(MenuItemType.BottleCombo, menuItem); }
+            else if (value == 5) { Functions_MenuItem.SetType(MenuItemType.BottleFairy, menuItem); }
         }
 
         public void SetInventoryMenuItems()
@@ -122,10 +123,10 @@ namespace DungeonRun
             #region Items
 
             //display the hero's bombs + amount
-            Functions_MenuItem.SetMenuItemData(MenuItemType.ItemBomb, menuItems[0]);
+            Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[0]);
             Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
 
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.ItemBoomerang, menuItems[1]);
+            //MenuItemFunctions.SetType(MenuItemType.ItemBoomerang, menuItems[1]);
 
             #endregion
 
@@ -142,48 +143,48 @@ namespace DungeonRun
             #region Set the magic medallion items
 
             if (PlayerData.current.magicFireball)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.MagicFireball, menuItems[5]); }
+            { Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[5]); }
 
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[6]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[7]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[8]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.MagicFireball, menuItems[9]);
+            //MenuItemFunctions.SetType(MenuItemType.MagicFireball, menuItems[6]);
+            //MenuItemFunctions.SetType(MenuItemType.MagicFireball, menuItems[7]);
+            //MenuItemFunctions.SetType(MenuItemType.MagicFireball, menuItems[8]);
+            //MenuItemFunctions.SetType(MenuItemType.MagicFireball, menuItems[9]);
 
             #endregion
 
 
             #region Weapons
 
-            Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponSword, menuItems[10]);
+            Functions_MenuItem.SetType(MenuItemType.WeaponSword, menuItems[10]);
 
             if (PlayerData.current.weaponBow)
             {   //if hero has arrows, display the number of arrows + draw display amount
-                Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponBow, menuItems[11]);
+                Functions_MenuItem.SetType(MenuItemType.WeaponBow, menuItems[11]);
                 Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
                 arrowsDisplay.visible = true;
             }
 
             if(PlayerData.current.weaponNet)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponNet, menuItems[12]); }
-            
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[13]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[14]);
+            { Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[12]); }
+
+            //MenuItemFunctions.SetType(MenuItemType.WeaponSword, menuItems[13]);
+            //MenuItemFunctions.SetType(MenuItemType.WeaponSword, menuItems[14]);
 
             #endregion
 
 
             #region Armor
 
-            Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCloth, menuItems[15]);
+            Functions_MenuItem.SetType(MenuItemType.ArmorCloth, menuItems[15]);
 
             if (PlayerData.current.armorChest)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorChest, menuItems[16]); }
+            { Functions_MenuItem.SetType(MenuItemType.ArmorChest, menuItems[16]); }
 
             if (PlayerData.current.armorCape)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorCape, menuItems[17]); }
+            { Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[17]); }
 
             if (PlayerData.current.armorRobe)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.ArmorRobe, menuItems[18]); }
+            { Functions_MenuItem.SetType(MenuItemType.ArmorRobe, menuItems[18]); }
 
             #endregion
 
@@ -191,7 +192,7 @@ namespace DungeonRun
             #region Equipment
 
             if (PlayerData.current.equipmentRing)
-            { Functions_MenuItem.SetMenuItemData(MenuItemType.EquipmentRing, menuItems[20]); }
+            { Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[20]); }
             //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[22]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[23]);

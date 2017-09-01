@@ -270,9 +270,18 @@ namespace DungeonRun
                     }
                     else { DialogBottlesFull(); } //else alert player
                 }
-                else if (Item.type == MenuItemType.BottleFairy)
+                else if (Item.type == MenuItemType.BottleCombo)
                 {
                     if (FillEmptyBottle(4)) //if we can fill a bottle
+                    {   //set hero's item, complete the sale
+                        Pool.hero.item = MenuItemType.BottleCombo;
+                        CompleteSale(Item);
+                    }
+                    else { DialogBottlesFull(); } //else alert player
+                }
+                else if (Item.type == MenuItemType.BottleFairy)
+                {
+                    if (FillEmptyBottle(5)) //if we can fill a bottle
                     {   //set hero's item, complete the sale
                         Pool.hero.item = MenuItemType.BottleFairy;
                         CompleteSale(Item);
