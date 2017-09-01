@@ -215,7 +215,7 @@ namespace DungeonRun
                 }
                 
 
-                #region Handle load/save/new & quit
+                #region Handle load/save/new
 
                 //only allow input if the screen has opened completely
                 else if (
@@ -256,6 +256,8 @@ namespace DungeonRun
                         else { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameSaved)); }
                         UpdateCurrentDisplay();
                     }
+                    //save current game to autoSave file (sets autosave)
+                    Functions_Backend.SaveGame(GameFile.AutoSave);
                     Assets.Play(Assets.sfxSelectFile);
                 }
 

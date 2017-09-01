@@ -50,30 +50,22 @@ v0.7 goals
 
 
 
-Load/Set Hero's Loadout Properly
 
-created SetHeroLoadout() in Functions_Actor.
-updated ScreenLevel.LoadContent() to call SetHeroLoadout().
-this ensures that whenever a level screen is created,
-the hero will load his loadout from the player.current SaveData instance.
-this SaveData instance is set via the LoadSaveNew screen.
 
-updated organization of saveData to make item[0] bombs, instead of boomerang.
-updated saveData to allow hero to start with lucky ring unlocked.
+Fix Autosave + Loadout Bugs
+
+when we load/create a game, the hero's loadout is not set properly.
+this is because it's loaded from the autosave file.
+also, the hero's loadout isn't loaded before we create an overworld screen.
+this means the hero's loadout is displayed improperly if player
+presses start (opens inventory) from overworld screen.
+
+updated LoadSaveNew screen to autosave.
+this happens when user presses A button on any file display, in any mode.
+added call to SetHerosLoadout() from ScreenOverworld.LoadContent().
 
 playtested, working as expected.
-
-
-
-
-
-
-
-
-
-we should be autosaving after a savegame / loadgame
-this will set the game's current data, thus setting the hero's current loadout
-
+hero's loadout carrys over from last game session using 'continue'.
 
 
 
@@ -92,21 +84,6 @@ the bookcases collision recs should match the objects they used to represent
 
 
 
-
-
-
-
-sprint1:
-
-remodel bottles and their contents
-how do we model bottles and their contents?
-
-we store if hero has bottle1, 2, 3 using saveData.bottle1 boolean
-we can store the contents of bottle1 using a byte,
-like this: saveData.bottle1contents = 0; //which would be empty
-bottle1contents = 1; //which could be health potion, 2=magic, 3=combo, 4=fairy
-
-then we can check for a bottle that has a byte of 0, in order to fill it
 
 
 

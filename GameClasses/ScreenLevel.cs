@@ -97,7 +97,7 @@ namespace DungeonRun
                 else if (displayState == DisplayState.Closed)
                 {
                     DungeonRecord.timer.Stop();
-                    //save the player's current game progress
+                    //save the player's current game progress to autoSave file
                     Functions_Backend.SaveGame(GameFile.AutoSave);
                     //handle exit action
                     if (exitAction == ExitAction.Summary)

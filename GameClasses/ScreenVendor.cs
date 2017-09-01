@@ -407,8 +407,6 @@ namespace DungeonRun
 
 
 
-
-
         public void DialogNotEnoughGold()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
