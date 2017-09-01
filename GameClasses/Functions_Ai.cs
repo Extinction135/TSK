@@ -104,6 +104,19 @@ namespace DungeonRun
             #endregion
 
 
+            #region Fairy AI
+
+            /*
+            else if (Obj.type == ObjType.ProjectileFairy)
+            {   //randomly move in a random direction
+                if (Functions_Random.Int(0, 500) > 450)
+                { Obj.compMove.direction = (Direction)Functions_Random.Int(0, 8); }
+            }
+            */
+
+            #endregion
+
+
             //slightly more advanced AI
 
             //if wounded, try to heal
@@ -123,9 +136,6 @@ namespace DungeonRun
 
         public static void HandleObj(GameObject Obj)
         {   //keep in mind this is called every frame
-
-            #region RoomObjs
-
             if (Obj.type == ObjType.Flamethrower)
             {   
                 if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
@@ -141,20 +151,6 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
                 { Functions_Entity.SpawnEntity(ObjType.ParticlePitAnimation, Obj); }
             }
-
-            #endregion
-
-
-            #region Projectiles
-
-            else if (Obj.type == ObjType.ProjectileFairy)
-            {   //randomly move in a random direction
-                if (Functions_Random.Int(0, 500) > 450)
-                { Obj.compMove.direction = (Direction)Functions_Random.Int(0, 8); }
-            }
-
-            #endregion
-
         }
 
     }

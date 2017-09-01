@@ -588,22 +588,6 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = true;
             }
-            else if (Type == ObjType.ProjectileFairy)
-            {
-                Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.compCollision.blocking = false;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 0; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false;
-                Obj.getsAI = true;
-                Obj.compMove.speed = 0.2f; //fairys move
-                Obj.compSprite.zOffset = 64; //sort high in air
-            }
-
 
             #endregion
 

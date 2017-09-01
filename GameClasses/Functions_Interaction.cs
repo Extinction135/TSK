@@ -223,21 +223,6 @@ namespace DungeonRun
                 #endregion
 
 
-                #region Projectiles
-
-                else if (Obj.group == ObjGroup.Projectile)
-                {
-                    if (Obj.type == ObjType.ProjectileFairy)
-                    {
-                        Actor.health = Actor.maxHealth;
-                        Assets.Play(Assets.sfxHeartPickup);
-                        Obj.lifetime = 1; Obj.lifeCounter = 2; //end fairys life
-                    }
-                }
-
-                #endregion
-
-
                 #region Doors
 
                 else if (Obj.group == ObjGroup.Door)
@@ -526,17 +511,6 @@ namespace DungeonRun
 
                 #endregion
 
-
-                #region Fairy
-
-                else if (Entity.type == ObjType.ProjectileFairy)
-                {   //revert to previous position (treat as a blocking interaction)
-                    Entity.compMove.newPosition.X = Entity.compMove.position.X;
-                    Entity.compMove.newPosition.Y = Entity.compMove.position.Y;
-                }
-
-                #endregion
-
             }
             //Handle Non-Blocking Interactions (with projectiles & pickups)
             else
@@ -549,8 +523,7 @@ namespace DungeonRun
                     //some projectiles cannot be bounced off bumper
                     if (Entity.type == ObjType.ProjectileSword
                         || Entity.type == ObjType.ProjectileNet
-                        || Entity.type == ObjType.ProjectileDebrisRock
-                        || Entity.type == ObjType.ProjectileFairy)
+                        || Entity.type == ObjType.ProjectileDebrisRock)
                     { return; }
 
                     //stop projectile movement, bounce it
@@ -625,7 +598,6 @@ namespace DungeonRun
                     Entity.compMove.newPosition.Y = Entity.compMove.position.Y;
                     if (Entity.type == ObjType.ProjectileSpikeBlock)
                     { BounceSpikeBlock(Entity); }
-                    else if (Entity.type == ObjType.ProjectileFairy) {}//dont kill
                     //kill all other projectiles
                     else { KillProjectileUponCollision(Entity); }
                 }

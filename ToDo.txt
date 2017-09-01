@@ -44,44 +44,46 @@ v0.7 goals
 
 
 
-9
+8
 
 
 
-Implement Net Weapon
+Remove Fairy Projectile from Game
 
-just like sword, is stationary projectile.
-NET does no damage to enemies, but CAN push them.
-NET can be purchased from weapons vendor.
-
-reordered ObjType enum + GameObj AnimLists.
-added ProjectileNet value to ObjType enum.
-added ObjAnimList for ProjectileNet.
-added path to Obj.SetType() for ProjectileNet.
-
-added WeaponNet value to MenuItemType.
-updated MenuItem.SetMenuItemData() with path for WeaponNet.
-updated Functions_UseItem() with path for WeaponNet.
-added weaponNet boolean to SaveData class.
-
-updated WidgetInventory.SetInventoryMenuItems() with path for weaponNet.
-updated Functions_Actor.SetHeroLoadout() with path for weaponNet.
-
-updated Functions_Battle.Damage() with path for ProjectileNet.
-updated Functions_Entity.SpawnEntity() with path for ProjectileNet.
-updated weapons vendor to sell Net.
-updated PurchaseItem() to handle purchasing of Net.
-
-updated weapon vendor's ad to display bow + net.
-updated magic item vendor's ad to display fireball correctly.
-updated potion vendor's ad to display combo potion, no longer displays bottled fairy.
-
-playtested, working as expected.
-for now, net weapon just pushes enemies away (no collection).
+updated various codepaths, removing all refs to fairy projectile.
+we will model the fairy as an actor in a future commit.
 
 
 
 
+
+
+add combo potion
+this is the mixed health/magic potion below magic potion sprite in main sheet
+this should be purchasable from potion vendor
+this restores health and magic
+should cost more than health + magic, because it fits in one bottle
+
+
+
+
+
+
+
+how do captured actors work?
+we can capture some actors using a net and empty bottle.
+the first of these actors is the fairy actor.
+so we need to create the fairy actor
+
+
+
+
+how do we check net projectile collision with fairy projectile?
+we dont check projectiles against projectiles!
+fairy could be an actor?
+
+this means we need to convert fairy projectile to actor
+which means fairy will be an actorType
 
 
 
@@ -92,19 +94,6 @@ add a swipe sound effect for net
 
 
 
-
-
-how do we check net projectile collision with fairy projectile?
-we dont check projectiles against projectiles!
-fairy could be an actor?
-
-
-
-
-
-
-
-add path for when player sets weapon from inventory
 
 
 
@@ -129,11 +118,7 @@ we can also place fairy projectiles in dungeon rooms
 fairys should only restore hero's health to maxHealth (no magic restore)
 
 
-add combo potion
-this is the mixed health/magic potion below magic potion sprite in main sheet
-this should be purchasable from potion vendor
-this restores health and magic
-should cost more than health + magic, because it fits in one bottle
+
 
 
 

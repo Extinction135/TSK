@@ -149,7 +149,7 @@ namespace DungeonRun
                     else if (i == 6) //seventh row - Projectiles
                     {
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.ProjectileSpikeBlock); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ProjectileFairy); }
+                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ProjectileFairy); }
                         //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ProjectileSpikeBlock); }
                         //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.ProjectileSpikeBlock); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.ProjectileSpikeBlock); }

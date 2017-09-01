@@ -44,8 +44,9 @@ namespace DungeonRun
                 { Functions_Entity.SpawnEntity(ObjType.PickupArrow, Pos.X, Pos.Y, Direction.Down); }
 
                 //rare loot drops
-                else if (lootType < 100) //5%
-                { Functions_Entity.SpawnEntity(ObjType.ProjectileFairy, Pos.X, Pos.Y, Direction.Down); }
+                //else if (lootType < 100) //5%
+                //{ Functions_Entity.SpawnEntity(ObjType.ProjectileFairy, Pos.X, Pos.Y, Direction.Down); }
+                //instead we'll be spawning a fairy actor here
             }
         }
 
