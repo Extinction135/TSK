@@ -184,13 +184,7 @@ namespace DungeonRun
                     dialogType == Dialog.GameLoaded ||
                     dialogType == Dialog.GameNotFound ||
                     dialogType == Dialog.GameAutoSaved)
-                {
-                    //reset the hero's loadout (reset from previous game)
-                    Pool.hero.weapon = MenuItemType.WeaponSword;
-                    Pool.hero.item = MenuItemType.ItemBomb;
-                    Pool.hero.armor = MenuItemType.ArmorCloth;
-                    Pool.hero.equipment = MenuItemType.Unknown;
-                    //load overworld map, starting at shop
+                {   //load overworld map, starting at shop
                     Level.type = LevelType.Shop;
                     ScreenManager.ExitAndLoad(new ScreenOverworld());
                 }

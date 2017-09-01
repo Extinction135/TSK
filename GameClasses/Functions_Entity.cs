@@ -27,11 +27,11 @@ namespace DungeonRun
             //direction is set based on Object.type
 
 
-            #region Sword
+            #region Sword/Net
 
             //we could spawn a fireball here if we wanted to (which is how we'll handle the staff weapon)
 
-            if (Object.type == ObjType.ProjectileSword)
+            if (Object.type == ObjType.ProjectileSword || Object.type == ObjType.ProjectileNet)
             {   //place entity at tip of sword, based on direction
                 if (Object.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
                 else if (Object.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
@@ -159,7 +159,7 @@ namespace DungeonRun
                 else if (direction == Direction.Right) { posRef.X += 11; posRef.Y += 2; }
                 else if (direction == Direction.Left) { posRef.X -= 11; posRef.Y += 2; }
             }
-            else if (Type == ObjType.ProjectileSword)
+            else if (Type == ObjType.ProjectileSword || Type == ObjType.ProjectileNet)
             {   //place projectile outside of actor's hitbox, in actor's hand
                 if (direction == Direction.Down) { posRef.X -= 1; posRef.Y += 15; }
                 else if (direction == Direction.Up) { posRef.X += 1; posRef.Y -= 12; }
@@ -199,6 +199,7 @@ namespace DungeonRun
             //certain projectiles/particles get a cardinal direction, others dont
             if (Type == ObjType.ProjectileFireball || 
                 Type == ObjType.ProjectileSword ||
+                Type == ObjType.ProjectileNet ||
                 Type == ObjType.ProjectileArrow ||
                 Type == ObjType.ProjectileBomb ||
                 Type == ObjType.ParticleBow ||
@@ -246,7 +247,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Set sword collision rec based on direction
+            #region Set Sword collision rec based on direction
 
             else if (Type == ObjType.ProjectileSword)
             {
@@ -342,6 +343,10 @@ namespace DungeonRun
             else if (Projectile.type == ObjType.ProjectileSword)
             {   
                 Assets.Play(Assets.sfxSwordSwipe);
+            }
+            else if (Projectile.type == ObjType.ProjectileNet)
+            {
+                Assets.Play(Assets.sfxSwordSwipe); //play net swipe sound effect
             }
 
             #endregion

@@ -157,7 +157,7 @@ namespace DungeonRun
             else if (VendorType == ObjType.VendorWeapons)
             {
                 Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponBow, menuItems[0]);
-                //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, menuItems[1]);
+                Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponNet, menuItems[1]);
             }
             else if (VendorType == ObjType.VendorArmor)
             {

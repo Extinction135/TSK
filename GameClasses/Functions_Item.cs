@@ -89,6 +89,11 @@ namespace DungeonRun
                     Actor.lockTotal = 15;
                 }
             }
+            else if (Type == MenuItemType.WeaponNet)
+            {
+                Functions_Entity.SpawnEntity(ObjType.ProjectileNet, Actor);
+                Actor.lockTotal = 15;
+            }
 
             #endregion
 

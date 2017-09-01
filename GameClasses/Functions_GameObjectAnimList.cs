@@ -193,16 +193,23 @@ namespace DungeonRun
 
                 #region Projectiles
 
-                //ProjectileSword
-                new List<Byte4> { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0), new Byte4(3, 5, 0, 0) },
-                //ProjectileFireball
-                new List<Byte4> { new Byte4(4, 9, 0, 0), new Byte4(4, 9, 1, 0) },
+                //items
                 //ProjectileBomb
                 new List<Byte4> { new Byte4(4, 11, 0, 0), new Byte4(4, 12, 0, 0) },
-                //ProjectileExplosion
-                new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
+                //ProjectileFireball
+                new List<Byte4> { new Byte4(4, 9, 0, 0), new Byte4(4, 9, 1, 0) },
+
+                //weapons
+                //ProjectileSword
+                new List<Byte4> { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0), new Byte4(2, 5, 0, 0), new Byte4(3, 5, 0, 0) },
                 //ProjectileArrow
                 new List<Byte4> { new Byte4(4, 7, 0, 0) },
+                //ProjectileNet
+                new List<Byte4> { new Byte4(0, 6, 0, 0), new Byte4(1, 6, 0, 0), new Byte4(2, 6, 0, 0), new Byte4(3, 6, 0, 0) },
+
+                //other
+                //ProjectileExplosion
+                new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
                 //ProjectileSpikeBlock
                 new List<Byte4> { new Byte4(0, 10, 0, 0) },
                 //ProjectileDebrisRock

@@ -44,26 +44,40 @@ v0.7 goals
 
 
 
-11
+9
 
 
 
+Implement Net Weapon
 
+just like sword, is stationary projectile.
+NET does no damage to enemies, but CAN push them.
+NET can be purchased from weapons vendor.
 
+reordered ObjType enum + GameObj AnimLists.
+added ProjectileNet value to ObjType enum.
+added ObjAnimList for ProjectileNet.
+added path to Obj.SetType() for ProjectileNet.
 
+added WeaponNet value to MenuItemType.
+updated MenuItem.SetMenuItemData() with path for WeaponNet.
+updated Functions_UseItem() with path for WeaponNet.
+added weaponNet boolean to SaveData class.
 
+updated WidgetInventory.SetInventoryMenuItems() with path for weaponNet.
+updated Functions_Actor.SetHeroLoadout() with path for weaponNet.
 
+updated Functions_Battle.Damage() with path for ProjectileNet.
+updated Functions_Entity.SpawnEntity() with path for ProjectileNet.
+updated weapons vendor to sell Net.
+updated PurchaseItem() to handle purchasing of Net.
 
+updated weapon vendor's ad to display bow + net.
+updated magic item vendor's ad to display fireball correctly.
+updated potion vendor's ad to display combo potion, no longer displays bottled fairy.
 
-
-
-
-Fix Bookcase CollisionRec Size
-
-the bookcases in shop overlap the back wall, causing some walls to disappear.
-the bookcases collision recs should be smaller vertically and aligned to base of obj.
-updated Bookcase1 and Bookcase2's collisionRecs in Obj.SetType().
 playtested, working as expected.
+for now, net weapon just pushes enemies away (no collection).
 
 
 
@@ -74,24 +88,56 @@ playtested, working as expected.
 
 
 
+add a swipe sound effect for net
 
 
 
 
 
-Fix Bottles, Add NET, Implement Fairy Capturing
+how do we check net projectile collision with fairy projectile?
+we dont check projectiles against projectiles!
+fairy could be an actor?
 
-instead of having a bottle specific to each potion,
-we should be able to put any potion in any bottle,
-along with fairys.. and we should be able to 'capture' fairys
-using the NET weapon.
-if NET collides with fairy, put fairy in bottle, display capture dialog screen (freeze game)
-NET is a weapon, and deals no damage to enemies
-if no bottle is available, then dialog screen tells player so (freeze game)
-upon collision, kill NET weapon projectile
 
-we should be able to purchase the NET from the weapons vendor..
-create dungeon rooms with fairys in them
+
+
+
+
+
+add path for when player sets weapon from inventory
+
+
+
+implement capturing fairys
+this is a collision check between NET and FAIRY projectile
+if this collision is true, then check to see if hero has an empty bottle
+fill bottle with fairy, kill fairy projectile, pop dialog alerting player to fairy capture
+else pop dialog alerting player they have no empty bottles to place fairy in
+make sure to freeze game during these dialogs
+
+
+improve dialog screen 
+if we freeze game during dialog, the game should be allowed to elapse a few frames before freezing
+this allows the hero to be set into a reward state, if he gets rewarded (key/map) prior to dialog display
+update map/key get to freeze game (but allow enough time to transition into reward state)
+
+
+polish fairy economy
+we shouldn't be able to purchase fairys from potion vendor.
+fairys should only be attainable by capturing fairy projectiles using NET.
+we can also place fairy projectiles in dungeon rooms
+fairys should only restore hero's health to maxHealth (no magic restore)
+
+
+add combo potion
+this is the mixed health/magic potion below magic potion sprite in main sheet
+this should be purchasable from potion vendor
+this restores health and magic
+should cost more than health + magic, because it fits in one bottle
+
+
+
+
 
 
 
@@ -101,6 +147,23 @@ create dungeon rooms with fairys in them
 
 we also need to clarify how hero purchases a BOTTLE
 can he just purchase a potion and get the bottle for free?
+
+should hero just start off with bottles?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

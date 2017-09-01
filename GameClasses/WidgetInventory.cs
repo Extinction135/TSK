@@ -162,8 +162,10 @@ namespace DungeonRun
                 Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
                 arrowsDisplay.visible = true;
             }
+
+            if(PlayerData.current.weaponNet)
+            { Functions_MenuItem.SetMenuItemData(MenuItemType.WeaponNet, menuItems[12]); }
             
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponStaff, menuItems[12]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[13]);
             //MenuItemFunctions.SetMenuItemData(MenuItemType.WeaponSword, menuItems[14]);
 

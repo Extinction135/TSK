@@ -37,7 +37,7 @@ namespace DungeonRun
                 Obj.lifeCounter = Obj.lifetime;
                 //check to see if damage should be modified
                 if (Actor.armor == MenuItemType.ArmorChest)
-                { damage = 0; Assets.Play(Assets.sfxTapMetallic); }
+                { damage = 0; Assets.Play(Assets.sfxTapMetallic); return; }
             }
             else if (Obj.type == ObjType.ProjectileBomb)
             {   //bombs don't push or hurt actors
@@ -64,6 +64,10 @@ namespace DungeonRun
             {   //swords deal 1 damage, push 6
                 damage = 1; force = 6.0f; direction = Obj.direction;
             }
+            else if(Obj.type == ObjType.ProjectileNet)
+            {   //net deals 0 damage, push 6
+                damage = 0; force = 6.0f; direction = Obj.direction;
+            }
 
             #endregion
 
@@ -81,7 +85,7 @@ namespace DungeonRun
 
 
             //if damage was prevented, then do not damage/push the actor
-            if (damage > 0) { Damage(Actor, damage, force, direction); }
+            Damage(Actor, damage, force, direction);
         }
 
         public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)

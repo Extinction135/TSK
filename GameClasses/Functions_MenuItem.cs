@@ -139,7 +139,7 @@ namespace DungeonRun
             {
                 MenuItem.name = "Fireball Magic";
                 MenuItem.description = "deals 2 magical damage, \ncosts 1 magic.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 6, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 5, 0, 0) };
                 MenuItem.price = 99;
             }
 
@@ -162,10 +162,10 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(8, 6, 0, 0) };
                 MenuItem.price = 50;
             }
-            else if (Type == MenuItemType.WeaponStaff)
+            else if (Type == MenuItemType.WeaponNet)
             {
-                MenuItem.name = "Magic Staff";
-                MenuItem.description = "A magic staff.";
+                MenuItem.name = "Old Net";
+                MenuItem.description = "can capture small \ncreatures in a bottle.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(8, 7, 0, 0) };
                 MenuItem.price = 50;
             }

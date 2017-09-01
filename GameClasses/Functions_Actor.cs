@@ -102,6 +102,80 @@ namespace DungeonRun
             Actor.equipment = MenuItemType.Unknown;
         }
 
+        public static void SetHeroLoadout()
+        {   //set the hero's loadout based on playerdata.current
+            Pool.hero.weapon = MenuItemType.Unknown;
+            Pool.hero.item = MenuItemType.Unknown;
+            Pool.hero.armor = MenuItemType.Unknown;
+            Pool.hero.equipment = MenuItemType.Unknown;
+
+            //sanitize playerdata.current to within expected values
+            if (PlayerData.current.currentItem > 9) { PlayerData.current.currentItem = 0; }
+            if (PlayerData.current.currentWeapon > 4) { PlayerData.current.currentWeapon = 0; }
+            if (PlayerData.current.currentArmor > 4) { PlayerData.current.currentArmor = 0; }
+            if (PlayerData.current.currentEquipment > 4) { PlayerData.current.currentEquipment = 0; }
+
+            //set hero's item
+            if (PlayerData.current.currentItem == 0)
+            { Pool.hero.item = MenuItemType.ItemBomb; }
+            else if (PlayerData.current.currentItem == 1)
+            { Pool.hero.item = MenuItemType.ItemBoomerang; }
+            //set item to bottle (based on bottle contents)
+            else if (PlayerData.current.currentItem == 2)
+            { Pool.hero.item = MenuItemType.BottleEmpty; }
+            else if (PlayerData.current.currentItem == 3)
+            { Pool.hero.item = MenuItemType.BottleEmpty; }
+            else if (PlayerData.current.currentItem == 4)
+            { Pool.hero.item = MenuItemType.BottleEmpty; }
+            //magic items
+            else if (PlayerData.current.currentItem == 5)
+            { Pool.hero.item = MenuItemType.MagicFireball; }
+            else if (PlayerData.current.currentItem == 6)
+            { Pool.hero.item = MenuItemType.Unknown; }
+            else if (PlayerData.current.currentItem == 7)
+            { Pool.hero.item = MenuItemType.Unknown; }
+            else if (PlayerData.current.currentItem == 8)
+            { Pool.hero.item = MenuItemType.Unknown; }
+            else if (PlayerData.current.currentItem == 9)
+            { Pool.hero.item = MenuItemType.Unknown; }
+
+            //set hero's weapon
+            if (PlayerData.current.currentWeapon == 0)
+            { Pool.hero.weapon = MenuItemType.WeaponSword; }
+            else if (PlayerData.current.currentWeapon == 1)
+            { Pool.hero.weapon = MenuItemType.WeaponBow; }
+            else if (PlayerData.current.currentWeapon == 2)
+            { Pool.hero.weapon = MenuItemType.WeaponNet; }
+            else if (PlayerData.current.currentWeapon == 3)
+            { Pool.hero.weapon = MenuItemType.Unknown; }
+            else if (PlayerData.current.currentWeapon == 4)
+            { Pool.hero.weapon = MenuItemType.Unknown; }
+
+            //set hero's armor
+            if (PlayerData.current.currentArmor == 0)
+            { Pool.hero.armor = MenuItemType.ArmorCloth; }
+            else if (PlayerData.current.currentArmor == 1)
+            { Pool.hero.armor = MenuItemType.ArmorChest; }
+            else if (PlayerData.current.currentArmor == 2)
+            { Pool.hero.armor = MenuItemType.ArmorCape; }
+            else if (PlayerData.current.currentArmor == 3)
+            { Pool.hero.armor = MenuItemType.ArmorRobe; }
+            else if (PlayerData.current.currentArmor == 4)
+            { Pool.hero.armor = MenuItemType.Unknown; }
+
+            //set hero's equipment
+            if (PlayerData.current.currentEquipment == 0)
+            { Pool.hero.equipment = MenuItemType.EquipmentRing; }
+            else if (PlayerData.current.currentEquipment == 1)
+            { Pool.hero.equipment = MenuItemType.EquipmentPearl; }
+            else if (PlayerData.current.currentEquipment == 2)
+            { Pool.hero.equipment = MenuItemType.EquipmentNecklace; }
+            else if (PlayerData.current.currentEquipment == 3)
+            { Pool.hero.equipment = MenuItemType.EquipmentGlove; }
+            else if (PlayerData.current.currentEquipment == 4)
+            { Pool.hero.equipment = MenuItemType.EquipmentPin; }
+        }
+
         public static void SetType(Actor Actor, ActorType Type)
         {
             Actor.type = Type;
@@ -339,80 +413,6 @@ namespace DungeonRun
             if (Actor.armor == MenuItemType.ArmorChest) { Actor.compMove.speed *= 0.88f; }
             //cape armor increases movement
             else if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
-        }
-
-        public static void SetHeroLoadout()
-        {   //set the hero's loadout based on playerdata.current
-            Pool.hero.weapon = MenuItemType.Unknown;
-            Pool.hero.item = MenuItemType.Unknown;
-            Pool.hero.armor = MenuItemType.Unknown;
-            Pool.hero.equipment = MenuItemType.Unknown;
-
-            //sanitize playerdata.current to within expected values
-            if (PlayerData.current.currentItem > 9) { PlayerData.current.currentItem = 0; }
-            if (PlayerData.current.currentWeapon > 4) { PlayerData.current.currentWeapon = 0; }
-            if (PlayerData.current.currentArmor > 4) { PlayerData.current.currentArmor = 0; }
-            if (PlayerData.current.currentEquipment > 4) { PlayerData.current.currentEquipment = 0; }
-
-            //set hero's item
-            if (PlayerData.current.currentItem == 0)
-            { Pool.hero.item = MenuItemType.ItemBomb; }
-            else if (PlayerData.current.currentItem == 1)
-            { Pool.hero.item = MenuItemType.ItemBoomerang; }
-            //set item to bottle (based on bottle contents)
-            else if (PlayerData.current.currentItem == 2)
-            { Pool.hero.item = MenuItemType.BottleEmpty; }
-            else if (PlayerData.current.currentItem == 3)
-            { Pool.hero.item = MenuItemType.BottleEmpty; }
-            else if (PlayerData.current.currentItem == 4)
-            { Pool.hero.item = MenuItemType.BottleEmpty; }
-            //magic items
-            else if (PlayerData.current.currentItem == 5)
-            { Pool.hero.item = MenuItemType.MagicFireball; }
-            else if (PlayerData.current.currentItem == 6)
-            { Pool.hero.item = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentItem == 7)
-            { Pool.hero.item = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentItem == 8)
-            { Pool.hero.item = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentItem == 9)
-            { Pool.hero.item = MenuItemType.Unknown; }
-
-            //set hero's weapon
-            if (PlayerData.current.currentWeapon == 0)
-            { Pool.hero.weapon = MenuItemType.WeaponSword; }
-            else if (PlayerData.current.currentWeapon == 1)
-            { Pool.hero.weapon = MenuItemType.WeaponBow; }
-            else if (PlayerData.current.currentWeapon == 2)
-            { Pool.hero.weapon = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentWeapon == 3)
-            { Pool.hero.weapon = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentWeapon == 4)
-            { Pool.hero.weapon = MenuItemType.Unknown; }
-
-            //set hero's armor
-            if (PlayerData.current.currentArmor == 0)
-            { Pool.hero.armor = MenuItemType.ArmorCloth; }
-            else if (PlayerData.current.currentArmor == 1)
-            { Pool.hero.armor = MenuItemType.ArmorChest; }
-            else if (PlayerData.current.currentArmor == 2)
-            { Pool.hero.armor = MenuItemType.ArmorCape; }
-            else if (PlayerData.current.currentArmor == 3)
-            { Pool.hero.armor = MenuItemType.ArmorRobe; }
-            else if (PlayerData.current.currentArmor == 4)
-            { Pool.hero.armor = MenuItemType.Unknown; }
-
-            //set hero's equipment
-            if (PlayerData.current.currentEquipment == 0)
-            { Pool.hero.equipment = MenuItemType.EquipmentRing; }
-            else if (PlayerData.current.currentEquipment == 1)
-            { Pool.hero.equipment = MenuItemType.EquipmentPearl; }
-            else if (PlayerData.current.currentEquipment == 2)
-            { Pool.hero.equipment = MenuItemType.EquipmentNecklace; }
-            else if (PlayerData.current.currentEquipment == 3)
-            { Pool.hero.equipment = MenuItemType.EquipmentGlove; }
-            else if (PlayerData.current.currentEquipment == 4)
-            { Pool.hero.equipment = MenuItemType.EquipmentPin; }
         }
 
     }

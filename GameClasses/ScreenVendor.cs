@@ -311,6 +311,16 @@ namespace DungeonRun
                     }
                     else { DialogAlreadyPurchased(); }
                 }
+                else if (Item.type == MenuItemType.WeaponNet)
+                {
+                    if (!PlayerData.current.weaponNet)
+                    {
+                        PlayerData.current.weaponNet = true;
+                        Pool.hero.weapon = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
 
                 #endregion
 

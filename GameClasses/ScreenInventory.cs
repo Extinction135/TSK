@@ -321,7 +321,7 @@ namespace DungeonRun
             { PlayerData.current.currentWeapon = 0; Pool.hero.weapon = currentlySelected.type; }
             else if (currentlySelected == Widgets.Inventory.menuItems[11]) //bow
             { PlayerData.current.currentWeapon = 1; Pool.hero.weapon = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[12]) //???
+            else if (currentlySelected == Widgets.Inventory.menuItems[12]) //net
             { PlayerData.current.currentWeapon = 2; Pool.hero.weapon = currentlySelected.type; }
             else if (currentlySelected == Widgets.Inventory.menuItems[13]) //???
             { PlayerData.current.currentWeapon = 3; Pool.hero.weapon = currentlySelected.type; }

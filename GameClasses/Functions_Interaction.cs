@@ -314,27 +314,12 @@ namespace DungeonRun
 
                 if (Obj.group == ObjGroup.Projectile)
                 {
-                    /*
-                    //move rocks with actors upon a collision
-                    if (Obj.type == ObjType.ProjectileDebrisRock)
-                    {   //if the rock isn't moving, actor just collided with it, inherit actor's magnitude
-                        if (Obj.compMove.magnitude.X == 0 & Obj.compMove.magnitude.Y == 0)
-                        {   //inherit actor's magnitude multiplied alot, so the rock quickly moves away
-                            Obj.compMove.magnitude.X = Actor.compMove.magnitude.X * 5.0f;
-                            Obj.compMove.magnitude.Y = Actor.compMove.magnitude.Y * 5.0f;
-                        }
-                    }
-                    else
-                    */
-
+                    Functions_Battle.Damage(Actor, Obj);
+                    if (Obj.type == ObjType.ProjectileSword)
                     {
-                        Functions_Battle.Damage(Actor, Obj);
-                        if (Obj.type == ObjType.ProjectileSword)
-                        {
-                            if (Obj.lifeCounter == 1)
-                            {   //if sword projectile is brand new, spawn hit particle
-                                Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
-                            }
+                        if (Obj.lifeCounter == 1)
+                        {   //if sword projectile is brand new, spawn hit particle
+                            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
                         }
                     }
                 }
@@ -563,6 +548,7 @@ namespace DungeonRun
                 {
                     //some projectiles cannot be bounced off bumper
                     if (Entity.type == ObjType.ProjectileSword
+                        || Entity.type == ObjType.ProjectileNet
                         || Entity.type == ObjType.ProjectileDebrisRock
                         || Entity.type == ObjType.ProjectileFairy)
                     { return; }

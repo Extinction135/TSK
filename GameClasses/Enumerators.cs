@@ -87,9 +87,12 @@ namespace DungeonRun
         //Pickups - collide with hero
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
         //Projectiles - collide with actors
-        ProjectileSword, ProjectileFireball, ProjectileBomb, ProjectileExplosion, ProjectileArrow,
-        ProjectileSpikeBlock, ProjectileDebrisRock,
-        ProjectileFairy,
+        //items
+        ProjectileBomb, ProjectileFireball, 
+        //weapons
+        ProjectileSword, ProjectileArrow, ProjectileNet,
+        //other
+        ProjectileExplosion, ProjectileSpikeBlock, ProjectileDebrisRock, ProjectileFairy,
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation, 
         //Particles - map
@@ -121,7 +124,7 @@ namespace DungeonRun
         BottleEmpty, BottleHealth, BottleMagic, BottleFairy,
 
         MagicFireball,
-        WeaponSword, WeaponBow, WeaponStaff, //WeaponAxe, //WeaponNet,
+        WeaponSword, WeaponBow, WeaponNet, //WeaponStaff, //WeaponAxe, //,
         ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
         EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
     }

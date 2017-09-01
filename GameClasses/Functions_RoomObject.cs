@@ -117,22 +117,17 @@ namespace DungeonRun
                 //objRef.compAnim.currentAnimation.Add(new Byte4(6, 5, 0, 0)); //empty bottle
                 objRef.compAnim.currentAnimation.Add(new Byte4(6, 6, 0, 0)); //health
                 objRef.compAnim.currentAnimation.Add(new Byte4(6, 7, 0, 0)); //magic
-                //objRef.compAnim.currentAnimation.Add(new Byte4(6, 8, 0, 0)); //mix
-                objRef.compAnim.currentAnimation.Add(new Byte4(6, 9, 0, 0)); //fairy
+                objRef.compAnim.currentAnimation.Add(new Byte4(6, 8, 0, 0)); //combo
             }
             else if (VendorType == ObjType.VendorMagic)
             {   //add all the magic medallions from the main sheet
-                //objRef.compAnim.currentAnimation.Add(new Byte4(7, 5, 0, 0)); //portal
-                objRef.compAnim.currentAnimation.Add(new Byte4(7, 6, 0, 0)); //fireball
-                //objRef.compAnim.currentAnimation.Add(new Byte4(7, 7, 0, 0)); //lightning
-                //objRef.compAnim.currentAnimation.Add(new Byte4(7, 8, 0, 0)); //quake
-                //objRef.compAnim.currentAnimation.Add(new Byte4(7, 9, 0, 0)); //summon
+                objRef.compAnim.currentAnimation.Add(new Byte4(7, 5, 0, 0)); //fireball
             }
             else if (VendorType == ObjType.VendorWeapons)
             {   //add all the weapons from the main sheet
                 //objRef.compAnim.currentAnimation.Add(new Byte4(8, 5, 0, 0)); //sword
                 objRef.compAnim.currentAnimation.Add(new Byte4(8, 6, 0, 0)); //bow
-                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 7, 0, 0)); //staff
+                objRef.compAnim.currentAnimation.Add(new Byte4(8, 7, 0, 0)); //net
                 //objRef.compAnim.currentAnimation.Add(new Byte4(8, 8, 0, 0)); //axe
                 //objRef.compAnim.currentAnimation.Add(new Byte4(8, 9, 0, 0)); //net
             }
@@ -142,7 +137,6 @@ namespace DungeonRun
                 objRef.compAnim.currentAnimation.Add(new Byte4(9, 6, 0, 0)); //plate mail
                 objRef.compAnim.currentAnimation.Add(new Byte4(9, 7, 0, 0)); //cape
                 objRef.compAnim.currentAnimation.Add(new Byte4(9, 8, 0, 0)); //robe
-                //objRef.compAnim.currentAnimation.Add(new Byte4(9, 9, 0, 0)); //robe2
             }
             else if (VendorType == ObjType.VendorEquipment)
             {   //add all the equipment from the main sheet

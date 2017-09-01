@@ -59,7 +59,7 @@ namespace DungeonRun
             Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
 
             //handle object/projectile specific cases
-            if (Obj.type == ObjType.ProjectileSword)
+            if (Obj.type == ObjType.ProjectileSword || Obj.type == ObjType.ProjectileNet)
             {   //some projectiles flip based on their direction
                 if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
                 { Obj.compSprite.flipHorizontally = true; }
@@ -210,7 +210,7 @@ namespace DungeonRun
             #endregion
 
 
-            //Editor Room Objects
+            //Dungeon Room Objects
 
             #region Pits
 
@@ -417,7 +417,7 @@ namespace DungeonRun
             #endregion
 
 
-            //Vendor Room Objects
+            //Non-Dungeon Room Objects
 
             #region Shop Objects
 
@@ -485,16 +485,17 @@ namespace DungeonRun
 
             #region Projectiles
 
-            else if (Type == ObjType.ProjectileSword)
+            //items
+            else if (Type == ObjType.ProjectileBomb)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compSprite.zOffset = 16;
+                Obj.compSprite.zOffset = -4; //sort to floor
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 18; //in frames
-                Obj.compAnim.speed = 2; //in frames
-                Obj.compAnim.loop = false;
+                Obj.lifetime = 100; //in frames
+                Obj.compAnim.speed = 7; //in frames
                 Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //obj is airborne
             }
             else if (Type == ObjType.ProjectileFireball)
             {
@@ -509,17 +510,45 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
             }
-            else if (Type == ObjType.ProjectileBomb)
+
+            //weapons
+            else if (Type == ObjType.ProjectileSword)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compSprite.zOffset = -4; //sort to floor
+                Obj.compSprite.zOffset = 16;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 18; //in frames
+                Obj.compAnim.speed = 2; //in frames
+                Obj.compAnim.loop = false;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
+            }
+            else if (Type == ObjType.ProjectileArrow)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = 16;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 200; //in frames
+                Obj.compAnim.speed = 5; //in frames
+                Obj.compMove.speed = 2.25f; //arrow move fast
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
+            }
+            else if (Type == ObjType.ProjectileNet)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = 16;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 100; //in frames
-                Obj.compAnim.speed = 7; //in frames
+                Obj.lifetime = 18; //in frames
+                Obj.compAnim.speed = 2; //in frames
+                Obj.compAnim.loop = false;
                 Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
             }
+
+            //other
             else if (Type == ObjType.ProjectileExplosion)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
@@ -530,19 +559,6 @@ namespace DungeonRun
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 5; //in frames
                 Obj.compAnim.loop = false;
-                Obj.compMove.grounded = false; //obj is airborne
-            }
-            else if (Type == ObjType.ProjectileArrow)
-            {
-                Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compSprite.zOffset = 16;
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 200; //in frames
-                Obj.compAnim.speed = 5; //in frames
-                Obj.compMove.speed = 2.25f; //arrow move fast
-                Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
             }
             else if (Type == ObjType.ProjectileSpikeBlock)

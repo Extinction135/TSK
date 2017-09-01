@@ -710,9 +710,10 @@ namespace DungeonRun
 
 
         public byte currentWeapon = 0;
-        //0=sword, 1=bow, 2=???, 3=???, 4=???
+        //0=sword, 1=bow, 2=net, 3=???, 4=???
         public Boolean weaponBow = false;
-        //axe
+        public Boolean weaponNet = false;
+
 
 
 
