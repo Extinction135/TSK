@@ -423,6 +423,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.Bookcase1 || Type == ObjType.Bookcase2)
             {
+                Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 Obj.group = ObjGroup.Draggable;

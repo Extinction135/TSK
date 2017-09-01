@@ -44,7 +44,7 @@ v0.7 goals
 
 
 
-12
+11
 
 
 
@@ -52,35 +52,21 @@ v0.7 goals
 
 
 
-Fix Autosave + Loadout Bugs
 
-when we load/create a game, the hero's loadout is not set properly.
-this is because it's loaded from the autosave file.
-also, the hero's loadout isn't loaded before we create an overworld screen.
-this means the hero's loadout is displayed improperly if player
-presses start (opens inventory) from overworld screen.
 
-updated LoadSaveNew screen to autosave.
-this happens when user presses A button on any file display, in any mode.
-added call to SetHerosLoadout() from ScreenOverworld.LoadContent().
 
+
+
+
+Fix Bookcase CollisionRec Size
+
+the bookcases in shop overlap the back wall, causing some walls to disappear.
+the bookcases collision recs should be smaller vertically and aligned to base of obj.
+updated Bookcase1 and Bookcase2's collisionRecs in Obj.SetType().
 playtested, working as expected.
-hero's loadout carrys over from last game session using 'continue'.
 
 
 
-
-
-
-
-
-
-
-
-
-the bookcases in shop overlap the back wall, causing the walls to disappear
-the bookcases collision recs should match the objects they used to represent
-(they should be smaller vertically)
 
 
 
