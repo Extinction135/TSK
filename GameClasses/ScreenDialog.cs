@@ -86,7 +86,23 @@ namespace DungeonRun
             else if (dialogType == Dialog.HeroGotMap)
             {
                 dialogString = "You found the dungeon map! This map reveals the location of all rooms.";
-                dialogString += "\nPress the SELECT or BACK button to view this dungeon map.";
+                dialogString += "\nPress the Left Shoulder button to view this dungeon map.";
+            }
+            //bottle capturing dialogs
+            else if(dialogType == Dialog.BottleCant)
+            {
+                dialogString = "You caught a creature in your net!";
+                dialogString += "\nUnfortunately, you can't fit this creature in a bottle.";
+            }
+            else if (dialogType == Dialog.BottleFull)
+            {
+                dialogString = "You caught a creature in your net!";
+                dialogString += "\nUnfortunately, You don't have any empty bottles to put this creature in.";
+            }
+            else if (dialogType == Dialog.BottleFairy)
+            {
+                dialogString = "You caught a creature in your net!";
+                dialogString = "You successfully captured this creature in one of your empty bottles.";
             }
 
             #endregion

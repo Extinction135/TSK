@@ -540,13 +540,8 @@ namespace DungeonRun
         }
 
         public static void FinishBossRoom(Room Room)
-        {
-            actorRef = Functions_Pool.GetActor();
-            Functions_Actor.SetType(actorRef, ActorType.Boss);
-            //teleport boss to center of room
-            Functions_Movement.Teleport(actorRef.compMove,
-                Room.center.X + 8,
-                Room.center.Y + 8);
+        {   //spawn boss in center of room
+            Functions_Actor.SpawnActor(ActorType.Boss, Room.center.X + 8, Room.center.Y + 8);
         }
 
         public static void FinishKeyRoom(Room Room)
@@ -628,22 +623,14 @@ namespace DungeonRun
                     //create enemies at enemySpawn obj locations
                     if (objRef.group == ObjGroup.EnemySpawn)
                     {
-                        actorRef = Functions_Pool.GetActor();
-                        if (actorRef != null)
-                        {   //create actor based on spawn type
-                            if(objRef.type == ObjType.SpawnEnemy1)
-                            { Functions_Actor.SetType(actorRef, ActorType.Blob); }
-                            else if(objRef.type == ObjType.SpawnEnemy2)
-                            { Functions_Actor.SetType(actorRef, ActorType.Blob); }
-                            else if (objRef.type == ObjType.SpawnEnemy3)
-                            { Functions_Actor.SetType(actorRef, ActorType.Blob); }
-                            else if (objRef.type == ObjType.SpawnFairy)
-                            { Functions_Actor.SetType(actorRef, ActorType.Fairy); }
-                            //place actor at spawn point
-                            Functions_Movement.Teleport(actorRef.compMove,
-                                objRef.compSprite.position.X,
-                                objRef.compSprite.position.Y);
-                        }
+                        if (objRef.type == ObjType.SpawnEnemy1)
+                        { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
+                        else if (objRef.type == ObjType.SpawnEnemy2)
+                        { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
+                        if (objRef.type == ObjType.SpawnEnemy3)
+                        { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
+                        if (objRef.type == ObjType.SpawnFairy)
+                        { Functions_Actor.SpawnActor(ActorType.Fairy, objRef.compSprite.position); }
                     }
                 }
             }

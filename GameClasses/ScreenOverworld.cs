@@ -217,6 +217,7 @@ namespace DungeonRun
             //grab the hero's current loadout
             Functions_Actor.SetHeroLoadout();
 
+
             #region Add Animated Particles / Sprites to Map
 
             //create castle flags
@@ -253,7 +254,6 @@ namespace DungeonRun
             Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 109, 266, Direction.None); //left island / castle ruins
             
             #endregion
-
 
         }
 

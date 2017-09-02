@@ -89,7 +89,9 @@ namespace DungeonRun
         }
 
         public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
-        {   //only damage/hit/push actors not in the hit state
+        {   //certain actors dont take damage
+            if (Actor.type == ActorType.Fairy) { Damage = 0; } //fairys take no damage
+            //only damage/hit/push actors not in the hit state
             if (Actor.state != ActorState.Hit)
             {   //set actor into hit state, push actor the projectile's direction
                 Functions_Movement.Push(Actor.compMove, Direction, Force); //sets magnitude only

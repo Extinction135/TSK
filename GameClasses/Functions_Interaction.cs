@@ -307,10 +307,16 @@ namespace DungeonRun
                 #region Projectiles
 
                 if (Obj.group == ObjGroup.Projectile)
-                {   //fairys ignore projectile collisions
-                    if (Actor.type == ActorType.Fairy) { return; }
-                    //all other actors take damage from projectiles
-                    Functions_Battle.Damage(Actor, Obj);
+                {   //check for collision between net and actor
+                    if (Obj.type == ObjType.ProjectileNet)
+                    {   //make sure actor isn't in hit/dead state
+                        if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
+                        Obj.lifeCounter = Obj.lifetime; //kill projectile
+                        Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
+                        BottleActor(Actor); //try to bottle actor
+                    }
+                    //all other actors take damage from projectiles (fairys take 0 damage)
+                    Functions_Battle.Damage(Actor, Obj); //sets actor into hit/death
                     if (Obj.type == ObjType.ProjectileSword)
                     {
                         if (Obj.lifeCounter == 1)
@@ -746,6 +752,42 @@ namespace DungeonRun
                 Pit.compSprite.position.X ,
                 Pit.compSprite.position.Y - 4,
                 Direction.None);
+        }
+
+        public static void BottleActor(Actor Actor)
+        {
+            //can we bottle this actor?
+            if (Actor.type == ActorType.Boss
+                || Actor.type == ActorType.Hero
+                || Actor.type == ActorType.Blob)
+            {   //pop cant bottle dialog
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleCant)); }
+                return;
+            }
+            
+            //byte value = 0
+            //if Actor.type = fairy, value = 5
+            //if Actor.type = blob, value = 6
+            //playerdata.current.bottleA = value; captured = true;
+
+            Boolean captured = false;
+            //does hero have an empty bottle? becomes filled fairy bottle
+            if (PlayerData.current.bottleA == 1) { PlayerData.current.bottleA = 5; captured = true; }
+            else if (PlayerData.current.bottleB == 1) { PlayerData.current.bottleB = 5; captured = true; }
+            else if (PlayerData.current.bottleC == 1) { PlayerData.current.bottleC = 5; captured = true; }
+
+            if (captured)
+            {   //pop captured dialog
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFairy)); }
+                Functions_Actor.SetDeathState(Actor); //kill fairy
+            }
+            else
+            {   //pop bottle full dialog
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFull)); }
+            }
         }
 
     }

@@ -15,6 +15,21 @@ namespace DungeonRun
     public static class Functions_Actor
     {
 
+        public static void SpawnActor(ActorType Type, Vector2 Pos)
+        {
+            SpawnActor(Type, Pos.X, Pos.Y);
+        }
+
+        public static void SpawnActor(ActorType Type, float X, float Y)
+        {   //grab an actor, place at X, Y position
+            Actor actor = Functions_Pool.GetActor();
+            if (actor != null)
+            {
+                SetType(actor, Type);
+                Functions_Movement.Teleport(actor.compMove, X, Y);
+            }
+        }
+
         public static void SetHitState(Actor Actor)
         {   //bail if actor is already dead (dont hit dead actors)
             if (Actor.state == ActorState.Dead) { return; }

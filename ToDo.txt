@@ -16,20 +16,11 @@ Gif Capture process:
 
 CTRL + M, O = collapse functions/regions
 
-adding a new particle/projectile:
-	add new gameObject type for PP
-	add new gameObject animation list for PP
-	add codepath for PP to GameObjectFunctions.SetType.
-	add call to spawn PP somewhere
-	maybe set the alignment of PP in ProjetileFunctions.AlignProjectile()
-	maybe projectile interacts with Actor/Obj in InteractionFunctions.Handle()
-
 adding music:
 	music should be compressed down to 22K sample rate, mono.
 	files are then saved to .ogg and added to content pipeline, built on high quality.
 adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
-	
 ram useage:
 	109mb on Win10. 102.7mb on XboxOne.
 	
@@ -44,37 +35,46 @@ v0.7 goals
 
 
 
-5
+4
+
+
+
+Implement capturing Fairies in Empty Bottles
+
+updated InteractActor() to check for Net vs Fairy interaction.
+created BottleActor() to handle bottling of various actors.
+for now, we will only bottle fairys.
+
+added BottleCant, BottleFull, BottleFairy values to Dialog enum.
+updated BottleActor() to create correct dialog screens.
+updated DialogScreen to handle the new bottle dialog values.
+
+fixed a very annoying problem where collisions between 
+net and actors would happen multiple times across frames.
+this caused multiple dialog screens to pop up.
+
+created Functions_Actor.SpawnActor() method.
+this matches SpawnEntity() and SpawnRoomObj().
+updated various codepaths to use SpawnActor().
+
+updated Functions_Loot.SpawnLoot() to create Fairys.
+lots of playtesting, working as expected.
 
 
 
 
-DialogScreen++
-
-removed boolean PauseDungeonScreen from DialogScreen.
-this boolean controlled if the Dungeon/Level screen received updates from DialogScreen.
-this was being done so that the hero could finish his animation.
-for example, when the hero open the map chest, he got the map.
-he holds it above it his head (reward anim) and dialog screen opens.
-however, if we pause the level screen, then the hero doesn't have enough time
-to transition into his reward animation, so it looks wrong.
-
-updated DialogScreen to set hero into his current animation when the screen opens.
-this solves the problem of the hero's sprite being displayed incorrectly.
-plus, we no longer have to update the level screen (unpause game).
-if we continued to run the game while the dialog screen was open,
-it prevented player from passing input to hero, while enemies were still moving around.
-this led to a state where the enemies could attack and kill the hero,
-and the player couldn't do anything about it, which sucks.
-so that had to be fixed.
-
-playtested, working as expected.
 
 
 
 
+Implement capturing Blobs in Empty Bottles
 
+need blob in bottle sprite, bottle byte gets increased to 6 (5=fairy, 6=blob)
+otherwise its just like capturing faires...
 
+we'll need to update Functions_Interaction.BottleActor() with path for blob
+what happens when we "use" a bottled blob?
+empty the bottle, spawn a blob actor south of hero
 
 
 
@@ -82,18 +82,8 @@ playtested, working as expected.
 
 
 Fairies++
-
-fairy actors should also spawn as part of Functions_Loot.
 we need fairy soundfx for when fairy dies (absorbed or captured).
-
-implement capturing fairy actors in bottles
-this is done by checking a net projectile collision against fairy collisionRec
-if true, check to see if hero has empty bottle (else no bottle dialog)
-if true, fairy actor dies, bottle gets filled with fairy, fairy captured dialog
-* make sure to freeze game during these dialogs *
-
-
-
+fairys should have soundfx for when they are hit
 
 
 NET++
@@ -148,6 +138,18 @@ can he just purchase a potion and get the bottle for free?
 should hero just start off with bottles?
 we can easily sell bottles from potion vendor, or create a bottle vendor
 which seems 1 dimensional, because that vendor will quickly get used up and ignored
+
+
+
+
+
+
+
+Move door collapse debris sprites into dungeon sheet
+they will be themed/graded with dungeon walls
+
+
+
 
 
 Destroyed Debris object

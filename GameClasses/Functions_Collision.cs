@@ -247,23 +247,15 @@ namespace DungeonRun
 
         public static void CheckCollisions(GameObject Entity)
         {   //single projection collision check (X&Y axis)
-            collisionXY = false;
-
             //project X&Y
             Entity.compCollision.rec.X = (int)Entity.compMove.newPosition.X + Entity.compCollision.offsetX;
             Entity.compCollision.rec.Y = (int)Entity.compMove.newPosition.Y + Entity.compCollision.offsetY;
-            //check actor, object, entity collisions/interactions
-            if (CheckActorPoolCollisions(Entity)) { collisionX = true; }
-            if (CheckObjPoolCollisions(Entity)) { collisionX = true; }
+            //check actor & object collisions/interactions
+            if (CheckActorPoolCollisions(Entity)) { }
+            if (CheckObjPoolCollisions(Entity)) { }
             //unproject X&Y
             Entity.compCollision.rec.X = (int)Entity.compMove.position.X + Entity.compCollision.offsetX;
             Entity.compCollision.rec.Y = (int)Entity.compMove.position.Y + Entity.compCollision.offsetY;
-            //if there was a collision, revert to previous position, per axis
-            if (collisionXY)
-            {
-                Entity.compMove.newPosition.X = Entity.compMove.position.X;
-                Entity.compMove.newPosition.Y = Entity.compMove.position.Y;
-            }
             //the current position becomes the new position
             Entity.compMove.position.X = Entity.compMove.newPosition.X;
             Entity.compMove.position.Y = Entity.compMove.newPosition.Y;

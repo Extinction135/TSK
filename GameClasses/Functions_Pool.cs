@@ -228,8 +228,7 @@ namespace DungeonRun
                     { Functions_Movement.ProjectMovement(Pool.entityPool[i].compMove); }
 
                     //particles dont get collision checked
-                    if (Pool.entityPool[i].group == ObjGroup.Particle)
-                    { }
+                    if (Pool.entityPool[i].group == ObjGroup.Particle) { }
                     else //projectiles + pickups get collision checked
                     { Functions_Collision.CheckCollisions(Pool.entityPool[i]); }
 

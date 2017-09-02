@@ -27,7 +27,7 @@ namespace DungeonRun
             if (Functions_Random.Int(0, 100) > dropRate)
             {
                 //randomly choose a type of loot to spawn
-                lootType = Functions_Random.Int(0, 100);
+                lootType = Functions_Random.Int(0, 101);
 
                 //common loot drops
                 if (lootType < 25) //25%
@@ -44,9 +44,8 @@ namespace DungeonRun
                 { Functions_Entity.SpawnEntity(ObjType.PickupArrow, Pos.X, Pos.Y, Direction.Down); }
 
                 //rare loot drops
-                //else if (lootType < 100) //5%
-                //{ Functions_Entity.SpawnEntity(ObjType.ProjectileFairy, Pos.X, Pos.Y, Direction.Down); }
-                //instead we'll be spawning a fairy actor here
+                else if (lootType < 101) //5%
+                { Functions_Actor.SpawnActor(ActorType.Fairy, Pos); }
             }
         }
 

@@ -79,6 +79,7 @@ namespace DungeonRun
             Flags.InfiniteBombs = true; //hero has infinite bombs
             Flags.CameraTracksHero = false; //center to room
             Flags.ShowEnemySpawns = true; //necessary for editing
+            //Flags.ProcessAI = false; //turn off ai for testing
         }
 
         public void SetEditorLoadout()

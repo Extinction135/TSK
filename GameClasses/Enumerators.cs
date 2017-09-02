@@ -131,12 +131,13 @@ namespace DungeonRun
 
     public enum Dialog
     {
-        Default, GameSaved, GameLoaded, GameAutoSaved,
+        Default,
+        //load/save/new dialogs
+        GameSaved, GameLoaded, GameAutoSaved,
         GameCreated, GameNotFound, GameLoadFailed,
-        //Intro, Dungeon1, Dungeon2 //etc...
-        DoesNotHaveKey,
-        HeroGotKey, HeroGotMap,
-
+        //dungeon dialogs
+        DoesNotHaveKey, HeroGotKey, HeroGotMap,
+        BottleCant, BottleFull, BottleFairy,
         //Editor Dialogs
         CantAddKeyChest, CantAddMapChest, CantAddMoreChests,
     }

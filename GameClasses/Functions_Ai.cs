@@ -49,14 +49,7 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
                 //randomly spawn a blob mob at boss location
                 if (Functions_Random.Int(0, 100) > 50)
-                {
-                    Actor actorRef = Functions_Pool.GetActor();
-                    if(actorRef != null)
-                    {   //actorRef can never be an actor already active in room
-                        Functions_Actor.SetType(actorRef, ActorType.Blob);
-                        Functions_Movement.Teleport(actorRef.compMove, actorPos.X, actorPos.Y);
-                    }
-                }
+                { Functions_Actor.SpawnActor(ActorType.Blob, actorPos); }
             }
 
             #endregion
