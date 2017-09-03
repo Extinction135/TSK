@@ -52,6 +52,10 @@ namespace DungeonRun
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 
+    public enum ActorAI { Random, Basic }
+
+
+
     public enum ObjGroup
     {
         Wall, Door, Chest, Object, Vendor, EnemySpawn, //roomObjs

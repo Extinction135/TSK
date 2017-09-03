@@ -29,41 +29,29 @@ todo:
 
 v0.7 goals
 
-10
-
-
-
-
-
-
-
-Refactoring
-
-moved key/map soundfx into Functions_Entity.HandleBirthEvent().
-it was happening in InteractHero().
-this helps to consolidate particle/projectile soundFX to one routine.
-
-
-
-
-
-
-
-
-
-Hero & Blob ActorTypes++
-we need to save the actorType of hero
-we need to make sure we're checking if actor == hero, and not if actor.type == hero in various routines
-we should display the hero.actorType in the display data for LSN screen
+9
 
 
 
 
 Improving Actor AI
-actors should have an AI type enum.
-this determines the actors level of intelligence.
-{ Random, Basic }
-this allows us to treat groups of enemies the same, instead of by actorType
+
+added ActorAI enum, containing Random and Basic values.
+added aiType field to Actor class.
+updated Functions_Actor.SetType() to set aiTypes for blob and boss.
+updated Functions_Ai.SetActorInput() to use actor.aiType field..
+this reduced overall code, and deduplicated AI routines shared by boss and fairy.
+this also allows us to pass ai to actors without resorting to a actorType check.
+a actorType check does not scale well, and duplicated lots of code.
+
+playtested, working as expected.
+
+
+
+
+
+
+Improving Actor AI
 
 we also need to have a boolean that represents ally/enemy
 allies dont attack hero, enemies do
@@ -116,7 +104,10 @@ post RELEASE binaries for DirectX + UWP.
 
 
 
-
+Hero & Blob ActorTypes++
+we need to save the actorType of hero
+we need to make sure we're checking if actor == hero, and not if actor.type == hero in various routines
+we should display the hero.actorType in the display data for LSN screen
 
 
 

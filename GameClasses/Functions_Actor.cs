@@ -282,6 +282,7 @@ namespace DungeonRun
             }
             else if (Type == ActorType.Blob)
             {
+                Actor.aiType = ActorAI.Basic;
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.health = 1;
                 ResetActorLoadout(Actor);
@@ -295,6 +296,7 @@ namespace DungeonRun
             }
             else if (Type == ActorType.Boss)
             {
+                Actor.aiType = ActorAI.Random;
                 Actor.compSprite.texture = Assets.bossSheet;
                 Actor.health = 10;
                 ResetActorLoadout(Actor);
@@ -314,11 +316,12 @@ namespace DungeonRun
             }
             else if (Type == ActorType.Fairy)
             {   //non-combatant actor
+                Actor.aiType = ActorAI.Random;
                 Actor.compSprite.texture = Assets.mainSheet;
                 Actor.health = 1;
                 ResetActorLoadout(Actor);
-                Actor.walkSpeed = 0.3f;
-                Actor.dashSpeed = 0.3f;
+                Actor.walkSpeed = 0.25f;
+                Actor.dashSpeed = 0.5f;
                 //set actor sound effects
                 Actor.sfxDash = null;
                 Actor.sfxHit = null;

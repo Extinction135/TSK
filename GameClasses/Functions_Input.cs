@@ -75,8 +75,6 @@ namespace DungeonRun
 
         public static bool IsNewButtonPress(Buttons button)
         {
-            //if(Input.currentGamePadState.IsButtonDown(button) && Input.lastGamePadState.IsButtonUp(button))
-            //{ DumpControllerState(); } //debugging controller state
             return (Input.currentGamePadState.IsButtonDown(button) && Input.lastGamePadState.IsButtonUp(button));
         }
 

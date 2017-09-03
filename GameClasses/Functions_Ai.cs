@@ -40,72 +40,68 @@ namespace DungeonRun
             yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - actorPos.Y);
 
 
-            #region Boss AI
+            //control actor based on actor.aiType
 
-            if (Actor.type == ActorType.Boss)
+            #region Random AI
+
+            if(Actor.aiType == ActorAI.Random)
             {
                 //randomly move in a direction + dash
                 Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                 if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
-                //randomly spawn a blob mob at boss location
-                if (Functions_Random.Int(0, 100) > 50)
-                { Functions_Actor.SpawnActor(ActorType.Blob, actorPos); }
+
+                if (Actor.type == ActorType.Boss)
+                {   //randomly spawn a blob mob at boss location
+                    if (Functions_Random.Int(0, 100) > 50)
+                    { Functions_Actor.SpawnActor(ActorType.Blob, actorPos); }
+                }
             }
 
             #endregion
 
 
-            #region Blob AI
-
-            else if (Actor.type == ActorType.Blob)
-            {
-                //determine if actor is close enough to hero to chase
-                int chaseRadius = 16 * 6;
-                if (yDistance < chaseRadius && xDistance < chaseRadius)
-                {   //actor is close enough to hero to chase, move towards the hero
-                    Actor.compInput.direction = Functions_Direction.GetDirectionToHero(actorPos);
-                }
-                else
-                {   //choose a random direction to move in
-                    Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
-                }
-
-                //determine if actor is close enough to hero to attack
-                int attackRadius = 14;
-                if (yDistance < attackRadius && xDistance < attackRadius)
-                {   //actor is close enough to hero to attack
-                    if (Functions_Random.Int(0, 100) > 50) //randomly attack
-                    { Actor.compInput.attack = true; }
-                }
-
-                //determine if the actor can dash
-                if (!Actor.compInput.attack)
-                {   //if the actor isn't attacking, then randomly dash
-                    if (Functions_Random.Int(0, 100) > 90)
-                    { Actor.compInput.dash = true; }
-                }
-
-                //handle the state where the hero is dead
+            #region Basic AI
+            
+            else if(Actor.aiType == ActorAI.Basic)
+            {   //handle the state where the hero is dead
                 if (Pool.hero.state == ActorState.Dead)
                 {   //reset AI input, randomly move + dash
-                    Functions_Input.ResetInputData(Actor.compInput);
                     Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                     if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
                 }
+                else
+                {   //determine if actor is close enough to hero to chase
+                    int chaseRadius = 16 * 6;
+                    if (yDistance < chaseRadius && xDistance < chaseRadius)
+                    {   //actor is close enough to hero to chase, move towards the hero
+                        Actor.compInput.direction = Functions_Direction.GetDirectionToHero(actorPos);
+                    }
+                    else
+                    {   //choose a random direction to move in
+                        Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                    }
+
+                    //determine if actor is close enough to hero to attack
+                    int attackRadius = 14;
+                    if (yDistance < attackRadius && xDistance < attackRadius)
+                    {   //actor is close enough to hero to attack
+                        if (Functions_Random.Int(0, 100) > 50) //randomly attack
+                        { Actor.compInput.attack = true; }
+                    }
+
+                    //determine if the actor can dash
+                    if (!Actor.compInput.attack)
+                    {   //if the actor isn't attacking, then randomly dash
+                        if (Functions_Random.Int(0, 100) > 90)
+                        { Actor.compInput.dash = true; }
+                    }
+                }
             }
 
             #endregion
 
 
-            #region Fairy AI
-
-            else if (Actor.type == ActorType.Fairy)
-            {   //choose a random direction to move in
-                if (Functions_Random.Int(0, 100) > 50)
-                { Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8); }
-            }
-
-            #endregion
+            
 
 
             //slightly more advanced AI

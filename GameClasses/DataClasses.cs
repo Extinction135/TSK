@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.6f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -581,6 +581,7 @@ namespace DungeonRun
     public class Actor
     {
         public ActorType type; //the type of actor this is
+        public ActorAI aiType = ActorAI.Basic; //what type of AI this actor gets
         public ActorState state; //what actor is doing this frame
         public ActorState inputState; //what input wants actor to do this frame
 
@@ -621,7 +622,7 @@ namespace DungeonRun
         public Actor()
         {
             compSprite = new ComponentSprite(Assets.heroSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(16, 16));
-            Functions_Actor.SetType(this, ActorType.Hero);//default to hero actor
+            Functions_Actor.SetType(this, ActorType.Hero); //defaults to hero actor
             Functions_Movement.Teleport(compMove, compSprite.position.X, compSprite.position.Y);
         }
     }
