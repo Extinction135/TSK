@@ -36,72 +36,72 @@
       <type>BlockDark</type>
       <direction>Down</direction>
       <posX>72</posX>
-      <posY>40</posY>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>40</posY>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
       <direction>Down</direction>
       <posX>104</posX>
-      <posY>40</posY>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
       <direction>Down</direction>
       <posX>72</posX>
-      <posY>136</posY>
+      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>136</posY>
+      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
       <direction>Down</direction>
       <posX>104</posX>
-      <posY>136</posY>
+      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockLight</type>
       <direction>Down</direction>
-      <posX>136</posX>
+      <posX>152</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockLight</type>
       <direction>Down</direction>
-      <posX>136</posX>
+      <posX>152</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockLight</type>
       <direction>Down</direction>
-      <posX>136</posX>
+      <posX>152</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockLight</type>
       <direction>Down</direction>
-      <posX>40</posX>
+      <posX>24</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockLight</type>
       <direction>Down</direction>
-      <posX>40</posX>
+      <posX>24</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockLight</type>
       <direction>Down</direction>
-      <posX>40</posX>
+      <posX>24</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -343,6 +343,30 @@
       <direction>Right</direction>
       <posX>72</posX>
       <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>168</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

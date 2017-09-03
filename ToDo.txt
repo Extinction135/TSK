@@ -29,45 +29,32 @@ todo:
 
 v0.7 goals
 
-11
+13
 
 
 
 
-updated PotSkull to be PotDestructible.
-checked roomData for PotSkull references, none.
-removed Liftable & Draggable values from ObjGroup enum.
-updated various paths in codebase that used these values.
+RoomData++
 
-moved various methods around, for better conceptual fit.
-BlowUpRoomObject() now exists in Functions_RoomObject.
-ScatterRockDebris() now exists in Functions_Entity.
-BottleActor() now exists in Functions_Actor.
-CollapseDungeonDoor() now exists in Functions_RoomObject.
-
-updated BlowUpRoomObject() with releaseObj and spawnLoot boolean parameters.
-updated BlowUpRoomObject() to spawn loot based on passed spawnLoot parameter.
-updated CollapseDungeonDoor() to use BlowUpRoomObject(), deduplicating code.
-changed BlowUpRoomObject() to DestroyObject().
-updated InteractObj() -> Explosion to destroy BossStatue & Pot.
-updated InteractObj() -> Fireball to destroy BossStatue & Pot.
-updated InteractObj() -> Sword to destroy Pot object.
-playtested, minor bug.
-
-bug: debrisrocks set actors/hero into hit state upon collision.
-updated InteractActor() -> projectiles to ignore rock debris collisions/interactions.
-playtested, working as expected.
+updated some rooms to be easier.
+added additional rooms to roomData.
+added lots of skull pots to rooms.
 
 
 
 
 
 
+update the descriptions of potions
+tell player health + combo potions will revive upon death
 
-update roomdata:
-reduce the difficulty of some rooms
-add skullpots to all rooms
-create additional room designs
+update the guides default text to something adventur-y
+
+
+
+
+relink the UWP project to latest classes.
+post RELEASE binaries for DirectX + UWP.
 
 
 
@@ -76,13 +63,13 @@ create additional room designs
 
 
 
-relink the UWP project to latest classes
 
+implement switch blocks + switch block switch (name?)
+implement switches - how do these work? hero steps on them
 
-
-
-
-
+need a dungeon statue destroyed obj
+need a 'base' object that sits underneath skullpots
+skullpots would then become this base object upon destruction / lift
 
 
 

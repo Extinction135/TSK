@@ -3,38 +3,38 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Pot</type>
       <direction>Down</direction>
-      <posX>24</posX>
+      <posX>136</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>136</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>152</posX>
-      <posY>24</posY>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Pot</type>
       <direction>Down</direction>
-      <posX>24</posX>
-      <posY>280</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockDark</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>280</posY>
+      <posX>168</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Up</direction>
+      <direction>Left</direction>
       <posX>56</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Left</direction>
+      <direction>Right</direction>
       <posX>136</posX>
       <posY>72</posY>
     </ObjXmlData>
@@ -52,19 +52,19 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Left</direction>
+      <direction>Up</direction>
       <posX>40</posX>
       <posY>232</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Left</direction>
+      <direction>Up</direction>
       <posX>120</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Left</direction>
+      <direction>Right</direction>
       <posX>24</posX>
       <posY>152</posY>
     </ObjXmlData>
@@ -76,7 +76,7 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Up</direction>
+      <direction>Left</direction>
       <posX>88</posX>
       <posY>24</posY>
     </ObjXmlData>
@@ -87,39 +87,39 @@
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Pot</type>
       <direction>Down</direction>
-      <posX>72</posX>
-      <posY>216</posY>
+      <posX>120</posX>
+      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Pot</type>
       <direction>Down</direction>
-      <posX>88</posX>
-      <posY>216</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockDark</type>
-      <direction>Down</direction>
-      <posX>104</posX>
+      <posX>56</posX>
       <posY>216</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -177,52 +177,292 @@
       <posY>168</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BossStatue</type>
+      <type>TorchLit</type>
       <direction>Down</direction>
       <posX>136</posX>
-      <posY>88</posY>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BossStatue</type>
+      <type>TorchLit</type>
       <direction>Down</direction>
       <posX>40</posX>
-      <posY>88</posY>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BossStatue</type>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>TorchLit</type>
       <direction>Down</direction>
       <posX>136</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>72</posX>
       <posY>216</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BossStatue</type>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>40</posX>
-      <posY>216</posY>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>296</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>296</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>152</posX>
-      <posY>104</posY>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>264</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockDark</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockDark</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockDark</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BlockDark</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ProjectileSpikeBlock</type>
       <direction>Right</direction>
       <posX>88</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Up</direction>
-      <posX>24</posX>
-      <posY>184</posY>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ProjectileSpikeBlock</type>
       <direction>Left</direction>
       <posX>88</posX>
-      <posY>280</posY>
+      <posY>264</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

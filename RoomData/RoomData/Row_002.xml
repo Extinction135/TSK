@@ -314,29 +314,5 @@
       <posX>152</posX>
       <posY>120</posY>
     </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Right</direction>
-      <posX>8</posX>
-      <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Left</direction>
-      <posX>296</posX>
-      <posY>168</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Down</direction>
-      <posX>296</posX>
-      <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Up</direction>
-      <posX>8</posX>
-      <posY>168</posY>
-    </ObjXmlData>
   </objs>
 </RoomXmlData>

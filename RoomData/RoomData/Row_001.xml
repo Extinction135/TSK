@@ -9,10 +9,10 @@
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>SpawnEnemy1</type>
       <direction>Down</direction>
       <posX>152</posX>
-      <posY>88</posY>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
@@ -34,31 +34,31 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Up</direction>
+      <direction>Right</direction>
       <posX>200</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Left</direction>
+      <direction>Right</direction>
       <posX>56</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Left</direction>
+      <direction>Down</direction>
       <posX>104</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Up</direction>
+      <direction>Right</direction>
       <posX>56</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Up</direction>
+      <direction>Left</direction>
       <posX>200</posX>
       <posY>120</posY>
     </ObjXmlData>
@@ -93,13 +93,13 @@
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchUnlit</type>
+      <type>TorchLit</type>
       <direction>Down</direction>
       <posX>264</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchUnlit</type>
+      <type>TorchLit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>40</posY>
@@ -136,7 +136,7 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Down</direction>
+      <direction>Up</direction>
       <posX>248</posX>
       <posY>40</posY>
     </ObjXmlData>
@@ -214,13 +214,13 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Up</direction>
+      <direction>Left</direction>
       <posX>40</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Left</direction>
+      <direction>Down</direction>
       <posX>40</posX>
       <posY>120</posY>
     </ObjXmlData>
@@ -232,19 +232,19 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Down</direction>
+      <direction>Right</direction>
       <posX>264</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Down</direction>
+      <direction>Up</direction>
       <posX>264</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Up</direction>
+      <direction>Down</direction>
       <posX>40</posX>
       <posY>152</posY>
     </ObjXmlData>
@@ -256,19 +256,19 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Down</direction>
+      <direction>Left</direction>
       <posX>24</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Up</direction>
+      <direction>Left</direction>
       <posX>40</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Down</direction>
+      <direction>Right</direction>
       <posX>264</posX>
       <posY>24</posY>
     </ObjXmlData>
@@ -279,10 +279,382 @@
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchUnlit</type>
+      <type>TorchLit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>280</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>264</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTrap</type>
+      <direction>Right</direction>
+      <posX>136</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTrap</type>
+      <direction>Up</direction>
+      <posX>168</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>248</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTrap</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTrap</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>232</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>216</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>200</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>184</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>152</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>136</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>120</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>104</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>88</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>72</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>56</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>40</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>24</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>8</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>24</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>40</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>56</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>72</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>88</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>104</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>120</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>136</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>152</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>168</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>184</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>200</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>216</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>232</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>248</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>264</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>280</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>296</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>296</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SpawnEnemy1</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>104</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

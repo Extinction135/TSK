@@ -500,5 +500,41 @@
       <posX>120</posX>
       <posY>72</posY>
     </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>184</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>88</posY>
+    </ObjXmlData>
   </objs>
 </RoomXmlData>
