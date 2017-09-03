@@ -332,9 +332,23 @@ namespace DungeonRun
                 Actor.sfxDeath = Assets.sfxHeartPickup;
                 Actor.compMove.grounded = false; //actor flys in air
             }
+            else if (Type == ActorType.Doggo)
+            {   //non-combatant actor
+                Actor.aiType = ActorAI.Basic;
+                Actor.enemy = false;
+                Actor.compSprite.texture = Assets.mainSheet;
+                Actor.health = 200;
+                ResetActorLoadout(Actor);
+                Actor.walkSpeed = 0.25f;
+                Actor.dashSpeed = 0.5f;
+                //set actor sound effects
+                Actor.sfxDash = null; //bark sound
+                Actor.sfxHit = null; //bark sound
+                Actor.sfxDeath = null;
+            }
 
             #endregion
-            
+
 
             Functions_ActorAnimationList.SetAnimationGroup(Actor);
             Functions_ActorAnimationList.SetAnimationDirection(Actor);

@@ -44,7 +44,16 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
 
             //some actors have limited animations
-            if (Actor.type == ActorType.Fairy) { Actor.animGroup = Actor.animList.fairy; }
+            if (Actor.type == ActorType.Fairy)
+            {
+                Actor.animGroup = Actor.animList.fairy;
+            }
+            else if(Actor.type == ActorType.Doggo)
+            {
+                if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.doggoMove; }
+                else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.doggoMove; }
+                else { Actor.animGroup = Actor.animList.doggoIdle; }
+            }
         }
 
         public static void SetAnimationDirection(Actor Actor)
@@ -133,6 +142,20 @@ namespace DungeonRun
             actorAnims.fairy.up = new List<Byte4> { new Byte4(12, 3, 1, 0), new Byte4(13, 3, 1, 0) };
             actorAnims.fairy.right = new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) };
             actorAnims.fairy.left = new List<Byte4> { new Byte4(12, 3, 1, 0), new Byte4(13, 3, 1, 0) };
+
+            //doggo idle animation
+            actorAnims.doggoIdle = new AnimationGroup();
+            actorAnims.doggoIdle.down = new List<Byte4> { new Byte4(11, 5, 0, 0), new Byte4(12, 5, 0, 0) };
+            actorAnims.doggoIdle.up = new List<Byte4> { new Byte4(11, 5, 1, 0), new Byte4(12, 5, 1, 0) };
+            actorAnims.doggoIdle.right = new List<Byte4> { new Byte4(11, 5, 0, 0), new Byte4(12, 5, 0, 0) };
+            actorAnims.doggoIdle.left = new List<Byte4> { new Byte4(11, 5, 1, 0), new Byte4(12, 5, 1, 0) };
+            //doggo move animation
+            actorAnims.doggoMove = new AnimationGroup();
+            actorAnims.doggoMove.down = new List<Byte4> { new Byte4(12, 5, 0, 0), new Byte4(13, 5, 0, 0) };
+            actorAnims.doggoMove.up = new List<Byte4> { new Byte4(12, 5, 1, 0), new Byte4(13, 5, 1, 0) };
+            actorAnims.doggoMove.right = new List<Byte4> { new Byte4(12, 5, 0, 0), new Byte4(13, 5, 0, 0) };
+            actorAnims.doggoMove.left = new List<Byte4> { new Byte4(12, 5, 1, 0), new Byte4(13, 5, 1, 0) };
+
         }
 
     }

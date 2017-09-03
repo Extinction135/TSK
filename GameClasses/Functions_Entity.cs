@@ -45,7 +45,7 @@ namespace DungeonRun
 
             else if(Object.type == ObjType.Flamethrower)
             {   //shoots fireball (or whatever) at their position, facing towards the hero
-                direction = Functions_Direction.GetDirectionToHero(Object.compSprite.position);
+                direction = Functions_Direction.GetCardinalDirectionToHero(Object.compSprite.position);
             }
 
             #endregion

@@ -89,10 +89,10 @@ namespace DungeonRun
         }
 
         public static void ResetActorPool()
-        {   //we skip resetting the hero
-            for (Pool.actorCounter = 1; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
+        {   //skip resetting the hero & doggo
+            for (Pool.actorCounter = 2; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Release(Pool.actorPool[Pool.actorCounter]); }
-            Pool.actorIndex = 1;
+            Pool.actorIndex = 2;
         }
 
         public static void ResetRoomObjPool()

@@ -77,9 +77,17 @@ namespace DungeonRun
                     if(Pool.roomObjPool[i].type == ObjType.DoorOpen)
                     {   //set open/bombed doors to blocking or non-blocking
                         Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
+
+                        //compare hero to door positions, unblock door if hero is close enough
                         if (Math.Abs(Pool.hero.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
                         {   //compare hero to door sprite positions, unblock door if hero is close enough
                             if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
+                            { Pool.roomObjPool[i].compCollision.blocking = false; }
+                        }
+                        //do this for doggo as well
+                        if (Math.Abs(Pool.doggo.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
+                        {
+                            if (Math.Abs(Pool.doggo.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
                             { Pool.roomObjPool[i].compCollision.blocking = false; }
                         }
                     }
@@ -143,8 +151,10 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active) //actor must be active
                 {   //actors cannot collide with themselves
                     if (Actor != Pool.actorPool[i])
-                    {   //only check collisions with hero
-                        if (Actor.type == ActorType.Hero || Pool.actorPool[i].type == ActorType.Hero)
+                    {   //remove doggo from actor vs actor collision checking
+                        if(Actor.type == ActorType.Doggo || Pool.actorPool[i].type == ActorType.Doggo) { }
+                        //only check collisions between actors & hero
+                        else if (Actor == Pool.hero || Pool.actorPool[i] == Pool.hero)
                         {   //check for overlap
                             if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                             {   //handle any actor vs actor interaction, return collision
@@ -184,8 +194,9 @@ namespace DungeonRun
         {
             collision = false; //assume no collision
             for (i = 0; i < Pool.actorCount; i++)
-            {
-                if (Pool.actorPool[i].active) //actor must be active
+            {   //skip checking projectiles against doggo
+                if (Pool.actorPool[i] == Pool.doggo) { } //no checking
+                else if (Pool.actorPool[i].active) //actor must be active
                 {   //check for overlap
                     if (Entity.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                     {   //handle interaction

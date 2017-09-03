@@ -271,18 +271,19 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = new List<Byte4>
                 { new Byte4(14, 4, 0, 0), new Byte4(14, 5, 0, 0), new Byte4(14, 6, 0, 0), new Byte4(14, 7, 0, 0) };
             }
-            else if (Type == MenuItemType.InventoryKey)
-            {
-                MenuItem.name = "Dungeon Key";
-                MenuItem.description = "This key unlocks\nthe boss door.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(12, 5, 0, 0) };
-            }
             else if (Type == MenuItemType.InventoryMap)
             {
                 MenuItem.name = "Dungeon Map";
                 MenuItem.description = "This map displays\nthe dungeon's rooms.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 5, 0, 0) };
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(12, 4, 0, 0) };
             }
+            else if (Type == MenuItemType.InventoryKey)
+            {
+                MenuItem.name = "Dungeon Key";
+                MenuItem.description = "This key unlocks\nthe boss door.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(13, 4, 0, 0) };
+            }
+            
 
             #endregion
 

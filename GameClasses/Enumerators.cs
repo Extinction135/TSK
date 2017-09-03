@@ -48,7 +48,7 @@ namespace DungeonRun
 
     
 
-    public enum ActorType { Hero, Blob, Boss, Fairy }
+    public enum ActorType { Hero, Blob, Boss, Fairy, Doggo }
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 

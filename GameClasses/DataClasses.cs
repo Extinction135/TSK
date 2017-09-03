@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.6f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -148,6 +148,7 @@ namespace DungeonRun
         public static Actor hero; //points to actorPool[0]
         public static ComponentSprite heroShadow;
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
+        public static Actor doggo; //points to actorPool[1]
 
         public static int collisionsCount = 0; //tracks how many collisions occur per frame
 
@@ -192,8 +193,11 @@ namespace DungeonRun
 
             //reset all the pools
             Functions_Pool.Reset();
-            //create an easy to remember reference to the player/hero actor
+            //create an easy to remember reference for hero & doggo actors
             hero = actorPool[0];
+            Functions_Actor.SetType(hero, ActorType.Hero);
+            doggo = actorPool[1];
+            Functions_Actor.SetType(doggo, ActorType.Doggo);
             //create the hero's shadow + rec
             heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;
@@ -471,6 +475,8 @@ namespace DungeonRun
         //pickup, hold, carry, drag, etc...
 
         public AnimationGroup fairy;
+        public AnimationGroup doggoIdle;
+        public AnimationGroup doggoMove;
     }
 
     public class Room

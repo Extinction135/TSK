@@ -59,11 +59,11 @@ namespace DungeonRun
             }
         }
 
-        public static Direction GetDirectionToHero(Vector2 Pos)
+        public static Direction GetCardinalDirectionToHero(Vector2 Pos)
         {   //get the x and y distances between starting position and hero
             xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Pos.X);
             yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Pos.Y);
-            //determine the axis hero is closest on
+            //return the cardinal direction to hero
             if (xDistance < yDistance)
             {
                 if (Pool.hero.compSprite.position.Y > Pos.Y)
@@ -75,6 +75,25 @@ namespace DungeonRun
                 if (Pool.hero.compSprite.position.X > Pos.X)
                 { return Direction.Right; }
                 else { return Direction.Left; }
+            }
+        }
+
+        public static Direction GetDirectionToHero(Vector2 Pos)
+        {   //get the x and y distances between starting position and hero
+            xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Pos.X);
+            yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Pos.Y);
+            //return a NSEW or DIAG direction towards hero
+            if (Pool.hero.compSprite.position.Y > Pos.Y)
+            {   //down left or down right
+                if (Pool.hero.compSprite.position.X > Pos.X)
+                { return Direction.DownRight; }
+                else { return Direction.DownLeft; }
+            }
+            else
+            {   //up left or up right
+                if (Pool.hero.compSprite.position.X > Pos.X)
+                { return Direction.UpRight; }
+                else { return Direction.UpLeft; }
             }
         }
 

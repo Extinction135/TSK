@@ -347,6 +347,23 @@ namespace DungeonRun
                         if (Actor.compMove.grounded)
                         {
 
+                            #region Prevent Doggo from falling into pit
+
+                            if(Actor == Pool.doggo)
+                            {   //bounce opposite direction
+                                Actor.compMove.direction = Functions_Direction.GetOppositeDirection(Actor.compMove.direction);
+                                //if the direction is none, then get a direction between pit and doggo
+                                if (Actor.compMove.direction == Direction.None)
+                                { Actor.compMove.direction = Functions_Direction.GetRelativeDirection(
+                                    Obj.compSprite.position, Actor.compMove.position); }
+                                //push doggo in direction
+                                Functions_Movement.Push(Actor.compMove, Actor.compMove.direction, 2.0f);
+                                return;
+                            }
+
+                            #endregion
+
+
                             #region Continuous collision (each frame)
 
                             //gradually pull actor into pit's center, manually update the actor's position

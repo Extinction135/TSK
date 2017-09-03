@@ -81,16 +81,17 @@ namespace DungeonRun
                             { Actor.compInput.attack = true; Actor.compInput.dash = false; }
                         }
                     }
+                    else if(Actor.enemy == false)
+                    {   //if actor is an ally, then chase the hero
+                        ChaseHero();
+                        //determine if actor is close enough to stop chasing hero
+                        if (yDistance < attackRadius && xDistance < attackRadius)
+                        {   
+                            Actor.compInput.dash = false;
+                            Actor.compInput.direction = Direction.None;
+                        }
+                    }
                 }
-
-                /*
-                //hero's allies can chase hero like this
-                int chaseRadius = 16 * 6;
-                if (yDistance < chaseRadius && xDistance < chaseRadius)
-                {   //actor is close enough to hero to chase, move towards the hero
-                    Actor.compInput.direction = Functions_Direction.GetDirectionToHero(actorPos);
-                }
-                */
             }
 
             #endregion

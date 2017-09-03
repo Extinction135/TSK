@@ -203,32 +203,12 @@ namespace DungeonRun
             Functions_Pool.AlignRoomObjs();
             CleanupRoom(Room);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
+            TeleportDoggo(); //teleport doggo to hero's position
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
             if (Flags.PrintOutput)
             { Debug.WriteLine("finished " + Room.type + " room (id:" + Room.XMLid + ") in " + time.Ticks + " ticks"); }
-        }
-
-        public static void SpawnHeroInCurrentRoom()
-        {   //teleport hero to currentRoom's spawn position
-            Functions_Movement.Teleport(Pool.hero.compMove, 
-                Functions_Level.currentRoom.spawnPos.X,
-                Functions_Level.currentRoom.spawnPos.Y);
-            Functions_Movement.StopMovement(Pool.hero.compMove);
-            Pool.hero.compSprite.scale = 1.0f; //rescale hero to 100%
-            //set camera's target to hero or room based on flag boolean
-            if (Flags.CameraTracksHero) //center camera to hero
-            { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
-            else
-            {   //center camera to current room
-                Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
-                Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y;
-            }
-            //teleport camera to targetPos, update camera view
-            Camera2D.currentPosition.X = Camera2D.targetPosition.X;
-            Camera2D.currentPosition.Y = Camera2D.targetPosition.Y;
-            Functions_Camera2D.Update();
         }
 
         public static void SetRoomXMLid(Room Room)
@@ -328,7 +308,38 @@ namespace DungeonRun
                 }
             }
         }
- 
+
+        public static void SpawnHeroInCurrentRoom()
+        {   //teleport hero to currentRoom's spawn position
+            Functions_Movement.Teleport(Pool.hero.compMove,
+                Functions_Level.currentRoom.spawnPos.X,
+                Functions_Level.currentRoom.spawnPos.Y);
+            Functions_Movement.StopMovement(Pool.hero.compMove);
+            Pool.hero.compSprite.scale = 1.0f; //rescale hero to 100%
+            //set camera's target to hero or room based on flag boolean
+            if (Flags.CameraTracksHero) //center camera to hero
+            { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
+            else
+            {   //center camera to current room
+                Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
+                Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y;
+            }
+            //teleport camera to targetPos, update camera view
+            Camera2D.currentPosition.X = Camera2D.targetPosition.X;
+            Camera2D.currentPosition.Y = Camera2D.targetPosition.Y;
+            Functions_Camera2D.Update();
+            TeleportDoggo(); //teleport doggo to hero's position
+        }
+
+        public static void TeleportDoggo()
+        {   //teleport doggo to hero's position
+            Functions_Movement.Teleport(Pool.doggo.compMove,
+                Pool.hero.compMove.newPosition.X,
+                Pool.hero.compMove.newPosition.Y);
+            Functions_Movement.StopMovement(Pool.doggo.compMove);
+            Pool.doggo.compSprite.scale = 1.0f; //rescale hero to 100%
+        }
+
 
 
         //adds/changes objs in room 
