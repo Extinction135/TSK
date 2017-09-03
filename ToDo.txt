@@ -29,35 +29,23 @@ todo:
 
 v0.7 goals
 
-8
+7
 
 
 
-Add Actor.Enemy Boolean
 
-added enemy boolean to Actor class.
-this will determine if an actor is friendly to hero or not.
-updated Functions_Actor.SetType() to set enemy boolean for all actors.
-updated Functions_Ai.SetActorInput() to check actor.enemy boolean.
-if actor.enemy is true AND hero.enemy is false, then the actor will attack the hero.
-so if hero becomes a blob, the blobs stop chasing & attacking him.
-this allows hero to live among the blobs as one of their own (daawwww).
+Fix Room Designs
 
-created Functions_Ai.ChaseHero().
-refactored SetActorInput(), greatly simplifying it.
-playtested, working as expected.
+fixed two square rooms that weren't playing as I'd like them to.
+the main issue was traversing them as a blob, where blob hero could get stuck.
+the other issue was simply that too much bouncing was happening in the room.
+so I removed some bumpers and replaced them with skull pots.
 
 
 
 
 
 
-
-
-
-fix a couple rooms
-square room, conveyors pushing towards doors should push away from doors
-square room, tons of onveyors, there should be two skull pots isntead of 1 between each bumper
 
 
 

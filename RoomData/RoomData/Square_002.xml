@@ -435,52 +435,52 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Bumper</type>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bumper</type>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bumper</type>
+      <type>Pot</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>LeverOff</type>
@@ -527,13 +527,13 @@
     <ObjXmlData>
       <type>Pot</type>
       <direction>Down</direction>
-      <posX>72</posX>
+      <posX>56</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Pot</type>
       <direction>Down</direction>
-      <posX>104</posX>
+      <posX>120</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -678,6 +678,54 @@
       <type>SpawnEnemy1</type>
       <direction>Down</direction>
       <posX>56</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Pot</type>
+      <direction>Down</direction>
+      <posX>104</posX>
       <posY>104</posY>
     </ObjXmlData>
   </objs>
