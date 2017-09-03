@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3764DA1B-71BC-44D7-9685-C8B30129AAAE}</ProjectGuid>
+    <ProjectGuid>{ADD304A6-57D3-4969-B0F8-7558313943B1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DungeonRun</RootNamespace>
@@ -246,11 +246,13 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
+  <Target Name="AfterBuild">
+  </Target>
   -->
   <Target Name="AfterBuild">
     <ItemGroup>
       <RoomData Include="..\..\RoomData\**" />
     </ItemGroup>
     <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
-  </Target>
+</Target>
 </Project>

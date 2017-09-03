@@ -201,6 +201,7 @@ namespace DungeonRun
 
 
             Functions_Room.SpawnHeroInCurrentRoom(); //spawn hero in exit room
+            Pool.hero.health = PlayerData.current.heartsTotal; //refill hero's hp
             Pool.hero.direction = Direction.Up; //face hero up
         }
 

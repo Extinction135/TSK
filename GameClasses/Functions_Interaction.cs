@@ -350,14 +350,11 @@ namespace DungeonRun
                             #region Prevent Doggo from falling into pit
 
                             if(Actor == Pool.doggo)
-                            {   //bounce opposite direction
-                                Actor.compMove.direction = Functions_Direction.GetOppositeDirection(Actor.compMove.direction);
-                                //if the direction is none, then get a direction between pit and doggo
-                                if (Actor.compMove.direction == Direction.None)
-                                { Actor.compMove.direction = Functions_Direction.GetRelativeDirection(
-                                    Obj.compSprite.position, Actor.compMove.position); }
+                            {   //get the opposite direction between doggo's center and pit's center
+                                Actor.compMove.direction = Functions_Direction.GetOppositeDirection(
+                                    Actor.compSprite.position, Obj.compSprite.position);
                                 //push doggo in direction
-                                Functions_Movement.Push(Actor.compMove, Actor.compMove.direction, 2.0f);
+                                Functions_Movement.Push(Actor.compMove, Actor.compMove.direction, 1.0f);
                                 return;
                             }
 
@@ -642,7 +639,7 @@ namespace DungeonRun
             compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
             //if the direction is none, then get a direction between bumper and collider
             if (compMove.direction == Direction.None)
-            { compMove.direction = Functions_Direction.GetRelativeDirection(Bumper.compSprite.position, compMove.position); }
+            { compMove.direction = Functions_Direction.GetOppositeDirection(compMove.position, Bumper.compSprite.position); }
             //push collider in direction
             Functions_Movement.Push(compMove, compMove.direction, 10.0f);
             //handle the bumper animation

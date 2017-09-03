@@ -20,6 +20,10 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>DungeonRun_TemporaryKey.pfx</PackageCertificateKeyFile>
     <MonoGamePlatform>WindowsStoreApp</MonoGamePlatform>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>C:\Users\Gx000000\Desktop\</AppxPackageDir>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <!-- <IncludeLayoutFilesInPackage>true</IncludeLayoutFilesInPackage> -->
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -116,14 +120,14 @@
     <Compile Include="..\..\GameClasses\Functions_Ai.cs">
       <Link>Classes\Functions_Ai.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_Alignment.cs">
-      <Link>Classes\Functions_Alignment.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Animation.cs">
       <Link>Classes\Functions_Animation.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Battle.cs">
       <Link>Classes\Functions_Battle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Bottle.cs">
+      <Link>Classes\Functions_Bottle.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Camera2D.cs">
       <Link>Classes\Functions_Camera2D.cs</Link>
@@ -190,6 +194,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Room.cs">
       <Link>Classes\Functions_Room.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_RoomObject.cs">
+      <Link>Classes\Functions_RoomObject.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_ScreenRec.cs">
       <Link>Classes\Functions_ScreenRec.cs</Link>
@@ -294,6 +301,8 @@
     <None Include="DungeonRun_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Logo.scale-200.png" />
+    <Content Include="Assets\SmallLogo.targetsize-48.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
