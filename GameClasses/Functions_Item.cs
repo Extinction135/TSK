@@ -145,6 +145,13 @@ namespace DungeonRun
             { Pool.hero.item = MenuItemType.BottleEmpty; }
         }
 
+        public static Boolean CheckBottleUponDeath(Byte bottleID, Byte bottleValue)
+        {   //check for health, combo, or fairy values
+            if (bottleValue == 2 || bottleValue == 4 || bottleValue == 5)
+            { UseBottle(bottleID, bottleValue); return true; }
+            return false; //bottle cannot be used to heal/self-rez
+        }
+
         static Boolean CheckMagic(int castingCost)
         {   //if infinite magic is enabled, allow
             if (Flags.InfiniteMagic) { return true; }

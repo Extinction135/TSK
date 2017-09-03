@@ -102,7 +102,7 @@ namespace DungeonRun
                     //handle exit action
                     if (exitAction == ExitAction.Summary)
                     { ScreenManager.ExitAndLoad(new ScreenSummary()); }
-                    else if(exitAction == ExitAction.Overworld) //pass previous level type as starting map location
+                    else if(exitAction == ExitAction.Overworld)
                     { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
                     else if(exitAction == ExitAction.Title)
                     { ScreenManager.ExitAndLoad(new ScreenTitle()); }

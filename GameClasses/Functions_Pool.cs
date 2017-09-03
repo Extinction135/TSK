@@ -175,10 +175,13 @@ namespace DungeonRun
         public static void Update()
         {
             Pool.collisionsCount = 0;
+            UpdateActors();
+            UpdateEntities();
+            UpdateRoomObjects();
+        }
 
-
-            #region Actor pool
-
+        public static void UpdateActors()
+        {
             for (i = 0; i < Pool.actorCount; i++)
             {
                 if (Pool.actorPool[i].active)
@@ -195,8 +198,8 @@ namespace DungeonRun
                         Functions_Collision.CheckCollisions(Pool.actorPool[i]);
                         //resolve movement
                         Functions_Component.Align(
-                            Pool.actorPool[i].compMove, 
-                            Pool.actorPool[i].compSprite, 
+                            Pool.actorPool[i].compMove,
+                            Pool.actorPool[i].compSprite,
                             Pool.actorPool[i].compCollision);
                     }
                 }
@@ -207,14 +210,10 @@ namespace DungeonRun
             Pool.heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
             //check the heroRec's collisions with Level rooms
             Functions_Collision.CheckRoomCollision();
+        }
 
-            //check door collisions
-
-            #endregion
-
-
-            #region Entity pool
-
+        public static void UpdateEntities()
+        {
             for (i = 0; i < Pool.entityCount; i++)
             {
                 if (Pool.entityPool[i].active)
@@ -239,17 +238,16 @@ namespace DungeonRun
                         Pool.entityPool[i].compCollision);
                 }
             }
+        }
 
-            #endregion
-
-
-            //Room obj pool
+        public static void UpdateRoomObjects()
+        {
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
                 {
                     Functions_GameObject.Update(Pool.roomObjPool[i]);
-                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, 
+                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim,
                         Pool.roomObjPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
                 }

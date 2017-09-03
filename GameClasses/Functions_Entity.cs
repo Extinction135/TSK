@@ -17,8 +17,6 @@ namespace DungeonRun
         static Vector2 posRef = new Vector2();
         static Direction direction;
 
-
-
         public static void SpawnEntity(ObjType Type, GameObject Object)
         {   //entities are spawned relative to Object, based on Object.type
             //set position reference to Object's sprite position

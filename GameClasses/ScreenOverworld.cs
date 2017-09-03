@@ -216,6 +216,8 @@ namespace DungeonRun
             Pool.hero.health = PlayerData.current.heartsTotal;
             //grab the hero's current loadout
             Functions_Actor.SetHeroLoadout();
+            //reset the pool
+            Functions_Pool.Reset();
 
 
             #region Add Animated Particles / Sprites to Map
@@ -381,7 +383,7 @@ namespace DungeonRun
                 #endregion
 
 
-                Functions_Pool.Update();
+                Functions_Pool.UpdateEntities();
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in

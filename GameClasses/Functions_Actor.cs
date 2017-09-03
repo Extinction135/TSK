@@ -392,16 +392,46 @@ namespace DungeonRun
                     //check to see if the actor is dead
                     if (Actor.health <= 0) { SetDeathState(Actor); }
                 }
-                //lock actor into the death state
                 if (Actor.state == ActorState.Dead)
-                {
+                {   //check death state
                     Actor.lockCounter = 0; //lock actor into dead state
                     Actor.health = 0; //lock actor's health at 0
 
 
+                    #region Hero Death Effects
+
+                    if (Actor == Pool.hero)
+                    {   //near the last frame of hero's death, create attention particles
+                        if (Actor.compAnim.index == Actor.compAnim.currentAnimation.Count - 2)
+                        {   //this event happens when hero falls to ground
+                            //goto next anim frame, this event is only processed once
+                            Actor.compAnim.index++;
+                            //spawn particle to grab the player's attention
+                            Functions_Entity.SpawnEntity(
+                                    ObjType.ParticleAttention,
+                                    Actor.compSprite.position.X,
+                                    Actor.compSprite.position.Y,
+                                    Direction.None);
+
+                            //check to see if hero can use any bottle to heal/self-rez
+                            if (Functions_Item.CheckBottleUponDeath(1, PlayerData.current.bottleA)) { }
+                            else if (Functions_Item.CheckBottleUponDeath(2, PlayerData.current.bottleB)) { }
+                            else if (Functions_Item.CheckBottleUponDeath(3, PlayerData.current.bottleC)) { }
+                            else
+                            {   //player has died, failed the dungeon
+                                DungeonRecord.beatDungeon = false;
+                                Functions_Level.levelScreen.exitAction = ExitAction.Summary;
+                                Functions_Level.levelScreen.displayState = DisplayState.Closing;
+                            }
+                        }
+                    }
+
+                    #endregion
+
+
                     #region Boss Death Effects
 
-                    if (Actor.type == ActorType.Boss)
+                    else if (Actor.type == ActorType.Boss)
                     {   //dead bosses perpetually explode
                         if(Functions_Random.Int(0,100) > 75) //randomly create explosions
                         {   //randomly place explosions around boss
@@ -414,38 +444,6 @@ namespace DungeonRun
                     }
 
                     #endregion
-
-
-                    #region Hero Death Effects
-
-                    else if(Actor.type == ActorType.Hero)
-                    {   //near the last frame of hero's death, create attention particles
-                        if (Actor.compAnim.index == Actor.compAnim.currentAnimation.Count-2)
-                        {   //this event happens when hero falls to ground
-                            //goto next anim frame, this event is only processed once
-                            Actor.compAnim.index++; 
-                            //spawn particle to grab the player's attention
-                            Functions_Entity.SpawnEntity(
-                                    ObjType.ParticleAttention,
-                                    Actor.compSprite.position.X,
-                                    Actor.compSprite.position.Y,
-                                    Direction.None);
-
-                            //check to see if hero can use fairy bottle to self-rez
-                            if (PlayerData.current.bottleA == 4) { Functions_Item.UseBottle(1, 4); }
-                            else if (PlayerData.current.bottleB == 4) { Functions_Item.UseBottle(2, 4); }
-                            else if (PlayerData.current.bottleC == 4) { Functions_Item.UseBottle(3, 4); }
-                            else
-                            {   //player has died, failed the dungeon
-                                DungeonRecord.beatDungeon = false;
-                                Functions_Level.levelScreen.exitAction = ExitAction.Summary;
-                                Functions_Level.levelScreen.displayState = DisplayState.Closing;
-                            }
-                        }
-                    }
-
-                    #endregion
-
 
                 }
             }

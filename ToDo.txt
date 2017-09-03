@@ -1,5 +1,4 @@
-﻿
-"As we enjoy great advantages from the inventions of others,
+﻿"As we enjoy great advantages from the inventions of others,
 we should be glad for an opportunity to serve others by an invention of ours,
 and this we should do freely and generously."
 - Benjamin Franklin	
@@ -13,9 +12,6 @@ Gif Capture process:
 	the default time per frame (set by licecap) is perfect, do not change this
 	save for web ->  GIF 32 Dithered, filesize should be under 3mb, loop forever
 	test in browser to ensure proper fps
-
-CTRL + M, O = collapse functions/regions
-
 adding music:
 	music should be compressed down to 22K sample rate, mono.
 	files are then saved to .ogg and added to content pipeline, built on high quality.
@@ -23,46 +19,79 @@ adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
 ram useage:
 	109mb on Win10. 102.7mb on XboxOne.
+CTRL + M, O = collapse functions/regions	
 	
-	
-	
+
+
 	
 	
 todo:
 
-
 v0.7 goals
 
-
-
-4
-
-
-
-Implement capturing Fairies in Empty Bottles
-
-updated InteractActor() to check for Net vs Fairy interaction.
-created BottleActor() to handle bottling of various actors.
-for now, we will only bottle fairys.
-
-added BottleCant, BottleFull, BottleFairy values to Dialog enum.
-updated BottleActor() to create correct dialog screens.
-updated DialogScreen to handle the new bottle dialog values.
-
-fixed a very annoying problem where collisions between 
-net and actors would happen multiple times across frames.
-this caused multiple dialog screens to pop up.
-
-created Functions_Actor.SpawnActor() method.
-this matches SpawnEntity() and SpawnRoomObj().
-updated various codepaths to use SpawnActor().
-
-updated Functions_Loot.SpawnLoot() to create Fairys.
-lots of playtesting, working as expected.
+13
 
 
 
 
+
+
+
+
+
+
+Implement Self-Rez/Heal upon Death
+
+playtesting, a combo potion was used upon death - which was awesome!
+this was a bug, it was checking the fairy bottles old value, but it felt right.
+we should use fairys, combos, and health potions upon death, if hero has them.
+this prevents the problem of having to pause and use a health potion while in battle.
+i've died in LttP when I had a health potion, and it was frustrating.
+
+created Functions_Item.CheckBottleUponDeath().
+this checks all bottles for health, combo, and fairy and uses them.
+this is called from Functions_Actor.Update() -> hero death state.
+playtested, major bug found.
+
+Big Old Bug
+during normal RELEASE gameplay, dying in a dungeon leads to summary screen.
+this leads to overworld screen, but we're hearing actor sounds during this screen.
+cause: the overworld screen was calling Pool.Update(), which was updating everything.
+the overworld screen only needs to update the entity pool.
+split Pool.Update() into UpdateActors(), UpdateEntities(), and UpdateRoomObjects().
+this allows OverworldScreen to only call UdpateEntities().
+playtested, big old bug fixed.
+
+
+
+
+
+
+
+
+
+
+we should not be able to move hero while in a reward state
+we can move hero if he self-rezs via bottle
+
+
+
+reduce loot chance of fairys, they show up waaay too much
+we should also place fairys in the center of secret rooms, for now..
+and secret rooms should not appear on the map
+
+
+
+
+
+
+
+
+
+
+
+
+reduce the difficulty of some levels
 
 
 
