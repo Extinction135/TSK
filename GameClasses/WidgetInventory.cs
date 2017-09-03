@@ -107,16 +107,6 @@ namespace DungeonRun
 
 
 
-        public void SetBottleSprite(MenuItem menuItem, Byte value)
-        {
-            if (value == 0) { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItem); }
-            else if (value == 1) { Functions_MenuItem.SetType(MenuItemType.BottleEmpty, menuItem); }
-            else if (value == 2) { Functions_MenuItem.SetType(MenuItemType.BottleHealth, menuItem); }
-            else if (value == 3) { Functions_MenuItem.SetType(MenuItemType.BottleMagic, menuItem); }
-            else if (value == 4) { Functions_MenuItem.SetType(MenuItemType.BottleCombo, menuItem); }
-            else if (value == 5) { Functions_MenuItem.SetType(MenuItemType.BottleFairy, menuItem); }
-        }
-
         public void SetInventoryMenuItems()
         {
 
@@ -133,9 +123,9 @@ namespace DungeonRun
 
             #region Bottles
 
-            SetBottleSprite(menuItems[2], PlayerData.current.bottleA);
-            SetBottleSprite(menuItems[3], PlayerData.current.bottleB);
-            SetBottleSprite(menuItems[4], PlayerData.current.bottleC);
+            Functions_Bottle.SetMenuItemType(menuItems[2], PlayerData.current.bottleA);
+            Functions_Bottle.SetMenuItemType(menuItems[3], PlayerData.current.bottleB);
+            Functions_Bottle.SetMenuItemType(menuItems[4], PlayerData.current.bottleC);
 
             #endregion
 

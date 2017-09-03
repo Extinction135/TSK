@@ -136,6 +136,13 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 9, 0, 0) };
                 MenuItem.price = 50;
             }
+            else if (Type == MenuItemType.BottleBlob)
+            {
+                MenuItem.name = "Blob in a Bottle";
+                MenuItem.description = "Transforms hero in a \nloveable blob.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(6, 10, 0, 0) };
+                MenuItem.price = 50;
+            }
 
             #endregion
 

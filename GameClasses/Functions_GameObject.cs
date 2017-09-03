@@ -708,13 +708,14 @@ namespace DungeonRun
                 Type == ObjType.ParticleBottleHealth ||
                 Type == ObjType.ParticleBottleMagic ||
                 Type == ObjType.ParticleBottleCombo ||
-                Type == ObjType.ParticleBottleFairy)
+                Type == ObjType.ParticleBottleFairy ||
+                Type == ObjType.ParticleBottleBlob)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 32;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 40; //in frames
-                Obj.compMove.moveable = true;
+                Obj.compMove.moveable = false;
             }
 
             #endregion

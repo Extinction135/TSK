@@ -65,6 +65,9 @@
     <Compile Include="..\..\GameClasses\Functions_Battle.cs">
       <Link>Classes\Functions_Battle.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Bottle.cs">
+      <Link>Classes\Functions_Bottle.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Camera2D.cs">
       <Link>Classes\Functions_Camera2D.cs</Link>
     </Compile>

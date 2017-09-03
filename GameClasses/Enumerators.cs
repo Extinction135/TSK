@@ -105,7 +105,8 @@ namespace DungeonRun
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleSplash,
         ParticleBow,
-        ParticleBottleEmpty, ParticleBottleHealth, ParticleBottleMagic, ParticleBottleCombo, ParticleBottleFairy,
+        ParticleBottleEmpty, ParticleBottleHealth, ParticleBottleMagic, ParticleBottleCombo,
+        ParticleBottleFairy, ParticleBottleBlob,
         //Particles - rewards
         ParticleRewardKey, ParticleRewardMap,
     }
@@ -123,9 +124,10 @@ namespace DungeonRun
 
         ItemHeart, ItemBomb, ItemBomb3Pack, ItemArrowPack,
         ItemBoomerang,
-
-        BottleEmpty, BottleHealth, BottleMagic, BottleCombo, BottleFairy,
-
+        
+        BottleEmpty, BottleHealth, BottleMagic, BottleCombo,
+        BottleFairy, BottleBlob,
+        
         MagicFireball,
         WeaponSword, WeaponBow, WeaponNet, //WeaponStaff, //WeaponAxe
         ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
@@ -140,7 +142,7 @@ namespace DungeonRun
         GameCreated, GameNotFound, GameLoadFailed,
         //dungeon dialogs
         DoesNotHaveKey, HeroGotKey, HeroGotMap,
-        BottleCant, BottleFull, BottleFairy,
+        BottleCant, BottleFull, BottleSuccess,
         //Editor Dialogs
         CantAddKeyChest, CantAddMapChest, CantAddMoreChests,
     }

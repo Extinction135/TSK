@@ -170,17 +170,16 @@ namespace DungeonRun
 
             #region Reward & Bottle Particles
 
-            else if (
+            else if ( //place reward/bottle particles above actor's head
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||
                 Type == ObjType.ParticleBottleEmpty ||
                 Type == ObjType.ParticleBottleHealth ||
                 Type == ObjType.ParticleBottleMagic ||
                 Type == ObjType.ParticleBottleCombo ||
-                Type == ObjType.ParticleBottleFairy)
-            {   //place reward particles above actor's head
-                posRef.Y -= 14;
-            }
+                Type == ObjType.ParticleBottleFairy ||
+                Type == ObjType.ParticleBottleBlob)
+            { posRef.Y -= 14; }
 
             #endregion
 
@@ -348,26 +347,9 @@ namespace DungeonRun
 
             #region Particles
 
-            else if (Projectile.type == ObjType.ParticleBottleEmpty)
-            {
-                Assets.Play(Assets.sfxError); 
-            }
-            else if (Projectile.type == ObjType.ParticleBottleHealth)
-            {
-                Assets.Play(Assets.sfxBeatDungeon);
-            }
-            else if (Projectile.type == ObjType.ParticleBottleMagic)
-            {
-                Assets.Play(Assets.sfxBeatDungeon);
-            }
-            else if (Projectile.type == ObjType.ParticleBottleCombo)
-            {
-                Assets.Play(Assets.sfxBeatDungeon);
-            }
-            else if (Projectile.type == ObjType.ParticleBottleFairy)
-            {
-                Assets.Play(Assets.sfxBeatDungeon);
-            }
+            //shouldn't we be handling map/key particle soundfx here?
+
+
             else if(Projectile.type == ObjType.ParticleSplash)
             {
                 Assets.Play(Assets.sfxSplash);

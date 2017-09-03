@@ -99,10 +99,10 @@ namespace DungeonRun
                 dialogString = "You caught a creature in your net!";
                 dialogString += "\nUnfortunately, You don't have any empty bottles to put this creature in.";
             }
-            else if (dialogType == Dialog.BottleFairy)
+            else if (dialogType == Dialog.BottleSuccess)
             {
                 dialogString = "You caught a creature in your net!";
-                dialogString = "You successfully captured this creature in one of your empty bottles.";
+                dialogString += "\nYou have successfully captured this creature in an empty bottle.";
             }
 
             #endregion

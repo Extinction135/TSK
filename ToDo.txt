@@ -34,6 +34,31 @@ v0.7 goals
 
 
 
+Implement Transforming Hero into Blob (and back) using BottleBlob
+
+created Blob in Bottle sprite in mainSheet.
+added ParticleBottleBlob to ObjType enum.
+added ObjAnimList for ParticleBottleBlob.
+updated Obj.SetType() to handle ParticleBottleBlob.
+
+added BottleBlob value to MenuItemType enum.
+updated MenuItem.SetType() with path for BottleBlob.
+updated SetHeroLoadout() to handle BottleBlob.
+improved how bottles are loaded (deduplicated code).
+updated UseBottle() to handle Blob in a Bottle.
+updated BottleActor() to handle bottling of blobs.
+changed Dialog.BottleFairy to Dialog.BottleSuccess.
+updated WidgetInventory.SetBottleSprite() to handle blob bottle.
+
+created Functions_Bottle class, to contain all bottle related methods.
+moved all bottle related methods into Functions_Bottle.
+simplified BottleActor() using refactored FillEmptyBottle() method.
+
+useage:
+when hero uses a bottled blob, hero becomes a blob.
+if hero is already a blob, then hero becomes link.
+
+lots of playtesting, working as expected.
 
 
 
@@ -41,11 +66,9 @@ v0.7 goals
 
 
 
-Various Improvements
 
-updated the description of health potion to match fairy description.
-updated the guides default text.
-
+move key/map soundfx into Functions_Entity.HandleBirthEvent()
+currently this happens from interaction()
 
 
 
@@ -53,17 +76,12 @@ updated the guides default text.
 
 
 
-Implement capturing Blobs in Empty Bottles
 
-need blob in bottle sprite, bottle byte gets increased to 6 (5=fairy, 6=blob)
-otherwise its just like capturing faires...
+Hero & Blob ActorTypes++
+we need to save the actorType of hero
+we need to make sure we're checking if actor == hero, and not if actor.type == hero in various routines
+we should display the hero.actorType in the display data for LSN screen
 
-we'll need to update Functions_Interaction.BottleActor() with path for blob
-what happens when we "use" a bottled blob?
-hero becomes a blob actor! this is how we change hero's actorType.
-if hero.type == hero, then blobs attack him
-if hero.type == blob, then blobs ignore him
-generalized: if hero.type != enemy.type, enemy attacks hero
 
 
 
@@ -73,12 +91,38 @@ this determines the actors level of intelligence.
 { Random, Basic }
 this allows us to treat groups of enemies the same, instead of by actorType
 
+we also need to have a boolean that represents ally/enemy
+allies dont attack hero, enemies do
+
+if hero.type == hero, then blobs attack him
+if hero.type == blob, then blobs ignore him
+generalized: if hero.type != enemy.type, enemy attacks hero
+
+
+
+Implement Doggo
+this is an actor that follows hero around
+has two animations: idle (tail wagging) and move (jump anim)
+when hero enters a new room, doggos teleports to hero's position
+doggo is treated like an ally actor
+
+should be able to purchase doggo from a pet vendor
+later we can implement different pets
+
+
+
 
 
 
 Implement SwitchBlocks
 implement switch blocks + switch block switch (name?)
 implement switches - how do these work? hero steps on them
+
+
+
+
+
+
 
 
 

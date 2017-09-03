@@ -31,38 +31,33 @@ namespace DungeonRun
         }
 
         public static void BottleActor(Actor Actor)
-        {
-            //can we bottle this actor?
-            if (Actor.type == ActorType.Boss
-                || Actor.type == ActorType.Hero
-                || Actor.type == ActorType.Blob)
+        {   //can we bottle this actor?
+            if (Actor.type == ActorType.Boss || Actor.type == ActorType.Hero)
             {   //pop cant bottle dialog
                 if (Flags.ShowDialogs)
                 { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleCant)); }
                 return;
             }
-
-            //byte value = 0
-            //if Actor.type = fairy, value = 5
-            //if Actor.type = blob, value = 6
-            //playerdata.current.bottleA = value; captured = true;
-
-            Boolean captured = false;
-            //does hero have an empty bottle? becomes filled fairy bottle
-            if (PlayerData.current.bottleA == 1) { PlayerData.current.bottleA = 5; captured = true; }
-            else if (PlayerData.current.bottleB == 1) { PlayerData.current.bottleB = 5; captured = true; }
-            else if (PlayerData.current.bottleC == 1) { PlayerData.current.bottleC = 5; captured = true; }
-
-            if (captured)
-            {   //pop captured dialog
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFairy)); }
-                Functions_Actor.SetDeathState(Actor); //kill fairy
-            }
             else
-            {   //pop bottle full dialog
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFull)); }
+            {   //determine what type of actor we're attempting to bottle
+                byte value = 5; //defaults to fairy value
+                if (Actor.type == ActorType.Fairy) { value = 5; }
+                else if (Actor.type == ActorType.Blob) { value = 6; }
+                //determine if hero has an empty bottle to put this actor into
+                Boolean captured = false;
+                if (Functions_Bottle.FillEmptyBottle(value)) { captured = true; }
+                //if hero put actor into empty bottle..
+                if (captured)
+                {   //alert player that hero successfully bottled the actor
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleSuccess)); }
+                    SetDeathState(Actor); //kill bottled actor
+                }
+                else
+                {   //alert player that hero has no empty bottles (all bottles are full)
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFull)); }
+                }
             }
         }
 
@@ -189,32 +184,13 @@ namespace DungeonRun
             { Pool.hero.item = MenuItemType.ItemBomb; }
             else if (PlayerData.current.currentItem == 1)
             { Pool.hero.item = MenuItemType.ItemBoomerang; }
-            //set item to bottle (based on bottle contents)
+            //set item based on bottle contents
             else if (PlayerData.current.currentItem == 2)
-            {
-                if (PlayerData.current.bottleA == 1) { Pool.hero.item = MenuItemType.BottleEmpty; }
-                else if (PlayerData.current.bottleA == 2) { Pool.hero.item = MenuItemType.BottleHealth; }
-                else if (PlayerData.current.bottleA == 3) { Pool.hero.item = MenuItemType.BottleMagic; }
-                else if (PlayerData.current.bottleA == 4) { Pool.hero.item = MenuItemType.BottleCombo; }
-                else if (PlayerData.current.bottleA == 5) { Pool.hero.item = MenuItemType.BottleFairy; }
-            }
+            { Functions_Bottle.LoadBottle(PlayerData.current.bottleA); }
             else if (PlayerData.current.currentItem == 3)
-            {
-                if (PlayerData.current.bottleB == 1) { Pool.hero.item = MenuItemType.BottleEmpty; }
-                else if (PlayerData.current.bottleB == 2) { Pool.hero.item = MenuItemType.BottleHealth; }
-                else if (PlayerData.current.bottleB == 3) { Pool.hero.item = MenuItemType.BottleMagic; }
-                else if (PlayerData.current.bottleB == 4) { Pool.hero.item = MenuItemType.BottleCombo; }
-                else if (PlayerData.current.bottleB == 5) { Pool.hero.item = MenuItemType.BottleFairy; }
-            }
+            { Functions_Bottle.LoadBottle(PlayerData.current.bottleB); }
             else if (PlayerData.current.currentItem == 4)
-            {
-                if (PlayerData.current.bottleC == 1) { Pool.hero.item = MenuItemType.BottleEmpty; }
-                else if (PlayerData.current.bottleC == 2) { Pool.hero.item = MenuItemType.BottleHealth; }
-                else if (PlayerData.current.bottleC == 3) { Pool.hero.item = MenuItemType.BottleMagic; }
-                else if (PlayerData.current.bottleC == 4) { Pool.hero.item = MenuItemType.BottleCombo; }
-                else if (PlayerData.current.bottleC == 5) { Pool.hero.item = MenuItemType.BottleFairy; }
-            }
-
+            { Functions_Bottle.LoadBottle(PlayerData.current.bottleC); }
 
             //magic items
             else if (PlayerData.current.currentItem == 5)
@@ -265,6 +241,8 @@ namespace DungeonRun
             { Pool.hero.equipment = MenuItemType.EquipmentPin; }
         }
 
+
+  
         public static void SetType(Actor Actor, ActorType Type)
         {
             Actor.type = Type;
@@ -407,12 +385,12 @@ namespace DungeonRun
                         //check hero specific cases
                         if (Actor == Pool.hero)
                         {   //bottles are handled seperately
-                            if (PlayerData.current.currentItem == 2) //bottle1
-                            { Functions_Item.UseBottle(1, PlayerData.current.bottleA); }
-                            else if (PlayerData.current.currentItem == 3) //bottle2
-                            { Functions_Item.UseBottle(2, PlayerData.current.bottleB); }
-                            else if (PlayerData.current.currentItem == 4) //bottle3
-                            { Functions_Item.UseBottle(3, PlayerData.current.bottleC); }
+                            if (PlayerData.current.currentItem == 2) //bottleA
+                            { Functions_Bottle.UseBottle(1, PlayerData.current.bottleA); }
+                            else if (PlayerData.current.currentItem == 3) //bottleB
+                            { Functions_Bottle.UseBottle(2, PlayerData.current.bottleB); }
+                            else if (PlayerData.current.currentItem == 4) //bottleC
+                            { Functions_Bottle.UseBottle(3, PlayerData.current.bottleC); }
                             //item is not a bottle
                             else { Functions_Item.UseItem(Actor.item, Actor); }
                             //scale up worldUI item sprite
@@ -462,9 +440,9 @@ namespace DungeonRun
                                     Direction.None);
 
                             //check to see if hero can use any bottle to heal/self-rez
-                            if (Functions_Item.CheckBottleUponDeath(1, PlayerData.current.bottleA)) { }
-                            else if (Functions_Item.CheckBottleUponDeath(2, PlayerData.current.bottleB)) { }
-                            else if (Functions_Item.CheckBottleUponDeath(3, PlayerData.current.bottleC)) { }
+                            if (Functions_Bottle.CheckBottleUponDeath(1, PlayerData.current.bottleA)) { }
+                            else if (Functions_Bottle.CheckBottleUponDeath(2, PlayerData.current.bottleB)) { }
+                            else if (Functions_Bottle.CheckBottleUponDeath(3, PlayerData.current.bottleC)) { }
                             else
                             {   //player has died, failed the dungeon
                                 DungeonRecord.beatDungeon = false;

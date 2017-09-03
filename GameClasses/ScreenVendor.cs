@@ -253,39 +253,33 @@ namespace DungeonRun
                 #region Bottles
 
                 else if (Item.type == MenuItemType.BottleHealth)
-                {
-                    if (FillEmptyBottle(2)) //if we can fill a bottle
+                {   //if we can fill bottleA
+                    if (Functions_Bottle.FillEmptyBottle(2))
                     {   //set hero's item, complete the sale
+                        PlayerData.current.currentItem = 2; //bottleA
                         Pool.hero.item = MenuItemType.BottleHealth;
                         CompleteSale(Item);
                     }
                     else { DialogBottlesFull(); } //else alert player
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
-                {
-                    if (FillEmptyBottle(3)) //if we can fill a bottle
+                {   //if we can fill bottleB
+                    if (Functions_Bottle.FillEmptyBottle(3))
                     {   //set hero's item, complete the sale
+                        PlayerData.current.currentItem = 3; //bottleB
                         Pool.hero.item = MenuItemType.BottleMagic;
                         CompleteSale(Item);
                     }
                     else { DialogBottlesFull(); } //else alert player
                 }
                 else if (Item.type == MenuItemType.BottleCombo)
-                {
-                    if (FillEmptyBottle(4)) //if we can fill a bottle
+                {   //if we can fill bottleC
+                    if (Functions_Bottle.FillEmptyBottle(4)) 
                     {   //set hero's item, complete the sale
+                        PlayerData.current.currentItem = 4; //bottleC
                         Pool.hero.item = MenuItemType.BottleCombo;
                         CompleteSale(Item);
                     }
-                    else { DialogBottlesFull(); } //else alert player
-                }
-                else if (Item.type == MenuItemType.BottleFairy)
-                {
-                    if (FillEmptyBottle(5)) //if we can fill a bottle
-                    {   //set hero's item, complete the sale
-                        Pool.hero.item = MenuItemType.BottleFairy;
-                        CompleteSale(Item);
-                    } 
                     else { DialogBottlesFull(); } //else alert player
                 }
 
@@ -401,28 +395,7 @@ namespace DungeonRun
             DialogPurchaseThankyou();
         }
 
-        public Boolean FillEmptyBottle(byte fillValue)
-        {   //find a bottle with a value of 1 (empty), fill it
-            if (PlayerData.current.bottleA == 1)
-            {
-                PlayerData.current.bottleA = fillValue;
-                PlayerData.current.currentItem = 2; //bottleA
-                return true;
-            }
-            else if (PlayerData.current.bottleB == 1)
-            {
-                PlayerData.current.bottleB = fillValue;
-                PlayerData.current.currentItem = 3; //bottleB
-                return true;
-            }
-            else if (PlayerData.current.bottleC == 1)
-            {
-                PlayerData.current.bottleC = fillValue;
-                PlayerData.current.currentItem = 4; //bottleC
-                return true;
-            }
-            else { return false; } //did not find an empty bottle
-        }
+        
 
 
 

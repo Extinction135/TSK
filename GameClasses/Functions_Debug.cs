@@ -308,9 +308,9 @@ namespace DungeonRun
                 if (Pool.hero.type == ActorType.Hero)
                 { Functions_Actor.SetType(Pool.hero, ActorType.Blob); }
                 else if (Pool.hero.type == ActorType.Blob)
-                { Functions_Actor.SetType(Pool.hero, ActorType.Boss); }
-                else if (Pool.hero.type == ActorType.Boss)
                 { Functions_Actor.SetType(Pool.hero, ActorType.Hero); }
+                //default back to hero for all other states
+                else { Functions_Actor.SetType(Pool.hero, ActorType.Hero); }
             }
 
             #endregion

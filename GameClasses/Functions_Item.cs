@@ -14,6 +14,7 @@ namespace DungeonRun
 {
     public static class Functions_Item
     {
+
         public static void UseItem(MenuItemType Type, Actor Actor)
         {   //all actors can use items, magic, and weapons
 
@@ -97,58 +98,6 @@ namespace DungeonRun
 
             #endregion
 
-        }
-
-        public static void UseBottle(Byte bottleID, Byte bottleValue)
-        {   //only hero can use bottles
-            if(bottleValue == 1)
-            {   //use empty bottle
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleEmpty, Pool.hero);
-            }
-            else if (bottleValue == 2) 
-            {   //use health potion
-                Pool.hero.health = PlayerData.current.heartsTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleHealth, Pool.hero);
-            }
-            else if (bottleValue == 3)
-            {   //use magic potion
-                PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleMagic, Pool.hero);
-            }
-            else if (bottleValue == 4)
-            {   //use combo potion
-                Pool.hero.health = PlayerData.current.heartsTotal;
-                PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleCombo, Pool.hero);
-            }
-            else if (bottleValue == 5)
-            {   //use fairy in a bottle
-                Pool.hero.health = PlayerData.current.heartsTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleFairy, Pool.hero);
-            }
-
-            //empty bottle based on bottleID
-            if (bottleID == 1) { PlayerData.current.bottleA = 1; }
-            else if (bottleID == 2) { PlayerData.current.bottleB = 1; }
-            else if (bottleID == 3) { PlayerData.current.bottleC = 1; }
-
-            //set hero into reward state, grab player's attention
-            Functions_Actor.SetRewardState(Pool.hero);
-            Functions_Entity.SpawnEntity(ObjType.ParticleAttention, Pool.hero);
-
-            //if hero's item is a bottle, set it to be empty
-            if (Pool.hero.item == MenuItemType.BottleHealth
-                || Pool.hero.item == MenuItemType.BottleMagic
-                || Pool.hero.item == MenuItemType.BottleCombo
-                || Pool.hero.item == MenuItemType.BottleFairy)
-            { Pool.hero.item = MenuItemType.BottleEmpty; }
-        }
-
-        public static Boolean CheckBottleUponDeath(Byte bottleID, Byte bottleValue)
-        {   //check for health, combo, or fairy values
-            if (bottleValue == 2 || bottleValue == 4 || bottleValue == 5)
-            { UseBottle(bottleID, bottleValue); return true; }
-            return false; //bottle cannot be used to heal/self-rez
         }
 
         static Boolean CheckMagic(int castingCost)

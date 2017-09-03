@@ -200,8 +200,6 @@ namespace DungeonRun
             #endregion
 
 
-            //ensure hero is ActorType.Hero (in case his type was changed elsewhere)
-            Functions_Actor.SetType(Pool.hero, ActorType.Hero);
             Functions_Room.SpawnHeroInCurrentRoom(); //spawn hero in exit room
             Pool.hero.direction = Direction.Up; //face hero up
         }
