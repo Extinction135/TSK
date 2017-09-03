@@ -271,6 +271,7 @@ namespace DungeonRun
 
             if (Type == ActorType.Hero)
             {
+                Actor.enemy = false;
                 Actor.compSprite.texture = Assets.heroSheet;
                 //do not update/change the hero's weapon/item/armor/equipment
                 Actor.walkSpeed = 0.35f;
@@ -283,6 +284,7 @@ namespace DungeonRun
             else if (Type == ActorType.Blob)
             {
                 Actor.aiType = ActorAI.Basic;
+                Actor.enemy = true;
                 Actor.compSprite.texture = Assets.blobSheet;
                 Actor.health = 1;
                 ResetActorLoadout(Actor);
@@ -297,6 +299,7 @@ namespace DungeonRun
             else if (Type == ActorType.Boss)
             {
                 Actor.aiType = ActorAI.Random;
+                Actor.enemy = true;
                 Actor.compSprite.texture = Assets.bossSheet;
                 Actor.health = 10;
                 ResetActorLoadout(Actor);
@@ -317,6 +320,7 @@ namespace DungeonRun
             else if (Type == ActorType.Fairy)
             {   //non-combatant actor
                 Actor.aiType = ActorAI.Random;
+                Actor.enemy = false;
                 Actor.compSprite.texture = Assets.mainSheet;
                 Actor.health = 1;
                 ResetActorLoadout(Actor);

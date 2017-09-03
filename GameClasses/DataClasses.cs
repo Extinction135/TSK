@@ -582,6 +582,7 @@ namespace DungeonRun
     {
         public ActorType type; //the type of actor this is
         public ActorAI aiType = ActorAI.Basic; //what type of AI this actor gets
+        public Boolean enemy = false; //defaults to ally
         public ActorState state; //what actor is doing this frame
         public ActorState inputState; //what input wants actor to do this frame
 

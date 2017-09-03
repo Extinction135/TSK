@@ -19,6 +19,9 @@ namespace DungeonRun
         static int xDistance;
         static int yDistance;
 
+        static int chaseRadius = 16 * 6; //how far an actor can see hero from
+        static int attackRadius = 14; //in pixels
+
 
 
         public static void SetActorInput()
@@ -45,8 +48,7 @@ namespace DungeonRun
             #region Random AI
 
             if(Actor.aiType == ActorAI.Random)
-            {
-                //randomly move in a direction + dash
+            {   //randomly move in a direction + dash
                 Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                 if (Functions_Random.Int(0, 100) > 80) { Actor.compInput.dash = true; }
 
@@ -63,39 +65,32 @@ namespace DungeonRun
             #region Basic AI
             
             else if(Actor.aiType == ActorAI.Basic)
-            {   //handle the state where the hero is dead
-                if (Pool.hero.state == ActorState.Dead)
-                {   //reset AI input, randomly move + dash
-                    Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
-                    if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
-                }
-                else
-                {   //determine if actor is close enough to hero to chase
-                    int chaseRadius = 16 * 6;
-                    if (yDistance < chaseRadius && xDistance < chaseRadius)
-                    {   //actor is close enough to hero to chase, move towards the hero
-                        Actor.compInput.direction = Functions_Direction.GetDirectionToHero(actorPos);
-                    }
-                    else
-                    {   //choose a random direction to move in
-                        Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
-                    }
-
-                    //determine if actor is close enough to hero to attack
-                    int attackRadius = 14;
-                    if (yDistance < attackRadius && xDistance < attackRadius)
-                    {   //actor is close enough to hero to attack
-                        if (Functions_Random.Int(0, 100) > 50) //randomly attack
-                        { Actor.compInput.attack = true; }
-                    }
-
-                    //determine if the actor can dash
-                    if (!Actor.compInput.attack)
-                    {   //if the actor isn't attacking, then randomly dash
-                        if (Functions_Random.Int(0, 100) > 90)
-                        { Actor.compInput.dash = true; }
+            {   //by default, choose a random direction to move in & randomly dash
+                Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
+                if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
+                //if the hero's alive, determine if actor should chase/attack hero
+                if (Pool.hero.state != ActorState.Dead)
+                {   //if the actor is an enemy, and the hero is on other team (ally)
+                    if (Actor.enemy & Pool.hero.enemy == false)
+                    {   
+                        ChaseHero();
+                        //determine if actor is close enough to attack hero
+                        if (yDistance < attackRadius && xDistance < attackRadius)
+                        {   //actor is close enough to hero to attack
+                            if (Functions_Random.Int(0, 100) > 50) //randomly attack, cancel any dash
+                            { Actor.compInput.attack = true; Actor.compInput.dash = false; }
+                        }
                     }
                 }
+
+                /*
+                //hero's allies can chase hero like this
+                int chaseRadius = 16 * 6;
+                if (yDistance < chaseRadius && xDistance < chaseRadius)
+                {   //actor is close enough to hero to chase, move towards the hero
+                    Actor.compInput.direction = Functions_Direction.GetDirectionToHero(actorPos);
+                }
+                */
             }
 
             #endregion
@@ -119,6 +114,12 @@ namespace DungeonRun
             //if very close or nearby, move away from hero
             //if in visibility range, ranged attack hero
             //else, wander around
+        }
+
+        public static void ChaseHero()
+        {   //actor is close enough to chase hero, set actor's direction to hero
+            if (yDistance < chaseRadius && xDistance < chaseRadius)
+            { Actor.compInput.direction = Functions_Direction.GetDirectionToHero(actorPos); }
         }
 
         public static void HandleObj(GameObject Obj)

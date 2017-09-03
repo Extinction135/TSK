@@ -29,21 +29,22 @@ todo:
 
 v0.7 goals
 
-9
+8
 
 
 
+Add Actor.Enemy Boolean
 
-Improving Actor AI
+added enemy boolean to Actor class.
+this will determine if an actor is friendly to hero or not.
+updated Functions_Actor.SetType() to set enemy boolean for all actors.
+updated Functions_Ai.SetActorInput() to check actor.enemy boolean.
+if actor.enemy is true AND hero.enemy is false, then the actor will attack the hero.
+so if hero becomes a blob, the blobs stop chasing & attacking him.
+this allows hero to live among the blobs as one of their own (daawwww).
 
-added ActorAI enum, containing Random and Basic values.
-added aiType field to Actor class.
-updated Functions_Actor.SetType() to set aiTypes for blob and boss.
-updated Functions_Ai.SetActorInput() to use actor.aiType field..
-this reduced overall code, and deduplicated AI routines shared by boss and fairy.
-this also allows us to pass ai to actors without resorting to a actorType check.
-a actorType check does not scale well, and duplicated lots of code.
-
+created Functions_Ai.ChaseHero().
+refactored SetActorInput(), greatly simplifying it.
 playtested, working as expected.
 
 
@@ -51,14 +52,13 @@ playtested, working as expected.
 
 
 
-Improving Actor AI
 
-we also need to have a boolean that represents ally/enemy
-allies dont attack hero, enemies do
 
-if hero.type == hero, then blobs attack him
-if hero.type == blob, then blobs ignore him
-generalized: if hero.type != enemy.type, enemy attacks hero
+
+fix a couple rooms
+square room, conveyors pushing towards doors should push away from doors
+square room, tons of onveyors, there should be two skull pots isntead of 1 between each bumper
+
 
 
 
