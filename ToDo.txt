@@ -34,27 +34,6 @@ v0.7 goals
 
 
 
-RoomData++
-
-updated some rooms to be easier.
-added additional rooms to roomData.
-added lots of skull pots to rooms.
-
-
-
-
-
-
-update the descriptions of potions
-tell player health + combo potions will revive upon death
-
-update the guides default text to something adventur-y
-
-
-
-
-relink the UWP project to latest classes.
-post RELEASE binaries for DirectX + UWP.
 
 
 
@@ -62,16 +41,10 @@ post RELEASE binaries for DirectX + UWP.
 
 
 
+Various Improvements
 
-
-implement switch blocks + switch block switch (name?)
-implement switches - how do these work? hero steps on them
-
-need a dungeon statue destroyed obj
-need a 'base' object that sits underneath skullpots
-skullpots would then become this base object upon destruction / lift
-
-
+updated the description of health potion to match fairy description.
+updated the guides default text.
 
 
 
@@ -87,8 +60,73 @@ otherwise its just like capturing faires...
 
 we'll need to update Functions_Interaction.BottleActor() with path for blob
 what happens when we "use" a bottled blob?
-empty the bottle, spawn a blob actor south of hero
+hero becomes a blob actor! this is how we change hero's actorType.
+if hero.type == hero, then blobs attack him
+if hero.type == blob, then blobs ignore him
+generalized: if hero.type != enemy.type, enemy attacks hero
 
+
+
+Improving Actor AI
+actors should have an AI type enum.
+this determines the actors level of intelligence.
+{ Random, Basic }
+this allows us to treat groups of enemies the same, instead of by actorType
+
+
+
+
+Implement SwitchBlocks
+implement switch blocks + switch block switch (name?)
+implement switches - how do these work? hero steps on them
+
+
+
+relink the UWP project to latest classes.
+post RELEASE binaries for DirectX + UWP.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+need a dungeon statue destroyed obj
+need a 'base' object that sits underneath skullpots
+skullpots would then become this base object upon destruction / lift
 
 
 

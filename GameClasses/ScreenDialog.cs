@@ -130,7 +130,10 @@ namespace DungeonRun
 
 
             else //default dialog
-            { dialogString = "this is the default guide text..."; }
+            {
+                dialogString = "i'm the guide. in a future update i'll explain the story.";
+                dialogString += "\nfor now, just have fun playtesting the game.";
+            }
 
             //display the dialog
             Widgets.Dialog.Reset(16 * 9, 16 * 12);
