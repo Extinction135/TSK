@@ -160,7 +160,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = +32; //sort very high (over / in front of hero)
                 Obj.group = ObjGroup.Door;
             }
-            else if (Type == ObjType.DoorBombable || Type == ObjType.DoorBoss ||
+            else if (Type == ObjType.DoorBombable || Type == ObjType.DoorBoss || 
                 Type == ObjType.DoorShut || Type == ObjType.DoorFake)
             {
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
@@ -274,21 +274,6 @@ namespace DungeonRun
             #endregion
 
 
-            #region Liftables / Throwables
-
-            else if (Type == ObjType.PotSkull)
-            {
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
-                Obj.compSprite.zOffset = -7;
-                Obj.group = ObjGroup.Liftable;
-                Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
-            }
-
-            #endregion
-
-
             #region Switch Blocks & Button
 
             else if (Type == ObjType.SwitchBlockBtn)
@@ -332,9 +317,16 @@ namespace DungeonRun
 
             #region Other Dungeon Objects
 
+            else if (Type == ObjType.Pot)
+            {
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
+                Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
+            }
             else if (Type == ObjType.BossStatue)
             {
-                Obj.group = ObjGroup.Draggable;
                 Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.offsetY = -1;
                 Obj.canBeSaved = true;
@@ -425,7 +417,6 @@ namespace DungeonRun
                 Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                Obj.group = ObjGroup.Draggable;
             }
             else if (Type == ObjType.TableStone)
             {
@@ -433,7 +424,6 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                Obj.group = ObjGroup.Draggable;
             }
             //Vendors
             else if (Type == ObjType.VendorItems || Type == ObjType.VendorPotions ||

@@ -115,7 +115,7 @@ namespace DungeonRun
                 //ConveyorBeltOff
                 new List<Byte4> { new Byte4(5, 15, 0, 0), new Byte4(5, 15, 0, 0) },
 
-                //PotSkull
+                //Pot
                 new List<Byte4> { new Byte4(0, 6, 0, 0) },
                 //Bumper
                 new List<Byte4> { new Byte4(4, 5, 0, 0) },

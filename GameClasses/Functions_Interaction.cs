@@ -64,31 +64,10 @@ namespace DungeonRun
         public static void InteractHero(GameObject Obj)
         {   //this is the hero's interactionRec colliding with Obj
             //we know this is hero, and hero is in ActorState.Interact
-            
-            #region Liftable objects
-
-            if (Obj.group == ObjGroup.Liftable)
-            {
-                //pickup object over hero's head
-            }
-
-            #endregion
-
-
-            #region Draggable objects
-
-            else if (Obj.group == ObjGroup.Draggable)
-            {
-                //BlockDraggable
-                //begin dragging object
-            }
-
-            #endregion
-
 
             #region Chests
 
-            else if (Obj.group == ObjGroup.Chest)
+            if (Obj.group == ObjGroup.Chest)
             {
 
                 #region Reward the hero with chest contents
@@ -306,15 +285,18 @@ namespace DungeonRun
                 #region Projectiles
 
                 if (Obj.group == ObjGroup.Projectile)
-                {   //check for collision between net and actor
-                    if (Obj.type == ObjType.ProjectileNet)
+                {   //debris rocks dont interact with actors in any way at all
+                    if (Obj.type == ObjType.ProjectileDebrisRock) { return; }
+                    //check for collision between net and actor
+                    else if (Obj.type == ObjType.ProjectileNet)
                     {   //make sure actor isn't in hit/dead state
                         if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
                         Obj.lifeCounter = Obj.lifetime; //kill projectile
                         Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
-                        BottleActor(Actor); //try to bottle actor
+                        Functions_Actor.BottleActor(Actor); //try to bottle actor
                     }
-                    //all other actors take damage from projectiles (fairys take 0 damage)
+
+                    //all actors take damage from projectiles (fairys take 0 damage)
                     Functions_Battle.Damage(Actor, Obj); //sets actor into hit/death
                     if (Obj.type == ObjType.ProjectileSword)
                     {
@@ -472,9 +454,9 @@ namespace DungeonRun
                 else if (Entity.type == ObjType.ProjectileExplosion)
                 {   //explosions alter certain roomObjects
                     if (RoomObj.type == ObjType.DoorBombable)
-                    { CollapseDungeonDoor(RoomObj, Entity); }
-                    else if (RoomObj.type == ObjType.BossStatue)
-                    { BlowUpRoomObject(RoomObj); }
+                    { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Entity); }
+                    else if (RoomObj.type == ObjType.BossStatue || RoomObj.type == ObjType.Pot)
+                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                 }
 
                 #endregion
@@ -485,7 +467,9 @@ namespace DungeonRun
                 else if (Entity.type == ObjType.ProjectileFireball)
                 {   //fireballs alter certain roomObjects
                     if (RoomObj.type == ObjType.DoorBombable)
-                    { CollapseDungeonDoor(RoomObj, Entity); }
+                    { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Entity); }
+                    else if (RoomObj.type == ObjType.BossStatue || RoomObj.type == ObjType.Pot)
+                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                     //fireballs die upon blocking collision
                     KillProjectileUponCollision(Entity);
                 }
@@ -515,6 +499,8 @@ namespace DungeonRun
                         //spawn a hit sparkle particle on sword
                         Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Entity);
                     }
+                    if (RoomObj.type == ObjType.Pot)
+                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                 }
 
                 #endregion
@@ -628,24 +614,6 @@ namespace DungeonRun
 
 
 
-        public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
-        {   //update the door roomObject, change to doorBombed, play soundfx
-            Functions_GameObject.SetType(Door, ObjType.DoorOpen);
-            Assets.Play(Assets.sfxShatter);
-            //draw attention to the collapsing door
-            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
-                Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);
-            //update the dungeon.doors list, change colliding door to bombed
-            for (int i = 0; i < Level.doors.Count; i++)
-            {   //if this explosion collides with any dungeon.door that is of type.bombable
-                if (Level.doors[i].type == DoorType.Bombable)
-                {   //change this door type to type.bombed
-                    if (Projectile.compCollision.rec.Intersects(Level.doors[i].rec))
-                    { Level.doors[i].type = DoorType.Open; }
-                }
-            }
-        }
-
         public static void KillProjectileUponCollision(GameObject Projectile)
         {   //these projectiles die upon a collision with another object
             if (Projectile.type == ObjType.ProjectileFireball
@@ -693,95 +661,12 @@ namespace DungeonRun
             Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
         }
 
-        public static void BlowUpRoomObject(GameObject RoomObj)
-        {   //spawn explosion, smoke puff, and rock debris, play shatter sound
-            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
-                RoomObj.compSprite.position.X,
-                RoomObj.compSprite.position.Y, 
-                Direction.Down);
-            ScatterRockDebris(RoomObj.compSprite.position, true);
-            ScatterRockDebris(RoomObj.compSprite.position, true);
-            ScatterRockDebris(RoomObj.compSprite.position, true);
-            Assets.Play(Assets.sfxShatter);
-            Functions_Pool.Release(RoomObj); //release the obj
-        }
-
-        public static void ScatterRockDebris(Vector2 Pos, Boolean Push)
-        {   //add up to 4 rocks randomly around the passed Pos value, with option to push them
-            Direction pushDir = Direction.None;
-            int spread = 6;
-            if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-            Functions_Entity.SpawnEntity(
-                ObjType.ProjectileDebrisRock,
-                Pos.X, Pos.Y, pushDir);
-            if (Functions_Random.Int(0, 100) > 20)
-            {   //sometimes  add another rock
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
-            }
-            if (Functions_Random.Int(0, 100) > 40)
-            {   //sometimes add another rock
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
-            }
-            if (Functions_Random.Int(0, 100) > 60)
-            {   //sometimes add another rock
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
-            }
-        }
-
         public static void PlayPitFx(GameObject Pit)
         {   //play splash particle and sound effect
             Functions_Entity.SpawnEntity(ObjType.ParticleSplash,
                 Pit.compSprite.position.X ,
                 Pit.compSprite.position.Y - 4,
                 Direction.None);
-        }
-
-        public static void BottleActor(Actor Actor)
-        {
-            //can we bottle this actor?
-            if (Actor.type == ActorType.Boss
-                || Actor.type == ActorType.Hero
-                || Actor.type == ActorType.Blob)
-            {   //pop cant bottle dialog
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleCant)); }
-                return;
-            }
-            
-            //byte value = 0
-            //if Actor.type = fairy, value = 5
-            //if Actor.type = blob, value = 6
-            //playerdata.current.bottleA = value; captured = true;
-
-            Boolean captured = false;
-            //does hero have an empty bottle? becomes filled fairy bottle
-            if (PlayerData.current.bottleA == 1) { PlayerData.current.bottleA = 5; captured = true; }
-            else if (PlayerData.current.bottleB == 1) { PlayerData.current.bottleB = 5; captured = true; }
-            else if (PlayerData.current.bottleC == 1) { PlayerData.current.bottleC = 5; captured = true; }
-
-            if (captured)
-            {   //pop captured dialog
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFairy)); }
-                Functions_Actor.SetDeathState(Actor); //kill fairy
-            }
-            else
-            {   //pop bottle full dialog
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFull)); }
-            }
         }
 
     }

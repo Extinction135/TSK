@@ -142,5 +142,35 @@ namespace DungeonRun
 
         }
 
+        public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
+        {   //grab players attention, spawn rock debris, play shatter sound
+            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                RoomObj.compSprite.position.X,
+                RoomObj.compSprite.position.Y,
+                Direction.Down);
+            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Assets.Play(Assets.sfxShatter);
+            //handle parameter values
+            if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
+            if (releaseObj) { Functions_Pool.Release(RoomObj); }
+        }
+
+        public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
+        {   //blow up door, change to doorOpen
+            DestroyObject(Door, false, false);
+            Functions_GameObject.SetType(Door, ObjType.DoorOpen);
+            //update the dungeon.doors list, change colliding door to bombed
+            for (int i = 0; i < Level.doors.Count; i++)
+            {   //if this explosion collides with any dungeon.door that is of type.bombable
+                if (Level.doors[i].type == DoorType.Bombable)
+                {   //change this door type to type.bombed
+                    if (Projectile.compCollision.rec.Intersects(Level.doors[i].rec))
+                    { Level.doors[i].type = DoorType.Open; }
+                }
+            }
+        }
+
     }
 }

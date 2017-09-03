@@ -52,7 +52,11 @@ namespace DungeonRun
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 
-    public enum ObjGroup { Wall, Door, Chest, Object, Liftable, Draggable, Pickup, Projectile, Particle, Vendor, EnemySpawn }
+    public enum ObjGroup
+    {
+        Wall, Door, Chest, Object, Vendor, EnemySpawn, //roomObjs
+        Pickup, Projectile, Particle //entities
+    } 
 
     public enum ObjType
     {
@@ -64,7 +68,6 @@ namespace DungeonRun
         BossDecal, FloorDebrisBlood,
         //Editor Room Objects (hand-placed)
         PitAnimated, Bridge, PitTop, PitBottom, PitTrap, 
-
         BossStatue, Pillar,
         ChestKey, ChestMap, ChestEmpty,
         BlockDark, BlockLight,
@@ -73,7 +76,7 @@ namespace DungeonRun
         SpikesFloorOn, SpikesFloorOff,
         ConveyorBeltOn, ConveyorBeltOff,
         //
-        PotSkull, Bumper, Flamethrower, Switch,
+        Pot, Bumper, Flamethrower, Switch,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, 
         //Actor Spawn Objects (hand-placed)

@@ -100,16 +100,16 @@ namespace DungeonRun
 
                     if (i == 0) //first row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Pillar); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
+                        //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
+                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
                     }
                     else if (i == 1) //second row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PotSkull); }
-                        //else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockDown); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Pot); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
                         //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockUp); }
                         //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.TorchLit); }

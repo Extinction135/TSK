@@ -298,8 +298,6 @@ namespace DungeonRun
 
         }
 
-
-
         public static void HandleBirthEvent(GameObject Projectile)
         {
 
@@ -425,6 +423,42 @@ namespace DungeonRun
 
             #endregion
 
+        }
+
+
+
+        public static void ScatterRockDebris(Vector2 Pos, Boolean Push)
+        {   //add up to 4 rocks randomly around the passed Pos value, with option to push them
+            Direction pushDir = Direction.None;
+            int spread = 6;
+            if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
+            Functions_Entity.SpawnEntity(
+                ObjType.ProjectileDebrisRock,
+                Pos.X, Pos.Y, pushDir);
+            if (Functions_Random.Int(0, 100) > 20)
+            {   //sometimes  add another rock
+                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
+                Functions_Entity.SpawnEntity(
+                    ObjType.ProjectileDebrisRock,
+                    Pos.X + Functions_Random.Int(-spread, spread),
+                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
+            }
+            if (Functions_Random.Int(0, 100) > 40)
+            {   //sometimes add another rock
+                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
+                Functions_Entity.SpawnEntity(
+                    ObjType.ProjectileDebrisRock,
+                    Pos.X + Functions_Random.Int(-spread, spread),
+                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
+            }
+            if (Functions_Random.Int(0, 100) > 60)
+            {   //sometimes add another rock
+                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
+                Functions_Entity.SpawnEntity(
+                    ObjType.ProjectileDebrisRock,
+                    Pos.X + Functions_Random.Int(-spread, spread),
+                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
+            }
         }
 
     }

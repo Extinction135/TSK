@@ -30,6 +30,42 @@ namespace DungeonRun
             }
         }
 
+        public static void BottleActor(Actor Actor)
+        {
+            //can we bottle this actor?
+            if (Actor.type == ActorType.Boss
+                || Actor.type == ActorType.Hero
+                || Actor.type == ActorType.Blob)
+            {   //pop cant bottle dialog
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleCant)); }
+                return;
+            }
+
+            //byte value = 0
+            //if Actor.type = fairy, value = 5
+            //if Actor.type = blob, value = 6
+            //playerdata.current.bottleA = value; captured = true;
+
+            Boolean captured = false;
+            //does hero have an empty bottle? becomes filled fairy bottle
+            if (PlayerData.current.bottleA == 1) { PlayerData.current.bottleA = 5; captured = true; }
+            else if (PlayerData.current.bottleB == 1) { PlayerData.current.bottleB = 5; captured = true; }
+            else if (PlayerData.current.bottleC == 1) { PlayerData.current.bottleC = 5; captured = true; }
+
+            if (captured)
+            {   //pop captured dialog
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFairy)); }
+                Functions_Actor.SetDeathState(Actor); //kill fairy
+            }
+            else
+            {   //pop bottle full dialog
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFull)); }
+            }
+        }
+
 
 
         public static void SetHitState(Actor Actor)

@@ -29,53 +29,40 @@ todo:
 
 v0.7 goals
 
-12
+11
 
 
 
 
+updated PotSkull to be PotDestructible.
+checked roomData for PotSkull references, none.
+removed Liftable & Draggable values from ObjGroup enum.
+updated various paths in codebase that used these values.
 
-Various Improvements
+moved various methods around, for better conceptual fit.
+BlowUpRoomObject() now exists in Functions_RoomObject.
+ScatterRockDebris() now exists in Functions_Entity.
+BottleActor() now exists in Functions_Actor.
+CollapseDungeonDoor() now exists in Functions_RoomObject.
 
-reduced fairy drop rate to 1%, down from 5%.
+updated BlowUpRoomObject() with releaseObj and spawnLoot boolean parameters.
+updated BlowUpRoomObject() to spawn loot based on passed spawnLoot parameter.
+updated CollapseDungeonDoor() to use BlowUpRoomObject(), deduplicating code.
+changed BlowUpRoomObject() to DestroyObject().
+updated InteractObj() -> Explosion to destroy BossStatue & Pot.
+updated InteractObj() -> Fireball to destroy BossStatue & Pot.
+updated InteractObj() -> Sword to destroy Pot object.
+playtested, minor bug.
 
-bug: we can move hero when he is in a self-rez reward state.
-this happens when hero uses a bottle upon death.
-created Functions_Actor.SetRewardState(Actor).
-this standardizes how an actor is set into the reward state.
-this ensures that the actor is statelocked.
-the lack of statelock during selfrez reward was causing the moving bug.
-
-removed door collapse debris.
-it didn't look that good anyway.
-plus, door debris was located on the main sheet and took up 4 frames.
-it should of been located on the dungeon sheet (for themeing).
-but i dont want to waste 4 frames on a door collapse animation.
-so we dont have additional fx for door collapse, just the attention particle.
-which is fine.
-
-trim all sound files as much as possible (no lead/tail).
-updated dX and UWP projects with trimmed soundFX.
-updated equipment vendor to only display working equipment.
-
-
-
-
-
-
+bug: debrisrocks set actors/hero into hit state upon collision.
+updated InteractActor() -> projectiles to ignore rock debris collisions/interactions.
+playtested, working as expected.
 
 
 
 
 
 
-
-
-
-make skull pots destructible
-should explode and drop loot, using standard loot method/rate
-
-fill secret rooms up with skullpots
 
 update roomdata:
 reduce the difficulty of some rooms
