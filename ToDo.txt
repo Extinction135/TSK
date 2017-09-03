@@ -33,8 +33,6 @@ v0.7 goals
 
 
 
-
-
 Release GameDemo v0.6 for Playtesting
 
 rebuilt the DirectX project, lots of playtesting.
@@ -51,17 +49,8 @@ posted archive to dropbox folder, updated readme.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+create RELEASE binaries for DirectX + UWP.
+post to dropbox, add link to public folder from readme.
 
 
 
