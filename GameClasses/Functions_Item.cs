@@ -132,10 +132,9 @@ namespace DungeonRun
             else if (bottleID == 2) { PlayerData.current.bottleB = 1; }
             else if (bottleID == 3) { PlayerData.current.bottleC = 1; }
 
-            //set hero into reward state
+            //set hero into reward state, grab player's attention
+            Functions_Actor.SetRewardState(Pool.hero);
             Functions_Entity.SpawnEntity(ObjType.ParticleAttention, Pool.hero);
-            Pool.hero.state = ActorState.Reward;
-            Pool.hero.lockTotal = 40;
 
             //if hero's item is a bottle, set it to be empty
             if (Pool.hero.item == MenuItemType.BottleHealth

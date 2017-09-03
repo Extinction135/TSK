@@ -161,6 +161,30 @@
 /processorParam:TextureFormat=Color
 /build:ShopSheet.png
 
+#begin TitleBkg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:TitleBkg.png
+
+#begin SoundActorFall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundActorFall.wav
+
+#begin SoundActorLand.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundActorLand.wav
+
 #begin SoundArrowHit.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -179,6 +203,12 @@
 /processorParam:Quality=Best
 /build:SoundBeatDungeon.wav
 
+#begin SoundBlobDash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBlobDash.wav
+
 #begin SoundBombDrop.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -190,6 +220,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundBossHit.wav
+
+#begin SoundBossHitDeath.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBossHitDeath.wav
 
 #begin SoundBossIntro.wav
 /importer:WavImporter
@@ -245,6 +281,12 @@
 /processorParam:Quality=Best
 /build:SoundExplosion.wav
 
+#begin SoundExplosionsMultiple.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundExplosionsMultiple.wav
+
 #begin SoundFireballCast.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -269,6 +311,12 @@
 /processorParam:Quality=Best
 /build:SoundHeartPickup.wav
 
+#begin SoundHeroDash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundHeroDash.wav
+
 #begin SoundHeroHit.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -287,89 +335,17 @@
 /processorParam:Quality=Best
 /build:SoundKeyPickup.wav
 
-#begin SoundMapOpen.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundMapOpen.wav
-
-#begin SoundMetallicTap.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundMetallicTap.wav
-
-#begin SoundReward.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundReward.wav
-
-#begin SoundSelectMenuItem.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundSelectMenuItem.wav
-
-#begin SoundSwordSwipe.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundSwordSwipe.wav
-
-#begin SoundTextDone.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundTextDone.wav
-
-#begin SoundTextLetter.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundTextLetter.wav
-
-#begin TitleBkg.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:TitleBkg.png
-
 #begin SoundLightFire.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundLightFire.wav
 
-#begin SoundBlobDash.wav
+#begin SoundMapOpen.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:SoundBlobDash.wav
-
-#begin SoundBossHitDeath.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundBossHitDeath.wav
-
-#begin SoundExplosionsMultiple.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundExplosionsMultiple.wav
-
-#begin SoundHeroDash.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundHeroDash.wav
+/build:SoundMapOpen.wav
 
 #begin SoundMapWalking.wav
 /importer:WavImporter
@@ -383,11 +359,23 @@
 /processorParam:Quality=Best
 /build:SoundQuit.wav
 
+#begin SoundReward.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundReward.wav
+
 #begin SoundSelectFile.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundSelectFile.wav
+
+#begin SoundSelectMenuItem.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSelectMenuItem.wav
 
 #begin SoundShatter.wav
 /importer:WavImporter
@@ -395,11 +383,47 @@
 /processorParam:Quality=Best
 /build:SoundShatter.wav
 
+#begin SoundSplash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSplash.wav
+
 #begin SoundSwitch.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundSwitch.wav
+
+#begin SoundSwordSwipe.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundSwordSwipe.wav
+
+#begin SoundTapHollow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTapHollow.wav
+
+#begin SoundTapMetallic.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTapMetallic.wav
+
+#begin SoundTextDone.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTextDone.wav
+
+#begin SoundTextLetter.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundTextLetter.wav
 
 #begin SoundWindowClose.wav
 /importer:WavImporter

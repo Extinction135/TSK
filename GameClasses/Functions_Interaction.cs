@@ -117,13 +117,12 @@ namespace DungeonRun
                 {   //if the chest is not empty, play the reward animation
                     Assets.Play(Assets.sfxChestOpen);
                     Functions_GameObject.SetType(Obj, ObjType.ChestEmpty);
-                    Pool.hero.state = ActorState.Reward; //set actor into reward state
-                    Pool.hero.lockTotal = 40; //lock for a prolonged time
                     Functions_Entity.SpawnEntity( //show the chest was opened
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.None);
+                    Functions_Actor.SetRewardState(Pool.hero);
                 }
             }
 
@@ -633,14 +632,9 @@ namespace DungeonRun
         {   //update the door roomObject, change to doorBombed, play soundfx
             Functions_GameObject.SetType(Door, ObjType.DoorOpen);
             Assets.Play(Assets.sfxShatter);
-
             //draw attention to the collapsing door
             Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
                 Door.compSprite.position.X, Door.compSprite.position.Y, Direction.Down);
-            //display door collapse animation
-            Functions_Entity.SpawnEntity(ObjType.ParticleDoorCollapse,
-                Door.compSprite.position.X, Door.compSprite.position.Y, Door.direction);
-
             //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < Level.doors.Count; i++)
             {   //if this explosion collides with any dungeon.door that is of type.bombable

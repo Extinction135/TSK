@@ -29,56 +29,34 @@ todo:
 
 v0.7 goals
 
-13
+12
 
 
 
 
 
+Various Improvements
 
+reduced fairy drop rate to 1%, down from 5%.
 
+bug: we can move hero when he is in a self-rez reward state.
+this happens when hero uses a bottle upon death.
+created Functions_Actor.SetRewardState(Actor).
+this standardizes how an actor is set into the reward state.
+this ensures that the actor is statelocked.
+the lack of statelock during selfrez reward was causing the moving bug.
 
+removed door collapse debris.
+it didn't look that good anyway.
+plus, door debris was located on the main sheet and took up 4 frames.
+it should of been located on the dungeon sheet (for themeing).
+but i dont want to waste 4 frames on a door collapse animation.
+so we dont have additional fx for door collapse, just the attention particle.
+which is fine.
 
-
-Implement Self-Rez/Heal upon Death
-
-playtesting, a combo potion was used upon death - which was awesome!
-this was a bug, it was checking the fairy bottles old value, but it felt right.
-we should use fairys, combos, and health potions upon death, if hero has them.
-this prevents the problem of having to pause and use a health potion while in battle.
-i've died in LttP when I had a health potion, and it was frustrating.
-
-created Functions_Item.CheckBottleUponDeath().
-this checks all bottles for health, combo, and fairy and uses them.
-this is called from Functions_Actor.Update() -> hero death state.
-playtested, major bug found.
-
-Big Old Bug
-during normal RELEASE gameplay, dying in a dungeon leads to summary screen.
-this leads to overworld screen, but we're hearing actor sounds during this screen.
-cause: the overworld screen was calling Pool.Update(), which was updating everything.
-the overworld screen only needs to update the entity pool.
-split Pool.Update() into UpdateActors(), UpdateEntities(), and UpdateRoomObjects().
-this allows OverworldScreen to only call UdpateEntities().
-playtested, big old bug fixed.
-
-
-
-
-
-
-
-
-
-
-we should not be able to move hero while in a reward state
-we can move hero if he self-rezs via bottle
-
-
-
-reduce loot chance of fairys, they show up waaay too much
-we should also place fairys in the center of secret rooms, for now..
-and secret rooms should not appear on the map
+trim all sound files as much as possible (no lead/tail).
+updated dX and UWP projects with trimmed soundFX.
+updated equipment vendor to only display working equipment.
 
 
 
@@ -91,7 +69,39 @@ and secret rooms should not appear on the map
 
 
 
-reduce the difficulty of some levels
+
+
+
+make skull pots destructible
+should explode and drop loot, using standard loot method/rate
+
+fill secret rooms up with skullpots
+
+update roomdata:
+reduce the difficulty of some rooms
+add skullpots to all rooms
+create additional room designs
+
+
+
+
+
+
+
+
+relink the UWP project to latest classes
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -152,31 +162,12 @@ how do we attach an obj/actor to boomerang? i dunno
 
 
 
-
-
-
-
-
-
-
-
-
 BOTTLES
 we also need to clarify how hero purchases a BOTTLE
 can he just purchase a potion and get the bottle for free?
 should hero just start off with bottles?
 we can easily sell bottles from potion vendor, or create a bottle vendor
 which seems 1 dimensional, because that vendor will quickly get used up and ignored
-
-
-
-
-
-
-
-Move door collapse debris sprites into dungeon sheet
-they will be themed/graded with dungeon walls
-
 
 
 
@@ -204,9 +195,6 @@ this is a check: if hero.type != hero, become enemy, else become hero.
 WanderingFire 
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
-
-
-
 
 
 

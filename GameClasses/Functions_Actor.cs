@@ -30,6 +30,8 @@ namespace DungeonRun
             }
         }
 
+
+
         public static void SetHitState(Actor Actor)
         {   //bail if actor is already dead (dont hit dead actors)
             if (Actor.state == ActorState.Dead) { return; }
@@ -95,6 +97,16 @@ namespace DungeonRun
             //sort actor for last time
             Functions_Component.SetZdepth(Actor.compSprite);
         }
+
+        public static void SetRewardState(Actor Actor)
+        {   //reward state for hero is set using this method
+            Actor.state = ActorState.Reward;
+            Actor.stateLocked = true;
+            Actor.lockCounter = 0;
+            Actor.lockTotal = 40;
+        }
+
+
 
         public static void SetCollisionRec(Actor Actor)
         {

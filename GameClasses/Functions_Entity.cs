@@ -202,8 +202,7 @@ namespace DungeonRun
                 Type == ObjType.ProjectileArrow ||
                 Type == ObjType.ProjectileBomb ||
                 Type == ObjType.ParticleBow ||
-                Type == ObjType.ProjectileDebrisRock ||
-                Type == ObjType.ParticleDoorCollapse)
+                Type == ObjType.ProjectileDebrisRock)
             {
                 obj.direction = Direction;
                 obj.compMove.direction = Direction;
@@ -221,8 +220,6 @@ namespace DungeonRun
             Functions_Movement.Teleport(obj.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment
             Functions_GameObject.SetType(obj, Type);
-
-
 
             //handle specific projectile characteristics
 

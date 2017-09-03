@@ -17,8 +17,6 @@ namespace DungeonRun
         static int i;
         public static GameObject objRef;
 
-
-
         public static GameObject SpawnRoomObj(ObjType Type, float X, float Y, Direction Direction)
         {   //spawns RoomObject at the X, Y location, with direction
             GameObject obj = Functions_Pool.GetRoomObj();
@@ -31,10 +29,6 @@ namespace DungeonRun
             Functions_GameObject.SetType(obj, Type);
             return obj;
         }
-
-
-
-        //methods that alter roomObjs
 
         public static void ActivateLeverObjects()
         {
@@ -62,10 +56,8 @@ namespace DungeonRun
         }
 
         //decorates a door on left/right or top/bottom
-
         static Vector2 posA = new Vector2();
         static Vector2 posB = new Vector2();
-
         public static void DecorateDoor(GameObject Door, ObjType Type)
         {
             if (Door.direction == Direction.Up || Door.direction == Direction.Down)
@@ -87,7 +79,6 @@ namespace DungeonRun
             //build wall decorationB torch/pillar/decoration
             SpawnRoomObj(Type, posB.X, posB.Y, Door.direction);
         }
-
 
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
@@ -140,15 +131,16 @@ namespace DungeonRun
             else if (VendorType == ObjType.VendorEquipment)
             {   //add all the equipment from the main sheet
                 objRef.compAnim.currentAnimation.Add(new Byte4(10, 5, 0, 0)); //ring
-                objRef.compAnim.currentAnimation.Add(new Byte4(10, 6, 0, 0)); //pearl
-                objRef.compAnim.currentAnimation.Add(new Byte4(10, 7, 0, 0)); //necklace
-                objRef.compAnim.currentAnimation.Add(new Byte4(10, 8, 0, 0)); //glove
-                objRef.compAnim.currentAnimation.Add(new Byte4(10, 9, 0, 0)); //pin
+                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 6, 0, 0)); //pearl
+                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 7, 0, 0)); //necklace
+                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 8, 0, 0)); //glove
+                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 9, 0, 0)); //pin
             }
 
             #endregion
 
 
         }
+
     }
 }

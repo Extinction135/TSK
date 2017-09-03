@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_Loot
     {
-
         static int dropRate;
         static int lootType;
 
@@ -38,13 +37,13 @@ namespace DungeonRun
                 { Functions_Entity.SpawnEntity(ObjType.PickupRupee, Pos.X, Pos.Y, Direction.Down); }
 
                 //uncommon loot drops
-                else if (lootType < 85) //10%
+                else if (lootType < 87) //12%
                 { Functions_Entity.SpawnEntity(ObjType.PickupBomb, Pos.X, Pos.Y, Direction.Down); }
-                else if (lootType < 95) //10%
+                else if (lootType < 97) //12%
                 { Functions_Entity.SpawnEntity(ObjType.PickupArrow, Pos.X, Pos.Y, Direction.Down); }
 
                 //rare loot drops
-                else if (lootType < 101) //5%
+                else if (lootType < 101) //1%
                 { Functions_Actor.SpawnActor(ActorType.Fairy, Pos); }
             }
         }
