@@ -75,7 +75,6 @@ namespace DungeonRun
                 if (Obj.type == ObjType.ChestKey)
                 {
                     Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Pool.hero);
-                    Assets.Play(Assets.sfxKeyPickup);
                     Level.bigKey = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotKey)); }
@@ -83,7 +82,6 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.ChestMap)
                 {
                     Functions_Entity.SpawnEntity(ObjType.ParticleRewardMap, Pool.hero);
-                    Assets.Play(Assets.sfxReward);
                     Level.map = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap)); }

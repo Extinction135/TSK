@@ -297,63 +297,58 @@ namespace DungeonRun
 
         }
 
-        public static void HandleBirthEvent(GameObject Projectile)
+        public static void HandleBirthEvent(GameObject Entity)
         {
 
             #region Projectiles
 
-            if (Projectile.type == ObjType.ProjectileArrow)
+            if (Entity.type == ObjType.ProjectileArrow)
             {
                 Assets.Play(Assets.sfxArrowShoot);
             }
-            else if (Projectile.type == ObjType.ProjectileBomb)
+            else if (Entity.type == ObjType.ProjectileBomb)
             {   
                 Assets.Play(Assets.sfxBombDrop);
                 //bomb is initially sliding upon birth
                 SpawnEntity(ObjType.ParticleDashPuff,
-                    Projectile.compSprite.position.X + 0,
-                    Projectile.compSprite.position.Y + 0,
+                    Entity.compSprite.position.X + 0,
+                    Entity.compSprite.position.Y + 0,
                     Direction.None);
             }
-            else if (Projectile.type == ObjType.ProjectileExplosion)
+            else if (Entity.type == ObjType.ProjectileExplosion)
             {   
                 Assets.Play(Assets.sfxExplosion);
                 //place smoke puff above explosion
                 SpawnEntity(ObjType.ParticleSmokePuff,
-                    Projectile.compSprite.position.X + 4,
-                    Projectile.compSprite.position.Y - 8,
+                    Entity.compSprite.position.X + 4,
+                    Entity.compSprite.position.Y - 8,
                     Direction.None);
             }
-            else if (Projectile.type == ObjType.ProjectileFireball)
+            else if (Entity.type == ObjType.ProjectileFireball)
             {   
                 Assets.Play(Assets.sfxFireballCast);
                 //place smoke puff centered to fireball
                 SpawnEntity(ObjType.ParticleSmokePuff,
-                    Projectile.compSprite.position.X + 4,
-                    Projectile.compSprite.position.Y + 4,
+                    Entity.compSprite.position.X + 4,
+                    Entity.compSprite.position.Y + 4,
                     Direction.None);
             }
-            else if (Projectile.type == ObjType.ProjectileSword)
-            {   
-                Assets.Play(Assets.sfxSwordSwipe);
-            }
-            else if (Projectile.type == ObjType.ProjectileNet)
-            {
-                Assets.Play(Assets.sfxSwordSwipe); //play net swipe sound effect
-            }
+            else if (Entity.type == ObjType.ProjectileSword)
+            { Assets.Play(Assets.sfxSwordSwipe); }
+            else if (Entity.type == ObjType.ProjectileNet) //need net soundFX
+            { Assets.Play(Assets.sfxSwordSwipe); }
 
             #endregion
 
 
             #region Particles
 
-            //shouldn't we be handling map/key particle soundfx here?
-
-
-            else if(Projectile.type == ObjType.ParticleSplash)
-            {
-                Assets.Play(Assets.sfxSplash);
-            }
+            else if (Entity.type == ObjType.ParticleRewardMap)
+            { Assets.Play(Assets.sfxReward); }
+            else if (Entity.type == ObjType.ParticleRewardKey)
+            { Assets.Play(Assets.sfxKeyPickup); }
+            else if(Entity.type == ObjType.ParticleSplash)
+            { Assets.Play(Assets.sfxSplash); }
 
             #endregion
 

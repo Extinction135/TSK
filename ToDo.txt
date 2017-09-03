@@ -29,36 +29,7 @@ todo:
 
 v0.7 goals
 
-13
-
-
-
-
-Implement Transforming Hero into Blob (and back) using BottleBlob
-
-created Blob in Bottle sprite in mainSheet.
-added ParticleBottleBlob to ObjType enum.
-added ObjAnimList for ParticleBottleBlob.
-updated Obj.SetType() to handle ParticleBottleBlob.
-
-added BottleBlob value to MenuItemType enum.
-updated MenuItem.SetType() with path for BottleBlob.
-updated SetHeroLoadout() to handle BottleBlob.
-improved how bottles are loaded (deduplicated code).
-updated UseBottle() to handle Blob in a Bottle.
-updated BottleActor() to handle bottling of blobs.
-changed Dialog.BottleFairy to Dialog.BottleSuccess.
-updated WidgetInventory.SetBottleSprite() to handle blob bottle.
-
-created Functions_Bottle class, to contain all bottle related methods.
-moved all bottle related methods into Functions_Bottle.
-simplified BottleActor() using refactored FillEmptyBottle() method.
-
-useage:
-when hero uses a bottled blob, hero becomes a blob.
-if hero is already a blob, then hero becomes link.
-
-lots of playtesting, working as expected.
+10
 
 
 
@@ -66,9 +37,12 @@ lots of playtesting, working as expected.
 
 
 
+Refactoring
 
-move key/map soundfx into Functions_Entity.HandleBirthEvent()
-currently this happens from interaction()
+moved key/map soundfx into Functions_Entity.HandleBirthEvent().
+it was happening in InteractHero().
+this helps to consolidate particle/projectile soundFX to one routine.
+
 
 
 
