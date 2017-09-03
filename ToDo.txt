@@ -29,47 +29,34 @@ todo:
 
 v0.7 goals
 
-6
+5
 
 
 
 
-Implement Doggo
+Prep for Binary Releases
 
-doggo is an ally dog that follows hero around.
-doggo doesn't do much, except hang out with hero on his adventures.
+copied over dX contents to UWP contents.
+relinked UWP project to game classes.
+playtested, working as expected, some doggo bugs.
 
-relocated dungeon key and map on mainsheet.
-updated objAnimList and menuItem frame for key + map.
-this was done so doggo had a better pack in main sheet.
+implemented fix for doggos flying over pits.
+this was done by creating Functions_Direction.GetOppositeDirection(PosA, PosB).
+updated BounceOffBumper() to use GetOppositeDirection(PosA, PosB).
+this should fix the bumper bugs i keep seeing in game.
 
-added doggos sprites to main sheet.
-added Doggo value to ActorType enum.
-added DoggoIdle and DoggoMove animation groups to ActorAnimationList.
-updated SetAnimationGroup() to handle doggo actor type.
-updated SetActorInput() to handle ally with basic AI (doggo).
+added square room 005, filled with bumpers.
+this was actually the setup i was using to test bumpers.
+lots of playtesting, working really well.
 
-added field 'doggo' to Pool class.
-this acts as a reference to ActorPool[1], in the same way Pool.hero does.
-updated ResetActorPool() to skip resetting doggo.
-updated Pool.Initialize to set hero and doggo actorTypes.
-updated Functions_Room.SpawnHeroInCurrentRoom() to move doggo to hero's side.
 
-updated collision system to remove doggo from actor collision checks.
-this means doggo doesn't collide with any other actors, and can walk right thru them.
 
-split GetDirectionToHero() into GetDirectionToHero() and GetCardinalDirectionToHero().
-GetDirectionToHero() now returns a diagonal direction.
-this allows actors to slide along walls and objects.
-this makes them much better at navigating rooms.
 
-updated collision system to prevent projectile collisions with doggo entirely.
-updated pit interaction to prevent doggo from falling into pit (daaawwww).
-created TeleportDoggo(), which moves doggo to hero's position.
-updated FinishRoom() to teleport doggo.
-this means when hero moves between rooms, doggo will teleport to his side.
 
-LOTS of playtesting, doggo is working as expected (finally!).
+
+
+create RELEASE binaries for DirectX + UWP.
+post to dropbox, add link to public folder from readme.
 
 
 
@@ -92,8 +79,6 @@ LOTS of playtesting, doggo is working as expected (finally!).
 
 
 
-relink the UWP project to latest classes.
-post RELEASE binaries for DirectX + UWP.
 
 
 
@@ -101,23 +86,13 @@ post RELEASE binaries for DirectX + UWP.
 
 
 
-
-
-
+we need to work on the Functions_Direction class.
+we need to better design how cardinal and non-cardinal directions are returned.
 
 should be able to purchase doggo from a pet vendor
 later we can implement different pets
 
 need a bark sound effect
-
-
-
-
-
-
-
-
-
 
 
 
@@ -127,40 +102,15 @@ we need to make sure we're checking if actor == hero, and not if actor.type == h
 we should display the hero.actorType in the display data for LSN screen
 
 
-
 Implement SwitchBlocks
 implement switch blocks + switch block switch (name?)
 implement switches - how do these work? hero steps on them
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 need a dungeon statue destroyed obj
 need a 'base' object that sits underneath skullpots
 skullpots would then become this base object upon destruction / lift
-
-
 
 
 

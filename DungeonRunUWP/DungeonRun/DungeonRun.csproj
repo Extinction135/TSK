@@ -116,14 +116,14 @@
     <Compile Include="..\..\GameClasses\Functions_Ai.cs">
       <Link>Classes\Functions_Ai.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_Alignment.cs">
-      <Link>Classes\Functions_Alignment.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Animation.cs">
       <Link>Classes\Functions_Animation.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Battle.cs">
       <Link>Classes\Functions_Battle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Bottle.cs">
+      <Link>Classes\Functions_Bottle.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Camera2D.cs">
       <Link>Classes\Functions_Camera2D.cs</Link>
@@ -190,6 +190,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Room.cs">
       <Link>Classes\Functions_Room.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_RoomObject.cs">
+      <Link>Classes\Functions_RoomObject.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_ScreenRec.cs">
       <Link>Classes\Functions_ScreenRec.cs</Link>
