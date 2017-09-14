@@ -58,7 +58,7 @@ namespace DungeonRun
             else if (Obj.type == ObjType.ProjectileSpikeBlock)
             {   //hard push actor away from spikes
                 damage = 1; force = 10.0f;
-                direction = Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position);
+                direction = Functions_Direction.GetOppositeDirection(Actor.compSprite.position, Obj.compSprite.position);
             }
             else if (Obj.type == ObjType.ProjectileSword)
             {   //swords deal 1 damage, push 6
@@ -75,10 +75,10 @@ namespace DungeonRun
             #region Objects
 
             else if(Obj.type == ObjType.SpikesFloorOn)
-            {   //medium push actor in the actor's moving direction
-                damage = 1; force = 5.0f;
-                //direction = Actor.direction;
-                direction = Functions_Direction.GetRelativeDirection(Obj.compSprite.position, Actor.compSprite.position);
+            {   //if actor is hero, deal 1 damage, else ignore damage
+                if (Actor == Pool.hero) { damage = 1; } else { damage = 0; }
+                force = 5.0f; //weak push actor away from spikes
+                direction = Functions_Direction.GetOppositeDirection(Actor.compSprite.position, Obj.compSprite.position);
             }
 
             #endregion

@@ -1,7 +1,8 @@
 # DungeonRun
-A 2D zelda-like, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.  
-DirectX version uses .Net 4.5 & SharpDX. UWP version uses .NetCore & SharpDX.  
-OpenGL port coming soon.  
+A 2D Zelda, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.  
++ DirectX version uses .Net 4.5 & SharpDX.  
++ UWP version uses .NetCore & SharpDX.  
++ OpenGL port coming soon.  
 
 
 

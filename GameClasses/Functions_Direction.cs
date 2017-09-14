@@ -44,52 +44,18 @@ namespace DungeonRun
         }
 
         public static Direction GetOppositeDirection(Vector2 PosA, Vector2 PosB)
-        {   
-            /*
-            //return the opposite direction from PosA to PosB
-            if (Math.Abs(PosA.X - PosB.X) < 3) //aligned on X axis
-            {
-                //return up or down
-            }
-
-            else if (Math.Abs(PosA.Y - PosB.Y) < 3) //aligned on Y axis
-            {
-                //return left or right
-            }
-            else
-            {
-                //not aligned on any axis
-            }
-            */
-
-            //return the direction from PosB to PosA
+        {   //return the direction from PosB to PosA
             if (PosB.Y > PosA.Y)
-            { 
+            {   //upleft or upright
                 if (PosB.X > PosA.X)
                 { return Direction.UpLeft; }
                 else { return Direction.UpRight; }
             }
             else
-            { 
+            {   //downleft or downright
                 if (PosB.X > PosA.X)
                 { return Direction.DownLeft; }
                 else { return Direction.DownRight; }
-            }
-        }
-
-        public static Direction GetRelativeDirection(Vector2 PosA, Vector2 PosB)
-        {   //return the direction from PosB to PosA
-            if (PosB.Y > PosA.Y)
-            {   //PosB below PosA, return down right or down left
-                if (PosB.X > PosA.X)
-                { return Direction.DownRight; }
-                else { return Direction.DownLeft; }
-            }
-            else
-            {   //actor above obj, return up right or up left
-                if (PosB.X > PosA.X)
-                { return Direction.UpRight; }
-                else { return Direction.UpLeft; }
             }
         }
 

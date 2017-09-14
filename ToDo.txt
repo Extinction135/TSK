@@ -29,50 +29,61 @@ todo:
 
 v0.7 goals
 
-5
+3 dungeons, with different enemies & bosses
+but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-Release GameDemo v0.6 for Playtesting
 
-rebuilt the DirectX project, lots of playtesting.
-fixed a bug where hero wasn't brought back to life after death in dungeon.
-
-created gamedemo DirectX folder for DungeonRun 0.6.
-provided the user has the dependecies installed, it should run.
-posted archive to dropbox folder, updated readme.
+2
 
 
 
 
 
+removed GetRelativeDirection() from Functions_Direction.
+updated Functions_Battle to use GetOppositeDirection().
 
 
-
-create RELEASE binaries for DirectX + UWP.
-post to dropbox, add link to public folder from readme.
-
-
-
-
+test pushing off of spikeblocks and spikefloors
 
 
 
 
 
-
-
-
+updated the readme with more formatting polish.
 
 
 
 we need to work on the Functions_Direction class.
 we need to better design how cardinal and non-cardinal directions are returned.
 
+
+a debris rock projectile can collide with a pit
+the debris rock projectile should be in the air (grounded = false)
+
+
+we still have a problem with projectiles like swords on conveyor belts
+
+
+
+
+
+
+Doggo
+
+should actors have their own search areas? 
+doggo should have larger search area than basic blob enemies
+blobs should have a smaller search area
+
 should be able to purchase doggo from a pet vendor
-later we can implement different pets
+later we can implement different pets, with different sounds
 
 need a bark sound effect
+
+
+
+
 
 
 
@@ -202,6 +213,21 @@ BUG - PITS
 if an actor overlaps two pits at the exact same time
 they can be pulled into each pit, resulting in a cancelled out pull
 leaving actor hovering over pits, which is bad
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

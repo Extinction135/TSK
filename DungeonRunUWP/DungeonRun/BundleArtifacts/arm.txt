@@ -1,2 +1,2 @@
-MainPackage=C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRunUWP\DungeonRun\bin\WindowsUniversal\ARM\Debug\DungeonRun_0.6.0.0_ARM_Debug.appx
-SymbolPackage=C:\Users\Gx000000\Desktop\DungeonRun_0.6.0.0_Debug_Test\DungeonRun_0.6.0.0_ARM_Debug.appxsym
+MainPackage=C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRunUWP\DungeonRun\bin\WindowsUniversal\ARM\Release\DungeonRun_0.6.0.0_ARM.appx
+SymbolPackage=C:\Users\Gx000000\Desktop\DungeonRun_0.6.0.0_Test\DungeonRun_0.6.0.0_ARM.appxsym
