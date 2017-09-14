@@ -384,25 +384,11 @@ namespace DungeonRun
 
                 #region Pets
 
-                //we need an item for dog1
                 else if (Item.type == MenuItemType.PetDog1)
-                {
-                    DialogAlreadyPurchased();
-
-                    //set player's pet to dog1
-                    //complete sale
-
-                    /*
-                    if (!PlayerData.current.equipmentRing)
-                    {
-                        PlayerData.current.equipmentRing = true;
-                        Pool.hero.equipment = Item.type;
-                        CompleteSale(Item);
-                    }
-                    else { DialogAlreadyPurchased(); }
-                    */
-
-
+                {   //update hero's pet to the selected pet
+                    PlayerData.current.petType = ActorType.Doggo;
+                    Functions_Actor.SetType(Pool.doggo, ActorType.Doggo);
+                    CompleteAdoption();
                 }
 
                 #endregion
@@ -422,6 +408,15 @@ namespace DungeonRun
             Widgets.Loadout.UpdateLoadout();
             //display the purchase message & play purchase sfx
             DialogPurchaseThankyou();
+        }
+
+        public void CompleteAdoption()
+        {
+            PlayerData.current.hasPet = true;
+            Widgets.Loadout.UpdateLoadout();
+            Widgets.Dialog.DisplayDialog(vendorType.type,
+                "thank you for adopting this loveable pet.");
+            Assets.Play(Assets.sfxBeatDungeon);
         }
 
         public void DialogNotEnoughGold()

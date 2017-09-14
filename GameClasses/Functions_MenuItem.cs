@@ -269,7 +269,7 @@ namespace DungeonRun
                 MenuItem.name = "Stinky Dog";
                 MenuItem.description = "A stinky, but loveable \ndog companion.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 5, 0, 0) };
-                MenuItem.price = 50;
+                MenuItem.price = 0;
             }
 
             #endregion

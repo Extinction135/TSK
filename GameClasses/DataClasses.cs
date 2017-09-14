@@ -716,7 +716,7 @@ namespace DungeonRun
         public Boolean magicFireball = false;
         //portal
 
-
+        
 
         public byte currentWeapon = 0;
         //0=sword, 1=bow, 2=net, 3=???, 4=???
@@ -742,6 +742,10 @@ namespace DungeonRun
         public Boolean equipmentPin = false;
 
 
+
+        //player's pet
+        public Boolean hasPet = false;
+        public ActorType petType = ActorType.Doggo;
 
         //crystal booleans
         public Boolean crystal1 = false;

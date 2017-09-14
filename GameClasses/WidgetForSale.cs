@@ -177,6 +177,7 @@ namespace DungeonRun
             else if (VendorType == ObjType.VendorPets)
             {
                 Functions_MenuItem.SetType(MenuItemType.PetDog1, menuItems[0]);
+                return; //prevents pet's cost from being displayed
             }
 
             #endregion
