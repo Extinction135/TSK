@@ -575,7 +575,7 @@ namespace DungeonRun
                 Obj.lifetime = 20;
                 Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
-                Obj.compMove.grounded = true;
+                Obj.compMove.grounded = false; //in air
             }
 
             #endregion
