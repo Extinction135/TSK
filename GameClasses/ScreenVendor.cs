@@ -50,17 +50,19 @@ namespace DungeonRun
             //set a default welcome dialog
             welcomeDialog = "i've got many useful goods for sale, adventurer!";
             if (vendorType.type == ObjType.VendorArmor)
-            { welcomeDialog = "I have a fine selection of armor for sale."; }
+            { welcomeDialog = "I have a strong selection of armor for sale."; }
             else if (vendorType.type == ObjType.VendorEquipment)
-            { welcomeDialog = "I have a fine selection of equipment for sale."; }
+            { welcomeDialog = "I have a useful selection of equipment for sale."; }
             else if (vendorType.type == ObjType.VendorItems)
-            { welcomeDialog = "I have a fine selection of items for sale."; }
+            { welcomeDialog = "I have an interesting selection of items for sale."; }
             else if (vendorType.type == ObjType.VendorMagic)
-            { welcomeDialog = "I have a fine selection of magic items for sale."; }
+            { welcomeDialog = "I have a mysterious selection of magic items for sale."; }
             else if (vendorType.type == ObjType.VendorPotions)
             { welcomeDialog = "I have a fine selection of potions for sale."; }
             else if (vendorType.type == ObjType.VendorWeapons)
-            { welcomeDialog = "I have a fine selection of weapons for sale."; }
+            { welcomeDialog = "I have a wide selection of weapons for sale."; }
+            else if (vendorType.type == ObjType.VendorPets)
+            { welcomeDialog = "I have a happy selection of pets for adoption."; }
 
             #endregion
 
@@ -380,6 +382,33 @@ namespace DungeonRun
                 #endregion
 
 
+                #region Pets
+
+                //we need an item for dog1
+                else if (Item.type == MenuItemType.PetDog1)
+                {
+                    DialogAlreadyPurchased();
+
+                    //set player's pet to dog1
+                    //complete sale
+
+                    /*
+                    if (!PlayerData.current.equipmentRing)
+                    {
+                        PlayerData.current.equipmentRing = true;
+                        Pool.hero.equipment = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                    */
+
+
+                }
+
+                #endregion
+
+
+
             } //else, hero doesn't have enough gold to purchase the item
             else { DialogNotEnoughGold(); }
         }
@@ -395,56 +424,52 @@ namespace DungeonRun
             DialogPurchaseThankyou();
         }
 
-        
-
-
-
         public void DialogNotEnoughGold()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you don't have enough gold to purchase this item.");
+                "you don't have enough gold to purchase this item.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogPurchaseThankyou()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "thankyou for your purchase!");
+                "thankyou for your purchase!");
             Assets.Play(Assets.sfxBeatDungeon);
         }
 
         public void DialogCarryingMaxAmount()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you are carrying the maximum amount of this item.");
+                "you are carrying the maximum amount of this item.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogBottlesFull()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you do not have an empty bottle available to fill.");
+                "you do not have an empty bottle available to fill.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogAlreadyPurchased()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you have already purchased this item.");
+                "you have already purchased this item.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogMaxHearts()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you have reached the maximum amount of hearts.");
+                "you have reached the maximum amount of hearts.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogNeedsBow()
         {
             Widgets.Dialog.DisplayDialog(vendorType.type,
-                    "you need a bow before you can shoot these arrows.");
+                "you need a bow before you can shoot these arrows.");
             Assets.Play(Assets.sfxError);
         }
 

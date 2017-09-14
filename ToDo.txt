@@ -35,22 +35,51 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-11
+10
+
+
+
+Add Pet Vendor - part 1
+
+added pet vendor NPC to shop sheet.
+changed frame position of game's guide.
+
+added VendorPets value to ObjType enum.
+added PetDog1 value to MenuItemType enum.
+
+added ObjAnimList value for VendorPets.
+added path for VendorPets to Obj.SetType().
+added path for VendorPets to CreateVendor().
+updated FinishShopRoom() to place Pet Vendor in shop.
+updated VendorScreen with paths for Pet Vendor.
+updated WidgetForSale to handle Pet Vendor.
+
+added path for PetDog1 to MenuItem.SetType().
+playtested, vendor displayed and working as expected.
+updated Vendor's welcome dialog to be specific to the types of items sold.
 
 
 
 
-Make Search and Attack Radius specific to Actor Type
+part 2
 
-updated Actor class with int fields for chase and attack radius.
-this allows actors to have search and attack fields specific to actor type.
-updated Functions_Ai to use Actor.chaseRadius and Actor.attackRadius.
+create DialogCompletedAdoption() to VendorScreen().
 
-updated Functions_Actor.SetType() to set chaseRadius and attackRadius per actor type.
-increased the chase radius of doggo actor, allowing him to find hero from longer distances.
-decreased the default value of chaseRadius, so blobs dont see/chase hero unless he's closer.
-this makes the blobs appear to be dumber, while making the dog smarter.
-playtested, working as expected.
+handle state where hero does not have a pet
+how do we save the type of pet hero has?
+the ai functions for the hero's pet - should they be specific to the pet?
+
+pet should be displayed in loadout.
+pet should be saved with gamedata as well
+by default, hero should not have a dog.
+
+adoption should be free for all pets
+no gold display amount should show up for any type of pet (via pet vendor)
+
+
+
+
+
 
 
 
@@ -65,6 +94,7 @@ should be able to purchase doggo from a pet vendor
 later we can implement different pets, with different sounds
 
 need a bark sound effect
+
 
 
 

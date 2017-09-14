@@ -429,7 +429,7 @@ namespace DungeonRun
             else if (Type == ObjType.VendorItems || Type == ObjType.VendorPotions ||
                 Type == ObjType.VendorMagic || Type == ObjType.VendorWeapons ||
                 Type == ObjType.VendorArmor || Type == ObjType.VendorEquipment
-                || Type == ObjType.VendorStory)
+                || Type == ObjType.VendorPets || Type == ObjType.VendorStory)
             {
                 Obj.compSprite.texture = Assets.shopSheet;
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;

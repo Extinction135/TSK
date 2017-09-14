@@ -132,11 +132,12 @@ namespace DungeonRun
         }
 
         public void SetItemsForSale(ObjType VendorType)
-        {
-            //reset all the menuItems to unknown
+        {   //reset all the menuItems to unknown
             ResetItemsForSale();
 
-            //check if hero has any vendor items, via PlayerData.saveData.(itemBoolean)
+
+            #region Set MenuItems based on VendorType
+
             if (VendorType == ObjType.VendorItems)
             {
                 Functions_MenuItem.SetType(MenuItemType.ItemHeart, menuItems[0]);
@@ -173,6 +174,12 @@ namespace DungeonRun
                 //MenuItemFunctions.SetType(MenuItemType.EquipmentGlove, menuItems[3]);
                 //MenuItemFunctions.SetType(MenuItemType.EquipmentPin, menuItems[4]);
             }
+            else if (VendorType == ObjType.VendorPets)
+            {
+                Functions_MenuItem.SetType(MenuItemType.PetDog1, menuItems[0]);
+            }
+
+            #endregion
 
 
             for (i = 0; i < 10; i++)

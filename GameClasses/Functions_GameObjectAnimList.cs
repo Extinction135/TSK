@@ -157,6 +157,9 @@ namespace DungeonRun
                 //TableStone
                 new List<Byte4> { new Byte4(5, 4, 0, 0) },
 
+                //VendorAdvertisement
+                new List<Byte4> { new Byte4(5, 5, 0, 0) },
+
                 //VendorItems
                 new List<Byte4> { new Byte4(0, 7, 0, 0), new Byte4(0, 7, 1, 0) },
                 //VendorPotions
@@ -169,11 +172,10 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(4, 7, 0, 0), new Byte4(4, 7, 1, 0) },
                 //VendorEquipment
                 new List<Byte4> { new Byte4(5, 7, 0, 0), new Byte4(5, 7, 1, 0) },
-                //VendorStory
+                //VendorPets
                 new List<Byte4> { new Byte4(6, 7, 0, 0), new Byte4(6, 7, 1, 0) },
-                
-                //VendorAdvertisement
-                new List<Byte4> { new Byte4(5, 5, 0, 0) },
+                //VendorStory
+                new List<Byte4> { new Byte4(7, 7, 0, 0), new Byte4(7, 7, 1, 0) },
 
                 #endregion
 

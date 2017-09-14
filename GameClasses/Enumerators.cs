@@ -88,8 +88,11 @@ namespace DungeonRun
         SpawnFairy,
         //Shop Object
         Bookcase1, Bookcase2, TableStone,
-        VendorItems, VendorPotions, VendorMagic, VendorWeapons, VendorArmor, VendorEquipment, VendorStory,
         VendorAdvertisement,
+        //Vendors
+        VendorItems, VendorPotions, VendorMagic, VendorWeapons,
+        VendorArmor, VendorEquipment, VendorPets, VendorStory,
+        
 
         //ENTITIES
         //Pickups - collide with hero
@@ -136,6 +139,7 @@ namespace DungeonRun
         WeaponSword, WeaponBow, WeaponNet, //WeaponStaff, //WeaponAxe
         ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
         EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
+        PetDog1,
     }
 
     public enum Dialog

@@ -83,11 +83,9 @@ namespace DungeonRun
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
             //place vendor
-            SpawnRoomObj(VendorType,
-                Position.X, Position.Y, Direction.Down);
+            SpawnRoomObj(VendorType, Position.X, Position.Y, Direction.Down);
             //place stone table
-            SpawnRoomObj(ObjType.TableStone,
-                Position.X + 16, Position.Y, Direction.Down);
+            SpawnRoomObj(ObjType.TableStone, Position.X + 16, Position.Y, Direction.Down);
             //spawn vendor advertisement
             objRef = SpawnRoomObj(ObjType.VendorAdvertisement,
                 Position.X + 16, Position.Y - 6, Direction.Down);
@@ -136,9 +134,12 @@ namespace DungeonRun
                 //objRef.compAnim.currentAnimation.Add(new Byte4(10, 8, 0, 0)); //glove
                 //objRef.compAnim.currentAnimation.Add(new Byte4(10, 9, 0, 0)); //pin
             }
+            else if (VendorType == ObjType.VendorPets)
+            {   //add all the pets from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(11, 5, 0, 0)); //dog1
+            }
 
             #endregion
-
 
         }
 
