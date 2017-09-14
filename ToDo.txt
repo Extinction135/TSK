@@ -35,52 +35,46 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-10
-
-
-
-Add Pet Vendor - part 1
-
-added pet vendor NPC to shop sheet.
-changed frame position of game's guide.
-
-added VendorPets value to ObjType enum.
-added PetDog1 value to MenuItemType enum.
-
-added ObjAnimList value for VendorPets.
-added path for VendorPets to Obj.SetType().
-added path for VendorPets to CreateVendor().
-updated FinishShopRoom() to place Pet Vendor in shop.
-updated VendorScreen with paths for Pet Vendor.
-updated WidgetForSale to handle Pet Vendor.
-
-added path for PetDog1 to MenuItem.SetType().
-playtested, vendor displayed and working as expected.
-updated Vendor's welcome dialog to be specific to the types of items sold.
+9
 
 
 
 
-part 2
+Add Pet Vendor - part 3
 
-create DialogCompletedAdoption() to VendorScreen().
 
-handle state where hero does not have a pet
-how do we save the type of pet hero has?
-the ai functions for the hero's pet - should they be specific to the pet?
+changed Pool.doggo to Pool.herosPet.
+updated various paths to use new field name.
 
-pet should be displayed in loadout.
-pet should be saved with gamedata as well
-by default, hero should not have a dog.
+fixed an undiscovered bug with GetActor(), which could return hero's pet.
+this would of caused hero's pet to become an enemy blob... hmmm.
 
-adoption should be free for all pets
-no gold display amount should show up for any type of pet (via pet vendor)
+changed TeleportDoggo() to TeleportHerosPet().
+updated TeleportHerosPet() to handle case where hero has no pet.
+this moves the pet offscreen, far awway from hero.
+
+updated VendorScreen to move pet to hero upon adoption.
+modified LoadoutWidget.UpdateLoadout() to handle display of hero's pet type.
+changed SaveData.petType to be of MenuItemType.
+updated various paths to use this changed field type.
+
+created SetHerosPet() in Functions_Actor.
+this handles setting the hero's pet.active to true or false.
+this is based on the playerData.current.hasPet value.
+this method also translates menuItemType to actorType.
+
+playtested, working as expected.
 
 
 
 
 
 
+
+
+
+
+expand pet selection to include chicken as well...
 
 
 

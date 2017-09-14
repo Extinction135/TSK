@@ -347,13 +347,13 @@ namespace DungeonRun
                         if (Actor.compMove.grounded)
                         {
 
-                            #region Prevent Doggo from falling into pit
+                            #region Prevent Hero's Pet from falling into pit
 
-                            if(Actor == Pool.doggo)
-                            {   //get the opposite direction between doggo's center and pit's center
+                            if(Actor == Pool.herosPet)
+                            {   //get the opposite direction between pet's center and pit's center
                                 Actor.compMove.direction = Functions_Direction.GetOppositeDirection(
                                     Actor.compSprite.position, Obj.compSprite.position);
-                                //push doggo in direction
+                                //push pet in direction
                                 Functions_Movement.Push(Actor.compMove, Actor.compMove.direction, 1.0f);
                                 return;
                             }

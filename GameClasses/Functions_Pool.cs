@@ -21,7 +21,8 @@ namespace DungeonRun
         public static Actor GetActor()
         {
             Pool.actorIndex++;
-            if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; } //skip 0th actor (HERO)
+            //reset index to 2, skipping hero and hero's pet in actor pool
+            if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 2; } 
             //if the target actor is dead, set it to be inactive
             if(Pool.actorPool[Pool.actorIndex].state == ActorState.Dead)
             { Release(Pool.actorPool[Pool.actorIndex]); }

@@ -147,12 +147,19 @@ namespace DungeonRun
             SetLoadoutItem(armor, Pool.hero.armor);
             SetLoadoutItem(equipment, Pool.hero.equipment);
 
-            //set the gold, hearts, and dungeon items
+            //set the gold menuItem
             Functions_MenuItem.SetType(MenuItemType.InventoryGold, menuItems[4]);
-            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[5]); //unused for now
+            //set pet menuItem
+            if (PlayerData.current.hasPet)
+            { Functions_MenuItem.SetType(PlayerData.current.petType, menuItems[5]); }
+            //hero has no pet, set to be unknown
+            else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[5]); } 
+
+            //set dungeon map menuItem
             if (Level.map) //if player found the map, display it
             { Functions_MenuItem.SetType(MenuItemType.InventoryMap, menuItems[6]); }
             else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[6]); }
+            //set dungeon key menuItem
             if (Level.bigKey) //if player found the key, display it
             { Functions_MenuItem.SetType(MenuItemType.InventoryKey, menuItems[7]); }
             else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[7]); }

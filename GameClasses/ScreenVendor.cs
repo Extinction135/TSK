@@ -384,11 +384,9 @@ namespace DungeonRun
 
                 #region Pets
 
-                else if (Item.type == MenuItemType.PetDog1)
-                {   //update hero's pet to the selected pet
-                    PlayerData.current.petType = ActorType.Doggo;
-                    Functions_Actor.SetType(Pool.doggo, ActorType.Doggo);
-                    CompleteAdoption();
+                else if (Item.type == MenuItemType.PetStinkyDog)
+                {   //we can handle all pets types here
+                    CompleteAdoption(Item);
                 }
 
                 #endregion
@@ -410,10 +408,15 @@ namespace DungeonRun
             DialogPurchaseThankyou();
         }
 
-        public void CompleteAdoption()
-        {
+        public void CompleteAdoption(MenuItem Item)
+        {   //set pet type, update hero's pet type
             PlayerData.current.hasPet = true;
+            PlayerData.current.petType = Item.type;
+            Functions_Actor.SetHerosPet();
+            //move pet to hero, update hero's loadout
+            Functions_Room.TeleportHerosPet();
             Widgets.Loadout.UpdateLoadout();
+            //display adoption dialog text
             Widgets.Dialog.DisplayDialog(vendorType.type,
                 "thank you for adopting this loveable pet.");
             Assets.Play(Assets.sfxBeatDungeon);

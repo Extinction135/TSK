@@ -203,7 +203,7 @@ namespace DungeonRun
             Functions_Pool.AlignRoomObjs();
             CleanupRoom(Room);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
-            TeleportDoggo(); //teleport doggo to hero's position
+            TeleportHerosPet(); //teleport pet to hero's position
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
@@ -330,16 +330,22 @@ namespace DungeonRun
             Camera2D.currentPosition.X = Camera2D.targetPosition.X;
             Camera2D.currentPosition.Y = Camera2D.targetPosition.Y;
             Functions_Camera2D.Update();
-            TeleportDoggo(); //teleport doggo to hero's position
+            TeleportHerosPet(); //teleport pet to hero's position
         }
 
-        public static void TeleportDoggo()
-        {   //teleport doggo to hero's position
-            Functions_Movement.Teleport(Pool.doggo.compMove,
+        public static void TeleportHerosPet()
+        {
+            if(PlayerData.current.hasPet == false)
+            {   //hide pet off screen
+                Functions_Movement.Teleport(Pool.herosPet.compMove, -100, -100);
+                return;
+            }
+            //else, teleport pet to hero's position
+            Functions_Movement.Teleport(Pool.herosPet.compMove,
                 Pool.hero.compMove.newPosition.X,
                 Pool.hero.compMove.newPosition.Y);
-            Functions_Movement.StopMovement(Pool.doggo.compMove);
-            Pool.doggo.compSprite.scale = 1.0f; //rescale hero to 100%
+            Functions_Movement.StopMovement(Pool.herosPet.compMove);
+            Pool.herosPet.compSprite.scale = 1.0f; //rescale hero to 100%
         }
 
 

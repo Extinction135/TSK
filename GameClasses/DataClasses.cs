@@ -148,7 +148,7 @@ namespace DungeonRun
         public static Actor hero; //points to actorPool[0]
         public static ComponentSprite heroShadow;
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
-        public static Actor doggo; //points to actorPool[1]
+        public static Actor herosPet; //points to actorPool[1]
 
         public static int collisionsCount = 0; //tracks how many collisions occur per frame
 
@@ -196,8 +196,8 @@ namespace DungeonRun
             //create an easy to remember reference for hero & doggo actors
             hero = actorPool[0];
             Functions_Actor.SetType(hero, ActorType.Hero);
-            doggo = actorPool[1];
-            Functions_Actor.SetType(doggo, ActorType.Doggo);
+            herosPet = actorPool[1];
+            Functions_Actor.SetType(herosPet, ActorType.Doggo);
             //create the hero's shadow + rec
             heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;
@@ -745,7 +745,7 @@ namespace DungeonRun
 
         //player's pet
         public Boolean hasPet = false;
-        public ActorType petType = ActorType.Doggo;
+        public MenuItemType petType = MenuItemType.PetStinkyDog;
 
         //crystal booleans
         public Boolean crystal1 = false;

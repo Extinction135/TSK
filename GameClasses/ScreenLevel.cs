@@ -29,6 +29,8 @@ namespace DungeonRun
             Functions_Level.levelScreen = this;
             Functions_Level.BuildLevel();
             Functions_Actor.SetHeroLoadout();
+            Functions_Actor.SetHerosPet();
+
             //open the screen
             displayState = DisplayState.Opening;
         }

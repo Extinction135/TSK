@@ -139,7 +139,7 @@ namespace DungeonRun
         WeaponSword, WeaponBow, WeaponNet, //WeaponStaff, //WeaponAxe
         ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
         EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
-        PetDog1,
+        PetStinkyDog,
     }
 
     public enum Dialog

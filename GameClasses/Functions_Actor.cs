@@ -241,8 +241,17 @@ namespace DungeonRun
             { Pool.hero.equipment = MenuItemType.EquipmentPin; }
         }
 
+        public static void SetHerosPet()
+        {   //set the hero's pet to be active or inactive
+            Pool.herosPet.active = PlayerData.current.hasPet;
+            //translate menuItemType value to actor.type value for hero's pet
+            if (PlayerData.current.petType == MenuItemType.PetStinkyDog)
+            { SetType(Pool.herosPet, ActorType.Doggo); }
+            //expand this to handle other pet types
+        }
 
-  
+
+
         public static void SetType(Actor Actor, ActorType Type)
         {
             Actor.type = Type;

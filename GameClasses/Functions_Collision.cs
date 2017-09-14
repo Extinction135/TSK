@@ -84,10 +84,10 @@ namespace DungeonRun
                             if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
                             { Pool.roomObjPool[i].compCollision.blocking = false; }
                         }
-                        //do this for doggo as well
-                        if (Math.Abs(Pool.doggo.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
+                        //do this for hero's pet as well
+                        if (Math.Abs(Pool.herosPet.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
                         {
-                            if (Math.Abs(Pool.doggo.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
+                            if (Math.Abs(Pool.herosPet.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
                             { Pool.roomObjPool[i].compCollision.blocking = false; }
                         }
                     }
@@ -194,8 +194,8 @@ namespace DungeonRun
         {
             collision = false; //assume no collision
             for (i = 0; i < Pool.actorCount; i++)
-            {   //skip checking projectiles against doggo
-                if (Pool.actorPool[i] == Pool.doggo) { } //no checking
+            {   //skip checking projectiles against hero's pet
+                if (Pool.actorPool[i] == Pool.herosPet) { } //no checking
                 else if (Pool.actorPool[i].active) //actor must be active
                 {   //check for overlap
                     if (Entity.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
