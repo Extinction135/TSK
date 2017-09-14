@@ -265,7 +265,10 @@ namespace DungeonRun
             //assume standard actor
             Actor.compSprite.cellSize.X = 16;
             Actor.compSprite.cellSize.Y = 16;
-            
+            //assume standard search/attack radius
+            Actor.chaseRadius = 16 * 5;
+            Actor.attackRadius = 14;
+
 
             #region Actor Specific Fields
 
@@ -345,6 +348,7 @@ namespace DungeonRun
                 Actor.sfxDash = null; //bark sound
                 Actor.sfxHit = null; //bark sound
                 Actor.sfxDeath = null;
+                Actor.chaseRadius = 16 * 10; //large chase radius
             }
 
             #endregion

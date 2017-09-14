@@ -35,20 +35,21 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-13
+11
 
 
 
 
+Make Search and Attack Radius specific to Actor Type
 
-Prevent Rock Debris from falling into Pits
+updated Actor class with int fields for chase and attack radius.
+this allows actors to have search and attack fields specific to actor type.
+updated Functions_Ai to use Actor.chaseRadius and Actor.attackRadius.
 
-updated projectile debris rock to be in air (grounded = true).
-this prevents the state where rock debris falls into pits.
-the rock debris' life ran out before the rock sprite scale reached 0.
-this caused the rock to disappear before scaling down.
-however, the fall soundfx still played.
-
+updated Functions_Actor.SetType() to set chaseRadius and attackRadius per actor type.
+increased the chase radius of doggo actor, allowing him to find hero from longer distances.
+decreased the default value of chaseRadius, so blobs dont see/chase hero unless he's closer.
+this makes the blobs appear to be dumber, while making the dog smarter.
 playtested, working as expected.
 
 
@@ -57,18 +58,8 @@ playtested, working as expected.
 
 
 
-we still have a problem with projectiles like swords on conveyor belts
-
-
-
-
-
 
 Doggo
-
-should actors have their own search areas? 
-doggo should have larger search area than basic blob enemies
-blobs should have a smaller search area
 
 should be able to purchase doggo from a pet vendor
 later we can implement different pets, with different sounds
@@ -120,6 +111,18 @@ this sequential scaling should happen anytime hero's health changes
 
 
 
+
+
+
+
+Projectiles on Conveyor Belts
+
+we still have a problem with projectiles like swords on conveyor belts
+if we make projectiles like sword grounded, then they move on conveyor belts, but also get pulled into pits
+they shouldn't get pulled into pits, but they should be able to be moved on conveyor belts
+
+we need to solve this in tandem with creating boomerangs
+
 Implement Boomerang
 this is a projectile that flys in a thrown direction
 then upon hitting something colliding, returns to hero
@@ -138,15 +141,6 @@ attachment
 how do we attach an obj/actor to boomerang? i dunno
 
 
-
-
-
-BOTTLES
-we also need to clarify how hero purchases a BOTTLE
-can he just purchase a potion and get the bottle for free?
-should hero just start off with bottles?
-we can easily sell bottles from potion vendor, or create a bottle vendor
-which seems 1 dimensional, because that vendor will quickly get used up and ignored
 
 
 

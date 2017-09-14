@@ -19,8 +19,8 @@ namespace DungeonRun
         static int xDistance;
         static int yDistance;
 
-        static int chaseRadius = 16 * 6; //how far an actor can see hero from
-        static int attackRadius = 14; //in pixels
+        //static int chaseRadius = 16 * 6; //how far an actor can see hero from
+        //static int attackRadius = 14; //in pixels
 
 
 
@@ -75,7 +75,7 @@ namespace DungeonRun
                     {   
                         ChaseHero();
                         //determine if actor is close enough to attack hero
-                        if (yDistance < attackRadius && xDistance < attackRadius)
+                        if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
                         {   //actor is close enough to hero to attack
                             if (Functions_Random.Int(0, 100) > 50) //randomly attack, cancel any dash
                             { Actor.compInput.attack = true; Actor.compInput.dash = false; }
@@ -85,7 +85,7 @@ namespace DungeonRun
                     {   //if actor is an ally, then chase the hero
                         ChaseHero();
                         //determine if actor is close enough to stop chasing hero
-                        if (yDistance < attackRadius && xDistance < attackRadius)
+                        if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
                         {   
                             Actor.compInput.dash = false;
                             Actor.compInput.direction = Direction.None;
@@ -119,7 +119,7 @@ namespace DungeonRun
 
         public static void ChaseHero()
         {   //actor is close enough to chase hero, set actor's direction to hero
-            if (yDistance < chaseRadius && xDistance < chaseRadius)
+            if (yDistance < Actor.chaseRadius && xDistance < Actor.chaseRadius)
             { Actor.compInput.direction = Functions_Direction.GetDirectionToHero(actorPos); }
         }
 

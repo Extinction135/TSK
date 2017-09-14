@@ -674,7 +674,7 @@ namespace DungeonRun
         }
 
         public static void PlayPitFx(GameObject Pit)
-        {   //play splash particle and sound effect
+        {   //play splash particle effect
             Functions_Entity.SpawnEntity(ObjType.ParticleSplash,
                 Pit.compSprite.position.X ,
                 Pit.compSprite.position.Y - 4,
