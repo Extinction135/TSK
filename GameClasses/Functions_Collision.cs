@@ -152,7 +152,7 @@ namespace DungeonRun
                 {   //actors cannot collide with themselves
                     if (Actor != Pool.actorPool[i])
                     {   //remove doggo from actor vs actor collision checking
-                        if(Actor.type == ActorType.Doggo || Pool.actorPool[i].type == ActorType.Doggo) { }
+                        if(Actor.type == ActorType.Pet || Pool.actorPool[i].type == ActorType.Pet) { }
                         //only check collisions between actors & hero
                         else if (Actor == Pool.hero || Pool.actorPool[i] == Pool.hero)
                         {   //check for overlap

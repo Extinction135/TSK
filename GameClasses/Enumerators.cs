@@ -48,7 +48,7 @@ namespace DungeonRun
 
     
 
-    public enum ActorType { Hero, Blob, Boss, Fairy, Doggo }
+    public enum ActorType { Hero, Blob, Boss, Fairy, Pet }
 
     public enum ActorState { Idle, Move, Dash, Interact, Attack, Use, Hit, Dead, Reward }
 
@@ -139,7 +139,7 @@ namespace DungeonRun
         WeaponSword, WeaponBow, WeaponNet, //WeaponStaff, //WeaponAxe
         ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
         EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
-        PetStinkyDog,
+        PetStinkyDog, PetChicken
     }
 
     public enum Dialog

@@ -197,7 +197,7 @@ namespace DungeonRun
             hero = actorPool[0];
             Functions_Actor.SetType(hero, ActorType.Hero);
             herosPet = actorPool[1];
-            Functions_Actor.SetType(herosPet, ActorType.Doggo);
+            Functions_Actor.SetType(herosPet, ActorType.Pet);
             //create the hero's shadow + rec
             heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;
@@ -475,8 +475,8 @@ namespace DungeonRun
         //pickup, hold, carry, drag, etc...
 
         public AnimationGroup fairy;
-        public AnimationGroup doggoIdle;
-        public AnimationGroup doggoMove;
+        public AnimationGroup petIdle;
+        public AnimationGroup petMove;
     }
 
     public class Room

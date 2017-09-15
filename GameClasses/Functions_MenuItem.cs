@@ -271,6 +271,13 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 5, 0, 0) };
                 MenuItem.price = 0;
             }
+            else if (Type == MenuItemType.PetChicken)
+            {
+                MenuItem.name = "Friendly Chicken";
+                MenuItem.description = "A friendly chicken.";
+                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 6, 0, 0) };
+                MenuItem.price = 0;
+            }
 
             #endregion
 

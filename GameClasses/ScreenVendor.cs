@@ -384,13 +384,11 @@ namespace DungeonRun
 
                 #region Pets
 
-                else if (Item.type == MenuItemType.PetStinkyDog)
-                {   //we can handle all pets types here
-                    CompleteAdoption(Item);
-                }
+                else if (Item.type == MenuItemType.PetStinkyDog
+                    || Item.type == MenuItemType.PetChicken)
+                { CompleteAdoption(Item); }
 
                 #endregion
-
 
 
             } //else, hero doesn't have enough gold to purchase the item

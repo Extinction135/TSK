@@ -244,10 +244,7 @@ namespace DungeonRun
         public static void SetHerosPet()
         {   //set the hero's pet to be active or inactive
             Pool.herosPet.active = PlayerData.current.hasPet;
-            //translate menuItemType value to actor.type value for hero's pet
-            if (PlayerData.current.petType == MenuItemType.PetStinkyDog)
-            { SetType(Pool.herosPet, ActorType.Doggo); }
-            //expand this to handle other pet types
+            Functions_ActorAnimationList.SetPetAnimList();
         }
 
 
@@ -344,7 +341,7 @@ namespace DungeonRun
                 Actor.sfxDeath = Assets.sfxHeartPickup;
                 Actor.compMove.grounded = false; //actor flys in air
             }
-            else if (Type == ActorType.Doggo)
+            else if (Type == ActorType.Pet)
             {   //non-combatant actor
                 Actor.aiType = ActorAI.Basic;
                 Actor.enemy = false;
@@ -353,9 +350,9 @@ namespace DungeonRun
                 ResetActorLoadout(Actor);
                 Actor.walkSpeed = 0.25f;
                 Actor.dashSpeed = 0.5f;
-                //set actor sound effects
-                Actor.sfxDash = null; //bark sound
-                Actor.sfxHit = null; //bark sound
+                //clear actor sound effects
+                Actor.sfxDash = null;
+                Actor.sfxHit = null;
                 Actor.sfxDeath = null;
                 Actor.chaseRadius = 16 * 10; //large chase radius
             }

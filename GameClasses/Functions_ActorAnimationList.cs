@@ -48,11 +48,11 @@ namespace DungeonRun
             {
                 Actor.animGroup = Actor.animList.fairy;
             }
-            else if(Actor.type == ActorType.Doggo)
+            else if(Actor.type == ActorType.Pet)
             {
-                if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.doggoMove; }
-                else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.doggoMove; }
-                else { Actor.animGroup = Actor.animList.doggoIdle; }
+                if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.petMove; }
+                else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.petMove; }
+                else { Actor.animGroup = Actor.animList.petIdle; }
             }
         }
 
@@ -71,8 +71,7 @@ namespace DungeonRun
         }
 
         static Functions_ActorAnimationList()
-        {
-            //create/populate Actor's AnimationList
+        {   //create/populate Actor's AnimationList
             actorAnims = new ActorAnimationList();
 
             //idle, move, dash, & interact lists
@@ -143,19 +142,35 @@ namespace DungeonRun
             actorAnims.fairy.right = new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) };
             actorAnims.fairy.left = new List<Byte4> { new Byte4(12, 3, 1, 0), new Byte4(13, 3, 1, 0) };
 
-            //doggo idle animation
-            actorAnims.doggoIdle = new AnimationGroup();
-            actorAnims.doggoIdle.down = new List<Byte4> { new Byte4(11, 5, 0, 0), new Byte4(12, 5, 0, 0) };
-            actorAnims.doggoIdle.up = new List<Byte4> { new Byte4(11, 5, 1, 0), new Byte4(12, 5, 1, 0) };
-            actorAnims.doggoIdle.right = new List<Byte4> { new Byte4(11, 5, 0, 0), new Byte4(12, 5, 0, 0) };
-            actorAnims.doggoIdle.left = new List<Byte4> { new Byte4(11, 5, 1, 0), new Byte4(12, 5, 1, 0) };
-            //doggo move animation
-            actorAnims.doggoMove = new AnimationGroup();
-            actorAnims.doggoMove.down = new List<Byte4> { new Byte4(12, 5, 0, 0), new Byte4(13, 5, 0, 0) };
-            actorAnims.doggoMove.up = new List<Byte4> { new Byte4(12, 5, 1, 0), new Byte4(13, 5, 1, 0) };
-            actorAnims.doggoMove.right = new List<Byte4> { new Byte4(12, 5, 0, 0), new Byte4(13, 5, 0, 0) };
-            actorAnims.doggoMove.left = new List<Byte4> { new Byte4(12, 5, 1, 0), new Byte4(13, 5, 1, 0) };
+            //pet idle animation (defaults to dog)
+            actorAnims.petIdle = new AnimationGroup();
+            actorAnims.petIdle.down = new List<Byte4> { new Byte4(11, 5, 0, 0), new Byte4(12, 5, 0, 0) };
+            actorAnims.petIdle.up = new List<Byte4> { new Byte4(11, 5, 1, 0), new Byte4(12, 5, 1, 0) };
+            actorAnims.petIdle.right = new List<Byte4> { new Byte4(11, 5, 0, 0), new Byte4(12, 5, 0, 0) };
+            actorAnims.petIdle.left = new List<Byte4> { new Byte4(11, 5, 1, 0), new Byte4(12, 5, 1, 0) };
+            //pet move animation (defaults to dog)
+            actorAnims.petMove = new AnimationGroup();
+            actorAnims.petMove.down = new List<Byte4> { new Byte4(12, 5, 0, 0), new Byte4(13, 5, 0, 0) };
+            actorAnims.petMove.up = new List<Byte4> { new Byte4(12, 5, 1, 0), new Byte4(13, 5, 1, 0) };
+            actorAnims.petMove.right = new List<Byte4> { new Byte4(12, 5, 0, 0), new Byte4(13, 5, 0, 0) };
+            actorAnims.petMove.left = new List<Byte4> { new Byte4(12, 5, 1, 0), new Byte4(13, 5, 1, 0) };
+        }
 
+        public static void SetPetAnimList()
+        {   //create a variable that represents the Y frame of the pet animList
+            byte Y = 5; //defaults to dog
+            //set the variable based on the hero's current pet type
+            if(PlayerData.current.petType == MenuItemType.PetStinkyDog) { Y = 5; }
+            else if (PlayerData.current.petType == MenuItemType.PetChicken) { Y = 6; }
+            //set the Y frame for the pet animLists
+            actorAnims.petIdle.down =   new List<Byte4> { new Byte4(11, Y, 0, 0), new Byte4(12, Y, 0, 0) };
+            actorAnims.petIdle.up =     new List<Byte4> { new Byte4(11, Y, 1, 0), new Byte4(12, Y, 1, 0) };
+            actorAnims.petIdle.right =  new List<Byte4> { new Byte4(11, Y, 0, 0), new Byte4(12, Y, 0, 0) };
+            actorAnims.petIdle.left =   new List<Byte4> { new Byte4(11, Y, 1, 0), new Byte4(12, Y, 1, 0) };
+            actorAnims.petMove.down =   new List<Byte4> { new Byte4(12, Y, 0, 0), new Byte4(13, Y, 0, 0) };
+            actorAnims.petMove.up =     new List<Byte4> { new Byte4(12, Y, 1, 0), new Byte4(13, Y, 1, 0) };
+            actorAnims.petMove.right =  new List<Byte4> { new Byte4(12, Y, 0, 0), new Byte4(13, Y, 0, 0) };
+            actorAnims.petMove.left =   new List<Byte4> { new Byte4(12, Y, 1, 0), new Byte4(13, Y, 1, 0) };
         }
 
     }

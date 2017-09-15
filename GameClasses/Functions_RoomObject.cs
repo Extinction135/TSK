@@ -136,7 +136,8 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.VendorPets)
             {   //add all the pets from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(11, 5, 0, 0)); //dog1
+                objRef.compAnim.currentAnimation.Add(new Byte4(11, 5, 0, 0)); //stinky dog
+                objRef.compAnim.currentAnimation.Add(new Byte4(11, 6, 0, 0)); //chicken
             }
 
             #endregion

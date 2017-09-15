@@ -35,37 +35,32 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-9
+7
 
 
 
 
-Add Pet Vendor - part 3
+Add Pet Chicken
 
+added chicken sprite to main sheet.
+improved dog sprite with a transparent ground shadow.
 
-changed Pool.doggo to Pool.herosPet.
-updated various paths to use new field name.
+changed ActorType Doggo to Pet.
+this was done because pet actors are all functionally the same.
+the only difference is their animation frames...
+which can be set by checking the value of saveData.petType.
+updated various code that referenced Doggo value to use Pet value.
 
-fixed an undiscovered bug with GetActor(), which could return hero's pet.
-this would of caused hero's pet to become an enemy blob... hmmm.
+changed doggoMove and doggoIdle animationGroups to petMove and petIdle.
+updated SetAnimGroup() to work with new pet fields.
 
-changed TeleportDoggo() to TeleportHerosPet().
-updated TeleportHerosPet() to handle case where hero has no pet.
-this moves the pet offscreen, far awway from hero.
+added PetChicken value to MenuItemType enum.
+updated MenuItem.SetType() with path for PetChicken.
+created Functions_Animation.SetPetAnimList().
+updated various paths to handle PetChicken enum value.
+updated the pet advetisements to display chicken.
 
-updated VendorScreen to move pet to hero upon adoption.
-modified LoadoutWidget.UpdateLoadout() to handle display of hero's pet type.
-changed SaveData.petType to be of MenuItemType.
-updated various paths to use this changed field type.
-
-created SetHerosPet() in Functions_Actor.
-this handles setting the hero's pet.active to true or false.
-this is based on the playerData.current.hasPet value.
-this method also translates menuItemType to actorType.
-
-playtested, working as expected.
-
-
+playtested, pet chicken is working as expected.
 
 
 
@@ -74,20 +69,19 @@ playtested, working as expected.
 
 
 
-expand pet selection to include chicken as well...
+Add Dog and Chicken Sound Effects
+
+hero's pet should randomly make a noise (very rarely)
+based on current.petType, play correct soundfx
+
+
+add bark sfx, cluck sfx to assets / project
 
 
 
 
 
 
-
-Doggo
-
-should be able to purchase doggo from a pet vendor
-later we can implement different pets, with different sounds
-
-need a bark sound effect
 
 
 
