@@ -40,46 +40,13 @@ DIALOG SCREENS ++
 
 
 
-Improve DialogScreen and DialogWidget
+Dialog System ++
 
-should be able to display multiple texts, while switching between speakers.
-this allows the dialog screen to simulate a dialog, between 2 or more speakers.
-
-created Dialog data class, containing speaker obj, string, soundFx.
-removed Dialog enumerator.
-
-created Functions_Dialog, to contain all dialogs in game.
-updated various code paths to use Functions_Dialog.
-updated DirectX & UWP backend classes to work with the new dialog system.
-
-playtested, all dialogs working with new system.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-include the dialog title in the dialog data class
-
-
-
-
-
-we should probably move vendor dialogs into Functions_Dialog later
-
-
-
-
+included dialog title in the dialog data class.
+updated dialogWidget and dialogScreen to handle displaying dialog title.
+this adds more customization to the dialog.
+playtested, working as expected.
+regioned Functions_Dialog.
 
 
 
@@ -99,6 +66,8 @@ we should probably move vendor dialogs into Functions_Dialog later
 
 
 dialog screens are always blocking (no updates of other screens)
+
+
 
 
 

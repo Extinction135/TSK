@@ -71,13 +71,14 @@ namespace DungeonRun
 
 
         
-        public void DisplayDialog(ObjType Type, String Dialog)
+        public void DisplayDialog(ObjType Type, String Title, String Dialog)
         {   //set the menuItem's type and sprite frame
             Functions_GameObject.SetType(speaker, Type);
             //capture the dialog string, clear the dialog being drawn
             dialogString = Dialog;
             dialog.text = "";
             dialogDisplayed = false;
+            window.title.text = Title;
         }
 
     }

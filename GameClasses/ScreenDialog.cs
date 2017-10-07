@@ -134,19 +134,14 @@ namespace DungeonRun
 
 
         public void DisplayDialog(Dialog Dialog)
-        {
-            dialogString = Dialog.text;
-            speakerType = Dialog.speaker;
+        {   //reset & open the dialog widget
+            Widgets.Dialog.Reset(16 * 9, 16 * 12);
+            Widgets.Dialog.DisplayDialog(Dialog.speaker, Dialog.title, Dialog.text);
             Assets.Play(Dialog.sfx);
             background.fade = Dialog.fadeBackgroundIn;
             foreground.fade = Dialog.fadeForegroundIn;
             exitToOverworld = Dialog.exitToOverworld;
-
-            //reset & open the dialog widget
-            Widgets.Dialog.Reset(16 * 9, 16 * 12);
-            Widgets.Dialog.DisplayDialog(speakerType, dialogString);
             displayState = DisplayState.Opening;
-
             dialogIndex++; //track dialog count
         }
 
