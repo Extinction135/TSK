@@ -469,7 +469,7 @@ namespace DungeonRun
                         {   //we can only add key chests to key rooms
                             if (Functions_Level.currentRoom.type != RoomType.Key)
                             {
-                                ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddKeyChest));
+                                ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddKeyChest));
                                 return; //dont add chest
                             }
                         }
@@ -477,7 +477,7 @@ namespace DungeonRun
                         {   //we can only add map chests to hub rooms
                             if (Functions_Level.currentRoom.type != RoomType.Hub)
                             {
-                                ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddMapChest));
+                                ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddMapChest));
                                 return; //dont add chest
                             }
                         }
@@ -487,7 +487,7 @@ namespace DungeonRun
                             {   //check all roomObjs for an active chest
                                 if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].group == ObjGroup.Chest)
                                 {
-                                    ScreenManager.AddScreen(new ScreenDialog(Dialog.CantAddMoreChests));
+                                    ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddMoreChests));
                                     return; //dont add chest
                                 }
                             }

@@ -14,133 +14,31 @@ namespace DungeonRun
 {
     public class ScreenDialog : Screen
     {
-        public Dialog dialogType = Dialog.Default;
+        public List<Dialog> dialogs;
+        public int dialogIndex = 0;
         public ObjType speakerType;
         public String dialogString;
+
         ScreenRec background = new ScreenRec();
         ScreenRec foreground = new ScreenRec();
+        Boolean exitToOverworld = false;
 
 
 
-        public ScreenDialog(Dialog Dialog)
+        public ScreenDialog(List<Dialog> Dialogs)
         {
-            this.name = "Dialog Screen";
-            dialogType = Dialog;
+            dialogs = Dialogs;
         }
 
         public override void LoadContent()
         {
+            this.name = "Dialog Screen";
             foreground.fadeInSpeed = 0.05f;
             background.fadeOutSpeed = 0.05f;
 
-            //assume speaker is guide, assume no screen fading
-            speakerType = ObjType.VendorStory; 
-            background.fade = false;
-            foreground.fade = false;
-            
-
-            #region Game Saved/Loaded/Created/etc Dialogs
-
-            if (dialogType == Dialog.GameSaved)
-            {   //returns to inventory screen upon close
-                dialogString = "I have successfully saved the current game.";
-                background.fade = true; foreground.fade = false;
-            }
-            else if (dialogType == Dialog.GameLoadFailed)
-            {   //returns to previous screen (inventory or title) upon close
-                dialogString = "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n";
-                dialogString += "The data is corrupted... I've overwritten the file with your current game.";
-                background.fade = true; foreground.fade = false;
-            }
-            else if (dialogType == Dialog.GameCreated)
-            {   //goes to overworld screen upon close
-                dialogString = "I have created a new game for you.";
-                background.fade = true; foreground.fade = true;
-            }
-            else if (dialogType == Dialog.GameLoaded)
-            {   //goes to overworld screen upon close
-                dialogString = "I have loaded the selected game file.";
-                background.fade = true; foreground.fade = true;
-            }
-            else if (dialogType == Dialog.GameNotFound)
-            {   //goes to overworld screen upon close
-                dialogString = "the selected game file was not found. I have saved your current game to the\n";
-                dialogString += "selected game slot instead.";
-                background.fade = true; foreground.fade = true;
-            }
-            else if (dialogType == Dialog.GameAutoSaved)
-            {   //goes to overworld screen upon close
-                dialogString = "I've successfully loaded your last autosaved game.";
-                background.fade = true; foreground.fade = true;
-            }
-
-            #endregion
-
-
-            #region Dungeon Dialogs
-
-            else if (dialogType == Dialog.DoesNotHaveKey)
-            { dialogString = "This door is locked. You'll need a key to open it."; }
-            else if (dialogType == Dialog.HeroGotKey)
-            { dialogString = "You found the dungeon key. It can open any door."; }
-            else if (dialogType == Dialog.HeroGotMap)
-            {
-                dialogString = "You found the dungeon map! This map reveals the location of all rooms.";
-                dialogString += "\nPress the Left Shoulder button to view this dungeon map.";
-            }
-            //bottle capturing dialogs
-            else if(dialogType == Dialog.BottleCant)
-            {
-                dialogString = "You caught a creature in your net!";
-                dialogString += "\nUnfortunately, you can't fit this creature in a bottle.";
-            }
-            else if (dialogType == Dialog.BottleFull)
-            {
-                dialogString = "You caught a creature in your net!";
-                dialogString += "\nUnfortunately, You don't have any empty bottles to put this creature in.";
-            }
-            else if (dialogType == Dialog.BottleSuccess)
-            {
-                dialogString = "You caught a creature in your net!";
-                dialogString += "\nYou have successfully captured this creature in an empty bottle.";
-            }
-
-            #endregion
-
-
-            #region Editor Dialogs
-
-            else if (dialogType == Dialog.CantAddKeyChest)
-            {
-                dialogString = "You cannot add a key chest to a non-key room!";
-                background.fade = true;
-            }
-            else if (dialogType == Dialog.CantAddMapChest)
-            {
-                dialogString = "You cannot add a map chest to a non-hub room!";
-                background.fade = true;
-            }
-            else if (dialogType == Dialog.CantAddMoreChests)
-            {
-                dialogString = "You cannot add more than 1 chest to a room!";
-                background.fade = true;
-            }
-
-            #endregion
-
-
-            else //default dialog
-            {
-                dialogString = "i'm the guide. in a future update i'll explain the story.";
-                dialogString += "\nfor now, just have fun playtesting the game.";
-            }
-
-            //display the dialog
-            Widgets.Dialog.Reset(16 * 9, 16 * 12);
-            Widgets.Dialog.DisplayDialog(speakerType, dialogString);
-            //play the opening soundFX
-            Assets.Play(Assets.sfxWindowOpen);
-            displayState = DisplayState.Opening;
+            //pass dialog[0] to dialog widget for display
+            DisplayDialog(dialogs[0]);
+            dialogIndex = 1; //target next dialog
 
             //display hero's current animation 
             //he may of been set into an animation just as dialog screen was created
@@ -157,9 +55,16 @@ namespace DungeonRun
                     Functions_Input.IsNewButtonPress(Buttons.B) ||
                     Functions_Input.IsNewButtonPress(Buttons.A))
                 {
-                    Assets.Play(Assets.sfxWindowClose);
-                    displayState = DisplayState.Closing;
-                    Functions_MenuWindow.Close(Widgets.Dialog.window);
+                    if (dialogIndex >= dialogs.Count)
+                    {   //no more dialogs, close dialog screen
+                        Assets.Play(Assets.sfxWindowClose);
+                        displayState = DisplayState.Closing;
+                        Functions_MenuWindow.Close(Widgets.Dialog.window);
+                    }
+                    else
+                    {   //display the next dialog
+                        DisplayDialog(dialogs[dialogIndex]);
+                    }
                 }
             }
         }
@@ -201,17 +106,14 @@ namespace DungeonRun
                 { displayState = DisplayState.Closed; }
             }
             else if (displayState == DisplayState.Closed)
-            {   //exit all screens, restart game
-                if (dialogType == Dialog.GameCreated ||
-                    dialogType == Dialog.GameLoaded ||
-                    dialogType == Dialog.GameNotFound ||
-                    dialogType == Dialog.GameAutoSaved)
+            {   
+                if(exitToOverworld)
                 {   //load overworld map, starting at shop
                     Level.type = LevelType.Shop;
                     ScreenManager.ExitAndLoad(new ScreenOverworld());
                 }
-                //or simply exit this screen
-                else { ScreenManager.RemoveScreen(this); }
+                else //or simply exit this screen
+                { ScreenManager.RemoveScreen(this); }
             }
 
             #endregion
@@ -227,6 +129,25 @@ namespace DungeonRun
             Widgets.Dialog.Draw();
             Functions_Draw.Draw(foreground);
             ScreenManager.spriteBatch.End();
+        }
+
+
+
+        public void DisplayDialog(Dialog Dialog)
+        {
+            dialogString = Dialog.text;
+            speakerType = Dialog.speaker;
+            Assets.Play(Dialog.sfx);
+            background.fade = Dialog.fadeBackgroundIn;
+            foreground.fade = Dialog.fadeForegroundIn;
+            exitToOverworld = Dialog.exitToOverworld;
+
+            //reset & open the dialog widget
+            Widgets.Dialog.Reset(16 * 9, 16 * 12);
+            Widgets.Dialog.DisplayDialog(speakerType, dialogString);
+            displayState = DisplayState.Opening;
+
+            dialogIndex++; //track dialog count
         }
 
     }

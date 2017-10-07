@@ -142,16 +142,4 @@ namespace DungeonRun
         PetStinkyDog, PetChicken
     }
 
-    public enum Dialog
-    {
-        Default,
-        //load/save/new dialogs
-        GameSaved, GameLoaded, GameAutoSaved,
-        GameCreated, GameNotFound, GameLoadFailed,
-        //dungeon dialogs
-        DoesNotHaveKey, HeroGotKey, HeroGotMap,
-        BottleCant, BottleFull, BottleSuccess,
-        //Editor Dialogs
-        CantAddKeyChest, CantAddMapChest, CantAddMoreChests,
-    }
 }

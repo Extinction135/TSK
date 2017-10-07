@@ -35,7 +35,7 @@ namespace DungeonRun
             if (Actor.type == ActorType.Boss || Actor.type == ActorType.Hero)
             {   //pop cant bottle dialog
                 if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleCant)); }
+                { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
                 return;
             }
             else
@@ -50,13 +50,13 @@ namespace DungeonRun
                 if (captured)
                 {   //alert player that hero successfully bottled the actor
                     if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleSuccess)); }
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleSuccess)); }
                     SetDeathState(Actor); //kill bottled actor
                 }
                 else
                 {   //alert player that hero has no empty bottles (all bottles are full)
                     if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.BottleFull)); }
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleFull)); }
                 }
             }
         }

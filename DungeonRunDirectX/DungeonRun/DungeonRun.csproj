@@ -80,6 +80,9 @@
     <Compile Include="..\..\GameClasses\Functions_Debug.cs">
       <Link>Classes\Functions_Debug.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Dialog.cs">
+      <Link>Classes\Functions_Dialog.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Direction.cs">
       <Link>Classes\Functions_Direction.cs</Link>
     </Compile>
@@ -254,5 +257,5 @@
       <RoomData Include="..\..\RoomData\**" />
     </ItemGroup>
     <Microsoft.Build.Tasks.Copy SourceFiles="@(RoomData)" DestinationFolder="$(OutDir)\%(RecursiveDir)" SkipUnchangedFiles="false" />
-</Target>
+  </Target>
 </Project>

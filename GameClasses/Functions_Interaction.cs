@@ -77,14 +77,14 @@ namespace DungeonRun
                     Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Pool.hero);
                     Level.bigKey = true;
                     if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotKey)); }
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.HeroGotKey)); }
                 }
                 else if (Obj.type == ObjType.ChestMap)
                 {
                     Functions_Entity.SpawnEntity(ObjType.ParticleRewardMap, Pool.hero);
                     Level.map = true;
                     if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.HeroGotMap)); }
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.HeroGotMap)); }
                 }
 
                 #endregion
@@ -112,7 +112,7 @@ namespace DungeonRun
             {   //some vendors do not sell items, so check vendor types
                 if (Obj.type == ObjType.VendorStory) //for now this is default dialog
                 {   //figure out what part of the story the hero is at, pass this dialog
-                    ScreenManager.AddScreen(new ScreenDialog(Dialog.Default));
+                    ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.Default));
                 }
                 //check to make sure the obj isn't a vendor advertisement
                 else if (Obj.type != ObjType.VendorAdvertisement)
@@ -140,7 +140,7 @@ namespace DungeonRun
                 else
                 {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
                     if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Dialog.DoesNotHaveKey)); }
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.DoesNotHaveKey)); }
                 }
             }
 

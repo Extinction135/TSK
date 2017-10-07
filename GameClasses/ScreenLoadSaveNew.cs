@@ -252,8 +252,8 @@ namespace DungeonRun
                         { Functions_Backend.SaveGame(GameFile.Game3); }
                         //create dialog screen, let player know file has been created or saved
                         if (screenState == LoadSaveNewState.New)
-                        { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameCreated)); }
-                        else { ScreenManager.AddScreen(new ScreenDialog(Dialog.GameSaved)); }
+                        { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.GameCreated)); }
+                        else { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.GameSaved)); }
                         UpdateCurrentDisplay();
                     }
                     //save current game to autoSave file (sets autosave)

@@ -13,12 +13,9 @@ Gif Capture process:
 	save for web ->  GIF 32 Dithered, filesize should be under 3mb, loop forever
 	test in browser to ensure proper fps
 adding music:
-	music should be compressed down to 22K sample rate, mono.
-	files are then saved to .ogg and added to content pipeline, built on high quality.
+	files are saved as .ogg and added to content pipeline, built on high quality.
 adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
-ram useage:
-	109mb on Win10. 102.7mb on XboxOne.
 CTRL + M, O = collapse functions/regions	
 	
 
@@ -35,32 +32,89 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-7
+13
+
+
+
+DIALOG SCREENS ++
+
+
+
+Improve DialogScreen and DialogWidget
+
+should be able to display multiple texts, while switching between speakers.
+this allows the dialog screen to simulate a dialog, between 2 or more speakers.
+
+created Dialog data class, containing speaker obj, string, soundFx.
+removed Dialog enumerator.
+
+created Functions_Dialog, to contain all dialogs in game.
+updated various code paths to use Functions_Dialog.
+updated DirectX & UWP backend classes to work with the new dialog system.
+
+playtested, all dialogs working with new system.
 
 
 
 
-Add Pet Chicken
 
-added chicken sprite to main sheet.
-improved dog sprite with a transparent ground shadow.
 
-changed ActorType Doggo to Pet.
-this was done because pet actors are all functionally the same.
-the only difference is their animation frames...
-which can be set by checking the value of saveData.petType.
-updated various code that referenced Doggo value to use Pet value.
 
-changed doggoMove and doggoIdle animationGroups to petMove and petIdle.
-updated SetAnimGroup() to work with new pet fields.
 
-added PetChicken value to MenuItemType enum.
-updated MenuItem.SetType() with path for PetChicken.
-created Functions_Animation.SetPetAnimList().
-updated various paths to handle PetChicken enum value.
-updated the pet advetisements to display chicken.
 
-playtested, pet chicken is working as expected.
+
+
+
+
+
+
+
+include the dialog title in the dialog data class
+
+
+
+
+
+we should probably move vendor dialogs into Functions_Dialog later
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+dialog screens are always blocking (no updates of other screens)
+
+
+
+we should have a class that contains all the dialog in the game
+this makes it easy to find and modify, plus we dont need to create the dialogs each time
+this leads to garbage creation and is needless
+
+when we need to display a dialog, we'll pass the dialog list into dialog screen as a parameter
+we can simplify dialog screen because it doesn't need to update level screen anymore
+can we simplify the fading in/out of dialog screen? consider all use cases
+
+this sets up dialog widget to be able to display story oriented dialogs
+
+
+
+
 
 
 
@@ -77,7 +131,7 @@ based on current.petType, play correct soundfx
 
 add bark sfx, cluck sfx to assets / project
 
-
+where does pet bark from? functions_ai?
 
 
 
@@ -102,26 +156,9 @@ implement switches - how do these work? hero steps on them
 
 
 
-need a dungeon statue destroyed obj
-need a 'base' object that sits underneath skullpots
-skullpots would then become this base object upon destruction / lift
 
 
 
-Fairies++
-we need fairy soundfx for when fairy dies (absorbed or captured).
-fairys should have soundfx for when they are hit
-
-
-NET++
-add a swipe sound effect for net
-
-
-WorldUI++
-when the hero's health changes, the worldUI should animate hearts individually
-if the hero gains 5 health, each heart should scale up, then animate down
-once that heart's scale reaches 1.0, then the next heart can animate
-this sequential scaling should happen anytime hero's health changes
 
 
 
@@ -324,6 +361,25 @@ remove 'reward' text
 
 
 
+
+
+
+Fairies++
+we need fairy soundfx for when fairy dies (absorbed or captured).
+fairys should have soundfx for when they are hit
+
+NET++
+add a swipe sound effect for net
+
+WorldUI++
+when the hero's health changes, the worldUI should animate hearts individually
+if the hero gains 5 health, each heart should scale up, then animate down
+once that heart's scale reaches 1.0, then the next heart can animate
+this sequential scaling should happen anytime hero's health changes
+
+need a dungeon statue destroyed obj
+need a 'base' object that sits underneath skullpots
+skullpots would then become this base object upon destruction / lift
 
 
 
