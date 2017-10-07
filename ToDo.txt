@@ -40,46 +40,20 @@ DIALOG SCREENS ++
 
 
 
-Dialog System ++
+Dialog System++
 
-included dialog title in the dialog data class.
-updated dialogWidget and dialogScreen to handle displaying dialog title.
-this adds more customization to the dialog.
+created SpeakerType enum.
+replaced ObjType with SpeakerType in Dialog System.
+updated VendorScreen to convert GameObj to SpeakerType in constructor.
+rewrote guides dialog to include dialog from blob creatures.
+changed in dungeon dialogs to use hero.
 playtested, working as expected.
-regioned Functions_Dialog.
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-dialog screens are always blocking (no updates of other screens)
-
-
-
-
-
-we should have a class that contains all the dialog in the game
-this makes it easy to find and modify, plus we dont need to create the dialogs each time
-this leads to garbage creation and is needless
-
-when we need to display a dialog, we'll pass the dialog list into dialog screen as a parameter
-we can simplify dialog screen because it doesn't need to update level screen anymore
-can we simplify the fading in/out of dialog screen? consider all use cases
-
-this sets up dialog widget to be able to display story oriented dialogs
 
 
 

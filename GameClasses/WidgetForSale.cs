@@ -131,42 +131,42 @@ namespace DungeonRun
             Functions_Component.UpdateAmount(Amount, Item.price);
         }
 
-        public void SetItemsForSale(ObjType VendorType)
+        public void SetItemsForSale(SpeakerType VendorType)
         {   //reset all the menuItems to unknown
             ResetItemsForSale();
 
 
             #region Set MenuItems based on VendorType
 
-            if (VendorType == ObjType.VendorItems)
+            if (VendorType == SpeakerType.VendorItems)
             {
                 Functions_MenuItem.SetType(MenuItemType.ItemHeart, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[1]);
                 Functions_MenuItem.SetType(MenuItemType.ItemBomb3Pack, menuItems[2]);
                 Functions_MenuItem.SetType(MenuItemType.ItemArrowPack, menuItems[3]);
             }
-            else if (VendorType == ObjType.VendorPotions)
+            else if (VendorType == SpeakerType.VendorPotions)
             {
                 Functions_MenuItem.SetType(MenuItemType.BottleHealth, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.BottleMagic, menuItems[1]);
                 Functions_MenuItem.SetType(MenuItemType.BottleCombo, menuItems[2]);
             }
-            else if (VendorType == ObjType.VendorMagic)
+            else if (VendorType == SpeakerType.VendorMagic)
             {
                 Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[0]);
             }
-            else if (VendorType == ObjType.VendorWeapons)
+            else if (VendorType == SpeakerType.VendorWeapons)
             {
                 Functions_MenuItem.SetType(MenuItemType.WeaponBow, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[1]);
             }
-            else if (VendorType == ObjType.VendorArmor)
+            else if (VendorType == SpeakerType.VendorArmor)
             {
                 Functions_MenuItem.SetType(MenuItemType.ArmorChest, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[1]);
                 Functions_MenuItem.SetType(MenuItemType.ArmorRobe, menuItems[2]);
             }
-            else if (VendorType == ObjType.VendorEquipment)
+            else if (VendorType == SpeakerType.VendorEquipment)
             {
                 Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[0]);
                 //MenuItemFunctions.SetType(MenuItemType.EquipmentPearl, menuItems[1]);
@@ -174,7 +174,7 @@ namespace DungeonRun
                 //MenuItemFunctions.SetType(MenuItemType.EquipmentGlove, menuItems[3]);
                 //MenuItemFunctions.SetType(MenuItemType.EquipmentPin, menuItems[4]);
             }
-            else if (VendorType == ObjType.VendorPets)
+            else if (VendorType == SpeakerType.VendorPets)
             {
                 Functions_MenuItem.SetType(MenuItemType.PetStinkyDog, menuItems[0]);
                 Functions_MenuItem.SetType(MenuItemType.PetChicken, menuItems[1]);

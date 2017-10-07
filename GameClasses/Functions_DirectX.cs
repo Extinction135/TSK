@@ -52,7 +52,7 @@ namespace DungeonRun
         {
             SetFilename(Type);
             Boolean autoSave = false;
-            List<Dialog> dialog = Functions_Dialog.Default;
+            List<Dialog> dialog = Functions_Dialog.Guide;
 
             try
             {

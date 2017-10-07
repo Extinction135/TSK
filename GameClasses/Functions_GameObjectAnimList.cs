@@ -156,9 +156,13 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(1, 4, 0, 0) },
                 //TableStone
                 new List<Byte4> { new Byte4(5, 4, 0, 0) },
-
                 //VendorAdvertisement
                 new List<Byte4> { new Byte4(5, 5, 0, 0) },
+
+                #endregion
+
+
+                #region Vendors
 
                 //VendorItems
                 new List<Byte4> { new Byte4(0, 7, 0, 0), new Byte4(0, 7, 1, 0) },

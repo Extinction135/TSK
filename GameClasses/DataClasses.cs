@@ -582,7 +582,7 @@ namespace DungeonRun
 
     public class Dialog
     {
-        public ObjType speaker;
+        public SpeakerType speaker;
         public String title;
         public String text;
         
@@ -591,7 +591,7 @@ namespace DungeonRun
         public Boolean fadeForegroundIn;
         public Boolean exitToOverworld;
 
-        public Dialog(ObjType Speaker, String Title, String Text, SoundEffectInstance Sfx, Boolean FadeBkg, Boolean FadeFrg, Boolean OverworldExit)
+        public Dialog(SpeakerType Speaker, String Title, String Text, SoundEffectInstance Sfx, Boolean FadeBkg, Boolean FadeFrg, Boolean OverworldExit)
         {
             speaker = Speaker; title = Title;  text = Text; sfx = Sfx;
             fadeBackgroundIn = FadeBkg;

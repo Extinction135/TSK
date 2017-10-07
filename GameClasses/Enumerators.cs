@@ -92,7 +92,7 @@ namespace DungeonRun
         //Vendors
         VendorItems, VendorPotions, VendorMagic, VendorWeapons,
         VendorArmor, VendorEquipment, VendorPets, VendorStory,
-        
+
 
         //ENTITIES
         //Pickups - collide with hero
@@ -142,4 +142,10 @@ namespace DungeonRun
         PetStinkyDog, PetChicken
     }
 
+    public enum SpeakerType
+    {
+        Guide, Hero, Blob,
+        VendorItems, VendorPotions, VendorMagic, VendorWeapons,
+        VendorArmor, VendorEquipment, VendorPets, 
+    }
 }

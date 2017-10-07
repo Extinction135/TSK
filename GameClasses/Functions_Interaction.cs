@@ -112,7 +112,7 @@ namespace DungeonRun
             {   //some vendors do not sell items, so check vendor types
                 if (Obj.type == ObjType.VendorStory) //for now this is default dialog
                 {   //figure out what part of the story the hero is at, pass this dialog
-                    ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.Default));
+                    ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.Guide));
                 }
                 //check to make sure the obj isn't a vendor advertisement
                 else if (Obj.type != ObjType.VendorAdvertisement)
