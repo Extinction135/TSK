@@ -19,9 +19,6 @@ namespace DungeonRun
         static int xDistance;
         static int yDistance;
 
-        //static int chaseRadius = 16 * 6; //how far an actor can see hero from
-        //static int attackRadius = 14; //in pixels
-
 
 
         public static void SetActorInput()

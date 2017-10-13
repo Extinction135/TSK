@@ -245,6 +245,12 @@ namespace DungeonRun
         {   //set the hero's pet to be active or inactive
             Pool.herosPet.active = PlayerData.current.hasPet;
             Functions_ActorAnimationList.SetPetAnimList();
+
+            //set the pet's dash sound
+            if (PlayerData.current.petType == MenuItemType.PetChicken)
+            { Pool.herosPet.sfxDash = Assets.sfxPetChicken; }
+            else if (PlayerData.current.petType == MenuItemType.PetStinkyDog)
+            { Pool.herosPet.sfxDash = Assets.sfxPetDog; }
         }
 
 

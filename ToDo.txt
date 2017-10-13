@@ -36,27 +36,15 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-DIALOG SCREENS ++
 
 
+Add Pet Sounds
 
-Dialog System++
-
-created SpeakerType enum.
-replaced ObjType with SpeakerType in Dialog System.
-updated VendorScreen to convert GameObj to SpeakerType in constructor.
-rewrote guides dialog to include dialog from blob creatures.
-changed in dungeon dialogs to use hero.
+added SoundPetChicken & SoundPetDog to Dx Assets.
+updated Functions_Actor.SetHerosPet() to set the pet actor's dash sfx.
+then when the pet dashes, they play their signature sound effect.
+updated UWP project's assets with dog and chicken soundfx.
 playtested, working as expected.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -87,15 +75,37 @@ where does pet bark from? functions_ai?
 
 
 
+
+
 Hero & Blob ActorTypes++
 we need to save the actorType of hero
 we need to make sure we're checking if actor == hero, and not if actor.type == hero in various routines
 we should display the hero.actorType in the display data for LSN screen
 
 
+implement a level 2 magic spell
+this would deal 1 damage to everything on screen
+and play explosions randomly inside the room
+should be named bombos, sold by magic dealer
+
+
+make some rooms easier (like spikeblock key room)
+
+
 Implement SwitchBlocks
 implement switch blocks + switch block switch (name?)
 implement switches - how do these work? hero steps on them
+
+
+
+
+
+
+
+
+
+
+
 
 
 

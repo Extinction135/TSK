@@ -437,3 +437,15 @@
 /processorParam:Quality=Best
 /build:SoundSplash.wav
 
+#begin SoundPetChicken.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundPetChicken.wav
+
+#begin SoundPetDog.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundPetDog.wav
+

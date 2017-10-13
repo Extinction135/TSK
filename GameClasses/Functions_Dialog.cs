@@ -16,8 +16,6 @@ namespace DungeonRun
     {
         //create instances for all the dialog in the game
 
-
-
         public static List<Dialog> Guide = new List<Dialog>
         {
             new Dialog(SpeakerType.Guide, "Hello!",
@@ -36,13 +34,12 @@ namespace DungeonRun
 
             new Dialog(SpeakerType.Blob, "Grr!",
                 "yeah, we got dungeons and loot!\n" + 
-                "and stuff that shines bright! and it's ours!",
+                "and gold that shines bright!",
                 Assets.sfxGoldPickup, false, false, false),
 
         };
 
-
-
+        
         #region Utility dialogs
 
         public static List<Dialog> GameSaved = new List<Dialog>
@@ -64,7 +61,7 @@ namespace DungeonRun
                 Assets.sfxChestOpen, true, true, true)
         };
         public static List<Dialog> GameCreated = new List<Dialog>
-        {
+        {   //goes to overworld screen upon close
             new Dialog(SpeakerType.Guide, "Welcome...",
                 "I have created a new game for you.",
                 Assets.sfxChestOpen, true, true, true)
@@ -77,7 +74,7 @@ namespace DungeonRun
                 Assets.sfxError, true, true, true)
         };
         public static List<Dialog> GameLoadFailed = new List<Dialog>
-        {
+        {   //goes to overworld screen upon close
             new Dialog(SpeakerType.Guide, "OhNo!",
                 "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n" +
                 "The data is corrupted... I've overwritten the file with your current game.",
@@ -86,8 +83,7 @@ namespace DungeonRun
 
         #endregion
 
-
-
+        
         #region Dungeon dialogs
 
         public static List<Dialog> DoesNotHaveKey = new List<Dialog>
@@ -112,8 +108,7 @@ namespace DungeonRun
 
         #endregion
 
-
-
+        
         #region Bottle dialogs
 
         public static List<Dialog> BottleCant = new List<Dialog>
@@ -139,7 +134,6 @@ namespace DungeonRun
         };
 
         #endregion
-
 
 
         #region Editor dialogs
