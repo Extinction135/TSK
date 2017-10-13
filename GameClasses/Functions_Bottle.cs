@@ -80,6 +80,7 @@ namespace DungeonRun
                 //reload hero's loadout from player.current data
                 Functions_Actor.SetHeroLoadout();
                 Pool.hero.health = PlayerData.current.heartsTotal; //refill the hero's health
+                PlayerData.current.actorType = Pool.hero.type; //save the hero's actorType
             }
 
             //empty bottle based on bottleID

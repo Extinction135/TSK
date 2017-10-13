@@ -705,6 +705,7 @@ namespace DungeonRun
         public string time = "00:00:00";
         public string date = "00.00.0000";
 
+        public ActorType actorType = ActorType.Hero;
         public int gold = 99;
         public byte heartsTotal = 3; //sets max health
 

@@ -28,6 +28,9 @@ namespace DungeonRun
             //register this dungeon screen with Functions_Level
             Functions_Level.levelScreen = this;
             Functions_Level.BuildLevel();
+
+            //load hero's actorType from SaveData
+            Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
             Functions_Actor.SetHeroLoadout();
             Functions_Actor.SetHerosPet();
 

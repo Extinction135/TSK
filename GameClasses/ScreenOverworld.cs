@@ -257,6 +257,13 @@ namespace DungeonRun
             
             #endregion
 
+
+
+            //set the player's sprite based on the hero.actorType
+            if (PlayerData.current.actorType == ActorType.Blob)
+            { hero.compSprite.texture = Assets.blobSheet; }
+            else if(PlayerData.current.actorType == ActorType.Hero)
+            { hero.compSprite.texture = Assets.heroSheet; }
         }
 
         public override void HandleInput(GameTime GameTime)
