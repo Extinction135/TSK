@@ -153,6 +153,8 @@ namespace DungeonRun
             PopulateDisplay(PlayerData.game1, game1);
             PopulateDisplay(PlayerData.game2, game2);
             PopulateDisplay(PlayerData.game3, game3);
+            
+
 
             //create the selectionBox
             selectionBox = new ComponentSprite(Assets.mainSheet,
