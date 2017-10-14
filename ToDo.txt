@@ -32,17 +32,30 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-10
+9
 
 
 
 
-Story++
 
-finally wrote out the main storyline, along with blob sidestory.
-nothing to test.
+added timeSpan and dateTime fields to saveData.
+updated SummaryScreen add DungeonRecord.timer to savedata.timeSpan.
+SummaryScreen also resets the dungeon timer to 0.
+
+updated LSNScreen.PopulateDisplay to display the saveData.timeSpan field.
+updated LSNScreen.HandleInput() to properly populate displays.
+playtested, working as expected.
 
 
+
+
+
+
+
+
+
+
+set the date based on date created.
 
 
 
@@ -50,6 +63,19 @@ properly display the saveData time + date in all game displays
 do we track the date and time?
 do we save the date and time?
 do we append to the total time?
+
+
+
+track how many enemies are killed for each game file
+this is simply the summary screen's enemies killed value
+
+we should also be tracking how much damage the hero has taken
+this should be part of an equation for determining skill rating in percentage.
+this is: total enemies killed / damage taken
+ex: 10/1 = 10.   245/73 = 3.35.
+
+
+display the current game's data above all other game display data
 
 
 

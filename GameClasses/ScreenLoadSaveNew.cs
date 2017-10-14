@@ -238,19 +238,24 @@ namespace DungeonRun
                         }
                         //save playerData
                         if (currentlySelected == game1.menuItem)
-                        { Functions_Backend.SaveGame(GameFile.Game1); }
+                        {
+                            PopulateDisplay(PlayerData.current, game1);
+                            Functions_Backend.SaveGame(GameFile.Game1);
+                        }
                         else if (currentlySelected == game2.menuItem)
-                        { Functions_Backend.SaveGame(GameFile.Game2); }
+                        {
+                            PopulateDisplay(PlayerData.current, game2);
+                            Functions_Backend.SaveGame(GameFile.Game2);
+                        }
                         else if (currentlySelected == game3.menuItem)
-                        { Functions_Backend.SaveGame(GameFile.Game3); }
+                        {
+                            PopulateDisplay(PlayerData.current, game3);
+                            Functions_Backend.SaveGame(GameFile.Game3);
+                        }
                         //create dialog screen, let player know file has been created or saved
                         if (screenState == LoadSaveNewState.New)
                         { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.GameCreated)); }
                         else { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.GameSaved)); }
-
-                        PopulateDisplay(PlayerData.game1, game1);
-                        PopulateDisplay(PlayerData.game2, game2);
-                        PopulateDisplay(PlayerData.game3, game3);
                     }
                     //save current game to autoSave file (sets autosave)
                     Functions_Backend.SaveGame(GameFile.AutoSave);
@@ -415,14 +420,14 @@ namespace DungeonRun
             texts[2].text = "Game 3 - " + PlayerData.game3.name;
 
             //set the time and date of game display
-            displayData.timeDateText.text = "time: " + saveData.time;
+            displayData.timeDateText.text = "time: " + saveData.timeSpan.ToString(@"hh\:mm\:ss");
             displayData.timeDateText.text += "\ndate: " + saveData.date;
             //set the hero texture based on saveData.actorType
             if (saveData.actorType == ActorType.Hero)
             { displayData.hero.texture = Assets.heroSheet; }
             else if (saveData.actorType == ActorType.Blob)
             { displayData.hero.texture = Assets.blobSheet; }
-
+            //set the collected crystals
             SetCrystals(saveData, displayData.crystals);
         }
 

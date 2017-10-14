@@ -107,7 +107,10 @@ namespace DungeonRun
                     Functions_Input.IsNewButtonPress(Buttons.X) ||
                     Functions_Input.IsNewButtonPress(Buttons.Y))
                 {
-                    displayState = DisplayState.Closing;
+                    displayState = DisplayState.Closing; //only happens once
+                    //append the dungeon time to current saveData, reset dungeon timer
+                    PlayerData.current.timeSpan += DungeonRecord.timer.Elapsed;
+                    DungeonRecord.timer.Reset();
                     //play the summary exit sound effect immediately
                     Assets.Play(Assets.sfxExitSummary);
                     continueText.alpha = 1.0f;
