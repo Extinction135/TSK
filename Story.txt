@@ -1,0 +1,216 @@
+
+
+
+main characters:
+
+link - hero, protagonist
+queen zelda - villian, antagonist
+king ??? - villian, antagonist
+
+
+
+
+
+#Backstory
+after link saved zelda, they rarely saw or spoke to each other.
+zelda wasn't allowed to marry outside royalty, so she married a prince.
+link wasnt invited to the marriage, so he left the island and sailed away.
+link traveled the world, fighting monsters and beasts, lost in an endless battle.
+restlessly roaming from place to place, never stopping long to make friends.
+then one day he saw a poster for zelda's tournament.
+he decides to enter, if only to see queen zelda again.
+
+
+
+#1Entry
+story starts with link completing his entry trial to the colliseum.
+this teaches the player the basics of the game, like movement, attacking, item usage.
+player fights thru a few outdoor rooms with spectators, leading up to a simple boss.
+upon beating the boss, queen zelda gives link the "warrior's pass", allowing entry to colliseum.
+she tells him that the winner of the queen's tournament is granted a wish.
+she tells link that she hopes he wins.
+then the king appears and tells link that he hopes he wins too.
+(the king is also a villian)
+* colliseum and overworld opened to hero.
+
+
+#2Discovery
+This leaves the player at the overworld screen, at the colliseum.
+At this point, the player doesn't know they need to defeat 4 bosses.
+If they goto the colliseum and try to enter the queen's tournament, an NPC will reject them.
+the NPC will explain link must prove his worth to enter the tournament.
+this is done by obtaining the 4 crystals from nearby dungeons.
+there are many different NPCs at the colliseum too.
+there are NPCs for:
+	betting on gladiator battles
+	entering a single battle
+	entering a tournament
+	entering the queens tournament
+there are many other places open on the map initially.
+but some of them are closed, the inside of the castle city, for example.
+the city gate will be closed until link wins the queen's tournament.
+at that point, the royal city is open.	
+	
+	
+#3Battle
+At this point, link has all 4 crystals and gains entry to the Queen's tournament.
+this is a series of boss battles, with no vendor between rooms.
+link only has what he brings in, and what he can loot from mobs.
+After the boss battles, link 'wins' the tournament and meets with the queen and king.
+* the city gate opens. city levels become available.
+* royal vendors become available.
+
+
+#4TheKing
+Prior to meeting, link can access the royal vendors, where special loot exists.
+link meets with the queen and king in the castle, where the king challenges link to a duel.
+the king says that zelda has told him everything, and that he cannot allow link to live.
+k: 'your existance.. this bond you share with zelda.. it undermines my plans, link.'
+k: 'i hope you understand why i must destroy you, and why she must watch.'
+k: 'i am the king. my will is law.'
+link battles the king in a very difficult boss fight.
+
+
+
+#5TheQueen
+link triumphs over the king, defeating him, but refusing to kill him.
+zelda tells the king that he was weak, and defeated by a peasant with some toys.
+then zelda kills the king, using lightning magic.
+
+link exclaims: 'zelda! why?'
+z 'all my life, i've been hunted, kidnapped, protected, guarded, controlled'.
+z 'i was treated as an object, as something to have, not as a person.'
+z 'the one thing i wanted, i couldn't have. the one person i loved.'
+z 'you, link. i loved you.'
+z 'i was given a choice: to marry royalty, or they would kill you.'
+z 'so i gave up my life with you, my love for you. to protect you.'
+z 'everyday since my heart has grown colder.'
+z 'and now i have what i love, but i feel nothing.'
+z 'im not the princess you saved so long ago, link.'
+z '...'
+z 'i am the queen.'
+z 'and you are my subject.. the true hero of hyrule.'
+z 'i will offer you this choice only once, my hero.'
+z 'swear loyalty and join me, or die.' 
+zelda offers link a choice: join her or die.
+this starts storyline split..
+
+
+
+#6A_Refuse
+link refuses to join zelda in her rule over the south islands.
+goto #END
+
+#6B_Join
+link chooses to join zelda in her rule over the south islands.
+zelda accepts your loyalty.
+goto #Assignment
+
+
+#Assignment
+zelda rewards link (gold, weapons, items, houses, wives, servents)
+(everytime link completes a mission, he gains more physical wealth, but loses his heart little by little)
+zelda tasks link with ______.
+link argues that ______.
+zelda asks if link defies her command? yes or no.
+yes, goto #END... else goto #Service
+1. blob genocide
+(killing all the blobs, who were loyal to the king.)
+(link argues that the blobs were only loyal to themselves, and were treated as slaves.)
+2. beat the harbor master
+(beat the harbor master until he agrees to release the king's flagship from port.)
+(link says he'll ask the harbor master why he wont release it.)
+(zelda says 'no, you'll beat him. until he releases the ship, or dies.)
+3. ???
+ 
+#Service
+link loads into _____ level, where he ______.
+link wins, defeating whatever, then returns to the queen.
+the queen congratulates him on his success.
+goto #Assignment
+1. blob genocide
+(Link goes to the blob town, where he kills ALOT of blobs, including the blob boss again.)
+(Except, there are multiple blob bosses in play at once, known as the blob elders.)
+(They are simply defending their town and people.)
+2. beat the harbor master
+(link arrives at the dock, speaking with the harbor master.)
+(the harbor master explains that there are people aboard the king's flagship.)
+(he says these people were taken against their will, to work in the mines and fields.)
+(he refuses to release the king's flagship to the queen, and link battles him.)
+3. ???
+
+
+#END Zelda's Death	
+zelda and link fight. zelda summons creatures, uses magic + lightning.
+the fight happens in the throne room.	
+link defeats zelda in battle, mortally wounding her.
+as link holds her in his arms, he tells her that he always loved her.
+she says that somewhere in her cold heart, she has always loved him as well.
+then she dies, and link becomes king by rule of death.
+* new tournament 'king's tournament' opens at colliseum
+* new location opens: the queen's gravestone
+* 50% off all vendor prices in the kingdom
+* all NPC dialog varies slightly, addressing hero as king
+
+
+
+
+post game activities: 
+colliseum betting, tournaments, blob questline, purchase houses/businesses/etc
+
+"loot caves" - secret entrances hidden in levels and dungeons that are mini-dungeons 
+sequential rooms, with special bosses in each room, beating the loot cave returns hero to overworld
+these entrances actually look like caves, and can be hidden behind cracked walls
+
+"the king's ghosts" - randomly a 'king's ghost' will spawn in a dungeon room
+this is the king boss battle, but the king is at 6 health and half opacity, and flying.
+
+	
+	
+	
+
+
+Tournaments, & Dungeons
+
+Tournament
+at colliseum, link can fight mobs and/or gladiators to earn money.
+player can also bet money on other gladiator battles, or on their own battles.
+when two AI gladiators fight, the battle playsout in realtime, using AI.
+gladiators have stats, loadouts, fighting history, etc..
+gladiator AI also has fighting styles: aggressive, disciplined, defensive
+gladiators also have backstories, and names.
+
+NPCs
+various npcs are scattered throughout shops and locations.
+NPCs in the shops explain aspects of inventory and stuff.
+other NPCs fill out the game world's backstory and discuss major characters.
+
+
+
+
+
+
+
+
+Blob SideStoryline
+
+So link becomes a blob, and theres a blob vendor level
+to get to the blob vendor level, you need to travel thru a small pipe
+as a blob, this is easy. as a human, this is not possible.
+this pipe level appears after all 4 crystals have been obtained.
+inspecting the pipe as link displays a dialog 'i can't fit into that small, slimy pipe'.
+inspecting the pipe as blob displays a dialog 'here we go!', and loads blob town.
+exiting blob town places hero at the pipe level on overworld map.
+
+the blobs arent actually bad guys, they've just been lumped in with the bad guys
+they are kidnapped and forced to fight in the colliseum or live as slaves
+because the blobs can't communicate with the humans, everybody assumes they're just evil
+thus the blob's storyline is simply to fight in the queen's tournament and win
+upon winning, the blob will wish that his people be recognized and set free.
+the blob's journey is then one of learning about the blob's history + forming emotional bonds with blob NPCs
+the blob challenge is simple: slower movement, leading to much harder dungeons + bosses
+
+
+
+
+
