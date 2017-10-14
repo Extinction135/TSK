@@ -32,18 +32,17 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-9
+8
 
 
 
 
 
-added timeSpan and dateTime fields to saveData.
-updated SummaryScreen add DungeonRecord.timer to savedata.timeSpan.
-SummaryScreen also resets the dungeon timer to 0.
 
-updated LSNScreen.PopulateDisplay to display the saveData.timeSpan field.
-updated LSNScreen.HandleInput() to properly populate displays.
+Properly Display GameData.DateTime
+
+updated LSNScreen.PopulateDisplay() to show actual gameData created date.
+dateTime is properly set, and displayed in LSN screen.
 playtested, working as expected.
 
 
@@ -51,18 +50,6 @@ playtested, working as expected.
 
 
 
-
-
-
-
-set the date based on date created.
-
-
-
-properly display the saveData time + date in all game displays
-do we track the date and time?
-do we save the date and time?
-do we append to the total time?
 
 
 

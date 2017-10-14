@@ -421,7 +421,7 @@ namespace DungeonRun
 
             //set the time and date of game display
             displayData.timeDateText.text = "time: " + saveData.timeSpan.ToString(@"hh\:mm\:ss");
-            displayData.timeDateText.text += "\ndate: " + saveData.date;
+            displayData.timeDateText.text += "\ndate: " + saveData.dateTime.ToString("yyyy.m.d");
             //set the hero texture based on saveData.actorType
             if (saveData.actorType == ActorType.Hero)
             { displayData.hero.texture = Assets.heroSheet; }
