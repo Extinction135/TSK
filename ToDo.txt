@@ -32,17 +32,20 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-8
+13
 
 
 
 
+Save + Display TotalTime, Kills, & Damage per Game
 
-
-Properly Display GameData.DateTime
-
-updated LSNScreen.PopulateDisplay() to show actual gameData created date.
-dateTime is properly set, and displayed in LSN screen.
+changed summary screen's text to "press any button to continue".
+added enemiesKilled, damageTaken, killRatio fields to SaveData class.
+updated SummaryScreen to append DungeonRecord data to PlayerData.current instance.
+the last two changes allow the saving of player damage & enemy kills.
+we can now also track the time spent in each dungeon, but for now,
+we'll just track the time spent in dungeons overall.
+updated summary screen to autosave current game data post appending.
 playtested, working as expected.
 
 
@@ -53,16 +56,36 @@ playtested, working as expected.
 
 
 
-track how many enemies are killed for each game file
-this is simply the summary screen's enemies killed value
 
-we should also be tracking how much damage the hero has taken
-this should be part of an equation for determining skill rating in percentage.
+fill out the kill ratio
+equation for determining skill rating in percentage.
 this is: total enemies killed / damage taken
 ex: 10/1 = 10.   245/73 = 3.35.
 
 
 display the current game's data above all other game display data
+
+
+
+need an on screen dungeon timer
+
+remove reward text from summary screen
+display k/d for that dungeon run
+
+
+display k/d in game display component on lsn screen
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -144,6 +167,11 @@ if we make projectiles like sword grounded, then they move on conveyor belts, bu
 they shouldn't get pulled into pits, but they should be able to be moved on conveyor belts
 
 we need to solve this in tandem with creating boomerangs
+
+
+
+
+
 
 Implement Boomerang
 this is a projectile that flys in a thrown direction

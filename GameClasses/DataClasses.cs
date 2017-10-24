@@ -16,9 +16,9 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
-        public static float Version = 0.6f; //the version of the game
+        public static float Version = 0.7f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
@@ -704,6 +704,10 @@ namespace DungeonRun
         public string name = "new";
         public TimeSpan timeSpan = new TimeSpan();
         public DateTime dateTime = DateTime.Now;
+
+        public int enemiesKilled = 0;
+        public int damageTaken = 0;
+        public float killRatio = 0.0f;
 
         public ActorType actorType = ActorType.Hero;
         public int gold = 99;

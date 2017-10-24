@@ -80,7 +80,7 @@ namespace DungeonRun
                 Assets.colorScheme.textLight);
             summaryData.alpha = 0.0f;
             continueText = new ComponentText(Assets.medFont,
-                "press any button\n    to play again",
+                "press any button\n    to continue",
                 new Vector2(220, 260),
                 Assets.colorScheme.textLight);
             continueText.alpha = 0.0f;
@@ -95,6 +95,23 @@ namespace DungeonRun
             if (DungeonRecord.beatDungeon)
             { rewardTotal = 99; } else { rewardTotal = 0; }
             PlayerData.current.gold += rewardTotal;
+
+
+            #region Append & Save Player's Summary Data
+
+            //append summary data to PlayerData.current, which will be autosaved
+            PlayerData.current.damageTaken += DungeonRecord.totalDamage;
+            PlayerData.current.enemiesKilled += DungeonRecord.enemyCount;
+            PlayerData.current.timeSpan.Add(DungeonRecord.timer.Elapsed);
+            //autosave PlayerData.current
+            Functions_Backend.SaveGame(GameFile.AutoSave);
+
+            //these two values combined allow us to track how many times each dungeon & boss has been defeated, or killed hero
+            //DungeonRecord.dungeonID
+            //DungeonRecord.beatDungeon
+
+            #endregion
+
         }
 
         public override void HandleInput(GameTime GameTime)
