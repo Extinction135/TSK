@@ -24,8 +24,7 @@ namespace DungeonRun
 
         int enemyCount = 0;
         int totalDamage = 0;
-        int reward = 0;
-        int rewardTotal = 0;
+        float runSkillRating = 0.0f;
         Boolean countingComplete = false;
 
 
@@ -70,7 +69,7 @@ namespace DungeonRun
             #region Create the summary + data + continue text fields
 
             summaryText = new ComponentText(Assets.medFont, 
-                "time \nenemies \ndamage \nreward",
+                "time \nenemies \ndamage \nrating",
                 new Vector2(220, 150),
                 Assets.colorScheme.textLight);
             summaryText.alpha = 0.0f;
@@ -91,18 +90,19 @@ namespace DungeonRun
             Functions_Music.PlayMusic(Music.Title); //play title music
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = PlayerData.current.heartsTotal;
-            //reward player gold, if dungeon was completed
-            if (DungeonRecord.beatDungeon)
-            { rewardTotal = 99; } else { rewardTotal = 0; }
-            PlayerData.current.gold += rewardTotal;
 
 
             #region Append & Save Player's Summary Data
 
-            //append summary data to PlayerData.current, which will be autosaved
+            //append damage and kills
             PlayerData.current.damageTaken += DungeonRecord.totalDamage;
             PlayerData.current.enemiesKilled += DungeonRecord.enemyCount;
-            PlayerData.current.timeSpan.Add(DungeonRecord.timer.Elapsed);
+            //convert stopwatch dungeon timer to timespan
+            TimeSpan toAdd = DungeonRecord.timer.Elapsed;
+            //append hours, mins, seconds from timespan to saveData
+            PlayerData.current.hours += toAdd.Hours;
+            PlayerData.current.mins += toAdd.Minutes;
+            PlayerData.current.secs += toAdd.Seconds;
             //autosave PlayerData.current
             Functions_Backend.SaveGame(GameFile.AutoSave);
 
@@ -112,6 +112,8 @@ namespace DungeonRun
 
             #endregion
 
+
+            runSkillRating = (float)DungeonRecord.enemyCount / (float)DungeonRecord.totalDamage;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -125,8 +127,6 @@ namespace DungeonRun
                     Functions_Input.IsNewButtonPress(Buttons.Y))
                 {
                     displayState = DisplayState.Closing; //only happens once
-                    //append the dungeon time to current saveData, reset dungeon timer
-                    PlayerData.current.timeSpan += DungeonRecord.timer.Elapsed;
                     DungeonRecord.timer.Reset();
                     //play the summary exit sound effect immediately
                     Assets.Play(Assets.sfxExitSummary);
@@ -185,29 +185,20 @@ namespace DungeonRun
                 continueText.alpha += 0.01f;
 
                 if(!countingComplete)
-                {   //if the screen should count the summary values
-                    //animate the summary data up to it's proper amount
+                {   //animate summary data up to it's proper amount
                     if (enemyCount < DungeonRecord.enemyCount)
                     { enemyCount++; Assets.Play(Assets.sfxTextLetter); }
-                    else
-                    {
-                        if (totalDamage < DungeonRecord.totalDamage)
-                        { totalDamage++; Assets.Play(Assets.sfxTextLetter); }
-                        else
-                        {
-                            if (reward < rewardTotal)
-                            { reward++; Assets.Play(Assets.sfxTextLetter); }
-                            else //we've counted everything, exit the count routine
-                            { Assets.Play(Assets.sfxTextDone); countingComplete = true; }
-                        }
-                    }
+                    else if(totalDamage < DungeonRecord.totalDamage)
+                    { totalDamage++; Assets.Play(Assets.sfxTextLetter); }
+                    else  //we've counted everything, exit count routine
+                    { Assets.Play(Assets.sfxTextDone); countingComplete = true; }
                 }
 
                 //set the summary data text component
                 summaryData.text = "" + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
                 summaryData.text += "\n" + enemyCount; //enemies
                 summaryData.text += "\n" + totalDamage; //damage
-                summaryData.text += "\n" + reward; //reward
+                summaryData.text += "\n" + runSkillRating; //skill rating
             }
 
             #endregion

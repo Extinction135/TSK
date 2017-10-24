@@ -419,8 +419,26 @@ namespace DungeonRun
             texts[1].text = "Game 2 - " + PlayerData.game2.name;
             texts[2].text = "Game 3 - " + PlayerData.game3.name;
 
-            //set the time and date of game display
-            displayData.timeDateText.text = "time: " + saveData.timeSpan.ToString(@"hh\:mm\:ss");
+            //set time of game
+            //displayData.timeDateText.text = "time: " + saveData.timeSpan.ToString(@"hh\:mm\:ss");
+            displayData.timeDateText.text = "time: ";
+            displayData.timeDateText.text += @"" + saveData.hours + ":" + saveData.mins + ":" + saveData.secs;
+
+            /*
+            //convert seconds to hhhh.mm.ss
+            double total = saveData.seconds;
+            int hours = 0;
+            int mins = 0;
+            int seconds = 0;
+            while(total > 0)
+            {
+                if (total - (60*60) >= 0) { hours++; }
+                else if (total - 60 >= 0) { mins++; }
+                else if (total - 1 >= 0) { seconds++; }
+            }
+            */
+
+            //set date of game
             displayData.timeDateText.text += "\ndate: " + saveData.dateTime.ToString("yyyy.m.d");
             //set the hero texture based on saveData.actorType
             if (saveData.actorType == ActorType.Hero)
