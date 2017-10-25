@@ -21,12 +21,11 @@ namespace DungeonRun
         ComponentText summaryData;
         ComponentText continueText;
         float textFadeSpeed = 0.05f;
+        Boolean countingComplete = false;
 
         int enemyCount = 0;
         int totalDamage = 0;
-        float runSkillRating = 0.0f;
-        Boolean countingComplete = false;
-
+        float ratingChange = 0.0f;
 
 
         public ScreenSummary() { this.name = "SummaryScreen"; }
@@ -79,7 +78,7 @@ namespace DungeonRun
                 Assets.colorScheme.textLight);
             summaryData.alpha = 0.0f;
             continueText = new ComponentText(Assets.medFont,
-                "press any button\n    to continue",
+                "press any button\n      to continue",
                 new Vector2(220, 260),
                 Assets.colorScheme.textLight);
             continueText.alpha = 0.0f;
@@ -90,6 +89,18 @@ namespace DungeonRun
             Functions_Music.PlayMusic(Music.Title); //play title music
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = PlayerData.current.heartsTotal;
+
+
+            #region Calculate skill ratings + ratings change
+
+            int enemiesKilledNew = PlayerData.current.enemiesKilled + DungeonRecord.enemyCount;
+            int damageNew = PlayerData.current.damageTaken + DungeonRecord.totalDamage;
+            //calculate diff between old and new SR
+            float newSR = (float)enemiesKilledNew / (float)damageNew;
+            float oldSR = (float)PlayerData.current.enemiesKilled / (float)PlayerData.current.damageTaken;
+            ratingChange = (float)Math.Round(newSR - oldSR, 2); //round to 2 digits
+
+            #endregion
 
 
             #region Append & Save Player's Summary Data
@@ -112,8 +123,6 @@ namespace DungeonRun
 
             #endregion
 
-
-            runSkillRating = (float)DungeonRecord.enemyCount / (float)DungeonRecord.totalDamage;
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -196,9 +205,13 @@ namespace DungeonRun
 
                 //set the summary data text component
                 summaryData.text = "" + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
-                summaryData.text += "\n" + enemyCount; //enemies
-                summaryData.text += "\n" + totalDamage; //damage
-                summaryData.text += "\n" + runSkillRating; //skill rating
+                summaryData.text += "\n" + enemyCount; 
+                summaryData.text += "\n" + totalDamage;
+
+                //handle displaying the +, if ratingChange is positive
+                if (ratingChange >= 0.0f)
+                { summaryData.text += "\n+" + ratingChange; }
+                else { summaryData.text += "\n" + ratingChange; }
             }
 
             #endregion

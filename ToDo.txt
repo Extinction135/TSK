@@ -32,32 +32,19 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-12
+13
 
 
 
-Properly Track and Display Skill Rating and Time Played
+Display SkillRating's Change on SummaryScreen
 
-remove reward text from summary screen.
-display k/d for current game on summary screen instead.
+display the amount the player's rating has changed, on summary screen.
+if the amount is positive, a "+" should be added before the value.
+the value should be trimmed to 2 digits.
 
-changed summary screen 'reward' text to 'skill rating' text.
-changed SaveData.killRatio to SaveData.skillRating.
-changed SummaryScreen to track player's previous skillRating.
-this sets up displaying if the player's SR improved or declined.
-playtested, bugs.
-
-fixed an issue with skillRating not being calculated properly.
-the fix was casting enemy and damage ints to floats.
-
-removed skillRating from SaveData.
-we can calculate it when needed from enemiesKilled and damageTaken.
-
-timespan is not supported by xml serializer.
-removed timeSpan from SaveData.
-instead, we'll track hours, mins, seconds as ints in saveData.
-updated summary screen to add hours, mins, seconds to saveData.
-these values are pulled from the DungeonRecord instance.
+created SummaryScreenV2 mockup.
+updated SS to calculate newSR & oldSR, then display difference.
+fixed spacing of "to continue" text to center to screen.
 playtested, working as expected.
 
 
@@ -72,16 +59,18 @@ playtested, working as expected.
 
 
 
-display old skill rating on summary screen.
-show if player has improved or declined, along with amount changed.
+
+
+
+
+
+
 
 
 
 
 when we exit a dungeon via a door, display a summary screen
 this means that grinding will contribute to over all stats, otherwise player would haveto beat/die dungeon
-
-
 
 
 need an on screen dungeon timer
