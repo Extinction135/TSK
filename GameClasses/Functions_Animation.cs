@@ -50,5 +50,10 @@ namespace DungeonRun
             }
         }
 
+
+        //functions for types of animation movement
+        //move sprite right to target, easeIn
+        //Title.compSprite.position.X += (TargetPos.X - Title.compSprite.position.X) / Title.animSpeed;
+        //Title.compSprite.position.X += 1; //always move at least 1 pixel
     }
 }

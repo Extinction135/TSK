@@ -904,27 +904,6 @@ namespace DungeonRun
         }
     }
 
-    public class TitleAnimated
-    {
-        public int animSpeed; //how fast title moves, lower is faster
-        public ComponentSprite compSprite;
-        public Vector2 startPos;
-        public Vector2 endPos;
-        public DisplayState displayState;
-
-        public TitleAnimated(Vector2 StartPos, Vector2 EndPos, TitleText Text, int AnimSpeed)
-        {
-            startPos = StartPos;
-            endPos = EndPos;
-            animSpeed = AnimSpeed;
-            compSprite = new ComponentSprite(Assets.bigTextSheet,
-                new Vector2(0,0), new Byte4(0, 0, 0, 0), new Point(16 * 1, 16 * 4));
-            compSprite.alpha = 0.0f; //titles fade in
-            Functions_TitleAnimated.Reset(this);
-            Functions_TitleAnimated.SetText(this, Text);
-        }
-    }
-
     public class ScreenRec
     {
         public Rectangle rec = new Rectangle(0, 0, 640, 360);

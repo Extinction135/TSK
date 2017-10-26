@@ -15,8 +15,7 @@ namespace DungeonRun
     public class ScreenSummary : Screen
     {
         ScreenRec background = new ScreenRec();
-        TitleAnimated leftTitle;
-        TitleAnimated rightTitle;
+        ComponentSprite title;
         ComponentText summaryText;
         ComponentText summaryData;
         ComponentText continueText;
@@ -35,32 +34,15 @@ namespace DungeonRun
             background.alpha = 1.0f;
 
 
-            #region Create animated Titles
+            #region Create Title
 
-            float yPos = 80;
-            if (DungeonRecord.beatDungeon)
-            {   //'dungeon complete' state
-                leftTitle = new TitleAnimated(
-                    new Vector2(-200, yPos),
-                    new Vector2(115 + 5, yPos),
-                    TitleText.Dungeon, 8);
-                rightTitle = new TitleAnimated(
-                    new Vector2(640, yPos),
-                    new Vector2(320 + 5, yPos),
-                    TitleText.Complete, 8);
-                Assets.Play(Assets.sfxBeatDungeon);
-            }
-            else
-            {   //'you died' state
-                leftTitle = new TitleAnimated(
-                    new Vector2(-100, yPos),
-                    new Vector2(190 + 4, yPos),
-                    TitleText.You, 8);
-                rightTitle = new TitleAnimated(
-                    new Vector2(640, yPos),
-                    new Vector2(305 + 4, yPos),
-                    TitleText.Died, 8);
-            }
+            Byte4 frame = new Byte4(0, 1, 0, 0);
+            if (DungeonRecord.beatDungeon) { frame.Y = 2; }
+            title = new ComponentSprite(Assets.bigTextSheet,
+                    new Vector2(583 - 256, 80), 
+                    frame,
+                    new Point(16 * 16, 16 * 4));
+            title.alpha = 0.0f;
 
             #endregion
 
@@ -95,10 +77,16 @@ namespace DungeonRun
 
             int enemiesKilledNew = PlayerData.current.enemiesKilled + DungeonRecord.enemyCount;
             int damageNew = PlayerData.current.damageTaken + DungeonRecord.totalDamage;
-            //calculate diff between old and new SR
-            float newSR = (float)enemiesKilledNew / (float)damageNew;
-            float oldSR = (float)PlayerData.current.enemiesKilled / (float)PlayerData.current.damageTaken;
-            ratingChange = (float)Math.Round(newSR - oldSR, 2); //round to 2 digits
+
+            double newSR = 0.0; //calculate new SR, prevent divide by 0
+            if (enemiesKilledNew + damageNew > 0) { newSR = enemiesKilledNew / damageNew; }
+
+            double oldSR = 0.0; //calculate old SR, prevent divide by 0
+            if (PlayerData.current.enemiesKilled + PlayerData.current.damageTaken > 0)
+            { oldSR = PlayerData.current.enemiesKilled / PlayerData.current.damageTaken; }
+
+            //calculate the change in ratings, to 2 digits
+            ratingChange = (float)Math.Round(newSR - oldSR, 2);
 
             #endregion
 
@@ -114,8 +102,6 @@ namespace DungeonRun
             PlayerData.current.hours += toAdd.Hours;
             PlayerData.current.mins += toAdd.Minutes;
             PlayerData.current.secs += toAdd.Seconds;
-            //autosave PlayerData.current
-            Functions_Backend.SaveGame(GameFile.AutoSave);
 
             //these two values combined allow us to track how many times each dungeon & boss has been defeated, or killed hero
             //DungeonRecord.dungeonID
@@ -150,26 +136,19 @@ namespace DungeonRun
             #region Handle Opening / Closing screen state
 
             if (displayState == DisplayState.Opening)
-            {   //animate titles into place
-                Functions_TitleAnimated.AnimateMovement(leftTitle);
-                Functions_TitleAnimated.AnimateMovement(rightTitle);
-                //fade in components
-                leftTitle.compSprite.alpha += textFadeSpeed;
-                rightTitle.compSprite.alpha += textFadeSpeed;
+            {   //fade in components
+                title.alpha += textFadeSpeed;
                 continueText.alpha += textFadeSpeed;
                 summaryText.alpha += textFadeSpeed;
                 summaryData.alpha += textFadeSpeed;
                 //check components position + opacity, transition state
-                if (rightTitle.displayState == DisplayState.Opened && 
-                    leftTitle.displayState == DisplayState.Opened &&
-                    continueText.alpha >= 1.0f)
+                if (continueText.alpha >= 1.0f)
                 { continueText.alpha = 1.0f; displayState = DisplayState.Opened; }
             }
             else if (displayState == DisplayState.Closing)
             {
                 //fade out components
-                leftTitle.compSprite.alpha -= textFadeSpeed * 1.5f;
-                rightTitle.compSprite.alpha -= textFadeSpeed * 1.5f;
+                title.alpha -= textFadeSpeed * 1.5f;
                 summaryText.alpha -= textFadeSpeed * 1.5f;
                 summaryData.alpha -= textFadeSpeed * 1.5f;
                 continueText.alpha -= textFadeSpeed * 0.9f;
@@ -184,13 +163,12 @@ namespace DungeonRun
             #region Handle Opened Display State
 
             else if (displayState == DisplayState.Opened)
-            {
-                //pulse the alpha of the left and right title sprites
-                if (leftTitle.compSprite.alpha >= 1.0f) { leftTitle.compSprite.alpha = 0.85f; }
-                if (rightTitle.compSprite.alpha >= 1.0f) { rightTitle.compSprite.alpha = 0.85f; }
+            {   //flicker title
+                if (title.alpha >= 1.0f) { title.alpha = 0.85f; }
+                else if (title.alpha < 0.85f) { title.alpha += 0.03f; }
+                title.alpha += 0.005f;
+                //flicker continue text
                 if (continueText.alpha >= 1.0f) { continueText.alpha = 0.85f; }
-                leftTitle.compSprite.alpha += 0.004f;
-                rightTitle.compSprite.alpha += 0.004f;
                 continueText.alpha += 0.01f;
 
                 if(!countingComplete)
@@ -232,8 +210,7 @@ namespace DungeonRun
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_Draw.Draw(background);
-            Functions_Draw.Draw(leftTitle.compSprite);
-            Functions_Draw.Draw(rightTitle.compSprite);
+            Functions_Draw.Draw(title);
             Functions_Draw.Draw(summaryData);
             Functions_Draw.Draw(summaryText);
             Functions_Draw.Draw(continueText);

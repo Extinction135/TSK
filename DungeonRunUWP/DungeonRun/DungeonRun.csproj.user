@@ -11,6 +11,7 @@
     <CreateCleanLayout>false</CreateCleanLayout>
     <RemoteDebugMachine>XboxOne</RemoteDebugMachine>
     <LayoutDir>C:\Users\Gx000000\Desktop\REPOs\DungeonRun\DungeonRun\DungeonRunUWP\DungeonRun\bin\WindowsUniversal\x64\Debug\AppX</LayoutDir>
+    <AllowLocalNetworkLoopback>false</AllowLocalNetworkLoopback>
   </PropertyGroup>
   <PropertyGroup>
     <AppxPackageIsForStore>False</AppxPackageIsForStore>

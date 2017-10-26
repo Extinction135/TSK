@@ -258,12 +258,14 @@ namespace DungeonRun
             #endregion
 
 
-
             //set the player's sprite based on the hero.actorType
             if (PlayerData.current.actorType == ActorType.Blob)
             { hero.compSprite.texture = Assets.blobSheet; }
             else if(PlayerData.current.actorType == ActorType.Hero)
             { hero.compSprite.texture = Assets.heroSheet; }
+
+            //autosave the current game
+            Functions_Backend.SaveGame(GameFile.AutoSave);
         }
 
         public override void HandleInput(GameTime GameTime)

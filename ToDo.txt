@@ -37,56 +37,54 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-Handle Dungeon Exits with a Summary Screen
-
-summary screens should be displayed when hero beats, exits, or dies in a dungeon.
-for a level like the shop, the summary screen should never be displayed.
-
-updated Functions_Interaction.InteractActor() doors section.
-added Level.type check for Castle, which changed the exit action to Summary.
-otherwise, the exit action defaults to Overworld.
-also fixed an invisible bug where the hero..
-was not being stopped upon collision with any exit door.
-playtested, working but with some bugs and missing states.
-
-issue: when the hero exits a dungeon, the "you died" text appears.
-this is incorrect, as the hero did not die. use "defeat" text instead.
-this requires an addition to the text sprites sheet.
-
-bug: there is no distinction in code between hero exiting from or dying in a dungeon.
-both branches are handled the same way, causing the level screen to fade out very slowly.
-if the hero is exiting a level, then the fade should always be quick. 
-we need to be able to tell the difference between an exit, and a hero win/loss.
-added ExitDungeon value to ExitAction enum.
-updated LevelScreen.Update() to handle new ExitAction branch for ExitDungeon.
-this code section was then refactored and simplified to only check for Summary state.
-added CloseLevel(ExitAction) to Functions_Level.
-simplified various code sections to use CloseLevel(ExitAction).
-in all code sections this reduced and simplified code.
-playtested, working as expected.
 
 
+Simplify Summary Screen & Title
 
+there are more states than "dungeon complete" and "you died".
+so it makes sense to change these to "victory" and "defeat".
 
+after re-planning the bigtext sheet, more simplifications.
+updated bigTextSheet to use simplified DungeonRun logo.
+updated bigTextSheet to use simplified Defeat/Victory text.
 
+removed TitleAnimated class from codebase.
+removed Functions_TitleAnimated.cs from codebase.
+removed TitleAnimated instances from Title and Summary screens.
+these have been replaced with a SpriteComponent instanced named 'title'.
+this represents the centered large text sprite.
+playtested, titles appear on Title and Summary screens.
 
+added code to flicker TitleScreen's title text.
+added code to flicker SummaryScreen's title and continue text.
+playtested, looks better. improved all sprites on bigTextSheet.
 
+while porting the recent changes to UWP, a bug appears.
+this is related to exiting dungeons, which throws an error.
+an error is not thrown when exiting the shop, so perhaps its the summary screen?
+the bug is likely the calls to SaveGame(), which is async.
+so the double call to SaveGame() was changed to be a single call.
+this single call is done in Overworld Screen's LoadContent method.
+calls to SaveGame() were removed from Level and Summary Screens.
+playtested, this fixed the bug, but also revealed another.
 
-
-change summary text to 'victory' and 'defeat'.
-instead of sliding two seperate texts together,
-we can just fade in one centered text, thats the same size.
+if kills and damage = 0, then the rating is displayed as NAN.
+updated the SummaryScreen's Skill Rating code section to prevent a divide by 0 error.
+playtested on UWP, working as expected.
 
 
 
 
 
 
+the time is not being displayed properly on the game display
+the seconds are being added to, and they exceed 60
+instead we should print the time to a format from the timespan, right?
 
 
 
 
-
+remove name from saveData + game display, we dont need game names...
 
 
 
@@ -97,13 +95,9 @@ we can just fade in one centered text, thats the same size.
 
 
 
-we can simply check level.type to determine if the summary screen should be displayed
-kick hero to overworld screen if hero dies in a not-dungeon level, no summary screen.
 
 
-if hero exits a dungeon level, then display summary screen
-this means that grinding will contribute to over all stats 
-otherwise player would have to beat/die dungeon to alter stats
+
 
 
 need an on screen dungeon timer (for dungeon levels)

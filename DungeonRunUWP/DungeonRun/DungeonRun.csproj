@@ -207,9 +207,6 @@
     <Compile Include="..\..\GameClasses\Functions_Scroll.cs">
       <Link>Classes\Functions_Scroll.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_TitleAnimated.cs">
-      <Link>Classes\Functions_TitleAnimated.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_UWP.cs">
       <Link>Classes\Functions_UWP.cs</Link>
     </Compile>

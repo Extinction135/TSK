@@ -17,8 +17,7 @@ namespace DungeonRun
         ScreenRec overlay = new ScreenRec();
         ComponentSprite background;
         static MenuWindow window;
-        TitleAnimated leftTitle;
-        TitleAnimated rightTitle;
+        ComponentSprite title;
         int i;
 
         public List<ComponentText> labels;
@@ -51,15 +50,11 @@ namespace DungeonRun
                 new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(640, 360));
             window = new MenuWindow(new Point(16 * 13 + 8 + 4, 16 * 15),
                 new Point(16 * 12 + 8, 16 * 5 + 8), "Main Menu");
-            float yPos = 200;
-            leftTitle = new TitleAnimated(
-                new Vector2(-150, yPos),
-                new Vector2(200-35, yPos),
-                TitleText.Dungeon, 8);
-            rightTitle = new TitleAnimated(
-                new Vector2(640+25, yPos),
-                new Vector2(320+35, yPos),
-                TitleText.Run, 8);
+            title = new ComponentSprite(Assets.bigTextSheet, 
+                new Vector2(583 - 256, 200), //center
+                new Byte4(0, 0, 0, 0), 
+                new Point(16 * 16, 16 * 4));
+            title.alpha = 0.0f;
 
 
             #region Create the menuItems
@@ -259,15 +254,7 @@ namespace DungeonRun
                 }
             }
             else if (displayState == DisplayState.Opened)
-            {   //animate titles in
-                Functions_TitleAnimated.AnimateMovement(leftTitle);
-                Functions_TitleAnimated.AnimateMovement(rightTitle);
-                //fade titles in
-                if (leftTitle.compSprite.alpha < 1.0f)
-                { leftTitle.compSprite.alpha += 0.05f; }
-                if (rightTitle.compSprite.alpha < 1.0f)
-                { rightTitle.compSprite.alpha += 0.05f; }
-                //open the window
+            {   //open the window
                 Functions_MenuWindow.Update(window);
             }
             else if (displayState == DisplayState.Closing)
@@ -294,6 +281,11 @@ namespace DungeonRun
                 else { selectionBox.scale = 1.0f; }
                 //scale currently selected menuItem back down to 1.0
                 Functions_Animation.ScaleSpriteDown(currentlySelected.compSprite);
+
+                //flicker title
+                if (title.alpha >= 1.0f) { title.alpha = 0.85f; }
+                else if (title.alpha < 0.85f) { title.alpha += 0.03f; }
+                title.alpha += 0.005f;
             }
         }
 
@@ -301,8 +293,7 @@ namespace DungeonRun
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_Draw.Draw(background);
-            Functions_Draw.Draw(leftTitle.compSprite);
-            Functions_Draw.Draw(rightTitle.compSprite);
+            Functions_Draw.Draw(title);
             Functions_Draw.Draw(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
