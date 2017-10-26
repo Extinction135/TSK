@@ -436,5 +436,11 @@ namespace DungeonRun
             }
         }
 
+        public static void CloseLevel(ExitAction ExitAct)
+        {
+            levelScreen.exitAction = ExitAct;
+            levelScreen.displayState = DisplayState.Closing;
+        }
+
     }
 }

@@ -110,8 +110,7 @@ namespace DungeonRun
             {
                 PlayerData.current.crystal1 = true; //flip crystal1
                 DungeonRecord.beatDungeon = true; //player has beat the dungeon
-                Functions_Level.levelScreen.exitAction = ExitAction.Summary;
-                Functions_Level.levelScreen.displayState = DisplayState.Closing;
+                Functions_Level.CloseLevel(ExitAction.Summary);
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Assets.Play(Assets.sfxExplosionsMultiple); //play explosions
@@ -483,8 +482,7 @@ namespace DungeonRun
                             else
                             {   //player has died, failed the dungeon
                                 DungeonRecord.beatDungeon = false;
-                                Functions_Level.levelScreen.exitAction = ExitAction.Summary;
-                                Functions_Level.levelScreen.displayState = DisplayState.Closing;
+                                Functions_Level.CloseLevel(ExitAction.Summary);
                             }
                         }
                     }

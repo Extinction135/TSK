@@ -34,7 +34,7 @@ namespace DungeonRun
 
     public enum TitleText { Dungeon, Complete, You, Died, Run }
 
-    public enum ExitAction { Title, Summary, Overworld, QuitGame, ExitScreen }
+    public enum ExitAction { Title, Summary, ExitDungeon, Overworld, QuitGame, ExitScreen }
 
 
 

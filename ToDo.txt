@@ -32,19 +32,37 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-13
+12
 
 
 
-Display SkillRating's Change on SummaryScreen
 
-display the amount the player's rating has changed, on summary screen.
-if the amount is positive, a "+" should be added before the value.
-the value should be trimmed to 2 digits.
+Handle Dungeon Exits with a Summary Screen
 
-created SummaryScreenV2 mockup.
-updated SS to calculate newSR & oldSR, then display difference.
-fixed spacing of "to continue" text to center to screen.
+summary screens should be displayed when hero beats, exits, or dies in a dungeon.
+for a level like the shop, the summary screen should never be displayed.
+
+updated Functions_Interaction.InteractActor() doors section.
+added Level.type check for Castle, which changed the exit action to Summary.
+otherwise, the exit action defaults to Overworld.
+also fixed an invisible bug where the hero..
+was not being stopped upon collision with any exit door.
+playtested, working but with some bugs and missing states.
+
+issue: when the hero exits a dungeon, the "you died" text appears.
+this is incorrect, as the hero did not die. use "defeat" text instead.
+this requires an addition to the text sprites sheet.
+
+bug: there is no distinction in code between hero exiting from or dying in a dungeon.
+both branches are handled the same way, causing the level screen to fade out very slowly.
+if the hero is exiting a level, then the fade should always be quick. 
+we need to be able to tell the difference between an exit, and a hero win/loss.
+added ExitDungeon value to ExitAction enum.
+updated LevelScreen.Update() to handle new ExitAction branch for ExitDungeon.
+this code section was then refactored and simplified to only check for Summary state.
+added CloseLevel(ExitAction) to Functions_Level.
+simplified various code sections to use CloseLevel(ExitAction).
+in all code sections this reduced and simplified code.
 playtested, working as expected.
 
 
@@ -55,6 +73,9 @@ playtested, working as expected.
 
 
 
+change summary text to 'victory' and 'defeat'.
+instead of sliding two seperate texts together,
+we can just fade in one centered text, thats the same size.
 
 
 
@@ -69,11 +90,23 @@ playtested, working as expected.
 
 
 
-when we exit a dungeon via a door, display a summary screen
-this means that grinding will contribute to over all stats, otherwise player would haveto beat/die dungeon
 
 
-need an on screen dungeon timer
+
+
+
+
+
+we can simply check level.type to determine if the summary screen should be displayed
+kick hero to overworld screen if hero dies in a not-dungeon level, no summary screen.
+
+
+if hero exits a dungeon level, then display summary screen
+this means that grinding will contribute to over all stats 
+otherwise player would have to beat/die dungeon to alter stats
+
+
+need an on screen dungeon timer (for dungeon levels)
 upper right corner, simply draws the DungeonRecord.timespan value
 this should display down to the ms
 this should only display if level is a dungeon
@@ -83,38 +116,35 @@ this should only display if level is a dungeon
 
 
 
-where do we display the kill ratio?
 
-fill out the kill ratio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+where do we display the kill ratio?
+this is displayed in a stats widget somewhere that hasn't been designed yet
 equation for determining skill rating in percentage.
 this is: total enemies killed / damage taken
 ex: 10/1 = 10.   245/73 = 3.35.
 
 
 
-display k/d in game display component on lsn screen
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 we need to make sure we're checking if actor == hero, and not if actor.type == hero in various routines
-
-
 interaction routines
 
 

@@ -85,14 +85,16 @@ namespace DungeonRun
                     if (overlay.alpha == -1.5f) //just began fading in overlay
                     {   //events that happen when hero exits dungeon/game
                         Functions_WorldUI.DisplayAutosave();
+                        //handle how quickly the overlay fade in based on exitAction value
+                        if (exitAction == ExitAction.Summary) //win/loss in dungeon
+                        { overlay.fadeInSpeed = 0.015f; } //victory/defeat fades in slow
+                        else
+                        {   //quickly fade in if hero is exiting any level
+                            overlay.fadeInSpeed = 0.05f;
+                            overlay.alpha = 0.0f;
+                        }
                     }
-                    //set the fadeInSpeed & overlay alpha based on the exitAction
-                    if (exitAction == ExitAction.Overworld)
-                    {   //exits fade in immediately, and much faster
-                        overlay.fadeInSpeed = 0.05f;
-                        if (overlay.alpha < 0.0f) { overlay.alpha = 0.0f; }
-                    }
-                    else { overlay.fadeInSpeed = 0.015f; } //victory/defeat fades in much slower
+                    
                     //fade overlay in
                     overlay.fadeState = FadeState.FadeIn;
                     Functions_ScreenRec.Fade(overlay);
@@ -105,7 +107,7 @@ namespace DungeonRun
                     //save the player's current game progress to autoSave file
                     Functions_Backend.SaveGame(GameFile.AutoSave);
                     //handle exit action
-                    if (exitAction == ExitAction.Summary)
+                    if (exitAction == ExitAction.Summary || exitAction == ExitAction.ExitDungeon)
                     { ScreenManager.ExitAndLoad(new ScreenSummary()); }
                     else if(exitAction == ExitAction.Overworld)
                     { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
