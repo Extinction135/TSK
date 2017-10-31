@@ -224,6 +224,8 @@ namespace DungeonRun
                             { Functions_Level.CloseLevel(ExitAction.Overworld); }
                             Assets.Play(Assets.sfxDoorOpen);
                         }
+                        //stop movement, prevents overlap with exit
+                        Functions_Movement.StopMovement(Pool.hero.compMove);
                     }
                     //center Hero to Door, while still allowing him to pass thru
                     if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)

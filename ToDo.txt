@@ -32,17 +32,7 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-11
-
-
-
-
-
-
-
-
-
-
+13
 
 
 
@@ -51,9 +41,33 @@ the seconds are being added to, and they exceed 60
 instead we should print the time to a format from the timespan, right?
 
 
+we need to stop the heros movement upon collision with exit obj, like we were before
 
 
-remove name from saveData + game display, we dont need game names...
+
+
+Fix ExitObj Collision Bug
+
+if hero dashes right before a collision with an exit obj,
+the hero can dash thru the door and appear beyond the level.
+this happens for just a moment, and the level exits properly.
+but it doesn't look correct.
+
+upon collision with an exit obj, the hero should stop moving.
+updated Functions_Interaction.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
