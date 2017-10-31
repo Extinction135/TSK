@@ -701,7 +701,6 @@ namespace DungeonRun
 
     public class SaveData
     {   //data that will be saved/loaded from game session to session
-        public string name = "new";
         public DateTime dateTime = DateTime.Now;
         public int hours = 0;
         public int mins = 0;

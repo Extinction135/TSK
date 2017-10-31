@@ -32,45 +32,14 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-12
+11
 
 
 
 
 
 
-Simplify Summary Screen & Title
 
-there are more states than "dungeon complete" and "you died".
-so it makes sense to change these to "victory" and "defeat".
-
-after re-planning the bigtext sheet, more simplifications.
-updated bigTextSheet to use simplified DungeonRun logo.
-updated bigTextSheet to use simplified Defeat/Victory text.
-
-removed TitleAnimated class from codebase.
-removed Functions_TitleAnimated.cs from codebase.
-removed TitleAnimated instances from Title and Summary screens.
-these have been replaced with a SpriteComponent instanced named 'title'.
-this represents the centered large text sprite.
-playtested, titles appear on Title and Summary screens.
-
-added code to flicker TitleScreen's title text.
-added code to flicker SummaryScreen's title and continue text.
-playtested, looks better. improved all sprites on bigTextSheet.
-
-while porting the recent changes to UWP, a bug appears.
-this is related to exiting dungeons, which throws an error.
-an error is not thrown when exiting the shop, so perhaps its the summary screen?
-the bug is likely the calls to SaveGame(), which is async.
-so the double call to SaveGame() was changed to be a single call.
-this single call is done in Overworld Screen's LoadContent method.
-calls to SaveGame() were removed from Level and Summary Screens.
-playtested, this fixed the bug, but also revealed another.
-
-if kills and damage = 0, then the rating is displayed as NAN.
-updated the SummaryScreen's Skill Rating code section to prevent a divide by 0 error.
-playtested on UWP, working as expected.
 
 
 
@@ -117,8 +86,11 @@ this should only display if level is a dungeon
 
 
 
-
-
+	
+dungeons can have deep water (sinks) and shallow water (just has wading fx)
+and we can build puzzles around this, because it's impossible to tell them apart
+but we should be able to tell them apart, with some kind of shallow water lighter color difference
+this is important to do now, because it affects the layout of the dungeon sheet
 
 
 
@@ -518,6 +490,70 @@ Create CheatsScreen - or this could be part of game ctrls
 
 
 
+Crypt - optional dungeon + level
+
+there are 8 floors to the Crypt - upper floor, the burial crypts, dungeon x 6
+
+the upper floor
+a large room with NPCs that explain what the crypt is (keeps bodies of gladiators + records)
+
+the burial crypts
+a large room of gladiators who achieved glory in battle via some record
+for each record you break, you get to open that hero's tomb and take what's inside
+one of the tombs opens to reveal the crypt dungeon (opens when all 4 crystals are obtained)
+
+the crypt dungeon
+this is a vertical dungeon down, with each level containing harder and harder enemies
+this is basically a diablo1 rip off, with 6 levels down
+at level 6 hero fights the crypt boss
+crypt boss is a massive bullet sponge, and spawns just tons of adds in a large hub sized room
+there are also magic attacks going on, so the room is filled and very hectic to manage
+there should be multiple phases to the crypt boss, a truly legendary fight.
+beating the crypt boss unlocks a special tomb in the crypt for looting
+
+
+
+
+
+Boat
+
+takes hero to different islands
+if hero is blob, then secret blob islands become available (like blob home island)
+
+
+
+
+Training Center
+this is a place where you can train your hero or his team of gladiators
+can train against any enemy 1v1, including bosses that have been beaten
+this happens from a menu selection
+you can also spend gold to increase a gladiator's stats
+which you can then bet money on later in the colliseum
+
+
+
+Colliseum
+should have different kinds of tournaments
+some tournaments will be 'to the death', which always have higher payouts than normal
+gladiators that lose a battle, die in the game
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -711,5 +747,17 @@ Look at how stardew valley engages players
 	should be able to craft advanced items, using special parts + gold
 	just a ton of additional stuff layered on top of the dungeon running, that is supporting core gameplay
 	
+
+	
+	
+	
+	
+	
+
+
+
+
+
+
 
 	

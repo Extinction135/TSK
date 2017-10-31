@@ -95,13 +95,13 @@ namespace DungeonRun
             #region Setup Game Title Texts
 
             texts = new List<ComponentText>();
-            texts.Add(new ComponentText(Assets.font, "Game 1 - " + PlayerData.game1.name,
+            texts.Add(new ComponentText(Assets.font, "Game 1",
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 1 + 1),
                 Assets.colorScheme.textDark));
-            texts.Add(new ComponentText(Assets.font, "Game 2 - " + PlayerData.game2.name,
+            texts.Add(new ComponentText(Assets.font, "Game 2",
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 4 + 1),
                 Assets.colorScheme.textDark));
-            texts.Add(new ComponentText(Assets.font, "Game 3 - " + PlayerData.game3.name,
+            texts.Add(new ComponentText(Assets.font, "Game 3",
                 new Vector2(window.background.rec.X + 8, window.background.rec.Y + 16 * 7 + 1),
                 Assets.colorScheme.textDark));
 
@@ -415,9 +415,9 @@ namespace DungeonRun
 
         public void PopulateDisplay(SaveData saveData, GameDisplayData displayData)
         {
-            texts[0].text = "Game 1 - " + PlayerData.game1.name;
-            texts[1].text = "Game 2 - " + PlayerData.game2.name;
-            texts[2].text = "Game 3 - " + PlayerData.game3.name;
+            texts[0].text = "Game 1";
+            texts[1].text = "Game 2";
+            texts[2].text = "Game 3";
 
             //set time of game
             //displayData.timeDateText.text = "time: " + saveData.timeSpan.ToString(@"hh\:mm\:ss");
