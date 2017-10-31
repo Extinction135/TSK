@@ -102,6 +102,11 @@ namespace DungeonRun
             PlayerData.current.hours += toAdd.Hours;
             PlayerData.current.mins += toAdd.Minutes;
             PlayerData.current.secs += toAdd.Seconds;
+            //cleanup saveData
+            while (PlayerData.current.mins >= 60)
+            { PlayerData.current.hours++; PlayerData.current.mins -= 60; }
+            while (PlayerData.current.secs >= 60)
+            { PlayerData.current.mins++; PlayerData.current.secs -= 60; }
 
             //these two values combined allow us to track how many times each dungeon & boss has been defeated, or killed hero
             //DungeonRecord.dungeonID

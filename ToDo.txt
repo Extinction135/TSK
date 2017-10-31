@@ -36,26 +36,21 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-the time is not being displayed properly on the game display
-the seconds are being added to, and they exceed 60
-instead we should print the time to a format from the timespan, right?
+Fix Improper Display of Elapsed Game Time
 
+the time is not being displayed properly on the game display.
+the seconds are being added to, and they exceed 60.
+the issue stems from how we add a timeSpan to our PlayerData.
+we are not rounding the secs & mins around a radix of 60.
+so those values can exceed the bounds of 60.
 
-we need to stop the heros movement upon collision with exit obj, like we were before
-
-
-
-
-Fix ExitObj Collision Bug
-
-if hero dashes right before a collision with an exit obj,
-the hero can dash thru the door and appear beyond the level.
-this happens for just a moment, and the level exits properly.
-but it doesn't look correct.
-
-upon collision with an exit obj, the hero should stop moving.
-updated Functions_Interaction.
+updated SummaryScreen to round the secs and mins values.
 playtested, working as expected.
+
+
+
+
+
 
 
 

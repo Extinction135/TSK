@@ -424,6 +424,10 @@ namespace DungeonRun
             displayData.timeDateText.text = "time: ";
             displayData.timeDateText.text += @"" + saveData.hours + ":" + saveData.mins + ":" + saveData.secs;
 
+            displayData.timeDateText.text += "";
+
+
+
             /*
             //convert seconds to hhhh.mm.ss
             double total = saveData.seconds;
