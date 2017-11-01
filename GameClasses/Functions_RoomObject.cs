@@ -55,6 +55,34 @@ namespace DungeonRun
             }
         }
 
+
+        public static void FlipSwitchBlocks()
+        {
+            Assets.Play(Assets.sfxSwitch);
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //flip blocks up or down
+                    if (Pool.roomObjPool[i].type == ObjType.SwitchBlockDown)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SwitchBlockUp); }
+                    else if (Pool.roomObjPool[i].type == ObjType.SwitchBlockUp)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SwitchBlockDown); }
+                    //display particle fx at block location
+                    if (Pool.roomObjPool[i].type == ObjType.SwitchBlockDown
+                        || Pool.roomObjPool[i].type == ObjType.SwitchBlockUp)
+                    {   
+                        Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                            Pool.roomObjPool[i].compSprite.position.X,
+                            Pool.roomObjPool[i].compSprite.position.Y,
+                            Direction.Down);
+                    }
+                }
+            }
+        }
+
+
+
+
         //decorates a door on left/right or top/bottom
         static Vector2 posA = new Vector2();
         static Vector2 posB = new Vector2();

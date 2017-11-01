@@ -168,6 +168,16 @@ namespace DungeonRun
                         Direction.None);
             }
 
+            else if(Obj.type == ObjType.SwitchBlockBtn)
+            {
+                Functions_RoomObject.FlipSwitchBlocks();
+                Functions_Entity.SpawnEntity(
+                        ObjType.ParticleAttention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.None);
+            }
+
             #endregion
 
         }

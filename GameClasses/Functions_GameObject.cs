@@ -282,7 +282,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
+                //Obj.compMove.moveable = true; //not right now
             }
             else if (Type == ObjType.SwitchBlockDown)
             {
@@ -294,7 +294,8 @@ namespace DungeonRun
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
-                Obj.compSprite.zOffset = -7;
+                Obj.compSprite.zOffset = -7; //sort normally
+                Obj.compCollision.blocking = true;
                 Obj.canBeSaved = true;
             }
 

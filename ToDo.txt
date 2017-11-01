@@ -38,49 +38,32 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-11
-
-
-
-
-
-Add IceTile into Game
-
-added IceTile value to ObjType enum.
-added IceTile anim list.
-updated GameObj.SetType() with path for IceTile.
-updated Interactions with path for IceTile.
-added ice tile to roomBuilder.
-playtested room with ice tile, working, but with issues.
-
-the main issue is that the hero can get caught in the corners of an ice tiled room.
-the hero's magnitude reaches around 9, then very slowly decreases to 0.
-this causes the player to fly around the outer rim of tiles.
-this is caused by poor ice tile interaction logic, so we will rewrite.
-
-updated ice tile interaction logic to directly modify the actor's friction.
-added floats friction and frictionIce to Actor data class.
-this allows each actor to have their own levels of friction.
-flying actors, for example, would have lower friction than grounded actors.
-this also allows us to set a friction value for ice, seperately.
-
-updated Functions_Pool to set actor's friction to normal value prior to collision checks.
-this 'resets' the friction, then collision -> interaction events occur, altering friction.
-playtested, working for all actors.
-
-fun note: conveyor belts can stack on top of ice tiles and work perfectly.
-
-
-
-
-
-
-
+10
 
 room objs that need to be added to existing levels:
 
 
 
+Add SwitchBlocks
+
+created Functions_RoomObject.FlipSwitchBlocks().
+updated Interactions.InteractHero() to call FlipSB(),
+upon a collision with hero's interaction rec.
+this means player can activate switch globe by pressing A.
+playtested, working as expected.
+
+
+
+
+
+
+
+conveyor belts should sort over down switch blocks
+this means conveyor belts should sort above -32
+
+set up weapon/projectile strike interaction + A button interaction
+
+test
 
 
 
@@ -92,10 +75,19 @@ room objs that need to be added to existing levels:
 
 
 
-Implement SwitchBlocks
-implement switch blocks + switch block switch (name?)
+
+
+
+
+
+
+
+
+
 
 implement switches - how do these work? hero steps on them
+what do they do? open doors to a room, where all the door have closed
+can this be detected automatically? if a room has a switch, auto-shut doors upon entry
 
 Implement Boomerang
 this is a projectile that flys in a thrown direction
