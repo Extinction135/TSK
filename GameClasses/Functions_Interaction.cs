@@ -433,11 +433,16 @@ namespace DungeonRun
 
                         }
                     }
-
+                    else if (Obj.type == ObjType.IceTile)
+                    {   //set the actor's friction to ice
+                        Actor.compMove.friction = Actor.frictionIce;
+                        //clip magnitude's maximum values for ice
+                        if (Actor.compMove.magnitude.X > 1) { Actor.compMove.magnitude.X = 1; }
+                        else if (Actor.compMove.magnitude.X < -1) { Actor.compMove.magnitude.X = -1; }
+                        if (Actor.compMove.magnitude.Y > 1) { Actor.compMove.magnitude.Y = 1; }
+                        else if (Actor.compMove.magnitude.Y < -1) { Actor.compMove.magnitude.Y = -1; }
+                    }
                     //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
-
-                    //ice tile, amplifies the actor's magnitude value in it's current direction
-                    //or we could modify the friction applied to the magnitude, however we choose to do it
                 }
 
                 #endregion

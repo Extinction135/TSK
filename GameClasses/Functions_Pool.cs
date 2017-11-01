@@ -195,6 +195,8 @@ namespace DungeonRun
                     {
                         //project movement
                         Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove);
+                        //set actor's friction to normal
+                        Pool.actorPool[i].compMove.friction = Pool.actorPool[i].friction;
                         //collision & interaction check
                         Functions_Collision.CheckCollisions(Pool.actorPool[i]);
                         //resolve movement

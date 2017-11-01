@@ -38,35 +38,52 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-13
-
-
-
-
-Improve Key Rooms 2 and 3
-
-improved the playability of key rooms 2 & 3.
-these changes were based on personal preference.
-overall, reduced difficulty slightly.
-playtested, bug with summary screen.
-
-was a divide by 0 error, due to faulty skill rating logic.
-fixed logic causing bug, but the summary rating is wrong.
-updated skill rating logic to set negative or zero values to 1.
-playtested, working as expected.
+11
 
 
 
 
 
+Add IceTile into Game
+
+added IceTile value to ObjType enum.
+added IceTile anim list.
+updated GameObj.SetType() with path for IceTile.
+updated Interactions with path for IceTile.
+added ice tile to roomBuilder.
+playtested room with ice tile, working, but with issues.
+
+the main issue is that the hero can get caught in the corners of an ice tiled room.
+the hero's magnitude reaches around 9, then very slowly decreases to 0.
+this causes the player to fly around the outer rim of tiles.
+this is caused by poor ice tile interaction logic, so we will rewrite.
+
+updated ice tile interaction logic to directly modify the actor's friction.
+added floats friction and frictionIce to Actor data class.
+this allows each actor to have their own levels of friction.
+flying actors, for example, would have lower friction than grounded actors.
+this also allows us to set a friction value for ice, seperately.
+
+updated Functions_Pool to set actor's friction to normal value prior to collision checks.
+this 'resets' the friction, then collision -> interaction events occur, altering friction.
+playtested, working for all actors.
+
+fun note: conveyor belts can stack on top of ice tiles and work perfectly.
 
 
 
 
 
-Ice tile
-changes friction, which affects how quickly an obj/actor slows down
-this should affect the moveComponent of objects + actors the same way
+
+
+
+room objs that need to be added to existing levels:
+
+
+
+
+
+
 
 
 
@@ -150,7 +167,10 @@ leaving actor hovering over pits, which is bad
 
 
 
-
+for the ice dungeon, procedurally add ice tiles to each room
+if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
+this can be done in the cleanup of room
+and we'll probably need to expand the max size of roomObjs
 
 
 

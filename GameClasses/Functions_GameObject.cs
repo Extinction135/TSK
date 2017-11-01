@@ -346,6 +346,15 @@ namespace DungeonRun
                 Obj.getsAI = true; //obj gets AI
                 Obj.canBeSaved = true;
             }
+            else if (Type == ObjType.IceTile)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -6;
+                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 12;
+                Obj.compSprite.zOffset = -30; //sort a little above floor
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+            }
             else if (Type == ObjType.Bumper)
             {
                 Obj.compCollision.blocking = false;

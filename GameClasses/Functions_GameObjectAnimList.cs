@@ -121,9 +121,11 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(4, 5, 0, 0) },
                 //Flamethrower
                 new List<Byte4> { new Byte4(5, 5, 0, 0) },
+                //IceTile
+                new List<Byte4> { new Byte4(8, 15, 0, 0) },
+                
                 //Switch
                 new List<Byte4> { new Byte4(3, 6, 0, 0) },
-                
                 //SwitchBlockBtn
                 new List<Byte4> { new Byte4(3, 4, 0, 0) },
                 //SwitchBlockDown

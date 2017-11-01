@@ -119,7 +119,7 @@ namespace DungeonRun
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.LeverOff); }
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ConveyorBeltOn); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SpikesFloorOn); }
-                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.SpikesFloor); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.IceTile); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Lever); }
                     }
                     else if (i == 3) //fourth row
