@@ -56,9 +56,10 @@ namespace DungeonRun
         }
 
 
-        public static void FlipSwitchBlocks()
+        public static void FlipSwitchBlocks(Vector2 BtnPos)
         {
             Assets.Play(Assets.sfxSwitch);
+            Functions_Entity.SpawnEntity(ObjType.ParticleAttention, BtnPos.X, BtnPos.Y, Direction.None);
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)

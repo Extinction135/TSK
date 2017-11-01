@@ -41,16 +41,24 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 10
 
 room objs that need to be added to existing levels:
+switch blocks
 
 
 
-Add SwitchBlocks
+SwitchBlocks++
 
-created Functions_RoomObject.FlipSwitchBlocks().
-updated Interactions.InteractHero() to call FlipSB(),
-upon a collision with hero's interaction rec.
-this means player can activate switch globe by pressing A.
-playtested, working as expected.
+switchblock buttons should be activated by swords, arrows, etc..
+
+moved creation of switch button particle into FlipSwitchBlocks.
+arrows, explosions, fireballs, spikeBlocks(!!!), & swords now activate switch block buttons.
+tested, working, but with some bugs.
+
+bugs:
+sword hits block btn multiple times per instance.
+fireballs and arrows hit twice.
+spikeblocks hit only once, and work perfectly.
+
+bug will be fixed in a future commit.
 
 
 
@@ -58,12 +66,31 @@ playtested, working as expected.
 
 
 
+fix bugs:
+it's probably because InteractObj() is being called twice per frame
+once for fireball/arrow, and once for the switch btn?
+
+resolve:
+what happens when hero collides with a block that is up?
+he should be pushed as if he collided with a spike floor obj
+
+polish:
 conveyor belts should sort over down switch blocks
 this means conveyor belts should sort above -32
 
-set up weapon/projectile strike interaction + A button interaction
 
-test
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
