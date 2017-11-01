@@ -15,10 +15,10 @@
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockLight</type>
+      <type>BossStatue</type>
       <direction>Down</direction>
-      <posX>200</posX>
-      <posY>40</posY>
+      <posX>40</posX>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
@@ -377,14 +377,14 @@
     <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>152</posY>
+      <posX>264</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockLight</type>
+      <type>BossStatue</type>
       <direction>Down</direction>
-      <posX>232</posX>
-      <posY>40</posY>
+      <posX>72</posX>
+      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
@@ -397,136 +397,136 @@
       <direction>Down</direction>
       <posX>56</posX>
       <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>184</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>184</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
       <posX>72</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockLight</type>
-      <direction>Down</direction>
-      <posX>264</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
-      <posX>88</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockLight</type>
-      <direction>Down</direction>
-      <posX>264</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockLight</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
       <posX>216</posX>
       <posY>120</posY>
     </ObjXmlData>
@@ -549,10 +549,10 @@
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockLight</type>
+      <type>BossStatue</type>
       <direction>Down</direction>
       <posX>200</posX>
-      <posY>136</posY>
+      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
@@ -569,14 +569,14 @@
     <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
-      <posX>264</posX>
-      <posY>152</posY>
+      <posX>40</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockLight</type>
+      <type>BossStatue</type>
       <direction>Down</direction>
-      <posX>104</posX>
-      <posY>136</posY>
+      <posX>232</posX>
+      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
@@ -689,138 +689,138 @@
     <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
+      <posX>40</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <direction>Down</direction>
       <posX>264</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>248</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockLight</type>
+      <type>PitAnimated</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
+      <type>BossStatue</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
-      <posX>248</posX>
+      <posX>216</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
-      <posX>248</posX>
+      <posX>216</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
-      <posX>232</posX>
+      <posX>104</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>184</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>184</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockLight</type>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>BossStatue</type>
       <direction>Down</direction>
       <posX>40</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>200</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
       <direction>Down</direction>
-      <posX>216</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockLight</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockLight</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
       <posX>88</posX>
       <posY>24</posY>
     </ObjXmlData>
@@ -831,130 +831,130 @@
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockLight</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitAnimated</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
+      <type>TorchLit</type>
       <direction>Down</direction>
       <posX>168</posX>
-      <posY>24</posY>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>PitTop</type>
+      <type>PitAnimated</type>
       <direction>Down</direction>
       <posX>232</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>56</posX>
       <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>264</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitAnimated</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitBottom</type>
+      <direction>Down</direction>
+      <posX>264</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitBottom</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitBottom</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>184</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitBottom</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitBottom</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTop</type>
@@ -963,10 +963,10 @@
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>PitBottom</type>
       <direction>Down</direction>
-      <posX>264</posX>
-      <posY>24</posY>
+      <posX>40</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTop</type>
@@ -1017,10 +1017,10 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>PitTop</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>152</posY>
+      <posX>264</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitBottom</type>
@@ -1029,10 +1029,10 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>PitTop</type>
       <direction>Down</direction>
-      <posX>72</posX>
-      <posY>152</posY>
+      <posX>232</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitBottom</type>
@@ -1041,10 +1041,10 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>PitTop</type>
       <direction>Down</direction>
-      <posX>104</posX>
-      <posY>152</posY>
+      <posX>200</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitBottom</type>
@@ -1077,10 +1077,10 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>PitTop</type>
       <direction>Down</direction>
-      <posX>200</posX>
-      <posY>152</posY>
+      <posX>104</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitBottom</type>
@@ -1089,10 +1089,10 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>PitTop</type>
       <direction>Down</direction>
-      <posX>232</posX>
-      <posY>152</posY>
+      <posX>72</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitBottom</type>
@@ -1101,10 +1101,10 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>PitTop</type>
       <direction>Down</direction>
-      <posX>264</posX>
-      <posY>152</posY>
+      <posX>40</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitBottom</type>
@@ -1113,40 +1113,64 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Up</direction>
-      <posX>264</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Up</direction>
-      <posX>200</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Up</direction>
-      <posX>104</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
-      <direction>Up</direction>
-      <posX>40</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BossStatue</type>
       <direction>Down</direction>
-      <posX>232</posX>
-      <posY>88</posY>
+      <posX>264</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>TorchLit</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ProjectileSpikeBlock</type>
       <direction>Down</direction>
-      <posX>72</posX>
+      <posX>264</posX>
       <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ProjectileSpikeBlock</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ProjectileSpikeBlock</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ProjectileSpikeBlock</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ProjectileSpikeBlock</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>ProjectileSpikeBlock</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>72</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

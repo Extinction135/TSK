@@ -43,33 +43,16 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-Projectiles on Conveyor Belts
+Improve Key Rooms 2 and 3
 
-we still have a problem with projectiles like swords on conveyor belts
-if we make projectiles like sword grounded, then they move on conveyor belts, but also get pulled into pits
-they shouldn't get pulled into pits, but they should be able to be moved on conveyor belts
-so, we could simply check for specific objs in addition to checking if obj.grounded is true
+improved the playability of key rooms 2 & 3.
+these changes were based on personal preference.
+overall, reduced difficulty slightly.
+playtested, bug with summary screen.
 
-
-
-
-
-
-
-
-Fix Sword Projectile on Conveyor Belt Bug
-
-projectiles like swords dont move on conveyor belts.
-so if the hero attacks with a sword facing south on a conveyor belt,
-the hero will be pushed into his own sword, dealing him damage.
-obviously, this behavior is wrong and bad.
-
-when an actor attacks, uses an item, or gets rewarded, 
-halt their movement if colliding with a conveyor belt.
-else, push the actor as normal.
-
-updated Functions_Interaction with code to check for actor state.
-based on actor state, actors are pushed or not pushed on treadmills.
+was a divide by 0 error, due to faulty skill rating logic.
+fixed logic causing bug, but the summary rating is wrong.
+updated skill rating logic to set negative or zero values to 1.
 playtested, working as expected.
 
 
@@ -81,22 +64,10 @@ playtested, working as expected.
 
 
 
+Ice tile
+changes friction, which affects how quickly an obj/actor slows down
+this should affect the moveComponent of objects + actors the same way
 
-
-
-
-
-
-
-
-
-implement a level 2 magic spell
-this would deal 1 damage to everything on screen
-and play explosions randomly inside the room
-should be named bombos, sold by magic dealer
-
-
-make some rooms easier (like spikeblock key room)
 
 
 
@@ -107,14 +78,7 @@ make some rooms easier (like spikeblock key room)
 Implement SwitchBlocks
 implement switch blocks + switch block switch (name?)
 
-
 implement switches - how do these work? hero steps on them
-
-
-
-
-
-we need to solve this in tandem with creating boomerangs
 
 Implement Boomerang
 this is a projectile that flys in a thrown direction
@@ -139,9 +103,7 @@ the dungeon statue should become the destroyed version upon destruction.
 any object that can be destroyed should become this object.
 this object should look like a pile of rocks. can be pushed.
 
-Ice tile
-changes friction, which affects how quickly an obj/actor slows down
-this should affect the moveComponent of objects + actors the same way
+
 
 Circling Stars
 just like Lttp, the circling stars turns hero into an enemy actor type
@@ -199,9 +161,13 @@ leaving actor hovering over pits, which is bad
 
 
 
+implement a level 2 magic spell
+this would deal 1 damage to everything on screen
+and play explosions randomly inside the room
+should be named bombos, sold by magic dealer
 
-
-
+potion that makes hero invincible for a period of time
+how is this visually represented?
 
 
 

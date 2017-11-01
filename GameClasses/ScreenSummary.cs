@@ -78,14 +78,17 @@ namespace DungeonRun
             int enemiesKilledNew = PlayerData.current.enemiesKilled + DungeonRecord.enemyCount;
             int damageNew = PlayerData.current.damageTaken + DungeonRecord.totalDamage;
 
-            double newSR = 0.0; //calculate new SR, prevent divide by 0
-            if (enemiesKilledNew + damageNew > 0) { newSR = enemiesKilledNew / damageNew; }
+            double newSR = 0.0; //prevent divide by 0
+            if (enemiesKilledNew <= 0) { enemiesKilledNew = 1; }
+            if (damageNew <= 0) { damageNew = 1; }
 
-            double oldSR = 0.0; //calculate old SR, prevent divide by 0
-            if (PlayerData.current.enemiesKilled + PlayerData.current.damageTaken > 0)
-            { oldSR = PlayerData.current.enemiesKilled / PlayerData.current.damageTaken; }
-
-            //calculate the change in ratings, to 2 digits
+            double oldSR = 0.0; // prevent divide by 0
+            if (PlayerData.current.enemiesKilled <= 0) { PlayerData.current.enemiesKilled = 1; }
+            if (PlayerData.current.damageTaken <= 0) { PlayerData.current.damageTaken = 1; }
+            
+            //calculate SR and ratings change to 2 digits
+            newSR = enemiesKilledNew / damageNew;
+            oldSR = PlayerData.current.enemiesKilled / PlayerData.current.damageTaken;
             ratingChange = (float)Math.Round(newSR - oldSR, 2);
 
             #endregion
