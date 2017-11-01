@@ -26,9 +26,15 @@ todo:
 
 v0.7 goals
 
-3 dungeons, with different enemies & bosses
+5 dungeons, with different enemies & bosses
 but we'll need to complete the dungeon objects before we implement diff dungeons
 
+DUNGEON OBJS, CASTLE DUNGEON, 2 castle enemies
+FOREST DUNGEON, BOSS + 3 ENEMIES
+CAVE DUNGEON, BOSS + 3 ENEMIES
+ICE DUNGEON, BOSS + 3 ENEMIES
+SWAMP DUNGEON, BOSS + 3 ENEMIES
+LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
@@ -36,15 +42,34 @@ but we'll need to complete the dungeon objects before we implement diff dungeons
 
 
 
-Fix Improper Display of Elapsed Game Time
 
-the time is not being displayed properly on the game display.
-the seconds are being added to, and they exceed 60.
-the issue stems from how we add a timeSpan to our PlayerData.
-we are not rounding the secs & mins around a radix of 60.
-so those values can exceed the bounds of 60.
+Projectiles on Conveyor Belts
 
-updated SummaryScreen to round the secs and mins values.
+we still have a problem with projectiles like swords on conveyor belts
+if we make projectiles like sword grounded, then they move on conveyor belts, but also get pulled into pits
+they shouldn't get pulled into pits, but they should be able to be moved on conveyor belts
+so, we could simply check for specific objs in addition to checking if obj.grounded is true
+
+
+
+
+
+
+
+
+Fix Sword Projectile on Conveyor Belt Bug
+
+projectiles like swords dont move on conveyor belts.
+so if the hero attacks with a sword facing south on a conveyor belt,
+the hero will be pushed into his own sword, dealing him damage.
+obviously, this behavior is wrong and bad.
+
+when an actor attacks, uses an item, or gets rewarded, 
+halt their movement if colliding with a conveyor belt.
+else, push the actor as normal.
+
+updated Functions_Interaction with code to check for actor state.
+based on actor state, actors are pushed or not pushed on treadmills.
 playtested, working as expected.
 
 
@@ -65,69 +90,6 @@ playtested, working as expected.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-need an on screen dungeon timer (for dungeon levels)
-upper right corner, simply draws the DungeonRecord.timespan value
-this should display down to the ms
-this should only display if level is a dungeon
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-dungeons can have deep water (sinks) and shallow water (just has wading fx)
-and we can build puzzles around this, because it's impossible to tell them apart
-but we should be able to tell them apart, with some kind of shallow water lighter color difference
-this is important to do now, because it affects the layout of the dungeon sheet
-
-
-
-
-
-
-
-
-
-
-
-where do we display the kill ratio?
-this is displayed in a stats widget somewhere that hasn't been designed yet
-equation for determining skill rating in percentage.
-this is: total enemies killed / damage taken
-ex: 10/1 = 10.   245/73 = 3.35.
-
-
-
-we need to make sure we're checking if actor == hero, and not if actor.type == hero in various routines
-interaction routines
-
-
-
-
-
-
-
 implement a level 2 magic spell
 this would deal 1 damage to everything on screen
 and play explosions randomly inside the room
@@ -137,65 +99,22 @@ should be named bombos, sold by magic dealer
 make some rooms easier (like spikeblock key room)
 
 
+
+
+
+
+
 Implement SwitchBlocks
 implement switch blocks + switch block switch (name?)
+
+
 implement switches - how do these work? hero steps on them
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-NPCs should change their dialog based on the hero.actorType
-if hero, then NPCs act normal
-if blob, then NPCs act disgusted, wont sell
-
-we need to create a blob safe level, where blobs have their own vendors + guide
-this allows the two storylines to co-exist and proress seperately
-
-
-
-
-
-
-
-
-Projectiles on Conveyor Belts
-
-we still have a problem with projectiles like swords on conveyor belts
-if we make projectiles like sword grounded, then they move on conveyor belts, but also get pulled into pits
-they shouldn't get pulled into pits, but they should be able to be moved on conveyor belts
-
 we need to solve this in tandem with creating boomerangs
-
-
-
-
-
 
 Implement Boomerang
 this is a projectile that flys in a thrown direction
@@ -215,24 +134,14 @@ attachment
 how do we attach an obj/actor to boomerang? i dunno
 
 
-
-
-
-
 Destroyed Debris object
 the dungeon statue should become the destroyed version upon destruction.
 any object that can be destroyed should become this object.
-this object should look like a pile of rocks.
-
-
-
+this object should look like a pile of rocks. can be pushed.
 
 Ice tile
 changes friction, which affects how quickly an obj/actor slows down
 this should affect the moveComponent of objects + actors the same way
-
-
-Add More Persistent Projectiles
 
 Circling Stars
 just like Lttp, the circling stars turns hero into an enemy actor type
@@ -242,14 +151,6 @@ this is a check: if hero.type != hero, become enemy, else become hero.
 WanderingFire 
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
-
-
-
-
-
-
-
-
 
 Explosive Barrel
 we should have an explosive barrel - of course!
@@ -263,18 +164,26 @@ they can also be used to give rooms more character, and create the illusion of d
 (because hero can walk behind them)
 this is a very easy sprite to design, but is more difficult to display in object tools widget
 
-
-
-we need more game objects before we can make other dungeons
-this is because we want to naill-down the layout of the dungeon sheet prior to expanding
-
-
-
-
 BUG - PITS
 if an actor overlaps two pits at the exact same time
 they can be pulled into each pit, resulting in a cancelled out pull
 leaving actor hovering over pits, which is bad
+
+
+
+
+
+
+
+
+
+
+
+**** COMPLETE DUNGEON OBJECTS BEFORE CONTINUING ****
+
+
+
+
 
 
 
@@ -399,6 +308,63 @@ this sequential scaling should happen anytime hero's health changes
 need a dungeon statue destroyed obj
 need a 'base' object that sits underneath skullpots
 skullpots would then become this base object upon destruction / lift
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+need an on screen dungeon timer (for dungeon levels)
+upper right corner, simply draws the DungeonRecord.timespan value
+this should display down to the ms
+this should only display if level is a dungeon
+
+	
+dungeons can have deep water (sinks) and shallow water (just has wading fx)
+and we can build puzzles around this, because it's impossible to tell them apart
+but we should be able to tell them apart, with some kind of shallow water lighter color difference
+this is important to do now, because it affects the layout of the dungeon sheet
+
+where do we display the kill ratio?
+this is displayed in a stats widget somewhere that hasn't been designed yet
+equation for determining skill rating in percentage.
+this is: total enemies killed / damage taken
+ex: 10/1 = 10.   245/73 = 3.35.
+
+
+we need to make sure we're checking if actor == hero, and not if actor.type == hero in various routines
+interaction routines
+
+
+NPCs should change their dialog based on the hero.actorType
+if hero, then NPCs act normal
+if blob, then NPCs act disgusted, wont sell
+
+we need to create a blob safe level, where blobs have their own vendors + guide
+this allows the two storylines to co-exist and proress seperately
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

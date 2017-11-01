@@ -339,7 +339,14 @@ namespace DungeonRun
                     }
                     else if (Obj.type == ObjType.ConveyorBeltOn)
                     {   //belt move actors (on ground) the same way we move objects
-                        if (Actor.compMove.grounded) { ConveyorBeltPush(Actor.compMove, Obj); }
+                        if (Actor.compMove.grounded)
+                        {   //halt actor movement based on certain states
+                            if (Actor.state == ActorState.Attack
+                                || Actor.state == ActorState.Reward
+                                || Actor.state == ActorState.Use)
+                            { Functions_Movement.StopMovement(Actor.compMove); }
+                            else { ConveyorBeltPush(Actor.compMove, Obj); }
+                        }
                     }
                     else if (Obj.type == ObjType.Bumper)
                     {
@@ -569,7 +576,7 @@ namespace DungeonRun
                 else if(RoomObj.type == ObjType.ConveyorBeltOn)
                 {   //if Projectile is moveable and on ground, move it
                     if (Entity.compMove.moveable)
-                    {   
+                    {
                         if (Entity.compMove.grounded)
                         { ConveyorBeltPush(Entity.compMove, RoomObj); }
                     }
