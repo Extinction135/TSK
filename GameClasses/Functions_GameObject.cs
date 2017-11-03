@@ -96,6 +96,12 @@ namespace DungeonRun
             if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
+        public static void Kill(GameObject Obj)
+        {   //the roomObj/entity 'dies' and is then released
+            Functions_Entity.HandleDeathEvent(Obj);
+            Functions_Pool.Release(Obj);
+        }
+
         public static void SetType(GameObject Obj, ObjType Type)
         {   //Obj.direction should be set prior to this method running
             Obj.type = Type;

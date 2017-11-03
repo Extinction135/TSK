@@ -467,7 +467,7 @@ namespace DungeonRun
                     if (RoomObj.type == ObjType.SwitchBlockBtn)
                     { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
                     //arrows die upon blocking collision
-                    KillProjectileUponCollision(Entity);
+                    Functions_GameObject.Kill(Entity);
                 }
 
                 #endregion
@@ -509,7 +509,7 @@ namespace DungeonRun
                     else if (RoomObj.type == ObjType.SwitchBlockBtn)
                     { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
                     //fireballs die upon blocking collision
-                    KillProjectileUponCollision(Entity);
+                    Functions_GameObject.Kill(Entity);
                 }
 
                 #endregion
@@ -531,7 +531,7 @@ namespace DungeonRun
 
                 else if (Entity.type == ObjType.ProjectileSword)
                 {   //sword swipe causes soundfx to blocking objects
-                    if (Entity.lifeCounter == 1)
+                    if (Entity.lifeCounter == 1) //these events happen at start of sword swing
                     {   //if sword projectile is brand new, play collision sfx
                         if (RoomObj.type == ObjType.DoorBombable)
                         { Assets.Play(Assets.sfxTapHollow); } //play hollow
@@ -539,10 +539,13 @@ namespace DungeonRun
                         //spawn a hit sparkle particle on sword
                         Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Entity);
                     }
-                    if (RoomObj.type == ObjType.Pot)
-                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                    else if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                    else if(Entity.lifeCounter == 2)
+                    {   //check these collisions only once, not on first frame
+                        if (RoomObj.type == ObjType.Pot)
+                        { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
+                        else if (RoomObj.type == ObjType.SwitchBlockBtn)
+                        { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                    }
                 }
 
                 #endregion
@@ -646,23 +649,30 @@ namespace DungeonRun
                     if (Entity.type == ObjType.ProjectileSpikeBlock)
                     { BounceSpikeBlock(Entity); }
                     //kill all other projectiles
-                    else { KillProjectileUponCollision(Entity); }
+                    else if(Entity.type == ObjType.ProjectileFireball
+                        || Entity.type == ObjType.ProjectileArrow
+                        || Entity.type == ObjType.ProjectileBomb)
+                    { Functions_GameObject.Kill(Entity); }
                 }
 
                 #endregion
 
             }
+
+
+
+            //can check entity vs roomObj interactions like dis
+            if (RoomObj.type == ObjType.SwitchBlockBtn)
+            {   //timestamp any entity collision with the roomObj
+                Debug.WriteLine("" + 
+                    RoomObj.type + " vs " + Entity.type + 
+                    " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
+            }
         }
 
 
 
-        public static void KillProjectileUponCollision(GameObject Projectile)
-        {   //these projectiles die upon a collision with another object
-            if (Projectile.type == ObjType.ProjectileFireball
-                || Projectile.type == ObjType.ProjectileArrow
-                || Projectile.type == ObjType.ProjectileBomb)
-            { Projectile.lifeCounter = Projectile.lifetime; }
-        }
+        
 
         public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
         {   //bounce opposite direction

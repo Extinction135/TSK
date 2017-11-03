@@ -45,30 +45,57 @@ switch blocks
 
 
 
-SwitchBlocks++
-
-switchblock buttons should be activated by swords, arrows, etc..
-
-moved creation of switch button particle into FlipSwitchBlocks.
-arrows, explosions, fireballs, spikeBlocks(!!!), & swords now activate switch block buttons.
-tested, working, but with some bugs.
-
-bugs:
-sword hits block btn multiple times per instance.
-fireballs and arrows hit twice.
-spikeblocks hit only once, and work perfectly.
-
-bug will be fixed in a future commit.
 
 
 
 
+SwitchBlocks -> fix bugs
+
+bug: the fireball + arrow hit twice because they aren't killed off on frame 1.
+they are allowed to continue existing for the next frame, frame 2.
+and on frame2, the collisions + interactions are evaluated before the fireball dies.
+so, we simply need to kill the fireball on frame 1.
+
+updated Functions_Interaction.KillProjectileUponCollision().
+upon collision, the projectile's death event is handled, then the obj is released.
+playtested, the fireball only collides with the switch btn once.
+tested with arrows, working as expected.
+
+bug: the sword collides with the switch block btn multiple times.
+this causes the blocks to rise and fall rapidly, putting alot of stress
+on the particle system and making certain rooms unplayable.
+
+modified Functions_Interaction Sword section.
+instead of evaluating sword + switch block btn collisions every frame,
+the collision/interaction is evaluated on the sword's second frame.
+this prevents the sword from triggering FlipSwitchBlocks() multiple times.
+this fix also frees up a few cpu cycles, since the game no longer has
+to evaluate needless sword + btn interactions.
+playtested sword + SBbtn interaction, single fire, working as expected.
+
+renamed KillProjectileUponCollision() to Kill().
+moved Kill() from Functions_Interaction to Functions_GameObject.
+this is a more logical association, because Kill(GameObject).
 
 
 
-fix bugs:
-it's probably because InteractObj() is being called twice per frame
-once for fireball/arrow, and once for the switch btn?
+
+
+
+
+
+
+
+
+
+
+explosions dont work with switch blocks... why?
+
+
+
+
+
+SwitchBlocks ++
 
 resolve:
 what happens when hero collides with a block that is up?
@@ -77,13 +104,6 @@ he should be pushed as if he collided with a spike floor obj
 polish:
 conveyor belts should sort over down switch blocks
 this means conveyor belts should sort above -32
-
-
-
-
-
-
-
 
 
 
