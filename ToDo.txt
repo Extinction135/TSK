@@ -47,49 +47,20 @@ switch blocks
 
 
 
+SwitchBlockButtons vs Explosions
 
+fix bug with explosions triggering switch block btns multiple times.
+this bug was caused by the same bug that happened with sword projectiles.
+the explosion was interacting with SBbtn across multiple frames,
+for the duration of the explosion's lifetime.
 
-SwitchBlocks -> fix bugs
-
-bug: the fireball + arrow hit twice because they aren't killed off on frame 1.
-they are allowed to continue existing for the next frame, frame 2.
-and on frame2, the collisions + interactions are evaluated before the fireball dies.
-so, we simply need to kill the fireball on frame 1.
-
-updated Functions_Interaction.KillProjectileUponCollision().
-upon collision, the projectile's death event is handled, then the obj is released.
-playtested, the fireball only collides with the switch btn once.
-tested with arrows, working as expected.
-
-bug: the sword collides with the switch block btn multiple times.
-this causes the blocks to rise and fall rapidly, putting alot of stress
-on the particle system and making certain rooms unplayable.
-
-modified Functions_Interaction Sword section.
-instead of evaluating sword + switch block btn collisions every frame,
-the collision/interaction is evaluated on the sword's second frame.
-this prevents the sword from triggering FlipSwitchBlocks() multiple times.
-this fix also frees up a few cpu cycles, since the game no longer has
-to evaluate needless sword + btn interactions.
-playtested sword + SBbtn interaction, single fire, working as expected.
-
-renamed KillProjectileUponCollision() to Kill().
-moved Kill() from Functions_Interaction to Functions_GameObject.
-this is a more logical association, because Kill(GameObject).
+updated Functions_Interaction.InteractObject Explosion section.
+explosion interactions now process on explosion's first frame.
+this prevents the explosion from calling FlipSwitchBlocks() multiple times.
+playtested, working as expected.
 
 
 
-
-
-
-
-
-
-
-
-
-
-explosions dont work with switch blocks... why?
 
 
 

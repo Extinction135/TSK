@@ -487,12 +487,15 @@ namespace DungeonRun
 
                 else if (Entity.type == ObjType.ProjectileExplosion)
                 {   //explosions alter certain roomObjects
-                    if (RoomObj.type == ObjType.DoorBombable)
-                    { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Entity); }
-                    else if (RoomObj.type == ObjType.BossStatue || RoomObj.type == ObjType.Pot)
-                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                    else if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                    if (Entity.lifeCounter == 1)
+                    {   //check these collisions only once
+                        if (RoomObj.type == ObjType.DoorBombable)
+                        { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Entity); }
+                        else if (RoomObj.type == ObjType.BossStatue || RoomObj.type == ObjType.Pot)
+                        { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
+                        else if (RoomObj.type == ObjType.SwitchBlockBtn)
+                        { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                    }
                 }
 
                 #endregion
@@ -660,7 +663,7 @@ namespace DungeonRun
             }
 
 
-
+            /*
             //can check entity vs roomObj interactions like dis
             if (RoomObj.type == ObjType.SwitchBlockBtn)
             {   //timestamp any entity collision with the roomObj
@@ -668,6 +671,7 @@ namespace DungeonRun
                     RoomObj.type + " vs " + Entity.type + 
                     " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
             }
+            */
         }
 
 
