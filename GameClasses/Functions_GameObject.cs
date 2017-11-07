@@ -301,7 +301,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
                 Obj.compSprite.zOffset = -7; //sort normally
-                Obj.compCollision.blocking = true;
+                Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
 

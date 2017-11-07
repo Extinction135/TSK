@@ -215,7 +215,7 @@ namespace DungeonRun
             //fill hero's health up to max - prevents drum track from playing
             Pool.hero.health = PlayerData.current.heartsTotal;
             //grab the hero's current loadout
-            Functions_Actor.SetHeroLoadout();
+            Functions_Hero.SetLoadout();
             //reset the pool
             Functions_Pool.Reset();
 

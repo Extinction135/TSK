@@ -31,8 +31,8 @@ namespace DungeonRun
 
             //load hero's actorType from SaveData
             Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
-            Functions_Actor.SetHeroLoadout();
-            Functions_Actor.SetHerosPet();
+            Functions_Hero.SetLoadout();
+            Functions_Hero.SetPet();
 
             //open the screen
             displayState = DisplayState.Opening;
@@ -183,7 +183,7 @@ namespace DungeonRun
             {
                 Functions_Draw.Draw(Input.cursorColl);
                 Functions_Draw.DrawLevel();
-                Functions_Draw.Draw(Functions_Interaction.interactionRec);
+                Functions_Draw.Draw(Functions_Hero.interactionRec);
             }
             ScreenManager.spriteBatch.End();
 

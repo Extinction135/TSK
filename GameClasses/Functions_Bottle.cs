@@ -78,7 +78,7 @@ namespace DungeonRun
                 { Functions_Actor.SetType(Pool.hero, ActorType.Blob); }
                 else { Functions_Actor.SetType(Pool.hero, ActorType.Hero); }
                 //reload hero's loadout from player.current data
-                Functions_Actor.SetHeroLoadout();
+                Functions_Hero.SetLoadout();
                 Pool.hero.health = PlayerData.current.heartsTotal; //refill the hero's health
                 PlayerData.current.actorType = Pool.hero.type; //save the hero's actorType
             }

@@ -418,9 +418,9 @@ namespace DungeonRun
         {   //set pet type, update hero's pet type
             PlayerData.current.hasPet = true;
             PlayerData.current.petType = Item.type;
-            Functions_Actor.SetHerosPet();
+            Functions_Hero.SetPet();
             //move pet to hero, update hero's loadout
-            Functions_Room.TeleportHerosPet();
+            Functions_Hero.TeleportPet();
             Widgets.Loadout.UpdateLoadout();
             //display adoption dialog text
             Widgets.Dialog.DisplayDialog(vendorType, "thanks!",

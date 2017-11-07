@@ -55,7 +55,6 @@ namespace DungeonRun
             }
         }
 
-
         public static void FlipSwitchBlocks(Vector2 BtnPos)
         {
             Assets.Play(Assets.sfxSwitch);
@@ -80,7 +79,6 @@ namespace DungeonRun
                 }
             }
         }
-
 
 
 

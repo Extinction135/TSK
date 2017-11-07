@@ -277,7 +277,7 @@ namespace DungeonRun
             //set spawnPos outside TopLeft of newly built room
             Functions_Level.currentRoom.spawnPos.X = Functions_Level.currentRoom.rec.X - 32;
             Functions_Level.currentRoom.spawnPos.Y = Functions_Level.currentRoom.rec.Y;
-            Functions_Room.SpawnHeroInCurrentRoom(); //spawn hero in room
+            Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
             Pool.hero.direction = Direction.Down; //face hero down
             Flags.Paused = true;
         }

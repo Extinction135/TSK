@@ -14,116 +14,11 @@ namespace DungeonRun
 {
     public static class Functions_Collision
     {
-
         static int i;
         static Boolean collision = false;
         static Boolean collisionX;
         static Boolean collisionY;
         static Boolean collisionXY;
-
-
-
-        public static void CheckRoomCollision()
-        {
-
-            #region Handle Hero transferring between Level.Rooms
-
-            for (i = 0; i < Level.rooms.Count; i++)
-            {   //if the current room is not the room we are checking against, then continue
-                if (Functions_Level.currentRoom != Level.rooms[i])
-                {   //if heroRec collides with room rec, set it as currentRoom, build room
-                    if (Pool.heroRec.Intersects(Level.rooms[i].rec))
-                    {
-                        Functions_Level.currentRoom = Level.rooms[i];
-                        Level.rooms[i].visited = true;
-                        Functions_Room.BuildRoom(Level.rooms[i]);
-                        Functions_Room.FinishRoom(Level.rooms[i]);
-                        if (Functions_Level.currentRoom.type == RoomType.Boss)
-                        {   //if hero just entered the boss room, play the boss intro & music
-                            Assets.Play(Assets.sfxBossIntro);
-                            Functions_Music.PlayMusic(Music.Boss);
-                        }
-                    }
-                }
-            }
-
-            #endregion
-
-
-            #region Track Doors that Hero has visited
-
-            for (i = 0; i < Level.doors.Count; i++)
-            {   //check heroRec collision against Level.doors
-                if (Pool.heroRec.Intersects(Level.doors[i].rec))
-                {   //track doors hero has visited
-                    Level.doors[i].visited = true; 
-                    if(Level.doors[i].type == DoorType.Open)
-                    {   //set the current room's spawnPos to the last open door hero collided with
-                        Functions_Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
-                        Functions_Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
-                    }
-                } 
-            }
-
-            #endregion
-
-
-            #region Open/Close Doors for Hero
-
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].active) //roomObj must be active
-                {
-                    if(Pool.roomObjPool[i].type == ObjType.DoorOpen)
-                    {   //set open/bombed doors to blocking or non-blocking
-                        Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
-
-                        //compare hero to door positions, unblock door if hero is close enough
-                        if (Math.Abs(Pool.hero.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
-                        {   //compare hero to door sprite positions, unblock door if hero is close enough
-                            if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
-                            { Pool.roomObjPool[i].compCollision.blocking = false; }
-                        }
-                        //do this for hero's pet as well
-                        if (Math.Abs(Pool.herosPet.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
-                        {
-                            if (Math.Abs(Pool.herosPet.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
-                            { Pool.roomObjPool[i].compCollision.blocking = false; }
-                        }
-                    }
-                }
-            }
-
-            #endregion
-
-        }
-
-        public static Boolean CheckInteractionRecCollisions()
-        {   //set the interaction rec to the hero's position + direction
-            Functions_Interaction.SetHeroInteractionRec();
-            collision = false;
-            //check to see if the interactionRec collides with any gameObjects
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].active)
-                {
-                    if (Functions_Interaction.interactionRec.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
-                    {
-                        Functions_Movement.StopMovement(Pool.hero.compMove);
-                        Pool.hero.stateLocked = true;
-                        Pool.hero.lockTotal = 10; //required to show the pickup animation
-                        collision = true;
-                        //handle the hero interaction, may overwrites hero.lockTotal
-                        Functions_Interaction.InteractHero(Pool.roomObjPool[i]);
-                    }
-                }
-            }
-            //move the interaction rec offscreen
-            Functions_Interaction.ClearHeroInteractionRec();
-            return collision;
-        }
-
-        
 
         public static Boolean CheckObjPoolCollisions(Actor Actor)
         {
@@ -133,7 +28,7 @@ namespace DungeonRun
                 if (Pool.roomObjPool[i].active) //roomObj must be active
                 {   //check for overlap
                     if (Actor.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
-                    {   //blocking collision returns true, non-blocking collision causes Interaction()
+                    {   //blocking collisions return true
                         if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
                         else { Functions_Interaction.InteractActor(Actor, Pool.roomObjPool[i]); }
                     }
@@ -158,7 +53,7 @@ namespace DungeonRun
                         {   //check for overlap
                             if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                             {   //handle any actor vs actor interaction, return collision
-                                if (Actor == Pool.hero) { Functions_Interaction.InteractHero(Pool.actorPool[i]); }
+                                if (Actor == Pool.hero) { Functions_Hero.Interact(Pool.actorPool[i]); }
                                 collision = true;
                             }
                         }
@@ -208,8 +103,6 @@ namespace DungeonRun
             }
             return collision;
         }
-        
-
 
         public static void CheckCollisions(Actor Actor)
         {   //most frames, an actor isn't colliding with anything, so do diagonal check first

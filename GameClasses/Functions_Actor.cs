@@ -136,11 +136,8 @@ namespace DungeonRun
             Actor.lockTotal = 40;
         }
 
-
-
         public static void SetCollisionRec(Actor Actor)
-        {
-            //set the collisionRec parameters based on the Type
+        {   //set the collisionRec parameters based on the Type
             if (Actor.type == ActorType.Boss)
             {
                 Actor.compCollision.rec.Width = 24;
@@ -163,93 +160,6 @@ namespace DungeonRun
             Actor.item = MenuItemType.Unknown;
             Actor.armor = MenuItemType.Unknown;
             Actor.equipment = MenuItemType.Unknown;
-        }
-
-        public static void SetHeroLoadout()
-        {   //set the hero's loadout based on playerdata.current
-            Pool.hero.weapon = MenuItemType.Unknown;
-            Pool.hero.item = MenuItemType.Unknown;
-            Pool.hero.armor = MenuItemType.Unknown;
-            Pool.hero.equipment = MenuItemType.Unknown;
-
-            //sanitize playerdata.current to within expected values
-            if (PlayerData.current.currentItem > 9) { PlayerData.current.currentItem = 0; }
-            if (PlayerData.current.currentWeapon > 4) { PlayerData.current.currentWeapon = 0; }
-            if (PlayerData.current.currentArmor > 4) { PlayerData.current.currentArmor = 0; }
-            if (PlayerData.current.currentEquipment > 4) { PlayerData.current.currentEquipment = 0; }
-
-            //set hero's item
-            if (PlayerData.current.currentItem == 0)
-            { Pool.hero.item = MenuItemType.ItemBomb; }
-            else if (PlayerData.current.currentItem == 1)
-            { Pool.hero.item = MenuItemType.ItemBoomerang; }
-            //set item based on bottle contents
-            else if (PlayerData.current.currentItem == 2)
-            { Functions_Bottle.LoadBottle(PlayerData.current.bottleA); }
-            else if (PlayerData.current.currentItem == 3)
-            { Functions_Bottle.LoadBottle(PlayerData.current.bottleB); }
-            else if (PlayerData.current.currentItem == 4)
-            { Functions_Bottle.LoadBottle(PlayerData.current.bottleC); }
-
-            //magic items
-            else if (PlayerData.current.currentItem == 5)
-            { Pool.hero.item = MenuItemType.MagicFireball; }
-            else if (PlayerData.current.currentItem == 6)
-            { Pool.hero.item = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentItem == 7)
-            { Pool.hero.item = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentItem == 8)
-            { Pool.hero.item = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentItem == 9)
-            { Pool.hero.item = MenuItemType.Unknown; }
-
-            //set hero's weapon
-            if (PlayerData.current.currentWeapon == 0)
-            { Pool.hero.weapon = MenuItemType.WeaponSword; }
-            else if (PlayerData.current.currentWeapon == 1)
-            { Pool.hero.weapon = MenuItemType.WeaponBow; }
-            else if (PlayerData.current.currentWeapon == 2)
-            { Pool.hero.weapon = MenuItemType.WeaponNet; }
-            else if (PlayerData.current.currentWeapon == 3)
-            { Pool.hero.weapon = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentWeapon == 4)
-            { Pool.hero.weapon = MenuItemType.Unknown; }
-
-            //set hero's armor
-            if (PlayerData.current.currentArmor == 0)
-            { Pool.hero.armor = MenuItemType.ArmorCloth; }
-            else if (PlayerData.current.currentArmor == 1)
-            { Pool.hero.armor = MenuItemType.ArmorChest; }
-            else if (PlayerData.current.currentArmor == 2)
-            { Pool.hero.armor = MenuItemType.ArmorCape; }
-            else if (PlayerData.current.currentArmor == 3)
-            { Pool.hero.armor = MenuItemType.ArmorRobe; }
-            else if (PlayerData.current.currentArmor == 4)
-            { Pool.hero.armor = MenuItemType.Unknown; }
-
-            //set hero's equipment
-            if (PlayerData.current.currentEquipment == 0)
-            { Pool.hero.equipment = MenuItemType.EquipmentRing; }
-            else if (PlayerData.current.currentEquipment == 1)
-            { Pool.hero.equipment = MenuItemType.EquipmentPearl; }
-            else if (PlayerData.current.currentEquipment == 2)
-            { Pool.hero.equipment = MenuItemType.EquipmentNecklace; }
-            else if (PlayerData.current.currentEquipment == 3)
-            { Pool.hero.equipment = MenuItemType.EquipmentGlove; }
-            else if (PlayerData.current.currentEquipment == 4)
-            { Pool.hero.equipment = MenuItemType.EquipmentPin; }
-        }
-
-        public static void SetHerosPet()
-        {   //set the hero's pet to be active or inactive
-            Pool.herosPet.active = PlayerData.current.hasPet;
-            Functions_ActorAnimationList.SetPetAnimList();
-
-            //set the pet's dash sound
-            if (PlayerData.current.petType == MenuItemType.PetChicken)
-            { Pool.herosPet.sfxDash = Assets.sfxPetChicken; }
-            else if (PlayerData.current.petType == MenuItemType.PetStinkyDog)
-            { Pool.herosPet.sfxDash = Assets.sfxPetDog; }
         }
 
 
@@ -393,7 +303,7 @@ namespace DungeonRun
                 //check states
                 if (Actor.state == ActorState.Interact)
                 {   //if there is an object to interact with, interact with it
-                    if (Functions_Collision.CheckInteractionRecCollisions()) {}
+                    if (Functions_Hero.CheckInteractionRecCollisions()) {}
                     else { Actor.state = ActorState.Idle; } //no interaction
                 }
                 else if (Actor.state == ActorState.Dash)
@@ -458,40 +368,9 @@ namespace DungeonRun
                 {   //check death state
                     Actor.lockCounter = 0; //lock actor into dead state
                     Actor.health = 0; //lock actor's health at 0
-
-
-                    #region Hero Death Effects
-
-                    if (Actor == Pool.hero)
-                    {   //near the last frame of hero's death, create attention particles
-                        if (Actor.compAnim.index == Actor.compAnim.currentAnimation.Count - 2)
-                        {   //this event happens when hero falls to ground
-                            //goto next anim frame, this event is only processed once
-                            Actor.compAnim.index++;
-                            //spawn particle to grab the player's attention
-                            Functions_Entity.SpawnEntity(
-                                    ObjType.ParticleAttention,
-                                    Actor.compSprite.position.X,
-                                    Actor.compSprite.position.Y,
-                                    Direction.None);
-
-                            //check to see if hero can use any bottle to heal/self-rez
-                            if (Functions_Bottle.CheckBottleUponDeath(1, PlayerData.current.bottleA)) { }
-                            else if (Functions_Bottle.CheckBottleUponDeath(2, PlayerData.current.bottleB)) { }
-                            else if (Functions_Bottle.CheckBottleUponDeath(3, PlayerData.current.bottleC)) { }
-                            else
-                            {   //player has died, failed the dungeon
-                                DungeonRecord.beatDungeon = false;
-                                Functions_Level.CloseLevel(ExitAction.Summary);
-                            }
-                        }
-                    }
-
-                    #endregion
-
-
-                    #region Boss Death Effects
-
+                    
+                    //Death Effects
+                    if (Actor == Pool.hero) { Functions_Hero.HandleDeath(); }
                     else if (Actor.type == ActorType.Boss)
                     {   //dead bosses perpetually explode
                         if(Functions_Random.Int(0,100) > 75) //randomly create explosions
@@ -503,9 +382,6 @@ namespace DungeonRun
                                 Direction.None);
                         }
                     }
-
-                    #endregion
-
                 }
             }
 
