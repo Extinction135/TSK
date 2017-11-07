@@ -51,20 +51,28 @@ switch blocks + btns
 
 
 
-Consolidate All Hero Related Methods
-
-added Functions_Hero class.
-migrated various code related to hero.
-this helped to reduce the complexity of various classes.
-playtested, working as expected.
 
 
 
+Improve Various Key Room Levels
+
+remixed keyRoom001.
+modified keyRoom002.
+made keyRoom005.
+extensive playtesting.
 
 
 
 
-key room 001 needs to be simplified further, remove spikeblocks bouncing between torches and walls
+bug: while testing keyroom 004, noted that hero can walk thru up blocks..
+
+get uwp version working
+
+
+
+
+
+
 
 
 
