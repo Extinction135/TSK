@@ -28,8 +28,13 @@ namespace DungeonRun
                 if (Pool.roomObjPool[i].active) //roomObj must be active
                 {   //check for overlap
                     if (Actor.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
-                    {   //blocking collisions return true
-                        if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
+                    {   //check if obj is blocking
+                        if (Pool.roomObjPool[i].compCollision.blocking)
+                        {
+                            collision = true; //blocking collisions return true
+                            if (Actor == Pool.hero) //hero interacts with all objects
+                            { Functions_Interaction.InteractActor(Actor, Pool.roomObjPool[i]); }
+                        } //actors interact with non-blocking objects
                         else { Functions_Interaction.InteractActor(Actor, Pool.roomObjPool[i]); }
                     }
                     Pool.collisionsCount++;

@@ -40,7 +40,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 10
 
-room objs that need to be added to existing levels:
+add to existing levels:
 switch blocks + btns
 
 
@@ -48,25 +48,52 @@ switch blocks + btns
 
 
 
+Fix SwitchBlockUp Bugs
+
+updated UWP version with functions_hero, playtested.
+fixed a bug where switch blocks weren't blocking actor collisions.
+
+updated CheckObjPoolCollisions() to allow hero a chance to Interact() with blocking roomObjs.
+wrote Interaction() code section to handle hero interaction with SwitchBlockUp.
+there are two ways this interaction could happen:
+1. upon block up collision, hero respawns at last door in room.
+2. upon block up collision, block pushed hero away and eventually out of collision.
+
+the preferred method is #2, but the implementation is a bit tricky.
+the current solution works, but doesn't handle all cases, and..
+can push hero into a blocking object, causing hero to get stuck.
+
+Hmmmm...
 
 
 
 
 
 
-Improve Various Key Room Levels
 
-remixed keyRoom001.
-modified keyRoom002.
-made keyRoom005.
-extensive playtesting.
+
+
+
 
 
 
 
 bug: while testing keyroom 004, noted that hero can walk thru up blocks..
 
-get uwp version working
+
+if hero collides with a block that is up, push hero away from the blocks center.
+
+need to rewrite collision code to allow for blocking collision interactions
+blocking collisions are then handled by Interact(), which will set the actor's newPos to oldPos
+this duplicates the current system, but allows for blocking object collisions
+
+- do we really even need the blocking boolean?
+- we could define all the interactions with objs, then 
+say "else.. (obj is blocking) revert actor pos"
+
+
+
+
 
 
 

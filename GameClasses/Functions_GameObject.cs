@@ -298,10 +298,10 @@ namespace DungeonRun
             }
             else if (Type == ObjType.SwitchBlockUp)
             {
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 16;
                 Obj.compSprite.zOffset = -7; //sort normally
-                Obj.compCollision.blocking = false;
+                Obj.compCollision.blocking = true;
                 Obj.canBeSaved = true;
             }
 
