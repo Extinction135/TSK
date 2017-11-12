@@ -120,67 +120,15 @@ namespace DungeonRun
                 #region SwitchBlock UP
 
                 else if (Obj.type == ObjType.SwitchBlockUp)
-                {
-                    /*
+                {   //if hero isnt moving and is colliding with up block, convert up to down
                     if (Actor.compMove.newPosition == Actor.compMove.position)
-                    {   //respawn hero at last door
-                        Assets.Play(Actor.sfxHit); //play hero's hit sfx
-                        Functions_Hero.SpawnInCurrentRoom();
-                        //direct player's attention to hero's respawn pos
-                        Functions_Entity.SpawnEntity(
-                            ObjType.ParticleAttention,
-                            Functions_Level.currentRoom.spawnPos.X,
-                            Functions_Level.currentRoom.spawnPos.Y,
-                            Direction.None);
-                    }
-                    */
-
-                    
-                    //if hero has been colliding with switch block for atleast 1 frame, push hero away
-                    if (Actor.compMove.newPosition == Actor.compMove.position)
-                    {   //gradually push actor away from block
-
-
-                        //Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f * -1;
-                        //force move actor to new position
-                        //Actor.compMove.position += Actor.compMove.magnitude;
-
-                        //determine which axis to push upon
-                        if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) > 
-                            Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y))
-                        {   //push horizontally
-                            if (Actor.compSprite.position.X < Obj.compSprite.position.X)
-                            { Actor.compMove.position.X -= 1; } //push left
-                            else { Actor.compMove.position.X += 1; } //push right
-                        }
-                        else
-                        {   //push vertically
-                            if (Actor.compSprite.position.Y < Obj.compSprite.position.Y)
-                            { Actor.compMove.position.Y -= 1; } //push up
-                            else { Actor.compMove.position.Y += 1; } //push down
-                        }
-                        
-
-
-
-                        
-
-
-                        //force move actor to new position
-                        Actor.compMove.newPosition = Actor.compMove.position;
-                        Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
-                    }
-                    
-
+                    { Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown); }
                 }
 
                 #endregion
 
                 //switch
                 //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
-
-
-
             }
 
             #endregion
@@ -349,14 +297,7 @@ namespace DungeonRun
                         if (Actor.compMove.magnitude.Y > 1) { Actor.compMove.magnitude.Y = 1; }
                         else if (Actor.compMove.magnitude.Y < -1) { Actor.compMove.magnitude.Y = -1; }
                     }
-
-
-
-
                     
-
-
-
                     //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
                 }
 

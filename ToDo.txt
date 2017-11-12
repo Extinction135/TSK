@@ -48,100 +48,18 @@ switch blocks + btns
 
 
 
-Fix SwitchBlockUp Bugs
 
-updated UWP version with functions_hero, playtested.
-fixed a bug where switch blocks weren't blocking actor collisions.
 
-updated CheckObjPoolCollisions() to allow hero a chance to Interact() with blocking roomObjs.
-wrote Interaction() code section to handle hero interaction with SwitchBlockUp.
-there are two ways this interaction could happen:
-1. upon block up collision, hero respawns at last door in room.
-2. upon block up collision, block pushed hero away and eventually out of collision.
+Solve the SwitchBlock Collision Problem
 
-the preferred method is #2, but the implementation is a bit tricky.
-the current solution works, but doesn't handle all cases, and..
-can push hero into a blocking object, causing hero to get stuck.
-
-Hmmmm...
+problem: hero gets stuck if hero stands on down block, then becomes up block.
+solution 1: push hero away from block. bug: can be pushed into blocking objs.
+solution 2: make the up block into a down block.
+implications: can design levels around the idea of converting up / down blocks.
+playtested, working as expected. problem solved.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-bug: while testing keyroom 004, noted that hero can walk thru up blocks..
-
-
-if hero collides with a block that is up, push hero away from the blocks center.
-
-need to rewrite collision code to allow for blocking collision interactions
-blocking collisions are then handled by Interact(), which will set the actor's newPos to oldPos
-this duplicates the current system, but allows for blocking object collisions
-
-- do we really even need the blocking boolean?
-- we could define all the interactions with objs, then 
-say "else.. (obj is blocking) revert actor pos"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-resolve: what happens when hero collides with a block that is up?
-additional: what happens when the player gets stuck inside a blocking object?
-
-accept that the player can get stuck on switch blocks.
-check to see if hero overlaps any blocking roomObjs
-if true, we should start incrementing a counter
-	if this counters value reaches 100 (100 frames), then respawn hero at last door
-if false, then we should reset counter to 0
-
-this allows the game to handle any future states,
-where a blocking object might cause the hero to get stuck
-instead of breaking, the game resets itself to a working state
-
-BUT where do we put this/call this method?
-
-else if (Obj.type == ObjType.SwitchBlockUp)
-{   
-	//respawn hero at last door location
-	Assets.Play(Assets.sfxHeroHit); //play actor sfx
-	Functions_Room.SpawnHeroInCurrentRoom();
-	//direct player's attention to hero's respawn pos
-	Functions_Entity.SpawnEntity(
-		ObjType.ParticleAttention,
-		Functions_Level.currentRoom.spawnPos.X,
-		Functions_Level.currentRoom.spawnPos.Y,
-		Direction.None);
-}
-
-
-at the end of the day, we should be able to stick hero on a block that's up
-and watch as the game teleports him to the last passed thru door
-
-and this should have polish: hero should pull out the magic mirror, held above head
-then the teleport happens, via a poof particle effect.
 
 
 
@@ -159,33 +77,6 @@ then the teleport happens, via a poof particle effect.
 polish:
 conveyor belts should sort over down switch blocks
 this means conveyor belts should sort above -32
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 implement switches - how do these work? hero steps on them
 what do they do? open doors to a room, where all the door have closed
