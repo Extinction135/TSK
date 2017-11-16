@@ -17,6 +17,7 @@ namespace DungeonRun
         static int i;
         static Boolean collision = false;
         public static ComponentCollision interactionRec = new ComponentCollision();
+        public static GameObject carryingObj = null; //the obj hero might be carrying
 
 
 
@@ -258,9 +259,15 @@ namespace DungeonRun
                 Pool.hero.lockTotal = 10;
 
                 Pool.hero.carrying = true; //set carrying state
-                Pool.hero.carryingObj = Obj; //set obj ref
-                Obj.compSprite.zOffset = +256; //sort above hero
+                carryingObj = Obj; //set obj ref
+                Obj.compSprite.zOffset = +16; //sort above hero
                 Obj.compCollision.blocking = false; //prevent hero/obj collisions
+
+                //decorate pickup from ground
+                Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.Down);
             }
 
             else if (Obj.type == ObjType.TorchUnlit)

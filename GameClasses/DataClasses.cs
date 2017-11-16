@@ -476,7 +476,7 @@ namespace DungeonRun
 
         public AnimationGroup reward;
         public AnimationGroup pickupThrow;
-        //pickup, hold, carry, drag, etc...
+        //push
 
         public AnimationGroup fairy;
         public AnimationGroup petIdle;
@@ -633,7 +633,7 @@ namespace DungeonRun
         public float frictionIce = 0.99f;
 
         public Boolean carrying = false; //is this actor carrying an obj?
-        public GameObject carryingObj = null; //the obj actor might be carrying
+        
 
         //the components that actor requires to function
         public ComponentSprite compSprite;

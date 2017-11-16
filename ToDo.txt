@@ -52,47 +52,38 @@ torches in groups of 4
 
 
 
-Improve Horizontal Carrying Sprite Animations
+Improve Pickup, Carrying, Drop Hero Actions
 
-improved placement of hands when moving left/right as hero & blob.
-playtested, looks much better.
+fixed the zOffset of hero.carryingObj to be +16 instead of +256.
+this should allow the carryingObj to sort under door frames. (test this)
 
+added an attention particle when hero picks pot obj up from ground.
+this is just additional decoration to the pickup/drop action.
+changed sprite animation for attention particle.
 
-
-
-
-we need attention particle for when hero picks up pot obj
-we have one for when he sets it down
-
+moved carryingObj from Actor class to Functions_Hero class.
 
 
-the carryingObj should get a zOffset of -16, just so it sort above the hero's head
-hopefully it will still sort underneath door frames
+
+
 
 
 there is also a bug where the hero cancels his pickup if interaction rec overlaps two pots at same time/frame
 
+we should also move the hero's shadow into Functions_Hero
 
-let's only have a carryingObj in Functions_Hero
+
+
+
+Pot Throw
 while carrying, press A to throw obj in hero's facing direction
-
 create a Pot Projectile, release Pot RoomObj.
 the Pot projectile moves just like a bomb, except it also has a shadow
 after a while the pot entity breaks (as it hits the ground)
 check Pot against actors + roomObjs, break upon collision
-
-we should also move the hero's shadow into Functions_Hero
-
 pots should randomly spawn loot too, when they are destroyed
 skull pots should not be destroyed by swords
-
 pot should have sound for pickup, throw, explode/death
-
-
-
-
-
-
 
 
 
@@ -234,6 +225,11 @@ this would have to be done per axis too, so we could drag along walls
 
 
 
+Enemy Hit ++
+
+when we hit an enemy, we should display a very specific hit particle
+this is the frames:
+new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) }
 
 
 

@@ -307,9 +307,9 @@ namespace DungeonRun
 
                 if (Actor.carrying)
                 {   //place carryingObj over the hero's head
-                    Actor.carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
-                    Actor.carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 9;
-                    Functions_Component.Align(Actor.carryingObj.compMove, Actor.carryingObj.compSprite, Actor.carryingObj.compCollision);
+                    Functions_Hero.carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
+                    Functions_Hero.carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 9;
+                    Functions_Component.Align(Functions_Hero.carryingObj);
 
                     if(Actor.compInput.dash)
                     {   //if player pressed the B button, drop carryingObj
@@ -329,18 +329,18 @@ namespace DungeonRun
                         else if (Pool.hero.direction == Direction.Left) { offset.X = -12; offset.Y = +2; }
                         else { offset.X = +12; offset.Y = +2; } //defaults right
                         //apply drop offset to carryingObj
-                        Pool.hero.carryingObj.compMove.newPosition.X = Actor.compSprite.position.X + offset.X;
-                        Pool.hero.carryingObj.compMove.newPosition.Y = Actor.compSprite.position.Y + offset.Y;
+                        Functions_Hero.carryingObj.compMove.newPosition.X = Actor.compSprite.position.X + offset.X;
+                        Functions_Hero.carryingObj.compMove.newPosition.Y = Actor.compSprite.position.Y + offset.Y;
                         //simulate an impact with the ground
                         Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
-                            Pool.hero.carryingObj.compMove.newPosition.X,
-                            Pool.hero.carryingObj.compMove.newPosition.Y,
+                            Functions_Hero.carryingObj.compMove.newPosition.X,
+                            Functions_Hero.carryingObj.compMove.newPosition.Y,
                             Direction.Down);
                         //return carryingObj to Room
-                        Functions_Component.Align(Pool.hero.carryingObj);
-                        Functions_GameObject.ResetObject(Pool.hero.carryingObj); //reset Obj
-                        Functions_GameObject.SetType(Pool.hero.carryingObj, ObjType.Pot); //refresh Obj
-                        Pool.hero.carryingObj = null; //release obj ref
+                        Functions_Component.Align(Functions_Hero.carryingObj);
+                        Functions_GameObject.ResetObject(Functions_Hero.carryingObj); //reset Obj
+                        Functions_GameObject.SetType(Functions_Hero.carryingObj, ObjType.Pot); //refresh Obj
+                        Functions_Hero.carryingObj = null; //release obj ref
                     }
                 }
 

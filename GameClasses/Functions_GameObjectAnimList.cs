@@ -254,8 +254,12 @@ namespace DungeonRun
                 //NormalSize
                 //ParticleExplosion
                 new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
+
                 //ParticleAttention
-                new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) },
+                new List<Byte4> { new Byte4(6, 2, 0, 0), new Byte4(7, 2, 0, 0) },
+                //new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) },
+
+
                 //ParticleFire
                 new List<Byte4> { new Byte4(5, 3, 0, 0), new Byte4(6, 3, 0, 0), new Byte4(7, 3, 0, 0) },
                 //ParticleSplash
