@@ -132,7 +132,7 @@ namespace DungeonRun
                     }
                     else if (i == 4) //fifth row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Switch); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ChestKey); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ChestMap); }
                         else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }

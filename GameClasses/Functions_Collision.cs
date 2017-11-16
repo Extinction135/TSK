@@ -57,8 +57,8 @@ namespace DungeonRun
                         else if (Actor == Pool.hero || Pool.actorPool[i] == Pool.hero)
                         {   //check for overlap
                             if (Actor.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
-                            {   //handle any actor vs actor interaction, return collision
-                                if (Actor == Pool.hero) { Functions_Hero.Interact(Pool.actorPool[i]); }
+                            {   //handle any hero vs actor collision
+                                if (Actor == Pool.hero) { Functions_Hero.CollideWith(Pool.actorPool[i]); }
                                 collision = true;
                             }
                         }

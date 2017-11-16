@@ -19,294 +19,176 @@ namespace DungeonRun
 
 
         public static void InteractActor(Actor Actor, GameObject Obj)
-        {   //Obj can be Entity or RoomObj
+        {   //Obj can be Entity or RoomObj, check for hero state first
+            if (Actor == Pool.hero) { Functions_Hero.Interact(Obj); }
 
-            #region Handle Hero Specific Objs
+            //these objects interact with ALL ACTORS
 
-            if (Actor == Pool.hero) 
+            #region Projectiles
+
+            if (Obj.group == ObjGroup.Projectile)
+            {   //debris rocks dont interact with actors in any way at all
+                if (Obj.type == ObjType.ProjectileDebrisRock) { return; }
+                //check for collision between net and actor
+                else if (Obj.type == ObjType.ProjectileNet)
+                {   //make sure actor isn't in hit/dead state
+                    if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
+                    Obj.lifeCounter = Obj.lifetime; //kill projectile
+                    Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
+                    Functions_Actor.BottleActor(Actor); //try to bottle actor
+                }
+
+                //all actors take damage from projectiles (fairys take 0 damage)
+                Functions_Battle.Damage(Actor, Obj); //sets actor into hit/death
+                if (Obj.type == ObjType.ProjectileSword)
+                {
+                    if (Obj.lifeCounter == 1)
+                    {   //if sword projectile is brand new, spawn hit particle
+                        Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
+                    }
+                }
+            }
+
+            #endregion
+
+
+            #region Doors
+
+            else if (Obj.group == ObjGroup.Door)
             {
-
-                #region Pickups
-
-                if (Obj.group == ObjGroup.Pickup)
-                {   //only the hero can pickup hearts or rupees
-                    if (Obj.type == ObjType.PickupHeart)
-                    { Actor.health++; Assets.Play(Assets.sfxHeartPickup); }
-                    else if (Obj.type == ObjType.PickupRupee)
-                    { PlayerData.current.gold++; Assets.Play(Assets.sfxGoldPickup); }
-                    else if (Obj.type == ObjType.PickupMagic)
-                    { PlayerData.current.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
-                    else if (Obj.type == ObjType.PickupArrow)
-                    { PlayerData.current.arrowsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
-                    else if (Obj.type == ObjType.PickupBomb)
-                    { PlayerData.current.bombsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
-                    Obj.lifetime = 1; Obj.lifeCounter = 2; //end the items life
-                    return;
-                }
-
-                #endregion
-
-
-                #region Doors
-
-                else if (Obj.group == ObjGroup.Door)
-                {   //handle hero interaction with exit door
-                    if (Obj.type == ObjType.Exit)
-                    {
-                        if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
-                        {   //if dungeon screen is open, close it, perform interaction ONCE
-                            DungeonRecord.beatDungeon = false;
-                            //is hero exiting a dungeon?
-                            if (Level.type == LevelType.Castle)
-                            { Functions_Level.CloseLevel(ExitAction.ExitDungeon); }
-                            else //return to the overworld screen
-                            { Functions_Level.CloseLevel(ExitAction.Overworld); }
-                            Assets.Play(Assets.sfxDoorOpen);
-                        }
-                        //stop movement, prevents overlap with exit
-                        Functions_Movement.StopMovement(Pool.hero.compMove);
-                    }
-                    //center Hero to Door, while still allowing him to pass thru
-                    if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
-                    {   //gradually center hero to door
-                        Actor.compMove.magnitude.X = (Obj.compSprite.position.X - Actor.compMove.position.X) * 0.11f;
-                        //if hero is close to center of door, snap/lock hero to center of door
-                        if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
-                        { Actor.compMove.newPosition.X = Obj.compSprite.position.X; }
-                    }
-                    else
-                    {   //gradually center hero to door
-                        Actor.compMove.magnitude.Y = (Obj.compSprite.position.Y - Actor.compMove.position.Y) * 0.11f;
-                        //if hero is close to center of door, snap/lock hero to center of door
-                        if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
-                        { Actor.compMove.newPosition.Y = Obj.compSprite.position.Y; }
-                    }
-                    return;
-                }
-
-                #endregion
-
-
-                #region PitTrap
-
-                if (Obj.type == ObjType.PitTrap)
-                {   //if hero collides with a PitTrapReady, it starts to open
-                    Functions_GameObject.SetType(Obj, ObjType.PitAnimated);
-                    Assets.Play(Assets.sfxShatter); //play collapse sound
-                    //draw attention to the collapsed floor
-                    Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
-                        Obj.compSprite.position.X, 
-                        Obj.compSprite.position.Y, 
-                        Direction.Down);
-                    Functions_Entity.SpawnEntity(ObjType.ParticleSmokePuff,
-                        Obj.compSprite.position.X + 4, 
-                        Obj.compSprite.position.Y - 8, 
-                        Direction.Down);
-                    //create pit teeth over new pit obj
-                    Functions_RoomObject.SpawnRoomObj(ObjType.PitTop,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y, 
-                        Direction.Down);
-                    Functions_RoomObject.SpawnRoomObj(ObjType.PitBottom,
+                if (Obj.type == ObjType.DoorTrap)
+                {   //trap doors push ALL actors
+                    Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
+                    Functions_Entity.SpawnEntity(
+                        ObjType.ParticleDashPuff,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
-                        Direction.Down);
-                    return; //bail from interaction check
+                        Direction.None);
                 }
-
-                #endregion
-
-
-                #region SwitchBlock UP
-
-                else if (Obj.type == ObjType.SwitchBlockUp)
-                {   //if hero isnt moving and is colliding with up block, convert up to down
-                    if (Actor.compMove.newPosition == Actor.compMove.position)
-                    { Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown); }
-                }
-
-                #endregion
-
-                //switch
-                //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
             }
 
             #endregion
 
 
-            #region Handle Actor vs Obj
+            #region Objects
 
-            {   //these objects interact with ALL ACTORS
-
-                #region Projectiles
-
-                if (Obj.group == ObjGroup.Projectile)
-                {   //debris rocks dont interact with actors in any way at all
-                    if (Obj.type == ObjType.ProjectileDebrisRock) { return; }
-                    //check for collision between net and actor
-                    else if (Obj.type == ObjType.ProjectileNet)
-                    {   //make sure actor isn't in hit/dead state
-                        if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
-                        Obj.lifeCounter = Obj.lifetime; //kill projectile
-                        Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
-                        Functions_Actor.BottleActor(Actor); //try to bottle actor
-                    }
-
-                    //all actors take damage from projectiles (fairys take 0 damage)
-                    Functions_Battle.Damage(Actor, Obj); //sets actor into hit/death
-                    if (Obj.type == ObjType.ProjectileSword)
-                    {
-                        if (Obj.lifeCounter == 1)
-                        {   //if sword projectile is brand new, spawn hit particle
-                            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
-                        }
+            else if (Obj.group == ObjGroup.Object)
+            {
+                if (Obj.type == ObjType.SpikesFloorOn)
+                {   //damage push actors (on ground) away from spikes
+                    if (Actor.compMove.grounded) { Functions_Battle.Damage(Actor, Obj); }
+                }
+                else if (Obj.type == ObjType.ConveyorBeltOn)
+                {   //belt move actors (on ground) the same way we move objects
+                    if (Actor.compMove.grounded)
+                    {   //halt actor movement based on certain states
+                        if (Actor.state == ActorState.Attack
+                            || Actor.state == ActorState.Reward
+                            || Actor.state == ActorState.Use)
+                        { Functions_Movement.StopMovement(Actor.compMove); }
+                        else { ConveyorBeltPush(Actor.compMove, Obj); }
                     }
                 }
-
-                #endregion
-
-
-                #region Doors
-
-                else if (Obj.group == ObjGroup.Door)
+                else if (Obj.type == ObjType.Bumper)
                 {
-                    if (Obj.type == ObjType.DoorTrap)
-                    {   //trap doors push ALL actors
-                        Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
-                        Functions_Entity.SpawnEntity(
-                            ObjType.ParticleDashPuff,
-                            Obj.compSprite.position.X,
-                            Obj.compSprite.position.Y,
-                            Direction.None);
-                    }
+                    BounceOffBumper(Actor.compMove, Obj);
                 }
-
-                #endregion
-
-
-                #region Objects
-
-                else if (Obj.group == ObjGroup.Object)
-                {
-                    if (Obj.type == ObjType.SpikesFloorOn)
-                    {   //damage push actors (on ground) away from spikes
-                        if (Actor.compMove.grounded) { Functions_Battle.Damage(Actor, Obj); }
-                    }
-                    else if (Obj.type == ObjType.ConveyorBeltOn)
-                    {   //belt move actors (on ground) the same way we move objects
-                        if (Actor.compMove.grounded)
-                        {   //halt actor movement based on certain states
-                            if (Actor.state == ActorState.Attack
-                                || Actor.state == ActorState.Reward
-                                || Actor.state == ActorState.Use)
-                            { Functions_Movement.StopMovement(Actor.compMove); }
-                            else { ConveyorBeltPush(Actor.compMove, Obj); }
-                        }
-                    }
-                    else if (Obj.type == ObjType.Bumper)
+                else if (Obj.type == ObjType.PitAnimated)
+                {   //actors (on ground) fall into pits
+                    if (Actor.compMove.grounded)
                     {
-                        BounceOffBumper(Actor.compMove, Obj);
-                    }
-                    else if (Obj.type == ObjType.PitAnimated)
-                    {   //actors (on ground) fall into pits
-                        if (Actor.compMove.grounded)
+
+                        #region Prevent Hero's Pet from falling into pit
+
+                        if(Actor == Pool.herosPet)
+                        {   //get the opposite direction between pet's center and pit's center
+                            Actor.compMove.direction = Functions_Direction.GetOppositeDirection(
+                                Actor.compSprite.position, Obj.compSprite.position);
+                            //push pet in direction
+                            Functions_Movement.Push(Actor.compMove, Actor.compMove.direction, 1.0f);
+                            return;
+                        }
+
+                        #endregion
+
+
+                        #region Continuous collision (each frame)
+
+                        //gradually pull actor into pit's center, manually update the actor's position
+                        Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
+                        //force actor to move into pit (through any blocking collisions)
+                        Actor.compMove.position += Actor.compMove.magnitude;
+                        Actor.compMove.newPosition = Actor.compMove.position;
+                        Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
+
+                        //lock actor into hit state, prevent movement
+                        Actor.state = ActorState.Hit;
+                        Actor.stateLocked = true;
+                        Actor.lockCounter = 0;
+                        Actor.lockTotal = 45;
+                        Actor.compMove.speed = 0.0f;
+
+                        //if actor is near to pit center, begin/continue falling state
+                        if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
                         {
-
-                            #region Prevent Hero's Pet from falling into pit
-
-                            if(Actor == Pool.herosPet)
-                            {   //get the opposite direction between pet's center and pit's center
-                                Actor.compMove.direction = Functions_Direction.GetOppositeDirection(
-                                    Actor.compSprite.position, Obj.compSprite.position);
-                                //push pet in direction
-                                Functions_Movement.Push(Actor.compMove, Actor.compMove.direction, 1.0f);
-                                return;
-                            }
-
-                            #endregion
-
-
-                            #region Continuous collision (each frame)
-
-                            //gradually pull actor into pit's center, manually update the actor's position
-                            Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
-                            //force actor to move into pit (through any blocking collisions)
-                            Actor.compMove.position += Actor.compMove.magnitude;
-                            Actor.compMove.newPosition = Actor.compMove.position;
-                            Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
-
-                            //lock actor into hit state, prevent movement
-                            Actor.state = ActorState.Hit;
-                            Actor.stateLocked = true;
-                            Actor.lockCounter = 0;
-                            Actor.lockTotal = 45;
-                            Actor.compMove.speed = 0.0f;
-
-                            //if actor is near to pit center, begin/continue falling state
-                            if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
+                            if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
                             {
-                                if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
-                                {
-                                    if (Actor.compSprite.scale == 1.0f) //begin actor falling state
-                                    { Assets.Play(Assets.sfxActorFall); }
-                                    //continue falling state, scaling actor down
-                                    Actor.compSprite.scale -= 0.03f;
-                                }
+                                if (Actor.compSprite.scale == 1.0f) //begin actor falling state
+                                { Assets.Play(Assets.sfxActorFall); }
+                                //continue falling state, scaling actor down
+                                Actor.compSprite.scale -= 0.03f;
                             }
-                            //hide hero's shadow upon pit collision
-                            if (Actor == Pool.hero) { Pool.heroShadow.visible = false; }
-
-                            #endregion
-
-
-                            #region End State of actor -> pit collision
-
-                            if (Actor.compSprite.scale < 0.0f)
-                            {   //actor has reached 0% scale, has fallen into pit completely
-                                PlayPitFx(Obj); //fall sfx, splash fx + sfx
-                                if (Actor == Pool.hero)
-                                {   //send hero back to last door he passed thru
-                                    //Assets.Play(Actor.sfxHit); //play hero's hit sfx
-                                    Assets.Play(Assets.sfxActorLand); //play actor land sfx
-                                    Functions_Hero.SpawnInCurrentRoom();
-                                    Pool.heroShadow.visible = true; 
-                                    //direct player's attention to hero's respawn pos
-                                    Functions_Entity.SpawnEntity(
-                                        ObjType.ParticleAttention,
-                                        Functions_Level.currentRoom.spawnPos.X,
-                                        Functions_Level.currentRoom.spawnPos.Y,
-                                        Direction.None);
-                                }
-                                else
-                                {   //handle enemy pit death (no loot, insta-death)
-                                    Assets.Play(Actor.sfxDeath); //play actor death sfx
-                                    Functions_Pool.Release(Actor); //release this actor back to pool
-                                }
-                            }
-
-                            #endregion
-
                         }
+                        //hide hero's shadow upon pit collision
+                        if (Actor == Pool.hero) { Pool.heroShadow.visible = false; }
+
+                        #endregion
+
+
+                        #region End State of actor -> pit collision
+
+                        if (Actor.compSprite.scale < 0.0f)
+                        {   //actor has reached 0% scale, has fallen into pit completely
+                            PlayPitFx(Obj); //fall sfx, splash fx + sfx
+                            if (Actor == Pool.hero)
+                            {   //send hero back to last door he passed thru
+                                //Assets.Play(Actor.sfxHit); //play hero's hit sfx
+                                Assets.Play(Assets.sfxActorLand); //play actor land sfx
+                                Functions_Hero.SpawnInCurrentRoom();
+                                Pool.heroShadow.visible = true; 
+                                //direct player's attention to hero's respawn pos
+                                Functions_Entity.SpawnEntity(
+                                    ObjType.ParticleAttention,
+                                    Functions_Level.currentRoom.spawnPos.X,
+                                    Functions_Level.currentRoom.spawnPos.Y,
+                                    Direction.None);
+                            }
+                            else
+                            {   //handle enemy pit death (no loot, insta-death)
+                                Assets.Play(Actor.sfxDeath); //play actor death sfx
+                                Functions_Pool.Release(Actor); //release this actor back to pool
+                            }
+                        }
+
+                        #endregion
+
                     }
-                    else if (Obj.type == ObjType.IceTile)
-                    {   //set the actor's friction to ice
-                        Actor.compMove.friction = Actor.frictionIce;
-                        //clip magnitude's maximum values for ice
-                        if (Actor.compMove.magnitude.X > 1) { Actor.compMove.magnitude.X = 1; }
-                        else if (Actor.compMove.magnitude.X < -1) { Actor.compMove.magnitude.X = -1; }
-                        if (Actor.compMove.magnitude.Y > 1) { Actor.compMove.magnitude.Y = 1; }
-                        else if (Actor.compMove.magnitude.Y < -1) { Actor.compMove.magnitude.Y = -1; }
-                    }
-                    
-                    //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
                 }
-
-                #endregion
-
+                else if (Obj.type == ObjType.IceTile)
+                {   //set the actor's friction to ice
+                    Actor.compMove.friction = Actor.frictionIce;
+                    //clip magnitude's maximum values for ice
+                    if (Actor.compMove.magnitude.X > 1) { Actor.compMove.magnitude.X = 1; }
+                    else if (Actor.compMove.magnitude.X < -1) { Actor.compMove.magnitude.X = -1; }
+                    if (Actor.compMove.magnitude.Y > 1) { Actor.compMove.magnitude.Y = 1; }
+                    else if (Actor.compMove.magnitude.Y < -1) { Actor.compMove.magnitude.Y = -1; }
+                }
+                    
+                //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
             }
 
             #endregion
-
+                
         }
 
         public static void InteractObject(GameObject Entity, GameObject RoomObj)

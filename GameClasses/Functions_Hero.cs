@@ -95,6 +95,8 @@ namespace DungeonRun
 
         }
 
+
+
         public static void ClearInteractionRec()
         {   //move the interaction rec offscreen
             interactionRec.rec.X = -1000;
@@ -151,7 +153,7 @@ namespace DungeonRun
                         Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;
                         //handle the hero interaction, may overwrites hero.lockTotal
-                        Interact(Pool.roomObjPool[i]);
+                        InteractRecWith(Pool.roomObjPool[i]);
                     }
                 }
             }
@@ -160,7 +162,7 @@ namespace DungeonRun
             return collision;
         }
 
-        public static void Interact(GameObject Obj)
+        public static void InteractRecWith(GameObject Obj)
         {   //this is the hero's interactionRec colliding with Obj
             //we know this is hero, and hero is in ActorState.Interact
 
@@ -275,7 +277,9 @@ namespace DungeonRun
 
         }
 
-        public static void Interact(Actor Actor)
+
+
+        public static void CollideWith(Actor Actor)
         {   //this is an Actor bumping into/overlapping with hero
             if (Actor.type == ActorType.Fairy)
             {   //kill fairy, fill hero's health to max
@@ -283,6 +287,129 @@ namespace DungeonRun
                 Pool.hero.health = PlayerData.current.heartsTotal;
             }
         }
+
+        public static void Interact(GameObject Obj)
+        {
+
+            #region Pickups
+
+            if (Obj.group == ObjGroup.Pickup)
+            {   //only the hero can pickup hearts or rupees
+                if (Obj.type == ObjType.PickupHeart)
+                { Pool.hero.health++; Assets.Play(Assets.sfxHeartPickup); }
+                else if (Obj.type == ObjType.PickupRupee)
+                { PlayerData.current.gold++; Assets.Play(Assets.sfxGoldPickup); }
+                else if (Obj.type == ObjType.PickupMagic)
+                { PlayerData.current.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                else if (Obj.type == ObjType.PickupArrow)
+                { PlayerData.current.arrowsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                else if (Obj.type == ObjType.PickupBomb)
+                { PlayerData.current.bombsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                Obj.lifetime = 1; Obj.lifeCounter = 2; //end the items life
+                return;
+            }
+
+            #endregion
+
+
+            #region Doors
+
+            else if (Obj.group == ObjGroup.Door)
+            {   //handle hero interaction with exit door
+                if (Obj.type == ObjType.Exit)
+                {
+                    if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
+                    {   //if dungeon screen is open, close it, perform interaction ONCE
+                        DungeonRecord.beatDungeon = false;
+                        //is hero exiting a dungeon?
+                        if (Level.type == LevelType.Castle)
+                        { Functions_Level.CloseLevel(ExitAction.ExitDungeon); }
+                        else //return to the overworld screen
+                        { Functions_Level.CloseLevel(ExitAction.Overworld); }
+                        Assets.Play(Assets.sfxDoorOpen);
+                    }
+                    //stop movement, prevents overlap with exit
+                    Functions_Movement.StopMovement(Pool.hero.compMove);
+                }
+                //center Hero to Door, while still allowing him to pass thru
+                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
+                {   //gradually center hero to door
+                    Pool.hero.compMove.magnitude.X = (Obj.compSprite.position.X - Pool.hero.compMove.position.X) * 0.11f;
+                    //if hero is close to center of door, snap/lock hero to center of door
+                    if (Math.Abs(Pool.hero.compSprite.position.X - Obj.compSprite.position.X) < 2)
+                    { Pool.hero.compMove.newPosition.X = Obj.compSprite.position.X; }
+                }
+                else
+                {   //gradually center hero to door
+                    Pool.hero.compMove.magnitude.Y = (Obj.compSprite.position.Y - Pool.hero.compMove.position.Y) * 0.11f;
+                    //if hero is close to center of door, snap/lock hero to center of door
+                    if (Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
+                    { Pool.hero.compMove.newPosition.Y = Obj.compSprite.position.Y; }
+                }
+                return;
+            }
+
+            #endregion
+
+
+            #region PitTrap
+
+            if (Obj.type == ObjType.PitTrap)
+            {   //if hero collides with a PitTrapReady, it starts to open
+                Functions_GameObject.SetType(Obj, ObjType.PitAnimated);
+                Assets.Play(Assets.sfxShatter); //play collapse sound
+                                                //draw attention to the collapsed floor
+                Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.Down);
+                Functions_Entity.SpawnEntity(ObjType.ParticleSmokePuff,
+                    Obj.compSprite.position.X + 4,
+                    Obj.compSprite.position.Y - 8,
+                    Direction.Down);
+                //create pit teeth over new pit obj
+                Functions_RoomObject.SpawnRoomObj(ObjType.PitTop,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.Down);
+                Functions_RoomObject.SpawnRoomObj(ObjType.PitBottom,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.Down);
+                return; //bail from interaction check
+            }
+
+            #endregion
+
+
+            #region SwitchBlock UP
+
+            else if (Obj.type == ObjType.SwitchBlockUp)
+            {   //if hero isnt moving and is colliding with up block, convert up to down
+                if (Pool.hero.compMove.newPosition == Pool.hero.compMove.position)
+                { Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown); }
+            }
+
+            #endregion
+
+
+            #region FloorSwitch
+
+            else if (Obj.type == ObjType.Switch)
+            {
+                //must convert this switch obj into something else
+                //Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown);
+                //play switch soundfx
+                //Assets.Play(Assets.sfxSwitch);
+            }
+
+            #endregion
+
+            //switch
+            //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
+        }
+
+
 
         public static void SetLoadout()
         {   //set the hero's loadout based on playerdata.current

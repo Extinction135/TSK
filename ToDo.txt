@@ -47,14 +47,25 @@ switch blocks + btns
 
 
 
+Prep for Hero vs Switch Interaction
 
-Implement Floor Switches - part 1
+modified Functions_Hero.Interact(Actor) to CollideWith(Actor).
+this name better describes it's functionality.
+added Hero.Interact(Obj), which behaves similar to Actor.Interact(Obj).
+moved code from Actor.Interact() to Hero.Interact().
+wrote section of code for Hero interaction with floor switch.
+however, we'll need an 'off' switch, which we'll add next.
 
-updated widget tools with switch object, tested.
-updated widget tools with code for new room rool: only 1 switch per room.
-this rule works just like the existing room rules, ex: chests.
-added new dialog CantAddMoreSwitches to Functions_Dialog.
-playtested adding switches to rooms.
+
+
+
+
+
+
+Implement Floor Switches - part 2
+
+get hero interaction working with switch objs
+non-blocking..
 
 
 
