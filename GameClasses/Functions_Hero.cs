@@ -398,12 +398,13 @@ namespace DungeonRun
             else if (Obj.type == ObjType.Switch)
             {   //convert switch off, play switch soundFx
                 Functions_GameObject.SetType(Obj, ObjType.SwitchOff);
-                Assets.Play(Assets.sfxSwitch);
                 //grab the player's attention
                 Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.Down);
+                //open all the trap doors in the room
+                Functions_RoomObject.OpenTrapDoors();
             }
 
             #endregion

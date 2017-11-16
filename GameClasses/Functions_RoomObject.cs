@@ -80,6 +80,24 @@ namespace DungeonRun
             }
         }
 
+        public static void OpenTrapDoors()
+        {
+            Assets.Play(Assets.sfxSwitch);
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //convert trap doors to open doors
+                    if (Pool.roomObjPool[i].type == ObjType.DoorTrap)
+                    {   //display an attention particle where the conversion happened
+                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen);
+                        Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                            Pool.roomObjPool[i].compSprite.position.X,
+                            Pool.roomObjPool[i].compSprite.position.Y,
+                            Direction.Down);
+                    }
+                }
+            }
+        }
 
 
         //decorates a door on left/right or top/bottom

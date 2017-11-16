@@ -49,13 +49,7 @@ switch blocks + btns
 
 
 
-Implement Floor Switches - part 3
 
-upon hero colision with switch,
-convert all trap doors in room to open doors.
-
-added OpenTrapDoors() to Functions_RoomObject.
-can't playtest until we have a room with trap doors.
 
 
 
@@ -78,7 +72,7 @@ do we model future room puzzles with a PuzzleEnum?
 
 
 
-
+test that switches will open trap doors
 
 
 
