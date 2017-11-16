@@ -50,6 +50,19 @@ switch blocks + btns
 
 
 
+Implement Floor Switches - part 4
+
+created Functions_Room.CheckForPuzzles().
+created PuzzleType enum with None, and Switch values.
+updated Room class to have a PuzzleType field.
+this field defaults to PuzzleType.None.
+this is true, because no room puzzles exist yet.
+
+updated FinishRoom() to call CheckForPuzzles() on proper room types.
+created Functions_RoomObject.CloseDoors().
+this method changes openDoors to trapDoors.
+updated RoomBuilder to call CheckForPuzzles() after a room is loaded.
+playtested, working as expected.
 
 
 
@@ -59,24 +72,15 @@ switch blocks + btns
 
 
 
-Implement Floor Switches - part 3
-
-upon building of room, if any room obj is a switch, then convert all open doors to trap doors
-where does this code exist? where should it exist?
-
-a room with a switch automatically becomes a switch puzzle room.
-
-do we model future room puzzles with a PuzzleEnum?
-{ None, Switch, Torches }
 
 
 
 
-test that switches will open trap doors
 
+trap doors dont sort as other doors do, and they should
 
-
-
+add Torches puzzle enum value.
+updated CheckForPuzzles to check for torches.
 
 
 

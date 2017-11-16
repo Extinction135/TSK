@@ -488,6 +488,7 @@ namespace DungeonRun
         public int XMLid = 0; //index of xmlRoomData list used to build/finish room
         public RoomType type;
         public Vector2 spawnPos; //where hero can spawn in this room (last door passed thru or exit)
+        public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
 
         public Room(Point Pos, RoomType Type)
         {

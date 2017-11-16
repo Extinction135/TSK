@@ -99,6 +99,24 @@ namespace DungeonRun
             }
         }
 
+        public static void CloseDoors()
+        {
+            Assets.Play(Assets.sfxSwitch);
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //convert trap doors to open doors
+                    if (Pool.roomObjPool[i].type == ObjType.DoorOpen)
+                    {   //all open doors inside room become trap doors (push hero + close)
+                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap);
+                    }
+                }
+            }
+        }
+
+
+
+
 
         //decorates a door on left/right or top/bottom
         static Vector2 posA = new Vector2();

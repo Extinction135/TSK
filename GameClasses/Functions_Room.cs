@@ -165,12 +165,14 @@ namespace DungeonRun
                 BuildRoomXmlData(Assets.roomDataKey[Room.XMLid]);
                 FinishKeyRoom(Room);
                 AddWallStatues(Room);
+                CheckForPuzzles(Room);
             }
             else if (Room.type == RoomType.Hub)
             {
                 BuildRoomXmlData(Assets.roomDataHub[Room.XMLid]);
                 FinishHubRoom(Room);
                 AddWallStatues(Room);
+                CheckForPuzzles(Room);
             }
             else if (Room.type == RoomType.Boss)
             {
@@ -182,16 +184,19 @@ namespace DungeonRun
             {
                 BuildRoomXmlData(Assets.roomDataColumn[Room.XMLid]);
                 AddWallStatues(Room);
+                CheckForPuzzles(Room);
             }
             else if (Room.type == RoomType.Row)
             {
                 BuildRoomXmlData(Assets.roomDataRow[Room.XMLid]);
                 AddWallStatues(Room);
+                CheckForPuzzles(Room);
             }
             else if (Room.type == RoomType.Square)
             {
                 BuildRoomXmlData(Assets.roomDataSquare[Room.XMLid]);
                 AddWallStatues(Room);
+                CheckForPuzzles(Room);
             }
             //dungeon rooms get debris + cracked walls
             if (Room.type != RoomType.Shop)
@@ -403,6 +408,29 @@ namespace DungeonRun
             }
         }
 
+        public static void CheckForPuzzles(Room Room)
+        {   //this is called at the end of a room build
+            //int torchCount = 0;
+
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   
+                if (Pool.roomObjPool[i].active)
+                {   //if there is an active switch in the room
+                    if (Pool.roomObjPool[i].type == ObjType.Switch)
+                    {   //set the room puzzleType and bail from method
+                        Room.puzzleType = PuzzleType.Switch;
+                        Functions_RoomObject.CloseDoors(); //convert all openDoors to trapDoors
+                        return;
+                    }
+                    //else if(Pool.roomObjPool[i].type == ObjType.TorchUnlit)
+                    //{ torchCount++; } //count all the unlit torches
+                }
+            }
+
+            //check for more than 3 torches
+            //if (torchCount > 3) { Room.puzzleType = PuzzleType.Torches; }
+            
+        }
 
 
         //removes overlapping objs from room
