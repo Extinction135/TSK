@@ -163,7 +163,7 @@ namespace DungeonRun
             else if(Type == ObjType.DoorTrap)
             {
                 Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = +32; //sort very high (over / in front of hero)
+                Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
             }
             else if (Type == ObjType.DoorBombable || Type == ObjType.DoorBoss || 

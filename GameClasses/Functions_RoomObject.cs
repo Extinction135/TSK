@@ -80,6 +80,21 @@ namespace DungeonRun
             }
         }
 
+        public static Boolean CountTorches()
+        {   //count to see if there are more than 3 lit torches in the current room
+            int torchCount = 0;
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {   //if there is an active switch in the room
+                    if (Pool.roomObjPool[i].type == ObjType.TorchLit)
+                    { torchCount++; } //count all the lit torches
+                }
+            }
+            //check for more than 3 torches
+            if (torchCount > 3) { return true; } else { return false; }
+        }
+
         public static void OpenTrapDoors()
         {
             Assets.Play(Assets.sfxSwitch);

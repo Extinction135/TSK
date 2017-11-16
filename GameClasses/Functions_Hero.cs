@@ -258,6 +258,17 @@ namespace DungeonRun
                     Obj.compSprite.position.Y - 7,
                     Direction.None);
                 Assets.Play(Assets.sfxLightFire);
+
+                //check to see if lighting this torch can solve the room's puzzle
+                if(Functions_Level.currentRoom.puzzleType == PuzzleType.Torches)
+                {   //if the current room's puzzle type is Torches, check to see how many have been lit
+                    if(Functions_RoomObject.CountTorches())
+                    {   //enough torches have been lit to unlock this room / solve puzzle
+                        Assets.Play(Assets.sfxReward); //this should be secret sfx later
+                        //open all the trap doors in the room
+                        Functions_RoomObject.OpenTrapDoors();
+                    }
+                }
             }
             else if (Obj.type == ObjType.LeverOff || Obj.type == ObjType.LeverOn)
             {   //activate all lever objects (including lever), call attention to change
@@ -409,8 +420,6 @@ namespace DungeonRun
 
             #endregion
 
-            //switch
-            //upon hero collision with switch, switch turns on, resulting in whatever event it's tied to
         }
 
 

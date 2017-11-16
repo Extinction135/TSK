@@ -46,7 +46,7 @@ namespace DungeonRun
 
     public enum DoorType { Open, Boss, Bombable }
 
-    public enum PuzzleType { None, Switch }
+    public enum PuzzleType { None, Switch, Torches }
 
 
 

@@ -410,7 +410,7 @@ namespace DungeonRun
 
         public static void CheckForPuzzles(Room Room)
         {   //this is called at the end of a room build
-            //int torchCount = 0;
+            int torchCount = 0;
 
             for (i = 0; i < Pool.roomObjCount; i++)
             {   
@@ -422,14 +422,16 @@ namespace DungeonRun
                         Functions_RoomObject.CloseDoors(); //convert all openDoors to trapDoors
                         return;
                     }
-                    //else if(Pool.roomObjPool[i].type == ObjType.TorchUnlit)
-                    //{ torchCount++; } //count all the unlit torches
+                    else if(Pool.roomObjPool[i].type == ObjType.TorchUnlit)
+                    { torchCount++; } //count all the unlit torches
                 }
             }
-
             //check for more than 3 torches
-            //if (torchCount > 3) { Room.puzzleType = PuzzleType.Torches; }
-            
+            if (torchCount > 3)
+            {   //convert all openDoors to trapDoors
+                Room.puzzleType = PuzzleType.Torches;
+                Functions_RoomObject.CloseDoors(); 
+            }
         }
 
 

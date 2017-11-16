@@ -40,50 +40,29 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 13
 
-add to existing levels:
+add to existing levels / new levels:
 switch blocks + btns
+floor switches
+torches in groups of 4
 
 
 
 
 
 
+Implement Torch Room Puzzle
 
+added Torches value to PuzzleType enum.
+added code for torch counting to CheckForPuzzles().
+rooms with more than 3 torches are set to Torch PuzzleType.
+doors are converted to trap doors as well.
 
-Implement Floor Switches - part 4
+now when hero lights a torch, the game checks to see if,
+lighting that torch solved the room puzzle, and opens the doors if so.
+added Function_RoomObject.CountTorches().
 
-created Functions_Room.CheckForPuzzles().
-created PuzzleType enum with None, and Switch values.
-updated Room class to have a PuzzleType field.
-this field defaults to PuzzleType.None.
-this is true, because no room puzzles exist yet.
-
-updated FinishRoom() to call CheckForPuzzles() on proper room types.
-created Functions_RoomObject.CloseDoors().
-this method changes openDoors to trapDoors.
-updated RoomBuilder to call CheckForPuzzles() after a room is loaded.
-playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-trap doors dont sort as other doors do, and they should
-
-add Torches puzzle enum value.
-updated CheckForPuzzles to check for torches.
-
-
-
+playtested that 4 torches creates and opens a puzzle trap room.
+changed how trap door are sorted to appear more natural.
 
 
 
