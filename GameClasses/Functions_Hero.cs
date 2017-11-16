@@ -248,7 +248,21 @@ namespace DungeonRun
             #endregion
 
 
-            #region Misc Interactive Dungeon Objects
+            #region Dungeon Objects
+
+            else if (Obj.type == ObjType.Pot)
+            {
+                //put hero into pickup state
+                Pool.hero.state = ActorState.Pickup;
+                Pool.hero.stateLocked = true;
+                Pool.hero.lockTotal = 10;
+
+                Pool.hero.carrying = true; //set carrying state
+                Pool.hero.carryingObj = Obj; //set obj ref
+                Obj.compSprite.zOffset = +256; //sort above hero
+                Obj.compCollision.blocking = false; //prevent hero/obj collisions
+                //Functions_Movement.StopMovement(Pool.hero.compMove);
+            }
 
             else if (Obj.type == ObjType.TorchUnlit)
             {   //light the unlit torch

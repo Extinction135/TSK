@@ -23,13 +23,29 @@ namespace DungeonRun
             Actor.compAnim.speed = 10;
             Actor.compAnim.loop = true;
 
-            //set animation group based on actor state
-            if (Actor.state == ActorState.Idle) { Actor.animGroup = Actor.animList.idle; }
-            else if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.move; }
+            //movement
+            if (Actor.state == ActorState.Idle)
+            {
+                if (Actor.carrying)
+                { Actor.animGroup = Actor.animList.idleCarry; }
+                else { Actor.animGroup = Actor.animList.idle; }
+            }
+            else if (Actor.state == ActorState.Move)
+            {
+                if (Actor.carrying)
+                { Actor.animGroup = Actor.animList.moveCarry; }
+                else { Actor.animGroup = Actor.animList.move; }
+            }
+
+            //actions
             else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.dash; }
             else if (Actor.state == ActorState.Interact) { Actor.animGroup = Actor.animList.interact; }
             else if (Actor.state == ActorState.Attack) { Actor.animGroup = Actor.animList.attack; }
             else if (Actor.state == ActorState.Use) { Actor.animGroup = Actor.animList.attack; }
+            else if (Actor.state == ActorState.Pickup) { Actor.animGroup = Actor.animList.pickupThrow; }
+            else if (Actor.state == ActorState.Throw) { Actor.animGroup = Actor.animList.pickupThrow; }
+
+            //consequences
             else if (Actor.state == ActorState.Hit) { Actor.animGroup = Actor.animList.hit; }
             else if (Actor.state == ActorState.Dead)
             {   
@@ -74,7 +90,7 @@ namespace DungeonRun
         {   //create/populate Actor's AnimationList
             actorAnims = new ActorAnimationList();
 
-            //idle, move, dash, & interact lists
+            //movement
             actorAnims.idle = new AnimationGroup();
             actorAnims.idle.down = new List<Byte4>   { new Byte4(0, 0, 0, 0) };
             actorAnims.idle.up = new List<Byte4>     { new Byte4(0, 1, 0, 0) };
@@ -87,6 +103,19 @@ namespace DungeonRun
             actorAnims.move.right = new List<Byte4>  { new Byte4(0, 2, 0, 0), new Byte4(1, 2, 0, 0) };
             actorAnims.move.left = new List<Byte4>   { new Byte4(0, 2, 1, 0), new Byte4(1, 2, 1, 0) };
 
+            actorAnims.idleCarry = new AnimationGroup();
+            actorAnims.idleCarry.down = new List<Byte4>     { new Byte4(5, 0, 0, 0) };
+            actorAnims.idleCarry.up = new List<Byte4>       { new Byte4(5, 1, 0, 0) };
+            actorAnims.idleCarry.right = new List<Byte4>    { new Byte4(5, 2, 0, 0) };
+            actorAnims.idleCarry.left = new List<Byte4>     { new Byte4(5, 2, 1, 0) };
+
+            actorAnims.moveCarry = new AnimationGroup();
+            actorAnims.moveCarry.down = new List<Byte4>     { new Byte4(6, 0, 0, 0), new Byte4(6, 0, 1, 0) };
+            actorAnims.moveCarry.up = new List<Byte4>       { new Byte4(6, 1, 0, 0), new Byte4(6, 1, 1, 0) };
+            actorAnims.moveCarry.right = new List<Byte4>    { new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0) };
+            actorAnims.moveCarry.left = new List<Byte4>     { new Byte4(5, 2, 1, 0), new Byte4(6, 2, 1, 0) };
+
+            //actions
             actorAnims.dash = new AnimationGroup();
             actorAnims.dash.down = new List<Byte4>   { new Byte4(2, 0, 0, 0) };
             actorAnims.dash.up = new List<Byte4>     { new Byte4(2, 1, 0, 0) };
@@ -99,13 +128,19 @@ namespace DungeonRun
             actorAnims.interact.right = new List<Byte4> { new Byte4(4, 2, 0, 0) };
             actorAnims.interact.left = new List<Byte4>  { new Byte4(4, 2, 1, 0) };
 
-            //attack, hit, death lists
             actorAnims.attack = new AnimationGroup();
             actorAnims.attack.down = new List<Byte4>     { new Byte4(3, 0, 0, 0) };
             actorAnims.attack.up = new List<Byte4>       { new Byte4(3, 1, 0, 0) };
             actorAnims.attack.right = new List<Byte4>    { new Byte4(3, 2, 0, 0) };
             actorAnims.attack.left = new List<Byte4>     { new Byte4(3, 2, 1, 0) };
 
+            actorAnims.pickupThrow = new AnimationGroup();
+            actorAnims.pickupThrow.down = new List<Byte4>   { new Byte4(4, 0, 0, 0) };
+            actorAnims.pickupThrow.up = new List<Byte4>     { new Byte4(4, 1, 0, 0) };
+            actorAnims.pickupThrow.right = new List<Byte4>  { new Byte4(4, 2, 0, 0) };
+            actorAnims.pickupThrow.left = new List<Byte4>   { new Byte4(4, 2, 1, 0) };
+            
+            //consequences
             actorAnims.hit = new AnimationGroup();
             actorAnims.hit.down = new List<Byte4>   { new Byte4(0, 3, 0, 0) };
             actorAnims.hit.up = actorAnims.hit.down;

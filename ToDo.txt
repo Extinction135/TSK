@@ -50,14 +50,6 @@ torches in groups of 4
 
 
 
-Prep for Adding Pickup, Carry, Throw Actor Skills
-
-added hold and carry link animations to actorSheet.
-the pickup sprite can double as the throw sprite too.
-added hold, carry, throw sprites for blob actor.
-
-simplified Functions_Actor.Update().
-moved hero specific code into Functions_Item.UseItem().
 
 
 
@@ -65,15 +57,91 @@ moved hero specific code into Functions_Item.UseItem().
 
 
 
-Add Carrying Boolean to Actor class
+
+Implement Pickup, Carry, and Drop Obj Hero Skills
+
+added carrying boolean to actor class.
+added Pickup & Throw values to ActorState enumerator.
+updated Actor.Update() to only allow Hero to interact with Objs, for now.
+
+added carryingObj GameObject field to Actor class.
+updated Hero.InteractRecWith() to handle Pot interaction.
+this sets the hero into a pickup state, and sets the actor.carryingObj ref.
+
+added Actor.carrying checks into Interact, Dash, Attack, and Use sections.
+added AnimationGroups idleCarry and moveCarry to ActorAnimationList class.
+added AnimationGroups pickup & throwObj to ActorAnimationList class.
+defined animation lists for IdleCarry, MoveCarry, Pickup & Throw.
+
+updated SetAnimationGroup() to handle carrying, pickup/throw animation states.
+
+updated Actor.Update() Interact section to release the actor.carryingObj upon A button press.
+this allows us to test picking up, carrying, and dropping objs.
+throwing the objs will come later.
+
+playtested, mostly working, with a few visual bugs.
 
 
 
 
-add actor state pickup, carryingIdle, carryingMove, throw
-or should we model this using a carrying boolean?
-it would seem like the carrying boolean would stack ontop of the existing actor update
-Actor.Update() is going to be modified quite a bit
+
+
+
+
+
+
+when we set the obj down, it should become blocking again, and return to it's original zOffset value.
+we should probably call the SetType() method on the obj again, passing in the obj.type value.
+
+the obj should sort properly over the hero's head.
+
+
+
+should not be able to set hero into an non-throw state if carryingObj
+
+if the hero is carrying, then the carryingObj should inherit hero's position + offset
+
+
+
+
+
+handle pickup state
+handle idle w/ carrying
+handle move w/ carrying
+handle A button w/ carrying -> throw obj facing direction
+all other buttons do nothing w/ carrying
+handle throw state
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implement Pickup, Carry, and Throw Actor Skills
+
+update the ai to handle picking up, carrying, and throwing pots
+
+
+to pickup something, each actor requires an interaction rec
+instead we could model this using a Point field
+or do all actors get an interaction rec? this would make it easier for actor to pickup objs
+we also kinda need to make our own Rectangle class, and simplify the XNA rectangle class
+since we don't need all that the XNA.rectangle class provides, and it's missing some stuff too
+this change would also help to make the project less XNA dependent, since the collision system
+relies heavily on the Rectangle.Intersects() and Rectangle.Contains() methods.
+you could also make the rectangles int specific, which may make the calculations faster
 
 
 

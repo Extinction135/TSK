@@ -303,39 +303,123 @@ namespace DungeonRun
 
 
                 //Handle States
-                if (Actor.state == ActorState.Interact)
-                {   //if there is an object to interact with, interact with it
-                    if (Functions_Hero.CheckInteractionRecCollisions()) {}
-                    else { Actor.state = ActorState.Idle; } //no interaction
+
+
+
+                //handle pickup & throw states
+                //if (Actor.state == ActorState.Pickup) { }
+                //if (Actor.state == ActorState.Throw) { }
+
+                //handle carrying state
+                if (Actor.carrying)
+                {   //place carryingObj over the hero's head
+                    Actor.carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
+                    Actor.carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 16;
+                    Functions_Component.Align(Actor.carryingObj.compMove, Actor.carryingObj.compSprite, Actor.carryingObj.compCollision);
                 }
+
+                
+
+
+                #region Interact
+
+                if (Actor.state == ActorState.Interact)
+                {   
+                    if(Actor.carrying)
+                    {
+                        //throw carryingObj in actor.direction
+
+                        Pool.hero.state = ActorState.Throw;
+                        Pool.hero.carrying = false; //release carrying state
+                        Pool.hero.carryingObj = null; //release obj ref
+
+                        //we'll need to actually throw the carryingObj now
+                        //by adding some amount to it's magnitude in the direction actor is facing
+
+                        Pool.hero.stateLocked = true;
+                        Pool.hero.lockTotal = 10;
+                        Functions_Movement.StopMovement(Pool.hero.compMove);
+                    }
+                    else
+                    {
+                        if (Actor == Pool.hero)
+                        {   //if there is an object to interact with, interact with it
+                            if (Functions_Hero.CheckInteractionRecCollisions()) { }
+                        }
+                        else { Actor.state = ActorState.Idle; } //no interaction for other actors right now
+                    }
+                }
+
+                #endregion
+
+
+                #region Dash
+
                 else if (Actor.state == ActorState.Dash)
                 {
-                    Actor.lockTotal = 10;
-                    Actor.stateLocked = true;
-                    Actor.compMove.speed = Actor.dashSpeed;
-                    Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Actor);
-                    Assets.Play(Actor.sfxDash);
+                    if (Actor.carrying)
+                    {
+                        //do nothing, no dashing while carrying
+                    }
+                    else
+                    {
+                        Actor.lockTotal = 10;
+                        Actor.stateLocked = true;
+                        Actor.compMove.speed = Actor.dashSpeed;
+                        Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Actor);
+                        Assets.Play(Actor.sfxDash);
+                    }
                 }
+
+                #endregion
+
+
+                #region Attack
+
                 else if (Actor.state == ActorState.Attack)
                 {
-                    Actor.stateLocked = true;
-                    Functions_Movement.StopMovement(Actor.compMove);
-                    Functions_Item.UseItem(Actor.weapon, Actor);
-                    if (Actor == Pool.hero) //scale up worldUI weapon sprite
-                    { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
-                }
-                else if (Actor.state == ActorState.Use)
-                {   
-                    if (Actor.item != MenuItemType.Unknown)
-                    { 
+                    if (Actor.carrying)
+                    {
+                        //do nothing, no attacking while carrying
+                        //or, throw carryingObj in actor.direction
+                    }
+                    else
+                    {
                         Actor.stateLocked = true;
                         Functions_Movement.StopMovement(Actor.compMove);
-                        Functions_Item.UseItem(Actor.item, Actor);
-                        if (Actor == Pool.hero) //scale up worldUI item sprite
-                        { WorldUI.currentItem.compSprite.scale = 2.0f; }
+                        Functions_Item.UseItem(Actor.weapon, Actor);
+                        if (Actor == Pool.hero) //scale up worldUI weapon sprite
+                        { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
                     }
-                    else { Actor.state = ActorState.Idle; } //no item to use
                 }
+
+                #endregion
+
+
+                #region Use
+
+                else if (Actor.state == ActorState.Use)
+                {
+                    if (Actor.carrying)
+                    {
+                        //do nothing, no using while carrying
+                    }
+                    else
+                    {
+                        if (Actor.item != MenuItemType.Unknown)
+                        {
+                            Actor.stateLocked = true;
+                            Functions_Movement.StopMovement(Actor.compMove);
+                            Functions_Item.UseItem(Actor.item, Actor);
+                            if (Actor == Pool.hero) //scale up worldUI item sprite
+                            { WorldUI.currentItem.compSprite.scale = 2.0f; }
+                        }
+                        else { Actor.state = ActorState.Idle; } //no item to use
+                    }
+                }
+
+                #endregion
+
 
 
 

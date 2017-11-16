@@ -463,15 +463,19 @@ namespace DungeonRun
     {
         public AnimationGroup idle;
         public AnimationGroup move;
-        public AnimationGroup dash;
-        public AnimationGroup interact;
+        public AnimationGroup idleCarry;
+        public AnimationGroup moveCarry;
 
+        public AnimationGroup interact;
+        public AnimationGroup dash;
         public AnimationGroup attack;
+
         public AnimationGroup hit;
         public AnimationGroup death;
         public AnimationGroup heroDeath;
 
         public AnimationGroup reward;
+        public AnimationGroup pickupThrow;
         //pickup, hold, carry, drag, etc...
 
         public AnimationGroup fairy;
@@ -627,6 +631,9 @@ namespace DungeonRun
         public float walkSpeed;
         public float friction = 0.75f;
         public float frictionIce = 0.99f;
+
+        public Boolean carrying = false; //is this actor carrying an obj?
+        public GameObject carryingObj = null; //the obj actor might be carrying
 
         //the components that actor requires to function
         public ComponentSprite compSprite;
