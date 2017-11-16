@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-13
+10
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -52,35 +52,25 @@ torches in groups of 4
 
 
 
-
-Properly Implement Dropping of Pots
-
-pots should be dropped at hero's feet, and they should return to normal state.
-
-added helper function Component.Align(Actor) & Align(Obj).
-simplifies aligning actors/objs to new positions.
-moved dropping code from A button press to B button press.
-this effectively 'cancels' the pickup action.
-fixed a bug where the obj didn't return to a blocking state.
-fixed a visual bug where the pot object did not appear over the hero's head properly.
-playtested, working as expected, even blob works.
-
-
-
-
-
-
-
 Improve Horizontal Carrying Sprite Animations
 
-improve placement of hands when moving left/right
-they should remain as a pair, split left and right
-this should happen for both blob and hero
+improved placement of hands when moving left/right as hero & blob.
+playtested, looks much better.
 
 
 
 
 
+we need attention particle for when hero picks up pot obj
+we have one for when he sets it down
+
+
+
+the carryingObj should get a zOffset of -16, just so it sort above the hero's head
+hopefully it will still sort underneath door frames
+
+
+there is also a bug where the hero cancels his pickup if interaction rec overlaps two pots at same time/frame
 
 
 let's only have a carryingObj in Functions_Hero
@@ -93,61 +83,10 @@ check Pot against actors + roomObjs, break upon collision
 
 we should also move the hero's shadow into Functions_Hero
 
-
-
-
-the carryingObj should get a zOffset of -16, just so it sort above the hero's head
-hopefully it will still sort underneath door frames
-
-
-
-
-
-
-there is also a bug where the hero cancels his pickup if interaction rec overlaps two pots at same time/frame
-
-
-
-
-
-
-
-
-
-
-
-Implement Pickup, Carry, and Throw Actor Skills
-
-update the ai to handle picking up, carrying, and throwing pots
-
-
-to pickup something, each actor requires an interaction rec
-instead we could model this using a Point field
-or do all actors get an interaction rec? this would make it easier for actor to pickup objs
-we also kinda need to make our own Rectangle class, and simplify the XNA rectangle class
-since we don't need all that the XNA.rectangle class provides, and it's missing some stuff too
-this change would also help to make the project less XNA dependent, since the collision system
-relies heavily on the Rectangle.Intersects() and Rectangle.Contains() methods.
-you could also make the rectangles int specific, which may make the calculations faster
-
-
-
-
-
-
-
-Picking Up, Carrying, Throwing / Dropping Pot Objects
-
-hero should be able to pickup the skull pot objects
-hero should be able to carry the skull pot objects around
-hero should be able to throw the pots in a direction
-pots should travel for a bit, with a shadow, before colliding with ground
-pots should also collide with room objects (entity vs roomObj interaction)
-pot should have sound for pickup, throw, explode/death
 pots should randomly spawn loot too, when they are destroyed
 skull pots should not be destroyed by swords
 
-what objects can be picked up? skulls, of objType Pot
+pot should have sound for pickup, throw, explode/death
 
 
 
@@ -156,14 +95,18 @@ what objects can be picked up? skulls, of objType Pot
 
 
 
-Implications:
 
-enemies should be able to pickup, carry, and throw pots as well.
-this would extend the base AI with additional skills
-- if hero isn't nearby, then if pot is nearby (search radius), then target pot
-- if within grabbing distance of pot, grab pot, leading to carrying state
-- if in carrying state, search for hero or roam randomly
-- if hero is nearby, if carrying throw obj, else attack
+
+
+
+
+
+
+
+
+
+
+
 
 Make the AI system Behavior based, where a Behavior is an enumerator
 
