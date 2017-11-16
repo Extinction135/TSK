@@ -294,31 +294,57 @@ namespace DungeonRun
                 //set actor moving/facing direction
                 if (Actor.compInput.direction != Direction.None)
                 { Actor.direction = Actor.compInput.direction; }
-
                 Actor.state = Actor.inputState; //sync state to input state
                 Actor.lockCounter = 0; //reset lock counter in case actor statelocks
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
 
-
                 //Handle States
 
 
+                #region Carrying Pot Overhead
 
-                //handle pickup & throw states
-                //if (Actor.state == ActorState.Pickup) { }
-                //if (Actor.state == ActorState.Throw) { }
-
-                //handle carrying state
                 if (Actor.carrying)
                 {   //place carryingObj over the hero's head
                     Actor.carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
-                    Actor.carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 16;
+                    Actor.carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 9;
                     Functions_Component.Align(Actor.carryingObj.compMove, Actor.carryingObj.compSprite, Actor.carryingObj.compCollision);
+
+                    if(Actor.compInput.dash)
+                    {   //if player pressed the B button, drop carryingObj
+                        Pool.hero.carrying = false; //release carrying state
+                        //display a 'drop' animation for hero
+                        Pool.hero.state = ActorState.Throw;
+                        Pool.hero.stateLocked = true;
+                        Pool.hero.lockTotal = 10;
+                        Functions_Movement.StopMovement(Pool.hero.compMove);
+
+                        //convert any diagonal to cardinal direction
+                        Pool.hero.direction = Functions_Direction.GetCardinalDirection(Pool.hero.direction);
+                        //based on hero's facing direction, calculate drop offset
+                        Vector2 offset = new Vector2(0, 0);
+                        if (Pool.hero.direction == Direction.Up) { offset.Y = -8; }
+                        else if (Pool.hero.direction == Direction.Down) { offset.Y = +12; }
+                        else if (Pool.hero.direction == Direction.Left) { offset.X = -12; offset.Y = +2; }
+                        else { offset.X = +12; offset.Y = +2; } //defaults right
+                        //apply drop offset to carryingObj
+                        Pool.hero.carryingObj.compMove.newPosition.X = Actor.compSprite.position.X + offset.X;
+                        Pool.hero.carryingObj.compMove.newPosition.Y = Actor.compSprite.position.Y + offset.Y;
+                        //simulate an impact with the ground
+                        Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                            Pool.hero.carryingObj.compMove.newPosition.X,
+                            Pool.hero.carryingObj.compMove.newPosition.Y,
+                            Direction.Down);
+                        //return carryingObj to Room
+                        Functions_Component.Align(Pool.hero.carryingObj);
+                        Functions_GameObject.ResetObject(Pool.hero.carryingObj); //reset Obj
+                        Functions_GameObject.SetType(Pool.hero.carryingObj, ObjType.Pot); //refresh Obj
+                        Pool.hero.carryingObj = null; //release obj ref
+                    }
                 }
 
-                
+                #endregion
 
 
                 #region Interact
@@ -328,17 +354,7 @@ namespace DungeonRun
                     if(Actor.carrying)
                     {
                         //throw carryingObj in actor.direction
-
-                        Pool.hero.state = ActorState.Throw;
-                        Pool.hero.carrying = false; //release carrying state
-                        Pool.hero.carryingObj = null; //release obj ref
-
-                        //we'll need to actually throw the carryingObj now
-                        //by adding some amount to it's magnitude in the direction actor is facing
-
-                        Pool.hero.stateLocked = true;
-                        Pool.hero.lockTotal = 10;
-                        Functions_Movement.StopMovement(Pool.hero.compMove);
+                        //add some amount to it's magnitude in the direction actor is facing
                     }
                     else
                     {
@@ -358,8 +374,8 @@ namespace DungeonRun
                 else if (Actor.state == ActorState.Dash)
                 {
                     if (Actor.carrying)
-                    {
-                        //do nothing, no dashing while carrying
+                    {   
+                        //do nothing, ca
                     }
                     else
                     {
@@ -419,10 +435,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-
-
-
-
 
             }
 

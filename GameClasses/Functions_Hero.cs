@@ -261,7 +261,6 @@ namespace DungeonRun
                 Pool.hero.carryingObj = Obj; //set obj ref
                 Obj.compSprite.zOffset = +256; //sort above hero
                 Obj.compCollision.blocking = false; //prevent hero/obj collisions
-                //Functions_Movement.StopMovement(Pool.hero.compMove);
             }
 
             else if (Obj.type == ObjType.TorchUnlit)
