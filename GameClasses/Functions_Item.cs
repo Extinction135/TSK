@@ -16,7 +16,23 @@ namespace DungeonRun
     {
 
         public static void UseItem(MenuItemType Type, Actor Actor)
-        {   //all actors can use items, magic, and weapons
+        {
+
+            #region Hero Specific Items
+
+            if (Actor == Pool.hero)
+            {   //bottles
+                if (PlayerData.current.currentItem == 2) //bottleA
+                { Functions_Bottle.UseBottle(1, PlayerData.current.bottleA); }
+                else if (PlayerData.current.currentItem == 3) //bottleB
+                { Functions_Bottle.UseBottle(2, PlayerData.current.bottleB); }
+                else if (PlayerData.current.currentItem == 4) //bottleC
+                { Functions_Bottle.UseBottle(3, PlayerData.current.bottleC); }
+            }
+
+            #endregion
+
+            //all actors can use items, magic, and weapons
 
             #region Items
 

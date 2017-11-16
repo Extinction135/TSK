@@ -300,7 +300,9 @@ namespace DungeonRun
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
-                //check states
+
+
+                //Handle States
                 if (Actor.state == ActorState.Interact)
                 {   //if there is an object to interact with, interact with it
                     if (Functions_Hero.CheckInteractionRecCollisions()) {}
@@ -319,7 +321,8 @@ namespace DungeonRun
                     Actor.stateLocked = true;
                     Functions_Movement.StopMovement(Actor.compMove);
                     Functions_Item.UseItem(Actor.weapon, Actor);
-                    if (Actor == Pool.hero) { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
+                    if (Actor == Pool.hero) //scale up worldUI weapon sprite
+                    { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
                 }
                 else if (Actor.state == ActorState.Use)
                 {   
@@ -327,26 +330,16 @@ namespace DungeonRun
                     { 
                         Actor.stateLocked = true;
                         Functions_Movement.StopMovement(Actor.compMove);
-                        
-                        //check hero specific cases
-                        if (Actor == Pool.hero)
-                        {   //bottles are handled seperately
-                            if (PlayerData.current.currentItem == 2) //bottleA
-                            { Functions_Bottle.UseBottle(1, PlayerData.current.bottleA); }
-                            else if (PlayerData.current.currentItem == 3) //bottleB
-                            { Functions_Bottle.UseBottle(2, PlayerData.current.bottleB); }
-                            else if (PlayerData.current.currentItem == 4) //bottleC
-                            { Functions_Bottle.UseBottle(3, PlayerData.current.bottleC); }
-                            //item is not a bottle
-                            else { Functions_Item.UseItem(Actor.item, Actor); }
-                            //scale up worldUI item sprite
-                            WorldUI.currentItem.compSprite.scale = 2.0f;
-                        }
-                        //useItem() is generalized for actors as well
-                        else { Functions_Item.UseItem(Actor.item, Actor); }
+                        Functions_Item.UseItem(Actor.item, Actor);
+                        if (Actor == Pool.hero) //scale up worldUI item sprite
+                        { WorldUI.currentItem.compSprite.scale = 2.0f; }
                     }
                     else { Actor.state = ActorState.Idle; } //no item to use
                 }
+
+
+
+
             }
 
             #endregion

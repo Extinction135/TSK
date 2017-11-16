@@ -50,19 +50,14 @@ torches in groups of 4
 
 
 
-Implement Torch Room Puzzle
+Prep for Adding Pickup, Carry, Throw Actor Skills
 
-added Torches value to PuzzleType enum.
-added code for torch counting to CheckForPuzzles().
-rooms with more than 3 torches are set to Torch PuzzleType.
-doors are converted to trap doors as well.
+added hold and carry link animations to actorSheet.
+the pickup sprite can double as the throw sprite too.
+added hold, carry, throw sprites for blob actor.
 
-now when hero lights a torch, the game checks to see if,
-lighting that torch solved the room puzzle, and opens the doors if so.
-added Function_RoomObject.CountTorches().
-
-playtested that 4 torches creates and opens a puzzle trap room.
-changed how trap door are sorted to appear more natural.
+simplified Functions_Actor.Update().
+moved hero specific code into Functions_Item.UseItem().
 
 
 
@@ -70,38 +65,15 @@ changed how trap door are sorted to appear more natural.
 
 
 
+Add Carrying Boolean to Actor class
 
 
 
 
-
-
-
-
-
-
-
-
-Rooms ++
-
-a room with at least 4 unlit torches automatically becomes a torch puzzle room.
-this means the doors 'close', becoming trap doors, upon room entry.
-the doors are opened by lighting all the torches in the room.
-switches have priority over torches.
-
-
-
-+ all enemies dead
-+ 
-
-
-
-
-
-
-
-
-
+add actor state pickup, carryingIdle, carryingMove, throw
+or should we model this using a carrying boolean?
+it would seem like the carrying boolean would stack ontop of the existing actor update
+Actor.Update() is going to be modified quite a bit
 
 
 
@@ -111,19 +83,196 @@ switches have priority over torches.
 
 Picking Up, Carrying, Throwing / Dropping Pot Objects
 
+hero should be able to pickup the skull pot objects
+hero should be able to carry the skull pot objects around
+hero should be able to throw the pots in a direction
+pots should travel for a bit, with a shadow, before colliding with ground
+pots should also collide with room objects (entity vs roomObj interaction)
+pot should have sound for pickup, throw, explode/death
+pots should randomly spawn loot too, when they are destroyed
+skull pots should not be destroyed by swords
+
+what objects can be picked up? skulls, of objType Pot
 
 
-Objects++
+
+
+
+
+
+
+Implications:
+
+enemies should be able to pickup, carry, and throw pots as well.
+this would extend the base AI with additional skills
+- if hero isn't nearby, then if pot is nearby (search radius), then target pot
+- if within grabbing distance of pot, grab pot, leading to carrying state
+- if in carrying state, search for hero or roam randomly
+- if hero is nearby, if carrying throw obj, else attack
+
+Make the AI system Behavior based, where a Behavior is an enumerator
+
+actor.behaviors = new List<Behaviors> { Behavior.Aggressive, Behavior.Curious, Behavior.Destructive }
+Behavior.Aggressive (actor will pursue hero without regard for safety)
+Behavior.Attacks (actor will attack hero, if hero is close enough)
+Behavior.Curious (actor will randomly explore the area around them)
+Behavior.Destructive (actor will attack any destructible object it comes across)
+Behavior.SpawnsMobs (actor can spawn other actors, based on actor.type)
+Behavior.ThrowsPots (actor will pickup and throw object it comes across at hero)
+
+an enumerator, and a list in the actor class.
+then we modify the AI method to work based on behaviors.
+if actor.behavior[i] == 
+- aggressive, move actor towards hero, if hero is visible
+- attacks, attack hero if hero is close enough
+- curious, randomly move actor
+- destructive, attack destructible objects nearby
+- spawnsMobs, randomly spawn mobs based on the actor.type
+- throwsPots, picks up nearby pots, carrys them, and throws them at hero if hero is visible
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+we should use the waving animation on the load save new screen when we display the 3 games
+currently we use a walking animation, which is boring af
+instead the hero should wave
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Explosive Barrels
 
 Explosive Barrel
 we should have an explosive barrel - of course!
 just like bomb, but stationary, waiting for collision
 add barrel to tools widget
 
+three sprites: maybe two: normal idle barrel, barrel after it's been struck
+can animate between idle and whiter brighter "blinking" style animation
+then barrel dies and spawns an explosion
+also, the barrel should move based on whatever direction it was struck from
+this would be similar to how bombs move / slide
+
+
+Explosive Barrel Room Puzzles
+
+we can do room puzzles with explosive barrels
+just need to check that there are no more explosive barrels left
+this can be done when an explosive barrel explodes
+just needs to check to see if it's the last one, if so open doors
+this is something the original zelda didn't do
+
+
 DungeonPillars
 a blocking non-breakable obj to give the rooms some character
 they can also be used to create the illusion of depth
 (because hero can walk behind them)
+but is it worth using up 2 spots for one object with no purpose other than decoration?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dragging/Pushing/Pulling
+
+hero should be able to 'grab' objects
+if the object is draggable, then hero should be able to push and pull on it
+this 'grabbing' state should last until player releases the A button
+objects should inherit the movement of hero, and check collisions with all objs & actors
+if a draggable object would collide, it doesn't move
+this would have to be done per axis too, so we could drag along walls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implement Boomerang
+this is a projectile that flys in a thrown direction
+then upon hitting something colliding, returns to hero
+if the something it hits is a pickup obj or fairy obj, 
+then that obj/actor travels with boomerang back to hero
+this item should be sold by the items vendor (for now)
+if boomerang hits an actor that isn't fairy, it should push that actor, but deal no damage
+
+boomerang's return
+we'll have to get the direction to hero, like we do in Functions_Ai
+the move the boomrang in that direction
+the boomerang will continuously spin, so it doesn't have a movement direction
+we'll need to update the rotationValue for boomerang each animation frame
+
+attachment
+how do we attach an obj/actor to boomerang? i dunno
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -144,18 +293,6 @@ WanderingFire
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
 should be able to place wandering fire using tools widget
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -188,19 +325,10 @@ leaving actor hovering over pits, which is bad
 
 
 
-
-
-
-
 for the ice dungeon, procedurally add ice tiles to each room
 if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
 this can be done in the cleanup of room
 and we'll probably need to expand the max size of roomObjs
-
-
-
-
-
 
 
 
@@ -215,23 +343,6 @@ how is this visually represented?
 
 
 
-
-Implement Boomerang
-this is a projectile that flys in a thrown direction
-then upon hitting something colliding, returns to hero
-if the something it hits is a pickup obj or fairy obj, 
-then that obj/actor travels with boomerang back to hero
-this item should be sold by the items vendor (for now)
-if boomerang hits an actor that isn't fairy, it should push that actor, but deal no damage
-
-boomerang's return
-we'll have to get the direction to hero, like we do in Functions_Ai
-the move the boomrang in that direction
-the boomerang will continuously spin, so it doesn't have a movement direction
-we'll need to update the rotationValue for boomerang each animation frame
-
-attachment
-how do we attach an obj/actor to boomerang? i dunno
 
 
 
@@ -377,7 +488,14 @@ this allows the two storylines to co-exist and proress seperately
 
 
 
-
+DungeonDesign - Taking it Further
+design dungeons as a whole
+dungeons should have a theme
+there should be 'architectural puzzles', where the dungeon changes in some way
+this could be raising/lowering water levels
+moving forward/backwards in time
+destroying parts of the dungeon/rooms
+using switches to alter the paths thru rooms, or alter the nature of rooms
 
 
 
@@ -439,6 +557,13 @@ make castlel ruins look more 'ruiny'
 
 
 
+
+
+Dashing++
+what if hero took double damage when they dashed?
+we could scale up the first heart when hero dashes
+then if they get hit, they take whatever damage they would normally take, but also lose the first heart
+so dashing is kinda like a small gamble each time.
 
 
 
@@ -541,6 +666,39 @@ gladiators that lose a battle, die in the game
 
 
 
+Idea for a Tool (much later) - Colorizer
+
+loads in all the textures for the levels in the game
+select a level to see an example of it in use in a window frame
+also has a color picker that allows you to set the color pallete used for the level
+this would map the tonal grayscale values used to a list
+then map the user's input colors to a list
+then display the user's input colors based on the grayscale colors, using comparison lists
+should also allow the user to save all the files as a set, named a specific way, to a folder
+this would allow user to have complete control over the grayscale to color transition for release.
+
+crazy awesome idea for a color scheme picker:
+a central slider selector, with additional unselectable sliders around it
+as you move the central slider, the other sliders move with it in parallel
+should have an offset value, which controls how far apart the sliders are from the central slider
+this would either spread the color scheme across the spectrum, or limit it, dynamically
+of course, the example room with the level's display colors should be updating each frame
+should be able to save the level's color values, or the game's level's color values
+this would allow for the keeping of the sprite sheets in grayscale
+and allow for the color mapping to occur independently of sprite development.
+
+
+Awesome Idea: a display color pallete, mapped from grayscale values.
+this means that all levels would be saved in grayscale.
+then when the level is loaded, the display values would be set based on level type
+the level's grayscale display value would then be interpreted into color
+simply based on a list of color values, which could easily be changed and shared.
+
+-how would this work? we would need a texture instance for the current level.
+upon level load, levelsheet would be copied (bit by bit, not by reference) into the texture instance.
+then the colorizer algorithm would run with the grayscale as target and color list as input.
+it would change each grayscale color into the color equivalent based on the color list.
+the level would finish loading, then the display texture would be used for the roomObjects
 
 
 
@@ -548,32 +706,6 @@ gladiators that lose a battle, die in the game
 
 
 
-
-
-
-DungeonDesign - Taking it Further
-design dungeons as a whole
-dungeons should have a theme
-there should be 'architectural puzzles', where the dungeon changes in some way
-this could be raising/lowering water levels
-moving forward/backwards in time
-destroying parts of the dungeon/rooms
-using switches to alter the paths thru rooms, or alter the nature of rooms
-for example, turning conveyo belts on/off, or spike traps
-
-in addition to these architectural puzzles, dungeons should also have a key item
-this key item must be collected to complete the dungeon
-for example, the hammer knocks down posts
-the hookshot pulls hero across gaps
-
-there are certain zelda puzzle tropes to be followed to:
-block puzzle - move a block or series of blocks into place, to press a switch / chest / etc
-enemy puzzle - kill all enemies / miniboss / boss
-shooting puzzle - shoot an eye or some object with an arrow / boomerang / projectile
-torch puzzle - light 3-4 torches
-	
-	
-	
 	
 	
 	
@@ -685,28 +817,8 @@ Polish
 	we could add a spear projectile for blob enemies
 
 Stuff that needs to be done, but it's not terribly important rn	
-	
-	we need a fairy projectile
-	this projectile randomly moves around, slowly
-	if the fairy collides with hero, it restores his health and magic
-	later on, if the hero is attacking with a net, and the net hits the fairy
-	we'll put the fairy in a bottle, if the fairy bottle is empty
 
-	pickup and throw
-	hero should be able to pickup the skull pot objects
-	hero should be able to carry the skull pot objects around
-	hero should be able to throw the pots in a direction
-	pots should travel for a bit, with a shadow, before colliding with ground
-	pots should also collide with room objects
-	pot should have sound for pickup, throw, explode/death
-	pots should randomly spawn loot too, when they are picked up
 	
-	dragging/pushing/pulling
-	hero should be able to 'grab' objects
-	if the object is draggable, then hero should be able to push and pull on it
-	this 'grabbing' state should last until player releases the A button
-	objects should inherit the movement of hero, and check collisions with all objs & actors
-	if a draggable object would collide, it doesn't move
 	
 	we should include a soundFXinstance on actors that points to one of the soundFX in assets
 	then we can set this instance in ActorFunctions.SetType()
