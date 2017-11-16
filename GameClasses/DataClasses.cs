@@ -146,10 +146,7 @@ namespace DungeonRun
 
         public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero; //points to actorPool[0]
-        public static ComponentSprite heroShadow;
-        public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
         public static Actor herosPet; //points to actorPool[1]
-
         public static int collisionsCount = 0; //tracks how many collisions occur per frame
 
         public static void Initialize()
@@ -198,10 +195,6 @@ namespace DungeonRun
             Functions_Actor.SetType(hero, ActorType.Hero);
             herosPet = actorPool[1];
             Functions_Actor.SetType(herosPet, ActorType.Pet);
-            //create the hero's shadow + rec
-            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
-            heroShadow.zOffset = -16;
-            heroRec = new Rectangle(0, 0, 16, 16);
         }
 
     }
@@ -633,7 +626,6 @@ namespace DungeonRun
         public float frictionIce = 0.99f;
 
         public Boolean carrying = false; //is this actor carrying an obj?
-        
 
         //the components that actor requires to function
         public ComponentSprite compSprite;

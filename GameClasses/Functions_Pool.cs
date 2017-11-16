@@ -192,27 +192,18 @@ namespace DungeonRun
                     Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
 
                     if (Pool.actorPool[i].state != ActorState.Dead)
-                    {
-                        //project movement
+                    {   //project movement
                         Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove);
                         //set actor's friction to normal
                         Pool.actorPool[i].compMove.friction = Pool.actorPool[i].friction;
                         //collision & interaction check
                         Functions_Collision.CheckCollisions(Pool.actorPool[i]);
                         //resolve movement
-                        Functions_Component.Align(
-                            Pool.actorPool[i].compMove,
-                            Pool.actorPool[i].compSprite,
-                            Pool.actorPool[i].compCollision);
+                        Functions_Component.Align(Pool.actorPool[i]);
                     }
                 }
             }
-
-            //match hero's rec to hero's sprite
-            Pool.heroRec.X = (int)Pool.hero.compSprite.position.X - 8;
-            Pool.heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
-            //check the heroRec's collisions with Level rooms
-            Functions_Hero.CheckRoomCollision();
+            Functions_Hero.Update();
         }
 
         public static void UpdateEntities()
@@ -262,24 +253,17 @@ namespace DungeonRun
             //floor pool
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
             { Functions_Draw.Draw(Pool.floorPool[Pool.floorCounter]); }
-
             //roomObj pool
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             { Functions_Draw.Draw(Pool.roomObjPool[Pool.roomObjCounter]); }
-
             //entity pool
             for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
             { Functions_Draw.Draw(Pool.entityPool[Pool.entityCounter]); }
-
             //actor pool
             for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Functions_Draw.Draw(Pool.actorPool[Pool.actorCounter]); }
-
-            //match hero shadow to hero position + offset, then draw it
-            Pool.heroShadow.position.X = Pool.hero.compSprite.position.X;
-            Pool.heroShadow.position.Y = Pool.hero.compSprite.position.Y + 5;
-            Functions_Component.SetZdepth(Pool.heroShadow);
-            Functions_Draw.Draw(Pool.heroShadow);
+            //hero's shadow
+            Functions_Draw.Draw(Functions_Hero.heroShadow);
         }
 
     }

@@ -140,7 +140,7 @@ namespace DungeonRun
                             }
                         }
                         //hide hero's shadow upon pit collision
-                        if (Actor == Pool.hero) { Pool.heroShadow.visible = false; }
+                        if (Actor == Pool.hero) { Functions_Hero.heroShadow.visible = false; }
 
                         #endregion
 
@@ -155,7 +155,7 @@ namespace DungeonRun
                                 //Assets.Play(Actor.sfxHit); //play hero's hit sfx
                                 Assets.Play(Assets.sfxActorLand); //play actor land sfx
                                 Functions_Hero.SpawnInCurrentRoom();
-                                Pool.heroShadow.visible = true; 
+                                Functions_Hero.heroShadow.visible = true; 
                                 //direct player's attention to hero's respawn pos
                                 Functions_Entity.SpawnEntity(
                                     ObjType.ParticleAttention,

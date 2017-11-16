@@ -16,10 +16,23 @@ namespace DungeonRun
     {
         static int i;
         static Boolean collision = false;
-        public static ComponentCollision interactionRec = new ComponentCollision();
-        public static GameObject carryingObj = null; //the obj hero might be carrying
+
+        public static ComponentCollision interactionRec;
+        public static GameObject carryingObj; //the obj hero might be carrying
+        public static ComponentSprite heroShadow;
+        public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
 
 
+
+        static Functions_Hero()
+        {
+            interactionRec = new ComponentCollision();
+            carryingObj = null;
+            //create the hero's shadow + rec
+            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
+            heroShadow.zOffset = -16;
+            heroRec = new Rectangle(0, 0, 16, 16);
+        }
 
         public static void CheckRoomCollision()
         {
@@ -30,7 +43,7 @@ namespace DungeonRun
             {   //if the current room is not the room we are checking against, then continue
                 if (Functions_Level.currentRoom != Level.rooms[i])
                 {   //if heroRec collides with room rec, set it as currentRoom, build room
-                    if (Pool.heroRec.Intersects(Level.rooms[i].rec))
+                    if (heroRec.Intersects(Level.rooms[i].rec))
                     {
                         Functions_Level.currentRoom = Level.rooms[i];
                         Level.rooms[i].visited = true;
@@ -52,7 +65,7 @@ namespace DungeonRun
 
             for (i = 0; i < Level.doors.Count; i++)
             {   //check heroRec collision against Level.doors
-                if (Pool.heroRec.Intersects(Level.doors[i].rec))
+                if (heroRec.Intersects(Level.doors[i].rec))
                 {   //track doors hero has visited
                     Level.doors[i].visited = true;
                     if (Level.doors[i].type == DoorType.Open)
@@ -592,6 +605,20 @@ namespace DungeonRun
                 Pool.hero.compMove.newPosition.Y);
             Functions_Movement.StopMovement(Pool.herosPet.compMove);
             Pool.herosPet.compSprite.scale = 1.0f; //rescale hero to 100%
+        }
+
+
+
+        public static void Update()
+        {   //match hero's rec to hero's sprite
+            heroRec.X = (int)Pool.hero.compSprite.position.X - 8;
+            heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
+            //match hero's shadow to hero's sprite
+            heroShadow.position.X = Pool.hero.compSprite.position.X;
+            heroShadow.position.Y = Pool.hero.compSprite.position.Y + 5;
+            Functions_Component.SetZdepth(heroShadow);
+            //check the heroRec's collisions with Level rooms
+            CheckRoomCollision();
         }
 
     }
