@@ -385,11 +385,14 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
             }
-            else if (Type == ObjType.Switch)
+            else if (Type == ObjType.Switch || Type == ObjType.SwitchOff)
             {
-                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = -32; //sort to floor
+                //if (Type == ObjType.Switch) { Obj.compSprite.zOffset = 0; } //sort normally
             }
             else if (Type == ObjType.Bridge)
             {

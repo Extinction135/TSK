@@ -47,25 +47,20 @@ switch blocks + btns
 
 
 
-Prep for Hero vs Switch Interaction
-
-modified Functions_Hero.Interact(Actor) to CollideWith(Actor).
-this name better describes it's functionality.
-added Hero.Interact(Obj), which behaves similar to Actor.Interact(Obj).
-moved code from Actor.Interact() to Hero.Interact().
-wrote section of code for Hero interaction with floor switch.
-however, we'll need an 'off' switch, which we'll add next.
-
-
-
-
-
 
 
 Implement Floor Switches - part 2
 
-get hero interaction working with switch objs
-non-blocking..
+added sprite for down/off floor switch.
+modified the background of floor switches.
+
+added switchOff value to ObjType enum.
+added ObjAnimList value for switchOff.
+updated Obj.SetType() with path for switchOff.
+
+completed Hero -> FloorSwitch interaction.
+playtested, hero -> floor switch works.
+modified collision rec of floor switches.
 
 
 
@@ -73,6 +68,20 @@ non-blocking..
 
 
 
+
+Implement Floor Switches - part 3
+
+convert all trap doors in room to open doors, if hero collides with switch
+
+
+
+
+
+
+Implement Floor Switches - part 3
+
+upon building of room, if any room obj is a switch, then convert all open doors to trap doors
+where does this code exist? where should it exist?
 
 
 

@@ -396,11 +396,14 @@ namespace DungeonRun
             #region FloorSwitch
 
             else if (Obj.type == ObjType.Switch)
-            {
-                //must convert this switch obj into something else
-                //Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown);
-                //play switch soundfx
-                //Assets.Play(Assets.sfxSwitch);
+            {   //convert switch off, play switch soundFx
+                Functions_GameObject.SetType(Obj, ObjType.SwitchOff);
+                Assets.Play(Assets.sfxSwitch);
+                //grab the player's attention
+                Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.Down);
             }
 
             #endregion

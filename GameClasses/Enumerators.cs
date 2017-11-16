@@ -81,7 +81,8 @@ namespace DungeonRun
         ConveyorBeltOn, ConveyorBeltOff,
         //
         Pot, Bumper, Flamethrower, IceTile,
-        Switch, SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
+        Switch, SwitchOff,
+        SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, 
         //Actor Spawn Objects (hand-placed)
         SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, 

@@ -126,6 +126,9 @@ namespace DungeonRun
                 
                 //Switch
                 new List<Byte4> { new Byte4(3, 6, 0, 0) },
+                //SwitchOff
+                new List<Byte4> { new Byte4(4, 6, 0, 0) },
+
                 //SwitchBlockBtn
                 new List<Byte4> { new Byte4(3, 4, 0, 0) },
                 //SwitchBlockDown
