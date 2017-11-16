@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-10
+13
 
 add to existing levels:
 switch blocks + btns
@@ -48,16 +48,13 @@ switch blocks + btns
 
 
 
+Implement Floor Switches - part 1
 
-
-Solve the SwitchBlock Collision Problem
-
-problem: hero gets stuck if hero stands on down block, then becomes up block.
-solution 1: push hero away from block. bug: can be pushed into blocking objs.
-solution 2: make the up block into a down block.
-implications: can design levels around the idea of converting up / down blocks.
-playtested, working as expected. problem solved.
-
+updated widget tools with switch object, tested.
+updated widget tools with code for new room rool: only 1 switch per room.
+this rule works just like the existing room rules, ex: chests.
+added new dialog CantAddMoreSwitches to Functions_Dialog.
+playtested adding switches to rooms.
 
 
 
@@ -70,63 +67,142 @@ playtested, working as expected. problem solved.
 
 
 
+Objects++
+
+Switch
+Just a switch object on the ground, non-blocking.
+Upon initial collision, will call a method for room unlocking
+we may need two objects: switch up and switch down.
+that way we ensure that the switch triggers only once, upon conversion to down.
+
+editor / room rules: there can only be one switch in a room
+-popup dialog reminding editor that only one switch can exist in a room
+
+get link interacting with the switch (play a sound fx for now)
+
+a room with a switch automatically becomes a switch puzzle room.
+the doors 'close' into trap doors, and open once hero collides with the switch.
+
+Room Puzzle Type
+
+rooms should have a puzzle enum
+{ None, Switch, Torches }
 
 
 
 
-polish:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rooms ++
+
+a room with at least 4 unlit torches automatically becomes a torch puzzle room.
+this means the doors 'close', becoming trap doors, upon room entry.
+the doors are opened by lighting all the torches in the room.
+switches have priority over torches.
+
+
+
++ all enemies dead
++ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Picking Up, Carrying, Throwing / Dropping Pot Objects
+
+
+
+Objects++
+
+Explosive Barrel
+we should have an explosive barrel - of course!
+just like bomb, but stationary, waiting for collision
+add barrel to tools widget
+
+DungeonPillars
+a blocking non-breakable obj to give the rooms some character
+they can also be used to create the illusion of depth
+(because hero can walk behind them)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Entities++
+
+WanderingFire 
+this is just like spikeblock except the obj.direction is chosen randomly upon collision
+the direction cannot be the current direction however, and can only be cardinal	
+should be able to place wandering fire using tools widget
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OBJECTS:
+
 conveyor belts should sort over down switch blocks
 this means conveyor belts should sort above -32
-
-implement switches - how do these work? hero steps on them
-what do they do? open doors to a room, where all the door have closed
-can this be detected automatically? if a room has a switch, auto-shut doors upon entry
-
-Implement Boomerang
-this is a projectile that flys in a thrown direction
-then upon hitting something colliding, returns to hero
-if the something it hits is a pickup obj or fairy obj, 
-then that obj/actor travels with boomerang back to hero
-this item should be sold by the items vendor (for now)
-if boomerang hits an actor that isn't fairy, it should push that actor, but deal no damage
-
-boomerang's return
-we'll have to get the direction to hero, like we do in Functions_Ai
-the move the boomrang in that direction
-the boomerang will continuously spin, so it doesn't have a movement direction
-we'll need to update the rotationValue for boomerang each animation frame
-
-attachment
-how do we attach an obj/actor to boomerang? i dunno
-
 
 Destroyed Debris object
 the dungeon statue should become the destroyed version upon destruction.
 any object that can be destroyed should become this object.
 this object should look like a pile of rocks. can be pushed.
 
-
-
 Circling Stars
 just like Lttp, the circling stars turns hero into an enemy actor type
 except, it's not on a timer. hero becomes enemy actor type until Circling stars collides with hero again.
 this is a check: if hero.type != hero, become enemy, else become hero.
-
-WanderingFire 
-this is just like spikeblock except the obj.direction is chosen randomly upon collision
-the direction cannot be the current direction however, and can only be cardinal	
-
-Explosive Barrel
-we should have an explosive barrel - of course!
-just like bomb, but stationary, waiting for collision
-
-
-DungeonPillars++ ?
-dungeon pillars should be two tiles tall, with a 16x16 collision rec at base of pillar
-this makes the pillars much larger and adds some variation to the room objects in terms of size
-they can also be used to give rooms more character, and create the illusion of depth
-(because hero can walk behind them)
-this is a very easy sprite to design, but is more difficult to display in object tools widget
 
 BUG - PITS
 if an actor overlaps two pits at the exact same time
@@ -135,15 +211,6 @@ leaving actor hovering over pits, which is bad
 *which could easily be fixed by using a weaker pull on the left for all pits
 *the actor would slowly be pulled into the right pit, 
 *then quickly pulled once they dont collide with left pit any more
-
-
-
-
-
-
-
-
-
 
 **** COMPLETE DUNGEON OBJECTS BEFORE CONTINUING ****
 
@@ -166,8 +233,6 @@ and we'll probably need to expand the max size of roomObjs
 
 
 
-
-
 implement a level 2 magic spell
 this would deal 1 damage to everything on screen
 and play explosions randomly inside the room
@@ -175,6 +240,37 @@ should be named bombos, sold by magic dealer
 
 potion that makes hero invincible for a period of time
 how is this visually represented?
+
+
+
+
+
+Implement Boomerang
+this is a projectile that flys in a thrown direction
+then upon hitting something colliding, returns to hero
+if the something it hits is a pickup obj or fairy obj, 
+then that obj/actor travels with boomerang back to hero
+this item should be sold by the items vendor (for now)
+if boomerang hits an actor that isn't fairy, it should push that actor, but deal no damage
+
+boomerang's return
+we'll have to get the direction to hero, like we do in Functions_Ai
+the move the boomrang in that direction
+the boomerang will continuously spin, so it doesn't have a movement direction
+we'll need to update the rotationValue for boomerang each animation frame
+
+attachment
+how do we attach an obj/actor to boomerang? i dunno
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -218,17 +314,6 @@ in the 2nd phase, the boss moves AWAY from the hero
 so its harder for the hero to hit the boss
 in first phase, the boss just randomly moves around
 
-PITS++
-falling into a pit is just instant death
-hero just dies, no damage is dealt (no fairy can be used)
-ends with 'you died' screen
-hero is set into hit state and scaled down to 0
-at 0, the hero dies
-this should also happen to enemies (instant death, no loot drop)
-we should prevent enemies from moving into pits / spikes on their own
-they should be able to be pushed into them, however
-
-
 Boss Heads -> Crystals
 instead of crystals, we should collect boss's heads.
 this is the same icon that appears on the overworld map for the dungeon
@@ -241,15 +326,6 @@ crystals widget should be renamed 'bosses defeated', bossesWidget
 we'll need to update the game display data + the LSN screen to reflect the update away from crystals
 we can also make the overworld map wider, to better fill the frame out
 
-
-Room Goals
-doors should be set to trap doors
-once hero collides with them, they close
-this traps hero inside room
-once all enemies are defeated or switch has been flipped, trap doors become open doors
-this 'completes' the room and allows hero to exit
-this means that rooms should have a goal enum
-{ None, DeadEnemies, Switch, Torches }
 
 
 dungeon rewards++
@@ -302,7 +378,6 @@ need an on screen dungeon timer (for dungeon levels)
 upper right corner, simply draws the DungeonRecord.timespan value
 this should display down to the ms
 this should only display if level is a dungeon
-
 	
 dungeons can have deep water (sinks) and shallow water (just has wading fx)
 and we can build puzzles around this, because it's impossible to tell them apart

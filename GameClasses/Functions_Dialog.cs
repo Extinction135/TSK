@@ -156,6 +156,12 @@ namespace DungeonRun
                 "You cannot add more than 1 chest to a room!",
                 Assets.sfxError, true, false, false)
         };
+        public static List<Dialog> CantAddMoreSwitches = new List<Dialog>
+        {
+            new Dialog(SpeakerType.Guide, "Nope!",
+                "You cannot add more than 1 switch to a room!",
+                Assets.sfxError, true, false, false)
+        };
 
         #endregion
 

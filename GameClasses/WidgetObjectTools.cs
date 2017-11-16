@@ -120,14 +120,14 @@ namespace DungeonRun
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ConveyorBeltOn); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SpikesFloorOn); }
                         else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.IceTile); }
-                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Lever); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
                     }
                     else if (i == 3) //fourth row
                     {
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockBtn); }
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockDown); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockUp); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Switch); }
                         else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
                     }
                     else if (i == 4) //fifth row
@@ -481,6 +481,7 @@ namespace DungeonRun
                                 return; //dont add chest
                             }
                         }
+
                         if (currentObjRef.group == ObjGroup.Chest)
                         {   //we cannot have more than one chest in a room
                             for (j = 0; j < Pool.roomObjCount; j++)
@@ -489,6 +490,18 @@ namespace DungeonRun
                                 {
                                     ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddMoreChests));
                                     return; //dont add chest
+                                }
+                            }
+                        }
+
+                        if(currentObjRef.type == ObjType.Switch)
+                        {   //we cannot have more than one switch in a room
+                            for (j = 0; j < Pool.roomObjCount; j++)
+                            {   //check all roomObjs for an active chest
+                                if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].type == ObjType.Switch)
+                                {
+                                    ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddMoreSwitches));
+                                    return; //dont add switch
                                 }
                             }
                         }
