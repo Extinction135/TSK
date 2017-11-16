@@ -49,29 +49,16 @@ switch blocks + btns
 
 
 
-Implement Floor Switches - part 2
-
-added sprite for down/off floor switch.
-modified the background of floor switches.
-
-added switchOff value to ObjType enum.
-added ObjAnimList value for switchOff.
-updated Obj.SetType() with path for switchOff.
-
-completed Hero -> FloorSwitch interaction.
-playtested, hero -> floor switch works.
-modified collision rec of floor switches.
-
-
-
-
-
-
-
-
 Implement Floor Switches - part 3
 
-convert all trap doors in room to open doors, if hero collides with switch
+upon hero colision with switch,
+convert all trap doors in room to open doors.
+
+added OpenTrapDoors() to Functions_RoomObject.
+can't playtest until we have a room with trap doors.
+
+
+
 
 
 
@@ -83,30 +70,17 @@ Implement Floor Switches - part 3
 upon building of room, if any room obj is a switch, then convert all open doors to trap doors
 where does this code exist? where should it exist?
 
-
-
-
-
-Objects++
-
-Switch
-Just a switch object on the ground, non-blocking.
-Upon initial collision, will call a method for room unlocking
-we may need two objects: switch up and switch down.
-that way we ensure that the switch triggers only once, upon conversion to down.
-
-editor / room rules: there can only be one switch in a room
--popup dialog reminding editor that only one switch can exist in a room
-
-get link interacting with the switch (play a sound fx for now)
-
 a room with a switch automatically becomes a switch puzzle room.
-the doors 'close' into trap doors, and open once hero collides with the switch.
 
-Room Puzzle Type
-
-rooms should have a puzzle enum
+do we model future room puzzles with a PuzzleEnum?
 { None, Switch, Torches }
+
+
+
+
+
+
+
 
 
 
