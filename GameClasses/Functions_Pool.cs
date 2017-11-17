@@ -179,6 +179,7 @@ namespace DungeonRun
             UpdateActors();
             UpdateEntities();
             UpdateRoomObjects();
+            Functions_Hero.Update();
         }
 
         public static void UpdateActors()
@@ -203,7 +204,6 @@ namespace DungeonRun
                     }
                 }
             }
-            Functions_Hero.Update();
         }
 
         public static void UpdateEntities()

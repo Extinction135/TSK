@@ -625,7 +625,7 @@ namespace DungeonRun
         public float friction = 0.75f;
         public float frictionIce = 0.99f;
 
-        public Boolean carrying = false; //is this actor carrying an obj?
+        
 
         //the components that actor requires to function
         public ComponentSprite compSprite;

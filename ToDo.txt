@@ -48,22 +48,47 @@ torches in groups of 4
 
 
 
-Refactoring Hero related code
-
-moved heroShadow and heroRec from Pool to Functions_Hero.
-created Functions_Hero.Update().
-altered Pool.UpdateActors() to call Hero.Update().
-migrated various code into Functions_Hero.
 
 
 
+Further Refactoring of Hero related Code
+
+moved carrying boolean out of actor and into Functions_Hero.
+created Functions_Hero.HandleState().
+moved code out of Functions_Actor.Update and into HandleState().
+hero's state is now handled seperately from enemy/actor's states.
+this is because the hero can do things other actors cannot do.
+moved carrying check out of Functions_Actor and into Functions_Hero.
+refactored Functions_Item.UseItem().
+lots of playtesting.
 
 
 
 
 
 
-there is also a bug where the hero cancels his pickup if interaction rec overlaps two pots at same time/frame
+if a spikeBlock collides with a Pot, the pot should be destroyed
+
+
+
+when hero falls into a pit, he should drop whatever he was carrying.
+carryingObjs that are dropped should be aligned to nearest 16px grid
+pots dont fall into pits properly
+there is no carryingObj vs roomObjs collision checking
+this would be done upon carryingObj drop event
+
+
+and when a pot is dropped down, it should cause damage to anything that it's collision rec collides with
+and this should be 1 damage, and it should push any actors it collides with away from it
+
+
+
+minor problem wth the switch block maze key room:
+if you enter from the bottom of the room, spikeblock is flying right at you
+and it seems unfair and cheap
+so we need to move it into the maze somewhere
+we may shorten bits of the interior path
+
 
 
 
@@ -88,6 +113,18 @@ pot should have sound for pickup, throw, explode/death
 
 
 
+
+
+
+
+
+
+
+Arrows++
+when an arrow collides with a blocking object, end the arrow's speed/magnitude
+keep the arrow projectile alive until it hits 255 life
+this makes the arrow appear to stick into objects
+-unless the arrow hits an enemy, at which case the arrow's life should hit 255
 
 
 
@@ -119,24 +156,9 @@ if actor.behavior[i] ==
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 we should use the waving animation on the load save new screen when we display the 3 games
 currently we use a walking animation, which is boring af
 instead the hero should wave
-
-
-
-
 
 
 

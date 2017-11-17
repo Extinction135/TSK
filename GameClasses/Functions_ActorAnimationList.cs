@@ -26,15 +26,15 @@ namespace DungeonRun
             //movement
             if (Actor.state == ActorState.Idle)
             {
-                if (Actor.carrying)
+                Actor.animGroup = Actor.animList.idle;
+                if (Actor == Pool.hero & Functions_Hero.carrying)
                 { Actor.animGroup = Actor.animList.idleCarry; }
-                else { Actor.animGroup = Actor.animList.idle; }
             }
             else if (Actor.state == ActorState.Move)
             {
-                if (Actor.carrying)
+                Actor.animGroup = Actor.animList.move;
+                if (Actor == Pool.hero & Functions_Hero.carrying)
                 { Actor.animGroup = Actor.animList.moveCarry; }
-                else { Actor.animGroup = Actor.animList.move; }
             }
 
             //actions

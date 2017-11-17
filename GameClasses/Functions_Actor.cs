@@ -290,7 +290,7 @@ namespace DungeonRun
             #region Actor is not Statelocked
 
             if (!Actor.stateLocked)
-            {   
+            {
                 //set actor moving/facing direction
                 if (Actor.compInput.direction != Direction.None)
                 { Actor.direction = Actor.compInput.direction; }
@@ -299,85 +299,18 @@ namespace DungeonRun
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
-
                 //Handle States
-
-
-                #region Carrying Pot Overhead
-
-                if (Actor.carrying)
-                {   //place carryingObj over the hero's head
-                    Functions_Hero.carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
-                    Functions_Hero.carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 9;
-                    Functions_Component.Align(Functions_Hero.carryingObj);
-
-                    if(Actor.compInput.dash)
-                    {   //if player pressed the B button, drop carryingObj
-                        Pool.hero.carrying = false; //release carrying state
-                        //display a 'drop' animation for hero
-                        Pool.hero.state = ActorState.Throw;
-                        Pool.hero.stateLocked = true;
-                        Pool.hero.lockTotal = 10;
-                        Functions_Movement.StopMovement(Pool.hero.compMove);
-
-                        //convert any diagonal to cardinal direction
-                        Pool.hero.direction = Functions_Direction.GetCardinalDirection(Pool.hero.direction);
-                        //based on hero's facing direction, calculate drop offset
-                        Vector2 offset = new Vector2(0, 0);
-                        if (Pool.hero.direction == Direction.Up) { offset.Y = -8; }
-                        else if (Pool.hero.direction == Direction.Down) { offset.Y = +12; }
-                        else if (Pool.hero.direction == Direction.Left) { offset.X = -12; offset.Y = +2; }
-                        else { offset.X = +12; offset.Y = +2; } //defaults right
-                        //apply drop offset to carryingObj
-                        Functions_Hero.carryingObj.compMove.newPosition.X = Actor.compSprite.position.X + offset.X;
-                        Functions_Hero.carryingObj.compMove.newPosition.Y = Actor.compSprite.position.Y + offset.Y;
-                        //simulate an impact with the ground
-                        Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
-                            Functions_Hero.carryingObj.compMove.newPosition.X,
-                            Functions_Hero.carryingObj.compMove.newPosition.Y,
-                            Direction.Down);
-                        //return carryingObj to Room
-                        Functions_Component.Align(Functions_Hero.carryingObj);
-                        Functions_GameObject.ResetObject(Functions_Hero.carryingObj); //reset Obj
-                        Functions_GameObject.SetType(Functions_Hero.carryingObj, ObjType.Pot); //refresh Obj
-                        Functions_Hero.carryingObj = null; //release obj ref
-                    }
-                }
-
-                #endregion
-
-
-                #region Interact
-
-                if (Actor.state == ActorState.Interact)
-                {   
-                    if(Actor.carrying)
+                if (Actor == Pool.hero)
+                {   //handles all hero's states
+                    Functions_Hero.HandleState(Pool.hero);
+                } 
+                else
+                {   //all actors other than hero are processed as follows
+                    if (Actor.state == ActorState.Interact)
                     {
-                        //throw carryingObj in actor.direction
-                        //add some amount to it's magnitude in the direction actor is facing
+                        //non-hero actor's can't interact with roomObjs right now
                     }
-                    else
-                    {
-                        if (Actor == Pool.hero)
-                        {   //if there is an object to interact with, interact with it
-                            if (Functions_Hero.CheckInteractionRecCollisions()) { }
-                        }
-                        else { Actor.state = ActorState.Idle; } //no interaction for other actors right now
-                    }
-                }
-
-                #endregion
-
-
-                #region Dash
-
-                else if (Actor.state == ActorState.Dash)
-                {
-                    if (Actor.carrying)
-                    {   
-                        //do nothing, ca
-                    }
-                    else
+                    else if (Actor.state == ActorState.Dash)
                     {
                         Actor.lockTotal = 10;
                         Actor.stateLocked = true;
@@ -385,57 +318,19 @@ namespace DungeonRun
                         Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Actor);
                         Assets.Play(Actor.sfxDash);
                     }
-                }
-
-                #endregion
-
-
-                #region Attack
-
-                else if (Actor.state == ActorState.Attack)
-                {
-                    if (Actor.carrying)
-                    {
-                        //do nothing, no attacking while carrying
-                        //or, throw carryingObj in actor.direction
-                    }
-                    else
+                    else if (Actor.state == ActorState.Attack)
                     {
                         Actor.stateLocked = true;
                         Functions_Movement.StopMovement(Actor.compMove);
                         Functions_Item.UseItem(Actor.weapon, Actor);
-                        if (Actor == Pool.hero) //scale up worldUI weapon sprite
-                        { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
+                    }
+                    else if (Actor.state == ActorState.Use)
+                    {
+                        Actor.stateLocked = true;
+                        Functions_Movement.StopMovement(Actor.compMove);
+                        Functions_Item.UseItem(Actor.item, Actor);
                     }
                 }
-
-                #endregion
-
-
-                #region Use
-
-                else if (Actor.state == ActorState.Use)
-                {
-                    if (Actor.carrying)
-                    {
-                        //do nothing, no using while carrying
-                    }
-                    else
-                    {
-                        if (Actor.item != MenuItemType.Unknown)
-                        {
-                            Actor.stateLocked = true;
-                            Functions_Movement.StopMovement(Actor.compMove);
-                            Functions_Item.UseItem(Actor.item, Actor);
-                            if (Actor == Pool.hero) //scale up worldUI item sprite
-                            { WorldUI.currentItem.compSprite.scale = 2.0f; }
-                        }
-                        else { Actor.state = ActorState.Idle; } //no item to use
-                    }
-                }
-
-                #endregion
-
             }
 
             #endregion
@@ -457,12 +352,12 @@ namespace DungeonRun
                 {   //check death state
                     Actor.lockCounter = 0; //lock actor into dead state
                     Actor.health = 0; //lock actor's health at 0
-                    
+
                     //Death Effects
                     if (Actor == Pool.hero) { Functions_Hero.HandleDeath(); }
                     else if (Actor.type == ActorType.Boss)
                     {   //dead bosses perpetually explode
-                        if(Functions_Random.Int(0,100) > 75) //randomly create explosions
+                        if (Functions_Random.Int(0, 100) > 75) //randomly create explosions
                         {   //randomly place explosions around boss
                             Functions_Entity.SpawnEntity(
                                 ObjType.ParticleExplosion,

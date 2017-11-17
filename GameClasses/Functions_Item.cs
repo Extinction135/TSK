@@ -17,6 +17,8 @@ namespace DungeonRun
 
         public static void UseItem(MenuItemType Type, Actor Actor)
         {
+            Actor.lockTotal = 15;
+
 
             #region Hero Specific Items
 
@@ -32,26 +34,18 @@ namespace DungeonRun
 
             #endregion
 
+
             //all actors can use items, magic, and weapons
+
 
             #region Items
 
             if (Type == MenuItemType.ItemBomb)
             {
-                if (Actor == Pool.hero)
-                {   
-                    if (CheckBombs())
-                    {
-                        Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
-                        Actor.lockTotal = 15;
-                    }
-                    else { Assets.Play(Assets.sfxError); }
-                }
-                else
-                {
-                    Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
-                    Actor.lockTotal = 15;
-                }
+                if (Actor == Pool.hero & !CheckBombs()) //check if hero has enough
+                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
+                //actor spawns a bomb
+                Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
             }
 
             #endregion
@@ -61,20 +55,10 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.MagicFireball)
             {
-                if(Actor == Pool.hero)
-                {
-                    if (CheckMagic(1)) //the cost of fireball is 1
-                    {
-                        Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Actor);
-                        Actor.lockTotal = 15;
-                    }
-                    else { Assets.Play(Assets.sfxError); }
-                }
-                else
-                {
-                    Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Actor);
-                    Actor.lockTotal = 15;
-                }
+                if (Actor == Pool.hero & !CheckMagic(1)) //check if hero has enough
+                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
+                //actor shoots a fireball
+                Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Actor);
             }
 
             #endregion
@@ -89,22 +73,11 @@ namespace DungeonRun
             }
             else if (Type == MenuItemType.WeaponBow)
             {
-                if (Actor == Pool.hero)
-                {
-                    if (CheckArrows())
-                    {
-                        Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Actor);
-                        Functions_Entity.SpawnEntity(ObjType.ParticleBow, Actor);
-                        Actor.lockTotal = 15;
-                    }
-                    else { Assets.Play(Assets.sfxError); }
-                }
-                else
-                {
-                    Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Actor);
-                    Functions_Entity.SpawnEntity(ObjType.ParticleBow, Actor);
-                    Actor.lockTotal = 15;
-                }
+                if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
+                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
+                //actor shoots an arrow
+                Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Actor);
+                Functions_Entity.SpawnEntity(ObjType.ParticleBow, Actor);
             }
             else if (Type == MenuItemType.WeaponNet)
             {
@@ -114,6 +87,13 @@ namespace DungeonRun
 
             #endregion
 
+
+            else if (Type == MenuItemType.Unknown)
+            {   //unlock and reset actor
+                Actor.state = ActorState.Idle;
+                Actor.stateLocked = false;
+                Actor.lockTotal = 0;
+            }
         }
 
         static Boolean CheckMagic(int castingCost)

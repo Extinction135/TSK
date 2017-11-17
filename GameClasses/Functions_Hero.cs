@@ -21,7 +21,7 @@ namespace DungeonRun
         public static GameObject carryingObj; //the obj hero might be carrying
         public static ComponentSprite heroShadow;
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
-
+        public static Boolean carrying = false; //is hero carrying an obj?
 
 
         static Functions_Hero()
@@ -271,7 +271,12 @@ namespace DungeonRun
                 Pool.hero.stateLocked = true;
                 Pool.hero.lockTotal = 10;
 
-                Pool.hero.carrying = true; //set carrying state
+                carrying = true; //set carrying state
+                if (carryingObj != null)
+                {
+                    Functions_GameObject.ResetObject(carryingObj);
+                    Functions_GameObject.SetType(carryingObj, ObjType.Pot);
+                }
                 carryingObj = Obj; //set obj ref
                 Obj.compSprite.zOffset = +16; //sort above hero
                 Obj.compCollision.blocking = false; //prevent hero/obj collisions
@@ -605,6 +610,102 @@ namespace DungeonRun
                 Pool.hero.compMove.newPosition.Y);
             Functions_Movement.StopMovement(Pool.herosPet.compMove);
             Pool.herosPet.compSprite.scale = 1.0f; //rescale hero to 100%
+        }
+
+
+
+
+        public static void HandleState(Actor Hero)
+        {
+            if (carrying)
+            {   //place carryingObj over hero's head
+                carryingObj.compMove.newPosition.X = Hero.compSprite.position.X;
+                carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y - 9;
+                Functions_Component.Align(carryingObj);
+
+
+                #region Check Input for B button Press - Drop Obj
+
+                if (Hero.compInput.dash)
+                {   //if player pressed the B button, drop carryingObj
+                    carrying = false; //release carrying state
+                    //display a 'drop' animation for hero
+                    Hero.state = ActorState.Throw;
+                    Hero.stateLocked = true;
+                    Hero.lockTotal = 10;
+                    Functions_Movement.StopMovement(Hero.compMove);
+
+                    //convert any diagonal to cardinal direction
+                    Hero.direction = Functions_Direction.GetCardinalDirection(Hero.direction);
+                    //based on hero's facing direction, calculate drop offset
+                    Vector2 offset = new Vector2(0, 0);
+                    if (Hero.direction == Direction.Up) { offset.Y = -8; }
+                    else if (Hero.direction == Direction.Down) { offset.Y = +12; }
+                    else if (Hero.direction == Direction.Left) { offset.X = -12; offset.Y = +2; }
+                    else { offset.X = +12; offset.Y = +2; } //defaults right
+                    //apply drop offset to carryingObj
+                    carryingObj.compMove.newPosition.X = Hero.compSprite.position.X + offset.X;
+                    carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y + offset.Y;
+                    //simulate an impact with the ground
+                    Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                        carryingObj.compMove.newPosition.X,
+                        carryingObj.compMove.newPosition.Y,
+                        Direction.Down);
+                    //return carryingObj to Room
+                    Functions_Component.Align(carryingObj);
+                    Functions_GameObject.ResetObject(carryingObj); //reset Obj
+                    Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
+                    carryingObj = null; //release obj ref
+                }
+
+                #endregion
+
+
+                #region Check Input for A button Press - Throw Obj
+
+                else if (Hero.compInput.interact)
+                {   //if player pressed the A button, throw carryingObj
+
+                    //todo soon
+                }
+                #endregion
+                
+            }
+            else
+            {
+
+                #region Handle Normal States (Interact, Dash, Attack, Use)
+
+                if (Hero.state == ActorState.Interact)
+                {   //if there is an object to interact with, interact with it
+                    CheckInteractionRecCollisions();
+                }
+                else if (Hero.state == ActorState.Dash)
+                {
+                    Hero.lockTotal = 10;
+                    Hero.stateLocked = true;
+                    Hero.compMove.speed = Hero.dashSpeed;
+                    Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Hero);
+                    Assets.Play(Hero.sfxDash);
+                }
+                else if (Hero.state == ActorState.Attack)
+                {
+                    Hero.stateLocked = true;
+                    Functions_Movement.StopMovement(Hero.compMove);
+                    Functions_Item.UseItem(Hero.weapon, Hero);
+                    WorldUI.currentWeapon.compSprite.scale = 2.0f; //scale up worldUI weapon 
+                }
+                else if (Hero.state == ActorState.Use)
+                {
+                    Hero.stateLocked = true;
+                    Functions_Movement.StopMovement(Hero.compMove);
+                    Functions_Item.UseItem(Hero.item, Hero);
+                    WorldUI.currentItem.compSprite.scale = 2.0f; //scale up worldUI item 
+                }
+
+                #endregion
+
+            }
         }
 
 
