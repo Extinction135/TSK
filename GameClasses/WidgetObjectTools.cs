@@ -516,7 +516,7 @@ namespace DungeonRun
                         else { objRef = Functions_Pool.GetRoomObj(); }
                         
                         //place currently selected obj in room, aligned to 16px grid
-                        objRef.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
+                        objRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
                         Functions_Movement.Teleport(objRef.compMove,
                             objRef.compMove.newPosition.X, objRef.compMove.newPosition.Y);
                         //set obj direction + type from stored values
@@ -550,7 +550,7 @@ namespace DungeonRun
                 {   //if we are in Move state,
                     if (grabbedObj != null)
                     {   //match grabbed Obj pos to worldPos, aligned to 16px grid
-                        grabbedObj.compMove.newPosition = AlignToGrid(worldPos.X, worldPos.Y);
+                        grabbedObj.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
                         Functions_Movement.Teleport(grabbedObj.compMove,
                             grabbedObj.compMove.newPosition.X, grabbedObj.compMove.newPosition.Y);
                         Functions_Component.Align(grabbedObj.compMove,
@@ -659,10 +659,7 @@ namespace DungeonRun
             else { SelectionBox.scale = 1.0f; }
         }
 
-        public Vector2 AlignToGrid(int X, int Y)
-        {
-            return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
-        }
+        
 
         public void GetActiveObjInfo()
         {   //reset objRef, match currentObjRef to activeObj

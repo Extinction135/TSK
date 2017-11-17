@@ -67,5 +67,9 @@ namespace DungeonRun
             Move.speed = 0;
         }
 
+        public static Vector2 AlignToGrid(int X, int Y)
+        {   //align to 16 pixel grid
+            return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
+        }
     }
 }

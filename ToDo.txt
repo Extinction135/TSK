@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-8
+13
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -51,16 +51,17 @@ torches in groups of 4
 
 
 
-Further Refactoring of Hero related Code
+Align Dropped Pots to 16px Grid
 
-moved carrying boolean out of actor and into Functions_Hero.
-created Functions_Hero.HandleState().
-moved code out of Functions_Actor.Update and into HandleState().
-hero's state is now handled seperately from enemy/actor's states.
-this is because the hero can do things other actors cannot do.
-moved carrying check out of Functions_Actor and into Functions_Hero.
-refactored Functions_Item.UseItem().
-lots of playtesting.
+pulled AlignToGrid out of WidgetObjectTools.
+relocated to Functions_Movement.
+updated Functions_Hero.HandleState() drop pot section.
+now when the hero drops a pot he's carrying,
+it will be aligned to a 16 pixel grid like other room objects.
+playtested, working as expected.
+
+
+
 
 
 
@@ -69,13 +70,12 @@ lots of playtesting.
 
 if a spikeBlock collides with a Pot, the pot should be destroyed
 
-
-
 when hero falls into a pit, he should drop whatever he was carrying.
-carryingObjs that are dropped should be aligned to nearest 16px grid
+
 pots dont fall into pits properly
 there is no carryingObj vs roomObjs collision checking
 this would be done upon carryingObj drop event
+
 
 
 and when a pot is dropped down, it should cause damage to anything that it's collision rec collides with
