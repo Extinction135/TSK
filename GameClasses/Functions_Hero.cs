@@ -614,6 +614,39 @@ namespace DungeonRun
 
 
 
+        public static void DropCarryingObj(Actor Hero)
+        {   //if the hero isn't carrying anything, bail from method
+            if (!carrying) { return; }
+            //else, the hero is carrying a pot obj, so drop it correctly
+            carrying = false; //release carrying state
+            //convert any diagonal to cardinal direction
+            Hero.direction = Functions_Direction.GetCardinalDirection(Hero.direction);
+            //based on hero's facing direction, calculate drop offset
+            Vector2 offset = new Vector2(0, 0);
+            if (Hero.direction == Direction.Up) { offset.Y = -12; }
+            else if (Hero.direction == Direction.Down) { offset.Y = +14; }
+            else if (Hero.direction == Direction.Left) { offset.X = -14; offset.Y = +2; }
+            else { offset.X = +14; offset.Y = +2; } //defaults right
+                                                    //apply drop offset to carryingObj
+            carryingObj.compMove.newPosition.X = Hero.compSprite.position.X + offset.X;
+            carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y + offset.Y;
+            //align to grid
+            carryingObj.compMove.newPosition = Functions_Movement.AlignToGrid(
+                (int)carryingObj.compMove.newPosition.X,
+                (int)carryingObj.compMove.newPosition.Y);
+            //simulate an impact with the ground
+            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                carryingObj.compMove.newPosition.X,
+                carryingObj.compMove.newPosition.Y,
+                Direction.Down);
+            //return carryingObj to Room
+            Functions_Component.Align(carryingObj);
+            Functions_GameObject.ResetObject(carryingObj); //reset Obj
+            Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
+            carryingObj = null; //release obj ref
+        }
+
+
 
         public static void HandleState(Actor Hero)
         {
@@ -628,38 +661,12 @@ namespace DungeonRun
 
                 if (Hero.compInput.dash)
                 {   //if player pressed the B button, drop carryingObj
-                    carrying = false; //release carrying state
+                    DropCarryingObj(Hero);
                     //display a 'drop' animation for hero
                     Hero.state = ActorState.Throw;
                     Hero.stateLocked = true;
                     Hero.lockTotal = 10;
                     Functions_Movement.StopMovement(Hero.compMove);
-
-                    //convert any diagonal to cardinal direction
-                    Hero.direction = Functions_Direction.GetCardinalDirection(Hero.direction);
-                    //based on hero's facing direction, calculate drop offset
-                    Vector2 offset = new Vector2(0, 0);
-                    if (Hero.direction == Direction.Up) { offset.Y = -12; }
-                    else if (Hero.direction == Direction.Down) { offset.Y = +14; }
-                    else if (Hero.direction == Direction.Left) { offset.X = -14; offset.Y = +2; }
-                    else { offset.X = +14; offset.Y = +2; } //defaults right
-                    //apply drop offset to carryingObj
-                    carryingObj.compMove.newPosition.X = Hero.compSprite.position.X + offset.X;
-                    carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y + offset.Y;
-                    //align to grid
-                    carryingObj.compMove.newPosition = Functions_Movement.AlignToGrid(
-                        (int)carryingObj.compMove.newPosition.X, 
-                        (int)carryingObj.compMove.newPosition.Y);
-                    //simulate an impact with the ground
-                    Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
-                        carryingObj.compMove.newPosition.X,
-                        carryingObj.compMove.newPosition.Y,
-                        Direction.Down);
-                    //return carryingObj to Room
-                    Functions_Component.Align(carryingObj);
-                    Functions_GameObject.ResetObject(carryingObj); //reset Obj
-                    Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
-                    carryingObj = null; //release obj ref
                 }
 
                 #endregion

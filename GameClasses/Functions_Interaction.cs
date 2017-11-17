@@ -98,9 +98,22 @@ namespace DungeonRun
                     if (Actor.compMove.grounded)
                     {
 
+                        #region Drop any Obj Hero is carrying, hide Hero's shadow
+
+                        if(Actor == Pool.hero)
+                        {   //check to see if hero should drop carryingObj
+                            if (Functions_Hero.carrying)
+                            { Functions_Hero.DropCarryingObj(Actor); }
+                            //hide hero's shadow upon pit collision
+                            Functions_Hero.heroShadow.visible = false;
+                        }
+
+                        #endregion
+
+
                         #region Prevent Hero's Pet from falling into pit
 
-                        if(Actor == Pool.herosPet)
+                        else if(Actor == Pool.herosPet)
                         {   //get the opposite direction between pet's center and pit's center
                             Actor.compMove.direction = Functions_Direction.GetOppositeDirection(
                                 Actor.compSprite.position, Obj.compSprite.position);
@@ -112,7 +125,7 @@ namespace DungeonRun
                         #endregion
 
 
-                        #region Continuous collision (each frame)
+                        #region Continuous collision (each frame) - ALL ACTORS
 
                         //gradually pull actor into pit's center, manually update the actor's position
                         Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
@@ -139,13 +152,11 @@ namespace DungeonRun
                                 Actor.compSprite.scale -= 0.03f;
                             }
                         }
-                        //hide hero's shadow upon pit collision
-                        if (Actor == Pool.hero) { Functions_Hero.heroShadow.visible = false; }
 
                         #endregion
 
 
-                        #region End State of actor -> pit collision
+                        #region End State of actor -> pit collision - ALL ACTORS
 
                         if (Actor.compSprite.scale < 0.0f)
                         {   //actor has reached 0% scale, has fallen into pit completely
@@ -262,7 +273,7 @@ namespace DungeonRun
                     BounceSpikeBlock(Entity);
                     if (RoomObj.type == ObjType.SwitchBlockBtn)
                     { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
-                    else if (RoomObj.type == ObjType.BossStatue || RoomObj.type == ObjType.Pot)
+                    else if (RoomObj.type == ObjType.Pot)
                     { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                 }
 

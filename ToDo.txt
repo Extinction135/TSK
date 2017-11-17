@@ -50,11 +50,16 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Improve Pot vs Entity Interaction
+Hero should drop any Pot he is carrying upon a Pit collision
 
-moving spikeBlocks now destroy pots upon collision.
-updated InteractObject(Entity, RoomObj).
+moved code to drop the hero's carryingObj into method DropCarryingObj().
+simplified Hero.HandleState() to call Hero.DropCarryingObj().
+this was done because we need to be able to call DropCarryingObj(),
+when hero falls into a pit.
+updated InteractActor() with code to handle dropping of hero's carrying obj.
+also simplified the PitAnimated regions a bit.
 playtested, working as expected.
+the hero does drop the obj, and does not respawn with it.
 
 
 
@@ -62,7 +67,10 @@ playtested, working as expected.
 
 
 
-when hero falls into a pit, he should drop whatever he was carrying.
+we need pickup pot soundfx
+we need drop pot soundfx
+
+
 
 pots dont fall into pits properly
 there is no carryingObj vs roomObjs collision checking
