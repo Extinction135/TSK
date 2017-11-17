@@ -262,6 +262,8 @@ namespace DungeonRun
                     BounceSpikeBlock(Entity);
                     if (RoomObj.type == ObjType.SwitchBlockBtn)
                     { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                    else if (RoomObj.type == ObjType.BossStatue || RoomObj.type == ObjType.Pot)
+                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                 }
 
                 #endregion

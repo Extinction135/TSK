@@ -44,20 +44,16 @@ add to existing levels / new levels:
 switch blocks + btns
 floor switches
 torches in groups of 4
+spikeblocks eating away at massive groups of pots
 
 
 
 
 
+Improve Pot vs Entity Interaction
 
-
-Align Dropped Pots to 16px Grid
-
-pulled AlignToGrid out of WidgetObjectTools.
-relocated to Functions_Movement.
-updated Functions_Hero.HandleState() drop pot section.
-now when the hero drops a pot he's carrying,
-it will be aligned to a 16 pixel grid like other room objects.
+moving spikeBlocks now destroy pots upon collision.
+updated InteractObject(Entity, RoomObj).
 playtested, working as expected.
 
 
@@ -65,10 +61,6 @@ playtested, working as expected.
 
 
 
-
-
-
-if a spikeBlock collides with a Pot, the pot should be destroyed
 
 when hero falls into a pit, he should drop whatever he was carrying.
 
@@ -78,8 +70,6 @@ this would be done upon carryingObj drop event
 
 
 
-and when a pot is dropped down, it should cause damage to anything that it's collision rec collides with
-and this should be 1 damage, and it should push any actors it collides with away from it
 
 
 
