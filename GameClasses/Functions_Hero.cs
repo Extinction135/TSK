@@ -646,6 +646,7 @@ namespace DungeonRun
             //check what pot obj collided with, handle interaction
             for (i = 0; i < Pool.roomObjCounter; i++)
             {
+                if (carryingObj == Pool.roomObjPool[i]) { i++; } //skip checking obj vs itself
                 if(Pool.roomObjPool[i].active)
                 {
                     if(Pool.roomObjPool[i].compCollision.rec.Contains(carryingObj.compMove.newPosition))
@@ -656,9 +657,11 @@ namespace DungeonRun
                             Functions_RoomObject.PlayPitFx(Pool.roomObjPool[i]);
                         }
                         else if(Pool.roomObjPool[i].compCollision.blocking)
-                        {
-                            //destroy the pot obj
-
+                        {   //destroy the carrying pot obj
+                            Functions_RoomObject.DestroyObject(carryingObj, true, true);
+                            //if the hit object was a pot, destroy it as well
+                            if (Pool.roomObjPool[i].type == ObjType.Pot)
+                            { Functions_RoomObject.DestroyObject(Pool.roomObjPool[i], true, true); }
                         }
                     }
                 }

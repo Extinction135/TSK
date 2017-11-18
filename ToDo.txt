@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-9
+8
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -50,29 +50,32 @@ spikeblocks eating away at massive groups of pots
 
 
 
-
-
-Improve Actor / Obj falling into Pits
-
-changed the percentage scale value required to trigger end case for actor/pit interaction.
-in english, this means the actor doesn't scale down to 0% when colliding with a pit.
-it visually looked strange to watch the actor disappear into an abyss, when clearly we
-can see the bubbles on the surface of the pit liquid.
-instead, the actor / object triggers when it reaches 80% scale.
-playtested, looks / feels much better.
-
-
-
-
-
-
-
-
-
-
 Handle Pot vs Blocking Obj Collisions
 
-when a pot obj is dropped onto a blocking obj, break the pot and spawn loot
+when a pot obj is dropped onto a blocking obj, break the pot and spawn loot.
+
+updated Functions_Hero.DropCarryingObj() with code to handle
+carryingObj (pot) vs roomObj.blocking interactions / collisions.
+playtested, working as expected.
+added code to handle carryingObj Pot vs roomObj Pot interaction.
+both Pots will be destroyed at once, each with a chance to spawn loot.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
+
+improve the placement of pot rewards when pots collide with blocking objects
+
+problem: pot rewards spawn inside of blocking objects, so hero can't redeem them.
+they should spawn with the offset we applied to hero's position to get pot's drop pos.
+
+
 
 
 
