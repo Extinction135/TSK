@@ -621,13 +621,15 @@ namespace DungeonRun
             carrying = false; //release carrying state
             //convert any diagonal to cardinal direction
             Hero.direction = Functions_Direction.GetCardinalDirection(Hero.direction);
+            
             //based on hero's facing direction, calculate drop offset
             Vector2 offset = new Vector2(0, 0);
-            if (Hero.direction == Direction.Up) { offset.Y = -12; }
-            else if (Hero.direction == Direction.Down) { offset.Y = +14; }
-            else if (Hero.direction == Direction.Left) { offset.X = -14; offset.Y = +2; }
-            else { offset.X = +14; offset.Y = +2; } //defaults right
-                                                    //apply drop offset to carryingObj
+            if (Hero.direction == Direction.Up) { offset.Y = -16; }
+            else if (Hero.direction == Direction.Down) { offset.Y = +16; }
+            else if (Hero.direction == Direction.Left) { offset.X = -16; }
+            else { offset.X = +16; } //defaults right
+
+            //apply drop offset to carryingObj
             carryingObj.compMove.newPosition.X = Hero.compSprite.position.X + offset.X;
             carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y + offset.Y;
             //align to grid
@@ -657,8 +659,17 @@ namespace DungeonRun
                             Functions_RoomObject.PlayPitFx(Pool.roomObjPool[i]);
                         }
                         else if(Pool.roomObjPool[i].compCollision.blocking)
-                        {   //destroy the carrying pot obj
+                        {   //we need to revert the carryObj pot back to the hero + offset position
+                            //this makes the potential pot loot reward obtainable, since it would spawn
+                            //inside of a blocking object otherwise
+
+                            //re-apply drop offset to carryingObj, slightly closer to hero
+                            carryingObj.compMove.newPosition.X = Hero.compSprite.position.X + (offset.X/2);
+                            carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y + (offset.Y/2);
+                            Functions_Component.Align(carryingObj);
+                            //now we can safely destroy the carrying pot obj
                             Functions_RoomObject.DestroyObject(carryingObj, true, true);
+
                             //if the hit object was a pot, destroy it as well
                             if (Pool.roomObjPool[i].type == ObjType.Pot)
                             { Functions_RoomObject.DestroyObject(Pool.roomObjPool[i], true, true); }
@@ -666,8 +677,7 @@ namespace DungeonRun
                     }
                 }
             }
-
-            //return carryingObj to Room
+            
             carryingObj = null; //release obj ref
         }
 

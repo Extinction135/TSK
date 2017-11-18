@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-8
+7
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -50,30 +50,20 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Handle Pot vs Blocking Obj Collisions
+Fix Pot Loot spawning inside of blocking RoomObjects
 
-when a pot obj is dropped onto a blocking obj, break the pot and spawn loot.
+problem: if hero drops a pot onto a blocking object, like a block,
+then the pot breaks and maybe spawns pickup loot, INSIDE the block.
+obviously, the hero cannot obtain this loot since it's inside an object.
+pot loot should not spawn inside any blocking objects.
 
-updated Functions_Hero.DropCarryingObj() with code to handle
-carryingObj (pot) vs roomObj.blocking interactions / collisions.
+fix: upon blocking collision, pots should revert back to the
+(hero.pos + dropOffset / 2) position, get aligned, then Destroyed().
+this causes the pot loot to spawn closer to the hero, and likely in
+a redeemable position.
+
 playtested, working as expected.
-added code to handle carryingObj Pot vs roomObj Pot interaction.
-both Pots will be destroyed at once, each with a chance to spawn loot.
-playtested, working as expected.
 
-
-
-
-
-
-
-
-
-
-improve the placement of pot rewards when pots collide with blocking objects
-
-problem: pot rewards spawn inside of blocking objects, so hero can't redeem them.
-they should spawn with the offset we applied to hero's position to get pot's drop pos.
 
 
 
@@ -84,13 +74,6 @@ they should spawn with the offset we applied to hero's position to get pot's dro
 
 we need pickup pot soundfx
 we need drop pot soundfx
-
-
-
-
-
-
-
 
 
 
