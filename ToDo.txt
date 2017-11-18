@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-5
+3
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -50,22 +50,15 @@ spikeblocks eating away at massive groups of pots
 
 
 
+Polish Pickup, Throw, Drop Pot Objects
 
-
-
-
-
-Implement Throwing Pots - Part 2
-
-the flying pot should have a shadow underneath it.
-
-added ProjectileShadowSm value to ObjType enum.
-added projectile shadow animList.
-removed the reduction of friction from ProjectilePot.
-added projectile shadow to Obj.SetType().
-added projectile shadow to SpawnEntity().
-SpawnEntity() handles the details of shadow creation/implementation.
-playtested, working very well, with the exception of a small bug.
+fixed an implementation issue with ProjectilePot.
+added section of code to handle RoomObj Pots to Interact.InteractObject().
+improved code to handle thrown pots falling into pits properly.
+tested that all pots collide with blocking objs.
+tested that all pots collide with animated pits properly.
+added call to play a pickup soundfx when hero picks up a pot.
+playtested most of the features, but need to do more.
 
 
 
@@ -73,45 +66,9 @@ playtested, working very well, with the exception of a small bug.
 
 
 
++ pots should be able to be thrown into switch blocks and flip them
 
-Fix Throwing Pots North Bug
-
-Bug: throwing a pot north creates a shadow projectile that collides with hero.
-since all projectiles by default 'hit' hero, this causes the hero to be set into
-a hit state, which is buggy and feels cheap and bad.
-
-fix bug where throwing a pot north causes hero to get hit
-what is hitting him? the shadow projectile.
-we should have a case for handling the shadow projectile in Interact.
-
-
-add call to pickup soundfx when hero interacts with a Pot roomObj
-
-
-
-
-
-
-
-
-Implement Pot Projectile Interactions / Collisions
-
-handle flying pot collisions + interactions,
-we'll check the pot shadow, which will determine if the pot
-hit the obj/actor, otherwise, the pot would collide with actors
-that are not on the same horizontal line (unintuitive behavior)
--flying pots (shadows) can collide with actors and objs
--all blocking objs cause instant pot destruction
--any actor collision casuses instant pot destruction
--this also damages the actor and pushes the actor, like a sword swipe
--at the very end of the flying pot's journey, we'll need to do the
-pot collision with ground roomObj check, which is baked into Hero.DropCarryingObj().
-we'll need to pull out the roomObj collision + interaction routine
-this should go somewhere else
-
-
-
-
++ test that thrown pots hurt + push enemies
 
 
 

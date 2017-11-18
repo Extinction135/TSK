@@ -169,6 +169,6 @@ namespace DungeonRun
             Entity.compMove.position.X = Entity.compMove.newPosition.X;
             Entity.compMove.position.Y = Entity.compMove.newPosition.Y;
         }
-
+        
     }
 }

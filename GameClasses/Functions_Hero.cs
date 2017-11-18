@@ -286,6 +286,7 @@ namespace DungeonRun
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.Down);
+                Assets.Play(Assets.sfxChestOpen); //sounds like picking something up
             }
 
             else if (Obj.type == ObjType.TorchUnlit)
@@ -612,8 +613,6 @@ namespace DungeonRun
             Pool.herosPet.compSprite.scale = 1.0f; //rescale hero to 100%
         }
 
-
-
         public static void DropCarryingObj(Actor Hero)
         {   //if the hero isn't carrying anything, bail from method
             if (!carrying) { return; }
@@ -637,52 +636,36 @@ namespace DungeonRun
                 (int)carryingObj.compMove.newPosition.X,
                 (int)carryingObj.compMove.newPosition.Y);
             //simulate an impact with the ground
+            Assets.Play(Assets.sfxActorLand); //play land sound fx
             Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
                 carryingObj.compMove.newPosition.X,
                 carryingObj.compMove.newPosition.Y,
                 Direction.Down);
-            Functions_Component.Align(carryingObj);
             Functions_GameObject.ResetObject(carryingObj); //reset Obj
             Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
-            Assets.Play(Assets.sfxActorLand); //play land sound fx
+            Functions_Component.Align(carryingObj);
 
-            //check what pot obj collided with, handle interaction
-            for (i = 0; i < Pool.roomObjCounter; i++)
-            {
+            //check what roomObj pot collided with, handle interaction
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //check all roomObjs against dropped Pot obj
                 if (carryingObj == Pool.roomObjPool[i]) { i++; } //skip checking obj vs itself
-                if(Pool.roomObjPool[i].active)
-                {
-                    if(Pool.roomObjPool[i].compCollision.rec.Contains(carryingObj.compMove.newPosition))
-                    {
-                        if(Pool.roomObjPool[i].type == ObjType.PitAnimated)
-                        {   //pot obj disappears into pit, play splash fx
+                if (Pool.roomObjPool[i].active)
+                {   //handle Pot vs RoomObj interactions
+                    if (Pool.roomObjPool[i].compCollision.rec.Intersects(carryingObj.compCollision.rec))
+                    {   //Interactive Events overtime must be shortened to 1 frame
+                        if (Pool.roomObjPool[i].type == ObjType.PitAnimated)
+                        {   //immediately release the pot, play the pit splash fx
                             Functions_Pool.Release(carryingObj);
                             Functions_RoomObject.PlayPitFx(Pool.roomObjPool[i]);
                         }
-                        else if(Pool.roomObjPool[i].compCollision.blocking)
-                        {   //we need to revert the carryObj pot back to the hero + offset position
-                            //this makes the potential pot loot reward obtainable, since it would spawn
-                            //inside of a blocking object otherwise
-
-                            //re-apply drop offset to carryingObj, slightly closer to hero
-                            carryingObj.compMove.newPosition.X = Hero.compSprite.position.X + (offset.X/2);
-                            carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y + (offset.Y/2);
-                            Functions_Component.Align(carryingObj);
-                            //now we can safely destroy the carrying pot obj
-                            Functions_RoomObject.DestroyObject(carryingObj, true, true);
-
-                            //if the hit object was a pot, destroy it as well
-                            if (Pool.roomObjPool[i].type == ObjType.Pot)
-                            { Functions_RoomObject.DestroyObject(Pool.roomObjPool[i], true, true); }
-                        }
+                        //InteractObject() handles the rest of the immediate events
+                        Functions_Interaction.InteractObject(carryingObj, Pool.roomObjPool[i]);
                     }
                 }
             }
-            
+
             carryingObj = null; //release obj ref
         }
-
-
 
         public static void HandleState(Actor Hero)
         {

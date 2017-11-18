@@ -205,6 +205,8 @@ namespace DungeonRun
 
         public static void InteractObject(GameObject Entity, GameObject RoomObj)
         {
+            //99% of time is Entity, but Entity can also be RoomObj rarely
+
             //Handle Blocking Interactions (only with projectiles)
             if (RoomObj.compCollision.blocking)
             {
@@ -315,6 +317,20 @@ namespace DungeonRun
 
                 #endregion
 
+
+                #region Thrown / Dropped Pot (ProjectilePot & Pot RoomObj)
+
+                else if (Entity.type == ObjType.ProjectilePot || Entity.type == ObjType.Pot)
+                {   //destroy the Pot object
+                    Functions_RoomObject.DestroyObject(Entity, true, true);
+                    //if the hit object was a pot, destroy it as well
+                    if (RoomObj.type == ObjType.Pot)
+                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
+                }
+
+                #endregion
+
+
             }
             //Handle Non-Blocking Interactions (with projectiles & pickups)
             else
@@ -366,6 +382,14 @@ namespace DungeonRun
 
                 else if(RoomObj.type == ObjType.PitAnimated)
                 {
+                    //check to see if we should ground the thrown pot projectile
+                    if(Entity.type == ObjType.ProjectilePot)
+                    {   //if this is the last frame of the projectile pot, ground it
+                        if (Entity.lifeCounter > Entity.lifetime - 5) //dont let it die
+                        { Entity.compMove.grounded = true; Entity.lifeCounter = 3; }
+                    }
+                    
+                    //check to see if this pit can pull in a grounded object
                     if(Entity.compMove.grounded)
                     {   //pull projectile into pit's center, project movement, align projectile to new pos
                         Entity.compMove.magnitude = (RoomObj.compSprite.position - Entity.compSprite.position) * 0.25f;
@@ -375,7 +399,10 @@ namespace DungeonRun
                             if (Math.Abs(Entity.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
                             {
                                 if (Entity.compSprite.scale == 1.0f) //begin falling state
-                                { Assets.Play(Assets.sfxActorFall); }
+                                {   //dont play falling sound if entity is thrown pot, falling sound was just played
+                                    if(Entity.type != ObjType.ProjectilePot)
+                                    { Assets.Play(Assets.sfxActorFall); }
+                                }
                                 //continue falling state, scaling object down
                                 Entity.compSprite.scale -= 0.03f;
                             }
