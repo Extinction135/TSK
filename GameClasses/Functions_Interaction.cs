@@ -27,8 +27,10 @@ namespace DungeonRun
             #region Projectiles
 
             if (Obj.group == ObjGroup.Projectile)
-            {   //debris rocks dont interact with actors in any way at all
-                if (Obj.type == ObjType.ProjectileDebrisRock) { return; }
+            {   //some projectiles dont interact with actors in any way at all
+                if (Obj.type == ObjType.ProjectileDebrisRock
+                    || Obj.type == ObjType.ProjectileShadowSm)
+                { return; }
                 //check for collision between net and actor
                 else if (Obj.type == ObjType.ProjectileNet)
                 {   //make sure actor isn't in hit/dead state
