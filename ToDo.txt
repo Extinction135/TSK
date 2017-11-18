@@ -50,17 +50,29 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Hero should drop any Pot he is carrying upon a Pit collision
 
-moved code to drop the hero's carryingObj into method DropCarryingObj().
-simplified Hero.HandleState() to call Hero.DropCarryingObj().
-this was done because we need to be able to call DropCarryingObj(),
-when hero falls into a pit.
-updated InteractActor() with code to handle dropping of hero's carrying obj.
-also simplified the PitAnimated regions a bit.
+Handle Pot vs Pit Collisions
+
+a Pot should dissappear into a Pit upon collision.
+
+moved PlayPitFx(Pit) from Functions_Interaction to Functions_RoomObject.
+added call to Play() the splash soundfx from PlayPitFx().
+added section of code to Functions_Hero.DropCarryingObj(), which 
+checks the pots collision against all roomObjs, then handles the
+interaction based on the colliding roomObj's type.
+for now, only pits are implemented, and they gobble up pots.
+a splash effect is displayed and heard and the pot dissappears.
 playtested, working as expected.
-the hero does drop the obj, and does not respawn with it.
 
+
+
+
+
+
+
+
+
+when a pot obj is dropped onto a blocking obj, break the pot and spawn loot
 
 
 
@@ -70,8 +82,6 @@ the hero does drop the obj, and does not respawn with it.
 we need pickup pot soundfx
 we need drop pot soundfx
 
-
-
 pots dont fall into pits properly
 there is no carryingObj vs roomObjs collision checking
 this would be done upon carryingObj drop event
@@ -80,12 +90,6 @@ this would be done upon carryingObj drop event
 
 
 
-
-minor problem wth the switch block maze key room:
-if you enter from the bottom of the room, spikeblock is flying right at you
-and it seems unfair and cheap
-so we need to move it into the maze somewhere
-we may shorten bits of the interior path
 
 
 
@@ -117,6 +121,28 @@ pot should have sound for pickup, throw, explode/death
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+minor problem wth the switch block maze key room:
+if you enter from the bottom of the room, spikeblock is flying right at you
+and it seems unfair and cheap
+so we need to move it into the maze somewhere
+we may shorten bits of the interior path
 
 Arrows++
 when an arrow collides with a blocking object, end the arrow's speed/magnitude

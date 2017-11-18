@@ -639,10 +639,32 @@ namespace DungeonRun
                 carryingObj.compMove.newPosition.X,
                 carryingObj.compMove.newPosition.Y,
                 Direction.Down);
-            //return carryingObj to Room
             Functions_Component.Align(carryingObj);
             Functions_GameObject.ResetObject(carryingObj); //reset Obj
             Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
+
+            //check what pot obj collided with, handle interaction
+            for (i = 0; i < Pool.roomObjCounter; i++)
+            {
+                if(Pool.roomObjPool[i].active)
+                {
+                    if(Pool.roomObjPool[i].compCollision.rec.Contains(carryingObj.compMove.newPosition))
+                    {
+                        if(Pool.roomObjPool[i].type == ObjType.PitAnimated)
+                        {   //pot obj disappears into pit, play splash fx
+                            Functions_Pool.Release(carryingObj);
+                            Functions_RoomObject.PlayPitFx(Pool.roomObjPool[i]);
+                        }
+                        else if(Pool.roomObjPool[i].compCollision.blocking)
+                        {
+                            //destroy the pot obj
+
+                        }
+                    }
+                }
+            }
+
+            //return carryingObj to Room
             carryingObj = null; //release obj ref
         }
 

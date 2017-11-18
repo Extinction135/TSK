@@ -160,10 +160,9 @@ namespace DungeonRun
 
                         if (Actor.compSprite.scale < 0.0f)
                         {   //actor has reached 0% scale, has fallen into pit completely
-                            PlayPitFx(Obj); //fall sfx, splash fx + sfx
+                            Functions_RoomObject.PlayPitFx(Obj);
                             if (Actor == Pool.hero)
                             {   //send hero back to last door he passed thru
-                                //Assets.Play(Actor.sfxHit); //play hero's hit sfx
                                 Assets.Play(Assets.sfxActorLand); //play actor land sfx
                                 Functions_Hero.SpawnInCurrentRoom();
                                 Functions_Hero.heroShadow.visible = true; 
@@ -383,7 +382,7 @@ namespace DungeonRun
                         if (Entity.compSprite.scale < 0.0f)
                         {
                             Functions_Pool.Release(Entity);
-                            PlayPitFx(RoomObj); //fall sfx, splash fx + sfx
+                            Functions_RoomObject.PlayPitFx(RoomObj);
                         }
                     }
                 }
@@ -463,14 +462,6 @@ namespace DungeonRun
             SpikeBlock.compMove.position += SpikeBlock.compMove.magnitude;
             SpikeBlock.compMove.newPosition = SpikeBlock.compMove.position;
             Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
-        }
-
-        public static void PlayPitFx(GameObject Pit)
-        {   //play splash particle effect
-            Functions_Entity.SpawnEntity(ObjType.ParticleSplash,
-                Pit.compSprite.position.X ,
-                Pit.compSprite.position.Y - 4,
-                Direction.None);
         }
 
     }
