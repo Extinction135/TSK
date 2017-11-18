@@ -644,6 +644,7 @@ namespace DungeonRun
             Functions_Component.Align(carryingObj);
             Functions_GameObject.ResetObject(carryingObj); //reset Obj
             Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
+            Assets.Play(Assets.sfxActorLand); //play land sound fx
 
             //check what pot obj collided with, handle interaction
             for (i = 0; i < Pool.roomObjCounter; i++)
@@ -711,8 +712,17 @@ namespace DungeonRun
 
                 else if (Hero.compInput.interact)
                 {   //if player pressed the A button, throw carryingObj
+                    //create the ProjectilePot entity
+                    Functions_Entity.SpawnEntity(ObjType.ProjectilePot, Hero);
+                    carrying = false; //release carrying state
+                    Functions_Pool.Release(carryingObj);
+                    carryingObj = null; //release obj ref
 
-                    //todo soon
+                    //display a 'throw' animation for hero
+                    Hero.state = ActorState.Throw;
+                    Hero.stateLocked = true;
+                    Hero.lockTotal = 10;
+                    Functions_Movement.StopMovement(Hero.compMove);
                 }
                 #endregion
                 

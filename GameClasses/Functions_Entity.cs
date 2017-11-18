@@ -164,6 +164,13 @@ namespace DungeonRun
                 else if (direction == Direction.Right) { posRef.X += 14; }
                 else if (direction == Direction.Left) { posRef.X -= 14; }
             }
+            else if (Type == ObjType.ProjectilePot)
+            {   //place projectile outside of actor's hitbox, above actors head
+                if (direction == Direction.Down) { posRef.Y += 15; }
+                else if (direction == Direction.Up) { posRef.Y -= 12; }
+                else if (direction == Direction.Right) { posRef.X += 14; posRef.Y -= 8; }
+                else if (direction == Direction.Left) { posRef.X -= 14; posRef.Y -= 8; }
+            }
 
             #endregion
 
@@ -201,7 +208,8 @@ namespace DungeonRun
                 Type == ObjType.ProjectileArrow ||
                 Type == ObjType.ProjectileBomb ||
                 Type == ObjType.ParticleBow ||
-                Type == ObjType.ProjectileDebrisRock)
+                Type == ObjType.ProjectileDebrisRock ||
+                Type == ObjType.ProjectilePot)
             {
                 obj.direction = Direction;
                 obj.compMove.direction = Direction;
@@ -280,6 +288,14 @@ namespace DungeonRun
             #endregion
 
 
+            #region Give Pots an Initial Push (throw them)
+
+            else if (Type == ObjType.ProjectilePot)
+            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
+
+            #endregion
+
+
             #region Modify RockDebris Projectiles Animation Frame + Slide them
 
             //some projectiles get their current frame randomly assigned (for variation)
@@ -337,6 +353,8 @@ namespace DungeonRun
             { Assets.Play(Assets.sfxSwordSwipe); }
             else if (Entity.type == ObjType.ProjectileNet) //need net soundFX
             { Assets.Play(Assets.sfxSwordSwipe); }
+            else if (Entity.type == ObjType.ProjectilePot)
+            { Assets.Play(Assets.sfxActorFall); } //throw sfx = actor fall sfx
 
             #endregion
 
@@ -397,6 +415,10 @@ namespace DungeonRun
             }
             //sword
             //rock debris
+            else if (Obj.type == ObjType.ProjectilePot)
+            {   //create loot
+                Functions_RoomObject.DestroyObject(Obj, true, true);
+            }
 
             #endregion
 

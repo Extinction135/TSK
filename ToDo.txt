@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-7
+6
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -50,19 +50,37 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Fix Pot Loot spawning inside of blocking RoomObjects
 
-problem: if hero drops a pot onto a blocking object, like a block,
-then the pot breaks and maybe spawns pickup loot, INSIDE the block.
-obviously, the hero cannot obtain this loot since it's inside an object.
-pot loot should not spawn inside any blocking objects.
+Implement Throwing Pots - Part 1
 
-fix: upon blocking collision, pots should revert back to the
-(hero.pos + dropOffset / 2) position, get aligned, then Destroyed().
-this causes the pot loot to spawn closer to the hero, and likely in
-a redeemable position.
+when player press A button while carrying, throw the Pot
+eventually the Pot should explode
 
-playtested, working as expected.
+added ProjectilePot value to ObjType enum.
+added animList for gameObj ProjectilePot.
+added GameObj.SetType() routine for ProjectilePot.
+
+updated SpawnEntity(Type, X, Y, Dir) with section to handle ProjectilePot.
+SpawnEntity() gives ProjectilePots an initial push, just like Bombs.
+
+updated SpawnEntity(Type, Actor) with section to handle ProjectilePot.
+this method properly applies an offset to the Pot based on the Actor's position.
+
+added throw animation for hero upon A button push, while carrying pot.
+added code to  handle birth state for ProjectilePots (play throw soundfx).
+added code to handle death state for ProjectilePots (explode into loot).
+playtested, working for the most part.
+
+added land sound fx to when hero drops a pot object.
+halved the ProjectilePot's lifetime value to 25.
+updated GameObj.SetRotation() to keep Pot obj's facing down.
+playtested, working, needs polish.
+
+reduced the Pot projectile's lifetime further, down to 15 frames.
+reduced the Pot projectile's friction from 25% to 10%, since it's in the air.
+it makes sense there would be less friction in the air.
+
+playtested, works / feels good.
 
 
 
@@ -70,25 +88,52 @@ playtested, working as expected.
 
 
 
+add shadow, should just follow pot underneath it, sort to floor
+this will sell the pot in the air depth visuals
 
 
-we need pickup pot soundfx
-we need drop pot soundfx
+add call to pickup soundfx when hero interacts with a Pot roomObj
+
+
+additionally, a pot shadow projectile is created.
+this pot shadow projectile moves exactly like a Pot projectile
+except the shadow stays on the ground
 
 
 
 
 
 
-Pot Throw
-while carrying, press A to throw obj in hero's facing direction
-create a Pot Projectile, release Pot RoomObj.
-the Pot projectile moves just like a bomb, except it also has a shadow
-after a while the pot entity breaks (as it hits the ground)
-check Pot against actors + roomObjs, break upon collision
-pots should randomly spawn loot too, when they are destroyed
-skull pots should not be destroyed by swords
-pot should have sound for pickup, throw, explode/death
+Pot Collisions
+
+handle flying pot collisions + interactions,
+we'll check the pot shadow, which will determine if the pot
+hit the obj/actor, otherwise, the pot would collide with actors
+that are not on the same horizontal line (unintuitive behavior)
+-flying pots (shadows) can collide with actors and objs
+-all blocking objs cause instant pot destruction
+-any actor collision casuses instant pot destruction
+-this also damages the actor and pushes the actor, like a sword swipe
+-at the very end of the flying pot's journey, we'll need to do the
+pot collision with ground roomObj check, which is baked into Hero.DropCarryingObj().
+we'll need to pull out the roomObj collision + interaction routine
+this should go somewhere else
+
+
+
+
+
+Improve Pot Loot Redeeming System
+
+if the pot hits an enemy far away, say across a pit that hero can't cross,
+then the loot spawns in the pit, or where the enemy was hit.
+either case, the hero cant get the loot.
+what if we just gave the loot to the hero?
+
+if hero drops a pot on a blocking obj, spawn the loot ON the hero (auto pickup next frame).
+we will do the same with when the hero throws the pot and hits an enemy/obj.
+simply set the carryingObj pot to the hero's position, align() the pot, then destroy() it.
+
 
 
 

@@ -65,7 +65,8 @@ namespace DungeonRun
                 { Obj.compSprite.flipHorizontally = true; }
             }
             else if (Obj.type == ObjType.ProjectileBomb
-                || Obj.type == ObjType.ProjectileSpikeBlock)
+                || Obj.type == ObjType.ProjectileSpikeBlock
+                || Obj.type == ObjType.ProjectilePot)
             {   //some objects only face Direction.Down
                 Obj.compSprite.rotation = Rotation.None;
             }
@@ -597,6 +598,24 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //in air
             }
 
+
+
+
+
+            else if (Type == ObjType.ProjectilePot)
+            {
+                Obj.compSprite.zOffset = +16; //sort to air
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 15; //in frames
+                Obj.compMove.friction = 0.90f; //less friction in air
+                Obj.compMove.moveable = true;
+            }
+
+
+
+
             #endregion
 
 
@@ -741,14 +760,8 @@ namespace DungeonRun
 
 
             //Handle Obj Group properties
-            if (Obj.group == ObjGroup.Particle)
-            {   //particles do not block
-                Obj.compCollision.blocking = false;
-            }
-            else if(Obj.group == ObjGroup.Projectile)
-            {   //all projectiles do not block
-                Obj.compCollision.blocking = false;
-            }
+            if (Obj.group == ObjGroup.Particle || Obj.group == ObjGroup.Projectile)
+            { Obj.compCollision.blocking = false; } //entities never block
 
             SetRotation(Obj);
             Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type
