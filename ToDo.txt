@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-13
+9
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -51,18 +51,15 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Handle Pot vs Pit Collisions
 
-a Pot should dissappear into a Pit upon collision.
+Improve Actor / Obj falling into Pits
 
-moved PlayPitFx(Pit) from Functions_Interaction to Functions_RoomObject.
-added call to Play() the splash soundfx from PlayPitFx().
-added section of code to Functions_Hero.DropCarryingObj(), which 
-checks the pots collision against all roomObjs, then handles the
-interaction based on the colliding roomObj's type.
-for now, only pits are implemented, and they gobble up pots.
-a splash effect is displayed and heard and the pot dissappears.
-playtested, working as expected.
+changed the percentage scale value required to trigger end case for actor/pit interaction.
+in english, this means the actor doesn't scale down to 0% when colliding with a pit.
+it visually looked strange to watch the actor disappear into an abyss, when clearly we
+can see the bubbles on the surface of the pit liquid.
+instead, the actor / object triggers when it reaches 80% scale.
+playtested, looks / feels much better.
 
 
 
@@ -71,6 +68,9 @@ playtested, working as expected.
 
 
 
+
+
+Handle Pot vs Blocking Obj Collisions
 
 when a pot obj is dropped onto a blocking obj, break the pot and spawn loot
 
@@ -82,9 +82,6 @@ when a pot obj is dropped onto a blocking obj, break the pot and spawn loot
 we need pickup pot soundfx
 we need drop pot soundfx
 
-pots dont fall into pits properly
-there is no carryingObj vs roomObjs collision checking
-this would be done upon carryingObj drop event
 
 
 

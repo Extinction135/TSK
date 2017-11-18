@@ -158,8 +158,8 @@ namespace DungeonRun
 
                         #region End State of actor -> pit collision - ALL ACTORS
 
-                        if (Actor.compSprite.scale < 0.0f)
-                        {   //actor has reached 0% scale, has fallen into pit completely
+                        if (Actor.compSprite.scale < 0.8f)
+                        {   //actor has reached scale, fallen into pit completely
                             Functions_RoomObject.PlayPitFx(Obj);
                             if (Actor == Pool.hero)
                             {   //send hero back to last door he passed thru
@@ -378,8 +378,8 @@ namespace DungeonRun
                                 Entity.compSprite.scale -= 0.03f;
                             }
                         }
-                        //when a projectile hits 0 scale, simply release it
-                        if (Entity.compSprite.scale < 0.0f)
+                        //when a projectile hits scale, simply release it
+                        if (Entity.compSprite.scale < 0.8f)
                         {
                             Functions_Pool.Release(Entity);
                             Functions_RoomObject.PlayPitFx(RoomObj);
