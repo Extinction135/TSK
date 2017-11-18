@@ -291,7 +291,16 @@ namespace DungeonRun
             #region Give Pots an Initial Push (throw them)
 
             else if (Type == ObjType.ProjectilePot)
-            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
+            {   //spawn a shadow for the Pot Projectile
+                GameObject shadow = Functions_Pool.GetEntity();
+                //teleport shadow to objects location, then to ground
+                Functions_Movement.Teleport(shadow.compMove, X, Y + 16);
+                Functions_GameObject.SetType(shadow, ObjType.ProjectileShadowSm);
+                Functions_Component.Align(shadow);
+                //push pot and shadow identically
+                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 15.0f);
+                Functions_Movement.Push(shadow.compMove, obj.compMove.direction, 15.0f);
+            }
 
             #endregion
 

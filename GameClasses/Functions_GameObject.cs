@@ -609,10 +609,21 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 15; //in frames
-                Obj.compMove.friction = 0.90f; //less friction in air
+                Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //in air
             }
-
+            else if (Type == ObjType.ProjectileShadowSm)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.cellSize.X = 16; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.zOffset = -16; //sort to floor
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 15; //in frames
+                Obj.compCollision.blocking = false;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //in air, technically
+            }
 
 
 

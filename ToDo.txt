@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-6
+5
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -51,36 +51,21 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Implement Throwing Pots - Part 1
 
-when player press A button while carrying, throw the Pot
-eventually the Pot should explode
 
-added ProjectilePot value to ObjType enum.
-added animList for gameObj ProjectilePot.
-added GameObj.SetType() routine for ProjectilePot.
 
-updated SpawnEntity(Type, X, Y, Dir) with section to handle ProjectilePot.
-SpawnEntity() gives ProjectilePots an initial push, just like Bombs.
 
-updated SpawnEntity(Type, Actor) with section to handle ProjectilePot.
-this method properly applies an offset to the Pot based on the Actor's position.
+Implement Throwing Pots - Part 2
 
-added throw animation for hero upon A button push, while carrying pot.
-added code to  handle birth state for ProjectilePots (play throw soundfx).
-added code to handle death state for ProjectilePots (explode into loot).
-playtested, working for the most part.
+the flying pot should have a shadow underneath it.
 
-added land sound fx to when hero drops a pot object.
-halved the ProjectilePot's lifetime value to 25.
-updated GameObj.SetRotation() to keep Pot obj's facing down.
-playtested, working, needs polish.
-
-reduced the Pot projectile's lifetime further, down to 15 frames.
-reduced the Pot projectile's friction from 25% to 10%, since it's in the air.
-it makes sense there would be less friction in the air.
-
-playtested, works / feels good.
+added ProjectileShadowSm value to ObjType enum.
+added projectile shadow animList.
+removed the reduction of friction from ProjectilePot.
+added projectile shadow to Obj.SetType().
+added projectile shadow to SpawnEntity().
+SpawnEntity() handles the details of shadow creation/implementation.
+playtested, working very well, with the exception of a small bug.
 
 
 
@@ -88,23 +73,28 @@ playtested, works / feels good.
 
 
 
-add shadow, should just follow pot underneath it, sort to floor
-this will sell the pot in the air depth visuals
+
+Fix Throwing Pots North Bug
+
+Bug: throwing a pot north creates a shadow projectile that collides with hero.
+since all projectiles by default 'hit' hero, this causes the hero to be set into
+a hit state, which is buggy and feels cheap and bad.
+
+fix bug where throwing a pot north causes hero to get hit
+what is hitting him? the shadow projectile.
+we should have a case for handling the shadow projectile in Interact.
 
 
 add call to pickup soundfx when hero interacts with a Pot roomObj
 
 
-additionally, a pot shadow projectile is created.
-this pot shadow projectile moves exactly like a Pot projectile
-except the shadow stays on the ground
 
 
 
 
 
 
-Pot Collisions
+Implement Pot Projectile Interactions / Collisions
 
 handle flying pot collisions + interactions,
 we'll check the pot shadow, which will determine if the pot
@@ -118,6 +108,11 @@ that are not on the same horizontal line (unintuitive behavior)
 pot collision with ground roomObj check, which is baked into Hero.DropCarryingObj().
 we'll need to pull out the roomObj collision + interaction routine
 this should go somewhere else
+
+
+
+
+
 
 
 
