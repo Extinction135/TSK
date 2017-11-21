@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-13
+12
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -48,16 +48,40 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Design Additional Rooms
 
-created boss003 + column 003.
-playtested, column 003 is fun.
+
+Design Additional Rooms + Playtest
+
+created Row003.
+tested that throwing pots at enemies damages them.
+
+
+
+
+
+
+
+
+
+minor problem wth the switch block maze key room:
+if you enter from the bottom of the room, spikeblock is flying right at you
+and it seems unfair and cheap
+so we need to move it into the maze somewhere
+we may shorten bits of the interior path
+
+
+
 
 
 
 + pots should be able to be thrown into switch blocks and flip them
 
-+ test that thrown pots hurt + push enemies
++ if hero gets hit, he should throw the carrying pot immediately
+
+
+
+
+
 
 
 
@@ -107,11 +131,7 @@ simply set the carryingObj pot to the hero's position, align() the pot, then des
 
 
 
-minor problem wth the switch block maze key room:
-if you enter from the bottom of the room, spikeblock is flying right at you
-and it seems unfair and cheap
-so we need to move it into the maze somewhere
-we may shorten bits of the interior path
+
 
 Arrows++
 when an arrow collides with a blocking object, end the arrow's speed/magnitude
