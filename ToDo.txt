@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-3
+13
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -48,21 +48,10 @@ spikeblocks eating away at massive groups of pots
 
 
 
+Design Additional Rooms
 
-
-Polish Pickup, Throw, Drop Pot Objects
-
-fixed an implementation issue with ProjectilePot.
-added section of code to handle RoomObj Pots to Interact.InteractObject().
-improved code to handle thrown pots falling into pits properly.
-tested that all pots collide with blocking objs.
-tested that all pots collide with animated pits properly.
-added call to play a pickup soundfx when hero picks up a pot.
-playtested most of the features, but need to do more.
-
-
-
-
+created boss003 + column 003.
+playtested, column 003 is fun.
 
 
 
