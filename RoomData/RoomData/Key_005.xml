@@ -1095,6 +1095,54 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
+      <type>Bridge</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Bridge</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Bridge</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Bridge</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitTop</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitBottom</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>PitBottom</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>ProjectileSpikeBlock</type>
       <direction>Down</direction>
       <posX>184</posX>
@@ -1110,12 +1158,12 @@
       <type>ProjectileSpikeBlock</type>
       <direction>Up</direction>
       <posX>120</posX>
-      <posY>104</posY>
+      <posY>103</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ProjectileSpikeBlock</type>
       <direction>Left</direction>
-      <posX>168</posX>
+      <posX>167</posX>
       <posY>120</posY>
     </ObjXmlData>
   </objs>

@@ -53,20 +53,12 @@ spikeblocks eating away at massive groups of pots
 Design Additional Rooms + Playtest
 
 
-simplified Key002.
-made pit trap collision rec smaller.
-playtested, working better with smaller hitbox.
 
+fixed a design flaw with Key004.
+improved the look of Key005.
+changed Square002 to be a switch puzzle room.
+playtested.
 
-
-
-
-
-minor problem wth the switch block maze key room:
-if you enter from the bottom of the room, spikeblock is flying right at you
-and it seems unfair and cheap
-so we need to move it into the maze somewhere
-we may shorten bits of the interior path
 
 
 

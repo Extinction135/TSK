@@ -483,7 +483,7 @@
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>LeverOff</type>
+      <type>Switch</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>88</posY>

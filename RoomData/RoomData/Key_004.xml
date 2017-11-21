@@ -23,8 +23,8 @@
     <ObjXmlData>
       <type>SwitchBlockBtn</type>
       <direction>Down</direction>
-      <posX>8</posX>
-      <posY>168</posY>
+      <posX>232</posX>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>BlockDark</type>
@@ -579,15 +579,15 @@
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>SwitchBlockDown</type>
       <direction>Down</direction>
-      <posX>216</posX>
+      <posX>200</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>SwitchBlockUp</type>
       <direction>Down</direction>
-      <posX>200</posX>
+      <posX>216</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -604,13 +604,13 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Left</direction>
+      <direction>Up</direction>
       <posX>88</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTrap</type>
-      <direction>Down</direction>
+      <direction>Right</direction>
       <posX>184</posX>
       <posY>72</posY>
     </ObjXmlData>
@@ -653,8 +653,8 @@
     <ObjXmlData>
       <type>SpawnEnemy1</type>
       <direction>Down</direction>
-      <posX>72</posX>
-      <posY>72</posY>
+      <posX>264</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ChestKey</type>
@@ -665,8 +665,8 @@
     <ObjXmlData>
       <type>ProjectileSpikeBlock</type>
       <direction>Left</direction>
-      <posX>295</posX>
-      <posY>168</posY>
+      <posX>150</posX>
+      <posY>72</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>
