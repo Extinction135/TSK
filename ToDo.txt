@@ -52,11 +52,10 @@ spikeblocks eating away at massive groups of pots
 
 Design Additional Rooms + Playtest
 
-created Row003.
-tested that throwing pots at enemies damages them.
 
-
-
+simplified Key002.
+made pit trap collision rec smaller.
+playtested, working better with smaller hitbox.
 
 
 

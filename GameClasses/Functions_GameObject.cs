@@ -244,8 +244,8 @@ namespace DungeonRun
             else if (Type == ObjType.PitTrap)
             {   //this becomes a pit upon collision with hero
                 Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compCollision.offsetX = -10; Obj.compCollision.offsetY = -10;
-                Obj.compCollision.rec.Width = 20; Obj.compCollision.rec.Height = 20;
+                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
+                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 16;
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
