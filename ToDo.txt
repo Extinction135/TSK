@@ -38,7 +38,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 
 
-12
+13
 
 add to existing levels / new levels:
 switch blocks + btns
@@ -50,27 +50,38 @@ spikeblocks eating away at massive groups of pots
 
 
 
+
+
+Thrown Pots should interact with SwitchBlockButtons.
+
+added code to allow thrown / dropped pots to trigger switch block buttons.
+simplified RoomObject.FlipSwitchBlocks() to accept a GameObj instead of a Vector2.
+this change was made to simplify the method's parameters and reduce codebase size.
+playtested throwing pots into switches, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
 Design Additional Rooms + Playtest
-
-
-
-fixed a design flaw with Key004.
-improved the look of Key005.
-changed Square002 to be a switch puzzle room.
-playtested.
-
-
-
-
-
-
-
-+ pots should be able to be thrown into switch blocks and flip them
 
 + if hero gets hit, he should throw the carrying pot immediately
 
 
 
+
+
+Cleanup
+
+you can probably remove the enum for TitleText
+at least it should be inspected to see if it's still relevant
 
 
 

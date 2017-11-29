@@ -320,7 +320,7 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.SwitchBlockBtn)
             {
-                Functions_RoomObject.FlipSwitchBlocks(Obj.compSprite.position);
+                Functions_RoomObject.FlipSwitchBlocks(Obj);
             }
 
             #endregion

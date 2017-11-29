@@ -216,7 +216,7 @@ namespace DungeonRun
                 if (Entity.type == ObjType.ProjectileArrow)
                 {
                     if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
                     //arrows die upon blocking collision
                     Functions_GameObject.Kill(Entity);
                 }
@@ -245,7 +245,7 @@ namespace DungeonRun
                         else if (RoomObj.type == ObjType.BossStatue || RoomObj.type == ObjType.Pot)
                         { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                         else if (RoomObj.type == ObjType.SwitchBlockBtn)
-                        { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                        { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
                     }
                 }
 
@@ -261,7 +261,7 @@ namespace DungeonRun
                     else if (RoomObj.type == ObjType.BossStatue || RoomObj.type == ObjType.Pot)
                     { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                     else if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
                     //fireballs die upon blocking collision
                     Functions_GameObject.Kill(Entity);
                 }
@@ -275,7 +275,7 @@ namespace DungeonRun
                 {
                     BounceSpikeBlock(Entity);
                     if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
                     else if (RoomObj.type == ObjType.Pot)
                     { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                 }
@@ -300,7 +300,7 @@ namespace DungeonRun
                         if (RoomObj.type == ObjType.Pot)
                         { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                         else if (RoomObj.type == ObjType.SwitchBlockBtn)
-                        { Functions_RoomObject.FlipSwitchBlocks(RoomObj.compSprite.position); }
+                        { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
                     }
                 }
 
@@ -326,6 +326,11 @@ namespace DungeonRun
                     //if the hit object was a pot, destroy it as well
                     if (RoomObj.type == ObjType.Pot)
                     { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
+                    //if the hit object was a switch block, trigger it
+                    else if(RoomObj.type == ObjType.SwitchBlockBtn)
+                    {
+                        Functions_RoomObject.FlipSwitchBlocks(RoomObj);
+                    }
                 }
 
                 #endregion
