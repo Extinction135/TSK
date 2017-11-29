@@ -695,11 +695,7 @@ namespace DungeonRun
 
                 else if (Hero.compInput.interact)
                 {   //if player pressed the A button, throw carryingObj
-                    //create the ProjectilePot entity
-                    Functions_Entity.SpawnEntity(ObjType.ProjectilePot, Hero);
-                    carrying = false; //release carrying state
-                    Functions_Pool.Release(carryingObj);
-                    carryingObj = null; //release obj ref
+                    ThrowPot();
 
                     //display a 'throw' animation for hero
                     Hero.state = ActorState.Throw;
@@ -747,6 +743,14 @@ namespace DungeonRun
             }
         }
 
+
+        public static void ThrowPot()
+        {   //create the ProjectilePot entity
+            Functions_Entity.SpawnEntity(ObjType.ProjectilePot, Pool.hero);
+            carrying = false; //release carrying state
+            Functions_Pool.Release(carryingObj);
+            carryingObj = null; //release obj ref
+        }
 
 
         public static void Update()

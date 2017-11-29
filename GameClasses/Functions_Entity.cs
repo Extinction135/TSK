@@ -165,7 +165,12 @@ namespace DungeonRun
                 else if (direction == Direction.Left) { posRef.X -= 14; }
             }
             else if (Type == ObjType.ProjectilePot)
-            {   //place projectile outside of actor's hitbox, above actors head
+            {   //make direction opposite if actor is hit (only applies to hero)
+                if(Actor == Pool.hero & Actor.state == ActorState.Hit)
+                {   //this causes the carrying pot to be thrown in the correct direction
+                    direction = Functions_Direction.GetOppositeDirection(direction);
+                }
+                //place projectile outside of actor's hitbox, above actors head
                 if (direction == Direction.Down) { posRef.Y += 15; }
                 else if (direction == Direction.Up) { posRef.Y -= 12; }
                 else if (direction == Direction.Right) { posRef.X += 14; posRef.Y -= 8; }

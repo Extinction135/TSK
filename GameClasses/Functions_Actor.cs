@@ -66,7 +66,7 @@ namespace DungeonRun
         public static void SetHitState(Actor Actor)
         {   //bail if actor is already dead (dont hit dead actors)
             if (Actor.state == ActorState.Dead) { return; }
-            //else lock actor into hit state, play actor hit soundfx
+            //lock actor into hit state, play actor hit soundfx
             Actor.state = ActorState.Hit;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
@@ -74,14 +74,19 @@ namespace DungeonRun
             Assets.Play(Actor.sfxHit);
 
             if (Actor == Pool.hero)
-            {
-                if (!Flags.InfiniteGold) //continue if infiniteGold is false
+            {   //hero should drop a gold piece
+                if (!Flags.InfiniteGold) 
                 {
                     if (PlayerData.current.gold > 0) //if hero has any gold
                     {   //drop a gold piece upon getting hit
                         Functions_Entity.SpawnEntity(ObjType.PickupRupee, Actor);
                         PlayerData.current.gold--;
                     }
+                }
+                //if hero is carrying, throw pot obj
+                if(Functions_Hero.carrying)
+                {
+                    Functions_Hero.ThrowPot();
                 }
             }
         }
