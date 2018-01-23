@@ -40,6 +40,7 @@ LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
 
 13
 
+Design Additional Rooms + Playtest
 add to existing levels / new levels:
 switch blocks + btns
 floor switches
@@ -55,6 +56,11 @@ spikeblocks eating away at massive groups of pots
 
 
 
+Cleanup
+
+Renamed GetDirectionToHero() to GetDiagonalToHero().
+Because that's what the method actually does.
+And it sets the stage to fix the Poor AI bug up next.
 
 
 
@@ -82,39 +88,15 @@ and the proper cardinal direction should be set afterwards
 
 
 
-Design Additional Rooms + Playtest
 
 
 
+*actually* write GetDirectionToHero(),
+which should return any of 8 possible directions, diagonal and cardinal.
 
-
-
-
-Cleanup
-
-you can probably remove the enum for TitleText
-at least it should be inspected to see if it's still relevant
-
-
-
-
-
-
-
-
-Improve Pot Loot Redeeming System
-
-if the pot hits an enemy far away, say across a pit that hero can't cross,
-then the loot spawns in the pit, or where the enemy was hit.
-either case, the hero cant get the loot.
-what if we just gave the loot to the hero?
-
-if hero drops a pot on a blocking obj, spawn the loot ON the hero (auto pickup next frame).
-we will do the same with when the hero throws the pot and hits an enemy/obj.
-simply set the carryingObj pot to the hero's position, align() the pot, then destroy() it.
-
-
-
+then, we can move enemies diagonally, using GetDiag()
+upon an attack, we can face the enemy towards the hero using GetDir().
+this solves the Poor AI bug.
 
 
 
