@@ -17,7 +17,7 @@ namespace DungeonRun
 
         public static void UseItem(MenuItemType Type, Actor Actor)
         {
-            Actor.lockTotal = 15;
+            Actor.lockTotal = 15; //how many frames the actor is locked
 
 
             #region Hero Specific Items

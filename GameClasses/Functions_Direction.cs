@@ -78,12 +78,6 @@ namespace DungeonRun
             }
         }
 
-
-
-
-
-        
-
         public static Direction GetDiagonalToHero(Vector2 Pos)
         {   //get the x and y distances between starting position and hero
             xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Pos.X);
@@ -102,14 +96,6 @@ namespace DungeonRun
                 else { return Direction.UpLeft; }
             }
         }
-
-
-
-
-
-
-
-
 
         public static Direction GetRandomCardinal()
         {

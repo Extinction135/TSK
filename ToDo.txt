@@ -56,68 +56,20 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Cleanup
+Fix Poor Ai Bug
 
-Renamed GetDirectionToHero() to GetDiagonalToHero().
-Because that's what the method actually does.
-And it sets the stage to fix the Poor AI bug up next.
+Explanation of Poor AI bug:
+AI wont attack hero if due north/south of enemy.
+enemy attacks left / right, instead of up / down.
 
+Fix:
+the enemies move diagonally. enemies attack cardinally.
+the diagonal movement resolves to the wrong cardinal direction.
+set the enemies direction to face hero in attack routine check.
 
-
-
-
-
-
-
-
-
-
-Fix Poor AI bug
-
-there is a bug where the AI wont attack the hero if he is due north/south of enemy
-the enemy attacks left or right, instead of attacking up or down
-this is likely due to a diagonal position check
-we should upgrade the AI to use all 8 directions when checking for an attack
-and the proper cardinal direction should be set afterwards
-
-
-
-
-
-
-
-
-
-
-
-
-*actually* write GetDirectionToHero(),
-which should return any of 8 possible directions, diagonal and cardinal.
-
-then, we can move enemies diagonally, using GetDiag()
-upon an attack, we can face the enemy towards the hero using GetDir().
-this solves the Poor AI bug.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Updated Functions_Ai.SetActorInput() to set enemy direction,
+in the attack routine using GetCardinalDirectionToHero().
+playtested, enemies certainly attack in the proper direction now.
 
 
 

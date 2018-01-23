@@ -70,20 +70,16 @@ namespace DungeonRun
                 {   //if the actor is an enemy, and the hero is on other team (ally)
                     if (Actor.enemy & Pool.hero.enemy == false)
                     {   
-                        ChaseHero();
+                        ChaseHero(); //this method will chase hero using diagonal movement only
                         //determine if actor is close enough to attack hero
                         if (yDistance < Actor.attackRadius && xDistance < Actor.attackRadius)
                         {   //actor is close enough to hero to attack
-                            if (Functions_Random.Int(0, 100) > 50) //randomly attack, cancel any dash
-                            { Actor.compInput.attack = true; Actor.compInput.dash = false; }
-
-                            //enemies move diagonally, but should face hero when attacking him
-                            //Actor.compInput.direction = Direction towards Hero
-                            //which should be an actual function that returns any of 8 directions
-                            //the problem is that we already have a function named that
-                            //and it only returns the diagonal direction towards hero
-
-
+                            if (Functions_Random.Int(0, 100) > 50) //randomly proceed
+                            {   //set the cardinal direction towards hero, attack, cancel any dash
+                                Actor.compInput.direction = Functions_Direction.GetCardinalDirectionToHero(actorPos); // HERE
+                                Actor.compInput.attack = true;
+                                Actor.compInput.dash = false;
+                            }
                         }
                     }
                     else if(Actor.enemy == false)
