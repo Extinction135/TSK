@@ -61,15 +61,18 @@ spikeblocks eating away at massive groups of pots
 
 
 
-If Hero gets Hit while Carrying Obj, Throw Carrying Obj
-
-created Functions_Hero.ThrowPot().
-game calls ThrowPot() when hero gets hit, or player presses A while carrying.
-this duplicates LttP gameplay.
-playtested, working but the pot is thrown in the opposite direction.
-fixed bug where pot was thrown in opposite direction upon hit.
 
 
+
+
+
+Fix Poor AI bug
+
+there is a bug where the AI wont attack the hero if he is due north/south of enemy
+the enemy attacks left or right, instead of attacking up or down
+this is likely due to a diagonal position check
+we should upgrade the AI to use all 8 directions when checking for an attack
+and the proper cardinal direction should be set afterwards
 
 
 
