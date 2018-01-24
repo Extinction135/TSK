@@ -50,81 +50,30 @@ spikeblocks eating away at massive groups of pots
 
 
 
+Designed Barrel Sprites
+
+created normal barrel sprite.
+created explosive barrel sprite.
+created exploding barrel sprite.
 
 
 
 
 
 
-Fix Poor Ai Bug
+the normal barrel can be pushed, pulled, and struck around.
+it does not explode, however.
+the explosive barrel slides upon attack, then begins countdown.
+after a set number of frames, the barrel explodes,
+creating an explosion entity, which will damage anything around it.
 
-Explanation of Poor AI bug:
-AI wont attack hero if due north/south of enemy.
-enemy attacks left / right, instead of up / down.
-
-Fix:
-the enemies move diagonally. enemies attack cardinally.
-the diagonal movement resolves to the wrong cardinal direction.
-set the enemies direction to face hero in attack routine check.
-
-Updated Functions_Ai.SetActorInput() to set enemy direction,
-in the attack routine using GetCardinalDirectionToHero().
-playtested, enemies certainly attack in the proper direction now.
+the explosive barrel should respond to an explosion entity colliding with it.
+this allows us to chaing explosive barrel explosions.
+fireballs, bombs, arrows, pots, swords should all blow up explosive barrels.
 
 
-
-
-
-
-
-
-
-
-
-Arrows++
-when an arrow collides with a blocking object, end the arrow's speed/magnitude
-keep the arrow projectile alive until it hits 255 life
-this makes the arrow appear to stick into objects
--unless the arrow hits an enemy, at which case the arrow's life should hit 255
-
-
-
-
-
-
-Make the AI system Behavior based, where a Behavior is an enumerator
-
-actor.behaviors = new List<Behaviors> { Behavior.Aggressive, Behavior.Curious, Behavior.Destructive }
-Behavior.Aggressive (actor will pursue hero without regard for safety)
-Behavior.Attacks (actor will attack hero, if hero is close enough)
-Behavior.Curious (actor will randomly explore the area around them)
-Behavior.Destructive (actor will attack any destructible object it comes across)
-Behavior.SpawnsMobs (actor can spawn other actors, based on actor.type)
-Behavior.ThrowsPots (actor will pickup and throw object it comes across at hero)
-
-an enumerator, and a list in the actor class.
-then we modify the AI method to work based on behaviors.
-if actor.behavior[i] == 
-- aggressive, move actor towards hero, if hero is visible
-- attacks, attack hero if hero is close enough
-- curious, randomly move actor
-- destructive, attack destructible objects nearby
-- spawnsMobs, randomly spawn mobs based on the actor.type
-- throwsPots, picks up nearby pots, carrys them, and throws them at hero if hero is visible
-
-
-
-
-
-
-we should use the waving animation on the load save new screen when we display the 3 games
-currently we use a walking animation, which is boring af
-instead the hero should wave
-
-
-
-
-
+create barrel obj.
+extend barrel obj with explosive capabilities.
 
 
 
@@ -143,7 +92,6 @@ then barrel dies and spawns an explosion
 also, the barrel should move based on whatever direction it was struck from
 this would be similar to how bombs move / slide
 
-
 Explosive Barrel Room Puzzles
 
 we can do room puzzles with explosive barrels
@@ -151,40 +99,6 @@ just need to check that there are no more explosive barrels left
 this can be done when an explosive barrel explodes
 just needs to check to see if it's the last one, if so open doors
 this is something the original zelda didn't do
-
-
-DungeonPillars
-a blocking non-breakable obj to give the rooms some character
-they can also be used to create the illusion of depth
-(because hero can walk behind them)
-but is it worth using up 2 spots for one object with no purpose other than decoration?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -197,22 +111,6 @@ this 'grabbing' state should last until player releases the A button
 objects should inherit the movement of hero, and check collisions with all objs & actors
 if a draggable object would collide, it doesn't move
 this would have to be done per axis too, so we could drag along walls
-
-
-
-
-
-
-Enemy Hit ++
-
-when we hit an enemy, we should display a very specific hit particle
-this is the frames:
-new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) }
-
-
-
-
-
 
 
 
@@ -245,6 +143,75 @@ how do we attach an obj/actor to boomerang? i dunno
 
 
 
+--------------- lets push ---------------
+
+
+
+Dungeons++
+link cave, forest, old castle dungeons from the overworld map
+create dungeon sprite sheet for cave + forest + old castle levels
+create enemies unique to the cave + forest + old castle
+create bosses unique to the cave + forest + old castle
+
+Enemies++
+create tier 1, 2, 3 level enemies for dungeon 1
+dungeons should have an enemy list for each tier
+then upon room build, randomly choose an enemy type from the correct tier list
+for example, forest dungeon tier 1 enemies: blob, rat, snake
+when room builds, any of these 3 enemy types can spawn on a tier 1 spawn obj
+create enemies that fire projectiles - arrows, fireballs, bombs
+we need a flying enemy - like a BAT
+
+Music++
+add overworld music
+add shop music (town music)
+title screeen plays title music
+
+explosion sound needs to be shorter
+
+
+Dungeons++
+the exit rooms should be different for each dungeon type
+but they should be the same for the dungeon type they represent
+so the dungeon type feels consistent, but there is variety between dungeon types
+dungeons should have names.
+the dungeon name should be displayed on the map.
+dungeon names could be randomly generated from a list.
+
+Boss dialog + Boss phases
+initially the boss should popup a dialog mocking player
+after boss hits half health, another dialog should popup
+this one talks about boss changing tactics
+"you're better than i expected"
+in the 2nd phase, the boss moves AWAY from the hero
+so its harder for the hero to hit the boss
+in first phase, the boss just randomly moves around
+
+Boss Heads -> Crystals
+instead of crystals, we should collect boss's heads.
+this is the same icon that appears on the overworld map for the dungeon
+this would appear in inventory screen where the crystals are, but there will only be 4
+these should be located on the overworld screen
+upon collection of 4 boss heads, the final dungeon opens
+the blob boss head is actually an eye, the bosses eye
+for now, the player will collect 4 eyes
+crystals widget should be renamed 'bosses defeated', bossesWidget
+we'll need to update the game display data + the LSN screen to reflect the update away from crystals
+we can also make the overworld map wider, to better fill the frame out
+
+
+
+dungeon rewards++
+When the hero beats a dungeon, the only reward should be the bosses head, no gold.
+gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
+text should read "press any button to continue"
+remove 'reward' text
+
+
+
+
+
+-------------- pushed --------------------
 
 
 
@@ -256,6 +223,94 @@ how do we attach an obj/actor to boomerang? i dunno
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add the waving emote into hero's sheet
+we should use the waving animation on the load save new screen when we display the 3 games
+currently we use a walking animation, which is boring af
+instead the hero should wave
+we should update the blob sheet to have a wave emote as well
+
+the LSN screen should display the link hero if hero is link
+should also display the blob character if hero saved game as blob
+can we save the game as the blob character? is that in the save game info?
+
+
+
+
+
+
+
+
+
+Make the AI system Behavior based, where a Behavior is an enumerator
+
+actor.behaviors = new List<Behaviors> { Behavior.Aggressive, Behavior.Curious, Behavior.Destructive }
+Behavior.Aggressive (actor will pursue hero without regard for safety)
+Behavior.Attacks (actor will attack hero, if hero is close enough)
+Behavior.Curious (actor will randomly explore the area around them)
+Behavior.Destructive (actor will attack any destructible object it comes across)
+Behavior.SpawnsMobs (actor can spawn other actors, based on actor.type)
+Behavior.ThrowsPots (actor will pickup and throw object it comes across at hero)
+
+an enumerator, and a list in the actor class.
+then we modify the AI method to work based on behaviors.
+if actor.behavior[i] == 
+- aggressive, move actor towards hero, if hero is visible
+- attacks, attack hero if hero is close enough
+- curious, randomly move actor
+- destructive, attack destructible objects nearby
+- spawnsMobs, randomly spawn mobs based on the actor.type
+- throwsPots, picks up nearby pots, carrys them, and throws them at hero if hero is visible
+
+
+
+
+
+
+DungeonPillars
+a blocking non-breakable obj to give the rooms some character
+they can also be used to create the illusion of depth
+(because hero can walk behind them)
+but is it worth using up 2 spots for one object with no purpose other than decoration?
+
+
+
+
+
+Enemy Hit ++
+
+when we hit an enemy, we should display a very specific hit particle
+this is the frames:
+new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) }
 
 
 
@@ -328,65 +383,7 @@ how is this visually represented?
 
 
 
-Dungeons++
-link cave, forest, old castle dungeons from the overworld map
-create dungeon sprite sheet for cave + forest + old castle levels
-create enemies unique to the cave + forest + old castle
-create bosses unique to the cave + forest + old castle
 
-Enemies++
-create tier 1, 2, 3 level enemies for all dungeons (they can be larger if you want)
-dungeons should have an enemy list for each tier
-then upon room build, randomly choose an enemy type from the correct tier list
-for example, forest dungeon tier 1 enemies: blob, rat, snake
-when room builds, any of these 3 enemy types can spawn on a tier 1 spawn obj
-create enemies that fire projectiles - arrows, fireballs, bombs
-we need a flying enemy - like a BAT
-
-Music++
-add overworld music
-add shop music (town music)
-title screeen plays title music
-
-explosion sound needs to be shorter
-
-
-Dungeons++
-the exit rooms should be different for each dungeon type
-but they should be the same for the dungeon type they represent
-so the dungeon type feels consistent, but there is variety between dungeon types
-dungeons should have names.
-the dungeon name should be displayed on the map.
-dungeon names could be randomly generated from a list.
-
-Boss dialog + Boss phases
-initially the boss should popup a dialog mocking player
-after boss hits half health, another dialog should popup
-this one talks about boss changing tactics
-"you're better than i expected"
-in the 2nd phase, the boss moves AWAY from the hero
-so its harder for the hero to hit the boss
-in first phase, the boss just randomly moves around
-
-Boss Heads -> Crystals
-instead of crystals, we should collect boss's heads.
-this is the same icon that appears on the overworld map for the dungeon
-this would appear in inventory screen where the crystals are, but there will only be 4
-these should be located on the overworld screen
-upon collection of 4 boss heads, the final dungeon opens
-the blob boss head is actually an eye, the bosses eye
-for now, the player will collect 4 eyes
-crystals widget should be renamed 'bosses defeated', bossesWidget
-we'll need to update the game display data + the LSN screen to reflect the update away from crystals
-we can also make the overworld map wider, to better fill the frame out
-
-
-
-dungeon rewards++
-When the hero beats a dungeon, the only reward should be the bosses head, no gold.
-gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
-text should read "press any button to continue"
-remove 'reward' text
 
 
 

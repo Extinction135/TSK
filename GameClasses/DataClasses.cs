@@ -35,7 +35,7 @@ namespace DungeonRun
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean ShowDialogs = true; //turn dialogs on/off
         //cheats
-        public static Boolean Invincibility = true; //does hero ignore damage?
+        public static Boolean Invincibility = false; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?
         public static Boolean InfiniteGold = false; //does hero ignore item/vendor costs?
         public static Boolean InfiniteArrows = true; //does hero ignore arrow cost?
