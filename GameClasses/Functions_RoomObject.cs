@@ -275,5 +275,12 @@ namespace DungeonRun
 
 
 
+        public static void HandleCommon(GameObject RoomObj)
+        {   //this handles common room objs
+            if (RoomObj.type == ObjType.SwitchBlockBtn) { FlipSwitchBlocks(RoomObj); }
+            else if (RoomObj.type == ObjType.Pot) { DestroyObject(RoomObj, true, true); }
+            else if (RoomObj.type == ObjType.Barrel) { DestroyBarrel(RoomObj); }
+        }
+
     }
 }

@@ -71,18 +71,13 @@ extend barrel obj with explosive capabilities.
 
 
 
+Refactor Common RoomObj Interactions
 
-
-
-
-
-Refactor Barrel Explosions
-
-refactored barrel interactions into DestroyBarrel() method.
-updated Interaction functions so that arrows, explosions, 
-fireballs, spikeBlocks, swords, and thrown / dropped pots
-will flip switch blocks and destroy pots / barrels.
+refactored common roomObj interactions into method HandleCommon(),
+located in the Functions_RoomObject class. removed duplicate code.
 playtested, working as expected.
+
+
 
 
 
@@ -91,22 +86,24 @@ playtested, working as expected.
 * the explosive barrels should be pushed upon collision / interaction
 then they should create a bubble entity, count down from 255, then explode
 which means we'll probably need another gameObj, ExplodingBarrel, to "hold" the 255 countdown
+which, we could actually make ExplodingBarrel an ENTITY, which would allow us to "push" it
 
 
 
 
 
-* refactor the switch, pot, barrel functionality into a method in Functions_RoomObj.
 
-now we need to pull that functionality out into a method in RoomObj
-something like DestroyBarrel(), which we can then call for swords, arrows, fireballs, bombs, etc..
+
+
 
 
 
 
 Improve Barrel Visuals
 
-add the bubbling entity over barrels randomly
+add the bubbling entity over barrels randomly?
+the barrels look like SHIT honestly. we could go with a TNT sprite.
+something that screams "I EXPLODE" at the player... ?
 
 
 

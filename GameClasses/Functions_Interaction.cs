@@ -214,18 +214,8 @@ namespace DungeonRun
                 #region Arrow
 
                 if (Entity.type == ObjType.ProjectileArrow)
-                {
-
-
-                    // *** refactor into method ***
-                    if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
-                    else if (RoomObj.type == ObjType.Pot)
-                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                    else if (RoomObj.type == ObjType.Barrel)
-                    { Functions_RoomObject.DestroyBarrel(RoomObj); }
-
-
+                {   //arrows trigger common obj interactions
+                    Functions_RoomObject.HandleCommon(RoomObj);
                     //arrows die upon blocking collision
                     Functions_GameObject.Kill(Entity);
                 }
@@ -253,14 +243,8 @@ namespace DungeonRun
                         { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Entity); }
                         else if (RoomObj.type == ObjType.BossStatue)
                         { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-
-                        // *** refactor into method ***
-                        if (RoomObj.type == ObjType.SwitchBlockBtn)
-                        { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
-                        else if (RoomObj.type == ObjType.Pot)
-                        { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                        else if (RoomObj.type == ObjType.Barrel)
-                        { Functions_RoomObject.DestroyBarrel(RoomObj); }
+                        //explosions also trigger common obj interactions
+                        Functions_RoomObject.HandleCommon(RoomObj);
                     }
                 }
 
@@ -275,17 +259,8 @@ namespace DungeonRun
                     { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Entity); }
                     else if (RoomObj.type == ObjType.BossStatue)
                     { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-
-
-                    // *** refactor into method ***
-                    if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
-                    else if (RoomObj.type == ObjType.Pot)
-                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                    else if (RoomObj.type == ObjType.Barrel)
-                    { Functions_RoomObject.DestroyBarrel(RoomObj); }
-
-
+                    //fireballs trigger common obj interactions
+                    Functions_RoomObject.HandleCommon(RoomObj);
                     //fireballs die upon blocking collision
                     Functions_GameObject.Kill(Entity);
                 }
@@ -298,15 +273,8 @@ namespace DungeonRun
                 else if (Entity.type == ObjType.ProjectileSpikeBlock)
                 {
                     BounceSpikeBlock(Entity);
-
-                    // *** refactor into method ***
-                    if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
-                    else if (RoomObj.type == ObjType.Pot)
-                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                    else if (RoomObj.type == ObjType.Barrel)
-                    { Functions_RoomObject.DestroyBarrel(RoomObj); }
-
+                    //spikeblocks trigger common obj interactions
+                    Functions_RoomObject.HandleCommon(RoomObj);
                 }
 
                 #endregion
@@ -324,17 +292,10 @@ namespace DungeonRun
                         //spawn a hit sparkle particle on sword
                         Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Entity);
                     }
-                    else if(Entity.lifeCounter == 2)
-                    {   //check these collisions only once, not on first frame
-
-                        // *** refactor into method ***
-                        if (RoomObj.type == ObjType.SwitchBlockBtn)
-                        { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
-                        else if (RoomObj.type == ObjType.Pot)
-                        { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                        else if (RoomObj.type == ObjType.Barrel)
-                        { Functions_RoomObject.DestroyBarrel(RoomObj); }
-
+                    else if(Entity.lifeCounter == 4)
+                    {   //these interactions happen 'mid swing'
+                        //swords trigger common obj interactions
+                        Functions_RoomObject.HandleCommon(RoomObj);
                     }
                 }
 
@@ -357,16 +318,8 @@ namespace DungeonRun
                 else if (Entity.type == ObjType.ProjectilePot || Entity.type == ObjType.Pot)
                 {   //destroy the Pot object
                     Functions_RoomObject.DestroyObject(Entity, true, true);
-
-
-                    // *** refactor into method ***
-                    if (RoomObj.type == ObjType.SwitchBlockBtn)
-                    { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
-                    else if (RoomObj.type == ObjType.Pot)
-                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                    else if (RoomObj.type == ObjType.Barrel)
-                    { Functions_RoomObject.DestroyBarrel(RoomObj); }
-
+                    //thrown / dropped pots trigger common obj interactions
+                    Functions_RoomObject.HandleCommon(RoomObj);
                 }
 
                 #endregion
