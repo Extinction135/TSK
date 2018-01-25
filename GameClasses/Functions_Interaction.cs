@@ -301,6 +301,17 @@ namespace DungeonRun
                         { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                         else if (RoomObj.type == ObjType.SwitchBlockBtn)
                         { Functions_RoomObject.FlipSwitchBlocks(RoomObj); }
+
+                        else if(RoomObj.type == ObjType.Barrel)
+                        {
+                            //create explosion projectile
+                            Functions_Entity.SpawnEntity(ObjType.ProjectileExplosion,
+                                RoomObj.compSprite.position.X,
+                                RoomObj.compSprite.position.Y,
+                                Direction.None);
+                            //destroy barrel, create loot
+                            Functions_RoomObject.DestroyObject(RoomObj, true, true);
+                        }
                     }
                 }
 

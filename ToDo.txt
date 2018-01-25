@@ -72,10 +72,75 @@ extend barrel obj with explosive capabilities.
 
 
 
-added Barrel value to ObjType enumerator.
-added ObjAnimList value for Barrel obj.
-updated GameObj Functions with Barrel obj path.
-added barrel obj into editor.
+
+Improve Barrels
+
+fixed bug where the incorrect sprite was being displayed.
+added path to Interaction routines to cause barrel to explode,
+upon a sword strike. Loot is also created.
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
+Refactor Barrel Explosions
+
+now we need to pull that functionality out into a method in RoomObj
+something like DestroyBarrel(), which we can then call for swords, arrows, fireballs, bombs, etc..
+
+
+
+
+Improve Barrel Visuals
+
+add the bubbling entity over barrels randomly
+
+
+
+
+
+
+
+
+
+
+which this repetitive calling leads me to think that the current roomObj / entity system is poorly designed
+
+*should be able to push barrel with sword attack + other interactions
+
+
+
+
+we can do explosive barrels with ONE sprite : the barrel sprite
+when the barrel is triggered, it can spawn a bubbling entity over it and shake
+then it explodes
+
+
+
+
+... push obj, project movement of obj, align obj's components
+
+we'll need to project the movement for the barrels, which are really game objects
+we COULD loop thru the objs and check to see if any obj has a magnitude greater than 0
+then we could move only those objects, which should reduce the collision checking,
+since we would only collision check moving objects against other room objects
+
+
+** also, are we able to move room objects using conveyor belts? I dont think so,
+since that would require a collision check for belt (roomObj) vs roomObj,
+and we dont do collision checks for roomObj vs roomObj due to the cost
+* but if we reduce the cost, then this is a viable approach
+
+
+
+
+
+
 
 
 
