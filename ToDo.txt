@@ -73,22 +73,30 @@ extend barrel obj with explosive capabilities.
 
 
 
-Improve Barrels
 
-fixed bug where the incorrect sprite was being displayed.
-added path to Interaction routines to cause barrel to explode,
-upon a sword strike. Loot is also created.
+
+
+Refactor Barrel Explosions
+
+refactored barrel interactions into DestroyBarrel() method.
+updated Interaction functions so that arrows, explosions, 
+fireballs, spikeBlocks, swords, and thrown / dropped pots
+will flip switch blocks and destroy pots / barrels.
 playtested, working as expected.
 
 
 
 
 
+* the explosive barrels should be pushed upon collision / interaction
+then they should create a bubble entity, count down from 255, then explode
+which means we'll probably need another gameObj, ExplodingBarrel, to "hold" the 255 countdown
 
 
 
 
-Refactor Barrel Explosions
+
+* refactor the switch, pot, barrel functionality into a method in Functions_RoomObj.
 
 now we need to pull that functionality out into a method in RoomObj
 something like DestroyBarrel(), which we can then call for swords, arrows, fireballs, bombs, etc..

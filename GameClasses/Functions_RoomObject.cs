@@ -262,5 +262,18 @@ namespace DungeonRun
             }
         }
 
+        public static void DestroyBarrel(GameObject Barrel)
+        {
+            //create explosion projectile
+            Functions_Entity.SpawnEntity(ObjType.ProjectileExplosion,
+                Barrel.compSprite.position.X,
+                Barrel.compSprite.position.Y,
+                Direction.None);
+            //destroy barrel, create loot
+            Functions_RoomObject.DestroyObject(Barrel, true, true);
+        }
+
+
+
     }
 }
