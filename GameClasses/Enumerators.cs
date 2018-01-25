@@ -86,7 +86,8 @@ namespace DungeonRun
         SpikesFloorOn, SpikesFloorOff,
         ConveyorBeltOn, ConveyorBeltOff,
         //
-        Pot, Bumper, Flamethrower, IceTile,
+        Pot, Barrel,
+        Bumper, Flamethrower, IceTile,
         Switch, SwitchOff,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, 

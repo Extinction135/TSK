@@ -117,6 +117,9 @@ namespace DungeonRun
 
                 //Pot
                 new List<Byte4> { new Byte4(0, 6, 0, 0) },
+                //Barrel
+                new List<Byte4> { new Byte4(0, 5, 0, 0) },
+
                 //Bumper
                 new List<Byte4> { new Byte4(4, 5, 0, 0) },
                 //Flamethrower

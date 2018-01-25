@@ -50,16 +50,10 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Designed Barrel Sprites
-
-created normal barrel sprite.
-created explosive barrel sprite.
-created exploding barrel sprite.
 
 
 
-
-
+Barrels ++
 
 the normal barrel can be pushed, pulled, and struck around.
 it does not explode, however.
@@ -74,6 +68,19 @@ fireballs, bombs, arrows, pots, swords should all blow up explosive barrels.
 
 create barrel obj.
 extend barrel obj with explosive capabilities.
+
+
+
+
+added Barrel value to ObjType enumerator.
+added ObjAnimList value for Barrel obj.
+updated GameObj Functions with Barrel obj path.
+added barrel obj into editor.
+
+
+
+
+
 
 
 

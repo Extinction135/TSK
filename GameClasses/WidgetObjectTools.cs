@@ -110,7 +110,7 @@ namespace DungeonRun
                     {
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Pot); }
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
-                        //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockUp); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Barrel); }
                         //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.TorchLit); }
                     }

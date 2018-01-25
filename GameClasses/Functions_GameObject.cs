@@ -333,6 +333,20 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
             }
+
+
+            //barrels are indestructible for now
+            else if (Type == ObjType.Barrel)
+            {
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
+                Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
+                //Obj.compMove.moveable = true;
+            }
+
+
+
             else if (Type == ObjType.BossStatue)
             {
                 Obj.compCollision.rec.Height = 8;
