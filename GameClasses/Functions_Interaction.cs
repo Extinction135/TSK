@@ -244,7 +244,12 @@ namespace DungeonRun
                         else if (RoomObj.type == ObjType.BossStatue)
                         { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                         //explosions also trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction); //this direction should be explosion pos vs. roomObj pos
+                        Functions_RoomObject.HandleCommon(RoomObj,
+                            //get the direction towards the roomObj from the explosion
+                            Functions_Direction.GetOppositeDirection(
+                                RoomObj.compSprite.position,
+                                Entity.compSprite.position)
+                            ); //this direction should be explosion pos vs. roomObj pos
                     }
                 }
 

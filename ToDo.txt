@@ -52,44 +52,69 @@ spikeblocks eating away at massive groups of pots
 
 
 
-ExplodingBarrels should initially slide
-
-updated HandleCommon() to take a Direction parameter.
-this parameter represents the direction the obj was 'hit' from.
-updated DestroyBarrel() to push ExpBarrel entity, using Direction parameter.
-playtested, exploding barrels do slide.
 
 
 
 
 
+
+Fix Various ExplodingBarrel Bugs
 
 bug: the exp barrel shouldnt rotate upon direction change
+fix: updated SetRotation() with path for ExpBarrel.
+path preserves the obj's sprite rotation as Down.
+playtested, working as expected.
 
-barrel should explode faster / sooner
+reduced the lifetime of exploding barrels. much better.
+added highlite animation frame to exploding barrel obj anim list.
+
+fixed a bug with explosions pushing barrels Direction.Down always.
+this involved calculating the direction towards the barrel from
+the explosion's source position, using _Direction.GetOppositeDirection().
+
+playtested, working, but could be refined further since
+GetOppositeDirection() actually only returns a diagonal direction.
+we *should* be using cardinal directions for the Barrels.
+
+
+
+
+*we should rename GetOppositeDirection() to GetOppositeDiagonal(), since thats what it *actually* does.
+and we should create GetOppositeCardinal(), and use that to push Barrels instead of GetOppDiag()... duh!
+this should make the explosion's push predictable, which allows us to build Barrel puzzels.
+
+
+
+
+
+
+Fix Various ExplodingBarrels Bugs + Improvements
+
+explosions need to be bigger
+the smoke particle is 8px wide, so it needs a 4 px push right when it is spawned over the barrel
+
+add an attention particle upon barrel hit
 
 barrels shouldn't be able to be pushed thru walls,
 they should stop their movement, like bombs do.
 
 bugs: the projectile is 'blocking' which causes the hero to take damage / get hit
 
-also, the explosion entity should have a larger radius, which will help in chaining barrel explosions later.
-	
-revisit and tune the exploding barrel birth event.
-	
-	
-	
-	
-	
-	
-Improve Barrel Visuals
 
-add the bubbling entity over barrels randomly?
-the barrels look like SHIT honestly. we could go with a TNT sprite.
-something that screams "I EXPLODE" at the player... ?
-we could also go back to the X barrel.
-or source a different sprite for the barrel, that is more barrel-esque.
 
+
+** the 'collision rec' for the smoke particle emitted by exploding barrel is a 16x16 sq
+it should be 8x8, same position
+
+
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 Explosive Barrel Room Puzzles

@@ -66,7 +66,8 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.ProjectileBomb
                 || Obj.type == ObjType.ProjectileSpikeBlock
-                || Obj.type == ObjType.ProjectilePot)
+                || Obj.type == ObjType.ProjectilePot
+                || Obj.type == ObjType.ProjectileExplodingBarrel)
             {   //some objects only face Direction.Down
                 Obj.compSprite.rotation = Rotation.None;
             }
@@ -615,23 +616,17 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
             }
-
-
-            //
             else if (Type == ObjType.ProjectileExplodingBarrel)
             {   //this should match the Barrel GameObj
                 Obj.compSprite.zOffset = -7; 
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 100; //in frames
+                Obj.lifetime = 40; //in frames
                 Obj.compCollision.blocking = true;
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = true;
             }
-
-
-
             else if (Type == ObjType.ProjectileShadowSm)
             {
                 Obj.compSprite.texture = Assets.mainSheet;

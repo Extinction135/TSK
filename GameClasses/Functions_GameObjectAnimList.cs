@@ -233,7 +233,7 @@ namespace DungeonRun
                 //ProjectilePot
                 new List<Byte4> { new Byte4(0, 6, 0, 0) },
                 //Projectile ExplodingBarrel
-                new List<Byte4> { new Byte4(0, 5, 0, 0) },
+                new List<Byte4> { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0) },
 
                 //ProjectileShadowSm
                 new List<Byte4> { new Byte4(0, 1, 0, 0) },
