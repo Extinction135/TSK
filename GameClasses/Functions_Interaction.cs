@@ -330,6 +330,15 @@ namespace DungeonRun
                 #endregion
 
 
+                #region ExplodingBarrel
+
+                else if (Entity.type == ObjType.ProjectileExplodingBarrel)
+                {   //stop barrels from moving thru blocking objects
+                    Functions_Movement.StopMovement(Entity.compMove);
+                }
+
+                #endregion
+
             }
             //Handle Non-Blocking Interactions (with projectiles & pickups)
             else

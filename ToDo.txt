@@ -53,51 +53,38 @@ spikeblocks eating away at massive groups of pots
 
 
 
+Various Improvements related to ExplodingBarrel Projectiles
+
+increased the animation speed for exploding barrel projectile.
+hopefully this will help to get the players attention more, 
+as the barrel sprite animation felt laggy.
+
+removed expBarrel birth smoke.
+added death event loot drop, fire, and rock debris.
+playtested, barrel destruction is very.. decorative.
+
+changed sorting of fire particles to floor.
+this is so actors sort over fire, otherwise it looks wrong.
+
+added path for exploding barrels into interaction routines,
+that prevent them from being pushed thru blocking room objects.
+this means barrels cant be pushed thru walls, or blocks, etc..
+
+increased vertical size of explosions.
+increased vertical size of barrel hitbox.
+this was done to make vertical barrel chaining easier.
+built the first of probably many barrel puzzle rooms.
 
 
 
-Fix Various Issues with Functions_Direction
-
-created GetOppositeCardinal() method.
-renamed GetOppositeDirection() to GetOppositeDiagonal().
-updated various paths to use new methods.
-reduced initial push of exploding barrels to 6.0f.
-lots of playtesting using the barrelTesting.xml room file.
-
-test that spike floors push cardinally, yep.
-test that bumpers push cardinally, yep.
-and these small improvements make the game feel much better.
 
 
 
-
-
-
-
+bugs: the projectile is 'blocking' which causes the hero to take damage / get hit
+how can we ignore this? in the entity vs. actor (hero) collision routines > interaction > battle?
 
 
 explosion projectiles should be ignored by bumpers.. HAHAHA
-
-
-Fix Various ExplodingBarrels Bugs + Improvements
-
-explosions need to be bigger
-the smoke particle is 8px wide, so it needs a 4 px push right when it is spawned over the barrel
-
-add an attention particle upon barrel hit
-
-barrels shouldn't be able to be pushed thru walls,
-they should stop their movement, like bombs do.
-
-bugs: the projectile is 'blocking' which causes the hero to take damage / get hit
-
-
-
-
-** the 'collision rec' for the smoke particle emitted by exploding barrel is a 16x16 sq
-it should be 8x8, same position
-
-
 	
 	
 	
@@ -106,25 +93,9 @@ it should be 8x8, same position
 	
 	
 	
-
-
-Explosive Barrel Room Puzzles
-
-we can do room puzzles with explosive barrels
-just need to check that there are no more explosive barrels left
-this can be done when an explosive barrel explodes
-just needs to check to see if it's the last one, if so open doors
-this is something the original zelda didn't do..
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
 
 
 

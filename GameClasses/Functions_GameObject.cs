@@ -336,8 +336,8 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Barrel)
             {
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 13;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
             }
@@ -570,8 +570,8 @@ namespace DungeonRun
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 16;
-                Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
-                Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
+                Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -13;
+                Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 26;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 5; //in frames
@@ -623,7 +623,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 40; //in frames
-                Obj.compCollision.blocking = true;
+                Obj.compAnim.speed = 7; 
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = true;
             }
@@ -736,7 +736,7 @@ namespace DungeonRun
             else if (Type == ObjType.ParticleFire)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compSprite.zOffset = 12;
+                Obj.compSprite.zOffset = -8; //to ground
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames

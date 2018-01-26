@@ -387,11 +387,6 @@ namespace DungeonRun
             else if (Entity.type == ObjType.ProjectileExplodingBarrel)
             {
                 Assets.Play(Assets.sfxEnemyHit);
-                //create smoke at the location of the exploding barrel
-                SpawnEntity(ObjType.ParticleSmokePuff,
-                    Entity.compSprite.position.X,
-                    Entity.compSprite.position.Y - 6,
-                    Direction.None);
             }
 
             #endregion
@@ -469,9 +464,17 @@ namespace DungeonRun
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.None);
-
-                //create loot?
-                //Functions_Loot.SpawnLoot(RoomObj.compSprite.position);
+                //create loot
+                Functions_Loot.SpawnLoot(Obj.compSprite.position);
+                //leave some fire behind
+                SpawnEntity(ObjType.ParticleFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.None);
+                //throw some rocks around as decoration
+                ScatterRockDebris(Obj.compSprite.position, true);
+                ScatterRockDebris(Obj.compSprite.position, true);
+                ScatterRockDebris(Obj.compSprite.position, true);
             }
 
             #endregion
