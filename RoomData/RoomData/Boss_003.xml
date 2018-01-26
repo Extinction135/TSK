@@ -15,9 +15,9 @@
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
-      <posX>216</posX>
+      <type>ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>184</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -33,8 +33,8 @@
       <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
+      <type>ConveyorBeltOn</type>
+      <direction>Left</direction>
       <posX>88</posX>
       <posY>88</posY>
     </ObjXmlData>
@@ -47,13 +47,13 @@
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
       <direction>Right</direction>
-      <posX>184</posX>
+      <posX>216</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
-      <direction>Right</direction>
-      <posX>168</posX>
+      <direction>Left</direction>
+      <posX>120</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -303,10 +303,10 @@
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Left</direction>
-      <posX>120</posX>
-      <posY>88</posY>
+      <type>IceTile</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
@@ -489,22 +489,22 @@
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>IceTile</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>IceTile</type>
       <direction>Down</direction>
       <posX>168</posX>
       <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>IceTile</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
@@ -519,9 +519,9 @@
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Left</direction>
-      <posX>136</posX>
+      <type>IceTile</type>
+      <direction>Down</direction>
+      <posX>152</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -609,21 +609,21 @@
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
+      <type>IceTile</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>IceTile</type>
+      <direction>Down</direction>
       <posX>136</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
+      <type>IceTile</type>
+      <direction>Down</direction>
       <posX>152</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
-      <posX>168</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -1249,6 +1249,12 @@
       <direction>Left</direction>
       <posX>296</posX>
       <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>IceTile</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>104</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

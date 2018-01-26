@@ -5,37 +5,25 @@
     <ObjXmlData>
       <type>Bumper</type>
       <direction>Down</direction>
-      <posX>56</posX>
+      <posX>40</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Bumper</type>
       <direction>Down</direction>
-      <posX>56</posX>
+      <posX>40</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Bumper</type>
       <direction>Down</direction>
-      <posX>248</posX>
+      <posX>264</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Bumper</type>
       <direction>Down</direction>
-      <posX>248</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Bumper</type>
-      <direction>Down</direction>
-      <posX>152</posX>
+      <posX>264</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -89,31 +77,7 @@
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Down</direction>
       <posX>24</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Down</direction>
-      <posX>40</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -125,26 +89,8 @@
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Down</direction>
       <posX>24</posX>
       <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
@@ -251,12 +197,6 @@
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
       <direction>Up</direction>
-      <posX>264</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
       <posX>280</posX>
       <posY>152</posY>
     </ObjXmlData>
@@ -275,18 +215,6 @@
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
       <direction>Up</direction>
-      <posX>264</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
-      <posX>264</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
       <posX>280</posX>
       <posY>104</posY>
     </ObjXmlData>
@@ -299,18 +227,6 @@
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
       <direction>Up</direction>
-      <posX>264</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
-      <posX>264</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
       <posX>280</posX>
       <posY>72</posY>
     </ObjXmlData>
@@ -319,18 +235,6 @@
       <direction>Up</direction>
       <posX>280</posX>
       <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
-      <posX>264</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
-      <direction>Up</direction>
-      <posX>264</posX>
-      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>ConveyorBeltOn</type>

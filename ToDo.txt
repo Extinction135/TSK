@@ -46,26 +46,37 @@ switch blocks + btns
 floor switches
 torches in groups of 4
 spikeblocks eating away at massive groups of pots
+explosive barrel puzzels
+
+
+
+
+Rooms++
+
+created HubRoom004, with triple explosive barrel puzzle.
+created Square006, with single explosive barrel puzzle.
+created Key006, with double explosive barrel puzzle.
+these 3 rooms are really fun to think about and deconstruct.
 
 
 
 
 
-Fix Explosion vs Bumper Interaction
-
-updated Interaction.Interact(Entity, RoomObj),
-preventing explosion projectiles from being bounced by bumpers.
-spoiler alert: they dont get bounced, so the bumper just
-starts freaking out, trying to bump the un-bumpable.
-which is fun, but also buggy and weird.
 
 
-playtest bumping barrels off bumpers 
-playtest explosions over bumpers
+I want an object that can create barrels at timed intervals.
+This object would be placed inside of a boss room, with conveyor belts.
+this would add random explosions into a boss battle, combined with a puzzle element (the belt layout)
+if the boss was flying, and resistant to explosions, even better!
+
+We could use this barrel creator object else where as well, for an unlimited supply of explosions! yay!
 
 
 
+Rooms++
 
+create rooms with explosive barrel puzzels
+improve other rooms with explosive barrels
 
 
 
@@ -76,9 +87,33 @@ Dragging/Pushing/Pulling
 hero should be able to 'grab' objects
 if the object is draggable, then hero should be able to push and pull on it
 this 'grabbing' state should last until player releases the A button
-objects should inherit the movement of hero, and check collisions with all objs & actors
+objects should inherit the movement of hero, and check collisions with all roomObjs, entities, & actors (expensive)
 if a draggable object would collide, it doesn't move
 this would have to be done per axis too, so we could drag along walls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -114,6 +149,35 @@ how do we attach an obj/actor to boomerang? i dunno
 --------------- lets push ---------------
 
 
+COMPLETE THE PROTOTYPE BLOB DUNGEON
+
+Enemies++
+create tier 1, 2, 3 level enemies for dungeon 1
+dungeons should have an enemy list for each tier
+then upon room build, randomly choose an enemy type from the correct tier list
+
+for the blob dungeon, we can have many different kinds of blob enemies, using the blob sheet:
+blobs with swords
+blobs with bow & arrow
+blobs that plant bombs
+blobs that shoot fireballs
+
+for example, forest dungeon tier 1 enemies: blob, rat, snake
+when room builds, any of these 3 enemy types can spawn on a tier 1 spawn obj
+create enemies that fire projectiles - arrows, fireballs, bombs
+we need a flying enemy - like a BAT
+
+
+
+
+
+
+
+
+
+
+
+
 
 Dungeons++
 link cave, forest, old castle dungeons from the overworld map
@@ -121,14 +185,7 @@ create dungeon sprite sheet for cave + forest + old castle levels
 create enemies unique to the cave + forest + old castle
 create bosses unique to the cave + forest + old castle
 
-Enemies++
-create tier 1, 2, 3 level enemies for dungeon 1
-dungeons should have an enemy list for each tier
-then upon room build, randomly choose an enemy type from the correct tier list
-for example, forest dungeon tier 1 enemies: blob, rat, snake
-when room builds, any of these 3 enemy types can spawn on a tier 1 spawn obj
-create enemies that fire projectiles - arrows, fireballs, bombs
-we need a flying enemy - like a BAT
+
 
 Music++
 add overworld music
