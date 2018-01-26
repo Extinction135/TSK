@@ -49,43 +49,24 @@ spikeblocks eating away at massive groups of pots
 
 
 
+Fix the ExplodingBarrel collision Bug
+
+problem:
+if the hero (or any actor) overlaps an ExplodingBarrel,
+they are placed into a hit state each frame they overlap,
+which is annoying and unexpected.
+
+fix:
+updated Interaction.InteractActor() with path for ExpBarrel,
+which ignores collisions between ExpBarrel and Actors,
+which prevents the hero from getting 'hit' upon expBarrel collision.
+playtested, working + looking good.
 
 
-
-
-Various Improvements related to ExplodingBarrel Projectiles
-
-increased the animation speed for exploding barrel projectile.
-hopefully this will help to get the players attention more, 
-as the barrel sprite animation felt laggy.
-
-removed expBarrel birth smoke.
-added death event loot drop, fire, and rock debris.
-playtested, barrel destruction is very.. decorative.
-
-changed sorting of fire particles to floor.
-this is so actors sort over fire, otherwise it looks wrong.
-
-added path for exploding barrels into interaction routines,
-that prevent them from being pushed thru blocking room objects.
-this means barrels cant be pushed thru walls, or blocks, etc..
-
-increased vertical size of explosions.
-increased vertical size of barrel hitbox.
-this was done to make vertical barrel chaining easier.
-built the first of probably many barrel puzzle rooms.
-
-
-
-
-
-
-bugs: the projectile is 'blocking' which causes the hero to take damage / get hit
-how can we ignore this? in the entity vs. actor (hero) collision routines > interaction > battle?
 
 
 explosion projectiles should be ignored by bumpers.. HAHAHA
-	
+entity vs roomObj interaction check...
 	
 	
 	

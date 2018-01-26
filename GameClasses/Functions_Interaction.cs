@@ -28,8 +28,11 @@ namespace DungeonRun
 
             if (Obj.group == ObjGroup.Projectile)
             {   //some projectiles dont interact with actors in any way at all
-                if (Obj.type == ObjType.ProjectileDebrisRock
-                    || Obj.type == ObjType.ProjectileShadowSm)
+                if (Obj.type == ObjType.ProjectileBomb
+                    || Obj.type == ObjType.ProjectileDebrisRock
+                    || Obj.type == ObjType.ProjectileExplodingBarrel
+                    || Obj.type == ObjType.ProjectileShadowSm
+                    )
                 { return; }
                 //check for collision between net and actor
                 else if (Obj.type == ObjType.ProjectileNet)
@@ -39,16 +42,14 @@ namespace DungeonRun
                     Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
                     Functions_Actor.BottleActor(Actor); //try to bottle actor
                 }
-
-                //all actors take damage from projectiles (fairys take 0 damage)
-                Functions_Battle.Damage(Actor, Obj); //sets actor into hit/death
-                if (Obj.type == ObjType.ProjectileSword)
+                //if sword projectile is brand new, spawn hit particle
+                else if (Obj.type == ObjType.ProjectileSword)
                 {
                     if (Obj.lifeCounter == 1)
-                    {   //if sword projectile is brand new, spawn hit particle
-                        Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj);
-                    }
+                    { Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj); }
                 }
+                //all actors take damage from projectiles that reach this path
+                Functions_Battle.Damage(Actor, Obj); //sets actor into hit state!
             }
 
             #endregion
