@@ -51,42 +51,35 @@ spikeblocks eating away at massive groups of pots
 
 
 
-
-
-Barrels ++
-
-the normal barrel can be pushed, pulled, and struck around.
-it does not explode, however.
-the explosive barrel slides upon attack, then begins countdown.
-after a set number of frames, the barrel explodes,
-creating an explosion entity, which will damage anything around it.
-
-the explosive barrel should respond to an explosion entity colliding with it.
-this allows us to chaing explosive barrel explosions.
-fireballs, bombs, arrows, pots, swords should all blow up explosive barrels.
-
-
-create barrel obj.
-extend barrel obj with explosive capabilities.
+reorganized Functions_RoomObject.cs.
 
 
 
-Refactor Common RoomObj Interactions
+	
 
-refactored common roomObj interactions into method HandleCommon(),
-located in the Functions_RoomObject class. removed duplicate code.
-playtested, working as expected.
+	
+	
+	
+	
+Add ExplodingBarrels (+ explain how exploding barrels work)
 
-
-
-
-
-
-
-* the explosive barrels should be pushed upon collision / interaction
-then they should create a bubble entity, count down from 255, then explode
-which means we'll probably need another gameObj, ExplodingBarrel, to "hold" the 255 countdown
-which, we could actually make ExplodingBarrel an ENTITY, which would allow us to "push" it
+when a barrel becomes 'activated' (hit), the following occurs:
+	the barrel roomObj instantly dissappears (it's released()).
+	an exploding barrel entity is created in the exact same place.
+	and the expBarrel entity has a lifetime of 100 or so frames.
+	while the expBarrel is 'born' it spawns a smoke particle on top of it.
+	this is the anticipation frame of the barrel animation.
+	eventually the expBarrel reaches it's death event, 
+	which creates an explosion entity at expBarrel's location.
+	
+added ProjectileExplodingBarrel value to ObjType enum.
+added object animation list for ExpBarrel.
+added path to GameObj Functions.SetType() for ExpBarrel.
+updated DeathEvent() with path for ExpBarrel in Entity Functions.
+updated BirthEvent() as well.
+updated Functions_RoomObject.DestroyBarrel().
+playtested barrels: seamless transition, smoke puff, delayed explosion.
+working as expected.
 
 
 
@@ -94,80 +87,35 @@ which, we could actually make ExplodingBarrel an ENTITY, which would allow us to
 
 
 
+bugs: the projectile is 'blocking' which causes the hero to take damage / get hit
+each frame he overlaps the projectile
+we can reduce the lifetime of the expBarrel, and have two frames of animation, and have it slide 
+and that should sell the barrel effect
+	
+	
+	
+	
+	
+updated Functions_Entity.SpawnEntity() to initially slide exploding barrels.
 
-
-
-
-
+also, the explosion entity should have a larger radius, which will help in chaining barrel explosions later.
+	
+revisit and tune the exploding barrel birth event.
+	
+	
+	
+	
+	
+	
 Improve Barrel Visuals
 
 add the bubbling entity over barrels randomly?
 the barrels look like SHIT honestly. we could go with a TNT sprite.
 something that screams "I EXPLODE" at the player... ?
+we could also go back to the X barrel.
+or source a different sprite for the barrel, that is more barrel-esque.
 
 
-
-
-
-
-
-
-
-
-which this repetitive calling leads me to think that the current roomObj / entity system is poorly designed
-
-*should be able to push barrel with sword attack + other interactions
-
-
-
-
-we can do explosive barrels with ONE sprite : the barrel sprite
-when the barrel is triggered, it can spawn a bubbling entity over it and shake
-then it explodes
-
-
-
-
-... push obj, project movement of obj, align obj's components
-
-we'll need to project the movement for the barrels, which are really game objects
-we COULD loop thru the objs and check to see if any obj has a magnitude greater than 0
-then we could move only those objects, which should reduce the collision checking,
-since we would only collision check moving objects against other room objects
-
-
-** also, are we able to move room objects using conveyor belts? I dont think so,
-since that would require a collision check for belt (roomObj) vs roomObj,
-and we dont do collision checks for roomObj vs roomObj due to the cost
-* but if we reduce the cost, then this is a viable approach
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Explosive Barrels
-
-Explosive Barrel
-we should have an explosive barrel - of course!
-just like bomb, but stationary, waiting for collision
-add barrel to tools widget
-
-three sprites: maybe two: normal idle barrel, barrel after it's been struck
-can animate between idle and whiter brighter "blinking" style animation
-then barrel dies and spawns an explosion
-also, the barrel should move based on whatever direction it was struck from
-this would be similar to how bombs move / slide
 
 Explosive Barrel Room Puzzles
 
@@ -175,7 +123,25 @@ we can do room puzzles with explosive barrels
 just need to check that there are no more explosive barrels left
 this can be done when an explosive barrel explodes
 just needs to check to see if it's the last one, if so open doors
-this is something the original zelda didn't do
+this is something the original zelda didn't do..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

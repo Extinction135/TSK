@@ -141,33 +141,6 @@ namespace DungeonRun
                 Direction.None);
         }
 
-
-
-        //decorates a door on left/right or top/bottom
-        static Vector2 posA = new Vector2();
-        static Vector2 posB = new Vector2();
-        public static void DecorateDoor(GameObject Door, ObjType Type)
-        {
-            if (Door.direction == Direction.Up || Door.direction == Direction.Down)
-            {   //build left/right decorations if Door.direction is Up or Down
-                posA.X = Door.compSprite.position.X - 16;
-                posA.Y = Door.compSprite.position.Y;
-                posB.X = Door.compSprite.position.X + 16;
-                posB.Y = Door.compSprite.position.Y;
-            }
-            else
-            {   //build top/bottom decorations if Door.direction is Left or Right
-                posA.X = Door.compSprite.position.X;
-                posA.Y = Door.compSprite.position.Y - 16;
-                posB.X = Door.compSprite.position.X;
-                posB.Y = Door.compSprite.position.Y + 16;
-            }
-            //build wall decorationA torch/pillar/decoration
-            SpawnRoomObj(Type, posA.X, posA.Y, Door.direction);
-            //build wall decorationB torch/pillar/decoration
-            SpawnRoomObj(Type, posB.X, posB.Y, Door.direction);
-        }
-
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
             //place vendor
@@ -263,23 +236,44 @@ namespace DungeonRun
         }
 
         public static void DestroyBarrel(GameObject Barrel)
-        {
-            //create explosion projectile
-            Functions_Entity.SpawnEntity(ObjType.ProjectileExplosion,
+        {   //create a projectile exploding barrel at Barrel's exact location
+            Functions_Entity.SpawnEntity(ObjType.ProjectileExplodingBarrel,
                 Barrel.compSprite.position.X,
                 Barrel.compSprite.position.Y,
                 Direction.None);
-            //destroy barrel, create loot
-            Functions_RoomObject.DestroyObject(Barrel, true, true);
+            Functions_Pool.Release(Barrel);
         }
-
-
 
         public static void HandleCommon(GameObject RoomObj)
         {   //this handles common room objs
             if (RoomObj.type == ObjType.SwitchBlockBtn) { FlipSwitchBlocks(RoomObj); }
             else if (RoomObj.type == ObjType.Pot) { DestroyObject(RoomObj, true, true); }
             else if (RoomObj.type == ObjType.Barrel) { DestroyBarrel(RoomObj); }
+        }
+
+        //decorates a door on left/right or top/bottom
+        static Vector2 posA = new Vector2();
+        static Vector2 posB = new Vector2();
+        public static void DecorateDoor(GameObject Door, ObjType Type)
+        {
+            if (Door.direction == Direction.Up || Door.direction == Direction.Down)
+            {   //build left/right decorations if Door.direction is Up or Down
+                posA.X = Door.compSprite.position.X - 16;
+                posA.Y = Door.compSprite.position.Y;
+                posB.X = Door.compSprite.position.X + 16;
+                posB.Y = Door.compSprite.position.Y;
+            }
+            else
+            {   //build top/bottom decorations if Door.direction is Left or Right
+                posA.X = Door.compSprite.position.X;
+                posA.Y = Door.compSprite.position.Y - 16;
+                posB.X = Door.compSprite.position.X;
+                posB.Y = Door.compSprite.position.Y + 16;
+            }
+            //build wall decorationA torch/pillar/decoration
+            SpawnRoomObj(Type, posA.X, posA.Y, Door.direction);
+            //build wall decorationB torch/pillar/decoration
+            SpawnRoomObj(Type, posB.X, posB.Y, Door.direction);
         }
 
     }

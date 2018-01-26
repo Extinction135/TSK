@@ -109,8 +109,10 @@ namespace DungeonRun
         ProjectileBomb, ProjectileFireball,
         //Projectiles -weapons
         ProjectileSword, ProjectileArrow, ProjectileNet,
-        //Projectiles -other
-        ProjectileExplosion, ProjectileSpikeBlock, ProjectileDebrisRock, ProjectilePot,
+        //Projectiles - object
+        ProjectileExplosion,
+        ProjectileSpikeBlock, ProjectileDebrisRock,
+        ProjectilePot, ProjectileExplodingBarrel,
         ProjectileShadowSm,
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation, 

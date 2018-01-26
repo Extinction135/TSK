@@ -214,13 +214,14 @@ namespace DungeonRun
                 Type == ObjType.ProjectileBomb ||
                 Type == ObjType.ParticleBow ||
                 Type == ObjType.ProjectileDebrisRock ||
-                Type == ObjType.ProjectilePot)
+                Type == ObjType.ProjectilePot ||
+                Type == ObjType.ProjectileExplodingBarrel)
             {
                 obj.direction = Direction;
                 obj.compMove.direction = Direction;
             }
             else
-            {   //other objects default to down
+            {   //ALL other objects default to down
                 obj.direction = Direction.Down;
                 obj.compMove.direction = Direction.Down;
             }
@@ -310,10 +311,18 @@ namespace DungeonRun
             #endregion
 
 
+            #region Give ExplodingBarrels an Initial Push (slide them)
+
+            else if (Type == ObjType.ProjectileExplodingBarrel)
+            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
+
+            #endregion
+
+
             #region Modify RockDebris Projectiles Animation Frame + Slide them
 
             //some projectiles get their current frame randomly assigned (for variation)
-            else if(Type == ObjType.ProjectileDebrisRock)
+            else if (Type == ObjType.ProjectileDebrisRock)
             {   //is assigned 15,15 - randomize down to 14,14
                 List <Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
@@ -364,11 +373,26 @@ namespace DungeonRun
                     Direction.None);
             }
             else if (Entity.type == ObjType.ProjectileSword)
-            { Assets.Play(Assets.sfxSwordSwipe); }
+            {
+                Assets.Play(Assets.sfxSwordSwipe);
+            }
             else if (Entity.type == ObjType.ProjectileNet) //need net soundFX
-            { Assets.Play(Assets.sfxSwordSwipe); }
+            {
+                Assets.Play(Assets.sfxSwordSwipe);
+            }
             else if (Entity.type == ObjType.ProjectilePot)
-            { Assets.Play(Assets.sfxActorFall); } //throw sfx = actor fall sfx
+            {   //throw sfx = actor fall sfx
+                Assets.Play(Assets.sfxActorFall);
+            }
+            else if (Entity.type == ObjType.ProjectileExplodingBarrel)
+            {
+                Assets.Play(Assets.sfxEnemyHit);
+                //create smoke at the location of the exploding barrel
+                SpawnEntity(ObjType.ParticleSmokePuff,
+                    Entity.compSprite.position.X,
+                    Entity.compSprite.position.Y - 8,
+                    Direction.None);
+            }
 
             #endregion
 
@@ -432,6 +456,17 @@ namespace DungeonRun
             else if (Obj.type == ObjType.ProjectilePot)
             {   //create loot
                 Functions_RoomObject.DestroyObject(Obj, true, true);
+            }
+
+            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
+            {   //create explosion projectile
+                SpawnEntity(ObjType.ProjectileExplosion,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.None);
+
+                //create loot?
+                //Functions_Loot.SpawnLoot(RoomObj.compSprite.position);
             }
 
             #endregion

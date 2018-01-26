@@ -333,20 +333,13 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
             }
-
-
-            //barrels are indestructible for now
             else if (Type == ObjType.Barrel)
             {
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                //Obj.compMove.moveable = true;
             }
-
-
-
             else if (Type == ObjType.BossStatue)
             {
                 Obj.compCollision.rec.Height = 8;
@@ -611,11 +604,6 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
             }
-
-
-
-
-
             else if (Type == ObjType.ProjectilePot)
             {
                 Obj.compSprite.zOffset = +16; //sort to air
@@ -627,6 +615,23 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
             }
+
+
+            //
+            else if (Type == ObjType.ProjectileExplodingBarrel)
+            {   //this should match the Barrel GameObj
+                Obj.compSprite.zOffset = -7; 
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 100; //in frames
+                Obj.compCollision.blocking = true;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = true;
+            }
+
+
+
             else if (Type == ObjType.ProjectileShadowSm)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
