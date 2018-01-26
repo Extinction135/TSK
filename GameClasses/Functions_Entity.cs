@@ -390,7 +390,7 @@ namespace DungeonRun
                 //create smoke at the location of the exploding barrel
                 SpawnEntity(ObjType.ParticleSmokePuff,
                     Entity.compSprite.position.X,
-                    Entity.compSprite.position.Y - 8,
+                    Entity.compSprite.position.Y - 6,
                     Direction.None);
             }
 
@@ -412,6 +412,9 @@ namespace DungeonRun
 
         public static void HandleDeathEvent(GameObject Obj)
         {
+
+            #region Pickups
+
             if (Obj.group == ObjGroup.Pickup)
             {   //when an item pickup dies, display an attention particle
                 SpawnEntity(ObjType.ParticleAttention,
@@ -419,6 +422,8 @@ namespace DungeonRun
                     Obj.compSprite.position.Y + 0,
                     Direction.None);
             }
+
+            #endregion
 
 
             #region Projectiles

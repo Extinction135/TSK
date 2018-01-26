@@ -240,15 +240,20 @@ namespace DungeonRun
             Functions_Entity.SpawnEntity(ObjType.ProjectileExplodingBarrel,
                 Barrel.compSprite.position.X,
                 Barrel.compSprite.position.Y,
-                Direction.None);
+                Barrel.compMove.direction); //pushed based on this direction
             Functions_Pool.Release(Barrel);
         }
 
-        public static void HandleCommon(GameObject RoomObj)
-        {   //this handles common room objs
+        public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
+        {   //this handles the most common room objs
+            //hitDirection is used to push some objects in the direction they were hit
             if (RoomObj.type == ObjType.SwitchBlockBtn) { FlipSwitchBlocks(RoomObj); }
             else if (RoomObj.type == ObjType.Pot) { DestroyObject(RoomObj, true, true); }
-            else if (RoomObj.type == ObjType.Barrel) { DestroyBarrel(RoomObj); }
+            else if (RoomObj.type == ObjType.Barrel)
+            {
+                RoomObj.compMove.direction = HitDirection; //pass hitDirection
+                DestroyBarrel(RoomObj);
+            }
         }
 
         //decorates a door on left/right or top/bottom

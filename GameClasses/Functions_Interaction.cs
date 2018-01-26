@@ -215,7 +215,7 @@ namespace DungeonRun
 
                 if (Entity.type == ObjType.ProjectileArrow)
                 {   //arrows trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj);
+                    Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
                     //arrows die upon blocking collision
                     Functions_GameObject.Kill(Entity);
                 }
@@ -244,7 +244,7 @@ namespace DungeonRun
                         else if (RoomObj.type == ObjType.BossStatue)
                         { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                         //explosions also trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj);
+                        Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction); //this direction should be explosion pos vs. roomObj pos
                     }
                 }
 
@@ -260,7 +260,7 @@ namespace DungeonRun
                     else if (RoomObj.type == ObjType.BossStatue)
                     { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                     //fireballs trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj);
+                    Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
                     //fireballs die upon blocking collision
                     Functions_GameObject.Kill(Entity);
                 }
@@ -274,7 +274,7 @@ namespace DungeonRun
                 {
                     BounceSpikeBlock(Entity);
                     //spikeblocks trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj);
+                    Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
                 }
 
                 #endregion
@@ -295,7 +295,7 @@ namespace DungeonRun
                     else if(Entity.lifeCounter == 4)
                     {   //these interactions happen 'mid swing'
                         //swords trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj);
+                        Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
                     }
                 }
 
@@ -319,7 +319,7 @@ namespace DungeonRun
                 {   //destroy the Pot object
                     Functions_RoomObject.DestroyObject(Entity, true, true);
                     //thrown / dropped pots trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj);
+                    Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
                 }
 
                 #endregion

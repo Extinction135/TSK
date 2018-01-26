@@ -51,52 +51,27 @@ spikeblocks eating away at massive groups of pots
 
 
 
-reorganized Functions_RoomObject.cs.
 
+ExplodingBarrels should initially slide
 
-
-	
-
-	
-	
-	
-	
-Add ExplodingBarrels (+ explain how exploding barrels work)
-
-when a barrel becomes 'activated' (hit), the following occurs:
-	the barrel roomObj instantly dissappears (it's released()).
-	an exploding barrel entity is created in the exact same place.
-	and the expBarrel entity has a lifetime of 100 or so frames.
-	while the expBarrel is 'born' it spawns a smoke particle on top of it.
-	this is the anticipation frame of the barrel animation.
-	eventually the expBarrel reaches it's death event, 
-	which creates an explosion entity at expBarrel's location.
-	
-added ProjectileExplodingBarrel value to ObjType enum.
-added object animation list for ExpBarrel.
-added path to GameObj Functions.SetType() for ExpBarrel.
-updated DeathEvent() with path for ExpBarrel in Entity Functions.
-updated BirthEvent() as well.
-updated Functions_RoomObject.DestroyBarrel().
-playtested barrels: seamless transition, smoke puff, delayed explosion.
-working as expected.
+updated HandleCommon() to take a Direction parameter.
+this parameter represents the direction the obj was 'hit' from.
+updated DestroyBarrel() to push ExpBarrel entity, using Direction parameter.
+playtested, exploding barrels do slide.
 
 
 
 
 
 
+bug: the exp barrel shouldnt rotate upon direction change
+
+barrel should explode faster / sooner
+
+barrels shouldn't be able to be pushed thru walls,
+they should stop their movement, like bombs do.
 
 bugs: the projectile is 'blocking' which causes the hero to take damage / get hit
-each frame he overlaps the projectile
-we can reduce the lifetime of the expBarrel, and have two frames of animation, and have it slide 
-and that should sell the barrel effect
-	
-	
-	
-	
-	
-updated Functions_Entity.SpawnEntity() to initially slide exploding barrels.
 
 also, the explosion entity should have a larger radius, which will help in chaining barrel explosions later.
 	
