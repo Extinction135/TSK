@@ -56,36 +56,27 @@ spikeblocks eating away at massive groups of pots
 
 
 
+Fix Various Issues with Functions_Direction
 
+created GetOppositeCardinal() method.
+renamed GetOppositeDirection() to GetOppositeDiagonal().
+updated various paths to use new methods.
+reduced initial push of exploding barrels to 6.0f.
+lots of playtesting using the barrelTesting.xml room file.
 
-Fix Various ExplodingBarrel Bugs
-
-bug: the exp barrel shouldnt rotate upon direction change
-fix: updated SetRotation() with path for ExpBarrel.
-path preserves the obj's sprite rotation as Down.
-playtested, working as expected.
-
-reduced the lifetime of exploding barrels. much better.
-added highlite animation frame to exploding barrel obj anim list.
-
-fixed a bug with explosions pushing barrels Direction.Down always.
-this involved calculating the direction towards the barrel from
-the explosion's source position, using _Direction.GetOppositeDirection().
-
-playtested, working, but could be refined further since
-GetOppositeDirection() actually only returns a diagonal direction.
-we *should* be using cardinal directions for the Barrels.
+test that spike floors push cardinally, yep.
+test that bumpers push cardinally, yep.
+and these small improvements make the game feel much better.
 
 
 
 
-*we should rename GetOppositeDirection() to GetOppositeDiagonal(), since thats what it *actually* does.
-and we should create GetOppositeCardinal(), and use that to push Barrels instead of GetOppDiag()... duh!
-this should make the explosion's push predictable, which allows us to build Barrel puzzels.
 
 
 
 
+
+explosion projectiles should be ignored by bumpers.. HAHAHA
 
 
 Fix Various ExplodingBarrels Bugs + Improvements

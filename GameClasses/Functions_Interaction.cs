@@ -117,7 +117,7 @@ namespace DungeonRun
 
                         else if(Actor == Pool.herosPet)
                         {   //get the opposite direction between pet's center and pit's center
-                            Actor.compMove.direction = Functions_Direction.GetOppositeDirection(
+                            Actor.compMove.direction = Functions_Direction.GetOppositeDiagonal(
                                 Actor.compSprite.position, Obj.compSprite.position);
                             //push pet in direction
                             Functions_Movement.Push(Actor.compMove, Actor.compMove.direction, 1.0f);
@@ -246,7 +246,7 @@ namespace DungeonRun
                         //explosions also trigger common obj interactions
                         Functions_RoomObject.HandleCommon(RoomObj,
                             //get the direction towards the roomObj from the explosion
-                            Functions_Direction.GetOppositeDirection(
+                            Functions_Direction.GetOppositeCardinal(
                                 RoomObj.compSprite.position,
                                 Entity.compSprite.position)
                             ); //this direction should be explosion pos vs. roomObj pos
@@ -458,7 +458,7 @@ namespace DungeonRun
             compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
             //if the direction is none, then get a direction between bumper and collider
             if (compMove.direction == Direction.None)
-            { compMove.direction = Functions_Direction.GetOppositeDirection(compMove.position, Bumper.compSprite.position); }
+            { compMove.direction = Functions_Direction.GetOppositeCardinal(compMove.position, Bumper.compSprite.position); }
             //push collider in direction
             Functions_Movement.Push(compMove, compMove.direction, 10.0f);
             //handle the bumper animation

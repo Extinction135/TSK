@@ -314,7 +314,7 @@ namespace DungeonRun
             #region Give ExplodingBarrels an Initial Push (slide them)
 
             else if (Type == ObjType.ProjectileExplodingBarrel)
-            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
+            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 6.0f); }
 
             #endregion
 

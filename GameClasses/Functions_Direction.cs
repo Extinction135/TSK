@@ -43,7 +43,24 @@ namespace DungeonRun
             return Direction.None;
         }
 
-        public static Direction GetOppositeDirection(Vector2 PosA, Vector2 PosB)
+
+
+
+
+        public static Direction GetOppositeCardinal(Vector2 PosA, Vector2 PosB)
+        {   //figure out which axis is the dominant axis, return opposite direction along dominant axis
+            //compare vert vs. horizontal
+            if (Math.Abs(PosB.Y - PosA.Y) > Math.Abs(PosB.X - PosA.X))
+            {   //Y axis dominant
+                if (PosB.Y > PosA.Y) { return Direction.Up; } else { return Direction.Down; }
+            }
+            else
+            {   //X axis dominant
+                if (PosB.X > PosA.X) { return Direction.Left; } else { return Direction.Right; }
+            }
+        }
+
+        public static Direction GetOppositeDiagonal(Vector2 PosA, Vector2 PosB)
         {   //return the direction from PosB to PosA
             if (PosB.Y > PosA.Y)
             {   //upleft or upright
@@ -58,6 +75,11 @@ namespace DungeonRun
                 else { return Direction.DownRight; }
             }
         }
+
+
+
+
+
 
         public static Direction GetCardinalDirectionToHero(Vector2 Pos)
         {   //get the x and y distances between starting position and hero
