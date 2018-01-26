@@ -49,37 +49,19 @@ spikeblocks eating away at massive groups of pots
 
 
 
-Fix the ExplodingBarrel collision Bug
-
-problem:
-if the hero (or any actor) overlaps an ExplodingBarrel,
-they are placed into a hit state each frame they overlap,
-which is annoying and unexpected.
-
-fix:
-updated Interaction.InteractActor() with path for ExpBarrel,
-which ignores collisions between ExpBarrel and Actors,
-which prevents the hero from getting 'hit' upon expBarrel collision.
-playtested, working + looking good.
 
 
+Fix Explosion vs Bumper Interaction
+
+updated Interaction.Interact(Entity, RoomObj),
+preventing explosion projectiles from being bounced by bumpers.
+spoiler alert: they dont get bounced, so the bumper just
+starts freaking out, trying to bump the un-bumpable.
+which is fun, but also buggy and weird.
 
 
-explosion projectiles should be ignored by bumpers.. HAHAHA
-entity vs roomObj interaction check...
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
+playtest bumping barrels off bumpers 
+playtest explosions over bumpers
 
 
 

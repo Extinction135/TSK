@@ -348,11 +348,13 @@ namespace DungeonRun
                 #region Bumper
 
                 if (RoomObj.type == ObjType.Bumper)
-                {
-                    //some projectiles cannot be bounced off bumper
-                    if (Entity.type == ObjType.ProjectileSword
+                {   //some projectiles cannot be bounced off bumper
+                    if (Entity.type == ObjType.ProjectileDebrisRock
+                        || Entity.type == ObjType.ProjectileExplosion
                         || Entity.type == ObjType.ProjectileNet
-                        || Entity.type == ObjType.ProjectileDebrisRock)
+                        || Entity.type == ObjType.ProjectileShadowSm
+                        || Entity.type == ObjType.ProjectileSword
+                        )
                     { return; }
 
                     //stop projectile movement, bounce it
