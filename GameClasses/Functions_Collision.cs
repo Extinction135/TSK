@@ -69,18 +69,18 @@ namespace DungeonRun
             return collision; 
         }
 
-        public static Boolean CheckObjPoolCollisions(GameObject Entity)
+        public static Boolean CheckObjPoolCollisions(GameObject Object)
         {
             collision = false; //assume no collision
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active) //roomObj must be active
                 {   //check for overlap
-                    if (Entity.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    if (Object.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {   //roomObjs cant collide with themselves
-                        if (Entity != Pool.roomObjPool[i])
+                        if (Object != Pool.roomObjPool[i])
                         {   //handle interaction, check to see if collision is blocking
-                            Functions_Interaction.InteractObject(Entity, Pool.roomObjPool[i]);
+                            Functions_Interaction.InteractObject(Object, Pool.roomObjPool[i]);
                             if (Pool.roomObjPool[i].compCollision.blocking) { collision = true; }
                         }
                     }

@@ -36,7 +36,7 @@ namespace DungeonRun
         public static void ProjectMovement(ComponentMovement Move)
         {
             Push(Move, Move.direction, Move.speed);
-            //apply friction to magnitude
+            //apply friction to magnitude (this always makes magnitude smaller overtime)
             Move.magnitude = Move.magnitude * Move.friction;
             //clip magnitude to 0 when it gets very small
             if (Math.Abs(Move.magnitude.X) < 0.01f) { Move.magnitude.X = 0; }

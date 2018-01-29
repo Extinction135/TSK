@@ -20,7 +20,7 @@ namespace DungeonRun
         public static void Align(GameObject Obj) { Align(Obj.compMove, Obj.compSprite, Obj.compCollision); }
 
         public static void Align(ComponentMovement Move, ComponentSprite Sprite, ComponentCollision Coll)
-        {   //aligns the collision component and sprite component to the move component's position
+        {   //aligns the collision component and sprite component to the move component's newPosition
             Sprite.position.X = (int)Move.newPosition.X;
             Sprite.position.Y = (int)Move.newPosition.Y;
             SetZdepth(Sprite);

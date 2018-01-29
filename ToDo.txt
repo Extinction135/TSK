@@ -51,33 +51,74 @@ explosive barrel puzzels
 
 
 
-Rooms++
-
-created HubRoom004, with triple explosive barrel puzzle.
-created Square006, with single explosive barrel puzzle.
-created Key006, with double explosive barrel puzzle.
-these 3 rooms are really fun to think about and deconstruct.
 
 
 
+Prep for Additional Interactions
+
+changed InteractObject(Entity, RoomObj) to (Object, RoomObj).
+changed CheckObjPoolCollisions() parameter to Object instead of Entity.
+this was done in prep for handling RoomObj vs RoomObj interactions.
+added some psuedo-code to Functions_Pool.UpdateRoomObjects().
 
 
 
 
-I want an object that can create barrels at timed intervals.
-This object would be placed inside of a boss room, with conveyor belts.
-this would add random explosions into a boss battle, combined with a puzzle element (the belt layout)
-if the boss was flying, and resistant to explosions, even better!
+we have two approaches to how we determine if we evaluate a roomObj as 'moving':
+1. we check the magnitude - simple, clean, but is a float check
+2. we flip a boolean and check that - more complicated, but likely faster than a float check
+lets go with 1.
 
-We could use this barrel creator object else where as well, for an unlimited supply of explosions! yay!
+add a magnitude check into Pool.UpdateRoomObjects()
+then implement the rest of the psuedo code
+then implement the roomObj vs roomObj interaction,
+this is a roomObj vs roomObj check:
+	blocking: prevent overlap
+	conveyorBelt: pushes overlapping roomObj
 
 
 
-Rooms++
 
-create rooms with explosive barrel puzzels
-improve other rooms with explosive barrels
+the thing about conveyor belts, is that we dont MOVE roomObjs
+so we can pass a magnitude and push the roomObjs, but they wont actually move
+so we need a way to mark a roomObj as 'active', which will then be collision checked, and interacted() with
 
+
+
+
+
+
+
+
+
+
+
+
+
+BIG CONVEYOR BELT PUSH
+
+i really want to be able to have a flamethrower on a conveyor belt
+
+certain objects should interact with conveyor belts.
+barrels, torches, pots, blocks, statues, and bumpers.
+we can narrow this down each frame like so:
+is ObjA belt? no->bail
+is ObjB one of objs above? no->bail
+do these objs overlap? no->bail
+belt pushes ObjB
+
+where do we append this functionality?
+we insert it into the update / collision checking routine
+i dont think we actually loop through the roomObjs on their own,
+we loop thru the actors and the entities only.
+so we'll need to add a loop here, and we'll need to make it as fast and exclusive as possible
+there are alot of stupid wall objects that are going to clog up this algorithm
+we *COULD* create a list of pointers to roomObjects that are only for the conveyor belt calculations.
+which would make those calculations much faster each frame, at the cost of an initial setup of the moveable list.
+and we could put the moveable roomObjs onto this list based on their .moveable property.
+thus, the moveable property is only linked to the conveyor belt.
+and we could change the moveable property name to be something like "moveableByBelt".
+because coming up soon, we're going to have a property called "moveableByHero".
 
 
 
@@ -87,13 +128,17 @@ Dragging/Pushing/Pulling
 hero should be able to 'grab' objects
 if the object is draggable, then hero should be able to push and pull on it
 this 'grabbing' state should last until player releases the A button
-objects should inherit the movement of hero, and check collisions with all roomObjs, entities, & actors (expensive)
+objects should inherit the movement of hero, 
+and check collisions with all roomObjs, entities, & actors (expensive)
 if a draggable object would collide, it doesn't move
 this would have to be done per axis too, so we could drag along walls
 
 
 
 
+in order to accomplish these two things, we will need to be able to compare a gameobj against the roomObjs
+this starts with a collision check, then an interaction upon an overlap
+we would call this from dragging / pushing / pulling, and conveyor belt checks
 
 
 
@@ -115,6 +160,26 @@ this would have to be done per axis too, so we could drag along walls
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+PUZZLE IDEA
+we could have a puzzle where a conveyor belt carries a bomb
+along the conveyor belt is a switchButton
+a lever is available to the player.
+the player must turn off the conveyor belt at the right time,
+in order for the bomb to explode close enough to the switchBtn,
+which will drop the switch blocks, allowing the player to pass.
 
 
 Implement Boomerang
@@ -701,7 +766,9 @@ the level would finish loading, then the display texture would be used for the r
 
 
 	
-	
+PROPERTY IDEA
+Complete a long and difficult side-quest to earn a property that generates income (gold).
+the player needs only to collect the gold regularly to purchase anything they want, eventually.
 	
 
 
