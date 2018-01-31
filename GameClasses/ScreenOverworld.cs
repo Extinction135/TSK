@@ -392,7 +392,7 @@ namespace DungeonRun
                 #endregion
 
 
-                Functions_Pool.UpdateEntities();
+                Functions_Pool.UpdateGameObjList(Pool.entityPool);
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in

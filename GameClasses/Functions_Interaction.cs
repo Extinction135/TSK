@@ -206,9 +206,7 @@ namespace DungeonRun
 
         public static void InteractObject(GameObject Object, GameObject RoomObj)
         {
-            //Object is Entity or RoomObject
-
-            //Handle Blocking Interactions (only with projectiles)
+            //Handle Blocking Interactions (RoomObj vs Object)
             if (RoomObj.compCollision.blocking)
             {
 
@@ -341,7 +339,7 @@ namespace DungeonRun
                 #endregion
 
             }
-            //Handle Non-Blocking Interactions (with projectiles & pickups)
+            //Handle Non-Blocking Interactions (RoomObj vs Object)
             else
             {
 

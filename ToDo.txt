@@ -53,27 +53,110 @@ explosive barrel puzzels
 
 
 
+Refactoring Collisions / Interactions / GameObjects
 
-
-Implement RoomObj vs RoomObj Interaction Part 1
-
-added 'moving' boolean to MovementComponent.
-updated ProjectMovement() to set new moving boolean,
-based on magnitude for each axis independently.
-updated DebugFunctions.Inspect() with path for moving boolean.
-added path to projectMovement() for moving roomObjects.
-this path is still protected by the compMove.moveable boolean.
-added paths for collision / interaction to UpdateRoomObjects().
-but upon closer inspection, more planning is needed.
+consolidated UpdateEntities() and UpdateRoomObjects(),
+into UpdateGameObjList(List<GameObject>), deduplicating code.
+moved the check for particle group into Functions_Collision.CheckCollisions(GameObject).
+rewrote CheckCollisions(). lots of playtesting, mostly working.
+the pickups 'hurt' the hero, so the game is currently in a broken state.
 
 
 
 
 
+so, we'll need to push on the refactor, and playtest everything now
+the goal is to get conveyorBelts interacting with roomObjs, with a reasonable update / collision count.
 
 
+
+Refactoring Collisions / Interactions / GameObjects
+
+what if we seperated collisions and interactions in CheckCollisions(GameObject)
+by checking collisions against blocking gameObjects
+and checking interactions against non-blocking gameObjects.
+a blocking obj would never interact.
+a non-blocking obj *could* pretend to block/push, in addition to anything else.
+
+this works for entites, roomObjs, and actors:
+a first pass of blocking checks to resolve the legal movement.
+then a second pass of interaction checks to resolve all interactions.
+these interactions are non-blocking or blocking, it doesn't matter once we resolve the legal movement.
+	for example, in case hero was standing over a block that just popped up,
+	here we would handle that overlap/collision, and set the block back to a down state
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+why did we model a fairy as an actor again? was this so it got some basic AI?
+we could model the fairy as an entity much easier, and it would simplify
+actor vs. actor interactions, as there wouldn't be any - it would simply be blocking collision checks
+
+
+
+
+
+
+COLLISION + INTERACTION REFACTOR
+
+
+redesign how the collision /interaction systems work..
 lay the ground work for moving pots, barrels with conveyor belts
-which may require that we redesign how the collision /interaction systems work again..
+think about how a boomerang would collide and interact with a roomObj
+
+the foundation for this is unifying roomObjs and entities.
+it was NOT a good idea to split them up conceptually, because it added too much complexity
+to handle them seperately created duplicate code, which was cleverly combined,
+which then became complex and difficult to work with. so, simplify.
+
+we only need to perform collision checks on GameObjects that are moving.
+we can check this using obj.compMove.moving boolean, which is set by Push() and ProjectMovement().
+this way, we can treat collision/interactions the same for all gameObjs.
+the caveat is that we can *ONLY* set a moveComponent in motion using Push().
+
+the UpdateEntities() and UpdateRoomObjects() functions should be simplified into one function
+UpdateObjList(List<GameObject>), which we can pass the Entity and RoomObj lists to.
+only moving GameObjects get ProjectMovement(), CheckCollisions(), and Align() performed on them.
+all Objs get Update(), Animate(), ScaleSpriteDown() applied to them.
+
+
+
+
+
+
+
+i think part of the problem is that Interaction() is a child action of CheckCollisions().
+i think we should seperate Collisions() from Interactions() completely.
+that way we can project on multiple axis, resolve movement, then handle a list of colliding actors/objects.
+this makes sense, and removes the unneeded nesting of functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

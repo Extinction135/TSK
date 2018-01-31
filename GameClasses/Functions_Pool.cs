@@ -55,7 +55,7 @@ namespace DungeonRun
         public static GameObject GetEntity()
         {   //this is called throughout gameplay, and index loops
             for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
-            {   //loop thru the entire entity pool, but use the entityIndex, NOT Pool.counter
+            {   
                 Pool.entityIndex++;
                 if (Pool.entityIndex >= Pool.entityCount) { Pool.entityIndex = 0; }
                 if (Pool.entityPool[Pool.entityIndex].active == false)
@@ -177,8 +177,8 @@ namespace DungeonRun
         {
             Pool.collisionsCount = 0;
             UpdateActors();
-            UpdateEntities();
-            UpdateRoomObjects();
+            UpdateGameObjList(Pool.entityPool);
+            UpdateGameObjList(Pool.roomObjPool);
             Functions_Hero.Update();
         }
 
@@ -206,67 +206,64 @@ namespace DungeonRun
             }
         }
 
-        public static void UpdateEntities()
+        static int listCount = 0;
+        static Boolean moving = false;
+        public static void UpdateGameObjList(List<GameObject> ObjList)
         {
-            for (i = 0; i < Pool.entityCount; i++)
-            {
-                if (Pool.entityPool[i].active)
+            listCount = ObjList.Count();
+            for (i = 0; i < listCount; i++)
+            {   //all gameObjects get these functions applied each frame
+                Functions_GameObject.Update(ObjList[i]);
+                Functions_Animation.Animate(ObjList[i].compAnim, ObjList[i].compSprite);
+                Functions_Animation.ScaleSpriteDown(ObjList[i].compSprite);
+
+
+
+
+
+
+
+                //set moving boolean - assume false, check true state
+                moving = false;
+                if (ObjList[i].compMove.magnitude.X != 0) { moving = true; }
+                if (ObjList[i].compMove.magnitude.Y != 0) { moving = true; }
+                if (ObjList[i].compMove.speed > 0) { moving = true; }
+
+                //CASE 1: a moving gameObj such as a projectile or roomObject like a pot / barrel
+                if(moving)
                 {
-                    Functions_GameObject.Update(Pool.entityPool[i]);
-                    Functions_Animation.Animate(Pool.entityPool[i].compAnim, Pool.entityPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.entityPool[i].compSprite);
-
-                    //project movement
-                    if (Pool.entityPool[i].compMove.moveable)
-                    { Functions_Movement.ProjectMovement(Pool.entityPool[i].compMove); }
-
-                    //particles dont get collision checked
-                    if (Pool.entityPool[i].group == ObjGroup.Particle) { }
-                    else //projectiles + pickups get collision checked
-                    { Functions_Collision.CheckCollisions(Pool.entityPool[i]); }
-
-                    //resolve movement
+                    Functions_Movement.ProjectMovement(ObjList[i].compMove);
+                    //particles never get collision checked (they're just decoration)
+                    if (ObjList[i].group == ObjGroup.Particle) { }
+                    //all other objects that are moving get collision checked + interacted with
+                    else { Functions_Collision.CheckCollisions(ObjList[i]); }
+                    //any obj that moved needs to have their components aligned
                     Functions_Component.Align(
-                        Pool.entityPool[i].compMove,
-                        Pool.entityPool[i].compSprite,
-                        Pool.entityPool[i].compCollision);
+                        ObjList[i].compMove,
+                        ObjList[i].compSprite,
+                        ObjList[i].compCollision);
                 }
-            }
-        }
 
-        public static void UpdateRoomObjects()
-        {
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].active)
-                {
-                    Functions_GameObject.Update(Pool.roomObjPool[i]);
-                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim,
-                        Pool.roomObjPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
+                //CASE 2: a non-moving gameObj that needs to collide/interact with objs/actors
+                else if(
+                    ObjList[i].group == ObjGroup.Projectile //some projectiles dont move
+                    || ObjList[i].type == ObjType.ConveyorBeltOn //belts are stationary
+                    )
+                { Functions_Collision.CheckCollisions(ObjList[i]); }
 
 
 
-                    //only perform these expensive calculations on moving roomObjects
-                    if(Pool.roomObjPool[i].compMove.moving) //very few objs can be moving
-                    {
-                        //project movement - moves obj, clips magnitude, sets moving boolean
-                        if (Pool.roomObjPool[i].compMove.moveable)
-                        { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
 
-                        //check collisions - this will check overlap and call InteractRoomObj()
-                        Functions_Collision.CheckCollisions(Pool.roomObjPool[i]);
-
-                        //resolve movement  - this will align everything to compMove.newPosition
-                        Functions_Component.Align(
-                            Pool.roomObjPool[i].compMove,
-                            Pool.roomObjPool[i].compSprite,
-                            Pool.roomObjPool[i].compCollision);
-                    }
+                
 
 
 
-                }
+
+
+
+
+
+
             }
         }
 

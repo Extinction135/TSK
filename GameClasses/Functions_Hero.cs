@@ -436,8 +436,9 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.SwitchBlockUp)
             {   //if hero isnt moving and is colliding with up block, convert up to down
-                if (Pool.hero.compMove.newPosition == Pool.hero.compMove.position)
-                { Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown); }
+                //if (Pool.hero.compMove.newPosition == Pool.hero.compMove.position)
+                //{ Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown); }
+                Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown);
             }
 
             #endregion
@@ -743,7 +744,6 @@ namespace DungeonRun
             }
         }
 
-
         public static void ThrowPot()
         {   //create the ProjectilePot entity
             Functions_Entity.SpawnEntity(ObjType.ProjectilePot, Pool.hero);
@@ -751,7 +751,6 @@ namespace DungeonRun
             Functions_Pool.Release(carryingObj);
             carryingObj = null; //release obj ref
         }
-
 
         public static void Update()
         {   //match hero's rec to hero's sprite
