@@ -935,6 +935,7 @@ namespace DungeonRun
         public Vector2 newPosition = new Vector2(0, 0); //projected position
         public Direction direction = Direction.Down; //the direction actor/obj is moving
         public Vector2 magnitude = new Vector2(0, 0); //how much actor/obj moves each frames
+        public Boolean moving = false; //if magnitude isn't 0, this should be true
         public float speed = 0.0f; //controls magnitude
         public float friction = 0.75f; //reduces magnitude each frame
         public Boolean moveable = false; //can be moved by conveyorbelts, if on ground

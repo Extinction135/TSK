@@ -54,13 +54,38 @@ explosive barrel puzzels
 
 
 
-Prep for Additional Interactions
 
-changed InteractObject(Entity, RoomObj) to (Object, RoomObj).
-changed CheckObjPoolCollisions() parameter to Object instead of Entity.
-this was done in prep for handling RoomObj vs RoomObj interactions.
-added some psuedo-code to Functions_Pool.UpdateRoomObjects().
+Implement RoomObj vs RoomObj Interaction Part 1
 
+added 'moving' boolean to MovementComponent.
+updated ProjectMovement() to set new moving boolean,
+based on magnitude for each axis independently.
+updated DebugFunctions.Inspect() with path for moving boolean.
+added path to projectMovement() for moving roomObjects.
+this path is still protected by the compMove.moveable boolean.
+added paths for collision / interaction to UpdateRoomObjects().
+but upon closer inspection, more planning is needed.
+
+
+
+
+
+
+
+lay the ground work for moving pots, barrels with conveyor belts
+which may require that we redesign how the collision /interaction systems work again..
+
+
+
+
+
+
+we'll need to check conveyor belts collisions against other room objects
+
+if a conveyor belt collides with an object that is moveable,
+then the belt 'pushes()' the roomObject, and the obj.move.moving becomes true
+this causes the roomObj to do ProjectMovement(), CheckCollisions(Interact()), Align(),
+until the object stops moving.
 
 
 
@@ -78,17 +103,8 @@ this is a roomObj vs roomObj check:
 
 
 
-
-the thing about conveyor belts, is that we dont MOVE roomObjs
-so we can pass a magnitude and push the roomObjs, but they wont actually move
-so we need a way to mark a roomObj as 'active', which will then be collision checked, and interacted() with
-
-
-
-
-
-
-
+what if we added a boolean 'moving' to compMove?
+this would be a quick way to check and see if the obj is moving
 
 
 

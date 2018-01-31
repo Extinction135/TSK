@@ -90,17 +90,17 @@ namespace DungeonRun
             return collision;
         }
 
-        public static Boolean CheckActorPoolCollisions(GameObject Entity)
+        public static Boolean CheckActorPoolCollisions(GameObject Obj)
         {
             collision = false; //assume no collision
             for (i = 0; i < Pool.actorCount; i++)
-            {   //skip checking projectiles against hero's pet
+            {   //skip checking projectiles/objs against hero's pet
                 if (Pool.actorPool[i] == Pool.herosPet) { } //no checking
                 else if (Pool.actorPool[i].active) //actor must be active
                 {   //check for overlap
-                    if (Entity.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
+                    if (Obj.compCollision.rec.Intersects(Pool.actorPool[i].compCollision.rec))
                     {   //handle interaction
-                        Functions_Interaction.InteractActor(Pool.actorPool[i], Entity);
+                        Functions_Interaction.InteractActor(Pool.actorPool[i], Obj);
                         collision = true;
                     }
                     Pool.collisionsCount++;
@@ -168,6 +168,29 @@ namespace DungeonRun
             //the current position becomes the new position
             Entity.compMove.position.X = Entity.compMove.newPosition.X;
             Entity.compMove.position.Y = Entity.compMove.newPosition.Y;
+        }
+
+        public static void CheckRoomObjCollisions(GameObject RoomObj)
+        {
+            collisionX = false; collisionY = false;
+
+            //project collisionRec on X axis
+            RoomObj.compCollision.rec.X = (int)RoomObj.compMove.newPosition.X + RoomObj.compCollision.offsetX;
+            //check object collisions/interactions
+            if (CheckObjPoolCollisions(RoomObj)) { collisionX = true; }
+            //unproject collisionRec on X axis
+            RoomObj.compCollision.rec.X = (int)RoomObj.compMove.position.X + RoomObj.compCollision.offsetX;
+
+            //project collisionRec on Y axis
+            RoomObj.compCollision.rec.Y = (int)RoomObj.compMove.newPosition.Y + RoomObj.compCollision.offsetY;
+            //check object collisions/interactions
+            if (CheckObjPoolCollisions(RoomObj)) { collisionY = true; }
+            //unproject collisionRec on Y axis
+            RoomObj.compCollision.rec.Y = (int)RoomObj.compMove.position.Y + RoomObj.compCollision.offsetY;
+
+            //the current position becomes the new position
+            RoomObj.compMove.position.X = RoomObj.compMove.newPosition.X;
+            RoomObj.compMove.position.Y = RoomObj.compMove.newPosition.Y;
         }
         
     }

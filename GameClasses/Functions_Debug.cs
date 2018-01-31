@@ -113,6 +113,7 @@ namespace DungeonRun
             output += "\tnewPosX:" + Move.newPosition.X;
             output += "\tnewPosY:" + Move.newPosition.Y;
             output += "\n";
+            output += "\tmoving:" + Move.moving;
             output += "\tmagnitudeX:" + Move.magnitude.X;
             output += "\tmagnitudeY:" + Move.magnitude.Y;
             output += "\tspeed:" + Move.speed;

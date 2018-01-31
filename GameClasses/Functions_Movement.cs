@@ -31,6 +31,8 @@ namespace DungeonRun
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
             else if (Direction == Direction.UpRight)
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
+            //set moving flag
+            if(Amount > 0) { Move.moving = true; }
         }
 
         public static void ProjectMovement(ComponentMovement Move)
@@ -38,9 +40,11 @@ namespace DungeonRun
             Push(Move, Move.direction, Move.speed);
             //apply friction to magnitude (this always makes magnitude smaller overtime)
             Move.magnitude = Move.magnitude * Move.friction;
-            //clip magnitude to 0 when it gets very small
+            //clip magnitude per axis
             if (Math.Abs(Move.magnitude.X) < 0.01f) { Move.magnitude.X = 0; }
             if (Math.Abs(Move.magnitude.Y) < 0.01f) { Move.magnitude.Y = 0; }
+            //set moving flag
+            if (Move.magnitude.X == 0 && Move.magnitude.Y == 0) { Move.moving = false; }
             //clip magnitude's maximum values
             if (Move.magnitude.X > maxMagnitude) { Move.magnitude.X = maxMagnitude; }
             else if (Move.magnitude.X < -maxMagnitude) { Move.magnitude.X = -maxMagnitude; }

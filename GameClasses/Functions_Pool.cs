@@ -245,24 +245,27 @@ namespace DungeonRun
                         Pool.roomObjPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
 
-                    //if roomObjPool[i].compMove.magnitude > 0
-                    //OR
-                    //if roomObjPool[i].moving (this is a new boolean, and we can set it whenever we push a roomobj)
-                    //eventually when the roomObj's magnitude hits 0, flip moving to false
-                    //then check the moving boolean to contain all of the following:
 
-                        //project movement - this will move obj and clip magnitude to 0
-                        //if (Pool.roomObjPool[i].compMove.moveable)
-                        //{ Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
+
+                    //only perform these expensive calculations on moving roomObjects
+                    if(Pool.roomObjPool[i].compMove.moving) //very few objs can be moving
+                    {
+                        //project movement - moves obj, clips magnitude, sets moving boolean
+                        if (Pool.roomObjPool[i].compMove.moveable)
+                        { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
 
                         //check collisions - this will check overlap and call InteractRoomObj()
-                        //Functions_Collision.CheckCollisions(Pool.roomObjPool[i]);
+                        Functions_Collision.CheckCollisions(Pool.roomObjPool[i]);
 
                         //resolve movement  - this will align everything to compMove.newPosition
-                        //Functions_Component.Align(
-                        //    Pool.roomObjPool[i].compMove,
-                        //    Pool.roomObjPool[i].compSprite,
-                        //    Pool.roomObjPool[i].compCollision);
+                        Functions_Component.Align(
+                            Pool.roomObjPool[i].compMove,
+                            Pool.roomObjPool[i].compSprite,
+                            Pool.roomObjPool[i].compCollision);
+                    }
+
+
+
                 }
             }
         }
