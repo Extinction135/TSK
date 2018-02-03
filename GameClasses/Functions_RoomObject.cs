@@ -256,6 +256,47 @@ namespace DungeonRun
             }
         }
 
+        public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
+        {   //bounce opposite direction
+            compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
+            //if the direction is none, then get a direction between bumper and collider
+            if (compMove.direction == Direction.None)
+            { compMove.direction = Functions_Direction.GetOppositeCardinal(compMove.position, Bumper.compSprite.position); }
+            //push collider in direction
+            Functions_Movement.Push(compMove, compMove.direction, 10.0f);
+            //handle the bumper animation
+            Bumper.compSprite.scale = 1.5f;
+            Assets.Play(Assets.sfxBounce);
+            Functions_Entity.SpawnEntity(
+                ObjType.ParticleAttention,
+                Bumper.compSprite.position.X,
+                Bumper.compSprite.position.Y,
+                Direction.None);
+        }
+
+        public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)
+        {   //based on belt's direction, push moveComp by amount
+            Functions_Movement.Push(compMove, belt.direction, 0.1f);
+        }
+
+        public static void BounceSpikeBlock(GameObject SpikeBlock)
+        {   //spawn a hit particle along spikeBlock's colliding edge
+            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, SpikeBlock);
+            Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect
+            //flip the block's direction to the opposite direction
+            SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
+            SpikeBlock.compMove.magnitude.X = 0;
+            SpikeBlock.compMove.magnitude.Y = 0;
+            //push the block in it's new direction, out of this collision
+            Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 2.0f);
+            //force move spikeblock to it's new position, ignoring collisions
+            SpikeBlock.compMove.position += SpikeBlock.compMove.magnitude;
+            SpikeBlock.compMove.newPosition = SpikeBlock.compMove.position;
+            Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
+        }
+
+
+
         //decorates a door on left/right or top/bottom
         static Vector2 posA = new Vector2();
         static Vector2 posB = new Vector2();

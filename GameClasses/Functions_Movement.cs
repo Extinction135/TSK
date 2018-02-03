@@ -16,6 +16,13 @@ namespace DungeonRun
     {
         static float maxMagnitude = 7.0f;
 
+        public static void SetMovingBoolean(ComponentMovement Move)
+        {   //set moving boolean - assume false, check true state
+            Move.moving = false;
+            if (Move.magnitude.X != 0) { Move.moving = true; }
+            if (Move.magnitude.Y != 0) { Move.moving = true; }
+        }
+
         public static void Push(ComponentMovement Move, Direction Direction, float Amount)
         {
             //modify move components magnitude based on direction by amount

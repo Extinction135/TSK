@@ -173,12 +173,20 @@ namespace DungeonRun
         
 
 
+
+
+
+
+
+
+
+
         public static void Update()
         {
             Pool.collisionsCount = 0;
             UpdateActors();
-            UpdateGameObjList(Pool.entityPool);
-            UpdateGameObjList(Pool.roomObjPool);
+            UpdateGameObjList(Pool.entityPool, false);
+            UpdateGameObjList(Pool.roomObjPool, true);
             Functions_Hero.Update();
         }
 
@@ -188,82 +196,125 @@ namespace DungeonRun
             {
                 if (Pool.actorPool[i].active)
                 {
+
+                    #region Update, Animate, Scale Actor
+
                     Functions_Actor.Update(Pool.actorPool[i]);
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
 
-                    if (Pool.actorPool[i].state != ActorState.Dead)
-                    {   //project movement
+                    #endregion
+
+
+                    #region Check Collisions, Resolve Movement
+
+                    //set moving, check moving, check collisions
+                    Functions_Movement.SetMovingBoolean(Pool.actorPool[i].compMove);
+                    if (Pool.actorPool[i].compMove.moving)
+                    {   //project and resolve legal movement
                         Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove);
-                        //set actor's friction to normal
-                        Pool.actorPool[i].compMove.friction = Pool.actorPool[i].friction;
-                        //collision & interaction check
-                        Functions_Collision.CheckCollisions(Pool.actorPool[i]);
-                        //resolve movement
-                        Functions_Component.Align(Pool.actorPool[i]);
+                        //based on actor, call collision checking with control booleans
+                        if (Pool.actorPool[i] == Pool.hero)
+                        {
+                            Functions_Collision.CheckCollisions(
+                                Pool.actorPool[i].compMove,
+                                Pool.actorPool[i].compCollision,
+                                true, true);
+                        }
+                        else //all other enemies/actors & pet
+                        {
+                            Functions_Collision.CheckCollisions(
+                                Pool.actorPool[i].compMove,
+                                Pool.actorPool[i].compCollision,
+                                true, false);
+                        }
+                        //any obj that moved needs to have their components aligned
+                        Functions_Component.Align(
+                            Pool.actorPool[i].compMove,
+                            Pool.actorPool[i].compSprite,
+                            Pool.actorPool[i].compCollision);
                     }
+
+                    #endregion
+
+
+                    #region Check Interactions, Resolve Movement
+
+                    //set actor's friction to normal (interactions with ice will change it later)
+                    Pool.actorPool[i].compMove.friction = Pool.actorPool[i].friction;
+                    //handle interactions, align components post-interaction
+                    Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
+                    Functions_Component.Align(
+                            Pool.actorPool[i].compMove,
+                            Pool.actorPool[i].compSprite,
+                            Pool.actorPool[i].compCollision);
+
+                    #endregion
+
                 }
             }
         }
 
         static int listCount = 0;
-        static Boolean moving = false;
-        public static void UpdateGameObjList(List<GameObject> ObjList)
+        public static void UpdateGameObjList(List<GameObject> ObjList, Boolean isRoomObj)
         {
             listCount = ObjList.Count();
             for (i = 0; i < listCount; i++)
-            {   //all gameObjects get these functions applied each frame
-                Functions_GameObject.Update(ObjList[i]);
-                Functions_Animation.Animate(ObjList[i].compAnim, ObjList[i].compSprite);
-                Functions_Animation.ScaleSpriteDown(ObjList[i].compSprite);
-
-
-
-
-
-
-
-                //set moving boolean - assume false, check true state
-                moving = false;
-                if (ObjList[i].compMove.magnitude.X != 0) { moving = true; }
-                if (ObjList[i].compMove.magnitude.Y != 0) { moving = true; }
-                if (ObjList[i].compMove.speed > 0) { moving = true; }
-
-                //CASE 1: a moving gameObj such as a projectile or roomObject like a pot / barrel
-                if(moving)
+            {
+                if (ObjList[i].active)
                 {
-                    Functions_Movement.ProjectMovement(ObjList[i].compMove);
-                    //particles never get collision checked (they're just decoration)
-                    if (ObjList[i].group == ObjGroup.Particle) { }
-                    //all other objects that are moving get collision checked + interacted with
-                    else { Functions_Collision.CheckCollisions(ObjList[i]); }
-                    //any obj that moved needs to have their components aligned
-                    Functions_Component.Align(
-                        ObjList[i].compMove,
-                        ObjList[i].compSprite,
-                        ObjList[i].compCollision);
+
+                    #region Update, Animate, Scale Object
+
+                    Functions_GameObject.Update(ObjList[i]);
+                    Functions_Animation.Animate(ObjList[i].compAnim, ObjList[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(ObjList[i].compSprite);
+
+                    #endregion
+
+
+                    #region Check Collisions, Resolve Movement
+
+                    //set moving, check moving, check collisions
+                    Functions_Movement.SetMovingBoolean(ObjList[i].compMove);
+                    if(ObjList[i].compMove.moving)
+                    {   //project and resolve legal movement
+                        Functions_Movement.ProjectMovement(ObjList[i].compMove);
+                        if(isRoomObj)
+                        {   //check roomObj vs roomObj blocking collisions
+                            Functions_Collision.CheckCollisions(
+                                ObjList[i].compMove,
+                                ObjList[i].compCollision,
+                                true, false);
+                        }
+                        //any obj that moved needs their components aligned
+                        Functions_Component.Align(
+                            ObjList[i].compMove,
+                            ObjList[i].compSprite,
+                            ObjList[i].compCollision);
+                    }
+
+                    #endregion
+
+
+                    #region Check Interactions, Resolve Movement
+
+                    //only moving objs, and special objs get interactions
+                    if (ObjList[i].compMove.moving
+                        || ObjList[i].group == ObjGroup.Projectile //some projectiles dont move
+                        || ObjList[i].type == ObjType.ConveyorBeltOn //belts are stationary
+                        )
+                    {   //handle interactions, align components post-interaction
+                        Functions_Interaction.CheckInteractions(ObjList[i], true, true);
+                        Functions_Component.Align(
+                                ObjList[i].compMove,
+                                ObjList[i].compSprite,
+                                ObjList[i].compCollision);
+                    }
+
+                    #endregion
+
                 }
-
-                //CASE 2: a non-moving gameObj that needs to collide/interact with objs/actors
-                else if(
-                    ObjList[i].group == ObjGroup.Projectile //some projectiles dont move
-                    || ObjList[i].type == ObjType.ConveyorBeltOn //belts are stationary
-                    )
-                { Functions_Collision.CheckCollisions(ObjList[i]); }
-
-
-
-
-                
-
-
-
-
-
-
-
-
-
             }
         }
 

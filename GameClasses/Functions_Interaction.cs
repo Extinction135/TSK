@@ -14,13 +14,173 @@ namespace DungeonRun
 {
     public static class Functions_Interaction
     {
-        public static GameObject objRef;
+        public static int i;
+
+        public static void CheckInteractions(Actor Actor, Boolean checkEntities, Boolean checkRoomObjs)
+        {
+            if (checkEntities)
+            {   //loop thru entity list, check overlaps, pass to Interact()
+                for (i = 0; i < Pool.entityCount; i++)
+                {
+                    if (Actor.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
+                    { InteractActor(Actor, Pool.entityPool[i]); }
+                }
+            }
+            if (checkRoomObjs)
+            {   //loop thru entity list, check overlaps, pass to Interact()
+                for (i = 0; i < Pool.roomObjCount; i++)
+                {
+                    if (Actor.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    { InteractActor(Actor, Pool.roomObjPool[i]); }
+                }
+            }
+        }
+
+        public static void CheckInteractions(GameObject gameObj, Boolean checkEntities, Boolean checkRoomObjs)
+        {
+            if (checkEntities)
+            {   //loop thru entity list, check overlaps, pass to Interact()
+                for (i = 0; i < Pool.entityCount; i++)
+                {
+                    if(gameObj.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
+                    { InteractObject(gameObj, Pool.entityPool[i]); }
+                }
+            }
+            if(checkRoomObjs)
+            {   //loop thru entity list, check overlaps, pass to Interact()
+                for (i = 0; i < Pool.roomObjCount; i++)
+                {
+                    if (gameObj.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    { InteractObject(gameObj, Pool.roomObjPool[i]); }
+                }
+            }
+        }
 
 
 
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //Obj can be Entity or RoomObj, check for hero state first
-            if (Actor == Pool.hero) { Functions_Hero.Interact(Obj); }
+
+            //Hero Specific Interactions
+            if (Actor == Pool.hero)
+            {
+
+                #region Pickups
+
+                if (Obj.group == ObjGroup.Pickup)
+                {   //only the hero can pickup hearts or rupees
+                    if (Obj.type == ObjType.PickupHeart)
+                    { Pool.hero.health++; Assets.Play(Assets.sfxHeartPickup); }
+                    else if (Obj.type == ObjType.PickupRupee)
+                    { PlayerData.current.gold++; Assets.Play(Assets.sfxGoldPickup); }
+                    else if (Obj.type == ObjType.PickupMagic)
+                    { PlayerData.current.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    else if (Obj.type == ObjType.PickupArrow)
+                    { PlayerData.current.arrowsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    else if (Obj.type == ObjType.PickupBomb)
+                    { PlayerData.current.bombsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    Obj.lifetime = 1; Obj.lifeCounter = 2; //end the items life
+                    return;
+                }
+
+                #endregion
+
+
+                #region Doors
+
+                else if (Obj.group == ObjGroup.Door)
+                {   //handle hero interaction with exit door
+                    if (Obj.type == ObjType.Exit)
+                    {
+                        if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
+                        {   //if dungeon screen is open, close it, perform interaction ONCE
+                            DungeonRecord.beatDungeon = false;
+                            //is hero exiting a dungeon?
+                            if (Level.type == LevelType.Castle)
+                            { Functions_Level.CloseLevel(ExitAction.ExitDungeon); }
+                            else //return to the overworld screen
+                            { Functions_Level.CloseLevel(ExitAction.Overworld); }
+                            Assets.Play(Assets.sfxDoorOpen);
+                        }
+                        //stop movement, prevents overlap with exit
+                        Functions_Movement.StopMovement(Pool.hero.compMove);
+                    }
+                    //center Hero to Door horiontally or vertically
+                    if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
+                    {   //gradually center hero to door
+                        Pool.hero.compMove.magnitude.X = (Obj.compSprite.position.X - Pool.hero.compMove.position.X) * 0.11f;
+                        //if hero is close to center of door, snap/lock hero to center of door
+                        if (Math.Abs(Pool.hero.compSprite.position.X - Obj.compSprite.position.X) < 2)
+                        { Pool.hero.compMove.newPosition.X = Obj.compSprite.position.X; }
+                    }
+                    else
+                    {   //gradually center hero to door
+                        Pool.hero.compMove.magnitude.Y = (Obj.compSprite.position.Y - Pool.hero.compMove.position.Y) * 0.11f;
+                        //if hero is close to center of door, snap/lock hero to center of door
+                        if (Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
+                        { Pool.hero.compMove.newPosition.Y = Obj.compSprite.position.Y; }
+                    }
+                    return;
+                }
+
+                #endregion
+
+
+                #region PitTrap
+
+                if (Obj.type == ObjType.PitTrap)
+                {   //if hero collides with a PitTrapReady, it starts to open
+                    Functions_GameObject.SetType(Obj, ObjType.PitAnimated);
+                    Assets.Play(Assets.sfxShatter); //play collapse sound
+                    Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.Down);
+                    Functions_Entity.SpawnEntity(ObjType.ParticleSmokePuff,
+                        Obj.compSprite.position.X + 4,
+                        Obj.compSprite.position.Y - 8,
+                        Direction.Down);
+                    //create pit teeth over new pit obj
+                    Functions_RoomObject.SpawnRoomObj(ObjType.PitTop,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.Down);
+                    Functions_RoomObject.SpawnRoomObj(ObjType.PitBottom,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.Down);
+                }
+
+                #endregion
+
+
+                #region SwitchBlock UP
+
+                else if (Obj.type == ObjType.SwitchBlockUp)
+                {   //if hero isnt moving and is colliding with up block, convert up to down
+                    Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown);
+                }
+
+                #endregion
+
+
+                #region FloorSwitch
+
+                else if (Obj.type == ObjType.Switch)
+                {   //convert switch off, play switch soundFx
+                    Functions_GameObject.SetType(Obj, ObjType.SwitchOff);
+                    //grab the player's attention
+                    Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y,
+                        Direction.Down);
+                    //open all the trap doors in the room
+                    Functions_RoomObject.OpenTrapDoors();
+                }
+
+                #endregion
+
+            }
 
             //these objects interact with ALL ACTORS
 
@@ -82,19 +242,19 @@ namespace DungeonRun
                     if (Actor.compMove.grounded) { Functions_Battle.Damage(Actor, Obj); }
                 }
                 else if (Obj.type == ObjType.ConveyorBeltOn)
-                {   //belt move actors (on ground) the same way we move objects
+                {   //belt move actors (on ground)
                     if (Actor.compMove.grounded)
                     {   //halt actor movement based on certain states
                         if (Actor.state == ActorState.Attack
                             || Actor.state == ActorState.Reward
                             || Actor.state == ActorState.Use)
                         { Functions_Movement.StopMovement(Actor.compMove); }
-                        else { ConveyorBeltPush(Actor.compMove, Obj); }
+                        else { Functions_RoomObject.ConveyorBeltPush(Actor.compMove, Obj); }
                     }
                 }
                 else if (Obj.type == ObjType.Bumper)
                 {
-                    BounceOffBumper(Actor.compMove, Obj);
+                    Functions_RoomObject.BounceOffBumper(Actor.compMove, Obj);
                 }
                 else if (Obj.type == ObjType.PitAnimated)
                 {   //actors (on ground) fall into pits
@@ -276,7 +436,7 @@ namespace DungeonRun
 
                 else if (Object.type == ObjType.ProjectileSpikeBlock)
                 {
-                    BounceSpikeBlock(Object);
+                    Functions_RoomObject.BounceSpikeBlock(Object);
                     //spikeblocks trigger common obj interactions
                     Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
                 }
@@ -358,7 +518,7 @@ namespace DungeonRun
                     //stop projectile movement, bounce it
                     Object.compMove.magnitude.X = 0;
                     Object.compMove.magnitude.Y = 0;
-                    BounceOffBumper(Object.compMove, RoomObj);
+                    Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj);
                     //move projectile out of collision with the bumper post-bounce
                     Functions_Movement.ProjectMovement(Object.compMove);
                     Functions_Component.Align(Object.compMove, Object.compSprite, Object.compCollision);
@@ -380,7 +540,7 @@ namespace DungeonRun
                     if (Object.compMove.moveable)
                     {
                         if (Object.compMove.grounded)
-                        { ConveyorBeltPush(Object.compMove, RoomObj); }
+                        { Functions_RoomObject.ConveyorBeltPush(Object.compMove, RoomObj); }
                     }
                 }
 
@@ -439,7 +599,7 @@ namespace DungeonRun
                     Object.compMove.newPosition.Y = Object.compMove.position.Y;
 
                     if (Object.type == ObjType.ProjectileSpikeBlock)
-                    { BounceSpikeBlock(Object); }
+                    { Functions_RoomObject.BounceSpikeBlock(Object); }
                     //kill all other projectiles
                     else if(Object.type == ObjType.ProjectileFireball
                         || Object.type == ObjType.ProjectileArrow
@@ -461,47 +621,6 @@ namespace DungeonRun
                     " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
             }
             */
-        }
-
-
-
-        public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
-        {   //bounce opposite direction
-            compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
-            //if the direction is none, then get a direction between bumper and collider
-            if (compMove.direction == Direction.None)
-            { compMove.direction = Functions_Direction.GetOppositeCardinal(compMove.position, Bumper.compSprite.position); }
-            //push collider in direction
-            Functions_Movement.Push(compMove, compMove.direction, 10.0f);
-            //handle the bumper animation
-            Bumper.compSprite.scale = 1.5f;
-            Assets.Play(Assets.sfxBounce);
-            Functions_Entity.SpawnEntity(
-                ObjType.ParticleAttention,
-                Bumper.compSprite.position.X,
-                Bumper.compSprite.position.Y,
-                Direction.None);
-        }
-
-        public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)
-        {   //based on belt's direction, push moveComp by amount
-            Functions_Movement.Push(compMove, belt.direction, 0.1f);
-        }
-
-        public static void BounceSpikeBlock(GameObject SpikeBlock)
-        {   //spawn a hit particle along spikeBlock's colliding edge
-            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, SpikeBlock);
-            Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect
-            //flip the block's direction to the opposite direction
-            SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
-            SpikeBlock.compMove.magnitude.X = 0;
-            SpikeBlock.compMove.magnitude.Y = 0;
-            //push the block in it's new direction, out of this collision
-            Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 2.0f);
-            //force move spikeblock to it's new position, ignoring collisions
-            SpikeBlock.compMove.position += SpikeBlock.compMove.magnitude;
-            SpikeBlock.compMove.newPosition = SpikeBlock.compMove.position;
-            Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
         }
 
     }
