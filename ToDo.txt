@@ -52,14 +52,32 @@ explosive barrel puzzels
 
 
 
+Mockups++
 
-Refactoring Collisions / Interactions / GameObjects
+added SummaryScreenV3.png to Mockups.
+the summary text was changed from 'dungeon complete',
+or 'you died' to 'victory' or 'defeat', which require
+less space in the sprite sheet, but convey the same
+overall meaning to the player.
 
-consolidated UpdateEntities() and UpdateRoomObjects(),
-into UpdateGameObjList(List<GameObject>), deduplicating code.
-moved the check for particle group into Functions_Collision.CheckCollisions(GameObject).
-rewrote CheckCollisions(). lots of playtesting, mostly working.
-the pickups 'hurt' the hero, so the game is currently in a broken state.
+this mockup also displays how the player's rating 
+is affected after battling in a dungeon.
+
+
+
+
+
+
+
+
+update the gameloop.md, removing reference to dungeon reward from summary screen.
+
+
+
+add OverworldScreenV5 to repo.
+add RoomBuilderV5 to repo.
+add InventoryScreenV7 to repo.
+add TitleScreenV4 to repo.
 
 
 
@@ -218,6 +236,52 @@ and we could put the moveable roomObjs onto this list based on their .moveable p
 thus, the moveable property is only linked to the conveyor belt.
 and we could change the moveable property name to be something like "moveableByBelt".
 because coming up soon, we're going to have a property called "moveableByHero".
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+update the inventory screen in game to reflect the current mockup
+this removes the stats values from the game / hero
+and replaces them with more custom story items, like the warriors pass, etc..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
