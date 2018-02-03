@@ -54,20 +54,32 @@ explosive barrel puzzels
 
 
 
+Improve Debug Info about RoomData
+
+created InspectRoomData() in Functions_Debug.
+modified Functions_Backend to use InspectRoomData().
+the count for each room type is now displayed,
+along with the total. tested, working as expected.
 
 
-Update Mockups to Match Current In-Game
 
-added OverworldScreenV5 to repo.
-added RoomBuilderV5 to repo.
-added TitleScreenV4 to repo.
 
-the latest title screen displays the
-last loaded games info and seperates
-itself from the rest of the menuItems.
-this makes it easier to continue where
-the player left off last, and gives them
-enough info to be comfy clicking continue.
+
+
+
+Improve Functions_Backend
+
+so, we could wrap various DirectX + UWP methods the game uses
+then have Functions_Backend call the smaller DirectX / UWP methods as needed.
+
+we could write a base class called Functions_Backend with method stubs.
+then implement DirectX and UWP versions.
+we also have duplicated methods, like SetFilename, that are not platform specific.. lol
+
+
+
+
+
 
 
 

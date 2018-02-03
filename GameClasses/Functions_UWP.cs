@@ -182,10 +182,10 @@ namespace DungeonRun
             StorageFolder RoomDataFolder = await appInstalledFolder.GetFolderAsync("RoomData");
             var roomDataFiles = await RoomDataFolder.GetFilesAsync();
 
-            if (Flags.PrintOutput) { Debug.WriteLine("loading room data..."); }
+            if (Flags.PrintOutput) { Debug.WriteLine("loading room data - total:" + roomDataFiles.Count); }
             for (int i = 0; i < roomDataFiles.Count; i++)
             {
-                if (Flags.PrintOutput) { Debug.WriteLine("filepath: " + roomDataFiles[i].Path); }
+                //if (Flags.PrintOutput) { Debug.WriteLine("filepath: " + roomDataFiles[i].Path); }
                 RoomXmlData RoomData = new RoomXmlData();
                 Stream stream = await roomDataFiles[i].OpenStreamForReadAsync();
                 using (stream)
@@ -198,7 +198,7 @@ namespace DungeonRun
                 else if (RoomData.type == RoomType.Row) { Assets.roomDataRow.Add(RoomData); }
                 else if (RoomData.type == RoomType.Square) { Assets.roomDataSquare.Add(RoomData); }
             }
-            if (Flags.PrintOutput) { Debug.WriteLine("load complete! total: " + roomDataFiles.Count); }
+			if (Flags.PrintOutput) { Functions_Debug.InspectRoomData(); }
         }
 
     }

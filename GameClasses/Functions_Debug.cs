@@ -216,6 +216,21 @@ namespace DungeonRun
             Debug.WriteLine(output);
         }
 
+        public static void InspectRoomData()
+        {
+            String output = "";
+            output += "" + Assets.roomDataBoss.Count + "boss..";
+            output += "" + Assets.roomDataColumn.Count + "clmn..";
+            output += "" + Assets.roomDataHub.Count + "hub..";
+            output += "" + Assets.roomDataKey.Count + "key..";
+            output += "" + Assets.roomDataRow.Count + "row..";
+            output += "" + Assets.roomDataSquare.Count + "sqr..";
+            output += "total: " +
+                (Assets.roomDataBoss.Count + Assets.roomDataColumn.Count +
+                Assets.roomDataHub.Count + Assets.roomDataKey.Count +
+                Assets.roomDataRow.Count + Assets.roomDataSquare.Count);
+            Debug.WriteLine(output);
+        }
 
 
         public static void HandleTopMenuInput()

@@ -178,10 +178,10 @@ namespace DungeonRun
                 SearchOption.AllDirectories
                 ).ToList();
 
-            if (Flags.PrintOutput) { Debug.WriteLine("loading room data..."); }
+            if (Flags.PrintOutput) { Debug.WriteLine("loading room data - total:" + roomDataFiles.Count); }
             for(int i = 0; i < roomDataFiles.Count; i++)
             {
-                if (Flags.PrintOutput) { Debug.WriteLine("filepath: " + roomDataFiles[i]); }
+                //if (Flags.PrintOutput) { Debug.WriteLine("filepath: " + roomDataFiles[i]); }
                 RoomXmlData RoomData = new RoomXmlData();
                 FileStream stream = new FileStream(roomDataFiles[i], FileMode.Open);
                 using (stream)
@@ -194,7 +194,7 @@ namespace DungeonRun
                 else if (RoomData.type == RoomType.Row) { Assets.roomDataRow.Add(RoomData); }
                 else if (RoomData.type == RoomType.Square) { Assets.roomDataSquare.Add(RoomData); }
             }
-            if (Flags.PrintOutput) { Debug.WriteLine("load complete! total: " + roomDataFiles.Count); }
+            if (Flags.PrintOutput) { Functions_Debug.InspectRoomData(); }
         }
 
     }
