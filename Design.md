@@ -5,9 +5,9 @@ By design I'm referring to the gameloop and the gameplay.
 
 ## Gameloop
 + Load a dungeon level.
-+ Fight enemies, collect gold.
++ Fight enemies, loot gold + items.
 + Defeat the dungeon boss, or die in the dungeon.
-+ Get a gold reward for the progress made.
++ Display Summary Screen, affect player rating.
 + Return to the Overworld Screen.
 + Load a new dungeon, or purchase upgrades/items at a shop.
 + Repeat.
@@ -31,18 +31,16 @@ By design I'm referring to the gameloop and the gameplay.
 
 # Additional Development Notes
 
-## Screens
-+ DungeonScreen - where the hero battles through a dungeon.
-+ InventoryScreen - where the hero inspects and selects their loadout.
-+ SummaryScreen - displays metrics about the player's performance in the dungeon.
-+ OverworldScreen - displays the map and locations. Player chooses location to fast travel to.
-+ VendorScreen - allows the player to purchase products from a variety of vendors.
 
 
 ## UWP App Limitations
 + Target ram useage is < 128mb.
++ This target ram was decided based on this document: https://docs.microsoft.com/en-us/windows/uwp/xbox-apps/system-resource-allocation
++ The max ram available to an app running in the bkg is 128mb.
++ So the game will simply exist in that 128mb available.
 + Monogame framework takes up around 50mb.
 + Sound files take up the most ram, so they're mono at 22k.
+
 
 
 ## Rendering Optimizations

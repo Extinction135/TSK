@@ -52,16 +52,7 @@ explosive barrel puzzels
 
 
 
-Mockups++
-
-added SummaryScreenV3.png to Mockups.
-the summary text was changed from 'dungeon complete',
-or 'you died' to 'victory' or 'defeat', which require
-less space in the sprite sheet, but convey the same
-overall meaning to the player.
-
-this mockup also displays how the player's rating 
-is affected after battling in a dungeon.
+Updated Design.md.
 
 
 
