@@ -52,23 +52,24 @@ explosive barrel puzzels
 
 
 
-Updated Design.md.
 
 
 
 
+Update Mockups to Match Current In-Game
+
+added OverworldScreenV5 to repo.
+added RoomBuilderV5 to repo.
+added TitleScreenV4 to repo.
+
+the latest title screen displays the
+last loaded games info and seperates
+itself from the rest of the menuItems.
+this makes it easier to continue where
+the player left off last, and gives them
+enough info to be comfy clicking continue.
 
 
-
-
-update the gameloop.md, removing reference to dungeon reward from summary screen.
-
-
-
-add OverworldScreenV5 to repo.
-add RoomBuilderV5 to repo.
-add InventoryScreenV7 to repo.
-add TitleScreenV4 to repo.
 
 
 
