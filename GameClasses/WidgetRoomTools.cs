@@ -231,7 +231,7 @@ namespace DungeonRun
             Functions_Level.ResetLevel();
             //this can be whatever texture we want later
             Level.type = LevelType.Castle;
-            Functions_Pool.SetFloorTexture(LevelType.Castle);
+            Functions_Level.SetFloorTexture(LevelType.Castle);
 
             //build the room, if room data exists
             if (RoomXmlData != null)
@@ -269,9 +269,9 @@ namespace DungeonRun
             Functions_Room.AddCrackedWalls(Functions_Level.currentRoom);
 
             Functions_Room.CheckForPuzzles(Functions_Level.currentRoom);
-            
+
             //align + remove overlapping objs
-            Functions_Pool.AlignRoomObjs();
+            Functions_RoomObject.AlignRoomObjs();
             Functions_Room.CleanupRoom(Functions_Level.currentRoom);
             //update roomObjs once
             Functions_Pool.Update();

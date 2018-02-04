@@ -14,14 +14,7 @@ namespace DungeonRun
 {
     public static class Functions_Movement
     {
-        static float maxMagnitude = 7.0f;
-
-        public static void SetMovingBoolean(ComponentMovement Move)
-        {   //set moving boolean - assume false, check true state
-            Move.moving = false;
-            if (Move.magnitude.X != 0) { Move.moving = true; }
-            if (Move.magnitude.Y != 0) { Move.moving = true; }
-        }
+        static float maxMagnitude = 10.0f;
 
         public static void Push(ComponentMovement Move, Direction Direction, float Amount)
         {
@@ -38,6 +31,8 @@ namespace DungeonRun
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
             else if (Direction == Direction.UpRight)
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
+            //set the moving boolean
+            Move.moving = true;
         }
 
         public static void ProjectMovement(ComponentMovement Move)
@@ -57,6 +52,8 @@ namespace DungeonRun
             Move.newPosition.X = Move.position.X;
             Move.newPosition.Y = Move.position.Y;
             Move.newPosition += Move.magnitude;
+            //set the moving boolean
+            if (Move.magnitude.X == 0 && Move.magnitude.Y == 0) { Move.moving = false; }
         }
 
         public static void Teleport(ComponentMovement Move, float X, float Y)

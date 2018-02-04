@@ -142,7 +142,7 @@ namespace DungeonRun
             SetDoors(Room); //set the room's doors
             SetFloors(Room); //set the floortile frames based on room.type
             //update all roomObjs, then remove overlapping objs
-            Functions_Pool.AlignRoomObjs();
+            Functions_RoomObject.AlignRoomObjs();
             CleanupRoom(Room); //remove overlapping objs
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
@@ -205,7 +205,7 @@ namespace DungeonRun
                 AddCrackedWalls(Room);
             }
             //align + remove overlapping objs
-            Functions_Pool.AlignRoomObjs();
+            Functions_RoomObject.AlignRoomObjs();
             CleanupRoom(Room);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
             Functions_Hero.TeleportPet(); //teleport pet to hero's position

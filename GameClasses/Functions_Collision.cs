@@ -48,15 +48,11 @@ namespace DungeonRun
             return false;
         }
 
-
-
         public static void CheckCollisions(
             ComponentMovement CompMove, ComponentCollision CompColl,
             Boolean checkRoomObjs, Boolean checkActors)
         {
-            collisionX = false; collisionY = false; collisionXY = false; //horizontal, vertical, and diagonal
-
-            //project on both X and Y axis
+            collisionXY = false; //project on both X and Y axis
             CompColl.rec.X = (int)CompMove.newPosition.X + CompColl.offsetX;
             CompColl.rec.Y = (int)CompMove.newPosition.Y + CompColl.offsetY;
             //check blocking collisions based on parameters
@@ -68,6 +64,7 @@ namespace DungeonRun
 
             if (collisionXY) //diagonal collision, determine which axis
             {
+                collisionX = false; collisionY = false;
                 //project, check collisions, unproject - X axis
                 CompColl.rec.X = (int)CompMove.newPosition.X + CompColl.offsetX;
                 if (checkRoomObjs) { if (CheckRoomObjs(CompColl)) { collisionX = true; } }

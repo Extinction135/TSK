@@ -521,9 +521,9 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
                 Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 200; //in frames
+                Obj.lifetime = 50; //in frames
+                Obj.compMove.friction = 0.984f; //some air friction
                 Obj.compAnim.speed = 5; //in frames
-                Obj.compMove.speed = 1.5f; //fireballs move slow
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
             }
@@ -547,7 +547,7 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
-                Obj.compMove.speed = 2.25f; //arrow move fast
+                Obj.compMove.friction = 1.0f; //no air friction
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
             }
@@ -615,6 +615,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
+                Obj.compMove.friction = 0.986f; //some air friction
             }
             else if (Type == ObjType.ProjectileExplodingBarrel)
             {   //this should match the Barrel GameObj
@@ -636,7 +637,7 @@ namespace DungeonRun
                 Obj.lifetime = 15; //in frames
                 Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //in air, technically
+                Obj.compMove.grounded = false;
             }
 
 

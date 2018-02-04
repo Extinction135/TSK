@@ -295,6 +295,25 @@ namespace DungeonRun
             Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
         }
 
+        public static void AlignRoomObjs()
+        {   //align sprite + collision comps to move comp of all active objs
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            {
+                if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                {   //align the sprite and collision components to the move component
+                    Functions_Component.Align(
+                        Pool.roomObjPool[Pool.roomObjCounter].compMove,
+                        Pool.roomObjPool[Pool.roomObjCounter].compSprite,
+                        Pool.roomObjPool[Pool.roomObjCounter].compCollision);
+                    //set the current animation frame, check the animation counter
+                    Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
+                        Pool.roomObjPool[Pool.roomObjCounter].compSprite);
+                    //set the rotation for the obj's sprite
+                    Functions_GameObject.SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
+                }
+            }
+        }
+
 
 
         //decorates a door on left/right or top/bottom

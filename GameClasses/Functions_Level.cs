@@ -39,7 +39,7 @@ namespace DungeonRun
         {
             ResetLevel();
             //set all floor sprites to the appropriate dungeon texture
-            Functions_Pool.SetFloorTexture(Level.type);
+            SetFloorTexture(Level.type);
             if (Flags.PrintOutput) { Debug.WriteLine("-- creating dungeon --"); }
 
 
@@ -440,6 +440,19 @@ namespace DungeonRun
         {
             levelScreen.exitAction = ExitAct;
             levelScreen.displayState = DisplayState.Closing;
+        }
+
+        public static void SetFloorTexture(LevelType Type)
+        {   //set the floor pool texture based on dungeon type
+            Texture2D Texture = Assets.cursedCastleSheet;
+
+            if (Type == LevelType.Castle) { Texture = Assets.cursedCastleSheet; }
+            //expand this to include all dungeon textures...
+            else if (Type == LevelType.Shop) { Texture = Assets.shopSheet; }
+
+            //set the floor texture
+            for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
+            { Pool.floorPool[Pool.floorCounter].texture = Texture; }
         }
 
     }

@@ -138,7 +138,7 @@ namespace DungeonRun
 
             else if (Type == ObjType.ProjectileArrow)
             {   //place projectile outside of actor's hitbox
-                if (direction == Direction.Down) { posRef.Y += 14; }
+                if (direction == Direction.Down) { posRef.Y += 16; }
                 else if (direction == Direction.Up) { posRef.Y -= 9; }
                 else if (direction == Direction.Right) { posRef.X += 13; posRef.Y += 2; }
                 else if (direction == Direction.Left) { posRef.X -= 13; posRef.Y += 2; }
@@ -202,6 +202,7 @@ namespace DungeonRun
         public static void SpawnEntity(ObjType Type, float X, float Y, Direction Direction)
         {   //actually spawns Entity at the X, Y location, with direction
             GameObject obj = Functions_Pool.GetEntity();
+            obj.compMove.moving = true; //
 
 
             #region Set Object's Direction
@@ -236,7 +237,7 @@ namespace DungeonRun
 
             //handle specific projectile characteristics
 
-            #region  Set arrow collision rec based on direction
+            #region  Set arrow collision rec based on direction + Push them
 
             if (Type == ObjType.ProjectileArrow)
             {
@@ -251,7 +252,17 @@ namespace DungeonRun
                     obj.compCollision.offsetX = -6; obj.compCollision.offsetY = -2;
                     obj.compCollision.rec.Width = 12; obj.compCollision.rec.Height = 4;
                 }
+                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 6.0f);
             }
+
+            #endregion
+
+
+            #region Give Fireballs an Initial Push 
+
+            //bombs are pushed, and slide into a resting position
+            else if (Type == ObjType.ProjectileFireball)
+            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f); }
 
             #endregion
 
@@ -289,7 +300,7 @@ namespace DungeonRun
 
             //bombs are pushed, and slide into a resting position
             else if (Type == ObjType.ProjectileBomb)
-            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 10.0f); }
+            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f); }
 
             #endregion
 
@@ -303,9 +314,11 @@ namespace DungeonRun
                 Functions_Movement.Teleport(shadow.compMove, X, Y + 16);
                 Functions_GameObject.SetType(shadow, ObjType.ProjectileShadowSm);
                 Functions_Component.Align(shadow);
+                //shadow inherits some of pot's attributes so they will fly in sync
+                shadow.compMove.friction = obj.compMove.friction;
                 //push pot and shadow identically
-                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 15.0f);
-                Functions_Movement.Push(shadow.compMove, obj.compMove.direction, 15.0f);
+                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 4.0f);
+                Functions_Movement.Push(shadow.compMove, obj.compMove.direction, 4.0f);
             }
 
             #endregion

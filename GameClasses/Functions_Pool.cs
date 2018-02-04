@@ -15,7 +15,7 @@ namespace DungeonRun
     public static class Functions_Pool
     {
         static int i;
-
+        static int listCount = 0;
 
 
         public static Actor GetActor()
@@ -138,48 +138,6 @@ namespace DungeonRun
         }
 
 
-        
-        public static void SetFloorTexture(LevelType Type)
-        {   //set the floor pool texture based on dungeon type
-            Texture2D Texture = Assets.cursedCastleSheet;
-
-            if (Type == LevelType.Castle) { Texture = Assets.cursedCastleSheet; }
-            //expand this to include all dungeon textures...
-            else if (Type == LevelType.Shop) { Texture = Assets.shopSheet; }
-
-            //set the floor texture
-            for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
-            { Pool.floorPool[Pool.floorCounter].texture = Texture; }
-        }
-
-        public static void AlignRoomObjs()
-        {   //align sprite + collision comps to move comp of all active objs
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            {
-                if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                {   //align the sprite and collision components to the move component
-                    Functions_Component.Align(
-                        Pool.roomObjPool[Pool.roomObjCounter].compMove, 
-                        Pool.roomObjPool[Pool.roomObjCounter].compSprite, 
-                        Pool.roomObjPool[Pool.roomObjCounter].compCollision);
-                    //set the current animation frame, check the animation counter
-                    Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
-                        Pool.roomObjPool[Pool.roomObjCounter].compSprite);
-                    //set the rotation for the obj's sprite
-                    Functions_GameObject.SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
-                }
-            }
-        }
-        
-
-
-
-
-
-
-
-
-
 
         public static void Update()
         {
@@ -190,6 +148,8 @@ namespace DungeonRun
             Functions_Hero.Update();
         }
 
+
+        //this method is basically unoptimized, and could be drastically improved
         public static void UpdateActors()
         {
             for (i = 0; i < Pool.actorCount; i++)
@@ -208,40 +168,41 @@ namespace DungeonRun
 
                     #region Check Collisions, Resolve Movement
 
-                    //set moving, check moving, check collisions
-                    Functions_Movement.SetMovingBoolean(Pool.actorPool[i].compMove);
-                    if (Pool.actorPool[i].compMove.moving)
-                    {   //project and resolve legal movement
-                        Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove);
-                        //based on actor, call collision checking with control booleans
-                        if (Pool.actorPool[i] == Pool.hero)
-                        {
-                            Functions_Collision.CheckCollisions(
-                                Pool.actorPool[i].compMove,
-                                Pool.actorPool[i].compCollision,
-                                true, true);
-                        }
-                        else //all other enemies/actors & pet
-                        {
-                            Functions_Collision.CheckCollisions(
-                                Pool.actorPool[i].compMove,
-                                Pool.actorPool[i].compCollision,
-                                true, false);
-                        }
-                        //any obj that moved needs to have their components aligned
-                        Functions_Component.Align(
+                    //we want to reject as many actors as possible from these processess, due to their expense
+                    //currently, we are accepting all actors that are active
+                    //so we can beat up enemy corpses, and they'll move around, slide, etc..
+                    //this is nice, but expensive (for now it's ok)
+
+                    Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove);
+                    //based on actor, call collision checking with control booleans
+                    if (Pool.actorPool[i] == Pool.hero)
+                    {
+                        Functions_Collision.CheckCollisions(
                             Pool.actorPool[i].compMove,
-                            Pool.actorPool[i].compSprite,
-                            Pool.actorPool[i].compCollision);
+                            Pool.actorPool[i].compCollision,
+                            true, true);
                     }
+                    else //all other enemies/actors & pet
+                    {
+                        Functions_Collision.CheckCollisions(
+                            Pool.actorPool[i].compMove,
+                            Pool.actorPool[i].compCollision,
+                            true, false);
+                    }
+                    //any obj that moved needs to have their components aligned
+                    Functions_Component.Align(
+                        Pool.actorPool[i].compMove,
+                        Pool.actorPool[i].compSprite,
+                        Pool.actorPool[i].compCollision);
 
                     #endregion
 
 
-                    #region Check Interactions, Resolve Movement
-
                     //set actor's friction to normal (interactions with ice will change it later)
                     Pool.actorPool[i].compMove.friction = Pool.actorPool[i].friction;
+
+                    #region Check Interactions, Resolve Movement
+
                     //handle interactions, align components post-interaction
                     Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
                     Functions_Component.Align(
@@ -255,7 +216,7 @@ namespace DungeonRun
             }
         }
 
-        static int listCount = 0;
+        //this one too
         public static void UpdateGameObjList(List<GameObject> ObjList, Boolean isRoomObj)
         {
             listCount = ObjList.Count();
@@ -271,22 +232,28 @@ namespace DungeonRun
                     Functions_Animation.ScaleSpriteDown(ObjList[i].compSprite);
 
                     #endregion
-
+                    
 
                     #region Check Collisions, Resolve Movement
 
-                    //set moving, check moving, check collisions
-                    Functions_Movement.SetMovingBoolean(ObjList[i].compMove);
+
                     if(ObjList[i].compMove.moving)
                     {   //project and resolve legal movement
                         Functions_Movement.ProjectMovement(ObjList[i].compMove);
-                        if(isRoomObj)
+
+                        if (isRoomObj)
                         {   //check roomObj vs roomObj blocking collisions
                             Functions_Collision.CheckCollisions(
                                 ObjList[i].compMove,
                                 ObjList[i].compCollision,
                                 true, false);
                         }
+                        else
+                        {   //dont check entity vs roomObj collisions, just move entity
+                            ObjList[i].compMove.position.X = ObjList[i].compMove.newPosition.X;
+                            ObjList[i].compMove.position.Y = ObjList[i].compMove.newPosition.Y;
+                        }
+                        
                         //any obj that moved needs their components aligned
                         Functions_Component.Align(
                             ObjList[i].compMove,
@@ -299,6 +266,7 @@ namespace DungeonRun
 
                     #region Check Interactions, Resolve Movement
 
+                    
                     //only moving objs, and special objs get interactions
                     if (ObjList[i].compMove.moving
                         || ObjList[i].group == ObjGroup.Projectile //some projectiles dont move
@@ -311,6 +279,7 @@ namespace DungeonRun
                                 ObjList[i].compSprite,
                                 ObjList[i].compCollision);
                     }
+                    
 
                     #endregion
 

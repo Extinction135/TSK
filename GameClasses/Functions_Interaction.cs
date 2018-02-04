@@ -43,7 +43,9 @@ namespace DungeonRun
                 for (i = 0; i < Pool.entityCount; i++)
                 {
                     if(gameObj.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
-                    { InteractObject(gameObj, Pool.entityPool[i]); }
+                    {   //perform self-check to prevent self overlap interaction
+                        if (gameObj != Pool.entityPool[i]) { InteractObject(gameObj, Pool.entityPool[i]); }
+                    }
                 }
             }
             if(checkRoomObjs)
@@ -51,7 +53,9 @@ namespace DungeonRun
                 for (i = 0; i < Pool.roomObjCount; i++)
                 {
                     if (gameObj.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
-                    { InteractObject(gameObj, Pool.roomObjPool[i]); }
+                    {   //perform self-check to prevent self overlap interaction
+                        if (gameObj != Pool.roomObjPool[i]) { InteractObject(gameObj, Pool.roomObjPool[i]); }
+                    }
                 }
             }
         }
@@ -60,6 +64,8 @@ namespace DungeonRun
 
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //Obj can be Entity or RoomObj, check for hero state first
+
+            if (!Obj.active) { return; } //inactive objects are denied interaction
 
             //Hero Specific Interactions
             if (Actor == Pool.hero)
@@ -366,6 +372,8 @@ namespace DungeonRun
 
         public static void InteractObject(GameObject Object, GameObject RoomObj)
         {
+            if (!Object.active || !RoomObj.active) { return; }
+
             //Handle Blocking Interactions (RoomObj vs Object)
             if (RoomObj.compCollision.blocking)
             {

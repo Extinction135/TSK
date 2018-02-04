@@ -54,95 +54,64 @@ explosive barrel puzzels
 
 
 
-Refactoring Collisions / Interactions - Part 1
 
-i'm not going to even attempt to document all the changes made,
-instead i'll just explain from a high level what needed to be done.
-
-the interaction system was tied to the collision system.
-when a collision happened, an interaction happened.
-with a per axis collision checking system, this means
-that an obj could collide with another obj up to 3 times
-in a single frame, which would call Interact() 3 times too.
-obvs, this behavior is unwanted, and so objs were only
-using a single axis collision checking system, which meant
-objs couldn't slide against other objs, but atleast their
-interactions were perdictable.
-
-but now, we need sliding for roomObjs so conveyor belts work.
-upon working with the collision system i realized the interaction
-system needed to be decoupled, and therefore a refactor was necessary.
-so, how do we fix collisions and decouple interactions?
-
-Push 1 : Seperate blocking collisions and interactions
-this works for entites, roomObjs, and actors:
-a first pass of blocking checks to resolve the legal movement.
-then a second pass of interaction checks to resolve all interactions.
-these interactions are non-blocking or blocking, 
-it doesn't matter once we resolve the legal movement.
-	for example, in case hero was standing over a block that just popped up,
-	here we would handle that overlap/collision, 
-	and set the block back to a down state
-
-what is the current process?
-	Pool.Update() -> UpdateActors(), UpdateEntites(), UpdateRoomObjs()
-	UpdateActors() -> ProjectMovement(), CheckCollisions(Actor), Align()
-	UpdateObj() -> SetMoving, ProjectMovement(), CheckCollisions(Obj), Align()
-	
-the new process:
-	UpdateActors()/UpdateObjs() -> 
-		check if active, update, animate, scale..
-		set moving boolean
-		if moving, project movement()
-		check collisions(), set move.NewPos (resolve blocking collisions)
-		align actor/obj to move.NewPos
-		check interaction() overlaps, handle interactions
-	this means we can have simply: Update(Actor), Update(Obj)
-	
-Rewrote large pieces of:
-Functions_Pool, Functions_Collision, and Functions_Interaction,
-along with other various classes.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-
-playtest everything now
 the goal is to get conveyorBelts interacting with roomObjs, with a reasonable update / collision count.
 
 
 Refactoring Collisions / Interactions - Part 2
 
-fix all the things wrong with the game..
-bugs / issues:
+fix various bugs / issues:
+	hero can't move around at all...fixed.
+	sword projectiles are still interaction checked after they've died...fixed.
+	moved some functions around for better organization.
+	moving projectiles dont move (fireballs, arrows, thrown pots)...fixed.
+	retuned how fireballs move: quickly at first, then slow down, with a short lifetime.
+	retuned how arrows move: quickly consistently, with a long lifetime.
+	retuned how pots move: moderately at first, with a short lifetime.	
+	arrows + fireballs + thrown pots working as expected again.
+	tested exploding barrels, working as expected.
+	fixed bug where south facing arrows overlapped caster, changed offset.
+	LOTS of playtesting.
+	
+	
+	
+	
+	
+	
+Refactoring Collisions / Interactions - Part 3	
+
+fix various bugs / issues:
+	when we have an empty bottle selected and use a weapon, the bottle appears and triggers error sound..
+	
+	
+	trap doors still dont work (prolly cause they affect magnitude or something)
+	report on the last entity created (uncontrolled)
+	
+	spikeblocks dont work. they don't move. but they sure do collide with hero.
+	
+	
+	
+unchecked / likely bugs:
 	fairys should be entities! NOT ACTORS, because we dont have actor vs actor interactions!
 	moving spikeBlocks should be roomObjs. roomObjs should be able to move.	
 	
-Rule: entities can't block!
+
+Because of the new collision/interaction system, entities can't block!
+so, we'll need to add a rule to gameObj.setType() that sets any entity.compColl.blocking to false.
+	
+	
+	
+only the hero is collision checked against actors.
+but we have complicated code to handle actor vs actor checks,
+when we only need hero vs actor checks.
+all other actors can freely pass thru each other.
 	
 	
 	
 	
-	
-	
-	
-	
-	
+bonus functionality:
+	we can now push dead enemy carcasses with projectiles, and soon conveyor belts
+	so we should change the sprite for the dead blob enemy.
 	
 	
 	
@@ -161,7 +130,7 @@ Entities / Projectiles should have 'owners' or 'casters'.
 	tracking overhead rewards to hero across frames (conveyor belt)
 
 
-
+	allows actors to slide across ice with weapons as well
 
 
 
