@@ -372,9 +372,13 @@ namespace DungeonRun
 
         public static void InteractObject(GameObject Object, GameObject RoomObj)
         {
-            if (!Object.active || !RoomObj.active) { return; }
 
-            //Handle Blocking Interactions (RoomObj vs Object)
+            //Debug.WriteLine("" + Object.type + " vs " + RoomObj.type + " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
+
+            //if (!Object.active || !RoomObj.active) { return; }
+
+            //Handle Blocking Interactions (Object vs RoomObj)
+            //it's done this way because projectile vs. blocking obj is simple to evaluate
             if (RoomObj.compCollision.blocking)
             {
 
@@ -507,9 +511,31 @@ namespace DungeonRun
                 #endregion
 
             }
-            //Handle Non-Blocking Interactions (RoomObj vs Object)
+
+
+
+
+            
+
+            #region ConveyorBelt
+
+            if (Object.type == ObjType.ConveyorBeltOn)
+            {   //if obj is moveable and on ground, move it
+                if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
+                { Functions_RoomObject.ConveyorBeltPush(RoomObj.compMove, Object); }
+            }
+
+            #endregion
+
+
+
+
+
+
+            //Handle all other overlapping Interactions (RoomObj vs Object)
             else
             {
+
 
                 #region Bumper
 
@@ -536,20 +562,6 @@ namespace DungeonRun
                         Object.direction = Object.compMove.direction;
                         Functions_GameObject.SetRotation(Object);
                     } 
-                }
-
-                #endregion
-
-
-                #region ConveyorBelt
-
-                else if(RoomObj.type == ObjType.ConveyorBeltOn)
-                {   //if Projectile is moveable and on ground, move it
-                    if (Object.compMove.moveable)
-                    {
-                        if (Object.compMove.grounded)
-                        { Functions_RoomObject.ConveyorBeltPush(Object.compMove, RoomObj); }
-                    }
                 }
 
                 #endregion
@@ -620,12 +632,17 @@ namespace DungeonRun
             }
 
 
+
+
+
+
+
             /*
             //can check entity vs roomObj interactions like dis
-            if (RoomObj.type == ObjType.SwitchBlockBtn)
+            if (RoomObj.type == ObjType.ConveyorBeltOn)
             {   //timestamp any entity collision with the roomObj
                 Debug.WriteLine("" + 
-                    RoomObj.type + " vs " + Entity.type + 
+                    RoomObj.type + " vs " + Object.type + 
                     " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
             }
             */

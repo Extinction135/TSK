@@ -190,10 +190,7 @@ namespace DungeonRun
                             true, false);
                     }
                     //any obj that moved needs to have their components aligned
-                    Functions_Component.Align(
-                        Pool.actorPool[i].compMove,
-                        Pool.actorPool[i].compSprite,
-                        Pool.actorPool[i].compCollision);
+                    Functions_Component.Align(Pool.actorPool[i]);
 
                     #endregion
 
@@ -205,10 +202,7 @@ namespace DungeonRun
 
                     //handle interactions, align components post-interaction
                     Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
-                    Functions_Component.Align(
-                            Pool.actorPool[i].compMove,
-                            Pool.actorPool[i].compSprite,
-                            Pool.actorPool[i].compCollision);
+                    Functions_Component.Align(Pool.actorPool[i]);
 
                     #endregion
 
@@ -255,10 +249,7 @@ namespace DungeonRun
                         }
                         
                         //any obj that moved needs their components aligned
-                        Functions_Component.Align(
-                            ObjList[i].compMove,
-                            ObjList[i].compSprite,
-                            ObjList[i].compCollision);
+                        Functions_Component.Align(ObjList[i]);
                     }
 
                     #endregion
@@ -274,10 +265,7 @@ namespace DungeonRun
                         )
                     {   //handle interactions, align components post-interaction
                         Functions_Interaction.CheckInteractions(ObjList[i], true, true);
-                        Functions_Component.Align(
-                                ObjList[i].compMove,
-                                ObjList[i].compSprite,
-                                ObjList[i].compCollision);
+                        Functions_Component.Align(ObjList[i]);
                     }
                     
 

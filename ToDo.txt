@@ -52,19 +52,44 @@ explosive barrel puzzels
 
 
 
-Bug Fixes
-
-fixed a bug where a south facing sword harmed the hero upon creation.
-the sword's hitBox was being collision/interaction checked prior to being aligned,
-so the sword overlapped the hero, and caused him damage.
-this was remedied by calling Functions_Component.Align() for the spawned entity.
-this potentially fixes other undiscovered bugs with entity hitboxes upon spawn.
 
 
 
 
-Align() can take an obj, so we dont need to be passing the comps individually from Pool.update()
-we can just pass the actor or obj instead, saving some chars.
+Refactoring + Re-Implementing ConveyorBelts
+
+Align() can take an obj, so we dont need to be passing 
+individual components as parameters from Pool.Update() Actors and GameObjs.
+we can just pass the actor or obj instead, saving some chars. done.
+
+fixed up InteractObject() to get conveyor belts working.
+the RoomObj and Object variables were mixed up in the check.
+flipped them, modified the push value for conveyor belts.
+
+created Square007 room as test for conveyor belts.
+lots of playtesting, bug documenting.
+
+
+
+
+
+bug with square007, the barrels perpetually explode.
+which is awesome, but also unwanted.
+
+
+
+
+
+fire (ground fire) projectiles should not be moveable!
+floor switches should sort OVER conveyor belts
+
+
+pits dont work, but that's expected because they're still OLD system code
+
+exploding barrels aren't belted, but that's because they prolly aren't moveable
+
+
+
 
 
 

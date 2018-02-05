@@ -276,7 +276,7 @@ namespace DungeonRun
 
         public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)
         {   //based on belt's direction, push moveComp by amount
-            Functions_Movement.Push(compMove, belt.direction, 0.1f);
+            Functions_Movement.Push(compMove, belt.direction, 0.15f);
         }
 
         public static void BounceSpikeBlock(GameObject SpikeBlock)
