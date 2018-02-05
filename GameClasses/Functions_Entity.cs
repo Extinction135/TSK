@@ -347,6 +347,8 @@ namespace DungeonRun
 
             #endregion
 
+
+            Functions_Component.Align(obj); //align the entity upon birth
         }
 
         public static void HandleBirthEvent(GameObject Entity)

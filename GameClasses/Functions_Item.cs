@@ -88,7 +88,7 @@ namespace DungeonRun
             #endregion
 
 
-            else if (Type == MenuItemType.Unknown)
+            else //if (Type == MenuItemType.Unknown)
             {   //unlock and reset actor
                 Actor.state = ActorState.Idle;
                 Actor.stateLocked = false;

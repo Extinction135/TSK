@@ -52,55 +52,66 @@ explosive barrel puzzels
 
 
 
+Bug Fixes
+
+fixed a bug where a south facing sword harmed the hero upon creation.
+the sword's hitBox was being collision/interaction checked prior to being aligned,
+so the sword overlapped the hero, and caused him damage.
+this was remedied by calling Functions_Component.Align() for the spawned entity.
+this potentially fixes other undiscovered bugs with entity hitboxes upon spawn.
+
+
+
+
+Align() can take an obj, so we dont need to be passing the comps individually from Pool.update()
+we can just pass the actor or obj instead, saving some chars.
 
 
 
 the goal is to get conveyorBelts interacting with roomObjs, with a reasonable update / collision count.
+we haven't even begun to optimize the new collision + interaction systems.
+
+conveyor belts dont move anything they should.
 
 
-Refactoring Collisions / Interactions - Part 2
 
-fix various bugs / issues:
-	hero can't move around at all...fixed.
-	sword projectiles are still interaction checked after they've died...fixed.
-	moved some functions around for better organization.
-	moving projectiles dont move (fireballs, arrows, thrown pots)...fixed.
-	retuned how fireballs move: quickly at first, then slow down, with a short lifetime.
-	retuned how arrows move: quickly consistently, with a long lifetime.
-	retuned how pots move: moderately at first, with a short lifetime.	
-	arrows + fireballs + thrown pots working as expected again.
-	tested exploding barrels, working as expected.
-	fixed bug where south facing arrows overlapped caster, changed offset.
-	LOTS of playtesting.
-	
-	
-	
-	
-	
-	
-Refactoring Collisions / Interactions - Part 3	
 
-fix various bugs / issues:
-	when we have an empty bottle selected and use a weapon, the bottle appears and triggers error sound..
-	
-	
-	trap doors still dont work (prolly cause they affect magnitude or something)
-	report on the last entity created (uncontrolled)
-	
-	spikeblocks dont work. they don't move. but they sure do collide with hero.
-	
-	
-	
-unchecked / likely bugs:
-	fairys should be entities! NOT ACTORS, because we dont have actor vs actor interactions!
-	moving spikeBlocks should be roomObjs. roomObjs should be able to move.	
-	
 
+the process the game uses to handle the hero's items and weapons is flawed.
+if the hero uses a bottle, it will work as normal, and become an empty bottle.
+and the hero's item will be nulled out (at least in the hud).
+HOWEVER, using the nulled item will result in an empty bottle reward being created,
+and the hero being statelocked for 1 frame, then unlocked and free to move,
+while the bottle floats around in the air. this makes no sense whatsoever.
+//there are various other problems as well..
+if the hero doesn't have an item or weapon equipped, he shouldnt lock into any state
+upon an X or Y button press.. but he does.
+
+
+trap doors still dont work (prolly cause they affect magnitude or something)
+
+report on the last entity created (uncontrolled creation of entity?)
+
+spikeblocks dont work. they don't move. but they sure do collide with hero.
+spikeblocks should be entities. upon a collision:
+	kill spikeblockA, 
+	create spikeBlockB in opposite direction
+we'll need a gameObj to represent the spawn position and direction of the first spikeBlock tho..
+
+fairies should be entities as well, not actors.
+we need to change the net to check against entities too.
+this will allow us to bottle fairies again.
+collisions with the hero are easy, since the fairy is an entity.
+	
 Because of the new collision/interaction system, entities can't block!
 so, we'll need to add a rule to gameObj.setType() that sets any entity.compColl.blocking to false.
 	
 	
 	
+	
+	
+Optimization
+
 only the hero is collision checked against actors.
 but we have complicated code to handle actor vs actor checks,
 when we only need hero vs actor checks.
@@ -109,8 +120,9 @@ all other actors can freely pass thru each other.
 	
 	
 	
+	
 bonus functionality:
-	we can now push dead enemy carcasses with projectiles, and soon conveyor belts
+	we can now push dead enemy carcasses with projectiles, and conveyor belts
 	so we should change the sprite for the dead blob enemy.
 	
 	
