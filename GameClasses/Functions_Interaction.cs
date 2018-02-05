@@ -126,7 +126,6 @@ namespace DungeonRun
                         if (Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
                         { Pool.hero.compMove.newPosition.Y = Obj.compSprite.position.Y; }
                     }
-                    return;
                 }
 
                 #endregion
@@ -528,108 +527,111 @@ namespace DungeonRun
             #endregion
 
 
+            #region Trap Door
 
+            else if (Object.type == ObjType.DoorTrap)
+            {   //objects should not move thru this door - they should bounce or be destroyed
+                //revert to previous position (treat as a blocking interaction)
+                RoomObj.compMove.newPosition.X = RoomObj.compMove.position.X;
+                RoomObj.compMove.newPosition.Y = RoomObj.compMove.position.Y;
 
-
-
-            //Handle all other overlapping Interactions (RoomObj vs Object)
-            else
-            {
-
-
-                #region Bumper
-
-                if (RoomObj.type == ObjType.Bumper)
-                {   //some projectiles cannot be bounced off bumper
-                    if (Object.type == ObjType.ProjectileDebrisRock
-                        || Object.type == ObjType.ProjectileExplosion
-                        || Object.type == ObjType.ProjectileNet
-                        || Object.type == ObjType.ProjectileShadowSm
-                        || Object.type == ObjType.ProjectileSword
-                        )
-                    { return; }
-
-                    //stop projectile movement, bounce it
-                    Object.compMove.magnitude.X = 0;
-                    Object.compMove.magnitude.Y = 0;
-                    Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj);
-                    //move projectile out of collision with the bumper post-bounce
-                    Functions_Movement.ProjectMovement(Object.compMove);
-                    Functions_Component.Align(Object.compMove, Object.compSprite, Object.compCollision);
-                    //rotate bounced projectiles (ActiveObj could be a pickup)
-                    if(Object.group == ObjGroup.Projectile)
-                    {
-                        Object.direction = Object.compMove.direction;
-                        Functions_GameObject.SetRotation(Object);
-                    } 
-                }
-
-                #endregion
-
-
-                #region Pits
-
-                else if(RoomObj.type == ObjType.PitAnimated)
-                {
-                    //check to see if we should ground the thrown pot projectile
-                    if(Object.type == ObjType.ProjectilePot)
-                    {   //if this is the last frame of the projectile pot, ground it
-                        if (Object.lifeCounter > Object.lifetime - 5) //dont let it die
-                        { Object.compMove.grounded = true; Object.lifeCounter = 3; }
-                    }
-                    
-                    //check to see if this pit can pull in a grounded object
-                    if(Object.compMove.grounded)
-                    {   //pull projectile into pit's center, project movement, align projectile to new pos
-                        Object.compMove.magnitude = (RoomObj.compSprite.position - Object.compSprite.position) * 0.25f;
-                        //if obj is near to pit center, begin/continue falling state
-                        if (Math.Abs(Object.compSprite.position.X - RoomObj.compSprite.position.X) < 2)
-                        {
-                            if (Math.Abs(Object.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
-                            {
-                                if (Object.compSprite.scale == 1.0f) //begin falling state
-                                {   //dont play falling sound if entity is thrown pot, falling sound was just played
-                                    if(Object.type != ObjType.ProjectilePot)
-                                    { Assets.Play(Assets.sfxActorFall); }
-                                }
-                                //continue falling state, scaling object down
-                                Object.compSprite.scale -= 0.03f;
-                            }
-                        }
-                        //when a projectile hits scale, simply release it
-                        if (Object.compSprite.scale < 0.8f)
-                        {
-                            Functions_Pool.Release(Object);
-                            Functions_RoomObject.PlayPitFx(RoomObj);
-                        }
-                    }
-                }
-
-                #endregion
-
-
-                #region Trap Door
-
-                else if (RoomObj.type == ObjType.DoorTrap)
-                {   //trap doors push actors in the door's facing direction, into the room
-                    //projectiles should not move thru this door - they should bounce or be destroyed
-
-                    //revert to previous position (treat as a blocking interaction)
-                    Object.compMove.newPosition.X = Object.compMove.position.X;
-                    Object.compMove.newPosition.Y = Object.compMove.position.Y;
-
-                    if (Object.type == ObjType.ProjectileSpikeBlock)
-                    { Functions_RoomObject.BounceSpikeBlock(Object); }
-                    //kill all other projectiles
-                    else if(Object.type == ObjType.ProjectileFireball
-                        || Object.type == ObjType.ProjectileArrow
-                        || Object.type == ObjType.ProjectileBomb)
-                    { Functions_GameObject.Kill(Object); }
-                }
-
-                #endregion
-
+                if (RoomObj.type == ObjType.ProjectileSpikeBlock)
+                { Functions_RoomObject.BounceSpikeBlock(RoomObj); }
+                //kill all other projectiles
+                else if (RoomObj.type == ObjType.ProjectileFireball
+                    || RoomObj.type == ObjType.ProjectileArrow
+                    || RoomObj.type == ObjType.ProjectileBomb)
+                { Functions_GameObject.Kill(RoomObj); }
             }
+
+            #endregion
+
+
+
+
+
+            // IMPLEMENT THESE!!
+
+            /*
+             
+            #region Bumper
+
+            if (RoomObj.type == ObjType.Bumper)
+            {   //some projectiles cannot be bounced off bumper
+                if (Object.type == ObjType.ProjectileDebrisRock
+                    || Object.type == ObjType.ProjectileExplosion
+                    || Object.type == ObjType.ProjectileNet
+                    || Object.type == ObjType.ProjectileShadowSm
+                    || Object.type == ObjType.ProjectileSword
+                    )
+                { return; }
+
+                //stop projectile movement, bounce it
+                Object.compMove.magnitude.X = 0;
+                Object.compMove.magnitude.Y = 0;
+                Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj);
+                //move projectile out of collision with the bumper post-bounce
+                Functions_Movement.ProjectMovement(Object.compMove);
+                Functions_Component.Align(Object.compMove, Object.compSprite, Object.compCollision);
+                //rotate bounced projectiles (ActiveObj could be a pickup)
+                if (Object.group == ObjGroup.Projectile)
+                {
+                    Object.direction = Object.compMove.direction;
+                    Functions_GameObject.SetRotation(Object);
+                }
+            }
+
+            #endregion
+
+
+            #region Pits
+
+            else if (RoomObj.type == ObjType.PitAnimated)
+            {
+                //check to see if we should ground the thrown pot projectile
+                if (Object.type == ObjType.ProjectilePot)
+                {   //if this is the last frame of the projectile pot, ground it
+                    if (Object.lifeCounter > Object.lifetime - 5) //dont let it die
+                    { Object.compMove.grounded = true; Object.lifeCounter = 3; }
+                }
+
+                //check to see if this pit can pull in a grounded object
+                if (Object.compMove.grounded)
+                {   //pull projectile into pit's center, project movement, align projectile to new pos
+                    Object.compMove.magnitude = (RoomObj.compSprite.position - Object.compSprite.position) * 0.25f;
+                    //if obj is near to pit center, begin/continue falling state
+                    if (Math.Abs(Object.compSprite.position.X - RoomObj.compSprite.position.X) < 2)
+                    {
+                        if (Math.Abs(Object.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
+                        {
+                            if (Object.compSprite.scale == 1.0f) //begin falling state
+                            {   //dont play falling sound if entity is thrown pot, falling sound was just played
+                                if (Object.type != ObjType.ProjectilePot)
+                                { Assets.Play(Assets.sfxActorFall); }
+                            }
+                            //continue falling state, scaling object down
+                            Object.compSprite.scale -= 0.03f;
+                        }
+                    }
+                    //when a projectile hits scale, simply release it
+                    if (Object.compSprite.scale < 0.8f)
+                    {
+                        Functions_Pool.Release(Object);
+                        Functions_RoomObject.PlayPitFx(RoomObj);
+                    }
+                }
+            }
+
+            #endregion
+
+
+
+            */
+            
+
+
+
+
 
 
 

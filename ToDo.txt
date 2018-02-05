@@ -56,15 +56,15 @@ explosive barrel puzzels
 
 
 
+Fix TrapDoors vs Actors / Objs
 
-
-Complete New Implementation of ConveyorBelts
-
-fixed a bug where barrels weren't being destroyed properly.
-modified Square007 a bit. made barrels moveable.
-based on testing, conveyor belts are working as expected.
-made fire particles un-moveable.
-
+fixed problem with trap doors vs actors.
+as the hero, earlier in the codeblock, we check
+hero vs door, then bail from the method using return.
+that preventec the later code from being reached,
+which handled the trap door for all actors.
+implemented trap doors vs objects.
+lots of playtesting.
 
 
 
