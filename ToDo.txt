@@ -56,27 +56,22 @@ explosive barrel puzzels
 
 
 
-Refactoring + Re-Implementing ConveyorBelts
 
-Align() can take an obj, so we dont need to be passing 
-individual components as parameters from Pool.Update() Actors and GameObjs.
-we can just pass the actor or obj instead, saving some chars. done.
 
-fixed up InteractObject() to get conveyor belts working.
-the RoomObj and Object variables were mixed up in the check.
-flipped them, modified the push value for conveyor belts.
+Complete New Implementation of ConveyorBelts
 
-created Square007 room as test for conveyor belts.
-lots of playtesting, bug documenting.
+fixed a bug where barrels weren't being destroyed properly.
+modified Square007 a bit. made barrels moveable.
+based on testing, conveyor belts are working as expected.
+made fire particles un-moveable.
 
 
 
 
 
-bug with square007, the barrels perpetually explode.
-which is awesome, but also unwanted.
 
 
+fix trap doors, etc. in interaction...
 
 
 

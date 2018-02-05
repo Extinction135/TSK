@@ -375,7 +375,7 @@ namespace DungeonRun
 
             //Debug.WriteLine("" + Object.type + " vs " + RoomObj.type + " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
 
-            //if (!Object.active || !RoomObj.active) { return; }
+            if (!Object.active || !RoomObj.active) { return; }
 
             //Handle Blocking Interactions (Object vs RoomObj)
             //it's done this way because projectile vs. blocking obj is simple to evaluate

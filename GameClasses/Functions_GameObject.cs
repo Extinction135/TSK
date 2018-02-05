@@ -340,6 +340,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 13;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.BossStatue)
             {
@@ -741,7 +742,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
-                Obj.compMove.moveable = true;
             }
             else if(Type == ObjType.ParticleSplash)
             {

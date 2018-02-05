@@ -474,23 +474,22 @@ namespace DungeonRun
             }
 
             else if (Obj.type == ObjType.ProjectileExplodingBarrel)
-            {
-                //create explosion projectile
+            {   //create explosion projectile
                 SpawnEntity(ObjType.ProjectileExplosion,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.None);
                 //create loot
-                Functions_Loot.SpawnLoot(Obj.compSprite.position);
+                //Functions_Loot.SpawnLoot(Obj.compSprite.position);
                 //leave some fire behind
                 SpawnEntity(ObjType.ParticleFire,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.None);
                 //throw some rocks around as decoration
-                ScatterRockDebris(Obj.compSprite.position, true);
-                ScatterRockDebris(Obj.compSprite.position, true);
-                ScatterRockDebris(Obj.compSprite.position, true);
+                //ScatterRockDebris(Obj.compSprite.position, true);
+                //ScatterRockDebris(Obj.compSprite.position, true);
+                //ScatterRockDebris(Obj.compSprite.position, true);
             }
 
             #endregion

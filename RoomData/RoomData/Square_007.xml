@@ -449,7 +449,7 @@
     <ObjXmlData>
       <type>TorchUnlit</type>
       <direction>Down</direction>
-      <posX>168</posX>
+      <posX>166</posX>
       <posY>168</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -459,124 +459,124 @@
       <posY>8</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>SwitchBlockBtn</type>
       <direction>Down</direction>
-      <posX>40</posX>
+      <posX>136</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockDark</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>SwitchBlockBtn</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Barrel</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Barrel</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SwitchBlockBtn</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>120</posY>
+      <posX>120</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>104</posY>
+      <posX>104</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Barrel</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
-      <posX>72</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockDark</type>
-      <direction>Down</direction>
-      <posX>136</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>BlockDark</type>
-      <direction>Down</direction>
-      <posX>136</posX>
+      <posX>40</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SwitchBlockBtn</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
-      <posX>120</posX>
-      <posY>136</posY>
+      <posX>40</posX>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Barrel</type>
       <direction>Down</direction>
-      <posX>104</posX>
-      <posY>136</posY>
+      <posX>40</posX>
+      <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Barrel</type>
@@ -633,25 +633,25 @@
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockBtn</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>SwitchBlockBtn</type>
+      <type>SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockBtn</type>
+      <type>SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockBtn</type>
+      <type>SwitchBlockUp</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>104</posY>
@@ -751,6 +751,30 @@
       <direction>Up</direction>
       <posX>120</posX>
       <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Barrel</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>8</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Barrel</type>
+      <direction>Down</direction>
+      <posX>8</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Barrel</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Barrel</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>120</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>
