@@ -55,34 +55,71 @@ explosive barrel puzzels
 
 
 
+updated flamethrower floor objects to be moveable.
+this allows belts to push flamethrowers along their paths.
+playtested.
 
-Implement Pit Interactions with Objects
+flamethrowers now sort over conveyor belts.
+this makes it a bit easier to 'read' where the flamethrower is,
+when it's being pushed by conveyor belts.
+if a fireball collides with an unlit torch, it should be lit.
+extracted functionality for lighting torches into RoomObject functions.
+called this method when hero interact recs with unlit torch.
+AND when fireball collides with unlit torch.
+playtested.
 
-updated Functions_Interaction.InteractObject()
-with modified path for Pit vs Object interactions.
-lots of playtesting.
-
-
-
-
-
-
-
-*bug: belts can push dark/light blocks, which shouldn't happen
-
-
-
-
-
-
-implement pits & bumpers for actors?
+added torches and belts DEV room into game as Row_004.
 
 
 
 
 
+**change the blob corpse sprite (should not be floor debris)
+**when an actor dies (enemy dies) their corpse should become passable
+that is, the hero should be able to pass thru them
 
-spikeblocks DONT MOVE! :(
+
+
+
+
+trap doors should stop projectiles from passign thru
+bounce them? hollow sound?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implement Bumpers with Actors?
+
+
+When an object is being pushed by a conveyor belt,
+and that object overlaps an actor, the actor ISNT pushed
+and the object passes THRU the actor, breaking collision system..
+
+
+bug with bumpers: when there are multiple bumper collisions per frame,
+things get unpredictable, as in the case of a belt pushing an object into a bumper
+or if an actor collides with two bumpers at the same time..
+this needs to be fixed
+
+
+
 
 floor switches should sort OVER conveyor belts
 
@@ -90,12 +127,11 @@ floor switches should sort OVER conveyor belts
 
 
 
+some spikeblocks move, the vertical ones
+the horizontal ones dont move at all???
 
 
-the goal is to get conveyorBelts interacting with roomObjs, with a reasonable update / collision count.
-we haven't even begun to optimize the new collision + interaction systems.
 
-conveyor belts dont move anything they should.
 
 
 
@@ -112,7 +148,6 @@ if the hero doesn't have an item or weapon equipped, he shouldnt lock into any s
 upon an X or Y button press.. but he does.
 
 
-trap doors still dont work (prolly cause they affect magnitude or something)
 
 report on the last entity created (uncontrolled creation of entity?)
 
@@ -174,15 +209,6 @@ Entities / Projectiles should have 'owners' or 'casters'.
 
 
 
-we'll need to check conveyor belts collisions against other room objects
-
-if a conveyor belt collides with an object that is moveable,
-then the belt 'pushes()' the roomObject, and the obj.move.moving becomes true
-this causes the roomObj to do ProjectMovement(), CheckCollisions(Interact()), Align(),
-until the object stops moving.
-
-
-
 we have two approaches to how we determine if we evaluate a roomObj as 'moving':
 1. we check the magnitude - simple, clean, but is a float check
 2. we flip a boolean and check that - more complicated, but likely faster than a float check
@@ -203,32 +229,6 @@ this would be a quick way to check and see if the obj is moving
 
 
 
-
-
-BIG CONVEYOR BELT PUSH
-
-i really want to be able to have a flamethrower on a conveyor belt
-
-certain objects should interact with conveyor belts.
-barrels, torches, pots, blocks, statues, and bumpers.
-we can narrow this down each frame like so:
-is ObjA belt? no->bail
-is ObjB one of objs above? no->bail
-do these objs overlap? no->bail
-belt pushes ObjB
-
-where do we append this functionality?
-we insert it into the update / collision checking routine
-i dont think we actually loop through the roomObjs on their own,
-we loop thru the actors and the entities only.
-so we'll need to add a loop here, and we'll need to make it as fast and exclusive as possible
-there are alot of stupid wall objects that are going to clog up this algorithm
-we *COULD* create a list of pointers to roomObjects that are only for the conveyor belt calculations.
-which would make those calculations much faster each frame, at the cost of an initial setup of the moveable list.
-and we could put the moveable roomObjs onto this list based on their .moveable property.
-thus, the moveable property is only linked to the conveyor belt.
-and we could change the moveable property name to be something like "moveableByBelt".
-because coming up soon, we're going to have a property called "moveableByHero".
 
 
 

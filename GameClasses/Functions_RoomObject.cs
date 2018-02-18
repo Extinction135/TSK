@@ -142,6 +142,26 @@ namespace DungeonRun
                 Direction.None);
         }
 
+        public static void LightTorch(GameObject UnlitTorch)
+        {   //light the unlit torch
+            Functions_GameObject.SetType(UnlitTorch, ObjType.TorchLit);
+            Functions_Entity.SpawnEntity(ObjType.ParticleFire,
+                UnlitTorch.compSprite.position.X + 0,
+                UnlitTorch.compSprite.position.Y - 7,
+                Direction.None);
+            Assets.Play(Assets.sfxLightFire);
+
+            //check to see if lighting this torch can solve the room's puzzle
+            if (Functions_Level.currentRoom.puzzleType == PuzzleType.Torches)
+            {   //if the current room's puzzle type is Torches, check to see how many have been lit
+                if (CountTorches())
+                {   //enough torches have been lit to unlock this room / solve puzzle
+                    Assets.Play(Assets.sfxReward); //should be secret sfx!!!
+                    OpenTrapDoors(); //open all the trap doors in the room
+                }
+            }
+        }
+
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
             //place vendor

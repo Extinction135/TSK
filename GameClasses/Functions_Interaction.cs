@@ -434,6 +434,8 @@ namespace DungeonRun
                     { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Object); }
                     else if (RoomObj.type == ObjType.BossStatue)
                     { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
+                    else if (RoomObj.type == ObjType.TorchUnlit)
+                    { Functions_RoomObject.LightTorch(RoomObj); }
                     //fireballs trigger common obj interactions
                     Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
                     //fireballs die upon blocking collision

@@ -276,7 +276,6 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
             }
 
             #endregion
@@ -358,10 +357,11 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Flamethrower)
             {
-                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compSprite.zOffset = -30; //sort slightly above floor
                 Obj.compCollision.blocking = false;
                 Obj.getsAI = true; //obj gets AI
                 Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.IceTile)
             {
