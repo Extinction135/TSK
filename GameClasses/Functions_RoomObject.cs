@@ -263,7 +263,7 @@ namespace DungeonRun
             if (compMove.direction == Direction.None)
             { compMove.direction = Functions_Direction.GetOppositeCardinal(compMove.position, Bumper.compSprite.position); }
             //push collider in direction
-            Functions_Movement.Push(compMove, compMove.direction, 10.0f);
+            Functions_Movement.Push(compMove, compMove.direction, 8.0f);
             //handle the bumper animation
             Bumper.compSprite.scale = 1.5f;
             Assets.Play(Assets.sfxBounce);

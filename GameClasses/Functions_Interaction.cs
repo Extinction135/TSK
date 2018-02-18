@@ -547,16 +547,9 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
-            // IMPLEMENT THESE!!
-
-            /*
-             
             #region Bumper
 
-            if (RoomObj.type == ObjType.Bumper)
+            else if (RoomObj.type == ObjType.Bumper)
             {   //some projectiles cannot be bounced off bumper
                 if (Object.type == ObjType.ProjectileDebrisRock
                     || Object.type == ObjType.ProjectileExplosion
@@ -565,17 +558,9 @@ namespace DungeonRun
                     || Object.type == ObjType.ProjectileSword
                     )
                 { return; }
-
-                //stop projectile movement, bounce it
-                Object.compMove.magnitude.X = 0;
-                Object.compMove.magnitude.Y = 0;
                 Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj);
-                //move projectile out of collision with the bumper post-bounce
-                Functions_Movement.ProjectMovement(Object.compMove);
-                Functions_Component.Align(Object.compMove, Object.compSprite, Object.compCollision);
-                //rotate bounced projectiles (ActiveObj could be a pickup)
                 if (Object.group == ObjGroup.Projectile)
-                {
+                {   //rotate bounced projectiles
                     Object.direction = Object.compMove.direction;
                     Functions_GameObject.SetRotation(Object);
                 }
@@ -583,6 +568,21 @@ namespace DungeonRun
 
             #endregion
 
+
+            // IMPLEMENT THESE!!
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
 
             #region Pits
 
@@ -627,7 +627,7 @@ namespace DungeonRun
 
 
             */
-            
+
 
 
 

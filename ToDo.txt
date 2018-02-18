@@ -54,28 +54,30 @@ explosive barrel puzzels
 
 
 
+Re-Implement Bumpers - Part 1
 
-
-Fix TrapDoors vs Actors / Objs
-
-fixed problem with trap doors vs actors.
-as the hero, earlier in the codeblock, we check
-hero vs door, then bail from the method using return.
-that preventec the later code from being reached,
-which handled the trap door for all actors.
-implemented trap doors vs objects.
-lots of playtesting.
+updated Functions_Interaction.InteractObject(),
+with path to handle Bumper vs Obj interactions.
+bumpers push projectiles correctly, but not actors.
+this happens when more than one bumper interacts
+with an actor on the same frame.
+a single bumper alone works as expected.
 
 
 
 
 
 
-fix trap doors, etc. in interaction...
 
 
 
-fire (ground fire) projectiles should not be moveable!
+
+
+
+implement bumpers and pits in Functions_Interaction.InteractObject()
+
+
+
 floor switches should sort OVER conveyor belts
 
 
