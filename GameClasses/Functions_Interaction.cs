@@ -569,21 +569,6 @@ namespace DungeonRun
             #endregion
 
 
-            // IMPLEMENT THESE!!
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
-
             #region Pits
 
             else if (RoomObj.type == ObjType.PitAnimated)
@@ -597,23 +582,19 @@ namespace DungeonRun
 
                 //check to see if this pit can pull in a grounded object
                 if (Object.compMove.grounded)
-                {   //pull projectile into pit's center, project movement, align projectile to new pos
+                {  //slightly pull projectile towards pit's center
                     Object.compMove.magnitude = (RoomObj.compSprite.position - Object.compSprite.position) * 0.25f;
-                    //if obj is near to pit center, begin/continue falling state
-                    if (Math.Abs(Object.compSprite.position.X - RoomObj.compSprite.position.X) < 2)
-                    {
-                        if (Math.Abs(Object.compSprite.position.Y - RoomObj.compSprite.position.Y) < 2)
-                        {
-                            if (Object.compSprite.scale == 1.0f) //begin falling state
-                            {   //dont play falling sound if entity is thrown pot, falling sound was just played
-                                if (Object.type != ObjType.ProjectilePot)
-                                { Assets.Play(Assets.sfxActorFall); }
-                            }
-                            //continue falling state, scaling object down
-                            Object.compSprite.scale -= 0.03f;
-                        }
+
+                    //check to see if this object started falling, or has been falling
+                    if (Object.compSprite.scale == 1.0f) //begin falling state
+                    {   //dont play falling sound if entity is thrown pot (falling sound was just played)
+                        if (Object.type != ObjType.ProjectilePot) { Assets.Play(Assets.sfxActorFall); }
                     }
-                    //when a projectile hits scale, simply release it
+
+                    //scale object down if it's colliding with a pit
+                    Object.compSprite.scale -= 0.03f;
+
+                    //when a projectile drops below a threshold scale, release it
                     if (Object.compSprite.scale < 0.8f)
                     {
                         Functions_Pool.Release(Object);
@@ -624,11 +605,7 @@ namespace DungeonRun
 
             #endregion
 
-
-
-            */
-
-
+            
 
 
 
