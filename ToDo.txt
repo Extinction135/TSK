@@ -55,34 +55,63 @@ explosive barrel puzzels
 
 
 
-updated flamethrower floor objects to be moveable.
-this allows belts to push flamethrowers along their paths.
-playtested.
+Blob Corpses
 
-flamethrowers now sort over conveyor belts.
-this makes it a bit easier to 'read' where the flamethrower is,
-when it's being pushed by conveyor belts.
-if a fireball collides with an unlit torch, it should be lit.
-extracted functionality for lighting torches into RoomObject functions.
-called this method when hero interact recs with unlit torch.
-AND when fireball collides with unlit torch.
-playtested.
+replaced blob corpse (dead) sprite.
+this makes the blob corpse visually different
+from the floor debris scattered around the dungeon.
 
-added torches and belts DEV room into game as Row_004.
+now blob's corpses don't block hero from walking over them.
+they are still be able to be smashed around tho.
+lots of hilariously gruesome playtesting, with blob corpses.
 
 
 
 
 
-**change the blob corpse sprite (should not be floor debris)
+
+
+
+
+Create ResetActor(), pull functionality from SetType()'s beginning
+
+
+
+
+Modified GetActor() to always return an actor.
+if we run out of actors, the last actor will be returned.
+this simplifies this method, as a null return
+check is no longer needed in calling code.
+
+remove null checks from various code that calls GetActor()
+
+we also need to write a ResetActor() function
+this will ensure that an actor is reset upon Get()
+
+
+
+
+
 **when an actor dies (enemy dies) their corpse should become passable
 that is, the hero should be able to pass thru them
 
 
 
+actors should continue to zDepth sort (this should happen in the update)
+! this should only happen if they've moved (if
 
 
-trap doors should stop projectiles from passign thru
+if a dead blob is moved/hit into a pit, the falling animation plays
+instead the animation should not change (keep corpse sprite)
+
+
+
+
+
+
+
+
+trap doors should stop projectiles from passing thru
 bounce them? hollow sound?
 
 
@@ -90,6 +119,9 @@ bounce them? hollow sound?
 
 
 
+record gifs of:
+	explosive barrels chains
+	conveyor belt madness
 
 
 
@@ -98,8 +130,15 @@ bounce them? hollow sound?
 
 
 
-
-
+what if the obj the hero picks up simply assumes the target obj's texture and frame, etc..?
+this would work for actors as well, which sets the ground work for allowing the hero to pickup 
+blob corpses and use them in some interesting way... like dropping them on a switch!
+we already do this with pots essentially, but we need to abstract the carrying/throwing solution
+to be more generalized and handle roomObjs, actors, or whatever we throw at it in the future..
+	
+	
+	
+	
 
 
 

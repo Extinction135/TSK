@@ -33,7 +33,9 @@ namespace DungeonRun
                 Pool.actorPool[Pool.actorIndex].compSprite.scale = 1.0f;
                 return Pool.actorPool[Pool.actorIndex];
             }
-            return null;
+            //ran out of inactive/dead actors, return last indexed actor
+            return Pool.actorPool[Pool.actorCount-1];
+            //return null;
         }
         
         public static GameObject GetRoomObj()

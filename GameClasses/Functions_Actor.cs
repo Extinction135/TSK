@@ -101,6 +101,9 @@ namespace DungeonRun
             if (Actor.type == ActorType.Blob || Actor.type == ActorType.Boss)
             { DungeonRecord.enemyCount++; } //track enemy deaths
 
+            //make dead actor's corpse passable
+            Actor.compCollision.blocking = false;
+
 
             #region Enemy Specific Death Effects
 
@@ -129,8 +132,10 @@ namespace DungeonRun
             #endregion
 
 
-            //sort actor for last time
+            //sort actor for last time (functionally useless)
             Functions_Component.SetZdepth(Actor.compSprite);
+
+
         }
 
         public static void SetRewardState(Actor Actor)
