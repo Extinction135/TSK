@@ -14,6 +14,31 @@ namespace DungeonRun
 {
     public static class Functions_Actor
     {
+        public static void ResetActor(Actor Actor)
+        {   //reset actor to default living state
+            Actor.stateLocked = false;
+            Actor.active = true;
+            Actor.lockCounter = 0;
+            Actor.lockTotal = 0;
+            //reset actor's state and direction
+            Actor.state = ActorState.Idle;
+            Actor.direction = Direction.Down;
+            Actor.compMove.direction = Direction.None;
+            Actor.compMove.grounded = true; //most actors move on ground
+            //reset actor's collisions
+            Actor.compCollision.active = true;
+            Actor.compCollision.blocking = true;
+            SetCollisionRec(Actor);
+            //reset actor's sprite 
+            Actor.compSprite.zOffset = 0;
+            Actor.compSprite.scale = 1.0f;
+            //assume standard actor
+            Actor.compSprite.cellSize.X = 16;
+            Actor.compSprite.cellSize.Y = 16;
+            //assume standard search/attack radius
+            Actor.chaseRadius = 16 * 5;
+            Actor.attackRadius = 14;
+        }
 
         public static void SpawnActor(ActorType Type, Vector2 Pos)
         {
@@ -23,11 +48,8 @@ namespace DungeonRun
         public static void SpawnActor(ActorType Type, float X, float Y)
         {   //grab an actor, place at X, Y position
             Actor actor = Functions_Pool.GetActor();
-            if (actor != null)
-            {
-                SetType(actor, Type);
-                Functions_Movement.Teleport(actor.compMove, X, Y);
-            }
+            SetType(actor, Type);
+            Functions_Movement.Teleport(actor.compMove, X, Y);
         }
 
         public static void BottleActor(Actor Actor)
@@ -104,9 +126,7 @@ namespace DungeonRun
             //make dead actor's corpse passable
             Actor.compCollision.blocking = false;
 
-
-            #region Enemy Specific Death Effects
-
+            //Enemy Specific Death Effects
             if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
@@ -128,14 +148,6 @@ namespace DungeonRun
                 Functions_Entity.SpawnEntity(ObjType.ParticleExplosion, Actor);
                 Functions_Pool.Release(Actor);
             }
-
-            #endregion
-
-
-            //sort actor for last time (functionally useless)
-            Functions_Component.SetZdepth(Actor.compSprite);
-
-
         }
 
         public static void SetRewardState(Actor Actor)
@@ -176,29 +188,8 @@ namespace DungeonRun
 
         public static void SetType(Actor Actor, ActorType Type)
         {
+            ResetActor(Actor);
             Actor.type = Type;
-            //bring actor back to life
-            Actor.stateLocked = false;
-            Actor.active = true;
-            Actor.lockCounter = 0;
-            Actor.lockTotal = 0;
-            //reset actor's state and direction
-            Actor.state = ActorState.Idle;
-            Actor.direction = Direction.Down;
-            Actor.compMove.direction = Direction.None;
-            Actor.compMove.grounded = true; //most actors move on ground
-            //reset actor's collisions
-            Actor.compCollision.active = true;
-            Actor.compCollision.blocking = true;
-            SetCollisionRec(Actor);
-            //reset actor's sprite zDepth
-            Actor.compSprite.zOffset = 0;
-            //assume standard actor
-            Actor.compSprite.cellSize.X = 16;
-            Actor.compSprite.cellSize.Y = 16;
-            //assume standard search/attack radius
-            Actor.chaseRadius = 16 * 5;
-            Actor.attackRadius = 14;
 
 
             #region Actor Specific Fields

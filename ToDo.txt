@@ -55,15 +55,6 @@ explosive barrel puzzels
 
 
 
-Blob Corpses
-
-replaced blob corpse (dead) sprite.
-this makes the blob corpse visually different
-from the floor debris scattered around the dungeon.
-
-now blob's corpses don't block hero from walking over them.
-they are still be able to be smashed around tho.
-lots of hilariously gruesome playtesting, with blob corpses.
 
 
 
@@ -72,33 +63,27 @@ lots of hilariously gruesome playtesting, with blob corpses.
 
 
 
+Various Improvements to Actors + Actor System
 
-Create ResetActor(), pull functionality from SetType()'s beginning
-
-
-
+Created ResetActor(), pulled functionality from SetType().
+updated various codepaths to use ResetActor(), including GetActor().
+improved ResetObject() as well.
 
 Modified GetActor() to always return an actor.
 if we run out of actors, the last actor will be returned.
 this simplifies this method, as a null return
 check is no longer needed in calling code.
+removed null checks from SpawnActor().
 
-remove null checks from various code that calls GetActor()
-
-we also need to write a ResetActor() function
-this will ensure that an actor is reset upon Get()
-
-
+removed a completely useless call to sort a dead actor's zDepth.
+which was being done every frame anyway, so it certainly
+didn't need to be called twice.
 
 
 
-**when an actor dies (enemy dies) their corpse should become passable
-that is, the hero should be able to pass thru them
 
 
 
-actors should continue to zDepth sort (this should happen in the update)
-! this should only happen if they've moved (if
 
 
 if a dead blob is moved/hit into a pit, the falling animation plays
@@ -107,7 +92,8 @@ instead the animation should not change (keep corpse sprite)
 
 
 
-
+bosses should always spawn as ActorPool index 2.
+0 = hero. 1 = pet. 2 = boss.
 
 
 

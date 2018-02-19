@@ -29,29 +29,24 @@ namespace DungeonRun
             //only return inactive actors (dead actors became inactive above)
             if (!Pool.actorPool[Pool.actorIndex].active)
             {
-                Pool.actorPool[Pool.actorIndex].active = true;
-                Pool.actorPool[Pool.actorIndex].compSprite.scale = 1.0f;
+                Functions_Actor.ResetActor(Pool.actorPool[Pool.actorIndex]);
                 return Pool.actorPool[Pool.actorIndex];
             }
-            //ran out of inactive/dead actors, return last indexed actor
-            return Pool.actorPool[Pool.actorCount-1];
-            //return null;
+            return Pool.actorPool[Pool.actorCount-1]; //ran out of actors
         }
         
         public static GameObject GetRoomObj()
-        {   //called when building/finishing room, index does not loop
+        {   
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            {
+            {   //found an inactive obj to return
                 if (Pool.roomObjPool[Pool.roomObjCounter].active == false)
-                {   //found an inactive obj to return
-                    //reset obj to default state, hide offscreen, return it
+                {   //reset obj to default state, hide offscreen, return it
                     Functions_GameObject.ResetObject(Pool.roomObjPool[Pool.roomObjCounter]);
                     Pool.roomObjPool[Pool.roomObjCounter].compMove.newPosition.X = -1000;
-                    Pool.roomObjPool[Pool.roomObjCounter].compSprite.scale = 1.0f;
                     return Pool.roomObjPool[Pool.roomObjCounter];
                 }
             }
-            return Pool.roomObjPool[0]; //ran out of roomObjs
+            return Pool.roomObjPool[Pool.roomObjCount-1]; //ran out of roomObjs
         }
 
         public static GameObject GetEntity()
