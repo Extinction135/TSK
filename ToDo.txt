@@ -55,13 +55,25 @@ explosive barrel puzzels
 
 
 
-Pit Interactions++
+refactored Pit vs Actor interations.
+lots of playtesting.
 
-updated Pit interaction with Actors, such that dead
-actors will no longer be set into a hit state as they
-collide with and fall into a pit. it made no sense for
-a dead enemy to suddenly spring back to life as they 
-fell into a pit. playtested, working as expected.
+refactored InteractObject() to have clearer parameter names.
+
+
+
+
+
+InteractObject() should be split into:
+InteractEntities() & InteractRoomObjs()
+
+this will make it clearer what ObjA is and what ObjB is.
+ObjA can be anything. ObjB is either an Entity or RoomObj.
+and this split of the method works with the current setup as well.
+
+
+
+
 
 
 
@@ -73,6 +85,11 @@ fell into a pit. playtested, working as expected.
 
 bosses should always spawn as ActorPool index 2.
 0 = hero. 1 = pet. 2 = boss.
+this is to ensure we never accidentally use the last actor pool index,
+which will be rapidly recycled in the event we run out of available
+actors to Get().
+
+
 
 
 
