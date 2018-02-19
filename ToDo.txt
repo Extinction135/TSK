@@ -55,39 +55,18 @@ explosive barrel puzzels
 
 
 
+Pit Interactions++
+
+updated Pit interaction with Actors, such that dead
+actors will no longer be set into a hit state as they
+collide with and fall into a pit. it made no sense for
+a dead enemy to suddenly spring back to life as they 
+fell into a pit. playtested, working as expected.
 
 
 
 
 
-
-
-
-Various Improvements to Actors + Actor System
-
-Created ResetActor(), pulled functionality from SetType().
-updated various codepaths to use ResetActor(), including GetActor().
-improved ResetObject() as well.
-
-Modified GetActor() to always return an actor.
-if we run out of actors, the last actor will be returned.
-this simplifies this method, as a null return
-check is no longer needed in calling code.
-removed null checks from SpawnActor().
-
-removed a completely useless call to sort a dead actor's zDepth.
-which was being done every frame anyway, so it certainly
-didn't need to be called twice.
-
-
-
-
-
-
-
-
-if a dead blob is moved/hit into a pit, the falling animation plays
-instead the animation should not change (keep corpse sprite)
 
 
 

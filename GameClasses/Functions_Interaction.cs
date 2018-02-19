@@ -302,8 +302,9 @@ namespace DungeonRun
                         Actor.compMove.newPosition = Actor.compMove.position;
                         Functions_Component.Align(Actor.compMove, Actor.compSprite, Actor.compCollision);
 
-                        //lock actor into hit state, prevent movement
-                        Actor.state = ActorState.Hit;
+                        //dead actors simply stay dead as they fall into a pit
+                        //else actors are set into a hit state as they fall
+                        if (Actor.state != ActorState.Dead) { Actor.state = ActorState.Hit; }
                         Actor.stateLocked = true;
                         Actor.lockCounter = 0;
                         Actor.lockTotal = 45;
