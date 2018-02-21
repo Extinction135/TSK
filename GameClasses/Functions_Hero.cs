@@ -505,24 +505,43 @@ namespace DungeonRun
             Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
             Functions_Component.Align(carryingObj);
 
+
+
+
+
+
+            //this is basically a smaller version of CheckInteractions()
+            //but only targeting the roomObj list
+            //and it's likely in the future we'll need to loop the roomObjs
+            //for other interactions, so we should pull this out and make it
+            //into a method that takes an object and co
             //check what roomObj pot collided with, handle interaction
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //check all roomObjs against dropped Pot obj
-                if (carryingObj == Pool.roomObjPool[i]) { i++; } //skip checking obj vs itself
                 if (Pool.roomObjPool[i].active)
-                {   //handle Pot vs RoomObj interactions
+                {
+                    if (carryingObj == Pool.roomObjPool[i]) { continue; } //skip self
+                    //handle Pot vs RoomObj interactions
                     if (Pool.roomObjPool[i].compCollision.rec.Intersects(carryingObj.compCollision.rec))
-                    {   //Interactive Events overtime must be shortened to 1 frame
+                    {   
+                        //here we're shortening the pit animation for the dropped pot
+                        //otherwise it would hang out for a while, which feels laggy
                         if (Pool.roomObjPool[i].type == ObjType.PitAnimated)
                         {   //immediately release the pot, play the pit splash fx
                             Functions_Pool.Release(carryingObj);
                             Functions_RoomObject.PlayPitFx(Pool.roomObjPool[i]);
                         }
-                        //InteractObject() handles the rest of the immediate events
-                        Functions_Interaction.InteractObject(carryingObj, Pool.roomObjPool[i]);
+                        
+                        //finally, handle the interaction with the room object
+                        Functions_Interaction.InteractRoomObj(Pool.roomObjPool[i], carryingObj);
                     }
                 }
             }
+
+
+
+
+
 
             carryingObj = null; //release obj ref
         }

@@ -55,10 +55,8 @@ explosive barrel puzzels
 
 
 
-refactored Pit vs Actor interations.
-lots of playtesting.
 
-refactored InteractObject() to have clearer parameter names.
+
 
 
 
@@ -70,6 +68,55 @@ InteractEntities() & InteractRoomObjs()
 this will make it clearer what ObjA is and what ObjB is.
 ObjA can be anything. ObjB is either an Entity or RoomObj.
 and this split of the method works with the current setup as well.
+
+
+
+
+
+Split InteractObject() and Refactoring
+
+Why is this being done? To simplify interactions.
+currently its a many to many comparison, which is
+really, really bad in this case.
+
+split InteractObject() into:
+InteractEntities() and InteractRoomObj()
+which vastly simplifies the comparison check.
+
+also, found a way to speed up CheckInteractions()
+which involves simply checking to see if the
+entity or roomObj is active or not.
+
+which led to additional optimizations for the
+new collision and interaction systems.
+which led to a refactoring.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+separate debug info for collisions AND interactions
+i'd like to see how many collisions & interactions averaged over 60 frames
+part of the beta debug info
+
+
+
+
+
+
+
+
+
 
 
 

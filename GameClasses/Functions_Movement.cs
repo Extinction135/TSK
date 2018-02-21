@@ -75,5 +75,12 @@ namespace DungeonRun
         {   //align to 16 pixel grid
             return new Vector2(16 * (X / 16) + 8, 16 * (Y / 16) + 8);
         }
+
+        public static void RevertPosition(ComponentMovement compMove)
+        {   //revert to previous position
+            compMove.newPosition.X = compMove.position.X;
+            compMove.newPosition.Y = compMove.position.Y;
+        }
+
     }
 }

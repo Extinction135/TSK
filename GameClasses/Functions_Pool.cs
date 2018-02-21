@@ -146,7 +146,7 @@ namespace DungeonRun
         }
 
 
-        //this method is basically unoptimized, and could be drastically improved
+
         public static void UpdateActors()
         {
             for (i = 0; i < Pool.actorCount; i++)
@@ -207,7 +207,6 @@ namespace DungeonRun
             }
         }
 
-        //this one too
         public static void UpdateGameObjList(List<GameObject> ObjList, Boolean isRoomObj)
         {
             listCount = ObjList.Count();
@@ -254,17 +253,35 @@ namespace DungeonRun
 
                     #region Check Interactions, Resolve Movement
 
-                    
-                    //only moving objs, and special objs get interactions
-                    if (ObjList[i].compMove.moving
-                        || ObjList[i].group == ObjGroup.Projectile //some projectiles dont move
-                        || ObjList[i].type == ObjType.ConveyorBeltOn //belts are stationary
-                        )
-                    {   //handle interactions, align components post-interaction
-                        Functions_Interaction.CheckInteractions(ObjList[i], true, true);
-                        Functions_Component.Align(ObjList[i]);
+                    if (isRoomObj) //must be roomObj, entities are passively interacted with
+                    {   //first, any moving roomObj gets interaction checks
+                        if (ObjList[i].compMove.moving)
+                        {  
+                            //handle interactions, align components post-interaction
+                            Functions_Interaction.CheckInteractions(ObjList[i]);
+                            Functions_Component.Align(ObjList[i]);
+                        }
+                        //second, specific projectiles get interaction checks
+                        else if(ObjList[i].group == ObjGroup.Projectile) //some projectiles dont move
+                        {
+                            //the above projectile check is SUPER SLOPPY
+                            //there are projectiles that will slip thru, like debris
+                            //these shouldn't be checked at all
+
+                            //handle interactions, align components post-interaction
+                            Functions_Interaction.CheckInteractions(ObjList[i]);
+                            Functions_Component.Align(ObjList[i]);
+                        }
+                        //third, specific roomObjs ALWAYS get interaction checks
+                        else if(ObjList[i].type == ObjType.ConveyorBeltOn)
+                        {
+                            //handle interactions, align components post-interaction
+                            Functions_Interaction.CheckInteractions(ObjList[i]);
+                            Functions_Component.Align(ObjList[i]);
+                        }
                     }
-                    
+
+                    //this completes all roomObj / entity interactions
 
                     #endregion
 

@@ -258,7 +258,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Give Fireballs an Initial Push 
+            #region Push Fireballs (they are flying thru the air)
 
             //bombs are pushed, and slide into a resting position
             else if (Type == ObjType.ProjectileFireball)
@@ -296,7 +296,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Give Bombs an Initial Push (slide them)
+            #region Push Bombs (sliding)
 
             //bombs are pushed, and slide into a resting position
             else if (Type == ObjType.ProjectileBomb)
@@ -305,7 +305,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Give Pots an Initial Push (throw them)
+            #region Push Pot Projectiles (being thrown)
 
             else if (Type == ObjType.ProjectilePot)
             {   //spawn a shadow for the Pot Projectile
@@ -349,6 +349,7 @@ namespace DungeonRun
 
 
             Functions_Component.Align(obj); //align the entity upon birth
+            obj.compCollision.blocking = false; //entities interact, never block
         }
 
         public static void HandleBirthEvent(GameObject Entity)

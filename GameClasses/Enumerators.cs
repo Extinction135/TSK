@@ -105,9 +105,9 @@ namespace DungeonRun
         //ENTITIES
         //Pickups - collide with hero
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
-        //Projectiles -items
+        //Projectiles - items
         ProjectileBomb, ProjectileFireball,
-        //Projectiles -weapons
+        //Projectiles - weapons
         ProjectileSword, ProjectileArrow, ProjectileNet,
         //Projectiles - object
         ProjectileExplosion,

@@ -132,16 +132,7 @@ namespace DungeonRun
             }
         }
 
-        public static void PlayPitFx(GameObject Pit)
-        {   //play splash particle effect
-            Assets.Play(Assets.sfxSplash);
-            Functions_Entity.SpawnEntity(
-                ObjType.ParticleSplash,
-                Pit.compSprite.position.X,
-                Pit.compSprite.position.Y - 4,
-                Direction.None);
-        }
-
+        
         public static void LightTorch(GameObject UnlitTorch)
         {   //light the unlit torch
             Functions_GameObject.SetType(UnlitTorch, ObjType.TorchLit);
@@ -277,6 +268,56 @@ namespace DungeonRun
             }
         }
 
+
+
+
+
+
+        public static void DragIntoPit(GameObject Object, GameObject Pit)
+        {   //obj must be grounded
+            if (Object.compMove.grounded)
+            {
+                //check to see if obj started falling, or has been falling
+                if (Object.compSprite.scale == 1.0f) //begin falling state
+                {   //dont play falling sound if entity is thrown pot (falling sound was just played)
+                    //if (ObjA.type != ObjType.ProjectilePot) { Assets.Play(Assets.sfxActorFall); }
+                    Assets.Play(Assets.sfxActorFall); //this should be objFall sfx
+
+                    //we should use a throw sound fx that is diff than falling sound
+                }
+
+                //scale obj down if it's colliding with a pit
+                Object.compSprite.scale -= 0.03f;
+
+                //slightly pull obj towards pit's center
+                Object.compMove.magnitude = (Pit.compSprite.position - Object.compSprite.position) * 0.25f;
+
+                //when obj drops below a threshold scale, release it
+                if (Object.compSprite.scale < 0.8f)
+                {
+                    Functions_Pool.Release(Object);
+                    PlayPitFx(Pit);
+                }
+            }
+        }
+
+        public static void PlayPitFx(GameObject Pit)
+        {   //play splash particle effect
+            Assets.Play(Assets.sfxSplash);
+            Functions_Entity.SpawnEntity(
+                ObjType.ParticleSplash,
+                Pit.compSprite.position.X,
+                Pit.compSprite.position.Y - 4,
+                Direction.None);
+        }
+
+
+
+
+
+
+
+
         public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
         {   //bounce opposite direction
             compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
@@ -334,7 +375,6 @@ namespace DungeonRun
                 }
             }
         }
-
 
 
         //decorates a door on left/right or top/bottom
