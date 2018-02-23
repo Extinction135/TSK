@@ -258,6 +258,8 @@ namespace DungeonRun
 
         public static ComponentText frametime;
         public static ComponentText autosaveText;
+        public static ComponentText message; //used for release debugging
+
         public static int autosaveCounter = 100;
         public static string autosaving = "autosaving...";
 
@@ -316,7 +318,8 @@ namespace DungeonRun
                 new Vector2(0, 0), Assets.colorScheme.textLight);
             autosaveText = new ComponentText(Assets.font, "autosaving",
                 new Vector2(0, 0), Assets.colorScheme.textLight);
-
+            message = new ComponentText(Assets.font, "message",
+                new Vector2(0, 0), Assets.colorScheme.textLight);
             //move the entire worldUI
             Functions_WorldUI.Move(50, 50);
         }

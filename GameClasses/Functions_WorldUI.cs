@@ -184,11 +184,12 @@ namespace DungeonRun
             Functions_Draw.Draw(WorldUI.autosaveText);
             if (Flags.DrawUDT)
             {
-                WorldUI.frametime.text = "\nC:" + Pool.collisionsCount;
+                WorldUI.frametime.text = "C:" + Pool.collisionsCount;
                 WorldUI.frametime.text += "\nU:" + DebugInfo.updateAvg;
                 WorldUI.frametime.text += "\nD:" + DebugInfo.drawAvg;
                 WorldUI.frametime.text += "\nT:" + Timing.totalTime.Milliseconds + " ms";
                 Functions_Draw.Draw(WorldUI.frametime);
+                Functions_Draw.Draw(WorldUI.message);
             }
         }
 
@@ -227,6 +228,9 @@ namespace DungeonRun
             WorldUI.frametime.position.Y = 10;
             WorldUI.autosaveText.position.X = 54;
             WorldUI.autosaveText.position.Y = 81;
+            //place various msg output text comp
+            WorldUI.message.position.X = 54;
+            WorldUI.message.position.Y = WorldUI.frametime.position.Y;
         }
 
         public static void MoveBkg(List<ComponentSprite> bkgList, int Xpos, int Ypos)

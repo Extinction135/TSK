@@ -259,19 +259,20 @@ namespace DungeonRun
         public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
         {   //this handles the most common room objs
             //hitDirection is used to push some objects in the direction they were hit
-            if (RoomObj.type == ObjType.SwitchBlockBtn) { FlipSwitchBlocks(RoomObj); }
-            else if (RoomObj.type == ObjType.Pot) { DestroyObject(RoomObj, true, true); }
+            if (RoomObj.type == ObjType.Pot)
+            {
+                DestroyObject(RoomObj, true, true);
+            }
             else if (RoomObj.type == ObjType.Barrel)
             {
                 RoomObj.compMove.direction = HitDirection; //pass hitDirection
                 DestroyBarrel(RoomObj);
             }
+            else if(RoomObj.type == ObjType.SwitchBlockBtn)
+            {
+                FlipSwitchBlocks(RoomObj);
+            }
         }
-
-
-
-
-
 
         public static void DragIntoPit(GameObject Object, GameObject Pit)
         {   //obj must be grounded
@@ -310,13 +311,6 @@ namespace DungeonRun
                 Pit.compSprite.position.Y - 4,
                 Direction.None);
         }
-
-
-
-
-
-
-
 
         public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
         {   //bounce opposite direction

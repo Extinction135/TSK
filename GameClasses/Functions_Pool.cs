@@ -139,9 +139,9 @@ namespace DungeonRun
         public static void Update()
         {
             Pool.collisionsCount = 0;
-            UpdateActors();
-            UpdateGameObjList(Pool.entityPool, false);
             UpdateGameObjList(Pool.roomObjPool, true);
+            UpdateGameObjList(Pool.entityPool, false);
+            UpdateActors();
             Functions_Hero.Update();
         }
 
@@ -225,8 +225,7 @@ namespace DungeonRun
                     
 
                     #region Check Collisions, Resolve Movement
-
-
+                    
                     if(ObjList[i].compMove.moving)
                     {   //project and resolve legal movement
                         Functions_Movement.ProjectMovement(ObjList[i].compMove);
@@ -253,28 +252,28 @@ namespace DungeonRun
 
                     #region Check Interactions, Resolve Movement
 
-                    if (isRoomObj) //must be roomObj, entities are passively interacted with
-                    {   //first, any moving roomObj gets interaction checks
-                        if (ObjList[i].compMove.moving)
-                        {  
-                            //handle interactions, align components post-interaction
+                    if (isRoomObj) 
+                    {   //aany moving roomObj gets interaction checks
+                        //and specific roomObjs ALWAYS get interaction checks
+                        if (
+                            ObjList[i].compMove.moving
+                            || ObjList[i].type == ObjType.ConveyorBeltOn)
+                        {   //handle interactions, align components post-interaction
                             Functions_Interaction.CheckInteractions(ObjList[i]);
                             Functions_Component.Align(ObjList[i]);
                         }
-                        //second, specific projectiles get interaction checks
-                        else if(ObjList[i].group == ObjGroup.Projectile) //some projectiles dont move
+                    }
+                    else
+                    {   //this is an entity
+                        //only interaction check entity projectiles
+                        if (ObjList[i].group == ObjGroup.Projectile) 
                         {
                             //the above projectile check is SUPER SLOPPY
                             //there are projectiles that will slip thru, like debris
                             //these shouldn't be checked at all
+                            //however, its done this way cause some projectiles dont move
+                            //and it's a cheaper int check than numerous obj.type checks
 
-                            //handle interactions, align components post-interaction
-                            Functions_Interaction.CheckInteractions(ObjList[i]);
-                            Functions_Component.Align(ObjList[i]);
-                        }
-                        //third, specific roomObjs ALWAYS get interaction checks
-                        else if(ObjList[i].type == ObjType.ConveyorBeltOn)
-                        {
                             //handle interactions, align components post-interaction
                             Functions_Interaction.CheckInteractions(ObjList[i]);
                             Functions_Component.Align(ObjList[i]);

@@ -36,35 +36,21 @@ namespace DungeonRun
             }
         }
 
-        public static void CheckInteractions(GameObject roomObj)
-        {
-            //loop thru roomObj list, check overlaps, pass to Interact()
+
+        public static void CheckInteractions(GameObject Object)
+        {   //this is ANY Object against RoomObj list
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
                 {
-                    if (roomObj.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    if (Object.compCollision.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     {   //perform self-check to prevent self overlap interaction
-                        if (roomObj != Pool.roomObjPool[i]) { InteractRoomObj(Pool.roomObjPool[i], roomObj); }
+                        if (Object != Pool.roomObjPool[i]) { InteractRoomObj(Pool.roomObjPool[i], Object); }
                     }
                 }
             }
-            //loop thru entity list, check overlaps, pass to Interact()
-            for (i = 0; i < Pool.entityCount; i++)
-            {
-                if (Pool.entityPool[i].active)
-                {
-                    if (roomObj.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
-                    { InteractEntities(Pool.entityPool[i], roomObj); }
-                }
-            }
-
-            /*
-            Debug.WriteLine("" + 
-                Pool.entityPool[i].type + " vs " + roomObj.type + 
-                " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
-            */
         }
+
 
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //Obj can be Entity or RoomObj, check for hero state first
@@ -372,164 +358,165 @@ namespace DungeonRun
         }
 
 
-
-
-
-
-
-        public static void InteractEntities(GameObject Entity, GameObject RoomObj)
+        public static void InteractRoomObj(GameObject RoomObj, GameObject Object)
         {
+            //show me the interation types
+            Debug.WriteLine("" + RoomObj.type + " vs " + Object.type +
+                " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
 
-
-            #region Blocking RoomObjects
 
             if (RoomObj.compCollision.blocking)
-            {
+            {   //Handle Projectile vs Blocking RoomObj 
+                if (Object.group == ObjGroup.Projectile)
+                {
 
-                #region Arrow
+                    #region Arrow
 
-                if (Entity.type == ObjType.ProjectileArrow)
-                {   //arrows trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
-                    //arrows die upon blocking collision
-                    Functions_GameObject.Kill(Entity);
-                }
+                    if (Object.type == ObjType.ProjectileArrow)
+                    {   //arrows trigger common obj interactions
+                        Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        //arrows die upon blocking collision
+                        Functions_GameObject.Kill(Object);
+                    }
 
-                #endregion
-
-
-                #region Bomb
-
-                else if (Entity.type == ObjType.ProjectileBomb)
-                {   //stop bombs from moving thru blocking objects
-                    Functions_Movement.StopMovement(Entity.compMove);
-                }
-
-                #endregion
+                    #endregion
 
 
-                #region Explosion
+                    #region Bomb
 
-                else if (Entity.type == ObjType.ProjectileExplosion)
-                {   //explosions alter certain roomObjects
-                    if (Entity.lifeCounter == 1)
-                    {   //check these collisions only once
+                    else if (Object.type == ObjType.ProjectileBomb)
+                    {   //stop bombs from moving thru blocking objects
+                        Functions_Movement.StopMovement(Object.compMove);
+                    }
+
+                    #endregion
+
+
+                    #region Explosion
+
+                    else if (Object.type == ObjType.ProjectileExplosion)
+                    {   //explosions alter certain roomObjects
+                        if (Object.lifeCounter == 1)
+                        {   //perform these interactions only once
+                            if (RoomObj.type == ObjType.DoorBombable)
+                            { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Object); }
+                            else if (RoomObj.type == ObjType.BossStatue)
+                            { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
+                            //explosions also trigger common obj interactions
+                            Functions_RoomObject.HandleCommon(RoomObj,
+                                //get the direction towards the roomObj from the explosion
+                                Functions_Direction.GetOppositeCardinal(
+                                    RoomObj.compSprite.position,
+                                    Object.compSprite.position)
+                                ); //this direction should be explosion pos vs. roomObj pos
+                        }
+                    }
+
+                    #endregion
+
+
+                    #region Fireball
+
+                    else if (Object.type == ObjType.ProjectileFireball)
+                    {   //fireballs alter certain roomObjects
                         if (RoomObj.type == ObjType.DoorBombable)
-                        { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Entity); }
+                        { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Object); }
                         else if (RoomObj.type == ObjType.BossStatue)
                         { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                        //explosions also trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj,
-                            //get the direction towards the roomObj from the explosion
-                            Functions_Direction.GetOppositeCardinal(
-                                RoomObj.compSprite.position,
-                                Entity.compSprite.position)
-                            ); //this direction should be explosion pos vs. roomObj pos
+                        else if (RoomObj.type == ObjType.TorchUnlit)
+                        { Functions_RoomObject.LightTorch(RoomObj); }
+                        //fireballs trigger common obj interactions
+                        Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        //fireballs die upon blocking collision
+                        Functions_GameObject.Kill(Object);
                     }
-                }
 
-                #endregion
-
-
-                #region Fireball
-
-                else if (Entity.type == ObjType.ProjectileFireball)
-                {   //fireballs alter certain roomObjects
-                    if (RoomObj.type == ObjType.DoorBombable)
-                    { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Entity); }
-                    else if (RoomObj.type == ObjType.BossStatue)
-                    { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                    else if (RoomObj.type == ObjType.TorchUnlit)
-                    { Functions_RoomObject.LightTorch(RoomObj); }
-                    //fireballs trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
-                    //fireballs die upon blocking collision
-                    Functions_GameObject.Kill(Entity);
-                }
-
-                #endregion
+                    #endregion
 
 
-                #region SpikeBlock
+                    #region SpikeBlock
 
-                else if (Entity.type == ObjType.ProjectileSpikeBlock)
-                {
-                    Functions_RoomObject.BounceSpikeBlock(Entity);
-                    //spikeblocks trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
-                }
-
-                #endregion
-
-
-                #region Sword
-
-                else if (Entity.type == ObjType.ProjectileSword)
-                {   //sword swipe causes soundfx to blocking objects
-                    if (Entity.lifeCounter == 1) //these events happen at start of sword swing
-                    {   //if sword projectile is brand new, play collision sfx
-                        if (RoomObj.type == ObjType.DoorBombable)
-                        { Assets.Play(Assets.sfxTapHollow); } //play hollow
-                        else { Assets.Play(Assets.sfxTapMetallic); }
-                        //spawn a hit sparkle particle on sword
-                        Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Entity);
+                    else if (Object.type == ObjType.ProjectileSpikeBlock)
+                    {
+                        Functions_RoomObject.BounceSpikeBlock(Object);
+                        //spikeblocks trigger common obj interactions
+                        Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
                     }
-                    else if (Entity.lifeCounter == 4)
-                    {   //these interactions happen 'mid swing'
-                        //swords trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
+
+                    #endregion
+
+
+                    #region Sword
+
+                    else if (Object.type == ObjType.ProjectileSword)
+                    {   //sword swipe causes soundfx to blocking objects
+                        if (Object.lifeCounter == 1) //these events happen at start of sword swing
+                        {   //if sword projectile is brand new, play collision sfx
+                            if (RoomObj.type == ObjType.DoorBombable)
+                            { Assets.Play(Assets.sfxTapHollow); } //play hollow
+                            else { Assets.Play(Assets.sfxTapMetallic); }
+                            //spawn a hit sparkle particle on sword
+                            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Object);
+                        }
+                        else if (Object.lifeCounter == 4)
+                        {   //these interactions happen 'mid swing'
+                            //swords trigger common obj interactions
+                            Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        }
                     }
+
+                    #endregion
+
+
+                    #region Rock Debris
+
+                    else if (Object.type == ObjType.ProjectileDebrisRock)
+                    {   //revert to previous position (treat as a blocking interaction)
+                        //Entity.compMove.newPosition.X = Entity.compMove.position.X;
+                        //Entity.compMove.newPosition.Y = Entity.compMove.position.Y;
+                    }
+
+                    #endregion
+
+
+                    #region Thrown / Dropped Pot (ProjectilePot & Pot ObjB)
+
+                    else if (Object.type == ObjType.ProjectilePot || Object.type == ObjType.Pot)
+                    {   //destroy the Pot object
+                        Functions_RoomObject.DestroyObject(Object, true, true);
+                        //thrown / dropped pots trigger common obj interactions
+                        Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                    }
+
+                    #endregion
+
+
+                    #region ExplodingBarrel
+
+                    else if (Object.type == ObjType.ProjectileExplodingBarrel)
+                    {   //stop barrels from moving thru blocking objects
+                        Functions_Movement.StopMovement(Object.compMove);
+                    }
+
+                    #endregion
+
                 }
-
-                #endregion
-
-
-                #region Rock Debris
-
-                else if (Entity.type == ObjType.ProjectileDebrisRock)
-                {   //revert to previous position (treat as a blocking interaction)
-                    //Entity.compMove.newPosition.X = Entity.compMove.position.X;
-                    //Entity.compMove.newPosition.Y = Entity.compMove.position.Y;
-                }
-
-                #endregion
-
-
-                #region Thrown / Dropped Pot (ProjectilePot & Pot ObjB)
-
-                else if (Entity.type == ObjType.ProjectilePot || Entity.type == ObjType.Pot)
-                {   //destroy the Pot object
-                    Functions_RoomObject.DestroyObject(Entity, true, true);
-                    //thrown / dropped pots trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj, Entity.compMove.direction);
-                }
-
-                #endregion
-
-
-                #region ExplodingBarrel
-
-                else if (Entity.type == ObjType.ProjectileExplodingBarrel)
-                {   //stop barrels from moving thru blocking objects
-                    Functions_Movement.StopMovement(Entity.compMove);
-                }
-
-                #endregion
-
+                //there are no blocking obj vs obj interactions
+                //an interaction is an overlap not handled by collision system
+                //two blocking objs could never overlap can interact
             }
-
-            #endregion
-
-
-            else //these are interactions with non-blocking roomObjs
+            else
             {
+                //Handle Object vs NonBlocking RoomObj
+                //this is entity/roomObj vs non-block obj
 
-                #region Conveyor Belt
-                
+
+                #region ConveyorBelt
+
                 if (RoomObj.type == ObjType.ConveyorBeltOn)
-                {
-                    //entities do not interact with conveyor belts
-                    //but specific ones could, if needed, right here
+                {   //if obj is moveable and on ground, move it
+                    if (Object.compMove.moveable && Object.compMove.grounded)
+                    { Functions_RoomObject.ConveyorBeltPush(Object.compMove, RoomObj); }
                 }
 
                 #endregion
@@ -539,11 +526,11 @@ namespace DungeonRun
 
                 else if (RoomObj.type == ObjType.DoorTrap)
                 {   //prevent obj from passing thru door
-                    Functions_Movement.RevertPosition(Entity.compMove);
-                    //kill specific entities
-                    if (Entity.type == ObjType.ProjectileFireball
-                        || Entity.type == ObjType.ProjectileArrow)
-                    { Functions_GameObject.Kill(Entity); }
+                    Functions_Movement.RevertPosition(Object.compMove);
+                    //kill specific projectiles / objects
+                    if (Object.type == ObjType.ProjectileFireball
+                        || Object.type == ObjType.ProjectileArrow)
+                    { Functions_GameObject.Kill(Object); }
                 }
 
                 #endregion
@@ -551,21 +538,30 @@ namespace DungeonRun
 
                 #region Bumper
 
-                else if(RoomObj.type == ObjType.Bumper)
-                {   //some projectiles cannot be bounced off bumper
-                    if (Entity.type == ObjType.ProjectileDebrisRock
-                        || Entity.type == ObjType.ProjectileExplosion
-                        || Entity.type == ObjType.ProjectileNet
-                        || Entity.type == ObjType.ProjectileShadowSm
-                        || Entity.type == ObjType.ProjectileSword
+                else if (RoomObj.type == ObjType.Bumper)
+                {
+                    //specific projectiles cannot be bounced off bumper
+                    if (Object.type == ObjType.ProjectileDebrisRock
+                        || Object.type == ObjType.ProjectileExplosion
+                        || Object.type == ObjType.ProjectileNet
+                        || Object.type == ObjType.ProjectileShadowSm
+                        || Object.type == ObjType.ProjectileSword
                         )
                     { return; }
-                    //the rest of the projectiles are bounced
-                    Functions_RoomObject.BounceOffBumper(Entity.compMove, RoomObj);
-                    //rotate the bounced projectiles
-                    Entity.direction = Entity.compMove.direction;
-                    Functions_GameObject.SetRotation(Entity);
+                    //one of the two objects must be moving,
+                    //in order to trigger a bounce interaction
+                    if (!RoomObj.compMove.moving & !Object.compMove.moving)
+                    { return; }
+                    //all other objects are bounced
+                    Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj);
+                    //rotate bounced projectiles
+                    if (Object.group == ObjGroup.Projectile)
+                    {
+                        Object.direction = Object.compMove.direction;
+                        Functions_GameObject.SetRotation(Object);
+                    }
                 }
+
                 #endregion
 
 
@@ -573,61 +569,20 @@ namespace DungeonRun
 
                 else if (RoomObj.type == ObjType.PitAnimated)
                 {   //check to see if we should ground any thrown pot projectile
-                    if (Entity.type == ObjType.ProjectilePot)
+                    if (Object.type == ObjType.ProjectilePot)
                     {   //if this is the last frame of the projectile pot, ground it
-                        if (Entity.lifeCounter > Entity.lifetime - 5) //dont let it die
-                        { Entity.compMove.grounded = true; Entity.lifeCounter = 3; }
+                        if (Object.lifeCounter > Object.lifetime - 5) //dont let it die
+                        { Object.compMove.grounded = true; Object.lifeCounter = 3; }
                     }
-                    //drag the obj into the pit
-                    Functions_RoomObject.DragIntoPit(Entity, RoomObj);
+                    //drag any object into the pit
+                    Functions_RoomObject.DragIntoPit(Object, RoomObj);
                 }
 
                 #endregion
 
-
             }
         }
 
-        public static void InteractRoomObj(GameObject PassiveRoomObj, GameObject RoomObj)
-        {
 
-            #region ConveyorBelt
-
-            if (RoomObj.type == ObjType.ConveyorBeltOn)
-            {   //if obj is moveable and on ground, move it
-                if (PassiveRoomObj.compMove.moveable && PassiveRoomObj.compMove.grounded)
-                { Functions_RoomObject.ConveyorBeltPush(PassiveRoomObj.compMove, RoomObj); }
-            }
-
-            #endregion
-
-
-            #region Trap Door
-
-            if (RoomObj.type == ObjType.DoorTrap)
-            {   //prevent obj from passing thru door
-                Functions_Movement.RevertPosition(PassiveRoomObj.compMove);
-            }
-
-            #endregion
-
-
-            #region Bumper
-
-            else if (RoomObj.type == ObjType.Bumper)
-            { Functions_RoomObject.BounceOffBumper(PassiveRoomObj.compMove, RoomObj); }
-
-            #endregion
-
-
-            #region Pits
-
-            else if (RoomObj.type == ObjType.PitAnimated)
-            { Functions_RoomObject.DragIntoPit(PassiveRoomObj, RoomObj); }
-
-            #endregion
-
-
-        }
     }
 }

@@ -55,41 +55,21 @@ explosive barrel puzzels
 
 
 
+Improve Debug
+
+added additional component text to world ui.
+this comp is simply to display random debug info,
+when needed, and usually for per frame codepaths.
 
 
 
+Fix Entities
 
-
-
-
-InteractObject() should be split into:
-InteractEntities() & InteractRoomObjs()
-
-this will make it clearer what ObjA is and what ObjB is.
-ObjA can be anything. ObjB is either an Entity or RoomObj.
-and this split of the method works with the current setup as well.
-
-
-
-
-
-Split InteractObject() and Refactoring
-
-Why is this being done? To simplify interactions.
-currently its a many to many comparison, which is
-really, really bad in this case.
-
-split InteractObject() into:
-InteractEntities() and InteractRoomObj()
-which vastly simplifies the comparison check.
-
-also, found a way to speed up CheckInteractions()
-which involves simply checking to see if the
-entity or roomObj is active or not.
-
-which led to additional optimizations for the
-new collision and interaction systems.
-which led to a refactoring.
+using improved worldUI debug,
+refactored UpdateGameObjList() to loop passed entity list
+checking interactions for any projectile objects.
+this fixes a major bug where only moving roomObjs or
+conveyor belts were being interaction checked.
 
 
 
@@ -98,6 +78,21 @@ which led to a refactoring.
 
 
 
+
+
+create a suite of testing rooms specifically designed to test one thing about the game
+like an interaction
+prefix these rooms with Test_
+this way it's easier to find rooms to test things that have been changed.
+
+
+
+
+
+
+
+we also need to figure out what entity is being created
+because we have a random rogue entity being created RANDOMly acorss frames without any input or actors/objs
 
 
 

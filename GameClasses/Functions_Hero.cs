@@ -286,7 +286,7 @@ namespace DungeonRun
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.Down);
-                Assets.Play(Assets.sfxChestOpen); //sounds like picking something up
+                Assets.Play(Assets.sfxHeartPickup); //OG LttP
             }
             else if (Obj.type == ObjType.TorchUnlit)
             {   //light any unlit torch  //git lit *
