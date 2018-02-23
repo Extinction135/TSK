@@ -361,8 +361,8 @@ namespace DungeonRun
         public static void InteractRoomObj(GameObject RoomObj, GameObject Object)
         {
             //show me the interation types
-            Debug.WriteLine("" + RoomObj.type + " vs " + Object.type +
-                " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
+            //Debug.WriteLine("" + RoomObj.type + " vs " + Object.type +
+            //    " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
 
 
             if (RoomObj.compCollision.blocking)
@@ -500,87 +500,99 @@ namespace DungeonRun
 
                     #endregion
 
+                    return; //projectile interactions complete
                 }
                 //there are no blocking obj vs obj interactions
                 //an interaction is an overlap not handled by collision system
                 //two blocking objs could never overlap can interact
             }
-            else
-            {
-                //Handle Object vs NonBlocking RoomObj
-                //this is entity/roomObj vs non-block obj
 
 
-                #region ConveyorBelt
-
-                if (RoomObj.type == ObjType.ConveyorBeltOn)
-                {   //if obj is moveable and on ground, move it
-                    if (Object.compMove.moveable && Object.compMove.grounded)
-                    { Functions_RoomObject.ConveyorBeltPush(Object.compMove, RoomObj); }
-                }
-
-                #endregion
+            
+            
+            //Handle Object vs NonBlocking RoomObj
+            //this is entity/roomObj vs non-block obj
 
 
-                #region Trap Door
+            #region ConveyorBelt
 
-                else if (RoomObj.type == ObjType.DoorTrap)
-                {   //prevent obj from passing thru door
-                    Functions_Movement.RevertPosition(Object.compMove);
-                    //kill specific projectiles / objects
-                    if (Object.type == ObjType.ProjectileFireball
-                        || Object.type == ObjType.ProjectileArrow)
-                    { Functions_GameObject.Kill(Object); }
-                }
-
-                #endregion
-
-
-                #region Bumper
-
-                else if (RoomObj.type == ObjType.Bumper)
-                {
-                    //specific projectiles cannot be bounced off bumper
-                    if (Object.type == ObjType.ProjectileDebrisRock
-                        || Object.type == ObjType.ProjectileExplosion
-                        || Object.type == ObjType.ProjectileNet
-                        || Object.type == ObjType.ProjectileShadowSm
-                        || Object.type == ObjType.ProjectileSword
-                        )
-                    { return; }
-                    //one of the two objects must be moving,
-                    //in order to trigger a bounce interaction
-                    if (!RoomObj.compMove.moving & !Object.compMove.moving)
-                    { return; }
-                    //all other objects are bounced
-                    Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj);
-                    //rotate bounced projectiles
-                    if (Object.group == ObjGroup.Projectile)
-                    {
-                        Object.direction = Object.compMove.direction;
-                        Functions_GameObject.SetRotation(Object);
-                    }
-                }
-
-                #endregion
-
-
-                #region Pits
-
-                else if (RoomObj.type == ObjType.PitAnimated)
-                {   //check to see if we should ground any thrown pot projectile
-                    if (Object.type == ObjType.ProjectilePot)
-                    {   //if this is the last frame of the projectile pot, ground it
-                        if (Object.lifeCounter > Object.lifetime - 5) //dont let it die
-                        { Object.compMove.grounded = true; Object.lifeCounter = 3; }
-                    }
-                    //drag any object into the pit
-                    Functions_RoomObject.DragIntoPit(Object, RoomObj);
-                }
-
-                #endregion
-
+            if (Object.type == ObjType.ConveyorBeltOn)
+            {   //if obj is moveable and on ground, move it
+                if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
+                { Functions_RoomObject.ConveyorBeltPush(RoomObj.compMove, Object); }
             }
+
+            #endregion
+
+
+            #region Trap Door
+
+            else if (RoomObj.type == ObjType.DoorTrap)
+            {   //prevent obj from passing thru door
+                Functions_Movement.RevertPosition(Object.compMove);
+                //kill specific projectiles / objects
+                if (Object.type == ObjType.ProjectileFireball
+                    || Object.type == ObjType.ProjectileArrow)
+                { Functions_GameObject.Kill(Object); }
+            }
+
+            #endregion
+
+
+
+
+            
+            #region Bumper
+
+            else if (RoomObj.type == ObjType.Bumper)
+            {
+                //specific projectiles cannot be bounced off bumper
+                if (Object.type == ObjType.ProjectileDebrisRock
+                    || Object.type == ObjType.ProjectileExplosion
+                    || Object.type == ObjType.ProjectileNet
+                    || Object.type == ObjType.ProjectileShadowSm
+                    || Object.type == ObjType.ProjectileSword
+                    )
+                { return; }
+                //one of the two objects must be moving,
+                //in order to trigger a bounce interaction
+                if (!RoomObj.compMove.moving & !Object.compMove.moving)
+                { return; }
+                //all other objects are bounced
+                Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj);
+                //rotate bounced projectiles
+                if (Object.group == ObjGroup.Projectile)
+                {
+                    Object.direction = Object.compMove.direction;
+                    Functions_GameObject.SetRotation(Object);
+                }
+            }
+
+            #endregion
+
+            
+            #region Pits
+
+            else if (RoomObj.type == ObjType.PitAnimated)
+            {   //check to see if we should ground any thrown pot projectile
+                if (Object.type == ObjType.ProjectilePot)
+                {   //if this is the last frame of the projectile pot, ground it
+                    if (Object.lifeCounter > Object.lifetime - 5) //dont let it die
+                    { Object.compMove.grounded = true; Object.lifeCounter = 3; }
+                }
+                //drag any object into the pit
+                Functions_RoomObject.DragIntoPit(Object, RoomObj);
+            }
+
+            #endregion
+
+            
+
+
+
+
+
+
         }
 
 

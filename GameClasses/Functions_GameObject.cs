@@ -276,6 +276,8 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
+                //lighter blocks are moveable by belts
+                if (Type == ObjType.BlockLight) { Obj.compMove.moveable = true; }
             }
 
             #endregion
@@ -289,7 +291,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                //Obj.compMove.moveable = true; //not right now
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.SwitchBlockDown)
             {
@@ -376,7 +378,6 @@ namespace DungeonRun
             {
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.ConveyorBeltOn || Type == ObjType.ConveyorBeltOff)
             {
@@ -403,6 +404,7 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = -32; //sort to floor
                 //if (Type == ObjType.Switch) { Obj.compSprite.zOffset = 0; } //sort normally
+                Obj.compMove.moveable = true;
             }
             else if (Type == ObjType.Bridge)
             {
@@ -417,6 +419,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
                 Obj.compSprite.zOffset = -3;
                 Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
             }
 
             #endregion
