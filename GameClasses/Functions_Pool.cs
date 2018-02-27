@@ -246,31 +246,27 @@ namespace DungeonRun
             {
                 if (Pool.actorPool[i].active)
                 {
-
-                    //all actors check collisions with each other + roomObjs (expensive)
-                    Functions_Collision.CheckCollisions(
-                            Pool.actorPool[i].compMove,
-                            Pool.actorPool[i].compCollision,
-                            true, true);
-
-                    /*
-                    //based on actor, call collision checking with control booleans
-                    //if (Pool.actorPool[i] == Pool.hero)
-                    if (i == 0) //hero is indexed at 0 - int check is faster?
-                    {
+                    if(Pool.actorPool[i] == Pool.hero)
+                    {   //hero checks v roomObjs + enemies
                         Functions_Collision.CheckCollisions(
                             Pool.actorPool[i].compMove,
                             Pool.actorPool[i].compCollision,
-                            true, true);
+                            true, true, false);
                     }
-                    else //all other enemies/actors & pet
-                    {
+                    else if (Pool.actorPool[i] == Pool.herosPet)
+                    {   //pet checks v roomObjs only (no actors)
                         Functions_Collision.CheckCollisions(
                             Pool.actorPool[i].compMove,
                             Pool.actorPool[i].compCollision,
-                            true, false);
+                            true, false, false);
                     }
-                    */
+                    else
+                    {   //enemies check v roomObjs + hero
+                        Functions_Collision.CheckCollisions(
+                            Pool.actorPool[i].compMove,
+                            Pool.actorPool[i].compCollision,
+                            true, false, true);
+                    }
                 }
             }
 
@@ -284,7 +280,7 @@ namespace DungeonRun
                     Functions_Collision.CheckCollisions(
                                 Pool.roomObjPool[i].compMove,
                                 Pool.roomObjPool[i].compCollision,
-                                true, true);
+                                true, true, true);
                 }
             }
 

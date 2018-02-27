@@ -52,15 +52,7 @@ explosive barrel puzzels
 
 
 
-Various Improvements
 
-removed old code that was no longer in use.
-while playtesting, some issues arose with 
-the way boss rooms are currently designed.
-so, redesigned all the boss rooms.
-added smaller path dots to overworld map texture.
-updated UWP content folder with DirectX content.
-lots of playtesting.
 
 
 
@@ -70,11 +62,27 @@ lots of playtesting.
 
 Fix Actors overlapping Hero Bug
 
-if an actor overlaps the hero, then the hero can't move
-so ANY actor CANT overlap the hero, ever, for any reason
-but other actor v actor overlaps are fine
+if an actor overlaps the hero, then the hero can't move.
+however, functionality is different for enemies and pets.
 
-stop collisions between hero and pet
+for the pet, we set the pet's collision component's blocking
+boolean to false, which removes it from the collision check.
+this allows the pet to overlap the hero without blocking him.
+this is because we frequently spawn the pet ontop of the hero,
+so they will overlap and the game needs to handle this.
+
+for enemies, we treat them as the hero and perform 
+full actor v actor collision checks, in addition to the
+roomObj checks being done, which makes this expensive.
+*we could just do enemy v hero collision checks, 
+which would DRASTICALLY reduce the cost of the enemy
+collision checking... hmmm..
+
+split CheckActors() into CheckEnemies() and CheckHero().
+updated CheckCollisions() with an additional control boolean.
+updated boolean parameter names as well.
+lots of playtesting.
+
 
 
 
