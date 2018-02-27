@@ -139,10 +139,14 @@ namespace DungeonRun
         public static void Update()
         {
             Pool.collisionsCount = 0;
-            UpdateGameObjList(Pool.roomObjPool, true);
-            UpdateGameObjList(Pool.entityPool, false);
+
+            //first resolve any actor collisions / interactions
             UpdateActors();
             Functions_Hero.Update();
+
+            UpdateGameObjList(Pool.roomObjPool, true);
+            UpdateGameObjList(Pool.entityPool, false);
+            
         }
 
 
@@ -261,6 +265,14 @@ namespace DungeonRun
                         {   //handle interactions, align components post-interaction
                             Functions_Interaction.CheckInteractions(ObjList[i]);
                             Functions_Component.Align(ObjList[i]);
+
+                            //here is where we should resolve any object vs actor overlaps, due to interactions
+                            //which seems inefficient, and there is a better way
+
+                            //we should calculate all the 'influences' on the obj's magnitude once
+                            //this is done by doing input / interaction, THEN collisions
+                            //handle overlapping interactions with obj and roomObjs (maybe entities)
+                            //then project that position, and resolve collisions with actors and roomObjs
                         }
                     }
                     else

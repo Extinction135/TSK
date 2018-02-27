@@ -57,70 +57,71 @@ explosive barrel puzzels
 
 
 
+Fix Moving Objs vs Actors Bug - Part 1
 
+if a roomObj is moving and collides with an actor,
+the actor can't move and the obj continues to move,
+which feels VERY wrong and buggy.
 
+possible solutions:
 
-
-Create Better Testing Rooms
-
-based on the idea of the exploding barrel testing
-room, i made additional testing rooms for specific
-objects, like conveyor belts, torches, etc...
-
-updated bumpers to no longer be moveable.
-updated levers to be moveable.
-updated floor switches to be moveable.
-updated switch block buttons to be moveable.
-updated light blocks to be moveable by belts.
-
-various issues / bugs / improvements were uncovered.
-and lots of playtesting. lots.
-
-
-
-
-
-
-
-
-
-we should be checking roomObj vs actor, if roomObj is moving
-a moving roomObj should NEVER overlap with an actor, despite whatever magnitude/speed it has
-
+add a method to collision functions that checks object against all actors?
+if there is a collision, revert the obj to it's previous position
+then, when a belt pushes an obj, call the method passing in the pushed obj
+this should prevent objs from running over actors while on conveyor belts.
 this can be tested using the BeltsBlocksAndActors testing room.
+
+the above solution works, but its inefficient because:
+WE ALREADY CHECK ACTOR VS OBJ COLLISIONS, why would the game
+do this AGAIN each frame? ok, enough capital letters.
+
+we could theoretically add to the existing collision system,
+when an actor collides with an object, we could move the obj
+to it's previous position, assuming the prevPos is valid.
+this prevents objs from overlapping actors,
+plus it doesnt add an additional check to collision/interaction systems.
+however, this is not simple to implement in the current system
+that system has been designed to work only on components, not actors / objects,
+so we dont know if the collision component belongs to an actor / object
+we could check if compColl1 == compColl2, but thats poorly designed
+so we likely need to redesign the system to handle obj v actor collisions.
+
+so, idea 3 assuming a system redesign..
+
+what if we set the position at the END of the collision / interaction process
+so the process would be as follows:
+1. project movement
+2. check collisions (act v obj, act v act)
+3. check interactions (act vs obj, act v ent, obj v obj, obj v ent)
+4. set newPosition & position
+
+this way, we know newPos is projected position,
+and position is the previous position, so we can
+revert to a non-overlapping (prev frame) position when needed.
+
+this allows us the functionality to prevent objs from running over actors.
+
+
+
+
+
+
+
+
+
+
+
+stop collisions between hero and pet
+
+
+
+
 
 
 
 
 floor spikes should blow up barrels.
 bumpers should be more predictable (with room objs, ref bumper test room).
-
-
-
-
-
-once we have testing rooms in place, we can record GIFs of the rooms
-and post those to GitHub
-
-
-
-
-create a suite of testing rooms specifically designed to test one thing about the game
-like an interaction
-prefix these rooms with Test_
-this way it's easier to find rooms to test things that have been changed.
-
-
-
-exploding barrels
-destructible objs: barrels dungeon statues, pots
-
-conveyor belts vs objs:
-
-
-
-
-
 
 
 
