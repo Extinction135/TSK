@@ -57,50 +57,30 @@ explosive barrel puzzels
 
 
 
-Fix Moving Objs vs Actors Bug - Part 1
+Fix Moving Objs vs Actors Bug - Part 2
 
 if a roomObj is moving and collides with an actor,
 the actor can't move and the obj continues to move,
 which feels VERY wrong and buggy.
 
-possible solutions:
-
-add a method to collision functions that checks object against all actors?
-if there is a collision, revert the obj to it's previous position
-then, when a belt pushes an obj, call the method passing in the pushed obj
-this should prevent objs from running over actors while on conveyor belts.
-this can be tested using the BeltsBlocksAndActors testing room.
-
-the above solution works, but its inefficient because:
-WE ALREADY CHECK ACTOR VS OBJ COLLISIONS, why would the game
-do this AGAIN each frame? ok, enough capital letters.
-
-we could theoretically add to the existing collision system,
-when an actor collides with an object, we could move the obj
-to it's previous position, assuming the prevPos is valid.
-this prevents objs from overlapping actors,
-plus it doesnt add an additional check to collision/interaction systems.
-however, this is not simple to implement in the current system
-that system has been designed to work only on components, not actors / objects,
-so we dont know if the collision component belongs to an actor / object
-we could check if compColl1 == compColl2, but thats poorly designed
-so we likely need to redesign the system to handle obj v actor collisions.
-
-so, idea 3 assuming a system redesign..
+so, idea 3 assuming a system redesign:
 
 what if we set the position at the END of the collision / interaction process
 so the process would be as follows:
 1. project movement
 2. check collisions (act v obj, act v act)
 3. check interactions (act vs obj, act v ent, obj v obj, obj v ent)
-4. set newPosition & position
+4. set newPosition & position (resolve movement / Align())
 
 this way, we know newPos is projected position,
 and position is the previous position, so we can
 revert to a non-overlapping (prev frame) position when needed.
-
 this allows us the functionality to prevent objs from running over actors.
 
+basically, the above concept was implemented, starting with Pool.Update().
+and tested using the belts, blocks, and actors test room.
+however, entities / projectiles dont move using the current code.
+so, i'll need to fix that coming up in the next commit.
 
 
 
@@ -110,6 +90,16 @@ this allows us the functionality to prevent objs from running over actors.
 
 
 
+
+bug: projectiles dont move
+do they interact?
+
+
+
+
+if an actor overlaps the hero, then the hero can't move
+so ANY actor CANT overlap the hero, ever, for any reason
+but other actor v actor overlaps are fine
 
 stop collisions between hero and pet
 

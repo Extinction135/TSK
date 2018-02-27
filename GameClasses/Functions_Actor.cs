@@ -285,7 +285,12 @@ namespace DungeonRun
         public static void Update(Actor Actor)
         {
             //get the input for this frame, set actor.direction
-            Functions_Input.SetInputState(Actor.compInput, Actor);
+            //Functions_Input.SetInputState(Actor.compInput, Actor);
+
+
+
+
+
 
 
             #region Actor is not Statelocked

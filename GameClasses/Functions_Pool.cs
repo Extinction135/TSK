@@ -22,9 +22,9 @@ namespace DungeonRun
         {
             Pool.actorIndex++;
             //reset index to 2, skipping hero and hero's pet in actor pool
-            if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 2; } 
+            if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 2; }
             //if the target actor is dead, set it to be inactive
-            if(Pool.actorPool[Pool.actorIndex].state == ActorState.Dead)
+            if (Pool.actorPool[Pool.actorIndex].state == ActorState.Dead)
             { Release(Pool.actorPool[Pool.actorIndex]); }
             //only return inactive actors (dead actors became inactive above)
             if (!Pool.actorPool[Pool.actorIndex].active)
@@ -32,11 +32,11 @@ namespace DungeonRun
                 Functions_Actor.ResetActor(Pool.actorPool[Pool.actorIndex]);
                 return Pool.actorPool[Pool.actorIndex];
             }
-            return Pool.actorPool[Pool.actorCount-1]; //ran out of actors
+            return Pool.actorPool[Pool.actorCount - 1]; //ran out of actors
         }
-        
+
         public static GameObject GetRoomObj()
-        {   
+        {
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {   //found an inactive obj to return
                 if (Pool.roomObjPool[Pool.roomObjCounter].active == false)
@@ -46,13 +46,13 @@ namespace DungeonRun
                     return Pool.roomObjPool[Pool.roomObjCounter];
                 }
             }
-            return Pool.roomObjPool[Pool.roomObjCount-1]; //ran out of roomObjs
+            return Pool.roomObjPool[Pool.roomObjCount - 1]; //ran out of roomObjs
         }
 
         public static GameObject GetEntity()
         {   //this is called throughout gameplay, and index loops
             for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
-            {   
+            {
                 Pool.entityIndex++;
                 if (Pool.entityIndex >= Pool.entityCount) { Pool.entityIndex = 0; }
                 if (Pool.entityPool[Pool.entityIndex].active == false)
@@ -140,13 +140,192 @@ namespace DungeonRun
         {
             Pool.collisionsCount = 0;
 
-            //first resolve any actor collisions / interactions
-            UpdateActors();
+
+            
+
+            #region Phase 1 - Get Input, Animate, & Check Interactions
+
+            //check interactions(act v obj, act v ent, obj v obj, obj v ent)
+
+            //get input & interactions for actors
+            for (i = 0; i < Pool.actorCount; i++)
+            {
+                if (Pool.actorPool[i].active)
+                {
+
+                    Functions_Input.SetInputState(Pool.actorPool[i].compInput, Pool.actorPool[i]);
+
+                    Functions_Actor.Update(Pool.actorPool[i]);
+                    Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
+
+                    //here we could reject dead actor interactions like this
+                    //if (Pool.actorPool[i].state != ActorState.Dead)
+                    {
+                        Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
+                        //but it's more fun to see their corpses being moved around by belts
+                    }
+
+                    //wouldn't all actors always check interactions with roomObjs AND entities?
+                    //the control booleans dont make sense for the method
+                }
+            }
+
+            //roomObjs
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {
+                    Functions_GameObject.Update(Pool.roomObjPool[i]);
+                    Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, Pool.roomObjPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
+
+
+                    //any moving roomObj gets interaction checks
+                    //and specific roomObjs ALWAYS get interaction checks
+                    if (Pool.roomObjPool[i].compMove.moving
+                        || Pool.roomObjPool[i].type == ObjType.ConveyorBeltOn)
+                    { Functions_Interaction.CheckInteractions(Pool.roomObjPool[i]); }
+                }
+            }
+
+            //entities
+            for (i = 0; i < Pool.entityCount; i++)
+            {
+                if (Pool.entityPool[i].active)
+                {
+                    Functions_GameObject.Update(Pool.entityPool[i]);
+                    Functions_Animation.Animate(Pool.entityPool[i].compAnim, Pool.entityPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.entityPool[i].compSprite);
+
+
+                    //only interaction check entity projectiles
+                    if (Pool.entityPool[i].group == ObjGroup.Projectile)
+                    { Functions_Interaction.CheckInteractions(Pool.entityPool[i]); }
+                }
+            }
+
+            //any interaction that moves an object (belt for example)
+            //should only affect the MAGNITUDE of the move component
+
+            #endregion
+
+
+            #region Phase 2 - Project Movement
+
+            //project movement for actors, objects, entities
+
+            //actors
+            for (i = 0; i < Pool.actorCount; i++)
+            {
+                if (Pool.actorPool[i].active)
+                { Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove); }
+            }
+
+            //roomObjs
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
+            }
+
+            //entities
+            for (i = 0; i < Pool.entityCount; i++)
+            {
+                if (Pool.entityPool[i].active)
+                { Functions_Movement.ProjectMovement(Pool.entityPool[i].compMove); }
+            }
+
+            #endregion
+
+
+            //all move component's newPositions have been set (projections complete)
+            
+
+            #region Phase 3 - Check Collisions
+
+            //check collisions (act v act, act v obj)
+            //-this is also done last to ensure no overlaps
+
+            //actors
+            for (i = 0; i < Pool.actorCount; i++)
+            {
+                if (Pool.actorPool[i].active)
+                {
+                    //based on actor, call collision checking with control booleans
+                    //if (Pool.actorPool[i] == Pool.hero)
+                    if(i == 0) //hero is indexed at 0 - int check is faster?
+                    {
+                        Functions_Collision.CheckCollisions(
+                            Pool.actorPool[i].compMove,
+                            Pool.actorPool[i].compCollision,
+                            true, true);
+                    }
+                    else //all other enemies/actors & pet
+                    {
+                        Functions_Collision.CheckCollisions(
+                            Pool.actorPool[i].compMove,
+                            Pool.actorPool[i].compCollision,
+                            true, false);
+                    }
+                }
+            }
+
+            //roomObjs
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   
+                //only active, moving roomObjs are collision checked
+                //an object not moving is assumed to be non-overlapping
+                if (Pool.roomObjPool[i].active & Pool.roomObjPool[i].compMove.moving)
+                {
+                    Functions_Collision.CheckCollisions(
+                                Pool.roomObjPool[i].compMove,
+                                Pool.roomObjPool[i].compCollision,
+                                true, true);
+                }
+            }
+
+            #endregion
+
+            
+            #region Phase 4 - Resolution, Align() Components
+
+            //actors
+            for (i = 0; i < Pool.actorCount; i++)
+            {
+                if (Pool.actorPool[i].active)
+                { Functions_Component.Align(Pool.actorPool[i]); }
+            }
+
+            //roomObjs
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                { Functions_Component.Align(Pool.roomObjPool[i]); }
+            }
+
+            //entities
+            for (i = 0; i < Pool.entityCount; i++)
+            {
+                if (Pool.entityPool[i].active)
+                { Functions_Component.Align(Pool.entityPool[i]); }
+            }
+
+            #endregion
+
+
+
+
             Functions_Hero.Update();
 
-            UpdateGameObjList(Pool.roomObjPool, true);
-            UpdateGameObjList(Pool.entityPool, false);
-            
+
+
+            //old code
+            //UpdateActors();
+            //Functions_Hero.Update();
+            //UpdateGameObjList(Pool.roomObjPool, true);
+            //UpdateGameObjList(Pool.entityPool, false);
+            //are these methods no longer used???
         }
 
 
@@ -257,7 +436,7 @@ namespace DungeonRun
                     #region Check Interactions, Resolve Movement
 
                     if (isRoomObj) 
-                    {   //aany moving roomObj gets interaction checks
+                    {   //any moving roomObj gets interaction checks
                         //and specific roomObjs ALWAYS get interaction checks
                         if (
                             ObjList[i].compMove.moving

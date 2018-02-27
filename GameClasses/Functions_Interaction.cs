@@ -55,7 +55,13 @@ namespace DungeonRun
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //Obj can be Entity or RoomObj, check for hero state first
 
+            //first, ensure the object is active - have we done this in the calling code?
             if (!Obj.active) { return; } //inactive objects are denied interaction
+
+            //second, reset the actors friction to normal
+            //various kinds of interaction may change this below (ice, for example)
+            Actor.compMove.friction = Actor.friction;
+
 
             //Hero Specific Interactions
             if (Actor == Pool.hero)
@@ -360,7 +366,7 @@ namespace DungeonRun
 
         public static void InteractRoomObj(GameObject RoomObj, GameObject Object)
         {
-            //show me the interation types
+            //show me the interaction types
             //Debug.WriteLine("" + RoomObj.type + " vs " + Object.type +
             //    " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
 
@@ -530,6 +536,9 @@ namespace DungeonRun
             else if (RoomObj.type == ObjType.DoorTrap)
             {   //prevent obj from passing thru door
                 Functions_Movement.RevertPosition(Object.compMove);
+
+                //actually, we should be pushing the object the same way we push an actor
+
                 //kill specific projectiles / objects
                 if (Object.type == ObjType.ProjectileFireball
                     || Object.type == ObjType.ProjectileArrow)

@@ -25,7 +25,7 @@ namespace DungeonRun
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //target must be active AND blocking
                 if (Pool.roomObjPool[i].active && Pool.roomObjPool[i].compCollision.blocking) 
-                {   //count, check for overlap, return true on FIRST collision (not with self)
+                {   //count, check for overlap, return true on FIRST collision
                     Pool.collisionsCount++;
                     if (CompColl.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
                     { if (CompColl != Pool.roomObjPool[i].compCollision) { return true; } }

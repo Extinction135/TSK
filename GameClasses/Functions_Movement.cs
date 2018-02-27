@@ -17,8 +17,7 @@ namespace DungeonRun
         static float maxMagnitude = 10.0f;
 
         public static void Push(ComponentMovement Move, Direction Direction, float Amount)
-        {
-            //modify move components magnitude based on direction by amount
+        {   //modify move component's magnitude based on direction by amount
             if (Direction == Direction.Down) { Move.magnitude.Y += Amount; }
             else if (Direction == Direction.Left) { Move.magnitude.X -= Amount; }
             else if (Direction == Direction.Right) { Move.magnitude.X += Amount; }
@@ -31,16 +30,19 @@ namespace DungeonRun
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X -= Amount * 0.75f; }
             else if (Direction == Direction.UpRight)
             { Move.magnitude.Y -= Amount * 0.75f; Move.magnitude.X += Amount * 0.75f; }
-            //set the moving boolean
-            Move.moving = true;
         }
 
         public static void ProjectMovement(ComponentMovement Move)
         {
             Push(Move, Move.direction, Move.speed);
+            Move.moving = true; //assume moving to be true
             //apply friction to magnitude (this always makes magnitude smaller overtime)
             Move.magnitude = Move.magnitude * Move.friction;
-            //clip magnitude per axis
+
+
+            #region Clip Magnitude (min and max)
+
+            //clip magnitude's minimum values
             if (Math.Abs(Move.magnitude.X) < 0.01f) { Move.magnitude.X = 0; }
             if (Math.Abs(Move.magnitude.Y) < 0.01f) { Move.magnitude.Y = 0; }
             //clip magnitude's maximum values
@@ -48,12 +50,15 @@ namespace DungeonRun
             else if (Move.magnitude.X < -maxMagnitude) { Move.magnitude.X = -maxMagnitude; }
             if (Move.magnitude.Y > maxMagnitude) { Move.magnitude.Y = maxMagnitude; }
             else if (Move.magnitude.Y < -maxMagnitude) { Move.magnitude.Y = -maxMagnitude; }
-            //project newPosition based on current position + magnitude
-            Move.newPosition.X = Move.position.X;
-            Move.newPosition.Y = Move.position.Y;
-            Move.newPosition += Move.magnitude;
-            //set the moving boolean
+
+            #endregion
+
+
+            //set moving boolean based on magnitude values
             if (Move.magnitude.X == 0 && Move.magnitude.Y == 0) { Move.moving = false; }
+            //set newPosition based on current position + magnitude
+            Move.newPosition.X = Move.position.X + Move.magnitude.X;
+            Move.newPosition.Y = Move.position.Y + Move.magnitude.Y;
         }
 
         public static void Teleport(ComponentMovement Move, float X, float Y)
