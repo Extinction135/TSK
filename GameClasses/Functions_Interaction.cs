@@ -223,11 +223,6 @@ namespace DungeonRun
                 if (Obj.type == ObjType.DoorTrap)
                 {   //trap doors push ALL actors
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
-                    Functions_Entity.SpawnEntity(
-                        ObjType.ParticleDashPuff,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.None);
                 }
             }
 

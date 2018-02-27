@@ -288,11 +288,6 @@ namespace DungeonRun
             //Functions_Input.SetInputState(Actor.compInput, Actor);
 
 
-
-
-
-
-
             #region Actor is not Statelocked
 
             if (!Actor.stateLocked)

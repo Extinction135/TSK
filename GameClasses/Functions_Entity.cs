@@ -350,6 +350,8 @@ namespace DungeonRun
 
             Functions_Component.Align(obj); //align the entity upon birth
             obj.compCollision.blocking = false; //entities interact, never block
+
+            //Debug.WriteLine("entity made: " + Type + " - location: " + X + ", " + Y);
         }
 
         public static void HandleBirthEvent(GameObject Entity)

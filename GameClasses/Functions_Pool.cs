@@ -86,7 +86,7 @@ namespace DungeonRun
         }
 
         public static void ResetActorPool()
-        {   //skip resetting the hero & doggo
+        {   //skip resetting the hero & pet
             for (Pool.actorCounter = 2; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Release(Pool.actorPool[Pool.actorCounter]); }
             Pool.actorIndex = 2;
@@ -140,7 +140,7 @@ namespace DungeonRun
             Pool.collisionsCount = 0;
             //the following phases affect actors, room objects, and entities all at once
 
-            #region Phase 1 - Get Input, Animate, & Check Interactions
+            #region Phase 1 - Get Input, Update, Animate, & Check Interactions
 
             //check interactions(act v obj, act v ent, obj v obj, obj v ent)
 

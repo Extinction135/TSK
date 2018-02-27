@@ -54,50 +54,17 @@ explosive barrel puzzels
 
 
 
+Trap Door Improvement
+
+removed dash particle creation when an actor collides with a trap door.
+this prevents a state where the hero can dash into a trap door,
+which would create MANY dash particles, look unsightly, and abuse
+the entity pool by chruning thru objects very quickly.
 
 
 
 
 
-
-Fix Actors overlapping Hero Bug
-
-if an actor overlaps the hero, then the hero can't move.
-however, functionality is different for enemies and pets.
-
-for the pet, we set the pet's collision component's blocking
-boolean to false, which removes it from the collision check.
-this allows the pet to overlap the hero without blocking him.
-this is because we frequently spawn the pet ontop of the hero,
-so they will overlap and the game needs to handle this.
-
-for enemies, we treat them as the hero and perform 
-full actor v actor collision checks, in addition to the
-roomObj checks being done, which makes this expensive.
-*we could just do enemy v hero collision checks, 
-which would DRASTICALLY reduce the cost of the enemy
-collision checking... hmmm..
-
-split CheckActors() into CheckEnemies() and CheckHero().
-updated CheckCollisions() with an additional control boolean.
-updated boolean parameter names as well.
-lots of playtesting.
-
-
-
-
-
-
-
-
-
-floor spikes should blow up barrels.
-bumpers should be more predictable (with room objs, ref bumper test room).
-
-
-
-we also need to figure out what entity is being created
-because we have a random rogue entity being created RANDOMly across frames without any input or actors/objs
 
 
 
@@ -110,213 +77,14 @@ i'd like to see how many collisions & interactions averaged over 60 frames
 part of the beta debug info
 
 
-
-
-
-
-
-
-
-
-
-
-
-hero should be able to pickup and throw enemy corpses
-which means we need to abstract the carrying obj into something that could ref an obj or actor
-or we have both, one for objs and one for actors
-
-
-
-
-
-
-
+floor spikes should blow up barrels.
+bumpers should be more predictable (with room objs, ref bumper test room).
 
 bosses should always spawn as ActorPool index 2.
 0 = hero. 1 = pet. 2 = boss.
 this is to ensure we never accidentally use the last actor pool index,
 which will be rapidly recycled in the event we run out of available
 actors to Get().
-
-
-
-
-
-trap doors should stop projectiles from passing thru
-bounce them? hollow sound?
-
-
-
-
-
-
-record gifs of:
-	explosive barrels chains
-	conveyor belt madness
-
-
-
-
-
-
-
-
-what if the obj the hero picks up simply assumes the target obj's texture and frame, etc..?
-this would work for actors as well, which sets the ground work for allowing the hero to pickup 
-blob corpses and use them in some interesting way... like dropping them on a switch!
-we already do this with pots essentially, but we need to abstract the carrying/throwing solution
-to be more generalized and handle roomObjs, actors, or whatever we throw at it in the future..
-	
-	
-	
-	
-
-
-
-
-
-Implement Bumpers with Actors?
-
-
-When an object is being pushed by a conveyor belt,
-and that object overlaps an actor, the actor ISNT pushed
-and the object passes THRU the actor, breaking collision system..
-
-
-bug with bumpers: when there are multiple bumper collisions per frame,
-things get unpredictable, as in the case of a belt pushing an object into a bumper
-or if an actor collides with two bumpers at the same time..
-this needs to be fixed
-
-
-
-
-floor switches should sort OVER conveyor belts
-
-
-
-
-
-some spikeblocks move, the vertical ones
-the horizontal ones dont move at all???
-
-
-
-
-
-
-
-
-the process the game uses to handle the hero's items and weapons is flawed.
-if the hero uses a bottle, it will work as normal, and become an empty bottle.
-and the hero's item will be nulled out (at least in the hud).
-HOWEVER, using the nulled item will result in an empty bottle reward being created,
-and the hero being statelocked for 1 frame, then unlocked and free to move,
-while the bottle floats around in the air. this makes no sense whatsoever.
-//there are various other problems as well..
-if the hero doesn't have an item or weapon equipped, he shouldnt lock into any state
-upon an X or Y button press.. but he does.
-
-
-
-report on the last entity created (uncontrolled creation of entity?)
-
-spikeblocks dont work. they don't move. but they sure do collide with hero.
-spikeblocks should be entities. upon a collision:
-	kill spikeblockA, 
-	create spikeBlockB in opposite direction
-we'll need a gameObj to represent the spawn position and direction of the first spikeBlock tho..
-
-fairies should be entities as well, not actors.
-we need to change the net to check against entities too.
-this will allow us to bottle fairies again.
-collisions with the hero are easy, since the fairy is an entity.
-	
-Because of the new collision/interaction system, entities can't block!
-so, we'll need to add a rule to gameObj.setType() that sets any entity.compColl.blocking to false.
-	
-	
-	
-	
-	
-Optimization
-
-only the hero is collision checked against actors.
-but we have complicated code to handle actor vs actor checks,
-when we only need hero vs actor checks.
-all other actors can freely pass thru each other.
-	
-	
-	
-	
-	
-bonus functionality:
-	we can now push dead enemy carcasses with projectiles, and conveyor belts
-	so we should change the sprite for the dead blob enemy.
-	
-	
-	
-	
-	
-	
-	
-Entities / Projectiles should have 'owners' or 'casters'.
-	this is simply an actor reference.
-	this means projectiles are MORE than gameObjs.
-	where does this reference get added?
-	this lays ground work for:
-	boomerang functionality,
-	excluding caster from AoE spell damage,
-	tracking a sword to an actor across frames (conveyor belt)
-	tracking overhead rewards to hero across frames (conveyor belt)
-
-
-	allows actors to slide across ice with weapons as well
-
-
-
-
-
-
-
-we have two approaches to how we determine if we evaluate a roomObj as 'moving':
-1. we check the magnitude - simple, clean, but is a float check
-2. we flip a boolean and check that - more complicated, but likely faster than a float check
-lets go with 1.
-
-add a magnitude check into Pool.UpdateRoomObjects()
-then implement the rest of the psuedo code
-then implement the roomObj vs roomObj interaction,
-this is a roomObj vs roomObj check:
-	blocking: prevent overlap
-	conveyorBelt: pushes overlapping roomObj
-
-
-
-what if we added a boolean 'moving' to compMove?
-this would be a quick way to check and see if the obj is moving
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 update the inventory screen in game to reflect the current mockup
@@ -333,80 +101,18 @@ and replaces them with more custom story items, like the warriors pass, etc..
 
 
 
+Entities / Projectiles should have 'owners' or 'casters'.
+	this is simply an actor reference.
+	this means projectiles are MORE than gameObjs.
+	where does this reference get added?
+	this lays ground work for:
+	boomerang functionality,
+	excluding caster from AoE spell damage,
+	tracking a sword to an actor across frames (conveyor belt)
+	tracking overhead rewards to hero across frames (conveyor belt)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Dragging/Pushing/Pulling
-
-hero should be able to 'grab' objects
-if the object is draggable, then hero should be able to push and pull on it
-this 'grabbing' state should last until player releases the A button
-objects should inherit the movement of hero, 
-and check collisions with all roomObjs, entities, & actors (expensive)
-if a draggable object would collide, it doesn't move
-this would have to be done per axis too, so we could drag along walls
-
-
-
-
-in order to accomplish these two things, we will need to be able to compare a gameobj against the roomObjs
-this starts with a collision check, then an interaction upon an overlap
-we would call this from dragging / pushing / pulling, and conveyor belt checks
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-PUZZLE IDEA
-we could have a puzzle where a conveyor belt carries a bomb
-along the conveyor belt is a switchButton
-a lever is available to the player.
-the player must turn off the conveyor belt at the right time,
-in order for the bomb to explode close enough to the switchBtn,
-which will drop the switch blocks, allowing the player to pass.
-
+	allows actors to slide across ice with weapons as well
 
 Implement Boomerang
 this is a projectile that flys in a thrown direction
@@ -427,9 +133,62 @@ how do we attach an obj/actor to boomerang? i dunno
 
 
 
+(the following needs to be dev'd in conjunction with entity casters)
+
+all related to picking up/carrying/throwing/pushing/pulling
+{
+	hero should be able to pickup and throw enemy corpses
+	which means we need to abstract the carrying obj into something that could ref an obj or actor
+	or we have both, one for objs and one for actors
+
+	what if the obj the hero picks up simply assumes the target obj's texture and frame, etc..?
+	this would work for actors as well, which sets the ground work for allowing the hero to pickup 
+	blob corpses and use them in some interesting way... like dropping them on a switch!
+	we already do this with pots essentially, but we need to abstract the carrying/throwing solution
+	to be more generalized and handle roomObjs, actors, or whatever we throw at it in the future..
+
+	Dragging/Pushing/Pulling
+
+	hero should be able to 'grab' objects
+	if the object is draggable, then hero should be able to push and pull on it
+	this 'grabbing' state should last until player releases the A button
+	objects should inherit the movement of hero, 
+	and check collisions with all roomObjs, entities, & actors (expensive)
+	if a draggable object would collide, it doesn't move
+	this would have to be done per axis too, so we could drag along walls
+
+	in order to accomplish these two things, we will need to be able to compare a gameobj against the roomObjs
+	this starts with a collision check, then an interaction upon an overlap
+	we would call this from dragging / pushing / pulling, and conveyor belt checks
+	
+	when we throw an object, should we create an entity?
+	and should this entity be a projectile with a caster?
+	so the game would know who threw the object, if we had effects later
+	for example, lifesteal or something else that targets the caster upon obj collision.
+}
 
 
 
+
+
+
+the process the game uses to handle the hero's items and weapons is flawed.
+if the hero uses a bottle, it will work as normal, and become an empty bottle.
+and the hero's item will be nulled out (at least in the hud).
+HOWEVER, using the nulled item will result in an empty bottle reward being created,
+and the hero being statelocked for 1 frame, then unlocked and free to move,
+while the bottle floats around in the air. this makes no sense whatsoever.
+//there are various other problems as well..
+if the hero doesn't have an item or weapon equipped, he shouldnt lock into any state
+upon an X or Y button press.. but he does.
+
+
+fairies should be entities as well, not actors.
+we need to change the net to check against entities too.
+this will allow us to bottle fairies again.
+collisions with the hero are easy, since the fairy is an entity.
+	
+	
 
 
 
@@ -460,22 +219,11 @@ we need a flying enemy - like a BAT
 
 
 
-
-
-
-
-
-
-
-
-
-
 Dungeons++
 link cave, forest, old castle dungeons from the overworld map
 create dungeon sprite sheet for cave + forest + old castle levels
 create enemies unique to the cave + forest + old castle
 create bosses unique to the cave + forest + old castle
-
 
 
 Music++
@@ -515,8 +263,6 @@ crystals widget should be renamed 'bosses defeated', bossesWidget
 we'll need to update the game display data + the LSN screen to reflect the update away from crystals
 we can also make the overworld map wider, to better fill the frame out
 
-
-
 dungeon rewards++
 When the hero beats a dungeon, the only reward should be the bosses head, no gold.
 gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
@@ -524,26 +270,11 @@ text should read "press any button to continue"
 remove 'reward' text
 
 
-
-
-
 -------------- pushed --------------------
 
 
 
 
-
-
-
-
-
-
-
-
-
-why did we model a fairy as an actor again? was this so it got some basic AI?
-we could model the fairy as an entity much easier, and it would simplify
-actor vs. actor interactions, as there wouldn't be any - it would simply be blocking collision checks
 
 
 

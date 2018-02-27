@@ -28,8 +28,11 @@ namespace DungeonRun
             //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
 
-            //build default empty row room (pass null)
-            Widgets.RoomTools.BuildRoomData(null);
+            //build default empty row room
+            Widgets.RoomTools.roomData = new RoomXmlData();
+            Widgets.RoomTools.roomData.type = RoomType.Row;
+            Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
+
             //place hero outside of room at top left corner
             Functions_Movement.Teleport(Pool.hero.compMove,
                 Functions_Level.buildPosition.X - 32,
