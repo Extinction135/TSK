@@ -15,7 +15,6 @@ namespace DungeonRun
     public static class Functions_Pool
     {
         static int i;
-        static int listCount = 0;
 
 
         public static Actor GetActor()
@@ -139,9 +138,7 @@ namespace DungeonRun
         public static void Update()
         {
             Pool.collisionsCount = 0;
-
-
-            
+            //the following phases affect actors, room objects, and entities all at once
 
             #region Phase 1 - Get Input, Animate, & Check Interactions
 
@@ -165,9 +162,6 @@ namespace DungeonRun
                         Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
                         //but it's more fun to see their corpses being moved around by belts
                     }
-
-                    //wouldn't all actors always check interactions with roomObjs AND entities?
-                    //the control booleans dont make sense for the method
                 }
             }
 
@@ -252,9 +246,17 @@ namespace DungeonRun
             {
                 if (Pool.actorPool[i].active)
                 {
+
+                    //all actors check collisions with each other + roomObjs (expensive)
+                    Functions_Collision.CheckCollisions(
+                            Pool.actorPool[i].compMove,
+                            Pool.actorPool[i].compCollision,
+                            true, true);
+
+                    /*
                     //based on actor, call collision checking with control booleans
                     //if (Pool.actorPool[i] == Pool.hero)
-                    if(i == 0) //hero is indexed at 0 - int check is faster?
+                    if (i == 0) //hero is indexed at 0 - int check is faster?
                     {
                         Functions_Collision.CheckCollisions(
                             Pool.actorPool[i].compMove,
@@ -268,6 +270,7 @@ namespace DungeonRun
                             Pool.actorPool[i].compCollision,
                             true, false);
                     }
+                    */
                 }
             }
 
@@ -319,171 +322,10 @@ namespace DungeonRun
             #endregion
 
 
-
-
+            //update the hero's room checking rec + hero's shadow
             Functions_Hero.Update();
-
-
-
-            //old code
-            //UpdateActors();
-            //Functions_Hero.Update();
-            //UpdateGameObjList(Pool.roomObjPool, true);
-            //UpdateGameObjList(Pool.entityPool, false);
-            //are these methods no longer used???
         }
-
-
-
-        public static void UpdateActors()
-        {
-            for (i = 0; i < Pool.actorCount; i++)
-            {
-                if (Pool.actorPool[i].active)
-                {
-
-                    #region Update, Animate, Scale Actor
-
-                    Functions_Actor.Update(Pool.actorPool[i]);
-                    Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
-
-                    #endregion
-
-
-                    #region Check Collisions, Resolve Movement
-
-                    //we want to reject as many actors as possible from these processess, due to their expense
-                    //currently, we are accepting all actors that are active
-                    //so we can beat up enemy corpses, and they'll move around, slide, etc..
-                    //this is nice, but expensive (for now it's ok)
-
-                    Functions_Movement.ProjectMovement(Pool.actorPool[i].compMove);
-                    //based on actor, call collision checking with control booleans
-                    if (Pool.actorPool[i] == Pool.hero)
-                    {
-                        Functions_Collision.CheckCollisions(
-                            Pool.actorPool[i].compMove,
-                            Pool.actorPool[i].compCollision,
-                            true, true);
-                    }
-                    else //all other enemies/actors & pet
-                    {
-                        Functions_Collision.CheckCollisions(
-                            Pool.actorPool[i].compMove,
-                            Pool.actorPool[i].compCollision,
-                            true, false);
-                    }
-                    //any obj that moved needs to have their components aligned
-                    Functions_Component.Align(Pool.actorPool[i]);
-
-                    #endregion
-
-
-                    //set actor's friction to normal (interactions with ice will change it later)
-                    Pool.actorPool[i].compMove.friction = Pool.actorPool[i].friction;
-
-                    #region Check Interactions, Resolve Movement
-
-                    //handle interactions, align components post-interaction
-                    Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
-                    Functions_Component.Align(Pool.actorPool[i]);
-
-                    #endregion
-
-                }
-            }
-        }
-
-        public static void UpdateGameObjList(List<GameObject> ObjList, Boolean isRoomObj)
-        {
-            listCount = ObjList.Count();
-            for (i = 0; i < listCount; i++)
-            {
-                if (ObjList[i].active)
-                {
-
-                    #region Update, Animate, Scale Object
-
-                    Functions_GameObject.Update(ObjList[i]);
-                    Functions_Animation.Animate(ObjList[i].compAnim, ObjList[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(ObjList[i].compSprite);
-
-                    #endregion
-                    
-
-                    #region Check Collisions, Resolve Movement
-                    
-                    if(ObjList[i].compMove.moving)
-                    {   //project and resolve legal movement
-                        Functions_Movement.ProjectMovement(ObjList[i].compMove);
-
-                        if (isRoomObj)
-                        {   //check roomObj vs roomObj blocking collisions
-                            Functions_Collision.CheckCollisions(
-                                ObjList[i].compMove,
-                                ObjList[i].compCollision,
-                                true, false);
-                        }
-                        else
-                        {   //dont check entity vs roomObj collisions, just move entity
-                            ObjList[i].compMove.position.X = ObjList[i].compMove.newPosition.X;
-                            ObjList[i].compMove.position.Y = ObjList[i].compMove.newPosition.Y;
-                        }
-                        
-                        //any obj that moved needs their components aligned
-                        Functions_Component.Align(ObjList[i]);
-                    }
-
-                    #endregion
-
-
-                    #region Check Interactions, Resolve Movement
-
-                    if (isRoomObj) 
-                    {   //any moving roomObj gets interaction checks
-                        //and specific roomObjs ALWAYS get interaction checks
-                        if (
-                            ObjList[i].compMove.moving
-                            || ObjList[i].type == ObjType.ConveyorBeltOn)
-                        {   //handle interactions, align components post-interaction
-                            Functions_Interaction.CheckInteractions(ObjList[i]);
-                            Functions_Component.Align(ObjList[i]);
-
-                            //here is where we should resolve any object vs actor overlaps, due to interactions
-                            //which seems inefficient, and there is a better way
-
-                            //we should calculate all the 'influences' on the obj's magnitude once
-                            //this is done by doing input / interaction, THEN collisions
-                            //handle overlapping interactions with obj and roomObjs (maybe entities)
-                            //then project that position, and resolve collisions with actors and roomObjs
-                        }
-                    }
-                    else
-                    {   //this is an entity
-                        //only interaction check entity projectiles
-                        if (ObjList[i].group == ObjGroup.Projectile) 
-                        {
-                            //the above projectile check is SUPER SLOPPY
-                            //there are projectiles that will slip thru, like debris
-                            //these shouldn't be checked at all
-                            //however, its done this way cause some projectiles dont move
-                            //and it's a cheaper int check than numerous obj.type checks
-
-                            //handle interactions, align components post-interaction
-                            Functions_Interaction.CheckInteractions(ObjList[i]);
-                            Functions_Component.Align(ObjList[i]);
-                        }
-                    }
-
-                    //this completes all roomObj / entity interactions
-
-                    #endregion
-
-                }
-            }
-        }
-
+        
         public static void Draw()
         {
             //floor pool

@@ -52,14 +52,14 @@ explosive barrel puzzels
 
 
 
+Various Improvements
 
-Fix Entity Movement Bug
-
-entites / projectiles dont move currently.
-this was due to not updating the entities
-movement component position, as we were doing
-in the previous code. so that was added back
-in, and everything works great again. whew.
+removed old code that was no longer in use.
+while playtesting, some issues arose with 
+the way boss rooms are currently designed.
+so, redesigned all the boss rooms.
+added smaller path dots to overworld map texture.
+updated UWP content folder with DirectX content.
 lots of playtesting.
 
 
@@ -68,7 +68,7 @@ lots of playtesting.
 
 
 
-
+Fix Actors overlapping Hero Bug
 
 if an actor overlaps the hero, then the hero can't move
 so ANY actor CANT overlap the hero, ever, for any reason
@@ -89,7 +89,7 @@ bumpers should be more predictable (with room objs, ref bumper test room).
 
 
 we also need to figure out what entity is being created
-because we have a random rogue entity being created RANDOMly acorss frames without any input or actors/objs
+because we have a random rogue entity being created RANDOMly across frames without any input or actors/objs
 
 
 
@@ -113,7 +113,9 @@ part of the beta debug info
 
 
 
-
+hero should be able to pickup and throw enemy corpses
+which means we need to abstract the carrying obj into something that could ref an obj or actor
+or we have both, one for objs and one for actors
 
 
 

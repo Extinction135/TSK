@@ -325,7 +325,7 @@ namespace DungeonRun
                 Functions_ScreenRec.Fade(overlay);
                 Functions_Scroll.AnimateOpen(scroll);
             }
-            else if(scroll.displayState == DisplayState.Opened)
+            else if (scroll.displayState == DisplayState.Opened)
             {
 
                 #region Map Movement Routine
@@ -379,20 +379,37 @@ namespace DungeonRun
 
 
                 #region Wave Generation Routine
-                
-                if(Functions_Random.Int(0, 100) > 80)
+
+                if (Functions_Random.Int(0, 100) > 80)
                 {   //randomly create a wave particle at a wave spawn location with random offset
                     wavePos = waveSpawnPositions[Functions_Random.Int(0, waveSpawnPositions.Count)];
                     Functions_Entity.SpawnEntity(ObjType.ParticleMapWave,
                         wavePos.X + Functions_Random.Int(-12, 12),
-                        wavePos.Y + Functions_Random.Int(-12, 12), 
+                        wavePos.Y + Functions_Random.Int(-12, 12),
                         Direction.None);
                 }
 
                 #endregion
 
 
-                Functions_Pool.UpdateGameObjList(Pool.entityPool, false);
+                //we need to update the entities list
+                //because we want the entities to animate and move (waves)
+                for (i = 0; i < Pool.entityCount; i++)
+                {
+                    if (Pool.entityPool[i].active)
+                    {
+                        Functions_GameObject.Update(Pool.entityPool[i]);
+                        Functions_Animation.Animate(Pool.entityPool[i].compAnim, Pool.entityPool[i].compSprite);
+                        Functions_Animation.ScaleSpriteDown(Pool.entityPool[i].compSprite);
+                        //any entity that moves needs to have their position set, then aligned
+                        Pool.entityPool[i].compMove.position.X = Pool.entityPool[i].compMove.newPosition.X;
+                        Pool.entityPool[i].compMove.position.Y = Pool.entityPool[i].compMove.newPosition.Y;
+                        Functions_Component.Align(Pool.entityPool[i]);
+                    }
+                }
+
+
+
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in
