@@ -53,46 +53,19 @@ explosive barrel puzzels
 
 
 
+Fix Entity Movement Bug
 
-
-
-
-Fix Moving Objs vs Actors Bug - Part 2
-
-if a roomObj is moving and collides with an actor,
-the actor can't move and the obj continues to move,
-which feels VERY wrong and buggy.
-
-so, idea 3 assuming a system redesign:
-
-what if we set the position at the END of the collision / interaction process
-so the process would be as follows:
-1. project movement
-2. check collisions (act v obj, act v act)
-3. check interactions (act vs obj, act v ent, obj v obj, obj v ent)
-4. set newPosition & position (resolve movement / Align())
-
-this way, we know newPos is projected position,
-and position is the previous position, so we can
-revert to a non-overlapping (prev frame) position when needed.
-this allows us the functionality to prevent objs from running over actors.
-
-basically, the above concept was implemented, starting with Pool.Update().
-and tested using the belts, blocks, and actors test room.
-however, entities / projectiles dont move using the current code.
-so, i'll need to fix that coming up in the next commit.
+entites / projectiles dont move currently.
+this was due to not updating the entities
+movement component position, as we were doing
+in the previous code. so that was added back
+in, and everything works great again. whew.
+lots of playtesting.
 
 
 
 
 
-
-
-
-
-
-bug: projectiles dont move
-do they interact?
 
 
 

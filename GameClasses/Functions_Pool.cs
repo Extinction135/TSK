@@ -308,7 +308,12 @@ namespace DungeonRun
             for (i = 0; i < Pool.entityCount; i++)
             {
                 if (Pool.entityPool[i].active)
-                { Functions_Component.Align(Pool.entityPool[i]); }
+                {   //set the entities position to the new position (projected pos)
+                    Pool.entityPool[i].compMove.position.X = Pool.entityPool[i].compMove.newPosition.X;
+                    Pool.entityPool[i].compMove.position.Y = Pool.entityPool[i].compMove.newPosition.Y;
+                    //then align all the components
+                    Functions_Component.Align(Pool.entityPool[i]);
+                }
             }
 
             #endregion
