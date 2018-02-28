@@ -54,14 +54,12 @@ namespace DungeonRun
 
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //Obj can be Entity or RoomObj, check for hero state first
-
-            //first, ensure the object is active - have we done this in the calling code?
+            //ensure the object is active - have we done this in the calling code?
             if (!Obj.active) { return; } //inactive objects are denied interaction
-
-            //second, reset the actors friction to normal
+            Pool.interactionsCount++; //count interaction
+            //reset the actors friction to normal
             //various kinds of interaction may change this below (ice, for example)
             Actor.compMove.friction = Actor.friction;
-
 
             //Hero Specific Interactions
             if (Actor == Pool.hero)
@@ -365,6 +363,7 @@ namespace DungeonRun
             //Debug.WriteLine("" + RoomObj.type + " vs " + Object.type +
             //    " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
 
+            Pool.interactionsCount++; //count interaction
 
             if (RoomObj.compCollision.blocking)
             {   //Handle Projectile vs Blocking RoomObj 
@@ -508,9 +507,6 @@ namespace DungeonRun
                 //two blocking objs could never overlap can interact
             }
 
-
-            
-            
             //Handle Object vs NonBlocking RoomObj
             //this is entity/roomObj vs non-block obj
 
@@ -541,9 +537,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
-
 
             
             #region Bumper
@@ -589,13 +582,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-            
-
-
-
-
-
 
         }
 

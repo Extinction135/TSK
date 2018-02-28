@@ -185,6 +185,8 @@ namespace DungeonRun
             if (Flags.DrawUDT)
             {
                 WorldUI.frametime.text = "C:" + Pool.collisionsCount;
+                WorldUI.frametime.text += "\nI:" + Pool.interactionsCount;
+                WorldUI.frametime.text += "\n";
                 WorldUI.frametime.text += "\nU:" + DebugInfo.updateAvg;
                 WorldUI.frametime.text += "\nD:" + DebugInfo.drawAvg;
                 WorldUI.frametime.text += "\nT:" + Timing.totalTime.Milliseconds + " ms";

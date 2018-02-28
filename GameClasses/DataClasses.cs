@@ -147,7 +147,9 @@ namespace DungeonRun
         public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero; //points to actorPool[0]
         public static Actor herosPet; //points to actorPool[1]
-        public static int collisionsCount = 0; //tracks how many collisions occur per frame
+
+        public static int collisionsCount = 0; //tracks collisions per frame
+        public static int interactionsCount = 0; //tracks interactions per frame
 
         public static void Initialize()
         {

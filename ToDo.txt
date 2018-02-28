@@ -54,27 +54,22 @@ explosive barrel puzzels
 
 
 
-Trap Door Improvement
 
-removed dash particle creation when an actor collides with a trap door.
-this prevents a state where the hero can dash into a trap door,
-which would create MANY dash particles, look unsightly, and abuse
-the entity pool by chruning thru objects very quickly.
+Separate DebugInfo for Collisions & Interactions
 
-
-
-
-
-
-
+added Pool.interactionCount, which functions 
+just like collisionsCount, counting interactions 
+instead of collisions. handled by WorldUI.
+updated various Interaction() paths to count.
+playtested, collision and interaction counts
+are now displayed per frame next to the world ui.
+interactions are actually less than expected,
+while collisions are a bit higher than expected.
 
 
 
 
 
-separate debug info for collisions AND interactions
-i'd like to see how many collisions & interactions averaged over 60 frames
-part of the beta debug info
 
 
 floor spikes should blow up barrels.

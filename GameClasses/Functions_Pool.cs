@@ -138,6 +138,8 @@ namespace DungeonRun
         public static void Update()
         {
             Pool.collisionsCount = 0;
+            Pool.interactionsCount = 0;
+
             //the following phases affect actors, room objects, and entities all at once
 
             #region Phase 1 - Get Input, Update, Animate, & Check Interactions

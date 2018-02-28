@@ -50,6 +50,7 @@ namespace DungeonRun
 
         public static Boolean CheckHero(ComponentCollision CompColl)
         {
+            Pool.collisionsCount++;
             if (CompColl.rec.Intersects(Pool.hero.compCollision.rec))
             { return true; } else { return false; }
         }
