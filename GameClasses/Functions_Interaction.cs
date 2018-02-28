@@ -226,15 +226,22 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Objects
-
+            //other objects
             else if (Obj.group == ObjGroup.Object)
             {
+
+                #region FloorSpikes
+
                 if (Obj.type == ObjType.SpikesFloorOn)
                 {   //damage push actors (on ground) away from spikes
                     if (Actor.compMove.grounded) { Functions_Battle.Damage(Actor, Obj); }
                 }
+
+                #endregion
+
+
+                #region ConveyorBelts
+
                 else if (Obj.type == ObjType.ConveyorBeltOn)
                 {   //belt move actors (on ground)
                     if (Actor.compMove.grounded)
@@ -246,10 +253,22 @@ namespace DungeonRun
                         else { Functions_RoomObject.ConveyorBeltPush(Actor.compMove, Obj); }
                     }
                 }
+
+                #endregion
+
+
+                #region Bumpers
+
                 else if (Obj.type == ObjType.Bumper)
                 {
                     Functions_RoomObject.BounceOffBumper(Actor.compMove, Obj);
                 }
+
+                #endregion
+
+
+                #region Pits
+
                 else if (Obj.type == ObjType.PitAnimated)
                 {   //actors (on ground) fall into pits
                     if (Actor.compMove.grounded)
@@ -339,6 +358,12 @@ namespace DungeonRun
 
                     }
                 }
+
+                #endregion
+
+
+                #region Ice
+
                 else if (Obj.type == ObjType.IceTile)
                 {   //set the actor's friction to ice
                     Actor.compMove.friction = Actor.frictionIce;
@@ -348,12 +373,11 @@ namespace DungeonRun
                     if (Actor.compMove.magnitude.Y > 1) { Actor.compMove.magnitude.Y = 1; }
                     else if (Actor.compMove.magnitude.Y < -1) { Actor.compMove.magnitude.Y = -1; }
                 }
-                    
-                //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
-            }
 
-            #endregion
-                
+                #endregion
+
+                //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
+            }   
         }
 
 
@@ -364,6 +388,9 @@ namespace DungeonRun
             //    " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
 
             Pool.interactionsCount++; //count interaction
+
+
+            #region Projectile v Blocking RoomObj Interactions
 
             if (RoomObj.compCollision.blocking)
             {   //Handle Projectile vs Blocking RoomObj 
@@ -507,23 +534,38 @@ namespace DungeonRun
                 //two blocking objs could never overlap can interact
             }
 
+            #endregion
+
+
             //Handle Object vs NonBlocking RoomObj
             //this is entity/roomObj vs non-block obj
+
+
+            #region FloorSpikes
 
             if (RoomObj.type == ObjType.SpikesFloorOn)
             {   //damage push actors (on ground) away from spikes
                 if (Object.compMove.grounded)
-                {   //spikeblock pushes obj as if it were opposite direction
-                    Functions_RoomObject.HandleCommon(Object, 
-                        Functions_Direction.GetOppositeCardinal(
-                            Object.compMove.position, 
-                            RoomObj.compMove.position)
-                        );
+                {   
+                    if(Object.type == ObjType.BossStatue)
+                    {   //destroy boss statues and pop loot
+                        Functions_RoomObject.DestroyObject(Object, true, true);
+                    }
+                    else
+                    {   //push obj in opposite direction and destroy it
+                        Functions_RoomObject.HandleCommon(Object,
+                            Functions_Direction.GetOppositeCardinal(
+                                Object.compMove.position,
+                                RoomObj.compMove.position)
+                            );
+                    }
                 }
             }
 
+            #endregion
 
-            #region ConveyorBelt
+
+            #region ConveyorBelts
 
             else if (Object.type == ObjType.ConveyorBeltOn)
             {   //if obj is moveable and on ground, move it
@@ -595,6 +637,14 @@ namespace DungeonRun
 
             #endregion
 
+
+            //add ice interactions here
+            //ice friction should be global
+            //normal friction should be global
+            //air friction should be global
+            //slowed friction should be global
+
+            //that way it's easier to target and control friction
         }
 
 

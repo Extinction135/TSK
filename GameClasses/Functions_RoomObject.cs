@@ -132,7 +132,6 @@ namespace DungeonRun
             }
         }
 
-        
         public static void LightTorch(GameObject UnlitTorch)
         {   //light the unlit torch
             Functions_GameObject.SetType(UnlitTorch, ObjType.TorchLit);
@@ -217,21 +216,6 @@ namespace DungeonRun
 
         }
 
-        public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
-        {   //grab players attention, spawn rock debris, play shatter sound
-            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
-                RoomObj.compSprite.position.X,
-                RoomObj.compSprite.position.Y,
-                Direction.Down);
-            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
-            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
-            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
-            Assets.Play(Assets.sfxShatter);
-            //handle parameter values
-            if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
-            if (releaseObj) { Functions_Pool.Release(RoomObj); }
-        }
-
         public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
         {   //blow up door, change to doorOpen
             DestroyObject(Door, false, false);
@@ -256,6 +240,23 @@ namespace DungeonRun
             Functions_Pool.Release(Barrel);
         }
 
+
+
+        public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
+        {   //grab players attention, spawn rock debris, play shatter sound
+            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                RoomObj.compSprite.position.X,
+                RoomObj.compSprite.position.Y,
+                Direction.Down);
+            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Assets.Play(Assets.sfxShatter);
+            //handle parameter values
+            if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
+            if (releaseObj) { Functions_Pool.Release(RoomObj); }
+        }
+
         public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
         {   //this handles the most common room objs
             //hitDirection is used to push some objects in the direction they were hit
@@ -273,6 +274,9 @@ namespace DungeonRun
                 FlipSwitchBlocks(RoomObj);
             }
         }
+
+
+
 
         public static void DragIntoPit(GameObject Object, GameObject Pit)
         {   //obj must be grounded

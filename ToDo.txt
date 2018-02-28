@@ -51,15 +51,11 @@ explosive barrel puzzels
 
 
 
+FloorSpikes vs BossStatues ++
 
-SpikeFloor vs RoomObj Interactions ++
-
-added path for SpikeFloors to interact with objects.
-upon interaction with a grounded object,
-only the common room objects are handled: pot, barrel, block switch.
-this means spikes blow up barrels, but also destroy pots.
-and unfortunately they will rapidly flip switch
-blocks back and forth across frames, which is really bad and buggy.
+updated InteractRoomObj() to handle FloorSpikes v BossStatues.
+spoiler alert: boss statues are now destroyed by floor spikes.
+playtested, working as expected.
 
 
 
@@ -67,9 +63,13 @@ blocks back and forth across frames, which is really bad and buggy.
 
 
 
-FloorSpikes should also destroy dungeon statues,
-which really should be wrapped up into the HandleCommon() method of Fun_RoomObj.
 
+
+Ice Tiles ++
+add ice interactions with roomObjs + projectiles
+ice tiles should sort just above the floor tiles, under belts
+belts should sort under floor switches, which sort under actors.
+actors sort based on their Y position.
 
 
 
