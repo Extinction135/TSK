@@ -52,19 +52,14 @@ explosive barrel puzzels
 
 
 
+SpikeFloor vs RoomObj Interactions ++
 
-
-
-Separate DebugInfo for Collisions & Interactions
-
-added Pool.interactionCount, which functions 
-just like collisionsCount, counting interactions 
-instead of collisions. handled by WorldUI.
-updated various Interaction() paths to count.
-playtested, collision and interaction counts
-are now displayed per frame next to the world ui.
-interactions are actually less than expected,
-while collisions are a bit higher than expected.
+added path for SpikeFloors to interact with objects.
+upon interaction with a grounded object,
+only the common room objects are handled: pot, barrel, block switch.
+this means spikes blow up barrels, but also destroy pots.
+and unfortunately they will rapidly flip switch
+blocks back and forth across frames, which is really bad and buggy.
 
 
 
@@ -72,7 +67,12 @@ while collisions are a bit higher than expected.
 
 
 
-floor spikes should blow up barrels.
+FloorSpikes should also destroy dungeon statues,
+which really should be wrapped up into the HandleCommon() method of Fun_RoomObj.
+
+
+
+
 bumpers should be more predictable (with room objs, ref bumper test room).
 
 bosses should always spawn as ActorPool index 2.

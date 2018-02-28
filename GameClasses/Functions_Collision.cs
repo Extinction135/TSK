@@ -57,7 +57,6 @@ namespace DungeonRun
 
 
 
-
         public static void CheckCollisions(
             ComponentMovement CompMove, ComponentCollision CompColl,
             Boolean checkRoomObjs, Boolean checkEnemies, Boolean checkHero)

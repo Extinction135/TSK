@@ -510,10 +510,22 @@ namespace DungeonRun
             //Handle Object vs NonBlocking RoomObj
             //this is entity/roomObj vs non-block obj
 
+            if (RoomObj.type == ObjType.SpikesFloorOn)
+            {   //damage push actors (on ground) away from spikes
+                if (Object.compMove.grounded)
+                {   //spikeblock pushes obj as if it were opposite direction
+                    Functions_RoomObject.HandleCommon(Object, 
+                        Functions_Direction.GetOppositeCardinal(
+                            Object.compMove.position, 
+                            RoomObj.compMove.position)
+                        );
+                }
+            }
+
 
             #region ConveyorBelt
 
-            if (Object.type == ObjType.ConveyorBeltOn)
+            else if (Object.type == ObjType.ConveyorBeltOn)
             {   //if obj is moveable and on ground, move it
                 if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
                 { Functions_RoomObject.ConveyorBeltPush(RoomObj.compMove, Object); }
