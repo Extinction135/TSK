@@ -73,36 +73,85 @@ actors sort based on their Y position.
 
 
 
-Make Friction a Global Instance
+Re-Implement Friction and Ice Tiles
 
-removed friction values from Actor data class.
-moved these values into a global data class simply called 'World'.
-so we can access the global constant of friction anywhere in the
-codebase by using World.friction. 
-this was done in prep for re-implementing friction in the
-move component, so actors AND objects can be affected by ice tiles.
+the goal is to get actors and room objects sliding across ice.
+and maybe design some new rooms once that's working.
 
+MoveComponent already has a friction float field.
+updated Pool.Update() to reset both Actor and Obj move
+component's friction value to World.friction.
+this sets the stage for ice tiles to interact properly.
 
+added SlideOnIce() to Functions_RoomObject.
+updated Interactions() to use SlideOnIce(),
+for both Actors and Objs, since SlideOnIce()
+only takes a MoveComponent as a parameter.
+playtested, barrels slide across ice (from a belt push).
 
+created a deviously clever new key room, using belts + ice
+tiles moving barrels, with the hero on ice as well.
+named Key_007. playtested, and i was actually laughing 
+while playing, which is amazing considering how long
+i've been playing with the same stuff in game.
 
-
-
-
-
-
-
-add a friction float ref to move component data class
-this will allow actors, objs, ents ability to change friction easily
-
-interactions with ice tile changes the actor's friction
-
-
-
-
-
+improved key 001.. i mean i made it harder. way harder.
+added square008, which is a fun ice / belt room.
+improved key 005, and key 006.
 
 
 
+we can improve the square room with the conveyorbelts around the flamethrower
+by replacing the corner pieces with dark blocks
+this will keep the torches aligned to the conveyor belts under them
+and prevent them from colliding with switch blocks when they pop back up
+and that's square room 006, btw
+
+
+
+
+record new GIFs of various rooms for GitHub
+'preview of 0.7'
+
+
+
+
+the flame throwers on the ground shouldn't shoot fireballs
+they should shoot those light wave things, which dont deal damage to what they hit!
+they actually only push what they hit, and they dont die upon a collision
+they will continue to push whatever they collide with until they die from age
+this means we need a new type of projectile, which is exciting
+
+and we can use this wave as the projectile created from the wand!
+we can call it the push wand, which would allow us to create a whole new type of puzzle
+where we can use the push wand to move objects to solve rooms!!!
+
+
+
+
+
+if an arrow hits a lever, it should trigger the lever.
+new puzzle types can be created
+
+
+
+
+
+we actually need to have 'off' belts in the objTools widget
+
+puzzle idea: hero has to turn lever on, which starts belts
+belts carry barrel across ice tiles to an eventual state where the
+hero can shoot it with an arrow
+
+
+
+
+
+
+
+
+spike floors should push hero / actor based on the actors facing direction
+and they should push the actor the opposite direction the actor is facing
 
 
 

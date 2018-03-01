@@ -57,9 +57,6 @@ namespace DungeonRun
             //ensure the object is active - have we done this in the calling code?
             if (!Obj.active) { return; } //inactive objects are denied interaction
             Pool.interactionsCount++; //count interaction
-            //reset the actors friction to normal
-            //various kinds of interaction may change this below (ice, for example)
-            Actor.compMove.friction = Actor.friction;
 
             //Hero Specific Interactions
             if (Actor == Pool.hero)
@@ -365,14 +362,7 @@ namespace DungeonRun
                 #region Ice
 
                 else if (Obj.type == ObjType.IceTile)
-                {   //set the actor's friction to ice
-                    Actor.compMove.friction = Actor.frictionIce;
-                    //clip magnitude's maximum values for ice
-                    if (Actor.compMove.magnitude.X > 1) { Actor.compMove.magnitude.X = 1; }
-                    else if (Actor.compMove.magnitude.X < -1) { Actor.compMove.magnitude.X = -1; }
-                    if (Actor.compMove.magnitude.Y > 1) { Actor.compMove.magnitude.Y = 1; }
-                    else if (Actor.compMove.magnitude.Y < -1) { Actor.compMove.magnitude.Y = -1; }
-                }
+                { Functions_RoomObject.SlideOnIce(Actor.compMove); }
 
                 #endregion
 
@@ -641,22 +631,13 @@ namespace DungeonRun
             #region IceTiles
 
             else if(RoomObj.type == ObjType.IceTile)
-            {
+            {   //only objects on the ground can slide on ice
                 if (Object.compMove.grounded)
-                {
-                    //slide that obj
-                }
+                { Functions_RoomObject.SlideOnIce(Object.compMove); }
             }
 
             #endregion
 
-            //add ice interactions here
-            //ice friction should be global
-            //normal friction should be global
-            //air friction should be global
-            //slowed friction should be global
-
-            //that way it's easier to target and control friction
         }
 
 

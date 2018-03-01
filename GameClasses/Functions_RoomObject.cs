@@ -277,6 +277,15 @@ namespace DungeonRun
 
 
 
+        public static void SlideOnIce(ComponentMovement compMove)
+        {   //set the component's friction to ice (slides)
+            compMove.friction = World.frictionIce;
+            //clip magnitude's maximum values for ice (reduces max speed)
+            if (compMove.magnitude.X > 1) { compMove.magnitude.X = 1; }
+            else if (compMove.magnitude.X < -1) { compMove.magnitude.X = -1; }
+            if (compMove.magnitude.Y > 1) { compMove.magnitude.Y = 1; }
+            else if (compMove.magnitude.Y < -1) { compMove.magnitude.Y = -1; }
+        }
 
         public static void DragIntoPit(GameObject Object, GameObject Pit)
         {   //obj must be grounded

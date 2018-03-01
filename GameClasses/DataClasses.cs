@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -77,6 +77,10 @@ namespace DungeonRun
         public static float friction = 0.75f;
         public static float frictionIce = 0.99f;
         public static float frictionAir = 0.999f;
+
+        //do we need a 'slowed' friction value?
+        //we could use this fake a 'burdened' state
+        //if the hero puts on heavy armor, for example
     }
 
     public static class Camera2D

@@ -158,6 +158,9 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
 
+                    //reset the actor's friction for this frame
+                    Pool.actorPool[i].compMove.friction = World.friction;
+
                     //here we could reject dead actor interactions like this
                     //if (Pool.actorPool[i].state != ActorState.Dead)
                     {
@@ -176,6 +179,8 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, Pool.roomObjPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
 
+                    //reset the object's friction for this frame
+                    Pool.roomObjPool[i].compMove.friction = World.friction;
 
                     //any moving roomObj gets interaction checks
                     //and specific roomObjs ALWAYS get interaction checks
