@@ -638,6 +638,18 @@ namespace DungeonRun
             #endregion
 
 
+            #region IceTiles
+
+            else if(RoomObj.type == ObjType.IceTile)
+            {
+                if (Object.compMove.grounded)
+                {
+                    //slide that obj
+                }
+            }
+
+            #endregion
+
             //add ice interactions here
             //ice friction should be global
             //normal friction should be global

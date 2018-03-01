@@ -72,6 +72,13 @@ namespace DungeonRun
         }
     }
 
+    public static class World
+    {
+        public static float friction = 0.75f;
+        public static float frictionIce = 0.99f;
+        public static float frictionAir = 0.999f;
+    }
+
     public static class Camera2D
     {
         public static GraphicsDevice graphics = ScreenManager.game.GraphicsDevice;
@@ -630,10 +637,6 @@ namespace DungeonRun
         //type specific fields, set by Functions_Actor.SetType()
         public float dashSpeed;
         public float walkSpeed;
-        public float friction = 0.75f;
-        public float frictionIce = 0.99f;
-
-        
 
         //the components that actor requires to function
         public ComponentSprite compSprite;

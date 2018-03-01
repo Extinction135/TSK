@@ -51,18 +51,15 @@ explosive barrel puzzels
 
 
 
-FloorSpikes vs BossStatues ++
 
-updated InteractRoomObj() to handle FloorSpikes v BossStatues.
-spoiler alert: boss statues are now destroyed by floor spikes.
-playtested, working as expected.
+How do we handle Friction?
 
-
-
-
-
-
-
+we want these values in ONE place, easily accesible
+we want all objs, actors, projs to refs these global friction constants
+friction should never be implemented as an instanced value!!!
+can we remove friction from actors?
+where does the data type for friction live?? in the compMove? in the actor?
+what about the obj? does the obj have friction? how is this implemented?
 
 
 Ice Tiles ++
@@ -70,6 +67,43 @@ add ice interactions with roomObjs + projectiles
 ice tiles should sort just above the floor tiles, under belts
 belts should sort under floor switches, which sort under actors.
 actors sort based on their Y position.
+
+
+
+
+
+
+Make Friction a Global Instance
+
+removed friction values from Actor data class.
+moved these values into a global data class simply called 'World'.
+so we can access the global constant of friction anywhere in the
+codebase by using World.friction. 
+this was done in prep for re-implementing friction in the
+move component, so actors AND objects can be affected by ice tiles.
+
+
+
+
+
+
+
+
+
+
+add a friction float ref to move component data class
+this will allow actors, objs, ents ability to change friction easily
+
+interactions with ice tile changes the actor's friction
+
+
+
+
+
+
+
+
+
 
 
 
