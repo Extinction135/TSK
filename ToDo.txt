@@ -74,11 +74,7 @@ actors sort based on their Y position.
 
 
 
-Improve Levels
 
-improved square 007.
-the inner torches were getting misaligned with the belts.
-alignement blocks were added.
 
 
 

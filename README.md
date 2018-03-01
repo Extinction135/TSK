@@ -6,11 +6,9 @@ A 2D Zelda, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.
 
 
 
-## Version 0.6 - 2017.08.19   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p6A.gif)  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p6B.gif)  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p6C.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p6D.gif)   
+## Version 0.7 Preview - 2018.03.01    
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p7preview1.gif)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7KeyRooms.gif)   
  
  
 ## Overview  
