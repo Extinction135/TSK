@@ -73,39 +73,15 @@ actors sort based on their Y position.
 
 
 
-Re-Implement Friction and Ice Tiles
 
-the goal is to get actors and room objects sliding across ice.
-and maybe design some new rooms once that's working.
+Improve Levels
 
-MoveComponent already has a friction float field.
-updated Pool.Update() to reset both Actor and Obj move
-component's friction value to World.friction.
-this sets the stage for ice tiles to interact properly.
-
-added SlideOnIce() to Functions_RoomObject.
-updated Interactions() to use SlideOnIce(),
-for both Actors and Objs, since SlideOnIce()
-only takes a MoveComponent as a parameter.
-playtested, barrels slide across ice (from a belt push).
-
-created a deviously clever new key room, using belts + ice
-tiles moving barrels, with the hero on ice as well.
-named Key_007. playtested, and i was actually laughing 
-while playing, which is amazing considering how long
-i've been playing with the same stuff in game.
-
-improved key 001.. i mean i made it harder. way harder.
-added square008, which is a fun ice / belt room.
-improved key 005, and key 006.
+improved square 007.
+the inner torches were getting misaligned with the belts.
+alignement blocks were added.
 
 
 
-we can improve the square room with the conveyorbelts around the flamethrower
-by replacing the corner pieces with dark blocks
-this will keep the torches aligned to the conveyor belts under them
-and prevent them from colliding with switch blocks when they pop back up
-and that's square room 006, btw
 
 
 
