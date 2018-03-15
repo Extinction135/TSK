@@ -129,17 +129,17 @@ namespace DungeonRun
             if (Obj.type == ObjType.Flamethrower)
             {   
                 if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
-                { Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Obj); }
+                { Functions_Projectile.Spawn(ObjType.ProjectileFireball, Obj); }
             }
             else if (Obj.type == ObjType.WallStatue)
             {
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
-                { Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Obj); }
+                { Functions_Projectile.Spawn(ObjType.ProjectileArrow, Obj); }
             }
             else if(Obj.type == ObjType.PitAnimated)
             {
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
-                { Functions_Entity.SpawnEntity(ObjType.ParticlePitAnimation, Obj); }
+                { Functions_Particle.Spawn(ObjType.ParticlePitAnimation, Obj); }
             }
         }
 

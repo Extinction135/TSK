@@ -45,7 +45,7 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckBombs()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor spawns a bomb
-                Functions_Entity.SpawnEntity(ObjType.ProjectileBomb, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileBomb, Actor);
             }
 
             #endregion
@@ -58,7 +58,7 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckMagic(1)) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor shoots a fireball
-                Functions_Entity.SpawnEntity(ObjType.ProjectileFireball, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileFireball, Actor);
             }
 
             #endregion
@@ -68,7 +68,7 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.WeaponSword)
             {
-                Functions_Entity.SpawnEntity(ObjType.ProjectileSword, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor);
                 Actor.lockTotal = 15;
             }
             else if (Type == MenuItemType.WeaponBow)
@@ -76,12 +76,12 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor shoots an arrow
-                Functions_Entity.SpawnEntity(ObjType.ProjectileArrow, Actor);
-                Functions_Entity.SpawnEntity(ObjType.ParticleBow, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor);
+                Functions_Projectile.Spawn(ObjType.ParticleBow, Actor);
             }
             else if (Type == MenuItemType.WeaponNet)
             {
-                Functions_Entity.SpawnEntity(ObjType.ProjectileNet, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor);
                 Actor.lockTotal = 15;
             }
 

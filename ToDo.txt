@@ -56,12 +56,10 @@ explosive barrel puzzels
 
 
 
-Implement Projectiles & Particles - Part 3
+Implement Projectiles & Particles - Part 4
 
-fixed Overworld Screen's update routine to use particle pool.
-fixed various references throughout codebase.
-updated Functions_Interaction.CheckInteractions() parameters.
-still borken tho.
+updated more references from entites to particles / projectiles.
+playtested game, working.. but i'm sure there are bugs lurking.
 
 
 
@@ -71,39 +69,18 @@ still borken tho.
 
 
 
-fix all the errors and references for Entities, because they are now Projectiles or Particles
-PICKUPS fit into the Projectile category, but they simply don't move.
+Optimization
+
+we should seperate pickups from projectiles,
+since pickups would only ever collide with the hero..
+whereas projectiles would collide with all actors..
+this reduces collision checks and simplifies the func_projectile.spawn() method, 
+since it wont need to handle pickups
 
 
 
 
 
-link up the birth and death methods for particles / projectiles
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-So, the proposal is to separate projectiles from other entities.
-essentially, there would be three distinct obj groups: roomObjs, particles, projectiles
-we would no longer have an entity pool, instead we would have two pools, particles and projectiles
-particles never really collide / interact.
-projectiles ALWAYS interact, and sometimes they move.
-there will never be more than 20 or 30 projectiles on screen,
-simply because i dont want the game to be a bullet hell,
-so it stands to reason the projectile pool will be relatively small.
-
-the particle pool will contain all non-colliding 'decorative' gameobjects.
-pickups, for example, would be a projectile, since they collide with the hero.
 
 How are projectiles different from particles?
 Projectiles, besides colliding with objs / actors, also move and
@@ -114,21 +91,7 @@ in the same manner, the hookshot item can carry the hero over pits.
 this is accomplished by storing a reference to an actor with the projectile class.
 essentially, the projectile class extends the roomObj class with actor and obj references.
 
-
-We can further optimize if we add more pools:
-
-Actors - acts coll / int with acts, roomObjs, projectiles
-RoomObjs - coll w roomObjs, int with roomObjs
-Particles - no coll / int
-Projectiles - int with actors & roomObjs
-Pickups - int with hero ONLY
-	- Pickups would only collide with the hero, so we would never need to check them against enemies
-
-this means that the Pool class needs to be rewritten, and likely most of the methods it touches
-
-
-
-Entities / Projectiles should have 'owners' or 'casters'.
+Projectiles should have 'owners' or 'casters'.
 	this is simply an actor reference.
 	this lays ground work for:
 	boomerang functionality,

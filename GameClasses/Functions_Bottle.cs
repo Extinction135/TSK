@@ -41,37 +41,37 @@ namespace DungeonRun
         {   //only hero can use bottles
             if (bottleValue == 1)
             {   //use empty bottle
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleEmpty, Pool.hero);
+                Functions_Particle.Spawn(ObjType.ParticleBottleEmpty, Pool.hero);
                 Assets.Play(Assets.sfxError);
             }
             else if (bottleValue == 2)
             {   //use health potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleHealth, Pool.hero);
+                Functions_Particle.Spawn(ObjType.ParticleBottleHealth, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
             }
             else if (bottleValue == 3)
             {   //use magic potion
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleMagic, Pool.hero);
+                Functions_Particle.Spawn(ObjType.ParticleBottleMagic, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
             }
             else if (bottleValue == 4)
             {   //use combo potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleCombo, Pool.hero);
+                Functions_Particle.Spawn(ObjType.ParticleBottleCombo, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
             }
             else if (bottleValue == 5)
             {   //use fairy in a bottle
                 Pool.hero.health = PlayerData.current.heartsTotal;
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleFairy, Pool.hero);
+                Functions_Particle.Spawn(ObjType.ParticleBottleFairy, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
             }
             else if (bottleValue == 6)
             {   //display the bottled blob over hero's head
-                Functions_Entity.SpawnEntity(ObjType.ParticleBottleBlob, Pool.hero);
+                Functions_Particle.Spawn(ObjType.ParticleBottleBlob, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
                 //use blob in a bottle (transform hero into blob and vice versa)
                 if (Pool.hero.type == ActorType.Hero)
@@ -89,7 +89,7 @@ namespace DungeonRun
             else if (bottleID == 3) { PlayerData.current.bottleC = 1; }
             //set hero into reward state, grab player's attention
             Functions_Actor.SetRewardState(Pool.hero);
-            Functions_Entity.SpawnEntity(ObjType.ParticleAttention, Pool.hero);
+            Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
             //hero has used his item (which was a filled bottle)
             Pool.hero.item = MenuItemType.Unknown;
         }

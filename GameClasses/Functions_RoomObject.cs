@@ -58,7 +58,8 @@ namespace DungeonRun
         public static void FlipSwitchBlocks(GameObject SwitchBtn)
         {
             Assets.Play(Assets.sfxSwitch);
-            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+            Functions_Particle.Spawn(
+                ObjType.ParticleAttention,
                 SwitchBtn.compSprite.position.X,
                 SwitchBtn.compSprite.position.Y, 
                 Direction.None);
@@ -73,8 +74,9 @@ namespace DungeonRun
                     //display particle fx at block location
                     if (Pool.roomObjPool[i].type == ObjType.SwitchBlockDown
                         || Pool.roomObjPool[i].type == ObjType.SwitchBlockUp)
-                    {   
-                        Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                    {
+                        Functions_Particle.Spawn(
+                            ObjType.ParticleAttention,
                             Pool.roomObjPool[i].compSprite.position.X,
                             Pool.roomObjPool[i].compSprite.position.Y,
                             Direction.Down);
@@ -108,7 +110,8 @@ namespace DungeonRun
                     if (Pool.roomObjPool[i].type == ObjType.DoorTrap)
                     {   //display an attention particle where the conversion happened
                         Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen);
-                        Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                        Functions_Particle.Spawn(
+                            ObjType.ParticleAttention,
                             Pool.roomObjPool[i].compSprite.position.X,
                             Pool.roomObjPool[i].compSprite.position.Y,
                             Direction.Down);
@@ -135,7 +138,8 @@ namespace DungeonRun
         public static void LightTorch(GameObject UnlitTorch)
         {   //light the unlit torch
             Functions_GameObject.SetType(UnlitTorch, ObjType.TorchLit);
-            Functions_Entity.SpawnEntity(ObjType.ParticleFire,
+            Functions_Particle.Spawn(
+                ObjType.ParticleFire,
                 UnlitTorch.compSprite.position.X + 0,
                 UnlitTorch.compSprite.position.Y - 7,
                 Direction.None);
@@ -233,7 +237,8 @@ namespace DungeonRun
 
         public static void DestroyBarrel(GameObject Barrel)
         {   //create a projectile exploding barrel at Barrel's exact location
-            Functions_Entity.SpawnEntity(ObjType.ProjectileExplodingBarrel,
+            Functions_Projectile.Spawn(
+                ObjType.ProjectileExplodingBarrel,
                 Barrel.compSprite.position.X,
                 Barrel.compSprite.position.Y,
                 Barrel.compMove.direction); //pushed based on this direction
@@ -244,13 +249,14 @@ namespace DungeonRun
 
         public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
         {   //grab players attention, spawn rock debris, play shatter sound
-            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+            Functions_Particle.Spawn(
+                ObjType.ParticleAttention,
                 RoomObj.compSprite.position.X,
                 RoomObj.compSprite.position.Y,
                 Direction.Down);
-            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
-            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
-            Functions_Entity.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
             Assets.Play(Assets.sfxShatter);
             //handle parameter values
             if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
@@ -318,7 +324,7 @@ namespace DungeonRun
         public static void PlayPitFx(GameObject Pit)
         {   //play splash particle effect
             Assets.Play(Assets.sfxSplash);
-            Functions_Entity.SpawnEntity(
+            Functions_Particle.Spawn(
                 ObjType.ParticleSplash,
                 Pit.compSprite.position.X,
                 Pit.compSprite.position.Y - 4,
@@ -336,7 +342,7 @@ namespace DungeonRun
             //handle the bumper animation
             Bumper.compSprite.scale = 1.5f;
             Assets.Play(Assets.sfxBounce);
-            Functions_Entity.SpawnEntity(
+            Functions_Particle.Spawn(
                 ObjType.ParticleAttention,
                 Bumper.compSprite.position.X,
                 Bumper.compSprite.position.Y,
@@ -350,7 +356,7 @@ namespace DungeonRun
 
         public static void BounceSpikeBlock(GameObject SpikeBlock)
         {   //spawn a hit particle along spikeBlock's colliding edge
-            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, SpikeBlock);
+            Functions_Particle.Spawn(ObjType.ParticleHitSparkle, SpikeBlock);
             Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect
             //flip the block's direction to the opposite direction
             SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);

@@ -101,7 +101,7 @@ namespace DungeonRun
                 {
                     if (PlayerData.current.gold > 0) //if hero has any gold
                     {   //drop a gold piece upon getting hit
-                        Functions_Entity.SpawnEntity(ObjType.PickupRupee, Actor);
+                        Functions_Projectile.Spawn(ObjType.PickupRupee, Actor);
                         PlayerData.current.gold--;
                     }
                 }
@@ -130,7 +130,7 @@ namespace DungeonRun
             if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
-                Functions_Entity.SpawnEntity(ObjType.ParticleExplosion, Actor);
+                Functions_Particle.Spawn(ObjType.ParticleExplosion, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Functions_Loot.SpawnLoot(Actor.compSprite.position);
             }
@@ -145,7 +145,7 @@ namespace DungeonRun
             }
             else if(Actor.type == ActorType.Fairy)
             {
-                Functions_Entity.SpawnEntity(ObjType.ParticleExplosion, Actor);
+                Functions_Particle.Spawn(ObjType.ParticleExplosion, Actor);
                 Functions_Pool.Release(Actor);
             }
         }
@@ -316,7 +316,7 @@ namespace DungeonRun
                         Actor.lockTotal = 10;
                         Actor.stateLocked = true;
                         Actor.compMove.speed = Actor.dashSpeed;
-                        Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Actor);
+                        Functions_Particle.Spawn(ObjType.ParticleDashPuff, Actor);
                         Assets.Play(Actor.sfxDash);
                     }
                     else if (Actor.state == ActorState.Attack)
@@ -360,7 +360,7 @@ namespace DungeonRun
                     {   //dead bosses perpetually explode
                         if (Functions_Random.Int(0, 100) > 75) //randomly create explosions
                         {   //randomly place explosions around boss
-                            Functions_Entity.SpawnEntity(
+                            Functions_Particle.Spawn(
                                 ObjType.ParticleExplosion,
                                 Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
                                 Actor.compSprite.position.Y + Functions_Random.Int(-16, 16),

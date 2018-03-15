@@ -148,8 +148,6 @@ namespace DungeonRun
             obj.compMove.moving = true;
 
 
-
-
             #region Set Object's Direction
 
             //certain projectiles/particles get a cardinal direction, others dont
@@ -298,12 +296,5 @@ namespace DungeonRun
 
             //Debug.WriteLine("entity made: " + Type + " - location: " + X + ", " + Y);
         }
-
-
-
-
-
-
-
     }
 }

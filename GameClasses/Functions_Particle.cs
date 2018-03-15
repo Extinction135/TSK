@@ -128,8 +128,6 @@ namespace DungeonRun
 
 
 
-
-
         public static void ScatterRockDebris(Vector2 Pos, Boolean Push)
         {   //add up to 4 rocks randomly around the passed Pos value, with option to push them
             Direction pushDir = Direction.None;
@@ -162,7 +160,6 @@ namespace DungeonRun
                     Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
         }
-
 
     }
 }

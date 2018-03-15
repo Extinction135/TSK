@@ -189,14 +189,14 @@ namespace DungeonRun
 
                 if (Obj.type == ObjType.ChestKey)
                 {
-                    Functions_Entity.SpawnEntity(ObjType.ParticleRewardKey, Pool.hero);
+                    Functions_Particle.Spawn(ObjType.ParticleRewardKey, Pool.hero);
                     Level.bigKey = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.HeroGotKey)); }
                 }
                 else if (Obj.type == ObjType.ChestMap)
                 {
-                    Functions_Entity.SpawnEntity(ObjType.ParticleRewardMap, Pool.hero);
+                    Functions_Particle.Spawn(ObjType.ParticleRewardMap, Pool.hero);
                     Level.map = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.HeroGotMap)); }
@@ -209,7 +209,7 @@ namespace DungeonRun
                 {   //if the chest is not empty, play the reward animation
                     Assets.Play(Assets.sfxChestOpen);
                     Functions_GameObject.SetType(Obj, ObjType.ChestEmpty);
-                    Functions_Entity.SpawnEntity( //show the chest was opened
+                    Functions_Particle.Spawn( //show the chest was opened
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
@@ -246,7 +246,7 @@ namespace DungeonRun
                 {   //hero must have dungeon key to open boss door
                     Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
                     Assets.Play(Assets.sfxDoorOpen);
-                    Functions_Entity.SpawnEntity(
+                    Functions_Particle.Spawn(
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
@@ -282,7 +282,8 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false; //prevent hero/obj collisions
 
                 //decorate pickup from ground
-                Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                Functions_Particle.Spawn(
+                    ObjType.ParticleAttention,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y,
                     Direction.Down);
@@ -295,7 +296,7 @@ namespace DungeonRun
             else if (Obj.type == ObjType.LeverOff || Obj.type == ObjType.LeverOn)
             {   //activate all lever objects (including lever), call attention to change
                 Functions_RoomObject.ActivateLeverObjects();
-                Functions_Entity.SpawnEntity(
+                Functions_Particle.Spawn(
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
@@ -417,7 +418,7 @@ namespace DungeonRun
                 //goto next anim frame, this event is only processed once
                 Pool.hero.compAnim.index++;
                 //spawn particle to grab the player's attention
-                Functions_Entity.SpawnEntity(
+                Functions_Particle.Spawn(
                         ObjType.ParticleAttention,
                         Pool.hero.compSprite.position.X,
                         Pool.hero.compSprite.position.Y,
@@ -497,7 +498,7 @@ namespace DungeonRun
                 (int)carryingObj.compMove.newPosition.Y);
             //simulate an impact with the ground
             Assets.Play(Assets.sfxActorLand); //play land sound fx
-            Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+            Functions_Particle.Spawn(ObjType.ParticleAttention,
                 carryingObj.compMove.newPosition.X,
                 carryingObj.compMove.newPosition.Y,
                 Direction.Down);
@@ -599,7 +600,7 @@ namespace DungeonRun
                     Hero.lockTotal = 10;
                     Hero.stateLocked = true;
                     Hero.compMove.speed = Hero.dashSpeed;
-                    Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff, Hero);
+                    Functions_Particle.Spawn(ObjType.ParticleDashPuff, Hero);
                     Assets.Play(Hero.sfxDash);
                 }
                 else if (Hero.state == ActorState.Attack)
@@ -624,7 +625,7 @@ namespace DungeonRun
 
         public static void ThrowPot()
         {   //create the ProjectilePot entity
-            Functions_Entity.SpawnEntity(ObjType.ProjectilePot, Pool.hero);
+            Functions_Particle.Spawn(ObjType.ProjectilePot, Pool.hero);
             carrying = false; //release carrying state
             Functions_Pool.Release(carryingObj);
             carryingObj = null; //release obj ref
