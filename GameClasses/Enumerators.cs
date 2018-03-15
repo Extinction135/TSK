@@ -127,6 +127,16 @@ namespace DungeonRun
         ParticleBottleFairy, ParticleBottleBlob,
         //Particles - rewards
         ParticleRewardKey, ParticleRewardMap,
+
+
+
+
+        //particles
+
+
+        //projectiles
+        //(pickups) rupee, heart, magicPot, arrow, bomb
+        //
     }
 
     public enum MenuItemType

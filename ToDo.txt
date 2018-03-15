@@ -19,7 +19,11 @@ adding sound effects:
 CTRL + M, O = collapse functions/regions	
 	
 
-
+	
+	
+new gif: 50% nearest neighbor, 32 dithered
+	
+	
 	
 	
 todo:
@@ -52,38 +56,7 @@ explosive barrel puzzels
 
 
 
-How do we handle Friction?
 
-we want these values in ONE place, easily accesible
-we want all objs, actors, projs to refs these global friction constants
-friction should never be implemented as an instanced value!!!
-can we remove friction from actors?
-where does the data type for friction live?? in the compMove? in the actor?
-what about the obj? does the obj have friction? how is this implemented?
-
-
-Ice Tiles ++
-add ice interactions with roomObjs + projectiles
-ice tiles should sort just above the floor tiles, under belts
-belts should sort under floor switches, which sort under actors.
-actors sort based on their Y position.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-record new GIFs of various rooms for GitHub
-'preview of 0.7'
 
 
 
@@ -150,18 +123,48 @@ and replaces them with more custom story items, like the warriors pass, etc..
 
 
 
+So, the proposal is to separate projectiles from other entities.
+essentially, there would be three distinct obj groups: roomObjs, particles, projectiles
+we would no longer have an entity pool, instead we would have two pools, particles and projectiles
+particles never really 'move' or collide / interact.
+projectiles ALWAYS interact, and sometimes they move.
+there will never be more than 20 or 30 projectiles on screen,
+simply because i dont want the game to be a bullet hell,
+so it stands to reason the projectile pool will be relatively small.
+
+the particle pool will contain all non-colliding 'decorative' gameobjects.
+pickups, for example, would be a projectile, since they collide with the hero.
+
+How are projectiles different from particles?
+Projectiles, besides colliding with objs / actors, also move and
+interact in various ways with various things. for example, the boomerang
+projectile will be able to grab a gameobj and return it to the hero.
+this will be done using a gameObj reference, stored with the projectile class.
+in the same manner, the hookshot item can carry the hero over pits.
+this is accomplished by storing a reference to an actor with the projectile class.
+essentially, the projectile class extends the roomObj class with actor and obj references.
+
+
+We can further optimize if we add more pools:
+
+Actors - acts coll / int with acts, roomObjs, projectiles
+RoomObjs - coll w roomObjs, int with roomObjs
+Particles - no coll / int
+Projectiles - int with actors & roomObjs
+Pickups - int with hero ONLY
+	- Pickups would only collide with the hero, so we would never need to check them against enemies
+
+this means that the Pool class needs to be rewritten, and likely most of the methods it touches
+
+
 
 Entities / Projectiles should have 'owners' or 'casters'.
 	this is simply an actor reference.
-	this means projectiles are MORE than gameObjs.
-	where does this reference get added?
 	this lays ground work for:
 	boomerang functionality,
 	excluding caster from AoE spell damage,
 	tracking a sword to an actor across frames (conveyor belt)
 	tracking overhead rewards to hero across frames (conveyor belt)
-
-
 	allows actors to slide across ice with weapons as well
 
 Implement Boomerang
@@ -177,9 +180,6 @@ we'll have to get the direction to hero, like we do in Functions_Ai
 the move the boomrang in that direction
 the boomerang will continuously spin, so it doesn't have a movement direction
 we'll need to update the rotationValue for boomerang each animation frame
-
-attachment
-how do we attach an obj/actor to boomerang? i dunno
 
 
 
@@ -216,6 +216,29 @@ all related to picking up/carrying/throwing/pushing/pulling
 	so the game would know who threw the object, if we had effects later
 	for example, lifesteal or something else that targets the caster upon obj collision.
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
