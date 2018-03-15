@@ -56,13 +56,20 @@ explosive barrel puzzels
 
 
 
-Implement Projectiles & Particles - Part 1
+Implement Projectiles & Particles - Part 2
 
-added various projectile related fields to Pool class.
-changed entity related fields to particle fields in Pool class.
-changed Pool.GetEntity() to Pool.GetParticle() and GetProjectile().
-split Pool.ResetEntityPool() into ResetParticlePool() and ResetProjectilePool().
-modified Pool.Update() and Pool.Draw().
+added shared game classes Functions_Particle and Functions_Projectile. 
+updated dX project references.
+moved Birth and Death event methods into Functions_GameObject.
+moved ScatterRockDebris() into Functions_Particle.
+split SpawnEntity methods up between Particle and Projectile classes.
+removed Functions_Entity class from shared classes.
+updated UWP project with correct class refs.
+note that codebase is currently in broken state, don't build rn.
+
+
+
+
 
 
 

@@ -799,5 +799,160 @@ namespace DungeonRun
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
 
+
+
+
+
+
+
+        public static void HandleBirthEvent(GameObject Obj)
+        {
+
+            #region Projectiles
+
+            if (Obj.type == ObjType.ProjectileArrow)
+            {
+                Assets.Play(Assets.sfxArrowShoot);
+            }
+            else if (Obj.type == ObjType.ProjectileBomb)
+            {
+                Assets.Play(Assets.sfxBombDrop);
+                //bomb is initially sliding upon birth
+                SpawnEntity(ObjType.ParticleDashPuff,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+            }
+            else if (Obj.type == ObjType.ProjectileExplosion)
+            {
+                Assets.Play(Assets.sfxExplosion);
+                //place smoke puff above explosion
+                SpawnEntity(ObjType.ParticleSmokePuff,
+                    Obj.compSprite.position.X + 4,
+                    Obj.compSprite.position.Y - 8,
+                    Direction.None);
+            }
+            else if (Obj.type == ObjType.ProjectileFireball)
+            {
+                Assets.Play(Assets.sfxFireballCast);
+                //place smoke puff centered to fireball
+                SpawnEntity(ObjType.ParticleSmokePuff,
+                    Obj.compSprite.position.X + 4,
+                    Obj.compSprite.position.Y + 4,
+                    Direction.None);
+            }
+            else if (Obj.type == ObjType.ProjectileSword)
+            {
+                Assets.Play(Assets.sfxSwordSwipe);
+            }
+            else if (Obj.type == ObjType.ProjectileNet) //need net soundFX
+            {
+                Assets.Play(Assets.sfxSwordSwipe);
+            }
+            else if (Obj.type == ObjType.ProjectilePot)
+            {   //throw sfx = actor fall sfx
+                Assets.Play(Assets.sfxActorFall);
+            }
+            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
+            {
+                Assets.Play(Assets.sfxEnemyHit);
+            }
+
+            #endregion
+
+
+            #region Particles
+
+            else if (Obj.type == ObjType.ParticleRewardMap)
+            { Assets.Play(Assets.sfxReward); }
+            else if (Obj.type == ObjType.ParticleRewardKey)
+            { Assets.Play(Assets.sfxKeyPickup); }
+            else if (Obj.type == ObjType.ParticleSplash)
+            { Assets.Play(Assets.sfxSplash); }
+
+            #endregion
+
+        }
+
+        public static void HandleDeathEvent(GameObject Obj)
+        {
+
+            #region Pickups
+
+            if (Obj.group == ObjGroup.Pickup)
+            {   //when an item pickup dies, display an attention particle
+                SpawnEntity(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+            }
+
+            #endregion
+
+
+            #region Projectiles
+
+            else if (Obj.type == ObjType.ProjectileArrow)
+            {
+                SpawnEntity(ObjType.ParticleAttention,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+                Assets.Play(Assets.sfxArrowHit);
+            }
+            else if (Obj.type == ObjType.ProjectileBomb)
+            {   //create explosion projectile
+                SpawnEntity(ObjType.ProjectileExplosion,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.None);
+            }
+            //explosion
+            else if (Obj.type == ObjType.ProjectileFireball)
+            {
+                SpawnEntity(ObjType.ParticleExplosion,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+                SpawnEntity(ObjType.ParticleFire,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0,
+                    Direction.None);
+                Assets.Play(Assets.sfxFireballDeath);
+            }
+            //sword
+            //rock debris
+            else if (Obj.type == ObjType.ProjectilePot)
+            {   //create loot
+                Functions_RoomObject.DestroyObject(Obj, true, true);
+            }
+
+            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
+            {
+                //create explosion projectile
+                SpawnEntity(ObjType.ProjectileExplosion,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.None);
+                //create loot
+                Functions_Loot.SpawnLoot(Obj.compSprite.position);
+                //leave some fire behind
+                SpawnEntity(ObjType.ParticleFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.None);
+                //throw some rocks around as decoration
+                ScatterRockDebris(Obj.compSprite.position, true);
+                ScatterRockDebris(Obj.compSprite.position, true);
+                ScatterRockDebris(Obj.compSprite.position, true);
+            }
+
+            #endregion
+
+        }
+
+
+
+
     }
 }

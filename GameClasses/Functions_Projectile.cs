@@ -12,22 +12,21 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class Functions_Entity
+    public static class Functions_Projectile
     {
         static Vector2 posRef = new Vector2();
         static Direction direction;
 
-        public static void SpawnEntity(ObjType Type, GameObject Object)
-        {   //entities are spawned relative to Object, based on Object.type
-            //set position reference to Object's sprite position
+        //spawn relative to object
+        public static void Spawn(ObjType Type, GameObject Object)
+        {
+            //set position reference to sprite position
             posRef.X = Object.compSprite.position.X;
             posRef.Y = Object.compSprite.position.Y;
-            //direction is set based on Object.type
+            //direction is set based on obj.type
 
 
-            #region Sword/Net
-
-            //we could spawn a fireball here if we wanted to (which is how we'll handle the staff weapon)
+            #region Sword / Net
 
             if (Object.type == ObjType.ProjectileSword || Object.type == ObjType.ProjectileNet)
             {   //place entity at tip of sword, based on direction
@@ -43,7 +42,7 @@ namespace DungeonRun
 
             #region FlameThrower
 
-            else if(Object.type == ObjType.Flamethrower)
+            else if (Object.type == ObjType.Flamethrower)
             {   //shoots fireball (or whatever) at their position, facing towards the hero
                 direction = Functions_Direction.GetCardinalDirectionToHero(Object.compSprite.position);
             }
@@ -65,38 +64,13 @@ namespace DungeonRun
             #endregion
 
 
-            #region Pit
-
-            else if(Object.type == ObjType.PitAnimated)
-            {   //randomly offset where the bubble particle is placed
-                posRef.X += 4; posRef.Y += 4; //because bubble is 8x8 size
-                posRef.X += Functions_Random.Int(-3, 4);
-                posRef.Y += Functions_Random.Int(-3, 4);
-                direction = Direction.None;
-            }
-
-            #endregion
-
-
-            #region SpikeBlock
-
-            else if(Object.type == ObjType.ProjectileSpikeBlock)
-            {   //spikeblocks create hit particles upon their colliding (bounced) edge
-                if (Object.compMove.direction == Direction.Down) { posRef.X += 4; posRef.Y += 10; }
-                else if (Object.compMove.direction == Direction.Up) { posRef.X += 4; posRef.Y -= 4; }
-                else if (Object.compMove.direction == Direction.Right) { posRef.X += 8; posRef.Y += 4; }
-                else if (Object.compMove.direction == Direction.Left) { posRef.X -= 4; posRef.Y += 4; }
-                direction = Object.compMove.direction;
-            }
-
-            #endregion
-
-
-            SpawnEntity(Type, posRef.X, posRef.Y, direction);
+            Spawn(Type, posRef.X, posRef.Y, direction);
         }
 
-        public static void SpawnEntity(ObjType Type, Actor Actor)
-        {   //entities are spawned relative to actor, based on passed objType
+        //spawn relative to actor
+        public static void Spawn(ObjType Type, Actor Actor)
+        {
+            //entities are spawned relative to actor, based on passed objType
             //set position reference to Actor's sprite position
             posRef.X = Actor.compSprite.position.X;
             posRef.Y = Actor.compSprite.position.Y;
@@ -104,26 +78,9 @@ namespace DungeonRun
             direction = Functions_Direction.GetCardinalDirection(Actor.direction);
 
 
-            #region Particles
-
-            if (Type == ObjType.ParticleDashPuff)
-            {   //center horizontally, place near actor's feet
-                posRef.X += 4; posRef.Y += 8;
-            }
-            else if (Type == ObjType.ParticleBow)
-            {   //place bow particle in the actor's hands
-                if (direction == Direction.Down) { posRef.Y += 6; }
-                else if (direction == Direction.Up) { posRef.Y -= 6; }
-                else if (direction == Direction.Right) { posRef.X += 6; }
-                else if (direction == Direction.Left) { posRef.X -= 6; }
-            }
-
-            #endregion
-
-
             #region Pickups
 
-            else if (Type == ObjType.PickupRupee)
+            if (Type == ObjType.PickupRupee)
             {   //place dropped rupee away from hero, cardinal = direction actor was pushed
                 if (direction == Direction.Down) { posRef.X += 4; posRef.Y -= 12; } //place above
                 else if (direction == Direction.Up) { posRef.X += 4; posRef.Y += 15; } //place below
@@ -166,7 +123,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectilePot)
             {   //make direction opposite if actor is hit (only applies to hero)
-                if(Actor == Pool.hero & Actor.state == ActorState.Hit)
+                if (Actor == Pool.hero & Actor.state == ActorState.Hit)
                 {   //this causes the carrying pot to be thrown in the correct direction
                     direction = Functions_Direction.GetOppositeDirection(direction);
                 }
@@ -180,35 +137,23 @@ namespace DungeonRun
             #endregion
 
 
-            #region Reward & Bottle Particles
-
-            else if ( //place reward/bottle particles above actor's head
-                Type == ObjType.ParticleRewardKey ||
-                Type == ObjType.ParticleRewardMap ||
-                Type == ObjType.ParticleBottleEmpty ||
-                Type == ObjType.ParticleBottleHealth ||
-                Type == ObjType.ParticleBottleMagic ||
-                Type == ObjType.ParticleBottleCombo ||
-                Type == ObjType.ParticleBottleFairy ||
-                Type == ObjType.ParticleBottleBlob)
-            { posRef.Y -= 14; }
-
-            #endregion
-
-
-            SpawnEntity(Type, posRef.X, posRef.Y, direction);
+            Spawn(Type, posRef.X, posRef.Y, direction);
         }
 
-        public static void SpawnEntity(ObjType Type, float X, float Y, Direction Direction)
-        {   //actually spawns Entity at the X, Y location, with direction
-            GameObject obj = Functions_Pool.GetEntity();
-            obj.compMove.moving = true; //
+        //spawn relative to position
+        public static void Spawn(ObjType Type, float X, float Y, Direction Direction)
+        {
+            //get a projectile to spawn
+            Projectile obj = Functions_Pool.GetProjectile();
+            obj.compMove.moving = true;
+
+
 
 
             #region Set Object's Direction
 
             //certain projectiles/particles get a cardinal direction, others dont
-            if (Type == ObjType.ProjectileFireball || 
+            if (Type == ObjType.ProjectileFireball ||
                 Type == ObjType.ProjectileSword ||
                 Type == ObjType.ProjectileNet ||
                 Type == ObjType.ProjectileArrow ||
@@ -258,7 +203,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Give Fireballs an Initial Push 
+            #region Push Fireballs (they are flying thru the air)
 
             //bombs are pushed, and slide into a resting position
             else if (Type == ObjType.ProjectileFireball)
@@ -296,7 +241,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Give Bombs an Initial Push (slide them)
+            #region Push Bombs (sliding)
 
             //bombs are pushed, and slide into a resting position
             else if (Type == ObjType.ProjectileBomb)
@@ -305,11 +250,11 @@ namespace DungeonRun
             #endregion
 
 
-            #region Give Pots an Initial Push (throw them)
+            #region Push Pot Projectiles (being thrown)
 
             else if (Type == ObjType.ProjectilePot)
             {   //spawn a shadow for the Pot Projectile
-                GameObject shadow = Functions_Pool.GetEntity();
+                GameObject shadow = Functions_Pool.GetParticle();
                 //teleport shadow to objects location, then to ground
                 Functions_Movement.Teleport(shadow.compMove, X, Y + 16);
                 Functions_GameObject.SetType(shadow, ObjType.ProjectileShadowSm);
@@ -337,7 +282,7 @@ namespace DungeonRun
             //some projectiles get their current frame randomly assigned (for variation)
             else if (Type == ObjType.ProjectileDebrisRock)
             {   //is assigned 15,15 - randomize down to 14,14
-                List <Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
+                List<Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].Y = 14; }
                 obj.compAnim.currentAnimation = rockFrame;
@@ -349,188 +294,16 @@ namespace DungeonRun
 
 
             Functions_Component.Align(obj); //align the entity upon birth
-        }
+            obj.compCollision.blocking = false; //entities interact, never block
 
-        public static void HandleBirthEvent(GameObject Entity)
-        {
-
-            #region Projectiles
-
-            if (Entity.type == ObjType.ProjectileArrow)
-            {
-                Assets.Play(Assets.sfxArrowShoot);
-            }
-            else if (Entity.type == ObjType.ProjectileBomb)
-            {   
-                Assets.Play(Assets.sfxBombDrop);
-                //bomb is initially sliding upon birth
-                SpawnEntity(ObjType.ParticleDashPuff,
-                    Entity.compSprite.position.X + 0,
-                    Entity.compSprite.position.Y + 0,
-                    Direction.None);
-            }
-            else if (Entity.type == ObjType.ProjectileExplosion)
-            {   
-                Assets.Play(Assets.sfxExplosion);
-                //place smoke puff above explosion
-                SpawnEntity(ObjType.ParticleSmokePuff,
-                    Entity.compSprite.position.X + 4,
-                    Entity.compSprite.position.Y - 8,
-                    Direction.None);
-            }
-            else if (Entity.type == ObjType.ProjectileFireball)
-            {   
-                Assets.Play(Assets.sfxFireballCast);
-                //place smoke puff centered to fireball
-                SpawnEntity(ObjType.ParticleSmokePuff,
-                    Entity.compSprite.position.X + 4,
-                    Entity.compSprite.position.Y + 4,
-                    Direction.None);
-            }
-            else if (Entity.type == ObjType.ProjectileSword)
-            {
-                Assets.Play(Assets.sfxSwordSwipe);
-            }
-            else if (Entity.type == ObjType.ProjectileNet) //need net soundFX
-            {
-                Assets.Play(Assets.sfxSwordSwipe);
-            }
-            else if (Entity.type == ObjType.ProjectilePot)
-            {   //throw sfx = actor fall sfx
-                Assets.Play(Assets.sfxActorFall);
-            }
-            else if (Entity.type == ObjType.ProjectileExplodingBarrel)
-            {
-                Assets.Play(Assets.sfxEnemyHit);
-            }
-
-            #endregion
-
-
-            #region Particles
-
-            else if (Entity.type == ObjType.ParticleRewardMap)
-            { Assets.Play(Assets.sfxReward); }
-            else if (Entity.type == ObjType.ParticleRewardKey)
-            { Assets.Play(Assets.sfxKeyPickup); }
-            else if(Entity.type == ObjType.ParticleSplash)
-            { Assets.Play(Assets.sfxSplash); }
-
-            #endregion
-
-        }
-
-        public static void HandleDeathEvent(GameObject Obj)
-        {
-
-            #region Pickups
-
-            if (Obj.group == ObjGroup.Pickup)
-            {   //when an item pickup dies, display an attention particle
-                SpawnEntity(ObjType.ParticleAttention,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-            }
-
-            #endregion
-
-
-            #region Projectiles
-
-            else if (Obj.type == ObjType.ProjectileArrow)
-            {
-                SpawnEntity(ObjType.ParticleAttention,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-                Assets.Play(Assets.sfxArrowHit);
-            }
-            else if (Obj.type == ObjType.ProjectileBomb)
-            {   //create explosion projectile
-                SpawnEntity(ObjType.ProjectileExplosion,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.None);
-            }
-            //explosion
-            else if (Obj.type == ObjType.ProjectileFireball)
-            {
-                SpawnEntity(ObjType.ParticleExplosion,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-                SpawnEntity(ObjType.ParticleFire,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
-                Assets.Play(Assets.sfxFireballDeath);
-            }
-            //sword
-            //rock debris
-            else if (Obj.type == ObjType.ProjectilePot)
-            {   //create loot
-                Functions_RoomObject.DestroyObject(Obj, true, true);
-            }
-
-            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
-            {   //create explosion projectile
-                SpawnEntity(ObjType.ProjectileExplosion,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.None);
-                //create loot
-                //Functions_Loot.SpawnLoot(Obj.compSprite.position);
-                //leave some fire behind
-                SpawnEntity(ObjType.ParticleFire,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.None);
-                //throw some rocks around as decoration
-                //ScatterRockDebris(Obj.compSprite.position, true);
-                //ScatterRockDebris(Obj.compSprite.position, true);
-                //ScatterRockDebris(Obj.compSprite.position, true);
-            }
-
-            #endregion
-
+            //Debug.WriteLine("entity made: " + Type + " - location: " + X + ", " + Y);
         }
 
 
 
-        public static void ScatterRockDebris(Vector2 Pos, Boolean Push)
-        {   //add up to 4 rocks randomly around the passed Pos value, with option to push them
-            Direction pushDir = Direction.None;
-            int spread = 6;
-            if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-            Functions_Entity.SpawnEntity(
-                ObjType.ProjectileDebrisRock,
-                Pos.X, Pos.Y, pushDir);
-            if (Functions_Random.Int(0, 100) > 20)
-            {   //sometimes  add another rock
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
-            }
-            if (Functions_Random.Int(0, 100) > 40)
-            {   //sometimes add another rock
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
-            }
-            if (Functions_Random.Int(0, 100) > 60)
-            {   //sometimes add another rock
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
-            }
-        }
+
+
+
 
     }
 }

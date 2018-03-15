@@ -92,9 +92,6 @@
     <Compile Include="..\..\GameClasses\Functions_Draw.cs">
       <Link>Classes\Functions_Draw.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_Entity.cs">
-      <Link>Classes\Functions_Entity.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_GameObject.cs">
       <Link>Classes\Functions_GameObject.cs</Link>
     </Compile>
@@ -134,8 +131,14 @@
     <Compile Include="..\..\GameClasses\Functions_Music.cs">
       <Link>Classes\Functions_Music.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Particle.cs">
+      <Link>Classes\Functions_Particle.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Pool.cs">
       <Link>Classes\Functions_Pool.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Projectile.cs">
+      <Link>Classes\Functions_Projectile.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Random.cs">
       <Link>Classes\Functions_Random.cs</Link>
