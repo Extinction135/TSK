@@ -85,6 +85,26 @@ namespace DungeonRun
             return Pool.projectilePool[0]; //ran out
         }
 
+        public static GameObject GetPickup()
+        {
+            for (Pool.pickupCounter = 0; Pool.pickupCounter < Pool.pickupCount; Pool.pickupCounter++)
+            {
+                Pool.pickupIndex++;
+                if (Pool.pickupIndex >= Pool.pickupCount) { Pool.pickupIndex = 0; }
+                if (Pool.pickupPool[Pool.pickupIndex].active == false)
+                {   //found an inactive to return
+                    //reset to default state, hide offscreen, return it
+                    Functions_GameObject.ResetObject(Pool.pickupPool[Pool.pickupIndex]);
+                    Pool.pickupPool[Pool.pickupIndex].compMove.newPosition.X = -1000;
+                    Pool.pickupPool[Pool.pickupIndex].compSprite.scale = 1.0f;
+                    return Pool.pickupPool[Pool.pickupIndex];
+                }
+            }
+            return Pool.pickupPool[0]; //ran out
+        }
+
+
+
         public static ComponentSprite GetFloor()
         {   //we never release a floor sprite, and floors are returned sequentially
             Pool.floorIndex++;
@@ -102,6 +122,7 @@ namespace DungeonRun
             ResetRoomObjPool();
             ResetParticlePool();
             ResetProjectilePool();
+            ResetPickupPool();
             ResetFloorPool();
         }
 
@@ -130,6 +151,12 @@ namespace DungeonRun
             { Release(Pool.projectilePool[Pool.projectileCounter]); }
         }
 
+        public static void ResetPickupPool()
+        {
+            for (Pool.pickupCounter = 0; Pool.pickupCounter < Pool.pickupCount; Pool.pickupCounter++)
+            { Release(Pool.pickupPool[Pool.pickupCounter]); }
+        }
+
         public static void ResetFloorPool()
         {
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
@@ -139,6 +166,8 @@ namespace DungeonRun
             }
             Pool.floorIndex = 0; //reset total count
         }
+
+
 
         public static void ResetActorPoolInput()
         {
@@ -240,15 +269,25 @@ namespace DungeonRun
                 }
             }
 
-            //any interaction that moves an object (belt for example)
-            //should only affect the MAGNITUDE of the move component
+            //pickups
+            for (i = 0; i < Pool.pickupCount; i++)
+            {
+                if (Pool.pickupPool[i].active)
+                {
+                    Functions_GameObject.Update(Pool.pickupPool[i]);
+                    Functions_Animation.Animate(Pool.pickupPool[i].compAnim, Pool.pickupPool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.pickupPool[i].compSprite);
+                    //interaction check pickups
+                    Functions_Interaction.CheckInteractions(Pool.pickupPool[i]);
+                }
+            }
 
             #endregion
 
 
             #region Phase 2 - Project Movement
 
-            //project movement for actors, objects, particles, projectiles
+            //project movement for actors, objects, particles, projectiles, pickups
 
             //actors
             for (i = 0; i < Pool.actorCount; i++)
@@ -278,16 +317,22 @@ namespace DungeonRun
                 { Functions_Movement.ProjectMovement(Pool.projectilePool[i].compMove); }
             }
 
+            //pickups
+            for (i = 0; i < Pool.pickupCount; i++)
+            {
+                if (Pool.pickupPool[i].active)
+                { Functions_Movement.ProjectMovement(Pool.pickupPool[i].compMove); }
+            }
+
             #endregion
 
-
-            //all move component's newPositions have been set (projections complete)
-            
 
             #region Phase 3 - Check Collisions
 
             //check collisions (act v act, act v obj)
-            //-this is also done last to ensure no overlaps
+            //this is also done last to ensure no overlaps
+            //if there was a collision, the act/obj returns
+            //to their original position (compMove.pos)
 
             //actors
             for (i = 0; i < Pool.actorCount; i++)
@@ -358,7 +403,6 @@ namespace DungeonRun
                 {   //set position to the new position (projected pos)
                     Pool.particlePool[i].compMove.position.X = Pool.particlePool[i].compMove.newPosition.X;
                     Pool.particlePool[i].compMove.position.Y = Pool.particlePool[i].compMove.newPosition.Y;
-                    //align all components
                     Functions_Component.Align(Pool.particlePool[i]);
                 }
             }
@@ -370,15 +414,25 @@ namespace DungeonRun
                 {   //set position to the new position (projected pos)
                     Pool.projectilePool[i].compMove.position.X = Pool.projectilePool[i].compMove.newPosition.X;
                     Pool.projectilePool[i].compMove.position.Y = Pool.projectilePool[i].compMove.newPosition.Y;
-                    //align all components
                     Functions_Component.Align(Pool.projectilePool[i]);
+                }
+            }
+
+            //pickups
+            for (i = 0; i < Pool.pickupCount; i++)
+            {
+                if (Pool.pickupPool[i].active)
+                {   //set position to the new position (projected pos)
+                    Pool.pickupPool[i].compMove.position.X = Pool.pickupPool[i].compMove.newPosition.X;
+                    Pool.pickupPool[i].compMove.position.Y = Pool.pickupPool[i].compMove.newPosition.Y;
+                    Functions_Component.Align(Pool.pickupPool[i]);
                 }
             }
 
             #endregion
 
 
-            //update the hero's room checking rec + hero's shadow
+            //handle hero related updates (room checking, shadow match, pickup interactions)
             Functions_Hero.Update();
         }
         
@@ -396,6 +450,9 @@ namespace DungeonRun
             //projectiles
             for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
             { Functions_Draw.Draw(Pool.projectilePool[Pool.projectileCounter]); }
+            //pickups
+            for (Pool.pickupCounter = 0; Pool.pickupCounter < Pool.pickupCount; Pool.pickupCounter++)
+            { Functions_Draw.Draw(Pool.pickupPool[Pool.pickupCounter]); }
             //actor pool
             for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Functions_Draw.Draw(Pool.actorPool[Pool.actorCounter]); }

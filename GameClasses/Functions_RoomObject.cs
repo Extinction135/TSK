@@ -61,8 +61,7 @@ namespace DungeonRun
             Functions_Particle.Spawn(
                 ObjType.ParticleAttention,
                 SwitchBtn.compSprite.position.X,
-                SwitchBtn.compSprite.position.Y, 
-                Direction.None);
+                SwitchBtn.compSprite.position.Y);
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
@@ -78,8 +77,7 @@ namespace DungeonRun
                         Functions_Particle.Spawn(
                             ObjType.ParticleAttention,
                             Pool.roomObjPool[i].compSprite.position.X,
-                            Pool.roomObjPool[i].compSprite.position.Y,
-                            Direction.Down);
+                            Pool.roomObjPool[i].compSprite.position.Y);
                     }
                 }
             }
@@ -113,8 +111,7 @@ namespace DungeonRun
                         Functions_Particle.Spawn(
                             ObjType.ParticleAttention,
                             Pool.roomObjPool[i].compSprite.position.X,
-                            Pool.roomObjPool[i].compSprite.position.Y,
-                            Direction.Down);
+                            Pool.roomObjPool[i].compSprite.position.Y);
                     }
                 }
             }
@@ -141,8 +138,7 @@ namespace DungeonRun
             Functions_Particle.Spawn(
                 ObjType.ParticleFire,
                 UnlitTorch.compSprite.position.X + 0,
-                UnlitTorch.compSprite.position.Y - 7,
-                Direction.None);
+                UnlitTorch.compSprite.position.Y - 7);
             Assets.Play(Assets.sfxLightFire);
 
             //check to see if lighting this torch can solve the room's puzzle
@@ -252,8 +248,7 @@ namespace DungeonRun
             Functions_Particle.Spawn(
                 ObjType.ParticleAttention,
                 RoomObj.compSprite.position.X,
-                RoomObj.compSprite.position.Y,
-                Direction.Down);
+                RoomObj.compSprite.position.Y);
             Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
             Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
             Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
@@ -327,8 +322,7 @@ namespace DungeonRun
             Functions_Particle.Spawn(
                 ObjType.ParticleSplash,
                 Pit.compSprite.position.X,
-                Pit.compSprite.position.Y - 4,
-                Direction.None);
+                Pit.compSprite.position.Y - 4);
         }
 
         public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
@@ -345,8 +339,7 @@ namespace DungeonRun
             Functions_Particle.Spawn(
                 ObjType.ParticleAttention,
                 Bumper.compSprite.position.X,
-                Bumper.compSprite.position.Y,
-                Direction.None);
+                Bumper.compSprite.position.Y);
         }
 
         public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)

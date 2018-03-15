@@ -120,8 +120,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.ParticleDashPuff,
                     Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
+                    Obj.compSprite.position.Y + 0);
             }
             else if (Obj.type == ObjType.ProjectileExplosion)
             {
@@ -130,8 +129,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.ParticleSmokePuff,
                     Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y - 8,
-                    Direction.None);
+                    Obj.compSprite.position.Y - 8);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {
@@ -140,8 +138,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.ParticleSmokePuff,
                     Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y + 4,
-                    Direction.None);
+                    Obj.compSprite.position.Y + 4);
             }
             else if (Obj.type == ObjType.ProjectileSword)
             {
@@ -184,8 +181,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.ParticleAttention,
                     Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
+                    Obj.compSprite.position.Y + 0);
             }
 
 
@@ -196,8 +192,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.ParticleAttention,
                     Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
+                    Obj.compSprite.position.Y + 0);
                 Assets.Play(Assets.sfxArrowHit);
             }
             else if (Obj.type == ObjType.ProjectileBomb)
@@ -213,13 +208,11 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.ParticleExplosion,
                     Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
+                    Obj.compSprite.position.Y + 0);
                 Functions_Particle.Spawn(
                     ObjType.ParticleFire,
                     Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0,
-                    Direction.None);
+                    Obj.compSprite.position.Y + 0);
                 Assets.Play(Assets.sfxFireballDeath);
             }
             //sword - no death event
@@ -242,8 +235,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.ParticleFire,
                     Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.None);
+                    Obj.compSprite.position.Y);
                 //throw some rocks around as decoration
                 Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
                 Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);

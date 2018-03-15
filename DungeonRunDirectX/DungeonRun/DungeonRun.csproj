@@ -134,6 +134,9 @@
     <Compile Include="..\..\GameClasses\Functions_Particle.cs">
       <Link>Classes\Functions_Particle.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Pickup.cs">
+      <Link>Classes\Functions_Pickup.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Pool.cs">
       <Link>Classes\Functions_Pool.cs</Link>
     </Compile>

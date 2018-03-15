@@ -56,10 +56,21 @@ explosive barrel puzzels
 
 
 
-Implement Projectiles & Particles - Part 4
+Optimize Pickups out from Projectiles
 
-updated more references from entites to particles / projectiles.
-playtested game, working.. but i'm sure there are bugs lurking.
+the idea is to separate pickup objs from projectile
+objs, since pickups only interact with the hero,
+whereas projectiles interact with all actors.
+
+added Pickup fields to Pool class.
+modified Pool.Update() and Draw() for Pickups.
+modified Functions_Hero.Update() for Pickups.
+added Functions_Pickup class to shared game classes.
+fixed a silly invisible bug with SpawnLoot().
+simplified Particle.Spawn() method.
+greatly simplified Functions_Pickup class.
+lots of references updated.
+playtested, working as expected.
 
 
 
@@ -69,13 +80,24 @@ playtested game, working.. but i'm sure there are bugs lurking.
 
 
 
-Optimization
+IMPLEMENT FAIRY AS PICKUP
+this includes the net interaction, which we'll need to check net against pickups list
 
-we should seperate pickups from projectiles,
-since pickups would only ever collide with the hero..
-whereas projectiles would collide with all actors..
-this reduces collision checks and simplifies the func_projectile.spawn() method, 
-since it wont need to handle pickups
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -100,6 +122,13 @@ Projectiles should have 'owners' or 'casters'.
 	tracking overhead rewards to hero across frames (conveyor belt)
 	allows actors to slide across ice with weapons as well
 
+Re-Implement Sword
+this is a projectile that tracks to it's caster based on a direction 
+this tracking allows the caster to move while the sword is active
+allowing the caster to slide across ice, belts, etc..
+
+(re-implement net, just like sword)
+
 Implement Boomerang
 this is a projectile that flys in a thrown direction
 then upon hitting something colliding, returns to hero
@@ -113,6 +142,56 @@ we'll have to get the direction to hero, like we do in Functions_Ai
 the move the boomrang in that direction
 the boomerang will continuously spin, so it doesn't have a movement direction
 we'll need to update the rotationValue for boomerang each animation frame
+
+
+all related to picking up/carrying/throwing/pushing/pulling
+{
+
+*currently the obj hero picks up doesn't appear over his head
+the obj stays in it's picked up spot
+
+	hero should be able to pickup and throw enemy corpses
+	which means we need to abstract the carrying obj into something that could ref an obj or actor
+	or we have both, one for objs and one for actors
+
+	what if the obj the hero picks up simply assumes the target obj's texture and frame, etc..?
+	this would work for actors as well, which sets the ground work for allowing the hero to pickup 
+	blob corpses and use them in some interesting way... like dropping them on a switch!
+	we already do this with pots essentially, but we need to abstract the carrying/throwing solution
+	to be more generalized and handle roomObjs, actors, or whatever we throw at it in the future..
+
+	Dragging/Pushing/Pulling
+
+	hero should be able to 'grab' objects
+	if the object is draggable, then hero should be able to push and pull on it
+	this 'grabbing' state should last until player releases the A button
+	objects should inherit the movement of hero, 
+	and check collisions with all roomObjs, entities, & actors (expensive)
+	if a draggable object would collide, it doesn't move
+	this would have to be done per axis too, so we could drag along walls
+
+	in order to accomplish these two things, we will need to be able to compare a gameobj against the roomObjs
+	this starts with a collision check, then an interaction upon an overlap
+	we would call this from dragging / pushing / pulling, and conveyor belt checks
+	
+	when we throw an object, should we create an entity?
+	and should this entity be a projectile with a caster?
+	so the game would know who threw the object, if we had effects later
+	for example, lifesteal or something else that targets the caster upon obj collision.
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -180,46 +259,6 @@ and replaces them with more custom story items, like the warriors pass, etc..
 
 
 
-
-
-
-
-
-
-
-(the following needs to be dev'd in conjunction with entity casters)
-
-all related to picking up/carrying/throwing/pushing/pulling
-{
-	hero should be able to pickup and throw enemy corpses
-	which means we need to abstract the carrying obj into something that could ref an obj or actor
-	or we have both, one for objs and one for actors
-
-	what if the obj the hero picks up simply assumes the target obj's texture and frame, etc..?
-	this would work for actors as well, which sets the ground work for allowing the hero to pickup 
-	blob corpses and use them in some interesting way... like dropping them on a switch!
-	we already do this with pots essentially, but we need to abstract the carrying/throwing solution
-	to be more generalized and handle roomObjs, actors, or whatever we throw at it in the future..
-
-	Dragging/Pushing/Pulling
-
-	hero should be able to 'grab' objects
-	if the object is draggable, then hero should be able to push and pull on it
-	this 'grabbing' state should last until player releases the A button
-	objects should inherit the movement of hero, 
-	and check collisions with all roomObjs, entities, & actors (expensive)
-	if a draggable object would collide, it doesn't move
-	this would have to be done per axis too, so we could drag along walls
-
-	in order to accomplish these two things, we will need to be able to compare a gameobj against the roomObjs
-	this starts with a collision check, then an interaction upon an overlap
-	we would call this from dragging / pushing / pulling, and conveyor belt checks
-	
-	when we throw an object, should we create an entity?
-	and should this entity be a projectile with a caster?
-	so the game would know who threw the object, if we had effects later
-	for example, lifesteal or something else that targets the caster upon obj collision.
-}
 
 
 

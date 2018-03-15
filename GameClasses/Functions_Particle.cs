@@ -70,7 +70,7 @@ namespace DungeonRun
             #endregion
 
 
-            Spawn(Type, posRef.X, posRef.Y, direction);
+            Spawn(Type, posRef.X, posRef.Y);
         }
 
         //spawn relative to actor
@@ -105,11 +105,11 @@ namespace DungeonRun
                 Type == ObjType.ParticleBottleBlob)
             { posRef.Y -= 14; }
 
-            Spawn(Type, posRef.X, posRef.Y, direction);
+            Spawn(Type, posRef.X, posRef.Y);
         }
 
         //spawn relative to position
-        public static void Spawn(ObjType Type, float X, float Y, Direction Direction)
+        public static void Spawn(ObjType Type, float X, float Y)
         {   //get a particle to spawn
             GameObject obj = Functions_Pool.GetParticle();
             obj.compMove.moving = true;
@@ -134,12 +134,12 @@ namespace DungeonRun
             int spread = 6;
             if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
             //always add at least one rock
-            Spawn(ObjType.ProjectileDebrisRock, Pos.X, Pos.Y, pushDir);
+            Functions_Projectile.Spawn(ObjType.ProjectileDebrisRock, Pos.X, Pos.Y, pushDir);
             //sometimes add another rock
             if (Functions_Random.Int(0, 100) > 20)
             {   
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Spawn(ObjType.ProjectileDebrisRock,
+                Functions_Projectile.Spawn(ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(-spread, spread),
                     Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
@@ -147,7 +147,7 @@ namespace DungeonRun
             if (Functions_Random.Int(0, 100) > 40)
             { 
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Spawn(ObjType.ProjectileDebrisRock,
+                Functions_Projectile.Spawn(ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(-spread, spread),
                     Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
@@ -155,7 +155,7 @@ namespace DungeonRun
             if (Functions_Random.Int(0, 100) > 60)
             {  
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Spawn(ObjType.ProjectileDebrisRock,
+                Functions_Projectile.Spawn(ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(-spread, spread),
                     Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }

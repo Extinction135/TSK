@@ -363,8 +363,7 @@ namespace DungeonRun
                             Functions_Particle.Spawn(
                                 ObjType.ParticleExplosion,
                                 Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
-                                Actor.compSprite.position.Y + Functions_Random.Int(-16, 16),
-                                Direction.None);
+                                Actor.compSprite.position.Y + Functions_Random.Int(-16, 16));
                         }
                     }
                 }

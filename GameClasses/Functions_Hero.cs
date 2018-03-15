@@ -212,8 +212,7 @@ namespace DungeonRun
                     Functions_Particle.Spawn( //show the chest was opened
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.None);
+                        Obj.compSprite.position.Y);
                     Functions_Actor.SetRewardState(Pool.hero);
                 }
             }
@@ -249,8 +248,7 @@ namespace DungeonRun
                     Functions_Particle.Spawn(
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.None);
+                        Obj.compSprite.position.Y);
                 }
                 else
                 {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
@@ -285,8 +283,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                     ObjType.ParticleAttention,
                     Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.Down);
+                    Obj.compSprite.position.Y);
                 Assets.Play(Assets.sfxHeartPickup); //OG LttP
             }
             else if (Obj.type == ObjType.TorchUnlit)
@@ -299,8 +296,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                         ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.None);
+                        Obj.compSprite.position.Y);
             }
             else if (Obj.type == ObjType.SwitchBlockBtn)
             {
@@ -421,8 +417,7 @@ namespace DungeonRun
                 Functions_Particle.Spawn(
                         ObjType.ParticleAttention,
                         Pool.hero.compSprite.position.X,
-                        Pool.hero.compSprite.position.Y,
-                        Direction.None);
+                        Pool.hero.compSprite.position.Y);
                 //check to see if hero can use any bottle to heal/self-rez
                 if (Functions_Bottle.CheckBottleUponDeath(1, PlayerData.current.bottleA)) { }
                 else if (Functions_Bottle.CheckBottleUponDeath(2, PlayerData.current.bottleB)) { }
@@ -500,8 +495,7 @@ namespace DungeonRun
             Assets.Play(Assets.sfxActorLand); //play land sound fx
             Functions_Particle.Spawn(ObjType.ParticleAttention,
                 carryingObj.compMove.newPosition.X,
-                carryingObj.compMove.newPosition.Y,
-                Direction.Down);
+                carryingObj.compMove.newPosition.Y);
             Functions_GameObject.ResetObject(carryingObj); //reset Obj
             Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
             Functions_Component.Align(carryingObj);
@@ -632,7 +626,8 @@ namespace DungeonRun
         }
 
         public static void Update()
-        {   //match hero's rec to hero's sprite
+        {
+            //match hero's rec to hero's sprite
             heroRec.X = (int)Pool.hero.compSprite.position.X - 8;
             heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
             //match hero's shadow to hero's sprite
@@ -641,6 +636,21 @@ namespace DungeonRun
             Functions_Component.SetZdepth(heroShadow);
             //check the heroRec's collisions with Level rooms
             CheckRoomCollision();
+
+
+            #region Handle hero vs pickup interactions
+
+            for (i = 0; i < Pool.pickupCount; i++)
+            {
+                if (Pool.pickupPool[i].active)
+                {   
+                    if (Pool.hero.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
+                    { Functions_Interaction.InteractActor(Pool.hero, Pool.pickupPool[i]); }
+                }
+            }
+
+            #endregion
+
         }
 
     }

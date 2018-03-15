@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -150,11 +150,17 @@ namespace DungeonRun
         public static int particleIndex;
         public static int particleCounter = 0;
 
-        //projectile pool - main sheet only (includes pickups)
+        //projectile pool - main sheet only
         public static int projectileCount;
         public static List<Projectile> projectilePool;
         public static int projectileIndex;
         public static int projectileCounter = 0;
+
+        //pickup pool - main sheet only
+        public static int pickupCount;
+        public static List<GameObject> pickupPool;
+        public static int pickupIndex;
+        public static int pickupCounter = 0;
 
         //floor pool - dungeon sheet only
         public static int floorCount;
@@ -177,6 +183,7 @@ namespace DungeonRun
             roomObjCount = 500;
             particleCount = 200;
             projectileCount = 40;
+            pickupCount = 20;
 
             //actor pool
             actorPool = new List<Actor>();
@@ -207,6 +214,12 @@ namespace DungeonRun
             for (projectileCounter = 0; projectileCounter < projectileCount; projectileCounter++)
             { projectilePool.Add(new Projectile()); }
             projectileIndex = 0;
+
+            //pickup pool
+            pickupPool = new List<GameObject>();
+            for (pickupCounter = 0; pickupCounter < pickupCount; pickupCounter++)
+            { pickupPool.Add(new GameObject()); }
+            pickupIndex = 0;
 
             //floor pool
             floorPool = new List<ComponentSprite>();

@@ -130,12 +130,10 @@ namespace DungeonRun
                     Assets.Play(Assets.sfxShatter); //play collapse sound
                     Functions_Particle.Spawn(ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.Down);
+                        Obj.compSprite.position.Y);
                     Functions_Particle.Spawn(ObjType.ParticleSmokePuff,
                         Obj.compSprite.position.X + 4,
-                        Obj.compSprite.position.Y - 8,
-                        Direction.Down);
+                        Obj.compSprite.position.Y - 8);
                     //create pit teeth over new pit obj
                     Functions_RoomObject.SpawnRoomObj(ObjType.PitTop,
                         Obj.compSprite.position.X,
@@ -166,10 +164,10 @@ namespace DungeonRun
                 {   //convert switch off, play switch soundFx
                     Functions_GameObject.SetType(Obj, ObjType.SwitchOff);
                     //grab the player's attention
-                    Functions_Particle.Spawn(ObjType.ParticleAttention,
+                    Functions_Particle.Spawn(
+                        ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y,
-                        Direction.Down);
+                        Obj.compSprite.position.Y);
                     //open all the trap doors in the room
                     Functions_RoomObject.OpenTrapDoors();
                 }
@@ -341,8 +339,7 @@ namespace DungeonRun
                                 Functions_Particle.Spawn(
                                     ObjType.ParticleAttention,
                                     Functions_Level.currentRoom.spawnPos.X,
-                                    Functions_Level.currentRoom.spawnPos.Y,
-                                    Direction.None);
+                                    Functions_Level.currentRoom.spawnPos.Y);
                             }
                             else
                             {   //handle enemy pit death (no loot, insta-death)
