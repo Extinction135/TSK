@@ -48,22 +48,41 @@ namespace DungeonRun
             return Pool.roomObjPool[Pool.roomObjCount - 1]; //ran out of roomObjs
         }
 
-        public static GameObject GetEntity()
-        {   //this is called throughout gameplay, and index loops
-            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
+        //these two methods are similar and should be consolidated
+        public static GameObject GetParticle()
+        {   
+            for (Pool.particleCounter = 0; Pool.particleCounter < Pool.particleCount; Pool.particleCounter++)
             {
-                Pool.entityIndex++;
-                if (Pool.entityIndex >= Pool.entityCount) { Pool.entityIndex = 0; }
-                if (Pool.entityPool[Pool.entityIndex].active == false)
-                {   //found an inactive entity to return
-                    //reset entity to default state, hide offscreen, return it
-                    Functions_GameObject.ResetObject(Pool.entityPool[Pool.entityIndex]);
-                    Pool.entityPool[Pool.entityIndex].compMove.newPosition.X = -1000;
-                    Pool.entityPool[Pool.entityIndex].compSprite.scale = 1.0f;
-                    return Pool.entityPool[Pool.entityIndex];
+                Pool.particleIndex++;
+                if (Pool.particleIndex >= Pool.particleCount) { Pool.particleIndex = 0; }
+                if (Pool.particlePool[Pool.particleIndex].active == false)
+                {   //found an inactive to return
+                    //reset to default state, hide offscreen, return it
+                    Functions_GameObject.ResetObject(Pool.particlePool[Pool.particleIndex]);
+                    Pool.particlePool[Pool.particleIndex].compMove.newPosition.X = -1000;
+                    Pool.particlePool[Pool.particleIndex].compSprite.scale = 1.0f;
+                    return Pool.particlePool[Pool.particleIndex];
                 }
             }
-            return Pool.entityPool[0]; //ran out of entities
+            return Pool.particlePool[0]; //ran out
+        }
+
+        public static Projectile GetProjectile()
+        {
+            for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
+            {
+                Pool.projectileIndex++;
+                if (Pool.projectileIndex >= Pool.projectileCount) { Pool.projectileIndex = 0; }
+                if (Pool.projectilePool[Pool.projectileIndex].active == false)
+                {   //found an inactive to return
+                    //reset to default state, hide offscreen, return it
+                    Functions_GameObject.ResetObject(Pool.projectilePool[Pool.projectileIndex]);
+                    Pool.projectilePool[Pool.projectileIndex].compMove.newPosition.X = -1000;
+                    Pool.projectilePool[Pool.projectileIndex].compSprite.scale = 1.0f;
+                    return Pool.projectilePool[Pool.projectileIndex];
+                }
+            }
+            return Pool.projectilePool[0]; //ran out
         }
 
         public static ComponentSprite GetFloor()
@@ -81,7 +100,8 @@ namespace DungeonRun
         {
             ResetActorPool();
             ResetRoomObjPool();
-            ResetEntityPool();
+            ResetParticlePool();
+            ResetProjectilePool();
             ResetFloorPool();
         }
 
@@ -98,10 +118,16 @@ namespace DungeonRun
             { Release(Pool.roomObjPool[Pool.roomObjCounter]); }
         }
 
-        public static void ResetEntityPool()
+        public static void ResetParticlePool()
         {
-            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
-            { Release(Pool.entityPool[Pool.entityCounter]); }
+            for (Pool.particleCounter = 0; Pool.particleCounter < Pool.particleCount; Pool.particleCounter++)
+            { Release(Pool.particlePool[Pool.particleCounter]); }
+        }
+
+        public static void ResetProjectilePool()
+        {
+            for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
+            { Release(Pool.projectilePool[Pool.projectileCounter]); }
         }
 
         public static void ResetFloorPool()
@@ -140,11 +166,11 @@ namespace DungeonRun
             Pool.collisionsCount = 0;
             Pool.interactionsCount = 0;
 
-            //the following phases affect actors, room objects, and entities all at once
+            //the following phases affect actors, room objects, and projectiles all at once
 
             #region Phase 1 - Get Input, Update, Animate, & Check Interactions
 
-            //check interactions(act v obj, act v ent, obj v obj, obj v ent)
+            //check interactions(act v obj, act v proj, obj v obj, obj v proj)
 
             //get input & interactions for actors
             for (i = 0; i < Pool.actorCount; i++)
@@ -190,19 +216,27 @@ namespace DungeonRun
                 }
             }
 
-            //entities
-            for (i = 0; i < Pool.entityCount; i++)
+            //particles
+            for (i = 0; i < Pool.particleCount; i++)
             {
-                if (Pool.entityPool[i].active)
+                if (Pool.particlePool[i].active)
                 {
-                    Functions_GameObject.Update(Pool.entityPool[i]);
-                    Functions_Animation.Animate(Pool.entityPool[i].compAnim, Pool.entityPool[i].compSprite);
-                    Functions_Animation.ScaleSpriteDown(Pool.entityPool[i].compSprite);
+                    Functions_GameObject.Update(Pool.particlePool[i]);
+                    Functions_Animation.Animate(Pool.particlePool[i].compAnim, Pool.particlePool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.particlePool[i].compSprite);
+                }
+            }
 
-
-                    //only interaction check entity projectiles
-                    if (Pool.entityPool[i].group == ObjGroup.Projectile)
-                    { Functions_Interaction.CheckInteractions(Pool.entityPool[i]); }
+            //projectiles
+            for (i = 0; i < Pool.projectileCount; i++)
+            {
+                if (Pool.projectilePool[i].active)
+                {
+                    Functions_GameObject.Update(Pool.projectilePool[i]);
+                    Functions_Animation.Animate(Pool.projectilePool[i].compAnim, Pool.projectilePool[i].compSprite);
+                    Functions_Animation.ScaleSpriteDown(Pool.projectilePool[i].compSprite);
+                    //interaction check projectiles
+                    Functions_Interaction.CheckInteractions(Pool.projectilePool[i]);
                 }
             }
 
@@ -214,7 +248,7 @@ namespace DungeonRun
 
             #region Phase 2 - Project Movement
 
-            //project movement for actors, objects, entities
+            //project movement for actors, objects, particles, projectiles
 
             //actors
             for (i = 0; i < Pool.actorCount; i++)
@@ -230,11 +264,18 @@ namespace DungeonRun
                 { Functions_Movement.ProjectMovement(Pool.roomObjPool[i].compMove); }
             }
 
-            //entities
-            for (i = 0; i < Pool.entityCount; i++)
+            //particles
+            for (i = 0; i < Pool.particleCount; i++)
             {
-                if (Pool.entityPool[i].active)
-                { Functions_Movement.ProjectMovement(Pool.entityPool[i].compMove); }
+                if (Pool.particlePool[i].active)
+                { Functions_Movement.ProjectMovement(Pool.particlePool[i].compMove); }
+            }
+
+            //projectiles
+            for (i = 0; i < Pool.projectileCount; i++)
+            {
+                if (Pool.projectilePool[i].active)
+                { Functions_Movement.ProjectMovement(Pool.projectilePool[i].compMove); }
             }
 
             #endregion
@@ -310,15 +351,27 @@ namespace DungeonRun
                 { Functions_Component.Align(Pool.roomObjPool[i]); }
             }
 
-            //entities
-            for (i = 0; i < Pool.entityCount; i++)
+            //particles
+            for (i = 0; i < Pool.particleCount; i++)
             {
-                if (Pool.entityPool[i].active)
-                {   //set the entities position to the new position (projected pos)
-                    Pool.entityPool[i].compMove.position.X = Pool.entityPool[i].compMove.newPosition.X;
-                    Pool.entityPool[i].compMove.position.Y = Pool.entityPool[i].compMove.newPosition.Y;
-                    //then align all the components
-                    Functions_Component.Align(Pool.entityPool[i]);
+                if (Pool.particlePool[i].active)
+                {   //set position to the new position (projected pos)
+                    Pool.particlePool[i].compMove.position.X = Pool.particlePool[i].compMove.newPosition.X;
+                    Pool.particlePool[i].compMove.position.Y = Pool.particlePool[i].compMove.newPosition.Y;
+                    //align all components
+                    Functions_Component.Align(Pool.particlePool[i]);
+                }
+            }
+
+            //projectiles
+            for (i = 0; i < Pool.projectileCount; i++)
+            {
+                if (Pool.projectilePool[i].active)
+                {   //set position to the new position (projected pos)
+                    Pool.projectilePool[i].compMove.position.X = Pool.projectilePool[i].compMove.newPosition.X;
+                    Pool.projectilePool[i].compMove.position.Y = Pool.projectilePool[i].compMove.newPosition.Y;
+                    //align all components
+                    Functions_Component.Align(Pool.projectilePool[i]);
                 }
             }
 
@@ -337,9 +390,12 @@ namespace DungeonRun
             //roomObj pool
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             { Functions_Draw.Draw(Pool.roomObjPool[Pool.roomObjCounter]); }
-            //entity pool
-            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
-            { Functions_Draw.Draw(Pool.entityPool[Pool.entityCounter]); }
+            //particles
+            for (Pool.particleCounter = 0; Pool.particleCounter < Pool.particleCount; Pool.particleCounter++)
+            { Functions_Draw.Draw(Pool.particlePool[Pool.particleCounter]); }
+            //projectiles
+            for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
+            { Functions_Draw.Draw(Pool.projectilePool[Pool.projectileCounter]); }
             //actor pool
             for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Functions_Draw.Draw(Pool.actorPool[Pool.actorCounter]); }

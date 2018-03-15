@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -144,12 +144,19 @@ namespace DungeonRun
         public static int roomObjIndex;
         public static int roomObjCounter = 0;
 
-        //entity pool handles projectiles/particles/pickups, only from main sheet
-        public static int entityCount;
-        public static List<GameObject> entityPool;
-        public static int entityIndex;
-        public static int entityCounter = 0;
+        //particle pool - main sheet only
+        public static int particleCount;
+        public static List<GameObject> particlePool;
+        public static int particleIndex;
+        public static int particleCounter = 0;
 
+        //projectile pool - main sheet only (includes pickups)
+        public static int projectileCount;
+        public static List<Projectile> projectilePool;
+        public static int projectileIndex;
+        public static int projectileCounter = 0;
+
+        //floor pool - dungeon sheet only
         public static int floorCount;
         public static List<ComponentSprite> floorPool;
         public static int floorIndex;
@@ -164,11 +171,12 @@ namespace DungeonRun
 
         public static void Initialize()
         {
-            //set the pool sizes
+            //set pool sizes
             actorCount = 30;
             floorCount = 500;
             roomObjCount = 500;
-            entityCount = 300;
+            particleCount = 200;
+            projectileCount = 40;
 
             //actor pool
             actorPool = new List<Actor>();
@@ -188,11 +196,17 @@ namespace DungeonRun
             { roomObjPool.Add(new GameObject()); }
             roomObjIndex = 0;
 
-            //entity pool
-            entityPool = new List<GameObject>();
-            for (entityCounter = 0; entityCounter < entityCount; entityCounter++)
-            { entityPool.Add(new GameObject()); }
-            entityIndex = 0;
+            //particle pool
+            particlePool = new List<GameObject>();
+            for (particleCounter = 0; particleCounter < particleCount; particleCounter++)
+            { particlePool.Add(new GameObject()); }
+            particleIndex = 0;
+
+            //projectile pool
+            projectilePool = new List<Projectile>();
+            for (projectileCounter = 0; projectileCounter < projectileCount; projectileCounter++)
+            { projectilePool.Add(new Projectile()); }
+            projectileIndex = 0;
 
             //floor pool
             floorPool = new List<ComponentSprite>();
@@ -697,6 +711,17 @@ namespace DungeonRun
             compSprite = new ComponentSprite(Assets.cursedCastleSheet, 
                 new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
             Functions_GameObject.SetType(this, type);
+        }
+    }
+
+    public class Projectile : GameObject
+    {
+        public Actor caster; //who casted projectile
+        public Vector2 origin; //where proj was casted from
+
+        public Projectile()
+        {   //default to an arrow
+            type = ObjType.ProjectileArrow;
         }
     }
 

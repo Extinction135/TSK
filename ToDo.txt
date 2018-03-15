@@ -56,6 +56,79 @@ explosive barrel puzzels
 
 
 
+Implement Projectiles & Particles - Part 1
+
+added various projectile related fields to Pool class.
+changed entity related fields to particle fields in Pool class.
+changed Pool.GetEntity() to Pool.GetParticle() and GetProjectile().
+split Pool.ResetEntityPool() into ResetParticlePool() and ResetProjectilePool().
+modified Pool.Update() and Pool.Draw().
+
+
+
+
+
+
+So, the proposal is to separate projectiles from other entities.
+essentially, there would be three distinct obj groups: roomObjs, particles, projectiles
+we would no longer have an entity pool, instead we would have two pools, particles and projectiles
+particles never really collide / interact.
+projectiles ALWAYS interact, and sometimes they move.
+there will never be more than 20 or 30 projectiles on screen,
+simply because i dont want the game to be a bullet hell,
+so it stands to reason the projectile pool will be relatively small.
+
+the particle pool will contain all non-colliding 'decorative' gameobjects.
+pickups, for example, would be a projectile, since they collide with the hero.
+
+How are projectiles different from particles?
+Projectiles, besides colliding with objs / actors, also move and
+interact in various ways with various things. for example, the boomerang
+projectile will be able to grab a gameobj and return it to the hero.
+this will be done using a gameObj reference, stored with the projectile class.
+in the same manner, the hookshot item can carry the hero over pits.
+this is accomplished by storing a reference to an actor with the projectile class.
+essentially, the projectile class extends the roomObj class with actor and obj references.
+
+
+We can further optimize if we add more pools:
+
+Actors - acts coll / int with acts, roomObjs, projectiles
+RoomObjs - coll w roomObjs, int with roomObjs
+Particles - no coll / int
+Projectiles - int with actors & roomObjs
+Pickups - int with hero ONLY
+	- Pickups would only collide with the hero, so we would never need to check them against enemies
+
+this means that the Pool class needs to be rewritten, and likely most of the methods it touches
+
+
+
+Entities / Projectiles should have 'owners' or 'casters'.
+	this is simply an actor reference.
+	this lays ground work for:
+	boomerang functionality,
+	excluding caster from AoE spell damage,
+	tracking a sword to an actor across frames (conveyor belt)
+	tracking overhead rewards to hero across frames (conveyor belt)
+	allows actors to slide across ice with weapons as well
+
+Implement Boomerang
+this is a projectile that flys in a thrown direction
+then upon hitting something colliding, returns to hero
+if the something it hits is a pickup obj or fairy obj, 
+then that obj/actor travels with boomerang back to hero
+this item should be sold by the items vendor (for now)
+if boomerang hits an actor that isn't fairy, it should push that actor, but deal no damage
+
+boomerang's return
+we'll have to get the direction to hero, like we do in Functions_Ai
+the move the boomrang in that direction
+the boomerang will continuously spin, so it doesn't have a movement direction
+we'll need to update the rotationValue for boomerang each animation frame
+
+
+
 
 
 
@@ -123,63 +196,7 @@ and replaces them with more custom story items, like the warriors pass, etc..
 
 
 
-So, the proposal is to separate projectiles from other entities.
-essentially, there would be three distinct obj groups: roomObjs, particles, projectiles
-we would no longer have an entity pool, instead we would have two pools, particles and projectiles
-particles never really 'move' or collide / interact.
-projectiles ALWAYS interact, and sometimes they move.
-there will never be more than 20 or 30 projectiles on screen,
-simply because i dont want the game to be a bullet hell,
-so it stands to reason the projectile pool will be relatively small.
 
-the particle pool will contain all non-colliding 'decorative' gameobjects.
-pickups, for example, would be a projectile, since they collide with the hero.
-
-How are projectiles different from particles?
-Projectiles, besides colliding with objs / actors, also move and
-interact in various ways with various things. for example, the boomerang
-projectile will be able to grab a gameobj and return it to the hero.
-this will be done using a gameObj reference, stored with the projectile class.
-in the same manner, the hookshot item can carry the hero over pits.
-this is accomplished by storing a reference to an actor with the projectile class.
-essentially, the projectile class extends the roomObj class with actor and obj references.
-
-
-We can further optimize if we add more pools:
-
-Actors - acts coll / int with acts, roomObjs, projectiles
-RoomObjs - coll w roomObjs, int with roomObjs
-Particles - no coll / int
-Projectiles - int with actors & roomObjs
-Pickups - int with hero ONLY
-	- Pickups would only collide with the hero, so we would never need to check them against enemies
-
-this means that the Pool class needs to be rewritten, and likely most of the methods it touches
-
-
-
-Entities / Projectiles should have 'owners' or 'casters'.
-	this is simply an actor reference.
-	this lays ground work for:
-	boomerang functionality,
-	excluding caster from AoE spell damage,
-	tracking a sword to an actor across frames (conveyor belt)
-	tracking overhead rewards to hero across frames (conveyor belt)
-	allows actors to slide across ice with weapons as well
-
-Implement Boomerang
-this is a projectile that flys in a thrown direction
-then upon hitting something colliding, returns to hero
-if the something it hits is a pickup obj or fairy obj, 
-then that obj/actor travels with boomerang back to hero
-this item should be sold by the items vendor (for now)
-if boomerang hits an actor that isn't fairy, it should push that actor, but deal no damage
-
-boomerang's return
-we'll have to get the direction to hero, like we do in Functions_Ai
-the move the boomrang in that direction
-the boomerang will continuously spin, so it doesn't have a movement direction
-we'll need to update the rotationValue for boomerang each animation frame
 
 
 
