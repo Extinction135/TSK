@@ -223,17 +223,17 @@ namespace DungeonRun
             #region Add Animated Particles / Sprites to Map
 
             //create castle flags
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 451 + 8, 97 + 6, Direction.None);
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 468 + 8, 106 + 6, Direction.None);
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 485 + 8, 98 + 6, Direction.None);
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 464 + 8, 82 + 6, Direction.None);
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 474 + 8, 79 + 6, Direction.None);
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 465 + 8, 71 + 6, Direction.None);
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 451 + 8, 97 + 6, Direction.None);
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 468 + 8, 106 + 6, Direction.None);
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 485 + 8, 98 + 6, Direction.None);
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 464 + 8, 82 + 6, Direction.None);
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 474 + 8, 79 + 6, Direction.None);
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 465 + 8, 71 + 6, Direction.None);
             //create additional flags
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 334 + 8, 97 + 6, Direction.None); //old town
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 320 + 8, 113 + 6, Direction.None); //old town
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 357 + 8, 99 + 6, Direction.None); //old town
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapFlag, 305 + 8, 147 + 6, Direction.None); //colliseum
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 334 + 8, 97 + 6, Direction.None); //old town
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 320 + 8, 113 + 6, Direction.None); //old town
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 357 + 8, 99 + 6, Direction.None); //old town
+            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 305 + 8, 147 + 6, Direction.None); //colliseum
 
             //create a list of positions where to place waves
             waveSpawnPositions = new List<Vector2>();
@@ -251,9 +251,9 @@ namespace DungeonRun
             waveSpawnPositions.Add(new Vector2(094 + 8, 121 + 6));
 
             //create map campfires
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 505, 257, Direction.None); //tent town
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 299, 297, Direction.None); //center island
-            Functions_Entity.SpawnEntity(ObjType.ParticleMapCampfire, 109, 266, Direction.None); //left island / castle ruins
+            Functions_Particle.Spawn(ObjType.ParticleMapCampfire, 505, 257, Direction.None); //tent town
+            Functions_Particle.Spawn(ObjType.ParticleMapCampfire, 299, 297, Direction.None); //center island
+            Functions_Particle.Spawn(ObjType.ParticleMapCampfire, 109, 266, Direction.None); //left island / castle ruins
             
             #endregion
 
@@ -293,7 +293,7 @@ namespace DungeonRun
                             hero.state = ActorState.Move;
                             hero.direction = cardinal;
                             Assets.Play(Assets.sfxMapWalking);
-                            Functions_Entity.SpawnEntity(ObjType.ParticleDashPuff,
+                            Functions_Particle.Spawn(ObjType.ParticleDashPuff,
                                 hero.compSprite.position.X,
                                 hero.compSprite.position.Y + 4, //at feet
                                 Direction.None);
@@ -362,7 +362,7 @@ namespace DungeonRun
                         hero.direction = Direction.Down;
                         currentLocation = targetLocation;
                         Assets.Play(Assets.sfxTextLetter);
-                        Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                        Functions_Particle.Spawn(ObjType.ParticleAttention,
                             hero.compSprite.position.X,
                             hero.compSprite.position.Y + 6, //at feet
                             Direction.None);
@@ -383,7 +383,7 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) > 80)
                 {   //randomly create a wave particle at a wave spawn location with random offset
                     wavePos = waveSpawnPositions[Functions_Random.Int(0, waveSpawnPositions.Count)];
-                    Functions_Entity.SpawnEntity(ObjType.ParticleMapWave,
+                    Functions_Particle.Spawn(ObjType.ParticleMapWave,
                         wavePos.X + Functions_Random.Int(-12, 12),
                         wavePos.Y + Functions_Random.Int(-12, 12),
                         Direction.None);
@@ -392,24 +392,21 @@ namespace DungeonRun
                 #endregion
 
 
-                //we need to update the entities list
-                //because we want the entities to animate and move (waves)
-                for (i = 0; i < Pool.entityCount; i++)
+                //update the particle list
+                //because we want the particle to animate and move (waves)
+                for (i = 0; i < Pool.particleCount; i++)
                 {
-                    if (Pool.entityPool[i].active)
+                    if (Pool.particlePool[i].active)
                     {
-                        Functions_GameObject.Update(Pool.entityPool[i]);
-                        Functions_Animation.Animate(Pool.entityPool[i].compAnim, Pool.entityPool[i].compSprite);
-                        Functions_Animation.ScaleSpriteDown(Pool.entityPool[i].compSprite);
-                        //any entity that moves needs to have their position set, then aligned
-                        Pool.entityPool[i].compMove.position.X = Pool.entityPool[i].compMove.newPosition.X;
-                        Pool.entityPool[i].compMove.position.Y = Pool.entityPool[i].compMove.newPosition.Y;
-                        Functions_Component.Align(Pool.entityPool[i]);
+                        Functions_GameObject.Update(Pool.particlePool[i]);
+                        Functions_Animation.Animate(Pool.particlePool[i].compAnim, Pool.particlePool[i].compSprite);
+                        Functions_Animation.ScaleSpriteDown(Pool.particlePool[i].compSprite);
+                        //any particle that moves needs to have their position set, then aligned
+                        Pool.particlePool[i].compMove.position.X = Pool.particlePool[i].compMove.newPosition.X;
+                        Pool.particlePool[i].compMove.position.Y = Pool.particlePool[i].compMove.newPosition.Y;
+                        Functions_Component.Align(Pool.particlePool[i]);
                     }
                 }
-
-
-
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in

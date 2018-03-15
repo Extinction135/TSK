@@ -135,30 +135,29 @@ namespace DungeonRun
             Direction pushDir = Direction.None;
             int spread = 6;
             if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-            Functions_Entity.SpawnEntity(
-                ObjType.ProjectileDebrisRock,
-                Pos.X, Pos.Y, pushDir);
+            //always add at least one rock
+            Spawn(ObjType.ProjectileDebrisRock, Pos.X, Pos.Y, pushDir);
+            //sometimes add another rock
             if (Functions_Random.Int(0, 100) > 20)
-            {   //sometimes  add another rock
+            {   
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
+                Spawn(ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(-spread, spread),
                     Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
+            //sometimes add another rock
             if (Functions_Random.Int(0, 100) > 40)
-            {   //sometimes add another rock
+            { 
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
+                Spawn(ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(-spread, spread),
                     Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
+            //sometimes add another rock
             if (Functions_Random.Int(0, 100) > 60)
-            {   //sometimes add another rock
+            {  
                 if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Entity.SpawnEntity(
-                    ObjType.ProjectileDebrisRock,
+                Spawn(ObjType.ProjectileDebrisRock,
                     Pos.X + Functions_Random.Int(-spread, spread),
                     Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }

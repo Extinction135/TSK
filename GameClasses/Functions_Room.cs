@@ -622,7 +622,7 @@ namespace DungeonRun
                     //we store roomObjs & projectiles in roomXmlData
                     //based on the roomXmlData.obj.type, get an entity or a roomObj
                     if(RoomXmlData.objs[i].type == ObjType.ProjectileSpikeBlock)
-                    { objRef = Functions_Pool.GetEntity(); }
+                    { objRef = Functions_Pool.GetProjectile(); }
                     else { objRef = Functions_Pool.GetRoomObj(); }
                     
                     //move roomObj to xmlObj's position (with room offset)

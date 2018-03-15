@@ -512,7 +512,7 @@ namespace DungeonRun
                         GameObject objRef;
                         //get an object from the entity pool or roomObj pool
                         if (currentObjRef.group == ObjGroup.Projectile)
-                        { objRef = Functions_Pool.GetEntity(); }
+                        { objRef = Functions_Pool.GetProjectile(); }
                         else { objRef = Functions_Pool.GetRoomObj(); }
                         
                         //place currently selected obj in room, aligned to 16px grid
@@ -581,12 +581,12 @@ namespace DungeonRun
                         }
                     }
                     //delete entityObjs
-                    for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
+                    for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
                     {
-                        if (Pool.entityPool[Pool.entityCounter].active)
+                        if (Pool.projectilePool[Pool.projectileCounter].active)
                         {
-                            if (Pool.entityPool[Pool.entityCounter].compCollision.rec.Contains(worldPos))
-                            { Functions_Pool.Release(Pool.entityPool[Pool.entityCounter]); }
+                            if (Pool.projectilePool[Pool.projectileCounter].compCollision.rec.Contains(worldPos))
+                            { Functions_Pool.Release(Pool.projectilePool[Pool.projectileCounter]); }
                         }
                     }
                 }
@@ -674,6 +674,9 @@ namespace DungeonRun
 
         public Boolean GrabRoomObject()
         {
+
+            //we probably need to loop thru the projectile pool here
+            /*
             //grab entities
             for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
             {   //loop thru entity pool, checking collisions with cursor's worldPos
@@ -692,6 +695,9 @@ namespace DungeonRun
                     }
                 }
             }
+            */
+
+
             //grab roomObjs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {   //loop thru roomObj pool, checking collisions with cursor's worldPos

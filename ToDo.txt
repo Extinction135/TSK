@@ -56,16 +56,33 @@ explosive barrel puzzels
 
 
 
-Implement Projectiles & Particles - Part 2
+Implement Projectiles & Particles - Part 3
 
-added shared game classes Functions_Particle and Functions_Projectile. 
-updated dX project references.
-moved Birth and Death event methods into Functions_GameObject.
-moved ScatterRockDebris() into Functions_Particle.
-split SpawnEntity methods up between Particle and Projectile classes.
-removed Functions_Entity class from shared classes.
-updated UWP project with correct class refs.
-note that codebase is currently in broken state, don't build rn.
+fixed Overworld Screen's update routine to use particle pool.
+fixed various references throughout codebase.
+updated Functions_Interaction.CheckInteractions() parameters.
+still borken tho.
+
+
+
+
+
+
+
+
+
+fix all the errors and references for Entities, because they are now Projectiles or Particles
+PICKUPS fit into the Projectile category, but they simply don't move.
+
+
+
+
+
+link up the birth and death methods for particles / projectiles
+
+
+
+
 
 
 

@@ -16,14 +16,14 @@ namespace DungeonRun
     {
         public static int i;
 
-        public static void CheckInteractions(Actor Actor, Boolean checkEntities, Boolean checkRoomObjs)
+        public static void CheckInteractions(Actor Actor, Boolean checkProjectiles, Boolean checkRoomObjs)
         {
-            if (checkEntities)
-            {   //loop thru entity list, check overlaps, pass to Interact()
-                for (i = 0; i < Pool.entityCount; i++)
+            if (checkProjectiles)
+            {   //loop thru projectile list, check overlaps, pass to Interact()
+                for (i = 0; i < Pool.projectileCount; i++)
                 {
-                    if (Actor.compCollision.rec.Intersects(Pool.entityPool[i].compCollision.rec))
-                    { InteractActor(Actor, Pool.entityPool[i]); }
+                    if (Actor.compCollision.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
+                    { InteractActor(Actor, Pool.projectilePool[i]); }
                 }
             }
             if (checkRoomObjs)
@@ -128,11 +128,11 @@ namespace DungeonRun
                 {   //if hero collides with a PitTrapReady, it starts to open
                     Functions_GameObject.SetType(Obj, ObjType.PitAnimated);
                     Assets.Play(Assets.sfxShatter); //play collapse sound
-                    Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                    Functions_Particle.Spawn(ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.Down);
-                    Functions_Entity.SpawnEntity(ObjType.ParticleSmokePuff,
+                    Functions_Particle.Spawn(ObjType.ParticleSmokePuff,
                         Obj.compSprite.position.X + 4,
                         Obj.compSprite.position.Y - 8,
                         Direction.Down);
@@ -166,7 +166,7 @@ namespace DungeonRun
                 {   //convert switch off, play switch soundFx
                     Functions_GameObject.SetType(Obj, ObjType.SwitchOff);
                     //grab the player's attention
-                    Functions_Entity.SpawnEntity(ObjType.ParticleAttention,
+                    Functions_Particle.Spawn(ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.Down);
@@ -202,7 +202,7 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.ProjectileSword)
                 {
                     if (Obj.lifeCounter == 1)
-                    { Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Obj); }
+                    { Functions_Particle.Spawn(ObjType.ParticleHitSparkle, Obj); }
                 }
                 //all actors take damage from projectiles that reach this path
                 Functions_Battle.Damage(Actor, Obj); //sets actor into hit state!
@@ -336,9 +336,9 @@ namespace DungeonRun
                             {   //send hero back to last door he passed thru
                                 Assets.Play(Assets.sfxActorLand); //play actor land sfx
                                 Functions_Hero.SpawnInCurrentRoom();
-                                Functions_Hero.heroShadow.visible = true; 
+                                Functions_Hero.heroShadow.visible = true;
                                 //direct player's attention to hero's respawn pos
-                                Functions_Entity.SpawnEntity(
+                                Functions_Particle.Spawn(
                                     ObjType.ParticleAttention,
                                     Functions_Level.currentRoom.spawnPos.X,
                                     Functions_Level.currentRoom.spawnPos.Y,
@@ -473,7 +473,7 @@ namespace DungeonRun
                             { Assets.Play(Assets.sfxTapHollow); } //play hollow
                             else { Assets.Play(Assets.sfxTapMetallic); }
                             //spawn a hit sparkle particle on sword
-                            Functions_Entity.SpawnEntity(ObjType.ParticleHitSparkle, Object);
+                            Functions_Particle.Spawn(ObjType.ParticleHitSparkle, Object);
                         }
                         else if (Object.lifeCounter == 4)
                         {   //these interactions happen 'mid swing'

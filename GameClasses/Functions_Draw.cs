@@ -202,7 +202,7 @@ namespace DungeonRun
 
             DebugInfo.poolText.text += "\nobjs: " + Pool.roomObjIndex + "/" + Pool.roomObjCount;
             DebugInfo.poolText.text += "\nactrs: " + Pool.actorIndex + "/" + Pool.actorCount;
-            DebugInfo.poolText.text += "\nentities: " + Pool.entityIndex + "/" + Pool.entityCount;
+            DebugInfo.poolText.text += "\nprojs: " + Pool.projectileIndex + "/" + Pool.projectileCount;
 
             DebugInfo.creationText.text = "timers";
             DebugInfo.creationText.text += "\nroom: " + DebugInfo.roomTime;

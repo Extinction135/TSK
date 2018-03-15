@@ -28,13 +28,13 @@ namespace DungeonRun
                     { Inspect(Pool.roomObjPool[i]); }
                 }
             }
-            //check mouse click position for any entity objects
-            for (i = 0; i < Pool.entityCount; i++)
+            //check mouse click position for any projectiles
+            for (i = 0; i < Pool.projectileCount; i++)
             {
-                if (Pool.entityPool[i].active)
+                if (Pool.projectilePool[i].active)
                 {
-                    if (Input.cursorColl.rec.Intersects(Pool.entityPool[i].compCollision.rec))
-                    { Inspect(Pool.entityPool[i]); }
+                    if (Input.cursorColl.rec.Intersects(Pool.projectilePool[i].compCollision.rec))
+                    { Inspect(Pool.projectilePool[i]); }
                 }
             }
             //check mouse click position for any actors

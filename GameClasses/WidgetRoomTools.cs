@@ -107,8 +107,8 @@ namespace DungeonRun
                                 { SaveObject(Pool.roomObjPool[Pool.roomObjCounter], roomData); }
 
                                 //populate roomData with entities
-                                for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
-                                { SaveObject(Pool.entityPool[Pool.entityCounter], roomData); }
+                                for (Pool.projectileCounter = 0; Pool.projectileCounter < Pool.projectileCount; Pool.projectileCounter++)
+                                { SaveObject(Pool.projectilePool[Pool.projectileCounter], roomData); }
 
                                 Functions_Backend.SaveRoomData(roomData);
                             }
