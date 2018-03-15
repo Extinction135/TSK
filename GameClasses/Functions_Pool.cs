@@ -48,7 +48,6 @@ namespace DungeonRun
             return Pool.roomObjPool[Pool.roomObjCount - 1]; //ran out of roomObjs
         }
 
-        //these two methods are similar and should be consolidated
         public static GameObject GetParticle()
         {   
             for (Pool.particleCounter = 0; Pool.particleCounter < Pool.particleCount; Pool.particleCounter++)
@@ -102,8 +101,6 @@ namespace DungeonRun
             }
             return Pool.pickupPool[0]; //ran out
         }
-
-
 
         public static ComponentSprite GetFloor()
         {   //we never release a floor sprite, and floors are returned sequentially

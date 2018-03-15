@@ -57,22 +57,23 @@ explosive barrel puzzels
 
 
 
-Fix UWP Project
-
-updated appX certificate for UWP project.
-linked up game classes and playtested.
-works as expected.
 
 
 
 
+Fix Projectile vs Dead Actor Interactions
+
+simply put, a projectile shouldn't collide or
+interact with a dead actor's corpse. this leads
+to a state where arrows and fireballs are absorbed
+by a dead enemy, which feels cheap and wrong,
+since the dead enemy is laying on the ground,
+and the flying projectile would pass over them.
+
+updated InteractActor() with check for dead actor.
+playtested, working as expected.
 
 
-
-
-
-
-projecctile shouldn't collide with dead / inactive actors!
 
 
 

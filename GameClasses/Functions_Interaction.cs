@@ -181,13 +181,17 @@ namespace DungeonRun
             #region Projectiles
 
             if (Obj.group == ObjGroup.Projectile)
-            {   //some projectiles dont interact with actors in any way at all
+            {
+                //projectiles shouldn't interact with dead actor's corpses
+                if (Actor.state == ActorState.Dead) { return; }
+                //some projectiles dont interact with actors in any way at all
                 if (Obj.type == ObjType.ProjectileBomb
                     || Obj.type == ObjType.ProjectileDebrisRock
                     || Obj.type == ObjType.ProjectileExplodingBarrel
                     || Obj.type == ObjType.ProjectileShadowSm
                     )
                 { return; }
+
                 //check for collision between net and actor
                 else if (Obj.type == ObjType.ProjectileNet)
                 {   //make sure actor isn't in hit/dead state
