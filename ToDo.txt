@@ -56,24 +56,23 @@ explosive barrel puzzels
 
 
 
-Optimize Pickups out from Projectiles
 
-the idea is to separate pickup objs from projectile
-objs, since pickups only interact with the hero,
-whereas projectiles interact with all actors.
+Fix UWP Project
 
-added Pickup fields to Pool class.
-modified Pool.Update() and Draw() for Pickups.
-modified Functions_Hero.Update() for Pickups.
-added Functions_Pickup class to shared game classes.
-fixed a silly invisible bug with SpawnLoot().
-simplified Particle.Spawn() method.
-greatly simplified Functions_Pickup class.
-lots of references updated.
-playtested, working as expected.
+updated appX certificate for UWP project.
+linked up game classes and playtested.
+works as expected.
 
 
 
+
+
+
+
+
+
+
+projecctile shouldn't collide with dead / inactive actors!
 
 
 

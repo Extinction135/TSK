@@ -24,6 +24,7 @@
     <AppxPackageDir>C:\Users\Gx000000\Desktop\</AppxPackageDir>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>1FFBDFCB85D819B6B0E91BA3719E12BCF4423234</PackageCertificateThumbprint>
     <!-- <IncludeLayoutFilesInPackage>true</IncludeLayoutFilesInPackage> -->
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -191,6 +192,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Particle.cs">
       <Link>Classes\Functions_Particle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Pickup.cs">
+      <Link>Classes\Functions_Pickup.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Pool.cs">
       <Link>Classes\Functions_Pool.cs</Link>
