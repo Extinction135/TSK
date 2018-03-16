@@ -141,6 +141,15 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
                 { Functions_Particle.Spawn(ObjType.ParticlePitAnimation, Obj); }
             }
+            else if(Obj.type == ObjType.PickupFairy)
+            {
+                if (Functions_Random.Int(0, 101) > 95) //float around
+                {   //randomly push fairy a direction
+                    Functions_Movement.Push(Obj.compMove, 
+                        Functions_Direction.GetRandomDirection(), 
+                        0.25f);
+                }
+            }
         }
 
     }

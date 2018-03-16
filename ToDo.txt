@@ -59,29 +59,55 @@ explosive barrel puzzels
 
 
 
-Improve Pickups
-
-updated main sheet in Dx and UWP projects,
-there was a stray pixel in the Bomb Pickup animation.
-
-updated HandleDeathEvent() for pickups, now the attention
-particle is centered to the 8x16 pixel object.
-before, there was no offset, and the attention particle was
-centering itself to a 16x16 pixel object, which wasn't
-the correct size for the 8x16 pixel pickup object.
-in this case, the fairy (which is 16x16) can be ignored,
-because the fairy never dies, so she would never spawn
-an attention particle and never meet the centering routine.
-playtested, working as expected.
 
 
 
 
+Add AI To Fairy Pickup
+
+updated Obj.SetType() to set obj.GetsAI to true for Fariy Pickup.
+this causes the object to passed to the Ai.HanldeObj() method.
+
+updated Ai.HandleObj() with path for FairyPickup.
+added Functions_Direction.GetRandomDirection().
+rewrote Functions_Direction.GetRandomCardinal().
+
+updated Obj.SetType() to make Fairy a flying obj,
+complete with very low air friction.
+playtested, working, but with a rather large bug:
+the fairy can float thru walls, cause they aren't
+collision / interaction checked right now.
 
 
-we dont have AI on the fairy, yet.
-this means she doesn't move, or change the direction she's facing (left or right)
-we need to be passing this pickup into the Functions_AI class
+
+
+
+
+
+
+
+Fix Fairy Interactions with Blocking Objects
+
+We want to treat any collision with a blocking object as a blocking
+interaction for the fairy.
+
+
+pickups should interaction check with colliding roomObjs,
+the fairy obj should not be able to pass thru any blocking objs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -108,7 +134,6 @@ which should be located in the bottle class, not the functions_actor class!
 
 this includes the net interaction, which we'll need to check net against pickups list
 we'll check net against actors and pickups, never projectiles or particles tho
-
 
 
 
@@ -215,7 +240,14 @@ the obj stays in it's picked up spot
 
 
 
+Implement Dynamic Shadows System
 
+an object pool for shadows would be great
+objects / actors could have a field for a shadow sprite reference
+then we could store a shadow offset, which allows us to fake depth on the Z axis
+if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
+this also sets the stage for flying obj/actors, as they would have changing shadow positions.
+this also means we need to 'unbake' the shadows from ALL objects and actors.
 
 
 
@@ -760,6 +792,9 @@ displaying alot of dialog / story plot points
 implement dialog system and event booleans to track events in game
 
 Create CheatsScreen - or this could be part of game ctrls
+
+
+
 
 
 

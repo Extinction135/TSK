@@ -16,7 +16,8 @@ namespace DungeonRun
     {
         static int xDistance;
         static int yDistance;
-
+        static int randomDir = 0;
+        static Direction dir = Direction.None;
 
         public static Direction GetCardinalDirection(Direction Direction)
         {   //converts a diagonal direction to a cardinal direction
@@ -42,10 +43,6 @@ namespace DungeonRun
 
             return Direction.None;
         }
-
-
-
-
 
         public static Direction GetOppositeCardinal(Vector2 PosA, Vector2 PosB)
         {   //figure out which axis is the dominant axis, return opposite direction along dominant axis
@@ -75,11 +72,6 @@ namespace DungeonRun
                 else { return Direction.DownRight; }
             }
         }
-
-
-
-
-
 
         public static Direction GetCardinalDirectionToHero(Vector2 Pos)
         {   //get the x and y distances between starting position and hero
@@ -121,16 +113,26 @@ namespace DungeonRun
 
         public static Direction GetRandomCardinal()
         {
-            if (Functions_Random.Int(0, 100) > 50)
-            {
-                if (Functions_Random.Int(0, 100) > 50)
-                { return Direction.Up; } else { return Direction.Down; }
-            }
-            else
-            {
-                if (Functions_Random.Int(0, 100) > 50)
-                { return Direction.Left; } else { return Direction.Right; }
-            }
+            randomDir = Functions_Random.Int(0, 4);
+            if (randomDir == 0) { dir = Direction.Up; }
+            else if (randomDir == 1) { dir = Direction.Right; }
+            else if (randomDir == 2) { dir = Direction.Down; }
+            else if (randomDir == 3) { dir = Direction.Left; }
+            return dir;
+        }
+
+        public static Direction GetRandomDirection()
+        {
+            randomDir = Functions_Random.Int(0, 8);
+            if (randomDir == 0) { dir = Direction.Up; }
+            else if (randomDir == 1) { dir = Direction.UpRight; }
+            else if (randomDir == 2) { dir = Direction.Right; }
+            else if (randomDir == 3) { dir = Direction.DownRight; }
+            else if (randomDir == 4) { dir = Direction.Down; }
+            else if (randomDir == 5) { dir = Direction.DownLeft; }
+            else if (randomDir == 6) { dir = Direction.Left; }
+            else if (randomDir == 7) { dir = Direction.UpLeft; }
+            return dir;
         }
 
     }

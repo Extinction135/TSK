@@ -651,6 +651,11 @@ namespace DungeonRun
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compMove.moveable = true;
+                Obj.getsAI = true;
+
+                
+                Obj.compMove.grounded = false; //obj is flying
+                Obj.compMove.friction = World.frictionAir;
             }
 
             #endregion

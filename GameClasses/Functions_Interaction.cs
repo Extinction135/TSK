@@ -36,7 +36,6 @@ namespace DungeonRun
             }
         }
 
-
         public static void CheckInteractions(GameObject Object)
         {   //this is ANY Object against RoomObj list
             for (i = 0; i < Pool.roomObjCount; i++)
@@ -50,7 +49,6 @@ namespace DungeonRun
                 }
             }
         }
-
 
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //Obj can be Entity or RoomObj, check for hero state first
@@ -394,7 +392,6 @@ namespace DungeonRun
             }   
         }
 
-
         public static void InteractRoomObj(GameObject RoomObj, GameObject Object)
         {
             //show me the interaction types
@@ -663,7 +660,6 @@ namespace DungeonRun
             #endregion
 
         }
-
 
     }
 }
