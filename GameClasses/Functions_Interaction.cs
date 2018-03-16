@@ -401,7 +401,7 @@ namespace DungeonRun
             Pool.interactionsCount++; //count interaction
 
 
-            #region Projectile v Blocking RoomObj Interactions
+            #region Projectile/Pickup v Blocking RoomObj Interactions
 
             if (RoomObj.compCollision.blocking)
             {   //Handle Projectile vs Blocking RoomObj 
@@ -540,6 +540,13 @@ namespace DungeonRun
 
                     return; //projectile interactions complete
                 }
+                else if (Object.group == ObjGroup.Pickup)
+                {   //for all pickups, prevent them from overlapping blocking room objs
+                    Functions_Movement.StopMovement(Object.compMove);
+                    Functions_Movement.RevertPosition(Object.compMove);
+                    return;
+                }
+
                 //there are no blocking obj vs obj interactions
                 //an interaction is an overlap not handled by collision system
                 //two blocking objs could never overlap can interact
