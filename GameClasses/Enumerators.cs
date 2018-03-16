@@ -85,12 +85,14 @@ namespace DungeonRun
         LeverOn, LeverOff,
         SpikesFloorOn, SpikesFloorOff,
         ConveyorBeltOn, ConveyorBeltOff,
-        //
+        //Room Objects
         Pot, Barrel,
         Bumper, Flamethrower, IceTile,
         Switch, SwitchOff,
         SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
         TorchUnlit, TorchLit, 
+        //Unique RoomObjs
+        Fairy,
         //Actor Spawn Objects (hand-placed)
         SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, 
         //Shop Object
@@ -103,7 +105,7 @@ namespace DungeonRun
 
         //ENTITIES
         //Pickups - collide with hero
-        PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, PickupFairy,
+        PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
         //Projectiles - items
         ProjectileBomb, ProjectileFireball,
         //Projectiles - weapons
@@ -117,7 +119,6 @@ namespace DungeonRun
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation, 
         //Particles - map
         ParticleMapFlag, ParticleMapWave, ParticleMapCampfire,
-        //
 
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleSplash,

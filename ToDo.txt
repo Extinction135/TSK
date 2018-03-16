@@ -73,42 +73,43 @@ explosive barrel puzzels
 
 
 
-Fix Fairy Interactions with Blocking Objects
-
-We want to treat any collision with a blocking object as a blocking
-interaction for the fairy pickup object.
-and upon closer inspection of the interaction system with regards to
-blocking roomObj v projectile/pickup, it's actually easier to check 
-by obj.group, which made it easy to update InteractRoomObj() to prevent
-ALL pickups from overlapping / colliding with blocking roomObjs.
-
-however, upon testing this, it's apparent there is a critical flaw:
-pickups are not being collision checked (per axis), so any overlap
-causes the pickup object to instantly stop moving (instead of sliding),
-so it would actually be easier to integrate the fairy as a PROJECTILE
-instead of a pickup. which makes sense, because pickups don't move, 
-thus they aren't per axis collision checked...
 
 
 
 
 
+Migrate Fairy to be a RoomObj
 
+this makes the most sense, since the fairy will
+be persistent, moving around, and colliding with roomObjs.
+this also allows us to save fairys with rooms, 
+and they can become part of puzzels...
 
+migrated Fairy from Projectile to RoomObj.
+lots of playtesting to insure fairys can't fly out
+of rooms, but still easily collide with hero.
 
-Fairy should be a PROJECTILE
-this projectile should get AI
-this proj should slide along walls
-and a collision with the hero (or pet) gives the hero full health
-and a collision with an enemy is ignored
+modified Battle functions to insure floor spikes always deal
+1 damage to any actor that collides with them (except pet).
+created a loot spawning test room to test to see if fairys
+spawn properly (they do).
 
+added path for fairy vs roomObj interaction, starting with
+floor switches - fairys can activate floor switches now.
 
+created Fun_RoomObj.ActivateSwitchObject(), since now a
+roomObj AND the hero can activate a switch object (this
+functionality is being duplicated in two places, so it 
+should be consolidated into one method and referenced.
 
+updated FloorSwitch testing room with fairy roomObj.
+fairy successfully activates the floorswitch.
 
+changed how friction is assigned to roomObjects, based on
+their compMove.grounded value (if false, obj is flying, and
+thus the obj gets World.airFriction value as their friction).
 
-
-
-
+playtested, fairys are finally working as expected.
 
 
 

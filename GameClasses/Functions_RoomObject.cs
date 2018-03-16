@@ -55,6 +55,17 @@ namespace DungeonRun
             }
         }
 
+        public static void ActivateSwitchObject(GameObject Obj)
+        {   //convert switch off, play switch soundFx
+            Functions_GameObject.SetType(Obj, ObjType.SwitchOff);
+            //grab the player's attention
+            Functions_Particle.Spawn(
+                ObjType.ParticleAttention,
+                Obj.compSprite.position.X,
+                Obj.compSprite.position.Y);
+            OpenTrapDoors(); //open all trap doors
+        }
+
         public static void FlipSwitchBlocks(GameObject SwitchBtn)
         {
             Assets.Play(Assets.sfxSwitch);
@@ -241,8 +252,6 @@ namespace DungeonRun
             Functions_Pool.Release(Barrel);
         }
 
-
-
         public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
         {   //grab players attention, spawn rock debris, play shatter sound
             Functions_Particle.Spawn(
@@ -275,8 +284,6 @@ namespace DungeonRun
                 FlipSwitchBlocks(RoomObj);
             }
         }
-
-
 
         public static void SlideOnIce(ComponentMovement compMove)
         {   //set the component's friction to ice (slides)

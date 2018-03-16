@@ -44,7 +44,11 @@ namespace DungeonRun
 
                 //rare loot drops
                 else if (lootType < 101) //1%
-                { Functions_Pickup.Spawn(ObjType.PickupFairy, Pos.X, Pos.Y); }
+                {   //spawn a fairy roomObj
+                    GameObject Fairy = Functions_Pool.GetRoomObj();
+                    Functions_GameObject.SetType(Fairy, ObjType.Fairy);
+                    Functions_Movement.Teleport(Fairy.compMove, Pos.X, Pos.Y);
+                }
             }
         }
 

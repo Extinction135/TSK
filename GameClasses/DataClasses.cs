@@ -76,7 +76,7 @@ namespace DungeonRun
     {
         public static float friction = 0.75f;
         public static float frictionIce = 0.99f;
-        public static float frictionAir = 0.999f;
+        public static float frictionAir = 0.9f;
 
         //do we need a 'slowed' friction value?
         //we could use this fake a 'burdened' state

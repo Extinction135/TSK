@@ -91,7 +91,7 @@ namespace DungeonRun
                 //handle the obj's death event
                 if (Obj.lifeCounter >= Obj.lifetime) { HandleDeathEvent(Obj); }
                 //reset fairy obj's life (keep them around forever)
-                if (Obj.type == ObjType.PickupFairy) { Obj.lifeCounter = 100; }
+                if (Obj.type == ObjType.Fairy) { Obj.lifeCounter = 100; }
             }
             //certain objects get AI input
             if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
@@ -469,6 +469,25 @@ namespace DungeonRun
             #endregion
 
 
+            #region Fairy
+
+            else if (Type == ObjType.Fairy)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = 8; //sort to air
+                Obj.lifetime = 255; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compMove.moveable = true;
+                Obj.compCollision.blocking = false;
+                Obj.getsAI = true;
+                Obj.compMove.grounded = false; //obj is flying
+                Obj.compMove.friction = World.frictionAir;
+                Obj.canBeSaved = true;
+            }
+
+            #endregion
+
+
             #region Other Dungeon Objects
 
             else if (Type == ObjType.Pot)
@@ -642,20 +661,6 @@ namespace DungeonRun
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compMove.moveable = true;
-            }
-            else if(Type == ObjType.PickupFairy)
-            {
-                Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compCollision.blocking = false;
-                Obj.group = ObjGroup.Pickup;
-                Obj.lifetime = 255; //in frames
-                Obj.compAnim.speed = 6; //in frames
-                Obj.compMove.moveable = true;
-                Obj.getsAI = true;
-
-                
-                Obj.compMove.grounded = false; //obj is flying
-                Obj.compMove.friction = World.frictionAir;
             }
 
             #endregion

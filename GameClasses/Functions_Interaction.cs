@@ -59,6 +59,7 @@ namespace DungeonRun
             //Hero Specific Interactions
             if (Actor == Pool.hero)
             {
+                //group checks
 
                 #region Pickups
 
@@ -89,13 +90,8 @@ namespace DungeonRun
                         PlayerData.current.bombsCurrent++;
                         Assets.Play(Assets.sfxHeartPickup);
                     }
-                    else if (Obj.type == ObjType.PickupFairy)
-                    {
-                        Pool.hero.health = PlayerData.current.heartsTotal;
-                        Assets.Play(Assets.sfxHeartPickup);
-                    }
 
-                    //end the items life
+                    //end the pickups life
                     Obj.lifeCounter = 2;
                     Obj.lifetime = 1;
                     return;
@@ -143,9 +139,23 @@ namespace DungeonRun
                 #endregion
 
 
+                //type checks
+
+                #region Fairy
+
+                if (Obj.type == ObjType.Fairy)
+                {
+                    Pool.hero.health = PlayerData.current.heartsTotal;
+                    Assets.Play(Assets.sfxHeartPickup);
+                    Obj.lifeCounter = 2; Obj.lifetime = 1; //end fairys life
+                }
+
+                #endregion
+
+
                 #region PitTrap
 
-                if (Obj.type == ObjType.PitTrap)
+                else if (Obj.type == ObjType.PitTrap)
                 {   //if hero collides with a PitTrapReady, it starts to open
                     Functions_GameObject.SetType(Obj, ObjType.PitAnimated);
                     Assets.Play(Assets.sfxShatter); //play collapse sound
@@ -182,16 +192,7 @@ namespace DungeonRun
                 #region FloorSwitch
 
                 else if (Obj.type == ObjType.Switch)
-                {   //convert switch off, play switch soundFx
-                    Functions_GameObject.SetType(Obj, ObjType.SwitchOff);
-                    //grab the player's attention
-                    Functions_Particle.Spawn(
-                        ObjType.ParticleAttention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                    //open all the trap doors in the room
-                    Functions_RoomObject.OpenTrapDoors();
-                }
+                { Functions_RoomObject.ActivateSwitchObject(Obj); }
 
                 #endregion
 
@@ -401,7 +402,7 @@ namespace DungeonRun
             Pool.interactionsCount++; //count interaction
 
 
-            #region Projectile/Pickup v Blocking RoomObj Interactions
+            #region Projectile v Blocking RoomObj Interactions
 
             if (RoomObj.compCollision.blocking)
             {   //Handle Projectile vs Blocking RoomObj 
@@ -538,13 +539,8 @@ namespace DungeonRun
 
                     #endregion
 
+
                     return; //projectile interactions complete
-                }
-                else if (Object.group == ObjGroup.Pickup)
-                {   //for all pickups, prevent them from overlapping blocking room objs
-                    Functions_Movement.StopMovement(Object.compMove);
-                    Functions_Movement.RevertPosition(Object.compMove);
-                    return;
                 }
 
                 //there are no blocking obj vs obj interactions
@@ -665,6 +661,21 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Fairys
+
+            else if (Object.type == ObjType.Fairy)
+            {   //fairys can interact with NON-BLOCKING roomObjs here
+
+                //for example floor switches:
+                if (RoomObj.type == ObjType.Switch)
+                { Functions_RoomObject.ActivateSwitchObject(RoomObj); }
+
+            }
+
+            #endregion
+
 
         }
 

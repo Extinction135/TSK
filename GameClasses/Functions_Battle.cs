@@ -79,7 +79,8 @@ namespace DungeonRun
 
             else if(Obj.type == ObjType.SpikesFloorOn)
             {   //if actor is hero, deal 1 damage, else ignore damage
-                if (Actor == Pool.hero) { damage = 1; } else { damage = 0; }
+                //if (Actor == Pool.hero) { damage = 1; } else { damage = 1; }
+                damage = 1; //damage all actors equally
                 force = 5.0f; //weak push actor away from spikes
                 direction = Functions_Direction.GetOppositeCardinal(Actor.compSprite.position, Obj.compSprite.position);
             }

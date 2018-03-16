@@ -231,8 +231,11 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.roomObjPool[i].compAnim, Pool.roomObjPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.roomObjPool[i].compSprite);
 
-                    //reset the object's friction for this frame
-                    Pool.roomObjPool[i].compMove.friction = World.friction;
+                    //set objects that are in the air to world air friction
+                    if (Pool.roomObjPool[i].compMove.grounded == false)
+                    { Pool.roomObjPool[i].compMove.friction = World.frictionAir; }
+                    //objects not in the air get set the world ground friction
+                    else { Pool.roomObjPool[i].compMove.friction = World.friction; }
 
                     //any moving roomObj gets interaction checks
                     //and specific roomObjs ALWAYS get interaction checks
