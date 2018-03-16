@@ -109,8 +109,6 @@ namespace DungeonRun
 
         }
 
-
-
         public static void ClearInteractionRec()
         {   //move the interaction rec offscreen
             interactionRec.rec.X = -1000;
@@ -306,19 +304,6 @@ namespace DungeonRun
             #endregion
 
         }
-
-
-
-        public static void CollideWith(Actor Actor)
-        {   //this is an Actor bumping into/overlapping with hero
-            if (Actor.type == ActorType.Fairy)
-            {   //kill fairy, fill hero's health to max
-                Functions_Actor.SetDeathState(Actor);
-                Pool.hero.health = PlayerData.current.heartsTotal;
-            }
-        }
-
-
 
         public static void SetLoadout()
         {   //set the hero's loadout based on playerdata.current

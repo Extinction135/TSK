@@ -48,7 +48,7 @@ namespace DungeonRun
 
 
 
-    public enum ActorType { Hero, Blob, Boss, Fairy, Pet }
+    public enum ActorType { Hero, Blob, Boss, Pet }
 
     public enum ActorState
     {
@@ -93,7 +93,6 @@ namespace DungeonRun
         TorchUnlit, TorchLit, 
         //Actor Spawn Objects (hand-placed)
         SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, 
-        SpawnFairy,
         //Shop Object
         Bookcase1, Bookcase2, TableStone,
         VendorAdvertisement,
@@ -104,7 +103,7 @@ namespace DungeonRun
 
         //ENTITIES
         //Pickups - collide with hero
-        PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
+        PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb, PickupFairy,
         //Projectiles - items
         ProjectileBomb, ProjectileFireball,
         //Projectiles - weapons

@@ -641,10 +641,8 @@ namespace DungeonRun
                         { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
                         else if (objRef.type == ObjType.SpawnEnemy2)
                         { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
-                        if (objRef.type == ObjType.SpawnEnemy3)
+                        else if (objRef.type == ObjType.SpawnEnemy3)
                         { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
-                        if (objRef.type == ObjType.SpawnFairy)
-                        { Functions_Actor.SpawnActor(ActorType.Fairy, objRef.compSprite.position); }
                     }
                 }
             }

@@ -86,13 +86,12 @@ namespace DungeonRun
             if (Obj.lifetime > 0) //if the obj has a lifetime, count it
             {
                 Obj.lifeCounter++; //increment the life counter of the gameobject
-                //handle the object's birth & death events
+                //handle the obj's birth event
                 if (Obj.lifeCounter == 2) { HandleBirthEvent(Obj); }
-                if (Obj.lifeCounter >= Obj.lifetime)
-                {   //any dead object is released
-                    HandleDeathEvent(Obj);
-                    Functions_Pool.Release(Obj);
-                }
+                //handle the obj's death event
+                if (Obj.lifeCounter >= Obj.lifetime) { HandleDeathEvent(Obj); }
+                //reset fairy obj's life (keep them around forever)
+                if (Obj.type == ObjType.PickupFairy) { Obj.lifeCounter = 100; }
             }
             //certain objects get AI input
             if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
@@ -245,6 +244,8 @@ namespace DungeonRun
             #endregion
 
 
+            //all objects are released upon death
+            Functions_Pool.Release(Obj);
         }
 
         public static void SetType(GameObject Obj, ObjType Type)
@@ -570,8 +571,7 @@ namespace DungeonRun
 
             #region Enemy Spawn Objects
 
-            else if (Type == ObjType.SpawnEnemy1 || Type == ObjType.SpawnEnemy2 
-                || Type == ObjType.SpawnEnemy3 || Type == ObjType.SpawnFairy)
+            else if (Type == ObjType.SpawnEnemy1 || Type == ObjType.SpawnEnemy2 || Type == ObjType.SpawnEnemy3)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = -32; //sort to floor
@@ -637,6 +637,15 @@ namespace DungeonRun
                 Obj.compSprite.cellSize.X = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
+                Obj.compCollision.blocking = false;
+                Obj.group = ObjGroup.Pickup;
+                Obj.lifetime = 255; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compMove.moveable = true;
+            }
+            else if(Type == ObjType.PickupFairy)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Pickup;
                 Obj.lifetime = 255; //in frames

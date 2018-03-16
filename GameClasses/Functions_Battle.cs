@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_Battle
     {
-
         static Direction direction;
         static byte damage;
         static float force;
@@ -94,8 +93,7 @@ namespace DungeonRun
 
         public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
         {   //certain actors take no damage
-            if (Actor.type == ActorType.Fairy || Actor.type == ActorType.Pet)
-            { Damage = 0; } 
+            if (Actor.type == ActorType.Pet) { Damage = 0; Assets.Play(Pool.herosPet.sfxHit); } 
             //only damage/hit/push actors not in the hit state
             if (Actor.state != ActorState.Hit)
             {   //set actor into hit state, push actor the projectile's direction

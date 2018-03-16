@@ -113,5 +113,57 @@ namespace DungeonRun
         }
 
 
+
+
+
+
+        public static void Bottle(GameObject Obj)
+        {
+
+            //right now, only fairy objects can be bottled
+
+
+
+
+        }
+
+        public static void Bottle(Actor Actor)
+        {
+
+
+            /*
+            //can we bottle this actor?
+            if (Actor.type == ActorType.Boss || Actor.type == ActorType.Hero)
+            {   //pop cant bottle dialog
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
+                return;
+            }
+            else
+            {   //determine what type of actor we're attempting to bottle
+                byte value = 5; //defaults to fairy value
+                if (Actor.type == ActorType.Fairy) { value = 5; }
+                else if (Actor.type == ActorType.Blob) { value = 6; }
+                //determine if hero has an empty bottle to put this actor into
+                Boolean captured = false;
+                if (Functions_Bottle.FillEmptyBottle(value)) { captured = true; }
+                //if hero put actor into empty bottle..
+                if (captured)
+                {   //alert player that hero successfully bottled the actor
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleSuccess)); }
+                    SetDeathState(Actor); //kill bottled actor
+                }
+                else
+                {   //alert player that hero has no empty bottles (all bottles are full)
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleFull)); }
+                }
+            }
+            */
+
+
+        }
+
     }
 }

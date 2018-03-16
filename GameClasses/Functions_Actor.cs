@@ -52,39 +52,6 @@ namespace DungeonRun
             Functions_Movement.Teleport(actor.compMove, X, Y);
         }
 
-        public static void BottleActor(Actor Actor)
-        {   //can we bottle this actor?
-            if (Actor.type == ActorType.Boss || Actor.type == ActorType.Hero)
-            {   //pop cant bottle dialog
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
-                return;
-            }
-            else
-            {   //determine what type of actor we're attempting to bottle
-                byte value = 5; //defaults to fairy value
-                if (Actor.type == ActorType.Fairy) { value = 5; }
-                else if (Actor.type == ActorType.Blob) { value = 6; }
-                //determine if hero has an empty bottle to put this actor into
-                Boolean captured = false;
-                if (Functions_Bottle.FillEmptyBottle(value)) { captured = true; }
-                //if hero put actor into empty bottle..
-                if (captured)
-                {   //alert player that hero successfully bottled the actor
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleSuccess)); }
-                    SetDeathState(Actor); //kill bottled actor
-                }
-                else
-                {   //alert player that hero has no empty bottles (all bottles are full)
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleFull)); }
-                }
-            }
-        }
-
-
-
         public static void SetHitState(Actor Actor)
         {   //bail if actor is already dead (dont hit dead actors)
             if (Actor.state == ActorState.Dead) { return; }
@@ -142,11 +109,6 @@ namespace DungeonRun
                 Actor.compSprite.zOffset = -16; //sort to floor
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Assets.Play(Assets.sfxExplosionsMultiple); //play explosions
-            }
-            else if(Actor.type == ActorType.Fairy)
-            {
-                Functions_Particle.Spawn(ObjType.ParticleExplosion, Actor);
-                Functions_Pool.Release(Actor);
             }
         }
 
@@ -241,21 +203,6 @@ namespace DungeonRun
                 Actor.sfxDash = Assets.sfxBlobDash;
                 Actor.sfxHit = Assets.sfxBossHit;
                 Actor.sfxDeath = Assets.sfxBossHitDeath;
-            }
-            else if (Type == ActorType.Fairy)
-            {   //non-combatant actor
-                Actor.aiType = ActorAI.Random;
-                Actor.enemy = false;
-                Actor.compSprite.texture = Assets.mainSheet;
-                Actor.health = 1;
-                ResetActorLoadout(Actor);
-                Actor.walkSpeed = 0.25f;
-                Actor.dashSpeed = 0.5f;
-                //set actor sound effects
-                Actor.sfxDash = null;
-                Actor.sfxHit = null;
-                Actor.sfxDeath = Assets.sfxHeartPickup;
-                Actor.compMove.grounded = false; //actor flys in air
             }
             else if (Type == ActorType.Pet)
             {   //non-combatant actor

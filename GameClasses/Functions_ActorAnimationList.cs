@@ -60,10 +60,6 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
 
             //some actors have limited animations
-            if (Actor.type == ActorType.Fairy)
-            {
-                Actor.animGroup = Actor.animList.fairy;
-            }
             else if(Actor.type == ActorType.Pet)
             {
                 if (Actor.state == ActorState.Move) { Actor.animGroup = Actor.animList.petMove; }

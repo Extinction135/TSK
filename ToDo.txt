@@ -60,18 +60,57 @@ explosive barrel puzzels
 
 
 
+Implement Fairy As Pickup
 
-Fix Projectile vs Dead Actor Interactions
+goal: hero collides with fairy, gets full health.
+current: actors cant overlap, so hero can't collide
+with fairy and get full health.
 
-simply put, a projectile shouldn't collide or
-interact with a dead actor's corpse. this leads
-to a state where arrows and fireballs are absorbed
-by a dead enemy, which feels cheap and wrong,
-since the dead enemy is laying on the ground,
-and the flying projectile would pass over them.
+why? because fairy is currently an actor.
+as an actor, she is neither an enemy or pet.
+this doesn't make much sense, and confuses the idea
+of what an actor 'is' (hero, pet, or enemy).
 
-updated InteractActor() with check for dead actor.
-playtested, working as expected.
+plus, i originally made her an actor to get around
+the limitation of 255 frames of life for entities.
+but, we could simply reset the fairy's lifetime
+once it reaches 200, keeping the fairy floating around
+for as long as the room exists or until she's captured.
+she can retain her AI as well, which we can set when we
+reset her lifetime.. keeping all of her functionality,
+while simplifying her into the current systems.
+
+removed Fairy ActorType.
+removed fairy animation lists.
+added call to play hero's pet hit sound fx upon pet taking damage.
+removed Hero.CollideWith(Actor), which was a terrible idea in hindsight.
+removed call to Fairy actor spawn from SpawnLoot().
+added PickupFairy to ObjType enum.
+added PickupFairy GameObj animList.
+updated SpawnLoot() with call to PickupFairy.
+removed Fairy definition from Actor.SetType().
+removed Fairy spawn check from Room.BuildRoomXmlData().
+removed Fairy spawns from ObjType enum, anim list, Obj.SetType().
+changed ObjToolsWidget to repeat enemy spawn3 instead of fairy spawn.
+modified layout of ObjToolsWidget's objects.
+added various Pickups to ObjToolsWidget, including Fairy.
+added definition for FairyPickup to Functions_GameObject.SetType().
+modified GameObject.Update() with path for fairy pickups,
+which keep fairy pickups 'alive' for as long as the room lasts.
+added fairy pickup path to Interaction functions.
+updated ObjToolsWidget to handle adding Pickups to rooms properly.
+this meant targeting the proper ObjPool, the Pickup Pool,
+using Pool.GetPickup() instead of Pool.GetProjectile().
+playtested, fairy working and integrated as pickup into current systems.
+
+
+
+
+
+
+we dont have AI on the fairy, yet.
+
+there is a pixel on the bomb pickup animation, in the sprite sheet, that needs to be removed
 
 
 
@@ -80,8 +119,23 @@ playtested, working as expected.
 
 
 
-IMPLEMENT FAIRY AS PICKUP
+
+
+
+
+
+
+
+Re-Implement Net and Bottling System
+
+first of all, it makes no sense to store bottle contents as bytes.
+
+commented out the current bottling system, via BottleActor()
+*this should become two methods, Bottle(GameObject), and Bottle(Actor)
+which should be located in the bottle class, not the functions_actor class!
+
 this includes the net interaction, which we'll need to check net against pickups list
+we'll check net against actors and pickups, never projectiles or particles tho
 
 
 

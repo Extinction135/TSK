@@ -149,8 +149,6 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(1, 15, 0, 0) },
                 //SpawnEnemy3
                 new List<Byte4> { new Byte4(2, 15, 0, 0) },
-                //SpawnFairy
-                new List<Byte4> { new Byte4(3, 15, 0, 0) },
 
                 #endregion
 
@@ -203,6 +201,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(20, 3, 0, 0), new Byte4(21, 3, 0, 0), new Byte4(22, 3, 0, 0), new Byte4(23, 3, 0, 0) },
                 //PickupBomb
                 new List<Byte4> { new Byte4(20, 4, 0, 0), new Byte4(21, 4, 0, 0), new Byte4(22, 4, 0, 0), new Byte4(23, 4, 0, 0) },
+                //PickupFairy
+                new List<Byte4> { new Byte4(12, 3, 0, 0), new Byte4(13, 3, 0, 0) },
 
                 #endregion
 

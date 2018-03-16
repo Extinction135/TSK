@@ -65,18 +65,41 @@ namespace DungeonRun
                 #region Pickups
 
                 if (Obj.group == ObjGroup.Pickup)
-                {   //only the hero can pickup hearts or rupees
+                {   
                     if (Obj.type == ObjType.PickupHeart)
-                    { Pool.hero.health++; Assets.Play(Assets.sfxHeartPickup); }
+                    {
+                        Pool.hero.health++;
+                        Assets.Play(Assets.sfxHeartPickup);
+                    }
                     else if (Obj.type == ObjType.PickupRupee)
-                    { PlayerData.current.gold++; Assets.Play(Assets.sfxGoldPickup); }
+                    {
+                        PlayerData.current.gold++;
+                        Assets.Play(Assets.sfxGoldPickup);
+                    }
                     else if (Obj.type == ObjType.PickupMagic)
-                    { PlayerData.current.magicCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    {
+                        PlayerData.current.magicCurrent++;
+                        Assets.Play(Assets.sfxHeartPickup);
+                    }
                     else if (Obj.type == ObjType.PickupArrow)
-                    { PlayerData.current.arrowsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
+                    {
+                        PlayerData.current.arrowsCurrent++;
+                        Assets.Play(Assets.sfxHeartPickup);
+                    }
                     else if (Obj.type == ObjType.PickupBomb)
-                    { PlayerData.current.bombsCurrent++; Assets.Play(Assets.sfxHeartPickup); }
-                    Obj.lifetime = 1; Obj.lifeCounter = 2; //end the items life
+                    {
+                        PlayerData.current.bombsCurrent++;
+                        Assets.Play(Assets.sfxHeartPickup);
+                    }
+                    else if (Obj.type == ObjType.PickupFairy)
+                    {
+                        Pool.hero.health = PlayerData.current.heartsTotal;
+                        Assets.Play(Assets.sfxHeartPickup);
+                    }
+
+                    //end the items life
+                    Obj.lifeCounter = 2;
+                    Obj.lifetime = 1;
                     return;
                 }
 
@@ -198,7 +221,7 @@ namespace DungeonRun
                     if (Actor.state == ActorState.Dead || Actor.state == ActorState.Hit) { return; }
                     Obj.lifeCounter = Obj.lifetime; //kill projectile
                     Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
-                    Functions_Actor.BottleActor(Actor); //try to bottle actor
+                    Functions_Bottle.Bottle(Actor); //try to bottle the actor
                 }
                 //if sword projectile is brand new, spawn hit particle
                 else if (Obj.type == ObjType.ProjectileSword)

@@ -44,7 +44,7 @@ namespace DungeonRun
 
                 //rare loot drops
                 else if (lootType < 101) //1%
-                { Functions_Actor.SpawnActor(ActorType.Fairy, Pos); }
+                { Functions_Pickup.Spawn(ObjType.PickupFairy, Pos.X, Pos.Y); }
             }
         }
 
