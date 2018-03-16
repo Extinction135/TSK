@@ -59,49 +59,20 @@ explosive barrel puzzels
 
 
 
+Improve Pickups
 
-Implement Fairy As Pickup
+updated main sheet in Dx and UWP projects,
+there was a stray pixel in the Bomb Pickup animation.
 
-goal: hero collides with fairy, gets full health.
-current: actors cant overlap, so hero can't collide
-with fairy and get full health.
-
-why? because fairy is currently an actor.
-as an actor, she is neither an enemy or pet.
-this doesn't make much sense, and confuses the idea
-of what an actor 'is' (hero, pet, or enemy).
-
-plus, i originally made her an actor to get around
-the limitation of 255 frames of life for entities.
-but, we could simply reset the fairy's lifetime
-once it reaches 200, keeping the fairy floating around
-for as long as the room exists or until she's captured.
-she can retain her AI as well, which we can set when we
-reset her lifetime.. keeping all of her functionality,
-while simplifying her into the current systems.
-
-removed Fairy ActorType.
-removed fairy animation lists.
-added call to play hero's pet hit sound fx upon pet taking damage.
-removed Hero.CollideWith(Actor), which was a terrible idea in hindsight.
-removed call to Fairy actor spawn from SpawnLoot().
-added PickupFairy to ObjType enum.
-added PickupFairy GameObj animList.
-updated SpawnLoot() with call to PickupFairy.
-removed Fairy definition from Actor.SetType().
-removed Fairy spawn check from Room.BuildRoomXmlData().
-removed Fairy spawns from ObjType enum, anim list, Obj.SetType().
-changed ObjToolsWidget to repeat enemy spawn3 instead of fairy spawn.
-modified layout of ObjToolsWidget's objects.
-added various Pickups to ObjToolsWidget, including Fairy.
-added definition for FairyPickup to Functions_GameObject.SetType().
-modified GameObject.Update() with path for fairy pickups,
-which keep fairy pickups 'alive' for as long as the room lasts.
-added fairy pickup path to Interaction functions.
-updated ObjToolsWidget to handle adding Pickups to rooms properly.
-this meant targeting the proper ObjPool, the Pickup Pool,
-using Pool.GetPickup() instead of Pool.GetProjectile().
-playtested, fairy working and integrated as pickup into current systems.
+updated HandleDeathEvent() for pickups, now the attention
+particle is centered to the 8x16 pixel object.
+before, there was no offset, and the attention particle was
+centering itself to a 16x16 pixel object, which wasn't
+the correct size for the 8x16 pixel pickup object.
+in this case, the fairy (which is 16x16) can be ignored,
+because the fairy never dies, so she would never spawn
+an attention particle and never meet the centering routine.
+playtested, working as expected.
 
 
 
@@ -109,8 +80,9 @@ playtested, fairy working and integrated as pickup into current systems.
 
 
 we dont have AI on the fairy, yet.
+this means she doesn't move, or change the direction she's facing (left or right)
+we need to be passing this pickup into the Functions_AI class
 
-there is a pixel on the bomb pickup animation, in the sprite sheet, that needs to be removed
 
 
 

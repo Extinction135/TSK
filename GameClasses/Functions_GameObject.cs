@@ -179,8 +179,8 @@ namespace DungeonRun
             {   //when an item pickup dies, display an attention particle
                 Functions_Particle.Spawn(
                     ObjType.ParticleAttention,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0);
+                    Obj.compSprite.position.X - 4,
+                    Obj.compSprite.position.Y - 2);
             }
 
 
