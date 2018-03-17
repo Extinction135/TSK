@@ -127,7 +127,13 @@ namespace DungeonRun
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 15; //short pause
-            Functions_Movement.StopMovement(Actor.compMove);
+
+            //so, here's a BIG decision or option that we may want to include in a menu
+            //the option to 'stop movement upon an attack or item useage'
+            //this can make attacks more precise, but also slows down hero's inertia
+            //this could be an option in a menu, or it could be equipment we put on
+            //it could even be a skill in a skill tree!!
+            //Functions_Movement.StopMovement(Actor.compMove);
         }
 
         public static void SetIdleState(Actor Actor)

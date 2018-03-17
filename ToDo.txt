@@ -55,102 +55,31 @@ explosive barrel puzzels
 
 
 
-
-How are projectiles different from particles?
-Projectiles, besides colliding with objs / actors, also move and
-interact in various ways with various things. for example, the boomerang
-projectile will be able to grab a gameobj and return it to the hero.
-this will be done using a gameObj reference, stored with the projectile class.
-in the same manner, the hookshot item can carry the hero over pits.
-this is accomplished by storing a reference to an actor with the projectile class.
-essentially, the projectile class extends the roomObj class with actor and obj references.
-
-Projectiles should have 'owners' or 'casters'.
-	this is simply an actor reference.
-	this lays ground work for:
-	boomerang functionality,
-	excluding caster from AoE spell damage,
-	tracking a sword to an actor across frames (conveyor belt)
-	tracking overhead rewards to hero across frames (conveyor belt)
-	allows actors to slide across ice with weapons as well
-
 	
 	
 	
 	
-	
-	
-	
-	
-Re-Implement Sword / Projectiles
+Get Swords and Nets Tracking Properly
 
-this is a projectile that tracks to it's caster with a direction 
-this tracking allows the caster to move while the sword is active
-allowing the caster to slide across ice, belts, etc..
+modified Functions_Projectile.Spawn().
+swords & nets work properly now, tracking to hero.
 
-flipped sword obj.getAI to true. this passes any sword projectile
-to the Functions_Ai.HandleObj() method, which was updated with a
-path for ProjectileSword. this method evals every frame too.
-
-however, the fix for projectile casters is not so easy, because
-projectile casters can be actors OR gameObjects, which are two
-distinct fields. the workaround is to store the actor/obj's 
-move component as a reference, that way projectiles can work 
-as intended, based on the current projectile plans.
-
-modified Projectile class to have a ComponentMovement reference.
-removed the Projectile class' Vector2 origin, as it's not needed
-under the current plans.
-
-rewrote the Spawn() method for Functions_Projectile to use a single
-method that takes a MoveComponent as a caster reference, instead of 3
-split functions named Spawn that funnel into the last one.
-updated Pool.GetProjectile() to clear the caster field.
-modified Pool.Update() to send ALL projectiles to Projectile.Update(),
-which will handle all the projectiles behavior, instead of routing
-them through Ai.HandleObj(), because that accepted a GameObject as a
-parameter, and we needed access to the caster reference via a Projectile
-parameter in.. this also keep projectiles more local to their class,
-as spreading them out into Functions_AI wasn't exactly what I wanted.
-refactored Functions_AI to be simple and clean again.
-
-implemented sword and net projectile behavior.
-swords + nets now track to the caster.
-implemented fireball and arrow projectile behavior.
-fireballs and arrows now prevent overlap with the caster.
-implemented sliding bomb behavior, wont overlap caster.
-
-moved code for setting arrow's collision rec into GameObj.SetType().
-moved setting sword's collision rec into SetType().
-removed the ScatterRockDebris() method from Func_Particle.
-
-completely remove ProjectilePots, and throwing Pots.
-Hero can now only pickup, carry, and drop pots. No throwing.
-this was in prep for new Carrying system coming up soon.
-
-removed parameter Hero actor from DropCarryingObj(). Hero is global.
-removed Hero parameter from Hero.HandleState() as well. Wow.
-
-playtested, lots of bugs, but one cool new thing: hero can now
-slide bombs diagonally as well as cardinally. 
-so, i got that going for me.
+turned off StopMovement() in Actor.SetItemUseState().
+however, the sword is still colliding with hero as he moves.
+changed Projectile.Update() to literally teleport the projectile
+to it's proper location, which isn't the best fix, but it works.
+sword & net now match hero's movement.
+fireballs and arrows can be fired on the move as well.
+lots of playtesting, working as expected for now.
 
 
 
 
 
 
-
-
-
-
-
-neither sword nor net properly offset from hero.
-same with fireballs and arrows. somehow the offsets are not getting set properly.
-
-
-
-
+Improve Bow Animation
+however, we now need to model the bow as a projectile,
+beceause it needs to track to its caster, and rotate based on direction.
 
 
 
@@ -176,7 +105,8 @@ setting the obj down doesn't move the roomObj, but instead makes it blocking aga
 
 
 
-
+we can track overhead rewards to hero if we model them as projectiles instead of particles.
+that way hero doesn't have to stateLock into a reward unless it's for a cast or use
 
 
 

@@ -31,21 +31,18 @@ namespace DungeonRun
             Projectile pro = Functions_Pool.GetProjectile();
             //set the projectile's caster reference
             pro.caster = Caster;
-            //set the projectiles direction
+            //set the projectiles direction to a cardinal one
+            Dir = Functions_Direction.GetCardinalDirection(Dir);
             pro.direction = Dir;
             pro.compMove.direction = Dir;
-            //assume this projectile is moving
-            pro.compMove.moving = true;
-            //teleport the object to the caster's location
-            Functions_Movement.Teleport(pro.compMove, Caster.position.X, Caster.position.Y);
-            //set the type, rotation, cellsize, & alignment
-            Functions_GameObject.SetType(pro, Type);
 
             //give some projectiles an initial push
             if (Type == ObjType.ProjectileArrow) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
             else if (Type == ObjType.ProjectileFireball) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
             else if (Type == ObjType.ProjectileBomb) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
             else if (Type == ObjType.ProjectileExplodingBarrel) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
+            //assume this projectile is moving
+            pro.compMove.moving = true;
 
 
             #region Handle Spawn Events not handled by BirthEvent
@@ -61,16 +58,24 @@ namespace DungeonRun
             #endregion
 
 
-            //pass this Projectile to AI to be initially setup / handled
-            Update(pro);
+            //teleport the object to the caster's location
+            Functions_Movement.Teleport(pro.compMove,
+                Caster.position.X,
+                Caster.position.Y
+            );
 
-            Functions_Component.Align(pro);
+            //handle spawn frame behavior
+            pro.type = Type;
+            Update(pro); 
+
+            //finalize it: setType, rotation & align
+            Functions_GameObject.SetType(pro, Type); 
         }
 
         static Vector2 offset = new Vector2();
         public static void Update(Projectile Pro)
         {
-            //this method handles the behaviors of a projectile
+            //this method handles the behaviors of a projectile, by modifying it's newPosition
             //for example, tracking a sword to it's caster so the caster can slide and attack
 
 
@@ -80,10 +85,10 @@ namespace DungeonRun
                 || Pro.type == ObjType.ProjectileNet)
             {   //track the projectile to it's caster
                 //set offset to make projectile appear in actors hand, based on direction
-                if (Pro.direction == Direction.Down) { offset.X = -1; offset.Y = +15; }
-                else if (Pro.direction == Direction.Up) { offset.X = +1; offset.Y = -12; }
-                else if (Pro.direction == Direction.Right) { offset.X = +14; offset.Y = 0; }
-                else if (Pro.direction == Direction.Left) { offset.X = -14; offset.Y = 0; }
+                if (Pro.direction == Direction.Down) { offset.X = -1; offset.Y = +16; }
+                else if (Pro.direction == Direction.Up) { offset.X = +1; offset.Y = -14; }
+                else if (Pro.direction == Direction.Right) { offset.X = +15; offset.Y = 0; }
+                else if (Pro.direction == Direction.Left) { offset.X = -15; offset.Y = 0; }
                 //apply the offset
                 Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X;
                 Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y;
@@ -98,8 +103,8 @@ namespace DungeonRun
                 || Pro.type == ObjType.ProjectileArrow)
             {   //prevent caster from overlapping with projectile
                 //step 1: set minimum safe distance from caster (offset)
-                if (Pro.direction == Direction.Down) { offset.Y = +15; offset.Y = 0; }
-                else if (Pro.direction == Direction.Up) { offset.Y = -15; offset.Y = 0; }
+                if (Pro.direction == Direction.Down) { offset.X = 0; offset.Y = +16; }
+                else if (Pro.direction == Direction.Up) { offset.X = 0; offset.Y = -16; }
                 else if (Pro.direction == Direction.Right) { offset.X = +15; offset.Y = +2; }
                 else if (Pro.direction == Direction.Left) { offset.X = -15; offset.Y = +2; }
                 //step 2: apply offset to prevent projectile overlapping with caster, using direction
@@ -225,6 +230,13 @@ namespace DungeonRun
             */
             #endregion
 
+
+
+
+            //teleport the projectile to it's new position
+            Functions_Movement.Teleport(Pro.compMove,
+                Pro.compMove.newPosition.X,
+                Pro.compMove.newPosition.Y);
         }
 
     }

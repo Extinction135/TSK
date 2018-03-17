@@ -262,11 +262,12 @@ namespace DungeonRun
             {
                 if (Pool.projectilePool[i].active)
                 {
+                    //handle projectile behavior first
+                    Functions_Projectile.Update(Pool.projectilePool[i]);
+                    //then update animate scale
                     Functions_GameObject.Update(Pool.projectilePool[i]);
                     Functions_Animation.Animate(Pool.projectilePool[i].compAnim, Pool.projectilePool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.projectilePool[i].compSprite);
-                    //handle projectile behaviors
-                    Functions_Projectile.Update(Pool.projectilePool[i]);
                     //interaction check projectiles (this may kill them, do it last)
                     Functions_Interaction.CheckInteractions(Pool.projectilePool[i]);
                 }
