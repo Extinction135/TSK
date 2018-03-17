@@ -777,37 +777,25 @@ namespace DungeonRun
 
         public byte arrowsCurrent = 10; //testing
         public byte arrowsMax = 99;
-       
 
-
-
-        //items are a bit dumb right now, because we're using ints to represent state
-        //where we should be using human readable enum values
-
-        //the hero's last selected item
-        //0=boomerang, 1=bombs, 2=bottle2, 3=bottle3, 4=bottle4
-        //5=fireball, 6=???, 7=???, 8=???, 9???
-        public byte currentItem = 0;
+        //the hero's last selected / current item
+        public HerosCurrentItem currentItem = HerosCurrentItem.None;
 
 
         #region Items
 
+        //non-magical items
         public Boolean itemBoomerang = false;
         
-        //bottle contents represented by enumerator
+        //bottles
         public BottleContent bottleA = BottleContent.Empty;
         public BottleContent bottleB = BottleContent.Empty;
         public BottleContent bottleC = BottleContent.Empty;
 
+        //magical items
         public Boolean magicFireball = false;
-        //portal
 
         #endregion
-
-
-
-
-
 
 
         #region Weapon

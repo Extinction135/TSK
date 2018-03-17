@@ -174,4 +174,11 @@ namespace DungeonRun
         Blob 
     }
 
+    public enum HerosCurrentItem
+    {
+        None, Boomerang, Bombs,
+        BottleA, BottleB, BottleC,
+        Fireball
+    }
+
 }

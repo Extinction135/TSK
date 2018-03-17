@@ -117,7 +117,7 @@ namespace DungeonRun
             Actor.state = ActorState.Reward;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
-            Actor.lockTotal = 40;
+            Actor.lockTotal = 30;
         }
 
         public static void SetCollisionRec(Actor Actor)

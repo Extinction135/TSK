@@ -17,20 +17,18 @@ namespace DungeonRun
 
         public static void UseItem(MenuItemType Type, Actor Actor)
         {
-            Actor.lockTotal = 15; //how many frames the actor is locked
-
 
             #region Hero Specific Items
 
             if (Actor == Pool.hero)
             {   //bottles
-                if (PlayerData.current.currentItem == 2) //bottleA
+                if (PlayerData.current.currentItem == HerosCurrentItem.BottleA)
                 { Functions_Bottle.UseBottle(PlayerData.current.bottleA); }
 
-                else if (PlayerData.current.currentItem == 3) //bottleB
+                else if (PlayerData.current.currentItem == HerosCurrentItem.BottleB) 
                 { Functions_Bottle.UseBottle(PlayerData.current.bottleB); }
 
-                else if (PlayerData.current.currentItem == 4) //bottleC
+                else if (PlayerData.current.currentItem == HerosCurrentItem.BottleC)
                 { Functions_Bottle.UseBottle(PlayerData.current.bottleC); }
             }
 
@@ -89,13 +87,6 @@ namespace DungeonRun
 
             #endregion
 
-
-            else //if (Type == MenuItemType.Unknown)
-            {   //unlock and reset actor
-                Actor.state = ActorState.Idle;
-                Actor.stateLocked = false;
-                Actor.lockTotal = 0;
-            }
         }
 
         static Boolean CheckMagic(int castingCost)

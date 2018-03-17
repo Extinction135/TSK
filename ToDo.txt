@@ -58,40 +58,18 @@ explosive barrel puzzels
 
 
 
+Redesign Hero's Item to be an Enum value
+
+the problem here is simple: hero's item is represented
+by an int value, which is difficult to read and recall.
+so instead we'll use an enum again.
+
+various modifications resulting in a better system
+using an enum value, but with a few bugs.
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Rewrite Bottling Systems
-
-it makes no sense to store bottle contents as bytes.
-we are changing the saveData format for bottle contents.
-this will be an enumerator instead of a byte, simply for readability.
-added BottleContent enumerator to Enums file.
-removed byte fields for all 3 bottles from saveData class.
-rewrote Bottle class to work with new BottleContent enum.
-playtested.. some bugs..
 
 
 
@@ -100,11 +78,6 @@ playtested.. some bugs..
 bug A: hero can still use an empty bottle.
 the empty bottle dissappears from the world UI once used,
 but the hero still spawns the bottle particle, and sets into reward state for a frame
-
-bug B: using a bottle doesn't clear it's contents?
-
-bug C: reward state doesn't state lock?
-
 
 
 

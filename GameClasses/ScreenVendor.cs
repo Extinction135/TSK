@@ -268,18 +268,6 @@ namespace DungeonRun
                 {   //if empty bottle was filled, complete the sale, else alert player
                     if (Functions_Bottle.FillEmptyBottle(BottleContent.Health))
                     { CompleteSale(Item); } else { DialogBottlesFull(); } 
-                    
-
-                    /*
-                    //if we can fill bottleA
-                    if (Functions_Bottle.FillEmptyBottle(2))
-                    {   //set hero's item, complete the sale
-                        PlayerData.current.currentItem = 2; //bottleA
-                        Pool.hero.item = MenuItemType.BottleHealth;
-                        CompleteSale(Item);
-                    }
-                    else { DialogBottlesFull(); } //else alert player
-                    */
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
                 {   //if empty bottle was filled, complete the sale, else alert player

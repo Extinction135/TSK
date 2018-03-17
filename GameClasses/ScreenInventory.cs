@@ -131,6 +131,7 @@ namespace DungeonRun
         {   //select a menuItem with button A press
             if (Functions_Input.IsNewButtonPress(Buttons.A))
             {
+                //scale up any known menuItem and play the selection sound
                 if (currentlySelected.type != MenuItemType.Unknown)
                 { currentlySelected.compSprite.scale = 2.0f; }
                 Assets.Play(Assets.sfxMenuItem);
@@ -156,8 +157,126 @@ namespace DungeonRun
                 #endregion
 
 
-                else { SetLoadout(); }
+                else
+                {   //Handle Items, weapons, armor, and equipment
+
+                    #region Non-magical Items
+
+                    if (currentlySelected == Widgets.Inventory.menuItems[0]) //bombs
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.Bombs;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[1]) //boomerang
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.Boomerang;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[2]) //bottleA
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.BottleA;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[3]) //bottleB
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.BottleB;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[4]) //bottleC
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.BottleC;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+
+                    #endregion
+
+
+                    #region Magical Items
+
+                    else if (currentlySelected == Widgets.Inventory.menuItems[5]) //fireball magic
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.Fireball;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[6]) //??? magic
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.None;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[7]) //??? magic
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.None;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[8]) //??? magic
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.None;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[9]) //??? magic
+                    {
+                        PlayerData.current.currentItem = HerosCurrentItem.None;
+                        Pool.hero.item = currentlySelected.type;
+                    }
+
+                    #endregion
+
+
+                    #region Weapons
+
+                    else if (currentlySelected == Widgets.Inventory.menuItems[10]) //sword
+                    { PlayerData.current.currentWeapon = 0; Pool.hero.weapon = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[11]) //bow
+                    { PlayerData.current.currentWeapon = 1; Pool.hero.weapon = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[12]) //net
+                    { PlayerData.current.currentWeapon = 2; Pool.hero.weapon = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[13]) //???
+                    { PlayerData.current.currentWeapon = 3; Pool.hero.weapon = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[14]) //???
+                    { PlayerData.current.currentWeapon = 4; Pool.hero.weapon = currentlySelected.type; }
+
+                    #endregion
+
+
+                    #region Armor
+
+                    else if (currentlySelected == Widgets.Inventory.menuItems[15]) //tunic
+                    { PlayerData.current.currentArmor = 0; Pool.hero.armor = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[16]) //chest
+                    { PlayerData.current.currentArmor = 1; Pool.hero.armor = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[17]) //cape
+                    { PlayerData.current.currentArmor = 2; Pool.hero.armor = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[18]) //robe
+                    { PlayerData.current.currentArmor = 3; Pool.hero.armor = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[19]) //???
+                    { PlayerData.current.currentArmor = 4; Pool.hero.armor = currentlySelected.type; }
+
+                    #endregion
+
+
+                    #region Equipment
+
+                    else if (currentlySelected == Widgets.Inventory.menuItems[20]) //ring
+                    { PlayerData.current.currentEquipment = 0; Pool.hero.equipment = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[21]) //???
+                    { PlayerData.current.currentEquipment = 1; Pool.hero.equipment = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[22]) //???
+                    { PlayerData.current.currentEquipment = 2; Pool.hero.equipment = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[23]) //???
+                    { PlayerData.current.currentEquipment = 3; Pool.hero.equipment = currentlySelected.type; }
+                    else if (currentlySelected == Widgets.Inventory.menuItems[24]) //???
+                    { PlayerData.current.currentEquipment = 4; Pool.hero.equipment = currentlySelected.type; }
+
+                    #endregion
+
+                    //update the LoadoutWidget to show equipped items
+                    Widgets.Loadout.UpdateLoadout();
+                }
             }
+
+
+            #region Exit Screen Input
+
             //exit this screen upon start / b button / right shoulder button press
             else if (Functions_Input.IsNewButtonPress(Buttons.Start) 
                 || Functions_Input.IsNewButtonPress(Buttons.B)
@@ -173,6 +292,12 @@ namespace DungeonRun
                 Functions_MenuWindow.Close(Widgets.Options.window);
                 exitAction = ExitAction.ExitScreen;
             }
+
+            #endregion
+
+
+            #region Move Between MenuItems Input
+
             //get the previouslySelected menuItem
             previouslySelected = currentlySelected;
             //check to see if the gamePad direction is a new direction - prevents rapid scrolling
@@ -197,6 +322,9 @@ namespace DungeonRun
                     selectionBox.scale = 2.0f;
                 }
             }
+
+            #endregion
+
         }
 
         public override void Update(GameTime GameTime)
@@ -285,75 +413,6 @@ namespace DungeonRun
             if (displayState == DisplayState.Opened) { Functions_Draw.Draw(selectionBox); }
             Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
-        }
-
-
-
-        public void SetLoadout()
-        {   //check to see what currentlySelected points to, set loadout value + hero item/weapon/armor/equipment
-
-            //non-magic items
-            if (currentlySelected == Widgets.Inventory.menuItems[0]) //bombs
-            { PlayerData.current.currentItem = 0; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[1]) //boomerang
-            { PlayerData.current.currentItem = 1; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[2]) //bottle1
-            { PlayerData.current.currentItem = 2; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[3]) //bottle2
-            { PlayerData.current.currentItem = 3; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[4]) //bottle3
-            { PlayerData.current.currentItem = 4; Pool.hero.item = currentlySelected.type; }
-
-            //magic items
-            else if (currentlySelected == Widgets.Inventory.menuItems[5]) //fireball magic
-            { PlayerData.current.currentItem = 5; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[6]) //??? magic
-            { PlayerData.current.currentItem = 6; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[7]) //??? magic
-            { PlayerData.current.currentItem = 7; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[8]) //??? magic
-            { PlayerData.current.currentItem = 8; Pool.hero.item = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[9]) //??? magic
-            { PlayerData.current.currentItem = 9; Pool.hero.item = currentlySelected.type; }
-
-            //weapons
-            else if (currentlySelected == Widgets.Inventory.menuItems[10]) //sword
-            { PlayerData.current.currentWeapon = 0; Pool.hero.weapon = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[11]) //bow
-            { PlayerData.current.currentWeapon = 1; Pool.hero.weapon = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[12]) //net
-            { PlayerData.current.currentWeapon = 2; Pool.hero.weapon = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[13]) //???
-            { PlayerData.current.currentWeapon = 3; Pool.hero.weapon = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[14]) //???
-            { PlayerData.current.currentWeapon = 4; Pool.hero.weapon = currentlySelected.type; }
-
-            //armor
-            else if (currentlySelected == Widgets.Inventory.menuItems[15]) //tunic
-            { PlayerData.current.currentArmor = 0; Pool.hero.armor = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[16]) //chest
-            { PlayerData.current.currentArmor = 1; Pool.hero.armor = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[17]) //cape
-            { PlayerData.current.currentArmor = 2; Pool.hero.armor = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[18]) //robe
-            { PlayerData.current.currentArmor = 3; Pool.hero.armor = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[19]) //???
-            { PlayerData.current.currentArmor = 4; Pool.hero.armor = currentlySelected.type; }
-
-            //equipment
-            else if (currentlySelected == Widgets.Inventory.menuItems[20]) //ring
-            { PlayerData.current.currentEquipment = 0; Pool.hero.equipment = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[21]) //???
-            { PlayerData.current.currentEquipment = 1; Pool.hero.equipment = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[22]) //???
-            { PlayerData.current.currentEquipment = 2; Pool.hero.equipment = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[23]) //???
-            { PlayerData.current.currentEquipment = 3; Pool.hero.equipment = currentlySelected.type; }
-            else if (currentlySelected == Widgets.Inventory.menuItems[24]) //???
-            { PlayerData.current.currentEquipment = 4; Pool.hero.equipment = currentlySelected.type; }
-
-            //update the LoadoutWidget to show equipped items
-            Widgets.Loadout.UpdateLoadout();
         }
 
     }
