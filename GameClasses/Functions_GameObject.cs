@@ -66,7 +66,6 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.ProjectileBomb
                 || Obj.type == ObjType.ProjectileSpikeBlock
-                || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectileExplodingBarrel)
             {   //some objects only face Direction.Down
                 Obj.compSprite.rotation = Rotation.None;
@@ -143,10 +142,6 @@ namespace DungeonRun
             {
                 Assets.Play(Assets.sfxSwordSwipe);
             }
-            else if (Obj.type == ObjType.ProjectilePot)
-            {   //throw sfx = actor fall sfx
-                Assets.Play(Assets.sfxActorFall);
-            }
             else if (Obj.type == ObjType.ProjectileExplodingBarrel)
             {
                 Assets.Play(Assets.sfxEnemyHit);
@@ -194,9 +189,7 @@ namespace DungeonRun
             {   //create explosion projectile
                 Functions_Projectile.Spawn(
                     ObjType.ProjectileExplosion,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.None);
+                    Obj.compMove, Direction.None);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
             {   //explosion & ground fire
@@ -212,18 +205,11 @@ namespace DungeonRun
             }
             //sword - no death event
             //rock debris - no death event
-            else if (Obj.type == ObjType.ProjectilePot)
-            {   //create loot
-                Functions_RoomObject.DestroyObject(Obj, true, true);
-            }
             else if (Obj.type == ObjType.ProjectileExplodingBarrel)
             {
                 //create explosion projectile
-                Functions_Projectile.Spawn(
-                    ObjType.ProjectileExplosion,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y,
-                    Direction.None);
+                Functions_Projectile.Spawn(ObjType.ProjectileExplosion,
+                    Obj.compMove, Direction.None);
                 //create loot
                 Functions_Loot.SpawnLoot(Obj.compSprite.position);
                 //leave some fire behind
@@ -232,9 +218,9 @@ namespace DungeonRun
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y);
                 //throw some rocks around as decoration
-                Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
-                Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
-                Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
+                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
+                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
+                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
             }
 
             #endregion
@@ -652,7 +638,6 @@ namespace DungeonRun
                 Obj.compSprite.cellSize.X = 8; //non standard cellsize
                 Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 10;
-                Obj.compCollision.blocking = false;
                 Obj.group = ObjGroup.Pickup;
                 Obj.lifetime = 255; //in frames
                 Obj.compAnim.speed = 6; //in frames
@@ -676,6 +661,8 @@ namespace DungeonRun
                 Obj.compAnim.speed = 7; //in frames
                 Obj.compMove.moveable = true;
             }
+
+            //magic
             else if (Type == ObjType.ProjectileFireball)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
@@ -695,6 +682,27 @@ namespace DungeonRun
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 16;
+                //set collision rec based on direction
+                if (Obj.direction == Direction.Up)
+                {
+                    Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -4;
+                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 15;
+                }
+                else if (Obj.direction == Direction.Down)
+                {
+                    Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -5;
+                    Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                }
+                else if (Obj.direction == Direction.Left)
+                {
+                    Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
+                    Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
+                }
+                else //right
+                {
+                    Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
+                    Obj.compCollision.rec.Width = 11; Obj.compCollision.rec.Height = 10;
+                }
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 18; //in frames
                 Obj.compAnim.speed = 2; //in frames
@@ -706,6 +714,17 @@ namespace DungeonRun
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 16;
+                //set collision rec based on direction
+                if (Obj.direction == Direction.Up || Obj.direction == Direction.Down)
+                {
+                    Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -6;
+                    Obj.compCollision.rec.Width = 4; Obj.compCollision.rec.Height = 12;
+                }
+                else //left or right
+                {
+                    Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -2;
+                    Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 4;
+                }
                 Obj.group = ObjGroup.Projectile;
                 Obj.lifetime = 200; //in frames
                 Obj.compAnim.speed = 5; //in frames
@@ -740,6 +759,30 @@ namespace DungeonRun
                 Obj.compAnim.loop = false;
                 Obj.compMove.grounded = false; //obj is airborne
             }
+            else if (Type == ObjType.ProjectileExplodingBarrel)
+            {   //this should match the Barrel GameObj
+                Obj.compSprite.zOffset = -7;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 40; //in frames
+                Obj.compAnim.speed = 7;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = true;
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+            //these projectiles will likely be refactored elsewhere
             else if (Type == ObjType.ProjectileSpikeBlock)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
@@ -767,29 +810,6 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
             }
-            else if (Type == ObjType.ProjectilePot)
-            {
-                Obj.compSprite.zOffset = +16; //sort to air
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 15; //in frames
-                Obj.compCollision.blocking = false;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //in air
-                Obj.compMove.friction = 0.986f; //some air friction
-            }
-            else if (Type == ObjType.ProjectileExplodingBarrel)
-            {   //this should match the Barrel GameObj
-                Obj.compSprite.zOffset = -7; 
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 40; //in frames
-                Obj.compAnim.speed = 7; 
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = true;
-            }
             else if (Type == ObjType.ProjectileShadowSm)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
@@ -801,6 +821,12 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false;
             }
+
+
+
+
+
+
 
 
 
@@ -947,8 +973,8 @@ namespace DungeonRun
 
 
             //Handle Obj Group properties
-            if (Obj.group == ObjGroup.Particle || Obj.group == ObjGroup.Projectile)
-            { Obj.compCollision.blocking = false; } //entities never block
+            if (Obj.group == ObjGroup.Particle || Obj.group == ObjGroup.Projectile || Obj.group == ObjGroup.Pickup)
+            { Obj.compCollision.blocking = false; } //these entities never block
 
             SetRotation(Obj);
             Functions_GameObjectAnimList.SetAnimationList(Obj); //set obj animation list based on type

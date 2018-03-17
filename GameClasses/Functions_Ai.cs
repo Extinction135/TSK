@@ -125,31 +125,36 @@ namespace DungeonRun
         }
 
         public static void HandleObj(GameObject Obj)
-        {   //keep in mind this is called every frame
+        {   //keep in mind this method is called every frame
+
             if (Obj.type == ObjType.Flamethrower)
-            {   
+            {
                 if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
-                { Functions_Projectile.Spawn(ObjType.ProjectileFireball, Obj); }
+                {   //shoot fireball towards hero along a cardinal direction
+                    Functions_Projectile.Spawn(
+                        ObjType.ProjectileFireball, Obj.compMove,
+                        Functions_Direction.GetCardinalDirectionToHero(Obj.compSprite.position));
+                }
             }
             else if (Obj.type == ObjType.WallStatue)
             {
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
-                { Functions_Projectile.Spawn(ObjType.ProjectileArrow, Obj); }
+                { Functions_Projectile.Spawn(ObjType.ProjectileArrow, Obj.compMove, Obj.direction); }
             }
-            else if(Obj.type == ObjType.PitAnimated)
+            else if (Obj.type == ObjType.PitAnimated)
             {
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
                 { Functions_Particle.Spawn(ObjType.ParticlePitAnimation, Obj); }
             }
-            else if(Obj.type == ObjType.Fairy)
+            else if (Obj.type == ObjType.Fairy)
             {
                 if (Functions_Random.Int(0, 101) > 93) //float around
                 {   //randomly push fairy a direction
-                    Functions_Movement.Push(Obj.compMove, 
-                        Functions_Direction.GetRandomDirection(), 
-                        1.0f);
+                    Functions_Movement.Push(Obj.compMove,
+                        Functions_Direction.GetRandomDirection(), 1.0f);
                 }
             }
+
         }
 
     }

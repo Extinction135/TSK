@@ -19,7 +19,7 @@ namespace DungeonRun
         {
             if (Type == MenuItemType.WeaponSword)
             {
-                Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.WeaponBow)
@@ -27,14 +27,19 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor shoots an arrow
-                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor);
-                Functions_Projectile.Spawn(ObjType.ParticleBow, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor.compMove, Actor.direction);
+                //actoro displays a bow
+                Functions_Particle.Spawn(ObjType.ParticleBow, Actor);
                 Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.WeaponNet)
             {
-                Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
+            }
+            else
+            {   //the weapon is unknown and cannot be used by the actor
+                Functions_Actor.SetIdleState(Actor);
             }
         }
 
@@ -55,7 +60,7 @@ namespace DungeonRun
             }
 
 
-            #region Hero Specific Items (Net, Bottles)
+            #region Hero Specific Items (Bottles)
 
             if (Actor == Pool.hero)
             {   //check bottle A
@@ -106,7 +111,7 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckBombs()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor spawns a bomb
-                Functions_Projectile.Spawn(ObjType.ProjectileBomb, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileBomb, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
 
@@ -120,7 +125,7 @@ namespace DungeonRun
                 if (Actor == Pool.hero & !CheckMagic(1)) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor shoots a fireball
-                Functions_Projectile.Spawn(ObjType.ProjectileFireball, Actor);
+                Functions_Projectile.Spawn(ObjType.ProjectileFireball, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
 

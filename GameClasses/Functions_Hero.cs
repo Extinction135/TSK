@@ -377,24 +377,24 @@ namespace DungeonRun
             Pool.herosPet.compSprite.scale = 1.0f; //rescale hero to 100%
         }
 
-        public static void DropCarryingObj(Actor Hero)
+        public static void DropCarryingObj()
         {   //if the hero isn't carrying anything, bail from method
             if (!carrying) { return; }
             //else, the hero is carrying a pot obj, so drop it correctly
             carrying = false; //release carrying state
             //convert any diagonal to cardinal direction
-            Hero.direction = Functions_Direction.GetCardinalDirection(Hero.direction);
-            
+            Pool.hero.direction = Functions_Direction.GetCardinalDirection(Pool.hero.direction);
+
             //based on hero's facing direction, calculate drop offset
             Vector2 offset = new Vector2(0, 0);
-            if (Hero.direction == Direction.Up) { offset.Y = -16; }
-            else if (Hero.direction == Direction.Down) { offset.Y = +16; }
-            else if (Hero.direction == Direction.Left) { offset.X = -16; }
+            if (Pool.hero.direction == Direction.Up) { offset.Y = -16; }
+            else if (Pool.hero.direction == Direction.Down) { offset.Y = +16; }
+            else if (Pool.hero.direction == Direction.Left) { offset.X = -16; }
             else { offset.X = +16; } //defaults right
 
             //apply drop offset to carryingObj
-            carryingObj.compMove.newPosition.X = Hero.compSprite.position.X + offset.X;
-            carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y + offset.Y;
+            carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X + offset.X;
+            carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y + offset.Y;
             //align to grid
             carryingObj.compMove.newPosition = Functions_Movement.AlignToGrid(
                 (int)carryingObj.compMove.newPosition.X,
@@ -407,10 +407,6 @@ namespace DungeonRun
             Functions_GameObject.ResetObject(carryingObj); //reset Obj
             Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
             Functions_Component.Align(carryingObj);
-
-
-
-
 
 
             //this is basically a smaller version of CheckInteractions()
@@ -434,56 +430,51 @@ namespace DungeonRun
                             Functions_Pool.Release(carryingObj);
                             Functions_RoomObject.PlayPitFx(Pool.roomObjPool[i]);
                         }
-                        
                         //finally, handle the interaction with the room object
                         Functions_Interaction.InteractRoomObj(Pool.roomObjPool[i], carryingObj);
                     }
                 }
             }
 
-
-
-
-
-
             carryingObj = null; //release obj ref
         }
 
-        public static void HandleState(Actor Hero)
+        public static void HandleState()
         {
             if (carrying)
             {   //place carryingObj over hero's head
-                carryingObj.compMove.newPosition.X = Hero.compSprite.position.X;
-                carryingObj.compMove.newPosition.Y = Hero.compSprite.position.Y - 9;
+                carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
+                carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 9;
                 Functions_Component.Align(carryingObj);
 
 
                 #region Check Input for B button Press - Drop Obj
 
-                if (Hero.compInput.dash)
+                if (Pool.hero.compInput.dash)
                 {   //if player pressed the B button, drop carryingObj
-                    DropCarryingObj(Hero);
+                    DropCarryingObj();
                     //display a 'drop' animation for hero
-                    Hero.state = ActorState.Throw;
-                    Hero.stateLocked = true;
-                    Hero.lockTotal = 10;
-                    Functions_Movement.StopMovement(Hero.compMove);
+                    Pool.hero.state = ActorState.Throw;
+                    Pool.hero.stateLocked = true;
+                    Pool.hero.lockTotal = 10;
+                    Functions_Movement.StopMovement(Pool.hero.compMove);
                 }
 
                 #endregion
 
 
-                #region Check Input for A button Press - Throw Obj
+                #region Check Input for A button Press - Throw Obj (temp disabled)
 
-                else if (Hero.compInput.interact)
+                else if (Pool.hero.compInput.interact)
                 {   //if player pressed the A button, throw carryingObj
-                    ThrowPot();
-
+                    //ThrowPot();
+                    //but for now, we'll just drop the object
+                    DropCarryingObj();
                     //display a 'throw' animation for hero
-                    Hero.state = ActorState.Throw;
-                    Hero.stateLocked = true;
-                    Hero.lockTotal = 10;
-                    Functions_Movement.StopMovement(Hero.compMove);
+                    Pool.hero.state = ActorState.Throw;
+                    Pool.hero.stateLocked = true;
+                    Pool.hero.lockTotal = 10;
+                    Functions_Movement.StopMovement(Pool.hero.compMove);
                 }
                 #endregion
                 
@@ -493,40 +484,32 @@ namespace DungeonRun
 
                 #region Handle Normal States (Interact, Dash, Attack, Use)
 
-                if (Hero.state == ActorState.Interact)
+                if (Pool.hero.state == ActorState.Interact)
                 {   //if there is an object to interact with, interact with it
                     CheckInteractionRecCollisions();
                 }
-                else if (Hero.state == ActorState.Dash)
+                else if (Pool.hero.state == ActorState.Dash)
                 {
-                    Hero.lockTotal = 10;
-                    Hero.stateLocked = true;
-                    Hero.compMove.speed = Hero.dashSpeed;
-                    Functions_Particle.Spawn(ObjType.ParticleDashPuff, Hero);
-                    Assets.Play(Hero.sfxDash);
+                    Pool.hero.lockTotal = 10;
+                    Pool.hero.stateLocked = true;
+                    Pool.hero.compMove.speed = Pool.hero.dashSpeed;
+                    Functions_Particle.Spawn(ObjType.ParticleDashPuff, Pool.hero);
+                    Assets.Play(Pool.hero.sfxDash);
                 }
-                else if (Hero.state == ActorState.Attack)
+                else if (Pool.hero.state == ActorState.Attack)
                 {
-                    Functions_Item.UseWeapon(Hero.weapon, Hero);
+                    Functions_Item.UseWeapon(Pool.hero.weapon, Pool.hero);
                     WorldUI.currentWeapon.compSprite.scale = 2.0f; //scale up worldUI weapon 
                 }
-                else if (Hero.state == ActorState.Use)
+                else if (Pool.hero.state == ActorState.Use)
                 {
-                    Functions_Item.UseItem(Hero.item, Hero);
+                    Functions_Item.UseItem(Pool.hero.item, Pool.hero);
                     WorldUI.currentItem.compSprite.scale = 2.0f; //scale up worldUI item 
                 }
 
                 #endregion
 
             }
-        }
-
-        public static void ThrowPot()
-        {   //create the ProjectilePot entity
-            Functions_Particle.Spawn(ObjType.ProjectilePot, Pool.hero);
-            carrying = false; //release carrying state
-            Functions_Pool.Release(carryingObj);
-            carryingObj = null; //release obj ref
         }
 
         public static void Update()

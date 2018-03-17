@@ -68,14 +68,14 @@ namespace DungeonRun
                 {
                     if (PlayerData.current.gold > 0) //if hero has any gold
                     {   //drop a gold piece upon getting hit
-                        Functions_Projectile.Spawn(ObjType.PickupRupee, Actor);
+                        Functions_Pickup.Spawn(ObjType.PickupRupee, Actor);
                         PlayerData.current.gold--;
                     }
                 }
                 //if hero is carrying, throw pot obj
                 if(Functions_Hero.carrying)
                 {
-                    Functions_Hero.ThrowPot();
+                    Functions_Hero.DropCarryingObj();
                 }
             }
         }
@@ -266,16 +266,10 @@ namespace DungeonRun
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
                 //Handle States
-                if (Actor == Pool.hero)
-                {   //handles all hero's states
-                    Functions_Hero.HandleState(Pool.hero);
-                } 
+                if (Actor == Pool.hero) { Functions_Hero.HandleState(); } 
                 else
                 {   //all actors other than hero are processed as follows
-                    if (Actor.state == ActorState.Interact)
-                    {
-                        //non-hero actor's can't interact with roomObjs right now
-                    }
+                    if (Actor.state == ActorState.Interact) { } //only hero
                     else if (Actor.state == ActorState.Dash)
                     {
                         Actor.lockTotal = 10;

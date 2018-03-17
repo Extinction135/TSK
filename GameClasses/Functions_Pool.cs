@@ -78,6 +78,8 @@ namespace DungeonRun
                     Functions_GameObject.ResetObject(Pool.projectilePool[Pool.projectileIndex]);
                     Pool.projectilePool[Pool.projectileIndex].compMove.newPosition.X = -1000;
                     Pool.projectilePool[Pool.projectileIndex].compSprite.scale = 1.0f;
+                    //clear caster ref
+                    Pool.projectilePool[Pool.projectileIndex].caster = null;
                     return Pool.projectilePool[Pool.projectileIndex];
                 }
             }
@@ -263,7 +265,9 @@ namespace DungeonRun
                     Functions_GameObject.Update(Pool.projectilePool[i]);
                     Functions_Animation.Animate(Pool.projectilePool[i].compAnim, Pool.projectilePool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.projectilePool[i].compSprite);
-                    //interaction check projectiles
+                    //handle projectile behaviors
+                    Functions_Projectile.Update(Pool.projectilePool[i]);
+                    //interaction check projectiles (this may kill them, do it last)
                     Functions_Interaction.CheckInteractions(Pool.projectilePool[i]);
                 }
             }

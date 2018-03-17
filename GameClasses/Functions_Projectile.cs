@@ -14,286 +14,43 @@ namespace DungeonRun
 {
     public static class Functions_Projectile
     {
-        static Vector2 posRef = new Vector2();
-        static Direction direction;
+        //static Vector2 posRef = new Vector2();
+        //static Direction direction;
 
-        //spawn relative to object
-        public static void Spawn(ObjType Type, GameObject Object)
+        //Dir is usually the actor's / object's facing direction
+        public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
         {
-            //set position reference to sprite position
-            posRef.X = Object.compSprite.position.X;
-            posRef.Y = Object.compSprite.position.Y;
-            //direction is set based on obj.type
+            //create projectile of TYPE using CASTER, projectile gets DIRECTION
+            //the caster is simpified into a moveComp, becase caster could be actor or obj
 
+            //basically, we're setting the caster here and the projectile's initial direction from caster
+            //then we call Functions_Ai.HandleObj() to properly place / handle the projectile for initial spawn
+            //then for each frame, Functions_Ai.HandleObj() is called and handles ALL projectile behavior
 
-            #region Sword / Net
-
-            if (Object.type == ObjType.ProjectileSword || Object.type == ObjType.ProjectileNet)
-            {   //place entity at tip of sword, based on direction
-                if (Object.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
-                else if (Object.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
-                else if (Object.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
-                else if (Object.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
-                direction = Object.direction;
-            }
-
-            #endregion
-
-
-            #region FlameThrower
-
-            else if (Object.type == ObjType.Flamethrower)
-            {   //shoots fireball (or whatever) at their position, facing towards the hero
-                direction = Functions_Direction.GetCardinalDirectionToHero(Object.compSprite.position);
-            }
-
-            #endregion
-
-
-            #region Wall Statue
-
-            else if (Object.type == ObjType.WallStatue)
-            {   //shoots arrow (or whatever) in it's facing direction, outside of obj's hitbox
-                if (Object.direction == Direction.Down) { posRef.Y += 16; }
-                else if (Object.direction == Direction.Up) { posRef.Y -= 16; }
-                else if (Object.direction == Direction.Right) { posRef.X += 16; }
-                else if (Object.direction == Direction.Left) { posRef.X -= 16; }
-                direction = Object.direction;
-            }
-
-            #endregion
-
-
-            Spawn(Type, posRef.X, posRef.Y, direction);
-        }
-
-        //spawn relative to actor
-        public static void Spawn(ObjType Type, Actor Actor)
-        {
-            //entities are spawned relative to actor, based on passed objType
-            //set position reference to Actor's sprite position
-            posRef.X = Actor.compSprite.position.X;
-            posRef.Y = Actor.compSprite.position.Y;
-            //get the actor's facing direction as cardinal direction
-            direction = Functions_Direction.GetCardinalDirection(Actor.direction);
-
-
-            #region Pickups
-
-            if (Type == ObjType.PickupRupee)
-            {   //place dropped rupee away from hero, cardinal = direction actor was pushed
-                if (direction == Direction.Down) { posRef.X += 4; posRef.Y -= 12; } //place above
-                else if (direction == Direction.Up) { posRef.X += 4; posRef.Y += 15; } //place below
-                else if (direction == Direction.Right) { posRef.X -= 14; posRef.Y += 4; } //place left
-                else if (direction == Direction.Left) { posRef.X += 14; posRef.Y += 4; } //place right
-            }
-
-            #endregion
-
-
-            #region Projectiles
-
-            else if (Type == ObjType.ProjectileArrow)
-            {   //place projectile outside of actor's hitbox
-                if (direction == Direction.Down) { posRef.Y += 16; }
-                else if (direction == Direction.Up) { posRef.Y -= 9; }
-                else if (direction == Direction.Right) { posRef.X += 13; posRef.Y += 2; }
-                else if (direction == Direction.Left) { posRef.X -= 13; posRef.Y += 2; }
-            }
-            else if (Type == ObjType.ProjectileBomb)
-            {   //bombs are placed closer to the actor
-                if (direction == Direction.Down) { posRef.Y += 6; }
-                else if (direction == Direction.Up) { posRef.Y += 0; }
-                else if (direction == Direction.Right) { posRef.X += 4; posRef.Y += 2; }
-                else if (direction == Direction.Left) { posRef.X -= 4; posRef.Y += 2; }
-            }
-            else if (Type == ObjType.ProjectileFireball)
-            {   //place projectile outside of actor's hitbox
-                if (direction == Direction.Down) { posRef.Y += 13; }
-                else if (direction == Direction.Up) { posRef.Y -= 9; }
-                else if (direction == Direction.Right) { posRef.X += 11; posRef.Y += 2; }
-                else if (direction == Direction.Left) { posRef.X -= 11; posRef.Y += 2; }
-            }
-            else if (Type == ObjType.ProjectileSword || Type == ObjType.ProjectileNet)
-            {   //place projectile outside of actor's hitbox, in actor's hand
-                if (direction == Direction.Down) { posRef.X -= 1; posRef.Y += 15; }
-                else if (direction == Direction.Up) { posRef.X += 1; posRef.Y -= 12; }
-                else if (direction == Direction.Right) { posRef.X += 14; }
-                else if (direction == Direction.Left) { posRef.X -= 14; }
-            }
-            else if (Type == ObjType.ProjectilePot)
-            {   //make direction opposite if actor is hit (only applies to hero)
-                if (Actor == Pool.hero & Actor.state == ActorState.Hit)
-                {   //this causes the carrying pot to be thrown in the correct direction
-                    direction = Functions_Direction.GetOppositeDirection(direction);
-                }
-                //place projectile outside of actor's hitbox, above actors head
-                if (direction == Direction.Down) { posRef.Y += 15; }
-                else if (direction == Direction.Up) { posRef.Y -= 12; }
-                else if (direction == Direction.Right) { posRef.X += 14; posRef.Y -= 8; }
-                else if (direction == Direction.Left) { posRef.X -= 14; posRef.Y -= 8; }
-            }
-
-            #endregion
-
-
-            Spawn(Type, posRef.X, posRef.Y, direction);
-        }
-
-        //spawn relative to position
-        public static void Spawn(ObjType Type, float X, float Y, Direction Direction)
-        {
             //get a projectile to spawn
-            Projectile obj = Functions_Pool.GetProjectile();
-            obj.compMove.moving = true;
-
-
-            #region Set Object's Direction
-
-            //certain projectiles/particles get a cardinal direction, others dont
-            if (Type == ObjType.ProjectileFireball ||
-                Type == ObjType.ProjectileSword ||
-                Type == ObjType.ProjectileNet ||
-                Type == ObjType.ProjectileArrow ||
-                Type == ObjType.ProjectileBomb ||
-                Type == ObjType.ParticleBow ||
-                Type == ObjType.ProjectileDebrisRock ||
-                Type == ObjType.ProjectilePot ||
-                Type == ObjType.ProjectileExplodingBarrel)
-            {
-                obj.direction = Direction;
-                obj.compMove.direction = Direction;
-            }
-            else
-            {   //ALL other objects default to down
-                obj.direction = Direction.Down;
-                obj.compMove.direction = Direction.Down;
-            }
-
-            #endregion
-
-
-            //teleport the object to the proper location
-            Functions_Movement.Teleport(obj.compMove, X, Y);
+            Projectile pro = Functions_Pool.GetProjectile();
+            //set the projectile's caster reference
+            pro.caster = Caster;
+            //set the projectiles direction
+            pro.direction = Dir;
+            pro.compMove.direction = Dir;
+            //assume this projectile is moving
+            pro.compMove.moving = true;
+            //teleport the object to the caster's location
+            Functions_Movement.Teleport(pro.compMove, Caster.position.X, Caster.position.Y);
             //set the type, rotation, cellsize, & alignment
-            Functions_GameObject.SetType(obj, Type);
+            Functions_GameObject.SetType(pro, Type);
 
-            //handle specific projectile characteristics
-
-            #region  Set arrow collision rec based on direction + Push them
-
-            if (Type == ObjType.ProjectileArrow)
-            {
-                //set collision rec based on direction
-                if (obj.direction == Direction.Up || obj.direction == Direction.Down)
-                {
-                    obj.compCollision.offsetX = -2; obj.compCollision.offsetY = -6;
-                    obj.compCollision.rec.Width = 4; obj.compCollision.rec.Height = 12;
-                }
-                else //left or right
-                {
-                    obj.compCollision.offsetX = -6; obj.compCollision.offsetY = -2;
-                    obj.compCollision.rec.Width = 12; obj.compCollision.rec.Height = 4;
-                }
-                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 6.0f);
-            }
-
-            #endregion
+            //give some projectiles an initial push
+            if (Type == ObjType.ProjectileArrow) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
+            else if (Type == ObjType.ProjectileFireball) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
+            else if (Type == ObjType.ProjectileBomb) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
+            else if (Type == ObjType.ProjectileExplodingBarrel) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
 
 
-            #region Push Fireballs (they are flying thru the air)
+            #region Handle Spawn Events not handled by BirthEvent
 
-            //bombs are pushed, and slide into a resting position
-            else if (Type == ObjType.ProjectileFireball)
-            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f); }
-
-            #endregion
-
-
-            #region Set Sword collision rec based on direction
-
-            else if (Type == ObjType.ProjectileSword)
-            {
-                if (obj.direction == Direction.Up)
-                {
-                    obj.compCollision.offsetX = -4; obj.compCollision.offsetY = -4;
-                    obj.compCollision.rec.Width = 10; obj.compCollision.rec.Height = 15;
-                }
-                else if (obj.direction == Direction.Down)
-                {
-                    obj.compCollision.offsetX = -4; obj.compCollision.offsetY = -5;
-                    obj.compCollision.rec.Width = 10; obj.compCollision.rec.Height = 10;
-                }
-                else if (obj.direction == Direction.Left)
-                {
-                    obj.compCollision.offsetX = -4; obj.compCollision.offsetY = -3;
-                    obj.compCollision.rec.Width = 11; obj.compCollision.rec.Height = 10;
-                }
-                else //right
-                {
-                    obj.compCollision.offsetX = -7; obj.compCollision.offsetY = -3;
-                    obj.compCollision.rec.Width = 11; obj.compCollision.rec.Height = 10;
-                }
-            }
-
-            #endregion
-
-
-            #region Push Bombs (sliding)
-
-            //bombs are pushed, and slide into a resting position
-            else if (Type == ObjType.ProjectileBomb)
-            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f); }
-
-            #endregion
-
-
-            #region Push Pot Projectiles (being thrown)
-
-            else if (Type == ObjType.ProjectilePot)
-            {   //spawn a shadow for the Pot Projectile
-                GameObject shadow = Functions_Pool.GetParticle();
-                //teleport shadow to objects location, then to ground
-                Functions_Movement.Teleport(shadow.compMove, X, Y + 16);
-                Functions_GameObject.SetType(shadow, ObjType.ProjectileShadowSm);
-                Functions_Component.Align(shadow);
-                //shadow inherits some of pot's attributes so they will fly in sync
-                shadow.compMove.friction = obj.compMove.friction;
-                //push pot and shadow identically
-                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 4.0f);
-                Functions_Movement.Push(shadow.compMove, obj.compMove.direction, 4.0f);
-            }
-
-            #endregion
-
-
-            #region Give ExplodingBarrels an Initial Push (slide them)
-
-            else if (Type == ObjType.ProjectileExplodingBarrel)
-            { Functions_Movement.Push(obj.compMove, obj.compMove.direction, 6.0f); }
-
-            #endregion
-
-
-            #region Modify RockDebris Projectiles Animation Frame + Slide them
-
-            //some projectiles get their current frame randomly assigned (for variation)
-            else if (Type == ObjType.ProjectileDebrisRock)
-            {   //is assigned 15,15 - randomize down to 14,14
-                List<Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
-                if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
-                if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].Y = 14; }
-                obj.compAnim.currentAnimation = rockFrame;
-                //push rock debris in their direction
-                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f);
-            }
-
-            #endregion
-
-
-            #region Play Net SoundFX upon Spawn
-
-            else if(Type == ObjType.ProjectileNet)
+            if (Type == ObjType.ProjectileNet)
             {   //it's done this way cause the net may create 
                 //a dialog screen on the next frame, which would
                 //prevent the net's birthEvent from trigerring,
@@ -304,10 +61,171 @@ namespace DungeonRun
             #endregion
 
 
-            Functions_Component.Align(obj); //align the entity upon birth
-            obj.compCollision.blocking = false; //entities interact, never block
+            //pass this Projectile to AI to be initially setup / handled
+            Update(pro);
 
-            //Debug.WriteLine("entity made: " + Type + " - location: " + X + ", " + Y);
+            Functions_Component.Align(pro);
         }
+
+        static Vector2 offset = new Vector2();
+        public static void Update(Projectile Pro)
+        {
+            //this method handles the behaviors of a projectile
+            //for example, tracking a sword to it's caster so the caster can slide and attack
+
+
+            #region Sword & Net
+
+            if (Pro.type == ObjType.ProjectileSword 
+                || Pro.type == ObjType.ProjectileNet)
+            {   //track the projectile to it's caster
+                //set offset to make projectile appear in actors hand, based on direction
+                if (Pro.direction == Direction.Down) { offset.X = -1; offset.Y = +15; }
+                else if (Pro.direction == Direction.Up) { offset.X = +1; offset.Y = -12; }
+                else if (Pro.direction == Direction.Right) { offset.X = +14; offset.Y = 0; }
+                else if (Pro.direction == Direction.Left) { offset.X = -14; offset.Y = 0; }
+                //apply the offset
+                Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X;
+                Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y;
+            }
+
+            #endregion
+
+
+            #region Arrow & Fireballs
+
+            else if(Pro.type == ObjType.ProjectileFireball
+                || Pro.type == ObjType.ProjectileArrow)
+            {   //prevent caster from overlapping with projectile
+                //step 1: set minimum safe distance from caster (offset)
+                if (Pro.direction == Direction.Down) { offset.Y = +15; offset.Y = 0; }
+                else if (Pro.direction == Direction.Up) { offset.Y = -15; offset.Y = 0; }
+                else if (Pro.direction == Direction.Right) { offset.X = +15; offset.Y = +2; }
+                else if (Pro.direction == Direction.Left) { offset.X = -15; offset.Y = +2; }
+                //step 2: apply offset to prevent projectile overlapping with caster, using direction
+                if (Pro.direction == Direction.Down)
+                {   //apply Y offset
+                    if (Pro.compMove.newPosition.Y < Pro.caster.newPosition.Y + offset.Y)
+                    { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
+                }
+                else if(Pro.direction == Direction.Up)
+                {   //apply Y offset
+                    if (Pro.compMove.newPosition.Y > Pro.caster.newPosition.Y + offset.Y)
+                    { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
+                }
+                else if(Pro.direction == Direction.Left)
+                {   //apply X offset
+                    if (Pro.compMove.newPosition.X > Pro.caster.newPosition.X + offset.X)
+                    { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
+                }
+                else if (Pro.direction == Direction.Right)
+                {   //apply X offset
+                    if (Pro.compMove.newPosition.X < Pro.caster.newPosition.X + offset.X)
+                    { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
+                }
+            }
+
+            #endregion
+
+
+            #region Bombs
+
+            else if (Pro.type == ObjType.ProjectileBomb)
+            {   //prevent caster from overlapping with projectile
+                //step 1: set minimum safe distance from caster (offset)
+                if (Pro.direction == Direction.Down) { offset.Y = +6; offset.Y = 0; }
+                else if (Pro.direction == Direction.Up) { offset.Y = 0; offset.Y = 0; }
+                else if (Pro.direction == Direction.Right) { offset.X = +4; offset.Y = +2; }
+                else if (Pro.direction == Direction.Left) { offset.X = -4; offset.Y = +2; }
+                //step 2: apply offset to prevent projectile overlapping with caster, using direction
+                if (Pro.direction == Direction.Down)
+                {   //apply Y offset
+                    if (Pro.compMove.newPosition.Y < Pro.caster.newPosition.Y + offset.Y)
+                    { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
+                }
+                else if (Pro.direction == Direction.Up)
+                {   //apply Y offset
+                    if (Pro.compMove.newPosition.Y > Pro.caster.newPosition.Y + offset.Y)
+                    { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
+                }
+                else if (Pro.direction == Direction.Left)
+                {   //apply X offset
+                    if (Pro.compMove.newPosition.X > Pro.caster.newPosition.X + offset.X)
+                    { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
+                }
+                else if (Pro.direction == Direction.Right)
+                {   //apply X offset
+                    if (Pro.compMove.newPosition.X < Pro.caster.newPosition.X + offset.X)
+                    { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
+            #region Ideas
+            /*
+
+            based on the behavior of the current projectiles..
+            fireball magic: spawns relative to caster position with direction, travels in direction, explodes
+            arrow: same as fireball, doesn't explode, travels faster
+            bomb: spawns relative to caster, slides for a moment before stopping
+            sword: spawns relative to caster, tracks to caster until animation completes
+            net: same as sword
+            explosion: usually relative to caster (as an effect), stationary
+            explodingBarrel: caster is barrel, slides in a direction away from barrel, explodes
+
+
+            spikeBlock: this is a projectile? why?
+            debrisRock: should be a particle
+            projectilePot: hero will be picking up more than pots, obsolete soon
+            shadowSm: will be obsolete soon with addition of shadow system
+            *keep in mind that altering the ObjType enum values will affect the master GameObjAnimList
+
+            planned:
+            push wand: shoots a wave of light that pushes enemies/objs a distance
+            boost magic: temporarily increases the damage with your sword to 2, at the cost of some magic
+	            *4 beams of light quickly come together on your sword, as the hero holds it up, any nearby enemies are knocked back
+	            *boost lasts 255 frames, which is the duration of the projectile that floats around the hero's feet while boost is active
+
+            lttp:
+            boomerang: travels from caster position, returns to caster position (tracking) with/out item, pushes actors it collides with
+            hookshot: travels from caster position, collides with obj or actor or nothing
+	            obj: either latches and pulls caster, or latches and pulls obj, or clinks and returns
+	            actor: either latches and pulls actor (sm), or stuns and returns (med), or clinks and returns (large)
+	            nothing: hookshot reaches max lifetime and clinks, then dissappears (no waiting about for it to return)
+            bombos magic: randomly places 20 explosions around caster, but never ON caster, caster is stationary during cast
+            cane of byrna: creates 4 balls of light around caster, which track with an offset, and kill anything they touch, but use magic
+            cane of somaria: creates a block of light, which can be pushed / pulled, hold down switches, interact with belts, etc..
+            ether magic: lightning strikes every enemy on screen, caster is stationary during
+            hammer: used to smash down posts to progress into hidden / secret areas of the game (non-critical paths), tracks to caster
+            ice rod: ice magic in game, shoots a ball of ice that turns sm enemies into blocks of ice, 
+	            *the blocks of ice are generic, not enemy specific, and have a vague shadow inside them
+	            *ice blocks can be picked up and thrown, and will spawn normal loot when destroyed normally
+	            *however, smashing an enemy in a block of ice will always spawn a large magic pot
+            magic cape: turns hero invisible & flying while in use, with shadow only, uses magic constantly
+            magic mirror: returns hero to the start of the current dungeon or overworld
+            quake magic: screen shakes, all grounded enemies on screen take 4 damage, caster waits during cast
+            shovel: used for digging outside in grass or dirt, low chance to spawn loot, tracks to caster like sword
+
+
+
+            ideas:
+            remote detonated mines - must equip two items: mines + detonator
+                mines are dropped with Y button
+                detonator blows up ALL dropped mines with X button
+                *this way the player can juggle / strategize more, with faster reaction time
+                * *plus, no switching between items to blow stuff up
+
+
+            */
+            #endregion
+
+        }
+
     }
 }

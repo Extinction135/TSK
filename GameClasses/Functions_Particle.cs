@@ -29,10 +29,8 @@ namespace DungeonRun
 
             #region Sword/Net
 
-            //we could spawn a fireball here if we wanted to (which is how we'll handle the staff weapon)
-
             if (Object.type == ObjType.ProjectileSword || Object.type == ObjType.ProjectileNet)
-            {   //place entity at tip of sword, based on direction
+            {   //place entity (usually sparkle) at tip of sword, based on direction
                 if (Object.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
                 else if (Object.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
                 else if (Object.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
@@ -122,12 +120,33 @@ namespace DungeonRun
             Functions_GameObject.SetType(obj, Type);
             Functions_Component.Align(obj); //align upon birth
             //Debug.WriteLine("entity made: " + Type + " - location: " + X + ", " + Y);
+
+
+
+            /*
+            #region Modify RockDebris Projectiles Animation Frame + Slide them
+
+            //some projectiles get their current frame randomly assigned (for variation)
+            else if (Type == ObjType.ProjectileDebrisRock)
+            {   //is assigned 15,15 - randomize down to 14,14
+                List<Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
+                if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
+                if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].Y = 14; }
+                obj.compAnim.currentAnimation = rockFrame;
+                //push rock debris in their direction
+                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f);
+            }
+
+            #endregion
+            */
+
+
         }
 
 
 
 
-
+        /*
         public static void ScatterRockDebris(Vector2 Pos, Boolean Push)
         {   //add up to 4 rocks randomly around the passed Pos value, with option to push them
             Direction pushDir = Direction.None;
@@ -160,6 +179,10 @@ namespace DungeonRun
                     Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
             }
         }
+        */
+
+
+
 
     }
 }

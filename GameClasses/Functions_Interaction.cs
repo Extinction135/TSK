@@ -218,10 +218,6 @@ namespace DungeonRun
                     Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
                     Functions_Bottle.Bottle(Actor); //try to bottle the actor
 
-
-
-
-
                     //keep the net around for 1 frame
                     //but prevent it from colliding next frame
 
@@ -230,11 +226,7 @@ namespace DungeonRun
                    // Obj.lifeCounter = 10; Obj.lifetime = 9; //remove net next frame
 
                     //Obj.lifeCounter = 10; Obj.lifetime = 9; //remove net next frame
-                    //Functions_Pool.Release(Obj);
-
-
-
-
+                    Functions_Pool.Release(Obj);
                 }
                 //if sword projectile is brand new, spawn hit particle
                 else if (Obj.type == ObjType.ProjectileSword)
@@ -325,9 +317,9 @@ namespace DungeonRun
 
                         #region Drop any Obj Hero is carrying, hide Hero's shadow
 
-                        if (Actor == Pool.hero)
+                        else if (Actor == Pool.hero)
                         {   //check to see if hero should drop carryingObj
-                            if (Functions_Hero.carrying) { Functions_Hero.DropCarryingObj(Actor); }
+                            if (Functions_Hero.carrying) { Functions_Hero.DropCarryingObj(); }
                             //hide hero's shadow upon pit collision
                             Functions_Hero.heroShadow.visible = false;
                         }
@@ -531,9 +523,9 @@ namespace DungeonRun
                     #endregion
 
 
-                    #region Thrown / Dropped Pot (ProjectilePot & Pot ObjB)
+                    #region Dropped Pot
 
-                    else if (Object.type == ObjType.ProjectilePot || Object.type == ObjType.Pot)
+                    else if (Object.type == ObjType.Pot)
                     {   //destroy the Pot object
                         Functions_RoomObject.DestroyObject(Object, true, true);
                         //thrown / dropped pots trigger common obj interactions
@@ -666,12 +658,17 @@ namespace DungeonRun
             #region Pits
 
             else if (RoomObj.type == ObjType.PitAnimated)
-            {   //check to see if we should ground any thrown pot projectile
+            {   
+                
+                /*
+                //check to see if we should ground any thrown pot projectile
                 if (Object.type == ObjType.ProjectilePot)
                 {   //if this is the last frame of the projectile pot, ground it
                     if (Object.lifeCounter > Object.lifetime - 5) //dont let it die
                     { Object.compMove.grounded = true; Object.lifeCounter = 3; }
                 }
+                */
+
                 //drag any object into the pit
                 Functions_RoomObject.DragIntoPit(Object, RoomObj);
             }
@@ -703,6 +700,8 @@ namespace DungeonRun
                     //kill the net projectile from the dialog screen?
                     //this seems bad and hacky
 
+
+                    Functions_Pool.Release(Object);
                 }
             }
 

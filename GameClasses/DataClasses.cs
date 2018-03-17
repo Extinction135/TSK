@@ -729,9 +729,7 @@ namespace DungeonRun
 
     public class Projectile : GameObject
     {
-        public Actor caster; //who casted projectile
-        public Vector2 origin; //where proj was casted from
-
+        public ComponentMovement caster; //actor/obj who created projectile
         public Projectile()
         {   //default to an arrow
             type = ObjType.ProjectileArrow;

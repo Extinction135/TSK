@@ -67,10 +67,6 @@ namespace DungeonRun
             {   //net deals 0 damage, push 6
                 damage = 0; force = 6.0f; direction = Obj.direction;
             }
-            else if (Obj.type == ObjType.ProjectilePot)
-            {   //Pot deals 1 damage, push 6
-                damage = 1; force = 6.0f; direction = Obj.direction;
-            }
 
             #endregion
 

@@ -246,8 +246,7 @@ namespace DungeonRun
         {   //create a projectile exploding barrel at Barrel's exact location
             Functions_Projectile.Spawn(
                 ObjType.ProjectileExplodingBarrel,
-                Barrel.compSprite.position.X,
-                Barrel.compSprite.position.Y,
+                Barrel.compMove,
                 Barrel.compMove.direction); //pushed based on this direction
             Functions_Pool.Release(Barrel);
         }
@@ -258,9 +257,9 @@ namespace DungeonRun
                 ObjType.ParticleAttention,
                 RoomObj.compSprite.position.X,
                 RoomObj.compSprite.position.Y);
-            Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
-            Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
-            Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
+            //Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
+            //Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
+            //Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
             Assets.Play(Assets.sfxShatter);
             //handle parameter values
             if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }

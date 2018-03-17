@@ -111,16 +111,29 @@ namespace DungeonRun
         
 
 
+
+
+
         //Projectiles - items
-        ProjectileBomb, ProjectileFireball,
+        ProjectileBomb,
+        ProjectileFireball,
         //Projectiles - weapons
-        ProjectileSword, ProjectileArrow, ProjectileNet,
+        ProjectileSword,
+        ProjectileArrow,
+        ProjectileNet,
         //Projectiles - object
         ProjectileExplosion,
-        ProjectileSpikeBlock, ProjectileDebrisRock,
-        ProjectilePot, ProjectileExplodingBarrel,
-        ProjectileShadowSm,
+
+        ProjectileSpikeBlock, //this should probably be a roomObj
+        ProjectileDebrisRock, //this should be a particle
+        ProjectileExplodingBarrel, //acceptable
+        ProjectileShadowSm, //we'll have a whole object pool shadow system soon..
         
+
+
+
+
+
 
 
         //Particles - small

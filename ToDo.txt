@@ -56,82 +56,6 @@ explosive barrel puzzels
 
 
 
-
-
-
-Test Bottling Systems
-
-updated Functions_Bottle.Bottle() to work on both objs and actors.
-for now we only allow bottling of fairys and blobs.
-
-test bottling of fairys - working, but needs polish.
-swipe sound should play before dialog pops up.
-attention particle should display at fairy's last position.
-
-test bottling of blobs - working, but with a major bug.
-when two bottles are full, and the third bottle is filled with a blob,
-the hero just becomes a blob, with the blob bottle reward over his head.
-
-this was fixed by splitting Functions_Item.UseItem() into
-UseItem() and UseWeapon(), which prevented the overlap which was
-happening due to how bottles were targeting the hero's current item.
-
-playtested, bottling of blobs now working properly.
-
-minor bug: when we bottle a blob, the blob corpse remains.
-this doesn't make any sense, since the blob now conceptually
-exists inside of the bottle. 
-improved bottling routines for blobs and fairys.
-blob corpses no longer remain post bottling, plus
-attention particles now appear whenever an actor or object is
-sucessfully bottled.
-
-changed how Net Projectile plays it's soundFX, now the sfx call comes from
-the Projectile.Spawn() method, instead of the birthEvent. this causes the
-sfx to play before any dialog screens popup, telling the player they've
-caught something in their net. we may do this with other objects too.
-
-added SoundNet to content project.
-built into both Dx and UWP projects.
-added to Assets, linked to from Projectile.Spawn().
-tested net sfx, working.
-
-
-
-
-
-
-
-
-
-
-when the hero captures a fairy or blob via the net, the net stays around 
-this causes a bug where the net will continue to collide with an actor or obj
-that the hero cant bottle, which causes the dialog screen to popup hundreds of times
-but, we also want the net sprite to stick around long enough to appear when the dialog
-screen pops up.. perhaps we can kill the net projectile from the dialog screen?
-so process would be: net collides, bottling(), pop dialog, kill net projectile, close dialog
-*the above fix also fixes a bug where the hero would remain in the 'use' state,
-past when the net existed on screen, so he looks like he's just pointing at something..
-
-
-
-
-
-the attack / weapon system useage should match the item system useage
-that is, the hero shouldn't be set into a use animation for a frame before being unlocked
-the hero should return to an idle state if the current weapon is unknown or null..
-
-
-
-
-
-
-
-
-
-
-
 How are projectiles different from particles?
 Projectiles, besides colliding with objs / actors, also move and
 interact in various ways with various things. for example, the boomerang
@@ -150,12 +74,133 @@ Projectiles should have 'owners' or 'casters'.
 	tracking overhead rewards to hero across frames (conveyor belt)
 	allows actors to slide across ice with weapons as well
 
-Re-Implement Sword
-this is a projectile that tracks to it's caster based on a direction 
+	
+	
+	
+	
+	
+	
+	
+	
+Re-Implement Sword / Projectiles
+
+this is a projectile that tracks to it's caster with a direction 
 this tracking allows the caster to move while the sword is active
 allowing the caster to slide across ice, belts, etc..
 
-(re-implement net, just like sword)
+flipped sword obj.getAI to true. this passes any sword projectile
+to the Functions_Ai.HandleObj() method, which was updated with a
+path for ProjectileSword. this method evals every frame too.
+
+however, the fix for projectile casters is not so easy, because
+projectile casters can be actors OR gameObjects, which are two
+distinct fields. the workaround is to store the actor/obj's 
+move component as a reference, that way projectiles can work 
+as intended, based on the current projectile plans.
+
+modified Projectile class to have a ComponentMovement reference.
+removed the Projectile class' Vector2 origin, as it's not needed
+under the current plans.
+
+rewrote the Spawn() method for Functions_Projectile to use a single
+method that takes a MoveComponent as a caster reference, instead of 3
+split functions named Spawn that funnel into the last one.
+updated Pool.GetProjectile() to clear the caster field.
+modified Pool.Update() to send ALL projectiles to Projectile.Update(),
+which will handle all the projectiles behavior, instead of routing
+them through Ai.HandleObj(), because that accepted a GameObject as a
+parameter, and we needed access to the caster reference via a Projectile
+parameter in.. this also keep projectiles more local to their class,
+as spreading them out into Functions_AI wasn't exactly what I wanted.
+refactored Functions_AI to be simple and clean again.
+
+implemented sword and net projectile behavior.
+swords + nets now track to the caster.
+implemented fireball and arrow projectile behavior.
+fireballs and arrows now prevent overlap with the caster.
+implemented sliding bomb behavior, wont overlap caster.
+
+moved code for setting arrow's collision rec into GameObj.SetType().
+moved setting sword's collision rec into SetType().
+removed the ScatterRockDebris() method from Func_Particle.
+
+completely remove ProjectilePots, and throwing Pots.
+Hero can now only pickup, carry, and drop pots. No throwing.
+this was in prep for new Carrying system coming up soon.
+
+removed parameter Hero actor from DropCarryingObj(). Hero is global.
+removed Hero parameter from Hero.HandleState() as well. Wow.
+
+playtested, lots of bugs, but one cool new thing: hero can now
+slide bombs diagonally as well as cardinally. 
+so, i got that going for me.
+
+
+
+
+
+
+
+
+
+
+
+neither sword nor net properly offset from hero.
+same with fireballs and arrows. somehow the offsets are not getting set properly.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Picking Up Objects ++
+
+picking up a pot puts hero into a carry state, but leaves the roomObj drawing on the sreen, but nonblocking
+hero doesn't display anything over his head
+setting the obj down doesn't move the roomObj, but instead makes it blocking again.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+projectile spikeBlock should really be a roomObj
+projectile debris rock should really be a particle
+projectile shadow sm will become obselete with the new shadow system
+
+
+
+
+
+complete a mockup of the current inventory full of the planned items / magic
+make sure we have enough rooom for all this awesomeness
+
+
+
+
+
+
+
+
+
+
+
 
 Implement Boomerang
 this is a projectile that flys in a thrown direction
@@ -170,6 +215,20 @@ we'll have to get the direction to hero, like we do in Functions_Ai
 the move the boomrang in that direction
 the boomerang will continuously spin, so it doesn't have a movement direction
 we'll need to update the rotationValue for boomerang each animation frame
+
+
+
+
+Damage Balancing
+arrows should do 2 damage - duh!
+bombs should do 2 damage too.
+swords should do 1 damage.
+fireballs should hit for 3 damage.
+
+
+
+
+
 
 
 all related to picking up/carrying/throwing/pushing/pulling
@@ -207,6 +266,10 @@ the obj stays in it's picked up spot
 	so the game would know who threw the object, if we had effects later
 	for example, lifesteal or something else that targets the caster upon obj collision.
 }
+
+
+
+
 
 
 
@@ -293,6 +356,9 @@ and replaces them with more custom story items, like the warriors pass, etc..
 
 
 
+the attack / weapon system useage should match the item system useage
+that is, the hero shouldn't be set into a use animation for a frame before being unlocked
+the hero should return to an idle state if the current weapon is unknown or null..
 
 
 
@@ -317,29 +383,6 @@ and replaces them with more custom story items, like the warriors pass, etc..
 
 
 
-
-
-
-
-
-
-the process the game uses to handle the hero's items and weapons is flawed.
-if the hero uses a bottle, it will work as normal, and become an empty bottle.
-and the hero's item will be nulled out (at least in the hud).
-HOWEVER, using the nulled item will result in an empty bottle reward being created,
-and the hero being statelocked for 1 frame, then unlocked and free to move,
-while the bottle floats around in the air. this makes no sense whatsoever.
-//there are various other problems as well..
-if the hero doesn't have an item or weapon equipped, he shouldnt lock into any state
-upon an X or Y button press.. but he does.
-
-
-fairies should be entities as well, not actors.
-we need to change the net to check against entities too.
-this will allow us to bottle fairies again.
-collisions with the hero are easy, since the fairy is an entity.
-	
-	
 
 
 
