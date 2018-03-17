@@ -323,6 +323,7 @@ namespace DungeonRun
             { Pool.hero.item = MenuItemType.ItemBomb; }
             else if (PlayerData.current.currentItem == 1)
             { Pool.hero.item = MenuItemType.ItemBoomerang; }
+            
             //set item based on bottle contents
             else if (PlayerData.current.currentItem == 2)
             { Functions_Bottle.LoadBottle(PlayerData.current.bottleA); }
@@ -403,12 +404,10 @@ namespace DungeonRun
                         ObjType.ParticleAttention,
                         Pool.hero.compSprite.position.X,
                         Pool.hero.compSprite.position.Y);
-                //check to see if hero can use any bottle to heal/self-rez
-                if (Functions_Bottle.CheckBottleUponDeath(1, PlayerData.current.bottleA)) { }
-                else if (Functions_Bottle.CheckBottleUponDeath(2, PlayerData.current.bottleB)) { }
-                else if (Functions_Bottle.CheckBottleUponDeath(3, PlayerData.current.bottleC)) { }
+                //check to see if hero can save himself from death
+                if(Functions_Bottle.HeroDeathCheck()) { } //true, hero self-rezs
                 else
-                {   //player has died, failed the dungeon
+                {   //false, hero cannot self-rez and dies
                     DungeonRecord.beatDungeon = false;
                     Functions_Level.CloseLevel(ExitAction.Summary);
                 }

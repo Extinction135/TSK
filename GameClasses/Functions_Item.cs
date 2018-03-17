@@ -25,11 +25,13 @@ namespace DungeonRun
             if (Actor == Pool.hero)
             {   //bottles
                 if (PlayerData.current.currentItem == 2) //bottleA
-                { Functions_Bottle.UseBottle(1, PlayerData.current.bottleA); }
+                { Functions_Bottle.UseBottle(PlayerData.current.bottleA); }
+
                 else if (PlayerData.current.currentItem == 3) //bottleB
-                { Functions_Bottle.UseBottle(2, PlayerData.current.bottleB); }
+                { Functions_Bottle.UseBottle(PlayerData.current.bottleB); }
+
                 else if (PlayerData.current.currentItem == 4) //bottleC
-                { Functions_Bottle.UseBottle(3, PlayerData.current.bottleC); }
+                { Functions_Bottle.UseBottle(PlayerData.current.bottleC); }
             }
 
             #endregion

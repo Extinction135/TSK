@@ -78,38 +78,32 @@ explosive barrel puzzels
 
 
 
-Migrate Fairy to be a RoomObj
 
-this makes the most sense, since the fairy will
-be persistent, moving around, and colliding with roomObjs.
-this also allows us to save fairys with rooms, 
-and they can become part of puzzels...
 
-migrated Fairy from Projectile to RoomObj.
-lots of playtesting to insure fairys can't fly out
-of rooms, but still easily collide with hero.
 
-modified Battle functions to insure floor spikes always deal
-1 damage to any actor that collides with them (except pet).
-created a loot spawning test room to test to see if fairys
-spawn properly (they do).
 
-added path for fairy vs roomObj interaction, starting with
-floor switches - fairys can activate floor switches now.
 
-created Fun_RoomObj.ActivateSwitchObject(), since now a
-roomObj AND the hero can activate a switch object (this
-functionality is being duplicated in two places, so it 
-should be consolidated into one method and referenced.
+Rewrite Bottling Systems
 
-updated FloorSwitch testing room with fairy roomObj.
-fairy successfully activates the floorswitch.
+it makes no sense to store bottle contents as bytes.
+we are changing the saveData format for bottle contents.
+this will be an enumerator instead of a byte, simply for readability.
+added BottleContent enumerator to Enums file.
+removed byte fields for all 3 bottles from saveData class.
+rewrote Bottle class to work with new BottleContent enum.
+playtested.. some bugs..
 
-changed how friction is assigned to roomObjects, based on
-their compMove.grounded value (if false, obj is flying, and
-thus the obj gets World.airFriction value as their friction).
 
-playtested, fairys are finally working as expected.
+
+
+
+bug A: hero can still use an empty bottle.
+the empty bottle dissappears from the world UI once used,
+but the hero still spawns the bottle particle, and sets into reward state for a frame
+
+bug B: using a bottle doesn't clear it's contents?
+
+bug C: reward state doesn't state lock?
 
 
 
@@ -118,34 +112,25 @@ playtested, fairys are finally working as expected.
 
 
 
+Hero's current item should be an enum too
+here we decided to use an int, for some reason, and it's
+confusing af now looking back on it..
 
 
 
 
 
+Re-Implement Net
+
+we need to check net projectile against non-blocking roomObjs (fairys)
+if we collide, kill fairy and put fairy in bottle (if we have an empty bottle)
+
+we need to make sure the bottling system works with bottling an actor as well
+so we'll be spending alot of time in the Functions_Bottle class
 
 
 
 
-
-
-
-
-
-
-
-
-
-Re-Implement Net and Bottling System
-
-first of all, it makes no sense to store bottle contents as bytes.
-
-commented out the current bottling system, via BottleActor()
-*this should become two methods, Bottle(GameObject), and Bottle(Actor)
-which should be located in the bottle class, not the functions_actor class!
-
-this includes the net interaction, which we'll need to check net against pickups list
-we'll check net against actors and pickups, never projectiles or particles tho
 
 
 

@@ -70,12 +70,14 @@ namespace DungeonRun
 
     public enum ObjType
     {
-        //ROOM OBJECTS
         //Non-Editor Room Objects (procedurally added)
         Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
         DoorOpen, DoorBombable, DoorBoss, DoorTrap, DoorShut, DoorFake,
         WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
         BossDecal, FloorDebrisBlood,
+        
+        
+        
         //Editor Room Objects (hand-placed)
         PitAnimated, Bridge, PitTop, PitBottom, PitTrap, 
         BossStatue, Pillar,
@@ -103,9 +105,12 @@ namespace DungeonRun
         VendorArmor, VendorEquipment, VendorPets, VendorStory,
 
 
-        //ENTITIES
+
         //Pickups - collide with hero
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
+        
+
+
         //Projectiles - items
         ProjectileBomb, ProjectileFireball,
         //Projectiles - weapons
@@ -115,11 +120,13 @@ namespace DungeonRun
         ProjectileSpikeBlock, ProjectileDebrisRock,
         ProjectilePot, ProjectileExplodingBarrel,
         ProjectileShadowSm,
+        
+
+
         //Particles - small
         ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation, 
         //Particles - map
         ParticleMapFlag, ParticleMapWave, ParticleMapCampfire,
-
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleSplash,
         ParticleBow,
@@ -127,16 +134,6 @@ namespace DungeonRun
         ParticleBottleFairy, ParticleBottleBlob,
         //Particles - rewards
         ParticleRewardKey, ParticleRewardMap,
-
-
-
-
-        //particles
-
-
-        //projectiles
-        //(pickups) rupee, heart, magicPot, arrow, bomb
-        //
     }
 
     public enum MenuItemType
@@ -169,4 +166,12 @@ namespace DungeonRun
         VendorItems, VendorPotions, VendorMagic, VendorWeapons,
         VendorArmor, VendorEquipment, VendorPets, 
     }
+
+    public enum BottleContent
+    {
+        NotOwned, Empty, 
+        Health, Magic, Combo, Fairy,
+        Blob 
+    }
+
 }

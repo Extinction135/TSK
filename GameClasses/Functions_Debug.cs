@@ -186,10 +186,12 @@ namespace DungeonRun
 
             output += "\n  -- Items --"; ;
             output += "\n  has boomerang: " + PlayerData.current.itemBoomerang;
-            output += "\n  Bottles A, B, C: ";
-            InspectBottle(PlayerData.current.bottleA);
-            InspectBottle(PlayerData.current.bottleB);
-            InspectBottle(PlayerData.current.bottleC);
+
+            output += "\n  -- Bottles --"; ;
+            output += "bottleA: " + PlayerData.current.bottleA;
+            output += "bottleB: " + PlayerData.current.bottleB;
+            output += "bottleC: " + PlayerData.current.bottleC;
+
 
             output += "\n  -- Magic Items --"; ;
             output += "\n  has magicFireball: " + PlayerData.current.magicFireball;

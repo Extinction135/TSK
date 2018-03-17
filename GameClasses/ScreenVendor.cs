@@ -262,8 +262,16 @@ namespace DungeonRun
 
                 #region Bottles
 
+                //we dont set the player's item upon purchase of a bottle
+
                 else if (Item.type == MenuItemType.BottleHealth)
-                {   //if we can fill bottleA
+                {   //if empty bottle was filled, complete the sale, else alert player
+                    if (Functions_Bottle.FillEmptyBottle(BottleContent.Health))
+                    { CompleteSale(Item); } else { DialogBottlesFull(); } 
+                    
+
+                    /*
+                    //if we can fill bottleA
                     if (Functions_Bottle.FillEmptyBottle(2))
                     {   //set hero's item, complete the sale
                         PlayerData.current.currentItem = 2; //bottleA
@@ -271,26 +279,17 @@ namespace DungeonRun
                         CompleteSale(Item);
                     }
                     else { DialogBottlesFull(); } //else alert player
+                    */
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
-                {   //if we can fill bottleB
-                    if (Functions_Bottle.FillEmptyBottle(3))
-                    {   //set hero's item, complete the sale
-                        PlayerData.current.currentItem = 3; //bottleB
-                        Pool.hero.item = MenuItemType.BottleMagic;
-                        CompleteSale(Item);
-                    }
-                    else { DialogBottlesFull(); } //else alert player
+                {   //if empty bottle was filled, complete the sale, else alert player
+                    if (Functions_Bottle.FillEmptyBottle(BottleContent.Magic))
+                    { CompleteSale(Item); } else { DialogBottlesFull(); }
                 }
                 else if (Item.type == MenuItemType.BottleCombo)
-                {   //if we can fill bottleC
-                    if (Functions_Bottle.FillEmptyBottle(4)) 
-                    {   //set hero's item, complete the sale
-                        PlayerData.current.currentItem = 4; //bottleC
-                        Pool.hero.item = MenuItemType.BottleCombo;
-                        CompleteSale(Item);
-                    }
-                    else { DialogBottlesFull(); } //else alert player
+                {   //if empty bottle was filled, complete the sale, else alert player
+                    if (Functions_Bottle.FillEmptyBottle(BottleContent.Combo))
+                    { CompleteSale(Item); } else { DialogBottlesFull(); }
                 }
 
                 #endregion

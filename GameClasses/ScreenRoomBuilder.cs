@@ -95,9 +95,9 @@ namespace DungeonRun
             PlayerData.current.arrowsCurrent = 99;
 
             //set items
-            PlayerData.current.bottleA = 2;
-            PlayerData.current.bottleB = 3;
-            PlayerData.current.bottleC = 4;
+            PlayerData.current.bottleA = BottleContent.Health;
+            PlayerData.current.bottleB = BottleContent.Magic;
+            PlayerData.current.bottleC = BottleContent.Combo;
             PlayerData.current.magicFireball = true;
 
             //set weapons

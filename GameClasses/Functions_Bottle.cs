@@ -15,61 +15,90 @@ namespace DungeonRun
     public static class Functions_Bottle
     {
 
-        public static void SetMenuItemType(MenuItem menuItem, Byte bottleValue)
-        {   //set passed menuItem.type based on bottle value
-            if (bottleValue == 1) { Functions_MenuItem.SetType(MenuItemType.BottleEmpty, menuItem); }
-            else if (bottleValue == 2) { Functions_MenuItem.SetType(MenuItemType.BottleHealth, menuItem); }
-            else if (bottleValue == 3) { Functions_MenuItem.SetType(MenuItemType.BottleMagic, menuItem); }
-            else if (bottleValue == 4) { Functions_MenuItem.SetType(MenuItemType.BottleCombo, menuItem); }
-            else if (bottleValue == 5) { Functions_MenuItem.SetType(MenuItemType.BottleFairy, menuItem); }
-            else if (bottleValue == 6) { Functions_MenuItem.SetType(MenuItemType.BottleBlob, menuItem); }
-            else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItem); } //defaults to unknown
+        public static Boolean HeroDeathCheck()
+        {   //see if hero can save himself from death using ANY bottles contents
+            if (PlayerData.current.bottleA == BottleContent.Fairy)
+            { UseBottle(PlayerData.current.bottleA, BottleContent.Fairy); return true; }
+            else if (PlayerData.current.bottleB == BottleContent.Fairy)
+            { UseBottle(PlayerData.current.bottleB, BottleContent.Fairy); return true; }
+            else if (PlayerData.current.bottleC == BottleContent.Fairy)
+            { UseBottle(PlayerData.current.bottleC, BottleContent.Fairy); return true; }
+            return false; //else he cannot, return false
         }
 
-        public static void LoadBottle(byte bottleValue)
+        public static void SetMenuItemType(MenuItem menuItem, BottleContent content)
+        {   //set passed menuItem.type based on bottle value
+            if (content == BottleContent.Blob)
+            { Functions_MenuItem.SetType(MenuItemType.BottleBlob, menuItem); }
+
+            else if (content == BottleContent.Combo)
+            { Functions_MenuItem.SetType(MenuItemType.BottleCombo, menuItem); }
+
+            else if (content == BottleContent.Empty)
+            { Functions_MenuItem.SetType(MenuItemType.BottleEmpty, menuItem); }
+
+            else if (content == BottleContent.Fairy)
+            { Functions_MenuItem.SetType(MenuItemType.BottleFairy, menuItem); }
+
+            else if (content == BottleContent.Health)
+            { Functions_MenuItem.SetType(MenuItemType.BottleHealth, menuItem); }
+
+            else if (content == BottleContent.Magic)
+            { Functions_MenuItem.SetType(MenuItemType.BottleMagic, menuItem); }
+
+            //in an unhandled case, set the bottle to be empty
+            else { Functions_MenuItem.SetType(MenuItemType.BottleEmpty, menuItem); }
+        }
+
+        public static void LoadBottle(BottleContent content)
         {   //set hero's item based on the bottleValue
-            if (bottleValue == 1) { Pool.hero.item = MenuItemType.BottleEmpty; }
-            else if (bottleValue == 2) { Pool.hero.item = MenuItemType.BottleHealth; }
-            else if (bottleValue == 3) { Pool.hero.item = MenuItemType.BottleMagic; }
-            else if (bottleValue == 4) { Pool.hero.item = MenuItemType.BottleCombo; }
-            else if (bottleValue == 5) { Pool.hero.item = MenuItemType.BottleFairy; }
-            else if (bottleValue == 6) { Pool.hero.item = MenuItemType.BottleBlob; }
+            if (content == BottleContent.Blob) { Pool.hero.item = MenuItemType.BottleBlob; }
+            else if (content == BottleContent.Combo) { Pool.hero.item = MenuItemType.BottleCombo; }
+            else if (content == BottleContent.Empty) { Pool.hero.item = MenuItemType.BottleEmpty; }
+            else if (content == BottleContent.Fairy) { Pool.hero.item = MenuItemType.BottleFairy; }
+            else if (content == BottleContent.Health) { Pool.hero.item = MenuItemType.BottleHealth; }
+            else if (content == BottleContent.Magic) { Pool.hero.item = MenuItemType.BottleMagic; }
             else { Pool.hero.item = MenuItemType.Unknown; } //defaults to unknown
         }
 
-        public static void UseBottle(Byte bottleID, Byte bottleValue)
+        public static void UseBottle(BottleContent bottleRef)
+        {   //use the contents of the bottle reference
+            UseBottle(bottleRef, bottleRef);
+        }
+
+        public static void UseBottle(BottleContent bottleRef, BottleContent content)
         {   //only hero can use bottles
-            if (bottleValue == 1)
+            if (content == BottleContent.Empty)
             {   //use empty bottle
                 Functions_Particle.Spawn(ObjType.ParticleBottleEmpty, Pool.hero);
                 Assets.Play(Assets.sfxError);
             }
-            else if (bottleValue == 2)
+            else if (content == BottleContent.Health)
             {   //use health potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
                 Functions_Particle.Spawn(ObjType.ParticleBottleHealth, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
             }
-            else if (bottleValue == 3)
+            else if (content == BottleContent.Magic)
             {   //use magic potion
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
                 Functions_Particle.Spawn(ObjType.ParticleBottleMagic, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
             }
-            else if (bottleValue == 4)
+            else if (content == BottleContent.Combo)
             {   //use combo potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
                 Functions_Particle.Spawn(ObjType.ParticleBottleCombo, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
             }
-            else if (bottleValue == 5)
+            else if (content == BottleContent.Fairy)
             {   //use fairy in a bottle
                 Pool.hero.health = PlayerData.current.heartsTotal;
                 Functions_Particle.Spawn(ObjType.ParticleBottleFairy, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
             }
-            else if (bottleValue == 6)
+            else if (content == BottleContent.Blob)
             {   //display the bottled blob over hero's head
                 Functions_Particle.Spawn(ObjType.ParticleBottleBlob, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
@@ -83,10 +112,8 @@ namespace DungeonRun
                 PlayerData.current.actorType = Pool.hero.type; //save the hero's actorType
             }
 
-            //empty bottle based on bottleID
-            if (bottleID == 1) { PlayerData.current.bottleA = 1; }
-            else if (bottleID == 2) { PlayerData.current.bottleB = 1; }
-            else if (bottleID == 3) { PlayerData.current.bottleC = 1; }
+            //empty the bottle reference
+            bottleRef = BottleContent.Empty;
             //set hero into reward state, grab player's attention
             Functions_Actor.SetRewardState(Pool.hero);
             Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
@@ -94,76 +121,68 @@ namespace DungeonRun
             Pool.hero.item = MenuItemType.Unknown;
         }
 
-        public static Boolean CheckBottleUponDeath(Byte bottleID, Byte bottleValue)
-        {   //check for health, combo, or fairy values
-            if (bottleValue == 2 || bottleValue == 4 || bottleValue == 5)
-            { UseBottle(bottleID, bottleValue); return true; }
-            return false; //bottle cannot be used to heal/self-rez
+        public static Boolean FillEmptyBottle(BottleContent content)
+        {   //find an empty bottle and fill it
+            if (PlayerData.current.bottleA == BottleContent.Empty)
+            { PlayerData.current.bottleA = content; return true; }
+
+            else if (PlayerData.current.bottleB == BottleContent.Empty)
+            { PlayerData.current.bottleB = content; return true; }
+
+            else if (PlayerData.current.bottleC == BottleContent.Empty)
+            { PlayerData.current.bottleC = content; return true; }
+
+            else { return false; } //no empty bottles
         }
-
-        public static Boolean FillEmptyBottle(byte fillValue)
-        {   //find a bottle with a value of 1 (empty), fill it
-            if (PlayerData.current.bottleA == 1)
-            { PlayerData.current.bottleA = fillValue; return true; }
-            else if (PlayerData.current.bottleB == 1)
-            { PlayerData.current.bottleB = fillValue; return true; }
-            else if (PlayerData.current.bottleC == 1)
-            { PlayerData.current.bottleC = fillValue; return true; }
-            else { return false; } //did not find an empty bottle
-        }
-
-
-
-
-
 
         public static void Bottle(GameObject Obj)
-        {
-
-            //right now, only fairy objects can be bottled
-
-
-
-
+        {   //right now, only fairy objects can be bottled
+            if(Obj.type == ObjType.Fairy)
+            {
+                if (FillEmptyBottle(BottleContent.Fairy))
+                {
+                    //kill the fairy (end projectile's lifetime)
+                    Functions_GameObject.Kill(Obj);
+                    return;
+                }
+                else//no empty bottle
+                {   //alert player that hero couldn't bottle fairy
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleFull)); }
+                    return;
+                }
+            }
+            //if we didn't bail from the method earlier, then this obj can't be bottled
+            if (Flags.ShowDialogs)
+            { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
         }
 
         public static void Bottle(Actor Actor)
         {
-
-
-            /*
-            //can we bottle this actor?
-            if (Actor.type == ActorType.Boss || Actor.type == ActorType.Hero)
-            {   //pop cant bottle dialog
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
-                return;
-            }
-            else
-            {   //determine what type of actor we're attempting to bottle
-                byte value = 5; //defaults to fairy value
-                if (Actor.type == ActorType.Fairy) { value = 5; }
-                else if (Actor.type == ActorType.Blob) { value = 6; }
-                //determine if hero has an empty bottle to put this actor into
-                Boolean captured = false;
-                if (Functions_Bottle.FillEmptyBottle(value)) { captured = true; }
-                //if hero put actor into empty bottle..
-                if (captured)
-                {   //alert player that hero successfully bottled the actor
+            if(Actor.type == ActorType.Blob)
+            {   //we can bottle blobs
+                if(FillEmptyBottle(BottleContent.Blob))
+                {   //alert player that hero successfully bottled actor
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleSuccess)); }
-                    SetDeathState(Actor); //kill bottled actor
+                    Functions_Actor.SetDeathState(Actor); //kill bottled actor
                 }
                 else
-                {   //alert player that hero has no empty bottles (all bottles are full)
+                {   //player has no empty bottles to put actor into
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleFull)); }
                 }
             }
-            */
-
-
+            else
+            {   //can't bottle this actor, pop cant bottle dialog
+                if (Flags.ShowDialogs)
+                { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
+            }
         }
+
+
+
+
 
     }
 }
