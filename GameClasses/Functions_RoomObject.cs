@@ -370,6 +370,22 @@ namespace DungeonRun
             Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
         }
 
+
+        public static void UseFairy(GameObject Fairy)
+        {
+            Pool.hero.health = PlayerData.current.heartsTotal; //effect
+            Assets.Play(Assets.sfxHeartPickup); //sfx
+
+            if (Fairy != null) //end fairys life
+            { Fairy.lifeCounter = 2; Fairy.lifetime = 1; }
+        }
+
+
+
+
+
+
+
         public static void AlignRoomObjs()
         {   //align sprite + collision comps to move comp of all active objs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)

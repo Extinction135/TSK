@@ -143,10 +143,6 @@ namespace DungeonRun
             {
                 Assets.Play(Assets.sfxSwordSwipe);
             }
-            else if (Obj.type == ObjType.ProjectileNet) //need net soundFX
-            {
-                Assets.Play(Assets.sfxSwordSwipe);
-            }
             else if (Obj.type == ObjType.ProjectilePot)
             {   //throw sfx = actor fall sfx
                 Assets.Play(Assets.sfxActorFall);

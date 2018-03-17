@@ -507,7 +507,7 @@ namespace DungeonRun
                 }
                 else if (Hero.state == ActorState.Attack)
                 {
-                    Functions_Item.UseItem(Hero.weapon, Hero);
+                    Functions_Item.UseWeapon(Hero.weapon, Hero);
                     WorldUI.currentWeapon.compSprite.scale = 2.0f; //scale up worldUI weapon 
                 }
                 else if (Hero.state == ActorState.Use)
@@ -556,14 +556,6 @@ namespace DungeonRun
             #endregion
 
         }
-
-
-
-
-
-
-
-
 
         public static void SetLoadout()
         {   //set the hero's loadout based on playerdata.current
@@ -638,12 +630,6 @@ namespace DungeonRun
             else if (PlayerData.current.currentEquipment == 4)
             { Pool.hero.equipment = MenuItemType.EquipmentPin; }
         }
-
-
-
-
-
-
 
     }
 }

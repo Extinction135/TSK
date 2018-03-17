@@ -58,45 +58,43 @@ explosive barrel puzzels
 
 
 
-Fix Bottle Related Bugs - Part 2
 
-can we purchase potions properly? yes.
-can we use bottle A properly? yes.
-extend this functionality to bottle B and C.
+Test Bottling Systems
 
-playtested, all bottles working properly now,
-with respect to potions being bought and used.
+updated Functions_Bottle.Bottle() to work on both objs and actors.
+for now we only allow bottling of fairys and blobs.
 
+test bottling of fairys - working, but needs polish.
+swipe sound should play before dialog pops up.
+attention particle should display at fairy's last position.
 
+test bottling of blobs - working, but with a major bug.
+when two bottles are full, and the third bottle is filled with a blob,
+the hero just becomes a blob, with the blob bottle reward over his head.
 
+this was fixed by splitting Functions_Item.UseItem() into
+UseItem() and UseWeapon(), which prevented the overlap which was
+happening due to how bottles were targeting the hero's current item.
 
+playtested, bottling of blobs now working properly.
 
+minor bug: when we bottle a blob, the blob corpse remains.
+this doesn't make any sense, since the blob now conceptually
+exists inside of the bottle. 
+improved bottling routines for blobs and fairys.
+blob corpses no longer remain post bottling, plus
+attention particles now appear whenever an actor or object is
+sucessfully bottled.
 
+changed how Net Projectile plays it's soundFX, now the sfx call comes from
+the Projectile.Spawn() method, instead of the birthEvent. this causes the
+sfx to play before any dialog screens popup, telling the player they've
+caught something in their net. we may do this with other objects too.
 
-
-
-
-
-
-
-
-
-Hero's current item should be an enum too
-here we decided to use an int, for some reason, and it's
-confusing af now looking back on it..
-
-
-
-
-
-Re-Implement Net
-
-we need to check net projectile against non-blocking roomObjs (fairys)
-if we collide, kill fairy and put fairy in bottle (if we have an empty bottle)
-
-we need to make sure the bottling system works with bottling an actor as well
-so we'll be spending alot of time in the Functions_Bottle class
-
+added SoundNet to content project.
+built into both Dx and UWP projects.
+added to Assets, linked to from Projectile.Spawn().
+tested net sfx, working.
 
 
 
@@ -107,9 +105,22 @@ so we'll be spending alot of time in the Functions_Bottle class
 
 
 
+when the hero captures a fairy or blob via the net, the net stays around 
+this causes a bug where the net will continue to collide with an actor or obj
+that the hero cant bottle, which causes the dialog screen to popup hundreds of times
+but, we also want the net sprite to stick around long enough to appear when the dialog
+screen pops up.. perhaps we can kill the net projectile from the dialog screen?
+so process would be: net collides, bottling(), pop dialog, kill net projectile, close dialog
+*the above fix also fixes a bug where the hero would remain in the 'use' state,
+past when the net existed on screen, so he looks like he's just pointing at something..
 
 
 
+
+
+the attack / weapon system useage should match the item system useage
+that is, the hero shouldn't be set into a use animation for a frame before being unlocked
+the hero should return to an idle state if the current weapon is unknown or null..
 
 
 

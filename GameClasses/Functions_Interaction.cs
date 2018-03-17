@@ -144,11 +144,7 @@ namespace DungeonRun
                 #region Fairy
 
                 if (Obj.type == ObjType.Fairy)
-                {
-                    Pool.hero.health = PlayerData.current.heartsTotal;
-                    Assets.Play(Assets.sfxHeartPickup);
-                    Obj.lifeCounter = 2; Obj.lifetime = 1; //end fairys life
-                }
+                { Functions_RoomObject.UseFairy(Obj); }
 
                 #endregion
 
@@ -221,6 +217,24 @@ namespace DungeonRun
                     Obj.lifeCounter = Obj.lifetime; //kill projectile
                     Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
                     Functions_Bottle.Bottle(Actor); //try to bottle the actor
+
+
+
+
+
+                    //keep the net around for 1 frame
+                    //but prevent it from colliding next frame
+
+                    //move the net's collision rec offscreen
+                    //Obj.compCollision.rec.X = Obj.compCollision.rec.Y = 0;
+                   // Obj.lifeCounter = 10; Obj.lifetime = 9; //remove net next frame
+
+                    //Obj.lifeCounter = 10; Obj.lifetime = 9; //remove net next frame
+                    //Functions_Pool.Release(Obj);
+
+
+
+
                 }
                 //if sword projectile is brand new, spawn hit particle
                 else if (Obj.type == ObjType.ProjectileSword)
@@ -398,7 +412,6 @@ namespace DungeonRun
             //show me the interaction types
             //Debug.WriteLine("" + RoomObj.type + " vs " + Object.type +
             //    " \t ts:" + ScreenManager.gameTime.TotalGameTime.Milliseconds);
-
             Pool.interactionsCount++; //count interaction
 
 
@@ -555,6 +568,31 @@ namespace DungeonRun
             //this is entity/roomObj vs non-block obj
 
 
+            //object.type checks
+            #region ConveyorBelts
+
+            if (Object.type == ObjType.ConveyorBeltOn)
+            {   //if obj is moveable and on ground, move it
+                if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
+                { Functions_RoomObject.ConveyorBeltPush(RoomObj.compMove, Object); }
+            }
+
+            #endregion
+
+
+            #region Fairys
+
+            else if(Object.type == ObjType.Fairy)
+            {   //fairys can interact with NON-BLOCKING roomObjs here
+                //for example floor switches:
+                if (RoomObj.type == ObjType.Switch)
+                { Functions_RoomObject.ActivateSwitchObject(RoomObj); }
+            }
+
+            #endregion
+
+
+            //roomObj.type checks
             #region FloorSpikes
 
             if (RoomObj.type == ObjType.SpikesFloorOn)
@@ -574,17 +612,6 @@ namespace DungeonRun
                             );
                     }
                 }
-            }
-
-            #endregion
-
-
-            #region ConveyorBelts
-
-            else if (Object.type == ObjType.ConveyorBeltOn)
-            {   //if obj is moveable and on ground, move it
-                if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
-                { Functions_RoomObject.ConveyorBeltPush(RoomObj.compMove, Object); }
             }
 
             #endregion
@@ -665,13 +692,18 @@ namespace DungeonRun
 
             #region Fairys
 
-            else if (Object.type == ObjType.Fairy)
-            {   //fairys can interact with NON-BLOCKING roomObjs here
+            else if (RoomObj.type == ObjType.Fairy)
+            {   //different from fairy check above, fairy is RoomObj this time
+                if(Object.type == ObjType.ProjectileNet)
+                {   //a net has overlapped a fairy (and only a hero can create a net)
+                    //attempt to bottle the fairy into one of hero's bottles
+                    Functions_Bottle.Bottle(RoomObj); //try to bottle
 
-                //for example floor switches:
-                if (RoomObj.type == ObjType.Switch)
-                { Functions_RoomObject.ActivateSwitchObject(RoomObj); }
 
+                    //kill the net projectile from the dialog screen?
+                    //this seems bad and hacky
+
+                }
             }
 
             #endregion

@@ -291,6 +291,19 @@ namespace DungeonRun
             #endregion
 
 
+            #region Play Net SoundFX upon Spawn
+
+            else if(Type == ObjType.ProjectileNet)
+            {   //it's done this way cause the net may create 
+                //a dialog screen on the next frame, which would
+                //prevent the net's birthEvent from trigerring,
+                //because that happens on the net's 3rd frame alive
+                Assets.Play(Assets.sfxNet);
+            }
+
+            #endregion
+
+
             Functions_Component.Align(obj); //align the entity upon birth
             obj.compCollision.blocking = false; //entities interact, never block
 

@@ -449,3 +449,9 @@
 /processorParam:Quality=Best
 /build:SoundPetDog.wav
 
+#begin SoundNet.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundNet.wav
+

@@ -133,6 +133,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxPetChicken;
 
         public static SoundEffectInstance sfxPetDog;
+        public static SoundEffectInstance sfxNet;
 
         #endregion
 
@@ -316,7 +317,9 @@ namespace DungeonRun
             //
             SoundEffect dogSrc = content.Load<SoundEffect>(@"SoundPetDog");
             sfxPetDog = dogSrc.CreateInstance();
-
+            SoundEffect netSrc = content.Load<SoundEffect>(@"SoundNet");
+            sfxNet = netSrc.CreateInstance();
+            
             #endregion
 
 

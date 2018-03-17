@@ -130,15 +130,13 @@ namespace DungeonRun
             Functions_Movement.StopMovement(Actor.compMove);
         }
 
-
-
-
-
-
-
-
-
-
+        public static void SetIdleState(Actor Actor)
+        {
+            Actor.state = ActorState.Idle;
+            Actor.stateLocked = false;
+            Actor.lockCounter = 0;
+            Actor.lockTotal = 0;
+        }
 
         public static void SetCollisionRec(Actor Actor)
         {   //set the collisionRec parameters based on the Type
@@ -288,7 +286,7 @@ namespace DungeonRun
                     }
                     else if (Actor.state == ActorState.Attack)
                     {
-                        Functions_Item.UseItem(Actor.weapon, Actor);
+                        Functions_Item.UseWeapon(Actor.weapon, Actor);
                     }
                     else if (Actor.state == ActorState.Use)
                     {

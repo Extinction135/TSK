@@ -79,10 +79,6 @@ namespace DungeonRun
             else { Pool.hero.item = MenuItemType.Unknown; } //defaults to unknown
         }
 
-
-
-
-        
         public static Boolean UseBottle(BottleContent content)
         {   //only hero can use bottles, empty bottles are not handled here
             if (content == BottleContent.Health)
@@ -131,11 +127,6 @@ namespace DungeonRun
             else { return false; } //the bottle couldn't be used
         }
 
-
-
-
-
-
         public static Boolean FillEmptyBottle(BottleContent content)
         {   //find an empty bottle and fill it
             if (PlayerData.current.bottleA == BottleContent.Empty)
@@ -151,23 +142,32 @@ namespace DungeonRun
         }
 
         public static void Bottle(GameObject Obj)
-        {   //right now, only fairy objects can be bottled
+        {   //we can bottle fairys
             if(Obj.type == ObjType.Fairy)
             {
                 if (FillEmptyBottle(BottleContent.Fairy))
-                {
-                    //kill the fairy (end projectile's lifetime)
-                    Functions_GameObject.Kill(Obj);
+                {   //player has bottled fairy
+                    //remove fairy from room
+                    Functions_Particle.Spawn(
+                        ObjType.ParticleAttention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Functions_Pool.Release(Obj);
+                    if (Flags.ShowDialogs) //pop success dialog
+                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleSuccess)); }
+
+                    //set the hero into an idle state (else hero lingers in use state without net)
+                    Functions_Actor.SetIdleState(Pool.hero);
                     return;
                 }
-                else//no empty bottle
-                {   //alert player that hero couldn't bottle fairy
+                else
+                {   //player has no empty bottles
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleFull)); }
                     return;
                 }
             }
-            //if we didn't bail from the method earlier, then this obj can't be bottled
+            //can't bottle this, pop cant bottle dialog
             if (Flags.ShowDialogs)
             { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
         }
@@ -177,27 +177,31 @@ namespace DungeonRun
             if(Actor.type == ActorType.Blob)
             {   //we can bottle blobs
                 if(FillEmptyBottle(BottleContent.Blob))
-                {   //alert player that hero successfully bottled actor
-                    if (Flags.ShowDialogs)
+                {   //player has bottled actor
+                    //remove actor from room
+                    Functions_Particle.Spawn(
+                        ObjType.ParticleAttention,
+                        Actor.compSprite.position.X,
+                        Actor.compSprite.position.Y);
+                    Functions_Pool.Release(Actor);
+                    if (Flags.ShowDialogs) //pop success dialog
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleSuccess)); }
-                    Functions_Actor.SetDeathState(Actor); //kill bottled actor
+
+                    //set the hero into an idle state (else hero lingers in use state without net)
+                    Functions_Actor.SetIdleState(Pool.hero);
+                    return;
                 }
                 else
-                {   //player has no empty bottles to put actor into
+                {   //player has no empty bottles
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleFull)); }
+                    return;
                 }
             }
-            else
-            {   //can't bottle this actor, pop cant bottle dialog
-                if (Flags.ShowDialogs)
-                { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
-            }
+            //can't bottle this, pop cant bottle dialog
+            if (Flags.ShowDialogs)
+            { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.BottleCant)); }
         }
-
-
-
-
 
     }
 }

@@ -15,31 +15,50 @@ namespace DungeonRun
     public static class Functions_Item
     {
 
-        public static void UseItem(MenuItemType Type, Actor Actor)
+        public static void UseWeapon(MenuItemType Type, Actor Actor)
         {
-            //handle casting actor's state
-            //Actor.stateLocked = true;
-            //Functions_Movement.StopMovement(Actor.compMove);
-            //Actor.lockTotal = 20;
+            if (Type == MenuItemType.WeaponSword)
+            {
+                Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor);
+                Functions_Actor.SetItemUseState(Actor);
+            }
+            else if (Type == MenuItemType.WeaponBow)
+            {
+                if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
+                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
+                //actor shoots an arrow
+                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor);
+                Functions_Projectile.Spawn(ObjType.ParticleBow, Actor);
+                Functions_Actor.SetItemUseState(Actor);
+            }
+            else if (Type == MenuItemType.WeaponNet)
+            {
+                Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor);
+                Functions_Actor.SetItemUseState(Actor);
+            }
+        }
+
+        public static void UseItem(MenuItemType Type, Actor Actor)
+        {   //first, check to see if we can bail from this method
+            //if the item being used is unknown, silently return actor to idle
+            if (Type == MenuItemType.Unknown)
+            {
+                Actor.state = ActorState.Idle;
+                return;
+            }
+            //if the item being used is an empty bottle, play an error sound
+            else if (Type == MenuItemType.BottleEmpty)
+            {   //fail, with an error sound
+                Actor.state = ActorState.Idle;
+                Assets.Play(Assets.sfxError);
+                return;
+            }
 
 
-
-
-            #region Hero Specific Items
+            #region Hero Specific Items (Net, Bottles)
 
             if (Actor == Pool.hero)
-            {
-                //check to see if we can bail, using unknown / empty bottle
-                if (Type == MenuItemType.Unknown) //silently fail
-                { Actor.state = ActorState.Idle; return; }
-                else if(Type == MenuItemType.BottleEmpty)
-                {   //fail, with an error sound
-                    Actor.state = ActorState.Idle;
-                    Assets.Play(Assets.sfxError);
-                    return;
-                }
-
-                //check bottle A
+            {   //check bottle A
                 if (PlayerData.current.currentItem == HerosCurrentItem.BottleA)
                 {
                     if (Functions_Bottle.UseBottle(PlayerData.current.bottleA))
@@ -50,7 +69,6 @@ namespace DungeonRun
                         Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
                     }
                 }
-
                 //check bottle B
                 else if (PlayerData.current.currentItem == HerosCurrentItem.BottleB)
                 {
@@ -62,7 +80,6 @@ namespace DungeonRun
                         Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
                     }
                 }
-
                 //check bottle C
                 else if (PlayerData.current.currentItem == HerosCurrentItem.BottleC)
                 {
@@ -79,7 +96,7 @@ namespace DungeonRun
             #endregion
 
 
-            //all actors can use items, magic, and weapons
+            //all actors can use items & magic
 
 
             #region Items
@@ -110,40 +127,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Weapons
-
-            else if (Type == MenuItemType.WeaponSword)
-            {
-                Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor);
-                Functions_Actor.SetItemUseState(Actor);
-            }
-            else if (Type == MenuItemType.WeaponBow)
-            {
-                if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
-                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
-                //actor shoots an arrow
-                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor);
-                Functions_Projectile.Spawn(ObjType.ParticleBow, Actor);
-                Functions_Actor.SetItemUseState(Actor);
-            }
-            else if (Type == MenuItemType.WeaponNet)
-            {
-                Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor);
-                Functions_Actor.SetItemUseState(Actor);
-            }
-
-            #endregion
-
         }
-
-
-
-
-
-
-
-
-
 
         static Boolean CheckMagic(int castingCost)
         {   //if infinite magic is enabled, allow
