@@ -58,20 +58,34 @@ explosive barrel puzzels
 
 
 
-Redesign Hero's Item to be an Enum value
+Fix Bottle Related Bugs - Part 1
 
-the problem here is simple: hero's item is represented
-by an int value, which is difficult to read and recall.
-so instead we'll use an enum again.
+empty bottles can still be 'used', in the sense that the hero
+creates a reward bottle particle over his head, and then he
+ends his statelock and continues on, within a few frames.
+this looks and feels very wrong.
 
-various modifications resulting in a better system
-using an enum value, but with a few bugs.
+instead, the hero shouldn't change state at all (when an empty
+bottle is selected). he should remain idle (or doing whatever)
+and the error sound should simply play. that's it.
+
+updated codebase with bug fix, playtested, working.
 
 
 
 
 
 
+
+the bottle isn't being 'used' properly, it's never emptied..
+what is the process currently? assuming the selected obj is a bottle,
+
+
+level screen maps input to hero.compInput
+user presses Y button and then hero.compInput.use is set to true.
+then we map input to actor state via Input.SetInputState().
+then actor state is mapped to actual methods via Actor.Update().
+and this is where the UseItem() method is called from.
 
 
 

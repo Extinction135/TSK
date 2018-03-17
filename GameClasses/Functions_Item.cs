@@ -17,19 +17,64 @@ namespace DungeonRun
 
         public static void UseItem(MenuItemType Type, Actor Actor)
         {
+            //handle casting actor's state
+            //Actor.stateLocked = true;
+            //Functions_Movement.StopMovement(Actor.compMove);
+            //Actor.lockTotal = 20;
+
+
+
 
             #region Hero Specific Items
 
             if (Actor == Pool.hero)
-            {   //bottles
+            {
+
+
+                //check to see if we can bail, using empty bottle type check
+                if (Type == MenuItemType.BottleEmpty)
+                {   //bail, with error sound
+                    Assets.Play(Assets.sfxError);
+                    return;
+                }
+
+                //check bottles A
                 if (PlayerData.current.currentItem == HerosCurrentItem.BottleA)
-                { Functions_Bottle.UseBottle(PlayerData.current.bottleA); }
+                {
+                    if (Functions_Bottle.UseBottle(PlayerData.current.bottleA))
+                    {   //reward hero, empty bottle & clear hero's item
+                        Functions_Actor.SetRewardState(Pool.hero);
+                        PlayerData.current.bottleA = BottleContent.Empty;
+                        Pool.hero.item = MenuItemType.Unknown;
+                        Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
+                    }
+                }
+
+
+
+
+
+
+
+                /*
 
                 else if (PlayerData.current.currentItem == HerosCurrentItem.BottleB) 
-                { Functions_Bottle.UseBottle(PlayerData.current.bottleB); }
+                {
+                    Functions_Bottle.UseBottle(PlayerData.current.bottleB);
+                    PlayerData.current.bottleB = BottleContent.Empty;
+                }
 
                 else if (PlayerData.current.currentItem == HerosCurrentItem.BottleC)
-                { Functions_Bottle.UseBottle(PlayerData.current.bottleC); }
+                {
+                    Functions_Bottle.UseBottle(PlayerData.current.bottleC);
+                    PlayerData.current.bottleC = BottleContent.Empty;
+                }
+
+                */
+
+
+
+
             }
 
             #endregion
@@ -46,6 +91,7 @@ namespace DungeonRun
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor spawns a bomb
                 Functions_Projectile.Spawn(ObjType.ProjectileBomb, Actor);
+                Functions_Actor.SetItemUseState(Actor);
             }
 
             #endregion
@@ -59,6 +105,7 @@ namespace DungeonRun
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor shoots a fireball
                 Functions_Projectile.Spawn(ObjType.ProjectileFireball, Actor);
+                Functions_Actor.SetItemUseState(Actor);
             }
 
             #endregion
@@ -69,7 +116,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.WeaponSword)
             {
                 Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor);
-                Actor.lockTotal = 15;
+                Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.WeaponBow)
             {
@@ -78,16 +125,26 @@ namespace DungeonRun
                 //actor shoots an arrow
                 Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor);
                 Functions_Projectile.Spawn(ObjType.ParticleBow, Actor);
+                Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.WeaponNet)
             {
                 Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor);
-                Actor.lockTotal = 15;
+                Functions_Actor.SetItemUseState(Actor);
             }
 
             #endregion
 
         }
+
+
+
+
+
+
+
+
+
 
         static Boolean CheckMagic(int castingCost)
         {   //if infinite magic is enabled, allow

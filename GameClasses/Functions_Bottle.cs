@@ -18,11 +18,29 @@ namespace DungeonRun
         public static Boolean HeroDeathCheck()
         {   //see if hero can save himself from death using ANY bottles contents
             if (PlayerData.current.bottleA == BottleContent.Fairy)
-            { UseBottle(PlayerData.current.bottleA, BottleContent.Fairy); return true; }
+            {
+                UseBottle(PlayerData.current.bottleA);
+                PlayerData.current.bottleA = BottleContent.Empty;
+                Pool.hero.item = MenuItemType.BottleEmpty;
+                Functions_Actor.SetRewardState(Pool.hero);
+                return true;
+            }
             else if (PlayerData.current.bottleB == BottleContent.Fairy)
-            { UseBottle(PlayerData.current.bottleB, BottleContent.Fairy); return true; }
+            {
+                UseBottle(PlayerData.current.bottleB);
+                PlayerData.current.bottleB = BottleContent.Empty;
+                Pool.hero.item = MenuItemType.BottleEmpty;
+                Functions_Actor.SetRewardState(Pool.hero);
+                return true;
+            }
             else if (PlayerData.current.bottleC == BottleContent.Fairy)
-            { UseBottle(PlayerData.current.bottleC, BottleContent.Fairy); return true; }
+            {
+                UseBottle(PlayerData.current.bottleC);
+                PlayerData.current.bottleC = BottleContent.Empty;
+                Pool.hero.item = MenuItemType.BottleEmpty;
+                Functions_Actor.SetRewardState(Pool.hero);
+                return true;
+            }
             return false; //else he cannot, return false
         }
 
@@ -61,29 +79,25 @@ namespace DungeonRun
             else { Pool.hero.item = MenuItemType.Unknown; } //defaults to unknown
         }
 
-        public static void UseBottle(BottleContent bottleRef)
-        {   //use the contents of the bottle reference
-            UseBottle(bottleRef, bottleRef);
-        }
 
-        public static void UseBottle(BottleContent bottleRef, BottleContent content)
-        {   //only hero can use bottles
-            if (content == BottleContent.Empty)
-            {   //use empty bottle
-                Functions_Particle.Spawn(ObjType.ParticleBottleEmpty, Pool.hero);
-                Assets.Play(Assets.sfxError);
-            }
-            else if (content == BottleContent.Health)
+
+
+        
+        public static Boolean UseBottle(BottleContent content)
+        {   //only hero can use bottles, empty bottles are not handled here
+            if (content == BottleContent.Health)
             {   //use health potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
                 Functions_Particle.Spawn(ObjType.ParticleBottleHealth, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
+                return true;
             }
             else if (content == BottleContent.Magic)
             {   //use magic potion
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
                 Functions_Particle.Spawn(ObjType.ParticleBottleMagic, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
+                return true;
             }
             else if (content == BottleContent.Combo)
             {   //use combo potion
@@ -91,12 +105,14 @@ namespace DungeonRun
                 PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
                 Functions_Particle.Spawn(ObjType.ParticleBottleCombo, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
+                return true;
             }
             else if (content == BottleContent.Fairy)
             {   //use fairy in a bottle
                 Pool.hero.health = PlayerData.current.heartsTotal;
                 Functions_Particle.Spawn(ObjType.ParticleBottleFairy, Pool.hero);
                 Assets.Play(Assets.sfxBeatDungeon);
+                return true;
             }
             else if (content == BottleContent.Blob)
             {   //display the bottled blob over hero's head
@@ -110,16 +126,15 @@ namespace DungeonRun
                 Functions_Hero.SetLoadout();
                 Pool.hero.health = PlayerData.current.heartsTotal; //refill the hero's health
                 PlayerData.current.actorType = Pool.hero.type; //save the hero's actorType
+                return true;
             }
-
-            //empty the bottle reference
-            bottleRef = BottleContent.Empty;
-            //set hero into reward state, grab player's attention
-            Functions_Actor.SetRewardState(Pool.hero);
-            Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
-            //hero has used his item (which was a filled bottle)
-            Pool.hero.item = MenuItemType.Unknown;
+            else { return false; } //the bottle couldn't be used
         }
+
+
+
+
+
 
         public static Boolean FillEmptyBottle(BottleContent content)
         {   //find an empty bottle and fill it

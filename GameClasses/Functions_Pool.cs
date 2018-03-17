@@ -203,7 +203,6 @@ namespace DungeonRun
             {
                 if (Pool.actorPool[i].active)
                 {
-
                     Functions_Input.SetInputState(Pool.actorPool[i].compInput, Pool.actorPool[i]);
 
                     Functions_Actor.Update(Pool.actorPool[i]);

@@ -507,15 +507,11 @@ namespace DungeonRun
                 }
                 else if (Hero.state == ActorState.Attack)
                 {
-                    Hero.stateLocked = true;
-                    Functions_Movement.StopMovement(Hero.compMove);
                     Functions_Item.UseItem(Hero.weapon, Hero);
                     WorldUI.currentWeapon.compSprite.scale = 2.0f; //scale up worldUI weapon 
                 }
                 else if (Hero.state == ActorState.Use)
                 {
-                    Hero.stateLocked = true;
-                    Functions_Movement.StopMovement(Hero.compMove);
                     Functions_Item.UseItem(Hero.item, Hero);
                     WorldUI.currentItem.compSprite.scale = 2.0f; //scale up worldUI item 
                 }

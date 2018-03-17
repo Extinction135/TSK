@@ -117,8 +117,28 @@ namespace DungeonRun
             Actor.state = ActorState.Reward;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
-            Actor.lockTotal = 30;
+            Actor.lockTotal = 30; //med pause
+            Functions_Movement.StopMovement(Actor.compMove);
         }
+
+        public static void SetItemUseState(Actor Actor)
+        {
+            Actor.state = ActorState.Use;
+            Actor.stateLocked = true;
+            Actor.lockCounter = 0;
+            Actor.lockTotal = 15; //short pause
+            Functions_Movement.StopMovement(Actor.compMove);
+        }
+
+
+
+
+
+
+
+
+
+
 
         public static void SetCollisionRec(Actor Actor)
         {   //set the collisionRec parameters based on the Type
@@ -268,14 +288,10 @@ namespace DungeonRun
                     }
                     else if (Actor.state == ActorState.Attack)
                     {
-                        Actor.stateLocked = true;
-                        Functions_Movement.StopMovement(Actor.compMove);
                         Functions_Item.UseItem(Actor.weapon, Actor);
                     }
                     else if (Actor.state == ActorState.Use)
                     {
-                        Actor.stateLocked = true;
-                        Functions_Movement.StopMovement(Actor.compMove);
                         Functions_Item.UseItem(Actor.item, Actor);
                     }
                 }
