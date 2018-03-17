@@ -121,68 +121,54 @@ namespace DungeonRun
             Functions_Component.Align(obj); //align upon birth
             //Debug.WriteLine("entity made: " + Type + " - location: " + X + ", " + Y);
 
-
-
-            /*
-            #region Modify RockDebris Projectiles Animation Frame + Slide them
+            
+            #region Modify RockDebris Particles Animation Frame + Slide them
 
             //some projectiles get their current frame randomly assigned (for variation)
-            else if (Type == ObjType.ProjectileDebrisRock)
+            if (Type == ObjType.ParticleDebris)
             {   //is assigned 15,15 - randomize down to 14,14
                 List<Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].Y = 14; }
                 obj.compAnim.currentAnimation = rockFrame;
-                //push rock debris in their direction
-                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 5.0f);
+                //push rock debris in a random direction
+                Functions_Movement.Push(obj.compMove, 
+                    Functions_Direction.GetRandomDirection(), 3.0f);
             }
 
             #endregion
-            */
-
+            
 
         }
 
 
-
-
-        /*
-        public static void ScatterRockDebris(Vector2 Pos, Boolean Push)
-        {   //add up to 4 rocks randomly around the passed Pos value, with option to push them
-            Direction pushDir = Direction.None;
-            int spread = 6;
-            if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
+        public static void ScatterDebris(Vector2 Pos)
+        {   //add up to 4 debris particles randomly around Pos
+            int spread = 5; //how far apart the debris spawns from Pos
             //always add at least one rock
-            Functions_Projectile.Spawn(ObjType.ProjectileDebrisRock, Pos.X, Pos.Y, pushDir);
+            Spawn(ObjType.ParticleDebris, Pos.X, Pos.Y);
             //sometimes add another rock
             if (Functions_Random.Int(0, 100) > 20)
             {   
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Projectile.Spawn(ObjType.ProjectileDebrisRock,
+                Spawn(ObjType.ParticleDebris,
                     Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
+                    Pos.Y + Functions_Random.Int(-spread, spread));
             }
             //sometimes add another rock
             if (Functions_Random.Int(0, 100) > 40)
             { 
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Projectile.Spawn(ObjType.ProjectileDebrisRock,
+                Spawn(ObjType.ParticleDebris,
                     Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
+                    Pos.Y + Functions_Random.Int(-spread, spread));
             }
             //sometimes add another rock
             if (Functions_Random.Int(0, 100) > 60)
             {  
-                if (Push) { pushDir = Functions_Direction.GetRandomCardinal(); }
-                Functions_Projectile.Spawn(ObjType.ProjectileDebrisRock,
+                Spawn(ObjType.ParticleDebris,
                     Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread), pushDir);
+                    Pos.Y + Functions_Random.Int(-spread, spread));
             }
         }
-        */
-
-
-
 
     }
 }

@@ -347,8 +347,7 @@ namespace DungeonRun
             #region Pits
 
             else if (Type == ObjType.PitAnimated)
-            {
-                //this pit interacts with actor
+            {   //this pit interacts with actor
                 Obj.compSprite.zOffset = -64; //sort under pit teeth
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
@@ -371,8 +370,8 @@ namespace DungeonRun
             else if (Type == ObjType.PitTrap)
             {   //this becomes a pit upon collision with hero
                 Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8;
-                Obj.compCollision.rec.Width = 16; Obj.compCollision.rec.Height = 16;
+                Obj.compCollision.offsetX = -12; Obj.compCollision.offsetY = -12;
+                Obj.compCollision.rec.Width = 24; Obj.compCollision.rec.Height = 24;
                 Obj.compSprite.zOffset = -32; //sort to floor
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
@@ -771,17 +770,6 @@ namespace DungeonRun
                 Obj.compMove.grounded = true;
             }
 
-
-
-
-
-
-
-
-
-
-
-
             //these projectiles will likely be refactored elsewhere
             else if (Type == ObjType.ProjectileSpikeBlock)
             {
@@ -798,37 +786,7 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
             }
-            else if (Type == ObjType.ProjectileDebrisRock)
-            {
-                Obj.compSprite.zOffset = -24; //sort low, but over floor
-                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
-                Obj.compCollision.offsetX = -8; Obj.compCollision.offsetY = -8; //wonky, but needed
-                Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 20;
-                Obj.compCollision.blocking = false;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //in air
-            }
-            else if (Type == ObjType.ProjectileShadowSm)
-            {
-                Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compSprite.cellSize.X = 16; Obj.compSprite.cellSize.Y = 8; //nonstandard size
-                Obj.compSprite.zOffset = -16; //sort to floor
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 15; //in frames
-                Obj.compCollision.blocking = false;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false;
-            }
-
-
-
-
-
-
-
-
+            
 
             #endregion
 
@@ -939,7 +897,23 @@ namespace DungeonRun
                 Obj.lifetime = 10 * 5; //speed * animFrames
                 Obj.compAnim.loop = false;
             }
+            else if (Type == ObjType.ParticleDebris)
+            {
+                Obj.compSprite.zOffset = -24; //sort low, but over floor
+                Obj.compSprite.cellSize.X = 8;
+                Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 15;
+                Obj.compMove.grounded = false; //in air
+                Obj.compAnim.loop = false;
+            }
 
+
+
+
+
+
+            //this should become a projectile so it can track to it's caster
             else if (Type == ObjType.ParticleBow)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
@@ -948,8 +922,11 @@ namespace DungeonRun
                 Obj.lifetime = 15; //in frames
                 Obj.compAnim.speed = 10; //in frames
                 Obj.compAnim.loop = false;
-                Obj.compMove.moveable = true;
             }
+
+
+
+
 
             //Particles - Rewards & Bottles
             else if (

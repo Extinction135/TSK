@@ -154,6 +154,7 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.PitTrap)
                 {   //if hero collides with a PitTrapReady, it starts to open
                     Functions_GameObject.SetType(Obj, ObjType.PitAnimated);
+                    Obj.lifetime = 100; //signals that this is a new Trap
                     Assets.Play(Assets.sfxShatter); //play collapse sound
                     Functions_Particle.Spawn(ObjType.ParticleAttention,
                         Obj.compSprite.position.X,
@@ -161,6 +162,7 @@ namespace DungeonRun
                     Functions_Particle.Spawn(ObjType.ParticleSmokePuff,
                         Obj.compSprite.position.X + 4,
                         Obj.compSprite.position.Y - 8);
+                    Functions_Particle.ScatterDebris(Obj.compSprite.position);
                     //create pit teeth over new pit obj
                     Functions_RoomObject.SpawnRoomObj(ObjType.PitTop,
                         Obj.compSprite.position.X,
@@ -204,9 +206,7 @@ namespace DungeonRun
                 if (Actor.state == ActorState.Dead) { return; }
                 //some projectiles dont interact with actors in any way at all
                 if (Obj.type == ObjType.ProjectileBomb
-                    || Obj.type == ObjType.ProjectileDebrisRock
                     || Obj.type == ObjType.ProjectileExplodingBarrel
-                    || Obj.type == ObjType.ProjectileShadowSm
                     )
                 { return; }
 
@@ -217,16 +217,7 @@ namespace DungeonRun
                     Obj.lifeCounter = Obj.lifetime; //kill projectile
                     Obj.compCollision.rec.X = -1000; //hide hitBox (prevents multiple actor collisions)
                     Functions_Bottle.Bottle(Actor); //try to bottle the actor
-
-                    //keep the net around for 1 frame
-                    //but prevent it from colliding next frame
-
-                    //move the net's collision rec offscreen
-                    //Obj.compCollision.rec.X = Obj.compCollision.rec.Y = 0;
-                   // Obj.lifeCounter = 10; Obj.lifetime = 9; //remove net next frame
-
-                    //Obj.lifeCounter = 10; Obj.lifetime = 9; //remove net next frame
-                    Functions_Pool.Release(Obj);
+                    Functions_Pool.Release(Obj); //release the net
                 }
                 //if sword projectile is brand new, spawn hit particle
                 else if (Obj.type == ObjType.ProjectileSword)
@@ -273,9 +264,7 @@ namespace DungeonRun
                 {   //belt move actors (on ground)
                     if (Actor.compMove.grounded)
                     {   //halt actor movement based on certain states
-                        if (Actor.state == ActorState.Attack
-                            || Actor.state == ActorState.Reward
-                            || Actor.state == ActorState.Use)
+                        if (Actor.state == ActorState.Reward)
                         { Functions_Movement.StopMovement(Actor.compMove); }
                         else { Functions_RoomObject.ConveyorBeltPush(Actor.compMove, Obj); }
                     }
@@ -300,6 +289,12 @@ namespace DungeonRun
                 {   //actors (on ground) fall into pits
                     if (Actor.compMove.grounded)
                     {
+                        if(Obj.lifetime == 100)
+                        {   //Pit was created THIS frame, earlier from an interaction with hero
+                            //so for this frame, ignore this interaction with what is likely the hero
+                            Obj.lifetime = 0;
+                            return;
+                        }
 
                         #region Prevent Hero's Pet from falling into pit
 
@@ -512,17 +507,6 @@ namespace DungeonRun
                     #endregion
 
 
-                    #region Rock Debris
-
-                    else if (Object.type == ObjType.ProjectileDebrisRock)
-                    {   //revert to previous position (treat as a blocking interaction)
-                        //Entity.compMove.newPosition.X = Entity.compMove.position.X;
-                        //Entity.compMove.newPosition.Y = Entity.compMove.position.Y;
-                    }
-
-                    #endregion
-
-
                     #region Dropped Pot
 
                     else if (Object.type == ObjType.Pot)
@@ -561,6 +545,7 @@ namespace DungeonRun
 
 
             //object.type checks
+
             #region ConveyorBelts
 
             if (Object.type == ObjType.ConveyorBeltOn)
@@ -585,6 +570,7 @@ namespace DungeonRun
 
 
             //roomObj.type checks
+
             #region FloorSpikes
 
             if (RoomObj.type == ObjType.SpikesFloorOn)
@@ -631,10 +617,8 @@ namespace DungeonRun
             else if (RoomObj.type == ObjType.Bumper)
             {
                 //specific projectiles cannot be bounced off bumper
-                if (Object.type == ObjType.ProjectileDebrisRock
-                    || Object.type == ObjType.ProjectileExplosion
+                if (Object.type == ObjType.ProjectileExplosion
                     || Object.type == ObjType.ProjectileNet
-                    || Object.type == ObjType.ProjectileShadowSm
                     || Object.type == ObjType.ProjectileSword
                     )
                 { return; }

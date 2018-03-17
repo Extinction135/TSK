@@ -31,8 +31,13 @@ namespace DungeonRun
             Projectile pro = Functions_Pool.GetProjectile();
             //set the projectile's caster reference
             pro.caster = Caster;
-            //set the projectiles direction to a cardinal one
-            Dir = Functions_Direction.GetCardinalDirection(Dir);
+            //determine the direction the projectile should inherit
+            if (Type == ObjType.ProjectileBomb) { }
+            //do nothing, we want to be able to slide bombs diagonally
+            else
+            {   //set the projectiles direction to a cardinal one
+                Dir = Functions_Direction.GetCardinalDirection(Dir);
+            }
             pro.direction = Dir;
             pro.compMove.direction = Dir;
 
@@ -133,39 +138,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Bombs
-
-            else if (Pro.type == ObjType.ProjectileBomb)
-            {   //prevent caster from overlapping with projectile
-                //step 1: set minimum safe distance from caster (offset)
-                if (Pro.direction == Direction.Down) { offset.Y = +6; offset.Y = 0; }
-                else if (Pro.direction == Direction.Up) { offset.Y = 0; offset.Y = 0; }
-                else if (Pro.direction == Direction.Right) { offset.X = +4; offset.Y = +2; }
-                else if (Pro.direction == Direction.Left) { offset.X = -4; offset.Y = +2; }
-                //step 2: apply offset to prevent projectile overlapping with caster, using direction
-                if (Pro.direction == Direction.Down)
-                {   //apply Y offset
-                    if (Pro.compMove.newPosition.Y < Pro.caster.newPosition.Y + offset.Y)
-                    { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
-                }
-                else if (Pro.direction == Direction.Up)
-                {   //apply Y offset
-                    if (Pro.compMove.newPosition.Y > Pro.caster.newPosition.Y + offset.Y)
-                    { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
-                }
-                else if (Pro.direction == Direction.Left)
-                {   //apply X offset
-                    if (Pro.compMove.newPosition.X > Pro.caster.newPosition.X + offset.X)
-                    { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
-                }
-                else if (Pro.direction == Direction.Right)
-                {   //apply X offset
-                    if (Pro.compMove.newPosition.X < Pro.caster.newPosition.X + offset.X)
-                    { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
-                }
-            }
-
-            #endregion
+            
 
 
 

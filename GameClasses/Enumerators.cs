@@ -104,14 +104,9 @@ namespace DungeonRun
         VendorItems, VendorPotions, VendorMagic, VendorWeapons,
         VendorArmor, VendorEquipment, VendorPets, VendorStory,
 
-
-
         //Pickups - collide with hero
         PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
         
-
-
-
 
 
         //Projectiles - items
@@ -123,17 +118,9 @@ namespace DungeonRun
         ProjectileNet,
         //Projectiles - object
         ProjectileExplosion,
-
         ProjectileSpikeBlock, //this should probably be a roomObj
-        ProjectileDebrisRock, //this should be a particle
         ProjectileExplodingBarrel, //acceptable
-        ProjectileShadowSm, //we'll have a whole object pool shadow system soon..
-        
-
-
-
-
-
+ 
 
 
         //Particles - small
@@ -141,7 +128,7 @@ namespace DungeonRun
         //Particles - map
         ParticleMapFlag, ParticleMapWave, ParticleMapCampfire,
         //Particles - normal size
-        ParticleExplosion, ParticleAttention, ParticleFire, ParticleSplash,
+        ParticleExplosion, ParticleAttention, ParticleFire, ParticleSplash, ParticleDebris,
         ParticleBow,
         ParticleBottleEmpty, ParticleBottleHealth, ParticleBottleMagic, ParticleBottleCombo,
         ParticleBottleFairy, ParticleBottleBlob,

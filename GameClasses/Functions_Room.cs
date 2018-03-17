@@ -456,12 +456,15 @@ namespace DungeonRun
                             if (objA != objB)
                             {
                                 removeObjB = false;
+
                                 //these are roomObjects we remove, if they overlap ANY other roomObject
                                 if (objB.group == ObjGroup.Wall)
                                 {
                                     removeObjB = true;
                                     //keep these walls
                                     if (objB.type == ObjType.WallPillar) { removeObjB = false; }
+                                    //keep walls if these objs overlap them
+                                    if (objA.type == ObjType.PitTrap) { removeObjB = false; }
                                 }
                                 else if (objB.type == ObjType.FloorDebrisBlood)
                                 {
@@ -470,6 +473,7 @@ namespace DungeonRun
                                     if (objA.type == ObjType.ConveyorBeltOn) { removeObjB = false; }
                                     else if (objA.type == ObjType.ConveyorBeltOff) { removeObjB = false; }
                                 }
+
                                 if (removeObjB)
                                 {   //check that objA and objB actually overlap
                                     if (objA.compCollision.rec.Intersects(objB.compCollision.rec))
@@ -478,6 +482,7 @@ namespace DungeonRun
                             }
                         }
                     }
+
                 }
             }
 

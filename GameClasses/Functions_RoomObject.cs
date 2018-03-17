@@ -257,9 +257,9 @@ namespace DungeonRun
                 ObjType.ParticleAttention,
                 RoomObj.compSprite.position.X,
                 RoomObj.compSprite.position.Y);
-            //Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
-            //Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
-            //Functions_Particle.ScatterRockDebris(RoomObj.compSprite.position, true);
+            Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
+            Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
+            Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
             Assets.Play(Assets.sfxShatter);
             //handle parameter values
             if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
@@ -369,7 +369,6 @@ namespace DungeonRun
             Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
         }
 
-
         public static void UseFairy(GameObject Fairy)
         {
             Pool.hero.health = PlayerData.current.heartsTotal; //effect
@@ -378,12 +377,6 @@ namespace DungeonRun
             if (Fairy != null) //end fairys life
             { Fairy.lifeCounter = 2; Fairy.lifetime = 1; }
         }
-
-
-
-
-
-
 
         public static void AlignRoomObjs()
         {   //align sprite + collision comps to move comp of all active objs
