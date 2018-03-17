@@ -29,16 +29,17 @@ namespace DungeonRun
 
             if (Actor == Pool.hero)
             {
-
-
-                //check to see if we can bail, using empty bottle type check
-                if (Type == MenuItemType.BottleEmpty)
-                {   //bail, with error sound
+                //check to see if we can bail, using unknown / empty bottle
+                if (Type == MenuItemType.Unknown) //silently fail
+                { Actor.state = ActorState.Idle; return; }
+                else if(Type == MenuItemType.BottleEmpty)
+                {   //fail, with an error sound
+                    Actor.state = ActorState.Idle;
                     Assets.Play(Assets.sfxError);
                     return;
                 }
 
-                //check bottles A
+                //check bottle A
                 if (PlayerData.current.currentItem == HerosCurrentItem.BottleA)
                 {
                     if (Functions_Bottle.UseBottle(PlayerData.current.bottleA))
@@ -50,31 +51,29 @@ namespace DungeonRun
                     }
                 }
 
-
-
-
-
-
-
-                /*
-
-                else if (PlayerData.current.currentItem == HerosCurrentItem.BottleB) 
+                //check bottle B
+                else if (PlayerData.current.currentItem == HerosCurrentItem.BottleB)
                 {
-                    Functions_Bottle.UseBottle(PlayerData.current.bottleB);
-                    PlayerData.current.bottleB = BottleContent.Empty;
+                    if (Functions_Bottle.UseBottle(PlayerData.current.bottleB))
+                    {   //reward hero, empty bottle & clear hero's item
+                        Functions_Actor.SetRewardState(Pool.hero);
+                        PlayerData.current.bottleB = BottleContent.Empty;
+                        Pool.hero.item = MenuItemType.Unknown;
+                        Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
+                    }
                 }
 
+                //check bottle C
                 else if (PlayerData.current.currentItem == HerosCurrentItem.BottleC)
                 {
-                    Functions_Bottle.UseBottle(PlayerData.current.bottleC);
-                    PlayerData.current.bottleC = BottleContent.Empty;
+                    if (Functions_Bottle.UseBottle(PlayerData.current.bottleC))
+                    {   //reward hero, empty bottle & clear hero's item
+                        Functions_Actor.SetRewardState(Pool.hero);
+                        PlayerData.current.bottleC = BottleContent.Empty;
+                        Pool.hero.item = MenuItemType.Unknown;
+                        Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
+                    }
                 }
-
-                */
-
-
-
-
             }
 
             #endregion

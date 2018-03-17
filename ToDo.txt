@@ -58,18 +58,14 @@ explosive barrel puzzels
 
 
 
-Fix Bottle Related Bugs - Part 1
+Fix Bottle Related Bugs - Part 2
 
-empty bottles can still be 'used', in the sense that the hero
-creates a reward bottle particle over his head, and then he
-ends his statelock and continues on, within a few frames.
-this looks and feels very wrong.
+can we purchase potions properly? yes.
+can we use bottle A properly? yes.
+extend this functionality to bottle B and C.
 
-instead, the hero shouldn't change state at all (when an empty
-bottle is selected). he should remain idle (or doing whatever)
-and the error sound should simply play. that's it.
-
-updated codebase with bug fix, playtested, working.
+playtested, all bottles working properly now,
+with respect to potions being bought and used.
 
 
 
@@ -77,21 +73,7 @@ updated codebase with bug fix, playtested, working.
 
 
 
-the bottle isn't being 'used' properly, it's never emptied..
-what is the process currently? assuming the selected obj is a bottle,
 
-
-level screen maps input to hero.compInput
-user presses Y button and then hero.compInput.use is set to true.
-then we map input to actor state via Input.SetInputState().
-then actor state is mapped to actual methods via Actor.Update().
-and this is where the UseItem() method is called from.
-
-
-
-bug A: hero can still use an empty bottle.
-the empty bottle dissappears from the world UI once used,
-but the hero still spawns the bottle particle, and sets into reward state for a frame
 
 
 

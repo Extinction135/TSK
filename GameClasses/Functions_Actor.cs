@@ -113,7 +113,7 @@ namespace DungeonRun
         }
 
         public static void SetRewardState(Actor Actor)
-        {   //reward state for hero is set using this method
+        {   
             Actor.state = ActorState.Reward;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
