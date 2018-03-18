@@ -327,31 +327,11 @@ namespace DungeonRun
 
                 #region Armor
 
-                else if (Item.type == MenuItemType.ArmorChest)
-                {
-                    if (!PlayerData.current.armorChest)
-                    {
-                        PlayerData.current.armorChest = true;
-                        Pool.hero.armor = Item.type;
-                        CompleteSale(Item);
-                    }
-                    else { DialogAlreadyPurchased(); }
-                }
                 else if (Item.type == MenuItemType.ArmorCape)
                 {
                     if (!PlayerData.current.armorCape)
                     {
                         PlayerData.current.armorCape = true;
-                        Pool.hero.armor = Item.type;
-                        CompleteSale(Item);
-                    }
-                    else { DialogAlreadyPurchased(); }
-                }
-                else if (Item.type == MenuItemType.ArmorRobe)
-                {
-                    if (!PlayerData.current.armorRobe)
-                    {
-                        PlayerData.current.armorRobe = true;
                         Pool.hero.armor = Item.type;
                         CompleteSale(Item);
                     }

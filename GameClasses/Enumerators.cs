@@ -147,17 +147,39 @@ namespace DungeonRun
         OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls, OptionsGameCtrls,
         OptionsSaveGame, OptionsHelpInfo,
 
-        ItemHeart, ItemBomb, ItemBomb3Pack, ItemArrowPack,
+        ItemHeart,
+        ItemBomb3Pack,
+        ItemArrowPack,
+
         ItemBoomerang,
-        
-        BottleEmpty, BottleHealth, BottleMagic, BottleCombo,
-        BottleFairy, BottleBlob,
+        ItemBomb,
+
+        BottleEmpty,
+        BottleHealth,
+        BottleMagic,
+        BottleCombo,
+        BottleFairy,
+        BottleBlob,
         
         MagicFireball,
-        WeaponSword, WeaponBow, WeaponNet, //WeaponStaff, //WeaponAxe
-        ArmorCloth, ArmorChest, ArmorCape, ArmorRobe, //Armor5,
-        EquipmentRing, EquipmentPearl, EquipmentNecklace, EquipmentGlove, EquipmentPin,
-        PetStinkyDog, PetChicken
+
+        WeaponSword,
+        WeaponBow,
+        WeaponNet, 
+        //WeaponStaff, 
+        //WeaponAxe
+
+        ArmorCloth,
+        ArmorCape,
+
+        EquipmentRing,
+        EquipmentPearl,
+        EquipmentNecklace,
+        EquipmentGlove,
+        EquipmentPin,
+
+        PetStinkyDog,
+        PetChicken
     }
 
     public enum SpeakerType

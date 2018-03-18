@@ -77,9 +77,7 @@ namespace DungeonRun
             //reset the menuItems
             for (i = 0; i < menuItems.Count; i++)
             { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[i]); }
-
             bombsDisplay.visible = true; //bomb amount is always displayed
-            arrowsDisplay.visible = true; //arrow amount is displayed if hero has bow
             //set the inventory widget's menuItems based on saveData booleans
             SetInventoryMenuItems();
         }
@@ -164,6 +162,7 @@ namespace DungeonRun
                 Functions_MenuItem.SetType(MenuItemType.WeaponBow, menuItems[22]);
                 Functions_Component.Align(arrowsDisplay, menuItems[22].compSprite);
                 Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
+                arrowsDisplay.visible = PlayerData.current.weaponBow; //hero has a bow, show arrow count
             }
             //23 - hammer
             //24 - axe
@@ -186,7 +185,8 @@ namespace DungeonRun
             //34 - pendant
 
             //35 - tattered shawl
-            Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[35]);
+            if (PlayerData.current.armorCape)
+            { Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[35]); }
             //36 - ?
             //37 - ?
             //38 - ?

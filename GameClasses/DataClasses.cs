@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -776,11 +776,11 @@ namespace DungeonRun
         public byte arrowsCurrent = 10; //testing
         public byte arrowsMax = 99;
 
-        //the hero's last selected / current item
-        public HerosCurrentItem currentItem = HerosCurrentItem.None;
-
 
         #region Items
+
+        //the hero's last selected / current item
+        public HerosCurrentItem currentItem = HerosCurrentItem.None;
 
         //non-magical items
         public Boolean itemBoomerang = false;
@@ -799,7 +799,7 @@ namespace DungeonRun
         #region Weapon
 
         public byte currentWeapon = 0;
-        //0=sword, 1=bow, 2=net, 3=???, 4=???
+        //0=sword, 1=bow, 2=net
         public Boolean weaponBow = false;
         public Boolean weaponNet = false;
 
@@ -808,11 +808,8 @@ namespace DungeonRun
 
         #region Armor
 
-        public byte currentArmor = 0;
-        //0=tunic, 1=chest, 2=cape, 3=robe, 4=???
-        public Boolean armorChest = false;
+        public byte currentArmor = 0; //0=tunic, 1=cape
         public Boolean armorCape = false;
-        public Boolean armorRobe = false;
 
         #endregion
 

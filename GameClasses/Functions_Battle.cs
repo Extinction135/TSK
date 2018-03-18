@@ -34,9 +34,6 @@ namespace DungeonRun
             {   //arrows deal 1 damage, push 4, and die
                 damage = 1; force = 4.0f; direction = Obj.direction;
                 Obj.lifeCounter = Obj.lifetime;
-                //check to see if damage should be modified
-                if (Actor.armor == MenuItemType.ArmorChest)
-                { damage = 0; Assets.Play(Assets.sfxTapMetallic); return; }
             }
             else if (Obj.type == ObjType.ProjectileBomb)
             {   //bombs don't push or hurt actors
@@ -51,8 +48,6 @@ namespace DungeonRun
             else if (Obj.type == ObjType.ProjectileExplosion)
             {   //explosions deal 2 damage, push 10
                 damage = 2; force = 10.0f; direction = Obj.direction;
-                //check to see if damage should be modified
-                if (Actor.armor == MenuItemType.ArmorChest) { damage = 1; }
             }
             else if (Obj.type == ObjType.ProjectileSpikeBlock)
             {   //hard push actor away from spikes

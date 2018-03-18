@@ -163,70 +163,6 @@ namespace DungeonRun
             }
         }
 
-        public static void CreateVendor(ObjType VendorType, Vector2 Position)
-        {
-            //place vendor
-            SpawnRoomObj(VendorType, Position.X, Position.Y, Direction.Down);
-            //place stone table
-            SpawnRoomObj(ObjType.TableStone, Position.X + 16, Position.Y, Direction.Down);
-            //spawn vendor advertisement
-            objRef = SpawnRoomObj(ObjType.VendorAdvertisement,
-                Position.X + 16, Position.Y - 6, Direction.Down);
-            objRef.compAnim.currentAnimation = new List<Byte4>();
-
-
-            #region Display the vendor's wares for sale
-
-            if (VendorType == ObjType.VendorItems)
-            {   //add all the items from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //heart
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0)); //bomb
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 7, 0, 0)); //bombs
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 8, 0, 0)); //arrows
-            }
-            else if (VendorType == ObjType.VendorPotions)
-            {   //add all the potions from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(6, 6, 0, 0)); //health
-                objRef.compAnim.currentAnimation.Add(new Byte4(6, 7, 0, 0)); //magic
-                objRef.compAnim.currentAnimation.Add(new Byte4(6, 8, 0, 0)); //combo
-            }
-            else if (VendorType == ObjType.VendorMagic)
-            {   //add all the magic medallions from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(7, 5, 0, 0)); //fireball
-            }
-            else if (VendorType == ObjType.VendorWeapons)
-            {   //add all the weapons from the main sheet
-                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 5, 0, 0)); //sword
-                objRef.compAnim.currentAnimation.Add(new Byte4(8, 6, 0, 0)); //bow
-                objRef.compAnim.currentAnimation.Add(new Byte4(8, 7, 0, 0)); //net
-                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 8, 0, 0)); //axe
-                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 9, 0, 0)); //net
-            }
-            else if (VendorType == ObjType.VendorArmor)
-            {   //add all the armor from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(9, 5, 0, 0)); //shirt
-                objRef.compAnim.currentAnimation.Add(new Byte4(9, 6, 0, 0)); //plate mail
-                objRef.compAnim.currentAnimation.Add(new Byte4(9, 7, 0, 0)); //cape
-                objRef.compAnim.currentAnimation.Add(new Byte4(9, 8, 0, 0)); //robe
-            }
-            else if (VendorType == ObjType.VendorEquipment)
-            {   //add all the equipment from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(10, 5, 0, 0)); //ring
-                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 6, 0, 0)); //pearl
-                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 7, 0, 0)); //necklace
-                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 8, 0, 0)); //glove
-                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 9, 0, 0)); //pin
-            }
-            else if (VendorType == ObjType.VendorPets)
-            {   //add all the pets from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(11, 5, 0, 0)); //stinky dog
-                objRef.compAnim.currentAnimation.Add(new Byte4(11, 6, 0, 0)); //chicken
-            }
-
-            #endregion
-
-        }
-
         public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
         {   //blow up door, change to doorOpen
             DestroyObject(Door, false, false);
@@ -396,6 +332,72 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+
+        public static void CreateVendor(ObjType VendorType, Vector2 Position)
+        {
+            //place vendor
+            SpawnRoomObj(VendorType, Position.X, Position.Y, Direction.Down);
+            //place stone table
+            SpawnRoomObj(ObjType.TableStone, Position.X + 16, Position.Y, Direction.Down);
+            //spawn vendor advertisement
+            objRef = SpawnRoomObj(ObjType.VendorAdvertisement,
+                Position.X + 16, Position.Y - 6, Direction.Down);
+            objRef.compAnim.currentAnimation = new List<Byte4>();
+
+
+            #region Display the vendor's wares for sale
+
+            if (VendorType == ObjType.VendorItems)
+            {   //add all the items from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //heart
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0)); //bomb
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 7, 0, 0)); //bombs
+                objRef.compAnim.currentAnimation.Add(new Byte4(5, 8, 0, 0)); //arrows
+            }
+            else if (VendorType == ObjType.VendorPotions)
+            {   //add all the potions from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(6, 6, 0, 0)); //health
+                objRef.compAnim.currentAnimation.Add(new Byte4(6, 7, 0, 0)); //magic
+                objRef.compAnim.currentAnimation.Add(new Byte4(6, 8, 0, 0)); //combo
+            }
+            else if (VendorType == ObjType.VendorMagic)
+            {   //add all the magic medallions from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(7, 5, 0, 0)); //fireball
+            }
+            else if (VendorType == ObjType.VendorWeapons)
+            {   //add all the weapons from the main sheet
+                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 5, 0, 0)); //sword
+                objRef.compAnim.currentAnimation.Add(new Byte4(8, 6, 0, 0)); //bow
+                objRef.compAnim.currentAnimation.Add(new Byte4(8, 7, 0, 0)); //net
+                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 8, 0, 0)); //axe
+                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 9, 0, 0)); //net
+            }
+            else if (VendorType == ObjType.VendorArmor)
+            {   //add all the armor from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(9, 7, 0, 0)); //cape / tattered shawl
+            }
+            else if (VendorType == ObjType.VendorEquipment)
+            {   //add all the equipment from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(10, 5, 0, 0)); //ring
+                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 6, 0, 0)); //pearl
+                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 7, 0, 0)); //necklace
+                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 8, 0, 0)); //glove
+                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 9, 0, 0)); //pin
+            }
+            else if (VendorType == ObjType.VendorPets)
+            {   //add all the pets from the main sheet
+                objRef.compAnim.currentAnimation.Add(new Byte4(11, 5, 0, 0)); //stinky dog
+                objRef.compAnim.currentAnimation.Add(new Byte4(11, 6, 0, 0)); //chicken
+            }
+
+            #endregion
+
+        }
+
+
 
 
         //decorates a door on left/right or top/bottom

@@ -197,12 +197,11 @@ namespace DungeonRun
             output += "\n  has magicFireball: " + PlayerData.current.magicFireball;
 
             output += "\n  -- Weapons --"; ;
-            output += "\n  has weaponBow: " + PlayerData.current.weaponBow;
+            output += "\n  has Bow: " + PlayerData.current.weaponBow;
+            output += "\n  has Net: " + PlayerData.current.weaponNet;
 
             output += "\n  -- Armor --"; ;
-            output += "\n  has armorChest: " + PlayerData.current.armorChest;
             output += "\n  has armorCape: " + PlayerData.current.armorCape;
-            output += "\n  has armorRobe: " + PlayerData.current.armorRobe;
 
             output += "\n  -- Equipment --"; ;
             output += "\n  has equipmentRing: " + PlayerData.current.equipmentRing;

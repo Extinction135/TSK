@@ -236,31 +236,17 @@ namespace DungeonRun
 
             else if (Type == MenuItemType.ArmorCloth)
             {
-                MenuItem.name = "Hero's Tunic";
-                MenuItem.description = "Provides protection \nagainst magical damage.";
+                MenuItem.name = "Old Tunic";
+                MenuItem.description = "A familiar tunic \nworn from years of wear.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 5, 0, 0) };
                 MenuItem.price = 0;
             }
-            else if (Type == MenuItemType.ArmorChest)
-            {
-                MenuItem.name = "Knight's Armor";
-                MenuItem.description = "Prevents some damage, \nbut slows movement.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 6, 0, 0) };
-                MenuItem.price = 80;
-            }
             else if (Type == MenuItemType.ArmorCape)
             {
-                MenuItem.name = "Rogue's Cape";
-                MenuItem.description = "Increases movement \nand dash speed.";
+                MenuItem.name = "Tattered Shawl";
+                MenuItem.description = "Dirty and Pitiful.\nIncreases speed.";
                 MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 7, 0, 0) };
                 MenuItem.price = 80;
-            }
-            else if (Type == MenuItemType.ArmorRobe)
-            {
-                MenuItem.name = "Mage's Robe";
-                MenuItem.description = "Increases maximum \namount of magic by 4.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(9, 8, 0, 0) };
-                MenuItem.price = 60;
             }
 
             #endregion

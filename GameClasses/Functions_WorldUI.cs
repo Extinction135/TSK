@@ -64,10 +64,6 @@ namespace DungeonRun
             //get the number of unlocked magic meter pieces
             PlayerData.current.magicTotal = PlayerData.current.magicUnlocked;
 
-            //add the robe effect to the magicTotal value
-            if (Pool.hero.armor == MenuItemType.ArmorRobe)
-            { PlayerData.current.magicTotal += 4; }
-
             //limit the magicTotal amount to 9
             if (PlayerData.current.magicTotal > 9)
             { PlayerData.current.magicTotal = 9; }

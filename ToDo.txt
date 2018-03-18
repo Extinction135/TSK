@@ -58,44 +58,19 @@ explosive barrel puzzels
 
 
 
+Update Armor
+
+removed all armor from game except for Cloth and Cape armor.
+changed in game name and description for cloth and cape.
+removed saveData fields for Robe and Armor.
+playtested.
 
 
 
 
 
 
-
-
-Refresh UWP Project
-
-deleted WidgetStats.cs file from shared classes folder.
-linked WidgetQuestItems.cs into UWP project.
-updated all the source PNG spriteSheets to current.
-playtested, working, matched to Dx project now.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-hero should start with bow & arrows already unlocked
-
-
-
-
-
-
-
-there are only two kinds of armor: worn shirt, and tattered shawl
-remove the other kinds of armor from the game, and from the main sheet
+remove MenuItemType.CrystalFilled and CrystalEmpty.
 
 
 

@@ -162,9 +162,7 @@ namespace DungeonRun
             }
             else if (VendorType == SpeakerType.VendorArmor)
             {
-                Functions_MenuItem.SetType(MenuItemType.ArmorChest, menuItems[0]);
-                Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[1]);
-                Functions_MenuItem.SetType(MenuItemType.ArmorRobe, menuItems[2]);
+                Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[0]);
             }
             else if (VendorType == SpeakerType.VendorEquipment)
             {

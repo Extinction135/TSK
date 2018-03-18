@@ -338,10 +338,8 @@ namespace DungeonRun
             Functions_ActorAnimationList.SetAnimationDirection(Actor);
 
             //alter actor's speed based on loadout
-            //chest armor reduces movement
-            if (Actor.armor == MenuItemType.ArmorChest) { Actor.compMove.speed *= 0.88f; }
             //cape armor increases movement
-            else if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
+            if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
         }
 
     }

@@ -561,7 +561,6 @@ namespace DungeonRun
             { Pool.hero.item = MenuItemType.ItemBomb; }
             else if (PlayerData.current.currentItem == HerosCurrentItem.Boomerang)
             { Pool.hero.item = MenuItemType.ItemBoomerang; }
-
             //bottle items
             else if (PlayerData.current.currentItem == HerosCurrentItem.BottleA)
             { Functions_Bottle.LoadBottle(PlayerData.current.bottleA); }
@@ -569,10 +568,11 @@ namespace DungeonRun
             { Functions_Bottle.LoadBottle(PlayerData.current.bottleB); }
             else if (PlayerData.current.currentItem == HerosCurrentItem.BottleC)
             { Functions_Bottle.LoadBottle(PlayerData.current.bottleC); }
-
             //magic items
             else if (PlayerData.current.currentItem == HerosCurrentItem.Fireball)
             { Pool.hero.item = MenuItemType.MagicFireball; }
+
+            else { Pool.hero.item = MenuItemType.Unknown; }
 
             #endregion
 
@@ -584,22 +584,12 @@ namespace DungeonRun
             { Pool.hero.weapon = MenuItemType.WeaponBow; }
             else if (PlayerData.current.currentWeapon == 2)
             { Pool.hero.weapon = MenuItemType.WeaponNet; }
-            else if (PlayerData.current.currentWeapon == 3)
-            { Pool.hero.weapon = MenuItemType.Unknown; }
-            else if (PlayerData.current.currentWeapon == 4)
-            { Pool.hero.weapon = MenuItemType.Unknown; }
+            else { Pool.hero.weapon = MenuItemType.Unknown; }
 
             //set hero's armor
-            if (PlayerData.current.currentArmor == 0)
-            { Pool.hero.armor = MenuItemType.ArmorCloth; }
-            else if (PlayerData.current.currentArmor == 1)
-            { Pool.hero.armor = MenuItemType.ArmorChest; }
-            else if (PlayerData.current.currentArmor == 2)
+            if (PlayerData.current.currentArmor == 1)
             { Pool.hero.armor = MenuItemType.ArmorCape; }
-            else if (PlayerData.current.currentArmor == 3)
-            { Pool.hero.armor = MenuItemType.ArmorRobe; }
-            else if (PlayerData.current.currentArmor == 4)
-            { Pool.hero.armor = MenuItemType.Unknown; }
+            else { Pool.hero.armor = MenuItemType.ArmorCloth; }
 
             //set hero's equipment
             if (PlayerData.current.currentEquipment == 0)
@@ -612,6 +602,7 @@ namespace DungeonRun
             { Pool.hero.equipment = MenuItemType.EquipmentGlove; }
             else if (PlayerData.current.currentEquipment == 4)
             { Pool.hero.equipment = MenuItemType.EquipmentPin; }
+            else { Pool.hero.equipment = MenuItemType.Unknown; }
         }
 
     }

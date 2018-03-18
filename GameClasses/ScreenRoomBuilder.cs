@@ -88,27 +88,20 @@ namespace DungeonRun
         public void SetEditorLoadout()
         {   //unlock most/all items
             PlayerData.current = new SaveData();
-
             PlayerData.current.heartsTotal = 9;
             Pool.hero.health = 3;
             PlayerData.current.bombsCurrent = 99;
             PlayerData.current.arrowsCurrent = 99;
-
             //set items
             PlayerData.current.bottleA = BottleContent.Health;
             PlayerData.current.bottleB = BottleContent.Magic;
             PlayerData.current.bottleC = BottleContent.Combo;
             PlayerData.current.magicFireball = true;
-
             //set weapons
             PlayerData.current.weaponBow = true;
             PlayerData.current.weaponNet = true;
-
             //set armor
-            PlayerData.current.armorChest = true;
             PlayerData.current.armorCape = true;
-            PlayerData.current.armorRobe = true;
-
             //set equipment
             PlayerData.current.equipmentRing = true;
         }
