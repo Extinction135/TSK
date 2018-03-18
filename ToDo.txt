@@ -56,48 +56,13 @@ explosive barrel puzzels
 
 
 
-Cleanup & Improve
 
-removed projectile small shadow from game.
-this was done in prep for dynamic shadow system, coming soonish.
 
-removed code referencing ProjectileRockDebris from Interaction routines.
-removed ProjectileDebrisRock from ObjType enum.
-added ParticleDebris to ObjType enum.
-added def for ParticleDebris to GameObjAnimList and Obj.SetType().
 
-improved Projectile.Spawn() to allow hero to pass diagonal directions
-to a bomb projectile, allowing the player to slide bombs in 8 directions.
+Art++
 
-ScatterDebris++
-
-Scatter Debris Method needs to be rewritten
-DebrisRocks need to be implemented via Particle functions
-Then when we destroy pots, statues, barrels, secret doors, etc..
-we'll call the particle.spawn(debris)
-reimplemented ScatterRockDebris() as Particle.ScatterDebris().
-added call to ScatterDebris() from DestroyObject().
-
-playtested, removed bomb projectile behavior because it was non-sensical
-in practice - the bomb would keep pace with a dashing hero, even if the 
-hero wasn't near it. what? lol. fixed now.
-
-reduced the lifetime of ParticleDebris, changed their spread, tested.
-modified how Actors behave on ConveyorBelts, they can now attack
-and use items while moving, which is very fun and fast paced.
-
-added debris scatter when hero collapses pitTraps on the ground.
-lots of playtesting.
-
-made collision recs for pitTraps larger, so hero can trigger them easier.
-however, this caused a problem with the room cleaning routines, which
-found that pitTraps were overlapping some walls, so it decide to remove 
-the walls. lol. we'll just need a check in there. modified CleanupRoom(),
-to handle pitTrap overlaps with walls. we still want CleanupRoom() to 
-remove FloorDebrisBlood that overlaps a pitTrap, so it's a specific check
-instead of a wider, more general check. also added in a check to prevent
-a pitTrap from pulling in the hero on the same frame it becomes an active Pit.
-LOTS of playtesting, working pretty well.
+Created mockup of new inventory screen, version7.
+Lots of making / organizing art files & sprites. Like 4 hours.
 
 
 
@@ -107,18 +72,6 @@ LOTS of playtesting, working pretty well.
 
 
 
-
-
-hero should slow down when he's attacking or using an object
-meaning, his friction should increase
-
-
-
-
-
-
-where were we creating a new room obj at recently?
-because we wrote out the full implementation when we should of using Functions_RoomObject.SpawnRoomObject()
 
 
 
@@ -128,8 +81,8 @@ however, we now need to model the bow as a projectile,
 beceause it needs to track to its caster, and rotate based on direction.
 
 
-
-
+hero should slow down when he's attacking or using an object
+meaning, his friction should increase
 
 
 SpikeBlock++
@@ -138,32 +91,6 @@ as a roomObj, it can interact with everything and move, so that's where it shoul
 the hitch is that we'll have to update alot of game file to use SpikeBlock instead of ProjectileSpikeBlock
 but that's something a few mins and a replace command can handle easily.
 projectile spikeBlock should really be a roomObj
-
-
-
-Picking Up Objects++
-picking up a pot puts hero into a carry state, but leaves the roomObj drawing on the sreen, but nonblocking
-hero doesn't display anything over his head
-setting the obj down doesn't move the roomObj, but instead makes it blocking again.
-
-
-
-
-
-
-
-
-
-
-
-
-
-complete a mockup of the current inventory full of the planned items / magic
-make sure we have enough rooom for all this awesomeness
-
-
-
-
 
 
 
@@ -189,6 +116,19 @@ we'll need to update the rotationValue for boomerang each animation frame
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 Damage Balancing
 arrows should do 2 damage - duh!
 bombs should do 2 damage too.
@@ -200,6 +140,12 @@ fireballs should hit for 3 damage.
 
 
 
+Picking Up Objects++
+picking up a pot puts hero into a carry state, but leaves the roomObj drawing on the sreen, but nonblocking
+hero doesn't display anything over his head
+setting the obj down doesn't move the roomObj, but instead makes it blocking again.
+we need to be altering ROOMOBJECTS only, we dont need to abstract it into a thrown / carrying obj
+if hero collides with a door, simply destroy the carrying obj reference
 
 all related to picking up/carrying/throwing/pushing/pulling
 {
