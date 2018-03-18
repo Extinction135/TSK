@@ -131,24 +131,16 @@ namespace DungeonRun
 
             #endregion
 
+            //place last collected quest item for all 3 games
+            //setup the last collected quest item
+            game1.lastStoryItem.compSprite.position.X = game1.menuItem.compSprite.position.X + 16 * 9 - 3;
+            game1.lastStoryItem.compSprite.position.Y = game1.menuItem.compSprite.position.Y;
 
-            #region Setup Games 1-3 Crystals
-            
-            for (i = 0; i < 6; i++)
-            {
-                game1.crystals.Add(new MenuItem());
-                game2.crystals.Add(new MenuItem());
-                game3.crystals.Add(new MenuItem());
-                Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, game1.crystals[i]);
-                Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, game2.crystals[i]);
-                Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, game3.crystals[i]);
-            }
-            PlaceCrystals(game1.crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 3));
-            PlaceCrystals(game2.crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 6));
-            PlaceCrystals(game3.crystals, new Vector2(window.background.rec.X + 16 * 8 + 4, window.background.rec.Y + 16 * 9));
+            game2.lastStoryItem.compSprite.position.X = game2.menuItem.compSprite.position.X + 16 * 9 - 3;
+            game2.lastStoryItem.compSprite.position.Y = game2.menuItem.compSprite.position.Y;
 
-            #endregion
-
+            game3.lastStoryItem.compSprite.position.X = game3.menuItem.compSprite.position.X + 16 * 9 - 3;
+            game3.lastStoryItem.compSprite.position.Y = game3.menuItem.compSprite.position.Y;
 
             PopulateDisplay(PlayerData.game1, game1);
             PopulateDisplay(PlayerData.game2, game2);
@@ -380,38 +372,8 @@ namespace DungeonRun
             ScreenManager.spriteBatch.End();
         }
 
-        
 
-        public void PlaceCrystals(List<MenuItem> Crystals, Vector2 Pos)
-        {
-            Crystals[0].compSprite.position = Pos;
-            Crystals[1].compSprite.position = Crystals[0].compSprite.position + new Vector2(11, 0);
-            Crystals[2].compSprite.position = Crystals[1].compSprite.position + new Vector2(11, 0);
-            Crystals[3].compSprite.position = Crystals[2].compSprite.position + new Vector2(11, 0);
-            Crystals[4].compSprite.position = Crystals[3].compSprite.position + new Vector2(11, 0);
-            Crystals[5].compSprite.position = Crystals[4].compSprite.position + new Vector2(11, 0);
-        }
 
-        public void SetCrystals(SaveData SaveData, List<MenuItem> Crystals)
-        {
-            if (SaveData.crystal1) { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, Crystals[0]); }
-            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, Crystals[0]); }
-
-            if (SaveData.crystal2) { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, Crystals[1]); }
-            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, Crystals[1]); }
-
-            if (SaveData.crystal3) { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, Crystals[2]); }
-            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, Crystals[2]); }
-
-            if (SaveData.crystal4) { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, Crystals[3]); }
-            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, Crystals[3]); }
-
-            if (SaveData.crystal5) { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, Crystals[4]); }
-            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, Crystals[4]); }
-
-            if (SaveData.crystal6) { Functions_MenuItem.SetType(MenuItemType.CrystalFilled, Crystals[5]); }
-            else { Functions_MenuItem.SetType(MenuItemType.CrystalEmpty, Crystals[5]); }
-        }
 
         public void PopulateDisplay(SaveData saveData, GameDisplayData displayData)
         {
@@ -449,8 +411,6 @@ namespace DungeonRun
             { displayData.hero.texture = Assets.heroSheet; }
             else if (saveData.actorType == ActorType.Blob)
             { displayData.hero.texture = Assets.blobSheet; }
-            //set the collected crystals
-            SetCrystals(saveData, displayData.crystals);
         }
 
     }

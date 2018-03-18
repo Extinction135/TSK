@@ -159,7 +159,7 @@ namespace DungeonRun
             Draw(Display.menuItem.compSprite);
             Draw(Display.hero);
             Draw(Display.timeDateText);
-            for (i = 0; i < 6; i++) { Draw(Display.crystals[i].compSprite); }
+            Draw(Display.lastStoryItem.compSprite);
         }
 
 

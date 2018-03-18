@@ -58,19 +58,21 @@ explosive barrel puzzels
 
 
 
-Update Armor
+Remove Crystals from Game
 
-removed all armor from game except for Cloth and Cape armor.
-changed in game name and description for cloth and cape.
-removed saveData fields for Robe and Armor.
-playtested.
+instead of crystals, we're going to use a variety of items to represent
+progression throughout the story, and side-quests, and hidden quests, etc..
+but first, we need to get rid of the crystals from previous game design.
+
+removed MenuItemType.CrystalFilled and CrystalEmpty.
+removed crystals from GameDisplay data, which is shown via the LoadSaveNew screen.
+changed GameDisplayData to show a questItem, which assuming current story,
+would be the last important story questItem hero collected, which is a simple
+way of managing story progression and is easy to display.
+playtested, working well.
 
 
 
-
-
-
-remove MenuItemType.CrystalFilled and CrystalEmpty.
 
 
 

@@ -439,24 +439,6 @@ namespace DungeonRun
             #endregion
 
 
-            #region Crystal menuItems
-
-            else if (Type == MenuItemType.CrystalFilled)
-            {
-                MenuItem.name = "Dungeon Crystal";
-                MenuItem.description = "Crystal awarded for\nbeating a dungeon.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 9, 0, 0) };
-            }
-            else if (Type == MenuItemType.CrystalEmpty)
-            {
-                MenuItem.name = "Dungeon Crystal";
-                MenuItem.description = "Crystal awarded for\nbeating a dungeon.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 8, 0, 0) };
-            }
-
-            #endregion
-
-
             else
             {   //if the type was unhandled, default to unknown
                 MenuItem.name = "Unknown";

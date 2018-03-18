@@ -206,14 +206,6 @@ namespace DungeonRun
             output += "\n  -- Equipment --"; ;
             output += "\n  has equipmentRing: " + PlayerData.current.equipmentRing;
 
-            output += "\n  -- Crystals --"; ;
-            output += "\n  1: " + PlayerData.current.crystal1;
-            output += "\n  2: " + PlayerData.current.crystal2;
-            output += "\n  3: " + PlayerData.current.crystal3;
-            output += "\n  4: " + PlayerData.current.crystal4;
-            output += "\n  5: " + PlayerData.current.crystal5;
-            output += "\n  6: " + PlayerData.current.crystal6;
-
             Debug.WriteLine(output);
         }
 

@@ -103,7 +103,6 @@ namespace DungeonRun
             }
             else if (Actor.type == ActorType.Boss)
             {
-                PlayerData.current.crystal1 = true; //flip crystal1
                 DungeonRecord.beatDungeon = true; //player has beat the dungeon
                 Functions_Level.CloseLevel(ExitAction.Summary);
                 Actor.compSprite.zOffset = -16; //sort to floor

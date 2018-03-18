@@ -745,7 +745,7 @@ namespace DungeonRun
         public ComponentText timeDateText = new ComponentText(
             Assets.font, "time:/ndate:", new Vector2(-100, 1000),
             Assets.colorScheme.textDark);
-        public List<MenuItem> crystals = new List<MenuItem>();
+        public MenuItem lastStoryItem = new MenuItem();
     }
 
 
@@ -830,14 +830,6 @@ namespace DungeonRun
         //player's pet
         public Boolean hasPet = false;
         public MenuItemType petType = MenuItemType.PetStinkyDog;
-
-        //crystal booleans
-        public Boolean crystal1 = false;
-        public Boolean crystal2 = false;
-        public Boolean crystal3 = false;
-        public Boolean crystal4 = false;
-        public Boolean crystal5 = false;
-        public Boolean crystal6 = false;
     }
 
     public class RoomXmlData

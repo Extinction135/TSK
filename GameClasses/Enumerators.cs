@@ -139,18 +139,22 @@ namespace DungeonRun
     public enum MenuItemType
     {
         Unknown,
-        InventoryGold, InventoryMap, InventoryKey,
-        StatsHealth, StatsMagic, StatsAgility, Stats4,
-        CrystalFilled, CrystalEmpty,
+
+        //loadout menuItems
+        InventoryGold,
+        InventoryMap,
+        InventoryKey,
 
         OptionsContinue, OptionsNewGame, OptionsLoadGame, OptionsQuitGame,
         OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls, OptionsGameCtrls,
         OptionsSaveGame, OptionsHelpInfo,
 
+        //vendor only menuItems
         ItemHeart,
         ItemBomb3Pack,
         ItemArrowPack,
 
+        //inventory / vendor menuItems
         ItemBoomerang,
         ItemBomb,
 
@@ -166,8 +170,6 @@ namespace DungeonRun
         WeaponSword,
         WeaponBow,
         WeaponNet, 
-        //WeaponStaff, 
-        //WeaponAxe
 
         ArmorCloth,
         ArmorCape,
