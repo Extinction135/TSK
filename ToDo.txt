@@ -65,17 +65,19 @@ explosive barrel puzzels
 
 
 
-Inventory Screen ++
 
-widened the inventory widget, added additional menuItems for
-more items, weapons, equipment - but removed the armor section.
-moved PlaceRow() into Functions_MenuItem. lots of work getting
-the inventory widget to display it's menuItem's properly.
-updated menuItem neighbors for InventoryScreen.
-added sprite for boomerang, appears in inventory now as item 0.
-updated the inventory to display items/weapons/equipment based
-on mockup, using menuItem.type checks where possible.
-playtested, working as expected.
+Refresh UWP Project
+
+deleted WidgetStats.cs file from shared classes folder.
+linked WidgetQuestItems.cs into UWP project.
+updated all the source PNG spriteSheets to current.
+playtested, working, matched to Dx project now.
+
+
+
+
+
+
 
 
 
