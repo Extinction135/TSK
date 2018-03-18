@@ -200,9 +200,6 @@
     <Compile Include="..\..\GameClasses\Widget.cs">
       <Link>Classes\Widget.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\WidgetCrystals.cs">
-      <Link>Classes\WidgetCrystals.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\WidgetDialog.cs">
       <Link>Classes\WidgetDialog.cs</Link>
     </Compile>
@@ -224,11 +221,11 @@
     <Compile Include="..\..\GameClasses\WidgetOptions.cs">
       <Link>Classes\WidgetOptions.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\WidgetQuestItems.cs">
+      <Link>Classes\WidgetQuestItems.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\WidgetRoomTools.cs">
       <Link>Classes\WidgetRoomTools.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\WidgetStats.cs">
-      <Link>Classes\WidgetStats.cs</Link>
     </Compile>
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />

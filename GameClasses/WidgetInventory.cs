@@ -66,12 +66,22 @@ namespace DungeonRun
             labels[0].position.Y = window.lines[2].position.Y + 1;
             labels[1].position.Y = window.lines[4].position.Y + 1;
             labels[2].position.Y = window.lines[6].position.Y + 1;
+
+            //place ALL the menuItems
+            //Functions_MenuItem.PlaceMenuItems(menuItems, 
+            //    X + 16 * 1, 
+            //    Y + 16 * 02, 
+            //    5);
+
             //place the menuItems
             PlaceRow(00, X + 16 * 1, Y + 16 * 02 + 0);
             PlaceRow(05, X + 16 * 1, Y + 16 * 03 + 8);
             PlaceRow(10, X + 16 * 1, Y + 16 * 06 + 8);
             PlaceRow(15, X + 16 * 1, Y + 16 * 09 + 8);
             PlaceRow(20, X + 16 * 1, Y + 16 * 12 + 8);
+
+
+
             //reset the menuItems
             for (i = 0; i < menuItems.Count; i++)
             { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[i]); }
@@ -104,6 +114,21 @@ namespace DungeonRun
                 if (arrowsDisplay.visible) { Functions_Draw.Draw(arrowsDisplay); }
             }
         }
+
+
+
+
+        public void PlaceRow(int index, int X, int Y)
+        {   //place the menuItem index at X, Y
+            menuItems[index].compSprite.position.X = X;
+            menuItems[index].compSprite.position.Y = Y;
+            //align the rest of the row
+            Functions_MenuItem.PlaceMenuItem(menuItems[index + 1], menuItems[index], 24);
+            Functions_MenuItem.PlaceMenuItem(menuItems[index + 2], menuItems[index + 1], 24);
+            Functions_MenuItem.PlaceMenuItem(menuItems[index + 3], menuItems[index + 2], 24);
+            Functions_MenuItem.PlaceMenuItem(menuItems[index + 4], menuItems[index + 3], 24);
+        }
+
 
 
 
@@ -190,17 +215,6 @@ namespace DungeonRun
 
             #endregion
 
-        }
-
-        public void PlaceRow(int index, int X, int Y)
-        {   //place the menuItem index at X, Y
-            menuItems[index].compSprite.position.X = X;
-            menuItems[index].compSprite.position.Y = Y;
-            //align the rest of the row
-            Functions_MenuItem.PlaceMenuItem(menuItems[index+1], menuItems[index], 24);
-            Functions_MenuItem.PlaceMenuItem(menuItems[index+2], menuItems[index+1], 24);
-            Functions_MenuItem.PlaceMenuItem(menuItems[index+3], menuItems[index+2], 24);
-            Functions_MenuItem.PlaceMenuItem(menuItems[index+4], menuItems[index+3], 24);
         }
 
     }

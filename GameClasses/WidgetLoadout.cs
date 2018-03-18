@@ -48,47 +48,13 @@ namespace DungeonRun
         {   //align this widgets component to Position + Size
             Functions_MenuWindow.ResetAndMove(window, X, Y, 
                 new Point(16 * 6 + 8, 16 * 5 + 8), "Loadout");
-
-
-            #region Place first row of menuItems
-
-            menuItems[0].compSprite.position.X = window.background.position.X + 16 * 1;
-            menuItems[0].compSprite.position.Y = window.background.position.Y + 16 * 2;
-
-            menuItems[1].compSprite.position.X = menuItems[0].compSprite.position.X + 24;
-            menuItems[1].compSprite.position.Y = menuItems[0].compSprite.position.Y;
-
-            menuItems[2].compSprite.position.X = menuItems[1].compSprite.position.X + 24;
-            menuItems[2].compSprite.position.Y = menuItems[0].compSprite.position.Y;
-
-            menuItems[3].compSprite.position.X = menuItems[2].compSprite.position.X + 24;
-            menuItems[3].compSprite.position.Y = menuItems[0].compSprite.position.Y;
-
-            #endregion
-
-
-            #region Place second row of menuItems
-
-            menuItems[4].compSprite.position.X = window.background.position.X + 16 * 1;
-            menuItems[4].compSprite.position.Y = window.background.position.Y + 16 * 3 + 8;
-
-            menuItems[5].compSprite.position.X = menuItems[4].compSprite.position.X + 24;
-            menuItems[5].compSprite.position.Y = menuItems[4].compSprite.position.Y;
-
-            menuItems[6].compSprite.position.X = menuItems[5].compSprite.position.X + 24;
-            menuItems[6].compSprite.position.Y = menuItems[4].compSprite.position.Y;
-
-            menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X + 24;
-            menuItems[7].compSprite.position.Y = menuItems[4].compSprite.position.Y;
-
-            #endregion
-
-
-            //set the menuItem's neighbors
-            Functions_MenuItem.SetNeighbors(menuItems, 4);
+            //place ALL the menuItems
+            Functions_MenuItem.PlaceMenuItems(menuItems,
+                window.background.position.X + 16 * 1,
+                window.background.position.Y + 16 * 2,
+                4); ;
 
             UpdateLoadout();
-
             //display the player's gold, place gold display with gold menuItem
             goldTracker = PlayerData.current.gold;
             Functions_Component.UpdateAmount(goldDisplay, goldTracker);

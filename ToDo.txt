@@ -57,17 +57,40 @@ explosive barrel puzzels
 
 
 
+Inventory Screen++
+
+match inventory screen to current mockup.
+
+completely removed crystals widget class from projects.
+created shared game class WidgetQuestItems.
+completely removed WidgetStats from projects.
+extended QI widget to match Inventory's height.
+added 3 rows of menuItems to QI widget.
+
+created Func_MenuItems.PlaceMenuItems(), which saves ALOT of
+code when place menuItems in a Widget, ala' QI widget.
+QI Widget and Loadout Widget both now use PlaceMenuItems(), 
+but InventoryWidget is a bit more complicated.. 
 
 
-Art++
-
-Created mockup of new inventory screen, version7.
-Lots of making / organizing art files & sprites. Like 4 hours.
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+add the boomerang as default item in slot 0, default selected, hero starts with boomerang
+hero can't lose boomerang. if at any time hero's loadout is unclear, default to sword/boomerang,
+since hero can't lose these two items and starts the game with them.
 
 
 
@@ -81,6 +104,7 @@ however, we now need to model the bow as a projectile,
 beceause it needs to track to its caster, and rotate based on direction.
 
 
+Attack / Use ++
 hero should slow down when he's attacking or using an object
 meaning, his friction should increase
 
@@ -209,6 +233,17 @@ this also means we need to 'unbake' the shadows from ALL objects and actors.
 
 
 
+
+
+Art++
+
+complete sorting enemies into the EnemyDungeonSets file.
+we're doing this so we can have all the enemy sprites in one place.
+
+then we need to make sprite sheets for location entrances, dungeons for example
+there would be an entrance to the dungeon that the player explores (it's small)
+and there would be an entrance to the shop as well
+this means there will be outdoor levels. but that's a far ways off.
 
 
 

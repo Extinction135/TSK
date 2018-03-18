@@ -16,6 +16,31 @@ namespace DungeonRun
     {
         static int i;
         static int rowCounter;
+        static int itemCounter;
+
+
+        public static void PlaceMenuItems(List<MenuItem> MenuItems, int X, int Y, byte rowLength)
+        {
+            //for the 1st, place it at X, Y
+            MenuItems[0].compSprite.position.X = X;
+            MenuItems[0].compSprite.position.Y = Y;
+
+            rowCounter = 0;
+            itemCounter = 0;
+
+            //for the rest, place with 24 px offset, dividing list into rows based on divider value
+            for (i = 0; i < MenuItems.Count; i++) //i=1 skips 0, the first menuItem we set above
+            {   //place menuItems 24px apart horizontally
+                MenuItems[i].compSprite.position.X = MenuItems[0].compSprite.position.X + (24 * itemCounter);
+                //each new vertical row gets the same 24 px offset
+                MenuItems[i].compSprite.position.Y = MenuItems[0].compSprite.position.Y + (24 * rowCounter);
+                itemCounter++;
+
+                if (itemCounter == rowLength) { rowCounter++; itemCounter = 0; }
+            }
+
+            SetNeighbors(MenuItems, rowLength);
+        }
 
         public static void SetNeighbors(List<MenuItem> MenuItems, int rowLength)
         {
@@ -38,7 +63,7 @@ namespace DungeonRun
                 { MenuItems[i].neighborUp = MenuItems[i - rowLength]; }
 
                 //disable neighbor wrapping
-                if(rowCounter == 0) //if this menuItem is the first on it's row
+                if (rowCounter == 0) //if this menuItem is the first on it's row
                 {
                     MenuItems[i].neighborLeft = MenuItems[i]; //discard left neighbor (no wrapping)
                 }
@@ -50,6 +75,14 @@ namespace DungeonRun
                 }
             }
         }
+
+        public static void PlaceMenuItem(MenuItem Child, MenuItem Parent, int Offset)
+        {
+            Child.compSprite.position.X = Parent.compSprite.position.X + Offset;
+            Child.compSprite.position.Y = Parent.compSprite.position.Y;
+        }
+        
+
 
         public static void SetType(MenuItemType Type, MenuItem MenuItem)
         {
@@ -435,12 +468,6 @@ namespace DungeonRun
 
             //update the sprite's current frame to the animation list set above
             Functions_Animation.Animate(MenuItem.compAnim, MenuItem.compSprite);
-        }
-
-        public static void PlaceMenuItem(MenuItem Child, MenuItem Parent, int Offset)
-        {
-            Child.compSprite.position.X = Parent.compSprite.position.X + Offset;
-            Child.compSprite.position.Y = Parent.compSprite.position.Y;
         }
 
     }

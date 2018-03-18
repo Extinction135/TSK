@@ -37,8 +37,7 @@ namespace DungeonRun
             displayState = DisplayState.Opening;
 
             Widgets.Loadout.Reset(16 * 9, 16 * 4);
-            Widgets.Stats.Reset(16 * 9, 16 * 10);
-            Widgets.Crystals.Reset(16 * 9, 16 * 14 + 8);
+            Widgets.QuestItems.Reset(16 * 9, 16 * 10);
             Widgets.Inventory.Reset(16 * 16, 16 * 4);
             Widgets.Info.Reset(16 * 24 + 8, 16 * 4);
             Widgets.Options.Reset(16 * 24 + 8, 16 * 10);
@@ -46,15 +45,15 @@ namespace DungeonRun
 
             #region Connect loadout widget's menuItems to stats widget's menuItems
 
-            Widgets.Loadout.menuItems[4].neighborDown = Widgets.Stats.menuItems[0];
-            Widgets.Loadout.menuItems[5].neighborDown = Widgets.Stats.menuItems[1];
-            Widgets.Loadout.menuItems[6].neighborDown = Widgets.Stats.menuItems[2];
-            Widgets.Loadout.menuItems[7].neighborDown = Widgets.Stats.menuItems[3];
+            Widgets.Loadout.menuItems[4].neighborDown = Widgets.QuestItems.menuItems[0];
+            Widgets.Loadout.menuItems[5].neighborDown = Widgets.QuestItems.menuItems[1];
+            Widgets.Loadout.menuItems[6].neighborDown = Widgets.QuestItems.menuItems[2];
+            Widgets.Loadout.menuItems[7].neighborDown = Widgets.QuestItems.menuItems[3];
 
-            Widgets.Stats.menuItems[0].neighborUp = Widgets.Loadout.menuItems[4];
-            Widgets.Stats.menuItems[1].neighborUp = Widgets.Loadout.menuItems[5];
-            Widgets.Stats.menuItems[2].neighborUp = Widgets.Loadout.menuItems[6];
-            Widgets.Stats.menuItems[3].neighborUp = Widgets.Loadout.menuItems[7];
+            Widgets.QuestItems.menuItems[0].neighborUp = Widgets.Loadout.menuItems[4];
+            Widgets.QuestItems.menuItems[1].neighborUp = Widgets.Loadout.menuItems[5];
+            Widgets.QuestItems.menuItems[2].neighborUp = Widgets.Loadout.menuItems[6];
+            Widgets.QuestItems.menuItems[3].neighborUp = Widgets.Loadout.menuItems[7];
 
             #endregion
 
@@ -72,9 +71,29 @@ namespace DungeonRun
 
             #region Connect stat widget's menuItems to inventory widget's menuItems
 
-            Widgets.Stats.menuItems[3].neighborRight = Widgets.Inventory.menuItems[10];
-            Widgets.Inventory.menuItems[10].neighborLeft = Widgets.Stats.menuItems[3];
-            Widgets.Inventory.menuItems[15].neighborLeft = Widgets.Stats.menuItems[3];
+
+
+
+
+            
+            Widgets.Inventory.menuItems[10].neighborLeft = Widgets.QuestItems.menuItems[3];
+            Widgets.QuestItems.menuItems[3].neighborRight = Widgets.Inventory.menuItems[10];
+
+            Widgets.Inventory.menuItems[15].neighborLeft = Widgets.QuestItems.menuItems[7];
+            Widgets.QuestItems.menuItems[7].neighborRight = Widgets.Inventory.menuItems[15];
+
+            Widgets.Inventory.menuItems[20].neighborLeft = Widgets.QuestItems.menuItems[11];
+            Widgets.QuestItems.menuItems[11].neighborRight = Widgets.Inventory.menuItems[20];
+
+            Widgets.Inventory.menuItems[20].neighborLeft = Widgets.QuestItems.menuItems[15];
+            Widgets.QuestItems.menuItems[15].neighborRight = Widgets.Inventory.menuItems[20];
+            //we still need to connect the rest of QuestItems to Inventory Widget
+
+
+
+
+
+
 
             #endregion
 
@@ -94,25 +113,6 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Connect crystal widget's menuItems
-
-            Widgets.Crystals.menuItems[0].neighborUp = Widgets.Stats.menuItems[0];
-            Widgets.Crystals.menuItems[1].neighborUp = Widgets.Stats.menuItems[1];
-            Widgets.Crystals.menuItems[2].neighborUp = Widgets.Stats.menuItems[1];
-            Widgets.Crystals.menuItems[3].neighborUp = Widgets.Stats.menuItems[2];
-            Widgets.Crystals.menuItems[4].neighborUp = Widgets.Stats.menuItems[2];
-            Widgets.Crystals.menuItems[5].neighborUp = Widgets.Stats.menuItems[3];
-
-            Widgets.Stats.menuItems[3].neighborDown = Widgets.Crystals.menuItems[5];
-            Widgets.Stats.menuItems[2].neighborDown = Widgets.Crystals.menuItems[4];
-            Widgets.Stats.menuItems[1].neighborDown = Widgets.Crystals.menuItems[1];
-            Widgets.Stats.menuItems[0].neighborDown = Widgets.Crystals.menuItems[0];
-
-            Widgets.Crystals.menuItems[5].neighborRight = Widgets.Inventory.menuItems[20];
-            Widgets.Inventory.menuItems[20].neighborLeft = Widgets.Crystals.menuItems[5];
-
-            #endregion
 
 
             //set the currently selected menuItem to the first inventory menuItem
@@ -285,8 +285,7 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxWindowClose);
                 displayState = DisplayState.Closing;
                 Functions_MenuWindow.Close(Widgets.Loadout.window);
-                Functions_MenuWindow.Close(Widgets.Stats.window);
-                Functions_MenuWindow.Close(Widgets.Crystals.window);
+                Functions_MenuWindow.Close(Widgets.QuestItems.window);
                 Functions_MenuWindow.Close(Widgets.Info.window);
                 Functions_MenuWindow.Close(Widgets.Inventory.window);
                 Functions_MenuWindow.Close(Widgets.Options.window);
@@ -376,8 +375,7 @@ namespace DungeonRun
 
 
             Widgets.Loadout.Update();
-            Widgets.Stats.Update();
-            Widgets.Crystals.Update();
+            Widgets.QuestItems.Update();
             Widgets.Info.Update();
             Widgets.Inventory.Update();
             Widgets.Options.Update();
@@ -404,8 +402,7 @@ namespace DungeonRun
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_Draw.Draw(background);
             Widgets.Loadout.Draw();
-            Widgets.Stats.Draw();
-            Widgets.Crystals.Draw();
+            Widgets.QuestItems.Draw();
             Widgets.Info.Draw();
             Widgets.Inventory.Draw();
             Widgets.Options.Draw();
