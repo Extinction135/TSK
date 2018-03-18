@@ -26,7 +26,7 @@ namespace DungeonRun
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "Info Window");
             //create dividers
-            for (i = 0; i < 6; i++)
+            for (i = 0; i < 4; i++)
             {
                 window.lines.Add(new MenuRectangle(new Point(0, 0), 
                     new Point(0, 0), Assets.colorScheme.windowInset));
@@ -35,63 +35,51 @@ namespace DungeonRun
             labels = new List<ComponentText>();
             labels.Add(new ComponentText(Assets.font, "weapons", 
                 new Vector2(0,0), Assets.colorScheme.textDark));
-            labels.Add(new ComponentText(Assets.font, "armor",
-                new Vector2(0, 0), Assets.colorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "equipment",
                 new Vector2(0, 0), Assets.colorScheme.textDark));
             //create menuitems
             menuItems = new List<MenuItem>();
-            for (i = 0; i < 25; i++) { menuItems.Add(new MenuItem()); }
+            for (i = 0; i < (7 * 6); i++) { menuItems.Add(new MenuItem()); }
             //create amount displays
             bombsDisplay = new ComponentAmountDisplay(0, 0, 0);
             arrowsDisplay = new ComponentAmountDisplay(0, 0, 0);
         }
 
         public override void Reset(int X, int Y)
-        {   //reset additional divider lines
-            window.lines[2].position.Y = Y + 16 * 4 + 8;
-            window.lines[3].position.Y = Y + 16 * 5 + 8;
-            window.lines[4].position.Y = Y + 16 * 7 + 8;
-            window.lines[5].position.Y = Y + 16 * 8 + 8;
-            window.lines[6].position.Y = Y + 16 * 10 + 8;
-            window.lines[7].position.Y = Y + 16 * 11 + 8;
+        {   
+            //place 'weapons' section title
+            window.lines[2].position.Y = Y + 16 * 6 + 0;
+            labels[0].position.Y = window.lines[2].position.Y + 1;
+            window.lines[3].position.Y = Y + 16 * 7 + 0;
+            //place 'equipment' section title
+            window.lines[4].position.Y = Y + 16 * 9 + 0;
+            labels[1].position.Y = window.lines[4].position.Y + 1;
+            window.lines[5].position.Y = Y + 16 * 10 + 0;
+
             //align this widgets component to Position + Size
             Functions_MenuWindow.ResetAndMove(window, X, Y, 
-                new Point(16 * 8, 16 * 14 + 8), "Items");
+                new Point(16 * 11, 16 * 14 + 8), "Items");
             //place labels (X)
             labels[0].position.X = X + 8;
             labels[1].position.X = labels[0].position.X;
-            labels[2].position.X = labels[0].position.X;
-            //place labels (Y)
-            labels[0].position.Y = window.lines[2].position.Y + 1;
-            labels[1].position.Y = window.lines[4].position.Y + 1;
-            labels[2].position.Y = window.lines[6].position.Y + 1;
 
-            //place ALL the menuItems
-            //Functions_MenuItem.PlaceMenuItems(menuItems, 
-            //    X + 16 * 1, 
-            //    Y + 16 * 02, 
-            //    5);
-
-            //place the menuItems
-            PlaceRow(00, X + 16 * 1, Y + 16 * 02 + 0);
-            PlaceRow(05, X + 16 * 1, Y + 16 * 03 + 8);
-            PlaceRow(10, X + 16 * 1, Y + 16 * 06 + 8);
-            PlaceRow(15, X + 16 * 1, Y + 16 * 09 + 8);
-            PlaceRow(20, X + 16 * 1, Y + 16 * 12 + 8);
-
-
+            //we place rows like dis' now
+            Functions_MenuItem.PlaceRow(menuItems, 7 * 0, X + 16 * 1, Y + 16 * 02 + 0, 7);
+            Functions_MenuItem.PlaceRow(menuItems, 7 * 1, X + 16 * 1, Y + 16 * 03 + 8, 7);
+            Functions_MenuItem.PlaceRow(menuItems, 7 * 2, X + 16 * 1, Y + 16 * 05 + 0, 7);
+            //weapons
+            Functions_MenuItem.PlaceRow(menuItems, 7 * 3, X + 16 * 1, Y + 16 * 08 + 0, 7);
+            //equipment
+            Functions_MenuItem.PlaceRow(menuItems, 7 * 4, X + 16 * 1, Y + 16 * 11 + 0, 7);
+            Functions_MenuItem.PlaceRow(menuItems, 7 * 5, X + 16 * 1, Y + 16 * 12 + 8, 7);
+            Functions_MenuItem.SetNeighbors(menuItems, 7); //set menuItems neighbors
 
             //reset the menuItems
             for (i = 0; i < menuItems.Count; i++)
             { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[i]); }
-            //set the menuItem's neighbors
-            Functions_MenuItem.SetNeighbors(menuItems, 5);
-            //align the amount displays
-            Functions_Component.Align(bombsDisplay, menuItems[0].compSprite);
-            Functions_Component.Align(arrowsDisplay, menuItems[11].compSprite);
+
             bombsDisplay.visible = true; //bomb amount is always displayed
-            arrowsDisplay.visible = false; //arrow amount is displayed if hero has bow
+            arrowsDisplay.visible = true; //arrow amount is displayed if hero has bow
             //set the inventory widget's menuItems based on saveData booleans
             SetInventoryMenuItems();
         }
@@ -117,101 +105,94 @@ namespace DungeonRun
 
 
 
-
-        public void PlaceRow(int index, int X, int Y)
-        {   //place the menuItem index at X, Y
-            menuItems[index].compSprite.position.X = X;
-            menuItems[index].compSprite.position.Y = Y;
-            //align the rest of the row
-            Functions_MenuItem.PlaceMenuItem(menuItems[index + 1], menuItems[index], 24);
-            Functions_MenuItem.PlaceMenuItem(menuItems[index + 2], menuItems[index + 1], 24);
-            Functions_MenuItem.PlaceMenuItem(menuItems[index + 3], menuItems[index + 2], 24);
-            Functions_MenuItem.PlaceMenuItem(menuItems[index + 4], menuItems[index + 3], 24);
-        }
-
-
-
-
         public void SetInventoryMenuItems()
         {
 
-            #region Items
+            #region Items - 0 thru 3, 7 thru 10, 14 thru 20
 
-            //display the hero's bombs + amount
-            Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[0]);
+            //0 = boomerang
+            Functions_MenuItem.SetType(MenuItemType.ItemBoomerang, menuItems[0]);
+            //1 = bombs
+            Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[1]);
+            Functions_Component.Align(bombsDisplay, menuItems[1].compSprite);
             Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
+            //2 - magic mirror
+            //3 - ???
 
-            //MenuItemFunctions.SetType(MenuItemType.ItemBoomerang, menuItems[1]);
+            //7 - hookshot
+            //8 - net
+            if (PlayerData.current.weaponNet)
+            { Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[8]); }
+            //9 - ?
+            //10 - ???
+
+            //14 - mirror shield
+            //15 - cape
+            //16 - firerod
+            //17 - icerod
+            //18 - shovel
+            //19 - cane1
+            //20 - cane2
 
             #endregion
 
 
-            #region Bottles
+            #region Bottles - 4, 5, 6
 
-            Functions_Bottle.SetMenuItemType(menuItems[2], PlayerData.current.bottleA);
-            Functions_Bottle.SetMenuItemType(menuItems[3], PlayerData.current.bottleB);
-            Functions_Bottle.SetMenuItemType(menuItems[4], PlayerData.current.bottleC);
+            Functions_Bottle.SetMenuItemType(menuItems[4], PlayerData.current.bottleA);
+            Functions_Bottle.SetMenuItemType(menuItems[5], PlayerData.current.bottleB);
+            Functions_Bottle.SetMenuItemType(menuItems[6], PlayerData.current.bottleC);
 
             #endregion
 
 
-            #region Set the magic medallion items
+            #region Set the magic medallion items - 11, 12, 13
 
             if (PlayerData.current.magicFireball)
-            { Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[5]); }
-
-            //MenuItemFunctions.SetType(MenuItemType.MagicFireball, menuItems[6]);
-            //MenuItemFunctions.SetType(MenuItemType.MagicFireball, menuItems[7]);
-            //MenuItemFunctions.SetType(MenuItemType.MagicFireball, menuItems[8]);
-            //MenuItemFunctions.SetType(MenuItemType.MagicFireball, menuItems[9]);
+            { Functions_MenuItem.SetType(MenuItemType.MagicFireball, menuItems[11]); }
 
             #endregion
 
 
-            #region Weapons
+            #region Weapons - 21 thru 27
 
-            Functions_MenuItem.SetType(MenuItemType.WeaponSword, menuItems[10]);
-
+            //21 - sword
+            Functions_MenuItem.SetType(MenuItemType.WeaponSword, menuItems[21]);
+            //22 - bow and arrow
             if (PlayerData.current.weaponBow)
             {   //if hero has arrows, display the number of arrows + draw display amount
-                Functions_MenuItem.SetType(MenuItemType.WeaponBow, menuItems[11]);
+                Functions_MenuItem.SetType(MenuItemType.WeaponBow, menuItems[22]);
+                Functions_Component.Align(arrowsDisplay, menuItems[22].compSprite);
                 Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
-                arrowsDisplay.visible = true;
             }
-
-            if(PlayerData.current.weaponNet)
-            { Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[12]); }
-
-            //MenuItemFunctions.SetType(MenuItemType.WeaponSword, menuItems[13]);
-            //MenuItemFunctions.SetType(MenuItemType.WeaponSword, menuItems[14]);
+            //23 - hammer
+            //24 - axe
+            //25 - push wand
+            //26 - deku stick
 
             #endregion
 
 
-            #region Armor
+            #region Equipment - 28 thru 35 (maybe 42?)
 
-            Functions_MenuItem.SetType(MenuItemType.ArmorCloth, menuItems[15]);
-
-            if (PlayerData.current.armorChest)
-            { Functions_MenuItem.SetType(MenuItemType.ArmorChest, menuItems[16]); }
-
-            if (PlayerData.current.armorCape)
-            { Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[17]); }
-
-            if (PlayerData.current.armorRobe)
-            { Functions_MenuItem.SetType(MenuItemType.ArmorRobe, menuItems[18]); }
-
-            #endregion
-
-
-            #region Equipment
-
+            Functions_MenuItem.SetType(MenuItemType.ArmorCloth, menuItems[28]);
+            //29 - ring
             if (PlayerData.current.equipmentRing)
-            { Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[20]); }
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPearl, menuItems[21]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentNecklace, menuItems[22]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentGlove, menuItems[23]);
-            //MenuItemFunctions.SetMenuItemData(MenuItemType.EquipmentPin, menuItems[24]);
+            { Functions_MenuItem.SetType(MenuItemType.EquipmentRing, menuItems[29]); }
+            //30 - pearl
+            //31 - necklace
+            //32 - power glove
+            //33 - pin
+            //34 - pendant
+
+            //35 - tattered shawl
+            Functions_MenuItem.SetType(MenuItemType.ArmorCape, menuItems[35]);
+            //36 - ?
+            //37 - ?
+            //38 - ?
+            //39 - ?
+            //40 - ?
+            //41 - ?
 
             #endregion
 

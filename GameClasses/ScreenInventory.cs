@@ -36,11 +36,11 @@ namespace DungeonRun
             overlay.fadeInSpeed = 0.025f; //fade in slowly
             displayState = DisplayState.Opening;
 
-            Widgets.Loadout.Reset(16 * 9, 16 * 4);
-            Widgets.QuestItems.Reset(16 * 9, 16 * 10);
-            Widgets.Inventory.Reset(16 * 16, 16 * 4);
-            Widgets.Info.Reset(16 * 24 + 8, 16 * 4);
-            Widgets.Options.Reset(16 * 24 + 8, 16 * 10);
+            Widgets.Loadout.Reset(16 * 8 - 8, 16 * 4);
+            Widgets.QuestItems.Reset(16 * 8 - 8, 16 * 10);
+            Widgets.Inventory.Reset(16 * 15 - 8, 16 * 4);
+            Widgets.Info.Reset(16 * 26 + 0, 16 * 4);
+            Widgets.Options.Reset(16 * 26 + 0, 16 * 10);
 
 
             #region Connect loadout widget's menuItems to stats widget's menuItems
@@ -63,56 +63,38 @@ namespace DungeonRun
             Widgets.Loadout.menuItems[3].neighborRight = Widgets.Inventory.menuItems[0];
             Widgets.Inventory.menuItems[0].neighborLeft = Widgets.Loadout.menuItems[3];
 
-            Widgets.Loadout.menuItems[7].neighborRight = Widgets.Inventory.menuItems[5];
-            Widgets.Inventory.menuItems[5].neighborLeft = Widgets.Loadout.menuItems[7];
+            Widgets.Loadout.menuItems[7].neighborRight = Widgets.Inventory.menuItems[7 * 1];
+            Widgets.Inventory.menuItems[7 * 1].neighborLeft = Widgets.Loadout.menuItems[7];
 
             #endregion
 
 
-            #region Connect stat widget's menuItems to inventory widget's menuItems
+            #region Connect questItems widget's menuItems to inventory widget's menuItems
 
+            Widgets.Inventory.menuItems[7 * 3].neighborLeft = Widgets.QuestItems.menuItems[3];
+            Widgets.QuestItems.menuItems[3].neighborRight = Widgets.Inventory.menuItems[7 * 3];
 
+            Widgets.Inventory.menuItems[7 * 4].neighborLeft = Widgets.QuestItems.menuItems[11];
+            Widgets.QuestItems.menuItems[11].neighborRight = Widgets.Inventory.menuItems[7 * 4];
 
-
-
-            
-            Widgets.Inventory.menuItems[10].neighborLeft = Widgets.QuestItems.menuItems[3];
-            Widgets.QuestItems.menuItems[3].neighborRight = Widgets.Inventory.menuItems[10];
-
-            Widgets.Inventory.menuItems[15].neighborLeft = Widgets.QuestItems.menuItems[7];
-            Widgets.QuestItems.menuItems[7].neighborRight = Widgets.Inventory.menuItems[15];
-
-            Widgets.Inventory.menuItems[20].neighborLeft = Widgets.QuestItems.menuItems[11];
-            Widgets.QuestItems.menuItems[11].neighborRight = Widgets.Inventory.menuItems[20];
-
-            Widgets.Inventory.menuItems[20].neighborLeft = Widgets.QuestItems.menuItems[15];
-            Widgets.QuestItems.menuItems[15].neighborRight = Widgets.Inventory.menuItems[20];
-            //we still need to connect the rest of QuestItems to Inventory Widget
-
-
-
-
-
-
+            Widgets.Inventory.menuItems[7 * 5].neighborLeft = Widgets.QuestItems.menuItems[15];
+            Widgets.QuestItems.menuItems[15].neighborRight = Widgets.Inventory.menuItems[7 * 5];
 
             #endregion
 
 
             #region Connect options widget's menuItems to inventory widget's menuItems
+            
+            Widgets.Options.menuItems[0].neighborLeft = Widgets.Inventory.menuItems[7 * 3 + 6];
+            Widgets.Inventory.menuItems[7 * 3 + 6].neighborRight = Widgets.Options.menuItems[0];
 
-            Widgets.Options.menuItems[0].neighborLeft = Widgets.Inventory.menuItems[14];
-            Widgets.Inventory.menuItems[14].neighborRight = Widgets.Options.menuItems[0];
+            Widgets.Options.menuItems[4].neighborLeft = Widgets.Inventory.menuItems[7 * 4 + 6];
+            Widgets.Inventory.menuItems[7 * 4 + 6].neighborRight = Widgets.Options.menuItems[4];
 
-            Widgets.Options.menuItems[2].neighborLeft = Widgets.Inventory.menuItems[19];
-            Widgets.Inventory.menuItems[19].neighborRight = Widgets.Options.menuItems[2];
-
-            Widgets.Options.menuItems[4].neighborLeft = Widgets.Inventory.menuItems[19];
-
-            Widgets.Options.menuItems[6].neighborLeft = Widgets.Inventory.menuItems[24];
-            Widgets.Inventory.menuItems[24].neighborRight = Widgets.Options.menuItems[6];
+            Widgets.Options.menuItems[6].neighborLeft = Widgets.Inventory.menuItems[7 * 5 + 6];
+            Widgets.Inventory.menuItems[7 * 5 + 6].neighborRight = Widgets.Options.menuItems[6];
 
             #endregion
-
 
 
             //set the currently selected menuItem to the first inventory menuItem
@@ -160,29 +142,37 @@ namespace DungeonRun
                 else
                 {   //Handle Items, weapons, armor, and equipment
 
+
+
+
+                    //all of this shit should be rferencing currentlySelected.type !!!
+
+
                     #region Non-magical Items
 
-                    if (currentlySelected == Widgets.Inventory.menuItems[0]) //bombs
+                    if (currentlySelected.type == MenuItemType.ItemBomb) //bombs
                     {
                         PlayerData.current.currentItem = HerosCurrentItem.Bombs;
                         Pool.hero.item = currentlySelected.type;
                     }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[1]) //boomerang
+                    else if (currentlySelected.type == MenuItemType.ItemBomb) //boomerang
                     {
                         PlayerData.current.currentItem = HerosCurrentItem.Boomerang;
                         Pool.hero.item = currentlySelected.type;
                     }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[2]) //bottleA
+
+                    //these are checked by menuItem index value, which is brittle
+                    else if (currentlySelected == Widgets.Inventory.menuItems[4]) //bottleA
                     {
                         PlayerData.current.currentItem = HerosCurrentItem.BottleA;
                         Pool.hero.item = currentlySelected.type;
                     }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[3]) //bottleB
+                    else if (currentlySelected == Widgets.Inventory.menuItems[5]) //bottleB
                     {
                         PlayerData.current.currentItem = HerosCurrentItem.BottleB;
                         Pool.hero.item = currentlySelected.type;
                     }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[4]) //bottleC
+                    else if (currentlySelected == Widgets.Inventory.menuItems[6]) //bottleC
                     {
                         PlayerData.current.currentItem = HerosCurrentItem.BottleC;
                         Pool.hero.item = currentlySelected.type;
@@ -193,29 +183,9 @@ namespace DungeonRun
 
                     #region Magical Items
 
-                    else if (currentlySelected == Widgets.Inventory.menuItems[5]) //fireball magic
+                    else if (currentlySelected.type == MenuItemType.MagicFireball) //fireball magic
                     {
                         PlayerData.current.currentItem = HerosCurrentItem.Fireball;
-                        Pool.hero.item = currentlySelected.type;
-                    }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[6]) //??? magic
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.None;
-                        Pool.hero.item = currentlySelected.type;
-                    }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[7]) //??? magic
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.None;
-                        Pool.hero.item = currentlySelected.type;
-                    }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[8]) //??? magic
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.None;
-                        Pool.hero.item = currentlySelected.type;
-                    }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[9]) //??? magic
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.None;
                         Pool.hero.item = currentlySelected.type;
                     }
 
@@ -224,50 +194,34 @@ namespace DungeonRun
 
                     #region Weapons
 
-                    else if (currentlySelected == Widgets.Inventory.menuItems[10]) //sword
+                    else if (currentlySelected.type == MenuItemType.WeaponSword) //sword
                     { PlayerData.current.currentWeapon = 0; Pool.hero.weapon = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[11]) //bow
+                    else if (currentlySelected.type == MenuItemType.WeaponBow) //bow
                     { PlayerData.current.currentWeapon = 1; Pool.hero.weapon = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[12]) //net
+                    else if (currentlySelected.type == MenuItemType.WeaponNet) //net
                     { PlayerData.current.currentWeapon = 2; Pool.hero.weapon = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[13]) //???
-                    { PlayerData.current.currentWeapon = 3; Pool.hero.weapon = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[14]) //???
-                    { PlayerData.current.currentWeapon = 4; Pool.hero.weapon = currentlySelected.type; }
 
                     #endregion
 
 
                     #region Armor
 
-                    else if (currentlySelected == Widgets.Inventory.menuItems[15]) //tunic
+                    else if (currentlySelected.type == MenuItemType.ArmorCloth) //tunic
                     { PlayerData.current.currentArmor = 0; Pool.hero.armor = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[16]) //chest
-                    { PlayerData.current.currentArmor = 1; Pool.hero.armor = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[17]) //cape
+                    else if (currentlySelected.type == MenuItemType.ArmorCape) //cape
                     { PlayerData.current.currentArmor = 2; Pool.hero.armor = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[18]) //robe
-                    { PlayerData.current.currentArmor = 3; Pool.hero.armor = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[19]) //???
-                    { PlayerData.current.currentArmor = 4; Pool.hero.armor = currentlySelected.type; }
+                    
 
                     #endregion
 
 
                     #region Equipment
 
-                    else if (currentlySelected == Widgets.Inventory.menuItems[20]) //ring
+                    else if (currentlySelected.type == MenuItemType.EquipmentRing) //ring
                     { PlayerData.current.currentEquipment = 0; Pool.hero.equipment = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[21]) //???
-                    { PlayerData.current.currentEquipment = 1; Pool.hero.equipment = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[22]) //???
-                    { PlayerData.current.currentEquipment = 2; Pool.hero.equipment = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[23]) //???
-                    { PlayerData.current.currentEquipment = 3; Pool.hero.equipment = currentlySelected.type; }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[24]) //???
-                    { PlayerData.current.currentEquipment = 4; Pool.hero.equipment = currentlySelected.type; }
 
                     #endregion
+
 
                     //update the LoadoutWidget to show equipped items
                     Widgets.Loadout.UpdateLoadout();

@@ -57,20 +57,6 @@ explosive barrel puzzels
 
 
 
-Inventory Screen++
-
-match inventory screen to current mockup.
-
-completely removed crystals widget class from projects.
-created shared game class WidgetQuestItems.
-completely removed WidgetStats from projects.
-extended QI widget to match Inventory's height.
-added 3 rows of menuItems to QI widget.
-
-created Func_MenuItems.PlaceMenuItems(), which saves ALOT of
-code when place menuItems in a Widget, ala' QI widget.
-QI Widget and Loadout Widget both now use PlaceMenuItems(), 
-but InventoryWidget is a bit more complicated.. 
 
 
 
@@ -79,9 +65,35 @@ but InventoryWidget is a bit more complicated..
 
 
 
+Inventory Screen ++
+
+widened the inventory widget, added additional menuItems for
+more items, weapons, equipment - but removed the armor section.
+moved PlaceRow() into Functions_MenuItem. lots of work getting
+the inventory widget to display it's menuItem's properly.
+updated menuItem neighbors for InventoryScreen.
+added sprite for boomerang, appears in inventory now as item 0.
+updated the inventory to display items/weapons/equipment based
+on mockup, using menuItem.type checks where possible.
+playtested, working as expected.
 
 
 
+
+
+
+
+
+hero should start with bow & arrows already unlocked
+
+
+
+
+
+
+
+there are only two kinds of armor: worn shirt, and tattered shawl
+remove the other kinds of armor from the game, and from the main sheet
 
 
 

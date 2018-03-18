@@ -81,7 +81,19 @@ namespace DungeonRun
             Child.compSprite.position.X = Parent.compSprite.position.X + Offset;
             Child.compSprite.position.Y = Parent.compSprite.position.Y;
         }
-        
+
+        public static void PlaceRow(List<MenuItem> MenuItems, int index, int X, int Y, int rowLength)
+        {   //place the menuItem index at X, Y
+            MenuItems[index].compSprite.position.X = X;
+            MenuItems[index].compSprite.position.Y = Y;
+            //place the rest of the row relative to index
+            for(i = 0; i < rowLength; i++)
+            {
+                if ((index + i + 1) < MenuItems.Count)
+                { PlaceMenuItem(MenuItems[index + i + 1], MenuItems[index + i], 24); }
+            }
+        }
+
 
 
         public static void SetType(MenuItemType Type, MenuItem MenuItem)
