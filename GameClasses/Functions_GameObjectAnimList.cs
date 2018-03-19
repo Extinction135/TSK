@@ -215,6 +215,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(4, 11, 0, 0), new Byte4(4, 12, 0, 0) },
                 //ProjectileFireball
                 new List<Byte4> { new Byte4(4, 9, 0, 0), new Byte4(4, 9, 1, 0) },
+                //ProjectileBoomerang
+                new List<Byte4> { new Byte4(4, 5, 0, 0), new Byte4(4, 5, 0, 0) },
 
                 //weapons
                 //ProjectileSword

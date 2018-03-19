@@ -661,6 +661,30 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
             }
 
+
+
+
+
+            else if (Type == ObjType.ProjectileBoomerang)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = 16;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 255; //in frames
+                Obj.compMove.friction = 0.96f; //some air friction
+                Obj.compAnim.speed = 5; //in frames
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
+            }
+
+
+
+
+
+
+
             //magic
             else if (Type == ObjType.ProjectileFireball)
             {

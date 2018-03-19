@@ -555,24 +555,62 @@ namespace DungeonRun
             if (PlayerData.current.currentEquipment > 4) { PlayerData.current.currentEquipment = 0; }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             #region Set Hero's Item
 
-            if (PlayerData.current.currentItem == HerosCurrentItem.Bombs)
+            Pool.hero.item = PlayerData.current.currentItem;
+
+
+
+
+
+
+
+            //this is a stupid mess 
+            /*
+              
+              if (PlayerData.current.currentItem == MenuItemType.ItemBomb)
             { Pool.hero.item = MenuItemType.ItemBomb; }
-            else if (PlayerData.current.currentItem == HerosCurrentItem.Boomerang)
+            else if (PlayerData.current.currentItem == MenuItemType.ItemBoomerang)
             { Pool.hero.item = MenuItemType.ItemBoomerang; }
+
+            //magic items
+            else if (PlayerData.current.currentItem == MenuItemType.MagicFireball)
+            { Pool.hero.item = MenuItemType.MagicFireball; }
+
+
             //bottle items
-            else if (PlayerData.current.currentItem == HerosCurrentItem.BottleA)
+            else if (PlayerData.current.currentItem == MenuItemType.bott)
             { Functions_Bottle.LoadBottle(PlayerData.current.bottleA); }
             else if (PlayerData.current.currentItem == HerosCurrentItem.BottleB)
             { Functions_Bottle.LoadBottle(PlayerData.current.bottleB); }
             else if (PlayerData.current.currentItem == HerosCurrentItem.BottleC)
             { Functions_Bottle.LoadBottle(PlayerData.current.bottleC); }
-            //magic items
-            else if (PlayerData.current.currentItem == HerosCurrentItem.Fireball)
-            { Pool.hero.item = MenuItemType.MagicFireball; }
+            
+             else { Pool.hero.item = MenuItemType.Unknown; }
+             */
 
-            else { Pool.hero.item = MenuItemType.Unknown; }
+
+
+
+
+
+
+
+
 
             #endregion
 

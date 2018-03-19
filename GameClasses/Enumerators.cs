@@ -112,6 +112,8 @@ namespace DungeonRun
         //Projectiles - items
         ProjectileBomb,
         ProjectileFireball,
+        ProjectileBoomerang,
+
         //Projectiles - weapons
         ProjectileSword,
         ProjectileArrow,
@@ -196,13 +198,6 @@ namespace DungeonRun
         NotOwned, Empty, 
         Health, Magic, Combo, Fairy,
         Blob 
-    }
-
-    public enum HerosCurrentItem
-    {
-        None, Boomerang, Bombs,
-        BottleA, BottleB, BottleC,
-        Fireball
     }
 
 }

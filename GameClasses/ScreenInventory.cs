@@ -118,6 +118,9 @@ namespace DungeonRun
                 { currentlySelected.compSprite.scale = 2.0f; }
                 Assets.Play(Assets.sfxMenuItem);
 
+                //store the ID of the selected menuItem (index of inventory widget.menuItems)
+                PlayerData.current.lastItemSelected = currentlySelected.id;
+
 
                 #region Handle the Options MenuItems
 
@@ -144,57 +147,29 @@ namespace DungeonRun
 
 
 
-
-                    //all of this shit should be rferencing currentlySelected.type !!!
-
-
-                    #region Non-magical Items
-
-                    if (currentlySelected.type == MenuItemType.ItemBomb) //bombs
+                    
+                    //Items
+                    if(
+                        currentlySelected.type == MenuItemType.ItemBomb
+                        || currentlySelected.type == MenuItemType.ItemBoomerang
+                        || currentlySelected.type == MenuItemType.BottleBlob
+                        || currentlySelected.type == MenuItemType.BottleCombo
+                        || currentlySelected.type == MenuItemType.BottleFairy
+                        || currentlySelected.type == MenuItemType.BottleHealth
+                        || currentlySelected.type == MenuItemType.BottleMagic
+                        || currentlySelected.type == MenuItemType.MagicFireball)
                     {
-                        PlayerData.current.currentItem = HerosCurrentItem.Bombs;
+                        PlayerData.current.currentItem = currentlySelected.type;
                         Pool.hero.item = currentlySelected.type;
                     }
-                    else if (currentlySelected.type == MenuItemType.ItemBomb) //boomerang
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.Boomerang;
-                        Pool.hero.item = currentlySelected.type;
-                    }
+                    
 
-                    //these are checked by menuItem index value, which is brittle
-                    else if (currentlySelected == Widgets.Inventory.menuItems[4]) //bottleA
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.BottleA;
-                        Pool.hero.item = currentlySelected.type;
-                    }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[5]) //bottleB
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.BottleB;
-                        Pool.hero.item = currentlySelected.type;
-                    }
-                    else if (currentlySelected == Widgets.Inventory.menuItems[6]) //bottleC
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.BottleC;
-                        Pool.hero.item = currentlySelected.type;
-                    }
-
-                    #endregion
-
-
-                    #region Magical Items
-
-                    else if (currentlySelected.type == MenuItemType.MagicFireball) //fireball magic
-                    {
-                        PlayerData.current.currentItem = HerosCurrentItem.Fireball;
-                        Pool.hero.item = currentlySelected.type;
-                    }
-
-                    #endregion
+                    
 
 
                     #region Weapons
 
-                    else if (currentlySelected.type == MenuItemType.WeaponSword) //sword
+                    if (currentlySelected.type == MenuItemType.WeaponSword) //sword
                     { PlayerData.current.currentWeapon = 0; Pool.hero.weapon = currentlySelected.type; }
                     else if (currentlySelected.type == MenuItemType.WeaponBow) //bow
                     { PlayerData.current.currentWeapon = 1; Pool.hero.weapon = currentlySelected.type; }
@@ -222,6 +197,7 @@ namespace DungeonRun
 
                     #endregion
 
+                    //store the 
 
                     //update the LoadoutWidget to show equipped items
                     Widgets.Loadout.UpdateLoadout();

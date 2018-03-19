@@ -14,6 +14,9 @@ namespace DungeonRun
 {
     public static class Functions_Projectile
     {
+        public static Boolean boomerangInPlay = false;
+
+
         //static Vector2 posRef = new Vector2();
         //static Direction direction;
 
@@ -27,13 +30,25 @@ namespace DungeonRun
             //then we call Functions_Ai.HandleObj() to properly place / handle the projectile for initial spawn
             //then for each frame, Functions_Ai.HandleObj() is called and handles ALL projectile behavior
 
+
+
+            //check for exit states
+            if (Type == ObjType.ProjectileBoomerang)
+            {   //only 1 boomerang allowed in play at once
+                if (boomerangInPlay) { return; }
+                else { boomerangInPlay = true; }
+            }   //otherwise, multiple boomerangs = OP
+
+
+
             //get a projectile to spawn
             Projectile pro = Functions_Pool.GetProjectile();
             //set the projectile's caster reference
             pro.caster = Caster;
             //determine the direction the projectile should inherit
-            if (Type == ObjType.ProjectileBomb) { }
-            //do nothing, we want to be able to slide bombs diagonally
+            if (Type == ObjType.ProjectileBomb
+                || Type == ObjType.ProjectileBoomerang)
+            { } //do nothing, we want to be able to throw these projectiles diagonally
             else
             {   //set the projectiles direction to a cardinal one
                 Dir = Functions_Direction.GetCardinalDirection(Dir);
@@ -44,6 +59,10 @@ namespace DungeonRun
             //give some projectiles an initial push
             if (Type == ObjType.ProjectileArrow) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
             else if (Type == ObjType.ProjectileFireball) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
+
+            else if (Type == ObjType.ProjectileBoomerang)
+            { Functions_Movement.Push(pro.compMove, Dir, 5.0f); boomerangInPlay = true; }
+
             else if (Type == ObjType.ProjectileBomb) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
             else if (Type == ObjType.ProjectileExplodingBarrel) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
             //assume this projectile is moving
@@ -139,7 +158,42 @@ namespace DungeonRun
 
 
             
+            else if(Pro.type == ObjType.ProjectileBoomerang)
+            {   //boomerang travels in thrown direction until this age, then return to hero
+                if(Pro.lifeCounter > 20)
+                {
+                    Pro.lifeCounter = 210; //lock pro here
 
+                    //get distance to hero
+                    Vector2 distance = Pool.hero.compMove.position - Pro.compMove.position;
+                    float speed = 0.14f;
+
+                    //alter boomerang's magnitude to move towards hero's position, per axis
+                    if (distance.X > 0) { Pro.compMove.magnitude.X += speed; }
+                    else { Pro.compMove.magnitude.X -= speed; }
+                    if (distance.Y > 0) { Pro.compMove.magnitude.Y += speed; }
+                    else { Pro.compMove.magnitude.Y -= speed; }
+
+                    //boomerang has returned to hero
+                    if (Pro.compCollision.rec.Intersects(Pool.hero.compCollision.rec))
+                    {
+                        Functions_GameObject.Kill(Pro);
+                        boomerangInPlay = false;
+                        //later on, we can return obj's the boomerang is carrying here
+                    }
+                }
+                
+                //rotate boomerang - this is waaaay too fast
+                //this is something that should be handled in a spritesheet
+                if (Pro.compSprite.rotation == Rotation.None)
+                { Pro.compSprite.rotation = Rotation.Clockwise90; }
+                else if (Pro.compSprite.rotation == Rotation.Clockwise90)
+                { Pro.compSprite.rotation = Rotation.Clockwise180; }
+                else if (Pro.compSprite.rotation == Rotation.Clockwise180)
+                { Pro.compSprite.rotation = Rotation.Clockwise270; }
+                else if (Pro.compSprite.rotation == Rotation.Clockwise270)
+                { Pro.compSprite.rotation = Rotation.None; }
+            }
 
 
 

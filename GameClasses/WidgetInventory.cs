@@ -39,7 +39,12 @@ namespace DungeonRun
                 new Vector2(0, 0), Assets.colorScheme.textDark));
             //create menuitems
             menuItems = new List<MenuItem>();
-            for (i = 0; i < (7 * 6); i++) { menuItems.Add(new MenuItem()); }
+            for (i = 0; i < (7 * 6); i++)
+            {
+                MenuItem mi = new MenuItem();
+                mi.id = i; //set id
+                menuItems.Add(mi);
+            }
             //create amount displays
             bombsDisplay = new ComponentAmountDisplay(0, 0, 0);
             arrowsDisplay = new ComponentAmountDisplay(0, 0, 0);

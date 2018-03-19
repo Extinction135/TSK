@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = true; //draws the bottom debug info
@@ -780,7 +780,8 @@ namespace DungeonRun
         #region Items
 
         //the hero's last selected / current item
-        public HerosCurrentItem currentItem = HerosCurrentItem.None;
+        public MenuItemType currentItem = MenuItemType.Unknown;
+        public int lastItemSelected = 0; //index of Widgets.Inventory.menuItems[?]
 
         //non-magical items
         public Boolean itemBoomerang = false;
@@ -889,6 +890,7 @@ namespace DungeonRun
         public MenuItem neighborDown;
         public MenuItem neighborLeft;
         public MenuItem neighborRight;
+        public int id; //menuItems go on a list
 
         public MenuItem()
         {   //default to ? sprite, hidden offscreen
@@ -899,6 +901,7 @@ namespace DungeonRun
             Functions_MenuItem.SetType(MenuItemType.Unknown, this);
             neighborUp = this; neighborDown = this;
             neighborLeft = this; neighborRight = this;
+            id = 0;
         }
     }
 

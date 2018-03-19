@@ -58,18 +58,6 @@ explosive barrel puzzels
 
 
 
-Remove Crystals from Game
-
-instead of crystals, we're going to use a variety of items to represent
-progression throughout the story, and side-quests, and hidden quests, etc..
-but first, we need to get rid of the crystals from previous game design.
-
-removed MenuItemType.CrystalFilled and CrystalEmpty.
-removed crystals from GameDisplay data, which is shown via the LoadSaveNew screen.
-changed GameDisplayData to show a questItem, which assuming current story,
-would be the last important story questItem hero collected, which is a simple
-way of managing story progression and is easy to display.
-playtested, working well.
 
 
 
@@ -79,9 +67,82 @@ playtested, working well.
 
 
 
-add the boomerang as default item in slot 0, default selected, hero starts with boomerang
-hero can't lose boomerang. if at any time hero's loadout is unclear, default to sword/boomerang,
-since hero can't lose these two items and starts the game with them.
+
+
+
+
+
+
+Implement Boomerang
+
+this is a projectile that flys in a thrown direction
+then upon hitting something or a duration, returns to hero
+tracks to hero upon return, and for now, that's it..
+
+added ProjectileBoomerang to ObjType enum.
+added GameObjListAnim for Boomerang.
+ripped up alot of code regarding Bottles, that I'll have
+to inspect later and fix..
+
+updated UseItem() with path for Boomerang.
+added def for Boomerang in Obj.SetType().
+added path for Boomerang to Projectile.Update().
+lots of tuning and playtesting, working really well.
+boomerang can be thrown and danced around with.
+
+updated Projectile.Spawn() to only create 1 boomerang at a time.
+although, i was playing around with a bunch of boomerangs on screen
+and it was hella fun, it was also hella OP. so, awesome but NO.
+
+
+
+
+hero should not be getting hurt, or playing damage sound upon boomerang projectile collision
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fix Bottles
+
+Bottles are STILL A MESS, and very brittle.
+The whole system needs to be redesigned, along with how
+the game stores a reference to the hero's current item.
+Bottles are currently commented out from UseItem().
+this means that the hero CANT use any type of bottle rn.
+
+
+
+
 
 
 
@@ -114,19 +175,66 @@ projectile spikeBlock should really be a roomObj
 
 
 
-Implement Boomerang
-this is a projectile that flys in a thrown direction
-then upon hitting something colliding, returns to hero
-if the something it hits is a pickup obj or fairy obj, 
-then that obj/actor travels with boomerang back to hero
-this item should be sold by the items vendor (for now)
-if boomerang hits an actor that isn't fairy, it should push that actor, but deal no damage
 
-boomerang's return
-we'll have to get the direction to hero, like we do in Functions_Ai
-the move the boomrang in that direction
-the boomerang will continuously spin, so it doesn't have a movement direction
-we'll need to update the rotationValue for boomerang each animation frame
+
+
+
+
+
+
+we need to logically split up the sprites into sheets that are:
+1: larger
+2: more specific (ex: projectiles sheet)
+3: with plenty of space for additions
+
+Sheets -
+
+(World - contains everything outside (grounds, foilage, buildings, etc))
+(Particles - all particles here)
+(Projectiles - all projectiles here)
+(Pickups - all pickups located here)
+(UI - all menuItems and UI related sprites here)
+
+Hero_Blob - only enemy
+Hero_Link - only hero
+
+(Enemy_Bat - flying enemy)
+(Enemy_Rat - grounded enemy)
+
+Boss_Blob - only boss
+
+Level_Dungeon - builds dungeon level
+Level_Shop - builds shop level + vendors
+(Level_Shared - shared between all level types (dungeons, shops, areas))
+(DungeonEntrance - contains entrance for dungeon (outside level))
+
+Main Sheet - we've stuffed everything into this and it's getting messy and hard to grow
+
+with larger sheets and more space, we can make the animations better.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

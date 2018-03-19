@@ -60,7 +60,36 @@ namespace DungeonRun
             }
 
 
-            #region Hero Specific Items (Bottles)
+
+
+
+
+
+
+
+
+
+            /*
+
+            #region Bottles
+
+            //it is assumed that only the player/hero can use bottles,
+            //so the effects of bottles only target the hero
+
+            if (Actor == Pool.hero)
+            {
+                if (Type == MenuItemType.BottleBlob
+                    || Type == MenuItemType.BottleCombo
+                    || Type == MenuItemType.BottleFairy
+                    || Type == MenuItemType.BottleHealth
+                    || Type == MenuItemType.BottleMagic)
+                {
+                    if (Functions_Bottle.UseBottle(Type))
+                    { }
+                }
+            }
+
+
 
             if (Actor == Pool.hero)
             {   //check bottle A
@@ -100,6 +129,17 @@ namespace DungeonRun
 
             #endregion
 
+            */
+
+
+
+
+
+
+
+
+
+
 
             //all actors can use items & magic
 
@@ -113,6 +153,15 @@ namespace DungeonRun
                 //actor spawns a bomb
                 Functions_Projectile.Spawn(ObjType.ProjectileBomb, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
+            }
+
+            else if (Type == MenuItemType.ItemBoomerang)
+            {   //throw a boomerang, if there is no boomerang in play
+                if (Functions_Projectile.boomerangInPlay == false)
+                {
+                    Functions_Projectile.Spawn(ObjType.ProjectileBoomerang, Actor.compMove, Actor.direction);
+                    Functions_Actor.SetItemUseState(Actor);
+                }
             }
 
             #endregion
