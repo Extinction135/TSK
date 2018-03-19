@@ -202,6 +202,7 @@ namespace DungeonRun
 
             if (Obj.group == ObjGroup.Projectile)
             {
+                //check exit conditions
                 //projectiles shouldn't interact with dead actor's corpses
                 if (Actor.state == ActorState.Dead) { return; }
                 //some projectiles dont interact with actors in any way at all
@@ -209,7 +210,11 @@ namespace DungeonRun
                     || Obj.type == ObjType.ProjectileExplodingBarrel
                     )
                 { return; }
+                //check for boomerang interaction with hero
+                else if(Obj.type == ObjType.ProjectileBoomerang & Actor == Pool.hero)
+                { return; }
 
+                //check specific projectile interactions
                 //check for collision between net and actor
                 else if (Obj.type == ObjType.ProjectileNet)
                 {   //make sure actor isn't in hit/dead state
@@ -225,8 +230,9 @@ namespace DungeonRun
                     if (Obj.lifeCounter == 1)
                     { Functions_Particle.Spawn(ObjType.ParticleHitSparkle, Obj); }
                 }
-                //all actors take damage from projectiles that reach this path
-                Functions_Battle.Damage(Actor, Obj); //sets actor into hit state!
+
+                //all actors take damage from these projectiles
+                Functions_Battle.Damage(Actor, Obj); //sets actor into hit state
             }
 
             #endregion
@@ -528,6 +534,32 @@ namespace DungeonRun
 
                     #endregion
 
+
+                    #region Boomerang
+
+                    else if (Object.type == ObjType.ProjectileBoomerang)
+                    {
+
+
+                        //pop an attention particle
+                        Functions_Particle.Spawn(ObjType.ParticleAttention,
+                            Object.compSprite.position.X,
+                            Object.compSprite.position.Y);
+                        //kill the boomerang
+                        Functions_GameObject.Kill(Object);
+                        Functions_Projectile.boomerangInPlay = false;
+
+                        /*
+                        if (Object.lifeCounter < 200)
+                        {
+                            //return boomerangs to their casters
+                            Object.lifeCounter = 200;
+                        }
+                        */
+                        
+                    }
+
+                    #endregion
 
                     return; //projectile interactions complete
                 }

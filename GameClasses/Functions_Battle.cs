@@ -45,6 +45,15 @@ namespace DungeonRun
                 Obj.lifeCounter = Obj.lifetime;
                 if (Actor.armor == MenuItemType.ArmorCloth) { damage = 1; }
             }
+
+
+            else if (Obj.type == ObjType.ProjectileBoomerang)
+            {   //boomerangs deal 0 damage, push 10, flip to return state
+                damage = 0; force = 10.0f; direction = Obj.direction;
+                Obj.lifeCounter = 200; //return to caster
+            }
+
+
             else if (Obj.type == ObjType.ProjectileExplosion)
             {   //explosions deal 2 damage, push 10
                 damage = 2; force = 10.0f; direction = Obj.direction;

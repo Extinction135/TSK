@@ -58,6 +58,22 @@ explosive barrel puzzels
 
 
 
+Boomerangs++
+
+updated projectile interactions to ignore hero v boomerang.
+this prevents the hero from making a hit soundFX every time
+he casts or catches the boomerang.
+
+updated Battle functions to cause boomerang to push enemies,
+but deal no damage, so it's very effective at moving mobs around,
+because it can hit (travel thru) multiple enemies upon return.
+
+updated projectile interactions to kill boomerang upon collision
+with a roomObject, which is kinda heavy handed, but is an easy
+fix for the boomerang now, because without that the boomerang
+just flies thru the walls, in and out, then returns to hero.
+at least it makes physical sense this way.
+lots of boomerang playtesting versus enemies and objects.
 
 
 
@@ -72,51 +88,10 @@ explosive barrel puzzels
 
 
 
-
-Implement Boomerang
-
-this is a projectile that flys in a thrown direction
-then upon hitting something or a duration, returns to hero
-tracks to hero upon return, and for now, that's it..
-
-added ProjectileBoomerang to ObjType enum.
-added GameObjListAnim for Boomerang.
-ripped up alot of code regarding Bottles, that I'll have
-to inspect later and fix..
-
-updated UseItem() with path for Boomerang.
-added def for Boomerang in Obj.SetType().
-added path for Boomerang to Projectile.Update().
-lots of tuning and playtesting, working really well.
-boomerang can be thrown and danced around with.
-
-updated Projectile.Spawn() to only create 1 boomerang at a time.
-although, i was playing around with a bunch of boomerangs on screen
-and it was hella fun, it was also hella OP. so, awesome but NO.
-
-
-
-
-hero should not be getting hurt, or playing damage sound upon boomerang projectile collision
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Boomerang v Pickups
+upon collision with pickup, boomerang continues, pickup absorbed by hero
+we still need to check collisions between the boomerang and pickup pool
+this way hero can pickup rupees from a distance, just like LttP.
 
 
 
