@@ -218,6 +218,10 @@ namespace DungeonRun
             {
                 FlipSwitchBlocks(RoomObj);
             }
+            else if(RoomObj.type == ObjType.LeverOff || RoomObj.type == ObjType.LeverOn)
+            {
+                ActivateLeverObjects();
+            }
         }
 
         public static void SlideOnIce(ComponentMovement compMove)
@@ -332,6 +336,16 @@ namespace DungeonRun
                 }
             }
         }
+
+
+
+        public static void Knock(GameObject Door)
+        {
+            //knocking on a door produces a hollow sound
+            //this is mostly used for checking bombable doors
+            
+        }
+
 
 
 

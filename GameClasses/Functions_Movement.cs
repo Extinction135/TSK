@@ -87,5 +87,22 @@ namespace DungeonRun
             compMove.newPosition.Y = compMove.position.Y;
         }
 
+        public static Direction GetMovingDirection(ComponentMovement Move)
+        {   //based on the Move component's magnitude, return the dominant cardinal direction
+            if(Math.Abs(Move.magnitude.X) > Math.Abs(Move.magnitude.Y))
+            {
+                //horizontal is dominant axis
+                if (Move.magnitude.X > 0) { return Direction.Right; }
+                else if (Move.magnitude.X < 0) { return Direction.Left; }
+                else { return Direction.None; }
+            }
+            else
+            {
+                //vertical is dominant axis
+                if (Move.magnitude.Y > 0) { return Direction.Down; }
+                else if (Move.magnitude.Y < 0) { return Direction.Up; }
+                else { return Direction.None; } //default case
+            }
+        }
     }
 }

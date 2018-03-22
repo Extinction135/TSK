@@ -157,10 +157,14 @@ namespace DungeonRun
             #endregion
 
 
-            
+            #region Boomerang
+
             else if(Pro.type == ObjType.ProjectileBoomerang)
-            {   //boomerang travels in thrown direction until this age, then return to hero
-                if(Pro.lifeCounter > 20)
+            {   //boomerang travels in thrown direction until this age, then returns to hero
+
+                #region Behavior From Hero
+
+                if (Pro.lifeCounter > 20)
                 {
                     Pro.lifeCounter = 210; //lock pro here
 
@@ -176,13 +180,25 @@ namespace DungeonRun
 
                     //boomerang has returned to hero
                     if (Pro.compCollision.rec.Intersects(Pool.hero.compCollision.rec))
-                    {
-                        Functions_GameObject.Kill(Pro);
-                        boomerangInPlay = false;
-                        //later on, we can return obj's the boomerang is carrying here
-                    }
+                    { Functions_GameObject.Kill(Pro); boomerangInPlay = false; }
                 }
-                
+
+                #endregion
+
+
+                #region Behavior To Hero
+
+                else
+                {
+                    //nothing really, the boomerang just travels in a straight cardinal direction
+                    //until it hits the above lifeCounter check, and then switches to return behavior
+                }
+
+                #endregion
+
+
+                #region Behavior Each Frame
+
                 //rotate boomerang - this is waaaay too fast
                 //this is something that should be handled in a spritesheet
                 if (Pro.compSprite.rotation == Rotation.None)
@@ -196,7 +212,12 @@ namespace DungeonRun
 
                 //check if the projectile overlaps any pickups, collect them if so
                 Functions_Pickup.CheckOverlap(Pro);
+
+                #endregion
+
             }
+
+            #endregion
 
 
 

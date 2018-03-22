@@ -511,27 +511,26 @@ namespace DungeonRun
 
                     else if (Object.type == ObjType.ProjectileBoomerang)
                     {
+                        //handle common interactions
+                        Functions_RoomObject.HandleCommon(RoomObj,
+                            Functions_Movement.GetMovingDirection(Object.compMove));
 
+                        //return the boomerang
+                        Object.lifeCounter = 200; //return to caster
+                        Functions_Movement.StopMovement(Object.compMove);
+                        Functions_Movement.Push(Object.compMove, 
+                            Functions_Direction.GetOppositeCardinal(
+                                Object.compSprite.position, 
+                                RoomObj.compSprite.position), 3.0f);
 
-                        //pop an attention particle
-                        Functions_Particle.Spawn(ObjType.ParticleAttention,
-                            Object.compSprite.position.X,
-                            Object.compSprite.position.Y);
-                        //kill the boomerang
-                        Functions_GameObject.Kill(Object);
-                        Functions_Projectile.boomerangInPlay = false;
-
-                        /*
-                        if (Object.lifeCounter < 200)
-                        {
-                            //return boomerangs to their casters
-                            Object.lifeCounter = 200;
-                        }
-                        */
-                        
+                        //pop a sparkle particle
+                        Functions_Particle.Spawn(ObjType.ParticleHitSparkle,
+                            Object.compSprite.position.X + 4,
+                            Object.compSprite.position.Y + 4);
                     }
 
                     #endregion
+
 
                     return; //projectile interactions complete
                 }

@@ -57,50 +57,51 @@ explosive barrel puzzels
 
 
 
-Boomerang v Pickups
-
-boomerangs should pickup any rupees, hearts, magic pots, etc
-that it collides with, and the collision shouldn't cause the
-boomerang to return to the hero.
-
-created Pickup.CheckOverlap(Obj), which checks the passed Obj's
-collision rec against that Pickup Pool, and returns the first
-colliding pickup Obj, or returns null. 
-so, we'll need a null check for any calling code.
-
-created Pickup.HandleEffect(), which contains all the code 
-for the effects the pickups have, since the hero can collide
-with them, but now the boomerang can collide with them as well,
-which duplicates their effects in two places (actor v pickup, and
-projectile v pickup). this consolidates the pickup effect
-code into one place, basically.
-
-updated Interaction functions to call Pickup.HandleEffect().
-updated Projectile functions to call Pickup.CheckOverlap().
-playtested, boomerangs can now collect multiple pickups.
 
 
 
+Boomerangs v RoomObjs
 
-Boomerang v Pickups
+boomerangs should be able to trigger certain roomObjects,
+like barrels for example.
 
-upon collision with pickup, boomerang continues, pickup absorbed by hero
-we still need to check collisions between the boomerang and pickup pool
-this way hero can pickup rupees from a distance, just like LttP.
-where we do this is the rub.. we *could* do it all in Projectile.Update().
+updated RoomObj v Obj Interactions Boomerang section with
+barrel check, with additional code to ensure barrel inherits
+proper directional inertia.
 
+created Movement.GetMovingDirection() to return the direction
+of a movement component based on it's magnitude. 
+created a fun new kind of puzzle using the boomerang.
+created a testing room for interactions.
+lots of boomerang playtesting, now interacting properly
+with bumpers, switch btns, levers, pots, barrels, etc..
 
-
-but what about other projectiles that collide with pickups?
-like the HOOKSHOT
-
-we should have a function that accepts a projectile and checks it against the pickups pool
-upon a collision, return that pickup obj
-and this could be abstracted / generalized to accept any GameObj AND ANY OBJLIST 
-(including projectiles, since they are rooted in GameObjs)
-
+it's really fun to play around with boomerangs.
 
 
+
+
+
+
+
+
+
+
+upon a roomBuild, we need to make sure that we reset the boomerang in play boolean
+and this boolean should be living in the hero class, not in the projectile class
+and we should be calling a Reset() method from the roomBuild, to ensure that we can
+reset whatever we need to prior to the room being played...
+	
+	
+	
+	
+!!! we need boomerang THROW sound fx really bad
+and we need to be playing a clink sfx upon collision
+and we need to be playing a boomerang flying sfx while it travels
+	
+	
+	
+	
 
 
 
