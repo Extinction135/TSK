@@ -58,46 +58,48 @@ explosive barrel puzzels
 
 
 
+Boomerang++
 
+moved boomerangInPlay boolean into the Functions_Hero class.
+added ResetUponRoomBuild() method to Hero functions.
+this is called from Room.BuildRoom(), at the end.
+this allows the hero a moment to reset everything to a
+useable state, for example: the boomerang could not of
+returned to the hero prior to the hero leaving the room,
+and without resetting the boomerang's boolean here in the
+ResetUponRoomBuild() method, the boomerang would be lost 4ever.
+sadFace.jpg.
 
-Boomerangs v RoomObjs
+added sound fx for throwing and collisions for boomerang.
+added SoundBoomerangFlying to Dx & UWP projects, built.
+updated Assets with boomerang flying instance.
+boomerang sounds and feels complete now.. hmmm.
 
-boomerangs should be able to trigger certain roomObjects,
-like barrels for example.
-
-updated RoomObj v Obj Interactions Boomerang section with
-barrel check, with additional code to ensure barrel inherits
-proper directional inertia.
-
-created Movement.GetMovingDirection() to return the direction
-of a movement component based on it's magnitude. 
-created a fun new kind of puzzle using the boomerang.
-created a testing room for interactions.
-lots of boomerang playtesting, now interacting properly
-with bumpers, switch btns, levers, pots, barrels, etc..
-
-it's really fun to play around with boomerangs.
-
-
-
-
-
-
-
-
-
-
-upon a roomBuild, we need to make sure that we reset the boomerang in play boolean
-and this boolean should be living in the hero class, not in the projectile class
-and we should be calling a Reset() method from the roomBuild, to ensure that we can
-reset whatever we need to prior to the room being played...
 	
 	
 	
+
+
+
+
+
+
+
+
+
+
+bumpers: we can check to make sure an interaction only happens if the bumper's
+sprite is at 1.0 scale. this ensures that we won't have continuous collisions 
+across frames, which is what messes up the push/bounce routine for bumpers
+
+
+
+
+
+
+
+
 	
-!!! we need boomerang THROW sound fx really bad
-and we need to be playing a clink sfx upon collision
-and we need to be playing a boomerang flying sfx while it travels
 	
 	
 	
@@ -188,7 +190,13 @@ Main Sheet - we've stuffed everything into this and it's getting messy and hard 
 
 with larger sheets and more space, we can make the animations better.
 
-
+HOWEVER, the curent gameObj animList system was created to PREVENT garbage
+from being made each time SetType() is called, where we would normally put
+the frame list, which would require the NEW keyword. (why can't we set the reference here?,
+it just makes it more tedious, because we have to have object defs for each enum value)
+*the issue we run into is we'll need to set the spriteSheet for the objs per objType,
+which leads to a monolithic and tedious SetType() implementation, which targets each
+enum value individally.
 
 
 

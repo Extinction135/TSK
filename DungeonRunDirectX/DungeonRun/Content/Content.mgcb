@@ -455,3 +455,9 @@
 /processorParam:Quality=Best
 /build:SoundNet.wav
 
+#begin SoundBoomerangFlying.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBoomerangFlying.wav
+

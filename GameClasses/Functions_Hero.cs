@@ -22,6 +22,8 @@ namespace DungeonRun
         public static ComponentSprite heroShadow;
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
         public static Boolean carrying = false; //is hero carrying an obj?
+        public static Boolean boomerangInPlay = false; //only 1 boomerang on screen at once
+
 
 
         static Functions_Hero()
@@ -641,6 +643,12 @@ namespace DungeonRun
             else if (PlayerData.current.currentEquipment == 4)
             { Pool.hero.equipment = MenuItemType.EquipmentPin; }
             else { Pool.hero.equipment = MenuItemType.Unknown; }
+        }
+
+        public static void ResetUponRoomBuild()
+        {
+            //hero-related things that reset upon a roomBuild()
+            boomerangInPlay = false; //boomerang could of been lost in prev room
         }
 
     }

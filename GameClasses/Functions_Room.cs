@@ -144,6 +144,7 @@ namespace DungeonRun
             //update all roomObjs, then remove overlapping objs
             Functions_RoomObject.AlignRoomObjs();
             CleanupRoom(Room); //remove overlapping objs
+            Functions_Hero.ResetUponRoomBuild(); //reset hero
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;

@@ -133,14 +133,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-
-
             //all actors can use items & magic
 
 
@@ -156,11 +148,12 @@ namespace DungeonRun
             }
 
             else if (Type == MenuItemType.ItemBoomerang)
-            {   //throw a boomerang, if there is no boomerang in play
-                if (Functions_Projectile.boomerangInPlay == false)
-                {
+            {   
+                if (Functions_Hero.boomerangInPlay == false)
+                {   //throw a boomerang, if there is no boomerang in play
                     Functions_Projectile.Spawn(ObjType.ProjectileBoomerang, Actor.compMove, Actor.direction);
                     Functions_Actor.SetItemUseState(Actor);
+                    Assets.Play(Assets.sfxArrowShoot);
                 }
             }
 

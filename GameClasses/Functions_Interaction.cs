@@ -523,10 +523,14 @@ namespace DungeonRun
                                 Object.compSprite.position, 
                                 RoomObj.compSprite.position), 3.0f);
 
+
+                        
+
                         //pop a sparkle particle
                         Functions_Particle.Spawn(ObjType.ParticleHitSparkle,
                             Object.compSprite.position.X + 4,
                             Object.compSprite.position.Y + 4);
+                        Assets.Play(Assets.sfxTapMetallic);
                     }
 
                     #endregion

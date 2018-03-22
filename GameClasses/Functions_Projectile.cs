@@ -14,12 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_Projectile
     {
-        public static Boolean boomerangInPlay = false;
-
-
-        //static Vector2 posRef = new Vector2();
-        //static Direction direction;
-
         //Dir is usually the actor's / object's facing direction
         public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
         {
@@ -30,16 +24,12 @@ namespace DungeonRun
             //then we call Functions_Ai.HandleObj() to properly place / handle the projectile for initial spawn
             //then for each frame, Functions_Ai.HandleObj() is called and handles ALL projectile behavior
 
-
-
             //check for exit states
             if (Type == ObjType.ProjectileBoomerang)
             {   //only 1 boomerang allowed in play at once
-                if (boomerangInPlay) { return; }
-                else { boomerangInPlay = true; }
-            }   //otherwise, multiple boomerangs = OP
-
-
+                if (Functions_Hero.boomerangInPlay) { return; }
+                else { Functions_Hero.boomerangInPlay = true; }
+            }
 
             //get a projectile to spawn
             Projectile pro = Functions_Pool.GetProjectile();
@@ -61,7 +51,7 @@ namespace DungeonRun
             else if (Type == ObjType.ProjectileFireball) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
 
             else if (Type == ObjType.ProjectileBoomerang)
-            { Functions_Movement.Push(pro.compMove, Dir, 5.0f); boomerangInPlay = true; }
+            { Functions_Movement.Push(pro.compMove, Dir, 5.0f); Functions_Hero.boomerangInPlay = true; }
 
             else if (Type == ObjType.ProjectileBomb) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
             else if (Type == ObjType.ProjectileExplodingBarrel) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
@@ -180,7 +170,11 @@ namespace DungeonRun
 
                     //boomerang has returned to hero
                     if (Pro.compCollision.rec.Intersects(Pool.hero.compCollision.rec))
-                    { Functions_GameObject.Kill(Pro); boomerangInPlay = false; }
+                    {
+                        Functions_GameObject.Kill(Pro);
+                        Functions_Hero.boomerangInPlay = false;
+                        //Assets.Play(Assets.sfxArrowHit);
+                    }
                 }
 
                 #endregion
@@ -212,6 +206,8 @@ namespace DungeonRun
 
                 //check if the projectile overlaps any pickups, collect them if so
                 Functions_Pickup.CheckOverlap(Pro);
+                //play the spinning sound fx each frame
+                Assets.Play(Assets.sfxBoomerangFlying);
 
                 #endregion
 

@@ -134,6 +134,7 @@ namespace DungeonRun
 
         public static SoundEffectInstance sfxPetDog;
         public static SoundEffectInstance sfxNet;
+        public static SoundEffectInstance sfxBoomerangFlying;
 
         #endregion
 
@@ -319,7 +320,9 @@ namespace DungeonRun
             sfxPetDog = dogSrc.CreateInstance();
             SoundEffect netSrc = content.Load<SoundEffect>(@"SoundNet");
             sfxNet = netSrc.CreateInstance();
-            
+            SoundEffect boomerangFlyingSrc = content.Load<SoundEffect>(@"SoundBoomerangFlying");
+            sfxBoomerangFlying = boomerangFlyingSrc.CreateInstance();
+
             #endregion
 
 
