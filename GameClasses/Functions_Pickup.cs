@@ -62,5 +62,53 @@ namespace DungeonRun
 
 
 
+        public static void CheckOverlap(GameObject Obj)
+        {   //check to see if OBJ overlaps any OBJ on the pickups list, return pickup OBJ
+            for (int i = 0; i < Pool.pickupCount; i++)
+            {
+                if(Pool.pickupPool[i].active)
+                {
+                    if (Obj.compCollision.rec.Intersects(Pool.pickupPool[i].compCollision.rec))
+                    {   //this function assumes that the overlapping gameObj collects the pickup
+                        HandleEffect(Pool.pickupPool[i]);
+                    }
+                }
+            }
+        }
+
+        public static void HandleEffect(GameObject Pickup)
+        {
+            if (Pickup.type == ObjType.PickupHeart)
+            {
+                Pool.hero.health++;
+                Assets.Play(Assets.sfxHeartPickup);
+            }
+            else if (Pickup.type == ObjType.PickupRupee)
+            {
+                PlayerData.current.gold++;
+                Assets.Play(Assets.sfxGoldPickup);
+            }
+            else if (Pickup.type == ObjType.PickupMagic)
+            {
+                PlayerData.current.magicCurrent++;
+                Assets.Play(Assets.sfxHeartPickup);
+            }
+            else if (Pickup.type == ObjType.PickupArrow)
+            {
+                PlayerData.current.arrowsCurrent++;
+                Assets.Play(Assets.sfxHeartPickup);
+            }
+            else if (Pickup.type == ObjType.PickupBomb)
+            {
+                PlayerData.current.bombsCurrent++;
+                Assets.Play(Assets.sfxHeartPickup);
+            }
+
+            //end the pickups life
+            Pickup.lifeCounter = 2;
+            Pickup.lifetime = 1;
+        }
+
+
     }
 }

@@ -57,47 +57,47 @@ explosive barrel puzzels
 
 
 
+Boomerang v Pickups
 
-Boomerangs++
+boomerangs should pickup any rupees, hearts, magic pots, etc
+that it collides with, and the collision shouldn't cause the
+boomerang to return to the hero.
 
-updated projectile interactions to ignore hero v boomerang.
-this prevents the hero from making a hit soundFX every time
-he casts or catches the boomerang.
+created Pickup.CheckOverlap(Obj), which checks the passed Obj's
+collision rec against that Pickup Pool, and returns the first
+colliding pickup Obj, or returns null. 
+so, we'll need a null check for any calling code.
 
-updated Battle functions to cause boomerang to push enemies,
-but deal no damage, so it's very effective at moving mobs around,
-because it can hit (travel thru) multiple enemies upon return.
+created Pickup.HandleEffect(), which contains all the code 
+for the effects the pickups have, since the hero can collide
+with them, but now the boomerang can collide with them as well,
+which duplicates their effects in two places (actor v pickup, and
+projectile v pickup). this consolidates the pickup effect
+code into one place, basically.
 
-updated projectile interactions to kill boomerang upon collision
-with a roomObject, which is kinda heavy handed, but is an easy
-fix for the boomerang now, because without that the boomerang
-just flies thru the walls, in and out, then returns to hero.
-at least it makes physical sense this way.
-lots of boomerang playtesting versus enemies and objects.
-
-
-
-
-
-
-
-
-
-
+updated Interaction functions to call Pickup.HandleEffect().
+updated Projectile functions to call Pickup.CheckOverlap().
+playtested, boomerangs can now collect multiple pickups.
 
 
 
 
 Boomerang v Pickups
+
 upon collision with pickup, boomerang continues, pickup absorbed by hero
 we still need to check collisions between the boomerang and pickup pool
 this way hero can pickup rupees from a distance, just like LttP.
+where we do this is the rub.. we *could* do it all in Projectile.Update().
 
 
 
+but what about other projectiles that collide with pickups?
+like the HOOKSHOT
 
-
-
+we should have a function that accepts a projectile and checks it against the pickups pool
+upon a collision, return that pickup obj
+and this could be abstracted / generalized to accept any GameObj AND ANY OBJLIST 
+(including projectiles, since they are rooted in GameObjs)
 
 
 

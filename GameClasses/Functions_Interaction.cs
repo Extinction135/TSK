@@ -64,36 +64,8 @@ namespace DungeonRun
                 #region Pickups
 
                 if (Obj.group == ObjGroup.Pickup)
-                {   
-                    if (Obj.type == ObjType.PickupHeart)
-                    {
-                        Pool.hero.health++;
-                        Assets.Play(Assets.sfxHeartPickup);
-                    }
-                    else if (Obj.type == ObjType.PickupRupee)
-                    {
-                        PlayerData.current.gold++;
-                        Assets.Play(Assets.sfxGoldPickup);
-                    }
-                    else if (Obj.type == ObjType.PickupMagic)
-                    {
-                        PlayerData.current.magicCurrent++;
-                        Assets.Play(Assets.sfxHeartPickup);
-                    }
-                    else if (Obj.type == ObjType.PickupArrow)
-                    {
-                        PlayerData.current.arrowsCurrent++;
-                        Assets.Play(Assets.sfxHeartPickup);
-                    }
-                    else if (Obj.type == ObjType.PickupBomb)
-                    {
-                        PlayerData.current.bombsCurrent++;
-                        Assets.Play(Assets.sfxHeartPickup);
-                    }
-
-                    //end the pickups life
-                    Obj.lifeCounter = 2;
-                    Obj.lifetime = 1;
+                {
+                    Functions_Pickup.HandleEffect(Obj);
                     return;
                 }
 

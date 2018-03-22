@@ -193,6 +193,9 @@ namespace DungeonRun
                 { Pro.compSprite.rotation = Rotation.Clockwise270; }
                 else if (Pro.compSprite.rotation == Rotation.Clockwise270)
                 { Pro.compSprite.rotation = Rotation.None; }
+
+                //check if the projectile overlaps any pickups, collect them if so
+                Functions_Pickup.CheckOverlap(Pro);
             }
 
 
