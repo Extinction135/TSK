@@ -55,55 +55,17 @@ explosive barrel puzzels
 
 
 
+Attack / Use ++
 
+hero should slow down when he's attacking or using an object.
+meaning, his friction should increase.
 
-
-Boomerang++
-
-moved boomerangInPlay boolean into the Functions_Hero class.
-added ResetUponRoomBuild() method to Hero functions.
-this is called from Room.BuildRoom(), at the end.
-this allows the hero a moment to reset everything to a
-useable state, for example: the boomerang could not of
-returned to the hero prior to the hero leaving the room,
-and without resetting the boomerang's boolean here in the
-ResetUponRoomBuild() method, the boomerang would be lost 4ever.
-sadFace.jpg.
-
-added sound fx for throwing and collisions for boomerang.
-added SoundBoomerangFlying to Dx & UWP projects, built.
-updated Assets with boomerang flying instance.
-boomerang sounds and feels complete now.. hmmm.
-
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-bumpers: we can check to make sure an interaction only happens if the bumper's
-sprite is at 1.0 scale. this ensures that we won't have continuous collisions 
-across frames, which is what messes up the push/bounce routine for bumpers
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
+added FrictionSlow field to global World class.
+modified Actor.Update() to set an actor's friction to
+FrictionSlow if the actor is in a use or attack state.
+this causes the hero to slow down a little when he
+attacks, which makes the use/attack feel better. 
+playtested, working as expected.
 
 
 
@@ -111,7 +73,6 @@ across frames, which is what messes up the push/bounce routine for bumpers
 
 
 Fix Bottles
-
 Bottles are STILL A MESS, and very brittle.
 The whole system needs to be redesigned, along with how
 the game stores a reference to the hero's current item.
@@ -129,15 +90,10 @@ this means that the hero CANT use any type of bottle rn.
 
 
 
+
 Improve Bow Animation
 however, we now need to model the bow as a projectile,
 beceause it needs to track to its caster, and rotate based on direction.
-
-
-Attack / Use ++
-hero should slow down when he's attacking or using an object
-meaning, his friction should increase
-
 
 SpikeBlock++
 this should be implemented as a RoomObject, not a Projectile
@@ -146,6 +102,48 @@ the hitch is that we'll have to update alot of game file to use SpikeBlock inste
 but that's something a few mins and a replace command can handle easily.
 projectile spikeBlock should really be a roomObj
 
+Bumpers++
+bumpers: we can check to make sure an interaction only happens if the bumper's
+sprite is at 1.0 scale. this ensures that we won't have continuous collisions 
+across frames, which is what messes up the push/bounce routine for bumpers
+
+Damage Balancing
+arrows should do 2 damage - duh!
+bombs should do 2 damage too.
+swords should do 1 damage.
+fireballs should hit for 3 damage.
+
+
+
+
+
+
+
+Implement Dynamic Shadows System
+
+an object pool for shadows would be great
+objects / actors could have a field for a shadow sprite reference
+then we could store a shadow offset, which allows us to fake depth on the Z axis
+if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
+this also sets the stage for flying obj/actors, as they would have changing shadow positions.
+this also means we need to 'unbake' the shadows from ALL objects and actors.
+
+
+
+
+
+
+LightWave Projectile (push wand projectile)
+
+the flame throwers on the ground shouldn't shoot fireballs
+they should shoot those light wave things, which dont deal damage to what they hit!
+they actually only push what they hit, and they dont die upon a collision
+they will continue to push whatever they collide with until they die from age
+this means we need a new type of projectile, which is exciting
+
+and we can use this wave as the projectile created from the wand!
+we can call it the push wand, which would allow us to create a whole new type of puzzle
+where we can use the push wand to move objects to solve rooms!!!
 
 
 
@@ -159,6 +157,36 @@ projectile spikeBlock should really be a roomObj
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Future Proof SpriteSheets
 
 we need to logically split up the sprites into sheets that are:
 1: larger
@@ -198,49 +226,7 @@ it just makes it more tedious, because we have to have object defs for each enum
 which leads to a monolithic and tedious SetType() implementation, which targets each
 enum value individally.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Damage Balancing
-arrows should do 2 damage - duh!
-bombs should do 2 damage too.
-swords should do 1 damage.
-fireballs should hit for 3 damage.
+this needs to be investigated more before a decision is made.
 
 
 
@@ -296,28 +282,6 @@ the obj stays in it's picked up spot
 
 
 
-
-
-
-
-
-
-
-Implement Dynamic Shadows System
-
-an object pool for shadows would be great
-objects / actors could have a field for a shadow sprite reference
-then we could store a shadow offset, which allows us to fake depth on the Z axis
-if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
-this also sets the stage for flying obj/actors, as they would have changing shadow positions.
-this also means we need to 'unbake' the shadows from ALL objects and actors.
-
-
-
-
-
-
-
 Art++
 
 complete sorting enemies into the EnemyDungeonSets file.
@@ -332,15 +296,7 @@ this means there will be outdoor levels. but that's a far ways off.
 
 
 
-the flame throwers on the ground shouldn't shoot fireballs
-they should shoot those light wave things, which dont deal damage to what they hit!
-they actually only push what they hit, and they dont die upon a collision
-they will continue to push whatever they collide with until they die from age
-this means we need a new type of projectile, which is exciting
 
-and we can use this wave as the projectile created from the wand!
-we can call it the push wand, which would allow us to create a whole new type of puzzle
-where we can use the push wand to move objects to solve rooms!!!
 
 
 

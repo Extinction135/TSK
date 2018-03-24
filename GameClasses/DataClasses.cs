@@ -74,13 +74,10 @@ namespace DungeonRun
 
     public static class World
     {
+        public static float frictionSlow = 0.5f;
         public static float friction = 0.75f;
         public static float frictionIce = 0.99f;
         public static float frictionAir = 0.9f;
-
-        //do we need a 'slowed' friction value?
-        //we could use this fake a 'burdened' state
-        //if the hero puts on heavy armor, for example
     }
 
     public static class Camera2D

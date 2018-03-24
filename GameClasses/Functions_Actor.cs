@@ -271,7 +271,10 @@ namespace DungeonRun
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
                 //Handle States
-                if (Actor == Pool.hero) { Functions_Hero.HandleState(); } 
+                if (Actor == Pool.hero)
+                {
+                    Functions_Hero.HandleState();
+                } 
                 else
                 {   //all actors other than hero are processed as follows
                     if (Actor.state == ActorState.Interact) { } //only hero
@@ -309,6 +312,10 @@ namespace DungeonRun
                     //check to see if the actor is dead
                     if (Actor.health <= 0) { SetDeathState(Actor); }
                 }
+
+
+                #region State Checks
+
                 if (Actor.state == ActorState.Dead)
                 {   //check death state
                     Actor.lockCounter = 0; //lock actor into dead state
@@ -327,6 +334,13 @@ namespace DungeonRun
                         }
                     }
                 }
+                else if(Actor.state == ActorState.Use || Actor.state == ActorState.Attack)
+                {   //when an actor uses or attacks, they slow down for the duration
+                    Actor.compMove.friction = World.frictionSlow;
+                }
+
+                #endregion
+
             }
 
             #endregion
