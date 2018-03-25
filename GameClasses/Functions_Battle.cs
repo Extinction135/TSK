@@ -71,6 +71,10 @@ namespace DungeonRun
             {   //net deals 0 damage, push 6
                 damage = 0; force = 6.0f; direction = Obj.direction;
             }
+            else if (Obj.type == ObjType.ProjectileBow)
+            {   //bows don't push or hurt actors
+                return;
+            }
 
             #endregion
 

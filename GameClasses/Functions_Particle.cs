@@ -85,13 +85,6 @@ namespace DungeonRun
             {   //center horizontally, place near actor's feet
                 posRef.X += 4; posRef.Y += 8;
             }
-            else if (Type == ObjType.ParticleBow)
-            {   //place bow particle in the actor's hands
-                if (direction == Direction.Down) { posRef.Y += 6; }
-                else if (direction == Direction.Up) { posRef.Y -= 6; }
-                else if (direction == Direction.Right) { posRef.X += 6; }
-                else if (direction == Direction.Left) { posRef.X -= 6; }
-            }
             else if ( //place reward/bottle particles above actor's head
                 Type == ObjType.ParticleRewardKey ||
                 Type == ObjType.ParticleRewardMap ||

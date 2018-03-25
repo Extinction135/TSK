@@ -55,35 +55,6 @@ explosive barrel puzzels
 
 
 
-Attack / Use ++
-
-hero should slow down when he's attacking or using an object.
-meaning, his friction should increase.
-
-added FrictionSlow field to global World class.
-modified Actor.Update() to set an actor's friction to
-FrictionSlow if the actor is in a use or attack state.
-this causes the hero to slow down a little when he
-attacks, which makes the use/attack feel better. 
-playtested, working as expected.
-
-
-
-
-
-
-Fix Bottles
-Bottles are STILL A MESS, and very brittle.
-The whole system needs to be redesigned, along with how
-the game stores a reference to the hero's current item.
-Bottles are currently commented out from UseItem().
-this means that the hero CANT use any type of bottle rn.
-
-
-
-
-
-
 
 
 
@@ -92,8 +63,48 @@ this means that the hero CANT use any type of bottle rn.
 
 
 Improve Bow Animation
-however, we now need to model the bow as a projectile,
-beceause it needs to track to its caster, and rotate based on direction.
+
+when the hero shoots an arrow, a bow particle is created.
+in previous implementations, this particle would rotate to
+match the facing direction of the hero and the illusion of
+the hero using the bow was good. yay.jpg.
+
+however, the new system doesn't allow for the rotation of
+particles, PLUS the bow particle should track to the hero
+across frames, because the hero can now slide while attacking,
+which means the current bow particle stays behind and faces
+the wrong direction, which is completely wrong. boo.tga.
+
+the fix is easy: make the bow particle a projectile, track
+it to the hero across frames (just like sword), and match 
+the hero's facing direction upon cast (because projectiles
+can rotate cardinally however they want to).
+
+removed ParticleBow + GameObjAnimList.
+added ProjectileBow + GameObjAnimList.
+updated GameObj.SetType() for ProjectileBow.
+added path for ProjectileBow to Projectile.Update().
+updated UseWeapon() to create a ProjectileBow,
+instead of ParticleBow.
+
+updated Battle.Damage() to prevent ProjectileBow
+from attempting to deal 0 damage to the hero upon
+overlap, which caused the hit sound fx, but didn't
+put the hero into a hit state (lol).
+
+playtested, the shooting arrow animation is CRISPY.
+
+
+
+
+
+
+
+
+
+
+
+
 
 SpikeBlock++
 this should be implemented as a RoomObject, not a Projectile
@@ -112,6 +123,27 @@ arrows should do 2 damage - duh!
 bombs should do 2 damage too.
 swords should do 1 damage.
 fireballs should hit for 3 damage.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fix Bottles
+Bottles are STILL A MESS, and very brittle.
+The whole system needs to be redesigned, along with how
+the game stores a reference to the hero's current item.
+Bottles are currently commented out from UseItem().
+this means that the hero CANT use any type of bottle rn.
+
+
 
 
 
@@ -144,34 +176,6 @@ this means we need a new type of projectile, which is exciting
 and we can use this wave as the projectile created from the wand!
 we can call it the push wand, which would allow us to create a whole new type of puzzle
 where we can use the push wand to move objects to solve rooms!!!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

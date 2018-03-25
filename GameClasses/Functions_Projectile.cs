@@ -46,7 +46,9 @@ namespace DungeonRun
             pro.direction = Dir;
             pro.compMove.direction = Dir;
 
-            //give some projectiles an initial push
+
+            #region Give some projectiles an initial push
+
             if (Type == ObjType.ProjectileArrow) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
             else if (Type == ObjType.ProjectileFireball) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
 
@@ -55,8 +57,8 @@ namespace DungeonRun
 
             else if (Type == ObjType.ProjectileBomb) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
             else if (Type == ObjType.ProjectileExplodingBarrel) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
-            //assume this projectile is moving
-            pro.compMove.moving = true;
+
+            #endregion
 
 
             #region Handle Spawn Events not handled by BirthEvent
@@ -75,13 +77,12 @@ namespace DungeonRun
             //teleport the object to the caster's location
             Functions_Movement.Teleport(pro.compMove,
                 Caster.position.X,
-                Caster.position.Y
-            );
-
+                Caster.position.Y);
+            //assume this projectile is moving
+            pro.compMove.moving = true;
             //handle spawn frame behavior
             pro.type = Type;
             Update(pro); 
-
             //finalize it: setType, rotation & align
             Functions_GameObject.SetType(pro, Type); 
         }
@@ -214,6 +215,25 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            #region Bow 
+
+            else if (Pro.type == ObjType.ProjectileBow)
+            {   //track the projectile to it's caster
+                //set offset to make projectile appear in actors hand, based on direction
+                if (Pro.direction == Direction.Down) { offset.X = 0; offset.Y = +8; }
+                else if (Pro.direction == Direction.Up) { offset.X = 0; offset.Y = -8; }
+                else if (Pro.direction == Direction.Right) { offset.X = +8; offset.Y = 1; }
+                else if (Pro.direction == Direction.Left) { offset.X = -8; offset.Y = 1; }
+                //apply the offset
+                Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X;
+                Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y;
+            }
+
+            #endregion
+
+
 
 
 

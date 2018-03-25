@@ -118,6 +118,7 @@ namespace DungeonRun
         ProjectileSword,
         ProjectileArrow,
         ProjectileNet,
+        ProjectileBow,
         //Projectiles - object
         ProjectileExplosion,
         ProjectileSpikeBlock, //this should probably be a roomObj
@@ -131,11 +132,15 @@ namespace DungeonRun
         ParticleMapFlag, ParticleMapWave, ParticleMapCampfire,
         //Particles - normal size
         ParticleExplosion, ParticleAttention, ParticleFire, ParticleSplash, ParticleDebris,
-        ParticleBow,
         ParticleBottleEmpty, ParticleBottleHealth, ParticleBottleMagic, ParticleBottleCombo,
         ParticleBottleFairy, ParticleBottleBlob,
         //Particles - rewards
         ParticleRewardKey, ParticleRewardMap,
+
+
+
+
+
     }
 
     public enum MenuItemType

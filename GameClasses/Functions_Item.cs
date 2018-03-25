@@ -28,8 +28,8 @@ namespace DungeonRun
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
                 //actor shoots an arrow
                 Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor.compMove, Actor.direction);
-                //actoro displays a bow
-                Functions_Particle.Spawn(ObjType.ParticleBow, Actor);
+                //actor displays a bow
+                Functions_Projectile.Spawn(ObjType.ProjectileBow, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
             else if (Type == MenuItemType.WeaponNet)

@@ -225,6 +225,8 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(4, 7, 0, 0) },
                 //ProjectileNet
                 new List<Byte4> { new Byte4(0, 6, 0, 0), new Byte4(1, 6, 0, 0), new Byte4(2, 6, 0, 0), new Byte4(3, 6, 0, 0) },
+                //ProjectileBow
+                new List<Byte4> { new Byte4(4, 6, 0, 0) },
 
                 //objects
                 //ProjectileExplosion
@@ -278,9 +280,6 @@ namespace DungeonRun
 
                 //ParticleDebris
                 new List<Byte4> { new Byte4(15, 15, 0, 0) },
-
-                //ParticleBow
-                new List<Byte4> { new Byte4(4, 6, 0, 0) },
 
                 //ParticleBottleEmpty
                 new List<Byte4> { new Byte4(6, 5, 0, 0) },

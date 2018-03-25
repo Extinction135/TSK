@@ -660,11 +660,6 @@ namespace DungeonRun
                 Obj.compAnim.speed = 7; //in frames
                 Obj.compMove.moveable = true;
             }
-
-
-
-
-
             else if (Type == ObjType.ProjectileBoomerang)
             {
                 Obj.compSprite.texture = Assets.mainSheet;
@@ -678,13 +673,7 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
             }
-
-
-
-
-
-
-
+            
             //magic
             else if (Type == ObjType.ProjectileFireball)
             {
@@ -766,6 +755,16 @@ namespace DungeonRun
                 Obj.compAnim.speed = 2; //in frames
                 Obj.compAnim.loop = false;
                 Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //obj is airborne
+            }
+            else if (Type == ObjType.ProjectileBow)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = 32;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 15; //in frames
+                Obj.compAnim.speed = 10; //in frames
+                Obj.compAnim.loop = false;
                 Obj.compMove.grounded = false; //obj is airborne
             }
 
@@ -932,26 +931,7 @@ namespace DungeonRun
                 Obj.compAnim.loop = false;
             }
 
-
-
-
-
-
-            //this should become a projectile so it can track to it's caster
-            else if (Type == ObjType.ParticleBow)
-            {
-                Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compSprite.zOffset = 32;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 15; //in frames
-                Obj.compAnim.speed = 10; //in frames
-                Obj.compAnim.loop = false;
-            }
-
-
-
-
-
+            
             //Particles - Rewards & Bottles
             else if (
                 Type == ObjType.ParticleRewardKey ||
