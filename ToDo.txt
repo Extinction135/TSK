@@ -44,14 +44,7 @@ v0.7 goals
 
 
 
-Re-Damage Balance
 
-arrows should do 2 damage.
-bombs should do 2 damage.
-swords should do 1 damage.
-fireballs should hit for 3 damage.
-removed Cloth armor's functionality.
-(it no longer reduces fireball damage to 1).
 
 
 
@@ -59,8 +52,8 @@ removed Cloth armor's functionality.
 Fix Interaction Between Actors and BlockSpikes
 
 this is a roomObj v Actor interation
-
-
+added path for BlockSpike to InteractActor().
+playtested, working as expected.
 
 
 

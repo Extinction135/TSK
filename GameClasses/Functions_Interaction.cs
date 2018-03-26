@@ -170,6 +170,7 @@ namespace DungeonRun
 
             //these objects interact with ALL ACTORS
 
+
             #region Projectiles
 
             if (Obj.group == ObjGroup.Projectile)
@@ -222,6 +223,7 @@ namespace DungeonRun
 
             #endregion
 
+
             //other objects
             else if (Obj.group == ObjGroup.Object)
             {
@@ -231,6 +233,16 @@ namespace DungeonRun
                 if (Obj.type == ObjType.SpikesFloorOn)
                 {   //damage push actors (on ground) away from spikes
                     if (Actor.compMove.grounded) { Functions_Battle.Damage(Actor, Obj); }
+                }
+
+                #endregion
+
+
+                #region SpikeBlocks
+
+                else if (Obj.type == ObjType.BlockSpike)
+                {   //damage push actors (on ground or in air) away from spikes
+                    Functions_Battle.Damage(Actor, Obj);
                 }
 
                 #endregion
@@ -547,7 +559,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Fairys
+            #region Fairy - as Object
 
             else if(Object.type == ObjType.Fairy)
             {   //fairys can interact with NON-BLOCKING roomObjs here
@@ -678,7 +690,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Fairys
+            #region Fairy - as RoomObject
 
             else if (RoomObj.type == ObjType.Fairy)
             {   //different from fairy check above, fairy is RoomObj this time
@@ -686,12 +698,10 @@ namespace DungeonRun
                 {   //a net has overlapped a fairy (and only a hero can create a net)
                     //attempt to bottle the fairy into one of hero's bottles
                     Functions_Bottle.Bottle(RoomObj); //try to bottle
-
-
+                    
                     //kill the net projectile from the dialog screen?
                     //this seems bad and hacky
-
-
+                    
                     Functions_Pool.Release(Object);
                 }
             }
