@@ -31,8 +31,8 @@ namespace DungeonRun
             #region Projectiles
 
             if (Obj.type == ObjType.ProjectileArrow)
-            {   //arrows deal 1 damage, push 4, and die
-                damage = 1; force = 4.0f; direction = Obj.direction;
+            {   //arrows deal 2 damage, push 4, and die
+                damage = 2; force = 4.0f; direction = Obj.direction;
                 Obj.lifeCounter = Obj.lifetime;
             }
             else if (Obj.type == ObjType.ProjectileBomb)
@@ -40,10 +40,9 @@ namespace DungeonRun
                 return;
             }
             else if (Obj.type == ObjType.ProjectileFireball)
-            {   //fireballs deal 2 damage, push 10, and die
-                damage = 2; force = 10.0f; direction = Obj.direction;
+            {   //fireballs deal 3 damage, push 10, and die
+                damage = 3; force = 10.0f; direction = Obj.direction;
                 Obj.lifeCounter = Obj.lifetime;
-                if (Actor.armor == MenuItemType.ArmorCloth) { damage = 1; }
             }
             else if (Obj.type == ObjType.ProjectileBoomerang)
             {   //boomerangs deal 0 damage, push 10, flip to return state
@@ -73,15 +72,13 @@ namespace DungeonRun
             #region Objects
 
             else if(Obj.type == ObjType.SpikesFloorOn)
-            {   //if actor is hero, deal 1 damage, else ignore damage
-                //if (Actor == Pool.hero) { damage = 1; } else { damage = 1; }
-                damage = 1; //damage all actors equally
-                force = 5.0f; //weak push actor away from spikes
+            {   //med push actors away from spikes
+                damage = 1; force = 7.5f;
                 direction = Functions_Direction.GetOppositeCardinal(Actor.compSprite.position, Obj.compSprite.position);
             }
             else if (Obj.type == ObjType.BlockSpike)
-            {   //hard push actor away from spikes
-                damage = 1; force = 10.0f;
+            {   //med push actor away from spikes
+                damage = 1; force = 7.5f;
                 direction = Functions_Direction.GetOppositeDiagonal(Actor.compSprite.position, Obj.compSprite.position);
             }
 

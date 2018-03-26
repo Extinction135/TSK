@@ -44,59 +44,21 @@ v0.7 goals
 
 
 
+Re-Damage Balance
+
+arrows should do 2 damage.
+bombs should do 2 damage.
+swords should do 1 damage.
+fireballs should hit for 3 damage.
+removed Cloth armor's functionality.
+(it no longer reduces fireball damage to 1).
 
 
 
 
+Fix Interaction Between Actors and BlockSpikes
 
-
-Transition SpikeBlocks from Projectiles to RoomObjects
-
-Flying SpikeBLocks should be implemented as a RoomObject,
-not a Projectile as in currently.
-the hitch is that we'll have to update alot of game files 
-to use SpikeBlock instead of ProjectileSpikeBlock.
-but that's something a few mins and replace can handle.
-
-removed ProjectileSpikeBlock from ObjType enum.
-added BlockSpike to ObjType enum & GameObj AnimList.
-converted ProjectileSpikeBlock to BlockSpike throughout 
-codebase, and all level files.
-
-modified Pool.Update() to collision check roomObjects
-that are active, moving, AND blocking. the blocking
-boolean check is the new part.
-
-blockSpikes are bouncing correctly now, but not moving
-properly, as in they quickly come to a slow.
-
-this was caused by an issue with how Pool.Update was handling
-roomObjects, specifically roomObjects that weren't active,
-moving, and blocking, weren't getting their move.position set,
-because CheckCollisions() was setting it, and they were exempt
-from being passed into that method. this included the BlockSpike.
-so the fix was to separate blocking and non-blocking roomObjs
-with different paths. blocking is handled as in previous code,
-non-blocking AND moving roomObjs (BlockSpikes) just get their
-move.position set to their move.newPosition and Interact()
-handles them bouncing off stuff at the start of next frame.
-
-created Test_BlockSpikes, playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+this is a roomObj v Actor interation
 
 
 
@@ -111,14 +73,6 @@ across frames, which is what messes up the push/bounce routine for bumpers
 
 
 
-
-
-
-Damage Balancing
-arrows should do 2 damage - duh!
-bombs should do 2 damage too.
-swords should do 1 damage.
-fireballs should hit for 3 damage.
 
 
 
