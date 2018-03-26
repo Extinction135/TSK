@@ -45,23 +45,14 @@ namespace DungeonRun
                 Obj.lifeCounter = Obj.lifetime;
                 if (Actor.armor == MenuItemType.ArmorCloth) { damage = 1; }
             }
-
-
             else if (Obj.type == ObjType.ProjectileBoomerang)
             {   //boomerangs deal 0 damage, push 10, flip to return state
                 damage = 0; force = 10.0f; direction = Obj.direction;
                 Obj.lifeCounter = 200; //return to caster
             }
-
-
             else if (Obj.type == ObjType.ProjectileExplosion)
             {   //explosions deal 2 damage, push 10
                 damage = 2; force = 10.0f; direction = Obj.direction;
-            }
-            else if (Obj.type == ObjType.ProjectileSpikeBlock)
-            {   //hard push actor away from spikes
-                damage = 1; force = 10.0f;
-                direction = Functions_Direction.GetOppositeDiagonal(Actor.compSprite.position, Obj.compSprite.position);
             }
             else if (Obj.type == ObjType.ProjectileSword)
             {   //swords deal 1 damage, push 6
@@ -87,6 +78,11 @@ namespace DungeonRun
                 damage = 1; //damage all actors equally
                 force = 5.0f; //weak push actor away from spikes
                 direction = Functions_Direction.GetOppositeCardinal(Actor.compSprite.position, Obj.compSprite.position);
+            }
+            else if (Obj.type == ObjType.BlockSpike)
+            {   //hard push actor away from spikes
+                damage = 1; force = 10.0f;
+                direction = Functions_Direction.GetOppositeDiagonal(Actor.compSprite.position, Obj.compSprite.position);
             }
 
             #endregion

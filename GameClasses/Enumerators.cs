@@ -83,6 +83,7 @@ namespace DungeonRun
         BossStatue, Pillar,
         ChestKey, ChestMap, ChestEmpty,
         BlockDark, BlockLight,
+        BlockSpike,
         //lever + lever activated objects
         LeverOn, LeverOff,
         SpikesFloorOn, SpikesFloorOff,
@@ -121,7 +122,7 @@ namespace DungeonRun
         ProjectileBow,
         //Projectiles - object
         ProjectileExplosion,
-        ProjectileSpikeBlock, //this should probably be a roomObj
+        //ProjectileSpikeBlock, //this should probably be a roomObj
         ProjectileExplodingBarrel, //acceptable
  
 

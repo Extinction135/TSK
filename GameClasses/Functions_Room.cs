@@ -625,12 +625,9 @@ namespace DungeonRun
             {
                 for (i = 0; i < RoomXmlData.objs.Count; i++)
                 {   
-                    //we store roomObjs & projectiles in roomXmlData
-                    //based on the roomXmlData.obj.type, get an entity or a roomObj
-                    if(RoomXmlData.objs[i].type == ObjType.ProjectileSpikeBlock)
-                    { objRef = Functions_Pool.GetProjectile(); }
-                    else { objRef = Functions_Pool.GetRoomObj(); }
-                    
+                    //we store roomObjs in roomXmlData
+                    objRef = Functions_Pool.GetRoomObj();
+
                     //move roomObj to xmlObj's position (with room offset)
                     Functions_Movement.Teleport(objRef.compMove,
                         Functions_Level.currentRoom.rec.X + RoomXmlData.objs[i].posX,

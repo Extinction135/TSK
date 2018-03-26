@@ -451,18 +451,6 @@ namespace DungeonRun
                     #endregion
 
 
-                    #region SpikeBlock
-
-                    else if (Object.type == ObjType.ProjectileSpikeBlock)
-                    {
-                        Functions_RoomObject.BounceSpikeBlock(Object);
-                        //spikeblocks trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
-                    }
-
-                    #endregion
-
-
                     #region Sword
 
                     else if (Object.type == ObjType.ProjectileSword)
@@ -514,7 +502,6 @@ namespace DungeonRun
                         //handle common interactions
                         Functions_RoomObject.HandleCommon(RoomObj,
                             Functions_Movement.GetMovingDirection(Object.compMove));
-
                         //return the boomerang
                         Object.lifeCounter = 200; //return to caster
                         Functions_Movement.StopMovement(Object.compMove);
@@ -522,10 +509,6 @@ namespace DungeonRun
                             Functions_Direction.GetOppositeCardinal(
                                 Object.compSprite.position, 
                                 RoomObj.compSprite.position), 3.0f);
-
-
-                        
-
                         //pop a sparkle particle
                         Functions_Particle.Spawn(ObjType.ParticleHitSparkle,
                             Object.compSprite.position.X + 4,
@@ -541,7 +524,7 @@ namespace DungeonRun
 
                 //there are no blocking obj vs obj interactions
                 //an interaction is an overlap not handled by collision system
-                //two blocking objs could never overlap can interact
+                //two blocking objs could never overlap or interact
             }
 
             #endregion
@@ -576,12 +559,29 @@ namespace DungeonRun
             #endregion
 
 
+            #region SpikeBlock
+
+            else if (Object.type == ObjType.BlockSpike)
+            {   //the roomObj must be blocking for blockSpike to bounce
+                if (RoomObj.compCollision.blocking)
+                {   //reverse the direction of the spikeBlock
+                    Functions_RoomObject.BounceSpikeBlock(Object);
+                    //spikeblocks trigger common obj interactions
+                    Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                }
+                //here blockSpikes could trigger non-blocking roomObj interactions
+                //whatever those are...
+            }
+
+            #endregion
+
+
             //roomObj.type checks
 
             #region FloorSpikes
 
-            if (RoomObj.type == ObjType.SpikesFloorOn)
-            {   //damage push actors (on ground) away from spikes
+            else if (RoomObj.type == ObjType.SpikesFloorOn)
+            {   
                 if (Object.compMove.grounded)
                 {   
                     if(Object.type == ObjType.BossStatue)

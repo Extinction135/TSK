@@ -104,7 +104,7 @@ namespace DungeonRun
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
                         //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
                         //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.ProjectileSpikeBlock); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.BlockSpike); }
                     }
                     else if (i == 1) //second row
                     {
@@ -729,7 +729,7 @@ namespace DungeonRun
             }
             else if (activeObj.type == ObjType.ConveyorBeltOn
                 || activeObj.type == ObjType.ConveyorBeltOff
-                || activeObj.type == ObjType.ProjectileSpikeBlock)
+                || activeObj.type == ObjType.BlockSpike)
             {   //flip thru cardinal directions
                 activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
                 if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
@@ -739,10 +739,10 @@ namespace DungeonRun
             }
 
             //set object's move component direction based on type
-            if (activeObj.type == ObjType.ProjectileSpikeBlock)
+            if (activeObj.type == ObjType.BlockSpike)
             { activeObj.compMove.direction = activeObj.direction; }
 
-            //set the rotation of the sprite based on obj.direction                                              
+            //set the rotation of the sprite based on obj.direction                                             
             Functions_GameObject.SetRotation(activeObj);
             GetActiveObjInfo();
         }

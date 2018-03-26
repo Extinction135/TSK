@@ -65,7 +65,7 @@ namespace DungeonRun
                 { Obj.compSprite.flipHorizontally = true; }
             }
             else if (Obj.type == ObjType.ProjectileBomb
-                || Obj.type == ObjType.ProjectileSpikeBlock
+                || Obj.type == ObjType.BlockSpike
                 || Obj.type == ObjType.ProjectileExplodingBarrel)
             {   //some objects only face Direction.Down
                 Obj.compSprite.rotation = Rotation.None;
@@ -403,6 +403,20 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 //lighter blocks are moveable by belts
                 if (Type == ObjType.BlockLight) { Obj.compMove.moveable = true; }
+            }
+            else if (Type == ObjType.BlockSpike)
+            {
+                Obj.compSprite.texture = Assets.mainSheet;
+                Obj.compSprite.zOffset = -7;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
+                //set block's moving direction, based on facing direction
+                Obj.compMove.direction = Obj.direction;
+                Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
+                Obj.compMove.grounded = false; //in air
+                Obj.compCollision.blocking = false;
+                Obj.compMove.speed = 0.3f; //spike blocks move med
             }
 
             #endregion
@@ -792,24 +806,6 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = true;
             }
-
-            //these projectiles will likely be refactored elsewhere
-            else if (Type == ObjType.ProjectileSpikeBlock)
-            {
-                Obj.compSprite.texture = Assets.mainSheet;
-                Obj.compSprite.zOffset = -7;
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
-                Obj.group = ObjGroup.Projectile;
-                Obj.lifetime = 0; //lasts for life of room
-                Obj.compCollision.blocking = false;
-                Obj.compMove.speed = 0.6f; //spike blocks move
-                Obj.compMove.direction = Obj.direction; //set moving direction
-                Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
-                Obj.compMove.grounded = false; //in air
-            }
-            
 
             #endregion
 

@@ -30,69 +30,13 @@ todo:
 
 v0.7 goals
 
-5 dungeons, with different enemies & bosses
-but we'll need to complete the dungeon objects before we implement diff dungeons
-
-DUNGEON OBJS, CASTLE DUNGEON, 2 castle enemies
-FOREST DUNGEON, BOSS + 3 ENEMIES
-CAVE DUNGEON, BOSS + 3 ENEMIES
-ICE DUNGEON, BOSS + 3 ENEMIES
-SWAMP DUNGEON, BOSS + 3 ENEMIES
-LINK DUNGEONS TO OVERWORLD, RELEASE 0.7
-
-
-
-13
-
-Design Additional Rooms + Playtest
-add to existing levels / new levels:
-switch blocks + btns
-floor switches
-torches in groups of 4
-spikeblocks eating away at massive groups of pots
-explosive barrel puzzels
-
-
-
-
-
-
-
-
-
-
-
-Improve Bow Animation
-
-when the hero shoots an arrow, a bow particle is created.
-in previous implementations, this particle would rotate to
-match the facing direction of the hero and the illusion of
-the hero using the bow was good. yay.jpg.
-
-however, the new system doesn't allow for the rotation of
-particles, PLUS the bow particle should track to the hero
-across frames, because the hero can now slide while attacking,
-which means the current bow particle stays behind and faces
-the wrong direction, which is completely wrong. boo.tga.
-
-the fix is easy: make the bow particle a projectile, track
-it to the hero across frames (just like sword), and match 
-the hero's facing direction upon cast (because projectiles
-can rotate cardinally however they want to).
-
-removed ParticleBow + GameObjAnimList.
-added ProjectileBow + GameObjAnimList.
-updated GameObj.SetType() for ProjectileBow.
-added path for ProjectileBow to Projectile.Update().
-updated UseWeapon() to create a ProjectileBow,
-instead of ParticleBow.
-
-updated Battle.Damage() to prevent ProjectileBow
-from attempting to deal 0 damage to the hero upon
-overlap, which caused the hit sound fx, but didn't
-put the hero into a hit state (lol).
-
-playtested, the shooting arrow animation is CRISPY.
+- Dungeon Entrance Level
+- Outside Town Level
+- All Planned Projectiles
+- All Planned DungeonRoomObjs
+- Flying Enemy
+- Non-room repeating Dungeon
+- Blob AI improvements
 
 
 
@@ -106,23 +50,81 @@ playtested, the shooting arrow animation is CRISPY.
 
 
 
-SpikeBlock++
-this should be implemented as a RoomObject, not a Projectile
-as a roomObj, it can interact with everything and move, so that's where it should be
-the hitch is that we'll have to update alot of game file to use SpikeBlock instead of ProjectileSpikeBlock
-but that's something a few mins and a replace command can handle easily.
-projectile spikeBlock should really be a roomObj
+Transition SpikeBlocks from Projectiles to RoomObjects
+
+Flying SpikeBLocks should be implemented as a RoomObject,
+not a Projectile as in currently.
+the hitch is that we'll have to update alot of game files 
+to use SpikeBlock instead of ProjectileSpikeBlock.
+but that's something a few mins and replace can handle.
+
+removed ProjectileSpikeBlock from ObjType enum.
+added BlockSpike to ObjType enum & GameObj AnimList.
+converted ProjectileSpikeBlock to BlockSpike throughout 
+codebase, and all level files.
+
+modified Pool.Update() to collision check roomObjects
+that are active, moving, AND blocking. the blocking
+boolean check is the new part.
+
+blockSpikes are bouncing correctly now, but not moving
+properly, as in they quickly come to a slow.
+
+this was caused by an issue with how Pool.Update was handling
+roomObjects, specifically roomObjects that weren't active,
+moving, and blocking, weren't getting their move.position set,
+because CheckCollisions() was setting it, and they were exempt
+from being passed into that method. this included the BlockSpike.
+so the fix was to separate blocking and non-blocking roomObjs
+with different paths. blocking is handled as in previous code,
+non-blocking AND moving roomObjs (BlockSpikes) just get their
+move.position set to their move.newPosition and Interact()
+handles them bouncing off stuff at the start of next frame.
+
+created Test_BlockSpikes, playtested, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Bumpers++
 bumpers: we can check to make sure an interaction only happens if the bumper's
 sprite is at 1.0 scale. this ensures that we won't have continuous collisions 
 across frames, which is what messes up the push/bounce routine for bumpers
 
+
+
+
+
+
+
 Damage Balancing
 arrows should do 2 damage - duh!
 bombs should do 2 damage too.
 swords should do 1 damage.
 fireballs should hit for 3 damage.
+
+
+
+
+
+
 
 
 
@@ -159,26 +161,6 @@ then we could store a shadow offset, which allows us to fake depth on the Z axis
 if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
 this also sets the stage for flying obj/actors, as they would have changing shadow positions.
 this also means we need to 'unbake' the shadows from ALL objects and actors.
-
-
-
-
-
-
-LightWave Projectile (push wand projectile)
-
-the flame throwers on the ground shouldn't shoot fireballs
-they should shoot those light wave things, which dont deal damage to what they hit!
-they actually only push what they hit, and they dont die upon a collision
-they will continue to push whatever they collide with until they die from age
-this means we need a new type of projectile, which is exciting
-
-and we can use this wave as the projectile created from the wand!
-we can call it the push wand, which would allow us to create a whole new type of puzzle
-where we can use the push wand to move objects to solve rooms!!!
-
-
-
 
 
 
@@ -237,6 +219,12 @@ this needs to be investigated more before a decision is made.
 
 
 
+
+
+
+
+
+
 Picking Up Objects++
 picking up a pot puts hero into a carry state, but leaves the roomObj drawing on the sreen, but nonblocking
 hero doesn't display anything over his head
@@ -286,15 +274,31 @@ the obj stays in it's picked up spot
 
 
 
-Art++
 
-complete sorting enemies into the EnemyDungeonSets file.
-we're doing this so we can have all the enemy sprites in one place.
 
-then we need to make sprite sheets for location entrances, dungeons for example
-there would be an entrance to the dungeon that the player explores (it's small)
-and there would be an entrance to the shop as well
-this means there will be outdoor levels. but that's a far ways off.
+
+LightWave Projectile (push wand projectile)
+
+the flame throwers on the ground shouldn't shoot fireballs
+they should shoot those light wave things, which dont deal damage to what they hit!
+they actually only push what they hit, and they dont die upon a collision
+they will continue to push whatever they collide with until they die from age
+this means we need a new type of projectile, which is exciting
+
+and we can use this wave as the projectile created from the wand!
+we can call it the push wand, which would allow us to create a whole new type of puzzle
+where we can use the push wand to move objects to solve rooms!!!
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -309,10 +313,6 @@ this means there will be outdoor levels. but that's a far ways off.
 if an arrow hits a lever, it should trigger the lever.
 new puzzle types can be created
 
-
-
-
-
 we actually need to have 'off' belts in the objTools widget
 
 puzzle idea: hero has to turn lever on, which starts belts
@@ -322,17 +322,22 @@ hero can shoot it with an arrow
 
 
 
-
-
-
-
 spike floors should push hero / actor based on the actors facing direction
 and they should push the actor the opposite direction the actor is facing
 
 
-
-
 bumpers should be more predictable (with room objs, ref bumper test room).
+
+
+
+
+
+
+
+
+
+
+
 
 bosses should always spawn as ActorPool index 2.
 0 = hero. 1 = pet. 2 = boss.
@@ -341,39 +346,10 @@ which will be rapidly recycled in the event we run out of available
 actors to Get().
 
 
-update the inventory screen in game to reflect the current mockup
-this removes the stats values from the game / hero
-and replaces them with more custom story items, like the warriors pass, etc..
-
-
-
-
-
 
 the attack / weapon system useage should match the item system useage
 that is, the hero shouldn't be set into a use animation for a frame before being unlocked
 the hero should return to an idle state if the current weapon is unknown or null..
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

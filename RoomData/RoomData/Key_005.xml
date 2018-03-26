@@ -1059,13 +1059,13 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Up</direction>
       <posX>232</posX>
       <posY>87</posY>

@@ -663,7 +663,7 @@
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Left</direction>
       <posX>150</posX>
       <posY>72</posY>

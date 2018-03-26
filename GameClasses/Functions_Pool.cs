@@ -213,8 +213,6 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
 
-                    
-
                     //here we could reject dead actor interactions like this
                     //if (Pool.actorPool[i].state != ActorState.Dead)
                     {
@@ -370,15 +368,35 @@ namespace DungeonRun
 
             //roomObjs
             for (i = 0; i < Pool.roomObjCount; i++)
-            {   
-                //only active, moving roomObjs are collision checked
-                //an object not moving is assumed to be non-overlapping
-                if (Pool.roomObjPool[i].active & Pool.roomObjPool[i].compMove.moving)
-                {
-                    Functions_Collision.CheckCollisions(
+            {  
+                if(Pool.roomObjPool[i].active) //obj must be active
+                {   //roomObj must be blocking to be collision checked
+                    //it makes no sense to collision check non-blocking objs
+                    if (Pool.roomObjPool[i].compCollision.blocking)
+                    {   
+                        //obj must be moving as well, otherwise we assume
+                        //a non-moving obj is at rest and isn't overlapping
+                        //any other roomObjs, either because it was placed
+                        //by hand, or because it was moving, got interacted()
+                        //with, and came to rest. this is an optimization.
+                        if (Pool.roomObjPool[i].compMove.moving)
+                        {
+                            Functions_Collision.CheckCollisions(
                                 Pool.roomObjPool[i].compMove,
                                 Pool.roomObjPool[i].compCollision,
                                 true, true, true);
+                        }
+                    }
+                    else
+                    {   //roomObj isn't blocking, but may be moving
+                        //in this case, we dont check collisions,
+                        //but we still need to update the obj.move.position
+                        if (Pool.roomObjPool[i].compMove.moving)
+                        {   //set the position equal to the newPosition, which was set using ProjectMovement()
+                            Pool.roomObjPool[i].compMove.position.X = Pool.roomObjPool[i].compMove.newPosition.X;
+                            Pool.roomObjPool[i].compMove.position.Y = Pool.roomObjPool[i].compMove.newPosition.Y;
+                        }
+                    }
                 }
             }
 

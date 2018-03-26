@@ -294,19 +294,22 @@ namespace DungeonRun
         }
 
         public static void BounceSpikeBlock(GameObject SpikeBlock)
-        {   //spawn a hit particle along spikeBlock's colliding edge
-            Functions_Particle.Spawn(ObjType.ParticleHitSparkle, SpikeBlock);
-            Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect
-            //flip the block's direction to the opposite direction
-            SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
-            SpikeBlock.compMove.magnitude.X = 0;
-            SpikeBlock.compMove.magnitude.Y = 0;
-            //push the block in it's new direction, out of this collision
-            Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 2.0f);
-            //force move spikeblock to it's new position, ignoring collisions
-            SpikeBlock.compMove.position += SpikeBlock.compMove.magnitude;
-            SpikeBlock.compMove.newPosition = SpikeBlock.compMove.position;
-            Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
+        {   //spikeBlock must be moving
+            if(Math.Abs(SpikeBlock.compMove.magnitude.X) > 0 || Math.Abs(SpikeBlock.compMove.magnitude.Y) > 0)
+            {   //spawn a hit particle along spikeBlock's colliding edge
+                Functions_Particle.Spawn(ObjType.ParticleHitSparkle, SpikeBlock);
+                Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect                                  
+                //flip the block's direction to the opposite direction
+                SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
+                SpikeBlock.compMove.magnitude.X = 0;
+                SpikeBlock.compMove.magnitude.Y = 0;
+                //push the block in it's new direction, out of this collision
+                Functions_Movement.Push(SpikeBlock.compMove, SpikeBlock.compMove.direction, 2.0f);
+                //force move spikeblock to it's new position, ignoring collisions
+                SpikeBlock.compMove.position += SpikeBlock.compMove.magnitude;
+                SpikeBlock.compMove.newPosition = SpikeBlock.compMove.position;
+                Functions_Component.Align(SpikeBlock.compMove, SpikeBlock.compSprite, SpikeBlock.compCollision);
+            }
         }
 
         public static void UseFairy(GameObject Fairy)
@@ -336,19 +339,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
-        public static void Knock(GameObject Door)
-        {
-            //knocking on a door produces a hollow sound
-            //this is mostly used for checking bombable doors
-            
-        }
-
-
-
-
 
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {

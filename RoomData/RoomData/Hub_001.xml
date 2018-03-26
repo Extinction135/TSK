@@ -1887,25 +1887,25 @@
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Right</direction>
       <posX>56</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Left</direction>
       <posX>247</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Right</direction>
       <posX>248</posX>
       <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Left</direction>
       <posX>56</posX>
       <posY>184</posY>

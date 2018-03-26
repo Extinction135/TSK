@@ -235,10 +235,6 @@ namespace DungeonRun
 
 
 
-
-
-
-
             #region Ideas
             /*
 

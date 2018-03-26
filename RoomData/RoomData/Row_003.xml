@@ -741,13 +741,13 @@
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Right</direction>
       <posX>264</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ProjectileSpikeBlock</type>
+      <type>BlockSpike</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>40</posY>
