@@ -272,7 +272,20 @@ namespace DungeonRun
         }
 
         public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
-        {   //bounce opposite direction
+        {   
+            
+            
+            
+            
+            //get the direction between the compMove and bumper
+
+            //get the opposite direction of this direction
+
+            //push the compMove in the final opposite direction
+            
+            
+            
+            //bounce opposite direction
             compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
             //if the direction is none, then get a direction between bumper and collider
             if (compMove.direction == Direction.None)

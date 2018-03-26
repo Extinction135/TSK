@@ -266,8 +266,9 @@ namespace DungeonRun
                 #region Bumpers
 
                 else if (Obj.type == ObjType.Bumper)
-                {
-                    Functions_RoomObject.BounceOffBumper(Actor.compMove, Obj);
+                {   //limit bumper to bouncing only if it's returned to 100% scale
+                    if (Obj.compSprite.scale == 1.0f)
+                    { Functions_RoomObject.BounceOffBumper(Actor.compMove, Obj); }
                 }
 
                 #endregion
@@ -634,7 +635,8 @@ namespace DungeonRun
             #region Bumper
 
             else if (RoomObj.type == ObjType.Bumper)
-            {
+            {   //limit bumper to bouncing only if it's returned to 100% scale
+                if (RoomObj.compSprite.scale != 1.0f) { return; }
                 //specific projectiles cannot be bounced off bumper
                 if (Object.type == ObjType.ProjectileExplosion
                     || Object.type == ObjType.ProjectileNet

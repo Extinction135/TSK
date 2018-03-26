@@ -41,19 +41,26 @@ v0.7 goals
 
 
 
+Bumpers ++
+
+bumpers don't work as expected right now. they sometimes
+bounce objects too many times, or bounce them in unexpected
+directions, which is likely due to multiple interactions
+happening across frames.
+
+added checks into InteractRoomObj() and InteractActor()
+that only allow bouncing off the bumper if the bumper has
+returned to 100% scale, which *should* prevent multiple 
+interactions from happening across frames.
+
+playtest, fixed multiple frame interactions, but
+the bumper still doesn't bounce the way I want it to.
+so, we'll try a new bouncing algorithm in the next commit.
 
 
 
 
 
-
-
-
-Fix Interaction Between Actors and BlockSpikes
-
-this is a roomObj v Actor interation
-added path for BlockSpike to InteractActor().
-playtested, working as expected.
 
 
 
@@ -67,32 +74,12 @@ across frames, which is what messes up the push/bounce routine for bumpers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Fix Bottles
 Bottles are STILL A MESS, and very brittle.
 The whole system needs to be redesigned, along with how
 the game stores a reference to the hero's current item.
 Bottles are currently commented out from UseItem().
 this means that the hero CANT use any type of bottle rn.
-
-
 
 
 
