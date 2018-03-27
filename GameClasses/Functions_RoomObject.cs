@@ -272,26 +272,7 @@ namespace DungeonRun
         }
 
         public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
-        {   
-            
-            
-            
-            
-            //get the direction between the compMove and bumper
-
-            //get the opposite direction of this direction
-
-            //push the compMove in the final opposite direction
-            
-            
-            
-            //bounce opposite direction
-            compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
-            //if the direction is none, then get a direction between bumper and collider
-            if (compMove.direction == Direction.None)
-            { compMove.direction = Functions_Direction.GetOppositeCardinal(compMove.position, Bumper.compSprite.position); }
-            //push collider in direction
-            Functions_Movement.Push(compMove, compMove.direction, 8.0f);
+        {
             //handle the bumper animation
             Bumper.compSprite.scale = 1.5f;
             Assets.Play(Assets.sfxBounce);
@@ -299,6 +280,16 @@ namespace DungeonRun
                 ObjType.ParticleAttention,
                 Bumper.compSprite.position.X,
                 Bumper.compSprite.position.Y);
+            //bounce opposite direction
+            compMove.direction = Functions_Direction.GetOppositeDirection(compMove.direction);
+            //if the direction is none, then get a direction between bumper and collider
+            if (compMove.direction == Direction.None)
+            {
+                compMove.direction = Functions_Direction.GetOppositeCardinal(
+                    compMove.position, Bumper.compSprite.position);
+            }
+            //push collider in direction
+            Functions_Movement.Push(compMove, compMove.direction, 10.0f);
         }
 
         public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)

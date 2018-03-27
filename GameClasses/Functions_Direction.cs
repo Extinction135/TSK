@@ -29,24 +29,20 @@ namespace DungeonRun
         }
 
         public static Direction GetOppositeDirection(Direction Direction)
-        {
+        {   //returns opposite direction of direction
             if (Direction == Direction.Down) { return Direction.Up; }
             else if (Direction == Direction.Up) { return Direction.Down; }
-
             else if (Direction == Direction.Left) { return Direction.Right; }
-            else if (Direction == Direction.UpLeft) { return Direction.Right; }
-            else if (Direction == Direction.DownLeft) { return Direction.Right; }
-
+            else if (Direction == Direction.UpLeft) { return Direction.DownRight; }
+            else if (Direction == Direction.DownLeft) { return Direction.UpRight; }
             else if (Direction == Direction.Right) { return Direction.Left; }
-            else if (Direction == Direction.DownRight) { return Direction.Left; }
-            else if (Direction == Direction.UpRight) { return Direction.Left; }
-
+            else if (Direction == Direction.DownRight) { return Direction.UpLeft; }
+            else if (Direction == Direction.UpRight) { return Direction.DownLeft; }
             return Direction.None;
         }
 
         public static Direction GetOppositeCardinal(Vector2 PosA, Vector2 PosB)
         {   //figure out which axis is the dominant axis, return opposite direction along dominant axis
-            //compare vert vs. horizontal
             if (Math.Abs(PosB.Y - PosA.Y) > Math.Abs(PosB.X - PosA.X))
             {   //Y axis dominant
                 if (PosB.Y > PosA.Y) { return Direction.Up; } else { return Direction.Down; }

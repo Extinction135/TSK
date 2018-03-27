@@ -41,23 +41,22 @@ v0.7 goals
 
 
 
+
+
+
 Bumpers ++
 
-bumpers don't work as expected right now. they sometimes
-bounce objects too many times, or bounce them in unexpected
-directions, which is likely due to multiple interactions
-happening across frames.
+improve the bouncing algorithm.
 
-added checks into InteractRoomObj() and InteractActor()
-that only allow bouncing off the bumper if the bumper has
-returned to 100% scale, which *should* prevent multiple 
-interactions from happening across frames.
+rewrote GetOppositeDirection() to actually return the opposite
+direction, including diagonals, because we can just call
+GetCardinalDirection() to remove the diagonals later.
 
-playtest, fixed multiple frame interactions, but
-the bumper still doesn't bounce the way I want it to.
-so, we'll try a new bouncing algorithm in the next commit.
-
-
+based on playtesting with hero, the best bouncing algorithm
+is simply to set the bouncee's compMove.direction to the opposite
+direction, without any math involved at all. this works as
+expected for the hero, but not for roomObjs, so the tradeoff
+right now is in favor of predictable bounces with the hero.
 
 
 
