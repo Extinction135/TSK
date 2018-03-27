@@ -52,14 +52,7 @@ v0.7 goals
 
 
 
-WidgetObjectTools ++
 
-we actually need to have 'off' belts in the objTools widget.
-but in order to tell the difference between on and off belts,
-we also need to animate all the widget gameObjects.
-
-updated WidgetObjectTools to animate all it's gameObjs.
-playtested, working.
 
 
 
@@ -69,15 +62,17 @@ WidgetObjectTools ++
 
 add 'off' belts to objTools widget. 
 re-arrange widget objs.
+updated objTools widget with above reqs.
+playtested, working.
 
-
-
-
-
-puzzle idea: hero has to turn lever on, which starts belts
-belts carry barrel across ice tiles to an eventual state where the
-hero can shoot it with an arrow or boomerang
-
+created Key_008, which uses belts to deliver 
+a switch block button to the hero. however, 
+the hero can't hit the switch directly, and 
+instead the player must figure out how to use
+the boomerang to hit the switch, either by throwing
+the boomerang diagonally, or by throwing it around
+the corner once it arrives at it's final position.
+playtested, working as expected.
 
 
 
