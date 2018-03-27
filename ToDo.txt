@@ -30,13 +30,19 @@ todo:
 
 v0.7 goals
 
-- Dungeon Entrance Level
-- Outside Town Level
+- fix BOTTLES
+- fix picking up, carrying, throwing, dropping, dragging, pushing objects
+- divide spritesheets up so they can be expanded / modified easily
+
+- Dungeon Entrance Level, with dungeon entrance object, locked cam, filled screen
+- Outside Town Level, locked cam, filled screen
+- do we need to expand the roomObj / floor pool?
 - All Planned Projectiles
 - All Planned DungeonRoomObjs
 - Flying Enemy
+- Blob AI improvements - sword, arrow, bomb based on weapon / item loadout 
+	blob loadouts could be randomized when room is built()
 - Non-room repeating Dungeon
-- Blob AI improvements
 
 
 
@@ -44,43 +50,95 @@ v0.7 goals
 
 
 
-Bumpers ++
 
-improve the bouncing algorithm.
 
-rewrote GetOppositeDirection() to actually return the opposite
-direction, including diagonals, because we can just call
-GetCardinalDirection() to remove the diagonals later.
+WidgetObjectTools ++
 
-based on playtesting with hero, the best bouncing algorithm
-is simply to set the bouncee's compMove.direction to the opposite
-direction, without any math involved at all. this works as
-expected for the hero, but not for roomObjs, so the tradeoff
-right now is in favor of predictable bounces with the hero.
+we actually need to have 'off' belts in the objTools widget.
+but in order to tell the difference between on and off belts,
+we also need to animate all the widget gameObjects.
+
+updated WidgetObjectTools to animate all it's gameObjs.
+playtested, working.
 
 
 
 
 
+WidgetObjectTools ++
+
+add 'off' belts to objTools widget. 
+re-arrange widget objs.
 
 
-Bumpers++
-bumpers: we can check to make sure an interaction only happens if the bumper's
-sprite is at 1.0 scale. this ensures that we won't have continuous collisions 
-across frames, which is what messes up the push/bounce routine for bumpers
+
+
+
+puzzle idea: hero has to turn lever on, which starts belts
+belts carry barrel across ice tiles to an eventual state where the
+hero can shoot it with an arrow or boomerang
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if an arrow hits a lever, it should trigger the lever.
+new puzzle types can be created
+
+
+
+
+
+
+
+
+
+bosses should always spawn as ActorPool index 2.
+0 = hero. 1 = pet. 2 = boss.
+this is to ensure we never accidentally use the last actor pool index,
+which will be rapidly recycled in the event we run out of available
+actors to Get().
+thinking about this more, the boss should be reserved as Pool.actorPool[2].
+and we should never Get() from actorPool[0] or [1] or [2]
+
+
+
+
+the attack / weapon system useage should match the item system useage
+that is, the hero shouldn't be set into a use animation for a frame before being unlocked
+the hero should return to an idle state if the current weapon is unknown or null..
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 Fix Bottles
+
 Bottles are STILL A MESS, and very brittle.
 The whole system needs to be redesigned, along with how
 the game stores a reference to the hero's current item.
 Bottles are currently commented out from UseItem().
 this means that the hero CANT use any type of bottle rn.
-
-
 
 
 
@@ -234,6 +292,14 @@ where we can use the push wand to move objects to solve rooms!!!
 
 
 
+fix how kick sountrack volume is handled
+the hero's health sets the volume of the kick soundtrack
+this check should be happening in the level class, not anywhere
+in the assets or music classes, because the kick volume is only
+changed during the level screen's life. when the screen closes,
+it should ensure the kick volume is 0. this prevents issues we've
+had before where the kick volume was above 0 while player was on
+different screen.
 
 
 
@@ -242,47 +308,6 @@ where we can use the push wand to move objects to solve rooms!!!
 
 
 
-
-if an arrow hits a lever, it should trigger the lever.
-new puzzle types can be created
-
-we actually need to have 'off' belts in the objTools widget
-
-puzzle idea: hero has to turn lever on, which starts belts
-belts carry barrel across ice tiles to an eventual state where the
-hero can shoot it with an arrow
-
-
-
-
-spike floors should push hero / actor based on the actors facing direction
-and they should push the actor the opposite direction the actor is facing
-
-
-bumpers should be more predictable (with room objs, ref bumper test room).
-
-
-
-
-
-
-
-
-
-
-
-
-bosses should always spawn as ActorPool index 2.
-0 = hero. 1 = pet. 2 = boss.
-this is to ensure we never accidentally use the last actor pool index,
-which will be rapidly recycled in the event we run out of available
-actors to Get().
-
-
-
-the attack / weapon system useage should match the item system useage
-that is, the hero shouldn't be set into a use animation for a frame before being unlocked
-the hero should return to an idle state if the current weapon is unknown or null..
 
 
 

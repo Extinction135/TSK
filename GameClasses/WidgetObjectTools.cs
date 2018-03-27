@@ -617,6 +617,9 @@ namespace DungeonRun
                 UpdateSelectionBox(selectionBoxTool);
                 selectionBoxTool.position = activeTool.compSprite.position;
                 Functions_Animation.Animate(currentObjRef.compAnim, currentObjRef.compSprite);
+                //animate all the game objects
+                for(i = 0; i< objList.Count; i++)
+                { Functions_Animation.Animate(objList[i].compAnim, objList[i].compSprite); }
             }
         }
 
