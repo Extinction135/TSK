@@ -50,49 +50,28 @@ v0.7 goals
 
 
 
+Playtesting
+
+Two commits were planned:
+arrows should trigger levers, and the attack system
+should match the useItem system, meaning when the 
+item or weapon is null the hero / actor shouldn't be
+set into a using state (instead returning to an idle).
+
+These two changes were already implemented in the codebase.
+So, no changes were made, but functionality was 'checked'.
+
+created Column_004, which teaches the player that they
+can trigger a lever using flying projectiles like the
+boomerang, arrows, or fireballs.
 
 
 
 
 
 
-
-
-WidgetObjectTools ++
-
-add 'off' belts to objTools widget. 
-re-arrange widget objs.
-updated objTools widget with above reqs.
-playtested, working.
-
-created Key_008, which uses belts to deliver 
-a switch block button to the hero. however, 
-the hero can't hit the switch directly, and 
-instead the player must figure out how to use
-the boomerang to hit the switch, either by throwing
-the boomerang diagonally, or by throwing it around
-the corner once it arrives at it's final position.
-playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-
-if an arrow hits a lever, it should trigger the lever.
-new puzzle types can be created
-
-
-
-
-
+flamethrower ground obj went right thru the block! lol
+this means that a non-blocking roomObj passed thru a blocking roomObj..
 
 
 
@@ -105,12 +84,6 @@ actors to Get().
 thinking about this more, the boss should be reserved as Pool.actorPool[2].
 and we should never Get() from actorPool[0] or [1] or [2]
 
-
-
-
-the attack / weapon system useage should match the item system useage
-that is, the hero shouldn't be set into a use animation for a frame before being unlocked
-the hero should return to an idle state if the current weapon is unknown or null..
 
 
 

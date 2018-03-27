@@ -18,7 +18,7 @@
       <type>PitAnimated</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>216</posY>
+      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitAnimated</type>
@@ -114,7 +114,7 @@
       <type>PitAnimated</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>88</posY>
+      <posY>216</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Bridge</type>
@@ -147,25 +147,25 @@
       <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchLit</type>
+      <type>TorchUnlit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchLit</type>
+      <type>TorchUnlit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>168</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchLit</type>
+      <type>TorchUnlit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchLit</type>
+      <type>TorchUnlit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>168</posY>
