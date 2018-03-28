@@ -574,16 +574,15 @@ namespace DungeonRun
                         Functions_Direction.GetOppositeDirection(
                             Functions_Movement.GetMovingDirection(Object.compMove)),
                         3.0f);
-                    //this still doesn't completely work, but it works 'enough'
+                    //this still doesn't completely work, but it works 'enough', because
+                    //ai for Fairy will kill fairy if she goes beyond the room.
                 }
-
-                //fairys can interact with some objects however
-                if (RoomObj.type == ObjType.Switch)
-                { Functions_RoomObject.ActivateSwitchObject(RoomObj); }
-                //^ this should really be a lever, because the fairy is
-                //flying and the switch obj is ON THE GROUND
-                //explain to me how a FLYING fairy triggers a GROUND SWITCH
-                //she could however 'bump' the lever, which makes more sense
+                //fairys can bump levers on/off
+                if (RoomObj.type == ObjType.LeverOff || RoomObj.type == ObjType.LeverOn)
+                { Functions_RoomObject.ActivateLeverObjects(); }
+                //fairys bump off of bumpers as well
+                else if(RoomObj.type == ObjType.Bumper)
+                { Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj); }
             }
 
             #endregion

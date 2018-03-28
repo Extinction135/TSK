@@ -30,7 +30,6 @@ todo:
 
 v0.7 goals
 
-- fix BOTTLES
 - fix picking up, carrying, throwing, dropping, dragging, pushing objects
 - divide spritesheets up so they can be expanded / modified easily
 
@@ -50,48 +49,31 @@ v0.7 goals
 
 
 
+
+
+
+
+
+
+
+
+
 Fairys ++
 
-fairys shouldn't be able to pass thru blocking roomObjs.
-got a passable solution working, which makes it difficult
-for fairys to pass thru walls, but they still do, due to the
-Push() call coming from Functions_Ai.HandleObj().
+removed Fairy interaction with FloorSwitch.
+she was flying, the switch was on the ground,
+it didn't make much sense physically.
 
-added check into Functions_Ai.HandleObj()-> Fairy section.
-this check kills the fairy if the fairy hitBox isn't contained
-within the currentRoom's rec. which means if the fairy strays
-outside of the room, she dies. and she pops an attention particle.
-playtested, working as expected, after many trys.
+upgraded Fairy interactions to be able to bump
+lever roomObjects on and off. which means fairys
+can be integrated into certain puzzles built around
+fairy vs lever interaction.
 
+upgraded fairys to bounce off of bumpers too.
 
-
-Net++
-
-the net should stick around after it's caught something.
-currently, the net obj is Released(), which causes it to
-disappear that frame, leaving the dialog screen showing
-with the hero in a use animation - but without a net!
-it makes no sense. 
-
-replaced Release() with setting the net's lifeCounter
-to it's lifetime, which *should* cause the net to be
-released / die NEXT frame.
-
-changed Interact() Fairy section to handle net death
-properly, working, but the net was catching a 2nd
-interaction on the frame it was dying. so, another
-check was added in, looking at the lifeCounter vs.
-the lifetime, to ensure only 1 frame of net interaction.
+created Square_009, which teaches player fairys 
+can activate levers, and some fairys are unreachable.
 playtested, working as expected.
-
-migrated same Interact() Fairy code to net vs blob.
-lots of playtesting.
-
-
-
-
-
-
 
 
 
