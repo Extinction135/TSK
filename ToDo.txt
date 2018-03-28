@@ -50,20 +50,77 @@ v0.7 goals
 
 
 
-Playtesting
+Fix Bottles
 
-Two commits were planned:
-arrows should trigger levers, and the attack system
-should match the useItem system, meaning when the 
-item or weapon is null the hero / actor shouldn't be
-set into a using state (instead returning to an idle).
+Bottles are STILL A MESS, and very brittle.
+The whole system needs to be redesigned, along with how
+the game stores a reference to the hero's current item.
+Bottles are currently commented out from UseItem().
+this means that the hero CANT use any type of bottle rn.
 
-These two changes were already implemented in the codebase.
-So, no changes were made, but functionality was 'checked'.
+rewrote UseItem() to be easier to read / reason about.
 
-created Column_004, which teaches the player that they
-can trigger a lever using flying projectiles like the
-boomerang, arrows, or fireballs.
+we need to remove BottleContents enum and instead use MenuItemType.
+BottleContents just duplicates enum values already defined
+in MenuItemType.
+
+removed bottle contents enum from game.
+reverted back to using MenuItemType for bottle contents.
+rewrote Functions_Bottle class to remove badness.
+
+moved UseWeapon() paths into UseItem(), because code was
+being duplicated. modified Actor.Update() and Hero.Update()
+to work with just UseItem().
+
+updated ScreenVendor to work with new bottle system.
+updated WidgetInventory to work with new bottle system.
+updated SetEditorLoadout().
+
+playtested:
+using bottles, working.
+buying bottles, working.
+bottling fairies and blobs, working.
+
+fixed a minor bug where the player couldn't select an
+empty bottle, which felt wrong, but made design sense.
+instead, the player can select an empty bottle and try
+to Use() it, at which point they'll realize it's pointless.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Limit Fairys Freedom
+
+notes: fairy projectile can move outside of room
+if this happens, the fairy should destruct.
+this is simply a collision check with the current room rec.
+
+
 
 
 
@@ -72,8 +129,6 @@ boomerang, arrows, or fireballs.
 
 flamethrower ground obj went right thru the block! lol
 this means that a non-blocking roomObj passed thru a blocking roomObj..
-
-
 
 
 bosses should always spawn as ActorPool index 2.
@@ -100,13 +155,11 @@ and we should never Get() from actorPool[0] or [1] or [2]
 
 
 
-Fix Bottles
 
-Bottles are STILL A MESS, and very brittle.
-The whole system needs to be redesigned, along with how
-the game stores a reference to the hero's current item.
-Bottles are currently commented out from UseItem().
-this means that the hero CANT use any type of bottle rn.
+
+
+
+
 
 
 
@@ -286,8 +339,6 @@ different screen.
 
 
 
---------------- lets push ---------------
-
 
 COMPLETE THE PROTOTYPE BLOB DUNGEON
 
@@ -359,8 +410,6 @@ gold is only acquired by defeating enemies (and later on, by betting on/winning 
 text should read "press any button to continue"
 remove 'reward' text
 
-
--------------- pushed --------------------
 
 
 

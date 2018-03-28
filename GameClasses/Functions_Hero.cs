@@ -443,6 +443,14 @@ namespace DungeonRun
 
         public static void HandleState()
         {
+            //hero's state is split into multiple sections
+            //hero could be carrying an object
+            //hero could be pushing/pulling obj
+            //hero could be swimming
+            //hero could be 'normal' state
+
+
+
             if (carrying)
             {   //place carryingObj over hero's head
                 carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
@@ -500,7 +508,7 @@ namespace DungeonRun
                 }
                 else if (Pool.hero.state == ActorState.Attack)
                 {
-                    Functions_Item.UseWeapon(Pool.hero.weapon, Pool.hero);
+                    Functions_Item.UseItem(Pool.hero.weapon, Pool.hero);
                     WorldUI.currentWeapon.compSprite.scale = 2.0f; //scale up worldUI weapon 
                 }
                 else if (Pool.hero.state == ActorState.Use)

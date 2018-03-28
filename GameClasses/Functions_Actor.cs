@@ -288,7 +288,7 @@ namespace DungeonRun
                     }
                     else if (Actor.state == ActorState.Attack)
                     {
-                        Functions_Item.UseWeapon(Actor.weapon, Actor);
+                        Functions_Item.UseItem(Actor.weapon, Actor);
                     }
                     else if (Actor.state == ActorState.Use)
                     {

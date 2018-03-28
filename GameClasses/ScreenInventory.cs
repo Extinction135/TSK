@@ -146,30 +146,32 @@ namespace DungeonRun
                 {   //Handle Items, weapons, armor, and equipment
 
 
+                    #region Items
 
-                    
-                    //Items
-                    if(
+                    if( //items
                         currentlySelected.type == MenuItemType.ItemBomb
                         || currentlySelected.type == MenuItemType.ItemBoomerang
+                        //bottles
+                        || currentlySelected.type == MenuItemType.BottleEmpty
                         || currentlySelected.type == MenuItemType.BottleBlob
                         || currentlySelected.type == MenuItemType.BottleCombo
                         || currentlySelected.type == MenuItemType.BottleFairy
                         || currentlySelected.type == MenuItemType.BottleHealth
                         || currentlySelected.type == MenuItemType.BottleMagic
-                        || currentlySelected.type == MenuItemType.MagicFireball)
+                        //magics
+                        || currentlySelected.type == MenuItemType.MagicFireball
+                        )
                     {
                         PlayerData.current.currentItem = currentlySelected.type;
                         Pool.hero.item = currentlySelected.type;
                     }
-                    
 
-                    
+                    #endregion
 
 
                     #region Weapons
 
-                    if (currentlySelected.type == MenuItemType.WeaponSword) //sword
+                    else if (currentlySelected.type == MenuItemType.WeaponSword) //sword
                     { PlayerData.current.currentWeapon = 0; Pool.hero.weapon = currentlySelected.type; }
                     else if (currentlySelected.type == MenuItemType.WeaponBow) //bow
                     { PlayerData.current.currentWeapon = 1; Pool.hero.weapon = currentlySelected.type; }
@@ -197,7 +199,6 @@ namespace DungeonRun
 
                     #endregion
 
-                    //store the 
 
                     //update the LoadoutWidget to show equipped items
                     Widgets.Loadout.UpdateLoadout();

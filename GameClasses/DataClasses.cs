@@ -782,11 +782,11 @@ namespace DungeonRun
 
         //non-magical items
         public Boolean itemBoomerang = false;
-        
+
         //bottles
-        public BottleContent bottleA = BottleContent.Empty;
-        public BottleContent bottleB = BottleContent.Empty;
-        public BottleContent bottleC = BottleContent.Empty;
+        public MenuItemType bottleA = MenuItemType.BottleEmpty;
+        public MenuItemType bottleB = MenuItemType.BottleEmpty;
+        public MenuItemType bottleC = MenuItemType.BottleEmpty;
 
         //magical items
         public Boolean magicFireball = false;

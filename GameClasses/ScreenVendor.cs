@@ -263,20 +263,19 @@ namespace DungeonRun
                 #region Bottles
 
                 //we dont set the player's item upon purchase of a bottle
-
                 else if (Item.type == MenuItemType.BottleHealth)
                 {   //if empty bottle was filled, complete the sale, else alert player
-                    if (Functions_Bottle.FillEmptyBottle(BottleContent.Health))
+                    if (Functions_Bottle.FillBottle(MenuItemType.BottleHealth))
                     { CompleteSale(Item); } else { DialogBottlesFull(); } 
                 }
                 else if (Item.type == MenuItemType.BottleMagic)
                 {   //if empty bottle was filled, complete the sale, else alert player
-                    if (Functions_Bottle.FillEmptyBottle(BottleContent.Magic))
+                    if (Functions_Bottle.FillBottle(MenuItemType.BottleMagic))
                     { CompleteSale(Item); } else { DialogBottlesFull(); }
                 }
                 else if (Item.type == MenuItemType.BottleCombo)
                 {   //if empty bottle was filled, complete the sale, else alert player
-                    if (Functions_Bottle.FillEmptyBottle(BottleContent.Combo))
+                    if (Functions_Bottle.FillBottle(MenuItemType.BottleCombo))
                     { CompleteSale(Item); } else { DialogBottlesFull(); }
                 }
 

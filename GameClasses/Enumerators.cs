@@ -199,11 +199,4 @@ namespace DungeonRun
         VendorArmor, VendorEquipment, VendorPets, 
     }
 
-    public enum BottleContent
-    {
-        NotOwned, Empty, 
-        Health, Magic, Combo, Fairy,
-        Blob 
-    }
-
 }

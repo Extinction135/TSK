@@ -142,9 +142,10 @@ namespace DungeonRun
 
             #region Bottles - 4, 5, 6
 
-            Functions_Bottle.SetMenuItemType(menuItems[4], PlayerData.current.bottleA);
-            Functions_Bottle.SetMenuItemType(menuItems[5], PlayerData.current.bottleB);
-            Functions_Bottle.SetMenuItemType(menuItems[6], PlayerData.current.bottleC);
+            //set the hero's inventory bottles to the contents of the saveData bottles
+            Functions_MenuItem.SetType(PlayerData.current.bottleA, menuItems[4]);
+            Functions_MenuItem.SetType(PlayerData.current.bottleB, menuItems[5]);
+            Functions_MenuItem.SetType(PlayerData.current.bottleC, menuItems[6]);
 
             #endregion
 

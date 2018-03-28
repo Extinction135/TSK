@@ -15,8 +15,11 @@ namespace DungeonRun
     public static class Functions_Item
     {
 
-        public static void UseWeapon(MenuItemType Type, Actor Actor)
+        public static void UseItem(MenuItemType Type, Actor Actor)
         {
+
+            #region Weapons
+
             if (Type == MenuItemType.WeaponSword)
             {
                 Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor.compMove, Actor.direction);
@@ -37,108 +40,13 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
-            else
-            {   //the weapon is unknown and cannot be used by the actor
-                Functions_Actor.SetIdleState(Actor);
-            }
-        }
-
-        public static void UseItem(MenuItemType Type, Actor Actor)
-        {   //first, check to see if we can bail from this method
-            //if the item being used is unknown, silently return actor to idle
-            if (Type == MenuItemType.Unknown)
-            {
-                Actor.state = ActorState.Idle;
-                return;
-            }
-            //if the item being used is an empty bottle, play an error sound
-            else if (Type == MenuItemType.BottleEmpty)
-            {   //fail, with an error sound
-                Actor.state = ActorState.Idle;
-                Assets.Play(Assets.sfxError);
-                return;
-            }
-
-
-
-
-
-
-
-
-
-
-
-            /*
-
-            #region Bottles
-
-            //it is assumed that only the player/hero can use bottles,
-            //so the effects of bottles only target the hero
-
-            if (Actor == Pool.hero)
-            {
-                if (Type == MenuItemType.BottleBlob
-                    || Type == MenuItemType.BottleCombo
-                    || Type == MenuItemType.BottleFairy
-                    || Type == MenuItemType.BottleHealth
-                    || Type == MenuItemType.BottleMagic)
-                {
-                    if (Functions_Bottle.UseBottle(Type))
-                    { }
-                }
-            }
-
-
-
-            if (Actor == Pool.hero)
-            {   //check bottle A
-                if (PlayerData.current.currentItem == HerosCurrentItem.BottleA)
-                {
-                    if (Functions_Bottle.UseBottle(PlayerData.current.bottleA))
-                    {   //reward hero, empty bottle & clear hero's item
-                        Functions_Actor.SetRewardState(Pool.hero);
-                        PlayerData.current.bottleA = BottleContent.Empty;
-                        Pool.hero.item = MenuItemType.Unknown;
-                        Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
-                    }
-                }
-                //check bottle B
-                else if (PlayerData.current.currentItem == HerosCurrentItem.BottleB)
-                {
-                    if (Functions_Bottle.UseBottle(PlayerData.current.bottleB))
-                    {   //reward hero, empty bottle & clear hero's item
-                        Functions_Actor.SetRewardState(Pool.hero);
-                        PlayerData.current.bottleB = BottleContent.Empty;
-                        Pool.hero.item = MenuItemType.Unknown;
-                        Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
-                    }
-                }
-                //check bottle C
-                else if (PlayerData.current.currentItem == HerosCurrentItem.BottleC)
-                {
-                    if (Functions_Bottle.UseBottle(PlayerData.current.bottleC))
-                    {   //reward hero, empty bottle & clear hero's item
-                        Functions_Actor.SetRewardState(Pool.hero);
-                        PlayerData.current.bottleC = BottleContent.Empty;
-                        Pool.hero.item = MenuItemType.Unknown;
-                        Functions_Particle.Spawn(ObjType.ParticleAttention, Pool.hero);
-                    }
-                }
-            }
 
             #endregion
-
-            */
-
-
-
-            //all actors can use items & magic
 
 
             #region Items
 
-            if (Type == MenuItemType.ItemBomb)
+            else if (Type == MenuItemType.ItemBomb)
             {
                 if (Actor == Pool.hero & !CheckBombs()) //check if hero has enough
                 { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
@@ -148,7 +56,7 @@ namespace DungeonRun
             }
 
             else if (Type == MenuItemType.ItemBoomerang)
-            {   
+            {
                 if (Functions_Hero.boomerangInPlay == false)
                 {   //throw a boomerang, if there is no boomerang in play
                     Functions_Projectile.Spawn(ObjType.ProjectileBoomerang, Actor.compMove, Actor.direction);
@@ -174,6 +82,60 @@ namespace DungeonRun
             #endregion
 
 
+            #region Bottles
+
+            else if (Type == MenuItemType.BottleEmpty)
+            {   //goto idle, with error sfx
+                Actor.state = ActorState.Idle;
+                Assets.Play(Assets.sfxError);
+                return;
+            }
+            else if (Type == MenuItemType.BottleHealth)
+            {   //use health potion
+                Pool.hero.health = PlayerData.current.heartsTotal;
+                Functions_Particle.Spawn(ObjType.ParticleBottleHealth, Pool.hero);
+                Functions_Bottle.EmptyBottle(Type);
+            }
+            else if (Type == MenuItemType.BottleMagic)
+            {   //use magic potion
+                PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
+                Functions_Particle.Spawn(ObjType.ParticleBottleMagic, Pool.hero);
+                Functions_Bottle.EmptyBottle(Type);
+            }
+            else if (Type == MenuItemType.BottleCombo)
+            {   //use combo potion
+                Pool.hero.health = PlayerData.current.heartsTotal;
+                PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
+                Functions_Particle.Spawn(ObjType.ParticleBottleCombo, Pool.hero);
+                Functions_Bottle.EmptyBottle(Type);
+            }
+            else if (Type == MenuItemType.BottleFairy)
+            {   //use fairy in a bottle
+                Pool.hero.health = PlayerData.current.heartsTotal;
+                Functions_Particle.Spawn(ObjType.ParticleBottleFairy, Pool.hero);
+                Functions_Bottle.EmptyBottle(Type);
+            }
+            else if (Type == MenuItemType.BottleBlob)
+            {   //display the bottled blob over hero's head
+                Functions_Particle.Spawn(ObjType.ParticleBottleBlob, Pool.hero);
+                //use blob in a bottle (transform hero into blob and vice versa)
+                if (Pool.hero.type == ActorType.Hero)
+                { Functions_Actor.SetType(Pool.hero, ActorType.Blob); }
+                else { Functions_Actor.SetType(Pool.hero, ActorType.Hero); }
+                //reload hero's loadout from player.current data
+                Functions_Hero.SetLoadout();
+                Pool.hero.health = PlayerData.current.heartsTotal; //refill the hero's health
+                PlayerData.current.actorType = Pool.hero.type; //save the hero's actorType
+                Functions_Bottle.EmptyBottle(Type);
+            }
+            
+            #endregion
+
+
+            else//unknown case: return actor to idle
+            { 
+                Functions_Actor.SetIdleState(Actor);
+            }
         }
 
         static Boolean CheckMagic(int castingCost)
