@@ -101,7 +101,7 @@
     <ObjXmlData>
       <type>TorchUnlit</type>
       <direction>Down</direction>
-      <posX>164</posX>
+      <posX>163</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -942,7 +942,7 @@
       <type>SwitchBlockBtn</type>
       <direction>Down</direction>
       <posX>136</posX>
-      <posY>100</posY>
+      <posY>99</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>PitTop</type>
@@ -1068,7 +1068,25 @@
       <type>BlockSpike</type>
       <direction>Up</direction>
       <posX>232</posX>
-      <posY>87</posY>
+      <posY>86</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SwitchBlockUp</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SwitchBlockUp</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>SwitchBlockUp</type>
+      <direction>Down</direction>
+      <posX>168</posX>
+      <posY>40</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

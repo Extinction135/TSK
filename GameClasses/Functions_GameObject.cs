@@ -39,12 +39,13 @@ namespace DungeonRun
             Obj.compAnim.index = 0; //reset the current animation index/frame
             Obj.compAnim.timer = 0; //reset the elapsed frames
             //reset the collision component
-            Obj.compCollision.active = false; //assume this object doesn't move, shouldnt check itself for collisions vs objs
             Obj.compCollision.blocking = true; //assume the object is blocking (most are)
             Obj.compCollision.rec.Width = 16; //assume collisionRec is 16x16
             Obj.compCollision.rec.Height = 16; //(most are)
             Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Obj.compCollision.offsetY = -8; //(most are)
+            //reset the interaction component
+            Obj.compInt.active = true;
             //reset the move component
             Obj.compMove.magnitude.X = 0; //discard any previous magnitude
             Obj.compMove.magnitude.Y = 0; //
@@ -518,7 +519,7 @@ namespace DungeonRun
             else if (Type == ObjType.Flamethrower)
             {
                 Obj.compSprite.zOffset = -30; //sort slightly above floor
-                Obj.compCollision.blocking = false;
+                Obj.compCollision.blocking = true;
                 Obj.getsAI = true; //obj gets AI
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;

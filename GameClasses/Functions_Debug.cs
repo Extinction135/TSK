@@ -90,6 +90,13 @@ namespace DungeonRun
             Inspect(Obj.compSprite);
         }
 
+        public static void Inspect(ComponentInteraction Interaction)
+        {
+            output = "Component Interaction\n";
+            output += "\tactive:" + Interaction.active;
+            Debug.WriteLine(output);
+        }
+
         public static void Inspect(ComponentCollision Coll)
         {
             output = "Component Collision\n";
@@ -101,7 +108,6 @@ namespace DungeonRun
             output += "\toffsetX:" + Coll.offsetX;
             output += "\toffsetY:" + Coll.offsetY;
             output += "\tblocking:" + Coll.blocking;
-            output += "\tactive:" + Coll.active;
             Debug.WriteLine(output);
         }
 
@@ -164,6 +170,12 @@ namespace DungeonRun
             output += "\trotation value:" + Sprite.rotationValue;
             Debug.WriteLine(output);
         }
+
+
+
+
+
+
 
         public static void InspectBottle(Byte value)
         {

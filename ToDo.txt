@@ -51,6 +51,37 @@ v0.7 goals
 
 
 
+Fix NonBlocking Obj Interactions with Blocking RoomObjs
+
+Flamethrower can be pushed by a belt into a blocking 
+roomObject, like a wall, and the flamethrower will pass
+right thru the wall or blocking object. obvs, we dont
+want this to happen.
+
+the problem is a little complicated to pick apart:
+interactions() happen, then movement is projected().
+inside interact(): flamethrower hit belt, was pushed, 
+hit wall, was stopped. frame over.
+then on the next frame, the flamethrower interacted() with
+belt and was pushed, then interacted with wall and was stopped.
+this caused the visual jittering. push, stop, etc..
+
+made flamethrower blocking, cause that's the easiest fix.
+turns out, that's all I needed to do to fix flamethrowers.
+
+improved Key_005.
+simplified Key_006.
+various changes and lots of playtesting.
+
+
+
+
+
+Tuning and Room Improvements
+
+spikeBlocks should move slower.
+row rooms need to be redesigned to be MUCH better
+we need more rows and column rooms
 
 
 
@@ -58,22 +89,6 @@ v0.7 goals
 
 
 
-Fairys ++
-
-removed Fairy interaction with FloorSwitch.
-she was flying, the switch was on the ground,
-it didn't make much sense physically.
-
-upgraded Fairy interactions to be able to bump
-lever roomObjects on and off. which means fairys
-can be integrated into certain puzzles built around
-fairy vs lever interaction.
-
-upgraded fairys to bounce off of bumpers too.
-
-created Square_009, which teaches player fairys 
-can activate levers, and some fairys are unreachable.
-playtested, working as expected.
 
 
 
@@ -82,6 +97,20 @@ playtested, working as expected.
 
 
 
+
+
+
+
+
+
+
+
+
+so whats happening is the flamethrower is being stopped
+but then a later interaction is pushing the flamethrower again
+
+and this is probably what was happening to the fairy as well.
+when we were trying to prevent overlap with blocking obj.
 
 
 

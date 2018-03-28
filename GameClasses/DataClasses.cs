@@ -272,7 +272,6 @@ namespace DungeonRun
             cursorColl.rec.Width = 4;
             cursorColl.rec.Height = 4;
             cursorColl.blocking = false;
-            cursorColl.active = true;
         }
     }
 
@@ -669,9 +668,10 @@ namespace DungeonRun
         //the components that actor requires to function
         public ComponentSprite compSprite;
         public ComponentAnimation compAnim = new ComponentAnimation();
-        public ComponentInput compInput = new ComponentInput();
         public ComponentMovement compMove = new ComponentMovement();
         public ComponentCollision compCollision = new ComponentCollision();
+        public ComponentInteraction compInt = new ComponentInteraction();
+        public ComponentInput compInput = new ComponentInput(); //actor specific
 
         //health points
         public byte health;
@@ -704,9 +704,10 @@ namespace DungeonRun
         public ObjType type = ObjType.WallStraight;
 
         public ComponentSprite compSprite;
-        public ComponentCollision compCollision = new ComponentCollision();
         public ComponentAnimation compAnim = new ComponentAnimation();
         public ComponentMovement compMove = new ComponentMovement();
+        public ComponentCollision compCollision = new ComponentCollision();
+        public ComponentInteraction compInt = new ComponentInteraction();
 
         public Direction direction = Direction.Down; //direction obj/sprite is facing
         public Boolean active = true; //does this object draw, update?
@@ -969,13 +970,19 @@ namespace DungeonRun
 
     //Data Components
 
+    public class ComponentInteraction
+    {
+        //these flags aren't being used currently
+        //because we're not exactly sure how to fix the interaction systems problem
+        public Boolean active = true; //included in interaction system
+    }
+
     public class ComponentCollision
     {   //allows an object or actor to collide with other objects or actors
         public Rectangle rec = new Rectangle(0, 0, 16, 16); //used in collision checking
         public int offsetX = 0; //offsets rec from sprite.position
         public int offsetY = 0; //offsets rec from sprite.position
         public Boolean blocking = true; //impassable or interactive
-        public Boolean active = false; //check to see if this component collides with other components?
     }
 
     public class ComponentMovement

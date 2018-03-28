@@ -26,9 +26,10 @@ namespace DungeonRun
             Actor.compMove.direction = Direction.None;
             Actor.compMove.grounded = true; //most actors move on ground
             //reset actor's collisions
-            Actor.compCollision.active = true;
             Actor.compCollision.blocking = true;
             SetCollisionRec(Actor);
+            //reset actor's interaction flags
+            Actor.compInt.active = true;
             //reset actor's sprite 
             Actor.compSprite.zOffset = 0;
             Actor.compSprite.scale = 1.0f;

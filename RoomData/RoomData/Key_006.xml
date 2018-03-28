@@ -635,7 +635,7 @@
     <ObjXmlData>
       <type>ChestKey</type>
       <direction>Down</direction>
-      <posX>152</posX>
+      <posX>149</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -903,12 +903,6 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Flamethrower</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>BlockDark</type>
       <direction>Down</direction>
       <posX>280</posX>
@@ -940,12 +934,6 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>ConveyorBeltOn</type>
-      <direction>Left</direction>
-      <posX>248</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>56</posX>
       <posY>120</posY>
@@ -1074,19 +1062,7 @@
       <type>Flamethrower</type>
       <direction>Down</direction>
       <posX>248</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Flamethrower</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Flamethrower</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>56</posY>
+      <posY>117</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Flamethrower</type>

@@ -177,13 +177,11 @@ namespace DungeonRun
         public static void Release(Actor Actor)
         {
             Actor.active = false;
-            Actor.compCollision.active = false;
         }
 
         public static void Release(GameObject Obj)
         {
             Obj.active = false;
-            Obj.compCollision.active = false;
             Obj.lifetime = 0;
         }
 
@@ -213,10 +211,12 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
 
+                    Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
+
                     //here we could reject dead actor interactions like this
                     //if (Pool.actorPool[i].state != ActorState.Dead)
                     {
-                        Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
+                        //Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
                         //but it's more fun to see their corpses being moved around by belts
                     }
                 }
@@ -370,7 +370,8 @@ namespace DungeonRun
             for (i = 0; i < Pool.roomObjCount; i++)
             {  
                 if(Pool.roomObjPool[i].active) //obj must be active
-                {   //roomObj must be blocking to be collision checked
+                {
+                    //roomObj must be blocking to be collision checked
                     //it makes no sense to collision check non-blocking objs
                     if (Pool.roomObjPool[i].compCollision.blocking)
                     {   

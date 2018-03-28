@@ -16,6 +16,7 @@ namespace DungeonRun
     {
         public static int i;
 
+
         public static void CheckInteractions(Actor Actor, Boolean checkProjectiles, Boolean checkRoomObjs)
         {
             if (checkProjectiles)
@@ -565,17 +566,11 @@ namespace DungeonRun
             #region Fairy - as Object
 
             else if(Object.type == ObjType.Fairy)
-            {   //prevent fairys from passing thru blocking roomObjs
-                if (RoomObj.compCollision.blocking)
-                {
+            {   
+                if(RoomObj.compCollision.blocking)
+                {   //slow fairy's movement thru blocking objects
+                    Functions_Movement.RevertPosition(Object.compMove);
                     Functions_Movement.StopMovement(Object.compMove);
-                    //push the fairy in the opposite direction she's moving
-                    Functions_Movement.Push(Object.compMove,
-                        Functions_Direction.GetOppositeDirection(
-                            Functions_Movement.GetMovingDirection(Object.compMove)),
-                        3.0f);
-                    //this still doesn't completely work, but it works 'enough', because
-                    //ai for Fairy will kill fairy if she goes beyond the room.
                 }
                 //fairys can bump levers on/off
                 if (RoomObj.type == ObjType.LeverOff || RoomObj.type == ObjType.LeverOn)
@@ -604,12 +599,11 @@ namespace DungeonRun
 
             #endregion
 
-
             //roomObj.type checks
 
             #region FloorSpikes
 
-            else if (RoomObj.type == ObjType.SpikesFloorOn)
+            if (RoomObj.type == ObjType.SpikesFloorOn)
             {   
                 if (Object.compMove.grounded)
                 {   
