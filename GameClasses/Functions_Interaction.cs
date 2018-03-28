@@ -188,6 +188,7 @@ namespace DungeonRun
                 { return; }
 
                 //check specific projectile interactions
+
                 //check for collision between net and actor
                 else if (Obj.type == ObjType.ProjectileNet)
                 {   //make sure actor isn't in hit/dead state
@@ -197,6 +198,7 @@ namespace DungeonRun
                     Functions_Bottle.Bottle(Actor); //try to bottle the actor
                     Functions_Pool.Release(Obj); //release the net
                 }
+
                 //if sword projectile is brand new, spawn hit particle
                 else if (Obj.type == ObjType.ProjectileSword)
                 {
@@ -563,10 +565,25 @@ namespace DungeonRun
             #region Fairy - as Object
 
             else if(Object.type == ObjType.Fairy)
-            {   //fairys can interact with NON-BLOCKING roomObjs here
-                //for example floor switches:
+            {   //prevent fairys from passing thru blocking roomObjs
+                if (RoomObj.compCollision.blocking)
+                {
+                    Functions_Movement.StopMovement(Object.compMove);
+                    //push the fairy in the opposite direction she's moving
+                    Functions_Movement.Push(Object.compMove,
+                        Functions_Direction.GetOppositeDirection(
+                            Functions_Movement.GetMovingDirection(Object.compMove)),
+                        3.0f);
+                    //this still doesn't completely work, but it works 'enough'
+                }
+
+                //fairys can interact with some objects however
                 if (RoomObj.type == ObjType.Switch)
                 { Functions_RoomObject.ActivateSwitchObject(RoomObj); }
+                //^ this should really be a lever, because the fairy is
+                //flying and the switch obj is ON THE GROUND
+                //explain to me how a FLYING fairy triggers a GROUND SWITCH
+                //she could however 'bump' the lever, which makes more sense
             }
 
             #endregion
@@ -695,16 +712,24 @@ namespace DungeonRun
             #region Fairy - as RoomObject
 
             else if (RoomObj.type == ObjType.Fairy)
-            {   //different from fairy check above, fairy is RoomObj this time
-                if(Object.type == ObjType.ProjectileNet)
-                {   //a net has overlapped a fairy (and only a hero can create a net)
-                    //attempt to bottle the fairy into one of hero's bottles
-                    Functions_Bottle.Bottle(RoomObj); //try to bottle
-                    
-                    //kill the net projectile from the dialog screen?
-                    //this seems bad and hacky
-                    
-                    Functions_Pool.Release(Object);
+            {
+                if (Object.type == ObjType.ProjectileNet)
+                {   
+                    if(Object.lifeCounter < Object.lifetime) //net is still young
+                    {
+                        //a net has overlapped a fairy (and only a hero can create a net)
+                        //attempt to bottle the fairy into one of hero's bottles
+                        Functions_Bottle.Bottle(RoomObj);
+                        //kill net NEXT frame, this allows it to be drawn
+                        //while the dialog screen appears over the level screen
+                        Object.lifeCounter = Object.lifetime;
+                        //hide hitBox (prevents multiple collisions)
+                        Object.compCollision.rec.X = -1000;
+                        //the beginning if() prevents the net from Interacting()5
+                        //on the next frame, when it is dying from this interaction
+                        //without the check, the net interacts twice, across two frames
+                        //causing two dialog screens to pop, which feels buggy
+                    }
                 }
             }
 

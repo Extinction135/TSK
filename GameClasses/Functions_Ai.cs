@@ -152,6 +152,16 @@ namespace DungeonRun
                 {   //randomly push fairy a direction
                     Functions_Movement.Push(Obj.compMove,
                         Functions_Direction.GetRandomDirection(), 1.0f);
+                    //check that the fairy overlaps the current room rec,
+                    //otherwise the fairy has strayed too far and must be killed
+                    if(!Functions_Level.currentRoom.rec.Contains(Obj.compSprite.position))
+                    {
+                        Functions_Particle.Spawn(
+                            ObjType.ParticleAttention,
+                            Obj.compSprite.position.X + 0,
+                            Obj.compSprite.position.Y + 0);
+                        Functions_Pool.Release(Obj);
+                    }
                 }
             }
 
