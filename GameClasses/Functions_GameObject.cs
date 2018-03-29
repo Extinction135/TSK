@@ -417,7 +417,7 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //in air
                 Obj.compCollision.blocking = false;
-                Obj.compMove.speed = 0.3f; //spike blocks move med
+                Obj.compMove.speed = 0.225f; //spike blocks move med
             }
 
             #endregion

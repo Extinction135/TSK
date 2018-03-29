@@ -15,7 +15,6 @@ namespace DungeonRun
     public static class Functions_Particle
     {
         static Vector2 posRef = new Vector2();
-        static Direction direction;
 
 
         //spawn relative to object
@@ -24,18 +23,16 @@ namespace DungeonRun
             //set position reference to sprite position
             posRef.X = Object.compSprite.position.X;
             posRef.Y = Object.compSprite.position.Y;
-            //direction is set based on obj.type
 
 
-            #region Sword/Net
+            #region Sword
 
             if (Object.type == ObjType.ProjectileSword || Object.type == ObjType.ProjectileNet)
-            {   //place entity (usually sparkle) at tip of sword, based on direction
+            {   //place particle at tip, based on direction
                 if (Object.direction == Direction.Up) { posRef.X += 8; posRef.Y -= 0; }
                 else if (Object.direction == Direction.Right) { posRef.X += 8; posRef.Y += 8; }
                 else if (Object.direction == Direction.Down) { posRef.X += 8; posRef.Y += 8; }
                 else if (Object.direction == Direction.Left) { posRef.X += 2; posRef.Y += 8; }
-                direction = Object.direction;
             }
 
             #endregion
@@ -48,7 +45,21 @@ namespace DungeonRun
                 posRef.X += 4; posRef.Y += 4; //because bubble is 8x8 size
                 posRef.X += Functions_Random.Int(-3, 4);
                 posRef.Y += Functions_Random.Int(-3, 4);
-                direction = Direction.None;
+            }
+
+            #endregion
+
+
+            #region SpikeBlock
+
+            else if (Object.type == ObjType.BlockSpike)
+            {
+                posRef.X += 4; posRef.Y += 4;
+                //place particle along colliding edge
+                if (Object.compMove.direction == Direction.Up) { posRef.Y -= 6; }
+                else if (Object.compMove.direction == Direction.Down) { posRef.Y += 6; }
+                else if (Object.compMove.direction == Direction.Right) { posRef.X += 6; }
+                else if (Object.compMove.direction == Direction.Left) { posRef.X -= 6; }
             }
 
             #endregion
@@ -65,7 +76,7 @@ namespace DungeonRun
             posRef.X = Actor.compSprite.position.X;
             posRef.Y = Actor.compSprite.position.Y;
             //get the actor's facing direction as cardinal direction
-            direction = Functions_Direction.GetCardinalDirection(Actor.direction);
+            //direction = Functions_Direction.GetCardinalDirection(Actor.direction);
 
             if (Type == ObjType.ParticleDashPuff)
             {   //center horizontally, place near actor's feet
@@ -98,7 +109,7 @@ namespace DungeonRun
             //set the type, rotation, cellsize, & alignment
             Functions_GameObject.SetType(obj, Type);
             Functions_Component.Align(obj); //align upon birth
-            //Debug.WriteLine("entity made: " + Type + " - location: " + X + ", " + Y);
+            //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
 
             
             #region Modify RockDebris Particles Animation Frame + Slide them

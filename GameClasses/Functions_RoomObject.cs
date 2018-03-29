@@ -289,7 +289,7 @@ namespace DungeonRun
                     compMove.position, Bumper.compSprite.position);
             }
             //push collider in direction
-            Functions_Movement.Push(compMove, compMove.direction, 10.0f);
+            Functions_Movement.Push(compMove, compMove.direction, 6.0f);
         }
 
         public static void ConveyorBeltPush(ComponentMovement compMove, GameObject belt)
