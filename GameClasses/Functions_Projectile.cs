@@ -14,6 +14,8 @@ namespace DungeonRun
 {
     public static class Functions_Projectile
     {
+        static Vector2 offset = new Vector2();
+
         //Dir is usually the actor's / object's facing direction
         public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
         {
@@ -82,21 +84,135 @@ namespace DungeonRun
             pro.compMove.moving = true;
             //handle spawn frame behavior
             pro.type = Type;
-            Update(pro); 
+            //Update(pro); 
+            HandleBehavior(pro);
             //finalize it: setType, rotation & align
             Functions_GameObject.SetType(pro, Type); 
         }
 
-        static Vector2 offset = new Vector2();
+        public static void HandleBirthEvent(GameObject Obj)
+        {
+            if (Obj.type == ObjType.ProjectileArrow)
+            {
+                Assets.Play(Assets.sfxArrowShoot);
+            }
+            else if (Obj.type == ObjType.ProjectileBomb)
+            {
+                Assets.Play(Assets.sfxBombDrop);
+                //bomb is initially sliding upon birth
+                Functions_Particle.Spawn(
+                    ObjType.ParticleDashPuff,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0);
+            }
+            else if (Obj.type == ObjType.ProjectileExplosion)
+            {
+                Assets.Play(Assets.sfxExplosion);
+                //place smoke puff above explosion
+                Functions_Particle.Spawn(
+                    ObjType.ParticleSmokePuff,
+                    Obj.compSprite.position.X + 4,
+                    Obj.compSprite.position.Y - 8);
+            }
+            else if (Obj.type == ObjType.ProjectileFireball)
+            {
+                Assets.Play(Assets.sfxFireballCast);
+                //place smoke puff centered to fireball
+                Functions_Particle.Spawn(
+                    ObjType.ParticleSmokePuff,
+                    Obj.compSprite.position.X + 4,
+                    Obj.compSprite.position.Y + 4);
+            }
+            else if (Obj.type == ObjType.ProjectileSword)
+            {
+                Assets.Play(Assets.sfxSwordSwipe);
+            }
+            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
+            {
+                Assets.Play(Assets.sfxEnemyHit);
+            }
+        }
+
+        //^^^^
+        //we should consolidate most HandleBirthEvent() paths into Spawn
+        //because they could just as well be triggered there and it makes
+        //no sense to wait a frame or two to trigger birth events.. ?
+
+
+
+        public static void HandleDeathEvent(GameObject Obj)
+        {
+            if (Obj.type == ObjType.ProjectileArrow)
+            {
+                Functions_Particle.Spawn(
+                    ObjType.ParticleAttention,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0);
+                Assets.Play(Assets.sfxArrowHit);
+            }
+            else if (Obj.type == ObjType.ProjectileBomb)
+            {   //create explosion projectile
+                Spawn(ObjType.ProjectileExplosion,
+                    Obj.compMove, Direction.None);
+            }
+            else if (Obj.type == ObjType.ProjectileFireball)
+            {   //explosion & ground fire
+                Functions_Particle.Spawn(
+                    ObjType.ParticleExplosion,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0);
+                Functions_Particle.Spawn(
+                    ObjType.ParticleFire,
+                    Obj.compSprite.position.X + 0,
+                    Obj.compSprite.position.Y + 0);
+                Assets.Play(Assets.sfxFireballDeath);
+            }
+            //sword - no death event
+            //rock debris - no death event
+            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
+            {
+                //create explosion projectile
+                Spawn(ObjType.ProjectileExplosion,
+                    Obj.compMove, Direction.None);
+                //create loot
+                Functions_Loot.SpawnLoot(Obj.compSprite.position);
+                //leave some fire behind
+                Functions_Particle.Spawn(
+                    ObjType.ParticleFire,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y);
+                //throw some rocks around as decoration
+                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
+                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
+                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
+            }
+
+            //all objects are released upon death
+            Functions_Pool.Release(Obj);
+
+        }
+
+
         public static void Update(Projectile Pro)
         {
-            //this method handles the behaviors of a projectile, by modifying it's newPosition
+            //first, we need to increment the life of the projectile
+            Pro.lifeCounter++;
+            if (Pro.lifeCounter == 2) { HandleBirthEvent(Pro); }
+            HandleBehavior(Pro);
+            if (Pro.lifeCounter >= Pro.lifetime) { HandleDeathEvent(Pro); }
+        }
+
+
+
+        public static void HandleBehavior(Projectile Pro)
+        {
+            //the following paths handle the per frame events, or behaviors, of a projectile
             //for example, tracking a sword to it's caster so the caster can slide and attack
 
 
             #region Sword & Net
 
-            if (Pro.type == ObjType.ProjectileSword 
+            if (Pro.type == ObjType.ProjectileSword
                 || Pro.type == ObjType.ProjectileNet)
             {   //track the projectile to it's caster
                 //set offset to make projectile appear in actors hand, based on direction
@@ -114,7 +230,7 @@ namespace DungeonRun
 
             #region Arrow & Fireballs
 
-            else if(Pro.type == ObjType.ProjectileFireball
+            else if (Pro.type == ObjType.ProjectileFireball
                 || Pro.type == ObjType.ProjectileArrow)
             {   //prevent caster from overlapping with projectile
                 //step 1: set minimum safe distance from caster (offset)
@@ -128,12 +244,12 @@ namespace DungeonRun
                     if (Pro.compMove.newPosition.Y < Pro.caster.newPosition.Y + offset.Y)
                     { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
                 }
-                else if(Pro.direction == Direction.Up)
+                else if (Pro.direction == Direction.Up)
                 {   //apply Y offset
                     if (Pro.compMove.newPosition.Y > Pro.caster.newPosition.Y + offset.Y)
                     { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
                 }
-                else if(Pro.direction == Direction.Left)
+                else if (Pro.direction == Direction.Left)
                 {   //apply X offset
                     if (Pro.compMove.newPosition.X > Pro.caster.newPosition.X + offset.X)
                     { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
@@ -150,7 +266,7 @@ namespace DungeonRun
 
             #region Boomerang
 
-            else if(Pro.type == ObjType.ProjectileBoomerang)
+            else if (Pro.type == ObjType.ProjectileBoomerang)
             {   //boomerang travels in thrown direction until this age, then returns to hero
 
                 #region Behavior From Hero
@@ -234,21 +350,16 @@ namespace DungeonRun
             #endregion
 
 
+            //teleport the projectile to it's new position
+            Functions_Movement.Teleport(Pro.compMove,
+                Pro.compMove.newPosition.X,
+                Pro.compMove.newPosition.Y);
+
 
             #region Ideas
+
             /*
-
-            based on the behavior of the current projectiles..
-            fireball magic: spawns relative to caster position with direction, travels in direction, explodes
-            arrow: same as fireball, doesn't explode, travels faster
-            bomb: spawns relative to caster, slides for a moment before stopping
-            sword: spawns relative to caster, tracks to caster until animation completes
-            net: same as sword
-            explosion: usually relative to caster (as an effect), stationary
-            explodingBarrel: caster is barrel, slides in a direction away from barrel, explodes
-
-
-            spikeBlock: this is a projectile? why?
+            
             debrisRock: should be a particle
             projectilePot: hero will be picking up more than pots, obsolete soon
             shadowSm: will be obsolete soon with addition of shadow system
@@ -280,26 +391,18 @@ namespace DungeonRun
             quake magic: screen shakes, all grounded enemies on screen take 4 damage, caster waits during cast
             shovel: used for digging outside in grass or dirt, low chance to spawn loot, tracks to caster like sword
 
-
-
-            ideas:
+            moar?:
             remote detonated mines - must equip two items: mines + detonator
                 mines are dropped with Y button
                 detonator blows up ALL dropped mines with X button
                 *this way the player can juggle / strategize more, with faster reaction time
                 * *plus, no switching between items to blow stuff up
 
-
             */
+
             #endregion
 
 
-
-
-            //teleport the projectile to it's new position
-            Functions_Movement.Teleport(Pro.compMove,
-                Pro.compMove.newPosition.X,
-                Pro.compMove.newPosition.Y);
         }
 
     }

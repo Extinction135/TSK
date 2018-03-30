@@ -409,7 +409,7 @@ namespace DungeonRun
                     {   //arrows trigger common obj interactions
                         Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
                         //arrows die upon blocking collision
-                        Functions_GameObject.Kill(Object);
+                        Functions_Projectile.HandleDeathEvent(Object);
                     }
 
                     #endregion
@@ -461,7 +461,7 @@ namespace DungeonRun
                         //fireballs trigger common obj interactions
                         Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
                         //fireballs die upon blocking collision
-                        Functions_GameObject.Kill(Object);
+                        Functions_Projectile.HandleDeathEvent(Object);
                     }
 
                     #endregion

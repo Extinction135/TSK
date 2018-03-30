@@ -81,14 +81,25 @@ namespace DungeonRun
             }
         }
 
+        public static void Kill(GameObject Obj)
+        {   //the roomObj/entity 'dies' and is then released
+            HandleDeathEvent(Obj);
+            Functions_Pool.Release(Obj);
+        }
+
+
+
+
+
+
         public static void Update(GameObject Obj)
         {
-            if (Obj.lifetime > 0) //if the obj has a lifetime, count it
-            {
-                Obj.lifeCounter++; //increment the life counter of the gameobject
-                //handle the obj's birth event
+            //particles, pickups, and roomObjects are passed into this method
+            //projectiles are handled via projectile.update()
+            if (Obj.lifetime > 0)
+            {   //if the obj has a lifetime, count it
+                Obj.lifeCounter++; //increment life 
                 if (Obj.lifeCounter == 2) { HandleBirthEvent(Obj); }
-                //handle the obj's death event
                 if (Obj.lifeCounter >= Obj.lifetime) { HandleDeathEvent(Obj); }
                 //reset fairy obj's life (keep them around forever)
                 if (Obj.type == ObjType.Fairy) { Obj.lifeCounter = 100; }
@@ -97,76 +108,18 @@ namespace DungeonRun
             if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
-        public static void Kill(GameObject Obj)
-        {   //the roomObj/entity 'dies' and is then released
-            HandleDeathEvent(Obj);
-            Functions_Pool.Release(Obj);
-        }
-
         public static void HandleBirthEvent(GameObject Obj)
-        {
-
-            #region Projectiles
-
-            if (Obj.type == ObjType.ProjectileArrow)
-            {
-                Assets.Play(Assets.sfxArrowShoot);
-            }
-            else if (Obj.type == ObjType.ProjectileBomb)
-            {
-                Assets.Play(Assets.sfxBombDrop);
-                //bomb is initially sliding upon birth
-                Functions_Particle.Spawn(
-                    ObjType.ParticleDashPuff,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0);
-            }
-            else if (Obj.type == ObjType.ProjectileExplosion)
-            {
-                Assets.Play(Assets.sfxExplosion);
-                //place smoke puff above explosion
-                Functions_Particle.Spawn(
-                    ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y - 8);
-            }
-            else if (Obj.type == ObjType.ProjectileFireball)
-            {
-                Assets.Play(Assets.sfxFireballCast);
-                //place smoke puff centered to fireball
-                Functions_Particle.Spawn(
-                    ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y + 4);
-            }
-            else if (Obj.type == ObjType.ProjectileSword)
-            {
-                Assets.Play(Assets.sfxSwordSwipe);
-            }
-            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
-            {
-                Assets.Play(Assets.sfxEnemyHit);
-            }
-
-            #endregion
-
-
-            #region Particles
-
-            else if (Obj.type == ObjType.ParticleRewardMap)
+        {   //this could be moved into Particle.Spawn()
+            if (Obj.type == ObjType.ParticleRewardMap)
             { Assets.Play(Assets.sfxReward); }
             else if (Obj.type == ObjType.ParticleRewardKey)
             { Assets.Play(Assets.sfxKeyPickup); }
             else if (Obj.type == ObjType.ParticleSplash)
             { Assets.Play(Assets.sfxSplash); }
-
-            #endregion
-
         }
 
         public static void HandleDeathEvent(GameObject Obj)
-        {
-            //all item pickups are handled the same
+        {   //all item pickups are handled the same
             if (Obj.group == ObjGroup.Pickup)
             {   //when an item pickup dies, display an attention particle
                 Functions_Particle.Spawn(
@@ -174,62 +127,33 @@ namespace DungeonRun
                     Obj.compSprite.position.X - 4,
                     Obj.compSprite.position.Y - 2);
             }
-
-
-            #region Projectiles
-
-            else if (Obj.type == ObjType.ProjectileArrow)
-            {
-                Functions_Particle.Spawn(
-                    ObjType.ParticleAttention,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0);
-                Assets.Play(Assets.sfxArrowHit);
-            }
-            else if (Obj.type == ObjType.ProjectileBomb)
-            {   //create explosion projectile
-                Functions_Projectile.Spawn(
-                    ObjType.ProjectileExplosion,
-                    Obj.compMove, Direction.None);
-            }
-            else if (Obj.type == ObjType.ProjectileFireball)
-            {   //explosion & ground fire
-                Functions_Particle.Spawn(
-                    ObjType.ParticleExplosion,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0);
-                Functions_Particle.Spawn(
-                    ObjType.ParticleFire,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0);
-                Assets.Play(Assets.sfxFireballDeath);
-            }
-            //sword - no death event
-            //rock debris - no death event
-            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
-            {
-                //create explosion projectile
-                Functions_Projectile.Spawn(ObjType.ProjectileExplosion,
-                    Obj.compMove, Direction.None);
-                //create loot
-                Functions_Loot.SpawnLoot(Obj.compSprite.position);
-                //leave some fire behind
-                Functions_Particle.Spawn(
-                    ObjType.ParticleFire,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y);
-                //throw some rocks around as decoration
-                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
-                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
-                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
-            }
-
-            #endregion
-
-
             //all objects are released upon death
             Functions_Pool.Release(Obj);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public static void SetType(GameObject Obj, ObjType Type)
         {   //Obj.direction should be set prior to this method running

@@ -42,47 +42,41 @@ v0.7 goals
 
 - Flying Enemy
 - Blob AI improvements - sword, arrow, bomb based on weapon / item loadout 
-	blob loadouts could be randomized when room is built()
-
-
-
-
-	
-	
-Improve Row Rooms
-
-modified Row_001.
-modified Row_002.
-modified Row_003.
-added off spikes to object tools widget.
-created Row_005.
-playtested, working as expected.
-
-
-
-
-
-create a new row room using levers and multiple on/off floor spikes
+blob loadouts could be randomized when room is built()
 
 
 
 
 
 
+Simplify GameObject Class
 
-Non-Repeating Rooms in Dungeon
+we are going to simplify GameObject class,
+because we're about to expand SetType().
+handle birth and death events should be moved into projectiles class.
+they *should* be projectile specific. (spoiler: they mostly are).
 
-we need to make rooms non-repeating in the dungeon.
-it's cheap to come across the same room over and over again.
+copied Birth() and Death() methods into Projectile Functions.
+copied partial functionality into Projectile.Update to handle
+birth and death events, simplifying gameObj.Update a bit.
+cleaned up Projectile.Update() to be readable.
 
-so when the dungeon is being built, we need a list of rooms (based on loaded room data)
-then when we place a square room, we ID it, and strip that room off the roomsList
-and if we run out of square rooms, then we just try columns, or rows.
-this way the dungeon algorithm can never reach a point where there are no more rooms to use
-which would be game breaking. also, we need ALOT of rooms to build from.
+migrated Projectiles to use Projectile.Update(), birth, death, etc..
+modified Pool.Update() to pass projectiles to projectile methods.
+this removes them from gameObject methods, which is good, 
+because they are conceptually different (more) than gameObjects.
 
-row rooms need to be redesigned to be MUCH better
-we need more rows and column rooms, and their quality needs to be improved.
+due to the nature of projectiles spawning, Pro.Update() had
+to be split into Update() and HandleBehavior(). then Spawn()
+was updated to call HandleBehavior() instead of Update().
+
+playtested, but bugs...
+arrow projectiles aren't creating an attention particle upon death / interaction
+fireballs arent creating ground fires, or having any death events.. so..
+projectile death events aren't happening at all.. nope - bombs work just fine.
+so it must be something about the collision of arrow / fireball and blocking obj.
+and yeah, it was - paths were calling GameObject.Kill(Obj) instead 
+of Pro.HandleDeathEvent(Obj). playtested, working as expected.
 
 
 
@@ -92,7 +86,49 @@ we need more rows and column rooms, and their quality needs to be improved.
 
 
 
+we only need to set the fairy's lifetime to 0 for her to stick around 
+forever. currently we've implemented a seperate path for her, using a
+type check, which is stupid.
 
+
+
+
+
+
+Consolidate as much of HandleBirthEvent() into Projectile.Spawn as you can.
+you may need to wait for frame 1 or 2 to perform certain things, however..
+
+
+
+
+
+SetRotation is also stupid, because it's polluted with projectiles
+the projectiles function class should handle that
+
+
+
+
+
+we could also move some of interaction() into Projectile functions,
+although that fractures interaction paths a bit, but also could help
+to simplify projectile + roomObj / actor interactions..
+
+
+
+
+
+
+
+Migrate GameObjects & SpriteSheets to New System - part 1
+
+
+
+As we do the following below, we also need to modify how GameObjAnimLists
+are handled. this *should* be handled in SetType(). although the current
+implementation is clever and saves some space, it is difficult to understand
+at first, and error prone (due to the master obj list being 1:1 dependent
+upon the ObjType enum). it's honestly a hassle to add objects into the current
+system, and we're about to add ALOT of objects.
 
 
 
@@ -103,35 +139,77 @@ we need to logically split up the sprites into sheets that are:
 2: more specific (ex: projectiles sheet)
 3: with plenty of space for additions
 
-Sheets -
+Sheets - all sheets are 256 x 256
 
-(World - contains everything outside (grounds, foilage, buildings, etc))
-(Particles - all particles here)
-(Projectiles - all projectiles here)
-(Pickups - all pickups located here)
-(UI - all menuItems and UI related sprites here)
+(actors sheet)
+pets
+hero
+blob
+blobBoss
 
-Hero_Blob - only enemy
-Hero_Link - only hero
+(entities)
+particles
+projectiles
+pickups
 
-(Enemy_Bat - flying enemy)
-(Enemy_Rat - grounded enemy)
+(ui)
+menuItems
+uiItems
 
-Boss_Blob - only boss
+(overworld)
+overworld sheet - main bkg, plus particles for map animation
+*this is probably sized differently than 256 x 256
 
-Level_Dungeon - builds dungeon level
-Level_Shop - builds shop level + vendors
-(Level_Shared - shared between all level types (dungeons, shops, areas))
-(DungeonEntrance - contains entrance for dungeon (outside level))
+(gameobjects)
+*this is actually a little bit more complicated, based on the ideas planned
+because: we'll have a dungeon, town, and various connecting levels with all visually
+shared assets and style and color scheme, the FOREST levels, for example.
+so to compose the dungeon, the towns, and the connecting levels, including 
+possible traversable water areas, we need a few sheets:
 
-Main Sheet - we've stuffed everything into this and it's getting messy and hard to grow
+1. dungeonSheet - dungeon objs only - specific layout
+2. worldSheet - connecting levels, environment, semi-specific layout
+data waterColor - a byte4 that sets the background color, 
+which we could pull from a solid color water sprite in the worldSheet
 
-with larger sheets and more space, we can make the animations better.
-the major headache is going to be migrating all the RoomObjs to have proper names,
-like DungeonExitDoor, and DungeonPot, instead of ExitDoor and Pot.
-this is because we'll have outside objects as well, like WorldPot.
+{
+	with larger sheets and more space, we can make the animations better.
+	the major headache is going to be migrating all the RoomObjs to have proper names,
+	like DungeonExitDoor, and DungeonPot, instead of ExitDoor and Pot.
+	this is because we'll have outside objects as well, like WorldPot.
+	the difference is the Dungeon and World naming conventions.
+}
 
-the difference is the Dungeon and World naming conventions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -167,6 +245,9 @@ Outside Town Level
 
 
 
+Zen Potion
+a potion that lets the hero use magic without cost a time period (255 frames)
+unlimited magic use, spam it all for 255 frames, for 99 gold.
 
 
 
@@ -174,6 +255,32 @@ Outside Town Level
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+Non-Repeating Rooms in Dungeon
+
+we need to make rooms non-repeating in the dungeon.
+it's cheap to come across the same room over and over again.
+
+so when the dungeon is being built, we need a list of rooms (based on loaded room data)
+then when we place a square room, we ID it, and strip that room off the roomsList
+and if we run out of square rooms, then we just try columns, or rows.
+this way the dungeon algorithm can never reach a point where there are no more rooms to use
+which would be game breaking. also, we need ALOT of rooms to build from.
+
+
+row rooms need to be redesigned to be MUCH better
+we need more rows and column rooms, and their quality needs to be improved.
 
 
 
