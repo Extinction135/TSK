@@ -245,12 +245,19 @@ namespace DungeonRun
                 }
             }
 
+
+
+
+
+
+
+
             //particles
             for (i = 0; i < Pool.particleCount; i++)
             {
                 if (Pool.particlePool[i].active)
                 {
-                    Functions_GameObject.Update(Pool.particlePool[i]);
+                    Functions_Particle.Update(Pool.particlePool[i]);
                     Functions_Animation.Animate(Pool.particlePool[i].compAnim, Pool.particlePool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.particlePool[i].compSprite);
                 }
@@ -276,13 +283,21 @@ namespace DungeonRun
             {
                 if (Pool.pickupPool[i].active)
                 {
-                    Functions_GameObject.Update(Pool.pickupPool[i]);
+                    Functions_Pickup.Update(Pool.pickupPool[i]);
                     Functions_Animation.Animate(Pool.pickupPool[i].compAnim, Pool.pickupPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.pickupPool[i].compSprite);
                     //interaction check pickups
                     Functions_Interaction.CheckInteractions(Pool.pickupPool[i]);
                 }
             }
+
+
+
+
+
+
+
+
 
             #endregion
 

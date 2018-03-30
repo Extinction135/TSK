@@ -81,49 +81,21 @@ namespace DungeonRun
             }
         }
 
-        public static void Kill(GameObject Obj)
-        {   //the roomObj/entity 'dies' and is then released
-            HandleDeathEvent(Obj);
-            Functions_Pool.Release(Obj);
-        }
-
-
-
 
 
 
         public static void Update(GameObject Obj)
-        {   //particles, pickups, and roomObjects are passed into this method
-            //projectiles are handled via projectile.update()
-            if (Obj.lifetime > 0)
-            {   //if the obj has a lifetime, count it
-                Obj.lifeCounter++;
-                if (Obj.lifeCounter == 2) { HandleBirthEvent(Obj); }
-                if (Obj.lifeCounter >= Obj.lifetime) { HandleDeathEvent(Obj); }
-            }
-            if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); } //certain roomObjs get AI
+        {   //only roomObjs are passed into this method, some get AI (or behaviors)
+            //roomObjs don't have lifetimes, they last the life of the room
+            if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
-        public static void HandleBirthEvent(GameObject Obj)
-        {   
-            //nothing really, most birth events are baked into the Spawn() methods
-            //for particles, projectiles, and pickups
-        }
-
-        public static void HandleDeathEvent(GameObject Obj)
-        {   //all item pickups are handled the same
-            if (Obj.group == ObjGroup.Pickup)
-            {   //when an item pickup dies, display an attention particle
-                Functions_Particle.Spawn(
-                    ObjType.ParticleAttention,
-                    Obj.compSprite.position.X - 4,
-                    Obj.compSprite.position.Y - 2);
-            }
-            //all objects are released upon death
+        public static void Kill(GameObject Obj)
+        {   //first, it's very rare that we actually Kill() a roomObj
+            //but, here we can handle any death events for the roomObj, using a type check
+            //if (Obj.type == ObjType.Barrel) { } //for example
             Functions_Pool.Release(Obj);
         }
-
-
 
 
 

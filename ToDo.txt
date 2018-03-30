@@ -51,20 +51,10 @@ blob loadouts could be randomized when room is built()
 
 
 
-Refactoring
 
-moved Particle birth events out of GameObj.Birth() and into
-Particle.Spawn() instead. this makes GameObj.Birth() empty.
-
-consolidated HandleBirthEvent() into Projectile.Spawn().
-it's looking like birth events might not be needed, because
-we already have the Spawn methods.
-
-
-
-
-
-
+created Update() and Kill() methods for Projectiles, Pickups, Particles.
+removed HandleBirthEvent() from any class.
+changed Pool.Update() to pass Pros, Picks, and Parts to their proper methods.
 
 
 

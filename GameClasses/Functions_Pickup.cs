@@ -56,6 +56,32 @@ namespace DungeonRun
 
 
 
+
+
+
+        public static void Update(GameObject Obj)
+        {   //pickups do have lifetimes
+            Obj.lifeCounter++;
+            if (Obj.lifeCounter >= Obj.lifetime) { Kill(Obj); }
+        }
+
+        public static void Kill(GameObject Obj)
+        {
+            //when an item pickup dies, display an attention particle
+            Functions_Particle.Spawn(
+                ObjType.ParticleAttention,
+                Obj.compSprite.position.X - 4,
+                Obj.compSprite.position.Y - 2);
+            //all objects are released upon death
+            Functions_Pool.Release(Obj);
+        }
+
+
+
+
+
+
+
         public static void CheckOverlap(GameObject Obj)
         {   //check to see if OBJ overlaps any OBJ on the pickups list, return pickup OBJ
             for (int i = 0; i < Pool.pickupCount; i++)

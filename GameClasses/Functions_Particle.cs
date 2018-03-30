@@ -140,6 +140,28 @@ namespace DungeonRun
         }
 
 
+
+
+
+
+        public static void Update(GameObject Obj)
+        {   //particles do have lifetimes
+            Obj.lifeCounter++;
+            if (Obj.lifeCounter >= Obj.lifetime) { Kill(Obj); }
+        }
+
+        public static void Kill(GameObject Obj)
+        {
+            //all objects are released upon death
+            Functions_Pool.Release(Obj);
+        }
+
+
+
+
+
+
+
         public static void ScatterDebris(Vector2 Pos)
         {   //add up to 4 debris particles randomly around Pos
             int spread = 5; //how far apart the debris spawns from Pos

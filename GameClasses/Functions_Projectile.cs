@@ -114,18 +114,26 @@ namespace DungeonRun
             pro.compMove.moving = true;
             //handle spawn frame behavior
             pro.type = Type;
-            //Update(pro); 
             HandleBehavior(pro);
             //finalize it: setType, rotation & align
             Functions_GameObject.SetType(pro, Type); 
         }
 
-        public static void HandleBirthEvent(GameObject Obj)
-        {
-            //empty
+
+
+
+
+        
+
+
+        public static void Update(Projectile Pro)
+        {   //projectiles do have lifetimes
+            Pro.lifeCounter++;
+            HandleBehavior(Pro);
+            if (Pro.lifeCounter >= Pro.lifetime) { Kill(Pro); }
         }
 
-        public static void HandleDeathEvent(GameObject Obj)
+        public static void Kill(GameObject Obj)
         {
             if (Obj.type == ObjType.ProjectileArrow)
             {
@@ -174,21 +182,14 @@ namespace DungeonRun
 
             //all objects are released upon death
             Functions_Pool.Release(Obj);
-
-        }
-
-
-        public static void Update(Projectile Pro)
-        {
-            //first, we need to increment the life of the projectile
-            Pro.lifeCounter++;
-            if (Pro.lifeCounter == 2) { HandleBirthEvent(Pro); }
-            HandleBehavior(Pro);
-            if (Pro.lifeCounter >= Pro.lifetime) { HandleDeathEvent(Pro); }
         }
 
 
 
+
+
+
+        
         public static void HandleBehavior(Projectile Pro)
         {
             //the following paths handle the per frame events, or behaviors, of a projectile
@@ -389,6 +390,8 @@ namespace DungeonRun
 
 
         }
+
+
 
     }
 }
