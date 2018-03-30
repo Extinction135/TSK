@@ -101,8 +101,6 @@ namespace DungeonRun
                 Obj.lifeCounter++; //increment life 
                 if (Obj.lifeCounter == 2) { HandleBirthEvent(Obj); }
                 if (Obj.lifeCounter >= Obj.lifetime) { HandleDeathEvent(Obj); }
-                //reset fairy obj's life (keep them around forever)
-                if (Obj.type == ObjType.Fairy) { Obj.lifeCounter = 100; }
             }
             //certain objects get AI input
             if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
@@ -395,7 +393,7 @@ namespace DungeonRun
             {
                 Obj.compSprite.texture = Assets.mainSheet;
                 Obj.compSprite.zOffset = 8; //sort to air
-                Obj.lifetime = 255; //in frames
+                Obj.lifetime = 0; //stay around forever
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compMove.moveable = true;
                 Obj.compCollision.blocking = false;

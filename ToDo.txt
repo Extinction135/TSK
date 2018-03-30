@@ -49,34 +49,6 @@ blob loadouts could be randomized when room is built()
 
 
 
-Simplify GameObject Class
-
-we are going to simplify GameObject class,
-because we're about to expand SetType().
-handle birth and death events should be moved into projectiles class.
-they *should* be projectile specific. (spoiler: they mostly are).
-
-copied Birth() and Death() methods into Projectile Functions.
-copied partial functionality into Projectile.Update to handle
-birth and death events, simplifying gameObj.Update a bit.
-cleaned up Projectile.Update() to be readable.
-
-migrated Projectiles to use Projectile.Update(), birth, death, etc..
-modified Pool.Update() to pass projectiles to projectile methods.
-this removes them from gameObject methods, which is good, 
-because they are conceptually different (more) than gameObjects.
-
-due to the nature of projectiles spawning, Pro.Update() had
-to be split into Update() and HandleBehavior(). then Spawn()
-was updated to call HandleBehavior() instead of Update().
-
-playtested, but bugs...
-arrow projectiles aren't creating an attention particle upon death / interaction
-fireballs arent creating ground fires, or having any death events.. so..
-projectile death events aren't happening at all.. nope - bombs work just fine.
-so it must be something about the collision of arrow / fireball and blocking obj.
-and yeah, it was - paths were calling GameObject.Kill(Obj) instead 
-of Pro.HandleDeathEvent(Obj). playtested, working as expected.
 
 
 
@@ -85,10 +57,16 @@ of Pro.HandleDeathEvent(Obj). playtested, working as expected.
 
 
 
+
+Fix Fairys Lifetime
 
 we only need to set the fairy's lifetime to 0 for her to stick around 
-forever. currently we've implemented a seperate path for her, using a
-type check, which is stupid.
+forever. currently we've implemented a seperate path for her in 
+gameObj.update(), using a type check, which resets her life to 100, 
+because REASONS? -> this is amazingly stupid and shows that i wasn't 
+thinking about how the system was designed while i was migrating
+the fairy from a projectile to a roomObject. that's fixed now.
+and of course it works just fine.
 
 
 
