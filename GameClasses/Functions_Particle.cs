@@ -111,7 +111,15 @@ namespace DungeonRun
             Functions_Component.Align(obj); //align upon birth
             //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
 
-            
+            //handle soundfx for specific particles
+            if (Type == ObjType.ParticleRewardMap)
+            { Assets.Play(Assets.sfxReward); }
+            else if (Type == ObjType.ParticleRewardKey)
+            { Assets.Play(Assets.sfxKeyPickup); }
+            else if (Type == ObjType.ParticleSplash)
+            { Assets.Play(Assets.sfxSplash); }
+
+
             #region Modify RockDebris Particles Animation Frame + Slide them
 
             //some projectiles get their current frame randomly assigned (for variation)

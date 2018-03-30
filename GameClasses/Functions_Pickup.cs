@@ -28,9 +28,6 @@ namespace DungeonRun
             //get the actor's facing direction as cardinal direction
             direction = Functions_Direction.GetCardinalDirection(Actor.direction);
 
-
-            #region Pickups
-
             if (Type == ObjType.PickupRupee)
             {   //place dropped rupee away from hero, cardinal = direction actor was pushed
                 if (direction == Direction.Down) { posRef.X += 4; posRef.Y -= 12; } //place above
@@ -38,9 +35,6 @@ namespace DungeonRun
                 else if (direction == Direction.Right) { posRef.X -= 14; posRef.Y += 4; } //place left
                 else if (direction == Direction.Left) { posRef.X += 14; posRef.Y += 4; } //place right
             }
-
-            #endregion
-
 
             Spawn(Type, posRef.X, posRef.Y);
         }

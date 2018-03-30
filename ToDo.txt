@@ -51,6 +51,14 @@ blob loadouts could be randomized when room is built()
 
 
 
+Refactoring
+
+moved Particle birth events out of GameObj.Birth() and into
+Particle.Spawn() instead. this makes GameObj.Birth() empty.
+
+consolidated HandleBirthEvent() into Projectile.Spawn().
+it's looking like birth events might not be needed, because
+we already have the Spawn methods.
 
 
 
@@ -58,23 +66,24 @@ blob loadouts could be randomized when room is built()
 
 
 
-Fix Fairys Lifetime
-
-we only need to set the fairy's lifetime to 0 for her to stick around 
-forever. currently we've implemented a seperate path for her in 
-gameObj.update(), using a type check, which resets her life to 100, 
-because REASONS? -> this is amazingly stupid and shows that i wasn't 
-thinking about how the system was designed while i was migrating
-the fairy from a projectile to a roomObject. that's fixed now.
-and of course it works just fine.
 
 
 
 
+create Projectile.Kill() - handles death events
+create Pickup.Kill() - handle death events
+modify GameObject.Kill() - should simply wrap Pool.Release(Obj).
+*later on we may add roomObj death events, such as a pitTrap waiting 255 frames
+prior to collapsing, the death event being the transition of the pitTrap to a pit type
 
 
-Consolidate as much of HandleBirthEvent() into Projectile.Spawn as you can.
-you may need to wait for frame 1 or 2 to perform certain things, however..
+we could pass pickup objects into Pickup.Update()
+since they are the ones with an actual lifetime, and counter
+and we'd need Death() and Birth() methods
+which would completely remove the need for Birth() and Death() events from gameobj
+and simplify GameObj.Update() a bit too.
+
+
 
 
 
@@ -82,6 +91,29 @@ you may need to wait for frame 1 or 2 to perform certain things, however..
 
 SetRotation is also stupid, because it's polluted with projectiles
 the projectiles function class should handle that
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -49,28 +49,58 @@ namespace DungeonRun
             pro.compMove.direction = Dir;
 
 
-            #region Give some projectiles an initial push
+            #region Set Initial Projectile Behaviors + SoundFX
 
-            if (Type == ObjType.ProjectileArrow) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
-            else if (Type == ObjType.ProjectileFireball) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
-
+            if (Type == ObjType.ProjectileArrow)
+            {
+                Functions_Movement.Push(pro.compMove, Dir, 6.0f);
+                Assets.Play(Assets.sfxArrowShoot);
+            }
+            else if (Type == ObjType.ProjectileFireball)
+            {
+                Functions_Movement.Push(pro.compMove, Dir, 5.0f);
+                Assets.Play(Assets.sfxFireballCast);
+                //place smoke puff centered to fireball
+                Functions_Particle.Spawn(
+                    ObjType.ParticleSmokePuff,
+                    pro.compSprite.position.X + 4,
+                    pro.compSprite.position.Y + 4);
+            }
             else if (Type == ObjType.ProjectileBoomerang)
-            { Functions_Movement.Push(pro.compMove, Dir, 5.0f); Functions_Hero.boomerangInPlay = true; }
-
-            else if (Type == ObjType.ProjectileBomb) { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
-            else if (Type == ObjType.ProjectileExplodingBarrel) { Functions_Movement.Push(pro.compMove, Dir, 6.0f); }
-
-            #endregion
-
-
-            #region Handle Spawn Events not handled by BirthEvent
-
-            if (Type == ObjType.ProjectileNet)
-            {   //it's done this way cause the net may create 
-                //a dialog screen on the next frame, which would
-                //prevent the net's birthEvent from trigerring,
-                //because that happens on the net's 3rd frame alive
+            {
+                Functions_Movement.Push(pro.compMove, Dir, 5.0f);
+                Functions_Hero.boomerangInPlay = true;
+            }
+            else if (Type == ObjType.ProjectileBomb)
+            {
+                Functions_Movement.Push(pro.compMove, Dir, 5.0f);
+                Assets.Play(Assets.sfxBombDrop);
+                Functions_Particle.Spawn(
+                    ObjType.ParticleDashPuff,
+                    pro.compSprite.position.X + 0,
+                    pro.compSprite.position.Y + 0);
+            }
+            else if (Type == ObjType.ProjectileExplodingBarrel)
+            {
+                Functions_Movement.Push(pro.compMove, Dir, 6.0f);
+                Assets.Play(Assets.sfxEnemyHit);
+            }
+            else if(Type == ObjType.ProjectileExplosion)
+            {
+                Assets.Play(Assets.sfxExplosion);
+                //place smoke puff above explosion
+                Functions_Particle.Spawn(
+                    ObjType.ParticleSmokePuff,
+                    pro.compSprite.position.X + 4,
+                    pro.compSprite.position.Y - 8);
+            }
+            else if (Type == ObjType.ProjectileNet)
+            {   
                 Assets.Play(Assets.sfxNet);
+            }
+            else if (Type == ObjType.ProjectileSword)
+            {
+                Assets.Play(Assets.sfxSwordSwipe);
             }
 
             #endregion
@@ -92,53 +122,8 @@ namespace DungeonRun
 
         public static void HandleBirthEvent(GameObject Obj)
         {
-            if (Obj.type == ObjType.ProjectileArrow)
-            {
-                Assets.Play(Assets.sfxArrowShoot);
-            }
-            else if (Obj.type == ObjType.ProjectileBomb)
-            {
-                Assets.Play(Assets.sfxBombDrop);
-                //bomb is initially sliding upon birth
-                Functions_Particle.Spawn(
-                    ObjType.ParticleDashPuff,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0);
-            }
-            else if (Obj.type == ObjType.ProjectileExplosion)
-            {
-                Assets.Play(Assets.sfxExplosion);
-                //place smoke puff above explosion
-                Functions_Particle.Spawn(
-                    ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y - 8);
-            }
-            else if (Obj.type == ObjType.ProjectileFireball)
-            {
-                Assets.Play(Assets.sfxFireballCast);
-                //place smoke puff centered to fireball
-                Functions_Particle.Spawn(
-                    ObjType.ParticleSmokePuff,
-                    Obj.compSprite.position.X + 4,
-                    Obj.compSprite.position.Y + 4);
-            }
-            else if (Obj.type == ObjType.ProjectileSword)
-            {
-                Assets.Play(Assets.sfxSwordSwipe);
-            }
-            else if (Obj.type == ObjType.ProjectileExplodingBarrel)
-            {
-                Assets.Play(Assets.sfxEnemyHit);
-            }
+            //empty
         }
-
-        //^^^^
-        //we should consolidate most HandleBirthEvent() paths into Spawn
-        //because they could just as well be triggered there and it makes
-        //no sense to wait a frame or two to trigger birth events.. ?
-
-
 
         public static void HandleDeathEvent(GameObject Obj)
         {

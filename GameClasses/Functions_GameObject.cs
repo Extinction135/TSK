@@ -93,27 +93,21 @@ namespace DungeonRun
 
 
         public static void Update(GameObject Obj)
-        {
-            //particles, pickups, and roomObjects are passed into this method
+        {   //particles, pickups, and roomObjects are passed into this method
             //projectiles are handled via projectile.update()
             if (Obj.lifetime > 0)
             {   //if the obj has a lifetime, count it
-                Obj.lifeCounter++; //increment life 
+                Obj.lifeCounter++;
                 if (Obj.lifeCounter == 2) { HandleBirthEvent(Obj); }
                 if (Obj.lifeCounter >= Obj.lifetime) { HandleDeathEvent(Obj); }
             }
-            //certain objects get AI input
-            if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
+            if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); } //certain roomObjs get AI
         }
 
         public static void HandleBirthEvent(GameObject Obj)
-        {   //this could be moved into Particle.Spawn()
-            if (Obj.type == ObjType.ParticleRewardMap)
-            { Assets.Play(Assets.sfxReward); }
-            else if (Obj.type == ObjType.ParticleRewardKey)
-            { Assets.Play(Assets.sfxKeyPickup); }
-            else if (Obj.type == ObjType.ParticleSplash)
-            { Assets.Play(Assets.sfxSplash); }
+        {   
+            //nothing really, most birth events are baked into the Spawn() methods
+            //for particles, projectiles, and pickups
         }
 
         public static void HandleDeathEvent(GameObject Obj)
@@ -152,6 +146,7 @@ namespace DungeonRun
 
 
 
+        //we about to make this bigggg
 
         public static void SetType(GameObject Obj, ObjType Type)
         {   //Obj.direction should be set prior to this method running
@@ -882,6 +877,9 @@ namespace DungeonRun
             Obj.compSprite.currentFrame = Obj.compAnim.currentAnimation[0]; //goto 1st anim frame
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
+
+
+
 
     }
 }
