@@ -103,7 +103,7 @@ namespace DungeonRun
                         if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
                         //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
-                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.IceTile); }
                         else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.BlockSpike); }
                     }
                     else if (i == 1) //second row
@@ -120,7 +120,7 @@ namespace DungeonRun
                         else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ConveyorBeltOn); }
                         else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ConveyorBeltOff); }
                         else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.SpikesFloorOn); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.IceTile); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.SpikesFloorOff); }
                     }
                     else if (i == 3) //fourth row
                     {

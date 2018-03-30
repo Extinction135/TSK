@@ -17,10 +17,6 @@ adding music:
 adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
 CTRL + M, O = collapse functions/regions	
-	
-
-	
-	
 new gif: 50% nearest neighbor, 32 dithered
 	
 	
@@ -30,18 +26,43 @@ todo:
 
 v0.7 goals
 
-- fix picking up, carrying, throwing, dropping, dragging, pushing objects
-- divide spritesheets up so they can be expanded / modified easily
+- Non-room repeating Dungeon, additional rooms
 
+- divide spritesheets up so they can be expanded / modified easily
+- expand RoomBuilder to include the creation, placement, loading and saving of world levels.
 - Dungeon Entrance Level, with dungeon entrance object, locked cam, filled screen
-- Outside Town Level, locked cam, filled screen
-- do we need to expand the roomObj / floor pool?
-- All Planned Projectiles
-- All Planned DungeonRoomObjs
+- Outside Town Level, locked cam, filled screen, vendors
+
+
+- fix picking up, carrying, throwing, dropping, dragging, pushing objects
+- can drag: light blocks, dungeon statues, barrels, torches on/off, chests
+- can pickup, carry, throw: pots
+- remove dropping pots from game, hero can only throw them
+
+
 - Flying Enemy
 - Blob AI improvements - sword, arrow, bomb based on weapon / item loadout 
 	blob loadouts could be randomized when room is built()
-- Non-room repeating Dungeon
+
+
+
+
+	
+	
+Improve Row Rooms
+
+modified Row_001.
+modified Row_002.
+modified Row_003.
+added off spikes to object tools widget.
+created Row_005.
+playtested, working as expected.
+
+
+
+
+
+create a new row room using levers and multiple on/off floor spikes
 
 
 
@@ -49,64 +70,19 @@ v0.7 goals
 
 
 
+Non-Repeating Rooms in Dungeon
 
+we need to make rooms non-repeating in the dungeon.
+it's cheap to come across the same room over and over again.
 
-
-
-
-
-
-
-Tuning and Room Improvements
-
-spikeBlocks now move slightly slower.
-
-the sparkle created by spikeblock should be centered to the obj,
-then offset based on the colliding edge. 
-updated & cleaned up Functions_Particle class.
-
-updated Particle.Spawn() with path for SpikeBlock object.
-this places the spawned particle on the spikeBlock's colliding
-edge, which makes the collisions and bounce feel better.
-
-reduced the bounce force of bumpers.
-
-
-
-
-
-
-
-
+so when the dungeon is being built, we need a list of rooms (based on loaded room data)
+then when we place a square room, we ID it, and strip that room off the roomsList
+and if we run out of square rooms, then we just try columns, or rows.
+this way the dungeon algorithm can never reach a point where there are no more rooms to use
+which would be game breaking. also, we need ALOT of rooms to build from.
 
 row rooms need to be redesigned to be MUCH better
-we need more rows and column rooms
-
-
-
-
-
-
-
-
-
-
-
-bosses should always spawn as ActorPool index 2.
-0 = hero. 1 = pet. 2 = boss.
-this is to ensure we never accidentally use the last actor pool index,
-which will be rapidly recycled in the event we run out of available
-actors to Get().
-thinking about this more, the boss should be reserved as Pool.actorPool[2].
-and we should never Get() from actorPool[0] or [1] or [2]
-
-
-
-
-
-
-
-
+we need more rows and column rooms, and their quality needs to be improved.
 
 
 
@@ -151,16 +127,53 @@ Level_Shop - builds shop level + vendors
 Main Sheet - we've stuffed everything into this and it's getting messy and hard to grow
 
 with larger sheets and more space, we can make the animations better.
+the major headache is going to be migrating all the RoomObjs to have proper names,
+like DungeonExitDoor, and DungeonPot, instead of ExitDoor and Pot.
+this is because we'll have outside objects as well, like WorldPot.
 
-HOWEVER, the curent gameObj animList system was created to PREVENT garbage
-from being made each time SetType() is called, where we would normally put
-the frame list, which would require the NEW keyword. (why can't we set the reference here?,
-it just makes it more tedious, because we have to have object defs for each enum value)
-*the issue we run into is we'll need to set the spriteSheet for the objs per objType,
-which leads to a monolithic and tedious SetType() implementation, which targets each
-enum value individally.
+the difference is the Dungeon and World naming conventions.
 
-this needs to be investigated more before a decision is made.
+
+
+
+
+
+
+
+
+Expand RoomBuilder to be able to create outside world levels.
+these are cam-locked, so fill the screen up with game objs and animations.
+
+the big differnces i see right now are:
+hide the worldUI and objTools widget.
+we need to be able to see the whole level at once.
+so, it would be nice to be able to 'hide' the worldObjects widget
+unless the spacebar is pressed, at which point it appears centered on screen
+then i select the world obj i want, modify the tools as needed, then release spacebar
+this returns me to editing the room / level.
+this should be implemented in RoomBuilder for ObjectTools too.
+a text note at the bottom should read "hold space for tools"
+we should have a button to switch between Dungeon mode and World mode.
+this changes the widget displayed when the user presses the spacebar
+
+
+
+
+Design and Link up new World Levels:
+Dungeon Entrance Level
+Outside Town Level
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -225,6 +238,54 @@ the obj stays in it's picked up spot
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lttp Stuff we're missing:
+
+
+
+
+Keys?
+**we could have 'keys' in the game, which would be temporary for the room only
+the doors would shut and convert to locked versions, or only some of them would.
+inside the room is a chest that contains a key. hero picks up the key, unlocks 
+a door, key is used, continues on. the room resets, works the same later on.
+the key would be displayed in the inventory screen as a brittle rusty key.
+and when it's used, the key breaks. the flavor text says that the key will
+likely break after one use.
+
+
+
+Pullable levers
+these are built into the wall and open shut doors, just like a switch
+these must be pulled for a bit tho, and there are decoy levers that will
+spawn snakes or explode..
+
+
+Special Sword Attack
+should be able to charge up attack and spin just like Lttp.
+
+
+
+
+
+
 LightWave Projectile (push wand projectile)
 
 the flame throwers on the ground shouldn't shoot fireballs
@@ -271,53 +332,26 @@ different screen.
 
 
 
-
-
-
-
-
-COMPLETE THE PROTOTYPE BLOB DUNGEON
-
-Enemies++
-create tier 1, 2, 3 level enemies for dungeon 1
 dungeons should have an enemy list for each tier
 then upon room build, randomly choose an enemy type from the correct tier list
 
-for the blob dungeon, we can have many different kinds of blob enemies, using the blob sheet:
-blobs with swords
-blobs with bow & arrow
-blobs that plant bombs
-blobs that shoot fireballs
-
-for example, forest dungeon tier 1 enemies: blob, rat, snake
-when room builds, any of these 3 enemy types can spawn on a tier 1 spawn obj
-create enemies that fire projectiles - arrows, fireballs, bombs
 we need a flying enemy - like a BAT
 
-
-
-Dungeons++
-link cave, forest, old castle dungeons from the overworld map
-create dungeon sprite sheet for cave + forest + old castle levels
-create enemies unique to the cave + forest + old castle
-create bosses unique to the cave + forest + old castle
-
-
-Music++
-add overworld music
-add shop music (town music)
-title screeen plays title music
-
-explosion sound needs to be shorter
 
 
 Dungeons++
 the exit rooms should be different for each dungeon type
 but they should be the same for the dungeon type they represent
 so the dungeon type feels consistent, but there is variety between dungeon types
+
 dungeons should have names.
 the dungeon name should be displayed on the map.
 dungeon names could be randomly generated from a list.
+
+
+
+
+
 
 Boss dialog + Boss phases
 initially the boss should popup a dialog mocking player
@@ -327,36 +361,6 @@ this one talks about boss changing tactics
 in the 2nd phase, the boss moves AWAY from the hero
 so its harder for the hero to hit the boss
 in first phase, the boss just randomly moves around
-
-Boss Heads -> Crystals
-instead of crystals, we should collect boss's heads.
-this is the same icon that appears on the overworld map for the dungeon
-this would appear in inventory screen where the crystals are, but there will only be 4
-these should be located on the overworld screen
-upon collection of 4 boss heads, the final dungeon opens
-the blob boss head is actually an eye, the bosses eye
-for now, the player will collect 4 eyes
-crystals widget should be renamed 'bosses defeated', bossesWidget
-we'll need to update the game display data + the LSN screen to reflect the update away from crystals
-we can also make the overworld map wider, to better fill the frame out
-
-dungeon rewards++
-When the hero beats a dungeon, the only reward should be the bosses head, no gold.
-gold is only acquired by defeating enemies (and later on, by betting on/winning tournaments)
-text should read "press any button to continue"
-remove 'reward' text
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -376,21 +380,6 @@ this also means we need to 'unbake' the shadows from ALL objects and actors.
 
 
 
-
-
-
-
-
-
-
-
-
-add the waving emote into hero's sheet
-we should use the waving animation on the load save new screen when we display the 3 games
-currently we use a walking animation, which is boring af
-instead the hero should wave
-we should update the blob sheet to have a wave emote as well
-
 the LSN screen should display the link hero if hero is link
 should also display the blob character if hero saved game as blob
 can we save the game as the blob character? is that in the save game info?
@@ -398,7 +387,10 @@ can we save the game as the blob character? is that in the save game info?
 
 
 
-
+BIG OPTIMIZATION
+	if we don't draw the floor tiles, the draw loop is much faster
+	so, we could standardize the room sizes, then create a floor sprite
+	then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
 
 
 
@@ -428,26 +420,7 @@ if actor.behavior[i] ==
 
 
 
-DungeonPillars
-a blocking non-breakable obj to give the rooms some character
-they can also be used to create the illusion of depth
-(because hero can walk behind them)
-but is it worth using up 2 spots for one object with no purpose other than decoration?
-
-
-
-
-
-Enemy Hit ++
-
-when we hit an enemy, we should display a very specific hit particle
-this is the frames:
-new List<Byte4> { new Byte4(5, 1, 0, 0), new Byte4(6, 1, 0, 0), new Byte4(7, 1, 0, 0) }
-
-
-
-Entities++
-
+Projectiles++
 WanderingFire 
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
@@ -457,9 +430,6 @@ should be able to place wandering fire using tools widget
 
 
 OBJECTS:
-
-conveyor belts should sort over down switch blocks
-this means conveyor belts should sort above -32
 
 Destroyed Debris object
 the dungeon statue should become the destroyed version upon destruction.
@@ -479,8 +449,6 @@ leaving actor hovering over pits, which is bad
 *the actor would slowly be pulled into the right pit, 
 *then quickly pulled once they dont collide with left pit any more
 
-**** COMPLETE DUNGEON OBJECTS BEFORE CONTINUING ****
-
 
 
 
@@ -496,60 +464,15 @@ this would deal 1 damage to everything on screen
 and play explosions randomly inside the room
 should be named bombos, sold by magic dealer
 
-potion that makes hero invincible for a period of time
-how is this visually represented?
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Fairies++
-we need fairy soundfx for when fairy dies (absorbed or captured).
-fairys should have soundfx for when they are hit
-
-NET++
-add a swipe sound effect for net
 
 WorldUI++
 when the hero's health changes, the worldUI should animate hearts individually
 if the hero gains 5 health, each heart should scale up, then animate down
 once that heart's scale reaches 1.0, then the next heart can animate
 this sequential scaling should happen anytime hero's health changes
-
-need a dungeon statue destroyed obj
-need a 'base' object that sits underneath skullpots
-skullpots would then become this base object upon destruction / lift
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -562,6 +485,8 @@ upper right corner, simply draws the DungeonRecord.timespan value
 this should display down to the ms
 this should only display if level is a dungeon
 	
+	
+	
 dungeons can have deep water (sinks) and shallow water (just has wading fx)
 and we can build puzzles around this, because it's impossible to tell them apart
 but we should be able to tell them apart, with some kind of shallow water lighter color difference
@@ -572,10 +497,6 @@ this is displayed in a stats widget somewhere that hasn't been designed yet
 equation for determining skill rating in percentage.
 this is: total enemies killed / damage taken
 ex: 10/1 = 10.   245/73 = 3.35.
-
-
-we need to make sure we're checking if actor == hero, and not if actor.type == hero in various routines
-interaction routines
 
 
 NPCs should change their dialog based on the hero.actorType
@@ -609,47 +530,6 @@ using switches to alter the paths thru rooms, or alter the nature of rooms
 
 
 
-
-
-
-
-v0.8 goals
-
-
-Outdoor Levels
-outdoor levels are handmade, and not rectangular in design
-so they can't be generated procedurally 
-we'll need to create a "level editor" similar to room editor
-lvl editor will have more objects to place
-lvl editor will also place floortiles
-*which means we need to save floortiles to XML
-*which means we need to load floors + rooom objs from XML
-*this XML should be seperate from roomDataXML
-*levelXML? these can be loaded into Assets.LevelData list
-
-outdoor levels to build (part 1):
-colliseum 
-left town A, B, C, + Church
-castle gate
-ship
-
-
-Outdoor level objects
-level objects exist in a level sheet, which is a dungeon sheet
-however, a level sheet doesn't necessarily have to follow the dungeon sheet layout
-this is because outdoor levels will have unique objects, and no dungeon objects
-each level will have it's own unique objects, which will be enum ObjType values
-which means that Obj.SetType() will grow alot...
-consider creating Obj.SetDungeonObj() and Obj.SetLevelObj()
-this would help to break up the monolithic SetType() 
-SetDungeonObj() and SetLevelObj() would be called from SetType() based on ObjGroup/Type
-
-
-OutDoor Levels ++
-For each dungeon, we need an outdoor level that displays the dungeon entrance
-this makes it feel like the player is entering the dungeon, instead of just spawning into it
-cave, forest, castle ruins, castle entrance
-
 Overworld++
 add tiny smoke particles coming out of some houses
 add 'floating' animation to ship (should bob up and down)
@@ -658,24 +538,6 @@ make castlel ruins look more 'ruiny'
 
 
 
-
-
-Dashing++
-what if hero took double damage when they dashed?
-we could scale up the first heart when hero dashes
-then if they get hit, they take whatever damage they would normally take, but also lose the first heart
-so dashing is kinda like a small gamble each time.
-
-
-
-
-
-Improve Hero falling into Pit++
-when hero 'lands' after a pit fall, he should be put into a sitting position
-then he should take a few frames to 'standup', before finally returning to standing idle
-this should all be facing south
-this should be an animation list + state
-this state and animation should exist for all non-boss actors
 
 
 
@@ -868,86 +730,16 @@ so we could prompt the user with a dialog that asks 'load uncorrupted data?'
 	
 	
 	
-Polish
+we could add a spear projectile for blob enemies
 
-	implement the following items:
-	item boomerang - just like LttP boomerang, hits an enemy for 1, can 'collect' pickups
-	weapon staff - creates a magic orb projectile, if magic is max, else has an attack of 0, but pushes
-	equipment pearl - wtf does this do in game?	
+we should include a soundFXinstance on actors that points to one of the soundFX in assets
+then we can set this instance in ActorFunctions.SetType()
+then later just call it generically, like Actor.AttackSound.Play().
+same with hit sound, death sound, use sound.
 
-
-	minor bug:
-	the loadout animates the loadout menuItems
-	when we select a laodout menuItem from inventory screen, we animate the loadout menuItem again
-	this leads to a double scaling down effect, which shouldnt happen
-	we shouldn't be able to select loadout menuItems.
-	this solves the scaling issue, and it doesn't make sense to be able to select them
-	selecting an item should only equip it
-
-	polish hearts and magic world UI
-	if the hearts change value, play the heart refill sound
-	if the magic changes value, play the magic refill sound
-	if hero uses magic, play the magic use sound
-	
-	Vendor stalls / layout ++
-	we need vendor 'stalls'
-	stalls should have rugs under them
-	vendors should not be in a line, the should be spread out
-	there should be more decorations in the shop
-	the 'guide' npc obj should also be in the shop
-	there should be a dog actor that chases the hero around
-	this dog actor is an enemy, but never attacks and has it's own AI.
-	
-	what if we pushed the hero a little bit in the opposite direction of the fireball being cast?
-	this would make it seem like the 'weight' of the fireball pushed him back	
-	
-	instead of an unknown menuItem, we should have a 'purchased' menuItem for items that have been bought	
-	
-	REPLACE BOSS MUSIC	
-	re-mix the boss music, making drums much less prominent in the mix
-	also, mix the drums down to mono in session - we're getting phase issues when we convert to mono later
-
-	puzzle: conveyor belt that pushes the hero away from something
-	solution: hit the switch, turn the belts off, so hero can move around
-	we could even put them on a timer and play a timer tick sound, suspending the music
-	
-	Stats MenuItems? Or Help Menu?
-	we need menuItem sprites for the various stats
-	strength - increases amount of physical damage weapon does
-	magic = increases amount of magical damage magic does
-	agility = how quickly hero moves + dashes
-	luck = increases amount of gold found + rewarded
-
-	pull all the sound effects from links awakening
-
-	we could add a spear projectile for blob enemies
-
-Stuff that needs to be done, but it's not terribly important rn	
-
-	
-	
-	we should include a soundFXinstance on actors that points to one of the soundFX in assets
-	then we can set this instance in ActorFunctions.SetType()
-	then later just call it generically, like Actor.AttackSound.Play().
-	same with hit sound, death sound, use sound.
-	
-	implement additional weapons / items
-	weapons : { staff, axe }
-	items : { lightning, boomerang }
-	
-Maybes / Ideas	
-
-	blobs should vomit a cloud, which acts as a close range projectile, with a short lifetime
-	or they can use a weapon, like a stick or gooey hand, i dunno
-
-	debugInfo displays the floor index, instead of the # of floor tiles used currently
-	which isn't really a problem, cause we're going to optimize how floors are drawn later on
-
-	OPTIMIZATION
-	if we don't draw the floor tiles, the draw loop is much faster
-	so, we could standardize the room sizes, then create a floor sprite
-	then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
-
+implement additional weapons / items
+weapons : { staff, axe }
+items : { lightning, boomerang }
 
 	
 Look at how stardew valley engages players
@@ -962,14 +754,4 @@ Look at how stardew valley engages players
 
 	
 	
-	
-	
-	
-
-
-
-
-
-
-
 	
