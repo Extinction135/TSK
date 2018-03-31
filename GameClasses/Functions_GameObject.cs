@@ -56,9 +56,12 @@ namespace DungeonRun
         }
 
         public static void SetRotation(GameObject Obj)
-        {   //rotate all objects + projectiles normally for all cardinal directions
-            Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
+        {   
+            
+            //we could split this out into pro/pick/part SetRotations()
+            //but there isn't enough complexity to warrant that split, yet
 
+            
             //handle object/projectile specific cases
             if (Obj.type == ObjType.ProjectileSword || Obj.type == ObjType.ProjectileNet)
             {   //some projectiles flip based on their direction
@@ -79,8 +82,9 @@ namespace DungeonRun
             {   //some objects are randomly flipped horizontally
                 Obj.compSprite.flipHorizontally = true;
             }
+            //set sprite's rotation based on direction & flipHorizontally boolean
+            Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
         }
-
 
 
 
@@ -98,31 +102,40 @@ namespace DungeonRun
         }
 
 
+        
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //we about to make this bigggg
-
+        
         public static void SetType(GameObject Obj, ObjType Type)
-        {   //Obj.direction should be set prior to this method running
+        {   //Obj.direction should be set prior to this method running - important
             Obj.type = Type;
+
+
+
+
+
+            //this is going to be changed quite a bit
+            //first, we need to be setting the sprite texture based on Obj.type
+            //second, we need to set the game obj anim list to the PROPER global animList reference
+            //which means we need to split the animList into INDIVIDUAL fields
+            //then set the obj's animList to that indivual field below
+
+            //this way we aren't creating animList garbage, but we
+            //also aren't dependent upon a list maintaining 1:1 with ObjType enum
+            //this also gives us more freedom to play with the sprites animList
+            //because we could easily set a different obj to the same animList, masqueradeing it as something else
+            //which might potentially reduce the number of animLists, since we dupe list values occasionally
+            //or we may keep them duped simply for readability (shutDoor = shutDoor anim, trapDoor = trapDoor anim)
+            //instead of (trapDoor = shutDoor.anim)
+
+
+
+
+
+
 
 
             #region Assign Dungeon Sheet as Default Texture
@@ -837,6 +850,16 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+
+
+
+
+
+
+
 
 
             //Handle Obj Group properties

@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_Pickup
     {
-
         static Vector2 posRef = new Vector2();
         static Direction direction;
 
@@ -53,9 +52,6 @@ namespace DungeonRun
             Functions_Component.Align(obj); //align upon birth
             //Debug.WriteLine("entity made: " + Type + " - location: " + X + ", " + Y);
         }
-
-
-
 
 
 

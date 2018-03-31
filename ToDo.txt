@@ -51,36 +51,23 @@ blob loadouts could be randomized when room is built()
 
 
 
+ART++
 
-created Update() and Kill() methods for Projectiles, Pickups, Particles.
-removed HandleBirthEvent() from any class.
-changed Pool.Update() to pass Pros, Picks, and Parts to their proper methods.
+migrated sprites to The New Layout.
 
+what is The New Layout? larger sprite sheets,
+allowing for more room for sprite animations,
+and the sprites are now organized according to
+color palette or type, so forest world & 
+dungeon objects and npcs all live on the same
+sheet - this will make it much easier to color
+everything later on (and automate that process
+with ColorSchemer, but shhh... secret stuff).
 
-
-
-
-create Projectile.Kill() - handles death events
-create Pickup.Kill() - handle death events
-modify GameObject.Kill() - should simply wrap Pool.Release(Obj).
-*later on we may add roomObj death events, such as a pitTrap waiting 255 frames
-prior to collapsing, the death event being the transition of the pitTrap to a pit type
-
-
-we could pass pickup objects into Pickup.Update()
-since they are the ones with an actual lifetime, and counter
-and we'd need Death() and Birth() methods
-which would completely remove the need for Birth() and Death() events from gameobj
-and simplify GameObj.Update() a bit too.
-
-
-
-
-
-
-
-SetRotation is also stupid, because it's polluted with projectiles
-the projectiles function class should handle that
+included these master ART files in the project,
+in the new "ART" folder, masters and finals included.
+so now I can push art commits. the first of many.
+but this is not what git is really for, so.. meh
 
 
 
@@ -95,23 +82,7 @@ the projectiles function class should handle that
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-we could also move some of interaction() into Projectile functions,
-although that fractures interaction paths a bit, but also could help
-to simplify projectile + roomObj / actor interactions..
+remove fairy spawn object from game - this was a dumb idea to begin with lol
 
 
 
@@ -120,8 +91,6 @@ to simplify projectile + roomObj / actor interactions..
 
 
 Migrate GameObjects & SpriteSheets to New System - part 1
-
-
 
 As we do the following below, we also need to modify how GameObjAnimLists
 are handled. this *should* be handled in SetType(). although the current
@@ -132,63 +101,21 @@ system, and we're about to add ALOT of objects.
 
 
 
-Future Proof SpriteSheets
-
-we need to logically split up the sprites into sheets that are:
-1: larger
-2: more specific (ex: projectiles sheet)
-3: with plenty of space for additions
-
-Sheets - all sheets are 256 x 256
-
-(actors sheet)
-pets
-hero
-blob
-blobBoss
-
-(entities)
-particles
-projectiles
-pickups
-
-(ui)
-menuItems
-uiItems
-
-(overworld)
-overworld sheet - main bkg, plus particles for map animation
-*this is probably sized differently than 256 x 256
-
-(gameobjects)
-*this is actually a little bit more complicated, based on the ideas planned
-because: we'll have a dungeon, town, and various connecting levels with all visually
-shared assets and style and color scheme, the FOREST levels, for example.
-so to compose the dungeon, the towns, and the connecting levels, including 
-possible traversable water areas, we need a few sheets:
-
-1. dungeonSheet - dungeon objs only - specific layout
-2. worldSheet - connecting levels, environment, semi-specific layout
-data waterColor - a byte4 that sets the background color, 
-which we could pull from a solid color water sprite in the worldSheet
-
-{
-	with larger sheets and more space, we can make the animations better.
-	the major headache is going to be migrating all the RoomObjs to have proper names,
-	like DungeonExitDoor, and DungeonPot, instead of ExitDoor and Pot.
-	this is because we'll have outside objects as well, like WorldPot.
-	the difference is the Dungeon and World naming conventions.
-}
 
 
 
+with larger sheets and more space, we can make the animations better.
+the major headache is going to be migrating most RoomObjs to have proper names,
+like DungeonExitDoor, and DungeonPot, instead of ExitDoor and Pot.
+*actually, we should be just changing the pot sprite, so it's universal in world or dungeon
+this is because we'll have outside objects as well, like WorldPot.
+the difference is the Dungeon and World naming conventions.
 
+once all the spriteSheets are setup and saved out, update the content/Project for Dx
+then we can begin to migrate all the gameObjects into the New System,
 
-
-
-
-
-
+we have changed the sprite sheet frames for ACTORS as well.
+so, nothing should work and everything is broken animation wise.
 
 
 
@@ -646,7 +573,8 @@ make castlel ruins look more 'ruiny'
 
 
 
-
+**if you sprinkle magic powder on a dead enemy, he comes back to life at 100% hp
+but, he's still your enemy, so i don't know how useful it is practically...
 
 
 

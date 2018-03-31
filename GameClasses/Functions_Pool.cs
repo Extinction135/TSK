@@ -245,13 +245,6 @@ namespace DungeonRun
                 }
             }
 
-
-
-
-
-
-
-
             //particles
             for (i = 0; i < Pool.particleCount; i++)
             {
@@ -290,14 +283,6 @@ namespace DungeonRun
                     Functions_Interaction.CheckInteractions(Pool.pickupPool[i]);
                 }
             }
-
-
-
-
-
-
-
-
 
             #endregion
 

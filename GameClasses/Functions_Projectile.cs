@@ -120,18 +120,13 @@ namespace DungeonRun
         }
 
 
-
-
-
-        
-
-
         public static void Update(Projectile Pro)
         {   //projectiles do have lifetimes
             Pro.lifeCounter++;
             HandleBehavior(Pro);
             if (Pro.lifeCounter >= Pro.lifetime) { Kill(Pro); }
         }
+
 
         public static void Kill(GameObject Obj)
         {
@@ -185,11 +180,6 @@ namespace DungeonRun
         }
 
 
-
-
-
-
-        
         public static void HandleBehavior(Projectile Pro)
         {
             //the following paths handle the per frame events, or behaviors, of a projectile
@@ -390,7 +380,6 @@ namespace DungeonRun
 
 
         }
-
 
 
     }

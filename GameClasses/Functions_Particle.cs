@@ -16,7 +16,6 @@ namespace DungeonRun
     {
         static Vector2 posRef = new Vector2();
 
-
         //spawn relative to object
         public static void Spawn(ObjType Type, GameObject Object)
         {
@@ -138,9 +137,6 @@ namespace DungeonRun
             
 
         }
-
-
-
 
 
 
