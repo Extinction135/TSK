@@ -30,23 +30,23 @@ namespace DungeonRun
 
                 //common loot drops
                 if (lootType < 25) //25%
-                { Functions_Pickup.Spawn(ObjType.PickupHeart, Pos.X, Pos.Y); }
+                { Functions_Pickup.Spawn(ObjType.Pickup_Heart, Pos.X, Pos.Y); }
                 else if (lootType < 50) //25%
-                { Functions_Pickup.Spawn(ObjType.PickupMagic, Pos.X, Pos.Y); }
+                { Functions_Pickup.Spawn(ObjType.Pickup_Magic, Pos.X, Pos.Y); }
                 else if (lootType < 75) //25%
-                { Functions_Pickup.Spawn(ObjType.PickupRupee, Pos.X, Pos.Y); }
+                { Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Pos.X, Pos.Y); }
 
                 //uncommon loot drops
                 else if (lootType < 87) //12%
-                { Functions_Pickup.Spawn(ObjType.PickupBomb, Pos.X, Pos.Y); }
+                { Functions_Pickup.Spawn(ObjType.Pickup_Bomb, Pos.X, Pos.Y); }
                 else if (lootType < 97) //12%
-                { Functions_Pickup.Spawn(ObjType.PickupArrow, Pos.X, Pos.Y); }
+                { Functions_Pickup.Spawn(ObjType.Pickup_Arrow, Pos.X, Pos.Y); }
 
                 //rare loot drops
                 else if (lootType < 101) //1%
                 {   //spawn a fairy roomObj
                     GameObject Fairy = Functions_Pool.GetRoomObj();
-                    Functions_GameObject.SetType(Fairy, ObjType.Fairy);
+                    Functions_GameObject.SetType(Fairy, ObjType.Dungeon_Fairy);
                     Functions_Movement.Teleport(Fairy.compMove, Pos.X, Pos.Y);
                 }
             }

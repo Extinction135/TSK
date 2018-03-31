@@ -3,871 +3,871 @@
   <type>Key</type>
   <objs>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>104</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>216</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>184</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>184</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Up</direction>
       <posX>184</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ChestKey</type>
+      <type>Dungeon_ChestKey</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>136</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>120</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>88</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>120</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>72</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>280</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>232</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>216</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>72</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>200</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>72</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>56</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>40</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>56</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>72</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>88</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>104</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>168</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>120</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>136</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>152</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>168</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>184</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>200</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>216</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>232</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>248</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>264</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>264</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>264</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>264</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>264</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>264</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>264</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>248</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>232</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>104</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>184</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>216</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>120</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>104</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>280</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>280</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>280</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>184</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>216</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>248</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>248</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>216</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>184</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>280</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>248</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>184</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>24</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>40</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>24</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>40</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>72</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Up</direction>
       <posX>136</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>168</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>168</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>200</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>152</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>200</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>232</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>232</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>264</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>280</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>280</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>280</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>280</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>248</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>248</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>264</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Up</direction>
       <posX>248</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>232</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>248</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>200</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>104</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>232</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>168</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>200</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>104</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>136</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>72</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>56</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Right</direction>
       <posX>104</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Up</direction>
       <posX>56</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>104</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>200</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Up</direction>
       <posX>200</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>232</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Left</direction>
       <posX>216</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Up</direction>
       <posX>216</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTrap</type>
+      <type>Dungeon_PitTrap</type>
       <direction>Left</direction>
       <posX>72</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>232</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>136</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>168</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>184</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>200</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>ConveyorBeltOn</type>
+      <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>216</posX>
       <posY>136</posY>

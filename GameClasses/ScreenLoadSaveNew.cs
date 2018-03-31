@@ -147,12 +147,14 @@ namespace DungeonRun
             PopulateDisplay(PlayerData.game3, game3);
 
             //create the selectionBox
-            selectionBox = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(15, 7, 0, 0),
+            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0), 
+                AnimationFrames.Ui_SelectionBox[0],
                 new Point(16, 16));
             //create the arrow
-            arrow = new ComponentSprite(Assets.mainSheet,
-                new Vector2(1000, 0), new Byte4(15, 8, 0, 0),
+            arrow = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(1000, 0), 
+                new Byte4(14, 1, 0, 0),
                 new Point(16, 16));
             arrow.rotation = Rotation.Clockwise90;
             //create action text

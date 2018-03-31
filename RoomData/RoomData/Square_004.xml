@@ -3,595 +3,595 @@
   <type>Square</type>
   <objs>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
       <posX>152</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
       <posX>136</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
       <posX>120</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
       <posX>24</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
       <posX>40</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
       <posX>56</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
       <posX>72</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Bridge</type>
+      <type>Dungeon_PitBridge</type>
       <direction>Left</direction>
       <posX>104</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchLit</type>
+      <type>Dungeon_TorchLit</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitAnimated</type>
+      <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitTop</type>
+      <type>Dungeon_PitTeethTop</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>PitBottom</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>152</posY>

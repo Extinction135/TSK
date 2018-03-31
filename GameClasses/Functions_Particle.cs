@@ -39,7 +39,7 @@ namespace DungeonRun
 
             #region Pit
 
-            else if (Object.type == ObjType.PitAnimated)
+            else if (Object.type == ObjType.Dungeon_Pit)
             {   //randomly offset where the bubble particle is placed
                 posRef.X += 4; posRef.Y += 4; //because bubble is 8x8 size
                 posRef.X += Functions_Random.Int(-3, 4);
@@ -51,7 +51,7 @@ namespace DungeonRun
 
             #region SpikeBlock
 
-            else if (Object.type == ObjType.BlockSpike)
+            else if (Object.type == ObjType.Dungeon_BlockSpike)
             {
                 posRef.X += 4; posRef.Y += 4;
                 //place particle along colliding edge
@@ -77,19 +77,19 @@ namespace DungeonRun
             //get the actor's facing direction as cardinal direction
             //direction = Functions_Direction.GetCardinalDirection(Actor.direction);
 
-            if (Type == ObjType.ParticleDashPuff)
+            if (Type == ObjType.Particle_RisingSmoke)
             {   //center horizontally, place near actor's feet
                 posRef.X += 4; posRef.Y += 8;
             }
             else if ( //place reward/bottle particles above actor's head
-                Type == ObjType.ParticleRewardKey ||
-                Type == ObjType.ParticleRewardMap ||
-                Type == ObjType.ParticleBottleEmpty ||
-                Type == ObjType.ParticleBottleHealth ||
-                Type == ObjType.ParticleBottleMagic ||
-                Type == ObjType.ParticleBottleCombo ||
-                Type == ObjType.ParticleBottleFairy ||
-                Type == ObjType.ParticleBottleBlob)
+                Type == ObjType.Particle_RewardKey ||
+                Type == ObjType.Particle_RewardMap ||
+                Type == ObjType.Particle_BottleEmpty ||
+                Type == ObjType.Particle_BottleHealth ||
+                Type == ObjType.Particle_BottleMagic ||
+                Type == ObjType.Particle_BottleCombo ||
+                Type == ObjType.Particle_BottleFairy ||
+                Type == ObjType.Particle_BottleBlob)
             { posRef.Y -= 14; }
 
             Spawn(Type, posRef.X, posRef.Y);
@@ -111,18 +111,19 @@ namespace DungeonRun
             //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
 
             //handle soundfx for specific particles
-            if (Type == ObjType.ParticleRewardMap)
-            { Assets.Play(Assets.sfxReward); }
-            else if (Type == ObjType.ParticleRewardKey)
-            { Assets.Play(Assets.sfxKeyPickup); }
-            else if (Type == ObjType.ParticleSplash)
-            { Assets.Play(Assets.sfxSplash); }
+            if (Type == ObjType.Particle_RewardMap) { Assets.Play(Assets.sfxReward); }
+            else if (Type == ObjType.Particle_RewardKey) { Assets.Play(Assets.sfxKeyPickup); }
+            else if (Type == ObjType.Particle_Splash) { Assets.Play(Assets.sfxSplash); }
 
+
+            //we no longer have rock debris in this system, but we will in the future
+            //this is a useful reference for randomizing an object's animFrame upon Spawn
+            /*
 
             #region Modify RockDebris Particles Animation Frame + Slide them
 
             //some projectiles get their current frame randomly assigned (for variation)
-            if (Type == ObjType.ParticleDebris)
+            if (Type == ObjType.Particle_Debris)
             {   //is assigned 15,15 - randomize down to 14,14
                 List<Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
                 if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
@@ -135,6 +136,7 @@ namespace DungeonRun
 
             #endregion
             
+            */
 
         }
 
@@ -157,7 +159,7 @@ namespace DungeonRun
 
 
 
-
+        /*
         public static void ScatterDebris(Vector2 Pos)
         {   //add up to 4 debris particles randomly around Pos
             int spread = 5; //how far apart the debris spawns from Pos
@@ -185,6 +187,9 @@ namespace DungeonRun
                     Pos.Y + Functions_Random.Int(-spread, spread));
             }
         }
+        */
+
+
 
     }
 }

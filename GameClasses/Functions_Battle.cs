@@ -71,12 +71,12 @@ namespace DungeonRun
 
             #region Objects
 
-            else if(Obj.type == ObjType.SpikesFloorOn)
+            else if(Obj.type == ObjType.Dungeon_SpikesFloorOn)
             {   //med push actors away from spikes
                 damage = 1; force = 7.5f;
                 direction = Functions_Direction.GetOppositeCardinal(Actor.compSprite.position, Obj.compSprite.position);
             }
-            else if (Obj.type == ObjType.BlockSpike)
+            else if (Obj.type == ObjType.Dungeon_BlockSpike)
             {   //med push actor away from spikes
                 damage = 1; force = 7.5f;
                 direction = Functions_Direction.GetOppositeDiagonal(Actor.compSprite.position, Obj.compSprite.position);
@@ -90,9 +90,7 @@ namespace DungeonRun
         }
 
         public static void Damage(Actor Actor, byte Damage, float Force, Direction Direction)
-        {   //certain actors take no damage
-            if (Actor.type == ActorType.Pet) { Damage = 0; Assets.Play(Pool.herosPet.sfxHit); } 
-            //only damage/hit/push actors not in the hit state
+        {   //only damage/hit/push actors not in the hit state
             if (Actor.state != ActorState.Hit)
             {   //set actor into hit state, push actor the projectile's direction
                 Functions_Movement.Push(Actor.compMove, Direction, Force); //sets magnitude only

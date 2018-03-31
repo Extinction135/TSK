@@ -31,15 +31,18 @@ namespace DungeonRun
         public static Texture2D blobSheet;
         public static Texture2D bossSheet;
 
+
+
         //world/ui/screen sheets
-        public static Texture2D mainSheet;
+        public static Texture2D entitiesSheet;
+        public static Texture2D forestLevelSheet;
+        public static Texture2D uiItemsSheet;
+
+
         public static Texture2D bigTextSheet;
         public static Texture2D overworldSheet;
         public static Texture2D titleBkgSheet;
 
-        //dungeon sheets
-        public static Texture2D cursedCastleSheet;
-        public static Texture2D shopSheet;
 
         //roomData lists - handmade room data
         public static List<RoomXmlData> roomDataHub = new List<RoomXmlData>();
@@ -170,14 +173,14 @@ namespace DungeonRun
             bossSheet = content.Load<Texture2D>(@"BossSheet");
 
             //world/ui/screen sheets
-            mainSheet = content.Load<Texture2D>(@"MainSheet");
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");
             overworldSheet = content.Load<Texture2D>(@"OverworldTexture");
             titleBkgSheet = content.Load<Texture2D>(@"TitleBkg");
 
             //dungeon textures
-            cursedCastleSheet = content.Load<Texture2D>(@"DungeonSheet");
-            shopSheet = content.Load<Texture2D>(@"ShopSheet");
+            entitiesSheet = content.Load<Texture2D>(@"EntitiesSheet");
+            forestLevelSheet = content.Load<Texture2D>(@"ForestLevelSheet");
+            uiItemsSheet = content.Load<Texture2D>(@"UiItemsSheet");
 
             //load all roomData
             Functions_Backend.LoadAllRoomData();

@@ -31,7 +31,7 @@ namespace DungeonRun
             interactionRec = new ComponentCollision();
             carryingObj = null;
             //create the hero's shadow + rec
-            heroShadow = new ComponentSprite(Assets.mainSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
+            heroShadow = new ComponentSprite(Assets.entitiesSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
             heroShadow.zOffset = -16;
             heroRec = new Rectangle(0, 0, 16, 16);
         }
@@ -87,7 +87,7 @@ namespace DungeonRun
             {
                 if (Pool.roomObjPool[i].active) //roomObj must be active
                 {
-                    if (Pool.roomObjPool[i].type == ObjType.DoorOpen)
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
                     {   //set open/bombed doors to blocking or non-blocking
                         Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
 
@@ -97,12 +97,16 @@ namespace DungeonRun
                             if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
                             { Pool.roomObjPool[i].compCollision.blocking = false; }
                         }
+
+                        /*
                         //do this for hero's pet as well
                         if (Math.Abs(Pool.herosPet.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
                         {
                             if (Math.Abs(Pool.herosPet.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
                             { Pool.roomObjPool[i].compCollision.blocking = false; }
                         }
+                        */
+
                     }
                 }
             }
@@ -187,16 +191,16 @@ namespace DungeonRun
 
                 #region Reward the hero with chest contents
 
-                if (Obj.type == ObjType.ChestKey)
+                if (Obj.type == ObjType.Dungeon_ChestKey)
                 {
-                    Functions_Particle.Spawn(ObjType.ParticleRewardKey, Pool.hero);
+                    Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
                     Level.bigKey = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.HeroGotKey)); }
                 }
-                else if (Obj.type == ObjType.ChestMap)
+                else if (Obj.type == ObjType.Dungeon_ChestMap)
                 {
-                    Functions_Particle.Spawn(ObjType.ParticleRewardMap, Pool.hero);
+                    Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
                     Level.map = true;
                     if (Flags.ShowDialogs)
                     { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.HeroGotMap)); }
@@ -205,12 +209,12 @@ namespace DungeonRun
                 #endregion
 
 
-                if (Obj.type != ObjType.ChestEmpty)
+                if (Obj.type != ObjType.Dungeon_ChestEmpty)
                 {   //if the chest is not empty, play the reward animation
                     Assets.Play(Assets.sfxChestOpen);
-                    Functions_GameObject.SetType(Obj, ObjType.ChestEmpty);
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_ChestEmpty);
                     Functions_Particle.Spawn( //show the chest was opened
-                        ObjType.ParticleAttention,
+                        ObjType.Particle_Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
                     Functions_Actor.SetRewardState(Pool.hero);
@@ -224,14 +228,12 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.Vendor)
             {   //some vendors do not sell items, so check vendor types
-                if (Obj.type == ObjType.VendorStory) //for now this is default dialog
+                if (Obj.type == ObjType.Vendor_NPC_Story) //for now this is default dialog
                 {   //figure out what part of the story the hero is at, pass this dialog
                     ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.Guide));
                 }
-                //check to make sure the obj isn't a vendor advertisement
-                else if (Obj.type != ObjType.VendorAdvertisement)
-                { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
-                //vendor ad objects are ignored
+                else { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
+                //vendor ad objects are ignored, because they aren't of Group.Vendor
             }
 
             #endregion
@@ -239,14 +241,14 @@ namespace DungeonRun
 
             #region Boss Door
 
-            else if (Obj.type == ObjType.DoorBoss)
+            else if (Obj.type == ObjType.Dungeon_DoorBoss)
             {
                 if (Level.bigKey)
                 {   //hero must have dungeon key to open boss door
-                    Functions_GameObject.SetType(Obj, ObjType.DoorOpen);
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_DoorOpen);
                     Assets.Play(Assets.sfxDoorOpen);
                     Functions_Particle.Spawn(
-                        ObjType.ParticleAttention,
+                        ObjType.Particle_Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
                 }
@@ -262,7 +264,7 @@ namespace DungeonRun
 
             #region Dungeon Objects
 
-            else if (Obj.type == ObjType.Pot)
+            else if (Obj.type == ObjType.Dungeon_Pot)
             {
                 //put hero into pickup state
                 Pool.hero.state = ActorState.Pickup;
@@ -273,7 +275,7 @@ namespace DungeonRun
                 if (carryingObj != null)
                 {
                     Functions_GameObject.ResetObject(carryingObj);
-                    Functions_GameObject.SetType(carryingObj, ObjType.Pot);
+                    Functions_GameObject.SetType(carryingObj, ObjType.Dungeon_Pot);
                 }
                 carryingObj = Obj; //set obj ref
                 Obj.compSprite.zOffset = +16; //sort above hero
@@ -281,42 +283,30 @@ namespace DungeonRun
 
                 //decorate pickup from ground
                 Functions_Particle.Spawn(
-                    ObjType.ParticleAttention,
+                    ObjType.Particle_Attention,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y);
                 Assets.Play(Assets.sfxHeartPickup); //OG LttP
             }
-            else if (Obj.type == ObjType.TorchUnlit)
+            else if (Obj.type == ObjType.Dungeon_TorchUnlit)
             {   //light any unlit torch  //git lit *
                 Functions_RoomObject.LightTorch(Obj);
             }
-            else if (Obj.type == ObjType.LeverOff || Obj.type == ObjType.LeverOn)
+            else if (Obj.type == ObjType.Dungeon_LeverOff || Obj.type == ObjType.Dungeon_LeverOn)
             {   //activate all lever objects (including lever), call attention to change
                 Functions_RoomObject.ActivateLeverObjects();
                 Functions_Particle.Spawn(
-                        ObjType.ParticleAttention,
+                        ObjType.Particle_Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
             }
-            else if (Obj.type == ObjType.SwitchBlockBtn)
+            else if (Obj.type == ObjType.Dungeon_SwitchBlockBtn)
             {
                 Functions_RoomObject.FlipSwitchBlocks(Obj);
             }
 
             #endregion
 
-        }
-
-        public static void SetPet()
-        {   //set the hero's pet to be active or inactive
-            Pool.herosPet.active = PlayerData.current.hasPet;
-            Functions_ActorAnimationList.SetPetAnimList();
-
-            //set the pet's dash sound
-            if (PlayerData.current.petType == MenuItemType.PetChicken)
-            { Pool.herosPet.sfxDash = Assets.sfxPetChicken; }
-            else if (PlayerData.current.petType == MenuItemType.PetStinkyDog)
-            { Pool.herosPet.sfxDash = Assets.sfxPetDog; }
         }
 
         public static void HandleDeath()
@@ -327,7 +317,7 @@ namespace DungeonRun
                 Pool.hero.compAnim.index++;
                 //spawn particle to grab the player's attention
                 Functions_Particle.Spawn(
-                        ObjType.ParticleAttention,
+                        ObjType.Particle_Attention,
                         Pool.hero.compSprite.position.X,
                         Pool.hero.compSprite.position.Y);
                 //check to see if hero can save himself from death
@@ -361,22 +351,6 @@ namespace DungeonRun
             Camera2D.currentPosition.X = Camera2D.targetPosition.X;
             Camera2D.currentPosition.Y = Camera2D.targetPosition.Y;
             Functions_Camera2D.Update();
-            TeleportPet(); //teleport pet to hero's position
-        }
-
-        public static void TeleportPet()
-        {
-            if (PlayerData.current.hasPet == false)
-            {   //hide pet off screen
-                Functions_Movement.Teleport(Pool.herosPet.compMove, -100, -100);
-                return;
-            }
-            //else, teleport pet to hero's position
-            Functions_Movement.Teleport(Pool.herosPet.compMove,
-                Pool.hero.compMove.newPosition.X,
-                Pool.hero.compMove.newPosition.Y);
-            Functions_Movement.StopMovement(Pool.herosPet.compMove);
-            Pool.herosPet.compSprite.scale = 1.0f; //rescale hero to 100%
         }
 
         public static void DropCarryingObj()
@@ -403,11 +377,11 @@ namespace DungeonRun
                 (int)carryingObj.compMove.newPosition.Y);
             //simulate an impact with the ground
             Assets.Play(Assets.sfxActorLand); //play land sound fx
-            Functions_Particle.Spawn(ObjType.ParticleAttention,
+            Functions_Particle.Spawn(ObjType.Particle_Attention,
                 carryingObj.compMove.newPosition.X,
                 carryingObj.compMove.newPosition.Y);
             Functions_GameObject.ResetObject(carryingObj); //reset Obj
-            Functions_GameObject.SetType(carryingObj, ObjType.Pot); //refresh Obj
+            Functions_GameObject.SetType(carryingObj, ObjType.Dungeon_Pot); //refresh Obj
             Functions_Component.Align(carryingObj);
 
 
@@ -427,7 +401,7 @@ namespace DungeonRun
                     {   
                         //here we're shortening the pit animation for the dropped pot
                         //otherwise it would hang out for a while, which feels laggy
-                        if (Pool.roomObjPool[i].type == ObjType.PitAnimated)
+                        if (Pool.roomObjPool[i].type == ObjType.Dungeon_Pit)
                         {   //immediately release the pot, play the pit splash fx
                             Functions_Pool.Release(carryingObj);
                             Functions_RoomObject.PlayPitFx(Pool.roomObjPool[i]);
@@ -503,7 +477,7 @@ namespace DungeonRun
                     Pool.hero.lockTotal = 10;
                     Pool.hero.stateLocked = true;
                     Pool.hero.compMove.speed = Pool.hero.dashSpeed;
-                    Functions_Particle.Spawn(ObjType.ParticleDashPuff, Pool.hero);
+                    Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Pool.hero);
                     Assets.Play(Pool.hero.sfxDash);
                 }
                 else if (Pool.hero.state == ActorState.Attack)

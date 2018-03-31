@@ -37,30 +37,30 @@ namespace DungeonRun
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
                 {   //sync all lever objects
-                    if (Pool.roomObjPool[i].type == ObjType.LeverOff)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.LeverOn); }
-                    else if (Pool.roomObjPool[i].type == ObjType.LeverOn)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.LeverOff); }
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_LeverOff)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_LeverOn); }
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_LeverOn)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_LeverOff); }
                     //find any spikeFloor objects in the room, toggle them
-                    else if (Pool.roomObjPool[i].type == ObjType.SpikesFloorOn)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SpikesFloorOff); }
-                    else if (Pool.roomObjPool[i].type == ObjType.SpikesFloorOff)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SpikesFloorOn); }
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_SpikesFloorOn)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_SpikesFloorOff); }
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_SpikesFloorOff)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_SpikesFloorOn); }
                     //locate and toggle conveyor belt objects
-                    else if (Pool.roomObjPool[i].type == ObjType.ConveyorBeltOn)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ConveyorBeltOff); }
-                    else if (Pool.roomObjPool[i].type == ObjType.ConveyorBeltOff)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.ConveyorBeltOn); }
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_ConveyorBeltOff); }
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOff)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_ConveyorBeltOn); }
                 }
             }
         }
 
         public static void ActivateSwitchObject(GameObject Obj)
         {   //convert switch off, play switch soundFx
-            Functions_GameObject.SetType(Obj, ObjType.SwitchOff);
+            Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchOff);
             //grab the player's attention
             Functions_Particle.Spawn(
-                ObjType.ParticleAttention,
+                ObjType.Particle_Attention,
                 Obj.compSprite.position.X,
                 Obj.compSprite.position.Y);
             OpenTrapDoors(); //open all trap doors
@@ -70,23 +70,23 @@ namespace DungeonRun
         {
             Assets.Play(Assets.sfxSwitch);
             Functions_Particle.Spawn(
-                ObjType.ParticleAttention,
+                ObjType.Particle_Attention,
                 SwitchBtn.compSprite.position.X,
                 SwitchBtn.compSprite.position.Y);
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
                 {   //flip blocks up or down
-                    if (Pool.roomObjPool[i].type == ObjType.SwitchBlockDown)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SwitchBlockUp); }
-                    else if (Pool.roomObjPool[i].type == ObjType.SwitchBlockUp)
-                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.SwitchBlockDown); }
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_SwitchBlockDown)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_SwitchBlockUp); }
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_SwitchBlockUp)
+                    { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_SwitchBlockDown); }
                     //display particle fx at block location
-                    if (Pool.roomObjPool[i].type == ObjType.SwitchBlockDown
-                        || Pool.roomObjPool[i].type == ObjType.SwitchBlockUp)
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_SwitchBlockDown
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_SwitchBlockUp)
                     {
                         Functions_Particle.Spawn(
-                            ObjType.ParticleAttention,
+                            ObjType.Particle_Attention,
                             Pool.roomObjPool[i].compSprite.position.X,
                             Pool.roomObjPool[i].compSprite.position.Y);
                     }
@@ -101,7 +101,7 @@ namespace DungeonRun
             {
                 if (Pool.roomObjPool[i].active)
                 {   //if there is an active switch in the room
-                    if (Pool.roomObjPool[i].type == ObjType.TorchLit)
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchLit)
                     { torchCount++; } //count all the lit torches
                 }
             }
@@ -116,11 +116,11 @@ namespace DungeonRun
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
                 {   //convert trap doors to open doors
-                    if (Pool.roomObjPool[i].type == ObjType.DoorTrap)
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorTrap)
                     {   //display an attention particle where the conversion happened
-                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorOpen);
+                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen);
                         Functions_Particle.Spawn(
-                            ObjType.ParticleAttention,
+                            ObjType.Particle_Attention,
                             Pool.roomObjPool[i].compSprite.position.X,
                             Pool.roomObjPool[i].compSprite.position.Y);
                     }
@@ -135,9 +135,9 @@ namespace DungeonRun
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
                 {   //convert trap doors to open doors
-                    if (Pool.roomObjPool[i].type == ObjType.DoorOpen)
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
                     {   //all open doors inside room become trap doors (push hero + close)
-                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.DoorTrap);
+                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
                     }
                 }
             }
@@ -145,9 +145,9 @@ namespace DungeonRun
 
         public static void LightTorch(GameObject UnlitTorch)
         {   //light the unlit torch
-            Functions_GameObject.SetType(UnlitTorch, ObjType.TorchLit);
+            Functions_GameObject.SetType(UnlitTorch, ObjType.Dungeon_TorchLit);
             Functions_Particle.Spawn(
-                ObjType.ParticleFire,
+                ObjType.Particle_FireGround,
                 UnlitTorch.compSprite.position.X + 0,
                 UnlitTorch.compSprite.position.Y - 7);
             Assets.Play(Assets.sfxLightFire);
@@ -166,7 +166,7 @@ namespace DungeonRun
         public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
         {   //blow up door, change to doorOpen
             DestroyObject(Door, false, false);
-            Functions_GameObject.SetType(Door, ObjType.DoorOpen);
+            Functions_GameObject.SetType(Door, ObjType.Dungeon_DoorOpen);
             //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < Level.doors.Count; i++)
             {   //if this explosion collides with any dungeon.door that is of type.bombable
@@ -190,12 +190,12 @@ namespace DungeonRun
         public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
         {   //grab players attention, spawn rock debris, play shatter sound
             Functions_Particle.Spawn(
-                ObjType.ParticleAttention,
+                ObjType.Particle_Attention,
                 RoomObj.compSprite.position.X,
                 RoomObj.compSprite.position.Y);
-            Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
-            Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
-            Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
+            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
+            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
+            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
             Assets.Play(Assets.sfxShatter);
             //handle parameter values
             if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
@@ -205,20 +205,20 @@ namespace DungeonRun
         public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
         {   //this handles the most common room objs
             //hitDirection is used to push some objects in the direction they were hit
-            if (RoomObj.type == ObjType.Pot)
+            if (RoomObj.type == ObjType.Dungeon_Pot)
             {
                 DestroyObject(RoomObj, true, true);
             }
-            else if (RoomObj.type == ObjType.Barrel)
+            else if (RoomObj.type == ObjType.Dungeon_Barrel)
             {
                 RoomObj.compMove.direction = HitDirection; //pass hitDirection
                 DestroyBarrel(RoomObj);
             }
-            else if(RoomObj.type == ObjType.SwitchBlockBtn)
+            else if(RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
             {
                 FlipSwitchBlocks(RoomObj);
             }
-            else if(RoomObj.type == ObjType.LeverOff || RoomObj.type == ObjType.LeverOn)
+            else if(RoomObj.type == ObjType.Dungeon_LeverOff || RoomObj.type == ObjType.Dungeon_LeverOn)
             {
                 ActivateLeverObjects();
             }
@@ -266,7 +266,7 @@ namespace DungeonRun
         {   //play splash particle effect
             Assets.Play(Assets.sfxSplash);
             Functions_Particle.Spawn(
-                ObjType.ParticleSplash,
+                ObjType.Particle_Splash,
                 Pit.compSprite.position.X,
                 Pit.compSprite.position.Y - 4);
         }
@@ -277,7 +277,7 @@ namespace DungeonRun
             Bumper.compSprite.scale = 1.5f;
             Assets.Play(Assets.sfxBounce);
             Functions_Particle.Spawn(
-                ObjType.ParticleAttention,
+                ObjType.Particle_Attention,
                 Bumper.compSprite.position.X,
                 Bumper.compSprite.position.Y);
             //bounce opposite direction
@@ -301,7 +301,7 @@ namespace DungeonRun
         {   //spikeBlock must be moving
             if(Math.Abs(SpikeBlock.compMove.magnitude.X) > 0 || Math.Abs(SpikeBlock.compMove.magnitude.Y) > 0)
             {   //spawn a hit particle along spikeBlock's colliding edge
-                Functions_Particle.Spawn(ObjType.ParticleHitSparkle, SpikeBlock);
+                Functions_Particle.Spawn(ObjType.Particle_Sparkle, SpikeBlock);
                 Assets.Play(Assets.sfxTapMetallic); //play the 'clink' sound effect                                  
                 //flip the block's direction to the opposite direction
                 SpikeBlock.compMove.direction = Functions_Direction.GetOppositeDirection(SpikeBlock.compMove.direction);
@@ -349,62 +349,24 @@ namespace DungeonRun
             //place vendor
             SpawnRoomObj(VendorType, Position.X, Position.Y, Direction.Down);
             //place stone table
-            SpawnRoomObj(ObjType.TableStone, Position.X + 16, Position.Y, Direction.Down);
-            //spawn vendor advertisement
-            objRef = SpawnRoomObj(ObjType.VendorAdvertisement,
-                Position.X + 16, Position.Y - 6, Direction.Down);
-            objRef.compAnim.currentAnimation = new List<Byte4>();
-
-
-            #region Display the vendor's wares for sale
-
-            if (VendorType == ObjType.VendorItems)
-            {   //add all the items from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 5, 0, 0)); //heart
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 6, 0, 0)); //bomb
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 7, 0, 0)); //bombs
-                objRef.compAnim.currentAnimation.Add(new Byte4(5, 8, 0, 0)); //arrows
-            }
-            else if (VendorType == ObjType.VendorPotions)
-            {   //add all the potions from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(6, 6, 0, 0)); //health
-                objRef.compAnim.currentAnimation.Add(new Byte4(6, 7, 0, 0)); //magic
-                objRef.compAnim.currentAnimation.Add(new Byte4(6, 8, 0, 0)); //combo
-            }
-            else if (VendorType == ObjType.VendorMagic)
-            {   //add all the magic medallions from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(7, 5, 0, 0)); //fireball
-            }
-            else if (VendorType == ObjType.VendorWeapons)
-            {   //add all the weapons from the main sheet
-                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 5, 0, 0)); //sword
-                objRef.compAnim.currentAnimation.Add(new Byte4(8, 6, 0, 0)); //bow
-                objRef.compAnim.currentAnimation.Add(new Byte4(8, 7, 0, 0)); //net
-                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 8, 0, 0)); //axe
-                //objRef.compAnim.currentAnimation.Add(new Byte4(8, 9, 0, 0)); //net
-            }
-            else if (VendorType == ObjType.VendorArmor)
-            {   //add all the armor from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(9, 7, 0, 0)); //cape / tattered shawl
-            }
-            else if (VendorType == ObjType.VendorEquipment)
-            {   //add all the equipment from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(10, 5, 0, 0)); //ring
-                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 6, 0, 0)); //pearl
-                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 7, 0, 0)); //necklace
-                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 8, 0, 0)); //glove
-                //objRef.compAnim.currentAnimation.Add(new Byte4(10, 9, 0, 0)); //pin
-            }
-            else if (VendorType == ObjType.VendorPets)
-            {   //add all the pets from the main sheet
-                objRef.compAnim.currentAnimation.Add(new Byte4(11, 5, 0, 0)); //stinky dog
-                objRef.compAnim.currentAnimation.Add(new Byte4(11, 6, 0, 0)); //chicken
-            }
-
-            #endregion
-
+            SpawnRoomObj(ObjType.World_TableStone, Position.X + 16, Position.Y, Direction.Down);
+            //based on the objType (vendor), spawn proper vendor advertisement
+            if (VendorType == ObjType.Vendor_NPC_Armor)
+            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Armor, Position.X + 16, Position.Y - 6, Direction.Down); }
+            else if (VendorType == ObjType.Vendor_NPC_Equipment)
+            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Equipment, Position.X + 16, Position.Y - 6, Direction.Down); }
+            else if (VendorType == ObjType.Vendor_NPC_Items)
+            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Items, Position.X + 16, Position.Y - 6, Direction.Down); }
+            else if (VendorType == ObjType.Vendor_NPC_Magic)
+            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Magics, Position.X + 16, Position.Y - 6, Direction.Down); }
+            else if (VendorType == ObjType.Vendor_NPC_Pets)
+            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Pets, Position.X + 16, Position.Y - 6, Direction.Down); }
+            else if (VendorType == ObjType.Vendor_NPC_Potions)
+            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Potions, Position.X + 16, Position.Y - 6, Direction.Down); }
+            else if (VendorType == ObjType.Vendor_NPC_Story) { } //there isn't a story advertisement
+            else if (VendorType == ObjType.Vendor_NPC_Weapons)
+            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Weapons, Position.X + 16, Position.Y - 6, Direction.Down); }
         }
-
 
 
 

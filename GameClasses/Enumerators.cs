@@ -48,7 +48,7 @@ namespace DungeonRun
 
 
 
-    public enum ActorType { Hero, Blob, Boss, Pet }
+    public enum ActorType { Hero, Blob, Boss }
 
     public enum ActorState
     {
@@ -70,45 +70,129 @@ namespace DungeonRun
 
     public enum ObjType
     {
-        //Non-Editor Room Objects (procedurally added)
-        Exit, ExitPillarLeft, ExitPillarRight, ExitLightFX,
-        DoorOpen, DoorBombable, DoorBoss, DoorTrap, DoorShut, DoorFake,
-        WallStraight, WallStraightCracked, WallInteriorCorner, WallExteriorCorner, WallPillar, WallStatue, WallTorch,
-        BossDecal, FloorDebrisBlood,
-        
-        
-        
-        //Editor Room Objects (hand-placed)
-        PitAnimated, Bridge, PitTop, PitBottom, PitTrap, 
-        BossStatue, Pillar,
-        ChestKey, ChestMap, ChestEmpty,
-        BlockDark, BlockLight,
-        BlockSpike,
+
+        #region Dungeon Objects
+
+        //PROCEDURALLY PLACED
+        Dungeon_ExitPillarLeft, //ExitPillarLeft
+        Dungeon_ExitPillarRight, //ExitPillarRight
+        Dungeon_Exit, //Exit
+        Dungeon_ExitLight, //ExitLightFX
+
+        Dungeon_DoorOpen, //DoorOpen,
+        Dungeon_DoorBombable, //DoorBombable,
+        Dungeon_DoorBoss, //DoorBoss,
+        Dungeon_DoorTrap, //DoorTrap,
+        Dungeon_DoorShut, //DoorShut,
+        Dungeon_DoorFake, //DoorFake,
+
+        Dungeon_WallStraight,
+        Dungeon_WallStraightCracked, 
+        Dungeon_WallInteriorCorner, 
+        Dungeon_WallExteriorCorner,
+        Dungeon_WallPillar,
+        Dungeon_WallStatue,
+        Dungeon_WallTorch,
+
+        Dungeon_FloorDecal, //BossDecal
+        Dungeon_FloorBlood, //FloorDebrisBlood
+
+
+        //HAND PLACED
+        Dungeon_Pit, //PitAnimated,
+        Dungeon_PitBridge, //Bridge,
+        Dungeon_PitTeethTop, //PitTop,
+        Dungeon_PitTeethBottom, //PitBottom,
+        Dungeon_PitTrap, //PitTrap
+
+        Dungeon_Statue, //BossStatue,
+        Dungeon_ChestKey,
+        Dungeon_ChestMap,
+        Dungeon_ChestEmpty,
+        Dungeon_BlockDark,
+        Dungeon_BlockLight,
+        Dungeon_BlockSpike,
+
         //lever + lever activated objects
-        LeverOn, LeverOff,
-        SpikesFloorOn, SpikesFloorOff,
-        ConveyorBeltOn, ConveyorBeltOff,
+        Dungeon_LeverOn,
+        Dungeon_LeverOff,
+        Dungeon_SpikesFloorOn,
+        Dungeon_SpikesFloorOff,
+        Dungeon_ConveyorBeltOn,
+        Dungeon_ConveyorBeltOff,
+
         //Room Objects
-        Pot, Barrel,
-        Bumper, Flamethrower, IceTile,
-        Switch, SwitchOff,
-        SwitchBlockBtn, SwitchBlockDown, SwitchBlockUp,
-        TorchUnlit, TorchLit, 
-        //Unique RoomObjs
-        Fairy,
+        Dungeon_Pot,
+        Dungeon_Barrel,
+        Dungeon_Bumper,
+        Dungeon_Flamethrower,
+        Dungeon_IceTile,
+        Dungeon_Switch,
+        Dungeon_SwitchOff,
+        Dungeon_SwitchBlockBtn,
+        Dungeon_SwitchBlockDown,
+        Dungeon_SwitchBlockUp,
+        Dungeon_TorchUnlit,
+        Dungeon_TorchLit,
+
+        //'Living' RoomObjs
+        Dungeon_Fairy,
+
         //Actor Spawn Objects (hand-placed)
-        SpawnEnemy1, SpawnEnemy2, 
-        //Shop Object
-        Bookcase1, Bookcase2, TableStone,
-        VendorAdvertisement,
-        //Vendors
-        VendorItems, VendorPotions, VendorMagic, VendorWeapons,
-        VendorArmor, VendorEquipment, VendorPets, VendorStory,
+        Dungeon_SpawnMob, //SpawnEnemy1
+        Dungeon_SpawnMiniBoss, //SpawnEnemy2
+
+        #endregion
+
+
+
+
+
+
+
+        #region World Objects
+
+        //World Objects
+        World_Bookcase, //Bookcase1
+        World_Shelf, //Bookcase2
+        World_TableStone,
+
+        #endregion
+
+
+        #region Vendors
+
+        //Vendor Advertisements
+        Vendor_Ad_Items,
+        Vendor_Ad_Potions,
+        Vendor_Ad_Magics,
+        Vendor_Ad_Weapons,
+        Vendor_Ad_Armor,
+        Vendor_Ad_Equipment,
+        Vendor_Ad_Pets,
+        Vendor_Ad_Story,
+
+        //Vendor NPCs
+        Vendor_NPC_Items,
+        Vendor_NPC_Potions,
+        Vendor_NPC_Magic,
+        Vendor_NPC_Weapons,
+        Vendor_NPC_Armor,
+        Vendor_NPC_Equipment,
+        Vendor_NPC_Pets,
+        Vendor_NPC_Story,
+
+        #endregion
+
+
+        #region Pickups, Projectiles, Particles
 
         //Pickups - collide with hero
-        PickupRupee, PickupHeart, PickupMagic, PickupArrow, PickupBomb,
-        
-
+        Pickup_Rupee,
+        Pickup_Heart,
+        Pickup_Magic,
+        Pickup_Arrow,
+        Pickup_Bomb,
 
         //Projectiles - items
         ProjectileBomb,
@@ -124,23 +208,33 @@ namespace DungeonRun
         ProjectileExplosion,
         //ProjectileSpikeBlock, //this should probably be a roomObj
         ProjectileExplodingBarrel, //acceptable
- 
-
 
         //Particles - small
-        ParticleDashPuff, ParticleSmokePuff, ParticleHitSparkle, ParticlePitAnimation, 
+        Particle_RisingSmoke, //ParticleDashPuff,
+        Particle_ImpactDust, //ParticleSmokePuff,
+        Particle_Sparkle, //ParticleHitSparkle,
+        ParticlePitAnimation, 
         //Particles - map
-        ParticleMapFlag, ParticleMapWave, ParticleMapCampfire,
+        Particle_Map_Flag,
+        Particle_Map_Wave,
+        Particle_Map_Campfire,
         //Particles - normal size
-        ParticleExplosion, ParticleAttention, ParticleFire, ParticleSplash, ParticleDebris,
-        ParticleBottleEmpty, ParticleBottleHealth, ParticleBottleMagic, ParticleBottleCombo,
-        ParticleBottleFairy, ParticleBottleBlob,
+        Particle_Explosion,
+        Particle_Attention,
+        Particle_FireGround, //Particle_Fire,
+        Particle_Splash,
+        //Particle_Debris, //doesn't exist right now
+        Particle_BottleEmpty,
+        Particle_BottleHealth,
+        Particle_BottleMagic,
+        Particle_BottleCombo,
+        Particle_BottleFairy,
+        Particle_BottleBlob,
         //Particles - rewards
-        ParticleRewardKey, ParticleRewardMap,
+        Particle_RewardKey,
+        Particle_RewardMap,
 
-
-
-
+        #endregion
 
     }
 
@@ -153,9 +247,16 @@ namespace DungeonRun
         InventoryMap,
         InventoryKey,
 
-        OptionsContinue, OptionsNewGame, OptionsLoadGame, OptionsQuitGame,
-        OptionsVideoCtrls, OptionsInputCtrls, OptionsAudioCtrls, OptionsGameCtrls,
-        OptionsSaveGame, OptionsHelpInfo,
+        OptionsContinue,
+        OptionsNewGame,
+        OptionsLoadGame,
+        OptionsQuitGame,
+        OptionsVideoCtrls,
+        OptionsInputCtrls,
+        OptionsAudioCtrls,
+        OptionsGameCtrls,
+        OptionsSaveGame,
+        OptionsHelpInfo,
 
         //vendor only menuItems
         ItemHeart,

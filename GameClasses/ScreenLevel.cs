@@ -32,7 +32,6 @@ namespace DungeonRun
             //load hero's actorType from SaveData
             Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
             Functions_Hero.SetLoadout();
-            Functions_Hero.SetPet();
 
             //open the screen
             displayState = DisplayState.Opening;

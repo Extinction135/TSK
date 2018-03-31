@@ -20,12 +20,12 @@ namespace DungeonRun
 
         public static void CreateColumn(Boolean Bkg, Boolean Flip, int Height, Vector2 Pos, List<ComponentSprite> List)
         {   //can create a scroll or background column
-            byte xFrame = 6;
-            if (Bkg) { xFrame = 14; }
+            byte xFrame = 0;
+            if (Bkg) { xFrame = 3; }
             for (int i = 0; i < Height; i++)
             {   //create a blank sprite
                 ComponentSprite sprite = new ComponentSprite(
-                    Assets.mainSheet, new Vector2(0, 0),
+                    Assets.uiItemsSheet, new Vector2(0, 0),
                     new Byte4(0, 0, 0, 0), new Point(32, 16));
                 if (Bkg) { sprite.cellSize.X = 16; }
                 Functions_Component.UpdateCellSize(sprite);

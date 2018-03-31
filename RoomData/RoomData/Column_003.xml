@@ -3,271 +3,271 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchUnlit</type>
+      <type>Dungeon_TorchUnlit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchUnlit</type>
+      <type>Dungeon_TorchUnlit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchUnlit</type>
+      <type>Dungeon_TorchUnlit</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>TorchUnlit</type>
+      <type>Dungeon_TorchUnlit</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>24</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockDown</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockDark</type>
+      <type>Dungeon_BlockDark</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>SwitchBlockBtn</type>
+      <type>Dungeon_SwitchBlockBtn</type>
       <direction>Down</direction>
       <posX>88</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpike</type>
+      <type>Dungeon_BlockSpike</type>
       <direction>Right</direction>
       <posX>88</posX>
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpike</type>
+      <type>Dungeon_BlockSpike</type>
       <direction>Left</direction>
       <posX>87</posX>
       <posY>264</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpike</type>
+      <type>Dungeon_BlockSpike</type>
       <direction>Down</direction>
       <posX>136</posX>
       <posY>168</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpike</type>
+      <type>Dungeon_BlockSpike</type>
       <direction>Up</direction>
       <posX>40</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpike</type>
+      <type>Dungeon_BlockSpike</type>
       <direction>Up</direction>
       <posX>136</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>BlockSpike</type>
+      <type>Dungeon_BlockSpike</type>
       <direction>Down</direction>
       <posX>40</posX>
       <posY>168</posY>

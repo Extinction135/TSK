@@ -25,7 +25,7 @@ namespace DungeonRun
         {
             window = new MenuWindow(new Point(-100, -100), new Point(100, 100), "");
             speaker = new GameObject();
-            Functions_GameObject.SetType(speaker, ObjType.VendorStory);
+            Functions_GameObject.SetType(speaker, ObjType.Vendor_NPC_Story);
             dialog = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
         }
 
@@ -77,7 +77,7 @@ namespace DungeonRun
 
             if (SpeakerType == SpeakerType.Guide)
             {
-                speaker.compSprite.texture = Assets.shopSheet;
+                speaker.compSprite.texture = Assets.forestLevelSheet;
                 speaker.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 7, 0, 0) };
             }
             else if (SpeakerType == SpeakerType.Hero)
@@ -92,7 +92,7 @@ namespace DungeonRun
             }
             else
             {   //they are a vendor
-                speaker.compSprite.texture = Assets.shopSheet;
+                speaker.compSprite.texture = Assets.forestLevelSheet;
                 speaker.compAnim.currentAnimation = new List<Byte4> { new Byte4(0, 7, 0, 0) };
                 //set the X frame based on the speaker type
                 if (SpeakerType == SpeakerType.VendorItems) { speaker.compAnim.currentAnimation[0].X = 0;  }

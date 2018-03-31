@@ -69,7 +69,7 @@ namespace DungeonRun
                 {
                     if (PlayerData.current.gold > 0) //if hero has any gold
                     {   //drop a gold piece upon getting hit
-                        Functions_Pickup.Spawn(ObjType.PickupRupee, Actor);
+                        Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Actor);
                         PlayerData.current.gold--;
                     }
                 }
@@ -98,7 +98,7 @@ namespace DungeonRun
             if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
-                Functions_Particle.Spawn(ObjType.ParticleExplosion, Actor);
+                Functions_Particle.Spawn(ObjType.Particle_Explosion, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Functions_Loot.SpawnLoot(Actor.compSprite.position);
             }
@@ -228,21 +228,6 @@ namespace DungeonRun
                 Actor.sfxHit = Assets.sfxBossHit;
                 Actor.sfxDeath = Assets.sfxBossHitDeath;
             }
-            else if (Type == ActorType.Pet)
-            {   //non-combatant actor
-                Actor.aiType = ActorAI.Basic;
-                Actor.enemy = false;
-                Actor.compSprite.texture = Assets.mainSheet;
-                Actor.health = 200;
-                ResetActorLoadout(Actor);
-                Actor.walkSpeed = 0.25f;
-                Actor.dashSpeed = 0.5f;
-                //clear actor sound effects
-                Actor.sfxDash = null;
-                Actor.sfxHit = null;
-                Actor.sfxDeath = null;
-                Actor.chaseRadius = 16 * 10; //large chase radius
-            }
 
             #endregion
 
@@ -284,7 +269,7 @@ namespace DungeonRun
                         Actor.lockTotal = 10;
                         Actor.stateLocked = true;
                         Actor.compMove.speed = Actor.dashSpeed;
-                        Functions_Particle.Spawn(ObjType.ParticleDashPuff, Actor);
+                        Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Actor);
                         Assets.Play(Actor.sfxDash);
                     }
                     else if (Actor.state == ActorState.Attack)
@@ -329,7 +314,7 @@ namespace DungeonRun
                         if (Functions_Random.Int(0, 100) > 75) //randomly create explosions
                         {   //randomly place explosions around boss
                             Functions_Particle.Spawn(
-                                ObjType.ParticleExplosion,
+                                ObjType.Particle_Explosion,
                                 Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
                                 Actor.compSprite.position.Y + Functions_Random.Int(-16, 16));
                         }

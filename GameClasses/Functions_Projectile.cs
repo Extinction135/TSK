@@ -62,7 +62,7 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxFireballCast);
                 //place smoke puff centered to fireball
                 Functions_Particle.Spawn(
-                    ObjType.ParticleSmokePuff,
+                    ObjType.Particle_ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y + 4);
             }
@@ -76,7 +76,7 @@ namespace DungeonRun
                 Functions_Movement.Push(pro.compMove, Dir, 5.0f);
                 Assets.Play(Assets.sfxBombDrop);
                 Functions_Particle.Spawn(
-                    ObjType.ParticleDashPuff,
+                    ObjType.Particle_RisingSmoke,
                     pro.compSprite.position.X + 0,
                     pro.compSprite.position.Y + 0);
             }
@@ -90,7 +90,7 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxExplosion);
                 //place smoke puff above explosion
                 Functions_Particle.Spawn(
-                    ObjType.ParticleSmokePuff,
+                    ObjType.Particle_ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y - 8);
             }
@@ -133,7 +133,7 @@ namespace DungeonRun
             if (Obj.type == ObjType.ProjectileArrow)
             {
                 Functions_Particle.Spawn(
-                    ObjType.ParticleAttention,
+                    ObjType.Particle_Attention,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0);
                 Assets.Play(Assets.sfxArrowHit);
@@ -146,11 +146,11 @@ namespace DungeonRun
             else if (Obj.type == ObjType.ProjectileFireball)
             {   //explosion & ground fire
                 Functions_Particle.Spawn(
-                    ObjType.ParticleExplosion,
+                    ObjType.Particle_Explosion,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0);
                 Functions_Particle.Spawn(
-                    ObjType.ParticleFire,
+                    ObjType.Particle_FireGround,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0);
                 Assets.Play(Assets.sfxFireballDeath);
@@ -166,7 +166,7 @@ namespace DungeonRun
                 Functions_Loot.SpawnLoot(Obj.compSprite.position);
                 //leave some fire behind
                 Functions_Particle.Spawn(
-                    ObjType.ParticleFire,
+                    ObjType.Particle_FireGround,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y);
                 //throw some rocks around as decoration

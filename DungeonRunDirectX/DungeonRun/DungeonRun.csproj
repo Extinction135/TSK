@@ -41,6 +41,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\GameClasses\AnimationFrames.cs">
+      <Link>Classes\AnimationFrames.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Assets.cs">
       <Link>Classes\Assets.cs</Link>
     </Compile>
@@ -94,9 +97,6 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_GameObject.cs">
       <Link>Classes\Functions_GameObject.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\Functions_GameObjectAnimList.cs">
-      <Link>Classes\Functions_GameObjectAnimList.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Hero.cs">
       <Link>Classes\Functions_Hero.cs</Link>

@@ -58,10 +58,14 @@ namespace DungeonRun
 
 
             //create cursor sprites
-            cursorSprite = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(14, 13, 0, 0), new Point(16, 16));
-            toolTipSprite = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(15, 15, 0, 0), new Point(16, 16));
+            cursorSprite = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0), 
+                new Byte4(10, 2, 0, 0), 
+                new Point(16, 16));
+            toolTipSprite = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0), 
+                new Byte4(10, 4, 0, 0), 
+                new Point(16, 16));
 
             //create current obj components
             currentObjRef = new GameObject();
@@ -72,11 +76,11 @@ namespace DungeonRun
             #region Create the SelectionBoxes
 
             selectionBoxObj = new ComponentSprite(
-                Assets.mainSheet, new Vector2(-100, 5000),
-                new Byte4(15, 7, 0, 0), new Point(16, 16));
+                Assets.uiItemsSheet, new Vector2(-100, 5000),
+                new Byte4(10, 1, 0, 0), new Point(16, 16));
             selectionBoxTool = new ComponentSprite(
-                Assets.mainSheet, new Vector2(-100, 5000),
-                new Byte4(15, 7, 0, 0), new Point(16, 16));
+                Assets.uiItemsSheet, new Vector2(-100, 5000),
+                new Byte4(10, 1, 0, 0), new Point(16, 16));
 
             #endregion
 
@@ -100,58 +104,58 @@ namespace DungeonRun
 
                     if (i == 0) //first row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BlockLight); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_BlockDark); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_BlockLight); }
                         //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.IceTile); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.BlockSpike); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_IceTile); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_BlockSpike); }
                     }
                     else if (i == 1) //second row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Pot); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.BossStatue); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Barrel); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Pot); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Statue); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Barrel); }
                         //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.TorchLit); }
                     }
                     else if (i == 2) //third row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.LeverOff); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ConveyorBeltOn); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ConveyorBeltOff); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.SpikesFloorOn); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.SpikesFloorOff); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_LeverOff); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_ConveyorBeltOn); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_ConveyorBeltOff); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SpikesFloorOn); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SpikesFloorOff); }
                     }
                     else if (i == 3) //fourth row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockBtn); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockDown); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.SwitchBlockUp); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Switch); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Flamethrower); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SwitchBlockBtn); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SwitchBlockDown); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SwitchBlockUp); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Switch); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Flamethrower); }
                     }
                     else if (i == 4) //fifth row
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Bumper); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.ChestKey); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.ChestMap); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.TorchLit); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Bumper); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_ChestKey); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_ChestMap); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_TorchUnlit); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_TorchLit); }
                     }
                     else if (i == 5) //sixth row - Pits and Pit Accessories
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PitTrap); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.PitAnimated); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Bridge); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PitTop); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.PitBottom); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_PitTrap); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Pit); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_PitBridge); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_PitTeethTop); }
+                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_PitTeethBottom); }
                     }
                     else if (i == 6) //seventh row - Pickups
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PickupBomb); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.PickupMagic); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.PickupArrow); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PickupRupee); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Pickup_Bomb); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Pickup_Magic); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Pickup_Arrow); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Pickup_Rupee); }
                         //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.PickupRupee); }
                     }
 
@@ -181,9 +185,9 @@ namespace DungeonRun
                 enemySpawn.compMove.newPosition.X = 16 * i + 8;
                 enemySpawn.compMove.newPosition.Y = 16 * 12;
 
-                if (i == 1) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy1); }
-                else if (i == 2) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
-                else if (i == 3) { Functions_GameObject.SetType(enemySpawn, ObjType.Fairy); }
+                if (i == 1) { Functions_GameObject.SetType(enemySpawn, ObjType.Dungeon_SpawnMob); }
+                else if (i == 2) { Functions_GameObject.SetType(enemySpawn, ObjType.Dungeon_SpawnMiniBoss); }
+                //else if (i == 3) { Functions_GameObject.SetType(enemySpawn, ObjType.Dungeon_Fairy); }
                 //else if (i == 4) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
                 //else if (i == 5) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
 
@@ -196,59 +200,59 @@ namespace DungeonRun
 
             #region Add Toolbar objs to ObjList
 
-            //move icon - index 40
+            //hand (move) icon - index 40
             moveObj = new GameObject();
             Functions_GameObject.ResetObject(moveObj);
-            moveObj.compSprite.texture = Assets.mainSheet;
+            moveObj.compSprite.texture = Assets.uiItemsSheet;
             //set sprite position, frame, collision rec
             moveObj.compSprite.position.X = 16 * 1 + 8;
             moveObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(moveObj.compSprite);
             moveObj.compCollision.rec.X = 16 * 1 + 8 - 8;
             moveObj.compCollision.rec.Y = 16 * 14 - 8;
-            moveObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 13, 0, 0) };
+            moveObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 2, 0, 0) };
             Functions_Animation.Animate(moveObj.compAnim, moveObj.compSprite);
             objList.Add(moveObj); //add object to list
 
             //rotateObj
             rotateObj = new GameObject();
             Functions_GameObject.ResetObject(rotateObj);
-            rotateObj.compSprite.texture = Assets.mainSheet;
+            rotateObj.compSprite.texture = Assets.uiItemsSheet;
             //set sprite position, frame, collision rec
             rotateObj.compSprite.position.X = 16 * 3 + 8;
             rotateObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(rotateObj.compSprite);
             rotateObj.compCollision.rec.X = 16 * 3 + 8 - 8;
             rotateObj.compCollision.rec.Y = 16 * 14 - 8;
-            rotateObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(13, 15, 0, 0) };
+            rotateObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(12, 4, 0, 0) };
             Functions_Animation.Animate(rotateObj.compAnim, rotateObj.compSprite);
             objList.Add(rotateObj); //add object to list
 
             //add icon
             addObj = new GameObject();
             Functions_GameObject.ResetObject(addObj);
-            addObj.compSprite.texture = Assets.mainSheet;
+            addObj.compSprite.texture = Assets.uiItemsSheet;
             //set sprite position, frame, collision rec
             addObj.compSprite.position.X = 16 * 4 + 8;
             addObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(addObj.compSprite);
             addObj.compCollision.rec.X = 16 * 4 + 8 - 8;
             addObj.compCollision.rec.Y = 16 * 14 - 8;
-            addObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(14, 15, 0, 0) };
+            addObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 4, 0, 0) };
             Functions_Animation.Animate(addObj.compAnim, addObj.compSprite);
             objList.Add(addObj); //add object to list
 
             //minus icon
             deleteObj = new GameObject();
             Functions_GameObject.ResetObject(deleteObj);
-            deleteObj.compSprite.texture = Assets.mainSheet;
+            deleteObj.compSprite.texture = Assets.uiItemsSheet;
             //set sprite position, frame, collision rec
             deleteObj.compSprite.position.X = 16 * 5 + 8;
             deleteObj.compSprite.position.Y = 16 * 14;
             Functions_Component.SetZdepth(deleteObj.compSprite);
             deleteObj.compCollision.rec.X = 16 * 5 + 8 - 8;
             deleteObj.compCollision.rec.Y = 16 * 14 - 8;
-            deleteObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(15, 15, 0, 0) };
+            deleteObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 4, 0, 0) };
             Functions_Animation.Animate(deleteObj.compAnim, deleteObj.compSprite);
             objList.Add(deleteObj); //add object to list
 
@@ -460,7 +464,7 @@ namespace DungeonRun
 
                         #region Check to see if we can add this type of Obj to this type of Room
 
-                        if (currentObjRef.type == ObjType.ChestKey)
+                        if (currentObjRef.type == ObjType.Dungeon_ChestKey)
                         {   //we can only add key chests to key rooms
                             if (Functions_Level.currentRoom.type != RoomType.Key)
                             {
@@ -468,7 +472,7 @@ namespace DungeonRun
                                 return; //dont add chest
                             }
                         }
-                        else if (currentObjRef.type == ObjType.ChestMap)
+                        else if (currentObjRef.type == ObjType.Dungeon_ChestMap)
                         {   //we can only add map chests to hub rooms
                             if (Functions_Level.currentRoom.type != RoomType.Hub)
                             {
@@ -489,11 +493,11 @@ namespace DungeonRun
                             }
                         }
 
-                        if(currentObjRef.type == ObjType.Switch)
+                        if(currentObjRef.type == ObjType.Dungeon_Switch)
                         {   //we cannot have more than one switch in a room
                             for (j = 0; j < Pool.roomObjCount; j++)
                             {   //check all roomObjs for an active chest
-                                if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].type == ObjType.Switch)
+                                if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].type == ObjType.Dungeon_Switch)
                                 {
                                     ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddMoreSwitches));
                                     return; //dont add switch
@@ -719,15 +723,15 @@ namespace DungeonRun
 
         public void RotateActiveObj()
         {   //set activeObj's obj.direction based on type
-            if (activeObj.type == ObjType.Bridge)
+            if (activeObj.type == ObjType.Dungeon_PitBridge)
             {   //flip between horizontal and vertical directions
                 if (activeObj.direction == Direction.Up || activeObj.direction == Direction.Down)
                 { activeObj.direction = Direction.Left; }
                 else { activeObj.direction = Direction.Down; }
             }
-            else if (activeObj.type == ObjType.ConveyorBeltOn
-                || activeObj.type == ObjType.ConveyorBeltOff
-                || activeObj.type == ObjType.BlockSpike)
+            else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
+                || activeObj.type == ObjType.Dungeon_ConveyorBeltOff
+                || activeObj.type == ObjType.Dungeon_BlockSpike)
             {   //flip thru cardinal directions
                 activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
                 if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
@@ -737,7 +741,7 @@ namespace DungeonRun
             }
 
             //set object's move component direction based on type
-            if (activeObj.type == ObjType.BlockSpike)
+            if (activeObj.type == ObjType.Dungeon_BlockSpike)
             { activeObj.compMove.direction = activeObj.direction; }
 
             //set the rotation of the sprite based on obj.direction                                             

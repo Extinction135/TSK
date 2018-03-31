@@ -167,7 +167,6 @@ namespace DungeonRun
 
         public static int activeActor = 1; //tracks the current actor being handled by AI
         public static Actor hero; //points to actorPool[0]
-        public static Actor herosPet; //points to actorPool[1]
 
         public static int collisionsCount = 0; //tracks collisions per frame
         public static int interactionsCount = 0; //tracks interactions per frame
@@ -222,19 +221,16 @@ namespace DungeonRun
             floorPool = new List<ComponentSprite>();
             for (floorCounter = 0; floorCounter < floorCount; floorCounter++)
             {
-                floorPool.Add(new ComponentSprite(Assets.shopSheet,
+                floorPool.Add(new ComponentSprite(Assets.forestLevelSheet,
                     new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Point(16, 16)));
             }
             floorIndex = 0;
 
-            //reset all the pools
+            //reset all pools
             Functions_Pool.Reset();
-            //create an easy to remember reference for hero & doggo actors
+            //create easy to remember reference for hero actor
             hero = actorPool[0];
             Functions_Actor.SetType(hero, ActorType.Hero);
-            herosPet = actorPool[1];
-            Functions_Actor.SetType(herosPet, ActorType.Pet);
-            herosPet.compCollision.blocking = false;
         }
 
     }
@@ -308,8 +304,8 @@ namespace DungeonRun
             hearts = new List<ComponentSprite>();
             for (i = 0; i < 9; i++)
             {
-                hearts.Add(new ComponentSprite(Assets.mainSheet,
-                    new Vector2(0, 0), new Byte4(15, 2, 0, 0),
+                hearts.Add(new ComponentSprite(Assets.uiItemsSheet,
+                    new Vector2(0, 0), new Byte4(3, 1, 0, 0),
                     new Point(16, 16)));
             }
 
@@ -317,8 +313,8 @@ namespace DungeonRun
             meterPieces = new List<ComponentSprite>();
             for (i = 0; i < 11; i++)
             {
-                meterPieces.Add(new ComponentSprite(Assets.mainSheet,
-                    new Vector2(0, 0), new Byte4(31, 3, 0, 0),
+                meterPieces.Add(new ComponentSprite(Assets.uiItemsSheet,
+                    new Vector2(0, 0), new Byte4(5*2+1, 0, 0, 0),
                     new Point(8, 16)));
             }
 
@@ -332,11 +328,11 @@ namespace DungeonRun
             itemBkg = new List<ComponentSprite>();
             for (i = 0; i < 4; i++)
             {
-                weaponBkg.Add(new ComponentSprite(Assets.mainSheet,
-                    new Vector2(0, 0), new Byte4(15, 4, 0, 0),
+                weaponBkg.Add(new ComponentSprite(Assets.uiItemsSheet,
+                    new Vector2(0, 0), new Byte4(11, 1, 0, 0),
                     new Point(16, 16)));
-                itemBkg.Add(new ComponentSprite(Assets.mainSheet,
-                    new Vector2(0, 0), new Byte4(15, 4, 0, 0),
+                itemBkg.Add(new ComponentSprite(Assets.uiItemsSheet,
+                    new Vector2(0, 0), new Byte4(11, 1, 0, 0),
                     new Point(16, 16)));
             }
 
@@ -701,7 +697,7 @@ namespace DungeonRun
     public class GameObject
     {
         public ObjGroup group = ObjGroup.Object;
-        public ObjType type = ObjType.WallStraight;
+        public ObjType type = ObjType.Dungeon_WallStraight;
 
         public ComponentSprite compSprite;
         public ComponentAnimation compAnim = new ComponentAnimation();
@@ -719,7 +715,7 @@ namespace DungeonRun
 
         public GameObject()
         {   //initialize to default value - data is changed later
-            compSprite = new ComponentSprite(Assets.cursedCastleSheet, 
+            compSprite = new ComponentSprite(Assets.forestLevelSheet, 
                 new Vector2(50, 50), new Byte4(0, 0, 0, 0), new Point(16, 16));
             Functions_GameObject.SetType(this, type);
         }
@@ -839,7 +835,7 @@ namespace DungeonRun
 
     public class ObjXmlData
     {   //placed relative to room's XY pos
-        public ObjType type = ObjType.WallStraight;
+        public ObjType type = ObjType.Dungeon_WallStraight;
         public Direction direction = Direction.Down;
         public float posX = 0; 
         public float posY = 0;
@@ -862,10 +858,10 @@ namespace DungeonRun
         public MapLocation(Boolean IsLevel, Vector2 Position)
         {
             isLevel = IsLevel;
-            compSprite = new ComponentSprite(Assets.mainSheet,
-                Position, new Byte4(15, 10, 0, 0), new Point(16, 8));
+            compSprite = new ComponentSprite(Assets.entitiesSheet,
+                Position, new Byte4(11, 0, 0, 0), new Point(16, 8));
             //determine if location should use small or large sprite
-            if (IsLevel) { compSprite.currentFrame.Y = 11; }
+            if (IsLevel) { compSprite.currentFrame.Y = 1; }
             neighborUp = this; neighborDown = this;
             neighborLeft = this; neighborRight = this;
         }
@@ -892,9 +888,9 @@ namespace DungeonRun
 
         public MenuItem()
         {   //default to ? sprite, hidden offscreen
-            compSprite = new ComponentSprite(Assets.mainSheet,
+            compSprite = new ComponentSprite(Assets.uiItemsSheet,
                 new Vector2(-100, 1000),
-                new Byte4(15, 5, 0, 0),
+                new Byte4(11, 1, 0, 0),
                 new Point(16, 16));
             Functions_MenuItem.SetType(MenuItemType.Unknown, this);
             neighborUp = this; neighborDown = this;
@@ -973,6 +969,7 @@ namespace DungeonRun
     public class ComponentInteraction
     {
         //these flags aren't being used currently
+
         //because we're not exactly sure how to fix the interaction systems problem
         public Boolean active = true; //included in interaction system
     }

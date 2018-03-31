@@ -77,7 +77,7 @@ namespace DungeonRun
 
                 else if (Obj.group == ObjGroup.Door)
                 {   //handle hero interaction with exit door
-                    if (Obj.type == ObjType.Exit)
+                    if (Obj.type == ObjType.Dungeon_Exit)
                     {
                         if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
                         {   //if dungeon screen is open, close it, perform interaction ONCE
@@ -116,7 +116,7 @@ namespace DungeonRun
 
                 #region Fairy
 
-                if (Obj.type == ObjType.Fairy)
+                if (Obj.type == ObjType.Dungeon_Fairy)
                 { Functions_RoomObject.UseFairy(Obj); }
 
                 #endregion
@@ -124,24 +124,24 @@ namespace DungeonRun
 
                 #region PitTrap
 
-                else if (Obj.type == ObjType.PitTrap)
+                else if (Obj.type == ObjType.Dungeon_PitTrap)
                 {   //if hero collides with a PitTrapReady, it starts to open
-                    Functions_GameObject.SetType(Obj, ObjType.PitAnimated);
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_Pit);
                     Obj.lifetime = 100; //signals that this is a new Trap
                     Assets.Play(Assets.sfxShatter); //play collapse sound
-                    Functions_Particle.Spawn(ObjType.ParticleAttention,
+                    Functions_Particle.Spawn(ObjType.Particle_Attention,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y);
-                    Functions_Particle.Spawn(ObjType.ParticleSmokePuff,
+                    Functions_Particle.Spawn(ObjType.Particle_ImpactDust,
                         Obj.compSprite.position.X + 4,
                         Obj.compSprite.position.Y - 8);
-                    Functions_Particle.ScatterDebris(Obj.compSprite.position);
+                    //Functions_Particle.ScatterDebris(Obj.compSprite.position);
                     //create pit teeth over new pit obj
-                    Functions_RoomObject.SpawnRoomObj(ObjType.PitTop,
+                    Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_PitTeethTop,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.Down);
-                    Functions_RoomObject.SpawnRoomObj(ObjType.PitBottom,
+                    Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_PitTeethBottom,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.Down);
@@ -152,9 +152,9 @@ namespace DungeonRun
 
                 #region SwitchBlock UP
 
-                else if (Obj.type == ObjType.SwitchBlockUp)
+                else if (Obj.type == ObjType.Dungeon_SwitchBlockUp)
                 {   //if hero isnt moving and is colliding with up block, convert up to down
-                    Functions_GameObject.SetType(Obj, ObjType.SwitchBlockDown);
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchBlockDown);
                 }
 
                 #endregion
@@ -162,7 +162,7 @@ namespace DungeonRun
 
                 #region FloorSwitch
 
-                else if (Obj.type == ObjType.Switch)
+                else if (Obj.type == ObjType.Dungeon_Switch)
                 { Functions_RoomObject.ActivateSwitchObject(Obj); }
 
                 #endregion
@@ -204,7 +204,7 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.ProjectileSword)
                 {
                     if (Obj.lifeCounter == 1)
-                    { Functions_Particle.Spawn(ObjType.ParticleHitSparkle, Obj); }
+                    { Functions_Particle.Spawn(ObjType.Particle_Sparkle, Obj); }
                 }
 
                 //all actors take damage from these projectiles
@@ -218,7 +218,7 @@ namespace DungeonRun
 
             else if (Obj.group == ObjGroup.Door)
             {
-                if (Obj.type == ObjType.DoorTrap)
+                if (Obj.type == ObjType.Dungeon_DoorTrap)
                 {   //trap doors push ALL actors
                     Functions_Movement.Push(Actor.compMove, Obj.direction, 1.0f);
                 }
@@ -233,7 +233,7 @@ namespace DungeonRun
 
                 #region FloorSpikes
 
-                if (Obj.type == ObjType.SpikesFloorOn)
+                if (Obj.type == ObjType.Dungeon_SpikesFloorOn)
                 {   //damage push actors (on ground) away from spikes
                     if (Actor.compMove.grounded) { Functions_Battle.Damage(Actor, Obj); }
                 }
@@ -243,7 +243,7 @@ namespace DungeonRun
 
                 #region SpikeBlocks
 
-                else if (Obj.type == ObjType.BlockSpike)
+                else if (Obj.type == ObjType.Dungeon_BlockSpike)
                 {   //damage push actors (on ground or in air) away from spikes
                     Functions_Battle.Damage(Actor, Obj);
                 }
@@ -253,7 +253,7 @@ namespace DungeonRun
 
                 #region ConveyorBelts
 
-                else if (Obj.type == ObjType.ConveyorBeltOn)
+                else if (Obj.type == ObjType.Dungeon_ConveyorBeltOn)
                 {   //belt move actors (on ground)
                     if (Actor.compMove.grounded)
                     {   //halt actor movement based on certain states
@@ -268,7 +268,7 @@ namespace DungeonRun
 
                 #region Bumpers
 
-                else if (Obj.type == ObjType.Bumper)
+                else if (Obj.type == ObjType.Dungeon_Bumper)
                 {   //limit bumper to bouncing only if it's returned to 100% scale
                     if (Obj.compSprite.scale == 1.0f)
                     { Functions_RoomObject.BounceOffBumper(Actor.compMove, Obj); }
@@ -279,7 +279,7 @@ namespace DungeonRun
 
                 #region Pits
 
-                else if (Obj.type == ObjType.PitAnimated)
+                else if (Obj.type == ObjType.Dungeon_Pit)
                 {   //actors (on ground) fall into pits
                     if (Actor.compMove.grounded)
                     {
@@ -289,19 +289,6 @@ namespace DungeonRun
                             Obj.lifetime = 0;
                             return;
                         }
-
-                        #region Prevent Hero's Pet from falling into pit
-
-                        if (Actor == Pool.herosPet)
-                        {   //get the opposite direction between pet's center and pit's center
-                            Actor.compMove.direction = Functions_Direction.GetOppositeDiagonal(
-                                Actor.compSprite.position, Obj.compSprite.position);
-                            //push pet in direction
-                            Functions_Movement.Push(Actor.compMove, Actor.compMove.direction, 1.0f);
-                            return;
-                        }
-
-                        #endregion
 
 
                         #region Drop any Obj Hero is carrying, hide Hero's shadow
@@ -358,7 +345,7 @@ namespace DungeonRun
                                 Functions_Hero.heroShadow.visible = true;
                                 //direct player's attention to hero's respawn pos
                                 Functions_Particle.Spawn(
-                                    ObjType.ParticleAttention,
+                                    ObjType.Particle_Attention,
                                     Functions_Level.currentRoom.spawnPos.X,
                                     Functions_Level.currentRoom.spawnPos.Y);
                             }
@@ -379,7 +366,7 @@ namespace DungeonRun
 
                 #region Ice
 
-                else if (Obj.type == ObjType.IceTile)
+                else if (Obj.type == ObjType.Dungeon_IceTile)
                 { Functions_RoomObject.SlideOnIce(Actor.compMove); }
 
                 #endregion
@@ -431,9 +418,9 @@ namespace DungeonRun
                     {   //explosions alter certain roomObjects
                         if (Object.lifeCounter == 1)
                         {   //perform these interactions only once
-                            if (RoomObj.type == ObjType.DoorBombable)
+                            if (RoomObj.type == ObjType.Dungeon_DoorBombable)
                             { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Object); }
-                            else if (RoomObj.type == ObjType.BossStatue)
+                            else if (RoomObj.type == ObjType.Dungeon_Statue)
                             { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
                             //explosions also trigger common obj interactions
                             Functions_RoomObject.HandleCommon(RoomObj,
@@ -452,11 +439,11 @@ namespace DungeonRun
 
                     else if (Object.type == ObjType.ProjectileFireball)
                     {   //fireballs alter certain roomObjects
-                        if (RoomObj.type == ObjType.DoorBombable)
+                        if (RoomObj.type == ObjType.Dungeon_DoorBombable)
                         { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Object); }
-                        else if (RoomObj.type == ObjType.BossStatue)
+                        else if (RoomObj.type == ObjType.Dungeon_Statue)
                         { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                        else if (RoomObj.type == ObjType.TorchUnlit)
+                        else if (RoomObj.type == ObjType.Dungeon_TorchUnlit)
                         { Functions_RoomObject.LightTorch(RoomObj); }
                         //fireballs trigger common obj interactions
                         Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
@@ -473,11 +460,11 @@ namespace DungeonRun
                     {   //sword swipe causes soundfx to blocking objects
                         if (Object.lifeCounter == 1) //these events happen at start of sword swing
                         {   //if sword projectile is brand new, play collision sfx
-                            if (RoomObj.type == ObjType.DoorBombable)
+                            if (RoomObj.type == ObjType.Dungeon_DoorBombable)
                             { Assets.Play(Assets.sfxTapHollow); } //play hollow
                             else { Assets.Play(Assets.sfxTapMetallic); }
                             //spawn a hit sparkle particle on sword
-                            Functions_Particle.Spawn(ObjType.ParticleHitSparkle, Object);
+                            Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
                         }
                         else if (Object.lifeCounter == 4)
                         {   //these interactions happen 'mid swing'
@@ -491,7 +478,7 @@ namespace DungeonRun
 
                     #region Dropped Pot
 
-                    else if (Object.type == ObjType.Pot)
+                    else if (Object.type == ObjType.Dungeon_Pot)
                     {   //destroy the Pot object
                         Functions_RoomObject.DestroyObject(Object, true, true);
                         //thrown / dropped pots trigger common obj interactions
@@ -526,7 +513,7 @@ namespace DungeonRun
                                 Object.compSprite.position, 
                                 RoomObj.compSprite.position), 3.0f);
                         //pop a sparkle particle
-                        Functions_Particle.Spawn(ObjType.ParticleHitSparkle,
+                        Functions_Particle.Spawn(ObjType.Particle_Sparkle,
                             Object.compSprite.position.X + 4,
                             Object.compSprite.position.Y + 4);
                         Assets.Play(Assets.sfxTapMetallic);
@@ -554,7 +541,7 @@ namespace DungeonRun
 
             #region ConveyorBelts
 
-            if (Object.type == ObjType.ConveyorBeltOn)
+            if (Object.type == ObjType.Dungeon_ConveyorBeltOn)
             {   //if obj is moveable and on ground, move it
                 if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
                 { Functions_RoomObject.ConveyorBeltPush(RoomObj.compMove, Object); }
@@ -565,7 +552,7 @@ namespace DungeonRun
 
             #region Fairy - as Object
 
-            else if(Object.type == ObjType.Fairy)
+            else if(Object.type == ObjType.Dungeon_Fairy)
             {   
                 if(RoomObj.compCollision.blocking)
                 {   //slow fairy's movement thru blocking objects
@@ -573,10 +560,10 @@ namespace DungeonRun
                     Functions_Movement.StopMovement(Object.compMove);
                 }
                 //fairys can bump levers on/off
-                if (RoomObj.type == ObjType.LeverOff || RoomObj.type == ObjType.LeverOn)
+                if (RoomObj.type == ObjType.Dungeon_LeverOff || RoomObj.type == ObjType.Dungeon_LeverOn)
                 { Functions_RoomObject.ActivateLeverObjects(); }
                 //fairys bump off of bumpers as well
-                else if(RoomObj.type == ObjType.Bumper)
+                else if(RoomObj.type == ObjType.Dungeon_Bumper)
                 { Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj); }
             }
 
@@ -585,7 +572,7 @@ namespace DungeonRun
 
             #region SpikeBlock
 
-            else if (Object.type == ObjType.BlockSpike)
+            else if (Object.type == ObjType.Dungeon_BlockSpike)
             {   //the roomObj must be blocking for blockSpike to bounce
                 if (RoomObj.compCollision.blocking)
                 {   //reverse the direction of the spikeBlock
@@ -603,11 +590,11 @@ namespace DungeonRun
 
             #region FloorSpikes
 
-            if (RoomObj.type == ObjType.SpikesFloorOn)
+            if (RoomObj.type == ObjType.Dungeon_SpikesFloorOn)
             {   
                 if (Object.compMove.grounded)
                 {   
-                    if(Object.type == ObjType.BossStatue)
+                    if(Object.type == ObjType.Dungeon_Statue)
                     {   //destroy boss statues and pop loot
                         Functions_RoomObject.DestroyObject(Object, true, true);
                     }
@@ -627,7 +614,7 @@ namespace DungeonRun
 
             #region Trap Door
 
-            else if (RoomObj.type == ObjType.DoorTrap)
+            else if (RoomObj.type == ObjType.Dungeon_DoorTrap)
             {   //prevent obj from passing thru door
                 Functions_Movement.RevertPosition(Object.compMove);
 
@@ -644,7 +631,7 @@ namespace DungeonRun
             
             #region Bumper
 
-            else if (RoomObj.type == ObjType.Bumper)
+            else if (RoomObj.type == ObjType.Dungeon_Bumper)
             {   //limit bumper to bouncing only if it's returned to 100% scale
                 if (RoomObj.compSprite.scale != 1.0f) { return; }
                 //specific projectiles cannot be bounced off bumper
@@ -672,7 +659,7 @@ namespace DungeonRun
             
             #region Pits
 
-            else if (RoomObj.type == ObjType.PitAnimated)
+            else if (RoomObj.type == ObjType.Dungeon_Pit)
             {   
                 
                 /*
@@ -693,7 +680,7 @@ namespace DungeonRun
 
             #region IceTiles
 
-            else if(RoomObj.type == ObjType.IceTile)
+            else if(RoomObj.type == ObjType.Dungeon_IceTile)
             {   //only objects on the ground can slide on ice
                 if (Object.compMove.grounded)
                 { Functions_RoomObject.SlideOnIce(Object.compMove); }
@@ -704,7 +691,7 @@ namespace DungeonRun
 
             #region Fairy - as RoomObject
 
-            else if (RoomObj.type == ObjType.Fairy)
+            else if (RoomObj.type == ObjType.Dungeon_Fairy)
             {
                 if (Object.type == ObjType.ProjectileNet)
                 {   

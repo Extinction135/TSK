@@ -27,7 +27,7 @@ namespace DungeonRun
             //get the actor's facing direction as cardinal direction
             direction = Functions_Direction.GetCardinalDirection(Actor.direction);
 
-            if (Type == ObjType.PickupRupee)
+            if (Type == ObjType.Pickup_Rupee)
             {   //place dropped rupee away from hero, cardinal = direction actor was pushed
                 if (direction == Direction.Down) { posRef.X += 4; posRef.Y -= 12; } //place above
                 else if (direction == Direction.Up) { posRef.X += 4; posRef.Y += 15; } //place below
@@ -65,7 +65,7 @@ namespace DungeonRun
         {
             //when an item pickup dies, display an attention particle
             Functions_Particle.Spawn(
-                ObjType.ParticleAttention,
+                ObjType.Particle_Attention,
                 Obj.compSprite.position.X - 4,
                 Obj.compSprite.position.Y - 2);
             //all objects are released upon death
@@ -94,27 +94,27 @@ namespace DungeonRun
 
         public static void HandleEffect(GameObject Pickup)
         {
-            if (Pickup.type == ObjType.PickupHeart)
+            if (Pickup.type == ObjType.Pickup_Heart)
             {
                 Pool.hero.health++;
                 Assets.Play(Assets.sfxHeartPickup);
             }
-            else if (Pickup.type == ObjType.PickupRupee)
+            else if (Pickup.type == ObjType.Pickup_Rupee)
             {
                 PlayerData.current.gold++;
                 Assets.Play(Assets.sfxGoldPickup);
             }
-            else if (Pickup.type == ObjType.PickupMagic)
+            else if (Pickup.type == ObjType.Pickup_Magic)
             {
                 PlayerData.current.magicCurrent++;
                 Assets.Play(Assets.sfxHeartPickup);
             }
-            else if (Pickup.type == ObjType.PickupArrow)
+            else if (Pickup.type == ObjType.Pickup_Arrow)
             {
                 PlayerData.current.arrowsCurrent++;
                 Assets.Play(Assets.sfxHeartPickup);
             }
-            else if (Pickup.type == ObjType.PickupBomb)
+            else if (Pickup.type == ObjType.Pickup_Bomb)
             {
                 PlayerData.current.bombsCurrent++;
                 Assets.Play(Assets.sfxHeartPickup);

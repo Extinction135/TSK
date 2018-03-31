@@ -223,17 +223,17 @@ namespace DungeonRun
             #region Add Animated Particles / Sprites to Map
 
             //create castle flags
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 451 + 8, 97 + 6);
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 468 + 8, 106 + 6);
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 485 + 8, 98 + 6);
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 464 + 8, 82 + 6);
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 474 + 8, 79 + 6);
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 465 + 8, 71 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 451 + 8, 97 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 468 + 8, 106 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 485 + 8, 98 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 464 + 8, 82 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 474 + 8, 79 + 6);
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 465 + 8, 71 + 6);
             //create additional flags
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 334 + 8, 97 + 6); //old town
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 320 + 8, 113 + 6); //old town
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 357 + 8, 99 + 6); //old town
-            Functions_Particle.Spawn(ObjType.ParticleMapFlag, 305 + 8, 147 + 6); //colliseum
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 334 + 8, 97 + 6); //old town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 320 + 8, 113 + 6); //old town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 357 + 8, 99 + 6); //old town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Flag, 305 + 8, 147 + 6); //colliseum
 
             //create a list of positions where to place waves
             waveSpawnPositions = new List<Vector2>();
@@ -251,9 +251,9 @@ namespace DungeonRun
             waveSpawnPositions.Add(new Vector2(094 + 8, 121 + 6));
 
             //create map campfires
-            Functions_Particle.Spawn(ObjType.ParticleMapCampfire, 505, 257); //tent town
-            Functions_Particle.Spawn(ObjType.ParticleMapCampfire, 299, 297); //center island
-            Functions_Particle.Spawn(ObjType.ParticleMapCampfire, 109, 266); //left island / castle ruins
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 505, 257); //tent town
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 299, 297); //center island
+            Functions_Particle.Spawn(ObjType.Particle_Map_Campfire, 109, 266); //left island / castle ruins
             
             #endregion
 
@@ -294,7 +294,7 @@ namespace DungeonRun
                             hero.direction = cardinal;
                             Assets.Play(Assets.sfxMapWalking);
                             //spawn a dash puff at the hero's feet
-                            Functions_Particle.Spawn(ObjType.ParticleDashPuff,
+                            Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
                                 hero.compSprite.position.X,
                                 hero.compSprite.position.Y + 4);
                         }
@@ -363,7 +363,7 @@ namespace DungeonRun
                         currentLocation = targetLocation;
                         Assets.Play(Assets.sfxTextLetter);
                         //spawn attention particle at hero's feet
-                        Functions_Particle.Spawn(ObjType.ParticleAttention,
+                        Functions_Particle.Spawn(ObjType.Particle_Attention,
                             hero.compSprite.position.X,
                             hero.compSprite.position.Y + 6);
                     }
@@ -383,7 +383,7 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 100) > 80)
                 {   //randomly create a wave particle at a wave spawn location with random offset
                     wavePos = waveSpawnPositions[Functions_Random.Int(0, waveSpawnPositions.Count)];
-                    Functions_Particle.Spawn(ObjType.ParticleMapWave,
+                    Functions_Particle.Spawn(ObjType.Particle_Map_Wave,
                         wavePos.X + Functions_Random.Int(-12, 12),
                         wavePos.Y + Functions_Random.Int(-12, 12));
                 }

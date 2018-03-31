@@ -59,6 +59,9 @@ namespace DungeonRun
             }
             else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
 
+
+            //useful as a reference for limiting an actors available actions
+            /*
             //some actors have limited animations
             else if(Actor.type == ActorType.Pet)
             {
@@ -66,6 +69,8 @@ namespace DungeonRun
                 else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.petMove; }
                 else { Actor.animGroup = Actor.animList.petIdle; }
             }
+            */
+
         }
 
         public static void SetAnimationDirection(Actor Actor)

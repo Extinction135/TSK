@@ -127,7 +127,7 @@ namespace DungeonRun
         public static void HandleObj(GameObject Obj)
         {   //keep in mind this method is called every frame
 
-            if (Obj.type == ObjType.Flamethrower)
+            if (Obj.type == ObjType.Dungeon_Flamethrower)
             {
                 if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
                 {   //shoot fireball towards hero along a cardinal direction
@@ -136,17 +136,17 @@ namespace DungeonRun
                         Functions_Direction.GetCardinalDirectionToHero(Obj.compSprite.position));
                 }
             }
-            else if (Obj.type == ObjType.WallStatue)
+            else if (Obj.type == ObjType.Dungeon_WallStatue)
             {
                 if (Functions_Random.Int(0, 2000) > 1998) //rarely shoots
                 { Functions_Projectile.Spawn(ObjType.ProjectileArrow, Obj.compMove, Obj.direction); }
             }
-            else if (Obj.type == ObjType.PitAnimated)
+            else if (Obj.type == ObjType.Dungeon_Pit)
             {
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
                 { Functions_Particle.Spawn(ObjType.ParticlePitAnimation, Obj); }
             }
-            else if (Obj.type == ObjType.Fairy)
+            else if (Obj.type == ObjType.Dungeon_Fairy)
             {
                 if (Functions_Random.Int(0, 101) > 93) //float around
                 {   //randomly push fairy a direction
@@ -157,7 +157,7 @@ namespace DungeonRun
                     if(!Functions_Level.currentRoom.rec.Contains(Obj.compSprite.position))
                     {
                         Functions_Particle.Spawn(
-                            ObjType.ParticleAttention,
+                            ObjType.Particle_Attention,
                             Obj.compSprite.position.X + 0,
                             Obj.compSprite.position.Y + 0);
                         Functions_Pool.Release(Obj);

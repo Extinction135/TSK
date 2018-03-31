@@ -29,13 +29,13 @@ namespace DungeonRun
         public ScreenVendor(GameObject Obj)
         {
             this.name = "Vendor Screen";
-            if (Obj.type == ObjType.VendorArmor) { vendorType = SpeakerType.VendorArmor; }
-            else if (Obj.type == ObjType.VendorEquipment) { vendorType = SpeakerType.VendorEquipment; }
-            else if (Obj.type == ObjType.VendorItems) { vendorType = SpeakerType.VendorItems; }
-            else if (Obj.type == ObjType.VendorMagic) { vendorType = SpeakerType.VendorMagic; }
-            else if (Obj.type == ObjType.VendorPets) { vendorType = SpeakerType.VendorPets; }
-            else if (Obj.type == ObjType.VendorPotions) { vendorType = SpeakerType.VendorPotions; }
-            else if (Obj.type == ObjType.VendorWeapons) { vendorType = SpeakerType.VendorWeapons; }
+            if (Obj.type == ObjType.Vendor_NPC_Armor) { vendorType = SpeakerType.VendorArmor; }
+            else if (Obj.type == ObjType.Vendor_NPC_Equipment) { vendorType = SpeakerType.VendorEquipment; }
+            else if (Obj.type == ObjType.Vendor_NPC_Items) { vendorType = SpeakerType.VendorItems; }
+            else if (Obj.type == ObjType.Vendor_NPC_Magic) { vendorType = SpeakerType.VendorMagic; }
+            else if (Obj.type == ObjType.Vendor_NPC_Pets) { vendorType = SpeakerType.VendorPets; }
+            else if (Obj.type == ObjType.Vendor_NPC_Potions) { vendorType = SpeakerType.VendorPotions; }
+            else if (Obj.type == ObjType.Vendor_NPC_Weapons) { vendorType = SpeakerType.VendorWeapons; }
         }
 
         public override void LoadContent()
@@ -84,8 +84,10 @@ namespace DungeonRun
             previouslySelected = Widgets.ForSale.menuItems[0];
             Widgets.Info.Display(currentlySelected);
             //create the selectionBox
-            selectionBox = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(15, 7, 0, 0), new Point(16, 16));
+            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0), 
+                AnimationFrames.Ui_SelectionBox[0], 
+                new Point(16, 16));
             //play the opening soundFX
             Assets.Play(Assets.sfxWindowOpen);
         }
@@ -384,9 +386,6 @@ namespace DungeonRun
         {   //set pet type, update hero's pet type
             PlayerData.current.hasPet = true;
             PlayerData.current.petType = Item.type;
-            Functions_Hero.SetPet();
-            //move pet to hero, update hero's loadout
-            Functions_Hero.TeleportPet();
             Widgets.Loadout.UpdateLoadout();
             //display adoption dialog text
             Widgets.Dialog.DisplayDialog(vendorType, "thanks!",

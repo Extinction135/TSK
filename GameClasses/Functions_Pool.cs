@@ -240,7 +240,7 @@ namespace DungeonRun
                     //any moving roomObj gets interaction checks
                     //and specific roomObjs ALWAYS get interaction checks
                     if (Pool.roomObjPool[i].compMove.moving
-                        || Pool.roomObjPool[i].type == ObjType.ConveyorBeltOn)
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn)
                     { Functions_Interaction.CheckInteractions(Pool.roomObjPool[i]); }
                 }
             }
@@ -347,13 +347,6 @@ namespace DungeonRun
                             Pool.actorPool[i].compMove,
                             Pool.actorPool[i].compCollision,
                             true, true, false);
-                    }
-                    else if (Pool.actorPool[i] == Pool.herosPet)
-                    {   //pet checks v roomObjs only (no actors)
-                        Functions_Collision.CheckCollisions(
-                            Pool.actorPool[i].compMove,
-                            Pool.actorPool[i].compCollision,
-                            true, false, false);
                     }
                     else
                     {   //enemies check v roomObjs + hero

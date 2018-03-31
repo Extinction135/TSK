@@ -141,8 +141,9 @@ namespace DungeonRun
             currentlySelected = menuItems[0];
             previouslySelected = menuItems[0];
             //create the selectionBox
-            selectionBox = new ComponentSprite(Assets.mainSheet,
-                new Vector2(0, 0), new Byte4(15, 7, 0, 0),
+            selectionBox = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0), 
+                AnimationFrames.Ui_SelectionBox[0],
                 new Point(16, 16));
             //open the screen
             displayState = DisplayState.Opening;

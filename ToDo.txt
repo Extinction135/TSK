@@ -18,28 +18,23 @@ adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
 CTRL + M, O = collapse functions/regions	
 new gif: 50% nearest neighbor, 32 dithered
-	
-	
-	
-	
-todo:
+
+
 
 v0.7 goals
-
-- Non-room repeating Dungeon, additional rooms
-
 - divide spritesheets up so they can be expanded / modified easily
+- get all objects integrated into the new system / layout
+
 - expand RoomBuilder to include the creation, placement, loading and saving of world levels.
 - Dungeon Entrance Level, with dungeon entrance object, locked cam, filled screen
 - Outside Town Level, locked cam, filled screen, vendors
-
 
 - fix picking up, carrying, throwing, dropping, dragging, pushing objects
 - can drag: light blocks, dungeon statues, barrels, torches on/off, chests
 - can pickup, carry, throw: pots
 - remove dropping pots from game, hero can only throw them
 
-
+- Non-room repeating Dungeon, additional rooms
 - Flying Enemy
 - Blob AI improvements - sword, arrow, bomb based on weapon / item loadout 
 blob loadouts could be randomized when room is built()
@@ -60,35 +55,48 @@ blob loadouts could be randomized when room is built()
 
 
 
-Prep for Sprite Migration
 
-removed SpawnEnemy3 ObjType enum value.
-fairy spawn object has already been removed.
-added some comments / formatting.
-changed layout of various objects in the obj tools widget.
-playtested.
 
 
+Migrate GameObjects, MenuItems, RoomData + Sprites to The New System
 
+created AnimationFrames.cs, a class which contains the
+game's animation frames - suprise!!! 
+removed Functions_GameObjAnimList.cs from repo.
+removed cursed castle sheet, shop sheet, main sheet.
+added entities sheet, forest level sheet, uiItems sheet.
+updated Assets to properly load new sheets (for Dx and UWP).
+note that pets are currently broken, cause they were on
+the main sheet, and that sheet doesn't exist anymore.
+removed Pets from the game, temporarily, because they conflict
+with the new layout and system. later on they will be re-implemented
+as gameobjects that track to the hero, similar to the Fairy object.
+we could even spawn this Pet Object on the hero (without collisions)
+everytime he enters a room, so we are resetting the obj to a known
+state upon a room build(), but that's planning for another time.
+fixed Vendors and Vendor Ads.
+fixed particles, projectiles, and pickups.
+removed stat menu items. lol.
+various comments noting bugs and issues.
+migrated ALL RoomData and TestRooms to The New System.
 
+For context:
+This was the single largest commit I've made to this project.
+This commit took around 10 hours total to prepare and log.
+It fundamentally changes how sprite animations are handled,
+and BROKE ALOT OF STUFF. Which will be fixed in future commits.
+But, currently the game is in a visually corrupted state, almost
+all sprites are incorrectly displayed, so the game plays kinda
+like a SNES cartridge that you found on the side of the road.
 
 
 
 
 
 
-we might want to just make a class file called Animations
-and populate it with Byte4 lists, for actors, objects, AND entities.
-so, all Animations / Sprite Frame Sequences would live in this file.
 
-then later in GameObj.SetType() and Actor.SetType(),
-we set the act/obj's sprite texture reference, and the animation frame reference
-this decouples the GameObjAnimList from ObjType enum.
 
-we will also need to load in all the new spriteSheets,
-which first requires that we update the Dx MonoGame Project.
 
-we should start by getting the hero's sprite frames working correctly.
 
 
 
@@ -98,7 +106,10 @@ we should start by getting the hero's sprite frames working correctly.
 
 
 
+FIX THINGS
 
+we need to fix all the gameObj / particle / projectile / pickup sprites
+along with all the menuItem and UI sprites
 
 
 
@@ -107,37 +118,28 @@ we should start by getting the hero's sprite frames working correctly.
 
 
 
-Migrate GameObjects & SpriteSheets to New System - part 1
+dungeon pillars have been removed from the game
 
-As we do the following below, we also need to modify how GameObjAnimLists
-are handled. this *should* be handled in SetType(). although the current
-implementation is clever and saves some space, it is difficult to understand
-at first, and error prone (due to the master obj list being 1:1 dependent
-upon the ObjType enum). it's honestly a hassle to add objects into the current
-system, and we're about to add ALOT of objects.
 
+WHY is selectionBox's animationFrame a Byte4 list? it only needs to be a single
+frame Byte4, then we can pass this into all screens that have a selection box
 
 
 
 
 
-with larger sheets and more space, we can make the animations better.
-the major headache is going to be migrating most RoomObjs to have proper names,
-like DungeonExitDoor, and DungeonPot, instead of ExitDoor and Pot.
-*actually, we should be just changing the pot sprite, so it's universal in world or dungeon
-this is because we'll have outside objects as well, like WorldPot.
-the difference is the Dungeon and World naming conventions.
 
-once all the spriteSheets are setup and saved out, update the content/Project for Dx
-then we can begin to migrate all the gameObjects into the New System,
 
-we have changed the sprite sheet frames for ACTORS as well.
-so, nothing should work and everything is broken animation wise.
 
 
 
 
 
+now we need to move setting the gameObj's sprite texture outof GameObj.SetType().
+this is easy to do, we just loop over the obj list, setting the sprite texture,
+based on the level type. this should be done when a level is loaded, and we're 
+just setting the sprite texture reference to a texture that's already been loaded,
+so we shouldn't run into any loading or memory leaking issues, but who knows..
 
 
 
@@ -156,6 +158,39 @@ so, nothing should work and everything is broken animation wise.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+we don't actually need the pet to be an actor
+we *could* model the pet as a roomObject, since it's
+behavior is so simple. this would simplify actors 
+to being either hero or mob or miniboss or boss.
 
 
 
@@ -231,7 +266,8 @@ we need more rows and column rooms, and their quality needs to be improved.
 
 
 
-
+re-implement PETS as GameObjects that track to hero.
+they don't need the full actor collision checking / implementation
 
 
 
