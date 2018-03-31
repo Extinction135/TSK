@@ -641,11 +641,15 @@ namespace DungeonRun
                     if (objRef.group == ObjGroup.EnemySpawn)
                     {
                         if (objRef.type == ObjType.SpawnEnemy1)
-                        { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
+                        {
+                            //spawn a mob type enemy
+                            Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
+                        }
                         else if (objRef.type == ObjType.SpawnEnemy2)
-                        { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
-                        else if (objRef.type == ObjType.SpawnEnemy3)
-                        { Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position); }
+                        {
+                            //spawn a mini-boss type enemy
+                            Functions_Actor.SpawnActor(ActorType.Blob, objRef.compSprite.position);
+                        }
                     }
                 }
             }

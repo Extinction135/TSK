@@ -148,11 +148,11 @@ namespace DungeonRun
                     }
                     else if (i == 6) //seventh row - Pickups
                     {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Fairy); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.PickupBomb); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.PickupMagic); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PickupArrow); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.PickupRupee); }
+                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.PickupBomb); }
+                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.PickupMagic); }
+                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.PickupArrow); }
+                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.PickupRupee); }
+                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.PickupRupee); }
                     }
 
                     #endregion
@@ -181,16 +181,11 @@ namespace DungeonRun
                 enemySpawn.compMove.newPosition.X = 16 * i + 8;
                 enemySpawn.compMove.newPosition.Y = 16 * 12;
 
-                if (i == 1)
-                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy1); }
-                else if (i == 2)
-                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
-                else if (i == 3)
-                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy3); }
-                else if (i == 4)
-                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy3); }
-                else if (i == 5)
-                { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy3); }
+                if (i == 1) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy1); }
+                else if (i == 2) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
+                else if (i == 3) { Functions_GameObject.SetType(enemySpawn, ObjType.Fairy); }
+                //else if (i == 4) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
+                //else if (i == 5) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
 
                 Functions_Animation.Animate(enemySpawn.compAnim, enemySpawn.compSprite);
                 objList.Add(enemySpawn); //index 35-39

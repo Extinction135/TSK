@@ -152,8 +152,6 @@ namespace DungeonRun
                 new List<Byte4> { new Byte4(0, 15, 0, 0) },
                 //SpawnEnemy2
                 new List<Byte4> { new Byte4(1, 15, 0, 0) },
-                //SpawnEnemy3
-                new List<Byte4> { new Byte4(2, 15, 0, 0) },
 
                 #endregion
 

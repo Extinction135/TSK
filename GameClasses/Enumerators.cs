@@ -97,7 +97,7 @@ namespace DungeonRun
         //Unique RoomObjs
         Fairy,
         //Actor Spawn Objects (hand-placed)
-        SpawnEnemy1, SpawnEnemy2, SpawnEnemy3, 
+        SpawnEnemy1, SpawnEnemy2, 
         //Shop Object
         Bookcase1, Bookcase2, TableStone,
         VendorAdvertisement,

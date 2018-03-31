@@ -51,24 +51,22 @@ blob loadouts could be randomized when room is built()
 
 
 
-ART++
 
-migrated sprites to The New Layout.
 
-what is The New Layout? larger sprite sheets,
-allowing for more room for sprite animations,
-and the sprites are now organized according to
-color palette or type, so forest world & 
-dungeon objects and npcs all live on the same
-sheet - this will make it much easier to color
-everything later on (and automate that process
-with ColorSchemer, but shhh... secret stuff).
 
-included these master ART files in the project,
-in the new "ART" folder, masters and finals included.
-so now I can push art commits. the first of many.
-but this is not what git is really for, so.. meh
 
+
+
+
+
+
+Prep for Sprite Migration
+
+removed SpawnEnemy3 ObjType enum value.
+fairy spawn object has already been removed.
+added some comments / formatting.
+changed layout of various objects in the obj tools widget.
+playtested.
 
 
 
@@ -79,10 +77,29 @@ but this is not what git is really for, so.. meh
 
 
 
+we might want to just make a class file called Animations
+and populate it with Byte4 lists, for actors, objects, AND entities.
+so, all Animations / Sprite Frame Sequences would live in this file.
+
+then later in GameObj.SetType() and Actor.SetType(),
+we set the act/obj's sprite texture reference, and the animation frame reference
+this decouples the GameObjAnimList from ObjType enum.
+
+we will also need to load in all the new spriteSheets,
+which first requires that we update the Dx MonoGame Project.
+
+we should start by getting the hero's sprite frames working correctly.
 
 
 
-remove fairy spawn object from game - this was a dumb idea to begin with lol
+
+
+
+
+
+
+
+
 
 
 
