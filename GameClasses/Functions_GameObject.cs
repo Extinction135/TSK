@@ -112,30 +112,9 @@ namespace DungeonRun
         public static void SetType(GameObject Obj, ObjType Type)
         {   //Obj.direction should be set prior to this method running - important
             Obj.type = Type;
-
-
-
-
-
-            //this is going to be changed quite a bit
-            //first, we need to be setting the sprite texture based on Obj.type
-            //second, we need to set the game obj anim list to the PROPER global animList reference
-            //which means we need to split the animList into INDIVIDUAL fields
-            //then set the obj's animList to that indivual field below
-
-            //this way we aren't creating animList garbage, but we
-            //also aren't dependent upon a list maintaining 1:1 with ObjType enum
-            //this also gives us more freedom to play with the sprites animList
-            //because we could easily set a different obj to the same animList, masqueradeing it as something else
-            //which might potentially reduce the number of animLists, since we dupe list values occasionally
-            //or we may keep them duped simply for readability (shutDoor = shutDoor anim, trapDoor = trapDoor anim)
-            //instead of (trapDoor = shutDoor.anim)
-
-
-
-
             
-            #region Assign Dungeon Sheet as Default Texture
+
+            #region Assign Level Sheet based on Level.Type Check
 
             if (Level.type == LevelType.Castle)
             { Obj.compSprite.texture = Assets.forestLevelSheet; }
@@ -147,11 +126,6 @@ namespace DungeonRun
             //vendor advertisements set their texture to the UiItems Sheet
 
             #endregion
-
-
-
-
-
 
 
 
@@ -1042,7 +1016,7 @@ namespace DungeonRun
             if (Obj.group == ObjGroup.Particle || Obj.group == ObjGroup.Projectile || Obj.group == ObjGroup.Pickup)
             {
                 Obj.compCollision.blocking = false; //these entities never block
-                Obj.compSprite.texture = Assets.uiItemsSheet; //all use entity sheet
+                Obj.compSprite.texture = Assets.entitiesSheet; //all use entity sheet
             } 
 
 

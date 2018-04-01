@@ -44,19 +44,16 @@ blob loadouts could be randomized when room is built()
 
 
 
+Fix Particles, Projectiles, and Pickups
+
+they point to the UiSheet right now, which makes
+absolutely no sense. fixed, they point to the 
+entities sheet now, and they actually display
+somewhat properly. playtested, things are
+looking much better now. whew.
 
 
 
-Fix WorldUI
-
-Fixed WorldUI to properly display hearts, magic bits,
-item, and weapon decorative background sprites.
-so, that makes sense now.
-
-also noticed that the likely problem for particles is that they're 
-pointing to the UiSheet instead of the Entity sheet.
-which is weird, but whatever.
-i'll just fix it.
 
 
 
