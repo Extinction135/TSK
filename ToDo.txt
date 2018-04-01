@@ -45,6 +45,29 @@ blob loadouts could be randomized when room is built()
 
 
 
+RoomBuilder ++
+
+fixed roomBuilder screen to properly set 
+both selection boxes animation frame.
+playtested, working.
+
+
+
+
+
+fix scroll background sprites..
+they display as hearts? wtf?
+
+
+
+
+
+Improve Pickup Sprites
+
+when the pickup reaches it's lowest visual position,
+the shadow underneath the pickup should enlarge by 1 pixel
+in diameter, to simulate the shadow growing as the object
+approaches the ground. 
 
 
 
@@ -55,55 +78,15 @@ blob loadouts could be randomized when room is built()
 
 
 
-More Fixing
-
-added more push to bombs, they feel better now.
-removed various spawn effect from projectiles.
-fixed bug where fireballs didn't display (wrong anim frame).
-fixed bug where net displayed as sword (wrong anim frames)
-lots of playtesting.
+we should hide ObjectTools widget unless SpaceBar is held down, then all 
+widgets should draw / interact instantly on screen. this allows for fast
+switching between designing rooms and selecting tools.
 
 
 
+RoomBuilder ++
 
-
-
-
-
-
-
-
-
-
-
-WHY is selectionBox's animationFrame a Byte4 list? it only needs to be a single
-frame Byte4, then we can pass this into all screens that have a selection box
-or just set it to be the [0], duh!
-
-we can easily do this by changing the selectionBox's frame to something else
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+object tools should get expanded to handle LOTS of objects
 
 
 Expand RoomBuilder to be able to create outside world levels.
@@ -142,7 +125,11 @@ Outside Town Level
 
 
 
-
+the dialog screen's speaker sprite is completely wrong
+and i kind of love it.. because when i loaded the game 
+up a rock told me that it had successfully loaded my 
+last autosaved game. you don't normally hear that from
+a rock.
 
 
 

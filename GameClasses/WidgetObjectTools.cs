@@ -76,11 +76,15 @@ namespace DungeonRun
             #region Create the SelectionBoxes
 
             selectionBoxObj = new ComponentSprite(
-                Assets.uiItemsSheet, new Vector2(-100, 5000),
-                new Byte4(10, 1, 0, 0), new Point(16, 16));
+                Assets.uiItemsSheet, 
+                new Vector2(-100, 5000),
+                AnimationFrames.Ui_SelectionBox[0], 
+                new Point(16, 16));
             selectionBoxTool = new ComponentSprite(
-                Assets.uiItemsSheet, new Vector2(-100, 5000),
-                new Byte4(10, 1, 0, 0), new Point(16, 16));
+                Assets.uiItemsSheet,
+                new Vector2(-100, 5000),
+                AnimationFrames.Ui_SelectionBox[0], 
+                new Point(16, 16));
 
             #endregion
 

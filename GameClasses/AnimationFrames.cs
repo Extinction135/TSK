@@ -380,7 +380,7 @@ namespace DungeonRun
 
         #region Ui Items
 
-        public static List<Byte4> Ui_SelectionBox = new List<Byte4> { new Byte4(10, 1, 0, 0) };
+        public static List<Byte4> Ui_SelectionBox = new List<Byte4> { new Byte4(9, 1, 0, 0) };
 
         public static List<Byte4> Ui_Hand_Open = new List<Byte4> { new Byte4(10, 2, 0, 0) };
         public static List<Byte4> Ui_Hand_Grab = new List<Byte4> { new Byte4(11, 2, 0, 0) };
