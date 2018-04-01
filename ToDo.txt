@@ -44,15 +44,7 @@ blob loadouts could be randomized when room is built()
 
 
 
-Fixing Things
 
-fixed room builder screen to properly display the cursor.
-and upgraded it to properly display the pressed state for
-both moving and non-moving tool states.
-
-fixed SetFloors() to work with The New System.
-dungeon floors display properly now.
-playtestd, displaying properly
 
 
 
@@ -63,6 +55,25 @@ Fix MenuItems
 the inventory screen looks wrong.
 the unknown menuItem isn't the fairy in a bottle sprite.
 
+fixed unknown menuItem sprite bug.
+fixed gold inventory sprite bug.
+fixed InfoWidget bug where the displayed menuItem didn't
+inherit the reference menuItem's sprite's texture.
+
+game basically looks right again, now just need
+to focus on the smaller details and issues.
+
+
+
+
+
+
+
+
+Bombs should have more of a Push.
+bomb projectiles also spawn some smoke or dust that isn't centered to them,
+instead it's randomly placed in the room, probably based on some old released() projectile
+
 
 
 
@@ -70,9 +81,31 @@ the unknown menuItem isn't the fairy in a bottle sprite.
 dungeon pillars have been removed from the game
 
 
+
+
+
 WHY is selectionBox's animationFrame a Byte4 list? it only needs to be a single
 frame Byte4, then we can pass this into all screens that have a selection box
 or just set it to be the [0], duh!
+
+we can easily do this by changing the selectionBox's frame to something else
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

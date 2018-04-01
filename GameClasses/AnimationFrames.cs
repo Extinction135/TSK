@@ -56,8 +56,8 @@ namespace DungeonRun
 
         public static List<Byte4> Dungeon_Statue = new List<Byte4> { new Byte4(8, 3, 0, 0) };
         public static List<Byte4> Dungeon_Fairy = new List<Byte4> { new Byte4(9, 3, 0, 0), new Byte4(10, 3, 0, 0) };
-        public static List<Byte4> Dungeon_BossKey = new List<Byte4> { new Byte4(11, 9, 0, 0) };
-        public static List<Byte4> Dungeon_Map = new List<Byte4> { new Byte4(12, 9, 0, 0) };
+        public static List<Byte4> Dungeon_BossKey = new List<Byte4> { new Byte4(12, 3, 0, 0) };
+        public static List<Byte4> Dungeon_Map = new List<Byte4> { new Byte4(11, 3, 0, 0) };
         //
         public static List<Byte4> Dungeon_IceTile = new List<Byte4> { new Byte4(14, 3, 0, 0) };
         public static List<Byte4> Dungeon_FloorDecal = new List<Byte4> { new Byte4(15, 3, 0, 0) };
@@ -380,7 +380,7 @@ namespace DungeonRun
 
         #region Ui Items
 
-        public static List<Byte4> Ui_SelectionBox = new List<Byte4> { new Byte4(1, 9, 0, 0) };
+        public static List<Byte4> Ui_SelectionBox = new List<Byte4> { new Byte4(10, 1, 0, 0) };
 
         public static List<Byte4> Ui_Hand_Open = new List<Byte4> { new Byte4(10, 2, 0, 0) };
         public static List<Byte4> Ui_Hand_Grab = new List<Byte4> { new Byte4(11, 2, 0, 0) };
@@ -389,10 +389,13 @@ namespace DungeonRun
 
 
         //menuItems
-        public static List<Byte4> Ui_MenuItem_InventoryGold = new List<Byte4>
-        { new Byte4(10*2, 0, 0, 0), new Byte4(10*2+1, 0, 0, 0), new Byte4(11*2, 0, 0, 0), new Byte4(11*2+1, 0, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Unknown = new List<Byte4> { new Byte4(11, 1, 0, 0) };
 
-        public static List<Byte4> Ui_MenuItem_Unknown = new List<Byte4> { new Byte4(1, 9, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_InventoryGold = new List<Byte4>
+        {
+            new Byte4(10*2, 0, 0, 0), new Byte4(10*2+1, 0, 0, 0),
+            new Byte4(11*2, 0, 0, 0), new Byte4(11*2+1, 0, 0, 0)
+        };
 
         public static List<Byte4> Ui_MenuItem_OptionsContinue = new List<Byte4> { new Byte4(15, 1, 0, 0) };
         public static List<Byte4> Ui_MenuItem_OptionsNewGame = new List<Byte4> { new Byte4(15, 1, 0, 0) };

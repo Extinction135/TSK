@@ -326,6 +326,7 @@ namespace DungeonRun
                 MenuItem.name = "Total Gold";
                 MenuItem.description = "The total amount\nof gold collected.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_InventoryGold;
+                MenuItem.compSprite.cellSize.X = 8;
             }
             else if (Type == MenuItemType.InventoryMap)
             {
@@ -421,6 +422,8 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Unknown;
             }
 
+            //check above may of changed cellsize, just update it once
+            Functions_Component.UpdateCellSize(MenuItem.compSprite);
             //update the sprite's current frame to the animation list set above
             Functions_Animation.Animate(MenuItem.compAnim, MenuItem.compSprite);
         }

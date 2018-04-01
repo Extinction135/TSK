@@ -74,8 +74,10 @@ namespace DungeonRun
 
 
         public void Display(MenuItem MenuItem)
-        {   //set the widget's components based on the MenuItem's fields
+        {   //match the infoItem to the passed MenuItem
             infoItem.compAnim.currentAnimation = MenuItem.compAnim.currentAnimation;
+            infoItem.compSprite.texture = MenuItem.compSprite.texture;
+            infoItem.compSprite.cellSize = MenuItem.compSprite.cellSize;
             infoItem.compSprite.rotation = MenuItem.compSprite.rotation;
             window.title.text = MenuItem.name;
             description.text = MenuItem.description;
@@ -86,6 +88,8 @@ namespace DungeonRun
                 goldDisplay.visible = true;
             }
             else { goldDisplay.amount.text = ""; goldDisplay.visible = false; }
+
+            Functions_Component.UpdateCellSize(infoItem.compSprite);
         }
 
     }
