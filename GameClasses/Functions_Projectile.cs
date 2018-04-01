@@ -15,6 +15,9 @@ namespace DungeonRun
     public static class Functions_Projectile
     {
         static Vector2 offset = new Vector2();
+        static Projectile pro;
+
+
 
         //Dir is usually the actor's / object's facing direction
         public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
@@ -34,7 +37,7 @@ namespace DungeonRun
             }
 
             //get a projectile to spawn
-            Projectile pro = Functions_Pool.GetProjectile();
+            pro = Functions_Pool.GetProjectile();
             //set the projectile's caster reference
             pro.caster = Caster;
             //determine the direction the projectile should inherit
@@ -60,11 +63,13 @@ namespace DungeonRun
             {
                 Functions_Movement.Push(pro.compMove, Dir, 5.0f);
                 Assets.Play(Assets.sfxFireballCast);
+                /*
                 //place smoke puff centered to fireball
                 Functions_Particle.Spawn(
                     ObjType.Particle_ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y + 4);
+                */
             }
             else if (Type == ObjType.ProjectileBoomerang)
             {
@@ -73,12 +78,14 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileBomb)
             {
-                Functions_Movement.Push(pro.compMove, Dir, 5.0f);
+                Functions_Movement.Push(pro.compMove, Dir, 7.0f);
                 Assets.Play(Assets.sfxBombDrop);
+                /*
                 Functions_Particle.Spawn(
                     ObjType.Particle_RisingSmoke,
                     pro.compSprite.position.X + 0,
                     pro.compSprite.position.Y + 0);
+                */
             }
             else if (Type == ObjType.ProjectileExplodingBarrel)
             {
@@ -89,10 +96,12 @@ namespace DungeonRun
             {
                 Assets.Play(Assets.sfxExplosion);
                 //place smoke puff above explosion
+                /*
                 Functions_Particle.Spawn(
                     ObjType.Particle_ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y - 8);
+                */
             }
             else if (Type == ObjType.ProjectileNet)
             {   

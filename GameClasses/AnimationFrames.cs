@@ -217,8 +217,8 @@ namespace DungeonRun
         };
         public static List<Byte4> Projectile_Net = new List<Byte4>
         {
-            new Byte4(0, 7, 0, 0), new Byte4(1, 7, 0, 0),
-            new Byte4(2, 7, 0, 0), new Byte4(3, 7, 0, 0)
+            new Byte4(0, 8, 0, 0), new Byte4(1, 8, 0, 0),
+            new Byte4(2, 8, 0, 0), new Byte4(3, 8, 0, 0)
         };
 
         public static List<Byte4> Projectile_Boomerang = new List<Byte4> { new Byte4(5, 7, 0, 0) };
@@ -228,7 +228,7 @@ namespace DungeonRun
         public static List<Byte4> Projectile_Explosion = new List<Byte4>
         { new Byte4(10, 7, 0, 0), new Byte4(11, 7, 0, 0), new Byte4(12, 7, 0, 0), };
 
-        public static List<Byte4> Projectile_Fireball = new List<Byte4> { new Byte4(7, 8, 0, 0) };
+        public static List<Byte4> Projectile_Fireball = new List<Byte4> { new Byte4(5, 8, 0, 0) };
 
         #endregion
 
