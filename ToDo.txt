@@ -44,29 +44,22 @@ blob loadouts could be randomized when room is built()
 
 
 
-Fix Particles, Projectiles, and Pickups
+Fix Bomb Spawning
 
-they point to the UiSheet right now, which makes
-absolutely no sense. fixed, they point to the 
-entities sheet now, and they actually display
-somewhat properly. playtested, things are
-looking much better now. whew.
-
+bombs should not spawn with a facing direction 
+or have a direction other than down. modified
+GameObject.SetRotation() to set the Obj.direction
+to Down for Bombs. playtested, working as expected. 
 
 
 
 
 
+display cursor properly on the room builder screen
+
+display the floors properly from the level sheet
 
 
-
-
-
-
-FIX ALL TEH THINGS
-
-we need to fix all the gameObj / particle / projectile / pickup sprites
-along with all the menuItem and UI sprites
 
 
 dungeon pillars have been removed from the game

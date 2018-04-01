@@ -69,10 +69,9 @@ namespace DungeonRun
                 { Obj.compSprite.flipHorizontally = true; }
             }
             else if (Obj.type == ObjType.ProjectileBomb
-                || Obj.type == ObjType.Dungeon_BlockSpike
                 || Obj.type == ObjType.ProjectileExplodingBarrel)
             {   //some objects only face Direction.Down
-                Obj.compSprite.rotation = Rotation.None;
+                Obj.direction = Direction.Down;
             }
             else if(Obj.type == ObjType.Dungeon_PitTrap)
             {   //some objects are randomly rotated
