@@ -21,7 +21,7 @@ namespace DungeonRun
         public static void CreateColumn(Boolean Bkg, Boolean Flip, int Height, Vector2 Pos, List<ComponentSprite> List)
         {   //can create a scroll or background column
             byte xFrame = 0;
-            if (Bkg) { xFrame = 3; }
+            if (Bkg) { xFrame = 2; }
             for (int i = 0; i < Height; i++)
             {   //create a blank sprite
                 ComponentSprite sprite = new ComponentSprite(

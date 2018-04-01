@@ -44,19 +44,19 @@ blob loadouts could be randomized when room is built()
 
 
 
+Fix Scroll
 
-RoomBuilder ++
+updated Ui_SelectionBox byte4 list again to actually
+display the selection box, which was a leftover bug 
+from previous commit.
 
-fixed roomBuilder screen to properly set 
-both selection boxes animation frame.
-playtested, working.
-
-
-
+fixed scroll background sprites, they were displaying
+as hearts, due to having the wrong x frame set.
 
 
-fix scroll background sprites..
-they display as hearts? wtf?
+
+
+
 
 
 
