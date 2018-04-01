@@ -44,22 +44,6 @@ blob loadouts could be randomized when room is built()
 
 
 
-Fix Scroll
-
-updated Ui_SelectionBox byte4 list again to actually
-display the selection box, which was a leftover bug 
-from previous commit.
-
-fixed scroll background sprites, they were displaying
-as hearts, due to having the wrong x frame set.
-
-
-
-
-
-
-
-
 
 
 Improve Pickup Sprites
@@ -69,7 +53,15 @@ the shadow underneath the pickup should enlarge by 1 pixel
 in diameter, to simulate the shadow growing as the object
 approaches the ground. 
 
+also modified the pickup arrow sprite to bounce higher
+over the shadow, making the animation clearer, which required
+shortening the arrow sprites a little. 
 
+also changed how the arrow pickup sprite is visually
+displayed at it's highest position - made it a brighter
+color of white to grab the player's attention.
+
+playtested, looking much better.
 
 
 
