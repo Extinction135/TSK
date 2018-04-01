@@ -75,13 +75,13 @@ namespace DungeonRun
             //loop thru the magic meter sprites, setting their frame
             for (i = 0; i < 9; i++)
             {   //reset sprite to locked
-                WorldUI.meterPieces[i + 1].currentFrame.X = 31;
+                WorldUI.meterPieces[i + 1].currentFrame.X = 5*2+1;
                 //set available bars
                 if (i < PlayerData.current.magicTotal)
-                { WorldUI.meterPieces[i + 1].currentFrame.X = 30; }
+                { WorldUI.meterPieces[i + 1].currentFrame.X = 5*2; }
                 //set filled bars
                 if (i < PlayerData.current.magicCurrent)
-                { WorldUI.meterPieces[i + 1].currentFrame.X = 29; }
+                { WorldUI.meterPieces[i + 1].currentFrame.X = 4*2+1; }
             }
 
             #endregion

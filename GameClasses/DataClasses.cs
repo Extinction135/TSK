@@ -304,8 +304,10 @@ namespace DungeonRun
             hearts = new List<ComponentSprite>();
             for (i = 0; i < 9; i++)
             {
-                hearts.Add(new ComponentSprite(Assets.uiItemsSheet,
-                    new Vector2(0, 0), new Byte4(3, 1, 0, 0),
+                hearts.Add(new ComponentSprite(
+                    Assets.uiItemsSheet,
+                    new Vector2(0, 0), 
+                    new Byte4(3, 1, 0, 0),
                     new Point(16, 16)));
             }
 
@@ -313,14 +315,16 @@ namespace DungeonRun
             meterPieces = new List<ComponentSprite>();
             for (i = 0; i < 11; i++)
             {
-                meterPieces.Add(new ComponentSprite(Assets.uiItemsSheet,
-                    new Vector2(0, 0), new Byte4(5*2+1, 0, 0, 0),
+                meterPieces.Add(new ComponentSprite(
+                    Assets.uiItemsSheet,
+                    new Vector2(0, 0), 
+                    new Byte4(5*2, 0, 0, 0),
                     new Point(8, 16)));
             }
 
             //set the head and tail meter frames
-            meterPieces[0].currentFrame.X = 28;
-            meterPieces[10].currentFrame.X = 28;
+            meterPieces[0].currentFrame.X = 4*2;
+            meterPieces[10].currentFrame.X = 4*2;
             meterPieces[10].flipHorizontally = true;
 
             //create the weapon and item background sprites
@@ -329,10 +333,12 @@ namespace DungeonRun
             for (i = 0; i < 4; i++)
             {
                 weaponBkg.Add(new ComponentSprite(Assets.uiItemsSheet,
-                    new Vector2(0, 0), new Byte4(11, 1, 0, 0),
+                    new Vector2(0, 0), 
+                    new Byte4(4, 1, 0, 0),
                     new Point(16, 16)));
                 itemBkg.Add(new ComponentSprite(Assets.uiItemsSheet,
-                    new Vector2(0, 0), new Byte4(11, 1, 0, 0),
+                    new Vector2(0, 0), 
+                    new Byte4(4, 1, 0, 0),
                     new Point(16, 16)));
             }
 

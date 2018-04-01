@@ -47,6 +47,16 @@ blob loadouts could be randomized when room is built()
 
 
 
+Fix WorldUI
+
+Fixed WorldUI to properly display hearts, magic bits,
+item, and weapon decorative background sprites.
+so, that makes sense now.
+
+also noticed that the likely problem for particles is that they're 
+pointing to the UiSheet instead of the Entity sheet.
+which is weird, but whatever.
+i'll just fix it.
 
 
 
@@ -56,66 +66,10 @@ blob loadouts could be randomized when room is built()
 
 
 
-
-
-Migrate GameObjects, MenuItems, RoomData + Sprites to The New System
-
-created AnimationFrames.cs, a class which contains the
-game's animation frames - suprise!!! 
-removed Functions_GameObjAnimList.cs from repo.
-removed cursed castle sheet, shop sheet, main sheet.
-added entities sheet, forest level sheet, uiItems sheet.
-updated Assets to properly load new sheets (for Dx and UWP).
-note that pets are currently broken, cause they were on
-the main sheet, and that sheet doesn't exist anymore.
-removed Pets from the game, temporarily, because they conflict
-with the new layout and system. later on they will be re-implemented
-as gameobjects that track to the hero, similar to the Fairy object.
-we could even spawn this Pet Object on the hero (without collisions)
-everytime he enters a room, so we are resetting the obj to a known
-state upon a room build(), but that's planning for another time.
-fixed Vendors and Vendor Ads.
-fixed particles, projectiles, and pickups.
-removed stat menu items. lol.
-various comments noting bugs and issues.
-migrated ALL RoomData and TestRooms to The New System.
-
-For context:
-This was the single largest commit I've made to this project.
-This commit took around 10 hours total to prepare and log.
-It fundamentally changes how sprite animations are handled,
-and BROKE ALOT OF STUFF. Which will be fixed in future commits.
-But, currently the game is in a visually corrupted state, almost
-all sprites are incorrectly displayed, so the game plays kinda
-like a SNES cartridge that you found on the side of the road.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-FIX THINGS
+FIX ALL TEH THINGS
 
 we need to fix all the gameObj / particle / projectile / pickup sprites
 along with all the menuItem and UI sprites
-
-
-
-
-
-
 
 
 dungeon pillars have been removed from the game
@@ -125,72 +79,6 @@ WHY is selectionBox's animationFrame a Byte4 list? it only needs to be a single
 frame Byte4, then we can pass this into all screens that have a selection box
 
 
-
-
-
-
-
-
-
-
-
-
-now we need to move setting the gameObj's sprite texture outof GameObj.SetType().
-this is easy to do, we just loop over the obj list, setting the sprite texture,
-based on the level type. this should be done when a level is loaded, and we're 
-just setting the sprite texture reference to a texture that's already been loaded,
-so we shouldn't run into any loading or memory leaking issues, but who knows..
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-we don't actually need the pet to be an actor
-we *could* model the pet as a roomObject, since it's
-behavior is so simple. this would simplify actors 
-to being either hero or mob or miniboss or boss.
 
 
 
@@ -219,6 +107,51 @@ this changes the widget displayed when the user presses the spacebar
 Design and Link up new World Levels:
 Dungeon Entrance Level
 Outside Town Level
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PETS++
+re-implement PETS as GameObjects that track to hero.
+they don't need the full actor collision checking / implementation
+
+we don't actually need the pet to be an actor
+we *could* model the pet as a roomObject, since it's
+behavior is so simple. this would simplify actors 
+to being either hero or mob or miniboss or boss.
+
+
+
+
+
+
+
+
 
 
 
@@ -266,8 +199,7 @@ we need more rows and column rooms, and their quality needs to be improved.
 
 
 
-re-implement PETS as GameObjects that track to hero.
-they don't need the full actor collision checking / implementation
+
 
 
 
