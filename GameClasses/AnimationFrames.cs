@@ -19,6 +19,13 @@ namespace DungeonRun
         //and in the future we'll define actor animation frames here too
 
 
+
+        public static List<Byte4> Dungeon_FloorNormal = new List<Byte4> { new Byte4(15, 0, 0, 0) };
+        public static List<Byte4> Dungeon_FloorSpecial = new List<Byte4> { new Byte4(15, 1, 0, 0) };
+        public static List<Byte4> Dungeon_FloorBoss = new List<Byte4> { new Byte4(15, 2, 0, 0) };
+
+
+
         #region Dungeon Objects
 
         public static List<Byte4> Dungeon_ExitPillarLeft = new List<Byte4> { new Byte4(8, 0, 0, 0) };
@@ -44,14 +51,7 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_WallTorch = new List<Byte4>
         { new Byte4(14, 0, 0, 0), new Byte4(14, 1, 0, 0), new Byte4(14, 2, 0, 0) };
 
-        public static List<Byte4> Dungeon_FloorNormal = new List<Byte4> { new Byte4(15, 0, 0, 0) };
-        public static List<Byte4> Dungeon_FloorSpecial = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-        public static List<Byte4> Dungeon_FloorBoss = new List<Byte4> { new Byte4(15, 2, 0, 0) };
-
-
-
-
-
+        
 
 
         public static List<Byte4> Dungeon_Statue = new List<Byte4> { new Byte4(8, 3, 0, 0) };
@@ -382,10 +382,11 @@ namespace DungeonRun
 
         public static List<Byte4> Ui_SelectionBox = new List<Byte4> { new Byte4(1, 9, 0, 0) };
 
-        public static List<Byte4> Ui_Hand_Open = new List<Byte4> { new Byte4(1, 9, 0, 0) };
-        public static List<Byte4> Ui_Hand_Grab = new List<Byte4> { new Byte4(1, 9, 0, 0) };
-        public static List<Byte4> Ui_Hand_Point = new List<Byte4> { new Byte4(1, 9, 0, 0) };
-        public static List<Byte4> Ui_Hand_Press = new List<Byte4> { new Byte4(1, 9, 0, 0) };
+        public static List<Byte4> Ui_Hand_Open = new List<Byte4> { new Byte4(10, 2, 0, 0) };
+        public static List<Byte4> Ui_Hand_Grab = new List<Byte4> { new Byte4(11, 2, 0, 0) };
+        public static List<Byte4> Ui_Hand_Point = new List<Byte4> { new Byte4(10, 3, 0, 0) };
+        public static List<Byte4> Ui_Hand_Press = new List<Byte4> { new Byte4(11, 3, 0, 0) };
+
 
         //menuItems
         public static List<Byte4> Ui_MenuItem_InventoryGold = new List<Byte4>
@@ -436,6 +437,12 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_Eq_Pin = new List<Byte4> { new Byte4(5, 9, 0, 0) };
 
         #endregion
+
+
+
+
+
+
 
     }
 }

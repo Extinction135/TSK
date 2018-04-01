@@ -44,20 +44,25 @@ blob loadouts could be randomized when room is built()
 
 
 
-Fix Bomb Spawning
+Fixing Things
 
-bombs should not spawn with a facing direction 
-or have a direction other than down. modified
-GameObject.SetRotation() to set the Obj.direction
-to Down for Bombs. playtested, working as expected. 
+fixed room builder screen to properly display the cursor.
+and upgraded it to properly display the pressed state for
+both moving and non-moving tool states.
+
+fixed SetFloors() to work with The New System.
+dungeon floors display properly now.
+playtestd, displaying properly
 
 
 
 
 
-display cursor properly on the room builder screen
+Fix MenuItems
 
-display the floors properly from the level sheet
+the inventory screen looks wrong.
+the unknown menuItem isn't the fairy in a bottle sprite.
+
 
 
 
@@ -67,7 +72,7 @@ dungeon pillars have been removed from the game
 
 WHY is selectionBox's animationFrame a Byte4 list? it only needs to be a single
 frame Byte4, then we can pass this into all screens that have a selection box
-
+or just set it to be the [0], duh!
 
 
 

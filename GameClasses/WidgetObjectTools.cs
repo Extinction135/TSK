@@ -365,12 +365,22 @@ namespace DungeonRun
 
             #region Set Mouse Cursor Sprite
 
-            cursorSprite.currentFrame.Y = 14; ; //default to pointer
             if (objToolState == ObjToolState.MoveObj) //check/set move state
-            { cursorSprite.currentFrame.Y = 13; }
-            if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-            { cursorSprite.currentFrame.X = 15; } //set clicked frame
-            else { cursorSprite.currentFrame.X = 14; }
+            {   //if moving, show open hand cursor
+                cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Open[0];
+                //if moving, and dragging, show grab cursor
+                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+                { cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Grab[0]; }
+            }
+            else
+            {   //default to pointer
+                cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Point[0];
+                //if clicking/dragging, show pointer press cursor
+                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
+                { cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Press[0]; }
+            }
+
+
 
             #endregion
 
@@ -433,19 +443,19 @@ namespace DungeonRun
                             {
                                 SetActiveTool(rotateObj);
                                 objToolState = ObjToolState.RotateObj;
-                                toolTipSprite.currentFrame.X = 13;
+                                toolTipSprite.currentFrame.X = 12;
                             }
                             else if (objList[i] == addObj)
                             {
                                 SetActiveTool(addObj);
                                 objToolState = ObjToolState.AddObj;
-                                toolTipSprite.currentFrame.X = 14;
+                                toolTipSprite.currentFrame.X = 10;
                             }
                             else if (objList[i] == deleteObj)
                             {
                                 SetActiveTool(deleteObj);
                                 objToolState = ObjToolState.DeleteObj;
-                                toolTipSprite.currentFrame.X = 15;
+                                toolTipSprite.currentFrame.X = 11;
                             }
                         }
                     }
@@ -677,32 +687,7 @@ namespace DungeonRun
         }
 
         public Boolean GrabRoomObject()
-        {
-
-            //we probably need to loop thru the projectile pool here
-            /*
-            //grab entities
-            for (Pool.entityCounter = 0; Pool.entityCounter < Pool.entityCount; Pool.entityCounter++)
-            {   //loop thru entity pool, checking collisions with cursor's worldPos
-                if (Pool.entityPool[Pool.entityCounter].active)
-                {   //check collisions between worldPos and obj, grab any colliding projectile
-                    if(Pool.entityPool[Pool.entityCounter].group == ObjGroup.Projectile)
-                    {
-                        if (Pool.entityPool[Pool.entityCounter].compCollision.rec.Contains(worldPos))
-                        {   //set both grabbedObj and activeObj
-                            grabbedObj = Pool.entityPool[Pool.entityCounter];
-                            activeObj = Pool.entityPool[Pool.entityCounter];
-                            GetActiveObjInfo();
-                            selectionBoxObj.scale = 2.0f;
-                            return true;
-                        }
-                    }
-                }
-            }
-            */
-
-
-            //grab roomObjs
+        {   //grab roomObjs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {   //loop thru roomObj pool, checking collisions with cursor's worldPos
                 if (Pool.roomObjPool[Pool.roomObjCounter].active)
@@ -717,8 +702,7 @@ namespace DungeonRun
                     }
                 }
             }
-            //there was no collision with a roomObj or entity
-            return false;
+            return false; //no collision with roomObj
         }
 
         public void RotateActiveObj()

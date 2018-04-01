@@ -222,7 +222,9 @@ namespace DungeonRun
             for (floorCounter = 0; floorCounter < floorCount; floorCounter++)
             {
                 floorPool.Add(new ComponentSprite(Assets.forestLevelSheet,
-                    new Vector2(0, 0), new Byte4(6, 0, 0, 0), new Point(16, 16)));
+                    new Vector2(0, 0), 
+                    new Byte4(15, 0, 0, 0), 
+                    new Point(16, 16)));
             }
             floorIndex = 0;
 
