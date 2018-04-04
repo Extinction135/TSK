@@ -171,12 +171,6 @@ namespace DungeonRun
             Debug.WriteLine(output);
         }
 
-
-
-
-
-
-
         public static void InspectBottle(Byte value)
         {
             output += "\n  bottle contents: ";
@@ -238,62 +232,95 @@ namespace DungeonRun
         }
 
 
+
+
         public static void HandleTopMenuInput()
         {
-            
+
+
             #region F1 - Toggle Collision Rec Drawing
 
             if (Functions_Input.IsNewKeyPress(Keys.F1))
             {   //toggle draw collision boolean
-                if (Flags.DrawCollisions) { Flags.DrawCollisions = false; }
-                else { Flags.DrawCollisions = true; }
+                if (Flags.DrawCollisions)
+                {
+                    Flags.DrawCollisions = false;
+                    DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonUp;
+                }
+                else
+                {
+                    Flags.DrawCollisions = true;
+                    DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonDown;
+                }
             }
 
             #endregion
 
 
-            #region F2 - Max Gold
+            #region F2 - Toggle Drawing of InfoPanel
+
+            if (Functions_Input.IsNewKeyPress(Keys.F2))
+            {
+                if (Flags.DrawDebugInfo)
+                {
+                    Flags.DrawDebugInfo = false;
+                    DebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonUp;
+                }
+                else
+                {
+                    Flags.DrawDebugInfo = true;
+                    DebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonDown;
+                }
+            }
+
+            #endregion
+
+
+            #region F2 --- 
 
             if (Functions_Input.IsNewKeyPress(Keys.F2))
             {   //set the player's gold to 99
-                PlayerData.current.gold = 99;
-                Assets.Play(Assets.sfxGoldPickup);
+                //PlayerData.current.gold = 99;
+                //Assets.Play(Assets.sfxGoldPickup);
             }
 
             #endregion
+            
 
-
-            #region F3 - Dump SaveData to Output
+            
+            #region F3 ---
 
             if (Functions_Input.IsNewKeyPress(Keys.F3))
             {   //dump savedata
-                Inspect(PlayerData.current);
+                //Inspect(PlayerData.current);
             }
 
             #endregion
-
-
-            #region F4 - Toggle Drawing of InfoPanel
-
-            if (Functions_Input.IsNewKeyPress(Keys.F4))
-            {  
-                if (Flags.DrawDebugInfo) { Flags.DrawDebugInfo = false; }
-                else { Flags.DrawDebugInfo = true; }
-            }
-
-            #endregion
-
+            
 
             #region F5 - Toggle Paused flag
 
             if (Functions_Input.IsNewKeyPress(Keys.F5))
             {
-                if (Flags.Paused) { Flags.Paused = false; }
-                else { Flags.Paused = true; }
+                if (Flags.Paused)
+                {
+                    Flags.Paused = false;
+                    DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonUp;
+                }
+                else
+                {
+                    Flags.Paused = true;
+                    DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown;
+                }
             }
 
             #endregion
 
+
+
+
+
+            /*
 
             #region F6 - Damage all active enemies
 
@@ -336,27 +363,13 @@ namespace DungeonRun
 
             #endregion
 
+            */
 
 
-            #region Set button colors based on what they represent
 
-            if (Flags.DrawCollisions)
-            { DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonDown; }
-            else { DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonUp; }
 
-            if (Flags.DrawDebugInfo)
-            { DebugMenu.buttons[3].currentColor = Assets.colorScheme.buttonDown; }
-            else { DebugMenu.buttons[3].currentColor = Assets.colorScheme.buttonUp; }
 
-            if (Flags.Paused)
-            { DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown; }
-            else { DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonUp; }
-
-            if (Flags.MapCheat)
-            { DebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown; }
-            else { DebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp; }
-
-            #endregion
+            
 
 
 
@@ -365,6 +378,8 @@ namespace DungeonRun
             {   //user must hold down ctrl button to call Inspect()
                 if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Inspect(); }
             }
+
+            /*
             //dump the states for every active actor if Enter key is pressed
             if (Functions_Input.IsNewKeyPress(Keys.Enter))
             {
@@ -374,6 +389,9 @@ namespace DungeonRun
                     { Inspect(Pool.actorPool[Pool.actorCounter]); }
                 }
             }
+            */
+
+
         }
 
     }

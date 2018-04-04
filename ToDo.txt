@@ -45,25 +45,103 @@ blob loadouts could be randomized when room is built()
 
 
 
+TODAY:
 
-Improve Pickup Sprites
+Prep for Editor Improvements
 
-when the pickup reaches it's lowest visual position,
-the shadow underneath the pickup should enlarge by 1 pixel
-in diameter, to simulate the shadow growing as the object
-approaches the ground. 
+removed roomBuilder Enter key function that dumped the states
+of all active actors (it was annoying and should be a button).
+changed 'draw collisions' to 'draw recs'.
+moved draw info from button4 to button 2.
 
-also modified the pickup arrow sprite to bounce higher
-over the shadow, making the animation clearer, which required
-shortening the arrow sprites a little. 
+removed top menu buttons:
+f2 max gold - this will become part of the cheats menu
+f3 - dump savedata - this is testable by the current save system
+f6 damage all - this will become a magic spell later on
+f7 - map cheat - this will become part of the cheats menu
+f8 - hero type - this is already testable by bottling system
 
-also changed how the arrow pickup sprite is visually
-displayed at it's highest position - made it a brighter
-color of white to grab the player's attention.
-
-playtested, looking much better.
+playtested, working as expected.
 
 
+
+
+
+
+
+Editor ++
+
+add buttons 'room edit' and 'level edit'.
+change 'f5 play/pause' to just 'pause'.
+
+in code, change RoomBuilder to RoomEditor.
+create LevelEditor screen class, similar to RoomEditor.
+link up RoomEditor and LevelEditor screens to the top menu
+buttons: RoomEdit and LevelEdit.
+
+we should be able to switch between the two quickly and without issues.
+roomEditor should function as normally.
+levelEditor should be roomEditor, but with empty roomObj widget.
+
+
+
+
+
+
+
+
+
+Design Editors (Room and Level)
+
+Room is different than Level in the sense that Levels are larger and more visually
+impressive, whereas rooms are built around puzzles and enemies. Both have secrets
+to be found, and both have lots of interactable objects.
+
+However, level objects are ALL placed by hand, so we need to be able to select
+all level objects that exist for that level type. by comparison, not all dungeon 
+objects are set by hand, some are set procedurally and are never selectable or
+even moveable - the dungeon exit objects, for example. so in the level editor,
+we'll LOTS of room for large objects, like the dungeon entrance. the room editor
+can be pretty lean, because it will only deal with Dungeon Objects.
+
+so Rooms = Dungeon Rooms, Levels = World Levels.
+
+
+
+
+
+
+
+Implement Level Editor and Level Save System
+
+we need to be able to save level objects to a level file.
+this is larger and different than the room save data files.
+
+
+
+
+
+
+
+TMRW:
+
+Design the Cheats Menu
+
+this requires an on/off game widget object that the user can interact with
+via the A button press, should have a sfx and an animation, so it should
+be a sprite, with a sprite frame sequence.
+
+cheats we NEED RIGHT NOW for testing purposes:
+infinite gold
+map cheat
+invincibility
+
+nice:
+infinite magic
+infinite arrows
+infinite bombs
+
+this Cheats Menu should be accesible from the Inventory screen, from the Options widget.
 
 
 

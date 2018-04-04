@@ -443,14 +443,15 @@ namespace DungeonRun
         {
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
-            buttons.Add(new ComponentButton("f1 draw collisions", new Point(2, 2)));
-            buttons.Add(new ComponentButton("f2 max gold", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f3 dump savedata", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f4 draw info", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f5 play/pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f6 damage all", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f7 map cheat", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f8 hero type", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f1 draw recs", new Point(2, 2)));
+            buttons.Add(new ComponentButton("f2 draw info", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f3 ---", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f4 ---", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
+
+            //buttons.Add(new ComponentButton("f6 damage all", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
+            //buttons.Add(new ComponentButton("f7 map cheat", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
+            //buttons.Add(new ComponentButton("f8 hero type", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
         }
     }
 
