@@ -39,7 +39,7 @@ namespace DungeonRun
             if (Flags.bootRoutine == BootRoutine.Game)
             { ExitAndLoad(new ScreenTitle()); }
             else if (Flags.bootRoutine == BootRoutine.RoomBuilder)
-            { ExitAndLoad(new ScreenRoomBuilder()); }
+            { ExitAndLoad(new ScreenRoomEditor()); }
         }
 
         public static void Update(GameTime GameTime)

@@ -276,23 +276,27 @@ namespace DungeonRun
             #endregion
 
 
-            #region F2 --- 
+            #region F2 - Room Editor
 
-            if (Functions_Input.IsNewKeyPress(Keys.F2))
+            if (Functions_Input.IsNewKeyPress(Keys.F3))
             {   //set the player's gold to 99
                 //PlayerData.current.gold = 99;
                 //Assets.Play(Assets.sfxGoldPickup);
+
+                ScreenManager.ExitAndLoad(new ScreenRoomEditor());
             }
 
             #endregion
             
 
             
-            #region F3 ---
+            #region F3 - Level Editor
 
-            if (Functions_Input.IsNewKeyPress(Keys.F3))
+            if (Functions_Input.IsNewKeyPress(Keys.F4))
             {   //dump savedata
                 //Inspect(PlayerData.current);
+
+                ScreenManager.ExitAndLoad(new ScreenLevelEditor());
             }
 
             #endregion

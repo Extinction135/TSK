@@ -47,21 +47,7 @@ blob loadouts could be randomized when room is built()
 
 TODAY:
 
-Prep for Editor Improvements
 
-removed roomBuilder Enter key function that dumped the states
-of all active actors (it was annoying and should be a button).
-changed 'draw collisions' to 'draw recs'.
-moved draw info from button4 to button 2.
-
-removed top menu buttons:
-f2 max gold - this will become part of the cheats menu
-f3 - dump savedata - this is testable by the current save system
-f6 damage all - this will become a magic spell later on
-f7 - map cheat - this will become part of the cheats menu
-f8 - hero type - this is already testable by bottling system
-
-playtested, working as expected.
 
 
 
@@ -71,17 +57,29 @@ playtested, working as expected.
 
 Editor ++
 
-add buttons 'room edit' and 'level edit'.
-change 'f5 play/pause' to just 'pause'.
+added buttons 'room editor' and 'level editor' to top debug menu.
+created ScreenRoomEditor.cs and ScreenLevelEditor.cs files.
+added as link to Dx project, removed ScreenRoomBuilder.
+this fixes naming conventions for editor screens.
 
-in code, change RoomBuilder to RoomEditor.
-create LevelEditor screen class, similar to RoomEditor.
-link up RoomEditor and LevelEditor screens to the top menu
-buttons: RoomEdit and LevelEdit.
+created Functions_Editor class, to contain shared methods.
+moved SetEditorFlags() and SetEditorLoadout() from
+ScreenRoomEditor, deduplicating these methods from the
+two new editor screens introduced into the project.
 
-we should be able to switch between the two quickly and without issues.
-roomEditor should function as normally.
-levelEditor should be roomEditor, but with empty roomObj widget.
+changed LevelEditor screen to place obj widget on left,
+for testing purposes. linked up topMenu to create
+room or level editor screens based on f3 or f4 buttons.
+playtested, working as expected.
+
+added room editor, level editor, Functions_Editor classes 
+to UWP project, removed ref to RoomBuilder class from UWP.
+playtested, working as expected.
+
+
+
+
+
 
 
 

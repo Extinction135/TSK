@@ -14,15 +14,15 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public class ScreenRoomBuilder : ScreenLevel
+    public class ScreenLevelEditor : ScreenLevel
     {
 
-        public ScreenRoomBuilder() { this.name = "RoomBuilder Screen"; }
+        public ScreenLevelEditor() { this.name = "Level Editor Screen"; }
 
         public override void LoadContent()
         {
             //place the object tools + room tools widgets
-            Widgets.ObjectTools.Reset(16 * 33, 16 * 1);
+            Widgets.ObjectTools.Reset(16 * 3, 16 * 1);
             Widgets.RoomTools.Reset(16 * 33, 16 * 16);
 
             //register this level screen with Functions_Level
@@ -41,8 +41,8 @@ namespace DungeonRun
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
-            SetEditorFlags();
-            SetEditorLoadout();
+            Functions_Editor.SetEditorFlags();
+            Functions_Editor.SetEditorLoadout();
             Flags.Paused = false; //unpause editor initially
         }
 
@@ -67,43 +67,6 @@ namespace DungeonRun
             Widgets.RoomTools.Draw();
             Widgets.ObjectTools.Draw();
             ScreenManager.spriteBatch.End();
-        }
-
-
-
-        public void SetEditorFlags()
-        {   //editor specific flags
-            Flags.EnableTopMenu = true; //necessary
-            Flags.DrawDebugInfo = false; //initial display, can be changed
-            Flags.Invincibility = true; //hero cannot die in editor
-            Flags.InfiniteMagic = true; //hero has infinite magic
-            Flags.InfiniteGold = true; //hero has infinite gold
-            Flags.InfiniteArrows = true; //hero has infinite arrows
-            Flags.InfiniteBombs = true; //hero has infinite bombs
-            Flags.CameraTracksHero = false; //center to room
-            Flags.ShowEnemySpawns = true; //necessary for editing
-            //Flags.ProcessAI = false; //turn off ai for testing
-        }
-
-        public void SetEditorLoadout()
-        {   //unlock most/all items
-            PlayerData.current = new SaveData();
-            PlayerData.current.heartsTotal = 9;
-            Pool.hero.health = 3;
-            PlayerData.current.bombsCurrent = 99;
-            PlayerData.current.arrowsCurrent = 99;
-            //set items
-            PlayerData.current.bottleA = MenuItemType.BottleHealth;
-            PlayerData.current.bottleB = MenuItemType.BottleMagic;
-            PlayerData.current.bottleC = MenuItemType.BottleFairy;
-            PlayerData.current.magicFireball = true;
-            //set weapons
-            PlayerData.current.weaponBow = true;
-            PlayerData.current.weaponNet = true;
-            //set armor
-            PlayerData.current.armorCape = true;
-            //set equipment
-            PlayerData.current.equipmentRing = true;
         }
     }
 }

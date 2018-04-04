@@ -445,13 +445,12 @@ namespace DungeonRun
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton("f1 draw recs", new Point(2, 2)));
             buttons.Add(new ComponentButton("f2 draw info", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f3 ---", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f4 ---", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f3 room editor", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f4 level editor", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton("f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
-
-            //buttons.Add(new ComponentButton("f6 damage all", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
-            //buttons.Add(new ComponentButton("f7 map cheat", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
-            //buttons.Add(new ComponentButton("f8 hero type", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
+            //buttons.Add(new ComponentButton("f6 ---", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
+            //buttons.Add(new ComponentButton("f7 ---", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
+            //buttons.Add(new ComponentButton("f8 --", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
         }
     }
 
@@ -463,6 +462,67 @@ namespace DungeonRun
         public static Boolean map = false;
         public static LevelType type = LevelType.Castle;
     }
+
+
+
+
+    // Room Classes
+
+    public class Door
+    {
+        public Rectangle rec = new Rectangle(0, 0, 16, 16);
+        public Boolean visited = false;
+        public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
+        public DoorType type = DoorType.Open;
+    }
+
+    public class Room
+    {
+        public Rectangle rec = new Rectangle(0, 0, 0, 0);
+        public Boolean visited = false;
+        public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
+        public Point center = new Point(0, 0);
+        public int XMLid = 0; //index of xmlRoomData list used to build/finish room
+        public RoomType type;
+        public Vector2 spawnPos; //where hero can spawn in this room (last door passed thru or exit)
+        public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
+
+        public Room(Point Pos, RoomType Type)
+        {
+            type = Type;
+            Functions_Room.SetType(this, Type);
+            Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
+            Functions_Room.SetRoomXMLid(this); //get random xml id value
+            spawnPos = new Vector2(0, 0); //this value isn't used (updated later)
+        }
+    }
+
+    public class RoomXmlData
+    {
+        public RoomType type = RoomType.Row;
+        public List<ObjXmlData> objs = new List<ObjXmlData>();
+    }
+
+    public class ObjXmlData
+    {   //placed relative to room's XY pos
+        public ObjType type = ObjType.Dungeon_WallStraight;
+        public Direction direction = Direction.Down;
+        public float posX = 0;
+        public float posY = 0;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //Instanced Classes
@@ -521,35 +581,6 @@ namespace DungeonRun
         public AnimationGroup fairy;
         public AnimationGroup petIdle;
         public AnimationGroup petMove;
-    }
-
-    public class Room
-    {
-        public Rectangle rec = new Rectangle(0, 0, 0, 0);
-        public Boolean visited = false;
-        public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
-        public Point center = new Point(0, 0);
-        public int XMLid = 0; //index of xmlRoomData list used to build/finish room
-        public RoomType type;
-        public Vector2 spawnPos; //where hero can spawn in this room (last door passed thru or exit)
-        public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
-
-        public Room(Point Pos, RoomType Type)
-        {
-            type = Type;
-            Functions_Room.SetType(this, Type);
-            Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
-            Functions_Room.SetRoomXMLid(this); //get random xml id value
-            spawnPos = new Vector2(0, 0); //this value isn't used (updated later)
-        }
-    }
-
-    public class Door
-    {
-        public Rectangle rec = new Rectangle(0, 0, 16, 16);
-        public Boolean visited = false;
-        public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
-        public DoorType type = DoorType.Open;
     }
 
     public class ColorScheme
@@ -836,21 +867,7 @@ namespace DungeonRun
         public MenuItemType petType = MenuItemType.PetStinkyDog;
     }
 
-    public class RoomXmlData
-    {
-        public RoomType type = RoomType.Row;
-        public List<ObjXmlData> objs = new List<ObjXmlData>();
-    }
-
-    public class ObjXmlData
-    {   //placed relative to room's XY pos
-        public ObjType type = ObjType.Dungeon_WallStraight;
-        public Direction direction = Direction.Down;
-        public float posX = 0; 
-        public float posY = 0;
-    }
-
-
+ 
 
     //Map Classes
 

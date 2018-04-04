@@ -95,6 +95,9 @@
     <Compile Include="..\..\GameClasses\Functions_Draw.cs">
       <Link>Classes\Functions_Draw.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Editor.cs">
+      <Link>Classes\Functions_Editor.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_GameObject.cs">
       <Link>Classes\Functions_GameObject.cs</Link>
     </Compile>
@@ -173,6 +176,9 @@
     <Compile Include="..\..\GameClasses\ScreenLevel.cs">
       <Link>Classes\ScreenLevel.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenLevelEditor.cs">
+      <Link>Classes\ScreenLevelEditor.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenLevelMap.cs">
       <Link>Classes\ScreenLevelMap.cs</Link>
     </Compile>
@@ -185,8 +191,8 @@
     <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
       <Link>Classes\ScreenOverworld.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\ScreenRoomBuilder.cs">
-      <Link>Classes\ScreenRoomBuilder.cs</Link>
+    <Compile Include="..\..\GameClasses\ScreenRoomEditor.cs">
+      <Link>Classes\ScreenRoomEditor.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenSummary.cs">
       <Link>Classes\ScreenSummary.cs</Link>
