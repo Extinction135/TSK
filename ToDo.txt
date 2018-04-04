@@ -51,12 +51,43 @@ TODAY:
 
 
 
+Editor Design ++
 
-Editor Design
+Based on the idea that Levels and Rooms are distinct,
+Editor has been split into level and room parts.
+room editor still acts as room builder did, designing
+individual rooms according to specific rules which the
+dungeon designer systems use to construct dungeons.
+levels, however, are connected by hand and designed 
+by hand, and have no such system rules applied to them.
 
-created mockup editorV1, which helps, but asks more
-questions than it answers and leads to a better way
-not yet fully realized, so more design.
+added editor mockups for level (with and without NPCs),
+and for the slightly modified room editor.
+
+the good news is that multiple functions can be shared
+between the editor screens, the widgets have been simplified
+and will be reused, and the objects widget (which is big
+and complicated and error prone) will be split into 
+multiple smaller widgets that are passive programmatically,
+meaning they wont process input. this vastly simplifies them,
+and the input can be processed on the editor screen,
+and depending on which editor screen is open the input can
+be modified to suit that screen's needs (for example,
+checking to see if the editor is adding a chest to non-chestable
+room, and popping an error message telling them no!).
+
+we've also created a place for dungeon entrances to live,
+alongside the statues inside the dungeon that thematically
+represent the boss or the dungeon - the eye statue reminding
+the player of the boss, the giant floating eye, and the 
+dungeon entrance has a single eye, and the mob enemies have 
+single eyes.. this grouping helps to remind me to visually
+design all these objects with this coupling in mind.
+#endRant
+
+
+
+
 
 
 
@@ -100,8 +131,11 @@ a world level. it's there, but we are just going to cover it up with game objs.
 
 
 
-
-
+Wall Torches
+if we seperate the wall torch off the wall bkg sprite, then we can reuse
+it indoors in world rooms, or outside on buildings. but, we need to update
+the door decoration algorithm to add torches, instead of replacing the wall
+with a wall torch, which acts simply as a wall.
 
 
 
