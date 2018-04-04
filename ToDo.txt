@@ -52,36 +52,11 @@ TODAY:
 
 
 
+Editor Design
 
-
-
-Editor ++
-
-added buttons 'room editor' and 'level editor' to top debug menu.
-created ScreenRoomEditor.cs and ScreenLevelEditor.cs files.
-added as link to Dx project, removed ScreenRoomBuilder.
-this fixes naming conventions for editor screens.
-
-created Functions_Editor class, to contain shared methods.
-moved SetEditorFlags() and SetEditorLoadout() from
-ScreenRoomEditor, deduplicating these methods from the
-two new editor screens introduced into the project.
-
-changed LevelEditor screen to place obj widget on left,
-for testing purposes. linked up topMenu to create
-room or level editor screens based on f3 or f4 buttons.
-playtested, working as expected.
-
-added room editor, level editor, Functions_Editor classes 
-to UWP project, removed ref to RoomBuilder class from UWP.
-playtested, working as expected.
-
-
-
-
-
-
-
+created mockup editorV1, which helps, but asks more
+questions than it answers and leads to a better way
+not yet fully realized, so more design.
 
 
 
@@ -103,6 +78,28 @@ we'll LOTS of room for large objects, like the dungeon entrance. the room editor
 can be pretty lean, because it will only deal with Dungeon Objects.
 
 so Rooms = Dungeon Rooms, Levels = World Levels.
+
+
+
+
+
+Implement 'F6 - Hide All'
+
+implement F6 button 'hide all' which would stop input, update, and drawing of
+all widgets on an editor screen, including the top menu.. powerful. this single
+function will allow an editor the ability to view the level or room as the
+player would - EXACTLY - allowing editors the ability to fill levels to the
+edge of the camera with objects, so a level looks visually different from a
+dungeon in the sense that the surrounding darkness is never seen outside on
+a world level. it's there, but we are just going to cover it up with game objs.
+
+
+
+
+
+
+
+
 
 
 
