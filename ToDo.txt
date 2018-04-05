@@ -49,85 +49,36 @@ TODAY:
 
 
 
+Implement 'F6 - Hide Editor Widgets'
 
+added HideEditorWidgets boolean to Flags class.
+this boolean will control if editor widgets process
+input, update, and draw methods.
 
+updated Debug.HandleTopMenuInput() to flip above
+boolean upon F6 button press. updated RoomEditor
+screen to check above boolean prior to processing
+any widget's update, input, or draw methods.
 
+playtested, and working for roomEditor.
 
-
-
-Editor++
-
-modified how Functions_Widget.PositionObjs() handled the
-collision recs of passed objs - the recs are now reset to
-16x16 and aligned with a default offset which makes selecting
-them alot easier in DungeonObj widget.
-added Reset() method to WidgetObject semi-base class.
-playtested, working as expected.
-
-removed Functions_Editor from Project, those methods
-were integrated into boot sequence and RoomEditor constructor.
-
-
-
-
-
-
-
-
-
-
-
-
-push 1
-
-create base obj widget class, with 16x16 gameobjects
-this is 4 per row, 12 rows total, with a base draw method
-that checks to see if the gameObj is null
-
-to make a larger obj, just set obj in the list it covers to null
-then we add null checks later and skip if null
-this allows a 2:1, or a dungeon entrance in the base obj widget class
-
-create dungeon objs widget, which inherits from base obj widget
-this simply sets the CONTENTS (& POSITIONS of menu objs) of the widget, 
-there are no other methods other than the constructor for this class.
-(because we'll have 4 additional inherited subclasses like this one soon).
-
-> modify object tools widget to match current mockup and functionality.
-> modify data tools widget to match current mockup and functionality.
-
-
-
-
-
-
-
-
-
-pit teeth are not displaying properly in dungeon objects, but thats fine for now..
-
-
-
-
-
-
-
-
-
-Implement 'F6 - Hide All'
-
-add the F6 button to top menu, modify all widgets to draw/input/update
-based on a hide boolean. link this f6 button to the hide booleans.
-
-implement F6 button 'hide all' which would stop input, update, and drawing of
-all widgets on an editor screen, including the top menu.. powerful. this single
-function will allow an editor the ability to view the level or room as the
-player would - EXACTLY - allowing editors the ability to fill levels to the
+(thoughts - a pioneering new section of my commits..)
+this function allows editors the ability to view the level or room as the
+player would - EXACTLY - allowing the ability to fill levels to the
 edge of the camera with objects, so a level looks visually different from a
 dungeon in the sense that the surrounding darkness is never seen outside on
-a world level. it's there, but we are just going to cover it up with game objs.
+a world level. it's there, but just covered with game objs.
 
-test hiding of level/room widgets
+an addition to the above thought, is that the darkness inside a dungeon
+could simply be set to different color based on the level type, so if the
+level was outside, the background could switch to a grass color, and then
+we wouldn't need to have a TON of basic green grass sprites all over the screen.
+instead, we can sprinkle some animated flowers and grass around on the 
+background and it will look the same, with a significantly lower draw time.
+
+if we couple that optimization with the floor sprites optimization inside,
+(since all rooms are set to specific sizes now), we could drop draw times
+dramatically for levels, possibly allowing for larger levels. hmm..
 
 
 
@@ -138,21 +89,17 @@ test hiding of level/room widgets
 
 
 
-push 2
+
+
+
+
+
+
 
 get something relevant displayed for level editor,
 
 shared objs widget
 environment objs widget
-
-
-
-
-
-
-
-
-
 
 
 
@@ -172,24 +119,8 @@ dungeon - enemy tools widget
 
 
 
-
-
-
-
-Design Editors (Room and Level)
-
-Room is different than Level in the sense that Levels are larger and more visually
-impressive, whereas rooms are built around puzzles and enemies. Both have secrets
-to be found, and both have lots of interactable objects.
-
-However, level objects are ALL placed by hand, so we need to be able to select
-all level objects that exist for that level type. by comparison, not all dungeon 
-objects are set by hand, some are set procedurally and are never selectable or
-even moveable - the dungeon exit objects, for example. so in the level editor,
-we'll LOTS of room for large objects, like the dungeon entrance. the room editor
-can be pretty lean, because it will only deal with Dungeon Objects.
-
-so Rooms = Dungeon Rooms, Levels = World Levels.
+fix pit teeth
+pit teeth are not displaying properly in dungeon objects, but thats fine for now..
 
 
 
@@ -198,36 +129,14 @@ so Rooms = Dungeon Rooms, Levels = World Levels.
 
 
 
+fireballs should create explosions upon collision/interaction
+and the explosions should play their explosion sound, but
+fireball shouldn't play it's signature 'bonk' sound.
+this 'bonk' sound should only play if the fireball dies of old age,
+as a way to say to the player "well, that was kind of a waste of magic".
 
 
 
-
-
-
-
-
-
-
-
-
-Implement Level Editor and Level Save System
-
-we need to be able to save level objects to a level file.
-this is larger and different than the room save data files.
-
-
-
-
-
-
-
-
-
-
-
-
-
-TMRW:
 
 Design the Cheats Menu
 
@@ -252,38 +161,71 @@ this Cheats Menu should be accesible from the Inventory screen, from the Options
 
 
 
-we should hide ObjectTools widget unless SpaceBar is held down, then all 
-widgets should draw / interact instantly on screen. this allows for fast
-switching between designing rooms and selecting tools.
 
 
 
-RoomBuilder ++
-
-object tools should get expanded to handle LOTS of objects
-
-
-Expand RoomBuilder to be able to create outside world levels.
-these are cam-locked, so fill the screen up with game objs and animations.
-
-the big differnces i see right now are:
-hide the worldUI and objTools widget.
-we need to be able to see the whole level at once.
-so, it would be nice to be able to 'hide' the worldObjects widget
-unless the spacebar is pressed, at which point it appears centered on screen
-then i select the world obj i want, modify the tools as needed, then release spacebar
-this returns me to editing the room / level.
-this should be implemented in RoomBuilder for ObjectTools too.
-a text note at the bottom should read "hold space for tools"
-we should have a button to switch between Dungeon mode and World mode.
-this changes the widget displayed when the user presses the spacebar
 
 
 
+
+
+
+
+
+The New Water & Swimming Systems
+
+water tiles should exist. upon collision with a water tile,
+hero switches to swimming state. only upon collision with water
+tile does this happen - hero's default state is on ground.
+this is in contrast to the previous implementation where hero was
+defaulted to swimming, and only upon collision with land tiles
+was he set to walking/on ground.
+
+by default, the background color is a grass color. to that,
+we add dirt paths, animated grass objects scattered throughout,
+then additional env objs, npcs, buildings, etc.. and even water tiles.
+
+
+
+
+
+
+
+
+
+Implement Level Editor and Level Save System
+
+we need to be able to save level objects to a level file.
+this is larger and different than the room save data files.
+
+Add Outside World Objs
+Add Outside Ground Objs
 
 Design and Link up new World Levels:
 Dungeon Entrance Level
 Outside Town Level
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

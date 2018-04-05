@@ -276,7 +276,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region F2 - Room Editor
+            #region F3 - Room Editor
 
             if (Functions_Input.IsNewKeyPress(Keys.F3))
             {   //set the player's gold to 99
@@ -289,8 +289,7 @@ namespace DungeonRun
             #endregion
             
 
-            
-            #region F3 - Level Editor
+            #region F4 - Level Editor
 
             if (Functions_Input.IsNewKeyPress(Keys.F4))
             {   //dump savedata
@@ -321,24 +320,35 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
-            /*
-
-            #region F6 - Damage all active enemies
+            #region F6 - Hide / Unhide Editor Widgets
 
             if (Functions_Input.IsNewKeyPress(Keys.F6))
             {
+                if (Flags.HideEditorWidgets)
+                {
+                    Flags.HideEditorWidgets = false;
+                    DebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
+                }
+                else
+                {
+                    Flags.HideEditorWidgets = true;
+                    DebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
+                }
+
+                /* Damage all active enemies
                 for (i = 1; i < Pool.actorCount; i++) //skip actorPool[0] (hero)
                 {
                     if (Pool.actorPool[i].active) //deal 1 point of damage to all active actors
                     { Functions_Battle.Damage(Pool.actorPool[i], 1, 0.0f, Direction.Down); }
                 }
+                */
             }
 
             #endregion
 
+
+
+            /*
 
             #region F7 - Toggle Map Cheat & Map
 
@@ -373,7 +383,7 @@ namespace DungeonRun
 
 
 
-            
+
 
 
 

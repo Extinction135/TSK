@@ -15,11 +15,6 @@ namespace DungeonRun
 {
     public class WidgetObjectTools : Widget
     {
-
-
-
-
-
         int j;
         public ComponentSprite cursorSprite;
         public GameObject moveObj;
@@ -41,11 +36,6 @@ namespace DungeonRun
         public GameObject activeObj; //points to Obj on objList OR on roomObj/entity list
         public GameObject grabbedObj; //obj/entity that is picked up/dragged/dropped in room
         public GameObject activeTool; //points to a ToolObj on the obj list
-
-
-
-
-
 
 
 
@@ -133,10 +123,6 @@ namespace DungeonRun
             grabbedObj = null;
         }
 
-
-
-
-
         public override void Reset(int X, int Y)
         {  
             Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
@@ -163,132 +149,6 @@ namespace DungeonRun
             #endregion
 
         }
-
-
-
-        public override void Update()
-        {
-            Functions_MenuWindow.Update(window);
-            if (window.interior.displayState == DisplayState.Opened)
-            {
-                UpdateSelectionBox(selectionBoxObj);
-                UpdateSelectionBox(selectionBoxTool);
-                selectionBoxTool.position = activeTool.compSprite.position;
-                Functions_Animation.Animate(currentObjRef.compAnim, currentObjRef.compSprite);
-            }
-        }
-
-        public override void Draw()
-        {
-            Functions_Draw.Draw(window);
-            if (window.interior.displayState == DisplayState.Opened)
-            {
-                Functions_Draw.Draw(moveObj);
-                Functions_Draw.Draw(rotateObj);
-                Functions_Draw.Draw(addObj);
-                Functions_Draw.Draw(deleteObj);
-                Functions_Draw.Draw(currentObjRef.compSprite);
-                Functions_Draw.Draw(currentObjDirectionText);
-                Functions_Draw.Draw(selectionBoxObj);
-                Functions_Draw.Draw(selectionBoxTool);
-            }
-            if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
-            Functions_Draw.Draw(cursorSprite);
-        }
-
-
-
-
-
-        public void SetActiveTool(GameObject Tool)
-        {
-            activeTool = Tool;
-            selectionBoxTool.scale = 2.0f;
-        }
-
-        public void UpdateSelectionBox(ComponentSprite SelectionBox)
-        {   //pulse the selectionBox alpha
-            if (SelectionBox.alpha >= 1.0f) { SelectionBox.alpha = 0.1f; }
-            else { SelectionBox.alpha += 0.025f; }
-            //scale the selectionBox down to 1.0
-            if (SelectionBox.scale > 1.0f) { SelectionBox.scale -= 0.07f; }
-            else { SelectionBox.scale = 1.0f; }
-        }
-
-        public void GetActiveObjInfo()
-        {   //reset objRef, match currentObjRef to activeObj
-            Functions_GameObject.ResetObject(currentObjRef);
-            currentObjRef.direction = activeObj.direction; //store direction value
-            currentObjRef.compSprite.rotationValue = activeObj.compSprite.rotationValue;
-            Functions_GameObject.SetType(currentObjRef, activeObj.type);
-            //update the currentObj text displays
-            window.title.text = "Obj: " + currentObjRef.type;
-            //currentObjTypeText.text = "" + currentObjRef.type;
-            currentObjDirectionText.text = "dir: " + currentObjRef.direction;
-        }
-
-        public Boolean GrabRoomObject()
-        {   //grab roomObjs
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            {   //loop thru roomObj pool, checking collisions with cursor's worldPos
-                if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                {   //check collisions between worldPos and obj, grab any colliding obj
-                    if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                    {   //set both grabbedObj and activeObj
-                        grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
-                        activeObj = Pool.roomObjPool[Pool.roomObjCounter];
-                        GetActiveObjInfo();
-                        selectionBoxObj.scale = 2.0f;
-                        return true;
-                    }
-                }
-            }
-            return false; //no collision with roomObj
-        }
-
-        public void RotateActiveObj()
-        {   //set activeObj's obj.direction based on type
-            if (activeObj.type == ObjType.Dungeon_PitBridge)
-            {   //flip between horizontal and vertical directions
-                if (activeObj.direction == Direction.Up || activeObj.direction == Direction.Down)
-                { activeObj.direction = Direction.Left; }
-                else { activeObj.direction = Direction.Down; }
-            }
-            else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
-                || activeObj.type == ObjType.Dungeon_ConveyorBeltOff
-                || activeObj.type == ObjType.Dungeon_BlockSpike)
-            {   //flip thru cardinal directions
-                activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
-                if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
-                else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
-                else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
-                else { activeObj.direction = Direction.Up; }
-            }
-
-            //set object's move component direction based on type
-            if (activeObj.type == ObjType.Dungeon_BlockSpike)
-            { activeObj.compMove.direction = activeObj.direction; }
-
-            //set the rotation of the sprite based on obj.direction                                             
-            Functions_GameObject.SetRotation(activeObj);
-            GetActiveObjInfo();
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
 
         public void HandleInput()
         {
@@ -416,7 +276,7 @@ namespace DungeonRun
                             }
                         }
 
-                        if(currentObjRef.type == ObjType.Dungeon_Switch)
+                        if (currentObjRef.type == ObjType.Dungeon_Switch)
                         {   //we cannot have more than one switch in a room
                             for (j = 0; j < Pool.roomObjCount; j++)
                             {   //check all roomObjs for an active chest
@@ -427,7 +287,7 @@ namespace DungeonRun
                                 }
                             }
                         }
-                    
+
                         #endregion
 
 
@@ -438,7 +298,7 @@ namespace DungeonRun
                         else if (currentObjRef.group == ObjGroup.Pickup)
                         { objRef = Functions_Pool.GetPickup(); }
                         else { objRef = Functions_Pool.GetRoomObj(); }
-                        
+
                         //place currently selected obj in room, aligned to 16px grid
                         objRef.compMove.newPosition = Functions_Movement.AlignToGrid(worldPos.X, worldPos.Y);
                         Functions_Movement.Teleport(objRef.compMove,
@@ -526,20 +386,117 @@ namespace DungeonRun
 
             }
             if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
-            {  
+            {
                 grabbedObj = null; //release grabbed obj
             }
         }
 
+        public override void Update()
+        {
+            Functions_MenuWindow.Update(window);
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                UpdateSelectionBox(selectionBoxObj);
+                UpdateSelectionBox(selectionBoxTool);
+                selectionBoxTool.position = activeTool.compSprite.position;
+                Functions_Animation.Animate(currentObjRef.compAnim, currentObjRef.compSprite);
+            }
+        }
+
+        public override void Draw()
+        {
+            Functions_Draw.Draw(window);
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                Functions_Draw.Draw(moveObj);
+                Functions_Draw.Draw(rotateObj);
+                Functions_Draw.Draw(addObj);
+                Functions_Draw.Draw(deleteObj);
+                Functions_Draw.Draw(currentObjRef.compSprite);
+                Functions_Draw.Draw(currentObjDirectionText);
+                Functions_Draw.Draw(selectionBoxObj);
+                Functions_Draw.Draw(selectionBoxTool);
+            }
+            if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
+            Functions_Draw.Draw(cursorSprite);
+        }
 
 
 
+        public void SetActiveTool(GameObject Tool)
+        {
+            activeTool = Tool;
+            selectionBoxTool.scale = 2.0f;
+        }
 
+        public void UpdateSelectionBox(ComponentSprite SelectionBox)
+        {   //pulse the selectionBox alpha
+            if (SelectionBox.alpha >= 1.0f) { SelectionBox.alpha = 0.1f; }
+            else { SelectionBox.alpha += 0.025f; }
+            //scale the selectionBox down to 1.0
+            if (SelectionBox.scale > 1.0f) { SelectionBox.scale -= 0.07f; }
+            else { SelectionBox.scale = 1.0f; }
+        }
 
+        public void GetActiveObjInfo()
+        {   //reset objRef, match currentObjRef to activeObj
+            Functions_GameObject.ResetObject(currentObjRef);
+            currentObjRef.direction = activeObj.direction; //store direction value
+            currentObjRef.compSprite.rotationValue = activeObj.compSprite.rotationValue;
+            Functions_GameObject.SetType(currentObjRef, activeObj.type);
+            //update the currentObj text displays
+            window.title.text = "Obj: " + currentObjRef.type;
+            //currentObjTypeText.text = "" + currentObjRef.type;
+            currentObjDirectionText.text = "dir: " + currentObjRef.direction;
+        }
 
+        public Boolean GrabRoomObject()
+        {   //grab roomObjs
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            {   //loop thru roomObj pool, checking collisions with cursor's worldPos
+                if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                {   //check collisions between worldPos and obj, grab any colliding obj
+                    if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                    {   //set both grabbedObj and activeObj
+                        grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
+                        activeObj = Pool.roomObjPool[Pool.roomObjCounter];
+                        GetActiveObjInfo();
+                        selectionBoxObj.scale = 2.0f;
+                        return true;
+                    }
+                }
+            }
+            return false; //no collision with roomObj
+        }
 
+        public void RotateActiveObj()
+        {   //set activeObj's obj.direction based on type
+            if (activeObj.type == ObjType.Dungeon_PitBridge)
+            {   //flip between horizontal and vertical directions
+                if (activeObj.direction == Direction.Up || activeObj.direction == Direction.Down)
+                { activeObj.direction = Direction.Left; }
+                else { activeObj.direction = Direction.Down; }
+            }
+            else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
+                || activeObj.type == ObjType.Dungeon_ConveyorBeltOff
+                || activeObj.type == ObjType.Dungeon_BlockSpike)
+            {   //flip thru cardinal directions
+                activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
+                if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
+                else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
+                else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
+                else { activeObj.direction = Direction.Up; }
+            }
 
-        
+            //set object's move component direction based on type
+            if (activeObj.type == ObjType.Dungeon_BlockSpike)
+            { activeObj.compMove.direction = activeObj.direction; }
+
+            //set the rotation of the sprite based on obj.direction                                             
+            Functions_GameObject.SetRotation(activeObj);
+            GetActiveObjInfo();
+        }
+
         public void CheckObjList(List<GameObject> objList)
         {   //does any obj on the widget's objList contain the mouse position?
             for (int i = 0; i < objList.Count; i++)
@@ -556,19 +513,6 @@ namespace DungeonRun
                 }
             }
         }
-        
-        
-
-        
-
-        
-
-        
-
-
-
-        
-
 
     }
 }

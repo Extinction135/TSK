@@ -34,12 +34,8 @@ namespace DungeonRun
         public static WidgetQuestItems QuestItems = new WidgetQuestItems();
 
         //editor widgets
-
         public static WidgetObjectTools ObjectTools = new WidgetObjectTools();
         public static WidgetRoomTools RoomTools = new WidgetRoomTools();
-
         public static WidgetObjects_Dungeon WidgetObjects_Dungeon = new WidgetObjects_Dungeon();
-
-        
     }
 }

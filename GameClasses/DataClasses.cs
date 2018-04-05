@@ -34,6 +34,7 @@ namespace DungeonRun
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean ShowDialogs = true; //turn dialogs on/off
+        public static Boolean HideEditorWidgets = false; //useful for previewing levels/rooms
         //cheats
         public static Boolean Invincibility = true; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?
@@ -70,12 +71,8 @@ namespace DungeonRun
                 InfiniteBombs = false;
                 MapCheat = false;
             }
-
-
-
-
-
             
+
             #region Set Developer Mode
 
             if (bootRoutine == BootRoutine.RoomBuilder)
@@ -89,15 +86,9 @@ namespace DungeonRun
                 InfiniteBombs = true; //hero has infinite bombs
                 CameraTracksHero = false; //center to room
                 ShowEnemySpawns = true; //necessary for editing
-
-            
             }
 
             #endregion
-
-            
-
-
 
 
         }
@@ -479,7 +470,7 @@ namespace DungeonRun
             buttons.Add(new ComponentButton("f3 room editor", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton("f4 level editor", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton("f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
-            //buttons.Add(new ComponentButton("f6 ---", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f6 hide widgets", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
             //buttons.Add(new ComponentButton("f7 ---", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
             //buttons.Add(new ComponentButton("f8 --", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
         }

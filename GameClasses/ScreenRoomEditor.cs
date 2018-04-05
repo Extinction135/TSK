@@ -70,25 +70,36 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             base.HandleInput(GameTime);
-            Widgets.ObjectTools.HandleInput();
-            Widgets.RoomTools.HandleInput();
+
+            if (!Flags.HideEditorWidgets)
+            {
+                Widgets.ObjectTools.HandleInput();
+                Widgets.RoomTools.HandleInput();
+            }
         }
 
         public override void Update(GameTime GameTime)
         {
             base.Update(GameTime);
-            Widgets.ObjectTools.Update();
-            Widgets.WidgetObjects_Dungeon.Update();
-            Widgets.RoomTools.Update();
+
+            if (!Flags.HideEditorWidgets)
+            {
+                Widgets.ObjectTools.Update();
+                Widgets.WidgetObjects_Dungeon.Update();
+                Widgets.RoomTools.Update();
+            }
         }
 
         public override void Draw(GameTime GameTime)
         {
             base.Draw(GameTime);
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            Widgets.RoomTools.Draw();
-            Widgets.WidgetObjects_Dungeon.Draw();
-            Widgets.ObjectTools.Draw(); //drawn last cause cursor
+            if (!Flags.HideEditorWidgets)
+            {
+                Widgets.RoomTools.Draw();
+                Widgets.WidgetObjects_Dungeon.Draw();
+                Widgets.ObjectTools.Draw(); //drawn last cause cursor
+            }
             ScreenManager.spriteBatch.End();
         }
     }
