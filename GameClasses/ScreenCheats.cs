@@ -97,14 +97,30 @@ namespace DungeonRun
 
             #region Set menuItems & labels
 
-            labels[0].text = "inf.\nhp"; //infinite hearts
+            //CheatsInfiniteHP
+            labels[0].text = "inf.\nhp"; 
+            Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteHP, menuItems[0]);
             menuItems[0].compSprite.position.X = window.interior.rec.X + 8 + 5;
             menuItems[0].compSprite.position.Y = window.interior.rec.Y + 16 + 8 + 5;
 
-
-
+            //CheatsInfiniteGold
+            labels[1].text = "refill\ngold"; 
+            Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteGold, menuItems[1]);
+            menuItems[1].compSprite.position.X = menuItems[0].compSprite.position.X;
+            menuItems[1].compSprite.position.Y = menuItems[0].compSprite.position.Y + 24;
 
             #endregion
+
+
+
+            #region Set Neighbors
+
+            menuItems[0].neighborDown = menuItems[1];
+            menuItems[1].neighborUp = menuItems[0];
+
+            #endregion
+
+
 
 
             #region Finish Up, prep for screen opening
@@ -145,20 +161,17 @@ namespace DungeonRun
             if (Functions_Input.IsNewButtonPress(Buttons.A))
             {
 
-                #region 0 - Invincibility
+                #region Handle Cheat Effects
 
-                if (currentlySelected == menuItems[0])
+                if (currentlySelected.type == MenuItemType.CheatsInfiniteHP)
                 {
-                    if (Flags.Invincibility)
-                    {   //set menuItem to 'unknown' sprite
-                        Flags.Invincibility = false;
-                        menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_Unknown[0];
-                    }
-                    else
-                    {   //set menuItem to 'X' sprite
-                        Flags.Invincibility = true;
-                        menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_Cross[0];
-                    }
+                    if (Flags.Invincibility) { Flags.Invincibility = false; }
+                    else { Flags.Invincibility = true; }
+                }
+                else if (currentlySelected.type == MenuItemType.CheatsInfiniteGold)
+                {
+                    if (Flags.InfiniteGold) { Flags.InfiniteGold = false; }
+                    else { Flags.InfiniteGold = true; }
                 }
 
                 #endregion
@@ -285,7 +298,7 @@ namespace DungeonRun
 
                 Functions_Draw.Draw(selectionBox);
             }
-
+            Widgets.Info.Draw();
             ScreenManager.spriteBatch.End();
         }
 
@@ -294,11 +307,11 @@ namespace DungeonRun
         void SetCheatMenuItems()
         {   //reset all menuItems to unknown state
             for (i = 0; i < menuItems.Count; i++)
-            { menuItems[i].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_Unknown[0]; }
+            { menuItems[i].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOff[0]; }
 
             //set menuItem based on boolean
-            if (Flags.Invincibility) { menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_Cross[0]; }
-
+            if (Flags.Invincibility) { menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+            if (Flags.InfiniteGold) { menuItems[1].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             //expand this to include additional cheats
 
         }

@@ -50,18 +50,15 @@ TODAY:
 
 
 
+Cheats++
 
+added all current cheats into MenuItemType.
+updated MenuItem.SetType() to set cheat menuItem 
+descriptions, titles, and initial frames.
+updated CheatScreen to draw InfoWidget.
 
-
-
-
-Fix Options Widget
-
-added sprite for 'SaveGame' menuItem.
-added new animFrame def for arrow to disk sprite.
-updated menuItem.setType() to set SaveGame to new
-arrow to disk sprite, with no rotation.
-fixed options widget menuItems to display properly.
+added InfiniteGold menuItem, linked neighbors,
+playtested, working as expected.
 
 
 
@@ -71,21 +68,30 @@ fixed options widget menuItems to display properly.
 add additional cheats to cheat screen:
 
 
+we need to add more cheats
 
-cheats we NEED RIGHT NOW for testing purposes:
-infinite gold
-map cheat
-invincibility
+then we need to add the proper menuItems to cheats screen
+switch to checking menuItem.type for cheat effect
 
-
-cheats we need soonish:
-nice:
-infinite magic
-infinite arrows
-infinite bombs
-got the dungeon key (flip the boolean, its so easy)
+then add additional cheats + effects
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cheats++
 
 unlock all weapons, items, equipment (unlock all)
 this would be a specific method in a Functions_Cheats class.

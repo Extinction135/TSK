@@ -242,11 +242,7 @@ namespace DungeonRun
     {
         Unknown,
 
-        //loadout menuItems
-        InventoryGold,
-        InventoryMap,
-        InventoryKey,
-
+        //options
         OptionsContinue,
 
         OptionsNewGame,
@@ -261,12 +257,33 @@ namespace DungeonRun
 
         OptionsCheatMenu,
 
-        //vendor only menuItems
+
+
+        //cheats
+        CheatsInfiniteHP,
+        CheatsInfiniteGold,
+        CheatsInfiniteMagic,
+        CheatsInfiniteArrows,
+        CheatsInfiniteBombs,
+
+        CheatsMap,
+        CheatsKey,
+
+
+
+        //loadout menuItems
+        InventoryGold,
+        InventoryMap,
+        InventoryKey,
+
+        
+
+        //vendor menuItems
         ItemHeart,
         ItemBomb3Pack,
         ItemArrowPack,
 
-        //inventory / vendor menuItems
+        //inventory menuItems
         ItemBoomerang,
         ItemBomb,
 

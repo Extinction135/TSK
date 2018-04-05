@@ -389,25 +389,25 @@ namespace DungeonRun
             else if (Type == MenuItemType.OptionsAudioCtrls)
             {
                 MenuItem.name = "Audio Controls";
-                MenuItem.description = "Changes the volume\nof soundfx and music.";
+                MenuItem.description = "Changes the volume \nof soundfx and music.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_SpeakerVolume;
             }
             else if (Type == MenuItemType.OptionsInputCtrls)
             {
                 MenuItem.name = "Input Controls";
-                MenuItem.description = "Changes the mapping\nof input buttons.";
+                MenuItem.description = "Changes the mapping \nof input buttons.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Controller;
             }
             else if (Type == MenuItemType.OptionsVideoCtrls)
             {
                 MenuItem.name = "Video Controls";
-                MenuItem.description = "Changes the size\nof the game window.";
+                MenuItem.description = "Changes the size \nof the game window.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Monitor;
             }
             else if (Type == MenuItemType.OptionsGameCtrls)
             {
                 MenuItem.name = "Game Controls";
-                MenuItem.description = "Changes game\ncontrols + settings.";
+                MenuItem.description = "Changes game \ncontrols + settings.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Joystick;
             }
 
@@ -415,16 +415,67 @@ namespace DungeonRun
             else if (Type == MenuItemType.OptionsCheatMenu)
             {
                 MenuItem.name = "Cheat Menu";
-                MenuItem.description = "Flip cheats\n on or off.";
+                MenuItem.description = "Flip cheats \non or off.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_QuestionMark;
             }
+
+
+
+
+
+
+
+
 
             #endregion
 
 
+            #region Cheat menuItems
 
-            
+            else if (Type == MenuItemType.CheatsInfiniteArrows)
+            {
+                MenuItem.name = "Infinite Arrows";
+                MenuItem.description = "An endless supply of \nthose sharp pointy things.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+            else if (Type == MenuItemType.CheatsInfiniteBombs)
+            {
+                MenuItem.name = "Infinite Bombs";
+                MenuItem.description = "Just don't get caught \nin the explosions.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+            else if (Type == MenuItemType.CheatsInfiniteGold)
+            {
+                MenuItem.name = "Infinite Gold";
+                MenuItem.description = "You literally can't \nspend it all.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+            else if (Type == MenuItemType.CheatsInfiniteHP)
+            {
+                MenuItem.name = "Infinite Hearts";
+                MenuItem.description = "You won't take any \ndamage, ever.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+            else if (Type == MenuItemType.CheatsInfiniteMagic)
+            {
+                MenuItem.name = "Infinite Magic";
+                MenuItem.description = "Redefining OP.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+            else if (Type == MenuItemType.CheatsKey)
+            {
+                MenuItem.name = "Has Key";
+                MenuItem.description = "You permanently have \nthe dungeon key.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+            else if (Type == MenuItemType.CheatsMap)
+            {
+                MenuItem.name = "Has Map";
+                MenuItem.description = "You permanently have \nthe dungeon map.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
 
+            #endregion
 
 
 
