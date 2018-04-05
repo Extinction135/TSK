@@ -345,7 +345,9 @@ namespace DungeonRun
                     //dont return; here, continue to objToolState check below on purpose
                 }
 
-                //Handle Grab/Move RoomObject State
+
+                #region Handle Grab/Move RoomObject State
+
                 if (objToolState == ObjToolState.MoveObj) { GrabRoomObject(); }
 
                 //we handle grabbing roomObjs last because these roomObjs could be
@@ -357,6 +359,9 @@ namespace DungeonRun
                 //outside of the room level, so we don't put this check into the
                 //currentRoom collision check above. if we did, user couldn't grab
                 //objs outside of the room's rec, but COULD drop them, which is dumb.
+
+                #endregion
+
             }
 
             #endregion

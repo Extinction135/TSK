@@ -47,8 +47,8 @@ namespace DungeonRun
         public override void LoadContent()
         {
             //place the object tools + room tools widgets
-            Widgets.ObjectTools.Reset(16 * 1, 16 * 17);
-            Widgets.RoomTools.Reset(16 * 33, 16 * 16);
+            Widgets.ObjectTools.Reset(16 * 1, 16 * 17 + 8);
+            Widgets.RoomTools.Reset(16 * 33, 16 * 17 + 8);
             Widgets.WidgetObjects_Dungeon.Reset(16 * 1, 16 * 2);
 
             //register this level screen with Functions_Level

@@ -158,7 +158,7 @@ namespace DungeonRun
                         using (stream)
                         { Widgets.RoomTools.roomData = (RoomXmlData)serializer.Deserialize(stream); }
                         //store filename in RoomTools widget
-                        Widgets.RoomTools.roomNameText.text = openDialog.SafeFileName;
+                        Widgets.RoomTools.window.title.text = openDialog.SafeFileName;
                         //build the loaded roomData
                         Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
                     }

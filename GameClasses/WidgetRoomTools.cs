@@ -25,15 +25,13 @@ namespace DungeonRun
         public ComponentButton roomTypeBtn;
         public ComponentButton reloadRoomBtn;
 
-        public ComponentText roomNameText;
-
 
 
         public WidgetRoomTools()
         {   //create Window
             window = new MenuWindow( 
                 new Point(0, 0), 
-                new Point(16 * 6, 16 * 5 + 8), 
+                new Point(16 * 6, 16 * 4), 
                 "Room Tools");
             //create Save/Play/Load New/Type/Reload Buttons
             buttons = new List<ComponentButton>();
@@ -50,7 +48,6 @@ namespace DungeonRun
             buttons.Add(reloadRoomBtn);
 
             roomType = RoomType.Column;
-            roomNameText = new ComponentText(Assets.font, "filename", new Vector2(0, 0), Assets.colorScheme.textDark);
         }
 
         public override void Reset(int X, int Y)
@@ -59,27 +56,24 @@ namespace DungeonRun
             
             //Move Buttons
             saveBtn.rec.X = X + 16 * 1 - 8;
-            saveBtn.rec.Y = Y + 16 * 1 + 8;
+            saveBtn.rec.Y = Y + 16 * 1 + 8 - 2;
             Functions_Component.CenterText(saveBtn);
 
             reloadRoomBtn.rec.X = X + 16 * 1 + 17;
-            reloadRoomBtn.rec.Y = Y + 16 * 1 + 8;
+            reloadRoomBtn.rec.Y = Y + 16 * 1 + 8 - 2;
             Functions_Component.CenterText(reloadRoomBtn);
 
             loadBtn.rec.X = X + 16 * 4 + 10 - 8;
-            loadBtn.rec.Y = Y + 16 * 1 + 8;
+            loadBtn.rec.Y = Y + 16 * 1 + 8 - 2;
             Functions_Component.CenterText(loadBtn);
 
             newRoomBtn.rec.X = X + 16 * 1 - 8;
-            newRoomBtn.rec.Y = Y + 16 * 2 + 8;
+            newRoomBtn.rec.Y = Y + 16 * 2 - 0 + 2;
             Functions_Component.CenterText(newRoomBtn);
 
             roomTypeBtn.rec.X = X + 16 * 4 - 8 - 1;
-            roomTypeBtn.rec.Y = Y + 16 * 2 + 8;
+            roomTypeBtn.rec.Y = Y + 16 * 2 - 0 + 2;
             Functions_Component.CenterText(roomTypeBtn);
-
-            roomNameText.position.X = X + 16 * 1 - 8;
-            roomNameText.position.Y = Y + 16 * 3 + 5;
         }
 
         public void HandleInput()
@@ -193,7 +187,7 @@ namespace DungeonRun
             Functions_MenuWindow.Update(window);
             if (window.interior.displayState == DisplayState.Opened)
             {
-
+                //nothzing
             }
         }
 
@@ -204,10 +198,8 @@ namespace DungeonRun
             {
                 for (i = 0; i < buttons.Count; i++) //draw all the buttons
                 { Functions_Draw.Draw(buttons[i]); }
-                Functions_Draw.Draw(roomNameText);
             }
         }
-
 
 
 
@@ -285,7 +277,6 @@ namespace DungeonRun
             Pool.hero.direction = Direction.Down; //face hero down
             Flags.Paused = true;
         }
-
 
     }
 }

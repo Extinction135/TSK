@@ -50,32 +50,21 @@ TODAY:
 
 
 
+Improvements++
 
+moved the obj tools widget down 8 pixels on the y axis,
+to improve it's separation from the obj widgets above it.
 
-
-
-LevelEditor++
-
-created Widgets.WidgetObjects_Environment.
-this duplicates WidgetObjects_Dungeon, with changes to be
-filled with the few world objects that exist right now.
-
-updated ScreenLevelEditor to match RoomEditor,
-implementing the HideEditorWidget boolean checks,
-modified to display the new WidgetObjects_Environment.
+updated RoomTools Widget to match mockups, more or less.
+it's more compressed in game than in mockups, but the
+functionality is there, so i'm fine with it.
 playtested, working as expected.
 
-ObjTools++
-
-added actually useful comments to ObjTools.HandleInput().
-reorganized and regioned ObjTools.HandleInput().
 
 
 
 
 
-
-obj tools widget needs to go down 16 pixels on y axis, needs separation from obj widget above it
 
 
 
@@ -87,23 +76,8 @@ obj tools widget needs to go down 16 pixels on y axis, needs separation from obj
 
 
 editor ++ - these are the widgets that are on the RIGHT!
-
 level - building objs widget
 dungeon - enemy tools widget
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -166,7 +140,15 @@ the door decoration algorithm to add torches, instead of replacing the wall
 with a wall torch, which acts simply as a wall.
 
 
-
+the barrel became a bomb upon being hit.
+which is functional, but isn't correct at all.
+this is because we need to allow projectile sprites
+to live on other sheets than the entities sheet,
+and this is handled in Obj.SetType().
+note that we do a group check at the end that sets the
+texture, so we need to pull projectiles out of that check.
+instead we'll just have to set them by hand inside the
+SetType() checks, of which there are many
 
 
 

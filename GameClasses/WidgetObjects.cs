@@ -53,6 +53,7 @@ namespace DungeonRun
     }
 
 
+
     public class WidgetObject : Widget
     {
         public List<GameObject> objList;
@@ -91,9 +92,6 @@ namespace DungeonRun
         }
 
     }
-
-
-
 
     public class WidgetObjects_Dungeon : WidgetObject
     {
@@ -187,7 +185,6 @@ namespace DungeonRun
         }
     }
 
-
     public class WidgetObjects_Environment : WidgetObject
     {
         public WidgetObjects_Environment()
@@ -277,6 +274,7 @@ namespace DungeonRun
             Functions_Widget.PositionObjs(this);
         }
     }
+
 
 
 }
