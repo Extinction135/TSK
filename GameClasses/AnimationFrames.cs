@@ -381,7 +381,9 @@ namespace DungeonRun
         #region Ui Items
 
         public static List<Byte4> Ui_SelectionBox = new List<Byte4> { new Byte4(10, 1, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Unknown = new List<Byte4> { new Byte4(11, 1, 0, 0) };
 
+        //editor ui
         public static List<Byte4> Ui_Add = new List<Byte4> { new Byte4(10, 4, 0, 0) };
         public static List<Byte4> Ui_Delete = new List<Byte4> { new Byte4(11, 4, 0, 0) };
         public static List<Byte4> Ui_Rotate = new List<Byte4> { new Byte4(12, 4, 0, 0) };
@@ -391,35 +393,28 @@ namespace DungeonRun
         public static List<Byte4> Ui_Hand_Point = new List<Byte4> { new Byte4(10, 3, 0, 0) };
         public static List<Byte4> Ui_Hand_Press = new List<Byte4> { new Byte4(11, 3, 0, 0) };
 
-        
-        //menuItems
-        public static List<Byte4> Ui_MenuItem_Unknown = new List<Byte4> { new Byte4(11, 1, 0, 0) };
-
+        //game ui
         public static List<Byte4> Ui_MenuItem_InventoryGold = new List<Byte4>
         {
             new Byte4(10*2, 0, 0, 0), new Byte4(10*2+1, 0, 0, 0),
             new Byte4(11*2, 0, 0, 0), new Byte4(11*2+1, 0, 0, 0)
         };
 
-        public static List<Byte4> Ui_MenuItem_OptionsContinue = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_OptionsNewGame = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_OptionsLoadGame = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_OptionsQuitGame = new List<Byte4> { new Byte4(15, 1, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_ArrowUp = new List<Byte4> { new Byte4(14, 1, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Monitor = new List<Byte4> { new Byte4(15, 1, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_QuestionMark = new List<Byte4> { new Byte4(14, 2, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Controller = new List<Byte4> { new Byte4(15, 2, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Joystick = new List<Byte4> { new Byte4(14, 3, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_SpeakerVolume = new List<Byte4> { new Byte4(15, 3, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Cross = new List<Byte4> { new Byte4(14, 4, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_ArrowRight = new List<Byte4> { new Byte4(15, 4, 0, 0) };
 
-        public static List<Byte4> Ui_MenuItem_OptionsVideoCtrls = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_OptionsInputCtrls = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_OptionsAudioCtrls = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_OptionsGameOptions = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-
-        public static List<Byte4> Ui_MenuItem_OptionsSaveGame = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_OptionsHelpInfo = new List<Byte4> { new Byte4(15, 1, 0, 0) };
-
+        //inventory
         public static List<Byte4> Ui_MenuItem_ItemHeart = new List<Byte4> { new Byte4(0, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_ItemBomb = new List<Byte4> { new Byte4(0, 6, 0, 0) };
         public static List<Byte4> Ui_MenuItem_ItemBomb3Pack = new List<Byte4> { new Byte4(0, 7, 0, 0) };
         public static List<Byte4> Ui_MenuItem_ItemArrowPack = new List<Byte4> { new Byte4(0, 8, 0, 0) };
         public static List<Byte4> Ui_MenuItem_ItemBoomerang = new List<Byte4> { new Byte4(0, 9, 0, 0) };
-
 
         public static List<Byte4> Ui_MenuItem_Bottle_Empty = new List<Byte4> { new Byte4(1, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Bottle_Health = new List<Byte4> { new Byte4(1, 6, 0, 0) };

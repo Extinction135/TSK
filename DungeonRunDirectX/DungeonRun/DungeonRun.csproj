@@ -164,6 +164,9 @@
     <Compile Include="..\..\GameClasses\Screen.cs">
       <Link>Classes\Screen.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenCheats.cs">
+      <Link>Classes\ScreenCheats.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenDialog.cs">
       <Link>Classes\ScreenDialog.cs</Link>
     </Compile>

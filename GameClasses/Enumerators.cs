@@ -248,15 +248,18 @@ namespace DungeonRun
         InventoryKey,
 
         OptionsContinue,
+
         OptionsNewGame,
         OptionsLoadGame,
         OptionsQuitGame,
+        OptionsSaveGame,
+
         OptionsVideoCtrls,
         OptionsInputCtrls,
         OptionsAudioCtrls,
         OptionsGameCtrls,
-        OptionsSaveGame,
-        OptionsHelpInfo,
+
+        OptionsCheatMenu,
 
         //vendor only menuItems
         ItemHeart,

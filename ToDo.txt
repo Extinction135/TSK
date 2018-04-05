@@ -50,25 +50,41 @@ TODAY:
 
 
 
-Design Cheats Screen
-
-designed cheats screen with a few goals in mind:
-1. should be simple and easy to read.
-2. should be easily expandable later on.
-3. should fit into the current design language,
-meaning window frame, title, selection box linked
-to menuItems or gameObjects, and text describing 
-the cheats effect.
-
-the mockup i've designed to meet these goals is
-pretty good in my opinion. it's simple, and will
-be easy to implement in code too.
 
 
 
+Cheats++
+
+created ScreenCheats.cs, to contain all the cheats.
+improved design of cheats screen, to include the info
+widget, which can be used to display additioanl info
+about the cheat. we just need to create menuItems to rep
+cheats, with a description.
+
+
+created OptionsCheatMenu value in MenuItemType enum.
+updated OptionsWidget to only display working menuItems,
+for now that means save, cheat, load, and quit. all
+other menu options have been set to unknown.
+
+updated InventoryScreen to process input for clicking on
+cheat menu item, which simply creates a cheat screen.
+
+removed Help menuItem type and related code.
+updated MenuItem.SetType() to use proper animationFrames.
+updated CheatScreen to function properly, with
+hero's invincibility implemented.
+
+playtested, working as expected.
 
 
 
+
+
+
+
+Fix MenuItem Sprites for Options Widget
+this is actually an animationFrames problem.
 
 
 
@@ -100,6 +116,9 @@ got the dungeon key (flip the boolean, its so easy)
 
 
 
+unlock all weapons, items, equipment (unlock all)
+this would be a specific method in a Functions_Cheats class.
+but we'll need to add it to cheats mockup + code too.
 
 
 
@@ -118,9 +137,15 @@ got the dungeon key (flip the boolean, its so easy)
 
 
 
+pit traps should create pit teeth?
+pits create sparkle particles instead of pit bubbles
+this again, is a 'particle needs to be on the dungeon sheet' problem
+cause we're forcing all particles to live on the entity sheet rn
 
 
 
+clean up testing room data
+we've got syntax errors in the xml
 
 
 

@@ -24,7 +24,7 @@ namespace DungeonRun
             window = new MenuWindow(new Point(-100, -100),
                 new Point(100, 100), "Options");
 
-            //create menuitems
+            //create menuitem labels
             labels = new List<ComponentText>();
             for (i = 0; i < 8; i++)
             { labels.Add(new ComponentText(Assets.font, 
@@ -68,40 +68,38 @@ namespace DungeonRun
             #endregion
 
 
-            #region Place Labels and set their text strings
+            #region Set menuItem data
+
+            labels[0].text = "save\ngame";
+            Functions_MenuItem.SetType(MenuItemType.OptionsSaveGame, menuItems[0]);
+            menuItems[0].compSprite.rotation = Rotation.Clockwise180;
+
+            labels[1].text = "cheat\nmenu";
+            Functions_MenuItem.SetType(MenuItemType.OptionsCheatMenu, menuItems[1]);
+
+            labels[2].text = "";
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[2]);
+
+            labels[3].text = "-";
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[3]);
+
+            labels[4].text = "";
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[4]);
+
+            labels[5].text = "";
+            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[5]);
+
+            labels[6].text = "load\ngame";
+            Functions_MenuItem.SetType(MenuItemType.OptionsLoadGame, menuItems[6]);
+
+            labels[7].text = "quit\ngame";
+            Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, menuItems[7]);
 
             for (i = 0; i < 8; i++)
-            {
+            {   //position labels relative to menuItems
                 labels[i].position.X = menuItems[i].compSprite.position.X + 12;
                 labels[i].position.Y = menuItems[i].compSprite.position.Y - 12;
             }
-
-            labels[0].text = "save\ngame";
-            labels[1].text = "help\ninfo";
-
-            labels[2].text = "video\nctrls";
-            labels[3].text = "game\nctrls";
-
-            labels[4].text = "audio\nctrls";
-            labels[5].text = "input\nctrls";
-
-            labels[6].text = "load\ngame";
-            labels[7].text = "quit\ngame";
-
-            #endregion
-
-
-            #region Set the menuItem's data
-
-            Functions_MenuItem.SetType(MenuItemType.OptionsSaveGame, menuItems[0]);
-            menuItems[0].compSprite.rotation = Rotation.Clockwise180;
-            Functions_MenuItem.SetType(MenuItemType.OptionsHelpInfo, menuItems[1]);
-            Functions_MenuItem.SetType(MenuItemType.OptionsVideoCtrls, menuItems[2]);
-            Functions_MenuItem.SetType(MenuItemType.OptionsGameCtrls, menuItems[3]);
-            Functions_MenuItem.SetType(MenuItemType.OptionsAudioCtrls, menuItems[4]);
-            Functions_MenuItem.SetType(MenuItemType.OptionsInputCtrls, menuItems[5]);
-            Functions_MenuItem.SetType(MenuItemType.OptionsLoadGame, menuItems[6]);
-            Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, menuItems[7]);
 
             #endregion
 

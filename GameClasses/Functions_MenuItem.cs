@@ -353,67 +353,81 @@ namespace DungeonRun
             {
                 MenuItem.name = "Continue Game";
                 MenuItem.description = "Continues the\nlast game.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsContinue;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowUp;
+                MenuItem.compSprite.rotation = Rotation.Clockwise90;
             }
+
+
+
             else if (Type == MenuItemType.OptionsNewGame)
             {
                 MenuItem.name = "New Game";
                 MenuItem.description = "Starts a new\ngame.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsNewGame;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowRight;
             }
             else if (Type == MenuItemType.OptionsLoadGame)
             {
                 MenuItem.name = "Load Game";
                 MenuItem.description = "Loads a saved game.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsLoadGame;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowUp;
             }
             else if (Type == MenuItemType.OptionsQuitGame)
             {
                 MenuItem.name = "Quit Game";
                 MenuItem.description = "Quit the current game.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsQuitGame;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Cross;
             }
-            //
+            else if (Type == MenuItemType.OptionsSaveGame)
+            {
+                MenuItem.name = "Save Game";
+                MenuItem.description = "Saves the \ncurrent game.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowUp;
+                MenuItem.compSprite.rotation = Rotation.Clockwise180;
+            }
+
+
+
             else if (Type == MenuItemType.OptionsAudioCtrls)
             {
                 MenuItem.name = "Audio Controls";
                 MenuItem.description = "Changes the volume\nof soundfx and music.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsAudioCtrls;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_SpeakerVolume;
             }
             else if (Type == MenuItemType.OptionsInputCtrls)
             {
                 MenuItem.name = "Input Controls";
                 MenuItem.description = "Changes the mapping\nof input buttons.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsInputCtrls;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Controller;
             }
             else if (Type == MenuItemType.OptionsVideoCtrls)
             {
                 MenuItem.name = "Video Controls";
                 MenuItem.description = "Changes the size\nof the game window.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsVideoCtrls;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Monitor;
             }
             else if (Type == MenuItemType.OptionsGameCtrls)
             {
                 MenuItem.name = "Game Controls";
                 MenuItem.description = "Changes game\ncontrols + settings.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsGameOptions;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Joystick;
             }
-            //
-            else if (Type == MenuItemType.OptionsSaveGame)
+
+
+            else if (Type == MenuItemType.OptionsCheatMenu)
             {
-                MenuItem.name = "Save Game";
-                MenuItem.description = "Saves the current game.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsSaveGame;
-            }
-            else if (Type == MenuItemType.OptionsHelpInfo)
-            {
-                MenuItem.name = "Help Info";
-                MenuItem.description = "View the help files.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_OptionsHelpInfo;
+                MenuItem.name = "Cheat Menu";
+                MenuItem.description = "Flip cheats\n on or off.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_QuestionMark;
             }
 
             #endregion
+
+
+
             
+
+
+
 
             else
             {   //if the type was unhandled, default to unknown

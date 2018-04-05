@@ -131,6 +131,10 @@ namespace DungeonRun
                     exitAction = ExitAction.Title;
                     Assets.Play(Assets.sfxQuit);
                 }
+                else if (currentlySelected.type == MenuItemType.OptionsCheatMenu)
+                {
+                    ScreenManager.AddScreen(new ScreenCheats());
+                }
                 else if (currentlySelected.type == MenuItemType.OptionsSaveGame)
                 {
                     ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.Save));
@@ -312,6 +316,9 @@ namespace DungeonRun
             Widgets.Inventory.Update();
             Widgets.Options.Update();
 
+
+            #region Handle SelectionBox
+
             //pulse the selectionBox alpha
             if (selectionBox.alpha >= 1.0f) { selectionBox.alpha = 0.1f; }
             else { selectionBox.alpha += 0.025f; }
@@ -320,6 +327,10 @@ namespace DungeonRun
             //scale the selectionBox down to 1.0
             if (selectionBox.scale > 1.0f) { selectionBox.scale -= 0.07f; }
             else { selectionBox.scale = 1.0f; }
+
+            #endregion
+
+
             //animate the currently selected menuItem - this scales it back down to 1.0
             if (currentlySelected.type != MenuItemType.InventoryGold) //inventory gold animates already
             {
