@@ -49,22 +49,20 @@ TODAY:
 
 
 
-Add Building Objects Widget to LevelEditor
 
-created WidgetObjects_Building, 
-to contain future building objects.
-linked up to the LevelEditor and tested,
-working as expected.
+Design Cheats Screen
 
+designed cheats screen with a few goals in mind:
+1. should be simple and easy to read.
+2. should be easily expandable later on.
+3. should fit into the current design language,
+meaning window frame, title, selection box linked
+to menuItems or gameObjects, and text describing 
+the cheats effect.
 
-
-
-
-
-
-
-
-
+the mockup i've designed to meet these goals is
+pretty good in my opinion. it's simple, and will
+be easy to implement in code too.
 
 
 
@@ -75,23 +73,69 @@ working as expected.
 
 
 
-Design the Cheats Menu
 
-this requires an on/off game widget object that the user can interact with
-via the A button press, should have a sfx and an animation, so it should
-be a sprite, with a sprite frame sequence.
+Cheats Menu should be accesible from the Inventory screen, from the Options widget.
+we'll need a menuItem for the cheats screen, plus a sprite (maybe).
+
+
+
+turning a cheat on/off should use the switch sound fx.
+
+
+
+
 
 cheats we NEED RIGHT NOW for testing purposes:
 infinite gold
 map cheat
 invincibility
 
+
+cheats we need soonish:
 nice:
 infinite magic
 infinite arrows
 infinite bombs
+got the dungeon key (flip the boolean, its so easy)
 
-this Cheats Menu should be accesible from the Inventory screen, from the Options widget.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
