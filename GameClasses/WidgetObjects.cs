@@ -37,6 +37,12 @@ namespace DungeonRun
                             WO.window.interior.rec.X + 13 + (i * 16),
                             WO.window.interior.rec.Y + 29 + (row * 16));
                         Functions_Component.Align(WO.objList[counter]);
+
+                        //manually set the collisionRecs (they need to be 16x16, default aligned for editor use)
+                        WO.objList[counter].compCollision.rec.X = (int)WO.objList[counter].compSprite.position.X - 8;
+                        WO.objList[counter].compCollision.rec.Y = (int)WO.objList[counter].compSprite.position.Y - 8;
+                        WO.objList[counter].compCollision.rec.Width = 16;
+                        WO.objList[counter].compCollision.rec.Height = 16;
                     }
 
                     counter++;
@@ -50,6 +56,11 @@ namespace DungeonRun
     public class WidgetObject : Widget
     {
         public List<GameObject> objList;
+
+        public override void Reset(int X, int Y)
+        {
+            Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
+        }
 
         public override void Update()
         {
@@ -80,6 +91,8 @@ namespace DungeonRun
         }
 
     }
+
+
 
 
     public class WidgetObjects_Dungeon : WidgetObject
@@ -173,6 +186,11 @@ namespace DungeonRun
             Functions_Widget.PositionObjs(this);
         }
     }
+
+
+
+
+
 
 
 }

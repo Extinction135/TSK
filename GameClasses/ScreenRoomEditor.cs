@@ -17,13 +17,36 @@ namespace DungeonRun
     public class ScreenRoomEditor : ScreenLevel
     {
 
-        public ScreenRoomEditor() { this.name = "Room Editor Screen"; }
+        public ScreenRoomEditor()
+        {
+            this.name = "Room Editor Screen";
+
+            //unlock most/all items
+            PlayerData.current = new SaveData();
+            PlayerData.current.heartsTotal = 9;
+            Pool.hero.health = 3;
+            PlayerData.current.bombsCurrent = 99;
+            PlayerData.current.arrowsCurrent = 99;
+            //set items
+            PlayerData.current.bottleA = MenuItemType.BottleHealth;
+            PlayerData.current.bottleB = MenuItemType.BottleMagic;
+            PlayerData.current.bottleC = MenuItemType.BottleFairy;
+            PlayerData.current.magicFireball = true;
+            //set weapons
+            PlayerData.current.weaponBow = true;
+            PlayerData.current.weaponNet = true;
+            //set armor
+            PlayerData.current.armorCape = true;
+            //set equipment
+            PlayerData.current.equipmentRing = true;
+        }
 
         public override void LoadContent()
         {
             //place the object tools + room tools widgets
             Widgets.ObjectTools.Reset(16 * 1, 16 * 17);
             Widgets.RoomTools.Reset(16 * 33, 16 * 16);
+            Widgets.WidgetObjects_Dungeon.Reset(16 * 1, 16 * 2);
 
             //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
@@ -41,8 +64,6 @@ namespace DungeonRun
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
-            Functions_Editor.SetEditorFlags();
-            Functions_Editor.SetEditorLoadout();
             Flags.Paused = false; //unpause editor initially
         }
 

@@ -43,7 +43,8 @@ namespace DungeonRun
         public static Boolean MapCheat = true; //sets dungeon.map true when dungeon is built
         
         static Flags()
-        {
+        {   
+
             if (Release)
             {
                 bootRoutine = BootRoutine.Game;
@@ -69,6 +70,36 @@ namespace DungeonRun
                 InfiniteBombs = false;
                 MapCheat = false;
             }
+
+
+
+
+
+            
+            #region Set Developer Mode
+
+            if (bootRoutine == BootRoutine.RoomBuilder)
+            {
+                //editor specific flags
+                EnableTopMenu = true; //necessary
+                Invincibility = true; //hero cannot die in editor
+                InfiniteMagic = true; //hero has infinite magic
+                InfiniteGold = true; //hero has infinite gold
+                InfiniteArrows = true; //hero has infinite arrows
+                InfiniteBombs = true; //hero has infinite bombs
+                CameraTracksHero = false; //center to room
+                ShowEnemySpawns = true; //necessary for editing
+
+            
+            }
+
+            #endregion
+
+            
+
+
+
+
         }
     }
 

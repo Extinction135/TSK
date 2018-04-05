@@ -316,8 +316,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
             #region Match position of cursor sprite to cursor
 
             cursorSprite.position.X = Input.cursorPos.X;
@@ -334,16 +332,15 @@ namespace DungeonRun
             #endregion
 
 
+            #region Set toolTip's animation frame based on objToolState
 
-
-            //set toolTip's animation frame based on objToolState
             if (objToolState == ObjToolState.AddObj)
             { toolTipSprite.currentFrame = AnimationFrames.Ui_Add[0]; }
             else if (objToolState == ObjToolState.DeleteObj)
             { toolTipSprite.currentFrame = AnimationFrames.Ui_Delete[0]; }
             else { toolTipSprite.currentFrame = AnimationFrames.Ui_Rotate[0]; }
 
-
+            #endregion
 
 
 
@@ -376,7 +373,7 @@ namespace DungeonRun
                 //check cursorPos against ObjectWidgets
                 else if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
                 {
-                    //CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
+                    CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
                     return;
                 }
 
@@ -542,12 +539,10 @@ namespace DungeonRun
 
 
 
-        /*
-        int i;
-
-        public static void CheckObjList(List<GameObject> objList)
+        
+        public void CheckObjList(List<GameObject> objList)
         {   //does any obj on the widget's objList contain the mouse position?
-            for (i = 0; i < objList.Count; i++)
+            for (int i = 0; i < objList.Count; i++)
             {   //if there is a collision, set the active object to the object clicked on
                 if (objList[i].compCollision.rec.Contains(Input.cursorPos))
                 {
@@ -561,7 +556,7 @@ namespace DungeonRun
                 }
             }
         }
-        */
+        
         
 
         

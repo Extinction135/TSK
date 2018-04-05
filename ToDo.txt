@@ -52,20 +52,21 @@ TODAY:
 
 
 
-ReImplement ObjTools and RoomTools Widgets
-
-updated git ignore file to ignore photoshops *.tmp files.
-modified WidgetObjectTools to match mockup, with basic functionality.
-modified how ObjTools displays the current obj's name and direction.
-playtested to be working in most aspects.
 
 
 
+Editor++
 
+modified how Functions_Widget.PositionObjs() handled the
+collision recs of passed objs - the recs are now reset to
+16x16 and aligned with a default offset which makes selecting
+them alot easier in DungeonObj widget.
+added Reset() method to WidgetObject semi-base class.
+playtested, working as expected.
 
+removed Functions_Editor from Project, those methods
+were integrated into boot sequence and RoomEditor constructor.
 
-
-get objTools selecting dungeon objects properly.
 
 
 

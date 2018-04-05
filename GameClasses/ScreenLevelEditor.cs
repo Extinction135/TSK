@@ -37,8 +37,6 @@ namespace DungeonRun
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
-            Functions_Editor.SetEditorFlags();
-            Functions_Editor.SetEditorLoadout();
             Flags.Paused = false; //unpause editor initially
         }
 
