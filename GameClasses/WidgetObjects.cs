@@ -14,8 +14,6 @@ using Microsoft.Xna.Framework.Media;
 namespace DungeonRun
 {
 
-
-
     public static class Functions_Widget
     {
         //need a function to set the objList items relative to the window frame
@@ -23,6 +21,7 @@ namespace DungeonRun
         static int i = 0;
         static int row = 0;
         static int counter = 0;
+
         public static void PositionObjs(WidgetObject WO)
         {
             counter = 0;
@@ -44,9 +43,8 @@ namespace DungeonRun
                 }
             }
         }
+
     }
-
-
 
 
     public class WidgetObject : Widget
@@ -82,7 +80,6 @@ namespace DungeonRun
         }
 
     }
-
 
 
     public class WidgetObjects_Dungeon : WidgetObject

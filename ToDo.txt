@@ -52,22 +52,25 @@ TODAY:
 
 
 
-Redefine Objects Widget
+ReImplement ObjTools and RoomTools Widgets
 
-created WidgetObject.cs file, which will contain all the classes
-related to the new object widgets that are being developed.
-once they're designed and integrated, i'll split this file apart
-or maybe not depending on what the design calls for. if you
-haven't noticed by now, IDGAF about subscribing blindly to paradigms.
-this is just the fastest way to dev the data and systems right now.
+updated git ignore file to ignore photoshops *.tmp files.
+modified WidgetObjectTools to match mockup, with basic functionality.
+modified how ObjTools displays the current obj's name and direction.
+playtested to be working in most aspects.
 
-created WidgetObjects_Dungeon, and populated it with testing objs.
-created Functions_Widget, with a method for positioning all gameObjs
-for any passed ObjWidget. tested, working as expected.
 
-setup the new Dungeon Objects Widget, got it animating and drawing
-in Room Editor, the first step towards matching the code to the 
-mockups and intended functionality.
+
+
+
+
+
+get objTools selecting dungeon objects properly.
+
+
+
+
+
 
 
 
@@ -89,8 +92,8 @@ this simply sets the CONTENTS (& POSITIONS of menu objs) of the widget,
 there are no other methods other than the constructor for this class.
 (because we'll have 4 additional inherited subclasses like this one soon).
 
-modify object tools widget to match current mockup and functionality.
-modify data tools widget to match current mockup and functionality.
+> modify object tools widget to match current mockup and functionality.
+> modify data tools widget to match current mockup and functionality.
 
 
 

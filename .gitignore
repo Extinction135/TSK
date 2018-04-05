@@ -3,6 +3,8 @@
 
 # User-specific files
 *.suo
+*.tmp
+*.TMP
 
 # directories to ignore
 DungeonRunDirectX/.vs/

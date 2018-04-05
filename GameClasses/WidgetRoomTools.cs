@@ -31,8 +31,10 @@ namespace DungeonRun
 
         public WidgetRoomTools()
         {   //create Window
-            window = new MenuWindow( new Point(0, 0), 
-                new Point(16 * 6, 16 * 5 + 8), "Room Tools");
+            window = new MenuWindow( 
+                new Point(0, 0), 
+                new Point(16 * 6, 16 * 5 + 8), 
+                "Room Tools");
             //create Save/Play/Load New/Type/Reload Buttons
             buttons = new List<ComponentButton>();
             saveBtn = new ComponentButton("save", new Point(0, 0));

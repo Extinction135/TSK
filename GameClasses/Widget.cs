@@ -23,6 +23,7 @@ namespace DungeonRun
 
     public static class Widgets
     {   //this is the global instance that contains all widget instances
+
         //game widgets
         public static WidgetDialog Dialog = new WidgetDialog();
         public static WidgetForSale ForSale = new WidgetForSale();
@@ -31,18 +32,14 @@ namespace DungeonRun
         public static WidgetLoadout Loadout = new WidgetLoadout();
         public static WidgetOptions Options = new WidgetOptions();
         public static WidgetQuestItems QuestItems = new WidgetQuestItems();
-        
-        
-        
-        //editor/builder widgets
 
-        public static WidgetObjects_Dungeon WidgetObjects_Dungeon = new WidgetObjects_Dungeon();
-
-
+        //editor widgets
 
         public static WidgetObjectTools ObjectTools = new WidgetObjectTools();
         public static WidgetRoomTools RoomTools = new WidgetRoomTools();
 
+        public static WidgetObjects_Dungeon WidgetObjects_Dungeon = new WidgetObjects_Dungeon();
 
+        
     }
 }

@@ -15,351 +15,280 @@ namespace DungeonRun
 {
     public class WidgetObjectTools : Widget
     {
+
+
+
+
+
         int j;
-        int counter;
-        public Point worldPos; //used to translate screen to world position
-        public Point screenPos; //used to translate world to screen position
-        public ObjToolState objToolState;
-
         public ComponentSprite cursorSprite;
-        public ComponentSprite toolTipSprite;
-
-        public GameObject currentObjRef;
-        public ComponentText currentObjTypeText;
-        public ComponentText currentObjDirectionText;
-
-        public ComponentSprite selectionBoxObj; //highlites the currently selected obj
-        public ComponentSprite selectionBoxTool; //highlites the currently selected obj
-        public GameObject activeObj; //points to Obj on obj list OR on roomObj/entity list
-        public GameObject grabbedObj; //obj/entity that is picked up/dragged/dropped in room
-        public GameObject activeTool; //points to a ToolObj on the obj list
-
-        public List<GameObject> objList; //a list of objects user can select
-        public int objListTotal;
-        //0 - 35 room objs, 36 - 40 enemy objs, 41+ tool objs
         public GameObject moveObj;
         public GameObject rotateObj;
         public GameObject addObj;
         public GameObject deleteObj;
 
+        public Point worldPos; //used to translate screen to world position
+        public Point screenPos; //used to translate world to screen position
+        public ObjToolState objToolState;
+
+        public ComponentSprite toolTipSprite;
+
+        public GameObject currentObjRef;
+        public ComponentText currentObjDirectionText;
+
+        public ComponentSprite selectionBoxObj; //highlites the currently selected obj
+        public ComponentSprite selectionBoxTool; //highlites the currently selected obj
+        public GameObject activeObj; //points to Obj on objList OR on roomObj/entity list
+        public GameObject grabbedObj; //obj/entity that is picked up/dragged/dropped in room
+        public GameObject activeTool; //points to a ToolObj on the obj list
+
+
+
+
+
+
 
 
         public WidgetObjectTools()
         {
-
-            #region Create Window and Divider lines
-
-            window = new MenuWindow(new Point(0, 0),
-                new Point(16 * 6, 16 * 15), "Object Tools");
-            window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
-            window.lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset));
-
-            #endregion
-
-
+            window = new MenuWindow(
+                new Point(0, 0),
+                new Point(16 * 10, 16 * 4),
+                "Object Tools");
             //create cursor sprites
-            cursorSprite = new ComponentSprite(Assets.uiItemsSheet,
-                new Vector2(0, 0), 
-                new Byte4(10, 2, 0, 0), 
-                new Point(16, 16));
-            toolTipSprite = new ComponentSprite(Assets.uiItemsSheet,
-                new Vector2(0, 0), 
-                new Byte4(10, 4, 0, 0), 
-                new Point(16, 16));
-
-            //create current obj components
-            currentObjRef = new GameObject();
-            currentObjTypeText = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
-            currentObjDirectionText = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
-
-
-            #region Create the SelectionBoxes
-
-            selectionBoxObj = new ComponentSprite(
-                Assets.uiItemsSheet, 
-                new Vector2(-100, 5000),
-                AnimationFrames.Ui_SelectionBox[0], 
-                new Point(16, 16));
-            selectionBoxTool = new ComponentSprite(
+            cursorSprite = new ComponentSprite(
                 Assets.uiItemsSheet,
-                new Vector2(-100, 5000),
-                AnimationFrames.Ui_SelectionBox[0], 
+                new Vector2(0, 0),
+                new Byte4(10, 2, 0, 0),
+                new Point(16, 16));
+            toolTipSprite = new ComponentSprite(
+                Assets.uiItemsSheet,
+                new Vector2(0, 0),
+                new Byte4(10, 4, 0, 0),
                 new Point(16, 16));
 
-            #endregion
 
+            #region Add Toolbar objs
 
-            objList = new List<GameObject>();
-
-
-            #region Add Objects to ObjList (RoomObjs and Projectiles)
-
-            for (i = 0; i < 7; i++) //row
-            {
-                for (j = 0; j < 5; j++) //column
-                {
-                    GameObject obj = new GameObject();
-                    //set the new position value for the move component
-                    obj.compMove.newPosition.X = 16 + 8 + (16 * j);
-                    obj.compMove.newPosition.Y = 16 * 5 + (16 * i);
-
-
-                    #region Set the objects properly
-
-                    if (i == 0) //first row
-                    {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_BlockDark); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_BlockLight); }
-                        //else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.BlockDark); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_IceTile); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_BlockSpike); }
-                    }
-                    else if (i == 1) //second row
-                    {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Pot); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Statue); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Barrel); }
-                        //else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.TorchUnlit); }
-                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.TorchLit); }
-                    }
-                    else if (i == 2) //third row
-                    {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_LeverOff); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_ConveyorBeltOn); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_ConveyorBeltOff); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SpikesFloorOn); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SpikesFloorOff); }
-                    }
-                    else if (i == 3) //fourth row
-                    {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SwitchBlockBtn); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SwitchBlockDown); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_SwitchBlockUp); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Switch); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Flamethrower); }
-                    }
-                    else if (i == 4) //fifth row
-                    {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Bumper); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_ChestKey); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_ChestMap); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_TorchUnlit); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_TorchLit); }
-                    }
-                    else if (i == 5) //sixth row - Pits and Pit Accessories
-                    {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Dungeon_PitTrap); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Dungeon_Pit); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Dungeon_PitBridge); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Dungeon_PitTeethTop); }
-                        else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.Dungeon_PitTeethBottom); }
-                    }
-                    else if (i == 6) //seventh row - Pickups
-                    {
-                        if (j == 0) { Functions_GameObject.SetType(obj, ObjType.Pickup_Bomb); }
-                        else if (j == 1) { Functions_GameObject.SetType(obj, ObjType.Pickup_Magic); }
-                        else if (j == 2) { Functions_GameObject.SetType(obj, ObjType.Pickup_Arrow); }
-                        else if (j == 3) { Functions_GameObject.SetType(obj, ObjType.Pickup_Rupee); }
-                        //else if (j == 4) { Functions_GameObject.SetType(obj, ObjType.PickupRupee); }
-                    }
-
-                    #endregion
-
-
-                    //update the obj's sprite comp to display proper frame
-                    Functions_Animation.Animate(obj.compAnim, obj.compSprite);
-                    //manually set & align the obj's collision rec
-                    obj.compCollision.rec.Width = 16;
-                    obj.compCollision.rec.Height = 16;
-                    obj.compCollision.rec.X = 16 + 8 + (16 * j) - 8;
-                    obj.compCollision.rec.Y = 16 * 5 + (16 * i) - 8;
-                    //add the object to the list
-                    objList.Add(obj);
-                }
-            }
-
-            #endregion
-
-
-            #region Add Enemy Spawns to ObjList
-
-            for (i = 1; i < 6; i++)
-            {
-                GameObject enemySpawn = new GameObject();
-                enemySpawn.compMove.newPosition.X = 16 * i + 8;
-                enemySpawn.compMove.newPosition.Y = 16 * 12;
-
-                if (i == 1) { Functions_GameObject.SetType(enemySpawn, ObjType.Dungeon_SpawnMob); }
-                else if (i == 2) { Functions_GameObject.SetType(enemySpawn, ObjType.Dungeon_SpawnMiniBoss); }
-                //else if (i == 3) { Functions_GameObject.SetType(enemySpawn, ObjType.Dungeon_Fairy); }
-                //else if (i == 4) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
-                //else if (i == 5) { Functions_GameObject.SetType(enemySpawn, ObjType.SpawnEnemy2); }
-
-                Functions_Animation.Animate(enemySpawn.compAnim, enemySpawn.compSprite);
-                objList.Add(enemySpawn); //index 35-39
-            }
-
-            #endregion
-
-
-            #region Add Toolbar objs to ObjList
-
-            //hand (move) icon - index 40
+            //hand (move) 
             moveObj = new GameObject();
             Functions_GameObject.ResetObject(moveObj);
             moveObj.compSprite.texture = Assets.uiItemsSheet;
-            //set sprite position, frame, collision rec
-            moveObj.compSprite.position.X = 16 * 1 + 8;
-            moveObj.compSprite.position.Y = 16 * 14;
-            Functions_Component.SetZdepth(moveObj.compSprite);
-            moveObj.compCollision.rec.X = 16 * 1 + 8 - 8;
-            moveObj.compCollision.rec.Y = 16 * 14 - 8;
-            moveObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 2, 0, 0) };
+            Functions_Movement.Teleport(moveObj.compMove, 16 * 1, 16);
+            Functions_Component.Align(moveObj);
+            moveObj.compAnim.currentAnimation = AnimationFrames.Ui_Hand_Open;
             Functions_Animation.Animate(moveObj.compAnim, moveObj.compSprite);
-            objList.Add(moveObj); //add object to list
 
-            //rotateObj
+            //rotateObj 
             rotateObj = new GameObject();
             Functions_GameObject.ResetObject(rotateObj);
             rotateObj.compSprite.texture = Assets.uiItemsSheet;
-            //set sprite position, frame, collision rec
-            rotateObj.compSprite.position.X = 16 * 3 + 8;
-            rotateObj.compSprite.position.Y = 16 * 14;
-            Functions_Component.SetZdepth(rotateObj.compSprite);
-            rotateObj.compCollision.rec.X = 16 * 3 + 8 - 8;
-            rotateObj.compCollision.rec.Y = 16 * 14 - 8;
-            rotateObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(12, 4, 0, 0) };
+            Functions_Movement.Teleport(rotateObj.compMove, 16 * 2, 16);
+            Functions_Component.Align(rotateObj);
+            rotateObj.compAnim.currentAnimation = AnimationFrames.Ui_Rotate;
             Functions_Animation.Animate(rotateObj.compAnim, rotateObj.compSprite);
-            objList.Add(rotateObj); //add object to list
 
             //add icon
             addObj = new GameObject();
             Functions_GameObject.ResetObject(addObj);
             addObj.compSprite.texture = Assets.uiItemsSheet;
-            //set sprite position, frame, collision rec
-            addObj.compSprite.position.X = 16 * 4 + 8;
-            addObj.compSprite.position.Y = 16 * 14;
-            Functions_Component.SetZdepth(addObj.compSprite);
-            addObj.compCollision.rec.X = 16 * 4 + 8 - 8;
-            addObj.compCollision.rec.Y = 16 * 14 - 8;
-            addObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(10, 4, 0, 0) };
+            Functions_Movement.Teleport(addObj.compMove, 16 * 3, 16);
+            Functions_Component.Align(addObj);
+            addObj.compAnim.currentAnimation = AnimationFrames.Ui_Add;
             Functions_Animation.Animate(addObj.compAnim, addObj.compSprite);
-            objList.Add(addObj); //add object to list
 
             //minus icon
             deleteObj = new GameObject();
             Functions_GameObject.ResetObject(deleteObj);
             deleteObj.compSprite.texture = Assets.uiItemsSheet;
-            //set sprite position, frame, collision rec
-            deleteObj.compSprite.position.X = 16 * 5 + 8;
-            deleteObj.compSprite.position.Y = 16 * 14;
-            Functions_Component.SetZdepth(deleteObj.compSprite);
-            deleteObj.compCollision.rec.X = 16 * 5 + 8 - 8;
-            deleteObj.compCollision.rec.Y = 16 * 14 - 8;
-            deleteObj.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 4, 0, 0) };
+            Functions_Movement.Teleport(deleteObj.compMove, 16 * 4, 16);
+            Functions_Component.Align(deleteObj);
+            deleteObj.compAnim.currentAnimation = AnimationFrames.Ui_Delete;
             Functions_Animation.Animate(deleteObj.compAnim, deleteObj.compSprite);
-            objList.Add(deleteObj); //add object to list
 
             #endregion
 
 
-            objListTotal = objList.Count();
+            //create current obj components
+            currentObjRef = new GameObject();
+            currentObjDirectionText = new ComponentText(
+                Assets.font, "",
+                new Vector2(0, 0),
+                Assets.colorScheme.textDark);
 
-            //initialize the widget
-            activeObj = objList[0]; 
+            selectionBoxObj = new ComponentSprite(
+                Assets.uiItemsSheet,
+                new Vector2(-100, 5000),
+                AnimationFrames.Ui_SelectionBox[0],
+                new Point(16, 16));
+            selectionBoxTool = new ComponentSprite(
+                Assets.uiItemsSheet,
+                new Vector2(-100, 5000),
+                AnimationFrames.Ui_SelectionBox[0],
+                new Point(16, 16));
+
+            //initialize the widget 
             SetActiveTool(moveObj);
             objToolState = ObjToolState.MoveObj;
             grabbedObj = null;
-            GetActiveObjInfo();
         }
 
+
+
+
+
         public override void Reset(int X, int Y)
-        {   //reset the room builder widget's window
-            window.lines[2].position.Y = Y + (16 * 3); //top divider (below current obj display)
-            window.lines[3].position.Y = Y + (16 * 12); //bottom divider (above tools)
+        {  
             Functions_MenuWindow.ResetAndMove(window, X, Y, window.size, window.title.text);
+            //move tools
+            Functions_Movement.Teleport(moveObj.compMove, X + 16 * 1, Y + 16 * 2);
+            Functions_Movement.Teleport(rotateObj.compMove, X + 16 * 2, Y + 16 * 2);
+            Functions_Movement.Teleport(addObj.compMove, X + 16 * 3, Y + 16 * 2);
+            Functions_Movement.Teleport(deleteObj.compMove, X + 16 * 4, Y + 16 * 2);
+            //align tools
+            Functions_Component.Align(moveObj);
+            Functions_Component.Align(rotateObj);
+            Functions_Component.Align(addObj);
+            Functions_Component.Align(deleteObj);
 
 
             #region Set current object components
 
-            Functions_Movement.Teleport(currentObjRef.compMove, X + 16, Y + 16 * 2);
-            Functions_Component.Align(currentObjRef.compMove, currentObjRef.compSprite, currentObjRef.compCollision);
-
-            currentObjTypeText.position.X = currentObjRef.compMove.position.X + 14;
-            currentObjTypeText.position.Y = currentObjRef.compMove.position.Y - 12;
-
-            currentObjDirectionText.position.X = currentObjRef.compMove.position.X + 14;
-            currentObjDirectionText.position.Y = currentObjRef.compMove.position.Y - 2;
+            Functions_Movement.Teleport(currentObjRef.compMove, X + 16 * 5, Y + 16 * 2);
+            Functions_Component.Align(currentObjRef);
+            //place direction text in footer of window
+            currentObjDirectionText.position.X = window.interior.rec.X + 5;
+            currentObjDirectionText.position.Y = window.interior.rec.Y + 45;
 
             #endregion
-
-
-            int yPos = 16 * 4; //controls Y position of roomObjs, enemy spawn objs
-            int offset; //controls position of enemy spawn objs, tool icons
-
-
-            #region Move room objs
-
-            counter = 0;
-            for (i = 0; i < 7; i++) //row
-            {
-                for (j = 0; j < 5; j++) //column
-                {
-                    objList[counter].compSprite.position.X = X + 16 + 0 + (16 * j);
-                    objList[counter].compSprite.position.Y = Y + yPos + (16 * i);
-                    objList[counter].compCollision.rec.X = X + 16 + 0 + (16 * j) - 8;
-                    objList[counter].compCollision.rec.Y = Y + yPos + (16 * i) - 8;
-                    counter++;
-                }
-            }
-
-            #endregion
-
-
-            #region Move enemy spawn objs
-
-            offset = 16 * 7;
-
-            for (j = 0; j < 5; j++)
-            {
-                objList[counter].compSprite.position.X = X + 16 + 0 + (16 * j);
-                objList[counter].compSprite.position.Y = Y + yPos + offset;
-                objList[counter].compCollision.rec.X = X + 16 + 0 + (16 * j) - 8;
-                objList[counter].compCollision.rec.Y = Y + yPos + offset - 8;
-                counter++;
-            }
-
-            #endregion
-
-
-            #region Move Grab, Rotate, Add, and Delete Icons
-
-            offset = 16 * 9;
-
-            moveObj.compSprite.position.X = X + 16 * 1;
-            moveObj.compSprite.position.Y = Y + offset + yPos;
-            moveObj.compCollision.rec.X = X + 16 * 1 - 8;
-            moveObj.compCollision.rec.Y = Y + +offset + yPos - 8;
-
-            rotateObj.compSprite.position.X = X + 16 * 3;
-            rotateObj.compSprite.position.Y = Y + offset + yPos;
-            rotateObj.compCollision.rec.X = X + 16 * 3 - 8;
-            rotateObj.compCollision.rec.Y = Y + +offset + yPos - 8;
-
-            addObj.compSprite.position.X = X + 16 * 4;
-            addObj.compSprite.position.Y = Y + +offset + yPos;
-            addObj.compCollision.rec.X = X + 16 * 4 - 8;
-            addObj.compCollision.rec.Y = Y + +offset + yPos - 8;
-
-            deleteObj.compSprite.position.X = X + 16 * 5;
-            deleteObj.compSprite.position.Y = Y + +offset + yPos;
-            deleteObj.compCollision.rec.X = X + 16 * 5 - 8;
-            deleteObj.compCollision.rec.Y = Y + +offset + yPos - 8;
-
-            #endregion
-
 
         }
+
+
+
+        public override void Update()
+        {
+            Functions_MenuWindow.Update(window);
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                UpdateSelectionBox(selectionBoxObj);
+                UpdateSelectionBox(selectionBoxTool);
+                selectionBoxTool.position = activeTool.compSprite.position;
+                Functions_Animation.Animate(currentObjRef.compAnim, currentObjRef.compSprite);
+            }
+        }
+
+        public override void Draw()
+        {
+            Functions_Draw.Draw(window);
+            if (window.interior.displayState == DisplayState.Opened)
+            {
+                Functions_Draw.Draw(moveObj);
+                Functions_Draw.Draw(rotateObj);
+                Functions_Draw.Draw(addObj);
+                Functions_Draw.Draw(deleteObj);
+                Functions_Draw.Draw(currentObjRef.compSprite);
+                Functions_Draw.Draw(currentObjDirectionText);
+                Functions_Draw.Draw(selectionBoxObj);
+                Functions_Draw.Draw(selectionBoxTool);
+            }
+            if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
+            Functions_Draw.Draw(cursorSprite);
+        }
+
+
+
+
+
+        public void SetActiveTool(GameObject Tool)
+        {
+            activeTool = Tool;
+            selectionBoxTool.scale = 2.0f;
+        }
+
+        public void UpdateSelectionBox(ComponentSprite SelectionBox)
+        {   //pulse the selectionBox alpha
+            if (SelectionBox.alpha >= 1.0f) { SelectionBox.alpha = 0.1f; }
+            else { SelectionBox.alpha += 0.025f; }
+            //scale the selectionBox down to 1.0
+            if (SelectionBox.scale > 1.0f) { SelectionBox.scale -= 0.07f; }
+            else { SelectionBox.scale = 1.0f; }
+        }
+
+        public void GetActiveObjInfo()
+        {   //reset objRef, match currentObjRef to activeObj
+            Functions_GameObject.ResetObject(currentObjRef);
+            currentObjRef.direction = activeObj.direction; //store direction value
+            currentObjRef.compSprite.rotationValue = activeObj.compSprite.rotationValue;
+            Functions_GameObject.SetType(currentObjRef, activeObj.type);
+            //update the currentObj text displays
+            window.title.text = "Obj: " + currentObjRef.type;
+            //currentObjTypeText.text = "" + currentObjRef.type;
+            currentObjDirectionText.text = "dir: " + currentObjRef.direction;
+        }
+
+        public Boolean GrabRoomObject()
+        {   //grab roomObjs
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            {   //loop thru roomObj pool, checking collisions with cursor's worldPos
+                if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                {   //check collisions between worldPos and obj, grab any colliding obj
+                    if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
+                    {   //set both grabbedObj and activeObj
+                        grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
+                        activeObj = Pool.roomObjPool[Pool.roomObjCounter];
+                        GetActiveObjInfo();
+                        selectionBoxObj.scale = 2.0f;
+                        return true;
+                    }
+                }
+            }
+            return false; //no collision with roomObj
+        }
+
+        public void RotateActiveObj()
+        {   //set activeObj's obj.direction based on type
+            if (activeObj.type == ObjType.Dungeon_PitBridge)
+            {   //flip between horizontal and vertical directions
+                if (activeObj.direction == Direction.Up || activeObj.direction == Direction.Down)
+                { activeObj.direction = Direction.Left; }
+                else { activeObj.direction = Direction.Down; }
+            }
+            else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
+                || activeObj.type == ObjType.Dungeon_ConveyorBeltOff
+                || activeObj.type == ObjType.Dungeon_BlockSpike)
+            {   //flip thru cardinal directions
+                activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
+                if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
+                else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
+                else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
+                else { activeObj.direction = Direction.Up; }
+            }
+
+            //set object's move component direction based on type
+            if (activeObj.type == ObjType.Dungeon_BlockSpike)
+            { activeObj.compMove.direction = activeObj.direction; }
+
+            //set the rotation of the sprite based on obj.direction                                             
+            Functions_GameObject.SetRotation(activeObj);
+            GetActiveObjInfo();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
         public void HandleInput()
         {
@@ -384,9 +313,9 @@ namespace DungeonRun
                 { cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Press[0]; }
             }
 
-
-
             #endregion
+
+
 
 
             #region Match position of cursor sprite to cursor
@@ -405,71 +334,54 @@ namespace DungeonRun
             #endregion
 
 
+
+
+            //set toolTip's animation frame based on objToolState
+            if (objToolState == ObjToolState.AddObj)
+            { toolTipSprite.currentFrame = AnimationFrames.Ui_Add[0]; }
+            else if (objToolState == ObjToolState.DeleteObj)
+            { toolTipSprite.currentFrame = AnimationFrames.Ui_Delete[0]; }
+            else { toolTipSprite.currentFrame = AnimationFrames.Ui_Rotate[0]; }
+
+
+
+
+
+
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
-
-                #region Handle Grab/Move RoomObject State
-
-                if (objToolState == ObjToolState.MoveObj)
-                { GrabRoomObject(); }
-
-                #endregion
-
-
                 if (window.interior.rec.Contains(Input.cursorPos))
-                {   //if mouse is contained within widget, select active obj
+                {
 
+                    #region Set Active Tool (Move, Rotate, Add, Delete)
 
-                    #region Handle Obj / Tool Selection
+                    //check cursorPos contains with individual tool objs
+                    if (moveObj.compCollision.rec.Contains(Input.cursorPos))
+                    { SetActiveTool(moveObj); objToolState = ObjToolState.MoveObj; }
 
-                    //does any obj on the widget's objList contain the mouse position?
-                    for (i = 0; i < objListTotal; i++)
-                    {   //if there is a collision, set the active object to the object clicked on
-                        if (objList[i].compCollision.rec.Contains(Input.cursorPos))
-                        {
-                            //handle collision with objList
-                            if (i < 40)
-                            {   //set activeObj, update selection box scale + position
-                                activeObj = objList[i];
-                                selectionBoxObj.position = activeObj.compSprite.position;
-                                selectionBoxObj.scale = 2.0f;
-                                GetActiveObjInfo();
-                                //if we are in rotate mode, rotate the activeObj
-                                if (objToolState == ObjToolState.RotateObj) { RotateActiveObj(); }
-                            }
-                            //handle collision with tool obj
-                            else if (objList[i] == moveObj)
-                            {
-                                SetActiveTool(moveObj);
-                                objToolState = ObjToolState.MoveObj;
-                            }
-                            else if (objList[i] == rotateObj)
-                            {
-                                SetActiveTool(rotateObj);
-                                objToolState = ObjToolState.RotateObj;
-                                toolTipSprite.currentFrame.X = 12;
-                            }
-                            else if (objList[i] == addObj)
-                            {
-                                SetActiveTool(addObj);
-                                objToolState = ObjToolState.AddObj;
-                                toolTipSprite.currentFrame.X = 10;
-                            }
-                            else if (objList[i] == deleteObj)
-                            {
-                                SetActiveTool(deleteObj);
-                                objToolState = ObjToolState.DeleteObj;
-                                toolTipSprite.currentFrame.X = 11;
-                            }
-                        }
-                    }
+                    else if (rotateObj.compCollision.rec.Contains(Input.cursorPos))
+                    { SetActiveTool(rotateObj); objToolState = ObjToolState.RotateObj; }
+
+                    else if (addObj.compCollision.rec.Contains(Input.cursorPos))
+                    { SetActiveTool(addObj); objToolState = ObjToolState.AddObj; }
+
+                    else if (deleteObj.compCollision.rec.Contains(Input.cursorPos))
+                    { SetActiveTool(deleteObj); objToolState = ObjToolState.DeleteObj; }
 
                     #endregion
 
+                    return; //prevent grabbing of obj underneath widget/window
                 }
+
+                //check cursorPos against ObjectWidgets
+                else if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
+                {
+                    //CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
+                    return;
+                }
+
                 else if (Functions_Level.currentRoom.rec.Contains(worldPos))
                 {   //if mouse worldPos is within room, allow adding of active object
-
 
                     #region Handle Adding an Object To Room
 
@@ -555,6 +467,13 @@ namespace DungeonRun
                     #endregion
 
                 }
+
+                //Handle Grab/Move RoomObject State
+                if (objToolState == ObjToolState.MoveObj) { GrabRoomObject(); }
+                //we handle grabbing roomObjs last because these roomObjs could be
+                //anywhere on screen, including underneath a widget. by checking and
+                //bailing from this method earlier (using widgets), we ensure that
+                //the user has to be clicking on an object not covered by a widget.
             }
             if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
             {
@@ -610,132 +529,51 @@ namespace DungeonRun
 
             }
             if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
-            {
-
-                #region Handle Release Grabbed Obj
-
-                grabbedObj = null;
-
-                #endregion
-
+            {  
+                grabbedObj = null; //release grabbed obj
             }
         }
 
-        public override void Update()
-        {
-            Functions_MenuWindow.Update(window);
-            if (window.interior.displayState == DisplayState.Opened)
-            {
-                UpdateSelectionBox(selectionBoxObj);
-                UpdateSelectionBox(selectionBoxTool);
-                selectionBoxTool.position = activeTool.compSprite.position;
-                Functions_Animation.Animate(currentObjRef.compAnim, currentObjRef.compSprite);
-                //animate all the game objects
-                for(i = 0; i< objList.Count; i++)
-                { Functions_Animation.Animate(objList[i].compAnim, objList[i].compSprite); }
-            }
-        }
 
-        public override void Draw()
-        {
-            Functions_Draw.Draw(window);
-            if (window.interior.displayState == DisplayState.Opened)
-            {
-                Functions_Draw.Draw(currentObjRef.compSprite);
-                Functions_Draw.Draw(currentObjTypeText);
-                Functions_Draw.Draw(currentObjDirectionText);
 
-                for (i = 0; i < objListTotal; i++) //draw objlist's sprites
-                { Functions_Draw.Draw(objList[i].compSprite); }
 
-                if (Flags.DrawCollisions)
-                {   //draw objlist's collision recs
-                    for (i = 0; i < objListTotal; i++)
-                    { Functions_Draw.Draw(objList[i].compCollision); }
+
+
+
+
+
+        /*
+        int i;
+
+        public static void CheckObjList(List<GameObject> objList)
+        {   //does any obj on the widget's objList contain the mouse position?
+            for (i = 0; i < objList.Count; i++)
+            {   //if there is a collision, set the active object to the object clicked on
+                if (objList[i].compCollision.rec.Contains(Input.cursorPos))
+                {
+                    //set activeObj, update selection box scale + position
+                    activeObj = objList[i];
+                    selectionBoxObj.position = activeObj.compSprite.position;
+                    selectionBoxObj.scale = 2.0f;
+                    GetActiveObjInfo();
+                    if (objToolState == ObjToolState.RotateObj) { RotateActiveObj(); }
+
                 }
-                Functions_Draw.Draw(selectionBoxObj);
-                Functions_Draw.Draw(selectionBoxTool);
             }
-            if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
-            Functions_Draw.Draw(cursorSprite);
         }
-
-
-
-        public void SetActiveTool(GameObject Tool)
-        {
-            activeTool = Tool;
-            selectionBoxTool.scale = 2.0f;
-        }
-
-        public void UpdateSelectionBox(ComponentSprite SelectionBox)
-        {   //pulse the selectionBox alpha
-            if (SelectionBox.alpha >= 1.0f) { SelectionBox.alpha = 0.1f; }
-            else { SelectionBox.alpha += 0.025f; }
-            //scale the selectionBox down to 1.0
-            if (SelectionBox.scale > 1.0f) { SelectionBox.scale -= 0.07f; }
-            else { SelectionBox.scale = 1.0f; }
-        }
+        */
+        
 
         
 
-        public void GetActiveObjInfo()
-        {   //reset objRef, match currentObjRef to activeObj
-            Functions_GameObject.ResetObject(currentObjRef);
-            currentObjRef.direction = activeObj.direction; //store direction value
-            currentObjRef.compSprite.rotationValue = activeObj.compSprite.rotationValue;
-            Functions_GameObject.SetType(currentObjRef, activeObj.type);
-            //update the currentObj text displays
-            currentObjTypeText.text = "" + currentObjRef.type;
-            currentObjDirectionText.text = "dir: " + currentObjRef.direction;
-        }
+        
 
-        public Boolean GrabRoomObject()
-        {   //grab roomObjs
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            {   //loop thru roomObj pool, checking collisions with cursor's worldPos
-                if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                {   //check collisions between worldPos and obj, grab any colliding obj
-                    if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                    {   //set both grabbedObj and activeObj
-                        grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
-                        activeObj = Pool.roomObjPool[Pool.roomObjCounter];
-                        GetActiveObjInfo();
-                        selectionBoxObj.scale = 2.0f;
-                        return true;
-                    }
-                }
-            }
-            return false; //no collision with roomObj
-        }
+        
 
-        public void RotateActiveObj()
-        {   //set activeObj's obj.direction based on type
-            if (activeObj.type == ObjType.Dungeon_PitBridge)
-            {   //flip between horizontal and vertical directions
-                if (activeObj.direction == Direction.Up || activeObj.direction == Direction.Down)
-                { activeObj.direction = Direction.Left; }
-                else { activeObj.direction = Direction.Down; }
-            }
-            else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
-                || activeObj.type == ObjType.Dungeon_ConveyorBeltOff
-                || activeObj.type == ObjType.Dungeon_BlockSpike)
-            {   //flip thru cardinal directions
-                activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
-                if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
-                else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
-                else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
-                else { activeObj.direction = Direction.Up; }
-            }
 
-            //set object's move component direction based on type
-            if (activeObj.type == ObjType.Dungeon_BlockSpike)
-            { activeObj.compMove.direction = activeObj.direction; }
 
-            //set the rotation of the sprite based on obj.direction                                             
-            Functions_GameObject.SetRotation(activeObj);
-            GetActiveObjInfo();
-        }
+        
+
 
     }
 }
