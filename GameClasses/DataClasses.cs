@@ -42,6 +42,7 @@ namespace DungeonRun
         public static Boolean InfiniteArrows = true; //does hero ignore arrow cost?
         public static Boolean InfiniteBombs = true; //does hero ignore bomb cost?
         public static Boolean MapCheat = true; //sets dungeon.map true when dungeon is built
+        public static Boolean KeyCheat = true; //sets dungeon.key true when dungeon is built
         
         static Flags()
         {   
@@ -70,6 +71,7 @@ namespace DungeonRun
                 InfiniteArrows = false;
                 InfiniteBombs = false;
                 MapCheat = false;
+                KeyCheat = false;
             }
             
 

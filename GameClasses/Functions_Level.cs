@@ -33,6 +33,9 @@ namespace DungeonRun
             Level.doors = new List<Door>();
             Level.bigKey = false;
             Level.map = false;
+            //enable map and key cheats
+            Level.map = Flags.MapCheat;
+            Level.bigKey = Flags.KeyCheat;
         }
 
         public static void BuildLevel()
@@ -187,8 +190,7 @@ namespace DungeonRun
             currentRoom = Level.rooms[0];
             Functions_Room.BuildRoom(Level.rooms[0]);
             Functions_Room.FinishRoom(Level.rooms[0]);
-            //check to see if dungeon map should be given to hero upon spawn
-            if (Flags.MapCheat) { Level.map = true; } else { Level.map = false; }
+
             //reset the dungeon screen's dungeon record, passing dungeonID
             DungeonRecord.Reset();
             DungeonRecord.dungeonID = 0; //ID = 0 for now

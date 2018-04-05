@@ -16,10 +16,19 @@ adding music:
 	files are saved as .ogg and added to content pipeline, built on high quality.
 adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
-CTRL + M, O = collapse functions/regions	
+VS shortcuts
+	CTRL + M, O = collapse functions/regions	
 new gif: 50% nearest neighbor, 32 dithered
+adding a cheat:
+	add value to MenuItemType enum (cheat starts as a selectable menu item)
+	update MenuItem.SetType() to set cheat menuItem descriptions, titles, and initial frame.
+	add menuItem to Cheat Screen.
+	link neighbors, add effect, add check to SetCheatMenuItems(), playtest.
 
-
+	
+	
+	
+	
 
 v0.7 goals
 - divide spritesheets up so they can be expanded / modified easily
@@ -52,37 +61,23 @@ TODAY:
 
 Cheats++
 
-added all current cheats into MenuItemType.
-updated MenuItem.SetType() to set cheat menuItem 
-descriptions, titles, and initial frames.
-updated CheatScreen to draw InfoWidget.
+added InfiniteMagic into cheat system.
+added InfiniteArrows into cheat system.
+fixed description text for inf arrows cheat.
+added InfiniteBombs into cheat system.
+added map cheat into cheat system.
 
-added InfiniteGold menuItem, linked neighbors,
-playtested, working as expected.
+added KeyCheat boolean to Flags class.
+updated release path to set KeyCheat false.
+added KeyCheat into cheat system.
 
+upgraded Level.FinishLevel() to set both
+map and key cheats based on Flag booleans.
 
-
-
-
-
-add additional cheats to cheat screen:
-
-
-we need to add more cheats
-
-then we need to add the proper menuItems to cheats screen
-switch to checking menuItem.type for cheat effect
-
-then add additional cheats + effects
-
-
-
-
-
-
-
-
-
+playtested, all cheats working as expected.
+fixed minor display issue with laodout,
+where loadout wasn't displaying the dungeon
+key properly (based on level.bigKey boolean).
 
 
 

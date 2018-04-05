@@ -435,7 +435,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.CheatsInfiniteArrows)
             {
                 MenuItem.name = "Infinite Arrows";
-                MenuItem.description = "An endless supply of \nthose sharp pointy things.";
+                MenuItem.description = "An endless supply of \nsharp pointy things.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
             else if (Type == MenuItemType.CheatsInfiniteBombs)
@@ -465,13 +465,13 @@ namespace DungeonRun
             else if (Type == MenuItemType.CheatsKey)
             {
                 MenuItem.name = "Has Key";
-                MenuItem.description = "You permanently have \nthe dungeon key.";
+                MenuItem.description = "Link permanently has \nthe dungeon key.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
             else if (Type == MenuItemType.CheatsMap)
             {
                 MenuItem.name = "Has Map";
-                MenuItem.description = "You permanently have \nthe dungeon map.";
+                MenuItem.description = "Link permanently has \nthe dungeon map.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
 
