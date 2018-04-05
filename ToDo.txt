@@ -49,57 +49,37 @@ TODAY:
 
 
 
-Implement 'F6 - Hide Editor Widgets'
 
-added HideEditorWidgets boolean to Flags class.
-this boolean will control if editor widgets process
-input, update, and draw methods.
 
-updated Debug.HandleTopMenuInput() to flip above
-boolean upon F6 button press. updated RoomEditor
-screen to check above boolean prior to processing
-any widget's update, input, or draw methods.
 
-playtested, and working for roomEditor.
 
-(thoughts - a pioneering new section of my commits..)
-this function allows editors the ability to view the level or room as the
-player would - EXACTLY - allowing the ability to fill levels to the
-edge of the camera with objects, so a level looks visually different from a
-dungeon in the sense that the surrounding darkness is never seen outside on
-a world level. it's there, but just covered with game objs.
 
-an addition to the above thought, is that the darkness inside a dungeon
-could simply be set to different color based on the level type, so if the
-level was outside, the background could switch to a grass color, and then
-we wouldn't need to have a TON of basic green grass sprites all over the screen.
-instead, we can sprinkle some animated flowers and grass around on the 
-background and it will look the same, with a significantly lower draw time.
+LevelEditor++
 
-if we couple that optimization with the floor sprites optimization inside,
-(since all rooms are set to specific sizes now), we could drop draw times
-dramatically for levels, possibly allowing for larger levels. hmm..
+created Widgets.WidgetObjects_Environment.
+this duplicates WidgetObjects_Dungeon, with changes to be
+filled with the few world objects that exist right now.
+
+updated ScreenLevelEditor to match RoomEditor,
+implementing the HideEditorWidget boolean checks,
+modified to display the new WidgetObjects_Environment.
+playtested, working as expected.
+
+ObjTools++
+
+added actually useful comments to ObjTools.HandleInput().
+reorganized and regioned ObjTools.HandleInput().
 
 
 
 
 
 
+obj tools widget needs to go down 16 pixels on y axis, needs separation from obj widget above it
 
 
 
 
-
-
-
-
-
-
-
-get something relevant displayed for level editor,
-
-shared objs widget
-environment objs widget
 
 
 
@@ -119,8 +99,6 @@ dungeon - enemy tools widget
 
 
 
-fix pit teeth
-pit teeth are not displaying properly in dungeon objects, but thats fine for now..
 
 
 
@@ -129,11 +107,7 @@ pit teeth are not displaying properly in dungeon objects, but thats fine for now
 
 
 
-fireballs should create explosions upon collision/interaction
-and the explosions should play their explosion sound, but
-fireball shouldn't play it's signature 'bonk' sound.
-this 'bonk' sound should only play if the fireball dies of old age,
-as a way to say to the player "well, that was kind of a waste of magic".
+
 
 
 
@@ -167,23 +141,32 @@ this Cheats Menu should be accesible from the Inventory screen, from the Options
 
 
 
+Bits and Bugs
+
+
+add shared objs widget, this is tied to the f7 button
+will display or hide this widget based on f7 press
+
+
+fix pit teeth
+pit teeth are not displaying properly in dungeon objects, but thats fine for now..
+
+
+fireballs should create explosions upon collision/interaction
+and the explosions should play their explosion sound, but
+fireball shouldn't play it's signature 'bonk' sound.
+this 'bonk' sound should only play if the fireball dies of old age,
+as a way to say to the player "well, that was kind of a waste of magic".
+
+
+Wall Torches
+if we seperate the wall torch off the wall bkg sprite, then we can reuse
+it indoors in world rooms, or outside on buildings. but, we need to update
+the door decoration algorithm to add torches, instead of replacing the wall
+with a wall torch, which acts simply as a wall.
 
 
 
-
-
-The New Water & Swimming Systems
-
-water tiles should exist. upon collision with a water tile,
-hero switches to swimming state. only upon collision with water
-tile does this happen - hero's default state is on ground.
-this is in contrast to the previous implementation where hero was
-defaulted to swimming, and only upon collision with land tiles
-was he set to walking/on ground.
-
-by default, the background color is a grass color. to that,
-we add dirt paths, animated grass objects scattered throughout,
-then additional env objs, npcs, buildings, etc.. and even water tiles.
 
 
 
@@ -214,26 +197,18 @@ Outside Town Level
 
 
 
+The New Water & Swimming Systems
 
+water tiles should exist. upon collision with a water tile,
+hero switches to swimming state. only upon collision with water
+tile does this happen - hero's default state is on ground.
+this is in contrast to the previous implementation where hero was
+defaulted to swimming, and only upon collision with land tiles
+was he set to walking/on ground.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+by default, the background color is a grass color. to that,
+we add dirt paths, animated grass objects scattered throughout,
+then additional env objs, npcs, buildings, etc.. and even water tiles.
 
 
 
@@ -244,8 +219,7 @@ Outside Town Level
 the dialog screen's speaker sprite is completely wrong
 and i kind of love it.. because when i loaded the game 
 up a rock told me that it had successfully loaded my 
-last autosaved game. you don't normally hear that from
-a rock.
+last autosaved game. you don't normally hear that from a rock.
 
 
 
@@ -254,11 +228,7 @@ a rock.
 
 
 
-Wall Torches
-if we seperate the wall torch off the wall bkg sprite, then we can reuse
-it indoors in world rooms, or outside on buildings. but, we need to update
-the door decoration algorithm to add torches, instead of replacing the wall
-with a wall torch, which acts simply as a wall.
+
 
 
 
@@ -277,27 +247,9 @@ to being either hero or mob or miniboss or boss.
 
 
 
-
-
-
-
-
-
-
 Zen Potion
 a potion that lets the hero use magic without cost a time period (255 frames)
 unlimited magic use, spam it all for 255 frames, for 99 gold.
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -320,9 +272,6 @@ which would be game breaking. also, we need ALOT of rooms to build from.
 
 row rooms need to be redesigned to be MUCH better
 we need more rows and column rooms, and their quality needs to be improved.
-
-
-
 
 
 
@@ -407,7 +356,7 @@ Lttp Stuff we're missing:
 
 
 
-Keys?
+Keys!!!
 **we could have 'keys' in the game, which would be temporary for the room only
 the doors would shut and convert to locked versions, or only some of them would.
 inside the room is a chest that contains a key. hero picks up the key, unlocks 
@@ -415,6 +364,11 @@ a door, key is used, continues on. the room resets, works the same later on.
 the key would be displayed in the inventory screen as a brittle rusty key.
 and when it's used, the key breaks. the flavor text says that the key will
 likely break after one use.
+
+we could lock one door randomly, or we could lock ALL THE DOORS, and then 
+force the player to choose which door they want to unlock.
+
+
 
 
 

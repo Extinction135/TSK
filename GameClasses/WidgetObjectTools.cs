@@ -15,6 +15,9 @@ namespace DungeonRun
 {
     public class WidgetObjectTools : Widget
     {
+        //this widget handles the selection, grabbing, dragging,
+        //releasing, adding, and deleting of roomObjects in an editor (Level or Room)
+        
         int j;
         public ComponentSprite cursorSprite;
         public GameObject moveObj;
@@ -203,7 +206,7 @@ namespace DungeonRun
             #endregion
 
 
-
+            #region Handle Left Button CLICK
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
@@ -229,13 +232,29 @@ namespace DungeonRun
 
                     return; //prevent grabbing of obj underneath widget/window
                 }
+                
 
-                //check cursorPos against ObjectWidgets
+                #region Handle DungeonObjects Widget 
+
                 else if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
                 {
                     CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
                     return;
                 }
+
+                #endregion
+
+
+                #region Handle EnvironmentObjects Widget 
+
+                else if (Widgets.WidgetObjects_Environment.window.interior.rec.Contains(Input.cursorPos))
+                {
+                    CheckObjList(Widgets.WidgetObjects_Environment.objList);
+                    return;
+                }
+
+                #endregion
+
 
                 else if (Functions_Level.currentRoom.rec.Contains(worldPos))
                 {   //if mouse worldPos is within room, allow adding of active object
@@ -323,15 +342,28 @@ namespace DungeonRun
 
                     #endregion
 
+                    //dont return; here, continue to objToolState check below on purpose
                 }
 
                 //Handle Grab/Move RoomObject State
                 if (objToolState == ObjToolState.MoveObj) { GrabRoomObject(); }
+
                 //we handle grabbing roomObjs last because these roomObjs could be
                 //anywhere on screen, including underneath a widget. by checking and
                 //bailing from this method earlier (using widgets), we ensure that
                 //the user has to be clicking on an object not covered by a widget.
+
+                //we also want to allow the user the ability to temp store objects
+                //outside of the room level, so we don't put this check into the
+                //currentRoom collision check above. if we did, user couldn't grab
+                //objs outside of the room's rec, but COULD drop them, which is dumb.
             }
+
+            #endregion
+
+
+            #region Handle Left Button DOWN (dragging)
+
             if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
             {
 
@@ -385,10 +417,19 @@ namespace DungeonRun
                 #endregion
 
             }
+
+            #endregion
+
+
+            #region Handle Left Button RELEASE
+
             if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
             {
                 grabbedObj = null; //release grabbed obj
             }
+
+            #endregion
+
         }
 
         public override void Update()

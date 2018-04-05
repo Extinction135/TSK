@@ -21,6 +21,11 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            //place the object tools + room tools widgets
+            Widgets.ObjectTools.Reset(16 * 1, 16 * 17);
+            Widgets.RoomTools.Reset(16 * 33, 16 * 16);
+            Widgets.WidgetObjects_Environment.Reset(16 * 1, 16 * 2);
+
             //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
 
@@ -43,17 +48,34 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             base.HandleInput(GameTime);
+            if (!Flags.HideEditorWidgets)
+            {
+                Widgets.ObjectTools.HandleInput();
+                Widgets.RoomTools.HandleInput();
+            }
         }
 
         public override void Update(GameTime GameTime)
         {
             base.Update(GameTime);
+            if (!Flags.HideEditorWidgets)
+            {
+                Widgets.ObjectTools.Update();
+                Widgets.WidgetObjects_Environment.Update();
+                Widgets.RoomTools.Update();
+            }
         }
 
         public override void Draw(GameTime GameTime)
         {
             base.Draw(GameTime);
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            if (!Flags.HideEditorWidgets)
+            {
+                Widgets.RoomTools.Draw();
+                Widgets.WidgetObjects_Environment.Draw();
+                Widgets.ObjectTools.Draw(); //drawn last cause cursor
+            }
             ScreenManager.spriteBatch.End();
         }
     }

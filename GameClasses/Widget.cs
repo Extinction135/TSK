@@ -12,15 +12,6 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public abstract class Widget
-    {   //the base class for all widgets
-        public int i;
-        public MenuWindow window;
-        public virtual void Reset(int X, int Y) { }
-        public virtual void Update() { }
-        public virtual void Draw() { }
-    }
-
     public static class Widgets
     {   //this is the global instance that contains all widget instances
 
@@ -37,5 +28,15 @@ namespace DungeonRun
         public static WidgetObjectTools ObjectTools = new WidgetObjectTools();
         public static WidgetRoomTools RoomTools = new WidgetRoomTools();
         public static WidgetObjects_Dungeon WidgetObjects_Dungeon = new WidgetObjects_Dungeon();
+        public static WidgetObjects_Environment WidgetObjects_Environment = new WidgetObjects_Environment();
+    }
+
+    public abstract class Widget
+    {   //the base class for all widgets
+        public int i;
+        public MenuWindow window;
+        public virtual void Reset(int X, int Y) { }
+        public virtual void Update() { }
+        public virtual void Draw() { }
     }
 }

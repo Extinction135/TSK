@@ -39,6 +39,9 @@ namespace DungeonRun
             PlayerData.current.armorCape = true;
             //set equipment
             PlayerData.current.equipmentRing = true;
+            //because this is the default editor screen,
+            //this will set the flags properly at first,
+            //then user can switch to level editor, with set flags
         }
 
         public override void LoadContent()
@@ -70,7 +73,6 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             base.HandleInput(GameTime);
-
             if (!Flags.HideEditorWidgets)
             {
                 Widgets.ObjectTools.HandleInput();
@@ -81,7 +83,6 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             base.Update(GameTime);
-
             if (!Flags.HideEditorWidgets)
             {
                 Widgets.ObjectTools.Update();
