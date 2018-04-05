@@ -22,7 +22,7 @@ namespace DungeonRun
         public override void LoadContent()
         {
             //place the object tools + room tools widgets
-            Widgets.ObjectTools.Reset(16 * 33, 16 * 1);
+            //Widgets.ObjectTools.Reset(16 * 33, 16 * 1);
             Widgets.RoomTools.Reset(16 * 33, 16 * 16);
 
             //register this level screen with Functions_Level
@@ -49,14 +49,15 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             base.HandleInput(GameTime);
-            Widgets.ObjectTools.HandleInput();
+            //Widgets.ObjectTools.HandleInput();
             Widgets.RoomTools.HandleInput();
         }
 
         public override void Update(GameTime GameTime)
         {
             base.Update(GameTime);
-            Widgets.ObjectTools.Update();
+            //Widgets.ObjectTools.Update();
+            Widgets.WidgetObjects_Dungeon.Update();
             Widgets.RoomTools.Update();
         }
 
@@ -65,7 +66,8 @@ namespace DungeonRun
             base.Draw(GameTime);
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Widgets.RoomTools.Draw();
-            Widgets.ObjectTools.Draw();
+            //Widgets.ObjectTools.Draw();
+            Widgets.WidgetObjects_Dungeon.Draw();
             ScreenManager.spriteBatch.End();
         }
     }

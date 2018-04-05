@@ -221,6 +221,9 @@
     <Compile Include="..\..\GameClasses\WidgetLoadout.cs">
       <Link>Classes\WidgetLoadout.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\WidgetObjects.cs">
+      <Link>Classes\WidgetObjects.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\WidgetObjectTools.cs">
       <Link>Classes\WidgetObjectTools.cs</Link>
     </Compile>

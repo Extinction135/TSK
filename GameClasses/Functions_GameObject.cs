@@ -85,8 +85,6 @@ namespace DungeonRun
             Functions_Component.SetSpriteRotation(Obj.compSprite, Obj.direction);
         }
 
-
-
         public static void Update(GameObject Obj)
         {   //only roomObjs are passed into this method, some get AI (or behaviors)
             //roomObjs don't have lifetimes, they last the life of the room
@@ -99,13 +97,6 @@ namespace DungeonRun
             //if (Obj.type == ObjType.Barrel) { } //for example
             Functions_Pool.Release(Obj);
         }
-
-
-        
-
-
-
-
 
         
         public static void SetType(GameObject Obj, ObjType Type)
@@ -129,7 +120,6 @@ namespace DungeonRun
 
 
             //Dungeon Objects
-
 
             #region Exits
 
@@ -697,12 +687,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
-            //the following gameObjects STILL need AnimationFrame definitions..
-
-
             #region Projectiles
 
             //items
@@ -1010,9 +994,10 @@ namespace DungeonRun
 
 
 
-            
             //Handle Obj Group properties
-            if (Obj.group == ObjGroup.Particle || Obj.group == ObjGroup.Projectile || Obj.group == ObjGroup.Pickup)
+            if (Obj.group == ObjGroup.Particle || 
+                Obj.group == ObjGroup.Projectile || 
+                Obj.group == ObjGroup.Pickup)
             {
                 Obj.compCollision.blocking = false; //these entities never block
                 Obj.compSprite.texture = Assets.entitiesSheet; //all use entity sheet
@@ -1026,8 +1011,6 @@ namespace DungeonRun
             Obj.compSprite.currentFrame = Obj.compAnim.currentAnimation[0]; //goto 1st anim frame
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
-
-
 
 
     }

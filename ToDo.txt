@@ -51,39 +51,116 @@ TODAY:
 
 
 
-Editor Design ++
 
-Based on the idea that Levels and Rooms are distinct,
-Editor has been split into level and room parts.
-room editor still acts as room builder did, designing
-individual rooms according to specific rules which the
-dungeon designer systems use to construct dungeons.
-levels, however, are connected by hand and designed 
-by hand, and have no such system rules applied to them.
+Redefine Objects Widget
 
-added editor mockups for level (with and without NPCs),
-and for the slightly modified room editor.
+created WidgetObject.cs file, which will contain all the classes
+related to the new object widgets that are being developed.
+once they're designed and integrated, i'll split this file apart
+or maybe not depending on what the design calls for. if you
+haven't noticed by now, IDGAF about subscribing blindly to paradigms.
+this is just the fastest way to dev the data and systems right now.
 
-the good news is that multiple functions can be shared
-between the editor screens, the widgets have been simplified
-and will be reused, and the objects widget (which is big
-and complicated and error prone) will be split into 
-multiple smaller widgets that are passive programmatically,
-meaning they wont process input. this vastly simplifies them,
-and the input can be processed on the editor screen,
-and depending on which editor screen is open the input can
-be modified to suit that screen's needs (for example,
-checking to see if the editor is adding a chest to non-chestable
-room, and popping an error message telling them no!).
+created WidgetObjects_Dungeon, and populated it with testing objs.
+created Functions_Widget, with a method for positioning all gameObjs
+for any passed ObjWidget. tested, working as expected.
 
-we've also created a place for dungeon entrances to live,
-alongside the statues inside the dungeon that thematically
-represent the boss or the dungeon - the eye statue reminding
-the player of the boss, the giant floating eye, and the 
-dungeon entrance has a single eye, and the mob enemies have 
-single eyes.. this grouping helps to remind me to visually
-design all these objects with this coupling in mind.
-#endRant
+setup the new Dungeon Objects Widget, got it animating and drawing
+in Room Editor, the first step towards matching the code to the 
+mockups and intended functionality.
+
+
+
+
+
+
+push 1
+
+create base obj widget class, with 16x16 gameobjects
+this is 4 per row, 12 rows total, with a base draw method
+that checks to see if the gameObj is null
+
+to make a larger obj, just set obj in the list it covers to null
+then we add null checks later and skip if null
+this allows a 2:1, or a dungeon entrance in the base obj widget class
+
+create dungeon objs widget, which inherits from base obj widget
+this simply sets the CONTENTS (& POSITIONS of menu objs) of the widget, 
+there are no other methods other than the constructor for this class.
+(because we'll have 4 additional inherited subclasses like this one soon).
+
+modify object tools widget to match current mockup and functionality.
+modify data tools widget to match current mockup and functionality.
+
+
+
+
+
+
+
+
+
+pit teeth are not displaying properly in dungeon objects, but thats fine for now..
+
+
+
+
+
+
+
+
+
+Implement 'F6 - Hide All'
+
+add the F6 button to top menu, modify all widgets to draw/input/update
+based on a hide boolean. link this f6 button to the hide booleans.
+
+implement F6 button 'hide all' which would stop input, update, and drawing of
+all widgets on an editor screen, including the top menu.. powerful. this single
+function will allow an editor the ability to view the level or room as the
+player would - EXACTLY - allowing editors the ability to fill levels to the
+edge of the camera with objects, so a level looks visually different from a
+dungeon in the sense that the surrounding darkness is never seen outside on
+a world level. it's there, but we are just going to cover it up with game objs.
+
+test hiding of level/room widgets
+
+
+
+
+
+
+
+
+
+
+push 2
+
+get something relevant displayed for level editor,
+
+shared objs widget
+environment objs widget
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+editor ++ - these are the widgets that are on the RIGHT!
+
+level - building objs widget
+dungeon - enemy tools widget
+
+
 
 
 
@@ -114,15 +191,6 @@ so Rooms = Dungeon Rooms, Levels = World Levels.
 
 
 
-Implement 'F6 - Hide All'
-
-implement F6 button 'hide all' which would stop input, update, and drawing of
-all widgets on an editor screen, including the top menu.. powerful. this single
-function will allow an editor the ability to view the level or room as the
-player would - EXACTLY - allowing editors the ability to fill levels to the
-edge of the camera with objects, so a level looks visually different from a
-dungeon in the sense that the surrounding darkness is never seen outside on
-a world level. it's there, but we are just going to cover it up with game objs.
 
 
 
@@ -131,11 +199,8 @@ a world level. it's there, but we are just going to cover it up with game objs.
 
 
 
-Wall Torches
-if we seperate the wall torch off the wall bkg sprite, then we can reuse
-it indoors in world rooms, or outside on buildings. but, we need to update
-the door decoration algorithm to add torches, instead of replacing the wall
-with a wall torch, which acts simply as a wall.
+
+
 
 
 
@@ -145,6 +210,12 @@ Implement Level Editor and Level Save System
 
 we need to be able to save level objects to a level file.
 this is larger and different than the room save data files.
+
+
+
+
+
+
 
 
 
@@ -237,7 +308,11 @@ a rock.
 
 
 
-
+Wall Torches
+if we seperate the wall torch off the wall bkg sprite, then we can reuse
+it indoors in world rooms, or outside on buildings. but, we need to update
+the door decoration algorithm to add torches, instead of replacing the wall
+with a wall torch, which acts simply as a wall.
 
 
 
