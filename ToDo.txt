@@ -49,16 +49,12 @@ TODAY:
 
 
 
+Add Building Objects Widget to LevelEditor
 
-Improvements++
-
-moved the obj tools widget down 8 pixels on the y axis,
-to improve it's separation from the obj widgets above it.
-
-updated RoomTools Widget to match mockups, more or less.
-it's more compressed in game than in mockups, but the
-functionality is there, so i'm fine with it.
-playtested, working as expected.
+created WidgetObjects_Building, 
+to contain future building objects.
+linked up to the LevelEditor and tested,
+working as expected.
 
 
 
@@ -71,13 +67,6 @@ playtested, working as expected.
 
 
 
-
-
-
-
-editor ++ - these are the widgets that are on the RIGHT!
-level - building objs widget
-dungeon - enemy tools widget
 
 
 
@@ -209,6 +198,11 @@ last autosaved game. you don't normally hear that from a rock.
 
 
 
+Add Enemy Tools Widget
+this exists on the right, in RoomEditor.
+BUT, this isn't composed of gameobjects, it's composed
+of actors, actual actor data objects, because it will make
+it much easier and simpler to add them to rooms later on.
 
 
 

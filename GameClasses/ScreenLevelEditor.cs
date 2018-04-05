@@ -25,7 +25,7 @@ namespace DungeonRun
             Widgets.ObjectTools.Reset(16 * 1, 16 * 17 + 8);
             Widgets.RoomTools.Reset(16 * 33, 16 * 17 + 8);
             Widgets.WidgetObjects_Environment.Reset(16 * 1, 16 * 2);
-
+            Widgets.WidgetObjects_Building.Reset(16 * 34, 16 * 2);
             //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
 
@@ -62,6 +62,7 @@ namespace DungeonRun
             {
                 Widgets.ObjectTools.Update();
                 Widgets.WidgetObjects_Environment.Update();
+                Widgets.WidgetObjects_Building.Update();
                 Widgets.RoomTools.Update();
             }
         }
@@ -74,6 +75,7 @@ namespace DungeonRun
             {
                 Widgets.RoomTools.Draw();
                 Widgets.WidgetObjects_Environment.Draw();
+                Widgets.WidgetObjects_Building.Draw();
                 Widgets.ObjectTools.Draw(); //drawn last cause cursor
             }
             ScreenManager.spriteBatch.End();

@@ -275,6 +275,96 @@ namespace DungeonRun
         }
     }
 
+    public class WidgetObjects_Building : WidgetObject
+    {
+        public WidgetObjects_Building()
+        {   //create and set the position of the window frame
+            window = new MenuWindow(
+                new Point(16 * 34, 16 * 2), //position
+                new Point(16 * 5, 16 * 15), //size
+                "Building Objs"); //title
+
+            objList = new List<GameObject>();
+            //4 per row, 12 rows total
+            for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
+
+            //row 1
+            Functions_GameObject.SetType(objList[0], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[1], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[2], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[3], ObjType.World_Shelf);
+
+            //row 2
+            Functions_GameObject.SetType(objList[4], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[5], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[6], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[7], ObjType.World_Shelf);
+
+            //row 3
+            Functions_GameObject.SetType(objList[8], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[9], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[10], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[11], ObjType.World_Shelf);
+
+            //row 4
+            Functions_GameObject.SetType(objList[12], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[13], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[14], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[15], ObjType.World_Shelf);
+
+            //row 5
+            Functions_GameObject.SetType(objList[16], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[17], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[18], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[19], ObjType.World_Shelf);
+
+            //row 6
+            Functions_GameObject.SetType(objList[20], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[21], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[22], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[23], ObjType.World_Shelf);
+
+            //row 7
+            Functions_GameObject.SetType(objList[24], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[25], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[26], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[27], ObjType.World_Shelf);
+
+            //row 8
+            Functions_GameObject.SetType(objList[28], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[29], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[30], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[31], ObjType.World_Shelf);
+
+            //row 9
+            Functions_GameObject.SetType(objList[32], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[33], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[34], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[35], ObjType.World_Shelf);
+
+            //row 10
+            Functions_GameObject.SetType(objList[36], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[37], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[38], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[39], ObjType.World_Shelf);
+
+            //row 11
+            Functions_GameObject.SetType(objList[40], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[41], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[42], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[43], ObjType.World_Shelf);
+
+            //row 12
+            Functions_GameObject.SetType(objList[44], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[45], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[46], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[47], ObjType.World_Shelf);
+
+            //position the objs relative to the window frame
+            Functions_Widget.PositionObjs(this);
+        }
+    }
+
 
 
 }
