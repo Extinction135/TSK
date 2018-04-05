@@ -53,51 +53,22 @@ TODAY:
 
 
 
-Cheats++
-
-created ScreenCheats.cs, to contain all the cheats.
-improved design of cheats screen, to include the info
-widget, which can be used to display additioanl info
-about the cheat. we just need to create menuItems to rep
-cheats, with a description.
 
 
-created OptionsCheatMenu value in MenuItemType enum.
-updated OptionsWidget to only display working menuItems,
-for now that means save, cheat, load, and quit. all
-other menu options have been set to unknown.
+Fix Options Widget
 
-updated InventoryScreen to process input for clicking on
-cheat menu item, which simply creates a cheat screen.
-
-removed Help menuItem type and related code.
-updated MenuItem.SetType() to use proper animationFrames.
-updated CheatScreen to function properly, with
-hero's invincibility implemented.
-
-playtested, working as expected.
+added sprite for 'SaveGame' menuItem.
+added new animFrame def for arrow to disk sprite.
+updated menuItem.setType() to set SaveGame to new
+arrow to disk sprite, with no rotation.
+fixed options widget menuItems to display properly.
 
 
 
 
 
 
-
-Fix MenuItem Sprites for Options Widget
-this is actually an animationFrames problem.
-
-
-
-
-
-Cheats Menu should be accesible from the Inventory screen, from the Options widget.
-we'll need a menuItem for the cheats screen, plus a sprite (maybe).
-
-
-
-turning a cheat on/off should use the switch sound fx.
-
-
+add additional cheats to cheat screen:
 
 
 

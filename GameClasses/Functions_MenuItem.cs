@@ -381,8 +381,7 @@ namespace DungeonRun
             {
                 MenuItem.name = "Save Game";
                 MenuItem.description = "Saves the \ncurrent game.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowUp;
-                MenuItem.compSprite.rotation = Rotation.Clockwise180;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ArrowToDisk;
             }
 
 

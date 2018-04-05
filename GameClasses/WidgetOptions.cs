@@ -72,7 +72,6 @@ namespace DungeonRun
 
             labels[0].text = "save\ngame";
             Functions_MenuItem.SetType(MenuItemType.OptionsSaveGame, menuItems[0]);
-            menuItems[0].compSprite.rotation = Rotation.Clockwise180;
 
             labels[1].text = "cheat\nmenu";
             Functions_MenuItem.SetType(MenuItemType.OptionsCheatMenu, menuItems[1]);
@@ -80,7 +79,7 @@ namespace DungeonRun
             labels[2].text = "";
             Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[2]);
 
-            labels[3].text = "-";
+            labels[3].text = "";
             Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[3]);
 
             labels[4].text = "";
