@@ -17,32 +17,7 @@ namespace DungeonRun
     public class ScreenRoomEditor : ScreenLevel
     {
 
-        public ScreenRoomEditor()
-        {
-            this.name = "Room Editor Screen";
-
-            //unlock most/all items
-            PlayerData.current = new SaveData();
-            PlayerData.current.heartsTotal = 9;
-            Pool.hero.health = 3;
-            PlayerData.current.bombsCurrent = 99;
-            PlayerData.current.arrowsCurrent = 99;
-            //set items
-            PlayerData.current.bottleA = MenuItemType.BottleHealth;
-            PlayerData.current.bottleB = MenuItemType.BottleMagic;
-            PlayerData.current.bottleC = MenuItemType.BottleFairy;
-            PlayerData.current.magicFireball = true;
-            //set weapons
-            PlayerData.current.weaponBow = true;
-            PlayerData.current.weaponNet = true;
-            //set armor
-            PlayerData.current.armorCape = true;
-            //set equipment
-            PlayerData.current.equipmentRing = true;
-            //because this is the default editor screen,
-            //this will set the flags properly at first,
-            //then user can switch to level editor, with set flags
-        }
+        public ScreenRoomEditor() { this.name = "Room Editor Screen"; }
 
         public override void LoadContent()
         {
@@ -63,6 +38,9 @@ namespace DungeonRun
             Functions_Movement.Teleport(Pool.hero.compMove,
                 Functions_Level.buildPosition.X - 32,
                 Functions_Level.buildPosition.Y + 32);
+
+            //refill hero's health upon spawn
+            Pool.hero.health = PlayerData.current.heartsTotal;
 
             //setup the screen
             overlay.alpha = 0.0f;

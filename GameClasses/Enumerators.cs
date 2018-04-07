@@ -269,6 +269,7 @@ namespace DungeonRun
         CheatsMap,
         CheatsKey,
 
+        CheatsUnlockAll,
 
 
         //loadout menuItems

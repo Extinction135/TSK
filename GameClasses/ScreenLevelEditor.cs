@@ -39,6 +39,9 @@ namespace DungeonRun
                 Functions_Level.buildPosition.X - 32,
                 Functions_Level.buildPosition.Y + 32);
 
+            //refill hero's health upon spawn
+            Pool.hero.health = PlayerData.current.heartsTotal;
+
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen

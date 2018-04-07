@@ -143,6 +143,12 @@ namespace DungeonRun
             menuItems[6].compSprite.position.X = menuItems[5].compSprite.position.X;
             menuItems[6].compSprite.position.Y = menuItems[5].compSprite.position.Y + 24;
 
+            //CheatsUnlockAll
+            labels[7].text = "unlck\nall";
+            Functions_MenuItem.SetType(MenuItemType.CheatsUnlockAll, menuItems[7]);
+            menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X;
+            menuItems[7].compSprite.position.Y = menuItems[6].compSprite.position.Y + 24;
+
             #endregion
 
 
@@ -168,8 +174,8 @@ namespace DungeonRun
             menuItems[5].neighborDown = menuItems[6];
             menuItems[6].neighborUp = menuItems[5];
 
-            menuItems[3].neighborDown = menuItems[4];
-            menuItems[4].neighborUp = menuItems[3];
+            menuItems[6].neighborDown = menuItems[7];
+            menuItems[7].neighborUp = menuItems[6];
 
 
             #endregion
@@ -182,6 +188,9 @@ namespace DungeonRun
 
             menuItems[1].neighborRight = menuItems[6];
             menuItems[6].neighborLeft = menuItems[1];
+
+            menuItems[2].neighborRight = menuItems[7];
+            menuItems[7].neighborLeft = menuItems[2];
 
             #endregion
 
@@ -264,7 +273,14 @@ namespace DungeonRun
                     else { Flags.MapCheat = true; }
                     Level.map = Flags.MapCheat;
                 }
-                
+                else if (currentlySelected.type == MenuItemType.CheatsUnlockAll)
+                {
+                    Flags.UnlockAll = true;
+                    Functions_Hero.UnlockAll();
+                }
+
+
+
 
                 #endregion
 
@@ -410,6 +426,7 @@ namespace DungeonRun
             //column2
             if (Flags.MapCheat) { menuItems[5].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             if (Flags.KeyCheat) { menuItems[6].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+            if (Flags.UnlockAll) { menuItems[7].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             //expand this to include additional cheats
         }
 

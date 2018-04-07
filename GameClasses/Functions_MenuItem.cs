@@ -462,6 +462,9 @@ namespace DungeonRun
                 MenuItem.description = "Redefining OP.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
+
+
+
             else if (Type == MenuItemType.CheatsKey)
             {
                 MenuItem.name = "Has Key";
@@ -472,6 +475,15 @@ namespace DungeonRun
             {
                 MenuItem.name = "Has Map";
                 MenuItem.description = "Link permanently has \nthe dungeon map.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
+            }
+
+
+
+            else if (Type == MenuItemType.CheatsUnlockAll)
+            {
+                MenuItem.name = "Unlock All";
+                MenuItem.description = "Unlocks all items,\nweapons, etc..";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
 

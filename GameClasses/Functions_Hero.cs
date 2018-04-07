@@ -539,64 +539,8 @@ namespace DungeonRun
             if (PlayerData.current.currentEquipment > 4) { PlayerData.current.currentEquipment = 0; }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            #region Set Hero's Item
-
+            //Set Hero's Item
             Pool.hero.item = PlayerData.current.currentItem;
-
-
-
-
-
-
-
-            //this is a stupid mess 
-            /*
-              
-              if (PlayerData.current.currentItem == MenuItemType.ItemBomb)
-            { Pool.hero.item = MenuItemType.ItemBomb; }
-            else if (PlayerData.current.currentItem == MenuItemType.ItemBoomerang)
-            { Pool.hero.item = MenuItemType.ItemBoomerang; }
-
-            //magic items
-            else if (PlayerData.current.currentItem == MenuItemType.MagicFireball)
-            { Pool.hero.item = MenuItemType.MagicFireball; }
-
-
-            //bottle items
-            else if (PlayerData.current.currentItem == MenuItemType.bott)
-            { Functions_Bottle.LoadBottle(PlayerData.current.bottleA); }
-            else if (PlayerData.current.currentItem == HerosCurrentItem.BottleB)
-            { Functions_Bottle.LoadBottle(PlayerData.current.bottleB); }
-            else if (PlayerData.current.currentItem == HerosCurrentItem.BottleC)
-            { Functions_Bottle.LoadBottle(PlayerData.current.bottleC); }
-            
-             else { Pool.hero.item = MenuItemType.Unknown; }
-             */
-
-
-
-
-
-
-
-
-
-
-            #endregion
 
 
             //set hero's weapon
@@ -631,6 +575,44 @@ namespace DungeonRun
         {
             //hero-related things that reset upon a roomBuild()
             boomerangInPlay = false; //boomerang could of been lost in prev room
+        }
+
+
+
+
+
+
+        public static void UnlockAll()
+        {   //this method unlocks all available items, weapons, equipment, armor
+
+            //start with fresh save data
+            PlayerData.current = new SaveData();
+            //max hearts and magic
+            PlayerData.current.heartsTotal = 9;
+            Pool.hero.health = 9;
+            PlayerData.current.magicUnlocked = 9;
+            PlayerData.current.magicCurrent = 9;
+            //max arrows and bombs
+            PlayerData.current.bombsCurrent = 99;
+            PlayerData.current.arrowsCurrent = 99;
+            //set bottle contents
+            PlayerData.current.bottleA = MenuItemType.BottleHealth;
+            PlayerData.current.bottleB = MenuItemType.BottleMagic;
+            PlayerData.current.bottleC = MenuItemType.BottleFairy;
+            //set items
+            PlayerData.current.itemBoomerang = true;
+            //set magic
+            PlayerData.current.magicFireball = true;
+            //set weapons
+            PlayerData.current.weaponBow = true;
+            PlayerData.current.weaponNet = true;
+            //set armor
+            PlayerData.current.armorCape = true;
+            //set equipment
+            PlayerData.current.equipmentRing = true;
+
+            //we could set the pet here too, but we wont for now
+            PlayerData.current.hasPet = false;
         }
 
     }

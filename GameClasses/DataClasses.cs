@@ -43,9 +43,12 @@ namespace DungeonRun
         public static Boolean InfiniteBombs = true; //does hero ignore bomb cost?
         public static Boolean MapCheat = true; //sets dungeon.map true when dungeon is built
         public static Boolean KeyCheat = true; //sets dungeon.key true when dungeon is built
+        public static Boolean UnlockAll = false; //unlocks all items for hero
         
         static Flags()
-        {   
+        {
+
+            #region Set Release Mode
 
             if (Release)
             {
@@ -73,7 +76,9 @@ namespace DungeonRun
                 MapCheat = false;
                 KeyCheat = false;
             }
-            
+
+            #endregion
+
 
             #region Set Developer Mode
 
@@ -91,7 +96,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
         }
     }

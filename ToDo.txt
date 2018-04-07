@@ -59,38 +59,26 @@ TODAY:
 
 
 
-Cheats++
-
-added InfiniteMagic into cheat system.
-added InfiniteArrows into cheat system.
-fixed description text for inf arrows cheat.
-added InfiniteBombs into cheat system.
-added map cheat into cheat system.
-
-added KeyCheat boolean to Flags class.
-updated release path to set KeyCheat false.
-added KeyCheat into cheat system.
-
-upgraded Level.FinishLevel() to set both
-map and key cheats based on Flag booleans.
-
-playtested, all cheats working as expected.
-fixed minor display issue with laodout,
-where loadout wasn't displaying the dungeon
-key properly (based on level.bigKey boolean).
 
 
 
+Add UnlockAll Cheat to Game
 
+added CheatsUnlockAll to MenuItemType enum.
+added path for CheatsUnlockAll to MenuItem.SetType().
 
+added boolean UnlockAll to Flags class,
+mostly for tracking Unlock Cheat activation.
 
+created Hero.UnlockAll(), to set link's endgame loadout.
+this is all weapons, items, equipment, armor, etc.. 
+linked cheat screen's unlock all to Hero.UnlockAll().
 
+updated Level and Room Editors to refill hero's health
+upon spawn, which prevents a case where hero spawned with
+0 health and died after dashing.. hmm..
 
-cheats++
-
-unlock all weapons, items, equipment (unlock all)
-this would be a specific method in a Functions_Cheats class.
-but we'll need to add it to cheats mockup + code too.
+lots of playtesting, working as expected.
 
 
 
@@ -102,17 +90,18 @@ but we'll need to add it to cheats mockup + code too.
 
 
 
-
-
-
-
-
+pit teeth just generally have problems: they don't display properly..
 
 
 pit traps should create pit teeth?
 pits create sparkle particles instead of pit bubbles
 this again, is a 'particle needs to be on the dungeon sheet' problem
 cause we're forcing all particles to live on the entity sheet rn
+
+
+
+
+
 
 
 
