@@ -114,8 +114,8 @@ namespace DungeonRun
             new Byte4(10*2, 7*2+1, 0, 0),
             new Byte4(10*2+1, 7*2+1, 0, 0)
         };
-        public static List<Byte4> Dungeon_PitTeethTop = new List<Byte4> { new Byte4(11, 7*2, 0, 0) }; //16x8
-        public static List<Byte4> Dungeon_PitTeethBottom = new List<Byte4> { new Byte4(11, 7*2+1, 0, 0) }; //16x8
+        public static List<Byte4> Dungeon_PitTeethTop = new List<Byte4> { new Byte4(11, 7, 0, 0) }; //16x8
+        public static List<Byte4> Dungeon_PitTeethBottom = new List<Byte4> { new Byte4(12, 7, 0, 0) }; //16x8
         //
 
 

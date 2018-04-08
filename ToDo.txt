@@ -62,23 +62,16 @@ TODAY:
 
 
 
-Add UnlockAll Cheat to Game
+Fix Pit Teeth
 
-added CheatsUnlockAll to MenuItemType enum.
-added path for CheatsUnlockAll to MenuItem.SetType().
+updated level sheet with modified placement of pit teeth.
+we'll just keep them as 16x16 pixel objects, instead of
+turning them into 16x8, and saving a frame in the spritesheet.
+the additional complications in the codebase to make the
+16x8 pit teeth work just isn't worth the effort, rn imo.
 
-added boolean UnlockAll to Flags class,
-mostly for tracking Unlock Cheat activation.
-
-created Hero.UnlockAll(), to set link's endgame loadout.
-this is all weapons, items, equipment, armor, etc.. 
-linked cheat screen's unlock all to Hero.UnlockAll().
-
-updated Level and Room Editors to refill hero's health
-upon spawn, which prevents a case where hero spawned with
-0 health and died after dashing.. hmm..
-
-lots of playtesting, working as expected.
+fixed the animationFrames for pit teeth top and bottom.
+playtested, working as expected.
 
 
 
@@ -88,15 +81,15 @@ lots of playtesting, working as expected.
 
 
 
-
-
-pit teeth just generally have problems: they don't display properly..
-
-
-pit traps should create pit teeth?
 pits create sparkle particles instead of pit bubbles
 this again, is a 'particle needs to be on the dungeon sheet' problem
 cause we're forcing all particles to live on the entity sheet rn
+which is NOT how things need to be moving forward, just set
+particle / pro sheets per object in SetType()
+
+
+
+
 
 
 
