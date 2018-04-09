@@ -87,7 +87,7 @@ namespace DungeonRun
         public static List<Byte4> Dungeon_Bumper = new List<Byte4> { new Byte4(10, 5, 0, 0) };
         public static List<Byte4> Dungeon_FloorSwitchUp = new List<Byte4> { new Byte4(11, 5, 0, 0) };
         public static List<Byte4> Dungeon_FloorSwitchDown = new List<Byte4> { new Byte4(12, 5, 0, 0) };
-        public static List<Byte4> Dungeon_Flamethrower = new List<Byte4> { new Byte4(12, 5, 0, 0) };
+        public static List<Byte4> Dungeon_Flamethrower = new List<Byte4> { new Byte4(13, 5, 0, 0) };
         //
         public static List<Byte4> Dungeon_FloorCracked = new List<Byte4> { new Byte4(15, 5, 0, 0) };
 

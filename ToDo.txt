@@ -59,60 +59,23 @@ TODAY:
 
 
 
-Fix Entity Textures
+Fixing Stuff
 
-so right now we're forcing all particles, projectiles,
-and pickups to have their sprite textures set to the
-entities sheet. however, we are 'themeing' some particles,
-which means they are part of the dungeon sheet and match
-that dungeon sheet's overall color and theme.
-
-for example, in one dungeon the pits have bubbles, so the
-visual effect is that the pit is filled with water or
-lava. but in a desert dungeon, the pits could have swirling
-particles, while the 'pit' sprite is sand, showing up
-as quicksand, but with the same effect (pulling actors in).
-
-the fix here is simply to pull particles and projectiles 
-out of the final group check in Obj.SetType(), and instead
-set the texture per path in SetType().
-
-moved Pickup group check in Pickup paths.
-fixed PitBubbles (the whole reason to do this).
-migrated all other particles, including the dungeon
-map and key, which should also live on the dungeon sheet.
-better region'd out SetType().Particles section.
-migrated projectiles, including exploding barrel
-projectile which lives on the dungeon sheet.
-
-playtested, exploding barrels and pit bubbles
-working properly now, along with other entities.
-region'd out Obj.SetType() more for readability.
+fixed animation frame for flamethrower.
+rebuilt some testing rooms.
 
 
 
 
 
 
+fairy interactions
+
+should be able to add multiple empty chests to any room
+
+should be able to add fairys to objtools widget
 
 
-Fix Pit Bubbling Particle
-pits create sparkle particles instead of pit bubbles
-this again, is a 'particle needs to be on the dungeon sheet' problem
-cause we're forcing all particles to live on the entity sheet rn
-which is NOT how things need to be moving forward, just set
-particle / pro sheets per object in SetType()
-
-
-
-
-there are other pros / parts located on the dungeon sheet
-find them! migrate them to proper sheet in code.
-
-
-
-clean up testing room data
-we've got syntax errors in the xml
 
 
 
