@@ -110,7 +110,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[0], ObjType.Dungeon_BlockDark);
             Functions_GameObject.SetType(objList[1], ObjType.Dungeon_BlockLight);
             Functions_GameObject.SetType(objList[2], ObjType.Dungeon_BlockSpike);
-            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Fairy);
 
             //row 2
             Functions_GameObject.SetType(objList[4], ObjType.Dungeon_SwitchBlockBtn);

@@ -59,23 +59,18 @@ TODAY:
 
 
 
-Fixing Stuff
-
-fixed animation frame for flamethrower.
-rebuilt some testing rooms.
 
 
 
+Fix Fairys
+
+added fairy objs back into obj tools.
+create fairy interaction test room.
 
 
 
-fairy interactions
 
 should be able to add multiple empty chests to any room
-
-should be able to add fairys to objtools widget
-
-
 
 
 
