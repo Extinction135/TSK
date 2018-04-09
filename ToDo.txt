@@ -59,28 +59,44 @@ TODAY:
 
 
 
+Fix Entity Textures
+
+so right now we're forcing all particles, projectiles,
+and pickups to have their sprite textures set to the
+entities sheet. however, we are 'themeing' some particles,
+which means they are part of the dungeon sheet and match
+that dungeon sheet's overall color and theme.
+
+for example, in one dungeon the pits have bubbles, so the
+visual effect is that the pit is filled with water or
+lava. but in a desert dungeon, the pits could have swirling
+particles, while the 'pit' sprite is sand, showing up
+as quicksand, but with the same effect (pulling actors in).
+
+the fix here is simply to pull particles and projectiles 
+out of the final group check in Obj.SetType(), and instead
+set the texture per path in SetType().
+
+moved Pickup group check in Pickup paths.
+fixed PitBubbles (the whole reason to do this).
+migrated all other particles, including the dungeon
+map and key, which should also live on the dungeon sheet.
+better region'd out SetType().Particles section.
+migrated projectiles, including exploding barrel
+projectile which lives on the dungeon sheet.
+
+playtested, exploding barrels and pit bubbles
+working properly now, along with other entities.
+region'd out Obj.SetType() more for readability.
 
 
 
-Fix Pit Teeth
-
-updated level sheet with modified placement of pit teeth.
-we'll just keep them as 16x16 pixel objects, instead of
-turning them into 16x8, and saving a frame in the spritesheet.
-the additional complications in the codebase to make the
-16x8 pit teeth work just isn't worth the effort, rn imo.
-
-fixed the animationFrames for pit teeth top and bottom.
-playtested, working as expected.
 
 
 
 
 
-
-
-
-
+Fix Pit Bubbling Particle
 pits create sparkle particles instead of pit bubbles
 this again, is a 'particle needs to be on the dungeon sheet' problem
 cause we're forcing all particles to live on the entity sheet rn
@@ -90,11 +106,8 @@ particle / pro sheets per object in SetType()
 
 
 
-
-
-
-
-
+there are other pros / parts located on the dungeon sheet
+find them! migrate them to proper sheet in code.
 
 
 
@@ -105,39 +118,25 @@ we've got syntax errors in the xml
 
 
 
+Improve / Beautify Feedback Info
+we need to move the left handed update collision interaction draw times
+into it's own widget, which is drawn on the right side, and make it linked
+to a boolean which draws it, which is then linked to the cheats menu as a
+draw dev info cheat.
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Bits and Bugs
-
-
+Shared Objs Widget
 add shared objs widget, this is tied to the f7 button
 will display or hide this widget based on f7 press
 
 
-fix pit teeth
-pit teeth are not displaying properly in dungeon objects, but thats fine for now..
 
 
+Fireballs++
 fireballs should create explosions upon collision/interaction
 and the explosions should play their explosion sound, but
 fireball shouldn't play it's signature 'bonk' sound.
@@ -145,13 +144,30 @@ this 'bonk' sound should only play if the fireball dies of old age,
 as a way to say to the player "well, that was kind of a waste of magic".
 
 
-Wall Torches
+Explosions++
+explosions should 'crack' normal walls.
+this means fireballs crack walls, along with bombs.
+which is awesome. we should have a debris falling animation
+for the cracking wall too, since it's likely to happen often.
+
+
+
+
+
+
+Wall Torches++
 if we seperate the wall torch off the wall bkg sprite, then we can reuse
 it indoors in world rooms, or outside on buildings. but, we need to update
 the door decoration algorithm to add torches, instead of replacing the wall
 with a wall torch, which acts simply as a wall.
 
 
+
+
+
+
+
+Barrels of Bugs
 the barrel became a bomb upon being hit.
 which is functional, but isn't correct at all.
 this is because we need to allow projectile sprites
