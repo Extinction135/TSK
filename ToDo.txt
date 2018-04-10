@@ -58,19 +58,46 @@ TODAY:
 
 
 
+Chests++
+
+we need to make adding chests to rooms 'safe',
+which means we need to only have 1 chest obj in 
+the objTools widget, and it can only be added to
+key or hub rooms, and based on the room type,
+the chest is translated to key or map based on 
+room type. added Dungeon_Chest to ObjType enum.
+updated Obj.SetType() to handle all chests.
+removed ChestKey and ChestMap objs from ObjTools.
+replaced them with safe Chest obj.
+
+removed dialogs for adding chests to key and hub
+rooms. this simplifies the process for adding chests,
+we just add a chest to a hub or key room and the code
+handles the rest, converting the object properly to
+the correct chest type. in addition, empty chests have
+been removed from the chest object group type, so 
+editors can add as many empty chests as they like.
+this adds some variation to puzzles.
+
+added empty chest back to editor objTools.
+modified the chest checking system in editor to more
+safely handle user interaction, this means after
+adding a chest to a hub or key room, the current
+obj is converted to an empty chest obj.
+empty chest objs are just treated as regular objs.
+
+updated objTools widget to display empty chest
+upon currentObj conversion (done above).
+this makes the widget *actually* display the current
+obj selected. playtested, working as expected.
 
 
 
 
-Fix Fairys
-
-added fairy objs back into obj tools.
-create fairy interaction test room.
 
 
 
 
-should be able to add multiple empty chests to any room
 
 
 

@@ -332,17 +332,9 @@ namespace DungeonRun
 
             #region Chests
 
-            else if (Type == ObjType.Dungeon_ChestKey)
-            {
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
-                Obj.compSprite.zOffset = -7;
-                Obj.canBeSaved = true;
-                Obj.group = ObjGroup.Chest;
-                Obj.compMove.moveable = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ChestClosed;
-            }
-            else if (Type == ObjType.Dungeon_ChestMap)
+            else if (Type == ObjType.Dungeon_Chest || 
+                Type == ObjType.Dungeon_ChestKey || 
+                Type == ObjType.Dungeon_ChestMap)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
@@ -358,7 +350,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                Obj.group = ObjGroup.Chest;
+                //Obj.group = ObjGroup.Chest; //not really a chest, just obj
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ChestOpened;
             }

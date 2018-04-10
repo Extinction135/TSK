@@ -138,22 +138,10 @@ namespace DungeonRun
 
         #region Editor dialogs
 
-        public static List<Dialog> CantAddKeyChest = new List<Dialog>
+        public static List<Dialog> CantAddChests = new List<Dialog>
         {
             new Dialog(SpeakerType.Guide, "Nope!",
-                "You cannot add a key chest to a non-key room!",
-                Assets.sfxError, true, false, false)
-        };
-        public static List<Dialog> CantAddMapChest = new List<Dialog>
-        {
-            new Dialog(SpeakerType.Guide, "Nope!",
-                "You cannot add a map chest to a non-hub room!",
-                Assets.sfxError, true, false, false)
-        };
-        public static List<Dialog> CantAddMoreChests = new List<Dialog>
-        {
-            new Dialog(SpeakerType.Guide, "Nope!",
-                "You cannot add more than 1 chest to a room!",
+                "You cannot add more chests to this room!",
                 Assets.sfxError, true, false, false)
         };
         public static List<Dialog> CantAddMoreSwitches = new List<Dialog>

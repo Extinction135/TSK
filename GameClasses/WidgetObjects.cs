@@ -133,9 +133,7 @@ namespace DungeonRun
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Dungeon_Barrel);
             Functions_GameObject.SetType(objList[17], ObjType.Dungeon_Pot);
-            //algo decides if chest if key or map
-            Functions_GameObject.SetType(objList[18], ObjType.Dungeon_ChestKey); 
-            //^^^ should just be a chest obj
+            Functions_GameObject.SetType(objList[18], ObjType.Dungeon_Chest); 
             Functions_GameObject.SetType(objList[19], ObjType.Dungeon_ChestEmpty);
 
             //row 6

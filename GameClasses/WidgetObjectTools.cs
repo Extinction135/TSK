@@ -264,38 +264,39 @@ namespace DungeonRun
                     if (objToolState == ObjToolState.AddObj)
                     {
 
+
                         #region Check to see if we can add this type of Obj to this type of Room
 
-                        if (currentObjRef.type == ObjType.Dungeon_ChestKey)
-                        {   //we can only add key chests to key rooms
-                            if (Functions_Level.currentRoom.type != RoomType.Key)
-                            {
-                                ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddKeyChest));
-                                return; //dont add chest
-                            }
-                        }
-                        else if (currentObjRef.type == ObjType.Dungeon_ChestMap)
-                        {   //we can only add map chests to hub rooms
-                            if (Functions_Level.currentRoom.type != RoomType.Hub)
-                            {
-                                ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddMapChest));
-                                return; //dont add chest
-                            }
-                        }
+                        if (currentObjRef.type == ObjType.Dungeon_Chest)
+                        {   
+                            //we convert the 'safe' chest into a key or hub chest here
+                            if (Functions_Level.currentRoom.type == RoomType.Key)
+                            {   //convert to key chest
+                                currentObjRef.type = ObjType.Dungeon_ChestKey;
 
-                        if (currentObjRef.group == ObjGroup.Chest)
-                        {   //we cannot have more than one chest in a room
+                            }
+                            else if (Functions_Level.currentRoom.type == RoomType.Hub)
+                            {   //convert to map chest
+                                currentObjRef.type = ObjType.Dungeon_ChestMap;
+                            }
+                            else
+                            {   //tell user we cant add a chest to this type of room
+                                ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddChests));
+                                return; //dont add chest
+                            }
+
+                            //we cannot have more than one chest in a room
                             for (j = 0; j < Pool.roomObjCount; j++)
                             {   //check all roomObjs for an active chest
-                                if (Pool.roomObjPool[j].active && Pool.roomObjPool[j].group == ObjGroup.Chest)
+                                if (Pool.roomObjPool[j].active & Pool.roomObjPool[j].group == ObjGroup.Chest)
                                 {
-                                    ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddMoreChests));
+                                    ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.CantAddChests));
                                     return; //dont add chest
                                 }
                             }
                         }
-
-                        if (currentObjRef.type == ObjType.Dungeon_Switch)
+                        
+                        else if (currentObjRef.type == ObjType.Dungeon_Switch)
                         {   //we cannot have more than one switch in a room
                             for (j = 0; j < Pool.roomObjCount; j++)
                             {   //check all roomObjs for an active chest
@@ -328,6 +329,26 @@ namespace DungeonRun
                         Functions_GameObject.SetType(objRef, currentObjRef.type);
                         //set animation frame
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+
+
+
+                        #region Convert chest objs to empty chests after placement
+
+                        if (currentObjRef.group == ObjGroup.Chest)
+                        {
+                            Functions_GameObject.SetType(currentObjRef, ObjType.Dungeon_ChestEmpty);
+                            window.title.text = "Obj: " + currentObjRef.type;
+                            currentObjDirectionText.text = "dir: " + currentObjRef.direction;
+                            //set the tool to be empty chest
+                            activeObj = Widgets.WidgetObjects_Dungeon.objList[19];
+                            selectionBoxObj.position = activeObj.compSprite.position;
+                            selectionBoxObj.scale = 2.0f;
+                            GetActiveObjInfo();
+                        }
+
+                        #endregion
+
+
                     }
 
                     #endregion
@@ -492,7 +513,6 @@ namespace DungeonRun
             Functions_GameObject.SetType(currentObjRef, activeObj.type);
             //update the currentObj text displays
             window.title.text = "Obj: " + currentObjRef.type;
-            //currentObjTypeText.text = "" + currentObjRef.type;
             currentObjDirectionText.text = "dir: " + currentObjRef.direction;
         }
 

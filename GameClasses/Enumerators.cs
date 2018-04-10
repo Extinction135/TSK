@@ -106,9 +106,14 @@ namespace DungeonRun
         Dungeon_PitTrap, //PitTrap
 
         Dungeon_Statue, //BossStatue,
-        Dungeon_ChestKey,
-        Dungeon_ChestMap,
-        Dungeon_ChestEmpty,
+
+
+        Dungeon_Chest, //placeable in editor, becomes key or map chest
+        Dungeon_ChestKey, //not placeable, procedurally set
+        Dungeon_ChestMap, //not placeable, procedurally set
+        Dungeon_ChestEmpty, //just empty
+
+
         Dungeon_BlockDark,
         Dungeon_BlockLight,
         Dungeon_BlockSpike,
@@ -143,11 +148,6 @@ namespace DungeonRun
         Dungeon_SpawnMiniBoss, //SpawnEnemy2
 
         #endregion
-
-
-
-
-
 
 
         #region World Objects
