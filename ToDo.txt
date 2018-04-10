@@ -57,6 +57,14 @@ TODAY:
 
 
 
+Chickens!
+
+updated Functions_Ai.HandleObj() with path for chickens.
+chickens are not as smart as dogs, and wont follow the hero.
+instead they just randomly jump around and cluck.
+add chicken pets to dungeon objs widget (temp).
+improved how idle and move frames are set for pets.
+playtested, chickens and dogs working as expected.
 
 
 
@@ -67,67 +75,18 @@ TODAY:
 
 
 
+when does Functions_Ai.HandleObj() occur?
+does this happen before or after we resolve collisions?
+this should be happening before collisions, because we're pushing objs.
+if we do afterwards, then we may push thru blocking objs..
 
 
 
-
-
-Adopt a Chicken. Or a Dog. PETS! AGAIN!
-
-re-implement PETS as GameObjects.
-they don't need full actor collisions / interactions.
-
-pets have a move and an idle animation.
-this means we'll have a game obj with TWO anim frames.
-something we haven't done yet...s
-
-plan: using AI functions, we can set the anim frame
-based on the obj's magnitude.. if the magnitude is greater than
-0, then the pet is moving and the moving animation frames should play.
-otherwise, the idle animation frames should play.
-
-if a collision / interaction happens with the pet, simply play the pet sfx.
-
-we'll have different ObjTypes for the Pets.
-then we can do a type check for sfx and anim frames.
-
-updated monogame project to load new PetSheet.
-added PetsSheet to Assets, loading properly.
-added ObjTypes for Dog and Chicken (Pet_Dog, Pet_Chicken).
-updated Obj.SetType() with paths for Dog and Chicken.
-created animFrames for dog & chicken, with idle and move frames.
-
-updated Functions_Ai.HandleObj() to handle the Pet_Dog obj.
-the dog tracks to the hero, until he reaches a certain radius,
-at which point the dog stops moving and switches to the idle
-animation. otherwise the moving animation plays. we move the
-dog obj by gently Push()ing it diagonally towards the hero.
-
-added Dog pet obj to DungeonObjs widget (for testing).
-adding a dog obj to room causes dog to move towards hero.
-eventually, the dogs settle into an idle state around the hero.
-it's cute. added soundfx back in as well. lots of playtesting.
-we don't even need a pet boolean, the pets just move toward
-the hero and act cute. improved the chase and idle routines.
-dog are very well implemented now. lots of playtesting.
-
-notes / thoughts: this implementation of pets exceeded my
-expectations and will actually allow pets to be transient in
-some cases.. such as in town, there can be chickens and dogs
-that will follow the hero around, just like his pet would.
-but unlike his pet, those pets won't persist with the hero
-from room to room, level to level, and the hero's pet doesn't
-block him, whereas the other pets do.
-
-updated UWP project with PetsSheet.png.
+animals should be able to interact with some dungeon objs, 
+like levers and switches.. that makes physical sense at least.
 
 
 
-
-
-
-
-we'll do chickens next.
 and then we need to figure out how to 'adopt' a pet...
 from the pet vendor. is the obvious choice.
 which means we'll have a permanent pet reserved in the roomObj pool for hero..
@@ -137,51 +96,10 @@ and we'll have a boolean to control pet
 
 
 
-
-update the UWP project to load the PetsSheet.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Add Enemy Tools Widget
 this exists on the right, in RoomEditor.
 right now, it's composed of only enemySpawn objects, of which there are two,
-but only 1 works.
-BUT, this isn't composed of gameobjects, it's composed
-of actors, actual actor data objects, because it will make
-it much easier and simpler to add them to rooms later on.
-but it will also make it slightly more complicated to load levels
-later on...
-
-
-
-
-Explosions++
-add 'burn' mark particle for explosions
-should last for 255 frames, mark the ground dark, then fade away.
-sprite.alpha = (float)obj.lifeCount * 3  //when this drops below 50frames, it will fade out
-*this can be reversed if life is counting up instead..
-if life > 250, alpha = 100 - (life - 250) * 2;
-
-add falling debris when straight walls are cracked by explosions.
-this is probably going to need to be a larger debris particle commit / system
-because the particles are going to be on the dungeon sheet, and we'll need
-to fake gravity and ground bouncing / friction collisions...
-
+but only 1 works. just keep the enemy spawns and tier ideas. for now.
 
 
 
@@ -189,56 +107,6 @@ to fake gravity and ground bouncing / friction collisions...
 Shared Objs Widget
 add shared objs widget, this is tied to the f7 button
 will display or hide this widget based on f7 press
-
-
-
-Dialog++
-the dialog screen's speaker sprite is completely wrong
-and i kind of love it.. because when i loaded the game 
-up a rock told me that it had successfully loaded my 
-last autosaved game. you don't normally hear that from a rock.
-
-
-
-
-
-
-
-
-
-
-
-Explosion Surfing (Bomb Jumping)
-
-if an actor is hit, simply put them into a flying state.
-this will cause the actor to be able to fly across pits for a moment,
-but when the hit state ends, if they overlap the pit, they
-will be pulled in. but, this does allow a type of bomb jumping,
-or rather "explosion surfing". which sounds so much better.
-
-we could even put the actor into a 2nd type of hit state,
-a staggered state, which would hold the actor in the hit state for
-longer, allowing them to fly for longer, allowing them to cross
-single tile pits safely - and only an explosion would be able
-to set an actor into this 2nd hit staggered hit state.
-
-which, staggered seems like a poor name for this state.
-likely should be something like ExplosiveThrow, 
-so we know the actor is being thrown by an explosion.
-
-we can implement this now and ensure that bomb jumping is not
-only preserved, but supported officially in this game, and is
-known as explosion surfing, because you can also use fireballs
-to do these type of explosive throwing tricks.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -449,6 +317,53 @@ this also means we need to 'unbake' the shadows from ALL objects and actors.
 
 
 
+
+Explosion Surfing (Bomb Jumping)
+
+if an actor is hit, simply put them into a flying state.
+this will cause the actor to be able to fly across pits for a moment,
+but when the hit state ends, if they overlap the pit, they
+will be pulled in. but, this does allow a type of bomb jumping,
+or rather "explosion surfing". which sounds so much better.
+
+we could even put the actor into a 2nd type of hit state,
+a staggered state, which would hold the actor in the hit state for
+longer, allowing them to fly for longer, allowing them to cross
+single tile pits safely - and only an explosion would be able
+to set an actor into this 2nd hit staggered hit state.
+
+which, staggered seems like a poor name for this state.
+likely should be something like ExplosiveThrow, 
+so we know the actor is being thrown by an explosion.
+
+we can implement this now and ensure that bomb jumping is not
+only preserved, but supported officially in this game, and is
+known as explosion surfing, because you can also use fireballs
+to do these type of explosive throwing tricks.
+
+
+
+
+
+Dialog++
+the dialog screen's speaker sprite is completely wrong
+and i kind of love it.. because when i loaded the game 
+up a rock told me that it had successfully loaded my 
+last autosaved game. you don't normally hear that from a rock.
+
+
+
+Explosions++
+add 'burn' mark particle for explosions
+should last for 255 frames, mark the ground dark, then fade away.
+sprite.alpha = (float)obj.lifeCount * 3  //when this drops below 50frames, it will fade out
+*this can be reversed if life is counting up instead..
+if life > 250, alpha = 100 - (life - 250) * 2;
+
+add falling debris when straight walls are cracked by explosions.
+this is probably going to need to be a larger debris particle commit / system
+because the particles are going to be on the dungeon sheet, and we'll need
+to fake gravity and ground bouncing / friction collisions...
 
 
 

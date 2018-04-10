@@ -1057,15 +1057,14 @@ namespace DungeonRun
                 Obj.lifetime = 0; //stay around forever
                 Obj.compMove.moveable = true; //obj is moveable by belts
                 Obj.getsAI = true; //obj gets ai too (track to hero, set anim frames)
-                //Obj.compCollision.blocking = false; //pets don't block
+                //Obj.compCollision.blocking = false; //pets block!
+                Obj.compSprite.texture = Assets.petsSheet;
 
                 //set initial animation frames for pets
                 if (Type == ObjType.Pet_Dog)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }
                 else if (Type == ObjType.Pet_Chicken)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Chicken_Idle; }
-
-                Obj.compSprite.texture = Assets.petsSheet;
             }
 
             #endregion

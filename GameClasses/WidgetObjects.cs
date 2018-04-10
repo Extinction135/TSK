@@ -156,7 +156,7 @@ namespace DungeonRun
 
             //row 9
             Functions_GameObject.SetType(objList[32], ObjType.Pet_Dog);
-            Functions_GameObject.SetType(objList[33], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[33], ObjType.Pet_Chicken);
             Functions_GameObject.SetType(objList[34], ObjType.Dungeon_SwitchBlockDown);
             Functions_GameObject.SetType(objList[35], ObjType.Dungeon_SwitchBlockDown);
 

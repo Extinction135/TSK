@@ -177,7 +177,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Pet Dog
+            #region Pet - Dog
 
             else if (Obj.type == ObjType.Pet_Dog)
             {
@@ -186,9 +186,6 @@ namespace DungeonRun
                     //track to the hero, within radius - get distance to hero
                     xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Obj.compSprite.position.X);
                     yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y);
-
-                    //assume pet should idle
-                    Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
 
                     //check if pet can see hero
                     if (yDistance < 64 & xDistance < 64)
@@ -200,8 +197,6 @@ namespace DungeonRun
                             Functions_Movement.Push(Obj.compMove,
                                 Functions_Direction.GetDiagonalToHero(Obj.compSprite.position),
                                 0.4f); 
-                            //set anim frames to moving
-                            Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Move;
                         }
                     }
                     else//pet cannot see hero..
@@ -217,6 +212,12 @@ namespace DungeonRun
                     if (Obj.compMove.magnitude.X < 0) //moving left
                     { Obj.compSprite.flipHorizontally = true; }
                     else { Obj.compSprite.flipHorizontally = false; } //moving right                                              
+
+                    //set moving or idle anim frame
+                    if (Math.Abs(Obj.compMove.magnitude.X) > 0 || Math.Abs(Obj.compMove.magnitude.Y) > 0)
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Move; }
+                    else { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }
+
                     //play the pet's sound fx occasionally
                     if (Functions_Random.Int(0, 101) > 99) { Assets.Play(Assets.sfxPetDog); }
                 }
@@ -225,21 +226,36 @@ namespace DungeonRun
             #endregion
 
 
+            #region Pet - Chicken
 
-
-
-
-            /*
             else if(Obj.type == ObjType.Pet_Chicken)
             {
-                //track to the hero, within radius, sometimes (the chicken is dumb)
+                //randomly push the pet in a direction
+                if (Functions_Random.Int(0, 101) > 98)
+                {
+                    Functions_Movement.Push(Obj.compMove,
+                        Functions_Direction.GetRandomDirection(), 
+                        2.0f);
 
-                //set anim frame based on obj.compMove.magnitude
-                //either moving or idle
+                    
+                }
+
+                //set the facing direction based on X magnitude
+                if (Obj.compMove.magnitude.X < 0) //moving left
+                { Obj.compSprite.flipHorizontally = true; }
+                else { Obj.compSprite.flipHorizontally = false; } //moving right
+
+                //set moving or idle anim frame
+                if (Math.Abs(Obj.compMove.magnitude.X) > 0 || Math.Abs(Obj.compMove.magnitude.Y) > 0)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Chicken_Move; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Chicken_Idle; }
+
+                //rarely play the pet's sound fx 
+                if (Functions_Random.Int(0, 101) > 99) { Assets.Play(Assets.sfxPetChicken); }
             }
-            */
 
-            
+            #endregion
+
 
 
         }
