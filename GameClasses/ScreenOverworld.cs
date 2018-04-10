@@ -404,8 +404,14 @@ namespace DungeonRun
                         Pool.particlePool[i].compMove.position.X = Pool.particlePool[i].compMove.newPosition.X;
                         Pool.particlePool[i].compMove.position.Y = Pool.particlePool[i].compMove.newPosition.Y;
                         Functions_Component.Align(Pool.particlePool[i]);
+
+                        //we also need to be counting the life of the particles
+                        Functions_Particle.Update(Pool.particlePool[i]);
                     }
                 }
+
+
+
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in

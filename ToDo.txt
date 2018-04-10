@@ -61,48 +61,18 @@ TODAY:
 
 
 
-Vendors & Pets
+Improvements
 
-improved all vendors to use the single frame flip animation.
-this adds some life to them. added all vendors to dungeon obj
-widget for testing. removed vendor advertisements from game. 
+changed where ResetUponRoomBuild() is called from.
+now it's called at the end of FinishRoom() instead
+of at the end of BuildRoom(). this still doesn't fix
+dog spawning issue, but prevents the removal of walls 
+from dungeon rooms. blerg. too complicated rn.
 
-fixed the dialog widget to display speakers properly.
-removed the speakerType enum, which was duplicating
-values already defined in the ObjType enum, so I switched
-to using that instead. playtested vendors, they display
-properly in vendor screen and complete transactions as
-expected.
+fixed the dungeon entrance light fx sprite.
 
-updated VendorScreen.LoadContent() to set ForSale window's
-title to 'For Adoption' instead of 'For Sale', if the vendor
-is the pet vendor. it didn't seem right to sell animals.
-
-moved pet spawning routine into Hero.SpawnPet().
-updated Hero.ResetUponRoomBuild() to call SpawnPet().
-fixed bug where hero's pet didn't spawn upon adoption.
-added hasPet boolean back to SaveData.
-
-alot of work done to get the hero's pet working right.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-in save data, we should have the fields named:
-heartsMax, magicMax, bombsMax, arrowsMax.
-we don't need magicTotal anymore.
-
+fixed the overworld map particles (they weren't getting
+aged, so old particles weren't being removed).
 
 
 
@@ -415,7 +385,9 @@ to fake gravity and ground bouncing / friction collisions...
 
 
 
-
+in save data, we should have the fields named:
+heartsMax, magicMax, bombsMax, arrowsMax.
+we don't need magicTotal anymore.
 
 Lttp Stuff we're missing:
 

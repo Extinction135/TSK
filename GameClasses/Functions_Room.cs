@@ -144,7 +144,7 @@ namespace DungeonRun
             //update all roomObjs, then remove overlapping objs
             Functions_RoomObject.AlignRoomObjs();
             CleanupRoom(Room); //remove overlapping objs
-            Functions_Hero.ResetUponRoomBuild(); //reset hero
+            
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime = time.Ticks;
@@ -209,6 +209,8 @@ namespace DungeonRun
             Functions_RoomObject.AlignRoomObjs();
             CleanupRoom(Room);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
+
+            Functions_Hero.ResetUponRoomBuild(); //reset hero
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
@@ -336,7 +338,7 @@ namespace DungeonRun
             //place the exit light fx over exit obj
             Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_ExitLight,
                 (Room.size.X / 2) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 1,
+                Room.size.Y * 16 + pos.Y - 16 * 1,
                 Direction.Down);
 
             //create exit pillars

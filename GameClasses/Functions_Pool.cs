@@ -385,12 +385,16 @@ namespace DungeonRun
                     else
                     {   //roomObj isn't blocking, but we may still want to perform
                         //collision checks on it, based on it's type.
-                        if (Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy)
-                        {   //check against roomObjs, and hero - but not enemies
+                        if (
+                            Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
+                            //this causes the dog to be able to pass thru most objs
+                            //|| Pool.roomObjPool[i].type == ObjType.Pet_Dog
+                            )
+                        {   //check against roomObjs, enemies, and hero
                             Functions_Collision.CheckCollisions(
                                 Pool.roomObjPool[i].compMove,
                                 Pool.roomObjPool[i].compCollision,
-                                true, false, true);
+                                true, true, true);
                         }
                         else
                         {   //roomObj isn't blocking, but may be moving
