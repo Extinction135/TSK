@@ -45,3 +45,9 @@ A 2D Zelda, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.
 + 1 Randomly Generated Dungeon with 1 enemy type and boss.
 + 5 items, 3 weapons, 4 armor pieces, 1 equipment piece.
 + 1 shop level, with 5 vendors, and a dog companion.
+
+
+## Contributing 
++ Don't.
++ No seriously, until version 1.0, pulls/requests will be ignored.
++ You noticed a bug? Cool, send me an email or comment. Or dont.

@@ -46,8 +46,9 @@ x - get all objects integrated into the new system / layout
 - Non-room repeating Dungeon, additional rooms
 - Flying Enemy
 - Blob AI improvements - sword, arrow, bomb based on weapon / item loadout 
-blob loadouts could be randomized when room is built()
+- blob loadouts could be randomized when room is built()
 
+- EndlessDungeon Demo (shows off gameplay, complete on it's own).
 
 
 
@@ -60,45 +61,77 @@ TODAY:
 
 
 
+BootRoutine ++
+modified the boot routine for game to set cheats based
+on release mode, roomBuilder mode, or just game mode.
 
-Explosions & Fireballs ++
-
-Explosions now crack normal walls, and light
-unlit torches on fire. Fireballs no longer do
-any of these things, and simply create explosions
-upon their death. So fireballs and bombs are simply
-tools to create and place explosions. Bombs are for
-precise placement, a quick slide. Fireballs are
-for distance placement or trap solving, since they
-travel much farther and are flying, so they can pass
-over pits and belts and floor spikes. however, their
-end result is the same: an explosion.
-
-updated Fireballs to create Explosion projectiles.
-Fireball behavior: will always spawn explosion and
-ground fire upon death. will play 'bonk' sound fx
-upon collision with blocking roomObject, like a wall.
-
-playtested. fireballs are AWESOMELY powerful now.
-hitting a wall with a fireballl usually cracks 2-3
-walls, and the end explosion gives the fireballs 
-death alot of audio impact. happy with it.
-
-increased damage explosions deal to actors to 3.
-fixed a bug where explosions didn't push actors because
-the push didn't have a direction. the direction of
-explosive force applied is now simply modeled as the
-actor's opposite facing direction.
-
-playtested, explosions are feeling much better.
-and they are deadly, as a new game starts the player out
-with 3 hearts, and an explosions deals 3 damage, so
-a player can literally kill themselves in the first
-5 seconds of gameplay with one of the starting items.
-that's fine. they'll learn.
+updated readme with snarky new 'Contributing' section.
 
 
 
+
+
+
+
+
+
+
+
+
+Official Demo (Endless Dungeon):
+
+this is just randomly connecting one room to another.
+there is no overall dungeon design or critical path.
+hero leaves a room, a new one is made for him based on door.
+or we make neighbor rooms when hero enters a room, it doesn't matter.
+rooms and room types are randomly chosen, so sometimes
+there might be a hub room with a miniboss, or a key room 
+that needs to be solved in order to progress. while the
+player can get the map, it's not really useful.
+HOWEVER, the key is SUPER USERFUL and can be used in a HUB
+room to open the boos door to the boss room where the boss can
+be beaten and the endless dungeon demo ends with a summary screen.
+pressing any button starts the endless runner demo again.
+the starting room doesn't have an exit.
+music is randomly chosen. very useful for testing purposes!
+this shows off the gameplay and overall systems.
+
+this is a BootRoutine enum value, Demo.
+we check the boot routine value upon load, and then set the hero's
+loadout to either normal, or full (editor and endless runner).
+
+ScreenDemo - controls the demo's interactions (locks player here)
+Functions_Demo - contains all the demo's methods
+
+from sumamry screen we need to check the BootRoutine to see if 
+we return to overworld or exitAll() to a fresh Demo Screen.
+
+we would have to disable some menuItems from inventory screen,
+or remove the ability to interact with the options widget entirely! lol
+that also means no cheats. boo
+
+but, this endless dungeon idea can be put back into the game later
+as a specific type of dungeon (a ghost dungeon or something), because
+it can be completed in the expected manner: get key, open boss door, kill boss.
+we can set a boolean based on the boss type's death, which effectively
+tracks the player's progress past this endless dungeon.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Update ReadMe to tell people not to do pull requests or forks or 
+anything like that, until project hits 1.0 and gets documentation.
 
 
 
