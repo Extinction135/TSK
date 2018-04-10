@@ -31,8 +31,8 @@ adding a cheat:
 	
 
 v0.7 goals
-- divide spritesheets up so they can be expanded / modified easily
-- get all objects integrated into the new system / layout
+x - divide spritesheets up so they can be expanded / modified easily
+x - get all objects integrated into the new system / layout
 
 - expand RoomBuilder to include the creation, placement, loading and saving of world levels.
 - Dungeon Entrance Level, with dungeon entrance object, locked cam, filled screen
@@ -58,56 +58,80 @@ TODAY:
 
 
 
-Chests++
-
-we need to make adding chests to rooms 'safe',
-which means we need to only have 1 chest obj in 
-the objTools widget, and it can only be added to
-key or hub rooms, and based on the room type,
-the chest is translated to key or map based on 
-room type. added Dungeon_Chest to ObjType enum.
-updated Obj.SetType() to handle all chests.
-removed ChestKey and ChestMap objs from ObjTools.
-replaced them with safe Chest obj.
-
-removed dialogs for adding chests to key and hub
-rooms. this simplifies the process for adding chests,
-we just add a chest to a hub or key room and the code
-handles the rest, converting the object properly to
-the correct chest type. in addition, empty chests have
-been removed from the chest object group type, so 
-editors can add as many empty chests as they like.
-this adds some variation to puzzles.
-
-added empty chest back to editor objTools.
-modified the chest checking system in editor to more
-safely handle user interaction, this means after
-adding a chest to a hub or key room, the current
-obj is converted to an empty chest obj.
-empty chest objs are just treated as regular objs.
-
-updated objTools widget to display empty chest
-upon currentObj conversion (done above).
-this makes the widget *actually* display the current
-obj selected. playtested, working as expected.
 
 
 
+Explosions & Fireballs ++
 
+Explosions now crack normal walls, and light
+unlit torches on fire. Fireballs no longer do
+any of these things, and simply create explosions
+upon their death. So fireballs and bombs are simply
+tools to create and place explosions. Bombs are for
+precise placement, a quick slide. Fireballs are
+for distance placement or trap solving, since they
+travel much farther and are flying, so they can pass
+over pits and belts and floor spikes. however, their
+end result is the same: an explosion.
 
+updated Fireballs to create Explosion projectiles.
+Fireball behavior: will always spawn explosion and
+ground fire upon death. will play 'bonk' sound fx
+upon collision with blocking roomObject, like a wall.
 
+playtested. fireballs are AWESOMELY powerful now.
+hitting a wall with a fireballl usually cracks 2-3
+walls, and the end explosion gives the fireballs 
+death alot of audio impact. happy with it.
 
+increased damage explosions deal to actors to 3.
+fixed a bug where explosions didn't push actors because
+the push didn't have a direction. the direction of
+explosive force applied is now simply modeled as the
+actor's opposite facing direction.
 
+playtested, explosions are feeling much better.
+and they are deadly, as a new game starts the player out
+with 3 hearts, and an explosions deals 3 damage, so
+a player can literally kill themselves in the first
+5 seconds of gameplay with one of the starting items.
+that's fine. they'll learn.
 
 
 
 
 
-Improve / Beautify Feedback Info
-we need to move the left handed update collision interaction draw times
-into it's own widget, which is drawn on the right side, and make it linked
-to a boolean which draws it, which is then linked to the cheats menu as a
-draw dev info cheat.
+
+
+
+
+
+add 'burn' mark particle for explosions
+
+add falling debris when straight walls are cracked by explosions.
+this is probably going to need to be a larger debris particle commit / system
+because the particles are going to be on the dungeon sheet, and we'll need
+to fake gravity and ground bouncing / friction collisions...
+
+
+
+
+
+
+Explosions++
+currently, explosions dont harm the hero or actors.
+which they should. they most certainly should. alot. badly.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -121,24 +145,6 @@ will display or hide this widget based on f7 press
 
 
 
-Fireballs++
-fireballs should create explosions upon collision/interaction
-and the explosions should play their explosion sound, but
-fireball shouldn't play it's signature 'bonk' sound.
-this 'bonk' sound should only play if the fireball dies of old age,
-as a way to say to the player "well, that was kind of a waste of magic".
-
-
-Explosions++
-explosions should 'crack' normal walls.
-this means fireballs crack walls, along with bombs.
-which is awesome. we should have a debris falling animation
-for the cracking wall too, since it's likely to happen often.
-
-
-
-
-
 
 Wall Torches++
 if we seperate the wall torch off the wall bkg sprite, then we can reuse
@@ -146,22 +152,6 @@ it indoors in world rooms, or outside on buildings. but, we need to update
 the door decoration algorithm to add torches, instead of replacing the wall
 with a wall torch, which acts simply as a wall.
 
-
-
-
-
-
-
-Barrels of Bugs
-the barrel became a bomb upon being hit.
-which is functional, but isn't correct at all.
-this is because we need to allow projectile sprites
-to live on other sheets than the entities sheet,
-and this is handled in Obj.SetType().
-note that we do a group check at the end that sets the
-texture, so we need to pull projectiles out of that check.
-instead we'll just have to set them by hand inside the
-SetType() checks, of which there are many
 
 
 
@@ -525,6 +515,14 @@ WanderingFire
 this is just like spikeblock except the obj.direction is chosen randomly upon collision
 the direction cannot be the current direction however, and can only be cardinal	
 should be able to place wandering fire using tools widget
+
+
+
+Improve / Beautify Feedback Info
+we need to move the left handed update collision interaction draw times
+into it's own widget, which is drawn on the right side, and make it linked
+to a boolean which draws it, which is then linked to the cheats menu as a
+draw dev info cheat.
 
 
 

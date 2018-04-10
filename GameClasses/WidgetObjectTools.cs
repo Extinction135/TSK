@@ -331,7 +331,6 @@ namespace DungeonRun
                         Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
 
 
-
                         #region Convert chest objs to empty chests after placement
 
                         if (currentObjRef.group == ObjGroup.Chest)

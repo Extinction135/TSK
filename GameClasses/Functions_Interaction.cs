@@ -412,23 +412,41 @@ namespace DungeonRun
                     #endregion
 
 
-                    #region Explosion
+                    #region Explosions
 
                     else if (Object.type == ObjType.ProjectileExplosion)
-                    {   //explosions alter certain roomObjects
-                        if (Object.lifeCounter == 1)
-                        {   //perform these interactions only once
+                    {   //explosions alter some roomObjects
+                        if (Object.lifeCounter == 1) //perform these interactions only once
+                        {   
                             if (RoomObj.type == ObjType.Dungeon_DoorBombable)
-                            { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Object); }
+                            {   //explosions collapse doors
+                                Functions_RoomObject.CollapseDungeonDoor(RoomObj, Object);
+                            }
                             else if (RoomObj.type == ObjType.Dungeon_Statue)
-                            { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
+                            {   //explosions destroy statues
+                                Functions_RoomObject.DestroyObject(RoomObj, true, true);
+                            }
+                            else if(RoomObj.type == ObjType.Dungeon_WallStraight)
+                            {   //explosions 'crack' normal walls
+                                Functions_GameObject.SetType(RoomObj, ObjType.Dungeon_WallStraightCracked);
+                                //play sfx
+                                //drop debris particles
+                            }
+                            else if (RoomObj.type == ObjType.Dungeon_TorchUnlit)
+                            {   //explosions light torches on fire
+                                Functions_RoomObject.LightTorch(RoomObj);
+                            }
+
                             //explosions also trigger common obj interactions
                             Functions_RoomObject.HandleCommon(RoomObj,
                                 //get the direction towards the roomObj from the explosion
                                 Functions_Direction.GetOppositeCardinal(
                                     RoomObj.compSprite.position,
                                     Object.compSprite.position)
-                                ); //this direction should be explosion pos vs. roomObj pos
+                            ); //this direction should be explosion pos vs. roomObj pos
+
+                            //leave a 'burn mark' particle, with life 255
+                            //this is just a darker spot on the ground that looks like a blast mark
                         }
                     }
 
@@ -438,17 +456,9 @@ namespace DungeonRun
                     #region Fireball
 
                     else if (Object.type == ObjType.ProjectileFireball)
-                    {   //fireballs alter certain roomObjects
-                        if (RoomObj.type == ObjType.Dungeon_DoorBombable)
-                        { Functions_RoomObject.CollapseDungeonDoor(RoomObj, Object); }
-                        else if (RoomObj.type == ObjType.Dungeon_Statue)
-                        { Functions_RoomObject.DestroyObject(RoomObj, true, true); }
-                        else if (RoomObj.type == ObjType.Dungeon_TorchUnlit)
-                        { Functions_RoomObject.LightTorch(RoomObj); }
-                        //fireballs trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
-                        //fireballs die upon blocking collision
-                        Functions_Projectile.Kill(Object);
+                    {   //fireball hit something, play bonk sound as audio confirmation
+                        Assets.Play(Assets.sfxFireballDeath);
+                        Functions_Projectile.Kill(Object); //fireball becomes explosion upon death
                     }
 
                     #endregion

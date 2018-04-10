@@ -50,8 +50,10 @@ namespace DungeonRun
                 Obj.lifeCounter = 200; //return to caster
             }
             else if (Obj.type == ObjType.ProjectileExplosion)
-            {   //explosions deal 2 damage, push 10
-                damage = 2; force = 10.0f; direction = Obj.direction;
+            {   //explosions deal 3 damage, push 10
+                damage = 3; force = 10.0f;
+                //push actor in their opposite direction
+                direction = Functions_Direction.GetOppositeDirection(Actor.direction);
             }
             else if (Obj.type == ObjType.ProjectileSword)
             {   //swords deal 1 damage, push 6
@@ -74,12 +76,14 @@ namespace DungeonRun
             else if(Obj.type == ObjType.Dungeon_SpikesFloorOn)
             {   //med push actors away from spikes
                 damage = 1; force = 7.5f;
-                direction = Functions_Direction.GetOppositeCardinal(Actor.compSprite.position, Obj.compSprite.position);
+                direction = Functions_Direction.GetOppositeCardinal(
+                    Actor.compSprite.position, Obj.compSprite.position);
             }
             else if (Obj.type == ObjType.Dungeon_BlockSpike)
             {   //med push actor away from spikes
                 damage = 1; force = 7.5f;
-                direction = Functions_Direction.GetOppositeDiagonal(Actor.compSprite.position, Obj.compSprite.position);
+                direction = Functions_Direction.GetOppositeDiagonal(
+                    Actor.compSprite.position, Obj.compSprite.position);
             }
 
             #endregion
@@ -98,7 +102,7 @@ namespace DungeonRun
                 Functions_Actor.SetHitState(Actor);
 
                 //check invincibility boolean
-                if (Actor == Pool.hero) { if (Flags.Invincibility) { return; } }
+                if (Actor == Pool.hero & Flags.Invincibility) { return; }
                 //prevent damage byte from underflowing the Actor.health byte
                 if (Damage > Actor.health) { Actor.health = 0; }
                 else { Actor.health -= Damage; }

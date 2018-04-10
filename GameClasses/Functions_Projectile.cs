@@ -153,16 +153,13 @@ namespace DungeonRun
                     Obj.compMove, Direction.None);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
-            {   //explosion & ground fire
-                Functions_Particle.Spawn(
-                    ObjType.Particle_Explosion,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0);
+            {   //create explosion & ground fire
+                Spawn(ObjType.ProjectileExplosion,
+                    Obj.compMove, Direction.None);
                 Functions_Particle.Spawn(
                     ObjType.Particle_FireGround,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0);
-                Assets.Play(Assets.sfxFireballDeath);
             }
             //sword - no death event
             //rock debris - no death event
