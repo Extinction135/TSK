@@ -240,7 +240,10 @@ namespace DungeonRun
                     //any moving roomObj gets interaction checks
                     //and specific roomObjs ALWAYS get interaction checks
                     if (Pool.roomObjPool[i].compMove.moving
-                        || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn)
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_ConveyorBeltOn
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_Fairy
+                        || Pool.roomObjPool[i].type == ObjType.Pet_Chicken
+                        || Pool.roomObjPool[i].type == ObjType.Pet_Dog)
                     { Functions_Interaction.CheckInteractions(Pool.roomObjPool[i]); }
                 }
             }

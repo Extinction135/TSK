@@ -551,32 +551,25 @@ namespace DungeonRun
 
             //object.type checks
 
-            #region ConveyorBelts
+            #region Pet / Animals
 
-            if (Object.type == ObjType.Dungeon_ConveyorBeltOn)
-            {   //if obj is moveable and on ground, move it
-                if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
-                { Functions_RoomObject.ConveyorBeltPush(RoomObj.compMove, Object); }
+            if (Object.type == ObjType.Pet_Chicken || Object.type == ObjType.Pet_Dog)
+            {   //trigger switches, bounce off bumpers
+                if (RoomObj.type == ObjType.Dungeon_Switch)
+                { Functions_RoomObject.ActivateSwitchObject(RoomObj); }
+                else if (RoomObj.type == ObjType.Dungeon_Bumper)
+                { Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj); }
             }
 
             #endregion
 
 
-            #region Fairy - as Object
+            #region ConveyorBelts
 
-            else if(Object.type == ObjType.Dungeon_Fairy)
-            {   
-                if(RoomObj.compCollision.blocking)
-                {   //slow fairy's movement thru blocking objects
-                    Functions_Movement.RevertPosition(Object.compMove);
-                    Functions_Movement.StopMovement(Object.compMove);
-                }
-                //fairys can bump levers on/off
-                if (RoomObj.type == ObjType.Dungeon_LeverOff || RoomObj.type == ObjType.Dungeon_LeverOn)
-                { Functions_RoomObject.ActivateLeverObjects(); }
-                //fairys bump off of bumpers as well
-                else if(RoomObj.type == ObjType.Dungeon_Bumper)
-                { Functions_RoomObject.BounceOffBumper(Object.compMove, RoomObj); }
+            else if (Object.type == ObjType.Dungeon_ConveyorBeltOn)
+            {   //if obj is moveable and on ground, move it
+                if (RoomObj.compMove.moveable && RoomObj.compMove.grounded)
+                { Functions_RoomObject.ConveyorBeltPush(RoomObj.compMove, Object); }
             }
 
             #endregion
@@ -597,6 +590,8 @@ namespace DungeonRun
             }
 
             #endregion
+
+
 
             //roomObj.type checks
 
@@ -701,7 +696,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Fairy - as RoomObject
+            #region Fairy
 
             else if (RoomObj.type == ObjType.Dungeon_Fairy)
             {
@@ -717,15 +712,18 @@ namespace DungeonRun
                         Object.lifeCounter = Object.lifetime;
                         //hide hitBox (prevents multiple collisions)
                         Object.compCollision.rec.X = -1000;
-                        //the beginning if() prevents the net from Interacting()5
+                        //the beginning if() prevents the net from Interacting()
                         //on the next frame, when it is dying from this interaction
                         //without the check, the net interacts twice, across two frames
                         //causing two dialog screens to pop, which feels buggy
                     }
                 }
+                else if (Object.type == ObjType.Dungeon_Bumper)
+                { Functions_RoomObject.BounceOffBumper(RoomObj.compMove, Object); }
             }
 
             #endregion
+
 
 
         }

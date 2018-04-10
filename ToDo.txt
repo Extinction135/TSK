@@ -61,18 +61,13 @@ TODAY:
 
 
 
-Fairys++
+Fairy & Pets ++
 
-Fairys can still fly thru walls, because they aren't being
-collision checked. So, we need to change how fairy roomObjs
-are handled, so they are collision checked. modified
-Functions_Pool.Update() to collision check fairy objs.
-working as expected. fixed a bug where fairys weren't being
-properly release() upon collision with hero.
+simplified Fairy interactions, since they were written attempting
+to prevent fairys from passing thru blocking objects.
 
-unfortunately, fairys can no longer interact with levers,
-as levers are blocking objs and fairys are being collision
-checked against blocking objs.
+updated interaction functions to allow chickens and dogs
+to trigger floor switches.
 
 
 
@@ -81,11 +76,6 @@ checked against blocking objs.
 
 
 
-
-
-
-animals should be able to interact with some dungeon objs, 
-like levers and switches.. that makes physical sense at least.
 
 
 
@@ -572,6 +562,14 @@ if blob, then NPCs act disgusted, wont sell
 
 we need to create a blob safe level, where blobs have their own vendors + guide
 this allows the two storylines to co-exist and proress seperately
+
+
+
+
+we could simplify bumper interactions if we could just say
+if (obj.compCollision.Interacts_With_Bumper), then we bounce the obj.
+instead we're doing this inside of the type check, which is duplicating
+alot of code calling BounceOffBumper(), then passing the obj.
 
 
 

@@ -55,14 +55,14 @@ namespace DungeonRun
             }
         }
 
-        public static void ActivateSwitchObject(GameObject Obj)
+        public static void ActivateSwitchObject(GameObject Switch)
         {   //convert switch off, play switch soundFx
-            Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchOff);
+            Functions_GameObject.SetType(Switch, ObjType.Dungeon_SwitchOff);
             //grab the player's attention
             Functions_Particle.Spawn(
                 ObjType.Particle_Attention,
-                Obj.compSprite.position.X,
-                Obj.compSprite.position.Y);
+                Switch.compSprite.position.X,
+                Switch.compSprite.position.Y);
             OpenTrapDoors(); //open all trap doors
         }
 
