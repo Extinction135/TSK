@@ -34,13 +34,21 @@ By design I'm referring to the gameloop and the gameplay.
 
 
 ## UWP App Limitations
-+ Target ram useage is < 128mb.
++ Target ram useage used to be < 128mb.
++ As of 2018, UWP game ram can be up to 5GB.
 + This target ram was decided based on this document: https://docs.microsoft.com/en-us/windows/uwp/xbox-apps/system-resource-allocation
-+ The max ram available to an app running in the bkg is 128mb.
-+ So the game will simply exist in that 128mb available.
++ I still want to keep the ram as small as possible.
++ So, total ram footprint should be less than 1gb.
 + Monogame framework takes up around 50mb.
-+ Sound files take up the most ram, so they're mono at 22k.
++ Sound files take up most ram, so they're mono at 22k.
 
+
+## Platform Agnostic Design Principles
++ Keep RAM footprint small and frametimes low.
++ Keep Game code separate from platform specific code.
++ These two principles make it much easier to port the game.
++ A lower power system can still likely run the game at 60fps.
++ Only a Functions_Backend class copy needs to be written for the platform.
 
 
 ## Rendering Optimizations

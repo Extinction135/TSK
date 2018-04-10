@@ -61,14 +61,18 @@ TODAY:
 
 
 
-BootRoutine ++
-modified the boot routine for game to set cheats based
-on release mode, roomBuilder mode, or just game mode.
 
-updated readme with snarky new 'Contributing' section.
+Planning (Important)
 
-
-
+Updated Design.md (and game tech specs) to match latest UWP
+game resources, which are 5 GB of ram for foreground games.
+which is more than I can possible imagine filling up, because
+I've been living inside of 128mb for a year now. 
+5gb is too much. whew. and I see no reason to expand the ram
+footprint dramatically, because keeping the ram small and the
+frametimes small, and the game code independent of the backend,
+means it's very easy to port the game to different systems, like
+the nintendo switch.. in the future... hmm...
 
 
 
