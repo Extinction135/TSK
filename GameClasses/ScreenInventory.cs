@@ -123,9 +123,6 @@ namespace DungeonRun
                 PlayerData.current.lastItemSelected = currentlySelected.id;
 
 
-
-
-
                 #region Handle Opening the Dungeon Map
 
                 if (currentlySelected.type == MenuItemType.InventoryMap)
@@ -135,9 +132,6 @@ namespace DungeonRun
                 }
 
                 #endregion
-
-
-
 
 
                 #region Handle the Options MenuItems
@@ -225,12 +219,6 @@ namespace DungeonRun
                     //update the LoadoutWidget to show equipped items
                     Widgets.Loadout.UpdateLoadout();
                 }
-
-
-
-
-
-
             }
 
 

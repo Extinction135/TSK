@@ -30,8 +30,8 @@ namespace DungeonRun
         public static Texture2D heroSheet;
         public static Texture2D blobSheet;
         public static Texture2D bossSheet;
-
-
+        //pets sheet
+        public static Texture2D petsSheet;
 
         //world/ui/screen sheets
         public static Texture2D entitiesSheet;
@@ -171,6 +171,9 @@ namespace DungeonRun
             heroSheet = content.Load<Texture2D>(@"HeroSheet");
             blobSheet = content.Load<Texture2D>(@"BlobSheet");
             bossSheet = content.Load<Texture2D>(@"BossSheet");
+
+            //pets sheet
+            petsSheet = content.Load<Texture2D>(@"PetsSheet");
 
             //world/ui/screen sheets
             bigTextSheet = content.Load<Texture2D>(@"BigTextSheet");

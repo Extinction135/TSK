@@ -127,6 +127,9 @@ namespace DungeonRun
         public static void HandleObj(GameObject Obj)
         {   //keep in mind this method is called every frame
 
+
+            #region Dungeon Objects
+
             if (Obj.type == ObjType.Dungeon_Flamethrower)
             {
                 if (Functions_Random.Int(0, 500) > 497) //aggressively shoots
@@ -146,6 +149,12 @@ namespace DungeonRun
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
                 { Functions_Particle.Spawn(ObjType.ParticlePitAnimation, Obj); }
             }
+
+            #endregion
+
+
+            #region Fairy
+
             else if (Obj.type == ObjType.Dungeon_Fairy)
             {
                 if (Functions_Random.Int(0, 101) > 93) //float around
@@ -164,6 +173,74 @@ namespace DungeonRun
                     }
                 }
             }
+
+            #endregion
+
+
+            #region Pet Dog
+
+            else if (Obj.type == ObjType.Pet_Dog)
+            {
+                if (Functions_Random.Int(0, 101) > 50)
+                {
+                    //track to the hero, within radius - get distance to hero
+                    xDistance = (int)Math.Abs(Pool.hero.compSprite.position.X - Obj.compSprite.position.X);
+                    yDistance = (int)Math.Abs(Pool.hero.compSprite.position.Y - Obj.compSprite.position.Y);
+
+                    //assume pet should idle
+                    Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
+
+                    //check if pet can see hero
+                    if (yDistance < 64 & xDistance < 64)
+                    {   //if distance is less than rest radius, rest 
+                        if (yDistance < 24 & xDistance < 24)
+                        { } //do nothing, pet is close enough to hero to rest
+                        else
+                        {   //move diagonally towards hero
+                            Functions_Movement.Push(Obj.compMove,
+                                Functions_Direction.GetDiagonalToHero(Obj.compSprite.position),
+                                0.4f); 
+                            //set anim frames to moving
+                            Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Move;
+                        }
+                    }
+                    else//pet cannot see hero..
+                    {   //randomly push the pet in a direction
+                        if (Functions_Random.Int(0, 101) > 80)
+                        {
+                            Functions_Movement.Push(Obj.compMove,
+                                Functions_Direction.GetRandomDirection(), 1.0f);
+                        }
+                    }
+
+                    //set the facing direction based on X magnitude
+                    if (Obj.compMove.magnitude.X < 0) //moving left
+                    { Obj.compSprite.flipHorizontally = true; }
+                    else { Obj.compSprite.flipHorizontally = false; } //moving right                                              
+                    //play the pet's sound fx occasionally
+                    if (Functions_Random.Int(0, 101) > 99) { Assets.Play(Assets.sfxPetDog); }
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
+            /*
+            else if(Obj.type == ObjType.Pet_Chicken)
+            {
+                //track to the hero, within radius, sometimes (the chicken is dumb)
+
+                //set anim frame based on obj.compMove.magnitude
+                //either moving or idle
+            }
+            */
+
+            
+
 
         }
 

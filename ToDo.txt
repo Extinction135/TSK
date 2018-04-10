@@ -62,32 +62,6 @@ TODAY:
 
 
 
-Fix How The Dungeon Map is Accessed
-
-currently, the dungeon map screen is displayed by pressing 
-the left shoulder button - which makes no sense whatsoever,
-but is a work around to a Monogame + UWP back button 
-implementation bug / decision.
-
-the dugeon map screen should be displayed not by a button press,
-but instead by selecting the map menuItem from the inventory screen
-by using the A button press, from the loadout widget.
-
-when this series of events happens, the map is displayed.
-it's kind of a pita because I don't want the map being used as a
-crutch for players, plus this fixes the back button UWP issue.
-
-
-updated Input.MapPlayerInput(), removing paths for shoulder
-button input for inventory and map screens. only the start
-button opens the map screen.
-
-updated inventoryScreen.HandleInput() to create a new map
-screen if the selected menuItem is the loadout's map.
-
-playtested, working as expected.
-this has additional benefit of removing a button from the total
-input required to play the game. 'select' button is no longer needed.
 
 
 
@@ -97,16 +71,89 @@ input required to play the game. 'select' button is no longer needed.
 
 
 
-PETS++
-re-implement PETS as GameObjects that track to hero.
-they don't need the full actor collision checking / implementation
 
-we don't actually need the pet to be an actor
-we *could* model the pet as a roomObject, since it's
-behavior is so simple. this would simplify actors 
-to being either hero or mob or miniboss or boss.
-we could even model them as projectiles, since they
-have per frame behaviors that are all the same.
+Adopt a Chicken. Or a Dog. PETS! AGAIN!
+
+re-implement PETS as GameObjects.
+they don't need full actor collisions / interactions.
+
+pets have a move and an idle animation.
+this means we'll have a game obj with TWO anim frames.
+something we haven't done yet...s
+
+plan: using AI functions, we can set the anim frame
+based on the obj's magnitude.. if the magnitude is greater than
+0, then the pet is moving and the moving animation frames should play.
+otherwise, the idle animation frames should play.
+
+if a collision / interaction happens with the pet, simply play the pet sfx.
+
+we'll have different ObjTypes for the Pets.
+then we can do a type check for sfx and anim frames.
+
+updated monogame project to load new PetSheet.
+added PetsSheet to Assets, loading properly.
+added ObjTypes for Dog and Chicken (Pet_Dog, Pet_Chicken).
+updated Obj.SetType() with paths for Dog and Chicken.
+created animFrames for dog & chicken, with idle and move frames.
+
+updated Functions_Ai.HandleObj() to handle the Pet_Dog obj.
+the dog tracks to the hero, until he reaches a certain radius,
+at which point the dog stops moving and switches to the idle
+animation. otherwise the moving animation plays. we move the
+dog obj by gently Push()ing it diagonally towards the hero.
+
+added Dog pet obj to DungeonObjs widget (for testing).
+adding a dog obj to room causes dog to move towards hero.
+eventually, the dogs settle into an idle state around the hero.
+it's cute. added soundfx back in as well. lots of playtesting.
+we don't even need a pet boolean, the pets just move toward
+the hero and act cute. improved the chase and idle routines.
+dog are very well implemented now. lots of playtesting.
+
+notes / thoughts: this implementation of pets exceeded my
+expectations and will actually allow pets to be transient in
+some cases.. such as in town, there can be chickens and dogs
+that will follow the hero around, just like his pet would.
+but unlike his pet, those pets won't persist with the hero
+from room to room, level to level, and the hero's pet doesn't
+block him, whereas the other pets do.
+
+updated UWP project with PetsSheet.png.
+
+
+
+
+
+
+
+we'll do chickens next.
+and then we need to figure out how to 'adopt' a pet...
+from the pet vendor. is the obvious choice.
+which means we'll have a permanent pet reserved in the roomObj pool for hero..
+and we'll have a boolean to control pet
+
+
+
+
+
+
+update the UWP project to load the PetsSheet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

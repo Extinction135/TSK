@@ -38,21 +38,6 @@ namespace DungeonRun
             //open inventory with start button only
             else if (IsNewButtonPress(Buttons.Start))
             { ScreenManager.AddScreen(new ScreenInventory()); }
-
-
-            /*
-            else if (IsNewButtonPress(Buttons.RightShoulder))
-            { ScreenManager.AddScreen(new ScreenInventory()); }
-
-            //open map with left shoulder button
-            else if (IsNewButtonPress(Buttons.LeftShoulder))
-            { if (Level.map) { ScreenManager.AddScreen(new ScreenLevelMap()); } }
-            //back/select button isn't used for map due to a bug with UWP + Monogame,
-            //where upon a B button release the Back button state is incorrectly set to Pressed.
-            */
-
-
-
         }
 
         public static void SetInputState(ComponentInput CompInput, Actor Actor)

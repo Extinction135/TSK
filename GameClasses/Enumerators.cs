@@ -236,6 +236,14 @@ namespace DungeonRun
 
         #endregion
 
+
+        #region Pets
+
+        Pet_Dog,
+        Pet_Chicken,
+
+        #endregion
+
     }
 
     public enum MenuItemType
