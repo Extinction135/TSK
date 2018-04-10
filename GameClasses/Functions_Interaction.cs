@@ -117,7 +117,9 @@ namespace DungeonRun
                 #region Fairy
 
                 if (Obj.type == ObjType.Dungeon_Fairy)
-                { Functions_RoomObject.UseFairy(Obj); }
+                {
+                    Functions_RoomObject.UseFairy(Obj);
+                }
 
                 #endregion
 

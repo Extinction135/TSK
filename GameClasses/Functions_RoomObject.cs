@@ -321,8 +321,14 @@ namespace DungeonRun
             Pool.hero.health = PlayerData.current.heartsTotal; //effect
             Assets.Play(Assets.sfxHeartPickup); //sfx
 
-            if (Fairy != null) //end fairys life
-            { Fairy.lifeCounter = 2; Fairy.lifetime = 1; }
+            if (Fairy != null) //kill fairy
+            {
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Attention,
+                    Fairy.compSprite.position.X,
+                    Fairy.compSprite.position.Y);
+                Functions_Pool.Release(Fairy);
+            }
         }
 
         public static void AlignRoomObjs()

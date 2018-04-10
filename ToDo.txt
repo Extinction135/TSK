@@ -57,28 +57,30 @@ TODAY:
 
 
 
-Chickens!
-
-updated Functions_Ai.HandleObj() with path for chickens.
-chickens are not as smart as dogs, and wont follow the hero.
-instead they just randomly jump around and cluck.
-add chicken pets to dungeon objs widget (temp).
-improved how idle and move frames are set for pets.
-playtested, chickens and dogs working as expected.
 
 
 
 
+Fairys++
+
+Fairys can still fly thru walls, because they aren't being
+collision checked. So, we need to change how fairy roomObjs
+are handled, so they are collision checked. modified
+Functions_Pool.Update() to collision check fairy objs.
+working as expected. fixed a bug where fairys weren't being
+properly release() upon collision with hero.
+
+unfortunately, fairys can no longer interact with levers,
+as levers are blocking objs and fairys are being collision
+checked against blocking objs.
 
 
 
 
 
 
-when does Functions_Ai.HandleObj() occur?
-does this happen before or after we resolve collisions?
-this should be happening before collisions, because we're pushing objs.
-if we do afterwards, then we may push thru blocking objs..
+
+
 
 
 
