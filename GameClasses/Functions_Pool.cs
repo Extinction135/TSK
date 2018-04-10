@@ -20,8 +20,8 @@ namespace DungeonRun
         public static Actor GetActor()
         {
             Pool.actorIndex++;
-            //reset index to 2, skipping hero and hero's pet in actor pool
-            if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 2; }
+            //reset index to 1, skipping hero in actor pool
+            if (Pool.actorIndex == Pool.actorCount) { Pool.actorIndex = 1; }
             //if the target actor is dead, set it to be inactive
             if (Pool.actorPool[Pool.actorIndex].state == ActorState.Dead)
             { Release(Pool.actorPool[Pool.actorIndex]); }
@@ -35,8 +35,8 @@ namespace DungeonRun
         }
 
         public static GameObject GetRoomObj()
-        {
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+        {   //skip roomObj 1, cause it's the hero's pet
+            for (Pool.roomObjCounter = 1; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             {   //found an inactive obj to return
                 if (Pool.roomObjPool[Pool.roomObjCounter].active == false)
                 {   //reset obj to default state, hide offscreen, return it
@@ -127,9 +127,9 @@ namespace DungeonRun
 
         public static void ResetActorPool()
         {   //skip resetting the hero & pet
-            for (Pool.actorCounter = 2; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
+            for (Pool.actorCounter = 1; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Release(Pool.actorPool[Pool.actorCounter]); }
-            Pool.actorIndex = 2;
+            Pool.actorIndex = 1;
         }
 
         public static void ResetRoomObjPool()

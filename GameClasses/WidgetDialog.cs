@@ -71,40 +71,14 @@ namespace DungeonRun
 
 
         
-        public void DisplayDialog(SpeakerType SpeakerType, String Title, String Dialog)
-        {   //set the menuItem's type and sprite frame
+        public void DisplayDialog(ObjType SpeakerType, String Title, String Dialog)
+        {   
+            //reset the speaker to the passed speakerType value
             Functions_GameObject.ResetObject(speaker);
-
-            if (SpeakerType == SpeakerType.Guide)
-            {
-                speaker.compSprite.texture = Assets.forestLevelSheet;
-                speaker.compAnim.currentAnimation = new List<Byte4> { new Byte4(7, 7, 0, 0) };
-            }
-            else if (SpeakerType == SpeakerType.Hero)
-            {
-                speaker.compSprite.texture = Assets.heroSheet;
-                speaker.compAnim.currentAnimation = new List<Byte4> { new Byte4(0, 0, 0, 0) };
-            }
-            else if (SpeakerType == SpeakerType.Blob)
-            {
-                speaker.compSprite.texture = Assets.blobSheet;
-                speaker.compAnim.currentAnimation = new List<Byte4> { new Byte4(0, 0, 0, 0) };
-            }
-            else
-            {   //they are a vendor
-                speaker.compSprite.texture = Assets.forestLevelSheet;
-                speaker.compAnim.currentAnimation = new List<Byte4> { new Byte4(0, 7, 0, 0) };
-                //set the X frame based on the speaker type
-                if (SpeakerType == SpeakerType.VendorItems) { speaker.compAnim.currentAnimation[0].X = 0;  }
-                else if (SpeakerType == SpeakerType.VendorPotions) { speaker.compAnim.currentAnimation[0].X = 1;  }
-                else if (SpeakerType == SpeakerType.VendorMagic) { speaker.compAnim.currentAnimation[0].X = 2; }
-                else if (SpeakerType == SpeakerType.VendorWeapons) { speaker.compAnim.currentAnimation[0].X = 3; }
-                else if (SpeakerType == SpeakerType.VendorArmor) { speaker.compAnim.currentAnimation[0].X = 4; }
-                else if (SpeakerType == SpeakerType.VendorEquipment) { speaker.compAnim.currentAnimation[0].X = 5; }
-                else if (SpeakerType == SpeakerType.VendorPets) { speaker.compAnim.currentAnimation[0].X = 6; }
-            }
-
+            speaker.direction = Direction.Down;
+            Functions_GameObject.SetType(speaker, SpeakerType);
             Functions_Animation.Animate(speaker.compAnim, speaker.compSprite);
+
             //capture the dialog string, clear the dialog being drawn
             dialogString = Dialog;
             dialog.text = "";

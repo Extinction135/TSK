@@ -603,7 +603,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Vendors + Vendor Advertisements
+            #region Vendors
 
             //Vendors
             else if (Type == ObjType.Vendor_NPC_Items || Type == ObjType.Vendor_NPC_Potions ||
@@ -625,27 +625,6 @@ namespace DungeonRun
                 else if (Type == ObjType.Vendor_NPC_Equipment) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Equipment; }
                 else if (Type == ObjType.Vendor_NPC_Pets) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Pets; }
                 else if (Type == ObjType.Vendor_NPC_Story) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Story; }
-            }
-
-            //advertisements are on the UiItems sheet
-            else if (Type == ObjType.Vendor_Ad_Armor || Type == ObjType.Vendor_Ad_Equipment
-                || Type == ObjType.Vendor_Ad_Items || Type == ObjType.Vendor_Ad_Magics
-                || Type == ObjType.Vendor_Ad_Pets || Type == ObjType.Vendor_Ad_Potions
-                || Type == ObjType.Vendor_Ad_Story || Type == ObjType.Vendor_Ad_Weapons)
-            {
-                Obj.compSprite.texture = Assets.uiItemsSheet;
-                Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = 32;
-                Obj.compAnim.speed = 100; //very slow animation
-                //set animation frames
-                if (Type == ObjType.Vendor_Ad_Armor) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Ad_Armor; }
-                else if (Type == ObjType.Vendor_Ad_Equipment) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Ad_Armor; }
-                else if (Type == ObjType.Vendor_Ad_Items) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Ad_Armor; }
-                else if (Type == ObjType.Vendor_Ad_Magics) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Ad_Armor; }
-                else if (Type == ObjType.Vendor_Ad_Pets) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Ad_Armor; }
-                else if (Type == ObjType.Vendor_Ad_Potions) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Ad_Armor; }
-                else if (Type == ObjType.Vendor_Ad_Story) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Ad_Armor; }
-                else if (Type == ObjType.Vendor_Ad_Weapons) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Ad_Armor; }
             }
 
             #endregion

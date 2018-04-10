@@ -202,7 +202,9 @@ namespace DungeonRun
         public static int floorCounter = 0;
 
         public static int activeActor = 1; //tracks the current actor being handled by AI
+
         public static Actor hero; //points to actorPool[0]
+        public static GameObject herosPet; //points to roomObj[0]
 
         public static int collisionsCount = 0; //tracks collisions per frame
         public static int interactionsCount = 0; //tracks interactions per frame
@@ -224,7 +226,6 @@ namespace DungeonRun
                 actorPool.Add(new Actor());
                 Functions_Actor.SetType(actorPool[actorCounter], ActorType.Hero);
                 Functions_Movement.Teleport(actorPool[actorCounter].compMove, -100, -100);
-
                 actorPool[actorCounter].active = false;
             }
             actorIndex = 1;
@@ -233,7 +234,7 @@ namespace DungeonRun
             roomObjPool = new List<GameObject>();
             for (roomObjCounter = 0; roomObjCounter < roomObjCount; roomObjCounter++)
             { roomObjPool.Add(new GameObject()); }
-            roomObjIndex = 0;
+            roomObjIndex = 1;
 
             //particle pool
             particlePool = new List<GameObject>();
@@ -266,9 +267,11 @@ namespace DungeonRun
 
             //reset all pools
             Functions_Pool.Reset();
-            //create easy to remember reference for hero actor
+            //create easy to remember reference for hero & pet
             hero = actorPool[0];
+            herosPet = roomObjPool[0];
             Functions_Actor.SetType(hero, ActorType.Hero);
+            Functions_GameObject.SetType(herosPet, ObjType.Pet_Dog);
         }
 
     }
@@ -694,7 +697,7 @@ namespace DungeonRun
 
     public class Dialog
     {
-        public SpeakerType speaker;
+        public ObjType speaker;
         public String title;
         public String text;
         
@@ -703,9 +706,18 @@ namespace DungeonRun
         public Boolean fadeForegroundIn;
         public Boolean exitToOverworld;
 
-        public Dialog(SpeakerType Speaker, String Title, String Text, SoundEffectInstance Sfx, Boolean FadeBkg, Boolean FadeFrg, Boolean OverworldExit)
+        public Dialog(
+            ObjType Speaker, 
+            String Title, 
+            String Text, 
+            SoundEffectInstance Sfx, 
+            Boolean FadeBkg, Boolean FadeFrg, 
+            Boolean OverworldExit)
         {
-            speaker = Speaker; title = Title;  text = Text; sfx = Sfx;
+            speaker = Speaker;
+            title = Title;
+            text = Text;
+            sfx = Sfx;
             fadeBackgroundIn = FadeBkg;
             fadeForegroundIn = FadeFrg;
             exitToOverworld = OverworldExit;

@@ -57,49 +57,33 @@ TODAY:
 
 
 
-Dog Pet
-
-cleared Pet fields from SaveData class.
-created MenuItemType petType field in SaveData.
-defaults to Unknown menuItem type, so no pet.
-updated CompleteAdoption() to set player data pet correctly.
-
-removed Chicken from Pet Vendor. chickens dont make
-good pets anyway. we could do it, but we'd need a special
-chicken that was smarter than the rest, or model the gameObj
-behavior using enums, like tracksHero, which we could set upon
-adoption, but that system is later on down the road.
-for now, we'll just get the hero's dog working well.
-
-updated Hero.ResetUponRoomBuild() to create a dog pet for
-hero and teleport him to hero upon room build completion.
-also sets the pet's compCollision.blocking to false.
-this prevents the pet from blocking the hero's movement.
-this works for now, but upon playtesting pet adoption,
-noticed a TON of problems that need to be fixed with vendors.
 
 
 
 
+Vendors & Pets
 
+improved all vendors to use the single frame flip animation.
+this adds some life to them. added all vendors to dungeon obj
+widget for testing. removed vendor advertisements from game. 
 
+fixed the dialog widget to display speakers properly.
+removed the speakerType enum, which was duplicating
+values already defined in the ObjType enum, so I switched
+to using that instead. playtested vendors, they display
+properly in vendor screen and complete transactions as
+expected.
 
+updated VendorScreen.LoadContent() to set ForSale window's
+title to 'For Adoption' instead of 'For Sale', if the vendor
+is the pet vendor. it didn't seem right to sell animals.
 
+moved pet spawning routine into Hero.SpawnPet().
+updated Hero.ResetUponRoomBuild() to call SpawnPet().
+fixed bug where hero's pet didn't spawn upon adoption.
+added hasPet boolean back to SaveData.
 
-
-Fix Vendors
-the vendor advertisements dont display properly
-
-the pet vendor doesn't display properly..
-neither do any other vendors.
-
-the pet vendor's menuItems dont display properly
-the other vendor's menuItems display fine.
-
-
-
-
-
+alot of work done to get the hero's pet working right.
 
 
 
@@ -119,8 +103,8 @@ in save data, we should have the fields named:
 heartsMax, magicMax, bombsMax, arrowsMax.
 we don't need magicTotal anymore.
 
-we do need a way to increase our total magic, tho.
-just like hearts, this item should be sold be the items vendor.
+
+
 
 
 
@@ -141,7 +125,9 @@ Shared Objs Widget
 add shared objs widget, this is tied to the f7 button
 will display or hide this widget based on f7 press
 
-
+move the npcs onto the shared objs widget
+move fairy too, along with animals / pets
+this should free up some space on the dungeon objs widget
 
 
 
@@ -183,6 +169,13 @@ Outside Town Level
 
 
 
+
+
+
+
+
+
+
 Wall Torches++
 if we seperate the wall torch off the wall bkg sprite, then we can reuse
 it indoors in world rooms, or outside on buildings. but, we need to update
@@ -191,7 +184,9 @@ with a wall torch, which acts simply as a wall.
 
 
 
-
+Increase Magic
+we do need a way to increase our total magic, tho.
+just like hearts, this item should be sold be the items vendor.
 
 
 

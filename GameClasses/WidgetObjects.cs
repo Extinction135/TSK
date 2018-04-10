@@ -157,20 +157,20 @@ namespace DungeonRun
             //row 9
             Functions_GameObject.SetType(objList[32], ObjType.Pet_Dog);
             Functions_GameObject.SetType(objList[33], ObjType.Pet_Chicken);
-            Functions_GameObject.SetType(objList[34], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[34], ObjType.Vendor_NPC_Pets);
             Functions_GameObject.SetType(objList[35], ObjType.Dungeon_SwitchBlockDown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[37], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[38], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[39], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[36], ObjType.Vendor_NPC_Armor);
+            Functions_GameObject.SetType(objList[37], ObjType.Vendor_NPC_Equipment);
+            Functions_GameObject.SetType(objList[38], ObjType.Vendor_NPC_Items);
+            Functions_GameObject.SetType(objList[39], ObjType.Vendor_NPC_Magic);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[41], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[42], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[43], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[40], ObjType.Vendor_NPC_Pets);
+            Functions_GameObject.SetType(objList[41], ObjType.Vendor_NPC_Potions);
+            Functions_GameObject.SetType(objList[42], ObjType.Vendor_NPC_Story);
+            Functions_GameObject.SetType(objList[43], ObjType.Vendor_NPC_Weapons);
 
             //row 12
             Functions_GameObject.SetType(objList[44], ObjType.Dungeon_SwitchBlockDown);

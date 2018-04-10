@@ -20,22 +20,16 @@ namespace DungeonRun
         public MenuItem previouslySelected;
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
-        public SpeakerType vendorType;
+        public GameObject vendorRef;
 
         public String welcomeDialog;
 
 
 
-        public ScreenVendor(GameObject Obj)
+        public ScreenVendor(GameObject vendor)
         {
             this.name = "Vendor Screen";
-            if (Obj.type == ObjType.Vendor_NPC_Armor) { vendorType = SpeakerType.VendorArmor; }
-            else if (Obj.type == ObjType.Vendor_NPC_Equipment) { vendorType = SpeakerType.VendorEquipment; }
-            else if (Obj.type == ObjType.Vendor_NPC_Items) { vendorType = SpeakerType.VendorItems; }
-            else if (Obj.type == ObjType.Vendor_NPC_Magic) { vendorType = SpeakerType.VendorMagic; }
-            else if (Obj.type == ObjType.Vendor_NPC_Pets) { vendorType = SpeakerType.VendorPets; }
-            else if (Obj.type == ObjType.Vendor_NPC_Potions) { vendorType = SpeakerType.VendorPotions; }
-            else if (Obj.type == ObjType.Vendor_NPC_Weapons) { vendorType = SpeakerType.VendorWeapons; }
+            vendorRef = vendor;
         }
 
         public override void LoadContent()
@@ -57,28 +51,31 @@ namespace DungeonRun
             //set a default welcome dialog
             welcomeDialog = "i've got many useful goods for sale, adventurer!";
 
-            if (vendorType == SpeakerType.VendorArmor)
+            if (vendorRef.type == ObjType.Vendor_NPC_Armor)
             { welcomeDialog = "I have a strong selection of armor for sale."; }
-            else if (vendorType == SpeakerType.VendorEquipment)
+            else if (vendorRef.type == ObjType.Vendor_NPC_Equipment)
             { welcomeDialog = "I have a useful selection of equipment for sale."; }
-            else if (vendorType == SpeakerType.VendorItems)
+            else if (vendorRef.type == ObjType.Vendor_NPC_Items)
             { welcomeDialog = "I have an interesting selection of items for sale."; }
-            else if (vendorType == SpeakerType.VendorMagic)
+            else if (vendorRef.type == ObjType.Vendor_NPC_Magic)
             { welcomeDialog = "I have a mysterious selection of magic items for sale."; }
-            else if (vendorType == SpeakerType.VendorPotions)
+            else if (vendorRef.type == ObjType.Vendor_NPC_Potions)
             { welcomeDialog = "I have a fine selection of potions for sale."; }
-            else if (vendorType == SpeakerType.VendorWeapons)
+            else if (vendorRef.type == ObjType.Vendor_NPC_Weapons)
             { welcomeDialog = "I have a wide selection of weapons for sale."; }
-            else if (vendorType == SpeakerType.VendorPets)
-            { welcomeDialog = "I have a happy selection of pets for adoption."; }
+            else if (vendorRef.type == ObjType.Vendor_NPC_Pets)
+            {
+                welcomeDialog = "I have a happy selection of pets for adoption.";
+                Widgets.ForSale.window.title.text = "For Adoption";
+            }
 
             #endregion
 
 
             //display the welcome dialog
-            Widgets.Dialog.DisplayDialog(vendorType, "Welcome!", welcomeDialog);
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "Welcome!", welcomeDialog);
             //display the items for sale
-            Widgets.ForSale.SetItemsForSale(vendorType);
+            Widgets.ForSale.SetItemsForSale(vendorRef.type);
             //set the currently selected menuItem to the first inventory menuItem
             currentlySelected = Widgets.ForSale.menuItems[0];
             previouslySelected = Widgets.ForSale.menuItems[0];
@@ -374,7 +371,7 @@ namespace DungeonRun
         {   //if infinite gold is disabled, deduct item cost
             if (!Flags.InfiniteGold) { PlayerData.current.gold -= Item.price; }
             //update various widgets affected by this purchase
-            Widgets.ForSale.SetItemsForSale(vendorType);
+            Widgets.ForSale.SetItemsForSale(vendorRef.type);
             Widgets.Info.Display(currentlySelected);
             Widgets.Loadout.UpdateLoadout();
             //display the purchase message & play purchase sfx
@@ -382,60 +379,61 @@ namespace DungeonRun
         }
 
         public void CompleteAdoption(MenuItem Item)
-        {   //set pet type
+        {   //set pet type, spawn it, update the loadout
             PlayerData.current.petType = Item.type;
+            Functions_Hero.SpawnPet();
             Widgets.Loadout.UpdateLoadout();
             //display adoption dialog text
-            Widgets.Dialog.DisplayDialog(vendorType, "thanks!",
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "thanks!",
                 "thank you for adopting this loveable pet.");
             Assets.Play(Assets.sfxBeatDungeon);
         }
 
         public void DialogNotEnoughGold()
         {
-            Widgets.Dialog.DisplayDialog(vendorType, "Sorry...",
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "Sorry...",
                 "you don't have enough gold to purchase this item.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogPurchaseThankyou()
         {
-            Widgets.Dialog.DisplayDialog(vendorType, "Thanks!",
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "Thanks!",
                 "thankyou for your purchase!");
             Assets.Play(Assets.sfxBeatDungeon);
         }
 
         public void DialogCarryingMaxAmount()
         {
-            Widgets.Dialog.DisplayDialog(vendorType, "Sorry...",
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "Sorry...",
                 "you are carrying the maximum amount of this item.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogBottlesFull()
         {
-            Widgets.Dialog.DisplayDialog(vendorType, "Sorry...",
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "Sorry...",
                 "you do not have an empty bottle available to fill.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogAlreadyPurchased()
         {
-            Widgets.Dialog.DisplayDialog(vendorType, "Sorry...",
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "Sorry...",
                 "you have already purchased this item.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogMaxHearts()
         {
-            Widgets.Dialog.DisplayDialog(vendorType, "Sorry...",
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "Sorry...",
                 "you have reached the maximum amount of hearts.");
             Assets.Play(Assets.sfxError);
         }
 
         public void DialogNeedsBow()
         {
-            Widgets.Dialog.DisplayDialog(vendorType, "Sorry...",
+            Widgets.Dialog.DisplayDialog(vendorRef.type, "Sorry...",
                 "you need a bow before you can shoot these arrows.");
             Assets.Play(Assets.sfxError);
         }

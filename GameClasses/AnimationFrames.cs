@@ -323,53 +323,15 @@ namespace DungeonRun
 
         #region Vendors
 
-        public static List<Byte4> Vendor_Items = new List<Byte4> { new Byte4(0, 9, 0, 0) };
-        public static List<Byte4> Vendor_Potions = new List<Byte4> { new Byte4(1, 9, 0, 0) };
-        public static List<Byte4> Vendor_Magic = new List<Byte4> { new Byte4(2, 9, 0, 0) };
-        public static List<Byte4> Vendor_Weapons = new List<Byte4> { new Byte4(3, 9, 0, 0) };
+        public static List<Byte4> Vendor_Items = new List<Byte4> { new Byte4(0, 9, 0, 0), new Byte4(0, 9, 1, 0) };
+        public static List<Byte4> Vendor_Potions = new List<Byte4> { new Byte4(1, 9, 0, 0), new Byte4(1, 9, 1, 0) };
+        public static List<Byte4> Vendor_Magic = new List<Byte4> { new Byte4(2, 9, 0, 0), new Byte4(2, 9, 1, 0) };
+        public static List<Byte4> Vendor_Weapons = new List<Byte4> { new Byte4(3, 9, 0, 0), new Byte4(3, 9, 1, 0) };
 
-        public static List<Byte4> Vendor_Armor = new List<Byte4> { new Byte4(4, 9, 0, 0) };
-        public static List<Byte4> Vendor_Equipment = new List<Byte4> { new Byte4(5, 9, 0, 0) };
-        public static List<Byte4> Vendor_Pets = new List<Byte4> { new Byte4(6, 9, 0, 0) };
-        public static List<Byte4> Vendor_Story = new List<Byte4> { new Byte4(7, 9, 0, 0) };
-
-
-        public static List<Byte4> Vendor_Ad_Items = new List<Byte4>
-        {
-            new Byte4(0, 5, 0, 0), new Byte4(0, 6, 0, 0),
-            new Byte4(0, 7, 0, 0), new Byte4(0, 8, 0, 0)
-        };
-
-        public static List<Byte4> Vendor_Ad_Potions = new List<Byte4>
-        {
-            new Byte4(1, 6, 0, 0), new Byte4(1, 7, 0, 0),
-            new Byte4(1, 8, 0, 0)
-        };
-
-        public static List<Byte4> Vendor_Ad_Magic = new List<Byte4>
-        {
-            new Byte4(2, 5, 0, 0), new Byte4(2, 6, 0, 0),
-            new Byte4(2, 7, 0, 0), new Byte4(2, 8, 0, 0)
-        };
-
-        public static List<Byte4> Vendor_Ad_Weapons = new List<Byte4>
-        {
-            new Byte4(3, 5, 0, 0), new Byte4(3, 6, 0, 0),
-            new Byte4(3, 7, 0, 0)
-        };
-
-        public static List<Byte4> Vendor_Ad_Armor = new List<Byte4>
-        {
-            new Byte4(4, 5, 0, 0), new Byte4(4, 6, 0, 0),
-            new Byte4(4, 7, 0, 0), new Byte4(4, 8, 0, 0)
-        };
-
-        public static List<Byte4> Vendor_Ad_Equipment = new List<Byte4>
-        {
-            new Byte4(5, 5, 0, 0), new Byte4(5, 6, 0, 0),
-            new Byte4(5, 7, 0, 0), new Byte4(5, 8, 0, 0),
-            new Byte4(5, 9, 0, 0)
-        };
+        public static List<Byte4> Vendor_Armor = new List<Byte4> { new Byte4(4, 9, 0, 0), new Byte4(4, 9, 1, 0) };
+        public static List<Byte4> Vendor_Equipment = new List<Byte4> { new Byte4(5, 9, 0, 0), new Byte4(5, 9, 1, 0) };
+        public static List<Byte4> Vendor_Pets = new List<Byte4> { new Byte4(6, 9, 0, 0), new Byte4(6, 9, 1, 0) };
+        public static List<Byte4> Vendor_Story = new List<Byte4> { new Byte4(7, 9, 0, 0), new Byte4(7, 9, 1, 0) };
 
         #endregion
 

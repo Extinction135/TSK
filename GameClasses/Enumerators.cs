@@ -162,16 +162,6 @@ namespace DungeonRun
 
         #region Vendors
 
-        //Vendor Advertisements
-        Vendor_Ad_Items,
-        Vendor_Ad_Potions,
-        Vendor_Ad_Magics,
-        Vendor_Ad_Weapons,
-        Vendor_Ad_Armor,
-        Vendor_Ad_Equipment,
-        Vendor_Ad_Pets,
-        Vendor_Ad_Story,
-
         //Vendor NPCs
         Vendor_NPC_Items,
         Vendor_NPC_Potions,
@@ -321,13 +311,6 @@ namespace DungeonRun
 
         PetStinkyDog,
         PetChicken
-    }
-
-    public enum SpeakerType
-    {
-        Guide, Hero, Blob,
-        VendorItems, VendorPotions, VendorMagic, VendorWeapons,
-        VendorArmor, VendorEquipment, VendorPets, 
     }
 
 }

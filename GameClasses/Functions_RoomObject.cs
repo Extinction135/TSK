@@ -356,22 +356,7 @@ namespace DungeonRun
             SpawnRoomObj(VendorType, Position.X, Position.Y, Direction.Down);
             //place stone table
             SpawnRoomObj(ObjType.World_TableStone, Position.X + 16, Position.Y, Direction.Down);
-            //based on the objType (vendor), spawn proper vendor advertisement
-            if (VendorType == ObjType.Vendor_NPC_Armor)
-            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Armor, Position.X + 16, Position.Y - 6, Direction.Down); }
-            else if (VendorType == ObjType.Vendor_NPC_Equipment)
-            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Equipment, Position.X + 16, Position.Y - 6, Direction.Down); }
-            else if (VendorType == ObjType.Vendor_NPC_Items)
-            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Items, Position.X + 16, Position.Y - 6, Direction.Down); }
-            else if (VendorType == ObjType.Vendor_NPC_Magic)
-            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Magics, Position.X + 16, Position.Y - 6, Direction.Down); }
-            else if (VendorType == ObjType.Vendor_NPC_Pets)
-            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Pets, Position.X + 16, Position.Y - 6, Direction.Down); }
-            else if (VendorType == ObjType.Vendor_NPC_Potions)
-            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Potions, Position.X + 16, Position.Y - 6, Direction.Down); }
-            else if (VendorType == ObjType.Vendor_NPC_Story) { } //there isn't a story advertisement
-            else if (VendorType == ObjType.Vendor_NPC_Weapons)
-            { objRef = SpawnRoomObj(ObjType.Vendor_Ad_Weapons, Position.X + 16, Position.Y - 6, Direction.Down); }
+            //we could spawn other stuff around the vendor too (thematically appropriate)
         }
 
 

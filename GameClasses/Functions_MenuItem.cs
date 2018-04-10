@@ -98,9 +98,9 @@ namespace DungeonRun
 
         public static void SetType(MenuItemType Type, MenuItem MenuItem)
         {
-            //all menuItem objects exist on the UiItems Sheet
+            //MOST menuItem objects exist on the UiItems Sheet
             MenuItem.compSprite.texture = Assets.uiItemsSheet;
-            //EXCEPT for the MAP and KEY, which point to the levelSheet instead
+            //some exceptions are: map, key, pet_dog
 
             //set the MenuItem data based on the passed Type
             MenuItem.type = Type;
@@ -297,26 +297,25 @@ namespace DungeonRun
             #endregion
 
 
-            //we need to fix Pet menuItems too
 
-            /*
+
+            #region Pets
+
             else if (Type == MenuItemType.PetStinkyDog)
             {
                 MenuItem.name = "Stinky Dog";
                 MenuItem.description = "A stinky, but loveable \ndog companion.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 5, 0, 0) };
-                MenuItem.price = 0;
-            }
-            else if (Type == MenuItemType.PetChicken)
-            {
-                MenuItem.name = "Friendly Chicken";
-                MenuItem.description = "A friendly chicken.";
-                MenuItem.compAnim.currentAnimation = new List<Byte4> { new Byte4(11, 6, 0, 0) };
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle;
+                MenuItem.compSprite.texture = Assets.petsSheet;
                 MenuItem.price = 0;
             }
 
-            */
-            
+            #endregion
+
+
+
+            //vendor menuItems?
+
 
 
             #region Player inventory/loadout menuItems
