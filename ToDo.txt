@@ -26,10 +26,6 @@ adding a cheat:
 	link neighbors, add effect, add check to SetCheatMenuItems(), playtest.
 
 	
-	
-	
-	
-
 v0.7 goals
 x - divide spritesheets up so they can be expanded / modified easily
 x - get all objects integrated into the new system / layout
@@ -42,6 +38,7 @@ x - get all objects integrated into the new system / layout
 - can drag: light blocks, dungeon statues, barrels, torches on/off, chests
 - can pickup, carry, throw: pots
 - remove dropping pots from game, hero can only throw them
+- can swim, 'dive', and reward / pickup stuff in water
 
 - Non-room repeating Dungeon, additional rooms
 - Flying Enemy
@@ -62,17 +59,171 @@ TODAY:
 
 
 
-Planning (Important)
 
-Updated Design.md (and game tech specs) to match latest UWP
-game resources, which are 5 GB of ram for foreground games.
-which is more than I can possible imagine filling up, because
-I've been living inside of 128mb for a year now. 
-5gb is too much. whew. and I see no reason to expand the ram
-footprint dramatically, because keeping the ram small and the
-frametimes small, and the game code independent of the backend,
-means it's very easy to port the game to different systems, like
-the nintendo switch.. in the future... hmm...
+
+
+Fix How The Dungeon Map is Accessed
+
+currently, the dungeon map screen is displayed by pressing 
+the left shoulder button - which makes no sense whatsoever,
+but is a work around to a Monogame + UWP back button 
+implementation bug / decision.
+
+the dugeon map screen should be displayed not by a button press,
+but instead by selecting the map menuItem from the inventory screen
+by using the A button press, from the loadout widget.
+
+when this series of events happens, the map is displayed.
+it's kind of a pita because I don't want the map being used as a
+crutch for players, plus this fixes the back button UWP issue.
+
+
+updated Input.MapPlayerInput(), removing paths for shoulder
+button input for inventory and map screens. only the start
+button opens the map screen.
+
+updated inventoryScreen.HandleInput() to create a new map
+screen if the selected menuItem is the loadout's map.
+
+playtested, working as expected.
+this has additional benefit of removing a button from the total
+input required to play the game. 'select' button is no longer needed.
+
+
+
+
+
+
+
+
+
+PETS++
+re-implement PETS as GameObjects that track to hero.
+they don't need the full actor collision checking / implementation
+
+we don't actually need the pet to be an actor
+we *could* model the pet as a roomObject, since it's
+behavior is so simple. this would simplify actors 
+to being either hero or mob or miniboss or boss.
+we could even model them as projectiles, since they
+have per frame behaviors that are all the same.
+
+
+
+Add Enemy Tools Widget
+this exists on the right, in RoomEditor.
+right now, it's composed of only enemySpawn objects, of which there are two,
+but only 1 works.
+BUT, this isn't composed of gameobjects, it's composed
+of actors, actual actor data objects, because it will make
+it much easier and simpler to add them to rooms later on.
+but it will also make it slightly more complicated to load levels
+later on...
+
+
+
+
+Explosions++
+add 'burn' mark particle for explosions
+should last for 255 frames, mark the ground dark, then fade away.
+sprite.alpha = (float)obj.lifeCount * 3  //when this drops below 50frames, it will fade out
+*this can be reversed if life is counting up instead..
+if life > 250, alpha = 100 - (life - 250) * 2;
+
+add falling debris when straight walls are cracked by explosions.
+this is probably going to need to be a larger debris particle commit / system
+because the particles are going to be on the dungeon sheet, and we'll need
+to fake gravity and ground bouncing / friction collisions...
+
+
+
+
+
+Shared Objs Widget
+add shared objs widget, this is tied to the f7 button
+will display or hide this widget based on f7 press
+
+
+
+Dialog++
+the dialog screen's speaker sprite is completely wrong
+and i kind of love it.. because when i loaded the game 
+up a rock told me that it had successfully loaded my 
+last autosaved game. you don't normally hear that from a rock.
+
+
+
+
+
+
+
+
+
+
+
+Explosion Surfing (Bomb Jumping)
+
+if an actor is hit, simply put them into a flying state.
+this will cause the actor to be able to fly across pits for a moment,
+but when the hit state ends, if they overlap the pit, they
+will be pulled in. but, this does allow a type of bomb jumping,
+or rather "explosion surfing". which sounds so much better.
+
+we could even put the actor into a 2nd type of hit state,
+a staggered state, which would hold the actor in the hit state for
+longer, allowing them to fly for longer, allowing them to cross
+single tile pits safely - and only an explosion would be able
+to set an actor into this 2nd hit staggered hit state.
+
+which, staggered seems like a poor name for this state.
+likely should be something like ExplosiveThrow, 
+so we know the actor is being thrown by an explosion.
+
+we can implement this now and ensure that bomb jumping is not
+only preserved, but supported officially in this game, and is
+known as explosion surfing, because you can also use fireballs
+to do these type of explosive throwing tricks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implement Level Editor and Level Save System
+
+we need to be able to save level objects to a level file.
+this is larger and different than the room save data files.
+
+Add Outside World Objs
+Add Outside Ground Objs
+
+Design and Link up new World Levels:
+Dungeon Entrance Level
+Outside Town Level
+
+
+
+
+
+
+
+
+Wall Torches++
+if we seperate the wall torch off the wall bkg sprite, then we can reuse
+it indoors in world rooms, or outside on buildings. but, we need to update
+the door decoration algorithm to add torches, instead of replacing the wall
+with a wall torch, which acts simply as a wall.
+
 
 
 
@@ -133,92 +284,6 @@ tracks the player's progress past this endless dungeon.
 
 
 
-
-Update ReadMe to tell people not to do pull requests or forks or 
-anything like that, until project hits 1.0 and gets documentation.
-
-
-
-
-
-
-
-add 'burn' mark particle for explosions
-
-add falling debris when straight walls are cracked by explosions.
-this is probably going to need to be a larger debris particle commit / system
-because the particles are going to be on the dungeon sheet, and we'll need
-to fake gravity and ground bouncing / friction collisions...
-
-
-
-
-
-
-Explosions++
-currently, explosions dont harm the hero or actors.
-which they should. they most certainly should. alot. badly.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Shared Objs Widget
-add shared objs widget, this is tied to the f7 button
-will display or hide this widget based on f7 press
-
-
-
-
-
-Wall Torches++
-if we seperate the wall torch off the wall bkg sprite, then we can reuse
-it indoors in world rooms, or outside on buildings. but, we need to update
-the door decoration algorithm to add torches, instead of replacing the wall
-with a wall torch, which acts simply as a wall.
-
-
-
-
-
-
-
-
-
-
-Implement Level Editor and Level Save System
-
-we need to be able to save level objects to a level file.
-this is larger and different than the room save data files.
-
-Add Outside World Objs
-Add Outside Ground Objs
-
-Design and Link up new World Levels:
-Dungeon Entrance Level
-Outside Town Level
-
-
-
-
-
-
-
-
-
-
 The New Water & Swimming Systems
 
 water tiles should exist. upon collision with a water tile,
@@ -231,78 +296,6 @@ was he set to walking/on ground.
 by default, the background color is a grass color. to that,
 we add dirt paths, animated grass objects scattered throughout,
 then additional env objs, npcs, buildings, etc.. and even water tiles.
-
-
-
-
-
-
-
-the dialog screen's speaker sprite is completely wrong
-and i kind of love it.. because when i loaded the game 
-up a rock told me that it had successfully loaded my 
-last autosaved game. you don't normally hear that from a rock.
-
-
-
-
-
-
-
-Add Enemy Tools Widget
-this exists on the right, in RoomEditor.
-BUT, this isn't composed of gameobjects, it's composed
-of actors, actual actor data objects, because it will make
-it much easier and simpler to add them to rooms later on.
-
-
-
-
-
-
-PETS++
-re-implement PETS as GameObjects that track to hero.
-they don't need the full actor collision checking / implementation
-
-we don't actually need the pet to be an actor
-we *could* model the pet as a roomObject, since it's
-behavior is so simple. this would simplify actors 
-to being either hero or mob or miniboss or boss.
-
-
-
-
-
-
-Zen Potion
-a potion that lets the hero use magic without cost a time period (255 frames)
-unlimited magic use, spam it all for 255 frames, for 99 gold.
-
-
-
-
-
-
-
-
-Non-Repeating Rooms in Dungeon
-
-we need to make rooms non-repeating in the dungeon.
-it's cheap to come across the same room over and over again.
-
-so when the dungeon is being built, we need a list of rooms (based on loaded room data)
-then when we place a square room, we ID it, and strip that room off the roomsList
-and if we run out of square rooms, then we just try columns, or rows.
-this way the dungeon algorithm can never reach a point where there are no more rooms to use
-which would be game breaking. also, we need ALOT of rooms to build from.
-
-
-row rooms need to be redesigned to be MUCH better
-we need more rows and column rooms, and their quality needs to be improved.
-
-
-
-
 
 
 
@@ -358,8 +351,47 @@ the obj stays in it's picked up spot
 
 
 
+Special Sword Attack
+should be able to charge up attack and spin just like Lttp.
 
 
+
+
+
+
+
+
+
+Non-Repeating Rooms in Dungeon
+
+we need to make rooms non-repeating in the dungeon.
+it's cheap to come across the same room over and over again.
+
+so when the dungeon is being built, we need a list of rooms (based on loaded room data)
+then when we place a square room, we ID it, and strip that room off the roomsList
+and if we run out of square rooms, then we just try columns, or rows.
+this way the dungeon algorithm can never reach a point where there are no more rooms to use
+which would be game breaking. also, we need ALOT of rooms to build from.
+
+
+row rooms need to be redesigned to be MUCH better
+we need more rows and column rooms, and their quality needs to be improved.
+
+
+
+
+
+
+
+
+Implement Dynamic Shadows System
+
+an object pool for shadows would be great
+objects / actors could have a field for a shadow sprite reference
+then we could store a shadow offset, which allows us to fake depth on the Z axis
+if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
+this also sets the stage for flying obj/actors, as they would have changing shadow positions.
+this also means we need to 'unbake' the shadows from ALL objects and actors.
 
 
 
@@ -398,15 +430,11 @@ force the player to choose which door they want to unlock.
 
 
 
-
 Pullable levers
 these are built into the wall and open shut doors, just like a switch
 these must be pulled for a bit tho, and there are decoy levers that will
 spawn snakes or explode..
 
-
-Special Sword Attack
-should be able to charge up attack and spin just like Lttp.
 
 
 
@@ -432,11 +460,6 @@ where we can use the push wand to move objects to solve rooms!!!
 
 
 
-
-
-
-
-
 fix how kick sountrack volume is handled
 the hero's health sets the volume of the kick soundtrack
 this check should be happening in the level class, not anywhere
@@ -445,16 +468,6 @@ changed during the level screen's life. when the screen closes,
 it should ensure the kick volume is 0. this prevents issues we've
 had before where the kick volume was above 0 while player was on
 different screen.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -478,8 +491,6 @@ dungeon names could be randomly generated from a list.
 
 
 
-
-
 Boss dialog + Boss phases
 initially the boss should popup a dialog mocking player
 after boss hits half health, another dialog should popup
@@ -492,55 +503,12 @@ in first phase, the boss just randomly moves around
 
 
 
-
-
-Implement Dynamic Shadows System
-
-an object pool for shadows would be great
-objects / actors could have a field for a shadow sprite reference
-then we could store a shadow offset, which allows us to fake depth on the Z axis
-if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
-this also sets the stage for flying obj/actors, as they would have changing shadow positions.
-this also means we need to 'unbake' the shadows from ALL objects and actors.
-
-
-
-
-
-the LSN screen should display the link hero if hero is link
-should also display the blob character if hero saved game as blob
-can we save the game as the blob character? is that in the save game info?
-
-
-
-
 BIG OPTIMIZATION
 	if we don't draw the floor tiles, the draw loop is much faster
 	so, we could standardize the room sizes, then create a floor sprite
 	then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
 
 
-
-
-Make the AI system Behavior based, where a Behavior is an enumerator
-
-actor.behaviors = new List<Behaviors> { Behavior.Aggressive, Behavior.Curious, Behavior.Destructive }
-Behavior.Aggressive (actor will pursue hero without regard for safety)
-Behavior.Attacks (actor will attack hero, if hero is close enough)
-Behavior.Curious (actor will randomly explore the area around them)
-Behavior.Destructive (actor will attack any destructible object it comes across)
-Behavior.SpawnsMobs (actor can spawn other actors, based on actor.type)
-Behavior.ThrowsPots (actor will pickup and throw object it comes across at hero)
-
-an enumerator, and a list in the actor class.
-then we modify the AI method to work based on behaviors.
-if actor.behavior[i] == 
-- aggressive, move actor towards hero, if hero is visible
-- attacks, attack hero if hero is close enough
-- curious, randomly move actor
-- destructive, attack destructible objects nearby
-- spawnsMobs, randomly spawn mobs based on the actor.type
-- throwsPots, picks up nearby pots, carrys them, and throws them at hero if hero is visible
 
 
 
@@ -697,14 +665,6 @@ displaying alot of dialog / story plot points
 
 implement dialog system and event booleans to track events in game
 
-Create CheatsScreen - or this could be part of game ctrls
-
-
-
-
-
-
-
 
 
 
@@ -734,14 +694,9 @@ beating the crypt boss unlocks a special tomb in the crypt for looting
 
 
 
-
-
 Boat
-
 takes hero to different islands
 if hero is blob, then secret blob islands become available (like blob home island)
-
-
 
 
 Training Center
@@ -752,22 +707,28 @@ you can also spend gold to increase a gladiator's stats
 which you can then bet money on later in the colliseum
 
 
-
 Colliseum
 should have different kinds of tournaments
 some tournaments will be 'to the death', which always have higher payouts than normal
 gladiators that lose a battle, die in the game
 
+PROPERTY IDEA
+Complete a long and difficult side-quest to earn a property that generates income (gold).
+the player needs only to collect the gold regularly to purchase anything they want, eventually.
+	
 
 
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 Idea for a Tool (much later) - Colorizer
 
 loads in all the textures for the levels in the game
@@ -805,18 +766,27 @@ the level would finish loading, then the display texture would be used for the r
 
 
 
-
-
-
-	
-PROPERTY IDEA
-Complete a long and difficult side-quest to earn a property that generates income (gold).
-the player needs only to collect the gold regularly to purchase anything they want, eventually.
-	
-
-
-
 MOAR STUFFS TO DOs
+
+Make the AI system Behavior based, where a Behavior is an enumerator
+
+actor.behaviors = new List<Behaviors> { Behavior.Aggressive, Behavior.Curious, Behavior.Destructive }
+Behavior.Aggressive (actor will pursue hero without regard for safety)
+Behavior.Attacks (actor will attack hero, if hero is close enough)
+Behavior.Curious (actor will randomly explore the area around them)
+Behavior.Destructive (actor will attack any destructible object it comes across)
+Behavior.SpawnsMobs (actor can spawn other actors, based on actor.type)
+Behavior.ThrowsPots (actor will pickup and throw object it comes across at hero)
+
+an enumerator, and a list in the actor class.
+then we modify the AI method to work based on behaviors.
+if actor.behavior[i] == 
+- aggressive, move actor towards hero, if hero is visible
+- attacks, attack hero if hero is close enough
+- curious, randomly move actor
+- destructive, attack destructible objects nearby
+- spawnsMobs, randomly spawn mobs based on the actor.type
+- throwsPots, picks up nearby pots, carrys them, and throws them at hero if hero is visible
 	
 
 	
@@ -838,6 +808,13 @@ game ctrls screen
 	we only need to flip Flags.CameraTracksHero boolean
 	
 	
+if we make a PlayerData.loaded instance of SaveData,
+and then load the stream data from Functions_Backend
+into that Data.loaded instance, then we would have a restore point
+kind of system, plus we could simplify both Dx and UWP
+backend functions to simply load their streams into data.loaded.
+right now, they're setting the game data for each of the 3 files,
+which really shouldn't be a responsibility of the backend functions.
 	
 	
 	
@@ -862,7 +839,9 @@ so we could prompt the user with a dialog that asks 'load uncorrupted data?'
 	
 	
 
-	
+Zen Potion
+a potion that lets the hero use magic without cost a time period (255 frames)
+unlimited magic use, spam it all for 255 frames, for 99 gold.	
 	
 	
 	

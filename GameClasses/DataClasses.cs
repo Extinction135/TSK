@@ -44,11 +44,11 @@ namespace DungeonRun
         public static Boolean MapCheat = true; //sets dungeon.map true when dungeon is built
         public static Boolean KeyCheat = true; //sets dungeon.key true when dungeon is built
         public static Boolean UnlockAll = false; //unlocks all items for hero
-        
+
         static Flags()
         {
 
-            #region Set Release Mode
+            #region Set RELEASE Mode
 
             if (Release)
             {
@@ -75,28 +75,36 @@ namespace DungeonRun
                 InfiniteBombs = false;
                 MapCheat = false;
                 KeyCheat = false;
+                UnlockAll = false;
             }
 
             #endregion
 
-
-            #region Set Developer Mode
-
-            if (bootRoutine == BootRoutine.RoomBuilder)
+            else
             {
-                //editor specific flags
-                EnableTopMenu = true; //necessary
-                Invincibility = true; //hero cannot die in editor
-                InfiniteMagic = true; //hero has infinite magic
-                InfiniteGold = true; //hero has infinite gold
-                InfiniteArrows = true; //hero has infinite arrows
-                InfiniteBombs = true; //hero has infinite bombs
-                CameraTracksHero = false; //center to room
-                ShowEnemySpawns = true; //necessary for editing
+                if (bootRoutine == BootRoutine.RoomBuilder)
+                {
+                    //set dev mode cheats
+                    Invincibility = true; //hero cannot die in editor
+                    InfiniteMagic = true; //hero has infinite magic
+                    InfiniteGold = true; //hero has infinite gold
+                    InfiniteArrows = true; //hero has infinite arrows
+                    InfiniteBombs = true; //hero has infinite bombs
+                    MapCheat = true;
+                    KeyCheat = true;
+                    UnlockAll = true;
+
+                    //handle editor cheats
+                    EnableTopMenu = true; //necessary
+                    ShowEnemySpawns = true; //necessary for editing
+                    CameraTracksHero = false; //center to room
+                }
+                else if(bootRoutine == BootRoutine.Game)
+                {
+                    //cheats for game mode, but not in release
+                    Invincibility = true; //hero cannot die
+                }
             }
-
-            #endregion
-
         }
     }
 

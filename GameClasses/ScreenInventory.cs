@@ -123,9 +123,26 @@ namespace DungeonRun
                 PlayerData.current.lastItemSelected = currentlySelected.id;
 
 
+
+
+
+                #region Handle Opening the Dungeon Map
+
+                if (currentlySelected.type == MenuItemType.InventoryMap)
+                {
+                    //if player has found the level's map, create a new map screen
+                    if (Level.map) { ScreenManager.AddScreen(new ScreenLevelMap()); }
+                }
+
+                #endregion
+
+
+
+
+
                 #region Handle the Options MenuItems
 
-                if (currentlySelected.type == MenuItemType.OptionsQuitGame)
+                else if (currentlySelected.type == MenuItemType.OptionsQuitGame)
                 {   //close dungeon screen (autosaves), goto title screen
                     displayState = DisplayState.Closing;
                     exitAction = ExitAction.Title;
@@ -208,6 +225,12 @@ namespace DungeonRun
                     //update the LoadoutWidget to show equipped items
                     Widgets.Loadout.UpdateLoadout();
                 }
+
+
+
+
+
+
             }
 
 
