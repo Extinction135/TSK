@@ -575,6 +575,18 @@ namespace DungeonRun
         {
             //hero-related things that reset upon a roomBuild()
             boomerangInPlay = false; //boomerang could of been lost in prev room
+
+
+            //spawn the hero's dog
+            if(PlayerData.current.petType == MenuItemType.PetStinkyDog)
+            {   //get a roomObj, make it a dog, teleport it to hero
+                GameObject pet = Functions_Pool.GetRoomObj();
+                Functions_GameObject.SetType(pet, ObjType.Pet_Dog);
+                pet.compCollision.blocking = false; //this animal doesn't block
+                Functions_Movement.Teleport(pet.compMove,
+                    Pool.hero.compMove.position.X,
+                    Pool.hero.compMove.position.Y);
+            }
         }
 
 
@@ -612,7 +624,8 @@ namespace DungeonRun
             PlayerData.current.equipmentRing = true;
 
             //we could set the pet here too, but we wont for now
-            PlayerData.current.hasPet = false;
+            PlayerData.current.petType = MenuItemType.Unknown;
+            //PlayerData.current.petType = MenuItemType.PetStinkyDog;
         }
 
     }

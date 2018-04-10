@@ -115,11 +115,9 @@ namespace DungeonRun
 
             //set the gold menuItem
             Functions_MenuItem.SetType(MenuItemType.InventoryGold, menuItems[4]);
-            //set pet menuItem
-            if (PlayerData.current.hasPet)
-            { Functions_MenuItem.SetType(PlayerData.current.petType, menuItems[5]); }
-            //hero has no pet, set to be unknown
-            else { Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[5]); } 
+            
+            //set pet menuItem - unknown, chicken, dog
+            Functions_MenuItem.SetType(PlayerData.current.petType, menuItems[5]);
 
             //set dungeon map menuItem
             if (Level.map) //if player found the map, display it

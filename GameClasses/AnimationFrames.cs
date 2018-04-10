@@ -376,11 +376,13 @@ namespace DungeonRun
 
         #region Pets
 
-        public static List<Byte4> Pet_Dog_Idle = new List<Byte4> { new Byte4(0, 0, 0, 0), new Byte4(1, 0, 0, 0) };
-        public static List<Byte4> Pet_Dog_Move = new List<Byte4> { new Byte4(1, 0, 0, 0), new Byte4(2, 0, 0, 0) };
+        public static List<Byte4> Pet_None_Idle = new List<Byte4> { new Byte4(0, 0, 0, 0), new Byte4(1, 0, 0, 0) };
 
-        public static List<Byte4> Pet_Chicken_Idle = new List<Byte4> { new Byte4(0, 1, 0, 0), new Byte4(1, 1, 0, 0) };
-        public static List<Byte4> Pet_Chicken_Move = new List<Byte4> { new Byte4(1, 1, 0, 0), new Byte4(2, 1, 0, 0) };
+        public static List<Byte4> Pet_Dog_Idle = new List<Byte4> { new Byte4(0, 1, 0, 0), new Byte4(1, 1, 0, 0) };
+        public static List<Byte4> Pet_Dog_Move = new List<Byte4> { new Byte4(1, 1, 0, 0), new Byte4(2, 1, 0, 0) };
+
+        public static List<Byte4> Pet_Chicken_Idle = new List<Byte4> { new Byte4(0, 2, 0, 0), new Byte4(1, 2, 0, 0) };
+        public static List<Byte4> Pet_Chicken_Move = new List<Byte4> { new Byte4(1, 2, 0, 0), new Byte4(2, 2, 0, 0) };
 
         #endregion
 

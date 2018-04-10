@@ -175,7 +175,7 @@ namespace DungeonRun
             else if (VendorType == SpeakerType.VendorPets)
             {
                 Functions_MenuItem.SetType(MenuItemType.PetStinkyDog, menuItems[0]);
-                Functions_MenuItem.SetType(MenuItemType.PetChicken, menuItems[1]);
+                //Functions_MenuItem.SetType(MenuItemType.PetChicken, menuItems[1]);
                 return; //prevents pet's cost from being displayed
             }
 

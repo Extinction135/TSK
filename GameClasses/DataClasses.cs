@@ -899,8 +899,7 @@ namespace DungeonRun
 
 
         //player's pet
-        public Boolean hasPet = false;
-        public MenuItemType petType = MenuItemType.PetStinkyDog;
+        public MenuItemType petType = MenuItemType.Unknown;
     }
 
  

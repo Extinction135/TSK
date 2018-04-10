@@ -57,32 +57,73 @@ TODAY:
 
 
 
+Dog Pet
+
+cleared Pet fields from SaveData class.
+created MenuItemType petType field in SaveData.
+defaults to Unknown menuItem type, so no pet.
+updated CompleteAdoption() to set player data pet correctly.
+
+removed Chicken from Pet Vendor. chickens dont make
+good pets anyway. we could do it, but we'd need a special
+chicken that was smarter than the rest, or model the gameObj
+behavior using enums, like tracksHero, which we could set upon
+adoption, but that system is later on down the road.
+for now, we'll just get the hero's dog working well.
+
+updated Hero.ResetUponRoomBuild() to create a dog pet for
+hero and teleport him to hero upon room build completion.
+also sets the pet's compCollision.blocking to false.
+this prevents the pet from blocking the hero's movement.
+this works for now, but upon playtesting pet adoption,
+noticed a TON of problems that need to be fixed with vendors.
 
 
 
 
-Fairy & Pets ++
-
-simplified Fairy interactions, since they were written attempting
-to prevent fairys from passing thru blocking objects.
-
-updated interaction functions to allow chickens and dogs
-to trigger floor switches.
 
 
 
 
 
 
+Fix Vendors
+the vendor advertisements dont display properly
+
+the pet vendor doesn't display properly..
+neither do any other vendors.
+
+the pet vendor's menuItems dont display properly
+the other vendor's menuItems display fine.
 
 
 
 
 
-and then we need to figure out how to 'adopt' a pet...
-from the pet vendor. is the obvious choice.
-which means we'll have a permanent pet reserved in the roomObj pool for hero..
-and we'll have a boolean to control pet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+in save data, we should have the fields named:
+heartsMax, magicMax, bombsMax, arrowsMax.
+we don't need magicTotal anymore.
+
+we do need a way to increase our total magic, tho.
+just like hearts, this item should be sold be the items vendor.
+
+
+
 
 
 
@@ -99,6 +140,23 @@ but only 1 works. just keep the enemy spawns and tier ideas. for now.
 Shared Objs Widget
 add shared objs widget, this is tied to the f7 button
 will display or hide this widget based on f7 press
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

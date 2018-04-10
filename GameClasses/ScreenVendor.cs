@@ -360,8 +360,7 @@ namespace DungeonRun
 
                 #region Pets
 
-                else if (Item.type == MenuItemType.PetStinkyDog
-                    || Item.type == MenuItemType.PetChicken)
+                else if (Item.type == MenuItemType.PetStinkyDog)
                 { CompleteAdoption(Item); }
 
                 #endregion
@@ -383,8 +382,7 @@ namespace DungeonRun
         }
 
         public void CompleteAdoption(MenuItem Item)
-        {   //set pet type, update hero's pet type
-            PlayerData.current.hasPet = true;
+        {   //set pet type
             PlayerData.current.petType = Item.type;
             Widgets.Loadout.UpdateLoadout();
             //display adoption dialog text

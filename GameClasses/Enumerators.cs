@@ -239,6 +239,7 @@ namespace DungeonRun
 
         #region Pets
 
+        Pet_None,
         Pet_Dog,
         Pet_Chicken,
 
