@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.RoomBuilder; //boot to game or roomBuilder?
+        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = false; //draws the bottom debug info
@@ -82,7 +82,7 @@ namespace DungeonRun
 
             else
             {
-                if (bootRoutine == BootRoutine.RoomBuilder)
+                if (bootRoutine == BootRoutine.Editor)
                 {
                     //set dev mode cheats
                     Invincibility = true; //hero cannot die in editor
@@ -490,7 +490,6 @@ namespace DungeonRun
             cursor = new ComponentSprite(Assets.uiItemsSheet,
                 new Vector2(0, 0),new Byte4(10, 2, 0, 0),new Point(16, 16));
 
-            display = WidgetDisplaySet.Dungeon; //roomBuilder = dungeon display set
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton(
@@ -515,6 +514,8 @@ namespace DungeonRun
                 "room editor", new Point(640 - 104, 2)));
             buttons.Add(new ComponentButton(
                 "level editor", new Point(buttons[8].rec.X + buttons[8].rec.Width + 2, 2)));
+
+            display = WidgetDisplaySet.World; //will be overwritten by editor screen
         }
     }
 

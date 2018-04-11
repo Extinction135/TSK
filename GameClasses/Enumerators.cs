@@ -12,13 +12,21 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public enum Direction { Up, UpRight, Right, DownRight, Down, DownLeft, Left, UpLeft, None }
+    public enum Direction
+    {
+        Up, UpRight,
+        Right, DownRight,
+        Down, DownLeft,
+        Left, UpLeft,
+
+        None
+    }
 
     public enum Rotation { None, Clockwise90, Clockwise180, Clockwise270 }
 
     public enum MouseButtons { LeftButton, RightButton }
 
-    public enum BootRoutine { Game, RoomBuilder }
+    public enum BootRoutine { Game, Editor }
 
     public enum WidgetDisplaySet { World, Dungeon, None }
 
@@ -36,7 +44,12 @@ namespace DungeonRun
 
     public enum ExitAction
     {
-        Title, Summary, ExitDungeon, Overworld, QuitGame, ExitScreen
+        Title,
+        Summary,
+        ExitDungeon,
+        Overworld,
+        QuitGame,
+        ExitScreen
     }
 
 
@@ -45,7 +58,20 @@ namespace DungeonRun
 
     public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 
-    public enum RoomType { Exit, Hub, Boss, Key, Shop, Column, Row, Square, Secret }
+    public enum RoomType
+    {
+        //these rooms have procedural objs
+        Exit, Hub, Boss, Key,
+        
+        //these rooms are mostly non-procedural
+        Column, Row, Square, Secret,
+
+        //handmade
+        Shop,
+
+        //endless field (room rec follows hero)
+        Field,
+    }
 
     public enum DoorType { Open, Boss, Bombable }
 

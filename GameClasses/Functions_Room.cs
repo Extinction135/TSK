@@ -26,6 +26,33 @@ namespace DungeonRun
 
 
 
+        public static void SetType(Room Room, RoomType Type)
+        {
+            Room.type = Type;
+            //set room size based on type - sizes should be odd, so doors/exits can be centered
+            if (Type == RoomType.Exit) { Room.size.X = 11; Room.size.Y = 11; }
+            else if (Type == RoomType.Hub) { Room.size.X = 19; Room.size.Y = 19; }
+            else if (Type == RoomType.Boss) { Room.size.X = 19; Room.size.Y = 11; }
+            else if (Type == RoomType.Key) { Room.size.X = 19; Room.size.Y = 11; }
+            else if (Type == RoomType.Shop) { Room.size.X = 19; Room.size.Y = 11; }
+            //comon dungeon rooms
+            else if (Type == RoomType.Column) { Room.size.X = 11; Room.size.Y = 19; }
+            else if (Type == RoomType.Row) { Room.size.X = 19; Room.size.Y = 11; }
+            else if (Type == RoomType.Square) { Room.size.X = 11; Room.size.Y = 11; }
+            else if (Type == RoomType.Secret) { Room.size.X = 3; Room.size.Y = 3; }
+
+            //world rooms
+
+            //field rooms fill the screen
+            else if (Type == RoomType.Field) { Room.size.X = 41; Room.size.Y = 24; } 
+
+            //set collision rec size
+            Room.rec.Width = Room.size.X * 16;
+            Room.rec.Height = Room.size.Y * 16;
+        }
+
+
+
         public static void BuildRoom(Room Room)
         {
             stopWatch.Reset(); stopWatch.Start();
@@ -228,25 +255,6 @@ namespace DungeonRun
             else if (Room.type == RoomType.Row) { count = Assets.roomDataRow.Count; }
             else if (Room.type == RoomType.Square) { count = Assets.roomDataSquare.Count; }
             Room.XMLid = Functions_Random.Int(0, count);
-        }
-
-        public static void SetType(Room Room, RoomType Type)
-        {
-            Room.type = Type;
-            //set room size based on type - sizes should be odd, so doors can be centered
-            if (Type == RoomType.Exit) { Room.size.X = 11; Room.size.Y = 11; }
-            else if (Type == RoomType.Hub) { Room.size.X = 19; Room.size.Y = 19; }
-            else if (Type == RoomType.Boss) { Room.size.X = 19; Room.size.Y = 11; }
-            else if (Type == RoomType.Key) { Room.size.X = 19; Room.size.Y = 11; }
-            else if (Type == RoomType.Shop) { Room.size.X = 19; Room.size.Y = 11; }
-            //comon dungeon rooms
-            else if (Type == RoomType.Column) { Room.size.X = 11; Room.size.Y = 19; }
-            else if (Type == RoomType.Row) { Room.size.X = 19; Room.size.Y = 11; }
-            else if (Type == RoomType.Square) { Room.size.X = 11; Room.size.Y = 11; }
-            else if (Type == RoomType.Secret) { Room.size.X = 3; Room.size.Y = 3; }
-            //set collision rec size
-            Room.rec.Width = Room.size.X * 16;
-            Room.rec.Height = Room.size.Y * 16;
         }
 
         public static void MoveRoom(Room Room, int X, int Y)

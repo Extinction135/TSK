@@ -257,11 +257,9 @@ namespace DungeonRun
             Functions_Room.BuildRoom(Functions_Level.currentRoom);
             //build the xml data
             Functions_Room.BuildRoomXmlData(RoomXmlData);
-
-            //add debris + cracked walls
-            Functions_Room.ScatterDebris(Functions_Level.currentRoom);
+            
+            //Functions_Room.ScatterDebris(Functions_Level.currentRoom);
             Functions_Room.AddCrackedWalls(Functions_Level.currentRoom);
-
             Functions_Room.CheckForPuzzles(Functions_Level.currentRoom);
 
             //align + remove overlapping objs

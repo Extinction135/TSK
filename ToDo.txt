@@ -58,31 +58,43 @@ TODAY:
 
 
 
-Shared Objs Widget
+Editor++
+
+dung objs and world obj buttons are now set 
+to down when they display their widget sets.
+
+switched default editor to be level screen.
+this is mostly for ensuring it works from scratch,
+but also it's nice to just spawn to an open gray
+screen without any room business around.
+
+changed RoomBuilder value in BootRoutine enum
+to Editor value, which makes more sense.
+
+changed boot routine to create a level screen
+for Editor enum value. 
+
+added Field value to RoomType enum.
+updated Room.SetType() with path for Field.
+this room fills up the entire screen.
+when hero stops colliding with the room rec,
+he returns to the overworld. this is the 
+'built in' exit for every level connected
+to the overworld map by a location dot.
+
+setup default editor to be level, not dungeon.
+lots of playtesting.
 
 
-created shared obj widget, which 'exists' independent
-of the topMenu's WidgetDisplaySet (dungeon or world).
-
-created displaySharedObjsWidget boolean in TopDebugMenu class.
-updated Functions_TopMenu.HandleInput() with path to
-toggle displaySharedObjsWidget based on F8 input.
-updpated TopMenu.HandleInput() with paths for shared
-objs widget getting input & being drawn.
-
-playtested, working as expected.
 
 
 
 
 
+hero should have unlocked everything in editor...?
 
 
 
-
-
-
-dung objs and world obj buttons should be set to down when they display their widget sets
 
 
 

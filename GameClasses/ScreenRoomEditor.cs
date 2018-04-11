@@ -20,9 +20,9 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            //setup the editor's widgets, this is default editor boot screen
-            Functions_TopMenu.ResetEditorWidgets();
-
+            //set the widgets to display
+            Functions_TopMenu.DisplayWidgets(WidgetDisplaySet.World);
+            
             //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
 
@@ -30,19 +30,19 @@ namespace DungeonRun
             Widgets.RoomTools.roomData = new RoomXmlData();
             Widgets.RoomTools.roomData.type = RoomType.Row;
             Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
+            
+            //set spawnPos to outside of room at top left corner
+            Functions_Level.currentRoom.spawnPos.X = Functions_Level.buildPosition.X - 32;
+            Functions_Level.currentRoom.spawnPos.Y = Functions_Level.buildPosition.Y + 32;
+            Functions_Hero.SpawnInCurrentRoom(); //centered
+            Pool.hero.health = 3; //give hero health
+
             //set to black background
             Assets.colorScheme.background = new Color(0, 0, 0, 0);
-
-            //place hero outside of room at top left corner
-            Functions_Movement.Teleport(Pool.hero.compMove,
-                Functions_Level.buildPosition.X - 32,
-                Functions_Level.buildPosition.Y + 32);
-
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
             Flags.Paused = false; //unpause editor initially
-            Pool.hero.health = 3; //give hero health
         }
 
         public override void HandleInput(GameTime GameTime)

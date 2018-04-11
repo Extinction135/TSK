@@ -15,6 +15,34 @@ namespace DungeonRun
     public static class Functions_TopMenu
     {
 
+
+
+
+        public static void DisplayWidgets(WidgetDisplaySet Set)
+        {
+            if (Set == WidgetDisplaySet.Dungeon)
+            {
+                TopDebugMenu.display = WidgetDisplaySet.Dungeon;
+                ResetEditorWidgets();
+                //set buttons correctly - dungeon = down, world = up
+                TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
+                TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
+            }
+            else if (Set == WidgetDisplaySet.World)
+            {
+                TopDebugMenu.display = WidgetDisplaySet.World;
+                ResetEditorWidgets();
+                //set buttons correctly - dungeon = up, world = down
+                TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
+                TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
+            }
+            else { }
+
+            
+        }
+
+
+
         public static void UpdateEditorWidgets()
         {
             Widgets.ObjectTools.Update();
@@ -26,7 +54,6 @@ namespace DungeonRun
             Widgets.WidgetObjects_Environment.Update();
             Widgets.WidgetObjects_Building.Update();
 
-            //shared objs widget here
             Widgets.WidgetObjects_Shared.Update();
         }
 
@@ -181,6 +208,9 @@ namespace DungeonRun
             {
                 TopDebugMenu.display = WidgetDisplaySet.Dungeon;
                 ResetEditorWidgets();
+                //set buttons correctly - dungeon = down, world = up
+                TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
+                TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonUp;
             }
 
             #endregion
@@ -192,6 +222,9 @@ namespace DungeonRun
             {
                 TopDebugMenu.display = WidgetDisplaySet.World;
                 ResetEditorWidgets();
+                //set buttons correctly - dungeon = up, world = down
+                TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
+                TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
             }
 
             #endregion
