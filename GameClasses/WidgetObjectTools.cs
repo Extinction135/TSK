@@ -46,7 +46,7 @@ namespace DungeonRun
         {
             window = new MenuWindow(
                 new Point(0, 0),
-                new Point(16 * 10, 16 * 4),
+                new Point(16 * 6, 16 * 4),
                 "Object Tools");
             //create cursor sprites
             cursorSprite = new ComponentSprite(
@@ -206,6 +206,9 @@ namespace DungeonRun
             #endregion
 
 
+            //mouse button states
+
+
             #region Handle Left Button CLICK
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
@@ -232,30 +235,6 @@ namespace DungeonRun
 
                     return; //prevent grabbing of obj underneath widget/window
                 }
-                
-
-                #region Handle DungeonObjects Widget 
-
-                else if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
-                {
-                    CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
-                    return;
-                }
-
-                #endregion
-
-
-                #region Handle EnvironmentObjects Widget 
-
-                else if (Widgets.WidgetObjects_Environment.window.interior.rec.Contains(Input.cursorPos))
-                {
-                    CheckObjList(Widgets.WidgetObjects_Environment.objList);
-                    return;
-                }
-
-                #endregion
-
-
                 else if (Functions_Level.currentRoom.rec.Contains(worldPos))
                 {   //if mouse worldPos is within room, allow adding of active object
 
@@ -471,20 +450,30 @@ namespace DungeonRun
 
         public override void Draw()
         {
-            Functions_Draw.Draw(window);
-            if (window.interior.displayState == DisplayState.Opened)
+
+
+            if (!Flags.HideEditorWidgets)
             {
-                Functions_Draw.Draw(moveObj);
-                Functions_Draw.Draw(rotateObj);
-                Functions_Draw.Draw(addObj);
-                Functions_Draw.Draw(deleteObj);
-                Functions_Draw.Draw(currentObjRef.compSprite);
-                Functions_Draw.Draw(currentObjDirectionText);
-                Functions_Draw.Draw(selectionBoxObj);
-                Functions_Draw.Draw(selectionBoxTool);
+                Functions_Draw.Draw(window);
+                if (window.interior.displayState == DisplayState.Opened)
+                {
+                    Functions_Draw.Draw(moveObj);
+                    Functions_Draw.Draw(rotateObj);
+                    Functions_Draw.Draw(addObj);
+                    Functions_Draw.Draw(deleteObj);
+                    Functions_Draw.Draw(currentObjRef.compSprite);
+                    Functions_Draw.Draw(currentObjDirectionText);
+                    Functions_Draw.Draw(selectionBoxObj);
+                    Functions_Draw.Draw(selectionBoxTool);
+                }
+                if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
             }
-            if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
-            Functions_Draw.Draw(cursorSprite);
+
+
+            //draw + track cursor regardless
+
+            
+            Functions_Draw.Draw(cursorSprite); 
         }
 
 
@@ -511,7 +500,7 @@ namespace DungeonRun
             currentObjRef.compSprite.rotationValue = activeObj.compSprite.rotationValue;
             Functions_GameObject.SetType(currentObjRef, activeObj.type);
             //update the currentObj text displays
-            window.title.text = "Obj: " + currentObjRef.type;
+            window.title.text = "" + currentObjRef.type;
             currentObjDirectionText.text = "dir: " + currentObjRef.direction;
         }
 

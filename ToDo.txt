@@ -59,34 +59,29 @@ TODAY:
 
 
 
+Editor Improvements
 
+shrinked ObjTools widget horizontally.
 
-Improvements
+fixed drawing and tracking of cursor so it appears
+even when the widgets are set to hidden using F6.
+this allows editors to interact with roomData while previewing.
 
-changed where ResetUponRoomBuild() is called from.
-now it's called at the end of FinishRoom() instead
-of at the end of BuildRoom(). this still doesn't fix
-dog spawning issue, but prevents the removal of walls 
-from dungeon rooms. blerg. too complicated rn.
+simpified ObjTools Widget, by moving input for
+DungeonObjs to RoomBuilder, and EnvObjs to LevelEditor.
 
-fixed the dungeon entrance light fx sprite.
+linked LevelEditor to BuildingObjs Widget.
 
-fixed the overworld map particles (they weren't getting
-aged, so old particles weren't being removed).
+got rid of the 'OBJ:' prefix in obj tools widget.
+this gives us a few more characters to display obj name.
 
-
-
-
-
-
+lots of playtesting, working great.
 
 
 
 
-Add Enemy Tools Widget
-this exists on the right, in RoomEditor.
-right now, it's composed of only enemySpawn objects, of which there are two,
-but only 1 works. just keep the enemy spawns and tier ideas. for now.
+
+
 
 
 
@@ -102,19 +97,17 @@ this should free up some space on the dungeon objs widget
 
 
 
+Add Enemy Tools Widget
+this exists on the right, in RoomEditor.
+right now, it's composed of only enemySpawn objects, of which there are two,
+but only 1 works. just keep the enemy spawns and tier ideas. for now.
 
 
 
 
 
-
-
-
-
-
-
-
-
+when level editor loads up, there shouldn't be a dungeon room.
+instead, it should just be a blank gray background, without any objs.
 
 
 
@@ -131,6 +124,66 @@ Add Outside Ground Objs
 Design and Link up new World Levels:
 Dungeon Entrance Level
 Outside Town Level
+
+
+
+
+
+we should be able to load an outside level, which has two exits:
+to overworld, or to the dungeon.
+
+the town level just has buildings, vendors, and an exit to the overworld.
+overworld exits should be marked with signposts, and look like exits too..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

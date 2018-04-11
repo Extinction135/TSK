@@ -51,10 +51,23 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             base.HandleInput(GameTime);
+            Widgets.ObjectTools.HandleInput();
+
             if (!Flags.HideEditorWidgets)
             {
-                Widgets.ObjectTools.HandleInput();
                 Widgets.RoomTools.HandleInput();
+
+                //handle selecting an obj from screen's widgets
+                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                {
+                    //Handle Environment Objs Widget 
+                    if (Widgets.WidgetObjects_Environment.window.interior.rec.Contains(Input.cursorPos))
+                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Environment.objList); }
+
+                    //Handle Building Objs Widget 
+                    if (Widgets.WidgetObjects_Building.window.interior.rec.Contains(Input.cursorPos))
+                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Building.objList); }
+                }
             }
         }
 
@@ -79,8 +92,8 @@ namespace DungeonRun
                 Widgets.RoomTools.Draw();
                 Widgets.WidgetObjects_Environment.Draw();
                 Widgets.WidgetObjects_Building.Draw();
-                Widgets.ObjectTools.Draw(); //drawn last cause cursor
             }
+            Widgets.ObjectTools.Draw();
             ScreenManager.spriteBatch.End();
         }
     }
