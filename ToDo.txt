@@ -58,48 +58,23 @@ TODAY:
 
 
 
-TopMenu ++
-
-added an enum to represent a set of widgets to be displayed.
-this enum was named WidgetDisplaySet, with values for World
-and Dungeon. added an instance of this enum to TopMenu class.
-defaults to Dungeon value upon creation of TopMenu class.
-this is what BootRoutine.RoomBuilder needs to display correctly.
-
-now drawing editor widgets from the top menu's draw().
-moved drawing and tracking of cursor into top menu too. 
-moved ObjToolState enum instance into top menu cause why not.
-
-improved TopMenu to reset all editor widgets upon screen 
-change, this deduplicates loadContent() paths from level
-and room screens. lots of refactoring.
-
-UWP ++
-added Functions_TopMenu, ScreenCheats, and WidgetObjects 
-classes to UWP project. building successfully.
-
-Notes:
-rooms have rules, and a default room is built upon screen creation.
-levels dont have established rules, yet, and nothing is built upon creation.
-also, where they save their data is different, but it's all xml gameObjects.
-the differences are small but important.
 
 
+Editor++
 
+removed HideEditorWidgets boolean from Flags class.
+this can be modeled better by adding a value to the
+widgetDisplaySet enum, the None value.
 
+updated Functions_TopMenu to use the None displaySet
+value, removing the HideWidgets boolean.
+refactored room and level editor's shared functionality
+into Functions_TopMenu, which may not be the best place
+for it, but it beats having duplicate code between the
+editor screens. lots of playtesting to ensure editor
+is ready for expansion into level design.
 
-
-
-
-
-
-
-
-
-
-
-
-
+simplified level.draw().
 
 
 
@@ -114,6 +89,8 @@ move fairy too, along with animals / pets
 this should free up some space on the dungeon objs widget
 
 shared objs just toggles on/off.
+
+
 
 
 

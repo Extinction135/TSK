@@ -21,6 +21,9 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
+            //setup the editor's widgets, this is default editor boot screen
+            Functions_TopMenu.ResetEditorWidgets();
+
             //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
 
@@ -28,12 +31,8 @@ namespace DungeonRun
             Widgets.RoomTools.roomData = new RoomXmlData();
             Widgets.RoomTools.roomData.type = RoomType.Row;
             Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
-            
             //set to black background
             Assets.colorScheme.background = new Color(0, 0, 0, 0);
-
-            //setup the editor's widgets
-            Functions_TopMenu.ResetEditorWidgets();
 
             //place hero outside of room at top left corner
             Functions_Movement.Teleport(Pool.hero.compMove,
@@ -50,38 +49,16 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             base.HandleInput(GameTime);
-            Widgets.ObjectTools.HandleInput();
-            if (!Flags.HideEditorWidgets)
-            { Widgets.RoomTools.HandleInput(); }
         }
 
         public override void Update(GameTime GameTime)
         {
             base.Update(GameTime);
-            if (!Flags.HideEditorWidgets)
-            {
-                //update ALL widgets, we switch between them
-                Widgets.ObjectTools.Update();
-                Widgets.RoomTools.Update();
-
-                Widgets.WidgetObjects_Dungeon.Update();
-
-                Widgets.WidgetObjects_Environment.Update();
-                Widgets.WidgetObjects_Building.Update();
-            }
         }
 
         public override void Draw(GameTime GameTime)
         {
             base.Draw(GameTime);
-            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            if (!Flags.HideEditorWidgets)
-            {
-                Widgets.RoomTools.Draw();
-                Widgets.ObjectTools.Draw();
-            }
-            Functions_Draw.Draw(TopDebugMenu.cursor);
-            ScreenManager.spriteBatch.End();
         }
     }
 }

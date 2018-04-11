@@ -34,7 +34,9 @@ namespace DungeonRun
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean ShowDialogs = true; //turn dialogs on/off
-        public static Boolean HideEditorWidgets = false; //useful for previewing levels/rooms
+
+        //public static Boolean HideEditorWidgets = false; //useful for previewing levels/rooms
+
         //cheats
         public static Boolean Invincibility = true; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?
@@ -499,7 +501,7 @@ namespace DungeonRun
 
             buttons.Add(new ComponentButton("f6 dung objs", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton("f7 wrld objs", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f8 shared objs", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f8 -", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
 
             buttons.Add(new ComponentButton("room editor", new Point(640 - 104, 2)));
             buttons.Add(new ComponentButton("level editor", new Point(buttons[8].rec.X + buttons[8].rec.Width + 2, 2)));

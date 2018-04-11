@@ -20,7 +20,7 @@ namespace DungeonRun
 
     public enum BootRoutine { Game, RoomBuilder }
 
-    public enum WidgetDisplaySet { World, Dungeon }
+    public enum WidgetDisplaySet { World, Dungeon, None }
 
 
 

@@ -24,11 +24,6 @@ namespace DungeonRun
             //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
 
-            //build default empty row room
-            //Widgets.RoomTools.roomData = new RoomXmlData();
-            //Widgets.RoomTools.roomData.type = RoomType.Row;
-            //Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
-
             //clear level and pool data
             Functions_Level.ResetLevel();
             Functions_Pool.Reset();
@@ -51,38 +46,16 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {
             base.HandleInput(GameTime);
-            Widgets.ObjectTools.HandleInput();
-            if (!Flags.HideEditorWidgets)
-            { Widgets.RoomTools.HandleInput(); }
         }
 
         public override void Update(GameTime GameTime)
         {
             base.Update(GameTime);
-            if (!Flags.HideEditorWidgets)
-            {   
-                //update ALL editor widgets, we switch between them
-                Widgets.ObjectTools.Update();
-                Widgets.RoomTools.Update();
-
-                Widgets.WidgetObjects_Dungeon.Update();
-
-                Widgets.WidgetObjects_Environment.Update();
-                Widgets.WidgetObjects_Building.Update();
-            }
         }
 
         public override void Draw(GameTime GameTime)
         {
             base.Draw(GameTime);
-            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            if (!Flags.HideEditorWidgets)
-            {
-                Widgets.RoomTools.Draw();
-                Widgets.ObjectTools.Draw();
-            }
-            Functions_Draw.Draw(TopDebugMenu.cursor);
-            ScreenManager.spriteBatch.End();
         }
     }
 }

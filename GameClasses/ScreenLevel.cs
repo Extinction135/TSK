@@ -192,17 +192,14 @@ namespace DungeonRun
             #endregion
 
 
-            #region Draw UI, debug info + debug menu, & overlay
+            #region Draw UI, top menu, & screen fading in/out overlay
 
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+
             Functions_WorldUI.Draw();
+            if (Flags.EnableTopMenu) { Functions_TopMenu.Draw(); } //draw top menu, etc..
+            Functions_Draw.Draw(overlay); //draw the overlay rec last
 
-            //draw top menu + debug info
-            if (Flags.EnableTopMenu) { Functions_TopMenu.Draw(); }
-            if (Flags.DrawDebugInfo) { Functions_Debug.Draw(); }
-
-            //draw the overlay rec last
-            Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();
 
             #endregion

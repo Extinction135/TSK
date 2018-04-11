@@ -407,22 +407,19 @@ namespace DungeonRun
 
         public override void Draw()
         {
-            if (!Flags.HideEditorWidgets)
+            Functions_Draw.Draw(window);
+            if (window.interior.displayState == DisplayState.Opened)
             {
-                Functions_Draw.Draw(window);
-                if (window.interior.displayState == DisplayState.Opened)
-                {
-                    Functions_Draw.Draw(moveObj);
-                    Functions_Draw.Draw(rotateObj);
-                    Functions_Draw.Draw(addObj);
-                    Functions_Draw.Draw(deleteObj);
-                    Functions_Draw.Draw(currentObjRef.compSprite);
-                    Functions_Draw.Draw(currentObjDirectionText);
-                    Functions_Draw.Draw(selectionBoxObj);
-                    Functions_Draw.Draw(selectionBoxTool);
-                }
-                if (TopDebugMenu.objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
+                Functions_Draw.Draw(moveObj);
+                Functions_Draw.Draw(rotateObj);
+                Functions_Draw.Draw(addObj);
+                Functions_Draw.Draw(deleteObj);
+                Functions_Draw.Draw(currentObjRef.compSprite);
+                Functions_Draw.Draw(currentObjDirectionText);
+                Functions_Draw.Draw(selectionBoxObj);
+                Functions_Draw.Draw(selectionBoxTool);
             }
+            if (TopDebugMenu.objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
         }
 
 

@@ -16,6 +16,22 @@ namespace DungeonRun
     {
         //static int i;
 
+
+        public static void UpdateEditorWidgets()
+        {
+            Widgets.ObjectTools.Update();
+            Widgets.RoomTools.Update();
+
+            Widgets.WidgetObjects_Dungeon.Update();
+            //enemy tools widget here
+
+            Widgets.WidgetObjects_Environment.Update();
+            Widgets.WidgetObjects_Building.Update();
+
+            //shared objs widget here
+        }
+
+
         public static void ResetEditorWidgets()
         {
             //editor set
@@ -64,7 +80,7 @@ namespace DungeonRun
             #endregion
 
 
-
+            UpdateEditorWidgets(); //this animates them
 
 
             #region F1 - Toggle Collision Rec Drawing
@@ -108,21 +124,15 @@ namespace DungeonRun
             #region F3 - Hide/Unhide Widgets
 
             if (Functions_Input.IsNewKeyPress(Keys.F3))
-            {   //set the player's gold to 99
-                //PlayerData.current.gold = 99;
-                //Assets.Play(Assets.sfxGoldPickup);
-
-                //ScreenManager.ExitAndLoad(new ScreenRoomEditor());
-
-                if (Flags.HideEditorWidgets)
-                {
-                    Flags.HideEditorWidgets = false;
-                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonUp;
+            {   
+                if (TopDebugMenu.display != WidgetDisplaySet.None)
+                {   //set down state
+                    TopDebugMenu.display = WidgetDisplaySet.None;
+                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonDown;
                 }
                 else
-                {
-                    Flags.HideEditorWidgets = true;
-                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonDown;
+                {   //set released state
+                    TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonUp;
                 }
             }
 
@@ -168,6 +178,7 @@ namespace DungeonRun
             if (Functions_Input.IsNewKeyPress(Keys.F6))
             {
                 TopDebugMenu.display = WidgetDisplaySet.Dungeon;
+                ResetEditorWidgets();
             }
 
             #endregion
@@ -178,6 +189,7 @@ namespace DungeonRun
             if (Functions_Input.IsNewKeyPress(Keys.F6))
             {
                 TopDebugMenu.display = WidgetDisplaySet.World;
+                ResetEditorWidgets();
             }
 
             #endregion
@@ -252,17 +264,19 @@ namespace DungeonRun
 
 
 
-            /*
-            //dump the states for every active actor if Enter key is pressed
-            if (Functions_Input.IsNewKeyPress(Keys.Enter))
+            #region Pass Input to RoomTools, if it's being displayed
+
+            if (TopDebugMenu.display != WidgetDisplaySet.None)
             {
-                for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
-                {
-                    if (Pool.actorPool[Pool.actorCounter].active)
-                    { Inspect(Pool.actorPool[Pool.actorCounter]); }
-                }
+                Widgets.RoomTools.HandleInput();
             }
-            */
+
+            #endregion
+
+
+
+            //always allow editor to continue using cursor in expected manner
+            Widgets.ObjectTools.HandleInput();
         }
 
 
@@ -277,9 +291,14 @@ namespace DungeonRun
             for (TopDebugMenu.counter = 0; TopDebugMenu.counter < TopDebugMenu.buttons.Count; TopDebugMenu.counter++)
             { Functions_Draw.Draw(TopDebugMenu.buttons[TopDebugMenu.counter]); }
 
-            //draw all editor widgets that TopMenu is responsible for, if we are drawing widets
-            if (!Flags.HideEditorWidgets)
-            {
+            //draw all editor widgets that TopMenu is responsible for, if we are drawing widgets
+
+            if (TopDebugMenu.display != WidgetDisplaySet.None)
+            {   
+                //draw needed editor widgets
+                Widgets.RoomTools.Draw();
+                Widgets.ObjectTools.Draw();
+
                 //if dungeon mode, draw dungeon widgets
                 if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
                 {
@@ -292,8 +311,12 @@ namespace DungeonRun
                     Widgets.WidgetObjects_Environment.Draw();
                     Widgets.WidgetObjects_Building.Draw();
                 }
+
                 //shared objs widget here
             }
+            else { } //dont draw any widgets
+            
+            if (Flags.DrawDebugInfo) { Functions_Debug.Draw(); }
 
             //ALWAYS draw the cursor, and draw it last
             Functions_Draw.Draw(TopDebugMenu.cursor);
