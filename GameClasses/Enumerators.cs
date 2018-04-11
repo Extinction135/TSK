@@ -34,7 +34,10 @@ namespace DungeonRun
 
     public enum GameFile { AutoSave, Game1, Game2, Game3 }
 
-    public enum ExitAction { Title, Summary, ExitDungeon, Overworld, QuitGame, ExitScreen }
+    public enum ExitAction
+    {
+        Title, Summary, ExitDungeon, Overworld, QuitGame, ExitScreen
+    }
 
 
 

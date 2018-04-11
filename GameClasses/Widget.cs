@@ -27,9 +27,13 @@ namespace DungeonRun
         //editor widgets
         public static WidgetObjectTools ObjectTools = new WidgetObjectTools();
         public static WidgetRoomTools RoomTools = new WidgetRoomTools();
+        //dungeon
         public static WidgetObjects_Dungeon WidgetObjects_Dungeon = new WidgetObjects_Dungeon();
+        //world
         public static WidgetObjects_Environment WidgetObjects_Environment = new WidgetObjects_Environment();
         public static WidgetObjects_Building WidgetObjects_Building = new WidgetObjects_Building();
+        //shared
+        public static WidgetObjects_Shared WidgetObjects_Shared = new WidgetObjects_Shared();
     }
 
     public abstract class Widget

@@ -58,30 +58,38 @@ TODAY:
 
 
 
-Fix F6 / F7 Editor Shortcuts
-
-the f6 & f7 keys are not working.
-due to an obvious typo. ouch. that hurts.
-playtested, working as expected now.
-
-
-
-
-
-
-
-
-
-
 Shared Objs Widget
-add shared objs widget, this is tied to the f7 button
-will display or hide this widget based on f7 press
+
+
+created shared obj widget, which 'exists' independent
+of the topMenu's WidgetDisplaySet (dungeon or world).
+
+created displaySharedObjsWidget boolean in TopDebugMenu class.
+updated Functions_TopMenu.HandleInput() with path to
+toggle displaySharedObjsWidget based on F8 input.
+updpated TopMenu.HandleInput() with paths for shared
+objs widget getting input & being drawn.
+
+playtested, working as expected.
+
+
+
+
+
+
+
+
+
+
+
+dung objs and world obj buttons should be set to down when they display their widget sets
+
+
+
 
 move the npcs onto the shared objs widget
 move fairy too, along with animals / pets
 this should free up some space on the dungeon objs widget
-
-shared objs just toggles on/off.
 
 
 

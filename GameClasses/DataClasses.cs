@@ -35,8 +35,6 @@ namespace DungeonRun
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean ShowDialogs = true; //turn dialogs on/off
 
-        //public static Boolean HideEditorWidgets = false; //useful for previewing levels/rooms
-
         //cheats
         public static Boolean Invincibility = true; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?
@@ -482,6 +480,7 @@ namespace DungeonRun
         public static ObjToolState objToolState;
 
         public static WidgetDisplaySet display;
+        public static Boolean displaySharedObjsWidget = false;
 
         public static Rectangle rec; //background rec
         public static List<ComponentButton> buttons;
@@ -510,7 +509,7 @@ namespace DungeonRun
             buttons.Add(new ComponentButton(
                 "f7 wrld objs", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton(
-                "f8 -", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
+                "f8 shared objs", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
 
             buttons.Add(new ComponentButton(
                 "room editor", new Point(640 - 104, 2)));
@@ -575,18 +574,6 @@ namespace DungeonRun
         public float posX = 0;
         public float posY = 0;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

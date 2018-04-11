@@ -14,8 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_TopMenu
     {
-        //static int i;
-
 
         public static void UpdateEditorWidgets()
         {
@@ -29,6 +27,7 @@ namespace DungeonRun
             Widgets.WidgetObjects_Building.Update();
 
             //shared objs widget here
+            Widgets.WidgetObjects_Shared.Update();
         }
 
 
@@ -44,6 +43,9 @@ namespace DungeonRun
             //world set
             Widgets.WidgetObjects_Environment.Reset(16 * 1, 16 * 2); //left
             Widgets.WidgetObjects_Building.Reset(16 * 34, 16 * 2); //right
+
+            //shared
+            Widgets.WidgetObjects_Shared.Reset(16 * 7, 16 * 2); //right of left widget
         }
 
 
@@ -197,9 +199,18 @@ namespace DungeonRun
 
             #region F8 - Set SharedObjs Widget Display
 
-            if (Functions_Input.IsNewKeyPress(Keys.F6))
+            if (Functions_Input.IsNewKeyPress(Keys.F8))
             {
-                //this is a boolean
+                if (TopDebugMenu.displaySharedObjsWidget)
+                {   //set released state
+                    TopDebugMenu.displaySharedObjsWidget = false;
+                    TopDebugMenu.buttons[7].currentColor = Assets.colorScheme.buttonUp;
+                }
+                else
+                {   //set down state
+                    TopDebugMenu.displaySharedObjsWidget = true;
+                    TopDebugMenu.buttons[7].currentColor = Assets.colorScheme.buttonDown;
+                }
             }
 
             #endregion
@@ -256,6 +267,12 @@ namespace DungeonRun
                     if (Widgets.WidgetObjects_Building.window.interior.rec.Contains(Input.cursorPos))
                     { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Building.objList); }
                 }
+                if (TopDebugMenu.displaySharedObjsWidget)
+                {
+                    //Handle Shared Objs Widget 
+                    if (Widgets.WidgetObjects_Shared.window.interior.rec.Contains(Input.cursorPos))
+                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Shared.objList); }
+                }
             }
 
             #endregion
@@ -311,8 +328,11 @@ namespace DungeonRun
                     Widgets.WidgetObjects_Environment.Draw();
                     Widgets.WidgetObjects_Building.Draw();
                 }
-
-                //shared objs widget here
+                //shared objs widget too
+                if (TopDebugMenu.displaySharedObjsWidget)
+                {
+                    Widgets.WidgetObjects_Shared.Draw();
+                }
             }
             else { } //dont draw any widgets
             
