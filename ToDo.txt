@@ -57,26 +57,76 @@ TODAY:
 
 
 
+Editor++
+
+planning and design of editor screens.
+added new mockups for Level and Room editor screens.
+changed DebugMenu to TopMenu class.
+created Functions_TopMenu class to contain methods.
+linked to Dx project.
+refactored Functions_Draw, Functions_Debug.
+changed name of DebugMenu to TopDebugMenu.
+added room and level editor buttons to top menu.
+added paths for cursor collision clicking.
+playtested, working as expected.
+top menu now matches latest mockup.
 
 
-Editor Improvements
 
-shrinked ObjTools widget horizontally.
 
-fixed drawing and tracking of cursor so it appears
-even when the widgets are set to hidden using F6.
-this allows editors to interact with roomData while previewing.
 
-simpified ObjTools Widget, by moving input for
-DungeonObjs to RoomBuilder, and EnvObjs to LevelEditor.
 
-linked LevelEditor to BuildingObjs Widget.
 
-got rid of the 'OBJ:' prefix in obj tools widget.
-this gives us a few more characters to display obj name.
 
-lots of playtesting, working great.
 
+
+
+
+Implement ObjWidget Display States
+
+there are two initial display states for editor widgets: dungeon or world.
+these states are modeled using an enum, editorState?
+
+
+
+
+
+we dont want editors accidentally switching editor modes,
+so make inputs for widget displays and editor modes distinct...
+MOUSE CLICK to change editor modes.
+KEY PRESS to change widget displays.
+
+add new top menu buttons: f6 dung objs, f7 wrld objs, f8 shared objs
+pressing these buttons shows or hides the corresponding obj widget(s).
+dungObjs hides wrldObjs, and vice versa. shared objs just toggles on/off.
+
+implement mouse click to change level / room editor modes.
+this should be baked into the top menu's input, as it's part of top menu.
+top debug menu should also probably be it's own thing, not tied to Fun_Debug.
+
+
+how do we display widget sets? with an enum.
+widgetDisplaySet enum - world, dungeon
+if world, pass input, update, draw to env&build widgets
+else pass to dungeon and enemy spawns widgets
+where do we keep this enum instance? 
+i say top menu, thats where it visually lives.
+and draw the widgets from the top menu's draw() too.
+that way we can also localize the 'hide widgets' into the topMenu's draw().
+this cleans up code spread around between editor screens and objToolsWdiget.
+the cursor should also be drawn by the top menu, as it will be selecting buttons up there too
+BUT, the toolTip sprite should be owned by the ObjToolsWidget and track itself to the cursor
+
+
+
+
+
+
+
+this means roomEditor is different than levelEditor.
+rooms have rules, and a default room is built upon screen creation.
+levels dont have established rules, yet, and nothing is built upon creation.
+also, where they save their data is different, but it's all xml gameObjects.
 
 
 
@@ -108,6 +158,16 @@ but only 1 works. just keep the enemy spawns and tier ideas. for now.
 
 when level editor loads up, there shouldn't be a dungeon room.
 instead, it should just be a blank gray background, without any objs.
+
+
+
+
+
+
+we can link f3 to drawing the interaction / collision info widget
+
+
+
 
 
 
@@ -486,6 +546,27 @@ we can call it the push wand, which would allow us to create a whole new type of
 where we can use the push wand to move objects to solve rooms!!!
 
 
+
+
+
+
+
+
+
+Full Screen AoE MAGIC SPELLS
+
+it's really simple to do this, just create explosions around the hero,
+or play a bunch of random explosion sprites everywhere, then damage all
+active enemies like so:
+
+for (i = 1; i < Pool.actorCount; i++) //skip actorPool[0] (hero)
+{
+	if (Pool.actorPool[i].active) //deal 1 point of damage to all active actors
+	{ Functions_Battle.Damage(Pool.actorPool[i], 1, 0.0f, Functions_Direction.GetRandomDirection()); }
+}
+
+either actually create projectiles to kill enemies, or fake it with particles
+it just depends on the effect and magic behavior
 
 
 

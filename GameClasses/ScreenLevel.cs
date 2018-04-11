@@ -50,7 +50,7 @@ namespace DungeonRun
                 }
                 //map player input to hero
                 Functions_Input.MapPlayerInput(Pool.hero.compInput);
-                if (Flags.EnableTopMenu) { Functions_Debug.HandleTopMenuInput(); }
+                if (Flags.EnableTopMenu) { Functions_TopMenu.HandleInput(); }
             }
             else
             {   //screen is not opened, prevent all input mapping
@@ -193,9 +193,11 @@ namespace DungeonRun
 
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
             Functions_WorldUI.Draw();
-            //draw debug menu + info
-            if (Flags.EnableTopMenu) { Functions_Draw.DrawDebugMenu(); }
-            if (Flags.DrawDebugInfo) { Functions_Draw.DrawDebugInfo(); }
+
+            //draw top menu + debug info
+            if (Flags.EnableTopMenu) { Functions_TopMenu.Draw(); }
+            if (Flags.DrawDebugInfo) { Functions_Debug.Draw(); }
+
             //draw the overlay rec last
             Functions_Draw.Draw(overlay);
             ScreenManager.spriteBatch.End();

@@ -233,180 +233,77 @@ namespace DungeonRun
 
 
 
-
-        public static void HandleTopMenuInput()
+        public static void Draw()
         {
 
+            #region Draw Frame Times and Ram useage
 
-            #region F1 - Toggle Collision Rec Drawing
-
-            if (Functions_Input.IsNewKeyPress(Keys.F1))
-            {   //toggle draw collision boolean
-                if (Flags.DrawCollisions)
-                {
-                    Flags.DrawCollisions = false;
-                    DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonUp;
-                }
-                else
-                {
-                    Flags.DrawCollisions = true;
-                    DebugMenu.buttons[0].currentColor = Assets.colorScheme.buttonDown;
-                }
-            }
+            //average over framesTotal
+            DebugInfo.timingText.text = "u: " + DebugInfo.updateAvg;
+            DebugInfo.timingText.text += "\nd: " + DebugInfo.drawAvg;
+            DebugInfo.timingText.text += "\nt: " + Timing.totalTime.Milliseconds + " ms";
+            DebugInfo.timingText.text += "\n" + ScreenManager.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
+            DebugInfo.timingText.text += "\n" + Functions_Backend.GetRam() + " mb";
 
             #endregion
 
 
-            #region F2 - Toggle Drawing of InfoPanel
+            #region Actor + Movement Components
 
-            if (Functions_Input.IsNewKeyPress(Keys.F2))
-            {
-                if (Flags.DrawDebugInfo)
-                {
-                    Flags.DrawDebugInfo = false;
-                    DebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonUp;
-                }
-                else
-                {
-                    Flags.DrawDebugInfo = true;
-                    DebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonDown;
-                }
-            }
+            DebugInfo.actorText.text = "actor: hero";
+            DebugInfo.actorText.text += "\ninp: " + Pool.hero.inputState;
+            DebugInfo.actorText.text += "\ncur: " + Pool.hero.state;
+            DebugInfo.actorText.text += "\nlck: " + Pool.hero.stateLocked;
+            DebugInfo.actorText.text += "\ndir: " + Pool.hero.direction;
+
+            DebugInfo.moveText.text = "pos x:" + Pool.hero.compSprite.position.X + ", y:" + Pool.hero.compSprite.position.Y;
+            DebugInfo.moveText.text += "\nspd:" + Pool.hero.compMove.speed + "  fric:" + Pool.hero.compMove.friction;
+            DebugInfo.moveText.text += "\nmag x:" + Pool.hero.compMove.magnitude.X;
+            DebugInfo.moveText.text += "\nmag y:" + Pool.hero.compMove.magnitude.Y;
+            DebugInfo.moveText.text += "\ndir: " + Pool.hero.compMove.direction;
 
             #endregion
 
 
-            #region F3 - Room Editor
+            #region Pool, Creation Time, and Record Components
 
-            if (Functions_Input.IsNewKeyPress(Keys.F3))
-            {   //set the player's gold to 99
-                //PlayerData.current.gold = 99;
-                //Assets.Play(Assets.sfxGoldPickup);
+            DebugInfo.poolText.text = "floors: " + Pool.floorIndex + "/" + Pool.floorCount;
 
-                ScreenManager.ExitAndLoad(new ScreenRoomEditor());
-            }
+            DebugInfo.poolText.text += "\nobjs: " + Pool.roomObjIndex + "/" + Pool.roomObjCount;
+            DebugInfo.poolText.text += "\nactrs: " + Pool.actorIndex + "/" + Pool.actorCount;
+            DebugInfo.poolText.text += "\nprojs: " + Pool.projectileIndex + "/" + Pool.projectileCount;
 
-            #endregion
-            
+            DebugInfo.creationText.text = "timers";
+            DebugInfo.creationText.text += "\nroom: " + DebugInfo.roomTime;
+            DebugInfo.creationText.text += "\ndung: " + DebugInfo.dungeonTime;
 
-            #region F4 - Level Editor
-
-            if (Functions_Input.IsNewKeyPress(Keys.F4))
-            {   //dump savedata
-                //Inspect(PlayerData.current);
-
-                ScreenManager.ExitAndLoad(new ScreenLevelEditor());
-            }
-
-            #endregion
-            
-
-            #region F5 - Toggle Paused flag
-
-            if (Functions_Input.IsNewKeyPress(Keys.F5))
-            {
-                if (Flags.Paused)
-                {
-                    Flags.Paused = false;
-                    DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonUp;
-                }
-                else
-                {
-                    Flags.Paused = true;
-                    DebugMenu.buttons[4].currentColor = Assets.colorScheme.buttonDown;
-                }
-            }
+            DebugInfo.recordText.text = "record";
+            DebugInfo.recordText.text += "\ntime: " + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
+            DebugInfo.recordText.text += "\nenemies: " + DungeonRecord.enemyCount;
+            DebugInfo.recordText.text += "\ndamage: " + DungeonRecord.totalDamage;
 
             #endregion
 
 
-            #region F6 - Hide / Unhide Editor Widgets
+            #region Music + SaveData Components
 
-            if (Functions_Input.IsNewKeyPress(Keys.F6))
-            {
-                if (Flags.HideEditorWidgets)
-                {
-                    Flags.HideEditorWidgets = false;
-                    DebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
-                }
-                else
-                {
-                    Flags.HideEditorWidgets = true;
-                    DebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonDown;
-                }
+            DebugInfo.musicText.text = "music: " + Functions_Music.trackToLoad;
+            DebugInfo.musicText.text += "\n" + Functions_Music.currentMusic.State + ": " + Functions_Music.currentMusic.Volume;
+            DebugInfo.musicText.text += "\n" + Assets.musicDrums.State + ": " + Assets.musicDrums.Volume;
 
-                /* Damage all active enemies
-                for (i = 1; i < Pool.actorCount; i++) //skip actorPool[0] (hero)
-                {
-                    if (Pool.actorPool[i].active) //deal 1 point of damage to all active actors
-                    { Functions_Battle.Damage(Pool.actorPool[i], 1, 0.0f, Direction.Down); }
-                }
-                */
-            }
+            //saveDataText.text = "save data";
+            //saveDataText.text += "\ngold: " + PlayerData.saveData.gold;
 
             #endregion
 
 
-
-            /*
-
-            #region F7 - Toggle Map Cheat & Map
-
-            if (Functions_Input.IsNewKeyPress(Keys.F7))
-            {
-                if (Flags.MapCheat) //turn off mapCheat, take away map
-                { Flags.MapCheat = false; Level.map = false; }
-                else //turn on mapCheat, give hero map
-                { Flags.MapCheat = true; Level.map = true; }
-            }
-
-            #endregion
-
-
-            #region F8 - Iterate Hero's ActorType
-
-            if (Functions_Input.IsNewKeyPress(Keys.F8))
-            {
-                if (Pool.hero.type == ActorType.Hero)
-                { Functions_Actor.SetType(Pool.hero, ActorType.Blob); }
-                else if (Pool.hero.type == ActorType.Blob)
-                { Functions_Actor.SetType(Pool.hero, ActorType.Hero); }
-                //default back to hero for all other states
-                else { Functions_Actor.SetType(Pool.hero, ActorType.Hero); }
-            }
-
-            #endregion
-
-            */
-
-
-
-
-
-
-
-
-
-            //if user ctrl+LMB clicks, dump info on clicked actor/obj
-            if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-            {   //user must hold down ctrl button to call Inspect()
-                if (Functions_Input.IsKeyDown(Keys.LeftControl)) { Inspect(); }
-            }
-
-            /*
-            //dump the states for every active actor if Enter key is pressed
-            if (Functions_Input.IsNewKeyPress(Keys.Enter))
-            {
-                for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
-                {
-                    if (Pool.actorPool[Pool.actorCounter].active)
-                    { Inspect(Pool.actorPool[Pool.actorCounter]); }
-                }
-            }
-            */
-
-
+            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, DebugInfo.background, Assets.colorScheme.debugBkg);
+            DebugInfo.size = DebugInfo.textFields.Count();
+            for (DebugInfo.counter = 0; DebugInfo.counter < DebugInfo.size; DebugInfo.counter++)
+            { Functions_Draw.Draw(DebugInfo.textFields[DebugInfo.counter]); }
         }
+
+
 
     }
 }

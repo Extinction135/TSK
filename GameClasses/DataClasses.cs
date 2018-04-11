@@ -473,25 +473,40 @@ namespace DungeonRun
         }
     }
 
-    public static class DebugMenu
+
+
+
+
+
+
+    public static class TopDebugMenu
     {
         public static Rectangle rec; //background rec
         public static List<ComponentButton> buttons;
         public static int counter;
-        static DebugMenu()
+        static TopDebugMenu()
         {
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
-            buttons.Add(new ComponentButton("f1 draw recs", new Point(2, 2)));
-            buttons.Add(new ComponentButton("f2 draw info", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f3 room editor", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f4 level editor", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f1 draw recs", new Point(2, 2))); //0
+            buttons.Add(new ComponentButton("f2 draw info", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2))); //1
+            buttons.Add(new ComponentButton("f3 hide widgets", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2))); //2
+            buttons.Add(new ComponentButton("f4 -", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
             buttons.Add(new ComponentButton("f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f6 hide widgets", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
-            //buttons.Add(new ComponentButton("f7 ---", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
-            //buttons.Add(new ComponentButton("f8 --", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
+
+            buttons.Add(new ComponentButton("f6 dung objs", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f7 wrld objs", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton("f8 shared objs", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
+
+            buttons.Add(new ComponentButton("room editor", new Point(640 - 104, 2)));
+            buttons.Add(new ComponentButton("level editor", new Point(buttons[8].rec.X + buttons[8].rec.Width + 2, 2)));
         }
     }
+
+
+
+
+
 
     public static class Level
     {
