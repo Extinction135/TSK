@@ -58,23 +58,16 @@ TODAY:
 
 
 
+Fix F6 / F7 Editor Shortcuts
+
+the f6 & f7 keys are not working.
+due to an obvious typo. ouch. that hurts.
+playtested, working as expected now.
 
 
-Editor++
 
-removed HideEditorWidgets boolean from Flags class.
-this can be modeled better by adding a value to the
-widgetDisplaySet enum, the None value.
 
-updated Functions_TopMenu to use the None displaySet
-value, removing the HideWidgets boolean.
-refactored room and level editor's shared functionality
-into Functions_TopMenu, which may not be the best place
-for it, but it beats having duplicate code between the
-editor screens. lots of playtesting to ensure editor
-is ready for expansion into level design.
 
-simplified level.draw().
 
 
 
@@ -96,7 +89,6 @@ shared objs just toggles on/off.
 
 
 
-
 Add Enemy Tools Widget
 this exists on the right, in RoomEditor.
 right now, it's composed of only enemySpawn objects, of which there are two,
@@ -110,10 +102,10 @@ but only 1 works. just keep the enemy spawns and tier ideas. for now.
 
 
 
-
-
-
 Implement Level Editor and Level Save System
+
+we need world gameobjects, like bushes, trees, etc...
+this is going to grow Obj.SetType() considerably..
 
 we need to be able to save level objects to a level file.
 this is larger and different than the room save data files.
@@ -126,6 +118,39 @@ Dungeon Entrance Level
 Outside Town Level
 
 
+
+
+
+
+
+
+
+LevelTools Widget
+
+RoomTools Widget wouldn't be used by level.
+we instead need a levelTools widget.
+this would save, load, reload LEVELS.
+this would CLEAR the current level.
+we need a mockup for this too, and it 
+should fit into the space for RoomTools.
+
+hmm... or we could have a boolean that sets
+the roomTools widget to room or level,
+then modifies the UI / paths. this seems 
+like the fastest and easiest solution here.
+
+saving level data is just dumping roomObjs to xml,
+just like roomData, but it's saved in a different location.
+and when it's loaded, a room isn't built.
+only the level data is built. 
+maybe a 'field' is built as a bkg. (random animated grass placement)
+
+
+
+
+Improve LevelEditor
+create an animated grass object, randomly place them
+around the screen, lock the camera, spawn the hero center screen
 
 
 
@@ -152,6 +177,23 @@ overworld exits should be marked with signposts, and look like exits too..
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Improve GameObj Naming Conventions
+we should shorten the dungeon_ prefix for gameObj to dung_
+this will help those items better fit into the objTools widget
+plus, this shortens the overall size of the roomData xml by removing chars.
 
 
 

@@ -302,7 +302,8 @@ namespace DungeonRun
         public static GamePadState currentGamePadState = new GamePadState();
         public static GamePadState lastGamePadState = new GamePadState();
 
-        public static float deadzone = 0.10f; //the amount of joystick movement classified as noise
+        //the amount of joystick movement classified as noise
+        public static float deadzone = 0.10f; 
         public static Direction gamePadDirection = Direction.None;
         public static Direction lastGamePadDirection = Direction.None;
 
@@ -493,18 +494,28 @@ namespace DungeonRun
             display = WidgetDisplaySet.Dungeon; //roomBuilder = dungeon display set
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
-            buttons.Add(new ComponentButton("f1 draw recs", new Point(2, 2))); //0
-            buttons.Add(new ComponentButton("f2 draw info", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2))); //1
-            buttons.Add(new ComponentButton("f3 hide widgets", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2))); //2
-            buttons.Add(new ComponentButton("f4 -", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f1 draw recs", new Point(2, 2)));
+            buttons.Add(new ComponentButton(
+                "f2 draw info", new Point(buttons[0].rec.X + buttons[0].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f3 hide widgets", new Point(buttons[1].rec.X + buttons[1].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f4 -", new Point(buttons[2].rec.X + buttons[2].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f5 pause", new Point(buttons[3].rec.X + buttons[3].rec.Width + 2, 2)));
 
-            buttons.Add(new ComponentButton("f6 dung objs", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f7 wrld objs", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
-            buttons.Add(new ComponentButton("f8 -", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f6 dung objs", new Point(buttons[4].rec.X + buttons[4].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f7 wrld objs", new Point(buttons[5].rec.X + buttons[5].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "f8 -", new Point(buttons[6].rec.X + buttons[6].rec.Width + 2, 2)));
 
-            buttons.Add(new ComponentButton("room editor", new Point(640 - 104, 2)));
-            buttons.Add(new ComponentButton("level editor", new Point(buttons[8].rec.X + buttons[8].rec.Width + 2, 2)));
+            buttons.Add(new ComponentButton(
+                "room editor", new Point(640 - 104, 2)));
+            buttons.Add(new ComponentButton(
+                "level editor", new Point(buttons[8].rec.X + buttons[8].rec.Width + 2, 2)));
         }
     }
 
@@ -538,7 +549,7 @@ namespace DungeonRun
         public Point center = new Point(0, 0);
         public int XMLid = 0; //index of xmlRoomData list used to build/finish room
         public RoomType type;
-        public Vector2 spawnPos; //where hero can spawn in this room (last door passed thru or exit)
+        public Vector2 spawnPos; //where hero can spawn in room (last door passed thru/exit)
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
 
         public Room(Point Pos, RoomType Type)
@@ -689,9 +700,11 @@ namespace DungeonRun
             columnPos.X = startPos.X;
             columnPos.Y = startPos.Y;
             //create left scroll
-            Functions_Scroll.CreateColumn(false, false, size.Y, columnPos, leftScroll);
+            Functions_Scroll.CreateColumn(false, false, 
+                size.Y, columnPos, leftScroll);
             //create right scroll
-            Functions_Scroll.CreateColumn(false, true, size.Y, columnPos + new Vector2(32, 0), rightScroll);
+            Functions_Scroll.CreateColumn(false, true, 
+                size.Y, columnPos + new Vector2(32, 0), rightScroll);
             //create scroll's background columns, for width of scroll
             for (i = 0; i < size.X; i++)
             {
@@ -751,11 +764,11 @@ namespace DungeonRun
         public ActorState state; //what actor is doing this frame
         public ActorState inputState; //what input wants actor to do this frame
 
-        public Boolean stateLocked; //can actor change state? else actor must wait for state to unlock
+        public Boolean stateLocked; //can actor change state? actor waits for state to unlock
         public byte lockTotal = 0; //how many frames the actor statelocks for, based on state
         public byte lockCounter = 0; //counts from 0 to lockTotal, then flips stateLocked false
 
-        public ActorAnimationList animList = Functions_ActorAnimationList.actorAnims; //this never changes
+        public ActorAnimationList animList = Functions_ActorAnimationList.actorAnims;
         public AnimationGroup animGroup;
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?
@@ -791,9 +804,11 @@ namespace DungeonRun
 
         public Actor()
         {
-            compSprite = new ComponentSprite(Assets.heroSheet, new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(16, 16));
+            compSprite = new ComponentSprite(Assets.heroSheet, 
+                new Vector2(0, 0), new Byte4(0, 0, 0, 0), new Point(16, 16));
             Functions_Actor.SetType(this, ActorType.Hero); //defaults to hero actor
-            Functions_Movement.Teleport(compMove, compSprite.position.X, compSprite.position.Y);
+            Functions_Movement.Teleport(compMove, 
+                compSprite.position.X, compSprite.position.Y);
         }
     }
 
@@ -809,8 +824,8 @@ namespace DungeonRun
         public ComponentInteraction compInt = new ComponentInteraction();
 
         public Direction direction = Direction.Down; //direction obj/sprite is facing
-        public Boolean active = true; //does this object draw, update?
-        public Boolean getsAI = false; //does this object get passed to Functions_AI.HandleObj()?
+        public Boolean active = true; //does object draw, update?
+        public Boolean getsAI = false; //does object get passed to Functions_AI.HandleObj()?
         public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
 
         public Byte lifetime; //how many frames this object exists for, 0 = forever/ignore
@@ -1021,13 +1036,19 @@ namespace DungeonRun
             size = Size;
             title = new ComponentText(Assets.font, "", new Vector2(0, 0), Assets.colorScheme.textDark);
             //create the window components
-            background = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBkg);
-            border = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBorder);
-            inset = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
-            interior = new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInterior);
+            background = new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBkg);
+            border = new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowBorder);
+            inset = new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset);
+            interior = new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInterior);
             lines = new List<MenuRectangle>();
-            lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset)); //header
-            lines.Add(new MenuRectangle(new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset)); //footer
+            lines.Add(new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset)); //header
+            lines.Add(new MenuRectangle(
+                new Point(0, 0), new Point(0, 0), Assets.colorScheme.windowInset)); //footer
             //set the openDelay to cascade in all the components
             background.openDelay = 0;
             border.openDelay = 2;
@@ -1087,8 +1108,8 @@ namespace DungeonRun
     {   //allows an object or actor to animate through a sequence of frames on a timer
         public List<Byte4> currentAnimation; //a list of byte4 representing frames of an animation
         public byte index = 0; //where in the currentAnimation list the animation is (animation index)
-        public byte speed = 10; //how many frames should elapse before animation is updated (limits animation speed)
-        public byte timer = 0; //how many frames have elapsed since last animation update (counts frames) @ 60fps
+        public byte speed = 10; //how many frames elapse b4 animation updates (limits animation speed)
+        public byte timer = 0; //how many frames elapsed since last animation update (counts frames)
         public Boolean loop = true; //should currentAnimation loop?
     }
 
@@ -1179,7 +1200,8 @@ namespace DungeonRun
         public ComponentButton(String Text, Point Position)
         {
             rec = new Rectangle(Position, new Point(0, 9));
-            compText = new ComponentText(Assets.font, Text, new Vector2(0, 0), Assets.colorScheme.textLight);
+            compText = new ComponentText(Assets.font, 
+                Text, new Vector2(0, 0), Assets.colorScheme.textLight);
             selected = false;
             currentColor = Assets.colorScheme.buttonUp;
             Functions_Component.CenterText(this);

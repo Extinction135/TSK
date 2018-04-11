@@ -16,7 +16,6 @@ namespace DungeonRun
 {
     public class ScreenLevelEditor : ScreenLevel
     {
-
         public ScreenLevelEditor() { this.name = "Level Editor Screen"; }
 
         public override void LoadContent()

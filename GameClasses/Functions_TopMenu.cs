@@ -186,7 +186,7 @@ namespace DungeonRun
 
             #region F7 - Set World Widgets Display
 
-            if (Functions_Input.IsNewKeyPress(Keys.F6))
+            if (Functions_Input.IsNewKeyPress(Keys.F7))
             {
                 TopDebugMenu.display = WidgetDisplaySet.World;
                 ResetEditorWidgets();
