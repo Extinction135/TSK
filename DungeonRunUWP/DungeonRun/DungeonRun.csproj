@@ -154,9 +154,6 @@
     <Compile Include="..\..\GameClasses\Functions_Draw.cs">
       <Link>Classes\Functions_Draw.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_Editor.cs">
-      <Link>Classes\Functions_Editor.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_GameObject.cs">
       <Link>Classes\Functions_GameObject.cs</Link>
     </Compile>
@@ -220,6 +217,9 @@
     <Compile Include="..\..\GameClasses\Functions_Scroll.cs">
       <Link>Classes\Functions_Scroll.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_TopMenu.cs">
+      <Link>Classes\Functions_TopMenu.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_UWP.cs">
       <Link>Classes\Functions_UWP.cs</Link>
     </Compile>
@@ -228,6 +228,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Screen.cs">
       <Link>Classes\Screen.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenCheats.cs">
+      <Link>Classes\ScreenCheats.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenDialog.cs">
       <Link>Classes\ScreenDialog.cs</Link>
@@ -282,6 +285,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetLoadout.cs">
       <Link>Classes\WidgetLoadout.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\WidgetObjects.cs">
+      <Link>Classes\WidgetObjects.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\WidgetObjectTools.cs">
       <Link>Classes\WidgetObjectTools.cs</Link>

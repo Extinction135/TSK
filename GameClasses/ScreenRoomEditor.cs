@@ -21,11 +21,6 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            //place the object tools + room tools widgets
-            Widgets.ObjectTools.Reset(16 * 1, 16 * 17 + 8);
-            Widgets.RoomTools.Reset(16 * 33, 16 * 17 + 8);
-            Widgets.WidgetObjects_Dungeon.Reset(16 * 1, 16 * 2);
-
             //register this level screen with Functions_Level
             Functions_Level.levelScreen = this;
 
@@ -33,19 +28,23 @@ namespace DungeonRun
             Widgets.RoomTools.roomData = new RoomXmlData();
             Widgets.RoomTools.roomData.type = RoomType.Row;
             Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
+            
+            //set to black background
+            Assets.colorScheme.background = new Color(0, 0, 0, 0);
+
+            //setup the editor's widgets
+            Functions_TopMenu.ResetEditorWidgets();
 
             //place hero outside of room at top left corner
             Functions_Movement.Teleport(Pool.hero.compMove,
                 Functions_Level.buildPosition.X - 32,
                 Functions_Level.buildPosition.Y + 32);
 
-            //refill hero's health upon spawn
-            Pool.hero.health = PlayerData.current.heartsTotal;
-
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
             Flags.Paused = false; //unpause editor initially
+            Pool.hero.health = 3; //give hero health
         }
 
         public override void HandleInput(GameTime GameTime)
@@ -53,17 +52,7 @@ namespace DungeonRun
             base.HandleInput(GameTime);
             Widgets.ObjectTools.HandleInput();
             if (!Flags.HideEditorWidgets)
-            {
-                Widgets.RoomTools.HandleInput();
-
-                //handle selecting an obj from screen's widgets
-                if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
-                {
-                    //Handle Dungeon Objs Widget 
-                    if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
-                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Dungeon.objList); }
-                }
-            }
+            { Widgets.RoomTools.HandleInput(); }
         }
 
         public override void Update(GameTime GameTime)
@@ -71,9 +60,14 @@ namespace DungeonRun
             base.Update(GameTime);
             if (!Flags.HideEditorWidgets)
             {
+                //update ALL widgets, we switch between them
                 Widgets.ObjectTools.Update();
-                Widgets.WidgetObjects_Dungeon.Update();
                 Widgets.RoomTools.Update();
+
+                Widgets.WidgetObjects_Dungeon.Update();
+
+                Widgets.WidgetObjects_Environment.Update();
+                Widgets.WidgetObjects_Building.Update();
             }
         }
 
@@ -84,9 +78,9 @@ namespace DungeonRun
             if (!Flags.HideEditorWidgets)
             {
                 Widgets.RoomTools.Draw();
-                Widgets.WidgetObjects_Dungeon.Draw();
+                Widgets.ObjectTools.Draw();
             }
-            Widgets.ObjectTools.Draw();
+            Functions_Draw.Draw(TopDebugMenu.cursor);
             ScreenManager.spriteBatch.End();
         }
     }

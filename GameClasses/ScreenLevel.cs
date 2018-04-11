@@ -177,13 +177,16 @@ namespace DungeonRun
                         BlendState.AlphaBlend,
                         SamplerState.PointClamp,
                         null, null, null, Camera2D.view);
+
             Functions_Pool.Draw();
+
             if (Flags.DrawCollisions)
             {
                 Functions_Draw.Draw(Input.cursorColl);
                 Functions_Draw.DrawLevel();
                 Functions_Draw.Draw(Functions_Hero.interactionRec);
             }
+
             ScreenManager.spriteBatch.End();
 
             #endregion

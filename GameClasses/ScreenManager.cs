@@ -65,6 +65,7 @@ namespace DungeonRun
             game.GraphicsDevice.SetRenderTarget(renderSurface);
             //or target the viewport like normal
             //game.GraphicsDevice.SetRenderTarget(null);
+            
             //clear and set the background
             game.GraphicsDevice.Clear(Assets.colorScheme.background);
 

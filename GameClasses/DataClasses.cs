@@ -473,19 +473,22 @@ namespace DungeonRun
         }
     }
 
-
-
-
-
-
-
     public static class TopDebugMenu
     {
+        public static ComponentSprite cursor;
+        public static ObjToolState objToolState;
+
+        public static WidgetDisplaySet display;
+
         public static Rectangle rec; //background rec
         public static List<ComponentButton> buttons;
         public static int counter;
         static TopDebugMenu()
         {
+            cursor = new ComponentSprite(Assets.uiItemsSheet,
+                new Vector2(0, 0),new Byte4(10, 2, 0, 0),new Point(16, 16));
+
+            display = WidgetDisplaySet.Dungeon; //roomBuilder = dungeon display set
             rec = new Rectangle(0, 0, 640, 13);
             buttons = new List<ComponentButton>();
             buttons.Add(new ComponentButton("f1 draw recs", new Point(2, 2))); //0
@@ -502,11 +505,6 @@ namespace DungeonRun
             buttons.Add(new ComponentButton("level editor", new Point(buttons[8].rec.X + buttons[8].rec.Width + 2, 2)));
         }
     }
-
-
-
-
-
 
     public static class Level
     {

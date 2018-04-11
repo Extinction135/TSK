@@ -57,76 +57,45 @@ TODAY:
 
 
 
-Editor++
 
-planning and design of editor screens.
-added new mockups for Level and Room editor screens.
-changed DebugMenu to TopMenu class.
-created Functions_TopMenu class to contain methods.
-linked to Dx project.
-refactored Functions_Draw, Functions_Debug.
-changed name of DebugMenu to TopDebugMenu.
-added room and level editor buttons to top menu.
-added paths for cursor collision clicking.
-playtested, working as expected.
-top menu now matches latest mockup.
+TopMenu ++
 
+added an enum to represent a set of widgets to be displayed.
+this enum was named WidgetDisplaySet, with values for World
+and Dungeon. added an instance of this enum to TopMenu class.
+defaults to Dungeon value upon creation of TopMenu class.
+this is what BootRoutine.RoomBuilder needs to display correctly.
 
+now drawing editor widgets from the top menu's draw().
+moved drawing and tracking of cursor into top menu too. 
+moved ObjToolState enum instance into top menu cause why not.
 
+improved TopMenu to reset all editor widgets upon screen 
+change, this deduplicates loadContent() paths from level
+and room screens. lots of refactoring.
 
+UWP ++
+added Functions_TopMenu, ScreenCheats, and WidgetObjects 
+classes to UWP project. building successfully.
 
-
-
-
-
-
-
-
-Implement ObjWidget Display States
-
-there are two initial display states for editor widgets: dungeon or world.
-these states are modeled using an enum, editorState?
-
-
-
-
-
-we dont want editors accidentally switching editor modes,
-so make inputs for widget displays and editor modes distinct...
-MOUSE CLICK to change editor modes.
-KEY PRESS to change widget displays.
-
-add new top menu buttons: f6 dung objs, f7 wrld objs, f8 shared objs
-pressing these buttons shows or hides the corresponding obj widget(s).
-dungObjs hides wrldObjs, and vice versa. shared objs just toggles on/off.
-
-implement mouse click to change level / room editor modes.
-this should be baked into the top menu's input, as it's part of top menu.
-top debug menu should also probably be it's own thing, not tied to Fun_Debug.
-
-
-how do we display widget sets? with an enum.
-widgetDisplaySet enum - world, dungeon
-if world, pass input, update, draw to env&build widgets
-else pass to dungeon and enemy spawns widgets
-where do we keep this enum instance? 
-i say top menu, thats where it visually lives.
-and draw the widgets from the top menu's draw() too.
-that way we can also localize the 'hide widgets' into the topMenu's draw().
-this cleans up code spread around between editor screens and objToolsWdiget.
-the cursor should also be drawn by the top menu, as it will be selecting buttons up there too
-BUT, the toolTip sprite should be owned by the ObjToolsWidget and track itself to the cursor
-
-
-
-
-
-
-
-this means roomEditor is different than levelEditor.
+Notes:
 rooms have rules, and a default room is built upon screen creation.
 levels dont have established rules, yet, and nothing is built upon creation.
 also, where they save their data is different, but it's all xml gameObjects.
+the differences are small but important.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -144,6 +113,10 @@ move the npcs onto the shared objs widget
 move fairy too, along with animals / pets
 this should free up some space on the dungeon objs widget
 
+shared objs just toggles on/off.
+
+
+
 
 
 
@@ -155,16 +128,6 @@ but only 1 works. just keep the enemy spawns and tier ideas. for now.
 
 
 
-
-when level editor loads up, there shouldn't be a dungeon room.
-instead, it should just be a blank gray background, without any objs.
-
-
-
-
-
-
-we can link f3 to drawing the interaction / collision info widget
 
 
 
@@ -210,6 +173,32 @@ overworld exits should be marked with signposts, and look like exits too..
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+World and Dungeon Background Colors
+we need to be able to display a black bkg for dungeons and gray bkg for world
+and later a dark gray bkg for the dark world
+we currently don't draw a background color from level.draw, and we should
+instead we're clearing the graphics device from screenmanager to the assets.colorscheme.bkg color
+
+
+
+we can link f3 to drawing the interaction / collision info widget
 
 
 

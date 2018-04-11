@@ -20,6 +20,8 @@ namespace DungeonRun
 
     public enum BootRoutine { Game, RoomBuilder }
 
+    public enum WidgetDisplaySet { World, Dungeon }
+
 
 
     public enum DisplayState { Opening, Opened, Closing, Closed }

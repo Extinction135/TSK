@@ -15,19 +15,18 @@ namespace DungeonRun
 {
     public class WidgetObjectTools : Widget
     {
-        //this widget handles the selection, grabbing, dragging,
-        //releasing, adding, and deleting of roomObjects in an editor (Level or Room)
+        //handles the selection, grabbing, dragging, releasing, adding, and deleting of roomObjects
         
         int j;
-        public ComponentSprite cursorSprite;
+
         public GameObject moveObj;
         public GameObject rotateObj;
         public GameObject addObj;
         public GameObject deleteObj;
 
+        //move these into Input class or Functions_Input
         public Point worldPos; //used to translate screen to world position
         public Point screenPos; //used to translate world to screen position
-        public ObjToolState objToolState;
 
         public ComponentSprite toolTipSprite;
 
@@ -48,12 +47,6 @@ namespace DungeonRun
                 new Point(0, 0),
                 new Point(16 * 6, 16 * 4),
                 "Object Tools");
-            //create cursor sprites
-            cursorSprite = new ComponentSprite(
-                Assets.uiItemsSheet,
-                new Vector2(0, 0),
-                new Byte4(10, 2, 0, 0),
-                new Point(16, 16));
             toolTipSprite = new ComponentSprite(
                 Assets.uiItemsSheet,
                 new Vector2(0, 0),
@@ -122,7 +115,7 @@ namespace DungeonRun
 
             //initialize the widget 
             SetActiveTool(moveObj);
-            objToolState = ObjToolState.MoveObj;
+            TopDebugMenu.objToolState = ObjToolState.MoveObj;
             grabbedObj = null;
         }
 
@@ -157,53 +150,17 @@ namespace DungeonRun
         {
             //convert cursor Pos to world pos
             worldPos = Functions_Camera2D.ConvertScreenToWorld(Input.cursorPos.X, Input.cursorPos.Y);
-
-
-            #region Set Mouse Cursor Sprite
-
-            if (objToolState == ObjToolState.MoveObj) //check/set move state
-            {   //if moving, show open hand cursor
-                cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Open[0];
-                //if moving, and dragging, show grab cursor
-                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-                { cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Grab[0]; }
-            }
-            else
-            {   //default to pointer
-                cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Point[0];
-                //if clicking/dragging, show pointer press cursor
-                if (Functions_Input.IsMouseButtonDown(MouseButtons.LeftButton))
-                { cursorSprite.currentFrame = AnimationFrames.Ui_Hand_Press[0]; }
-            }
-
-            #endregion
-
-
-            #region Match position of cursor sprite to cursor
-
-            cursorSprite.position.X = Input.cursorPos.X;
-            cursorSprite.position.Y = Input.cursorPos.Y;
-            if (objToolState != ObjToolState.MoveObj)
-            {   //apply offset for pointer sprite
-                cursorSprite.position.X += 3;
-                cursorSprite.position.Y += 6;
-            }
-
+            
+            //Match position of cursor sprite to cursor
             toolTipSprite.position.X = Input.cursorPos.X + 12;
             toolTipSprite.position.Y = Input.cursorPos.Y - 0;
-
-            #endregion
-
-
-            #region Set toolTip's animation frame based on objToolState
-
-            if (objToolState == ObjToolState.AddObj)
+            
+            //Set toolTip's animation frame based on objToolState
+            if (TopDebugMenu.objToolState == ObjToolState.AddObj)
             { toolTipSprite.currentFrame = AnimationFrames.Ui_Add[0]; }
-            else if (objToolState == ObjToolState.DeleteObj)
+            else if (TopDebugMenu.objToolState == ObjToolState.DeleteObj)
             { toolTipSprite.currentFrame = AnimationFrames.Ui_Delete[0]; }
             else { toolTipSprite.currentFrame = AnimationFrames.Ui_Rotate[0]; }
-
-            #endregion
 
 
             //mouse button states
@@ -220,16 +177,16 @@ namespace DungeonRun
 
                     //check cursorPos contains with individual tool objs
                     if (moveObj.compCollision.rec.Contains(Input.cursorPos))
-                    { SetActiveTool(moveObj); objToolState = ObjToolState.MoveObj; }
+                    { SetActiveTool(moveObj); TopDebugMenu.objToolState = ObjToolState.MoveObj; }
 
                     else if (rotateObj.compCollision.rec.Contains(Input.cursorPos))
-                    { SetActiveTool(rotateObj); objToolState = ObjToolState.RotateObj; }
+                    { SetActiveTool(rotateObj); TopDebugMenu.objToolState = ObjToolState.RotateObj; }
 
                     else if (addObj.compCollision.rec.Contains(Input.cursorPos))
-                    { SetActiveTool(addObj); objToolState = ObjToolState.AddObj; }
+                    { SetActiveTool(addObj); TopDebugMenu.objToolState = ObjToolState.AddObj; }
 
                     else if (deleteObj.compCollision.rec.Contains(Input.cursorPos))
-                    { SetActiveTool(deleteObj); objToolState = ObjToolState.DeleteObj; }
+                    { SetActiveTool(deleteObj); TopDebugMenu.objToolState = ObjToolState.DeleteObj; }
 
                     #endregion
 
@@ -240,7 +197,7 @@ namespace DungeonRun
 
                     #region Handle Adding an Object To Room
 
-                    if (objToolState == ObjToolState.AddObj)
+                    if (TopDebugMenu.objToolState == ObjToolState.AddObj)
                     {
 
 
@@ -334,7 +291,7 @@ namespace DungeonRun
 
                     #region Handle Rotating an Object in Room
 
-                    else if (objToolState == ObjToolState.RotateObj)
+                    else if (TopDebugMenu.objToolState == ObjToolState.RotateObj)
                     {
                         if (GrabRoomObject()) { RotateActiveObj(); }
                     }
@@ -347,7 +304,7 @@ namespace DungeonRun
 
                 #region Handle Grab/Move RoomObject State
 
-                if (objToolState == ObjToolState.MoveObj) { GrabRoomObject(); }
+                if (TopDebugMenu.objToolState == ObjToolState.MoveObj) { GrabRoomObject(); }
 
                 //we handle grabbing roomObjs last because these roomObjs could be
                 //anywhere on screen, including underneath a widget. by checking and
@@ -373,7 +330,7 @@ namespace DungeonRun
 
                 #region Handle Dragging an Object in Room
 
-                if (objToolState == ObjToolState.MoveObj)
+                if (TopDebugMenu.objToolState == ObjToolState.MoveObj)
                 {   //if we are in Move state,
                     if (grabbedObj != null)
                     {   //match grabbed Obj pos to worldPos, aligned to 16px grid
@@ -396,7 +353,7 @@ namespace DungeonRun
 
                 #region Handle Deleting Objects in Room
 
-                else if (objToolState == ObjToolState.DeleteObj)
+                else if (TopDebugMenu.objToolState == ObjToolState.DeleteObj)
                 {   //check collisions between cursor worldPos and obj, release() any colliding objs
                     //delete roomObjs
                     for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
@@ -450,8 +407,6 @@ namespace DungeonRun
 
         public override void Draw()
         {
-
-
             if (!Flags.HideEditorWidgets)
             {
                 Functions_Draw.Draw(window);
@@ -466,14 +421,8 @@ namespace DungeonRun
                     Functions_Draw.Draw(selectionBoxObj);
                     Functions_Draw.Draw(selectionBoxTool);
                 }
-                if (objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
+                if (TopDebugMenu.objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
             }
-
-
-            //draw + track cursor regardless
-
-            
-            Functions_Draw.Draw(cursorSprite); 
         }
 
 
@@ -562,8 +511,7 @@ namespace DungeonRun
                     selectionBoxObj.position = activeObj.compSprite.position;
                     selectionBoxObj.scale = 2.0f;
                     GetActiveObjInfo();
-                    if (objToolState == ObjToolState.RotateObj) { RotateActiveObj(); }
-
+                    if (TopDebugMenu.objToolState == ObjToolState.RotateObj) { RotateActiveObj(); }
                 }
             }
         }
