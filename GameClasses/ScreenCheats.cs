@@ -98,7 +98,6 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Set MenuItems & Labels
 
             //CheatsInfiniteHP
@@ -150,7 +149,6 @@ namespace DungeonRun
             menuItems[7].compSprite.position.Y = menuItems[6].compSprite.position.Y + 24;
 
             #endregion
-
 
 
             #region Set Vertical Neighbors

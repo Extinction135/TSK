@@ -15,9 +15,6 @@ namespace DungeonRun
     public static class Functions_TopMenu
     {
 
-
-
-
         public static void DisplayWidgets(WidgetDisplaySet Set)
         {
             if (Set == WidgetDisplaySet.Dungeon)
@@ -36,11 +33,7 @@ namespace DungeonRun
                 TopDebugMenu.buttons[6].currentColor = Assets.colorScheme.buttonDown;
                 TopDebugMenu.buttons[5].currentColor = Assets.colorScheme.buttonUp;
             }
-            else { }
-
-            
         }
-
 
 
         public static void UpdateEditorWidgets()
@@ -322,7 +315,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
 
             //always allow editor to continue using cursor in expected manner

@@ -43,7 +43,7 @@ namespace DungeonRun
         public static Boolean InfiniteBombs = true; //does hero ignore bomb cost?
         public static Boolean MapCheat = true; //sets dungeon.map true when dungeon is built
         public static Boolean KeyCheat = true; //sets dungeon.key true when dungeon is built
-        public static Boolean UnlockAll = false; //unlocks all items for hero
+        public static Boolean UnlockAll = true; //unlocks all items for hero
 
         static Flags()
         {

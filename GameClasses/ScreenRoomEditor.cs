@@ -36,6 +36,7 @@ namespace DungeonRun
             Functions_Level.currentRoom.spawnPos.Y = Functions_Level.buildPosition.Y + 32;
             Functions_Hero.SpawnInCurrentRoom(); //centered
             Pool.hero.health = 3; //give hero health
+            Functions_Hero.UnlockAll(); //unlock all items
 
             //set to black background
             Assets.colorScheme.background = new Color(0, 0, 0, 0);
