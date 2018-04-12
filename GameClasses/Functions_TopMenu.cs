@@ -346,10 +346,6 @@ namespace DungeonRun
 
             if (TopDebugMenu.display != WidgetDisplaySet.None)
             {   
-                //draw needed editor widgets
-                Widgets.RoomTools.Draw();
-                Widgets.ObjectTools.Draw();
-
                 //if dungeon mode, draw dungeon widgets
                 if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
                 {
@@ -365,6 +361,10 @@ namespace DungeonRun
                 //shared objs widget too
                 if (TopDebugMenu.displaySharedObjsWidget)
                 { Widgets.WidgetObjects_Shared.Draw(); }
+
+                //draw needed editor widgets
+                Widgets.RoomTools.Draw();
+                Widgets.ObjectTools.Draw();
             }
             else { } //dont draw any widgets
             

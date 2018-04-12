@@ -35,6 +35,7 @@ namespace DungeonRun
 
         public ComponentSprite selectionBoxObj; //highlites the currently selected obj
         public ComponentSprite selectionBoxTool; //highlites the currently selected obj
+
         public GameObject activeObj; //points to Obj on objList OR on roomObj/entity list
         public GameObject grabbedObj; //obj/entity that is picked up/dragged/dropped in room
         public GameObject activeTool; //points to a ToolObj on the obj list

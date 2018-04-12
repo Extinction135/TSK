@@ -57,18 +57,16 @@ TODAY:
 
 
 
+Fix SelectionBox Bug
 
+the selection boxes aren't drawing over the object widgets.
+and that's because we're literally calling draw on the
+widgets AFTER calling draw on the objTools widget, which
+draws the selection boxes I'm referring to.
 
-EnemyTools Widget
-
-created enemy tools widget, which for now simply
-contains enemy spawn objects. in the near future,
-we're going to improve this system so that the spawn
-objects look like the enemy that they spawn.
-easy to setup and install, working as expected.
-we can spawn enemies in the editor again. kinda.
-
-
+the fix is just to draw the ObjTools widget after the
+other object widgets. done. 
+playtested, working as expected.
 
 
 
@@ -85,6 +83,9 @@ where is this selection box at? objTools widget, right?
 we do get the objTool selection box visible tho..
 
 
+we could use one instance of selection box, in ObjTools.
+or, we could use many selection boxes in the objects widgets,
+which we could set the positions of when an item is selected.
 
 
 
@@ -181,7 +182,8 @@ overworld exits should be marked with signposts, and look like exits too..
 
 
 Improve GameObj Naming Conventions
-we should shorten the dungeon_ prefix for gameObj to dung_
+we should shorten the dungeon_ prefix for gameObj to dun_.
+and world_ to wor_ .
 this will help those items better fit into the objTools widget
 plus, this shortens the overall size of the roomData xml by removing chars.
 
@@ -525,7 +527,18 @@ these are built into the wall and open shut doors, just like a switch
 these must be pulled for a bit tho, and there are decoy levers that will
 spawn snakes or explode..
 
+these large levers should be reserved for dungeon changes,
+like flooding the dungeon, etc.. which we could model simply 
+with a boolean, which would then add shallow water to all rooms,
+and change pits to deep water, making some areas PASSABLE! yes.
+this is how we can procedurally shut off areas of the dungeon. ah, perfect.
 
+example, the hub room could have a big lever that floods the dungeon
+and the hero must pull the lever to flood the key room, because that
+key room has a chest surrounded by pits, which is totally inaccessible.
+we could also put the big lever in some random roomm, or in its own
+special room, which would be present in dungeons that can undergo
+structural changes (like flooding)... hmm...
 
 
 
