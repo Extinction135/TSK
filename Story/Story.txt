@@ -1,0 +1,365 @@
+
+
+
+
+
+
+#Backstory
+
+after link touches the triforce, all paths to the dark world
+were sealed. Hyrule entered into a state of unparalled prosperity,
+a golden age, which ended suddenly with the invasion of the Kondo clan.
+
+unprepared for such a battle, Hyrule fell to the Kondo clan,
+and Princess Zelda married King Masa, the Kondo Clan's leader.
+When King Masa learned of Link, a reward was put out for his head.
+Link fled his homeland, Hyrule, sailing across the seas.
+
+For years, Link simply traveled. Trying to forget.
+Then one day he sees a Queen's Tournament Poster.
+
+Meanwhile in Hyrule...
+Hyrule's inhabitants rebelled, and martial law was declared.
+The people turned against the king, and the queen, and were met
+with crushing force. Kakariko village was razed to the ground,
+and many villagers died or lost their homes. Queen Zelda
+disappeared into the castle, never leaving, rarely being seen.
+
+Unable to organize, the people of hyrule submitted to King Masa.
+Broken and hungry, they were fed and sheltered by the King.
+A coliseum was built, and the people were entertained.
+The King provided the people jobs, homes, and families.
+The people slowly began to love the King. 
+
+Then one day the King fell sick. All the king's healers couldn't
+fix him. People traveled from lands far away to cure him,
+but there was nothing they could do, and King Masa died.
+The Queen wept by his side for days, until a shadow rose
+from King Masa's body. It summoned the wisemen and the warriors.
+As they appeared, the shadow became King Masa, and it spoke to them.
+It told them of an afterlife. A world beyond ours, where death
+wasn't the end. Where one could live forever..
+The Dark World...
+
+
+
+
+
+
+
+
+
+
+
+
+#Scene1 - Spark
+
+Link finds a poster advertising The Shadow King's Tournament.
+The Winner receives richs, land, and a meeting with the King and Queen.
+A meeting with Queen Zelda. After 20 years. Links decides to go.
+link travels back to hyrule to compete in the King's tournament.
+
+
+
+
+
+
+
+
+
+
+#Scene2 - Training
+
+Link arrives at the Coliseum. This is where 'training' happens.
+
+Quest: Complete Training
+
+"after 20 years, you might of forgot a few moves.
+let's get you back in the saddle." - colliseum npc
+
+this teaches the player the basics of the game, like movement, attacking, item usage.
+player fights thru a few rooms leading up to a simple boss.
+these rooms teach the player BASICS about items too - using boomerangs to trigger things for example.
+of using bombs to blow statues up. etc..
+upon beating the boss, link is rewarded with the Coliseum Pass.
+this gives Link access to the other features of the Coliseum.
+more importantly, this ends the level and opens the overworld map up to the player.
+
+
+#Scene3 - OPEN MAP
+At this point, the player can do ALOT of stuff non-linearly.
+So the story has to split in multiple linear storylines that don't really
+overlap or touch at all, otherwise they can affect each other and it gets
+really complicated really fast, and that's hard to do in code.. honestly.
+
+there are many other places open on the map initially.
+but some of them are closed, the inside of the castle city, for example.
+the city gate will be closed until link wins the tournament.
+at that point, the royal city is open.	
+
+
+
+
+
+
+
+
+
+
+
+
+
+#MAIN PLOT
+to enter the king's tournament, link must be qualified as a
+true hyrulian warrior by possessing the crystals from the 4 world dungeons.
+
+forest
+cave (mountain)
+desert
+water
+
+once link is a hyrulian warrior, he is granted access to the king's tournament.
+however, this tournament becomes easier with each additional crystal link collects.
+for example, link will fight the bosses from the swamp, graveyard, and ice dungeons
+if he doesn't have those crystals. so, completing those optional dungeons makes
+the 3rd act climax a little easier to get through. however, these dungeons are
+in the dark world, and they are noticeably harder than their light world equivalents.
+
+swamp
+graveyard
+ice
+
+king's tournament is a series of boss fights, and MOST of these fights are against
+bosses that only exist in this tournament, so the player can't 'train' beforehand.
+they have to adapt or grind. these bosses are dark world bosses btw.
+
+After the boss battles, link 'wins' the tournament.
+* the city gate opens. city levels become available.
+* royal vendors become available.
+
+once link completes the tournament, defeating the last boss, the castle is
+made available to Link. this should be like Willy Wonka's chocolate factory -
+a mysterious, but frankly scary place where weird evil stuff happens.
+
+entering into the castle, link finds that the castle servants are all dark world
+demons, and they attack him as if he were in the dark world, because the castle
+is essentially part of the dark world at this point. so in the dark world, it's the
+same as it is in the light world. the light world version is 'gone'.
+link fights through the castle to the throne room to face the King and Queen.
+
+Prior to meeting, link can access the royal vendors, where special loot exists.
+link meets with the queen and king in the castle, where the king challenges link to a duel.
+
+k: 'zelda has told me the truth, link.'
+k: 'how she helped you fight ganon...'
+k: 'how you fell in love with her...'
+k: 'your childish affections amuse me, link.'
+k: 'do you think she's yours?'
+k: 'did you return to save her? from what? me?'
+k: 'i'll save her... from you.. from her stalker.'
+k: 'en garde, hero!'
+
+link battles the king in a very difficult boss fight.
+keep in mind that Zelda has engineered this entire encounter and is speaking thru
+The Shadow King TO Link. His dialog is really HER dialog to LINK, regarding her fears,
+hopes, and wishes. she wants link back. she wants to return to 'sanity', but she doesn't
+know how, so she only exerts more control over her world and her subjects.
+that's what makes his final dialog so elegant in regards to moving the plot along.
+reading this initially, it just reads like a dumb video game character.
+once you know the backstory and context, it's really Zelda toying with Link,
+twisting facts, making things one sided, removing his importance / status, etc..
+
+when the king dies, Zelda and The Dark Queen battle for psycological control
+for a moment in a very bipolar dialog that exposes her mental state more obviously.
+- this defeat is annoying for the dark queen. 
+- this defeat is joyous for queen zelda, who pleads with link to keep fighting and 
+rescue her from the dark queen's grasp. 
+this bi-polar dialog should be presented with two different queen sprites to really 
+emphasize that these are TWO different people occupying the same body.
+
+dq: 'well look at the peasant boy, with his fancy toys.'
+dq: 'hasn't he grown into quite the hero...'
+z:	'link! help! the dark queen has-'
+dq:	'oh my. such outbursts won't be tolerated, little princess.'
+(the dark queen damages herself)
+z: 	'link! help me! i can't -'
+(the dark queen damages herself)
+z: 	'i can't control her any -'
+(the dark queen damages herself)
+
+dq: 'i am the queen. the rightful ruler of hyrule.'
+dq:	'... i'm not the princess you saved so long ago, link.'
+dq: 'that girl was hunted. kidnapped... tortured.'
+dq: '...have you ever seen the dark world?'
+dq: 'as a child, i saw monsters tear my friends apart.'
+dq: '...while you were playing with boomerangs, link...'
+- dramatic pause -
+
+dq: 'why are you here?'
+dq: 'some idealistic pursuit of love? fame? justice?'
+link: '...to see you, zelda. 
+link: '...to save you again.'
+link: 'one last time..'
+
+dq: 'your little princess doesn't need saving anymore.'
+dq: '...you should save yourself instead.'
+dq: '...goodbye, link.'
+
+link: 'don't make me do this, zelda...'
+
+link and the dark queen fight, but in the light world, so the dark queen 
+is a little weaker than she would be in the dark world. upon defeating her,
+zelda blows the fucking castle up, phoenix style, leaving nothing but rubble 
+where it once stood. so, in the light world, the castle gets destroyed.
+
+but the dark world castle is just fine.
+and that's where the dark queen zelda is waiting for link.
+link wakes up in the forest, badly hurt and missing items.
+
+however the player wants to do the next part is up to them, 
+but essentially there is a portal to the dark world castle
+in the rubble of the light world castle. stepping thru this
+portal takes link inside the dark world castle, which is 
+otherwise inaccessible from the dark world. 
+inside is princess zelda AND the dark queen.
+the feeling here is more ff7 than zelda.
+it's about 'atmosphere' now, not enemies or challenges.
+there are no mobs, only occasional minibosses, that
+really shouldn't be a challenge at this point.
+
+finally, link arrives at the throne room inside the dark world castle. 
+the dark queen and zelda appear in ghostly form at the front of the room. 
+this room looks PURE EVIL, with dark tentacles and blood and bodyparts strewn
+about - more diablo than zelda. 
+
+this is the final fight between the dark queen and link.
+the dark queen explains that zelda will die too if link kills her.
+she explains that these astral forms are the last pieces of zelda's soul.
+and as long as the dark queen lives, her dark power will continue to 
+create monsters, which will spew forth from the dark world rifts.
+but, zelda will continue to live on, here in the dark world.
+
+link must decide to kill zelda/dark queen or not.
+if not, there is a short closing dialog, then the dialog resets.
+if link decides to kill zelda, then the final boss fight commences.
+this is endgame Link vs. DarkWorld DarkQueen.
+the dark queen spawns minibosses while shooting fireballs and
+flying around, occasionally stopping on the ground as the physical
+form of zelda, which is the only time the dark queen can take damage.
+the dark queen MAKES LINK HURT ZELDA to damage her (the visual form).
+that's poetry in boss fight format.
+
+eventually, link strikes zelda (the sprite), and the final dialog
+happens, where zelda dies in link's arms.
+
+link: '...zelda.. i'm here..'
+z: 'link? you saved me.. again..'
+z: 'from ganon.. from myself..'
+z: 'and i've never.. been there for you..'
+link: 'i can't -'
+z: 'listen to me link..'
+z: 'i have always loved you.'
+z: 'i knew you would return..'
+z: 'you're the only one, link..'
+z: 'the only one who ever... truly..'
+z: '...mattered...'
+z: '...'
+(zelda dies)
+link: 'zelda...'
+link: '...'
+link: '...i love you too...'
+link: '...goodbye.'
+
+there are various in-game consequences to her death:
+link becomes king. dialogs change.
+various dialogs change to morn zeldas passing.
+
+? the colliseum is shut down, and turned into a food pantry / shelter for hyrule's citizens.
+? inside homeless, broken NPCs express tiny glimmers of hope while eating.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+Side Quests / ENDGAME activities: 
+
+colliseum betting
+tournaments, 
+blob questline, 
+purchase houses/businesses/etc
+various special item quests.	
+hidden simple dungeons / minibosses.
+
+"loot caves" - secret entrances hidden in levels and dungeons that are mini-dungeons 
+sequential rooms, with special bosses in each room, beating the loot cave returns hero to overworld
+these entrances actually look like caves, and can be hidden behind cracked walls
+
+"the king's ghosts" - randomly a 'king's ghost' will spawn in a dungeon room
+this is the king boss battle, but the king is at 6 health and half opacity, and flying.
+
+	
+	
+	
+
+
+Tournaments, & Dungeons
+
+Tournament
+at colliseum, link can fight mobs and/or gladiators to earn money.
+player can also bet money on other gladiator battles, or on their own battles.
+when two AI gladiators fight, the battle playsout in realtime, using AI.
+gladiators have stats, loadouts, fighting history, etc..
+gladiator AI also has fighting styles: aggressive, disciplined, defensive
+gladiators also have backstories, and names.
+
+NPCs
+various npcs are scattered throughout shops and locations.
+NPCs in the shops explain aspects of inventory and stuff.
+other NPCs fill out the game world's backstory and discuss major characters.
+
+
+
+
+
+
+
+
+Blob SideStoryline
+
+So link becomes a blob, and theres a blob vendor level
+to get to the blob vendor level, you need to travel thru a small pipe
+as a blob, this is easy. as a human, this is not possible.
+this pipe level appears after all 4 crystals have been obtained.
+inspecting the pipe as link displays a dialog 'i can't fit into that small, slimy pipe'.
+inspecting the pipe as blob displays a dialog 'here we go!', and loads blob town.
+exiting blob town places hero at the pipe level on overworld map.
+
+the blobs arent actually bad guys, they've just been lumped in with the bad guys
+they are kidnapped and forced to fight in the colliseum or live as slaves
+because the blobs can't communicate with the humans, everybody assumes they're just evil
+thus the blob's storyline is simply to fight in the queen's tournament and win
+upon winning, the blob will wish that his people be recognized and set free.
+the blob's journey is then one of learning about the blob's history + forming emotional bonds with blob NPCs
+the blob challenge is simple: slower movement, leading to much harder dungeons + bosses
+
+
+
+
+

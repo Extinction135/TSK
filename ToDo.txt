@@ -72,19 +72,21 @@ TODAY:
 
 
 
+Story++
 
-Various Fixes + new GIF
+added Story folder to contain all the awesome stuff
+I'm about to drop into it.
 
-moved tables and shelves to bottom of building objs widget.
-updated the UWP forest level sheet, from Dx project.
+moved story.txt into story folder.
+rewrote, and vastly improved the base story.
+wrote backstory / character impressions.
+began planning of quests in relation to plot.
+i'm really happy with the story now.
 
-fixed a bug where editor could add objects BEHIND
-object widgets, which has now been fixed, cause that
-was pretty seriously bad.
 
-recorded a fun gif featuring tall grass interactions, etc
-edited gif, added to /gifs folder. updated readme.
-this was a well rounded commit to finish the night out.
+
+
+
 
 
 
