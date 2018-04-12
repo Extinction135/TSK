@@ -16,6 +16,8 @@ namespace DungeonRun
     {
         //static int i;
 
+
+
         public static void CutTallGrass(GameObject TallGrass)
         {
             //convert tallgrass to cut grass

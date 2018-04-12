@@ -16,7 +16,8 @@ namespace DungeonRun
     {
         static Vector2 posRef = new Vector2();
 
-        //spawn relative to object
+
+
         public static void Spawn(ObjType Type, GameObject Object)
         {
             //set position reference to sprite position
@@ -67,7 +68,6 @@ namespace DungeonRun
             Spawn(Type, posRef.X, posRef.Y);
         }
 
-        //spawn relative to actor
         public static void Spawn(ObjType Type, Actor Actor)
         {
             //spawned relative to actor, based on passed objType
@@ -95,7 +95,6 @@ namespace DungeonRun
             Spawn(Type, posRef.X, posRef.Y);
         }
 
-        //spawn relative to position
         public static void Spawn(ObjType Type, float X, float Y)
         {   //get a particle to spawn
             GameObject obj = Functions_Pool.GetParticle();
@@ -114,6 +113,22 @@ namespace DungeonRun
             if (Type == ObjType.Particle_RewardMap) { Assets.Play(Assets.sfxReward); }
             else if (Type == ObjType.Particle_RewardKey) { Assets.Play(Assets.sfxKeyPickup); }
             else if (Type == ObjType.Particle_Splash) { Assets.Play(Assets.sfxSplash); }
+
+
+
+
+
+            #region Handle Particle Birth Events
+
+            if (Type == ObjType.Particle_FireGround)
+            {
+                Spawn(ObjType.Particle_RisingSmoke, X + 5, Y + 1);
+            }
+
+            #endregion
+
+
+
 
 
             //we no longer have rock debris in this system, but we will in the future
@@ -140,16 +155,34 @@ namespace DungeonRun
 
         }
 
-
-
         public static void Update(GameObject Obj)
         {   //particles do have lifetimes
             Obj.lifeCounter++;
             if (Obj.lifeCounter >= Obj.lifetime) { Kill(Obj); }
+
+
+
+            #region Handle Particle Per Frame Behaviors
+
+            if(Obj.type == ObjType.Particle_FireGround)
+            {
+                if (Functions_Random.Int(0, 101) > 86)
+                {   //randomly place randomly offset rising smoke
+                    Spawn(ObjType.Particle_RisingSmoke,
+                        Obj.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
+                        Obj.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
+                }
+            }
+
+            #endregion
+
+
         }
 
         public static void Kill(GameObject Obj)
         {
+            //contains death events for particles
+
             //all objects are released upon death
             Functions_Pool.Release(Obj);
         }
@@ -188,6 +221,8 @@ namespace DungeonRun
             }
         }
         */
+
+
 
 
 

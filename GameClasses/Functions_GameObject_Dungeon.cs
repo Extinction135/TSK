@@ -15,6 +15,10 @@ namespace DungeonRun
     public static class Functions_GameObject_Dungeon
     {
         static int i;
+        static Vector2 posA = new Vector2();
+        static Vector2 posB = new Vector2();
+
+
 
         public static void ActivateLeverObjects()
         {
@@ -280,12 +284,8 @@ namespace DungeonRun
             }
         }
 
-
-        //decorates a door on left/right or top/bottom
-        static Vector2 posA = new Vector2();
-        static Vector2 posB = new Vector2();
         public static void DecorateDoor(GameObject Door, ObjType Type)
-        {
+        {   //decorates a door on left/right or top/bottom
             if (Door.direction == Direction.Up || Door.direction == Direction.Down)
             {   //build left/right decorations if Door.direction is Up or Down
                 posA.X = Door.compSprite.position.X - 16;

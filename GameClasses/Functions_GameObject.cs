@@ -50,20 +50,31 @@ namespace DungeonRun
             }
         }
 
-        public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
+        public static void DestroyObject(GameObject Obj, Boolean killObj, Boolean spawnLoot)
         {   //grab players attention, spawn rock debris, play shatter sound
             Functions_Particle.Spawn(
                 ObjType.Particle_Attention,
-                RoomObj.compSprite.position.X,
-                RoomObj.compSprite.position.Y);
+                Obj.compSprite.position.X,
+                Obj.compSprite.position.Y);
             //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
             //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
             //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
             Assets.Play(Assets.sfxShatter);
             //handle parameter values
-            if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
-            if (releaseObj) { Functions_Pool.Release(RoomObj); }
+            if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
+            if (killObj) { Kill(Obj); }
         }
+
+        public static void Kill(GameObject Obj)
+        {
+            //contains death events for gameObjects
+
+            //but, here we can handle any death events for the roomObj, using a type check
+            //if (Obj.type == ObjType.Barrel) { } //for example
+            Functions_Pool.Release(Obj);
+        }
+
+
 
         public static void AlignRoomObjs()
         {   //align sprite + collision comps to move comp of all active objs
@@ -79,15 +90,10 @@ namespace DungeonRun
                     Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
                         Pool.roomObjPool[Pool.roomObjCounter].compSprite);
                     //set the rotation for the obj's sprite
-                    Functions_GameObject.SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
+                    SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
                 }
             }
         }
-
-
-
-
-
 
         public static void ResetObject(GameObject Obj)
         {
@@ -165,13 +171,7 @@ namespace DungeonRun
             if (Obj.getsAI) { Functions_Ai.HandleObj(Obj); }
         }
 
-        public static void Kill(GameObject Obj)
-        {   //first, it's very rare that we actually Kill() a roomObj
-            //but, here we can handle any death events for the roomObj, using a type check
-            //if (Obj.type == ObjType.Barrel) { } //for example
-            Functions_Pool.Release(Obj);
-        }
-
+        
         
         public static void SetType(GameObject Obj, ObjType Type)
         {   //Obj.direction should be set prior to this method running - important
@@ -976,13 +976,17 @@ namespace DungeonRun
             else if (Type == ObjType.Particle_RisingSmoke)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
-                Obj.compSprite.zOffset = -8;
+                Obj.compSprite.zOffset = 16;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 24; //in frames
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_RisingSmoke;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                //randomly flip the smoke sprite horizontally for variation
+                if (Functions_Random.Int(0, 101) > 50)
+                { Obj.compSprite.flipHorizontally = true; }
+                else { Obj.compSprite.flipHorizontally = false; }
             }
             else if (Type == ObjType.Particle_ImpactDust)
             {
@@ -1172,7 +1176,6 @@ namespace DungeonRun
             Obj.compSprite.currentFrame = Obj.compAnim.currentAnimation[0]; //goto 1st anim frame
             Functions_Component.Align(Obj.compMove, Obj.compSprite, Obj.compCollision);
         }
-
 
     }
 }

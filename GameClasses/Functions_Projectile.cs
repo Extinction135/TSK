@@ -19,9 +19,9 @@ namespace DungeonRun
 
 
 
-        //Dir is usually the actor's / object's facing direction
         public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
         {
+            //Dir is usually the actor's / object's facing direction
             //create projectile of TYPE using CASTER, projectile gets DIRECTION
             //the caster is simpified into a moveComp, becase caster could be actor or obj
 
@@ -128,7 +128,6 @@ namespace DungeonRun
             Functions_GameObject.SetType(pro, Type); 
         }
 
-
         public static void Update(Projectile Pro)
         {   //projectiles do have lifetimes
             Pro.lifeCounter++;
@@ -136,9 +135,10 @@ namespace DungeonRun
             if (Pro.lifeCounter >= Pro.lifetime) { Kill(Pro); }
         }
 
-
         public static void Kill(GameObject Obj)
         {
+            //contains death events for projectiles
+
             if (Obj.type == ObjType.ProjectileArrow)
             {
                 Functions_Particle.Spawn(
@@ -184,7 +184,6 @@ namespace DungeonRun
             //all objects are released upon death
             Functions_Pool.Release(Obj);
         }
-
 
         public static void HandleBehavior(Projectile Pro)
         {
@@ -386,7 +385,6 @@ namespace DungeonRun
 
 
         }
-
 
     }
 }

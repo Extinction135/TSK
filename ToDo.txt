@@ -64,12 +64,6 @@ TODAY:
 
 
 
-Refactoring
-
-Functions_RoomObject can be consolidated into Functions_GameObject,
-since this targets both dungeon and world gameobjects.
-removed Functions_RoomObject from project.
-playtested, working as expected. 
 
 
 
@@ -77,21 +71,38 @@ playtested, working as expected.
 
 
 
+GroundFires++
+
+updated Particle.Spawn() to create rising smoke particle
+for ground fire's birth event.
+
+modified Particle.Update() to create rising smoke particles
+for ground fires, randomly across frames. this is the same
+concept as projectile 'behaviors', so i'm just calling it that.
+
+drastically improved the visuals of ground fires.
+they now actually smoke. with animated smoke particles.
+that are randomly flipped horizontally for variation.
+
+cleaned up how gameobjects are Destroyed() and Killed().
+which was a little confusing, but is figured out now.
 
 
 
-obj.kill() simply wraps pool.release().
-it's a useless function. remove it.
-but, we have it around because pros/parts have a kill method too.
-and these methods are actually used and specific.
-so keep kill() around to wrap any death events..
-
-destroy obj completely replaces it, and should be used
-instead, if an object is actually being destroyed on screen.
-otherwise, just release() it.
 
 
 
+
+
+
+
+
+
+
+
+
+
+and they should leave a burn mark.
 
 
 
