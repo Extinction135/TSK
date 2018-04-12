@@ -200,16 +200,16 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.Wor_Bookcase);
-            Functions_GameObject.SetType(objList[1], ObjType.Wor_Shelf);
-            Functions_GameObject.SetType(objList[2], ObjType.Wor_TableStone);
-            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Grass_Tall);
+            Functions_GameObject.SetType(objList[1], ObjType.Wor_Grass_Cut);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_Grass_1);
+            Functions_GameObject.SetType(objList[3], ObjType.Wor_Grass_2);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Wor_Grass_Tall);
-            Functions_GameObject.SetType(objList[5], ObjType.Wor_Grass_Cut);
-            Functions_GameObject.SetType(objList[6], ObjType.Wor_Grass_1);
-            Functions_GameObject.SetType(objList[7], ObjType.Wor_Grass_2);
+            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);
@@ -360,9 +360,9 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[44], ObjType.Wor_Bookcase);
+            Functions_GameObject.SetType(objList[45], ObjType.Wor_Shelf);
+            Functions_GameObject.SetType(objList[46], ObjType.Wor_TableStone);
             Functions_GameObject.SetType(objList[47], ObjType.Unknown);
 
             //position the objs relative to the window frame

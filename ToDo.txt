@@ -65,24 +65,6 @@ TODAY:
 
 
 
-GameObjs++ - Grass
-
-updated current world objects to use 'wor_' prefix.
-created tall grass and cut grass sprites.
-created scattered grass 1 and 2 sprites.
-
-created enum defs, made animFrames,
-updated obj.SetType(), added to env widget.
-able to place in field and run around over 
-grass objects. lightened level background.
-
-added tall grass into Obj v Obj Interact().
-explosions cut tall grass, and leave ground fires.
-swords just cut the tall grass. added call to
-produce loot from cutting grass 10% of the time.
-playtested, feels like i'm cutting lttp grass
-back in elementary school again. except there's
-inertia. which is nice. hmm.
 
 
 
@@ -91,15 +73,22 @@ inertia. which is nice. hmm.
 
 
 
+Various Fixes + new GIF
+
+moved tables and shelves to bottom of building objs widget.
+updated the UWP forest level sheet, from Dx project.
+
+fixed a bug where editor could add objects BEHIND
+object widgets, which has now been fixed, cause that
+was pretty seriously bad.
+
+recorded a fun gif featuring tall grass interactions, etc
+edited gif, added to /gifs folder. updated readme.
+this was a well rounded commit to finish the night out.
 
 
 
 
-move tables and shelves to bottom of building objs widget.
-
-scatter grass around the field upon level editor load. 
-
-ground fires should create puffs of smoke randomly as long as they live..
 
 
 
@@ -107,10 +96,24 @@ ground fires should create puffs of smoke randomly as long as they live..
 
 
 
-we should not be adding objects to the room,
-if we are clicking on an object widget
-we are currently adding objs behind widgets, 
-and that's BAD BAD BAD
+
+
+
+
+
+
+
+
+
+
+
+Fireball++
+we need an initial blast for the fireball cast
+should have a little momentum too, and travel with the fireball
+for a very short while, this adds some physics polish..
+
+
+
 
 
 
@@ -125,6 +128,32 @@ we'll need to split Functions_RoomObject into
 Functions_DungeonObjects
 Functions_WorldObjects
 *because these two class 'bout to get big 
+
+
+
+
+scatter grass around the field upon level editor load. 
+
+
+ground fires should create puffs of smoke randomly as long as they live..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

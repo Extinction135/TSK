@@ -283,38 +283,57 @@ namespace DungeonRun
             //Handle User Clicking Editor Widget Objects
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
+                //here is the thought process behind why we return; in the code below:
+
+                //if we dont return, then objTools path gets checked, which then may
+                //add or delete or rotate an object BEHIND the object widget we just
+                //selected an object from. that's unintentional, so we bail from the
+                //method before it reaches objTools, if we click on a widget's window
+
                 if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
                 {
                     //Handle Dungeon Objs Widget 
                     if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
-                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Dungeon.objList); }
+                    {
+                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Dungeon.objList);
+                        return;
+                    }
 
                     //Handle Enemy Spawns Widget
                     if (Widgets.WidgetObjects_Enemy.window.interior.rec.Contains(Input.cursorPos))
-                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Enemy.objList); }
+                    {
+                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Enemy.objList);
+                        return;
+                    }
                 }
                 else if (TopDebugMenu.display == WidgetDisplaySet.World)
                 {
                     //Handle Environment Objs Widget 
                     if (Widgets.WidgetObjects_Environment.window.interior.rec.Contains(Input.cursorPos))
-                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Environment.objList); }
+                    {
+                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Environment.objList);
+                        return;
+                    }
 
                     //Handle Building Objs Widget 
                     if (Widgets.WidgetObjects_Building.window.interior.rec.Contains(Input.cursorPos))
-                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Building.objList); }
+                    {
+                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Building.objList);
+                        return;
+                    }
                 }
                 if (TopDebugMenu.displaySharedObjsWidget)
                 {
                     //Handle Shared Objs Widget 
                     if (Widgets.WidgetObjects_Shared.window.interior.rec.Contains(Input.cursorPos))
-                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Shared.objList); }
+                    {
+                        Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Shared.objList);
+                        return;
+                    }
                 }
             }
 
-
-
-
-
+            
 
             #region Pass Input to RoomTools, if it's being displayed
 
@@ -327,6 +346,8 @@ namespace DungeonRun
 
 
             //always allow editor to continue using cursor in expected manner
+
+            //editor should be able to use cursor in expected manner
             Widgets.ObjectTools.HandleInput();
         }
 

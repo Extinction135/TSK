@@ -614,7 +614,6 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Interior Building Objects
 
             else if (Type == ObjType.Wor_Bookcase || Type == ObjType.Wor_Shelf)
