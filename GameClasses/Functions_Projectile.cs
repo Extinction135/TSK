@@ -63,13 +63,17 @@ namespace DungeonRun
             {
                 Functions_Movement.Push(pro.compMove, Dir, 5.0f);
                 Assets.Play(Assets.sfxFireballCast);
-                /*
-                //place smoke puff centered to fireball
+
+                //place smoke puff relative to caster
+                if (Dir == Direction.Down) { offset.X = 0; offset.Y = +10; }
+                else if (Dir == Direction.Up) { offset.X = 0; offset.Y = -10; }
+                else if (Dir == Direction.Right) { offset.X = +10; offset.Y = 0; }
+                else if (Dir == Direction.Left) { offset.X = -10; offset.Y = 0; }
                 Functions_Particle.Spawn(
-                    ObjType.Particle_ImpactDust,
-                    pro.compSprite.position.X + 4,
-                    pro.compSprite.position.Y + 4);
-                */
+                    ObjType.Particle_RisingSmoke,
+                    Caster.position.X + 4 + offset.X,
+                    Caster.position.Y + 0 + offset.Y);
+                
             }
             else if (Type == ObjType.ProjectileBoomerang)
             {

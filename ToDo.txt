@@ -68,59 +68,57 @@ TODAY:
 
 
 
-
-
-
-GroundFires++
-
-updated Particle.Spawn() to create rising smoke particle
-for ground fire's birth event.
-
-modified Particle.Update() to create rising smoke particles
-for ground fires, randomly across frames. this is the same
-concept as projectile 'behaviors', so i'm just calling it that.
-
-drastically improved the visuals of ground fires.
-they now actually smoke. with animated smoke particles.
-that are randomly flipped horizontally for variation.
-
-cleaned up how gameobjects are Destroyed() and Killed().
-which was a little confusing, but is figured out now.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-and they should leave a burn mark.
-
-
-
-
-
-
 Fireball++
-we need an initial blast for the fireball cast
-should have a little momentum too, and travel with the fireball
-for a very short while, this adds some physics polish..
 
-the real issue here is that we can't call pro/part.spawn()
-from pro/part.spwn, due to some clever coding that is now
-preventing us from making awesome fx. we need to fix that
-problem, then we can have all kinds of birth / death fx,
-as well as life fx.
+removed Particle_Explosion from game.
+this was confusing with Projectile_Explosion,
+which is very powerful and unique.
 
-ground fires should create puffs of smoke randomly as long as they live..
+fireball needs an initial flash / blast.
+so lets make a blast particle.
+this is the white flash, then maybe big smoke.
+
+created Particle_Blast. enum, animFrame,
+obj.setType() path, linked up to fireball birth.
+not looking the way i wanted it to, honestly.
+reverted back to rising smoke, and it's looking
+much better. well, now i got a blast particle.
+
+maybe blast particle can be used when collapse dungeon doors?
+that would work as a temp cover while the door changes sprites..
+updated CollapseDungeonDoor() to test this idea out.
+some playtesting done, lots of little bugs noticed.
+i'll circle back around to this blast particle business in a
+future commit.
+
+
+
+
+
+
+
+
+
+
+bridges are currently blocking - hilarious
+
+bombable doors are being displayed as trap/shut doors.
+they should display as cracked walls.
+
+when we crack walls, the blast particle should appear.
+
+
+
+we need to be able to test bombable door easier.
+add these objects to the dungeon objs widget
+
+
+
+
+
+
+
+
 
 
 
@@ -524,8 +522,8 @@ this also means we need to 'unbake' the shadows from ALL objects and actors.
 
 
 
-
-
+groundfires should leave burn mark.
+explsions should leave burn amrk..
 
 
 

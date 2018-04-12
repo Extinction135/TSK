@@ -234,25 +234,28 @@ namespace DungeonRun
         ProjectileArrow,
         ProjectileNet,
         ProjectileBow,
+
         //Projectiles - object
         ProjectileExplosion,
-        //ProjectileSpikeBlock, //this should probably be a roomObj
         ProjectileExplodingBarrel, //acceptable
 
         //Particles - small
-        Particle_RisingSmoke, //ParticleDashPuff,
-        Particle_ImpactDust, //ParticleSmokePuff,
-        Particle_Sparkle, //ParticleHitSparkle,
-        ParticlePitAnimation, 
+        Particle_RisingSmoke, 
+        Particle_ImpactDust, 
+        Particle_Sparkle, 
+        ParticlePitAnimation,
+         
         //Particles - map
         Particle_Map_Flag,
         Particle_Map_Wave,
         Particle_Map_Campfire,
+
         //Particles - normal size
-        Particle_Explosion,
         Particle_Attention,
-        Particle_FireGround, //Particle_Fire,
+        Particle_FireGround, 
         Particle_Splash,
+        Particle_Blast,
+
         //Particle_Debris, //doesn't exist right now
         Particle_BottleEmpty,
         Particle_BottleHealth,
@@ -260,6 +263,7 @@ namespace DungeonRun
         Particle_BottleCombo,
         Particle_BottleFairy,
         Particle_BottleBlob,
+
         //Particles - rewards
         Particle_RewardKey,
         Particle_RewardMap,

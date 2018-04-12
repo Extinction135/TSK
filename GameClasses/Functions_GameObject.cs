@@ -1015,16 +1015,6 @@ namespace DungeonRun
 
             #region Particles - Normal
 
-            else if (Type == ObjType.Particle_Explosion)
-            {
-                Obj.compSprite.zOffset = 16;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 24; //in frames
-                Obj.compAnim.speed = 5; //in frames
-                Obj.compAnim.loop = false;
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Explosion;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
             else if (Type == ObjType.Particle_Attention)
             {
                 Obj.compSprite.zOffset = 1024;
@@ -1054,6 +1044,25 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Splash;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
+
+
+
+
+            else if (Type == ObjType.Particle_Blast)
+            {
+                Obj.compSprite.zOffset = 64;
+                Obj.group = ObjGroup.Particle;
+                Obj.compAnim.speed = 4; //in frames
+                Obj.lifetime = 4*2; //very short
+                Obj.compAnim.loop = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Blast;
+                Obj.compSprite.texture = Assets.entitiesSheet;
+            }
+
+
+
+
+
 
             //Particles - Rewards & Bottles
             else if (

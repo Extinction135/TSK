@@ -283,11 +283,9 @@ namespace DungeonRun
         public static List<Byte4> Particle_MapLevel = new List<Byte4> { new Byte4(11, 1, 0, 0) };
 
         //16x16 - normal
-        public static List<Byte4> Particle_Explosion = new List<Byte4>
-        {
-            new Byte4(0, 1, 0, 0), new Byte4(1, 1, 0, 0),
-            new Byte4(2, 1, 0, 0), new Byte4(3, 1, 0, 0)
-        };
+
+           
+
 
         public static List<Byte4> Particle_Attention = new List<Byte4>
         {
@@ -310,6 +308,11 @@ namespace DungeonRun
         {
             new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0),
             new Byte4(7, 2, 0, 0)
+        };
+
+        public static List<Byte4> Particle_Blast = new List<Byte4>
+        {
+            new Byte4(0, 1, 0, 0), new Byte4(0, 1, 1, 0)
         };
 
         #endregion

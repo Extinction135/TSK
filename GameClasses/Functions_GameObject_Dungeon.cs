@@ -115,6 +115,10 @@ namespace DungeonRun
         {   //blow up door, change to doorOpen
             Functions_GameObject.DestroyObject(Door, false, false);
             Functions_GameObject.SetType(Door, ObjType.Dungeon_DoorOpen);
+            //hide the sprite switch with a blast particle
+            Functions_Particle.Spawn(ObjType.Particle_Blast,
+                Door.compSprite.position.X, 
+                Door.compSprite.position.Y);
             //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < Level.doors.Count; i++)
             {   //if this explosion collides with any dungeon.door that is of type.bombable

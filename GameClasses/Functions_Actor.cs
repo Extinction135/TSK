@@ -98,7 +98,7 @@ namespace DungeonRun
             if (Actor.type == ActorType.Blob)
             {
                 Actor.compSprite.zOffset = -16; //sort to floor
-                Functions_Particle.Spawn(ObjType.Particle_Explosion, Actor);
+                Functions_Particle.Spawn(ObjType.Particle_Blast, Actor);
                 Actor.compCollision.rec.X = -1000; //hide actor collisionRec
                 Functions_Loot.SpawnLoot(Actor.compSprite.position);
             }
@@ -314,7 +314,7 @@ namespace DungeonRun
                         if (Functions_Random.Int(0, 100) > 75) //randomly create explosions
                         {   //randomly place explosions around boss
                             Functions_Particle.Spawn(
-                                ObjType.Particle_Explosion,
+                                ObjType.Particle_Blast,
                                 Actor.compSprite.position.X + Functions_Random.Int(-16, 16),
                                 Actor.compSprite.position.Y + Functions_Random.Int(-16, 16));
                         }
