@@ -119,11 +119,22 @@ namespace DungeonRun
 
 
 
+            if (Type == ObjType.Unknown)
+            {   
+                ResetObject(Obj);
+                Obj.type = ObjType.Unknown;
+                Obj.compCollision.blocking = false;
+                Obj.compSprite.texture = Assets.uiItemsSheet;
+                Obj.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Unknown;
+                Obj.compSprite.zOffset = -64; //sort below everything else
+            }
+
+
             //Dungeon Objects
 
             #region Exits
 
-            if (Type == ObjType.Dungeon_ExitPillarLeft ||
+            else if (Type == ObjType.Dungeon_ExitPillarLeft ||
                Type == ObjType.Dungeon_ExitPillarRight)
             {
                 Obj.compSprite.cellSize.Y = 16 * 3; //nonstandard size

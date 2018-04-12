@@ -142,7 +142,7 @@ namespace DungeonRun
             //row 6
             Functions_GameObject.SetType(objList[20], ObjType.Dungeon_TorchUnlit);
             Functions_GameObject.SetType(objList[21], ObjType.Dungeon_TorchLit);
-            Functions_GameObject.SetType(objList[22], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
             Functions_GameObject.SetType(objList[23], ObjType.Dungeon_WallTorch);
 
             //row 7
@@ -158,28 +158,28 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[31], ObjType.Dungeon_LeverOff);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Pet_Dog);
-            Functions_GameObject.SetType(objList[33], ObjType.Pet_Chicken);
-            Functions_GameObject.SetType(objList[34], ObjType.Vendor_NPC_Pets);
-            Functions_GameObject.SetType(objList[35], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Vendor_NPC_Armor);
-            Functions_GameObject.SetType(objList[37], ObjType.Vendor_NPC_Equipment);
-            Functions_GameObject.SetType(objList[38], ObjType.Vendor_NPC_Items);
-            Functions_GameObject.SetType(objList[39], ObjType.Vendor_NPC_Magic);
+            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Vendor_NPC_Pets);
-            Functions_GameObject.SetType(objList[41], ObjType.Vendor_NPC_Potions);
-            Functions_GameObject.SetType(objList[42], ObjType.Vendor_NPC_Story);
-            Functions_GameObject.SetType(objList[43], ObjType.Vendor_NPC_Weapons);
+            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[45], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[46], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[47], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -203,73 +203,73 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[0], ObjType.World_Bookcase);
             Functions_GameObject.SetType(objList[1], ObjType.World_Shelf);
             Functions_GameObject.SetType(objList[2], ObjType.World_TableStone);
-            Functions_GameObject.SetType(objList[3], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[5], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[6], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[7], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[9], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[10], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[11], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[13], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[14], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[15], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[17], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[18], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[19], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[21], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[22], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[23], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[25], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[26], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[27], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[29], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[30], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[31], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[33], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[34], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[35], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[37], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[38], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[39], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[41], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[42], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[43], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[45], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[46], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[47], ObjType.World_Bookcase);
+            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -294,76 +294,76 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[1], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[2], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[3], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[0], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[1], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[3], ObjType.Unknown);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[5], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[6], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[7], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[9], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[10], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[11], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[13], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[14], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[15], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[17], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[18], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[19], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[21], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[22], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[23], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[25], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[26], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[27], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[29], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[30], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[31], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[33], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[34], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[35], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[37], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[38], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[39], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[36], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[37], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[41], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[42], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[43], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[40], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[41], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[42], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[45], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[46], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[47], ObjType.World_Shelf);
+            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
@@ -388,76 +388,78 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
 
             //row 1
+
+            //this becomes the dungeon entrance, a 3x4 * 16 sized sprite
             Functions_GameObject.SetType(objList[0], ObjType.Dungeon_BlockDark);
-            Functions_GameObject.SetType(objList[1], ObjType.Dungeon_BlockLight);
-            Functions_GameObject.SetType(objList[2], ObjType.Dungeon_BlockSpike);
+            Functions_GameObject.SetType(objList[1], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[2], ObjType.Unknown);
             Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Fairy);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Dungeon_SwitchBlockBtn);
-            Functions_GameObject.SetType(objList[5], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[6], ObjType.Dungeon_SwitchBlockUp);
-            Functions_GameObject.SetType(objList[7], ObjType.Dungeon_IceTile);
+            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Dungeon_Pit);
-            Functions_GameObject.SetType(objList[9], ObjType.Dungeon_PitBridge);
-            Functions_GameObject.SetType(objList[10], ObjType.Dungeon_PitTeethTop);
-            Functions_GameObject.SetType(objList[11], ObjType.Dungeon_PitTeethBottom);
+            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
 
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Dungeon_Bumper);
-            Functions_GameObject.SetType(objList[13], ObjType.Dungeon_Switch);
-            Functions_GameObject.SetType(objList[14], ObjType.Dungeon_SwitchOff);
-            Functions_GameObject.SetType(objList[15], ObjType.Dungeon_Flamethrower);
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[15], ObjType.Dungeon_Statue);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Dungeon_Barrel);
-            Functions_GameObject.SetType(objList[17], ObjType.Dungeon_Pot);
-            Functions_GameObject.SetType(objList[18], ObjType.Dungeon_Chest);
-            Functions_GameObject.SetType(objList[19], ObjType.Dungeon_ChestEmpty);
+            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Dungeon_TorchUnlit);
-            Functions_GameObject.SetType(objList[21], ObjType.Dungeon_TorchLit);
-            Functions_GameObject.SetType(objList[22], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[23], ObjType.Dungeon_WallTorch);
+            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[21], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[22], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[23], ObjType.Unknown);
 
             //row 7
-            Functions_GameObject.SetType(objList[24], ObjType.Dungeon_SpikesFloorOn);
-            Functions_GameObject.SetType(objList[25], ObjType.Dungeon_SpikesFloorOff);
-            Functions_GameObject.SetType(objList[26], ObjType.Dungeon_ConveyorBeltOn);
-            Functions_GameObject.SetType(objList[27], ObjType.Dungeon_ConveyorBeltOff);
+            Functions_GameObject.SetType(objList[24], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[25], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[26], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[27], ObjType.Unknown);
 
             //row 8
-            Functions_GameObject.SetType(objList[28], ObjType.Dungeon_PitTrap);
-            Functions_GameObject.SetType(objList[29], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[30], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[31], ObjType.Dungeon_LeverOff);
+            Functions_GameObject.SetType(objList[28], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[31], ObjType.Unknown);
 
             //row 9
-            Functions_GameObject.SetType(objList[32], ObjType.Pet_Dog);
-            Functions_GameObject.SetType(objList[33], ObjType.Pet_Chicken);
-            Functions_GameObject.SetType(objList[34], ObjType.Vendor_NPC_Pets);
-            Functions_GameObject.SetType(objList[35], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[32], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[33], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[34], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[35], ObjType.Unknown);
 
             //row 10
-            Functions_GameObject.SetType(objList[36], ObjType.Vendor_NPC_Armor);
-            Functions_GameObject.SetType(objList[37], ObjType.Vendor_NPC_Equipment);
-            Functions_GameObject.SetType(objList[38], ObjType.Vendor_NPC_Items);
-            Functions_GameObject.SetType(objList[39], ObjType.Vendor_NPC_Magic);
+            Functions_GameObject.SetType(objList[36], ObjType.Pet_Dog);
+            Functions_GameObject.SetType(objList[37], ObjType.Pet_Chicken);
+            Functions_GameObject.SetType(objList[38], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[39], ObjType.Unknown);
 
             //row 11
-            Functions_GameObject.SetType(objList[40], ObjType.Vendor_NPC_Pets);
-            Functions_GameObject.SetType(objList[41], ObjType.Vendor_NPC_Potions);
-            Functions_GameObject.SetType(objList[42], ObjType.Vendor_NPC_Story);
-            Functions_GameObject.SetType(objList[43], ObjType.Vendor_NPC_Weapons);
+            Functions_GameObject.SetType(objList[40], ObjType.Vendor_NPC_Armor);
+            Functions_GameObject.SetType(objList[41], ObjType.Vendor_NPC_Equipment);
+            Functions_GameObject.SetType(objList[42], ObjType.Vendor_NPC_Items);
+            Functions_GameObject.SetType(objList[43], ObjType.Vendor_NPC_Magic);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[45], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[46], ObjType.Dungeon_SwitchBlockDown);
-            Functions_GameObject.SetType(objList[47], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[44], ObjType.Vendor_NPC_Pets);
+            Functions_GameObject.SetType(objList[45], ObjType.Vendor_NPC_Potions);
+            Functions_GameObject.SetType(objList[46], ObjType.Vendor_NPC_Story);
+            Functions_GameObject.SetType(objList[47], ObjType.Vendor_NPC_Weapons);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);

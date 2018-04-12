@@ -102,6 +102,9 @@ namespace DungeonRun
     public enum ObjType
     {
 
+        Unknown, //unknown ? box, non-entity
+
+
         #region Dungeon Objects
 
         //PROCEDURALLY PLACED

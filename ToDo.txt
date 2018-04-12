@@ -56,39 +56,26 @@ TODAY:
 
 
 
+ObjectWidgets++
 
+created unknown gameObj type value, and gameObj.
+simply displays the unknown sprite.
+updated all the object widets to use unknown obj
+as default obj. separated objs from dungeon objs
+to shared objs, freeing up ALOT of space.
 
-UnlockAll() in Editor Mode
-
-fixed a minor bug where hero wasn't actually
-getting all his items unlocked. thats fixed now.
-
-
-
-
-
-
-
-
-
-
-
-
+fixed a bug where f3 didn't 'unhide' widgets.
+it was actually a one-way trip where the display
+state wasn't being stored before being discarded
+and set to none. so, i just added an instance to
+store the previous display set, and upon f3 we
+toggle between none and the previous display set.
+works perfectly.
 
 
 
 
 
-
-
-
-
-
-
-
-move the npcs onto the shared objs widget
-move fairy too, along with animals / pets
-this should free up some space on the dungeon objs widget
 
 
 
@@ -563,7 +550,8 @@ where we can use the push wand to move objects to solve rooms!!!
 
 
 
-
+do we actually use actor.compInt (this is the interaction component)
+??? wtf
 
 
 

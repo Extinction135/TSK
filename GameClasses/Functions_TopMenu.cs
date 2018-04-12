@@ -14,6 +14,9 @@ namespace DungeonRun
 {
     public static class Functions_TopMenu
     {
+        static WidgetDisplaySet prevSet; //allows us to 'unhide' widgets with f3
+
+
 
         public static void DisplayWidgets(WidgetDisplaySet Set)
         {
@@ -148,12 +151,19 @@ namespace DungeonRun
             if (Functions_Input.IsNewKeyPress(Keys.F3))
             {   
                 if (TopDebugMenu.display != WidgetDisplaySet.None)
-                {   //set down state
+                {   
+                    //grab the 'previous display set' reference
+                    prevSet = TopDebugMenu.display; 
+                    //set the 'current display set' to none
                     TopDebugMenu.display = WidgetDisplaySet.None;
+                    //set down state
                     TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonDown;
                 }
                 else
-                {   //set released state
+                {
+                    //set 'current display set' to previous value
+                    TopDebugMenu.display = prevSet;
+                    //set up state
                     TopDebugMenu.buttons[2].currentColor = Assets.colorScheme.buttonUp;
                 }
             }
