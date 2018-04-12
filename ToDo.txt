@@ -65,24 +65,75 @@ TODAY:
 
 
 
-Fix ReadMe and Structure files
-
-removed Structure.md file. 
-it didn't accurately describe what the current state 
-of the codebase actually looks like. updated Readme 
-to reflect this. 
 
 
 
 
+PushLines++
+
+improved the sprites for push lines.
+improved Projectile.Spawn() to more easily
+spawn push lines for boomerang, arrow, fireball, bomb..
+basically abstracted push lines away from whatever
+projectile they 'trail'. looking great now.
+
+fixed a minor bug with how pushlines were offset and placed.
+
+throwing the boomerang diagonally should be limited, 
+just like bombs, since it has push lines now. done.
+actually feels better too. it feels good to 'land' a
+quick cardinal throw with a bomb or boomerang.
+
+lots of playtesting.
 
 
 
 
 
 
-apply push lines for arrow, fireball..
-do these look good? keep them? eh?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Get Saving and Loading of LEVELS working properly.
+this should be simply loading / saving gameobjs
+because we add additional room building rules in roomTools.
+so we need to NOT do this.
+
+we need a boolean to control the state of the roomTool.
+and this needs to be renamed to Level Tool.
+and the title needs to be "Room Tool" or "Level Tool",
+based on what screen is currently being displayed (the screen
+should set this in it's loadContent() run).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -98,7 +149,7 @@ so it inherits the inertia of the hit,
 first, the initial BIG push in the hit direction happens
 then a small random directional push is applied to vary the leaf trajectories.
 
-BUT this means we need to be moving particles.. AND WE DO!
+BUT this means we need to have moving particles.. AND WE DO!
 this means we can push particles, giving them inertia.
 this would be very nice.
 
@@ -127,13 +178,13 @@ triggers a bush? no. fix boomerang soundfx.
 
 
 
+
+
+
+
 Create NEW WORLD GameObjects
 
 use the new 'wor_' naming convention prefix.
-
-
-
-
 
 
 
@@ -144,6 +195,7 @@ we need to be able to display a black bkg for dungeons and gray bkg for world
 and later a dark gray bkg for the dark world
 we currently don't draw a background color from level.draw, and we should
 instead we're clearing the graphics device from screenmanager to the assets.colorscheme.bkg color
+
 
 
 
@@ -211,7 +263,11 @@ overworld exits should be marked with signposts, and look like exits too..
 
 
 
-
+Caster Invincibility
+we should prevent projectiles from harming their caster.
+*could* - right now it helps to know when a projectile
+overlaps it's caster. later on, we can toggle the damage off
+if it's the caster colliding with the projectile.
 
 
 

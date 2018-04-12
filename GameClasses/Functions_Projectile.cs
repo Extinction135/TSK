@@ -16,11 +16,15 @@ namespace DungeonRun
     {
         static Vector2 offset = new Vector2();
         static Projectile pro;
-
+        static Boolean pushLines;
+        static Vector2 pushOffset = new Vector2();
 
 
         public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
         {
+            pushLines = false; //assume this pro doesn't have push lines
+            pushOffset.X = 0; pushOffset.Y = 0;
+
             //Dir is usually the actor's / object's facing direction
             //create projectile of TYPE using CASTER, projectile gets DIRECTION
             //the caster is simpified into a moveComp, becase caster could be actor or obj
@@ -59,9 +63,7 @@ namespace DungeonRun
             pro.compMove.moving = true;
             //finalize it: setType, rotation & align
             Functions_GameObject.SetType(pro, Type);
-            HandleBehavior(pro);
-
-
+            
 
 
 
@@ -69,68 +71,98 @@ namespace DungeonRun
             #region Set Initial Projectile Behaviors + SoundFX
 
             if (Type == ObjType.ProjectileArrow)
-            {
+            {   
+                //initially place the arrow outside of the caster
+                if (Dir == Direction.Down)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 0,
+                        Caster.newPosition.Y + 16);
+                }
+                else if (Dir == Direction.Up)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 0,
+                        Caster.newPosition.Y - 14);
+                }
+                else if (Dir == Direction.Right)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 16,
+                        Caster.newPosition.Y + 1);
+                }
+                else if (Dir == Direction.Left)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X - 16,
+                        Caster.newPosition.Y + 1);
+                }
+                Functions_Component.Align(pro); //align the arrows comps
                 Functions_Movement.Push(pro.compMove, Dir, 6.0f);
                 Assets.Play(Assets.sfxArrowShoot);
+                pushLines = true;
             }
             else if (Type == ObjType.ProjectileFireball)
             {
+                //initially place the arrow outside of the caster
+                if (Dir == Direction.Down)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 0,
+                        Caster.newPosition.Y + 16);
+                }
+                else if (Dir == Direction.Up)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 0,
+                        Caster.newPosition.Y - 14);
+                }
+                else if (Dir == Direction.Right)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 16,
+                        Caster.newPosition.Y + 1);
+                }
+                else if (Dir == Direction.Left)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X - 16,
+                        Caster.newPosition.Y + 1);
+                }
+                Functions_Component.Align(pro); //align the arrows comps
                 Functions_Movement.Push(pro.compMove, Dir, 5.0f);
                 Assets.Play(Assets.sfxFireballCast);
-                //place birth smoke over fireball
-                Functions_Particle.Spawn(
-                    ObjType.Particle_RisingSmoke,
-                    pro.compSprite.position.X + 0,
-                    pro.compSprite.position.Y - 8);
+                pushLines = true;
             }
             else if (Type == ObjType.ProjectileBoomerang)
             {
-                Functions_Movement.Push(pro.compMove, Dir, 5.0f);
                 Functions_Hero.boomerangInPlay = true;
+
+                //limit diagonal movement in favor of cardinal movement
+                //push lines will appear on cardinal direction slides
+
+                //cardinal push full
+                if (Dir == Direction.Down || Dir == Direction.Up
+                    || Dir == Direction.Left || Dir == Direction.Right)
+                { Functions_Movement.Push(pro.compMove, Dir, 5.0f); }
+                else//diagonal push half
+                { Functions_Movement.Push(pro.compMove, Dir, 2.5f); }
+                pushLines = true;
             }
             else if (Type == ObjType.ProjectileBomb)
             {
                 Assets.Play(Assets.sfxBombDrop);
-                
-                //based on direction, several things happen to bomb
-                //first, we limit diagonal movement in favor of cardinal movement
-                //second, we place 'push' lines after the bomb, if it's cardinal dir
-                //this is to tell the player that the hero can push bombs further
-                //if they slide the bomb in a cardinal direction
 
-                //set push lines offset based on direction
-                if (Dir == Direction.Down)
-                {
-                    offset.X = 4; offset.Y = +10;
-                    Functions_Movement.Push(pro.compMove, Dir, 8.0f);
-                }
-                else if (Dir == Direction.Up)
-                {
-                    offset.X = -4; offset.Y = -8;
-                    Functions_Movement.Push(pro.compMove, Dir, 8.0f);
-                }
-                else if (Dir == Direction.Right)
-                {
-                    offset.X = +8; offset.Y = -2;
-                    Functions_Movement.Push(pro.compMove, Dir, 8.0f);
-                }
-                else if (Dir == Direction.Left)
-                {
-                    offset.X = -8; offset.Y = 6;
-                    Functions_Movement.Push(pro.compMove, Dir, 8.0f);
-                }
-                else
-                {
-                    //diagonal push
-                    Functions_Movement.Push(pro.compMove, Dir, 5.0f);
-                    //push line particle will hide self if it's dir is diagonal
-                }
+                //limit diagonal movement in favor of cardinal movement
+                //push lines will appear on cardinal direction slides
 
-                //place push lines 'after' bomb
-                Functions_Particle.Spawn(
-                    ObjType.Particle_Push,
-                    pro.compSprite.position.X + offset.X,
-                    pro.compSprite.position.Y + offset.Y, Dir);
+                //cardinal push full
+                if (Dir == Direction.Down || Dir == Direction.Up
+                    || Dir == Direction.Left || Dir == Direction.Right)
+                { Functions_Movement.Push(pro.compMove, Dir, 8.0f); }
+                else//diagonal push half
+                { Functions_Movement.Push(pro.compMove, Dir, 4.0f); }
+                pushLines = true;
             }
             else if (Type == ObjType.ProjectileExplodingBarrel)
             {
@@ -145,7 +177,6 @@ namespace DungeonRun
                     ObjType.Particle_ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y - 8);
-                
             }
             else if (Type == ObjType.ProjectileNet)
             {   
@@ -157,6 +188,31 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+            HandleBehavior(pro);
+
+
+
+            #region Add Decorative 'push' lines
+
+            if (pushLines)
+            {
+                if (Dir == Direction.Down) { pushOffset.X = 4; pushOffset.Y = +6; }
+                else if (Dir == Direction.Up) { pushOffset.X = -4; pushOffset.Y = -7; }
+                else if (Dir == Direction.Right) { pushOffset.X = +5; pushOffset.Y = -2; }
+                else if (Dir == Direction.Left) { pushOffset.X = -5; pushOffset.Y = 6; }
+                //place push lines 'after' projectile
+                //a diagonal direction will hide the push line
+                Functions_Particle.Spawn(
+                    ObjType.Particle_Push,
+                    Caster.position.X + pushOffset.X,
+                    Caster.position.Y + pushOffset.Y, Dir);
+            }
+
+            #endregion
+
 
 
         }
@@ -240,42 +296,6 @@ namespace DungeonRun
                 //apply the offset
                 Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X;
                 Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y;
-            }
-
-            #endregion
-
-
-            #region Arrow & Fireballs
-
-            else if (Pro.type == ObjType.ProjectileFireball
-                || Pro.type == ObjType.ProjectileArrow)
-            {   //prevent caster from overlapping with projectile
-                //step 1: set minimum safe distance from caster (offset)
-                if (Pro.direction == Direction.Down) { offset.X = 0; offset.Y = +16; }
-                else if (Pro.direction == Direction.Up) { offset.X = 0; offset.Y = -16; }
-                else if (Pro.direction == Direction.Right) { offset.X = +15; offset.Y = +2; }
-                else if (Pro.direction == Direction.Left) { offset.X = -15; offset.Y = +2; }
-                //step 2: apply offset to prevent projectile overlapping with caster, using direction
-                if (Pro.direction == Direction.Down)
-                {   //apply Y offset
-                    if (Pro.compMove.newPosition.Y < Pro.caster.newPosition.Y + offset.Y)
-                    { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
-                }
-                else if (Pro.direction == Direction.Up)
-                {   //apply Y offset
-                    if (Pro.compMove.newPosition.Y > Pro.caster.newPosition.Y + offset.Y)
-                    { Pro.compMove.newPosition.Y = Pro.caster.newPosition.Y + offset.Y; }
-                }
-                else if (Pro.direction == Direction.Left)
-                {   //apply X offset
-                    if (Pro.compMove.newPosition.X > Pro.caster.newPosition.X + offset.X)
-                    { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
-                }
-                else if (Pro.direction == Direction.Right)
-                {   //apply X offset
-                    if (Pro.compMove.newPosition.X < Pro.caster.newPosition.X + offset.X)
-                    { Pro.compMove.newPosition.X = Pro.caster.newPosition.X + offset.X; }
-                }
             }
 
             #endregion
@@ -371,6 +391,8 @@ namespace DungeonRun
             Functions_Movement.Teleport(Pro.compMove,
                 Pro.compMove.newPosition.X,
                 Pro.compMove.newPosition.Y);
+            //align all the components
+            Functions_Component.Align(Pro.compMove, Pro.compSprite, Pro.compCollision);
 
 
             #region Ideas

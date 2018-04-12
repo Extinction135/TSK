@@ -1042,8 +1042,6 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Sparkle;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
-
-
             else if (Type == ObjType.Particle_Push)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size

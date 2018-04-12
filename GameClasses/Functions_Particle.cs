@@ -125,8 +125,8 @@ namespace DungeonRun
                 Spawn(ObjType.Particle_RisingSmoke, X + 5, Y + 1);
             }
             else if (Type == ObjType.Particle_Push)
-            {   //gently initially push the particle
-                Functions_Movement.Push(obj.compMove, obj.direction, 5.0f);
+            {   //push the particle, usually less than whatever it's trailing
+                Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
             }
 
             #endregion
