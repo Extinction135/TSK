@@ -30,6 +30,102 @@ namespace DungeonRun
             return obj;
         }
 
+
+
+        public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
+        {   
+            //hitDirection is used to push some objects in the direction they were hit
+
+            //dungeon objects
+            if (RoomObj.type == ObjType.Dungeon_Pot)
+            {
+                DestroyObject(RoomObj, true, true);
+            }
+            else if (RoomObj.type == ObjType.Dungeon_Barrel)
+            {
+                RoomObj.compMove.direction = HitDirection; //pass hitDirection
+                DestroyBarrel(RoomObj);
+            }
+            else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
+            {
+                FlipSwitchBlocks(RoomObj);
+            }
+            else if (RoomObj.type == ObjType.Dungeon_LeverOff 
+                || RoomObj.type == ObjType.Dungeon_LeverOn)
+            {
+                ActivateLeverObjects();
+            }
+        }
+
+        public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
+        {   //grab players attention, spawn rock debris, play shatter sound
+            Functions_Particle.Spawn(
+                ObjType.Particle_Attention,
+                RoomObj.compSprite.position.X,
+                RoomObj.compSprite.position.Y);
+            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
+            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
+            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
+            Assets.Play(Assets.sfxShatter);
+            //handle parameter values
+            if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
+            if (releaseObj) { Functions_Pool.Release(RoomObj); }
+        }
+
+
+
+        public static void AlignRoomObjs()
+        {   //align sprite + collision comps to move comp of all active objs
+            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
+            {
+                if (Pool.roomObjPool[Pool.roomObjCounter].active)
+                {   //align the sprite and collision components to the move component
+                    Functions_Component.Align(
+                        Pool.roomObjPool[Pool.roomObjCounter].compMove,
+                        Pool.roomObjPool[Pool.roomObjCounter].compSprite,
+                        Pool.roomObjPool[Pool.roomObjCounter].compCollision);
+                    //set the current animation frame, check the animation counter
+                    Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
+                        Pool.roomObjPool[Pool.roomObjCounter].compSprite);
+                    //set the rotation for the obj's sprite
+                    Functions_GameObject.SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
+                }
+            }
+        }
+
+        public static void CreateVendor(ObjType VendorType, Vector2 Position)
+        {
+            //place vendor
+            SpawnRoomObj(VendorType, Position.X, Position.Y, Direction.Down);
+            //place stone table
+            SpawnRoomObj(ObjType.Wor_TableStone, Position.X + 16, Position.Y, Direction.Down);
+            //we could spawn other stuff around the vendor too (thematically appropriate)
+        }
+
+
+
+
+
+        public static void CutTallGrass(GameObject TallGrass)
+        {
+            //convert tallgrass to cut grass
+            Functions_GameObject.SetType(TallGrass, ObjType.Wor_Grass_Cut);
+            
+            //pop an attention particle on grass pos
+            Functions_Particle.Spawn(ObjType.Particle_Attention,
+                TallGrass.compSprite.position.X,
+                TallGrass.compSprite.position.Y);
+
+            //rarely spawn loot
+            if(Functions_Random.Int(0, 101) > 90) //cut that grass boi
+            { Functions_Loot.SpawnLoot(TallGrass.compSprite.position); }
+        }
+
+
+
+
+
+
         public static void ActivateLeverObjects()
         {
             Assets.Play(Assets.sfxSwitch);
@@ -187,43 +283,6 @@ namespace DungeonRun
             Functions_Pool.Release(Barrel);
         }
 
-        public static void DestroyObject(GameObject RoomObj, Boolean releaseObj, Boolean spawnLoot)
-        {   //grab players attention, spawn rock debris, play shatter sound
-            Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
-                RoomObj.compSprite.position.X,
-                RoomObj.compSprite.position.Y);
-            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
-            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
-            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
-            Assets.Play(Assets.sfxShatter);
-            //handle parameter values
-            if (spawnLoot) { Functions_Loot.SpawnLoot(RoomObj.compSprite.position); }
-            if (releaseObj) { Functions_Pool.Release(RoomObj); }
-        }
-
-        public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
-        {   //this handles the most common room objs
-            //hitDirection is used to push some objects in the direction they were hit
-            if (RoomObj.type == ObjType.Dungeon_Pot)
-            {
-                DestroyObject(RoomObj, true, true);
-            }
-            else if (RoomObj.type == ObjType.Dungeon_Barrel)
-            {
-                RoomObj.compMove.direction = HitDirection; //pass hitDirection
-                DestroyBarrel(RoomObj);
-            }
-            else if(RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
-            {
-                FlipSwitchBlocks(RoomObj);
-            }
-            else if(RoomObj.type == ObjType.Dungeon_LeverOff || RoomObj.type == ObjType.Dungeon_LeverOn)
-            {
-                ActivateLeverObjects();
-            }
-        }
-
         public static void SlideOnIce(ComponentMovement compMove)
         {   //set the component's friction to ice (slides)
             compMove.friction = World.frictionIce;
@@ -331,35 +390,7 @@ namespace DungeonRun
             }
         }
 
-        public static void AlignRoomObjs()
-        {   //align sprite + collision comps to move comp of all active objs
-            for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
-            {
-                if (Pool.roomObjPool[Pool.roomObjCounter].active)
-                {   //align the sprite and collision components to the move component
-                    Functions_Component.Align(
-                        Pool.roomObjPool[Pool.roomObjCounter].compMove,
-                        Pool.roomObjPool[Pool.roomObjCounter].compSprite,
-                        Pool.roomObjPool[Pool.roomObjCounter].compCollision);
-                    //set the current animation frame, check the animation counter
-                    Functions_Animation.Animate(Pool.roomObjPool[Pool.roomObjCounter].compAnim,
-                        Pool.roomObjPool[Pool.roomObjCounter].compSprite);
-                    //set the rotation for the obj's sprite
-                    Functions_GameObject.SetRotation(Pool.roomObjPool[Pool.roomObjCounter]);
-                }
-            }
-        }
-
-        public static void CreateVendor(ObjType VendorType, Vector2 Position)
-        {
-            //place vendor
-            SpawnRoomObj(VendorType, Position.X, Position.Y, Direction.Down);
-            //place stone table
-            SpawnRoomObj(ObjType.World_TableStone, Position.X + 16, Position.Y, Direction.Down);
-            //we could spawn other stuff around the vendor too (thematically appropriate)
-        }
-
-
+        
 
         //decorates a door on left/right or top/bottom
         static Vector2 posA = new Vector2();

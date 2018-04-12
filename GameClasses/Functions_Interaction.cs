@@ -726,6 +726,26 @@ namespace DungeonRun
 
 
 
+
+            else if (RoomObj.type == ObjType.Wor_Grass_Tall)
+            {
+                if (Object.type == ObjType.ProjectileExplosion)
+                {   //cut the grass
+                    Functions_RoomObject.CutTallGrass(RoomObj);
+                    //leave some ground fire 
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_FireGround,
+                        RoomObj.compSprite.position.X,
+                        RoomObj.compSprite.position.Y);
+                }
+                else if(Object.type == ObjType.ProjectileSword)
+                {   //cut the grass
+                    Functions_RoomObject.CutTallGrass(RoomObj);
+                }
+            }
+
+
+
         }
 
     }

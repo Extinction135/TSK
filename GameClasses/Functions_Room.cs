@@ -517,11 +517,11 @@ namespace DungeonRun
             #region Place some test shop objects
 
             //bookcase
-            Functions_RoomObject.SpawnRoomObj(ObjType.World_Bookcase,
+            Functions_RoomObject.SpawnRoomObj(ObjType.Wor_Bookcase,
                 5 * 16 + pos.X + 8,
                 0 * 16 + pos.Y + 0, Direction.Down);
             //drawers
-            Functions_RoomObject.SpawnRoomObj(ObjType.World_Shelf,
+            Functions_RoomObject.SpawnRoomObj(ObjType.Wor_Shelf,
                 7 * 16 + pos.X + 8,
                 0 * 16 + pos.Y + 0, Direction.Down);
 

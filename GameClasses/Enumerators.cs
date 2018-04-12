@@ -186,10 +186,16 @@ namespace DungeonRun
 
         #region World Objects
 
-        //World Objects
-        World_Bookcase, //Bookcase1
-        World_Shelf, //Bookcase2
-        World_TableStone,
+        //interior building objects
+        Wor_Bookcase, //Bookcase1
+        Wor_Shelf, //Bookcase2
+        Wor_TableStone,
+
+        //grass objects
+        Wor_Grass_Tall,
+        Wor_Grass_Cut,
+        Wor_Grass_1,
+        Wor_Grass_2,
 
         #endregion
 

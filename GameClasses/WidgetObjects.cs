@@ -200,16 +200,16 @@ namespace DungeonRun
             for (i = 0; i < 4 * 12; i++) { objList.Add(new GameObject()); }
 
             //row 1
-            Functions_GameObject.SetType(objList[0], ObjType.World_Bookcase);
-            Functions_GameObject.SetType(objList[1], ObjType.World_Shelf);
-            Functions_GameObject.SetType(objList[2], ObjType.World_TableStone);
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Bookcase);
+            Functions_GameObject.SetType(objList[1], ObjType.Wor_Shelf);
+            Functions_GameObject.SetType(objList[2], ObjType.Wor_TableStone);
             Functions_GameObject.SetType(objList[3], ObjType.Unknown);
 
             //row 2
-            Functions_GameObject.SetType(objList[4], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[5], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[4], ObjType.Wor_Grass_Tall);
+            Functions_GameObject.SetType(objList[5], ObjType.Wor_Grass_Cut);
+            Functions_GameObject.SetType(objList[6], ObjType.Wor_Grass_1);
+            Functions_GameObject.SetType(objList[7], ObjType.Wor_Grass_2);
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);

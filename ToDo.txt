@@ -52,40 +52,107 @@ x - get all objects integrated into the new system / layout
 
 
 
+
+
+Adding GameObjs:
+make enum defs, make animFrames,
+set objType paths, add to env obj widget
+playtest in field.
+
+
 TODAY:
 
 
 
 
-Fix SelectionBox Bug
+GameObjs++ - Grass
 
-the selection boxes aren't drawing over the object widgets.
-and that's because we're literally calling draw on the
-widgets AFTER calling draw on the objTools widget, which
-draws the selection boxes I'm referring to.
+updated current world objects to use 'wor_' prefix.
+created tall grass and cut grass sprites.
+created scattered grass 1 and 2 sprites.
 
-the fix is just to draw the ObjTools widget after the
-other object widgets. done. 
-playtested, working as expected.
+created enum defs, made animFrames,
+updated obj.SetType(), added to env widget.
+able to place in field and run around over 
+grass objects. lightened level background.
 
-
-
-
-
-
-
-
-
-the selection box isn't appearing in room editor, on any object widgets
-same with level editor, and it's widgets
-where is this selection box at? objTools widget, right?
-
-we do get the objTool selection box visible tho..
+added tall grass into Obj v Obj Interact().
+explosions cut tall grass, and leave ground fires.
+swords just cut the tall grass. added call to
+produce loot from cutting grass 10% of the time.
+playtested, feels like i'm cutting lttp grass
+back in elementary school again. except there's
+inertia. which is nice. hmm.
 
 
-we could use one instance of selection box, in ObjTools.
-or, we could use many selection boxes in the objects widgets,
-which we could set the positions of when an item is selected.
+
+
+
+
+
+
+
+
+
+
+move tables and shelves to bottom of building objs widget.
+
+scatter grass around the field upon level editor load. 
+
+ground fires should create puffs of smoke randomly as long as they live..
+
+
+
+
+
+
+
+we should not be adding objects to the room,
+if we are clicking on an object widget
+we are currently adding objs behind widgets, 
+and that's BAD BAD BAD
+
+
+
+
+
+
+
+
+
+
+we'll need to split Functions_RoomObject into 
+Functions_DungeonObjects
+Functions_WorldObjects
+*because these two class 'bout to get big 
+
+
+
+
+
+
+
+
+
+
+Create NEW WORLD GameObjects
+
+use the new 'wor_' naming convention prefix.
+
+
+add bush, bush stump
+sword should be able to destroy bush to stump
+very low chance of spawning loot
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -401,6 +468,14 @@ should be able to charge up attack and spin just like Lttp.
 
 
 
+Grass Interactions++
+when hero moves thru tall grass, part of his feet should be obscured,
+just like Lttp. this is some kind of small animated grass thing
+and it only animates when the hero is moving. if he isn't moving,
+then the foot grass cover shouldnt animate at all.
+** this is a particle? projectile? either way, it's not on the
+entities sheet - it's on the level sheet, because it needs to match
+the color of the grass that it's covering.
 
 
 

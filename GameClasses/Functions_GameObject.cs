@@ -591,18 +591,42 @@ namespace DungeonRun
 
             //World Objects
 
-            #region Shop Objects
 
-            else if (Type == ObjType.World_Bookcase || Type == ObjType.World_Shelf)
+            #region Grass Objects
+
+            else if (Type == ObjType.Wor_Grass_1 || Type == ObjType.Wor_Grass_2
+                || Type == ObjType.Wor_Grass_Cut || Type == ObjType.Wor_Grass_Tall)
+            {
+                Obj.compSprite.zOffset = -32;
+                Obj.compCollision.blocking = false;
+                //set animation frame
+                if (Type == ObjType.Wor_Grass_1)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_1; }
+                else if (Type == ObjType.Wor_Grass_2)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_2; }
+                else if (Type == ObjType.Wor_Grass_Cut)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Cut; }
+                else if (Type == ObjType.Wor_Grass_Tall)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall; }
+            }
+
+
+            #endregion
+
+
+
+            #region Interior Building Objects
+
+            else if (Type == ObjType.Wor_Bookcase || Type == ObjType.Wor_Shelf)
             {
                 Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
-                if (Type == ObjType.World_Bookcase)
+                if (Type == ObjType.Wor_Bookcase)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Bookcase; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.World_Shelf; }
             }
-            else if (Type == ObjType.World_TableStone)
+            else if (Type == ObjType.Wor_TableStone)
             {
                 Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;

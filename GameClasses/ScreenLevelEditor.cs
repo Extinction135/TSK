@@ -44,7 +44,7 @@ namespace DungeonRun
             Functions_Hero.UnlockAll(); //unlock all items
 
             //set to gray background
-            Assets.colorScheme.background = new Color(100, 100, 100, 255);
+            Assets.colorScheme.background = new Color(150, 150, 150, 255);
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
