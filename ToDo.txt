@@ -65,16 +65,47 @@ TODAY:
 
 
 
+Bushes and Stumps, Oh My!
 
-Editor++ & GameObjects++
+created Wor_Bush and Wor_Bush_Stump ObjType values.
+added animFrames, added SetType() paths,
+added to EnvWidget, added to interactions.
 
-added walls to dungeon objs widget, for testing.
-updated ObjTools Widget to allow the rotation of
-walls and doors.
+explosions affect bushes.
+swords affect bushes.
 
-fixed a sorting issue with PitBridge. now it
-sorts below actor's properly.
+updated HandleCommon() with path for bushes.
+created WorldObj.DestroyBush(), called from HandleCommon().
 
+improved sword's soundfx upon collision with various objects.
+fixed the sword sparkle to only happen with doors and walls.
+
+playtested, working as expected.
+recorded sweet bush interaction gif.
+
+
+edited gif, added to repo, updated readme.
+
+
+
+
+
+
+
+
+
+
+
+
+stumps should sort to the ground / floor, under heros feet.
+
+
+
+
+
+particles should move, if they have magnitude / speed.
+this means we can push particles, giving them inertia.
+this would be very nice.
 
 
 
@@ -92,9 +123,14 @@ Create NEW WORLD GameObjects
 use the new 'wor_' naming convention prefix.
 
 
+
+
+
 add bush, bush stump
 sword should be able to destroy bush to stump
 very low chance of spawning loot
+
+
 
 
 

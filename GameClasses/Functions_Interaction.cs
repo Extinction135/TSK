@@ -478,12 +478,44 @@ namespace DungeonRun
                     else if (Object.type == ObjType.ProjectileSword)
                     {   //sword swipe causes soundfx to blocking objects
                         if (Object.lifeCounter == 1) //these events happen at start of sword swing
-                        {   //if sword projectile is brand new, play collision sfx
-                            if (RoomObj.type == ObjType.Dungeon_DoorBombable)
-                            { Assets.Play(Assets.sfxTapHollow); } //play hollow
-                            else { Assets.Play(Assets.sfxTapMetallic); }
-                            //spawn a hit sparkle particle on sword
-                            Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
+                        {
+
+                            if (RoomObj.group == ObjGroup.Door)
+                            {   //there are two soundfx that can play for a door
+                                //hollow or metallic
+                                if (RoomObj.type == ObjType.Dungeon_DoorBombable)
+                                {
+                                    Assets.Play(Assets.sfxTapHollow); //hollow
+                                    Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
+                                } 
+                                else if (RoomObj.type == ObjType.Dungeon_DoorOpen)
+                                {
+                                    //do nothing, there is no door
+                                }
+                                else
+                                {   //this is a blocking, nondestructible door
+                                    Assets.Play(Assets.sfxTapMetallic);
+                                    Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
+                                }
+                            }
+                            else if(RoomObj.group == ObjGroup.Wall)
+                            {   
+                                //all sword hits on walls are metallic for now
+                                Assets.Play(Assets.sfxTapMetallic);
+                                Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
+                            }
+
+
+                            //swords 'hurt' some objects
+                            if (RoomObj.type == ObjType.Wor_Bush)
+                            {   
+                                Assets.Play(Assets.sfxEnemyHit);
+                            }
+                            else
+                            {
+                                //dont play any soundfx
+                            }
+
                         }
                         else if (Object.lifeCounter == 4)
                         {   //these interactions happen 'mid swing'

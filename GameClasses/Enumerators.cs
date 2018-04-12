@@ -197,6 +197,10 @@ namespace DungeonRun
         Wor_Grass_1,
         Wor_Grass_2,
 
+        //foilage
+        Wor_Bush,
+        Wor_Bush_Stump,
+        
         #endregion
 
 

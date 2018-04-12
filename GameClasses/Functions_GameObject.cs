@@ -34,6 +34,11 @@ namespace DungeonRun
             {
                 DestroyObject(RoomObj, true, true);
             }
+            else if(RoomObj.type == ObjType.Wor_Bush)
+            {
+                RoomObj.compMove.direction = HitDirection; //pass hitDirection
+                Functions_GameObject_World.DestroyBush(RoomObj);
+            }
             else if (RoomObj.type == ObjType.Dungeon_Barrel)
             {
                 RoomObj.compMove.direction = HitDirection; //pass hitDirection
@@ -687,8 +692,34 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall; }
             }
 
+            #endregion
+
+
+
+            #region Foilage
+
+            else if (Type == ObjType.Wor_Bush)
+            {
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 2;
+                Obj.compCollision.blocking = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.World_Bush;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 10;
+            }
+            else if (Type == ObjType.Wor_Bush_Stump)
+            {
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = 0;
+                Obj.compCollision.blocking = false;
+                Obj.compAnim.currentAnimation = AnimationFrames.World_BushStump;
+                Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
+                Obj.compCollision.rec.Width = 4; Obj.compCollision.rec.Height = 4;
+            }
 
             #endregion
+
+
 
 
             #region Interior Building Objects
