@@ -14,7 +14,6 @@ A 2D Zelda, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.
  
  
 ## Overview  
-+ Architecture and Program structure is discussed in Structure.md.
 + Gameplay and Design is discussed in Design.md.
 + Daily tasks/commits are planned and organized in ToDo.txt.
 + The history of commits is available back to the initial push.

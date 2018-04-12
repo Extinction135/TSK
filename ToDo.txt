@@ -65,56 +65,12 @@ TODAY:
 
 
 
+Fix ReadMe and Structure files
 
-
-
-
-
-
-Improve Item Useage
-
-added Sound_Bush_Cut to UWP project.
-stopped making ground fires upon fireball death.
-brought back the explosion's initial smoke puff.
-figured out the issue with projectile.spawn - the pros
-position was set after the initial beavior check. bleh.
-
-improved bomb sliding with impact dust particle.
-
-instead of impact dust, we should have 'push' lines.
-like our dash lines on link. this helps to sell the direction
-the hero is pushing this object, like the bomb for example.
-we could also try this with the fireball, and arrows.
-
-Push Lines
-
-created push direction particles, defaulted to down in sheet.
-created Particle_Push ObjType enum + animFrame.
-updated Obj.SetType() with path for Push particle.
-this path also sets the sprite's rotation based on direction.
-
-updated bombs initial spawn event to create push particles,
-these particles are pushed with less force than the bomb, so
-they *should* linger behind the bomb, with less inertia.
-
-improved Particle.Spawn() wth optional Direction parameter.
-it needs to have a direction, because we want to be able to set
-the facing direction of particles now. most particles will continue
-to face down, but push particles will face their moving direction.
-
-BOMB SLIDING++ (WTF?)
-
-thru various changes, i managed to improve the bomb sliding routines
-EVEN MORE! when the player slides a bomb in a cardinal direction,
-the bomb slides FARTHER and with PUSH LINES, telling the player
-this slide was more powerful than a diagonal slide, which slides
-less and doesn't have push lines. this adds a degree of precision
-to placing bombs quickly, which in turn adds another tier of skill
-to the game. this chain of events makes me incredibly happy, and 
-i only figured it out BY PLAYING THE GAME and IMPROVING MY SKILL LEVEL.
-lol. i had to up my skill level in my own game. god i love doing this.
-
-recorded fun bomb sliding gif. edited, added to readme.
+removed Structure.md file. 
+it didn't accurately describe what the current state 
+of the codebase actually looks like. updated Readme 
+to reflect this. 
 
 
 
@@ -125,28 +81,15 @@ recorded fun bomb sliding gif. edited, added to readme.
 
 
 
-
-
-
-
-
-fireball++
-the fireball creates an explosion upon contact with obj.
-this explosion creates a ground fire. it shouldn't.
-BUT, fireballs should create ground fires upon impact with bushes.
-upon collision with pots, fireball should create ground fires too.
+apply push lines for arrow, fireball..
+do these look good? keep them? eh?
 
 
 
 
 
 
-
-
-
-
-
-
+Bushes++
 
 when we hit a bush, we should create bush leaf debris.
 this leaf debris is pushed the direction of the hit on the bush,
@@ -154,8 +97,8 @@ so it inherits the inertia of the hit,
 
 first, the initial BIG push in the hit direction happens
 then a small random directional push is applied to vary the leaf trajectories.
-BUT this means we need to be moving particles..
-particles should move, if they have magnitude / speed.
+
+BUT this means we need to be moving particles.. AND WE DO!
 this means we can push particles, giving them inertia.
 this would be very nice.
 
@@ -168,17 +111,11 @@ this would be very nice.
 
 
 
+
+Boomerangs++
+
 boomerang sounds are totally wrong, clinks off a bush?
 triggers a bush? no. fix boomerang soundfx.
-
-
-
-
-
-
-
-
-
 
 
 
