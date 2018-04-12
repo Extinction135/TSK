@@ -433,8 +433,12 @@ namespace DungeonRun
                             }
                             else if(RoomObj.type == ObjType.Dungeon_WallStraight)
                             {   //explosions 'crack' normal walls
-                                Functions_GameObject.SetType(RoomObj, ObjType.Dungeon_WallStraightCracked);
-                                //play sfx
+                                Functions_GameObject.SetType(RoomObj, 
+                                    ObjType.Dungeon_WallStraightCracked);
+                                Functions_Particle.Spawn(ObjType.Particle_Blast,
+                                    RoomObj.compSprite.position.X,
+                                    RoomObj.compSprite.position.Y);
+                                Assets.Play(Assets.sfxShatter);
                                 //drop debris particles
                             }
                             else if (RoomObj.type == ObjType.Dungeon_TorchUnlit)

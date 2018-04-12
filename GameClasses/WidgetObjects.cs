@@ -176,10 +176,10 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[43], ObjType.Unknown);
 
             //row 12
-            Functions_GameObject.SetType(objList[44], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[45], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[46], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[44], ObjType.Dungeon_DoorTrap);
+            Functions_GameObject.SetType(objList[45], ObjType.Dungeon_DoorShut);
+            Functions_GameObject.SetType(objList[46], ObjType.Dungeon_DoorFake);
+            Functions_GameObject.SetType(objList[47], ObjType.Dungeon_DoorBombable);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);

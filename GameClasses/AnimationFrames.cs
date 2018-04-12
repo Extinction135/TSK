@@ -35,10 +35,7 @@ namespace DungeonRun
 
         public static List<Byte4> Dungeon_DoorOpen = new List<Byte4> { new Byte4(11, 0, 0, 0) };
         public static List<Byte4> Dungeon_DoorShut = new List<Byte4> { new Byte4(11, 1, 0, 0) };
-        public static List<Byte4> Dungeon_DoorTrap = new List<Byte4> { new Byte4(11, 1, 0, 0) };
         public static List<Byte4> Dungeon_DoorBoss = new List<Byte4> { new Byte4(11, 2, 0, 0) };
-        public static List<Byte4> Dungeon_DoorBombable = new List<Byte4> { new Byte4(12, 2, 0, 0) };
-        public static List<Byte4> Dungeon_DoorFake = new List<Byte4> { new Byte4(12, 2, 0, 0) };
 
         public static List<Byte4> Dungeon_WallStraight = new List<Byte4> { new Byte4(12, 0, 0, 0) };
         public static List<Byte4> Dungeon_WallPillar = new List<Byte4> { new Byte4(12, 1, 0, 0) };

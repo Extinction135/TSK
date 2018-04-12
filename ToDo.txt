@@ -68,28 +68,6 @@ TODAY:
 
 
 
-Fireball++
-
-removed Particle_Explosion from game.
-this was confusing with Projectile_Explosion,
-which is very powerful and unique.
-
-fireball needs an initial flash / blast.
-so lets make a blast particle.
-this is the white flash, then maybe big smoke.
-
-created Particle_Blast. enum, animFrame,
-obj.setType() path, linked up to fireball birth.
-not looking the way i wanted it to, honestly.
-reverted back to rising smoke, and it's looking
-much better. well, now i got a blast particle.
-
-maybe blast particle can be used when collapse dungeon doors?
-that would work as a temp cover while the door changes sprites..
-updated CollapseDungeonDoor() to test this idea out.
-some playtesting done, lots of little bugs noticed.
-i'll circle back around to this blast particle business in a
-future commit.
 
 
 
@@ -98,24 +76,22 @@ future commit.
 
 
 
+Improve Destroying Walls/Doors with new Blast Particle
 
+added doors to dungeon objs widget for testing purposes.
+this obj widgets setup is POWERFUL. super happy with it.
 
-bridges are currently blocking - hilarious
-
-bombable doors are being displayed as trap/shut doors.
-they should display as cracked walls.
+the bombable doors sprite frame is wrong.
+fixed door objs to use proper less animframes.
+rememoved un-used animFrames. playtested various doors
+inside of room editor. working as expected,
+and the collapse of doors looks much better.
 
 when we crack walls, the blast particle should appear.
+updated Interactions to create blast particle and shatter sfx
+upon wall cracking due to explosion.
 
-
-
-we need to be able to test bombable door easier.
-add these objects to the dungeon objs widget
-
-
-
-
-
+fixed a bug where bridges were set to blocking. lulz.
 
 
 
@@ -293,7 +269,16 @@ we can link f3 to drawing the interaction / collision info widget
 
 
 
-
+Arrows++
+when arrow collides with a blocking obj, 
+set arrow's speed to 0, increase it's friction slightly.
+it should 'sink' into a final position, inside the wall,
+where it will 'live' until frame 255, then be removed.
+this ONLY works on blocking objects without any magnitude.
+IF THE OBJ DOES HAVE A MAGNITUDE, 
+then we just kill the arrow upon collision.
+otherwise the obj would move, and the arrow wouldn't travel with it.
+and that would look WRONG.
 
 
 

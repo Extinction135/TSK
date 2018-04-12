@@ -73,7 +73,6 @@ namespace DungeonRun
                     ObjType.Particle_RisingSmoke,
                     Caster.position.X + 4 + offset.X,
                     Caster.position.Y + 0 + offset.Y);
-                
             }
             else if (Type == ObjType.ProjectileBoomerang)
             {

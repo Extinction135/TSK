@@ -255,13 +255,13 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorTrap;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorShut;
             }
             else if (Type == ObjType.Dungeon_DoorBombable)
             {
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorTrap;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
             }
             else if(Type == ObjType.Dungeon_DoorBoss)
             {
@@ -279,7 +279,7 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorFake;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
             }
 
             #endregion
@@ -369,6 +369,7 @@ namespace DungeonRun
             else if(Type == ObjType.Dungeon_PitBridge)
             {
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitBridge;
+                Obj.compCollision.blocking = false;
             }
             else if (Type == ObjType.Dungeon_PitTeethTop)
             {
@@ -1044,25 +1045,16 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Splash;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
-
-
-
-
             else if (Type == ObjType.Particle_Blast)
             {
                 Obj.compSprite.zOffset = 64;
                 Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 4; //in frames
-                Obj.lifetime = 4*2; //very short
+                Obj.compAnim.speed = 6; //in frames
+                Obj.lifetime = 6*4; //very short
                 Obj.compAnim.loop = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Blast;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
-
-
-
-
-
 
             //Particles - Rewards & Bottles
             else if (
