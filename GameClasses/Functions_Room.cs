@@ -80,7 +80,7 @@ namespace DungeonRun
                     if (j == 0)
                     {
                         //top row
-                        Functions_RoomObject.SpawnRoomObj(
+                        Functions_GameObject.Spawn(
                             ObjType.Dungeon_WallStraight,
                             i * 16 + pos.X + 8, 
                             0 * 16 - 16 + pos.Y + 8, 
@@ -88,7 +88,7 @@ namespace DungeonRun
 
                         if (i == 0)
                         {   //topleft corner
-                            Functions_RoomObject.SpawnRoomObj(
+                            Functions_GameObject.Spawn(
                                 ObjType.Dungeon_WallInteriorCorner,
                                 -16 + pos.X + 8, 
                                 -16 + pos.Y + 8, 
@@ -96,7 +96,7 @@ namespace DungeonRun
                         }
                         else if (i == Room.size.X - 1)
                         {   //topright corner
-                            Functions_RoomObject.SpawnRoomObj(
+                            Functions_GameObject.Spawn(
                                 ObjType.Dungeon_WallInteriorCorner,
                                 Room.size.X * 16 + pos.X + 8,
                                 -16 + pos.Y + 8,
@@ -112,7 +112,7 @@ namespace DungeonRun
                     else if (j == Room.size.Y - 1)
                     {
                         //bottom row
-                        Functions_RoomObject.SpawnRoomObj(
+                        Functions_GameObject.Spawn(
                             ObjType.Dungeon_WallStraight,
                             i * 16 + pos.X + 8,
                             Room.size.Y * 16 + pos.Y + 8,
@@ -120,7 +120,7 @@ namespace DungeonRun
 
                         if (i == 0)
                         {   //bottom left corner
-                            Functions_RoomObject.SpawnRoomObj(
+                            Functions_GameObject.Spawn(
                                 ObjType.Dungeon_WallInteriorCorner,
                                 -16 + pos.X + 8,
                                 Room.size.Y * 16 + pos.Y + 8,
@@ -128,7 +128,7 @@ namespace DungeonRun
                         }
                         else if (i == Room.size.X - 1)
                         {   //bottom right corner
-                            Functions_RoomObject.SpawnRoomObj(
+                            Functions_GameObject.Spawn(
                                 ObjType.Dungeon_WallInteriorCorner,
                                 Room.size.X * 16 + pos.X + 8,
                                 Room.size.Y * 16 + pos.Y + 8,
@@ -143,7 +143,7 @@ namespace DungeonRun
 
                     if (i == 0)
                     {   //left side
-                        Functions_RoomObject.SpawnRoomObj(
+                        Functions_GameObject.Spawn(
                             ObjType.Dungeon_WallStraight,
                             i * 16 - 16 + pos.X + 8,
                             j * 16 + pos.Y + 8,
@@ -151,7 +151,7 @@ namespace DungeonRun
                     }
                     else if (i == Room.size.X - 1)
                     {   //right side
-                        Functions_RoomObject.SpawnRoomObj(
+                        Functions_GameObject.Spawn(
                             ObjType.Dungeon_WallStraight,
                             i * 16 + 16 + pos.X + 8,
                             j * 16 + pos.Y + 8,
@@ -169,7 +169,7 @@ namespace DungeonRun
             SetDoors(Room); //set the room's doors
             SetFloors(Room); //set the floortile frames based on room.type
             //update all roomObjs, then remove overlapping objs
-            Functions_RoomObject.AlignRoomObjs();
+            Functions_GameObject.AlignRoomObjs();
             CleanupRoom(Room); //remove overlapping objs
             
 
@@ -233,7 +233,7 @@ namespace DungeonRun
                 AddCrackedWalls(Room);
             }
             //align + remove overlapping objs
-            Functions_RoomObject.AlignRoomObjs();
+            Functions_GameObject.AlignRoomObjs();
             CleanupRoom(Room);
             Assets.Play(Assets.sfxDoorOpen); //play door sfx
 
@@ -303,9 +303,15 @@ namespace DungeonRun
 
                                 //set the door decorations (bombed/bombable doors dont get decorations)
                                 if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
-                                { Functions_RoomObject.DecorateDoor(Pool.roomObjPool[i], ObjType.Dungeon_WallPillar); }
+                                {
+                                    Functions_GameObject_Dungeon.DecorateDoor(
+                                        Pool.roomObjPool[i], ObjType.Dungeon_WallPillar);
+                                }
                                 else if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
-                                { Functions_RoomObject.DecorateDoor(Pool.roomObjPool[i], ObjType.Dungeon_WallTorch); }
+                                {
+                                    Functions_GameObject_Dungeon.DecorateDoor(
+                                        Pool.roomObjPool[i], ObjType.Dungeon_WallTorch);
+                                }
 
                                 //finally, override door types based on specific room.type
                                 if (Room.type == RoomType.Boss)
@@ -334,7 +340,7 @@ namespace DungeonRun
         public static void PlaceExit(Room Room)
         {
             //create the exit
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_Exit,
+            Functions_GameObject.Spawn(ObjType.Dungeon_Exit,
                 (Room.size.X / 2) * 16 + pos.X + 8,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2, 
                 Direction.Down);
@@ -344,17 +350,17 @@ namespace DungeonRun
             Room.spawnPos.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
 
             //place the exit light fx over exit obj
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_ExitLight,
+            Functions_GameObject.Spawn(ObjType.Dungeon_ExitLight,
                 (Room.size.X / 2) * 16 + pos.X + 8,
                 Room.size.Y * 16 + pos.Y - 16 * 1,
                 Direction.Down);
 
             //create exit pillars
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_ExitPillarLeft,
+            Functions_GameObject.Spawn(ObjType.Dungeon_ExitPillarLeft,
                 (Room.size.X / 2) * 16 + pos.X + 8 - 16,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
                 Direction.Down);
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_ExitPillarRight,
+            Functions_GameObject.Spawn(ObjType.Dungeon_ExitPillarRight,
                 (Room.size.X / 2) * 16 + pos.X + 8 + 16,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
                 Direction.Down);
@@ -398,7 +404,7 @@ namespace DungeonRun
                     //{ Functions_Interaction.ScatterRockDebris(Pool.floorPool[i].position, false); }
                     if (Functions_Random.Int(0, 100) > 80)
                     {
-                        Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_FloorBlood,
+                        Functions_GameObject.Spawn(ObjType.Dungeon_FloorBlood,
                             Pool.floorPool[i].position.X + Functions_Random.Int(-4, 4),
                             Pool.floorPool[i].position.Y + Functions_Random.Int(-4, 4),
                             Direction.Down);
@@ -517,11 +523,11 @@ namespace DungeonRun
             #region Place some test shop objects
 
             //bookcase
-            Functions_RoomObject.SpawnRoomObj(ObjType.Wor_Bookcase,
+            Functions_GameObject.Spawn(ObjType.Wor_Bookcase,
                 5 * 16 + pos.X + 8,
                 0 * 16 + pos.Y + 0, Direction.Down);
             //drawers
-            Functions_RoomObject.SpawnRoomObj(ObjType.Wor_Shelf,
+            Functions_GameObject.Spawn(ObjType.Wor_Shelf,
                 7 * 16 + pos.X + 8,
                 0 * 16 + pos.Y + 0, Direction.Down);
 
@@ -552,7 +558,7 @@ namespace DungeonRun
                 new Vector2(16 * 16 + pos.X + 8, 7 * 16 + pos.Y + 8));
 
             //create story vendor
-            Functions_RoomObject.SpawnRoomObj(ObjType.Vendor_NPC_Story,
+            Functions_GameObject.Spawn(ObjType.Vendor_NPC_Story,
                 7 * 16 + pos.X + 8,
                 8 * 16 + pos.Y + 0, Direction.Down);
         }
@@ -562,17 +568,17 @@ namespace DungeonRun
             PlaceExit(Room);
 
             //place decorative statues
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_Statue,
+            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
                 3 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8, Direction.Down);
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_Statue,
+            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
                 7 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8, Direction.Down);
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_Statue,
+            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
                 3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8, Direction.Down);
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_Statue,
+            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
                 7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8, Direction.Down);
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_Statue,
+            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
                 3 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8, Direction.Down);
-            Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_Statue,
+            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
                 7 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8, Direction.Down);
         }
 
@@ -619,12 +625,12 @@ namespace DungeonRun
                     }
                     else if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
                     {   //build the boss welcome mat (left)
-                        Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_FloorDecal,
+                        Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
                             Pool.roomObjPool[i].compSprite.position.X - 8,
                             Pool.roomObjPool[i].compSprite.position.Y + 16,
                             Direction.Down);
                         //build the boss welcome mat (right)
-                        objRef = Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_FloorDecal,
+                        objRef = Functions_GameObject.Spawn(ObjType.Dungeon_FloorDecal,
                             Pool.roomObjPool[i].compSprite.position.X + 8,
                             Pool.roomObjPool[i].compSprite.position.Y + 16,
                             Direction.Down);

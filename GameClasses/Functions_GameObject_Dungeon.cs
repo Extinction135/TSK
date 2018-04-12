@@ -109,7 +109,7 @@ namespace DungeonRun
 
         public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
         {   //blow up door, change to doorOpen
-            Functions_RoomObject.DestroyObject(Door, false, false);
+            Functions_GameObject.DestroyObject(Door, false, false);
             Functions_GameObject.SetType(Door, ObjType.Dungeon_DoorOpen);
             //update the dungeon.doors list, change colliding door to bombed
             for (int i = 0; i < Level.doors.Count; i++)
@@ -278,6 +278,32 @@ namespace DungeonRun
                     Fairy.compSprite.position.Y);
                 Functions_Pool.Release(Fairy);
             }
+        }
+
+
+        //decorates a door on left/right or top/bottom
+        static Vector2 posA = new Vector2();
+        static Vector2 posB = new Vector2();
+        public static void DecorateDoor(GameObject Door, ObjType Type)
+        {
+            if (Door.direction == Direction.Up || Door.direction == Direction.Down)
+            {   //build left/right decorations if Door.direction is Up or Down
+                posA.X = Door.compSprite.position.X - 16;
+                posA.Y = Door.compSprite.position.Y;
+                posB.X = Door.compSprite.position.X + 16;
+                posB.Y = Door.compSprite.position.Y;
+            }
+            else
+            {   //build top/bottom decorations if Door.direction is Left or Right
+                posA.X = Door.compSprite.position.X;
+                posA.Y = Door.compSprite.position.Y - 16;
+                posB.X = Door.compSprite.position.X;
+                posB.Y = Door.compSprite.position.Y + 16;
+            }
+            //build wall decorationA torch/pillar/decoration
+            Functions_GameObject.Spawn(Type, posA.X, posA.Y, Door.direction);
+            //build wall decorationB torch/pillar/decoration
+            Functions_GameObject.Spawn(Type, posB.X, posB.Y, Door.direction);
         }
 
     }

@@ -34,10 +34,10 @@ namespace DungeonRun
         public static void CreateVendor(ObjType VendorType, Vector2 Position)
         {
             //place vendor
-            Functions_RoomObject.SpawnRoomObj(VendorType, 
+            Functions_GameObject.Spawn(VendorType, 
                 Position.X, Position.Y, Direction.Down);
             //place stone table
-            Functions_RoomObject.SpawnRoomObj(ObjType.Wor_TableStone, 
+            Functions_GameObject.Spawn(ObjType.Wor_TableStone, 
                 Position.X + 16, Position.Y, Direction.Down);
             //we could spawn other stuff around the vendor too (thematically appropriate)
         }

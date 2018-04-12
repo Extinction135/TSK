@@ -214,9 +214,6 @@
     <Compile Include="..\..\GameClasses\Functions_Room.cs">
       <Link>Classes\Functions_Room.cs</Link>
     </Compile>
-    <Compile Include="..\..\GameClasses\Functions_RoomObject.cs">
-      <Link>Classes\Functions_RoomObject.cs</Link>
-    </Compile>
     <Compile Include="..\..\GameClasses\Functions_ScreenRec.cs">
       <Link>Classes\Functions_ScreenRec.cs</Link>
     </Compile>

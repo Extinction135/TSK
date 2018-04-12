@@ -64,17 +64,31 @@ TODAY:
 
 
 
-
 Refactoring
 
-created Functions_GameObject_Dungeon class.
-created Functions_GameObject_World class.
-split Functions_RoomObject between these classes,
-based on the object type. Dx & UWP projects built.
+Functions_RoomObject can be consolidated into Functions_GameObject,
+since this targets both dungeon and world gameobjects.
+removed Functions_RoomObject from project.
+playtested, working as expected. 
 
 
 
 
+
+
+
+
+
+
+obj.kill() simply wraps pool.release().
+it's a useless function. remove it.
+but, we have it around because pros/parts have a kill method too.
+and these methods are actually used and specific.
+so keep kill() around to wrap any death events..
+
+destroy obj completely replaces it, and should be used
+instead, if an object is actually being destroyed on screen.
+otherwise, just release() it.
 
 
 
@@ -299,7 +313,8 @@ we can link f3 to drawing the interaction / collision info widget
 
 
 
-
+one of the pegasus boots is missing, so that's why link cant dash
+like he used to.
 
 
 

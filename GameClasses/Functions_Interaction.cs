@@ -139,11 +139,11 @@ namespace DungeonRun
                         Obj.compSprite.position.Y - 8);
                     //Functions_Particle.ScatterDebris(Obj.compSprite.position);
                     //create pit teeth over new pit obj
-                    Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_PitTeethTop,
+                    Functions_GameObject.Spawn(ObjType.Dungeon_PitTeethTop,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.Down);
-                    Functions_RoomObject.SpawnRoomObj(ObjType.Dungeon_PitTeethBottom,
+                    Functions_GameObject.Spawn(ObjType.Dungeon_PitTeethBottom,
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.Down);
@@ -399,7 +399,7 @@ namespace DungeonRun
 
                     if (Object.type == ObjType.ProjectileArrow)
                     {   //arrows trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                         //arrows die upon blocking collision
                         Functions_Projectile.Kill(Object);
                     }
@@ -429,7 +429,7 @@ namespace DungeonRun
                             }
                             else if (RoomObj.type == ObjType.Dungeon_Statue)
                             {   //explosions destroy statues
-                                Functions_RoomObject.DestroyObject(RoomObj, true, true);
+                                Functions_GameObject.DestroyObject(RoomObj, true, true);
                             }
                             else if(RoomObj.type == ObjType.Dungeon_WallStraight)
                             {   //explosions 'crack' normal walls
@@ -443,7 +443,7 @@ namespace DungeonRun
                             }
 
                             //explosions also trigger common obj interactions
-                            Functions_RoomObject.HandleCommon(RoomObj,
+                            Functions_GameObject.HandleCommon(RoomObj,
                                 //get the direction towards the roomObj from the explosion
                                 Functions_Direction.GetOppositeCardinal(
                                     RoomObj.compSprite.position,
@@ -484,7 +484,7 @@ namespace DungeonRun
                         else if (Object.lifeCounter == 4)
                         {   //these interactions happen 'mid swing'
                             //swords trigger common obj interactions
-                            Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                            Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                         }
                     }
 
@@ -495,9 +495,9 @@ namespace DungeonRun
 
                     else if (Object.type == ObjType.Dungeon_Pot)
                     {   //destroy the Pot object
-                        Functions_RoomObject.DestroyObject(Object, true, true);
+                        Functions_GameObject.DestroyObject(Object, true, true);
                         //thrown / dropped pots trigger common obj interactions
-                        Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                     }
 
                     #endregion
@@ -518,7 +518,7 @@ namespace DungeonRun
                     else if (Object.type == ObjType.ProjectileBoomerang)
                     {
                         //handle common interactions
-                        Functions_RoomObject.HandleCommon(RoomObj,
+                        Functions_GameObject.HandleCommon(RoomObj,
                             Functions_Movement.GetMovingDirection(Object.compMove));
                         //return the boomerang
                         Object.lifeCounter = 200; //return to caster
@@ -586,7 +586,7 @@ namespace DungeonRun
                 {   //reverse the direction of the spikeBlock
                     Functions_GameObject_Dungeon.BounceSpikeBlock(Object);
                     //spikeblocks trigger common obj interactions
-                    Functions_RoomObject.HandleCommon(RoomObj, Object.compMove.direction);
+                    Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                 }
                 //here blockSpikes could trigger non-blocking roomObj interactions
                 //whatever those are...
@@ -606,11 +606,11 @@ namespace DungeonRun
                 {   
                     if(Object.type == ObjType.Dungeon_Statue)
                     {   //destroy boss statues and pop loot
-                        Functions_RoomObject.DestroyObject(Object, true, true);
+                        Functions_GameObject.DestroyObject(Object, true, true);
                     }
                     else
                     {   //push obj in opposite direction and destroy it
-                        Functions_RoomObject.HandleCommon(Object,
+                        Functions_GameObject.HandleCommon(Object,
                             Functions_Direction.GetOppositeCardinal(
                                 Object.compMove.position,
                                 RoomObj.compMove.position)

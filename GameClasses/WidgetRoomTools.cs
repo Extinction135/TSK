@@ -263,7 +263,7 @@ namespace DungeonRun
             Functions_Room.CheckForPuzzles(Functions_Level.currentRoom);
 
             //align + remove overlapping objs
-            Functions_RoomObject.AlignRoomObjs();
+            Functions_GameObject.AlignRoomObjs();
             Functions_Room.CleanupRoom(Functions_Level.currentRoom);
             //update roomObjs once
             Functions_Pool.Update();
