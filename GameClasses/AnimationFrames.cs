@@ -253,6 +253,11 @@ namespace DungeonRun
         {
             new Byte4(8, 0, 0, 0), new Byte4(9, 0, 0, 0)
         };
+        public static List<Byte4> Particle_Push = new List<Byte4>
+        {
+            new Byte4(2*2, 1, 0, 0), new Byte4(2*2+1, 1, 0, 0)
+        };
+
 
         //8x4 - tiny
         public static List<Byte4> Particle_Map_Flag = new List<Byte4>

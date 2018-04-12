@@ -259,6 +259,7 @@ namespace DungeonRun
         Particle_FireGround, 
         Particle_Splash,
         Particle_Blast,
+        Particle_Push,
 
         //Particle_Debris, //doesn't exist right now
         Particle_BottleEmpty,

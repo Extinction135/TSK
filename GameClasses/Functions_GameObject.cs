@@ -695,7 +695,6 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Foilage
 
             else if (Type == ObjType.Wor_Bush)
@@ -1043,6 +1042,31 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Sparkle;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
+
+
+            else if (Type == ObjType.Particle_Push)
+            {
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.zOffset = 32;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 6*3; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Push;
+                Obj.compSprite.texture = Assets.entitiesSheet;
+
+                //set the sprites rotation based on direction
+                if (Obj.direction == Direction.Down)
+                { Obj.compSprite.rotation = Rotation.None; }
+                else if (Obj.direction == Direction.Left)
+                { Obj.compSprite.rotation = Rotation.Clockwise90; }
+                else if (Obj.direction == Direction.Up)
+                { Obj.compSprite.rotation = Rotation.Clockwise180; }
+                else if (Obj.direction == Direction.Right)
+                { Obj.compSprite.rotation = Rotation.Clockwise270; }
+                else //push particle can't be in diagonal state, hide it
+                { Obj.compSprite.visible = false; }
+            }
+
 
             #endregion
 

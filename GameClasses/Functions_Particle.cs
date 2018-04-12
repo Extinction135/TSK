@@ -95,13 +95,13 @@ namespace DungeonRun
             Spawn(Type, posRef.X, posRef.Y);
         }
 
-        public static void Spawn(ObjType Type, float X, float Y)
+        public static void Spawn(ObjType Type, float X, float Y, Direction Dir = Direction.Down)
         {   //get a particle to spawn
             GameObject obj = Functions_Pool.GetParticle();
             obj.compMove.moving = true;
-            //set particles direction to down
-            obj.direction = Direction.Down;
-            obj.compMove.direction = Direction.Down;
+            //set particles direction to passed direction
+            obj.direction = Dir;
+            obj.compMove.direction = Dir;
             //teleport the object to the proper location
             Functions_Movement.Teleport(obj.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment
@@ -124,8 +124,21 @@ namespace DungeonRun
             {
                 Spawn(ObjType.Particle_RisingSmoke, X + 5, Y + 1);
             }
+            else if (Type == ObjType.Particle_Push)
+            {   //gently initially push the particle
+                Functions_Movement.Push(obj.compMove, obj.direction, 5.0f);
+            }
 
             #endregion
+
+
+
+
+
+
+
+
+
 
 
 
@@ -159,7 +172,6 @@ namespace DungeonRun
         {   //particles do have lifetimes
             Obj.lifeCounter++;
             if (Obj.lifeCounter >= Obj.lifetime) { Kill(Obj); }
-
 
 
             #region Handle Particle Per Frame Behaviors

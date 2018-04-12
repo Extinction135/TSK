@@ -51,6 +51,20 @@ namespace DungeonRun
             pro.direction = Dir;
             pro.compMove.direction = Dir;
 
+            //teleport the object to the caster's location
+            Functions_Movement.Teleport(pro.compMove,
+                Caster.position.X, Caster.position.Y);
+
+            //assume this projectile is moving
+            pro.compMove.moving = true;
+            //finalize it: setType, rotation & align
+            Functions_GameObject.SetType(pro, Type);
+            HandleBehavior(pro);
+
+
+
+
+
 
             #region Set Initial Projectile Behaviors + SoundFX
 
@@ -63,16 +77,11 @@ namespace DungeonRun
             {
                 Functions_Movement.Push(pro.compMove, Dir, 5.0f);
                 Assets.Play(Assets.sfxFireballCast);
-
-                //place smoke puff relative to caster
-                if (Dir == Direction.Down) { offset.X = 0; offset.Y = +10; }
-                else if (Dir == Direction.Up) { offset.X = 0; offset.Y = -10; }
-                else if (Dir == Direction.Right) { offset.X = +10; offset.Y = 0; }
-                else if (Dir == Direction.Left) { offset.X = -10; offset.Y = 0; }
+                //place birth smoke over fireball
                 Functions_Particle.Spawn(
                     ObjType.Particle_RisingSmoke,
-                    Caster.position.X + 4 + offset.X,
-                    Caster.position.Y + 0 + offset.Y);
+                    pro.compSprite.position.X + 0,
+                    pro.compSprite.position.Y - 8);
             }
             else if (Type == ObjType.ProjectileBoomerang)
             {
@@ -81,14 +90,47 @@ namespace DungeonRun
             }
             else if (Type == ObjType.ProjectileBomb)
             {
-                Functions_Movement.Push(pro.compMove, Dir, 7.0f);
                 Assets.Play(Assets.sfxBombDrop);
-                /*
+                
+                //based on direction, several things happen to bomb
+                //first, we limit diagonal movement in favor of cardinal movement
+                //second, we place 'push' lines after the bomb, if it's cardinal dir
+                //this is to tell the player that the hero can push bombs further
+                //if they slide the bomb in a cardinal direction
+
+                //set push lines offset based on direction
+                if (Dir == Direction.Down)
+                {
+                    offset.X = 4; offset.Y = +10;
+                    Functions_Movement.Push(pro.compMove, Dir, 8.0f);
+                }
+                else if (Dir == Direction.Up)
+                {
+                    offset.X = -4; offset.Y = -8;
+                    Functions_Movement.Push(pro.compMove, Dir, 8.0f);
+                }
+                else if (Dir == Direction.Right)
+                {
+                    offset.X = +8; offset.Y = -2;
+                    Functions_Movement.Push(pro.compMove, Dir, 8.0f);
+                }
+                else if (Dir == Direction.Left)
+                {
+                    offset.X = -8; offset.Y = 6;
+                    Functions_Movement.Push(pro.compMove, Dir, 8.0f);
+                }
+                else
+                {
+                    //diagonal push
+                    Functions_Movement.Push(pro.compMove, Dir, 5.0f);
+                    //push line particle will hide self if it's dir is diagonal
+                }
+
+                //place push lines 'after' bomb
                 Functions_Particle.Spawn(
-                    ObjType.Particle_RisingSmoke,
-                    pro.compSprite.position.X + 0,
-                    pro.compSprite.position.Y + 0);
-                */
+                    ObjType.Particle_Push,
+                    pro.compSprite.position.X + offset.X,
+                    pro.compSprite.position.Y + offset.Y, Dir);
             }
             else if (Type == ObjType.ProjectileExplodingBarrel)
             {
@@ -99,12 +141,11 @@ namespace DungeonRun
             {
                 Assets.Play(Assets.sfxExplosion);
                 //place smoke puff above explosion
-                /*
                 Functions_Particle.Spawn(
                     ObjType.Particle_ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y - 8);
-                */
+                
             }
             else if (Type == ObjType.ProjectileNet)
             {   
@@ -118,17 +159,6 @@ namespace DungeonRun
             #endregion
 
 
-            //teleport the object to the caster's location
-            Functions_Movement.Teleport(pro.compMove,
-                Caster.position.X,
-                Caster.position.Y);
-            //assume this projectile is moving
-            pro.compMove.moving = true;
-            //handle spawn frame behavior
-            pro.type = Type;
-            HandleBehavior(pro);
-            //finalize it: setType, rotation & align
-            Functions_GameObject.SetType(pro, Type); 
         }
 
         public static void Update(Projectile Pro)
@@ -159,10 +189,13 @@ namespace DungeonRun
             {   //create explosion & ground fire
                 Spawn(ObjType.ProjectileExplosion,
                     Obj.compMove, Direction.None);
+
+                /*
                 Functions_Particle.Spawn(
                     ObjType.Particle_FireGround,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0);
+                */
             }
             //sword - no death event
             //rock debris - no death event
