@@ -45,7 +45,7 @@ namespace DungeonRun
             Widgets.RoomTools.Update();
 
             Widgets.WidgetObjects_Dungeon.Update();
-            //enemy tools widget here
+            Widgets.WidgetObjects_Enemy.Update();
 
             Widgets.WidgetObjects_Environment.Update();
             Widgets.WidgetObjects_Building.Update();
@@ -62,6 +62,7 @@ namespace DungeonRun
 
             //dungeon set
             Widgets.WidgetObjects_Dungeon.Reset(16 * 1, 16 * 2); //left
+            Widgets.WidgetObjects_Enemy.Reset(16 * 34, 16 * 2); //right
 
             //world set
             Widgets.WidgetObjects_Environment.Reset(16 * 1, 16 * 2); //left
@@ -202,9 +203,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
             #region F6 - Set Dungeon Widgets Display
 
             if (Functions_Input.IsNewKeyPress(Keys.F6))
@@ -252,9 +250,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
             #region Handle User Clicking TopMenu Buttons
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
@@ -281,9 +276,11 @@ namespace DungeonRun
             #endregion
 
 
-            #region Handle User Clicking Editor Widget Objects
 
-            //handle selecting obj from editor's widgets
+
+
+
+            //Handle User Clicking Editor Widget Objects
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
                 if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
@@ -291,7 +288,10 @@ namespace DungeonRun
                     //Handle Dungeon Objs Widget 
                     if (Widgets.WidgetObjects_Dungeon.window.interior.rec.Contains(Input.cursorPos))
                     { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Dungeon.objList); }
+
                     //Handle Enemy Spawns Widget
+                    if (Widgets.WidgetObjects_Enemy.window.interior.rec.Contains(Input.cursorPos))
+                    { Widgets.ObjectTools.CheckObjList(Widgets.WidgetObjects_Enemy.objList); }
                 }
                 else if (TopDebugMenu.display == WidgetDisplaySet.World)
                 {
@@ -311,7 +311,6 @@ namespace DungeonRun
                 }
             }
 
-            #endregion
 
 
 
@@ -355,7 +354,7 @@ namespace DungeonRun
                 if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
                 {
                     Widgets.WidgetObjects_Dungeon.Draw();
-                    //enemy spawn objs widget here later
+                    Widgets.WidgetObjects_Enemy.Draw();
                 }
                 //if level mode, draw level widgets
                 else if (TopDebugMenu.display == WidgetDisplaySet.World)
@@ -365,9 +364,7 @@ namespace DungeonRun
                 }
                 //shared objs widget too
                 if (TopDebugMenu.displaySharedObjsWidget)
-                {
-                    Widgets.WidgetObjects_Shared.Draw();
-                }
+                { Widgets.WidgetObjects_Shared.Draw(); }
             }
             else { } //dont draw any widgets
             

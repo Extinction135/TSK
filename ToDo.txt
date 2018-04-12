@@ -56,21 +56,17 @@ TODAY:
 
 
 
-ObjectWidgets++
 
-created unknown gameObj type value, and gameObj.
-simply displays the unknown sprite.
-updated all the object widets to use unknown obj
-as default obj. separated objs from dungeon objs
-to shared objs, freeing up ALOT of space.
 
-fixed a bug where f3 didn't 'unhide' widgets.
-it was actually a one-way trip where the display
-state wasn't being stored before being discarded
-and set to none. so, i just added an instance to
-store the previous display set, and upon f3 we
-toggle between none and the previous display set.
-works perfectly.
+
+EnemyTools Widget
+
+created enemy tools widget, which for now simply
+contains enemy spawn objects. in the near future,
+we're going to improve this system so that the spawn
+objects look like the enemy that they spawn.
+easy to setup and install, working as expected.
+we can spawn enemies in the editor again. kinda.
 
 
 
@@ -82,11 +78,11 @@ works perfectly.
 
 
 
+the selection box isn't appearing in room editor, on any object widgets
+same with level editor, and it's widgets
+where is this selection box at? objTools widget, right?
 
-Add Enemy Tools Widget
-this exists on the right, in RoomEditor.
-right now, it's composed of only enemySpawn objects, of which there are two,
-but only 1 works. just keep the enemy spawns and tier ideas. for now.
+we do get the objTool selection box visible tho..
 
 
 

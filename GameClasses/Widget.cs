@@ -29,6 +29,7 @@ namespace DungeonRun
         public static WidgetRoomTools RoomTools = new WidgetRoomTools();
         //dungeon
         public static WidgetObjects_Dungeon WidgetObjects_Dungeon = new WidgetObjects_Dungeon();
+        public static WidgetObjects_Enemy WidgetObjects_Enemy = new WidgetObjects_Enemy();
         //world
         public static WidgetObjects_Environment WidgetObjects_Environment = new WidgetObjects_Environment();
         public static WidgetObjects_Building WidgetObjects_Building = new WidgetObjects_Building();
