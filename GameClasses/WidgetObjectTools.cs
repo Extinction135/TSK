@@ -471,13 +471,19 @@ namespace DungeonRun
         }
 
         public void RotateActiveObj()
-        {   //set activeObj's obj.direction based on type
+        {   
+            //set activeObj's obj.direction based on type
             if (activeObj.type == ObjType.Dungeon_PitBridge)
             {   //flip between horizontal and vertical directions
                 if (activeObj.direction == Direction.Up || activeObj.direction == Direction.Down)
                 { activeObj.direction = Direction.Left; }
                 else { activeObj.direction = Direction.Down; }
             }
+            //set object's move component direction based on type
+            else if (activeObj.type == ObjType.Dungeon_BlockSpike)
+            { activeObj.compMove.direction = activeObj.direction; }
+
+            //these are objects that we allow rotation upon
             else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
                 || activeObj.type == ObjType.Dungeon_ConveyorBeltOff
                 || activeObj.type == ObjType.Dungeon_BlockSpike)
@@ -488,10 +494,16 @@ namespace DungeonRun
                 else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
                 else { activeObj.direction = Direction.Up; }
             }
-
-            //set object's move component direction based on type
-            if (activeObj.type == ObjType.Dungeon_BlockSpike)
-            { activeObj.compMove.direction = activeObj.direction; }
+            //rotate doors and walls
+            if(activeObj.group == ObjGroup.Door || activeObj.group == ObjGroup.Wall)
+            {
+                //flip thru cardinal directions
+                activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
+                if (activeObj.direction == Direction.Up) { activeObj.direction = Direction.Left; }
+                else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
+                else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
+                else { activeObj.direction = Direction.Up; }
+            }
 
             //set the rotation of the sprite based on obj.direction                                             
             Functions_GameObject.SetRotation(activeObj);

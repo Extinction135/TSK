@@ -66,44 +66,14 @@ TODAY:
 
 
 
+Editor++ & GameObjects++
 
+added walls to dungeon objs widget, for testing.
+updated ObjTools Widget to allow the rotation of
+walls and doors.
 
-
-
-
-
-
-
-
-
-Improve Destroying Walls/Doors with new Blast Particle
-
-added doors to dungeon objs widget for testing purposes.
-this obj widgets setup is POWERFUL. super happy with it.
-
-the bombable doors sprite frame is wrong.
-fixed door objs to use proper less animframes.
-rememoved un-used animFrames. playtested various doors
-inside of room editor. working as expected,
-and the collapse of doors looks much better.
-
-when we crack walls, the blast particle should appear.
-updated Interactions to create blast particle and shatter sfx
-upon wall cracking due to explosion.
-
-fixed a bug where bridges were set to blocking. lulz.
-
-
-
-
-
-
-
-
-
-
-
-
+fixed a sorting issue with PitBridge. now it
+sorts below actor's properly.
 
 
 
@@ -132,9 +102,11 @@ very low chance of spawning loot
 
 
 
-
-
-
+World and Dungeon Background Colors
+we need to be able to display a black bkg for dungeons and gray bkg for world
+and later a dark gray bkg for the dark world
+we currently don't draw a background color from level.draw, and we should
+instead we're clearing the graphics device from screenmanager to the assets.colorscheme.bkg color
 
 
 
@@ -187,33 +159,11 @@ maybe a 'field' is built as a bkg. (random animated grass placement)
 
 
 
-
-Improve LevelEditor
-create an animated grass object, randomly place them
-around the screen, lock the camera, spawn the hero center screen
-
-
-
 we should be able to load an outside level, which has two exits:
 to overworld, or to the dungeon.
 
 the town level just has buildings, vendors, and an exit to the overworld.
 overworld exits should be marked with signposts, and look like exits too..
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -250,11 +200,7 @@ plus, this shortens the overall size of the roomData xml by removing chars.
 
 
 
-World and Dungeon Background Colors
-we need to be able to display a black bkg for dungeons and gray bkg for world
-and later a dark gray bkg for the dark world
-we currently don't draw a background color from level.draw, and we should
-instead we're clearing the graphics device from screenmanager to the assets.colorscheme.bkg color
+
 
 
 
