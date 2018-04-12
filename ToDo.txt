@@ -65,37 +65,12 @@ TODAY:
 
 
 
+Refactoring
 
-
-
-
-
-
-
-Story++
-
-added Story folder to contain all the awesome stuff
-I'm about to drop into it.
-
-moved story.txt into story folder.
-rewrote, and vastly improved the base story.
-wrote backstory / character impressions.
-began planning of quests in relation to plot.
-i'm really happy with the story now.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+created Functions_GameObject_Dungeon class.
+created Functions_GameObject_World class.
+split Functions_RoomObject between these classes,
+based on the object type. Dx & UWP projects built.
 
 
 
@@ -114,36 +89,13 @@ we need an initial blast for the fireball cast
 should have a little momentum too, and travel with the fireball
 for a very short while, this adds some physics polish..
 
-
-
-
-
-
-
-
-
-
-
-
-
-we'll need to split Functions_RoomObject into 
-Functions_DungeonObjects
-Functions_WorldObjects
-*because these two class 'bout to get big 
-
-
-
-
-scatter grass around the field upon level editor load. 
-
+the real issue here is that we can't call pro/part.spawn()
+from pro/part.spwn, due to some clever coding that is now
+preventing us from making awesome fx. we need to fix that
+problem, then we can have all kinds of birth / death fx,
+as well as life fx.
 
 ground fires should create puffs of smoke randomly as long as they live..
-
-
-
-
-
-
 
 
 

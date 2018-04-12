@@ -290,11 +290,11 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.Dungeon_TorchUnlit)
             {   //light any unlit torch  //git lit *
-                Functions_RoomObject.LightTorch(Obj);
+                Functions_GameObject_Dungeon.LightTorch(Obj);
             }
             else if (Obj.type == ObjType.Dungeon_LeverOff || Obj.type == ObjType.Dungeon_LeverOn)
             {   //activate all lever objects (including lever), call attention to change
-                Functions_RoomObject.ActivateLeverObjects();
+                Functions_GameObject_Dungeon.ActivateLeverObjects();
                 Functions_Particle.Spawn(
                         ObjType.Particle_Attention,
                         Obj.compSprite.position.X,
@@ -302,7 +302,7 @@ namespace DungeonRun
             }
             else if (Obj.type == ObjType.Dungeon_SwitchBlockBtn)
             {
-                Functions_RoomObject.FlipSwitchBlocks(Obj);
+                Functions_GameObject_Dungeon.FlipSwitchBlocks(Obj);
             }
 
             #endregion
@@ -404,7 +404,7 @@ namespace DungeonRun
                         if (Pool.roomObjPool[i].type == ObjType.Dungeon_Pit)
                         {   //immediately release the pot, play the pit splash fx
                             Functions_Pool.Release(carryingObj);
-                            Functions_RoomObject.PlayPitFx(Pool.roomObjPool[i]);
+                            Functions_GameObject_Dungeon.PlayPitFx(Pool.roomObjPool[i]);
                         }
                         //finally, handle the interaction with the room object
                         Functions_Interaction.InteractRoomObj(Pool.roomObjPool[i], carryingObj);

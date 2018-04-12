@@ -430,7 +430,7 @@ namespace DungeonRun
                     if (Pool.roomObjPool[i].type == ObjType.Dungeon_Switch)
                     {   //set the room puzzleType and bail from method
                         Room.puzzleType = PuzzleType.Switch;
-                        Functions_RoomObject.CloseDoors(); //convert all openDoors to trapDoors
+                        Functions_GameObject_Dungeon.CloseDoors(); //convert all openDoors to trapDoors
                         return;
                     }
                     else if(Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit)
@@ -441,7 +441,7 @@ namespace DungeonRun
             if (torchCount > 3)
             {   //convert all openDoors to trapDoors
                 Room.puzzleType = PuzzleType.Torches;
-                Functions_RoomObject.CloseDoors(); 
+                Functions_GameObject_Dungeon.CloseDoors(); 
             }
         }
 
@@ -529,26 +529,26 @@ namespace DungeonRun
 
 
             //create all the vendors
-            Functions_RoomObject.CreateVendor(ObjType.Vendor_NPC_Items, 
+            Functions_GameObject_World.CreateVendor(ObjType.Vendor_NPC_Items, 
                 new Vector2(1 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
 
-            Functions_RoomObject.CreateVendor(ObjType.Vendor_NPC_Potions, 
+            Functions_GameObject_World.CreateVendor(ObjType.Vendor_NPC_Potions, 
                 new Vector2(4 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
 
-            Functions_RoomObject.CreateVendor(ObjType.Vendor_NPC_Magic, 
+            Functions_GameObject_World.CreateVendor(ObjType.Vendor_NPC_Magic, 
                 new Vector2(7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
 
-            Functions_RoomObject.CreateVendor(ObjType.Vendor_NPC_Weapons, 
+            Functions_GameObject_World.CreateVendor(ObjType.Vendor_NPC_Weapons, 
                 new Vector2(10 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
 
-            Functions_RoomObject.CreateVendor(ObjType.Vendor_NPC_Armor, 
+            Functions_GameObject_World.CreateVendor(ObjType.Vendor_NPC_Armor, 
                 new Vector2(13 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
 
-            Functions_RoomObject.CreateVendor(ObjType.Vendor_NPC_Equipment, 
+            Functions_GameObject_World.CreateVendor(ObjType.Vendor_NPC_Equipment, 
                 new Vector2(16 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8));
 
             //add pet vendor
-            Functions_RoomObject.CreateVendor(ObjType.Vendor_NPC_Pets, 
+            Functions_GameObject_World.CreateVendor(ObjType.Vendor_NPC_Pets, 
                 new Vector2(16 * 16 + pos.X + 8, 7 * 16 + pos.Y + 8));
 
             //create story vendor

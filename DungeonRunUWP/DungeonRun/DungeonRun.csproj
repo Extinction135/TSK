@@ -157,6 +157,12 @@
     <Compile Include="..\..\GameClasses\Functions_GameObject.cs">
       <Link>Classes\Functions_GameObject.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_GameObject_Dungeon.cs">
+      <Link>Classes\Functions_GameObject_Dungeon.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\Functions_GameObject_World.cs">
+      <Link>Classes\Functions_GameObject_World.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Hero.cs">
       <Link>Classes\Functions_Hero.cs</Link>
     </Compile>
