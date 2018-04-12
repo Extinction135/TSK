@@ -47,17 +47,18 @@ namespace DungeonRun
         public static void DestroyBush(GameObject Bush)
         {
             //Bush.compMove.direction is the hit direction
+            //create bush leaves, push them in hit direction
 
-            //covert bush to stump
+            //covert bush to stump, play sfx
             Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
+            Assets.Play(Assets.sfxBushCut);
             //pop an attention particle
             Functions_Particle.Spawn(ObjType.Particle_Attention,
                 Bush.compSprite.position.X, Bush.compSprite.position.Y);
-
-            //create bush leaves, push them in hit direction
+            //rarely spawn loot
+            if (Functions_Random.Int(0,101) > 90)
+            { Functions_Loot.SpawnLoot(Bush.compSprite.position); }
         }
-
-
 
     }
 }

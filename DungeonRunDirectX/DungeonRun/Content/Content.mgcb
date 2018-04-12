@@ -473,3 +473,9 @@
 /processorParam:TextureFormat=Color
 /build:PetsSheet.png
 
+#begin SoundBushCut.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundBushCut.wav
+

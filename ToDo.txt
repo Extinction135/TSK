@@ -65,26 +65,18 @@ TODAY:
 
 
 
-Bushes and Stumps, Oh My!
+Bush++
 
-created Wor_Bush and Wor_Bush_Stump ObjType values.
-added animFrames, added SetType() paths,
-added to EnvWidget, added to interactions.
+fixed stumps to sort to ground, under actors feet.
+fixed various issues with bush collision recs.
+improved DestroyBush() to spawn loot 10% of the time.
 
-explosions affect bushes.
-swords affect bushes.
+added Sound_Bush_Cut to Dx project. **add to UWP**
+added sfxBushCut to Assets. added call to play
+bush sfx from DestroyBush(). working perfectly.
 
-updated HandleCommon() with path for bushes.
-created WorldObj.DestroyBush(), called from HandleCommon().
-
-improved sword's soundfx upon collision with various objects.
-fixed the sword sparkle to only happen with doors and walls.
-
+also, bushes can now be set on fire by explosions.
 playtested, working as expected.
-recorded sweet bush interaction gif.
-
-
-edited gif, added to repo, updated readme.
 
 
 
@@ -97,15 +89,53 @@ edited gif, added to repo, updated readme.
 
 
 
-stumps should sort to the ground / floor, under heros feet.
+
+
+fireball++
+the fireball creates an explosion upon contact with obj.
+this explosion creates a ground fire. it shouldn't.
+BUT, fireballs should create ground fires upon impact with bushes.
+upon collision with pots, fireball should create debris and ground fire.
 
 
 
 
 
+
+
+
+
+
+when we hit a bush, we should create bush leaf debris.
+this leaf debris is pushed the direction of the hit on the bush,
+so it inherits the inertia of the hit, 
+
+first, the initial BIG push in the hit direction happens
+then a small random directional push is applied to vary the leaf trajectories.
+BUT this means we need to be moving particles..
 particles should move, if they have magnitude / speed.
 this means we can push particles, giving them inertia.
 this would be very nice.
+
+
+
+
+
+
+
+
+
+
+boomerang sounds are totally wrong, clinks off a bush?
+triggers a bush? no. fix boomerang soundfx.
+
+
+
+
+
+
+
+
 
 
 
@@ -121,14 +151,6 @@ this would be very nice.
 Create NEW WORLD GameObjects
 
 use the new 'wor_' naming convention prefix.
-
-
-
-
-
-add bush, bush stump
-sword should be able to destroy bush to stump
-very low chance of spawning loot
 
 
 

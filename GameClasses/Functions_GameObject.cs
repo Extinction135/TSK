@@ -701,20 +701,20 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Bush)
             {
                 Obj.canBeSaved = true;
-                Obj.compSprite.zOffset = 2;
+                Obj.compSprite.zOffset = -2;
                 Obj.compCollision.blocking = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.World_Bush;
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -5;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 10;
+                Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -2;
+                Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 8;
             }
             else if (Type == ObjType.Wor_Bush_Stump)
             {
                 Obj.canBeSaved = true;
-                Obj.compSprite.zOffset = 0;
+                Obj.compSprite.zOffset = -32;
                 Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.World_BushStump;
                 Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
-                Obj.compCollision.rec.Width = 4; Obj.compCollision.rec.Height = 4;
+                Obj.compCollision.rec.Width = 5; Obj.compCollision.rec.Height = 5;
             }
 
             #endregion

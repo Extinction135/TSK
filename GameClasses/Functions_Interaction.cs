@@ -446,6 +446,14 @@ namespace DungeonRun
                                 Functions_GameObject_Dungeon.LightTorch(RoomObj);
                             }
 
+                            else if(RoomObj.type == ObjType.Wor_Bush)
+                            {   //set a ground fire ON the stump sprite
+                                Functions_Particle.Spawn(
+                                    ObjType.Particle_FireGround,
+                                    RoomObj.compSprite.position.X,
+                                    RoomObj.compSprite.position.Y - 3);
+                            }
+
                             //explosions also trigger common obj interactions
                             Functions_GameObject.HandleCommon(RoomObj,
                                 //get the direction towards the roomObj from the explosion
@@ -504,8 +512,6 @@ namespace DungeonRun
                                 Assets.Play(Assets.sfxTapMetallic);
                                 Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
                             }
-
-
                             //swords 'hurt' some objects
                             if (RoomObj.type == ObjType.Wor_Bush)
                             {   
@@ -515,7 +521,6 @@ namespace DungeonRun
                             {
                                 //dont play any soundfx
                             }
-
                         }
                         else if (Object.lifeCounter == 4)
                         {   //these interactions happen 'mid swing'
