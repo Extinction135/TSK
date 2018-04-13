@@ -181,18 +181,18 @@ namespace DungeonRun
         public static void SetType(GameObject Obj, ObjType Type)
         {   //Obj.direction should be set prior to this method running - important
             Obj.type = Type;
-            
+
 
             #region Assign Level Sheet based on Level.Type Check
 
             if (Level.type == LevelType.Castle)
             { Obj.compSprite.texture = Assets.forestLevelSheet; }
+            else if (Level.type == LevelType.Field)
+            { Obj.compSprite.texture = Assets.forestLevelSheet; }
             //expand this to include all dungeon textures...
-            //else if (Level.type == LevelType.Shop)
-            //{ Obj.compSprite.texture = Assets.forestLevelSheet; }
 
-            //below in type checks, particles/projectiles/pickups switch their texture to Entity Sheet
-            //vendor advertisements set their texture to the UiItems Sheet
+            //below in type checks, objs/particles/projectiles/pickups 
+            //switch their textures to whatever sheet they need
 
             #endregion
 
@@ -681,6 +681,7 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = -32;
                 Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
                 //set animation frame
                 if (Type == ObjType.Wor_Grass_1)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_1; }
@@ -1206,7 +1207,7 @@ namespace DungeonRun
                 Obj.getsAI = true; //obj gets ai too (track to hero, set anim frames)
                 //Obj.compCollision.blocking = false; //pets block!
                 Obj.compSprite.texture = Assets.petsSheet;
-
+                Obj.canBeSaved = true;
                 //set initial animation frames for pets
                 if (Type == ObjType.Pet_Dog)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Pet_Dog_Idle; }

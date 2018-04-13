@@ -69,55 +69,50 @@ TODAY:
 
 
 
-PushLines++
 
-improved the sprites for push lines.
-improved Projectile.Spawn() to more easily
-spawn push lines for boomerang, arrow, fireball, bomb..
-basically abstracted push lines away from whatever
-projectile they 'trail'. looking great now.
+LEVELS + ROOMDATA
 
-fixed a minor bug with how pushlines were offset and placed.
+updated RoomTools with dual states: room and level.
+this simply changes how the loaded roomData is loaded.
 
-throwing the boomerang diagonally should be limited, 
-just like bombs, since it has push lines now. done.
-actually feels better too. it feels good to 'land' a
-quick cardinal throw with a bomb or boomerang.
+why are we saving projectiles? this is old code. remove it.
 
-lots of playtesting.
+improved roomTools to display only room types for room mode,
+and the field type for level mode. this prevents editors
+from creating rooms while in level mode, or creating levels
+in dungeon / room mode.
 
+added Field level type.
+fixed minor bugs with editors where RoomTool's roomType
+button text wasn't getting set properly.
 
+updated how saveData is loaded(), based on editor state.
+if editor is in room mode, then the data is assumed to be room
+data and is loaded into a built dungeon room. if editor is 
+in level mode, then the data is simply loaded in and left
+untouched. this is all handled by BuildRoomData(), 
+which got expanded with paths for room and level.
 
+added folder LevelData to contain all level roomData xml.
+populated it with first of many level roomData xml files.
 
+playtested loading/saving roomdata into rooms.
+playtested loading/saving roomdata into fields.
+fixed a bug where grass objs weren't being saved.
 
+updated buildXMLdata to place hero centered to field levels.
 
+fixed minor bug where some objs couldn't be rotated in 
+dungeonObjsWidget. fixed bug where new room wasn't resetting
+the obj pools for level editor state.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Get Saving and Loading of LEVELS working properly.
-this should be simply loading / saving gameobjs
-because we add additional room building rules in roomTools.
-so we need to NOT do this.
-
-we need a boolean to control the state of the roomTool.
-and this needs to be renamed to Level Tool.
-and the title needs to be "Room Tool" or "Level Tool",
-based on what screen is currently being displayed (the screen
-should set this in it's loadContent() run).
+after lots of playtesting and bug fixing, i'm really proud
+to say that level editor can create, save, and load world
+levels, which lays the foundation for connecting levels between
+the dungeon and the overworld. this allows the game to have an
+'outside', as currently everything is in a tiny room.
+so, this was a really important commit.
+not super complicated, just important.
 
 
 
@@ -135,6 +130,34 @@ should set this in it's loadContent() run).
 
 
 
+
+
+
+
+
+
+
+
+
+Slippery Slope!
+*if we slide a bomb across ice, then onto grass,
+the bomb keeps sliding as if it were on ice. it's a pro.
+so maybe we aren't resetting the friction prior
+to checking projectile interactions with roomObjs?
+
+
+
+
+
+
+
+
+we can set the background color based on the room type
+if(Functions.level.type == world)
+{assets.colorScheme.background = assets.colorScheme.lightWorld;}
+
+*we need light world defs, along with dungeon and dark world defs
+//then we can set the bkg based on level type
 
 
 
@@ -158,11 +181,6 @@ this would be very nice.
 
 
 
-
-
-
-
-
 Boomerangs++
 
 boomerang sounds are totally wrong, clinks off a bush?
@@ -176,15 +194,19 @@ triggers a bush? no. fix boomerang soundfx.
 
 
 
-
-
-
-
-
-
 Create NEW WORLD GameObjects
 
 use the new 'wor_' naming convention prefix.
+
+make a BIG tree, 2 tiles tall.
+should be able to cut it down with several chops from the sword.
+the first chop should drop leaves randomly.
+the second chop should drop more leaves.
+the third chop should destroy the tree, revealing the stump
+drop a ton of leaves every where, and drop loot 50% of the time.
+explosions bring the tree down immediately.
+fireballs create ground fire on the tree stump.
+
 
 
 
@@ -331,7 +353,19 @@ and that would look WRONG.
 
 
 
-
+ENUM FIELDS - OH MY GOD, IF THIS WORKS...
+masterwork: the bitFields used in cursedCastle were FASSSST.
+and we recently learned that booleans / bits are the same cost in
+ram gets/sets as ints, which we can abstract into enums.
+so instead of bitFields, create enumFields.
+they'll be just as fast, and you can model each tile as
+many different ways as you want to, for water / islands / rooms
+anything.. this could actually make procedurally creating rooms
+ALOT faster, because we could build the room up using two enumField
+lists - one for the doors / walls, and one for the interior objs (xml objs).
+we wouldn't need to do collision checking between objects, because
+we'd be setting the tiles by value, and not by position (conceptually).
+so, maybe we spend some time investigating enumFields...
 
 
 

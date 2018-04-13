@@ -54,7 +54,14 @@ namespace DungeonRun
 
 
 
-    public enum LevelType { Road, Castle, Shop }
+    public enum LevelType
+    {
+        Road,
+        Castle, //dungeon
+        Shop, //in game non-dungeon level
+
+        Field //level editor
+    }
 
     public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 

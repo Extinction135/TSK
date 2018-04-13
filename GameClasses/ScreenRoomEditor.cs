@@ -38,6 +38,9 @@ namespace DungeonRun
             Pool.hero.health = 3; //give hero health
             Functions_Hero.UnlockAll(); //unlock all items
 
+            //set the roomTools state to room
+            Widgets.RoomTools.SetState(WidgetRoomToolsState.Room);
+
             //set to black background
             Assets.colorScheme.background = new Color(0, 0, 0, 0);
             //setup the screen

@@ -472,6 +472,8 @@ namespace DungeonRun
 
         public void RotateActiveObj()
         {   
+
+            
             //set activeObj's obj.direction based on type
             if (activeObj.type == ObjType.Dungeon_PitBridge)
             {   //flip between horizontal and vertical directions
@@ -479,9 +481,13 @@ namespace DungeonRun
                 { activeObj.direction = Direction.Left; }
                 else { activeObj.direction = Direction.Down; }
             }
+
             //set object's move component direction based on type
             else if (activeObj.type == ObjType.Dungeon_BlockSpike)
-            { activeObj.compMove.direction = activeObj.direction; }
+            {
+                activeObj.compMove.direction = activeObj.direction;
+            }
+            
 
             //these are objects that we allow rotation upon
             else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
@@ -494,8 +500,10 @@ namespace DungeonRun
                 else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
                 else { activeObj.direction = Direction.Up; }
             }
+
+            
             //rotate doors and walls
-            if(activeObj.group == ObjGroup.Door || activeObj.group == ObjGroup.Wall)
+            else if(activeObj.group == ObjGroup.Door || activeObj.group == ObjGroup.Wall)
             {
                 //flip thru cardinal directions
                 activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
@@ -504,6 +512,7 @@ namespace DungeonRun
                 else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
                 else { activeObj.direction = Direction.Up; }
             }
+            
 
             //set the rotation of the sprite based on obj.direction                                             
             Functions_GameObject.SetRotation(activeObj);
