@@ -54,31 +54,76 @@ namespace DungeonRun
 
 
 
-    public enum LevelType
-    {
-        Road,
-        Castle, //dungeon
-        Shop, //in game non-dungeon level
 
-        Field //level editor
+
+
+
+
+    
+
+
+    public enum LevelID
+    {
+        //overworld levels
+        Colliseum, //field with vendors
+
+        //dungeon levels + entrance levels
+        Castle_Entrance, //field with dungeon entrance
+        Castle_Dungeon, //dungeon, procedurally generated series of rooms
+
+        //locations that cannot be visited
+        Road, //used for connecting levels on map
+
+        //dev (hidden) unreachable locations from game
+        DEV_Room, //single room with walls/doors + rules
+        DEV_Field, //single room without walls/doors
     }
+
+    public enum RoomID
+    {
+        //these DUNGEON rooms have procedural objs added to them
+        Exit, Hub, Boss, Key,
+
+        //these DUNGEON rooms are mostly non-procedural and handmade
+        Column, Row, Square, Secret,
+
+        //these OVERWORLD rooms are mostly non-procedural and handmade
+        Colliseum,
+        CastleEntrance,
+
+        //these DEV rooms are used for testing
+        DEV_Field,
+        DEV_Room
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public enum Music { DungeonA, DungeonB, DungeonC, Boss, Title, None }
 
-    public enum RoomType
-    {
-        //these rooms have procedural objs
-        Exit, Hub, Boss, Key,
-        
-        //these rooms are mostly non-procedural
-        Column, Row, Square, Secret,
-
-        //handmade
-        Shop,
-
-        //endless field (room rec follows hero)
-        Field,
-    }
+    
 
     public enum DoorType { Open, Boss, Bombable }
 

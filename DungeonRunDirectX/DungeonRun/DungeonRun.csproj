@@ -95,6 +95,9 @@
     <Compile Include="..\..\GameClasses\Functions_Draw.cs">
       <Link>Classes\Functions_Draw.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Dungeon.cs">
+      <Link>Classes\Functions_Dungeon.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_GameObject.cs">
       <Link>Classes\Functions_GameObject.cs</Link>
     </Compile>

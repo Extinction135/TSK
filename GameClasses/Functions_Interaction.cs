@@ -80,14 +80,12 @@ namespace DungeonRun
                     if (Obj.type == ObjType.Dungeon_Exit)
                     {
                         if (Functions_Level.levelScreen.displayState == DisplayState.Opened)
-                        {   //if dungeon screen is open, close it, perform interaction ONCE
-                            DungeonRecord.beatDungeon = false;
-                            //is hero exiting a dungeon?
-                            if (Level.type == LevelType.Castle)
-                            { Functions_Level.CloseLevel(ExitAction.ExitDungeon); }
-                            else //return to the overworld screen
-                            { Functions_Level.CloseLevel(ExitAction.Overworld); }
+                        {   
+                            DungeonRecord.Reset();
                             Assets.Play(Assets.sfxDoorOpen);
+                            //goto overworld map screen
+                            Functions_Level.CloseLevel(ExitAction.Overworld);
+                            //Functions_Level.CloseLevel(ExitAction.ExitDungeon);
                         }
                         //stop movement, prevents overlap with exit
                         Functions_Movement.StopMovement(Pool.hero.compMove);

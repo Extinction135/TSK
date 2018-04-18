@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawDebugInfo = false; //draws the bottom debug info
@@ -519,26 +519,26 @@ namespace DungeonRun
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
     public static class Level
     {
         public static List<Room> rooms = new List<Room>();
         public static List<Door> doors = new List<Door>();
+        public static LevelID ID = LevelID.Colliseum;
         public static Boolean bigKey = false;
         public static Boolean map = false;
-        public static LevelType type = LevelType.Castle;
-    }
-
-
-
-
-    // Room Classes
-
-    public class Door
-    {
-        public Rectangle rec = new Rectangle(0, 0, 16, 16);
-        public Boolean visited = false;
-        public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
-        public DoorType type = DoorType.Open;
+        public static Boolean lightWorld = true;
+        public static Boolean isField = true;
     }
 
     public class Room
@@ -548,23 +548,42 @@ namespace DungeonRun
         public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
         public Point center = new Point(0, 0);
         public int XMLid = 0; //index of xmlRoomData list used to build/finish room
-        public RoomType type;
+        public RoomID roomID;
         public Vector2 spawnPos; //where hero can spawn in room (last door passed thru/exit)
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
 
-        public Room(Point Pos, RoomType Type)
+        public Room(Point Pos, RoomID ID)
         {
-            type = Type;
-            Functions_Room.SetType(this, Type);
+            roomID = ID;
+            Functions_Room.SetType(this, ID);
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
             Functions_Room.SetRoomXMLid(this); //get random xml id value
-            spawnPos = new Vector2(0, 0); //this value isn't used (updated later)
+            //center spawnpos to room
+            spawnPos = new Vector2(Pos.X + rec.Width / 2, Pos.Y + rec.Height / 2);
         }
     }
 
+    public class Door
+    {
+        public Rectangle rec = new Rectangle(0, 0, 16, 16);
+        public Boolean visited = false;
+        public Door(Point Pos) { rec.X = Pos.X; rec.Y = Pos.Y; }
+        public DoorType type = DoorType.Open;
+    }
+
+
+
+    
+
+
+
+
+
+
+
     public class RoomXmlData
     {
-        public RoomType type = RoomType.Row;
+        public RoomID type = RoomID.Row;
         public List<ObjXmlData> objs = new List<ObjXmlData>();
     }
 
@@ -575,6 +594,11 @@ namespace DungeonRun
         public float posX = 0;
         public float posY = 0;
     }
+
+
+
+
+
 
 
 
@@ -638,17 +662,16 @@ namespace DungeonRun
 
     public class ColorScheme
     {
+        //game colors
+
+        //points to a bkg_color based on the level loaded
         public Color background = new Color(0, 0, 0, 255);
+        public Color bkg_lightWorld = new Color(150, 150, 150, 255);
+        public Color bkg_darkWorld = new Color(75, 75, 75, 255);
+        public Color bkg_dungeon = new Color(0, 0, 0, 255);
+
+        //covers the screen, fading in/out (usually black)
         public Color overlay = new Color(0, 0, 0, 255);
-        public Color debugBkg = new Color(20, 20, 20, 255);
-
-        public Color collision = new Color(100, 0, 0, 50);
-        public Color interaction = new Color(0, 100, 0, 50);
-        public Color roomRec = new Color(0, 0, 100, 50);
-
-        public Color buttonUp = new Color(44, 44, 44);
-        public Color buttonOver = new Color(66, 66, 66);
-        public Color buttonDown = new Color(100, 100, 100);
 
         public Color windowBkg = new Color(0, 0, 0);
         public Color windowBorder = new Color(210, 210, 210);
@@ -658,9 +681,20 @@ namespace DungeonRun
         public Color textLight = new Color(255, 255, 255);
         public Color textDark = new Color(0, 0, 0);
 
-        public Color mapNotVisited = new Color(130, 130, 130); 
+        public Color mapNotVisited = new Color(130, 130, 130);
         public Color mapVisited = new Color(70, 70, 70);
         public Color mapBlinker = new Color(255, 255, 255);
+
+        //editor colors
+        public Color debugBkg = new Color(20, 20, 20, 255);
+
+        public Color collision = new Color(100, 0, 0, 50);
+        public Color interaction = new Color(0, 100, 0, 50);
+        public Color roomRec = new Color(0, 0, 100, 50);
+
+        public Color buttonUp = new Color(44, 44, 44);
+        public Color buttonOver = new Color(66, 66, 66);
+        public Color buttonDown = new Color(100, 100, 100);
     }
 
     public class Scroll
@@ -940,7 +974,8 @@ namespace DungeonRun
     {
         public ComponentSprite compSprite;
         public Boolean isLevel = false; //is level or connector location?
-        public LevelType levelType = LevelType.Road;
+        public LevelID ID = LevelID.Road; //roads cannot be visited
+
         //cardinal neighbors this location links with
         public MapLocation neighborUp;
         public MapLocation neighborRight;

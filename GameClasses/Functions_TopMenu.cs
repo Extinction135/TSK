@@ -75,6 +75,8 @@ namespace DungeonRun
 
         public static void HandleInput()
         {
+            if (TopDebugMenu.display == WidgetDisplaySet.None) { return; }
+
 
             #region Set Cursor Sprite's AnimationFrame and Position
 
@@ -356,6 +358,8 @@ namespace DungeonRun
 
         public static void Draw()
         {
+            if (TopDebugMenu.display == WidgetDisplaySet.None) { return; }
+
             //draw the background rec with correct color
             ScreenManager.spriteBatch.Draw(Assets.dummyTexture, TopDebugMenu.rec, Assets.colorScheme.debugBkg);
             
@@ -365,29 +369,25 @@ namespace DungeonRun
 
             //draw all editor widgets that TopMenu is responsible for, if we are drawing widgets
 
-            if (TopDebugMenu.display != WidgetDisplaySet.None)
-            {   
-                //if dungeon mode, draw dungeon widgets
-                if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
-                {
-                    Widgets.WidgetObjects_Dungeon.Draw();
-                    Widgets.WidgetObjects_Enemy.Draw();
-                }
-                //if level mode, draw level widgets
-                else if (TopDebugMenu.display == WidgetDisplaySet.World)
-                {
-                    Widgets.WidgetObjects_Environment.Draw();
-                    Widgets.WidgetObjects_Building.Draw();
-                }
-                //shared objs widget too
-                if (TopDebugMenu.displaySharedObjsWidget)
-                { Widgets.WidgetObjects_Shared.Draw(); }
-
-                //draw needed editor widgets
-                Widgets.RoomTools.Draw();
-                Widgets.ObjectTools.Draw();
+            //if dungeon mode, draw dungeon widgets
+            if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
+            {
+                Widgets.WidgetObjects_Dungeon.Draw();
+                Widgets.WidgetObjects_Enemy.Draw();
             }
-            else { } //dont draw any widgets
+            //if level mode, draw level widgets
+            else if (TopDebugMenu.display == WidgetDisplaySet.World)
+            {
+                Widgets.WidgetObjects_Environment.Draw();
+                Widgets.WidgetObjects_Building.Draw();
+            }
+            //shared objs widget too
+            if (TopDebugMenu.displaySharedObjsWidget)
+            { Widgets.WidgetObjects_Shared.Draw(); }
+
+            //draw needed editor widgets
+            Widgets.RoomTools.Draw();
+            Widgets.ObjectTools.Draw();
             
             if (Flags.DrawDebugInfo) { Functions_Debug.Draw(); }
 

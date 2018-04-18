@@ -108,8 +108,9 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closed)
             {   
                 if(exitToOverworld)
-                {   //load overworld map, starting at shop
-                    Level.type = LevelType.Shop;
+                {   
+                    //load overworld map, starting at shop
+                    Level.ID = LevelID.Colliseum;
                     ScreenManager.ExitAndLoad(new ScreenOverworld());
                 }
                 else //or simply exit this screen

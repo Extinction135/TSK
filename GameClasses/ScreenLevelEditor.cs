@@ -20,38 +20,17 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            //set the widgets to display
+            Level.ID = LevelID.DEV_Field;
+            base.LoadContent();
+            //setup level editor 'light world' default state
             Functions_TopMenu.DisplayWidgets(WidgetDisplaySet.World);
-            
-            //register this level screen with Functions_Level
-            Functions_Level.levelScreen = this;
-
-            //clear level and pool data
-            Functions_Level.ResetLevel();
-            Functions_Pool.Reset();
-
-            //create a field for the hero to run around in
-            Functions_Level.currentRoom = new Room(Functions_Level.buildPosition, RoomType.Field);
-            Functions_Room.SetType(Functions_Level.currentRoom, RoomType.Field);
-
-            //set spawnPos to center of room
-            Functions_Level.currentRoom.spawnPos.X = 
-                (Functions_Level.currentRoom.rec.X + Functions_Level.currentRoom.rec.Width / 2);
-            Functions_Level.currentRoom.spawnPos.Y = 
-                (Functions_Level.currentRoom.rec.Y + Functions_Level.currentRoom.rec.Height / 2);
-            Functions_Hero.SpawnInCurrentRoom(); //centered
-            Pool.hero.health = 3; //give hero health
-            Functions_Hero.UnlockAll(); //unlock all items
-
-            //set the roomTools state to level
             Widgets.RoomTools.SetState(WidgetRoomToolsState.Level);
-
-            //set to gray background
-            Assets.colorScheme.background = new Color(150, 150, 150, 255);
+            
             //setup the screen
             overlay.alpha = 0.0f;
             displayState = DisplayState.Opened; //open the screen
             Flags.Paused = false; //unpause editor initially
+            Functions_Hero.UnlockAll(); //unlock all items
         }
 
         public override void HandleInput(GameTime GameTime)

@@ -66,53 +66,31 @@ TODAY:
 
 
 
+Implement Overworld Levels
 
+the game currently only has 'rooms', which are building 
+interiors, essentially. we want outdoor levels, without
+walls or exit objects, where the player feels more free
+to roam. however, these outdoor levels still need to be
+kept small, due to game design constraints.
 
+so the idea is to implement these outdoor levels using
+the same room recs and classes that interior rooms use.
+when the hero stops colliding with a field level's room rec,
+then the hero simply exits back to the overworld screen.
+this has the effect of allowing the player to walk off
+screen to exit any overworld / outdoor level. this approach
+also makes outdoor levels easier to work with, because they
+have exits by default, where as the dungeon's exit room
+MUST have an exit roomObject to return to overworld screen.
 
+to implement all this required changing a bunch of stuff,
+over the course of several days, with lots of playtesting.
 
-LEVELS + ROOMDATA
-
-updated RoomTools with dual states: room and level.
-this simply changes how the loaded roomData is loaded.
-
-why are we saving projectiles? this is old code. remove it.
-
-improved roomTools to display only room types for room mode,
-and the field type for level mode. this prevents editors
-from creating rooms while in level mode, or creating levels
-in dungeon / room mode.
-
-added Field level type.
-fixed minor bugs with editors where RoomTool's roomType
-button text wasn't getting set properly.
-
-updated how saveData is loaded(), based on editor state.
-if editor is in room mode, then the data is assumed to be room
-data and is loaded into a built dungeon room. if editor is 
-in level mode, then the data is simply loaded in and left
-untouched. this is all handled by BuildRoomData(), 
-which got expanded with paths for room and level.
-
-added folder LevelData to contain all level roomData xml.
-populated it with first of many level roomData xml files.
-
-playtested loading/saving roomdata into rooms.
-playtested loading/saving roomdata into fields.
-fixed a bug where grass objs weren't being saved.
-
-updated buildXMLdata to place hero centered to field levels.
-
-fixed minor bug where some objs couldn't be rotated in 
-dungeonObjsWidget. fixed bug where new room wasn't resetting
-the obj pools for level editor state.
-
-after lots of playtesting and bug fixing, i'm really proud
-to say that level editor can create, save, and load world
-levels, which lays the foundation for connecting levels between
-the dungeon and the overworld. this allows the game to have an
-'outside', as currently everything is in a tiny room.
-so, this was a really important commit.
-not super complicated, just important.
+also, camera tracking to hero has been disabled for now.
+the camera simply centers itself to the current room, and
+quickly flys between rooms inside the dungeon, which is
+similar to how the original zelda handled the camera.
 
 
 
@@ -132,6 +110,26 @@ not super complicated, just important.
 
 
 
+Buggos to fix
+
+'game' mode is working really well, but editor is borken.
+
+simply clicking 'new room' button, while in room editor mode,
+locks the game/editor up. freezes it. why?
+
+we are running into a problem where we load an xml file, which
+is room specific, and instead we build the objs onto a field.
+
+
+
+
+teleport hero's dog to hero upon spawn into colliseum level
+
+
+
+Dungeon Entrance Obj + Level
+next, we need to create a dungeon entrance obj, and dungeon
+entrance level. then add these to roomData.
 
 
 
@@ -139,11 +137,6 @@ not super complicated, just important.
 
 
 
-Slippery Slope!
-*if we slide a bomb across ice, then onto grass,
-the bomb keeps sliding as if it were on ice. it's a pro.
-so maybe we aren't resetting the friction prior
-to checking projectile interactions with roomObjs?
 
 
 
@@ -151,13 +144,34 @@ to checking projectile interactions with roomObjs?
 
 
 
+Outdoor Shop Level
 
-we can set the background color based on the room type
-if(Functions.level.type == world)
-{assets.colorScheme.background = assets.colorScheme.lightWorld;}
+then we need to create a field level for the game, with the vendors in it.
+we need to add this exit object, which allows the hero to return to 
+the overworld (simply exits all and makes overworld screen).
+based on level type, hero spawns on overworld map.
+this should replace the SHOP level type.
+there should be objects that prevent link from leaving the screen.
+the camera should be locked and unmoveable, centered to room.
+link should spawn in front of the exit, as if he just walked up.
+this mimics the dungeon start, but it's an open air level.
+overworld exits should be marked with signposts, and look kinda like exits too..
 
-*we need light world defs, along with dungeon and dark world defs
-//then we can set the bkg based on level type
+
+
+
+
+
+DungeonEntrance Level
+
+we can do this level design again for the dungeon entrance level, and
+we already have the dungeon entrance object. we need an overworld exit obj too,
+which we should already have from the outdoor shop level.
+remember, this object simply loads the overworld screen.
+the level.type determines where link 'spawns' on the map.
+
+
+
 
 
 
@@ -206,78 +220,6 @@ the third chop should destroy the tree, revealing the stump
 drop a ton of leaves every where, and drop loot 50% of the time.
 explosions bring the tree down immediately.
 fireballs create ground fire on the tree stump.
-
-
-
-
-
-
-World and Dungeon Background Colors
-we need to be able to display a black bkg for dungeons and gray bkg for world
-and later a dark gray bkg for the dark world
-we currently don't draw a background color from level.draw, and we should
-instead we're clearing the graphics device from screenmanager to the assets.colorscheme.bkg color
-
-
-
-
-
-
-
-
-Implement Level Editor and Level Save System
-
-we need world gameobjects, like bushes, trees, etc...
-this is going to grow Obj.SetType() considerably..
-
-we need to be able to save level objects to a level file.
-this is larger and different than the room save data files.
-
-Add Outside World Objs
-Add Outside Ground Objs
-
-Design and Link up new World Levels:
-Dungeon Entrance Level
-Outside Town Level
-
-
-
-
-
-
-
-
-
-LevelTools Widget
-
-RoomTools Widget wouldn't be used by level.
-we instead need a levelTools widget.
-this would save, load, reload LEVELS.
-this would CLEAR the current level.
-we need a mockup for this too, and it 
-should fit into the space for RoomTools.
-
-hmm... or we could have a boolean that sets
-the roomTools widget to room or level,
-then modifies the UI / paths. this seems 
-like the fastest and easiest solution here.
-
-saving level data is just dumping roomObjs to xml,
-just like roomData, but it's saved in a different location.
-and when it's loaded, a room isn't built.
-only the level data is built. 
-maybe a 'field' is built as a bkg. (random animated grass placement)
-
-
-
-we should be able to load an outside level, which has two exits:
-to overworld, or to the dungeon.
-
-the town level just has buildings, vendors, and an exit to the overworld.
-overworld exits should be marked with signposts, and look like exits too..
-
-
-
 
 
 
@@ -345,7 +287,11 @@ and that would look WRONG.
 
 
 
-
+Slippery Slope!
+*if we slide a bomb across ice, then onto grass,
+the bomb keeps sliding as if it were on ice. it's a pro.
+so maybe we aren't resetting the friction prior
+to checking projectile interactions with roomObjs?
 
 
 

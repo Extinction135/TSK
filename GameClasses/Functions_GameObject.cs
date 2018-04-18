@@ -185,12 +185,7 @@ namespace DungeonRun
 
             #region Assign Level Sheet based on Level.Type Check
 
-            if (Level.type == LevelType.Castle)
-            { Obj.compSprite.texture = Assets.forestLevelSheet; }
-            else if (Level.type == LevelType.Field)
-            { Obj.compSprite.texture = Assets.forestLevelSheet; }
-            //expand this to include all dungeon textures...
-
+            Obj.compSprite.texture = Assets.forestLevelSheet;
             //below in type checks, objs/particles/projectiles/pickups 
             //switch their textures to whatever sheet they need
 
@@ -758,6 +753,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = 0;
                 Obj.compAnim.speed = 20; //slow animation
                 Obj.group = ObjGroup.Vendor;
+                Obj.canBeSaved = true;
 
                 if (Type == ObjType.Vendor_NPC_Items) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Items; }
                 else if (Type == ObjType.Vendor_NPC_Potions) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Potions; }

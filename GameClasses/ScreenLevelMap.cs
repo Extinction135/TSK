@@ -22,10 +22,14 @@ namespace DungeonRun
         public List<Door> doors;
         public Rectangle marker = new Rectangle(-100, -100, 1, 1); //marks current room
         public float markerAlpha = 0.0f;
-        public ComponentText bossIcon = new ComponentText(Assets.font, "B", new Vector2(), Assets.colorScheme.textDark);
-        public ComponentText keyIcon = new ComponentText(Assets.font, "K", new Vector2(), Assets.colorScheme.textDark);
-        public ComponentText hubIcon = new ComponentText(Assets.font, "H", new Vector2(), Assets.colorScheme.textDark);
-        public ComponentText exitIcon = new ComponentText(Assets.font, "E", new Vector2(), Assets.colorScheme.textDark);
+        public ComponentText bossIcon = new ComponentText(
+            Assets.font, "B", new Vector2(), Assets.colorScheme.textDark);
+        public ComponentText keyIcon = new ComponentText(
+            Assets.font, "K", new Vector2(), Assets.colorScheme.textDark);
+        public ComponentText hubIcon = new ComponentText(
+            Assets.font, "H", new Vector2(), Assets.colorScheme.textDark);
+        public ComponentText exitIcon = new ComponentText(
+            Assets.font, "E", new Vector2(), Assets.colorScheme.textDark);
 
 
 
@@ -65,7 +69,7 @@ namespace DungeonRun
             for (i = 0; i < Level.rooms.Count; i++)
             {
                 dungeonRoom = Level.rooms[i];
-                Room mapRoom = new Room(new Point(0, 0), dungeonRoom.type);
+                Room mapRoom = new Room(new Point(0, 0), dungeonRoom.roomID);
                 //get the room size
                 mapRoom.rec.Width = dungeonRoom.size.X;
                 mapRoom.rec.Height = dungeonRoom.size.Y;
@@ -97,10 +101,10 @@ namespace DungeonRun
                     iconPos = new Vector2( //the center of the current mapRoom
                         mapRoom.rec.X + (mapRoom.rec.Width / 2) - 1,
                         mapRoom.rec.Y + (mapRoom.rec.Height / 2) - 7);
-                    if (dungeonRoom.type == RoomType.Boss) { bossIcon.position = iconPos; }
-                    else if (dungeonRoom.type == RoomType.Key) { keyIcon.position = iconPos; }
-                    else if (dungeonRoom.type == RoomType.Hub) { hubIcon.position = iconPos; }
-                    else if (dungeonRoom.type == RoomType.Exit) { exitIcon.position = iconPos; }
+                    if (dungeonRoom.roomID == RoomID.Boss) { bossIcon.position = iconPos; }
+                    else if (dungeonRoom.roomID == RoomID.Key) { keyIcon.position = iconPos; }
+                    else if (dungeonRoom.roomID == RoomID.Hub) { hubIcon.position = iconPos; }
+                    else if (dungeonRoom.roomID == RoomID.Exit) { exitIcon.position = iconPos; }
                 }
             }
 
@@ -172,7 +176,10 @@ namespace DungeonRun
 
         public override void Draw(GameTime GameTime)
         {
-            ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            ScreenManager.spriteBatch.Begin(
+                SpriteSortMode.Deferred, 
+                BlendState.AlphaBlend, 
+                SamplerState.PointClamp);
             Functions_Draw.Draw(background);
             Functions_Scroll.Draw(scroll);
             if (scroll.displayState == DisplayState.Opened)

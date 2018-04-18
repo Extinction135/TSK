@@ -109,7 +109,7 @@ namespace DungeonRun
         {   //we never release a floor sprite, and floors are returned sequentially
             Pool.floorIndex++;
             if (Pool.floorIndex == Pool.floorCount)
-            { Pool.floorIndex = Pool.floorCount; } //ran out of floors to return
+            { Pool.floorIndex = 0; } //ran out of floors to return
             Pool.floorPool[Pool.floorIndex].visible = true;
             return Pool.floorPool[Pool.floorIndex];
         }

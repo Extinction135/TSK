@@ -166,7 +166,7 @@ namespace DungeonRun
                 //store filename in RoomTools widget
                 Widgets.RoomTools.window.title.text = loadFile.Name;
                 //build the loaded roomData
-                Widgets.RoomTools.BuildRoomData(Widgets.RoomTools.roomData);
+                Widgets.RoomTools.LoadRoomData(Widgets.RoomTools.roomData);
             }
         }
 
@@ -190,13 +190,16 @@ namespace DungeonRun
                 Stream stream = await roomDataFiles[i].OpenStreamForReadAsync();
                 using (stream)
                 { RoomData = (RoomXmlData)serializer.Deserialize(stream); }
+				
                 //place the loaded roomData into the correct Assets list
-                if (RoomData.type == RoomType.Boss) { Assets.roomDataBoss.Add(RoomData); }
-                else if (RoomData.type == RoomType.Column) { Assets.roomDataColumn.Add(RoomData); }
-                else if (RoomData.type == RoomType.Hub) { Assets.roomDataHub.Add(RoomData); }
-                else if (RoomData.type == RoomType.Key) { Assets.roomDataKey.Add(RoomData); }
-                else if (RoomData.type == RoomType.Row) { Assets.roomDataRow.Add(RoomData); }
-                else if (RoomData.type == RoomType.Square) { Assets.roomDataSquare.Add(RoomData); }
+                if (RoomData.type == RoomID.Boss) { Assets.roomDataBoss.Add(RoomData); }
+                else if (RoomData.type == RoomID.Column) { Assets.roomDataColumn.Add(RoomData); }
+                else if (RoomData.type == RoomID.Hub) { Assets.roomDataHub.Add(RoomData); }
+                else if (RoomData.type == RoomID.Key) { Assets.roomDataKey.Add(RoomData); }
+                else if (RoomData.type == RoomID.Row) { Assets.roomDataRow.Add(RoomData); }
+                else if (RoomData.type == RoomID.Square) { Assets.roomDataSquare.Add(RoomData); }
+				//if roomData isn't dungeon, then it defaults to overworld level list
+                else { Assets.overworldLevels.Add(RoomData); };
             }
 			if (Flags.PrintOutput) { Functions_Debug.InspectRoomData(); }
         }

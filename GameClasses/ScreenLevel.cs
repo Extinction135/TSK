@@ -22,19 +22,20 @@ namespace DungeonRun
         public ScreenLevel() { this.name = "LevelScreen"; }
 
         public override void LoadContent()
-        {
+        {   
             overlay.alpha = 1.0f;
             overlay.fadeOutSpeed = 0.025f;
             //register this dungeon screen with Functions_Level
             Functions_Level.levelScreen = this;
-            Functions_Level.BuildLevel();
-
+            //level id is set by overworld screen
+            Functions_Level.BuildLevel(Level.ID); 
             //load hero's actorType from SaveData
             Functions_Actor.SetType(Pool.hero, PlayerData.current.actorType);
             Functions_Hero.SetLoadout();
-
             //open the screen
             displayState = DisplayState.Opening;
+            //close all topMenu widgets, if any are visible
+            TopDebugMenu.display = WidgetDisplaySet.None;
         }
 
         public override void HandleInput(GameTime GameTime)

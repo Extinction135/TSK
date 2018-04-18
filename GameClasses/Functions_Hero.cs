@@ -38,81 +38,92 @@ namespace DungeonRun
 
         public static void CheckRoomCollision()
         {
+            if (Level.isField)
+            {   //hero is in level
 
-            #region Handle Hero transferring between Level.Rooms
+                #region Handle hero transferring back to overworld screen
 
-            for (i = 0; i < Level.rooms.Count; i++)
-            {   //if the current room is not the room we are checking against, then continue
-                if (Functions_Level.currentRoom != Level.rooms[i])
-                {   //if heroRec collides with room rec, set it as currentRoom, build room
-                    if (heroRec.Intersects(Level.rooms[i].rec))
-                    {
-                        Functions_Level.currentRoom = Level.rooms[i];
-                        Level.rooms[i].visited = true;
-                        Functions_Room.BuildRoom(Level.rooms[i]);
-                        Functions_Room.FinishRoom(Level.rooms[i]);
-                        if (Functions_Level.currentRoom.type == RoomType.Boss)
-                        {   //if hero just entered the boss room, play the boss intro & music
-                            Assets.Play(Assets.sfxBossIntro);
-                            Functions_Music.PlayMusic(Music.Boss);
-                        }
-                    }
-                }
-            }
-
-            #endregion
-
-
-            #region Track Doors that Hero has visited
-
-            for (i = 0; i < Level.doors.Count; i++)
-            {   //check heroRec collision against Level.doors
-                if (heroRec.Intersects(Level.doors[i].rec))
-                {   //track doors hero has visited
-                    Level.doors[i].visited = true;
-                    if (Level.doors[i].type == DoorType.Open)
-                    {   //set the current room's spawnPos to the last open door hero collided with
-                        Functions_Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
-                        Functions_Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
-                    }
-                }
-            }
-
-            #endregion
-
-
-            #region Open/Close Doors for Hero
-
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].active) //roomObj must be active
+                if(heroRec.Intersects(Functions_Level.currentRoom.rec) == false)
                 {
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
-                    {   //set open/bombed doors to blocking or non-blocking
-                        Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
+                    Functions_Level.CloseLevel(ExitAction.Overworld);
+                }
 
-                        //compare hero to door positions, unblock door if hero is close enough
-                        if (Math.Abs(Pool.hero.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
-                        {   //compare hero to door sprite positions, unblock door if hero is close enough
-                            if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
-                            { Pool.roomObjPool[i].compCollision.blocking = false; }
-                        }
+                #endregion
 
-                        /*
-                        //do this for hero's pet as well
-                        if (Math.Abs(Pool.herosPet.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
+            }
+            else
+            {
+                //hero is in dungeon
+
+                #region Handle Hero transferring between Level.Rooms
+
+                for (i = 0; i < Level.rooms.Count; i++)
+                {   //if the current room is not the room we are checking against, then continue
+                    if (Functions_Level.currentRoom != Level.rooms[i])
+                    {   //if heroRec collides with room rec, set it as currentRoom, build room
+                        if (heroRec.Intersects(Level.rooms[i].rec))
                         {
-                            if (Math.Abs(Pool.herosPet.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
-                            { Pool.roomObjPool[i].compCollision.blocking = false; }
+                            Functions_Level.currentRoom = Level.rooms[i];
+                            Level.rooms[i].visited = true;
+                            Functions_Room.BuildRoom(Level.rooms[i]);
                         }
-                        */
-
                     }
                 }
+
+                #endregion
+
+
+                #region Track Doors that Hero has visited
+
+                for (i = 0; i < Level.doors.Count; i++)
+                {   //check heroRec collision against Level.doors
+                    if (heroRec.Intersects(Level.doors[i].rec))
+                    {   //track doors hero has visited
+                        Level.doors[i].visited = true;
+                        if (Level.doors[i].type == DoorType.Open)
+                        {   //set the current room's spawnPos to the last open door hero collided with
+                            Functions_Level.currentRoom.spawnPos.X = Level.doors[i].rec.X + 8;
+                            Functions_Level.currentRoom.spawnPos.Y = Level.doors[i].rec.Y + 8;
+                        }
+                    }
+                }
+
+                #endregion
+
+
+                #region Open/Close Doors for Hero
+
+                for (i = 0; i < Pool.roomObjCount; i++)
+                {
+                    if (Pool.roomObjPool[i].active) //roomObj must be active
+                    {
+                        if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
+                        {   //set open/bombed doors to blocking or non-blocking
+                            Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
+
+                            //compare hero to door positions, unblock door if hero is close enough
+                            if (Math.Abs(Pool.hero.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
+                            {   //compare hero to door sprite positions, unblock door if hero is close enough
+                                if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
+                                { Pool.roomObjPool[i].compCollision.blocking = false; }
+                            }
+
+                            /*
+                            //do this for hero's pet as well
+                            if (Math.Abs(Pool.herosPet.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
+                            {
+                                if (Math.Abs(Pool.herosPet.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
+                                { Pool.roomObjPool[i].compCollision.blocking = false; }
+                            }
+                            */
+
+                        }
+                    }
+                }
+
+                #endregion
+
             }
-
-            #endregion
-
         }
 
         public static void ClearInteractionRec()
@@ -330,8 +341,13 @@ namespace DungeonRun
             }
         }
 
+
+
+
+
         public static void SpawnInCurrentRoom()
-        {   //teleport hero to currentRoom's spawn position
+        {   
+            //teleport hero to currentRoom's spawn position
             Functions_Movement.Teleport(Pool.hero.compMove,
                 Functions_Level.currentRoom.spawnPos.X,
                 Functions_Level.currentRoom.spawnPos.Y);
@@ -351,6 +367,9 @@ namespace DungeonRun
             Camera2D.currentPosition.X = Camera2D.targetPosition.X;
             Camera2D.currentPosition.Y = Camera2D.targetPosition.Y;
             Functions_Camera2D.Update();
+
+            boomerangInPlay = false; //boomerang could of been lost in prev room
+            SpawnPet();
         }
 
         public static void DropCarryingObj()
@@ -571,12 +590,7 @@ namespace DungeonRun
             else { Pool.hero.equipment = MenuItemType.Unknown; }
         }
 
-        public static void ResetUponRoomBuild()
-        {
-            //hero-related things that reset upon a roomBuild()
-            boomerangInPlay = false; //boomerang could of been lost in prev room
-            SpawnPet();
-        }
+
 
         public static void SpawnPet()
         {   //spawn the hero's pet based on type

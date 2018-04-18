@@ -32,6 +32,8 @@ namespace DungeonRun
         Vector2 wavePos; //points to one of the vector2s in waveSpawnPositions list
 
 
+        
+
 
         public ScreenOverworld() { this.name = "OverworldScreen"; }
 
@@ -113,11 +115,6 @@ namespace DungeonRun
             #endregion
 
 
-            //set level types
-            castle.levelType = LevelType.Castle;
-            colliseum.levelType = LevelType.Shop;
-
-
             #region Set maplocation's neighbors
 
             rightCastleTown.neighborLeft = castle;
@@ -189,14 +186,20 @@ namespace DungeonRun
             #endregion
 
 
-            #region Set Starting Location
+            #region Setup Locations & Starting Location
 
-            //figure out the starting location based on previousLevel instance
-            for (i = 0; i < locations.Count; i++)
-            {
-                if (locations[i].levelType == Level.type)
-                { currentLocation = locations[i]; }
-            }
+            //set level types
+            castle.ID = LevelID.Castle_Dungeon;
+            colliseum.ID = LevelID.Colliseum;
+
+
+
+            //translate level.type to current map location
+            if (Level.ID == LevelID.Colliseum) { currentLocation = colliseum; }
+            else if(Level.ID == LevelID.Castle_Dungeon) { currentLocation = castle; }
+
+
+
             //set target to current (no initial target)
             targetLocation = currentLocation;
 
@@ -208,6 +211,9 @@ namespace DungeonRun
             Functions_Component.Align(hero.compMove, hero.compSprite, hero.compCollision);
 
             #endregion
+
+
+
 
 
             //play the title music
@@ -375,7 +381,7 @@ namespace DungeonRun
                 Functions_ActorAnimationList.SetAnimationGroup(hero);
                 Functions_ActorAnimationList.SetAnimationDirection(hero);
                 Functions_Animation.Animate(hero.compAnim, hero.compSprite);
-                scroll.title.text = "Overworld Map - " + currentLocation.levelType;
+                scroll.title.text = "Overworld Map - " + currentLocation.ID;
 
 
                 #region Wave Generation Routine
@@ -409,9 +415,6 @@ namespace DungeonRun
                         Functions_Particle.Update(Pool.particlePool[i]);
                     }
                 }
-
-
-
             }
             else if (scroll.displayState == DisplayState.Closing)
             {   //fade overlay in
@@ -420,9 +423,10 @@ namespace DungeonRun
                 Functions_Scroll.AnimateClosed(scroll);
             }
             else if (scroll.displayState == DisplayState.Closed)
-            {   //set the type of level dungeon screen is about to build
-                Level.type = currentLocation.levelType;
-                //load the dungeon screen, building the level
+            {
+                //set the level id based on the current location
+                Level.ID = currentLocation.ID;
+                //load the level, building the room(s)
                 ScreenManager.ExitAndLoad(new ScreenLevel());
             }
         }
