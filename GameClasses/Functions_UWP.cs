@@ -166,7 +166,7 @@ namespace DungeonRun
                 //store filename in RoomTools widget
                 Widgets.RoomTools.window.title.text = loadFile.Name;
                 //build the loaded roomData
-                Widgets.RoomTools.LoadRoomData(Widgets.RoomTools.roomData);
+                Widgets.RoomTools.BuildFromFile(Widgets.RoomTools.roomData);
             }
         }
 

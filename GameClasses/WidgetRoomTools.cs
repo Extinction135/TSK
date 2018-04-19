@@ -133,21 +133,54 @@ namespace DungeonRun
                     {   //check to see if the user has clicked on a button
                         if (buttons[i].rec.Contains(Input.cursorPos))
                         {
-                            
+
+                            #region Save
+
                             if (buttons[i] == saveBtn)
                             {
                                 SaveCurrentRoom();
                             }
+
+                            #endregion
+
+
+                            #region Load
+
                             else if (buttons[i] == loadBtn)
                             {
                                 Functions_Backend.SelectRoomFile();
                             }
+
+                            #endregion
+
+
+                            #region New Room 
+
                             else if (buttons[i] == newRoomBtn)
-                            {   //create a new room based on the type buttons state
+                            {
+                                //assume we are developing a dungeon room
+                                Level.ID = LevelID.DEV_Room;
+                                //then check if we are developing a field room
+                                if (roomID == RoomID.DEV_Field) { Level.ID = LevelID.DEV_Field; }
+                                //hack: create new roomData instance, set the roomID into it
+                                //then in BuildLevel(), the roomData.type is checked
                                 roomData = new RoomXmlData();
                                 roomData.type = roomID;
-                                LoadRoomData(roomData);
+
+                                Debug.WriteLine("level id: " + Level.ID);
+                                Debug.WriteLine("room id: " + roomID);
+                                Functions_Level.BuildLevel(Level.ID);
+
+                                //Functions_Level.levelScreen.displayState = DisplayState.Opened;
+
+                                
                             }
+
+                            #endregion
+
+
+                            #region Set Room Type
+
                             else if (buttons[i] == roomTypeBtn)
                             {
                                 if (state == WidgetRoomToolsState.Room)
@@ -159,6 +192,8 @@ namespace DungeonRun
                                     else if (roomID == RoomID.Hub) { roomID = RoomID.Boss; }
                                     else if (roomID == RoomID.Boss) { roomID = RoomID.Key; }
                                     else if (roomID == RoomID.Key) { roomID = RoomID.Column; }
+                                    //loop dev room back into the list
+                                    else if (roomID == RoomID.DEV_Room) { roomID = RoomID.Row; }
                                 }
                                 else
                                 {
@@ -169,11 +204,19 @@ namespace DungeonRun
                                 //set the text in button to roomType enum
                                 roomTypeBtn.compText.text = "" + roomID;
                             }
+
+                            #endregion
+
+
+                            #region Reload
+
                             else if (buttons[i] == reloadRoomBtn)
                             {   //assumes roomData hasn't changed since last build
-                                LoadRoomData(roomData);
-                            } 
-                            
+                                //LoadRoomData(roomData);
+                            }
+
+                            #endregion
+
                         }
                     }
                 }
@@ -246,85 +289,22 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
-
-
-
-
-
-
         
-
-        public void LoadRoomData(RoomXmlData RoomXmlData)
-        {
-            Functions_Level.ResetLevel();
-            Functions_Level.SetFloorTexture(LevelID.Castle_Dungeon);
-            Functions_Pool.Reset();
-            
-
-            #region Setup Level or Room based on EditorState
-
-            if (state == WidgetRoomToolsState.Level)
-            {
-                Level.ID = LevelID.DEV_Field;
-                Functions_Level.currentRoom = new Room(Functions_Level.buildPosition, RoomID.DEV_Field);
-                Level.map = false; //there is no level map
+        public void BuildFromFile(RoomXmlData RoomXmlData)
+        {   //called at end of functions_backend (directx or uwp) 
+            //after it's deserialized xml into Widgets.RoomTools.roomData
+            if (state == WidgetRoomToolsState.Room)
+            {   //build walled empty room with floors, add xml objs, etc...
+                Functions_Dungeon.BuildRoomFrom(RoomXmlData);
             }
             else
-            {
-                Level.ID = LevelID.DEV_Room;
-                //build the room, if room data exists
-                if (RoomXmlData != null)
-                { Functions_Level.currentRoom = new Room(Functions_Level.buildPosition, RoomXmlData.type); }
-                else //if room data doesn't exist, create a default row room
-                { Functions_Level.currentRoom = new Room(Functions_Level.buildPosition, RoomID.DEV_Room); }
-                //set dungeon map
-                if (Flags.MapCheat) { Level.map = true; } else { Level.map = false; }
+            {   //clear all objs, add xml objs
+                Functions_Pool.Reset();
+                Functions_Room.BuildRoomXmlData(RoomXmlData);
             }
-
-            #endregion
-
-
-            //setup the current room
-            Level.rooms.Add(Functions_Level.currentRoom);
-            Functions_Level.currentRoom.visited = true;
-
-            
-            #region Add Example Doors to Dungeon Rooms
-
-            if (state == WidgetRoomToolsState.Room)
-            {
-                //simplify / collect room values
-                int posX = Functions_Level.currentRoom.rec.X;
-                int posY = Functions_Level.currentRoom.rec.Y;
-                int middleX = (Functions_Level.currentRoom.size.X / 2) * 16;
-                int middleY = (Functions_Level.currentRoom.size.Y / 2) * 16;
-                int width = Functions_Level.currentRoom.size.X * 16;
-                int height = Functions_Level.currentRoom.size.Y * 16;
-
-                //set NSEW doors positions
-                Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
-                Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
-                Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
-                Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
-            }
-
-            #endregion
-
-
-            Functions_Room.BuildRoom(Functions_Level.currentRoom, RoomXmlData);
-            
-            if (state == WidgetRoomToolsState.Room)
-            {   //set spawnPos outside TopLeft of newly built room
-                Functions_Level.currentRoom.spawnPos.X = Functions_Level.currentRoom.rec.X - 32;
-                Functions_Level.currentRoom.spawnPos.Y = Functions_Level.currentRoom.rec.Y;
-            }
-
             Functions_Pool.Update(); //update roomObjs once
             Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
-            Pool.hero.direction = Direction.Down; //face hero down
+            Pool.hero.direction = Direction.Down;
             Flags.Paused = true;
         }
 

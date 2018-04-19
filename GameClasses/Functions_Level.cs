@@ -60,23 +60,72 @@ namespace DungeonRun
                 //Flags.CameraTracksHero = true;
             }
 
-            SetFloorTexture(levelID);
-            if (Flags.PrintOutput) { Debug.WriteLine("-- building level/dungeon --"); }
-            stopWatch.Reset(); stopWatch.Start();
+            //set the background color
+            if (Level.lightWorld)
+            { Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld; }
+            else { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
+
             //setup the room (level), or series of rooms (dungeon)
+            if (Flags.PrintOutput)
+            { Debug.WriteLine("-- building level: " + Level.ID + " --"); }
+            stopWatch.Reset(); stopWatch.Start();
 
 
-            #region Build Field Levels
 
-            if (Level.ID == LevelID.Colliseum)
+
+
+
+
+            #region Build DEV Levels
+
+            if (Level.ID == LevelID.DEV_Room)
             {
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Colliseum);
-                Level.rooms.Add(field);
-            }
+                //make a new room, which inherits the RoomTool's roomData type
+                //because we'd like to be able to build row, column, boss, key, square type rooms
+                //not just the DEV_Room room type...
+                RoomID roomType = RoomID.Row;
+                //if roomTools roomData exists, get it's room type
+                if (Widgets.RoomTools.roomData != null)
+                { roomType = Widgets.RoomTools.roomData.type; }
 
+                //build the dev room based on roomType
+                Room room = new Room(new Point(buildPosition.X, buildPosition.Y), roomType); 
+                Level.rooms.Add(room); //spawn room must be index0
+
+                //set spawnPos outside TopLeft of new dev room
+                room.spawnPos.X = room.rec.X - 32;
+                room.spawnPos.Y = room.rec.Y;
+
+                //add temporary doors to this room, so hero can enter/exit it
+                int posX = room.rec.X;
+                int posY = room.rec.Y;
+                int middleX = (room.size.X / 2) * 16;
+                int middleY = (room.size.Y / 2) * 16;
+                int width = room.size.X * 16;
+                int height = room.size.Y * 16;
+                //set NSEW door positions
+                Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
+                Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
+                Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
+                Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
+            }
             else if (Level.ID == LevelID.DEV_Field)
             {
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
+                Level.rooms.Add(field);
+
+                //do we need to add anything to the default field dev level?
+            }
+
+            #endregion
+
+            //or
+
+            #region Build Overworld Field Levels
+
+            else if (Level.ID == LevelID.Colliseum)
+            {
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Colliseum);
                 Level.rooms.Add(field);
             }
             else if (Level.ID == LevelID.Castle_Entrance)
@@ -87,17 +136,7 @@ namespace DungeonRun
 
             #endregion
 
-
-            #region Build Single Room Levels
-
-            else if(Level.ID == LevelID.DEV_Room)
-            {
-                Room room = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Room);
-                Level.rooms.Add(room); //spawn room must be index0
-            }
-
-            #endregion
-
+            //or
 
             #region Build Multi-Room Dungeon
 
@@ -229,7 +268,10 @@ namespace DungeonRun
             Level.rooms[0].visited = true;
             currentRoom = Level.rooms[0];
             Functions_Room.BuildRoom(currentRoom);
-            
+
+            //set floor textures
+            SetFloorTexture(levelID);
+
             //spawn hero in 1st room, facing up
             Functions_Hero.SpawnInCurrentRoom();
             Pool.hero.direction = Direction.Up;
@@ -239,7 +281,9 @@ namespace DungeonRun
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.dungeonTime = time.Ticks;
             if (Flags.PrintOutput)
-            { Debug.WriteLine("level/dungeon built in " + time.Ticks + " ticks"); }
+            {
+                Debug.WriteLine("level " + Level.ID + " built in " + time.Ticks + " ticks");
+            }
 
             //fade the dungeon screen out from black, revealing the new level
             levelScreen.overlay.alpha = 1.0f;

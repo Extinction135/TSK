@@ -66,34 +66,32 @@ TODAY:
 
 
 
-Implement Overworld Levels
 
-the game currently only has 'rooms', which are building 
-interiors, essentially. we want outdoor levels, without
-walls or exit objects, where the player feels more free
-to roam. however, these outdoor levels still need to be
-kept small, due to game design constraints.
+Editor++
 
-so the idea is to implement these outdoor levels using
-the same room recs and classes that interior rooms use.
-when the hero stops colliding with a field level's room rec,
-then the hero simply exits back to the overworld screen.
-this has the effect of allowing the player to walk off
-screen to exit any overworld / outdoor level. this approach
-also makes outdoor levels easier to work with, because they
-have exits by default, where as the dungeon's exit room
-MUST have an exit roomObject to return to overworld screen.
-
-to implement all this required changing a bunch of stuff,
-over the course of several days, with lots of playtesting.
-
-also, camera tracking to hero has been disabled for now.
-the camera simply centers itself to the current room, and
-quickly flys between rooms inside the dungeon, which is
-similar to how the original zelda handled the camera.
+fixed a variety of bugs with editor:
+X - clicking 'new room' button freezes editor.
+X - unable to traverse room types in room type button.
+X - simplified RoomTools.LoadRoomData().
+just a ton of bug fixing and refactoring to get
+roomData, rooms, and levels interacting properly.
 
 
 
+
+
+
+
+
+room editor button should be down when in that mode
+same with level editor button...
+
+the problem we're chasing is when we load colliseum xml, then click new button,
+the editor goes totally black and doesnt even draw the cursor..?
+
+
+we also can't create new rooms of type: row, square, column, key, boss, or hub
+code's still pulling and building these room types from random XML
 
 
 
@@ -104,18 +102,31 @@ similar to how the original zelda handled the camera.
 
 
 
+add soundfx for cutting grass, which is the same as bush
 
 
 
 
 
 
-Buggos to fix
 
-'game' mode is working really well, but editor is borken.
 
-simply clicking 'new room' button, while in room editor mode,
-locks the game/editor up. freezes it. why?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 we are running into a problem where we load an xml file, which
 is room specific, and instead we build the objs onto a field.

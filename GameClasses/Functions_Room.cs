@@ -133,77 +133,55 @@ namespace DungeonRun
         }
         
 
-        public static void BuildRoom(Room Room, RoomXmlData roomXmlData = null)
+        public static void BuildRoom(Room Room, RoomXmlData RoomXmlData = null)
         {
 
+            //if we are developing, clear roomXmlData
+            //if (Room.roomID == RoomID.DEV_Room || Room.roomID == RoomID.DEV_Field)
+            //{ RoomXmlData = new RoomXmlData(); }
 
-
-
-
-            if(roomXmlData == null)
+            if (RoomXmlData == null)
             {
                 //if the roomData is null, then the method must set the roomData
                 //this is done based on Room.RoomID, and sets the roomData
                 //to an instance already loaded into Assets
 
+                
+
+                //dungeon rooms
+                if (Room.roomID == RoomID.Key) { RoomXmlData = Assets.roomDataKey[Room.XMLid]; }
+                else if (Room.roomID == RoomID.Hub) { RoomXmlData = Assets.roomDataHub[Room.XMLid]; }
+                else if (Room.roomID == RoomID.Boss) { RoomXmlData = Assets.roomDataBoss[Room.XMLid]; }
+                else if (Room.roomID == RoomID.Column) { RoomXmlData = Assets.roomDataColumn[Room.XMLid]; }
+                else if (Room.roomID == RoomID.Row) { RoomXmlData = Assets.roomDataRow[Room.XMLid]; }
+                else if (Room.roomID == RoomID.Square) { RoomXmlData = Assets.roomDataSquare[Room.XMLid]; }
+
+
                 //this should be handled better, because we don't actually
                 //know that colliseum = overworldLevels[0], we just know
                 //that there is only ONE overworld level rn, so it must be index0
-                if (Room.roomID == RoomID.Colliseum) { roomXmlData = Assets.overworldLevels[0]; }
-
-                //dungeon rooms
-                else if (Room.roomID == RoomID.Key) { roomXmlData = Assets.roomDataKey[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Hub) { roomXmlData = Assets.roomDataHub[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Boss) { roomXmlData = Assets.roomDataBoss[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Column) { roomXmlData = Assets.roomDataColumn[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Row) { roomXmlData = Assets.roomDataRow[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Square) { roomXmlData = Assets.roomDataSquare[Room.XMLid]; }
+                if (Room.roomID == RoomID.Colliseum) { RoomXmlData = Assets.overworldLevels[0]; }
+                //^^^^^^^^
+                //loop over Assets.overworldLevels
+                //find the Room with the same roomID and set RoomXmlData to that index
             }
-
-            //if we are developing, clear roomXmlData
-            if (Room.roomID == RoomID.DEV_Room || Room.roomID == RoomID.DEV_Field)
-            { roomXmlData = new RoomXmlData(); }
-
-
 
 
 
             #region Build the referenced XmlData
 
             if (Level.isField)
-            {
-                //we are building an outdoor overworld field room
+            {   //we are building an outdoor overworld field room
                 Functions_Pool.Reset();
-                BuildRoomXmlData_DEV(roomXmlData);
+                BuildRoomXmlData(RoomXmlData);
             }
             else
-            {
-                //else, we are building an interior dungeon room
-                //reset pool, get blank room, fill with floors + walls
-                Functions_Dungeon.BuildEmptyRoom(Room);
-                //set the floortile frames properly based on room.type
-                Functions_Dungeon.SetFloors(Room);
-                //change certain walls to doors based on collisions with Level.doors
-                Functions_Dungeon.SetDoors(Room);
-
-                BuildRoomXmlData_DEV(roomXmlData);
-
-                //add decorative objs and check for torches/switches/etc..
-                Functions_Dungeon.ProcedurallyFinish(Room);
-                Functions_Dungeon.CheckForPuzzles(Room);
+            {   //else, we are building an interior dungeon room
+                Functions_Dungeon.BuildRoomFrom(RoomXmlData);
             }
 
             #endregion
-
-
-            #region Set the room's bkg color
-
-            if (Level.lightWorld)
-            { Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld; }
-            else { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
-
-            #endregion
-
+            
 
             #region Handle room specific initial events (like setting music)
 
@@ -215,10 +193,11 @@ namespace DungeonRun
 
             #endregion
 
+            Debug.WriteLine("room built = " + Room.roomID);
         }
 
 
-        public static void BuildRoomXmlData_DEV(RoomXmlData RoomXmlData = null)
+        public static void BuildRoomXmlData(RoomXmlData RoomXmlData = null)
         {
             //note that RoomXmlData is an optional parameter
 

@@ -143,6 +143,91 @@ namespace DungeonRun
             { Debug.WriteLine("built " + Room.roomID + " room in " + time.Ticks + " ticks"); }
         }
 
+
+        public static void BuildRoomFrom(RoomXmlData RoomXmlData)
+        {
+            //reset pool, get blank room, fill with floors + walls
+            BuildEmptyRoom(Functions_Level.currentRoom);
+            //set the floortile frames properly based on room.type
+            SetFloors(Functions_Level.currentRoom);
+            //change certain walls to doors based on collisions with Level.doors
+            SetDoors(Functions_Level.currentRoom);
+            //build the xml objects over the empty dungeon room
+            Functions_Room.BuildRoomXmlData(RoomXmlData);
+            //add decorative objs and check for torches/switches/etc..
+            ProcedurallyFinish(Functions_Level.currentRoom);
+            CheckForPuzzles(Functions_Level.currentRoom);
+        }
+
+
+        public static void SetFloors(Room Room)
+        {
+            for (i = 0; i < Pool.floorCount; i++)
+            {   //set all the floor sprite's current frame based on the room.type
+                //default dungeon floors to normal sprite
+                Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorNormal[0];
+                //based on type, change the default floor sprite to special or boss
+                if (Room.roomID == RoomID.Hub || Room.roomID == RoomID.Key)
+                { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorSpecial[0]; }
+                else if (Room.roomID == RoomID.Boss)
+                { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorBoss[0]; }
+            }
+        }
+
+        public static void SetDoors(Room Room)
+        {
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {
+                if (Pool.roomObjPool[i].active)
+                {
+                    if (Pool.roomObjPool[i].group == ObjGroup.Wall)
+                    {   //check to see if wall collides with any door from dungeon
+                        for (j = 0; j < Level.doors.Count; j++)
+                        {
+                            if (Pool.roomObjPool[i].compCollision.rec.Contains(Level.doors[j].rec.Location))
+                            {
+                                //set the room's doors based on the dungeon.door.type
+                                if (Level.doors[j].type == DoorType.Bombable)
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorBombable); }
+
+                                else if (Level.doors[j].type == DoorType.Boss)
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorBoss); }
+
+                                else //all other doorTypes are Open
+                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen); }
+
+                                //set the door decorations (bombed/bombable doors dont get decorations)
+                                if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
+                                {
+                                    Functions_GameObject_Dungeon.DecorateDoor(
+                                        Pool.roomObjPool[i], ObjType.Dungeon_WallPillar);
+                                }
+                                else if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
+                                {
+                                    Functions_GameObject_Dungeon.DecorateDoor(
+                                        Pool.roomObjPool[i], ObjType.Dungeon_WallTorch);
+                                }
+
+                                //finally, override door types based on specific room.type
+                                if (Room.roomID == RoomID.Boss)
+                                {   //all doors inside boss room are trap doors (push hero + close)
+                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
+                                }
+
+                                //sort door object
+                                Functions_Component.SetZdepth(Pool.roomObjPool[i].compSprite);
+                                //place a floor tile underneath door
+                                floorRef = Functions_Pool.GetFloor();
+                                floorRef.position = Pool.roomObjPool[i].compSprite.position;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
         public static void ProcedurallyFinish(Room Room)
         {   //Pass the room to the appropriate method for completion
             stopWatch.Reset(); stopWatch.Start();
@@ -212,78 +297,37 @@ namespace DungeonRun
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
             if (Flags.PrintOutput)
             {
-                Debug.WriteLine("finished " + Room.roomID + 
-                    " room (id:" + Room.XMLid + 
-                    ") in " + time.Ticks + " ticks"); }
-        }
-
-
-        
-        public static void SetFloors(Room Room)
-        {
-            for (i = 0; i < Pool.floorCount; i++)
-            {   //set all the floor sprite's current frame based on the room.type
-                //default dungeon floors to normal sprite
-                Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorNormal[0];
-                //based on type, change the default floor sprite to special or boss
-                if (Room.roomID == RoomID.Hub || Room.roomID == RoomID.Key)
-                { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorSpecial[0]; }
-                else if (Room.roomID == RoomID.Boss)
-                { Pool.floorPool[i].currentFrame = AnimationFrames.Dungeon_FloorBoss[0]; }
+                Debug.WriteLine("finished " + Room.roomID +
+                    " room (id:" + Room.XMLid +
+                    ") in " + time.Ticks + " ticks");
             }
         }
 
-        public static void SetDoors(Room Room)
-        {
+        public static void CheckForPuzzles(Room Room)
+        {   //this is called at the end of a room build
+            int torchCount = 0;
+
             for (i = 0; i < Pool.roomObjCount; i++)
             {
                 if (Pool.roomObjPool[i].active)
-                {
-                    if (Pool.roomObjPool[i].group == ObjGroup.Wall)
-                    {   //check to see if wall collides with any door from dungeon
-                        for (j = 0; j < Level.doors.Count; j++)
-                        {
-                            if (Pool.roomObjPool[i].compCollision.rec.Contains(Level.doors[j].rec.Location))
-                            {
-                                //set the room's doors based on the dungeon.door.type
-                                if (Level.doors[j].type == DoorType.Bombable)
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorBombable); }
-
-                                else if (Level.doors[j].type == DoorType.Boss)
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorBoss); }
-
-                                else //all other doorTypes are Open
-                                { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen); }
-
-                                //set the door decorations (bombed/bombable doors dont get decorations)
-                                if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorBoss)
-                                {
-                                    Functions_GameObject_Dungeon.DecorateDoor(
-                                        Pool.roomObjPool[i], ObjType.Dungeon_WallPillar);
-                                }
-                                else if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
-                                {
-                                    Functions_GameObject_Dungeon.DecorateDoor(
-                                        Pool.roomObjPool[i], ObjType.Dungeon_WallTorch);
-                                }
-
-                                //finally, override door types based on specific room.type
-                                if (Room.roomID == RoomID.Boss)
-                                {   //all doors inside boss room are trap doors (push hero + close)
-                                    Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
-                                }
-
-                                //sort door object
-                                Functions_Component.SetZdepth(Pool.roomObjPool[i].compSprite);
-                                //place a floor tile underneath door
-                                floorRef = Functions_Pool.GetFloor();
-                                floorRef.position = Pool.roomObjPool[i].compSprite.position;
-                            }
-                        }
+                {   //if there is an active switch in the room
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_Switch)
+                    {   //set the room puzzleType and bail from method
+                        Room.puzzleType = PuzzleType.Switch;
+                        Functions_GameObject_Dungeon.CloseDoors(); //convert all openDoors to trapDoors
+                        return;
                     }
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit)
+                    { torchCount++; } //count all the unlit torches
                 }
             }
-        } 
+            //check for more than 3 torches
+            if (torchCount > 3)
+            {   //convert all openDoors to trapDoors
+                Room.puzzleType = PuzzleType.Torches;
+                Functions_GameObject_Dungeon.CloseDoors();
+            }
+        }
 
 
 
@@ -372,32 +416,6 @@ namespace DungeonRun
                     if (Functions_Random.Int(0, 100) > 85)
                     { Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_WallStraightCracked); }
                 }
-            }
-        }
-
-        public static void CheckForPuzzles(Room Room)
-        {   //this is called at the end of a room build
-            int torchCount = 0;
-
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {
-                if (Pool.roomObjPool[i].active)
-                {   //if there is an active switch in the room
-                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_Switch)
-                    {   //set the room puzzleType and bail from method
-                        Room.puzzleType = PuzzleType.Switch;
-                        Functions_GameObject_Dungeon.CloseDoors(); //convert all openDoors to trapDoors
-                        return;
-                    }
-                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit)
-                    { torchCount++; } //count all the unlit torches
-                }
-            }
-            //check for more than 3 torches
-            if (torchCount > 3)
-            {   //convert all openDoors to trapDoors
-                Room.puzzleType = PuzzleType.Torches;
-                Functions_GameObject_Dungeon.CloseDoors();
             }
         }
 
