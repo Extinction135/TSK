@@ -157,6 +157,9 @@ namespace DungeonRun
                 else if (Room.roomID == RoomID.Square) { RoomXmlData = Assets.roomDataSquare[Room.XMLid]; }
 
 
+                //we should check for RoomID.DEV_Row, etc.. here
+                //its the easiest solution right now
+
                 //this should be handled better, because we don't actually
                 //know that colliseum = overworldLevels[0], we just know
                 //that there is only ONE overworld level rn, so it must be index0

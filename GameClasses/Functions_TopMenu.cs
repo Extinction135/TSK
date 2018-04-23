@@ -262,6 +262,9 @@ namespace DungeonRun
                     ScreenManager.ExitAndLoad(new ScreenLevelEditor());
                     TopDebugMenu.display = WidgetDisplaySet.World;
                     ResetEditorWidgets();
+                    //display the editor state
+                    TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonDown;
+                    TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonUp;
                 }
                 //button - room editor
                 else if (TopDebugMenu.buttons[TopDebugMenu.buttons.Count-2].rec.Contains(Input.cursorPos))
@@ -269,6 +272,9 @@ namespace DungeonRun
                     ScreenManager.ExitAndLoad(new ScreenRoomEditor());
                     TopDebugMenu.display = WidgetDisplaySet.Dungeon;
                     ResetEditorWidgets();
+                    //display the editor state
+                    TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 1].currentColor = Assets.colorScheme.buttonUp;
+                    TopDebugMenu.buttons[TopDebugMenu.buttons.Count - 2].currentColor = Assets.colorScheme.buttonDown;
                 }
 
                 //hold down left ctrl button to call Inspect() on anything touching cursor

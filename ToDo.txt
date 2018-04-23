@@ -69,22 +69,15 @@ TODAY:
 
 Editor++
 
-fixed a variety of bugs with editor:
-X - clicking 'new room' button freezes editor.
-X - unable to traverse room types in room type button.
-X - simplified RoomTools.LoadRoomData().
-just a ton of bug fixing and refactoring to get
-roomData, rooms, and levels interacting properly.
-
-
-
-
-
-
 
 
 room editor button should be down when in that mode
 same with level editor button...
+
+
+
+
+
 
 the problem we're chasing is when we load colliseum xml, then click new button,
 the editor goes totally black and doesnt even draw the cursor..?
@@ -92,6 +85,25 @@ the editor goes totally black and doesnt even draw the cursor..?
 
 we also can't create new rooms of type: row, square, column, key, boss, or hub
 code's still pulling and building these room types from random XML
+
+duh - we just need to make DEV_Row, etc.. type rooms, then expand BuildRoom() 
+to handle these types
+
+
+
+
+
+the focus is really on: level, room, roomTools, and dungeon functions.
+fields are just unbuilt rooms with xml objs added.
+dungeon rooms are: walls, floors, doors, xml objs, procedural objs added, + puzzle checks.
+
+and you really dont understand how all these methods + data are interacting,
+so you need to trace + document how it all works, then architect a better solution
+or fix the one already in place.
+
+
+
+
 
 
 
