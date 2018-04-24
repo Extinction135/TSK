@@ -161,6 +161,12 @@ namespace DungeonRun
                                 Level.ID = LevelID.DEV_Room;
                                 //then check if we are developing a field room
                                 if (roomID == RoomID.DEV_Field) { Level.ID = LevelID.DEV_Field; }
+
+
+
+
+
+
                                 //hack: create new roomData instance, set the roomID into it
                                 //then in BuildLevel(), the roomData.type is checked
                                 roomData = new RoomXmlData();
@@ -170,7 +176,7 @@ namespace DungeonRun
                                 Debug.WriteLine("room id: " + roomID);
                                 Functions_Level.BuildLevel(Level.ID);
 
-                                //Functions_Level.levelScreen.displayState = DisplayState.Opened;
+                                Functions_Level.levelScreen.displayState = DisplayState.Opened;
 
                                 
                             }
@@ -184,17 +190,14 @@ namespace DungeonRun
                             {
                                 if (state == WidgetRoomToolsState.Room)
                                 {
-                                    //iterate thru a limited set of dungeon roomTypes
-                                    ///if (roomID == RoomID.Column) { roomID = RoomID.Row; }
-                                    //else if (roomID == RoomID.Row) { roomID = RoomID.Square; }
-                                    //else if (roomID == RoomID.Square) { roomID = RoomID.Hub; }
-                                    //else if (roomID == RoomID.Hub) { roomID = RoomID.Boss; }
-                                    //else if (roomID == RoomID.Boss) { roomID = RoomID.Key; }
-                                    //else if (roomID == RoomID.Key) { roomID = RoomID.Column; }
-                                    //loop dev room back into the list
-
-                                    //limit to dev row for now
-                                    if (roomID == RoomID.DEV_Row) { roomID = RoomID.DEV_Row; }
+                                    //iterate thru a limited set of dungeon dev roomTypes
+                                    if (roomID == RoomID.DEV_Boss) { roomID = RoomID.DEV_Column; }
+                                    else if (roomID == RoomID.DEV_Column) { roomID = RoomID.DEV_Exit; }
+                                    else if (roomID == RoomID.DEV_Exit) { roomID = RoomID.DEV_Hub; }
+                                    else if (roomID == RoomID.DEV_Hub) { roomID = RoomID.DEV_Key; }
+                                    else if (roomID == RoomID.DEV_Key) { roomID = RoomID.DEV_Row; }
+                                    else if (roomID == RoomID.DEV_Row) { roomID = RoomID.DEV_Square; }
+                                    else if (roomID == RoomID.DEV_Square) { roomID = RoomID.DEV_Boss; }
                                 }
                                 else
                                 {   //editors only edit fields in overworld mode

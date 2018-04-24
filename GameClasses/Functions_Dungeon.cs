@@ -232,7 +232,9 @@ namespace DungeonRun
         {   //Pass the room to the appropriate method for completion
             stopWatch.Reset(); stopWatch.Start();
 
-            //procedurally finished rooms
+
+            #region Special Rooms
+
             if (Room.roomID == RoomID.Exit)
             {
                 FinishExitRoom(Room);
@@ -242,12 +244,16 @@ namespace DungeonRun
             {
                 FinishSecretRoom(Room);
             }
-            //special rooms (key, hub, boss)
+
+            #endregion
+
+
+            #region Critical Rooms (key, hub, boss)
+
             else if (Room.roomID == RoomID.Key)
             {
                 FinishKeyRoom(Room);
                 AddWallStatues(Room);
-                CheckForPuzzles(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
@@ -255,7 +261,6 @@ namespace DungeonRun
             {
                 FinishHubRoom(Room);
                 AddWallStatues(Room);
-                CheckForPuzzles(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
@@ -265,28 +270,58 @@ namespace DungeonRun
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
-            //standard/generic rooms (column, row, square)
+
+            #endregion
+
+
+            #region Standard Rooms (column, row, square)
+
             else if (Room.roomID == RoomID.Column)
             {
                 AddWallStatues(Room);
-                CheckForPuzzles(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
             else if (Room.roomID == RoomID.Row)
             {
                 AddWallStatues(Room);
-                CheckForPuzzles(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
             else if (Room.roomID == RoomID.Square)
             {
                 AddWallStatues(Room);
-                CheckForPuzzles(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
+
+            #endregion
+
+
+            #region Dev Rooms
+
+            else if(Room.roomID == RoomID.DEV_Boss)
+            {
+                FinishBossRoom(Room);
+            }
+            else if(Room.roomID == RoomID.DEV_Exit)
+            {
+                FinishExitRoom(Room);
+            }
+            else if(Room.roomID == RoomID.DEV_Hub)
+            {
+                FinishHubRoom(Room);
+            }
+            else if (Room.roomID == RoomID.DEV_Key)
+            {
+                FinishKeyRoom(Room);
+            }
+
+            #endregion
+
+
+            //always check any built room for puzzles
+            CheckForPuzzles(Room);
 
             //align + remove overlapping objs
             Functions_GameObject.AlignRoomObjs();

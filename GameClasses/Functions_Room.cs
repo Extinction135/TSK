@@ -31,19 +31,24 @@ namespace DungeonRun
             Room.roomID = ID;
             
             //set room size based on type - sizes should be odd, so doors/exits can be centered
-            if (ID == RoomID.Exit) { Room.size.X = 11; Room.size.Y = 11; }
-            else if (ID == RoomID.Hub) { Room.size.X = 19; Room.size.Y = 19; }
-            else if (ID == RoomID.Boss) { Room.size.X = 19; Room.size.Y = 11; }
-            else if (ID == RoomID.Key) { Room.size.X = 19; Room.size.Y = 11; }
+            if (ID == RoomID.Exit || ID == RoomID.DEV_Exit)
+            { Room.size.X = 11; Room.size.Y = 11; }
+            else if (ID == RoomID.Hub || ID == RoomID.DEV_Hub)
+            { Room.size.X = 19; Room.size.Y = 19; }
+            else if (ID == RoomID.Boss || ID == RoomID.DEV_Boss)
+            { Room.size.X = 19; Room.size.Y = 11; }
+            else if (ID == RoomID.Key || ID == RoomID.DEV_Key)
+            { Room.size.X = 19; Room.size.Y = 11; }
             
             //dungeon rooms
-            else if (ID == RoomID.Column) { Room.size.X = 11; Room.size.Y = 19; }
-            else if (ID == RoomID.Row) { Room.size.X = 19; Room.size.Y = 11; }
-            else if (ID == RoomID.Square) { Room.size.X = 11; Room.size.Y = 11; }
-            else if (ID == RoomID.Secret) { Room.size.X = 3; Room.size.Y = 3; }
-
-            //dev dungeon rooms
-            else if (ID == RoomID.DEV_Row) { Room.size.X = 19; Room.size.Y = 11; }
+            else if (ID == RoomID.Column || ID == RoomID.DEV_Column)
+            { Room.size.X = 11; Room.size.Y = 19; }
+            else if (ID == RoomID.Row || ID == RoomID.DEV_Row)
+            { Room.size.X = 19; Room.size.Y = 11; }
+            else if (ID == RoomID.Square || ID == RoomID.DEV_Square)
+            { Room.size.X = 11; Room.size.Y = 11; }
+            else if (ID == RoomID.Secret)
+            { Room.size.X = 3; Room.size.Y = 3; }
 
             //field rooms fill the screen
             else { Room.size.X = 40; Room.size.Y = 23; } 
@@ -133,6 +138,31 @@ namespace DungeonRun
         }
         
 
+
+
+
+
+
+        public static void AddDevDoors(Room Room)
+        {   //add temporary doors to this room, so hero can enter/exit it
+            int posX = Room.rec.X;
+            int posY = Room.rec.Y;
+            int middleX = (Room.size.X / 2) * 16;
+            int middleY = (Room.size.Y / 2) * 16;
+            int width = Room.size.X * 16;
+            int height = Room.size.Y * 16;
+            //set NSEW door positions
+            Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
+            Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
+            Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
+            Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
+        }
+
+
+
+
+
+
         public static void BuildRoom(Room Room, RoomXmlData RoomXmlData = null)
         {
 
@@ -184,12 +214,17 @@ namespace DungeonRun
 
 
             //setup dev rooms
-            if (Room.roomID == RoomID.DEV_Row)
+            if (Room.roomID == RoomID.DEV_Boss || Room.roomID == RoomID.DEV_Column ||
+                Room.roomID == RoomID.DEV_Exit || Room.roomID == RoomID.DEV_Hub ||
+                Room.roomID == RoomID.DEV_Key || Room.roomID == RoomID.DEV_Row ||
+                Room.roomID == RoomID.DEV_Square)
             {
                 RoomXmlData = new RoomXmlData();
-                RoomXmlData.type = RoomID.Row;
-                SetType(Functions_Level.currentRoom, RoomID.Row);
                 Level.isField = false;
+                
+                RoomXmlData.type = Room.roomID;
+                SetType(Functions_Level.currentRoom, Room.roomID);
+                AddDevDoors(Room); //so we can test the room
             }
             else if (Room.roomID == RoomID.DEV_Field)
             {

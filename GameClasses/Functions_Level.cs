@@ -96,18 +96,7 @@ namespace DungeonRun
                 room.spawnPos.X = room.rec.X - 32;
                 room.spawnPos.Y = room.rec.Y;
 
-                //add temporary doors to this room, so hero can enter/exit it
-                int posX = room.rec.X;
-                int posY = room.rec.Y;
-                int middleX = (room.size.X / 2) * 16;
-                int middleY = (room.size.Y / 2) * 16;
-                int width = room.size.X * 16;
-                int height = room.size.Y * 16;
-                //set NSEW door positions
-                Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
-                Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
-                Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
-                Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
+                
             }
             else if (Level.ID == LevelID.DEV_Field)
             {

@@ -69,11 +69,20 @@ TODAY:
 
 
 
+
+
+
 Editor++
 
-fixed a bug where room editor defaulted the room to row,
-when i prefer it default to the empty row room. playtested,
-working as expected.
+fixed up editor to load dev_row rooms without cracked walls,
+wall statues, debris, etc.. basically loads a 'fresh' room.
+
+expanded RoomID to include exit, hub, boss, key, column, and
+square dev room types.
+
+expanded ProcedurallyFinish() to handle all dev room types/ids.
+integrated dev rooms into Room.SetType(). 
+playtested, documented bugs.
 
 
 
@@ -82,10 +91,14 @@ working as expected.
 
 
 
-*the default state for editor should create the empty row room.
-* we shouldn't be adding wall statues to empty rooms. nor debris.
-if we need to pull these proc adds out into their own methods and
-reformat build(), then do so.
+
+
+
+
+
+we clicked on roomEditor, from level Editor
+the screen went black, unresponsive, the room built was dev field,
+BUT the level built was dev room... hmmm
 
 
 

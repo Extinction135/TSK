@@ -93,7 +93,10 @@ namespace DungeonRun
 
         //these DEV rooms are used for testing
         DEV_Field, //represents any 'outdoor' / overworld level
-        DEV_Row
+
+        //dungeon rooms that are built empty, for adding objs (development)
+        DEV_Exit, DEV_Hub, DEV_Boss, DEV_Key,
+        DEV_Column, DEV_Row, DEV_Square
     }
 
 

@@ -193,17 +193,15 @@ namespace DungeonRun
             colliseum.ID = LevelID.Colliseum;
 
 
-
             //translate level.type to current map location
             if (Level.ID == LevelID.Colliseum) { currentLocation = colliseum; }
             else if(Level.ID == LevelID.Castle_Dungeon) { currentLocation = castle; }
 
 
-
             //set target to current (no initial target)
             targetLocation = currentLocation;
-
             hero = new Actor();
+
             //set hero at the current location
             Functions_Movement.Teleport(hero.compMove,
                 currentLocation.compSprite.position.X,
