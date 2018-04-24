@@ -83,7 +83,7 @@ namespace DungeonRun
                 //make a new room, which inherits the RoomTool's roomData type
                 //because we'd like to be able to build row, column, boss, key, square type rooms
                 //not just the DEV_Room room type...
-                RoomID roomType = RoomID.Row;
+                RoomID roomType = RoomID.DEV_Row;
                 //if roomTools roomData exists, get it's room type
                 if (Widgets.RoomTools.roomData != null)
                 { roomType = Widgets.RoomTools.roomData.type; }
@@ -113,8 +113,6 @@ namespace DungeonRun
             {
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.DEV_Field);
                 Level.rooms.Add(field);
-
-                //do we need to add anything to the default field dev level?
             }
 
             #endregion

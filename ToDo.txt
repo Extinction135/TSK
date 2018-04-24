@@ -71,21 +71,9 @@ TODAY:
 
 Editor++
 
-fixed how field levels are loaded (overworld levels). the previous
-implementation was extremely brittle and was going to break as soon
-as the overworld levels totalled greater than 1. which is very soon.
-
-changed DEV_Room to be the specific DEV_Row type, because _Room can't
-model the various states necessary to properly implement dev rooms.
-we'll expand RoomID values to include dev exit, hub, boss, key, column,
-square, and possibly secret rooms in the near future.
-
-fixed problem where creating a new room in level mode threw up a black
-unresponsive screen. fixed problem where creating a new room in room mode
-wouldn't actually create an empty room and instead loaded random xml
-based on the room type. now we can only create empty row rooms.
-
-playtested, mostly working.
+fixed a bug where room editor defaulted the room to row,
+when i prefer it default to the empty row room. playtested,
+working as expected.
 
 
 
