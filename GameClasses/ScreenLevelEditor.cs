@@ -21,6 +21,10 @@ namespace DungeonRun
         public override void LoadContent()
         {
             Level.ID = LevelID.DEV_Field;
+            //setup default room data
+            Widgets.RoomTools.roomData = new RoomXmlData();
+            Widgets.RoomTools.roomData.type = RoomID.DEV_Field;
+
             base.LoadContent();
             //setup level editor 'light world' default state
             Functions_TopMenu.DisplayWidgets(WidgetDisplaySet.World);

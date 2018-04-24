@@ -162,23 +162,14 @@ namespace DungeonRun
                                 //then check if we are developing a field room
                                 if (roomID == RoomID.DEV_Field) { Level.ID = LevelID.DEV_Field; }
 
-
-
-
-
-
-                                //hack: create new roomData instance, set the roomID into it
-                                //then in BuildLevel(), the roomData.type is checked
-                                roomData = new RoomXmlData();
-                                roomData.type = roomID;
+                                //hack: stuff roomID into roomTool's roomData
+                                Widgets.RoomTools.roomData = new RoomXmlData();
+                                Widgets.RoomTools.roomData.type = roomID;
+                                //then ref roomData in build level to get roomType
+                                Functions_Level.BuildLevel(Level.ID);
 
                                 Debug.WriteLine("level id: " + Level.ID);
                                 Debug.WriteLine("room id: " + roomID);
-                                Functions_Level.BuildLevel(Level.ID);
-
-                                Functions_Level.levelScreen.displayState = DisplayState.Opened;
-
-                                
                             }
 
                             #endregion

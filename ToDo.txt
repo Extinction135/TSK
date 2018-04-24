@@ -68,22 +68,16 @@ TODAY:
 
 
 
-
-
-
-
 Editor++
 
-fixed up editor to load dev_row rooms without cracked walls,
-wall statues, debris, etc.. basically loads a 'fresh' room.
+modified level and room editor screens to setup the default 
+room data, which fixes a problem where switching from level
+to room editor caused a crash, due to building a dungeon level
+with a field room (lol wtf). various break-testing on level,
+room, load, type and new buttons reveals various bugs have been 
+squashed, for now.
 
-expanded RoomID to include exit, hub, boss, key, column, and
-square dev room types.
-
-expanded ProcedurallyFinish() to handle all dev room types/ids.
-integrated dev rooms into Room.SetType(). 
-playtested, documented bugs.
-
+however, reload doesn't work. and we haven't tested save yet.
 
 
 
@@ -92,20 +86,38 @@ playtested, documented bugs.
 
 
 
+*don't procedurally finish a dev boss room, that actually
+loads a boss in, plus we shouldn't be building temp doors for this
+room type.
+
+
+*for dev exit rooms, we shouldn't be building the south door,
+because it overlaps the exit objects. we *could* update CleanUpRoom()
+to remove any objects underneath exit door objects, since these are
+super important objects and must be presented a specific way everytime.
+
+
+*we are running into a problem where we load an xml file, which
+is room specific, and instead we build the objs onto whatever
+room was last built. essentially, the room isn't being updated when we
+load the room xml data. which is an easy fix, just rebuild the level, probably.
 
 
 
 
-we clicked on roomEditor, from level Editor
-the screen went black, unresponsive, the room built was dev field,
-BUT the level built was dev room... hmmm
 
 
 
 
 
 
-the reload button doesn't work...
+
+
+
+
+
+
+
 
 
 
@@ -151,8 +163,37 @@ add soundfx for cutting grass, which is the same as bush
 
 
 
-we are running into a problem where we load an xml file, which
-is room specific, and instead we build the objs onto a field.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

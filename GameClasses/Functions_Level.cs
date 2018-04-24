@@ -81,10 +81,7 @@ namespace DungeonRun
             if (Level.ID == LevelID.DEV_Room)
             {
                 //make a new room, which inherits the RoomTool's roomData type
-                //because we'd like to be able to build row, column, boss, key, square type rooms
-                //not just the DEV_Room room type...
                 RoomID roomType = RoomID.DEV_Row;
-                //if roomTools roomData exists, get it's room type
                 if (Widgets.RoomTools.roomData != null)
                 { roomType = Widgets.RoomTools.roomData.type; }
 
@@ -95,8 +92,6 @@ namespace DungeonRun
                 //set spawnPos outside TopLeft of new dev room
                 room.spawnPos.X = room.rec.X - 32;
                 room.spawnPos.Y = room.rec.Y;
-
-                
             }
             else if (Level.ID == LevelID.DEV_Field)
             {
