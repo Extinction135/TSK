@@ -92,8 +92,8 @@ namespace DungeonRun
         CastleEntrance,
 
         //these DEV rooms are used for testing
-        DEV_Field,
-        DEV_Room
+        DEV_Field, //represents any 'outdoor' / overworld level
+        DEV_Row
     }
 
 

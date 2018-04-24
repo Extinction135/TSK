@@ -67,39 +67,49 @@ TODAY:
 
 
 
+
+
 Editor++
 
+fixed how field levels are loaded (overworld levels). the previous
+implementation was extremely brittle and was going to break as soon
+as the overworld levels totalled greater than 1. which is very soon.
 
+changed DEV_Room to be the specific DEV_Row type, because _Room can't
+model the various states necessary to properly implement dev rooms.
+we'll expand RoomID values to include dev exit, hub, boss, key, column,
+square, and possibly secret rooms in the near future.
 
-room editor button should be down when in that mode
-same with level editor button...
+fixed problem where creating a new room in level mode threw up a black
+unresponsive screen. fixed problem where creating a new room in room mode
+wouldn't actually create an empty room and instead loaded random xml
+based on the room type. now we can only create empty row rooms.
 
-
-
-
-
-
-the problem we're chasing is when we load colliseum xml, then click new button,
-the editor goes totally black and doesnt even draw the cursor..?
-
-
-we also can't create new rooms of type: row, square, column, key, boss, or hub
-code's still pulling and building these room types from random XML
-
-duh - we just need to make DEV_Row, etc.. type rooms, then expand BuildRoom() 
-to handle these types
+playtested, mostly working.
 
 
 
 
 
-the focus is really on: level, room, roomTools, and dungeon functions.
-fields are just unbuilt rooms with xml objs added.
-dungeon rooms are: walls, floors, doors, xml objs, procedural objs added, + puzzle checks.
 
-and you really dont understand how all these methods + data are interacting,
-so you need to trace + document how it all works, then architect a better solution
-or fix the one already in place.
+
+
+*the default state for editor should create the empty row room.
+* we shouldn't be adding wall statues to empty rooms. nor debris.
+if we need to pull these proc adds out into their own methods and
+reformat build(), then do so.
+
+
+
+
+
+
+the reload button doesn't work...
+
+
+
+
+
 
 
 

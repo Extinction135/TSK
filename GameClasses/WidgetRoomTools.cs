@@ -102,9 +102,8 @@ namespace DungeonRun
 
             //determine what default room to display
             if (state == WidgetRoomToolsState.Room)
-            { roomID = RoomID.DEV_Room; }
-            else
-            { roomID = RoomID.DEV_Field; }
+            { roomID = RoomID.DEV_Row; }
+            else { roomID = RoomID.DEV_Field; }
 
             //set the room types button correctly
             roomTypeBtn.compText.text = "" + roomID;
@@ -186,18 +185,19 @@ namespace DungeonRun
                                 if (state == WidgetRoomToolsState.Room)
                                 {
                                     //iterate thru a limited set of dungeon roomTypes
-                                    if (roomID == RoomID.Column) { roomID = RoomID.Row; }
-                                    else if (roomID == RoomID.Row) { roomID = RoomID.Square; }
-                                    else if (roomID == RoomID.Square) { roomID = RoomID.Hub; }
-                                    else if (roomID == RoomID.Hub) { roomID = RoomID.Boss; }
-                                    else if (roomID == RoomID.Boss) { roomID = RoomID.Key; }
-                                    else if (roomID == RoomID.Key) { roomID = RoomID.Column; }
+                                    ///if (roomID == RoomID.Column) { roomID = RoomID.Row; }
+                                    //else if (roomID == RoomID.Row) { roomID = RoomID.Square; }
+                                    //else if (roomID == RoomID.Square) { roomID = RoomID.Hub; }
+                                    //else if (roomID == RoomID.Hub) { roomID = RoomID.Boss; }
+                                    //else if (roomID == RoomID.Boss) { roomID = RoomID.Key; }
+                                    //else if (roomID == RoomID.Key) { roomID = RoomID.Column; }
                                     //loop dev room back into the list
-                                    else if (roomID == RoomID.DEV_Room) { roomID = RoomID.Row; }
+
+                                    //limit to dev row for now
+                                    if (roomID == RoomID.DEV_Row) { roomID = RoomID.DEV_Row; }
                                 }
                                 else
-                                {
-                                    //editors only edit fields in overworld mode
+                                {   //editors only edit fields in overworld mode
                                     roomID = RoomID.DEV_Field;
                                 }
 
