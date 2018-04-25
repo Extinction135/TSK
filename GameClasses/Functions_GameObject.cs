@@ -723,8 +723,8 @@ namespace DungeonRun
                 Obj.compSprite.cellSize.Y = 16 * 4; //nonstandard size
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Entrance_ForestDungeon;
                 //set collision rec near bottom of entrance
-                Obj.compCollision.rec.Width = 32; Obj.compCollision.offsetX = -0;
-                Obj.compCollision.rec.Height = 32; Obj.compCollision.offsetY = +24;
+                Obj.compCollision.rec.Width = 16*3-4; Obj.compCollision.offsetX = -6;
+                Obj.compCollision.rec.Height = 16*3; Obj.compCollision.offsetY = +8;
                 //sort save and block
                 Obj.compSprite.zOffset = +16*3 - 2;
                 Obj.canBeSaved = true;

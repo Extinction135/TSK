@@ -78,13 +78,6 @@ TODAY:
 
 
 
-Dungeon Entrance Obj
-
-created dungeon entrance object, a really big obj that fits
-into shared objs widget, covering other objs. this entrance
-obj can only be interacted with by hero, using the A button.
-created forest dungeon entrance level, with dungeon entrance
-obj for testing.
 
 
 
@@ -96,11 +89,26 @@ obj for testing.
 
 
 
+Dungeon Entrance Obj++
 
-improve dungeon entrance obj:
-should have stairs down, instead of door + shadow
-should have gate in front of stairs, holding hero back
-should have shorter collision rec, so hero can go behind it easier.
+improved dungeon entrance obj sprite.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+the dungeon entrance could be living, and ask the hero what
+business he has entering the dungeon.. this could have the
+yes/no dialog for entering the dungeon.
 
 create hero interacting with dungeon entrance obj routine:
 this should pop a dialog asking hero if he wants to enter *dungeon name*
@@ -112,28 +120,12 @@ with booleans or enums or whatever in saveData.
 
 
 
-this is one blocking object, with a shut door.
-hero can't just cue a dungeon build from a collision.
-hero must INTERACT with the dungeon entrance object by pressing A button.
-this allows us to keep the dungeon obj very simple
 
 
 
-
-
-
-
-
-
-this is a big obj, and fits into the shared objs widget as it's first obj
-the 23, 456, 89 10, objs in the dungeon objs will be not drawn/selectable
-and this is because the dungeon entrance obj will literally overlap them
-*this widget obj's collision rec should match the space it occupies (16*3, 16*4).
-
-
-Dungeon Entrance Obj + Level
-next, we need to create a dungeon entrance obj, and dungeon
-entrance level. then add these to roomData and link to 
+Dungeon Entrance Level
+next, we need to create a dungeon entrance level. 
+then add these to roomData and link to 
 overworld map, via level type.
 
 
@@ -152,23 +144,26 @@ instead we should be centering the obj to the cursor based on the sprites frames
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 add signpost obj that hero can read to dungeon entrance level discussing dungeon.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -192,6 +187,22 @@ game, in the final dialogs.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Create NEW WORLD GameObjects
 
 use the new 'wor_' naming convention prefix.
@@ -204,6 +215,22 @@ the third chop should destroy the tree, revealing the stump
 drop a ton of leaves every where, and drop loot 50% of the time.
 explosions bring the tree down immediately.
 fireballs create ground fire on the tree stump.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
