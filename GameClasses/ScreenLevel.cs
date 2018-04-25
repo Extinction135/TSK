@@ -111,6 +111,8 @@ namespace DungeonRun
                     { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
                     else if(exitAction == ExitAction.Title)
                     { ScreenManager.ExitAndLoad(new ScreenTitle()); }
+
+                    Debug.WriteLine("exit action for level screen: " + exitAction);
                 }
 
                 #endregion

@@ -66,20 +66,19 @@ TODAY:
 
 
 
+Levels++
+
+fixed a minor bug with how dungeons + overworld
+levels handled their isField boolean in BuildRoom().
+playtested, working.
 
 
-Editor++
-
-modified level and room editor screens to setup the default 
-room data, which fixes a problem where switching from level
-to room editor caused a crash, due to building a dungeon level
-with a field room (lol wtf). various break-testing on level,
-room, load, type and new buttons reveals various bugs have been 
-squashed, for now.
-
-however, reload doesn't work. and we haven't tested save yet.
 
 
+
+moving from editor to game, there is a bug where the screen turns black
+and i think this is related to either the roomID or the level.ID
+i think we're trying to build
 
 
 
@@ -88,6 +87,7 @@ however, reload doesn't work. and we haven't tested save yet.
 
 *don't procedurally finish a dev boss room, that actually
 loads a boss in, plus we shouldn't be building temp doors for this
+room type. well, actually, we should be building trap doors for this
 room type.
 
 
@@ -105,12 +105,16 @@ load the room xml data. which is an easy fix, just rebuild the level, probably.
 
 
 
+if hero hits an object with sword, hero's movement / magnitude should pause
+this may help to make it feel like the hit has 'weight' behind it
 
 
 
 
 
 
+
+dungoen objs widet should have a switch block up - it has two swtich block downs
 
 
 
@@ -141,70 +145,36 @@ add soundfx for cutting grass, which is the same as bush
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 teleport hero's dog to hero upon spawn into colliseum level
 
 
 
 Dungeon Entrance Obj + Level
 next, we need to create a dungeon entrance obj, and dungeon
-entrance level. then add these to roomData.
+entrance level. then add these to roomData and link to overworld map, via
+level type.
+
+
+
+
+
+Then we need to create the healers house, with the spawn point being the bed.
+and the proper death loop needs to be implmented in-game.
+upon death, hero respawns at healers house, no questions asked.
+in editor, upon health reaching 0, hero's health is replenished back to full.
+in other words, hero can't die in editor otherwise it would kick em out of edit
+mode and into game mode via respawn at healers house.
+
+
+
+
+
+
+
+
+
+
+
 
 
 

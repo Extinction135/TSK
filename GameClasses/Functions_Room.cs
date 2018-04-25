@@ -165,22 +165,12 @@ namespace DungeonRun
 
         public static void BuildRoom(Room Room, RoomXmlData RoomXmlData = null)
         {
-
-            //if we are developing, clear roomXmlData
-            //if (Room.roomID == RoomID.DEV_Room || Room.roomID == RoomID.DEV_Field)
-            //{ RoomXmlData = new RoomXmlData(); }
-
             if (RoomXmlData == null)
             {
-                //if the roomData is null, then the method must set the roomData
-                //this is done based on Room.RoomID, and sets the roomData
-                //to an instance already loaded into Assets, but by default
-                //to be safe, we set the roomXmlData to just be a new instance
-
-                //assume level is dungeon room
+                //assume level is dungeon level
                 Level.isField = false;
 
-                //dungeon rooms
+                //set null roomData based on roomID
                 if (Room.roomID == RoomID.Key) { RoomXmlData = Assets.roomDataKey[Room.XMLid]; }
                 else if (Room.roomID == RoomID.Hub) { RoomXmlData = Assets.roomDataHub[Room.XMLid]; }
                 else if (Room.roomID == RoomID.Boss) { RoomXmlData = Assets.roomDataBoss[Room.XMLid]; }
@@ -188,32 +178,22 @@ namespace DungeonRun
                 else if (Room.roomID == RoomID.Row) { RoomXmlData = Assets.roomDataRow[Room.XMLid]; }
                 else if (Room.roomID == RoomID.Square) { RoomXmlData = Assets.roomDataSquare[Room.XMLid]; }
 
-                //in game rooms
-                //else if (Room.roomID == RoomID.Colliseum) { RoomXmlData = Assets.overworldLevels[0]; }
                 else
                 {   //locate any in game rooms by their roomID / roomXmlData.type
                     for (int i = 0; i < Assets.overworldLevels.Count; i++)
                     {
                         if (Room.roomID == Assets.overworldLevels[i].type)
-                        { RoomXmlData = Assets.overworldLevels[i]; }
+                        {
+                            RoomXmlData = Assets.overworldLevels[i];
+                            Level.isField = true; //overworld levels are fields
+                        }
                     }
                 }
-                
-
-                //we should check for RoomID.DEV_Row, etc.. here
-                //its the easiest solution right now
-
-                //this should be handled better, because we don't actually
-                //know that colliseum = overworldLevels[0], we just know
-                //that there is only ONE overworld level rn, so it must be index0
-
-                //loop over Assets.overworldLevels
-                //find the Room with the same roomID and set RoomXmlData to that index
             }
 
 
+            #region Setup dev rooms
 
-            //setup dev rooms
             if (Room.roomID == RoomID.DEV_Boss || Room.roomID == RoomID.DEV_Column ||
                 Room.roomID == RoomID.DEV_Exit || Room.roomID == RoomID.DEV_Hub ||
                 Room.roomID == RoomID.DEV_Key || Room.roomID == RoomID.DEV_Row ||
@@ -232,7 +212,7 @@ namespace DungeonRun
                 Level.isField = true;
             }
 
-
+            #endregion
 
 
             #region Build the referenced XmlData
@@ -259,6 +239,7 @@ namespace DungeonRun
             }
 
             #endregion
+
 
             Debug.WriteLine("room built = " + Room.roomID);
         }
