@@ -153,7 +153,7 @@ namespace DungeonRun
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Dungeon_PitTrap);
-            Functions_GameObject.SetType(objList[29], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[29], ObjType.Dungeon_SwitchBlockUp);
             Functions_GameObject.SetType(objList[30], ObjType.Dungeon_SwitchBlockDown);
             Functions_GameObject.SetType(objList[31], ObjType.Dungeon_LeverOff);
 

@@ -66,23 +66,14 @@ TODAY:
 
 
 
+Various Small Improvements
 
+fixed dungeon obj widget to have a switch block up obj.
 
-Organization++
+reverted to playing the metallic tap sfx when sword collides with
+non-bush/door/wall blocking gameobjects.
 
-moved AddDevDoors() into Dungeon Functions, because thats where it belongs.
-reorganized BuildRoom() a bit.
-
-
-created ShutDoors(), which is responsible for shutting any and all doors
-in a room, which by shut i mean convert them to 1 way trap doors which
-push any actors or objects in their facing direction with max force.
-
-updated ProcedurallyFinish() to ShutDoors() on the boss room and the
-dev boss room, while also not spawning the boss in the dev boss room,
-so it's easier to develop and test.
-
-playtested, it's all working quite well actually... 
+added soundfx for cutting grass with sword.
 
 
 
@@ -93,6 +84,9 @@ playtested, it's all working quite well actually...
 
 
 
+Weapon and Item Use
+
+increase friction for when hero uses a weapon
 
 
 
@@ -112,16 +106,6 @@ load the room xml data.
 
 
 
-if hero hits an object with sword, hero's movement / magnitude should pause
-this may help to make it feel like the hit has 'weight' behind it
-
-
-
-
-
-
-
-dungoen objs widet should have a switch block up - it has two swtich block downs
 
 
 
@@ -135,24 +119,6 @@ dungoen objs widet should have a switch block up - it has two swtich block downs
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-add soundfx for cutting grass, which is the same as bush
-
-
-
-teleport hero's dog to hero upon spawn into colliseum level
 
 
 
@@ -186,7 +152,7 @@ mode and into game mode via respawn at healers house.
 
 
 
-
+teleport hero's dog to hero upon spawn into colliseum level
 
 
 

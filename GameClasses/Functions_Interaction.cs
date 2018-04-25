@@ -510,7 +510,8 @@ namespace DungeonRun
                                 Assets.Play(Assets.sfxTapMetallic);
                                 Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
                             }
-                            //swords 'hurt' some objects
+
+                            //swords alter some objects
                             if (RoomObj.type == ObjType.Wor_Bush)
                             {   
                                 Assets.Play(Assets.sfxEnemyHit);
@@ -518,6 +519,8 @@ namespace DungeonRun
                             else
                             {
                                 //dont play any soundfx
+                                //or, play metallic tap
+                                Assets.Play(Assets.sfxTapMetallic);
                             }
                         }
                         else if (Object.lifeCounter == 4)
@@ -588,7 +591,6 @@ namespace DungeonRun
 
 
             //Handle Object vs NonBlocking RoomObj
-            //this is entity/roomObj vs non-block obj
 
 
             //object.type checks
@@ -769,6 +771,7 @@ namespace DungeonRun
 
 
 
+            #region Tall Grass
 
             else if (RoomObj.type == ObjType.Wor_Grass_Tall)
             {
@@ -781,12 +784,13 @@ namespace DungeonRun
                         RoomObj.compSprite.position.X,
                         RoomObj.compSprite.position.Y);
                 }
-                else if(Object.type == ObjType.ProjectileSword)
+                else if (Object.type == ObjType.ProjectileSword)
                 {   //cut the grass
                     Functions_GameObject_World.CutTallGrass(RoomObj);
                 }
             }
 
+            #endregion
 
 
         }

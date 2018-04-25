@@ -19,9 +19,9 @@ namespace DungeonRun
 
 
         public static void CutTallGrass(GameObject TallGrass)
-        {
-            //convert tallgrass to cut grass
+        {   //convert tallgrass to cut grass + sfx
             Functions_GameObject.SetType(TallGrass, ObjType.Wor_Grass_Cut);
+            Assets.Play(Assets.sfxBushCut);
 
             //pop an attention particle on grass pos
             Functions_Particle.Spawn(ObjType.Particle_Attention,
