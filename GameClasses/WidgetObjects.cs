@@ -50,6 +50,16 @@ namespace DungeonRun
             }
         }
 
+        public static void HideObj(GameObject Obj)
+        {   //hide this widget object offscreen
+            Functions_Movement.Teleport(Obj.compMove, 2048, 2048);
+            Functions_Component.Align(Obj);
+            Obj.compCollision.rec.X = 2048;
+            Obj.compCollision.rec.Y = 2048;
+            Obj.compCollision.rec.Width = 1;
+            Obj.compCollision.rec.Height = 1;
+        }
+
     }
 
 
@@ -477,8 +487,8 @@ namespace DungeonRun
 
             //row 1
 
-            //this becomes the dungeon entrance, a 3x4 * 16 sized sprite
-            Functions_GameObject.SetType(objList[0], ObjType.Dungeon_BlockDark);
+            //this is a 3x4 * 16 sized sprite/obj
+            Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_ForestDungeon);
             Functions_GameObject.SetType(objList[1], ObjType.Unknown);
             Functions_GameObject.SetType(objList[2], ObjType.Unknown);
             Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Fairy);
@@ -487,13 +497,13 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[4], ObjType.Unknown);
             Functions_GameObject.SetType(objList[5], ObjType.Unknown);
             Functions_GameObject.SetType(objList[6], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Dungeon_Fairy);
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);
             Functions_GameObject.SetType(objList[9], ObjType.Unknown);
             Functions_GameObject.SetType(objList[10], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[11], ObjType.Dungeon_Fairy);
 
             //row 4
             Functions_GameObject.SetType(objList[12], ObjType.Unknown);
@@ -551,7 +561,38 @@ namespace DungeonRun
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
+
+            //hide the dungeon objs covered by dungeon entrance
+            Functions_Widget.HideObj(objList[1]);
+            Functions_Widget.HideObj(objList[2]);
+
+            Functions_Widget.HideObj(objList[4]);
+            Functions_Widget.HideObj(objList[5]);
+            Functions_Widget.HideObj(objList[6]);
+
+            Functions_Widget.HideObj(objList[8]);
+            Functions_Widget.HideObj(objList[9]);
+            Functions_Widget.HideObj(objList[10]);
+
+            Functions_Widget.HideObj(objList[12]);
+            Functions_Widget.HideObj(objList[13]);
+            Functions_Widget.HideObj(objList[14]);
+
+            //manually set the dungeon entrances collision rec
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
         }
     }
+
+
+
+
+    
+
+
+
+
+
+
 
 }

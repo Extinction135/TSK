@@ -172,6 +172,7 @@ namespace DungeonRun
         public static List<Byte4> World_Bookcase = new List<Byte4> { new Byte4(4, 7, 0, 0) };
         public static List<Byte4> World_Shelf = new List<Byte4> { new Byte4(5, 7, 0, 0) };
 
+        public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
 
         #endregion
 

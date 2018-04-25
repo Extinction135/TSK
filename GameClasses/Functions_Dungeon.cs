@@ -264,12 +264,11 @@ namespace DungeonRun
 
             //add and set NSEW door positions
             Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
+            Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
+            Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
 
             if (Room.roomID != RoomID.DEV_Exit) //exit rooms have exit objs on south wall, no door
             { Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); } //bottom
-
-            Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
-            Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
         }
 
         public static void ProcedurallyFinish(Room Room)

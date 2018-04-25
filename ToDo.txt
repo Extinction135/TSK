@@ -77,29 +77,96 @@ TODAY:
 
 
 
-Plans++
-
-big reorganization of todos + ideas moving forward for the game.
-
-
-
-
-
-
-
-
-
-
 
 Dungeon Entrance Obj
 
-this one first
+created dungeon entrance object, a really big obj that fits
+into shared objs widget, covering other objs. this entrance
+obj can only be interacted with by hero, using the A button.
+created forest dungeon entrance level, with dungeon entrance
+obj for testing.
+
+
+
+
+
+
+
+
+
+
+
+
+improve dungeon entrance obj:
+should have stairs down, instead of door + shadow
+should have gate in front of stairs, holding hero back
+should have shorter collision rec, so hero can go behind it easier.
+
+create hero interacting with dungeon entrance obj routine:
+this should pop a dialog asking hero if he wants to enter *dungeon name*
+with yes or no menuItem options. 
+
+these yes/no menuItems lay the foundation for allowing the player to make
+choices, and thus branch the story or affect outcomes, which can be tracked
+with booleans or enums or whatever in saveData.
+
+
+
+this is one blocking object, with a shut door.
+hero can't just cue a dungeon build from a collision.
+hero must INTERACT with the dungeon entrance object by pressing A button.
+this allows us to keep the dungeon obj very simple
+
+
+
+
+
+
+
+
+
+this is a big obj, and fits into the shared objs widget as it's first obj
+the 23, 456, 89 10, objs in the dungeon objs will be not drawn/selectable
+and this is because the dungeon entrance obj will literally overlap them
+*this widget obj's collision rec should match the space it occupies (16*3, 16*4).
 
 
 Dungeon Entrance Obj + Level
 next, we need to create a dungeon entrance obj, and dungeon
 entrance level. then add these to roomData and link to 
 overworld map, via level type.
+
+
+
+
+
+
+
+
+
+
+
+in editor, when we select an object, we are assuming that obj is 16x16
+instead we should be centering the obj to the cursor based on the sprites framesize
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 add signpost obj that hero can read to dungeon entrance level discussing dungeon.
 
@@ -164,6 +231,29 @@ we need more rows and column rooms, and their quality needs to be improved.
 
 
 we need a flying enemy - like a BAT
+
+
+
+
+
+
+Implement Light World and Dark World RIGHT NOW
+because we need to understand the architecture this is going to need,
+before we start tacking a bunch of levels onto the system.
+plus, we need to polish the transition between the dark world
+and the light world..
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

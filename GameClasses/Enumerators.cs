@@ -149,9 +149,17 @@ namespace DungeonRun
 
 
     public enum ObjGroup
-    {
-        Wall, Door, Chest, Object, Vendor, EnemySpawn, //roomObjs
-        Pickup, Projectile, Particle //entities
+    {   //roomObjs
+        Wall,
+        Door,
+        Chest,
+        Object,
+        Vendor,
+        EnemySpawn,
+        //entities
+        Pickup,
+        Projectile,
+        Particle 
     } 
 
     public enum ObjType
@@ -256,6 +264,9 @@ namespace DungeonRun
         Wor_Bush,
         Wor_Bush_Stump,
         
+        //Dungeon Entrances
+        Wor_Entrance_ForestDungeon,
+
         #endregion
 
 

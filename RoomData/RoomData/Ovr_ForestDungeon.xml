@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <type>DEV_Field</type>
+  <objs>
+    <ObjXmlData>
+      <type>Wor_Entrance_ForestDungeon</type>
+      <direction>Down</direction>
+      <posX>360</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+  </objs>
+</RoomXmlData>
