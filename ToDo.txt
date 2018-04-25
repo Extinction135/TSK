@@ -66,14 +66,7 @@ TODAY:
 
 
 
-Various Small Improvements
 
-fixed dungeon obj widget to have a switch block up obj.
-
-reverted to playing the metallic tap sfx when sword collides with
-non-bush/door/wall blocking gameobjects.
-
-added soundfx for cutting grass with sword.
 
 
 
@@ -86,7 +79,40 @@ added soundfx for cutting grass with sword.
 
 Weapon and Item Use
 
-increase friction for when hero uses a weapon
+i like the idea of attack and use friction being separate.
+
+why? so using a weapon slows actors down more than items do, making
+their relative 'cost' higher, along with simulating a greater weight.
+the effect is using items slows the hero down less than using a weapon.
+weapons are also usually free, where items often have a cost.
+
+how was this done?
+different values for friction are applied to slow down actors
+when they use items or weapons (it's done this way so conveyor belts,
+and other objects that push() can affect the magnitude separately).
+so, friction to slow things down and push() to speed things up, both 
+affecting magnitude overtime, for actors & objects & entities.
+
+playtesting: weapons feel GREAT! it makes shooting arrows more
+precise, along with sword strikes having more weight. the net, it
+doesn't really matter or feel better. with the fireball however,
+the hero can really keep his momentum up.. so he can throw a 
+fireball while dashing pretty much, which turns into an explosion
+upon collision with pretty much anything, so fireball is becoming
+pretty powerful in the game's meta right now. it's only kept in
+check by it's magic cost and possibility of backfiring (shooting
+a fireball too close to an object creates an explosion that hits
+the hero within 1-2 frames, which isn't enough time to avoid it).
+
+
+
+
+
+
+
+
+
+
 
 
 

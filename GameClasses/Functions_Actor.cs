@@ -122,18 +122,10 @@ namespace DungeonRun
         }
 
         public static void SetItemUseState(Actor Actor)
-        {
-            Actor.state = ActorState.Use;
+        {   //set actor into a short paused state
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
-            Actor.lockTotal = 15; //short pause
-
-            //so, here's a BIG decision or option that we may want to include in a menu
-            //the option to 'stop movement upon an attack or item useage'
-            //this can make attacks more precise, but also slows down hero's inertia
-            //this could be an option in a menu, or it could be equipment we put on
-            //it could even be a skill in a skill tree!!
-            //Functions_Movement.StopMovement(Actor.compMove);
+            Actor.lockTotal = 15;
         }
 
         public static void SetIdleState(Actor Actor)
@@ -320,11 +312,14 @@ namespace DungeonRun
                         }
                     }
                 }
-                else if(Actor.state == ActorState.Use || Actor.state == ActorState.Attack)
-                {   //when an actor uses or attacks, they slow down for the duration
-                    Actor.compMove.friction = World.frictionSlow;
+                else if (Actor.state == ActorState.Attack)
+                {   //when an actor attacks, they slow down for the duration
+                    Actor.compMove.friction = World.frictionAttack;
                 }
-
+                else if(Actor.state == ActorState.Use)
+                {   //when an actor uses something, they slow down for the duration
+                    Actor.compMove.friction = World.frictionUse;
+                }
                 #endregion
 
             }

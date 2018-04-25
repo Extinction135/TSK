@@ -110,11 +110,16 @@ namespace DungeonRun
 
     public static class World
     {
-        public static float frictionSlow = 0.5f;
-        public static float friction = 0.75f;
-        public static float frictionIce = 0.99f;
-        public static float frictionAir = 0.9f;
+        public static float frictionAttack = 0.1f; //actor in attacking state
+        public static float frictionUse = 0.5f; //actor in use state
+
+        public static float friction = 0.75f; //standard friction
+
+        public static float frictionAir = 0.9f; //some slowdown
+        public static float frictionIce = 0.99f; //no slowdown
     }
+
+
 
     public static class Camera2D
     {
