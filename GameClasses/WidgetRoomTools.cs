@@ -264,7 +264,21 @@ namespace DungeonRun
         public void SaveCurrentRoom()
         {   //create RoomXmlData instance
             roomData = new RoomXmlData();
-            roomData.type = Functions_Level.currentRoom.roomID; //save the room type/id
+            RoomID id = Functions_Level.currentRoom.roomID; //shorten roomID
+            
+            //convert DEV room types into proper GAME room types
+            if (id == RoomID.DEV_Boss) { roomData.type = RoomID.Boss; }
+            else if (id == RoomID.DEV_Column) { roomData.type = RoomID.Column; }
+            else if (id == RoomID.DEV_Exit) { roomData.type = RoomID.Exit; }
+            else if (id == RoomID.DEV_Hub) { roomData.type = RoomID.Hub; }
+            else if (id == RoomID.DEV_Key) { roomData.type = RoomID.Key; }
+            else if (id == RoomID.DEV_Row) { roomData.type = RoomID.Row; }
+            else if (id == RoomID.DEV_Square) { roomData.type = RoomID.Square; }
+            else
+            {   //we may be saving a proper GAME room/level or field
+                roomData.type = Functions_Level.currentRoom.roomID;
+            }
+
             //populate roomData with roomObjs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             { SaveObject(Pool.roomObjPool[Pool.roomObjCounter], roomData); }
@@ -277,7 +291,8 @@ namespace DungeonRun
             if (Obj.active)
             {   //if this object is active & can be saved
                 if (Obj.canBeSaved)
-                {   //translate Obj to ObjXmlData, add it to the roomData.objs list
+                {   
+                    //translate Obj to ObjXmlData, add it to the roomData.objs list
                     ObjXmlData objData = new ObjXmlData();
                     objData.type = Obj.type;
                     objData.direction = Obj.direction;
