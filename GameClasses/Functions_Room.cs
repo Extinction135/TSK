@@ -138,38 +138,11 @@ namespace DungeonRun
         }
         
 
-
-
-
-
-
-        public static void AddDevDoors(Room Room)
-        {
-            //add temporary doors to this room, so hero can enter/exit it
-            int posX = Room.rec.X;
-            int posY = Room.rec.Y;
-            int middleX = (Room.size.X / 2) * 16;
-            int middleY = (Room.size.Y / 2) * 16;
-            int width = Room.size.X * 16;
-            int height = Room.size.Y * 16;
-
-            //add and set NSEW door positions
-            Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
-
-            if (Room.roomID != RoomID.DEV_Exit) //exit rooms have exit objs on south wall, no door
-            { Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); } //bottom
-
-            Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
-            Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
-        }
-
-
-
-
-
-
         public static void BuildRoom(Room Room, RoomXmlData RoomXmlData = null)
         {
+
+            #region Setup RoomData OR DevRooms
+
             if (RoomXmlData == null)
             {
                 //assume level is dungeon level
@@ -196,9 +169,6 @@ namespace DungeonRun
                 }
             }
 
-
-            #region Setup dev rooms
-
             if (Room.roomID == RoomID.DEV_Boss || Room.roomID == RoomID.DEV_Column ||
                 Room.roomID == RoomID.DEV_Exit || Room.roomID == RoomID.DEV_Hub ||
                 Room.roomID == RoomID.DEV_Key || Room.roomID == RoomID.DEV_Row ||
@@ -206,10 +176,10 @@ namespace DungeonRun
             {
                 RoomXmlData = new RoomXmlData();
                 Level.isField = false;
-                
                 RoomXmlData.type = Room.roomID;
                 SetType(Functions_Level.currentRoom, Room.roomID);
-                AddDevDoors(Room); //so we can test the room
+                //add nsew doors so hero can enter/exit for testing
+                Functions_Dungeon.AddDevDoors(Room); 
             }
             else if (Room.roomID == RoomID.DEV_Field)
             {
@@ -220,7 +190,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region Build the referenced XmlData
+            #region Build the room + roomData
 
             if (Level.isField)
             {   //we are building an outdoor overworld field room

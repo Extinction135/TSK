@@ -19,6 +19,7 @@ namespace DungeonRun
         public static TimeSpan time;
         public static int i;
         public static int j;
+        
         public static ComponentSprite floorRef;
         public static GameObject objRef;
         public static Actor actorRef;
@@ -210,7 +211,8 @@ namespace DungeonRun
 
                                 //finally, override door types based on specific room.type
                                 if (Room.roomID == RoomID.Boss)
-                                {   //all doors inside boss room are trap doors (push hero + close)
+                                {   
+                                    //all doors inside boss room are trap doors (push hero + close)
                                     Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
                                 }
 
@@ -227,6 +229,48 @@ namespace DungeonRun
         }
 
 
+
+
+        public static int g;
+        public static void ShutDoors(Room Room)
+        {   //convert ANY kind of door to a 1 way trap door in room
+            for (g = 0; g < Pool.roomObjCount; g++)
+            {
+                if (Pool.roomObjPool[g].active)
+                {   //note this is a GROUP check, so even bombable doors convert
+                    if (Pool.roomObjPool[g].group == ObjGroup.Door)
+                    {   
+                        Functions_GameObject.SetType(
+                            Pool.roomObjPool[g], 
+                            ObjType.Dungeon_DoorTrap);
+                    }
+                }
+            }
+        }
+        
+
+
+
+
+        public static void AddDevDoors(Room Room)
+        {
+            //add temporary doors to this room, so hero can enter/exit it
+            int posX = Room.rec.X;
+            int posY = Room.rec.Y;
+            int middleX = (Room.size.X / 2) * 16;
+            int middleY = (Room.size.Y / 2) * 16;
+            int width = Room.size.X * 16;
+            int height = Room.size.Y * 16;
+
+            //add and set NSEW door positions
+            Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
+
+            if (Room.roomID != RoomID.DEV_Exit) //exit rooms have exit objs on south wall, no door
+            { Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); } //bottom
+
+            Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
+            Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
+        }
 
         public static void ProcedurallyFinish(Room Room)
         {   //Pass the room to the appropriate method for completion
@@ -266,6 +310,7 @@ namespace DungeonRun
             }
             else if (Room.roomID == RoomID.Boss)
             {
+                ShutDoors(Room);
                 FinishBossRoom(Room);
                 AddCrackedWalls(Room);
                 ScatterDebris(Room);
@@ -300,9 +345,16 @@ namespace DungeonRun
 
             #region Dev Rooms
 
+            else if(Room.roomID == RoomID.DEV_Column
+                || Room.roomID == RoomID.DEV_Row
+                || Room.roomID == RoomID.DEV_Square)
+            {
+                //nothing
+            }
             else if(Room.roomID == RoomID.DEV_Boss)
             {
-                FinishBossRoom(Room);
+                //FinishBossRoom(Room); //this just spawns the boss
+                ShutDoors(Room); //we do want to shut the doors tho
             }
             else if(Room.roomID == RoomID.DEV_Exit)
             {
