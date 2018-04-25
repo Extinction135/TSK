@@ -24,67 +24,62 @@ adding a cheat:
 	update MenuItem.SetType() to set cheat menuItem descriptions, titles, and initial frame.
 	add menuItem to Cheat Screen.
 	link neighbors, add effect, add check to SetCheatMenuItems(), playtest.
-
+Adding GameObjs:
+	make enum defs, make animFrames,
+	set objType paths, add to env obj widget
+	playtest in field.	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 v0.7 goals
 x - divide spritesheets up so they can be expanded / modified easily
 x - get all objects integrated into the new system / layout
+X - expand RoomBuilder to include the creation, placement, loading and saving of world levels.
+X - Outside Town Level, vendors
 
-- expand RoomBuilder to include the creation, placement, loading and saving of world levels.
-- Dungeon Entrance Level, with dungeon entrance object, locked cam, filled screen
-- Outside Town Level, locked cam, filled screen, vendors
+- Dungeon Entrance Level, dungeon entrance object
+- obj linked to dungeon generation + extensive testing
 
-- fix picking up, carrying, throwing, dropping, dragging, pushing objects
-- can drag: light blocks, dungeon statues, barrels, torches on/off, chests
-- can pickup, carry, throw: pots
-- remove dropping pots from game, hero can only throw them
-- can swim, 'dive', and reward / pickup stuff in water
+- healers house, full death/respawn loop in game
+- this includes buildings, beds, interior objs
 
 - Non-room repeating Dungeon, additional rooms
-- Flying Enemy
+- Flying Dungeon Enemy, Minor Overworld Enemies
 - Blob AI improvements - sword, arrow, bomb based on weapon / item loadout 
 - blob loadouts could be randomized when room is built()
 
-- EndlessDungeon Demo (shows off gameplay, complete on it's own).
+- EndlessForest Demo (shows off gameplay, complete on it's own, camera tracks to hero).
+- this is randomly placed bushes / trees / grass + ANY enemy type
+- room rec tracks to hero, expanded room rec cleans up anything that doesn't touch it
+- as room moves, *generate random stuff just OUTSIDE of room rec*
+- this means, as hero moves he is always 'finding' new stuff, even if he doubles back
+- npc outside endless forest dialog = "once you go in, there's no way out..."
+- later on implement magic mirror, which returns hero to overworld screen
+
+(2 'dungeons', 2 'locations' - colliseum + healers house)
 
 
 
 
-
-
-
-
-Adding GameObjs:
-make enum defs, make animFrames,
-set objType paths, add to env obj widget
-playtest in field.
 
 
 TODAY:
 
 
 
+Plans++
 
-
-Editor++
-
-fixed a bug where loading an xml file didn't change the room, so
-instead of objects being placed into their expected room they were
-placed into whatever room was built last, which seemed wrong.
-
-ExitRooms++
-
-removed procedurally added statue objs from exit room.
-exit rooms will be handmade like other rooms in a future update.
-updated ProcedurallyFinish() to call PlaceExit() upon dev_exit
-and exit rooms, and updated PlaceExit() to check if the room
-is a dev_exit, and if so bails from the method prior to
-building the real dungeon exit, which prevents the hero from
-leaving the editor.
-
-Editor++
-
-fixed an issue where loading existing xml made editor unresponsive.
+big reorganization of todos + ideas moving forward for the game.
 
 
 
@@ -96,126 +91,35 @@ fixed an issue where loading existing xml made editor unresponsive.
 
 
 
+Dungeon Entrance Obj
 
-
-
-
-
-
-
-
-
-when we save a room, we need to convert the DEV_Type to just Type.
-this is important, otherwise the rooms wont be sorted onto lists properly.
-
-
-
-
-
-
-
-
+this one first
 
 
 Dungeon Entrance Obj + Level
 next, we need to create a dungeon entrance obj, and dungeon
-entrance level. then add these to roomData and link to overworld map, via
-level type.
+entrance level. then add these to roomData and link to 
+overworld map, via level type.
+
+add signpost obj that hero can read to dungeon entrance level discussing dungeon.
 
 
 
 
 
 Then we need to create the healers house, with the spawn point being the bed.
-and the proper death loop needs to be implmented in-game.
-upon death, hero respawns at healers house, no questions asked.
-in editor, upon health reaching 0, hero's health is replenished back to full.
-in other words, hero can't die in editor otherwise it would kick em out of edit
-mode and into game mode via respawn at healers house.
+we need a bed obj too!
 
+then the proper death loop needs to be implmented in-game...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-teleport hero's dog to hero upon spawn into colliseum level
-
-
-
-
-
-
-
-
-
-Outdoor Shop Level
-
-then we need to create a field level for the game, with the vendors in it.
-we need to add this exit object, which allows the hero to return to 
-the overworld (simply exits all and makes overworld screen).
-based on level type, hero spawns on overworld map.
-this should replace the SHOP level type.
-there should be objects that prevent link from leaving the screen.
-the camera should be locked and unmoveable, centered to room.
-link should spawn in front of the exit, as if he just walked up.
-this mimics the dungeon start, but it's an open air level.
-overworld exits should be marked with signposts, and look kinda like exits too..
-
-
-
-
-
-
-DungeonEntrance Level
-
-we can do this level design again for the dungeon entrance level, and
-we already have the dungeon entrance object. we need an overworld exit obj too,
-which we should already have from the outdoor shop level.
-remember, this object simply loads the overworld screen.
-the level.type determines where link 'spawns' on the map.
-
-
-
-
-
-
-
-
-Bushes++
-
-when we hit a bush, we should create bush leaf debris.
-this leaf debris is pushed the direction of the hit on the bush,
-so it inherits the inertia of the hit, 
-
-first, the initial BIG push in the hit direction happens
-then a small random directional push is applied to vary the leaf trajectories.
-
-BUT this means we need to have moving particles.. AND WE DO!
-this means we can push particles, giving them inertia.
-this would be very nice.
-
-
-
-
-
-
-Boomerangs++
-
-boomerang sounds are totally wrong, clinks off a bush?
-triggers a bush? no. fix boomerang soundfx.
-
-
-
-
+death loop:
+if the hero is in game, then hero respawns at healers house.
+if the hero dies while the game is in editor mode, then the hero comes back to life.
+healer tells link that 'a mysterious stranger brought you here'.
+the idea being that queen zelda can sense his suffering and disguises herself in
+order to silently save him, to keep him on his path to her, as her plans intend, 
+so she remains in control of everything. this should be revealed at the end of the
+game, in the final dialogs.
 
 
 
@@ -240,270 +144,6 @@ fireballs create ground fire on the tree stump.
 
 
 
-Caster Invincibility
-we should prevent projectiles from harming their caster.
-*could* - right now it helps to know when a projectile
-overlaps it's caster. later on, we can toggle the damage off
-if it's the caster colliding with the projectile.
-
-
-
-
-
-Improve GameObj Naming Conventions
-we should shorten the dungeon_ prefix for gameObj to dun_.
-and world_ to wor_ .
-this will help those items better fit into the objTools widget
-plus, this shortens the overall size of the roomData xml by removing chars.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-we can link f3 to drawing the interaction / collision info widget
-
-
-
-
-
-
-
-
-
-
-Arrows++
-when arrow collides with a blocking obj, 
-set arrow's speed to 0, increase it's friction slightly.
-it should 'sink' into a final position, inside the wall,
-where it will 'live' until frame 255, then be removed.
-this ONLY works on blocking objects without any magnitude.
-IF THE OBJ DOES HAVE A MAGNITUDE, 
-then we just kill the arrow upon collision.
-otherwise the obj would move, and the arrow wouldn't travel with it.
-and that would look WRONG.
-
-
-
-
-
-Slippery Slope!
-*if we slide a bomb across ice, then onto grass,
-the bomb keeps sliding as if it were on ice. it's a pro.
-so maybe we aren't resetting the friction prior
-to checking projectile interactions with roomObjs?
-
-
-
-
-
-
-
-ENUM FIELDS - OH MY GOD, IF THIS WORKS...
-masterwork: the bitFields used in cursedCastle were FASSSST.
-and we recently learned that booleans / bits are the same cost in
-ram gets/sets as ints, which we can abstract into enums.
-so instead of bitFields, create enumFields.
-they'll be just as fast, and you can model each tile as
-many different ways as you want to, for water / islands / rooms
-anything.. this could actually make procedurally creating rooms
-ALOT faster, because we could build the room up using two enumField
-lists - one for the doors / walls, and one for the interior objs (xml objs).
-we wouldn't need to do collision checking between objects, because
-we'd be setting the tiles by value, and not by position (conceptually).
-so, maybe we spend some time investigating enumFields...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-one of the pegasus boots is missing, so that's why link cant dash
-like he used to.
-
-
-
-
-
-
-
-
-
-Wall Torches++
-if we seperate the wall torch off the wall bkg sprite, then we can reuse
-it indoors in world rooms, or outside on buildings. but, we need to update
-the door decoration algorithm to add torches, instead of replacing the wall
-with a wall torch, which acts simply as a wall.
-
-
-
-Increase Magic
-we do need a way to increase our total magic, tho.
-just like hearts, this item should be sold be the items vendor.
-
-
-
-
-
-
-Official Demo (Endless Dungeon):
-
-this is just randomly connecting one room to another.
-there is no overall dungeon design or critical path.
-hero leaves a room, a new one is made for him based on door.
-or we make neighbor rooms when hero enters a room, it doesn't matter.
-rooms and room types are randomly chosen, so sometimes
-there might be a hub room with a miniboss, or a key room 
-that needs to be solved in order to progress. while the
-player can get the map, it's not really useful.
-HOWEVER, the key is SUPER USERFUL and can be used in a HUB
-room to open the boos door to the boss room where the boss can
-be beaten and the endless dungeon demo ends with a summary screen.
-pressing any button starts the endless runner demo again.
-the starting room doesn't have an exit.
-music is randomly chosen. very useful for testing purposes!
-this shows off the gameplay and overall systems.
-
-this is a BootRoutine enum value, Demo.
-we check the boot routine value upon load, and then set the hero's
-loadout to either normal, or full (editor and endless runner).
-
-ScreenDemo - controls the demo's interactions (locks player here)
-Functions_Demo - contains all the demo's methods
-
-from sumamry screen we need to check the BootRoutine to see if 
-we return to overworld or exitAll() to a fresh Demo Screen.
-
-we would have to disable some menuItems from inventory screen,
-or remove the ability to interact with the options widget entirely! lol
-that also means no cheats. boo
-
-but, this endless dungeon idea can be put back into the game later
-as a specific type of dungeon (a ghost dungeon or something), because
-it can be completed in the expected manner: get key, open boss door, kill boss.
-we can set a boolean based on the boss type's death, which effectively
-tracks the player's progress past this endless dungeon.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-The New Water & Swimming Systems
-
-water tiles should exist. upon collision with a water tile,
-hero switches to swimming state. only upon collision with water
-tile does this happen - hero's default state is on ground.
-this is in contrast to the previous implementation where hero was
-defaulted to swimming, and only upon collision with land tiles
-was he set to walking/on ground.
-
-by default, the background color is a grass color. to that,
-we add dirt paths, animated grass objects scattered throughout,
-then additional env objs, npcs, buildings, etc.. and even water tiles.
-
-
-
-
-
-Picking Up Objects++
-picking up a pot puts hero into a carry state, but leaves the roomObj drawing on the sreen, but nonblocking
-hero doesn't display anything over his head
-setting the obj down doesn't move the roomObj, but instead makes it blocking again.
-we need to be altering ROOMOBJECTS only, we dont need to abstract it into a thrown / carrying obj
-if hero collides with a door, simply destroy the carrying obj reference
-
-all related to picking up/carrying/throwing/pushing/pulling
-{
-
-*currently the obj hero picks up doesn't appear over his head
-the obj stays in it's picked up spot
-
-	hero should be able to pickup and throw enemy corpses
-	which means we need to abstract the carrying obj into something that could ref an obj or actor
-	or we have both, one for objs and one for actors
-
-	what if the obj the hero picks up simply assumes the target obj's texture and frame, etc..?
-	this would work for actors as well, which sets the ground work for allowing the hero to pickup 
-	blob corpses and use them in some interesting way... like dropping them on a switch!
-	we already do this with pots essentially, but we need to abstract the carrying/throwing solution
-	to be more generalized and handle roomObjs, actors, or whatever we throw at it in the future..
-
-	Dragging/Pushing/Pulling
-
-	hero should be able to 'grab' objects
-	if the object is draggable, then hero should be able to push and pull on it
-	this 'grabbing' state should last until player releases the A button
-	objects should inherit the movement of hero, 
-	and check collisions with all roomObjs, entities, & actors (expensive)
-	if a draggable object would collide, it doesn't move
-	this would have to be done per axis too, so we could drag along walls
-
-	in order to accomplish these two things, we will need to be able to compare a gameobj against the roomObjs
-	this starts with a collision check, then an interaction upon an overlap
-	we would call this from dragging / pushing / pulling, and conveyor belt checks
-	
-	when we throw an object, should we create an entity?
-	and should this entity be a projectile with a caster?
-	so the game would know who threw the object, if we had effects later
-	for example, lifesteal or something else that targets the caster upon obj collision.
-}
-
-
-
-
-
-
-
-
-Special Sword Attack
-should be able to charge up attack and spin just like Lttp.
-
-
-
-
-
-Grass Interactions++
-when hero moves thru tall grass, part of his feet should be obscured,
-just like Lttp. this is some kind of small animated grass thing
-and it only animates when the hero is moving. if he isn't moving,
-then the foot grass cover shouldnt animate at all.
-** this is a particle? projectile? either way, it's not on the
-entities sheet - it's on the level sheet, because it needs to match
-the color of the grass that it's covering.
-
-
-
-
 Non-Repeating Rooms in Dungeon
 
 we need to make rooms non-repeating in the dungeon.
@@ -523,76 +163,7 @@ we need more rows and column rooms, and their quality needs to be improved.
 
 
 
-
-
-
-Implement Dynamic Shadows System
-
-an object pool for shadows would be great
-objects / actors could have a field for a shadow sprite reference
-then we could store a shadow offset, which allows us to fake depth on the Z axis
-if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
-this also sets the stage for flying obj/actors, as they would have changing shadow positions.
-this also means we need to 'unbake' the shadows from ALL objects and actors.
-
-
-
-
-
-groundfires should leave burn mark.
-explsions should leave burn amrk..
-
-
-
-
-Explosion Surfing (Bomb Jumping)
-
-if an actor is hit, simply put them into a flying state.
-this will cause the actor to be able to fly across pits for a moment,
-but when the hit state ends, if they overlap the pit, they
-will be pulled in. but, this does allow a type of bomb jumping,
-or rather "explosion surfing". which sounds so much better.
-
-we could even put the actor into a 2nd type of hit state,
-a staggered state, which would hold the actor in the hit state for
-longer, allowing them to fly for longer, allowing them to cross
-single tile pits safely - and only an explosion would be able
-to set an actor into this 2nd hit staggered hit state.
-
-which, staggered seems like a poor name for this state.
-likely should be something like ExplosiveThrow, 
-so we know the actor is being thrown by an explosion.
-
-we can implement this now and ensure that bomb jumping is not
-only preserved, but supported officially in this game, and is
-known as explosion surfing, because you can also use fireballs
-to do these type of explosive throwing tricks.
-
-
-
-
-
-Dialog++
-the dialog screen's speaker sprite is completely wrong
-and i kind of love it.. because when i loaded the game 
-up a rock told me that it had successfully loaded my 
-last autosaved game. you don't normally hear that from a rock.
-
-
-
-Explosions++
-add 'burn' mark particle for explosions
-should last for 255 frames, mark the ground dark, then fade away.
-sprite.alpha = (float)obj.lifeCount * 3  //when this drops below 50frames, it will fade out
-*this can be reversed if life is counting up instead..
-if life > 250, alpha = 100 - (life - 250) * 2;
-
-add falling debris when straight walls are cracked by explosions.
-this is probably going to need to be a larger debris particle commit / system
-because the particles are going to be on the dungeon sheet, and we'll need
-to fake gravity and ground bouncing / friction collisions...
-
-
+we need a flying enemy - like a BAT
 
 
 
@@ -601,88 +172,7 @@ in save data, we should have the fields named:
 heartsMax, magicMax, bombsMax, arrowsMax.
 we don't need magicTotal anymore.
 
-Lttp Stuff we're missing:
-
-
-
-
-Keys!!!
-**we could have 'keys' in the game, which would be temporary for the room only
-the doors would shut and convert to locked versions, or only some of them would.
-inside the room is a chest that contains a key. hero picks up the key, unlocks 
-a door, key is used, continues on. the room resets, works the same later on.
-the key would be displayed in the inventory screen as a brittle rusty key.
-and when it's used, the key breaks. the flavor text says that the key will
-likely break after one use.
-
-we could lock one door randomly, or we could lock ALL THE DOORS, and then 
-force the player to choose which door they want to unlock.
-
-
-
-
-Pullable levers
-these are built into the wall and open shut doors, just like a switch
-these must be pulled for a bit tho, and there are decoy levers that will
-spawn snakes or explode..
-
-these large levers should be reserved for dungeon changes,
-like flooding the dungeon, etc.. which we could model simply 
-with a boolean, which would then add shallow water to all rooms,
-and change pits to deep water, making some areas PASSABLE! yes.
-this is how we can procedurally shut off areas of the dungeon. ah, perfect.
-
-example, the hub room could have a big lever that floods the dungeon
-and the hero must pull the lever to flood the key room, because that
-key room has a chest surrounded by pits, which is totally inaccessible.
-we could also put the big lever in some random roomm, or in its own
-special room, which would be present in dungeons that can undergo
-structural changes (like flooding)... hmm...
-
-
-
-
-
-LightWave Projectile (push wand projectile)
-
-the flame throwers on the ground shouldn't shoot fireballs
-they should shoot those light wave things, which dont deal damage to what they hit!
-they actually only push what they hit, and they dont die upon a collision
-they will continue to push whatever they collide with until they die from age
-this means we need a new type of projectile, which is exciting
-
-and we can use this wave as the projectile created from the wand!
-we can call it the push wand, which would allow us to create a whole new type of puzzle
-where we can use the push wand to move objects to solve rooms!!!
-
-
-
-
-do we actually use actor.compInt (this is the interaction component)
-??? wtf
-
-
-
-
-Full Screen AoE MAGIC SPELLS
-
-it's really simple to do this, just create explosions around the hero,
-or play a bunch of random explosion sprites everywhere, then damage all
-active enemies like so:
-
-for (i = 1; i < Pool.actorCount; i++) //skip actorPool[0] (hero)
-{
-	if (Pool.actorPool[i].active) //deal 1 point of damage to all active actors
-	{ Functions_Battle.Damage(Pool.actorPool[i], 1, 0.0f, Functions_Direction.GetRandomDirection()); }
-}
-
-either actually create projectiles to kill enemies, or fake it with particles
-it just depends on the effect and magic behavior
-
-
-
-
-
+do we actually use actor.compInt (this is the interaction component) ??? wtf
 
 fix how kick sountrack volume is handled
 the hero's health sets the volume of the kick soundtrack
@@ -693,412 +183,104 @@ it should ensure the kick volume is 0. this prevents issues we've
 had before where the kick volume was above 0 while player was on
 different screen.
 
-
-
-
-dungeons should have an enemy list for each tier
-then upon room build, randomly choose an enemy type from the correct tier list
-
-we need a flying enemy - like a BAT
-
-
-
-Dungeons++
-the exit rooms should be different for each dungeon type
-but they should be the same for the dungeon type they represent
-so the dungeon type feels consistent, but there is variety between dungeon types
-
-dungeons should have names.
-the dungeon name should be displayed on the map.
-dungeon names could be randomly generated from a list.
-
-
-
-
-Boss dialog + Boss phases
-initially the boss should popup a dialog mocking player
-after boss hits half health, another dialog should popup
-this one talks about boss changing tactics
-"you're better than i expected"
-in the 2nd phase, the boss moves AWAY from the hero
-so its harder for the hero to hit the boss
-in first phase, the boss just randomly moves around
-
-
-
-
-BIG OPTIMIZATION
-	if we don't draw the floor tiles, the draw loop is much faster
-	so, we could standardize the room sizes, then create a floor sprite
-	then instead of drawing 200 floor sprites, we just draw 1 larger floor sprite	
-
-
-
-
-
-
-
-
-Projectiles++
-WanderingFire 
-this is just like spikeblock except the obj.direction is chosen randomly upon collision
-the direction cannot be the current direction however, and can only be cardinal	
-should be able to place wandering fire using tools widget
-
-
-
-Improve / Beautify Feedback Info
-we need to move the left handed update collision interaction draw times
-into it's own widget, which is drawn on the right side, and make it linked
-to a boolean which draws it, which is then linked to the cheats menu as a
-draw dev info cheat.
-
-
-
-
-OBJECTS:
-
-Destroyed Debris object
-the dungeon statue should become the destroyed version upon destruction.
-any object that can be destroyed should become this object.
-this object should look like a pile of rocks. can be pushed.
-
-Circling Stars
-just like Lttp, the circling stars turns hero into an enemy actor type
-except, it's not on a timer. hero becomes enemy actor type until Circling stars collides with hero again.
-this is a check: if hero.type != hero, become enemy, else become hero.
-
-BUG - PITS
-if an actor overlaps two pits at the exact same time
-they can be pulled into each pit, resulting in a cancelled out pull
-leaving actor hovering over pits, which is bad
-*which could easily be fixed by using a weaker pull on the left for all pits
-*the actor would slowly be pulled into the right pit, 
-*then quickly pulled once they dont collide with left pit any more
-
-
-
-
-for the ice dungeon, procedurally add ice tiles to each room
-if ice tile overlaps with a pit / bridge / floor spikes / cracked floor, remove it
-this can be done in the cleanup of room
-and we'll probably need to expand the max size of roomObjs
-
-
-
-implement a level 2 magic spell
-this would deal 1 damage to everything on screen
-and play explosions randomly inside the room
-should be named bombos, sold by magic dealer
-
-
-
-
-
-WorldUI++
-when the hero's health changes, the worldUI should animate hearts individually
-if the hero gains 5 health, each heart should scale up, then animate down
-once that heart's scale reaches 1.0, then the next heart can animate
-this sequential scaling should happen anytime hero's health changes
-
-
-
-
-
-
-
-need an on screen dungeon timer (for dungeon levels)
-upper right corner, simply draws the DungeonRecord.timespan value
-this should display down to the ms
-this should only display if level is a dungeon
-	
-	
-	
-dungeons can have deep water (sinks) and shallow water (just has wading fx)
-and we can build puzzles around this, because it's impossible to tell them apart
-but we should be able to tell them apart, with some kind of shallow water lighter color difference
-this is important to do now, because it affects the layout of the dungeon sheet
-
-where do we display the kill ratio?
-this is displayed in a stats widget somewhere that hasn't been designed yet
-equation for determining skill rating in percentage.
-this is: total enemies killed / damage taken
-ex: 10/1 = 10.   245/73 = 3.35.
-
-
-NPCs should change their dialog based on the hero.actorType
-if hero, then NPCs act normal
-if blob, then NPCs act disgusted, wont sell
-
-we need to create a blob safe level, where blobs have their own vendors + guide
-this allows the two storylines to co-exist and proress seperately
-
-
-
-
-we could simplify bumper interactions if we could just say
-if (obj.compCollision.Interacts_With_Bumper), then we bounce the obj.
-instead we're doing this inside of the type check, which is duplicating
-alot of code calling BounceOffBumper(), then passing the obj.
-
-
-
-
-
-DungeonDesign - Taking it Further
-design dungeons as a whole
-dungeons should have a theme
-there should be 'architectural puzzles', where the dungeon changes in some way
-this could be raising/lowering water levels
-moving forward/backwards in time
-destroying parts of the dungeon/rooms
-using switches to alter the paths thru rooms, or alter the nature of rooms
-
-
-
-
-
-
-
-
-
-
-
-
-Overworld++
-add tiny smoke particles coming out of some houses
-add 'floating' animation to ship (should bob up and down)
-this means it needs to be a sprite in the main sheet
-make castlel ruins look more 'ruiny'
-
-
-
-
-**if you sprinkle magic powder on a dead enemy, he comes back to life at 100% hp
-but, he's still your enemy, so i don't know how useful it is practically...
-
-
-
-
-v0.9 goals
-
-complete story outline + plot
-
-Letters / Notes 
-we could also use the map scroll sprites as a display for letters
-from the hero's wife or whatever
-this could serve as a way to remind player of story too
-player could read a scroll and get caught up on the main plot points
-> wife leaves hero, hero'c cause/journey
-> invitation to final tournament, with 4 boss head requirements
-these scrolls could also popup when the hero gets them
-displaying alot of dialog / story plot points
-
-
-implement dialog system and event booleans to track events in game
-
-
-
-
-
-
-
-Crypt - optional dungeon + level
-
-there are 8 floors to the Crypt - upper floor, the burial crypts, dungeon x 6
-
-the upper floor
-a large room with NPCs that explain what the crypt is (keeps bodies of gladiators + records)
-
-the burial crypts
-a large room of gladiators who achieved glory in battle via some record
-for each record you break, you get to open that hero's tomb and take what's inside
-one of the tombs opens to reveal the crypt dungeon (opens when all 4 crystals are obtained)
-
-the crypt dungeon
-this is a vertical dungeon down, with each level containing harder and harder enemies
-this is basically a diablo1 rip off, with 6 levels down
-at level 6 hero fights the crypt boss
-crypt boss is a massive bullet sponge, and spawns just tons of adds in a large hub sized room
-there are also magic attacks going on, so the room is filled and very hectic to manage
-there should be multiple phases to the crypt boss, a truly legendary fight.
-beating the crypt boss unlocks a special tomb in the crypt for looting
-
-
-
-Boat
-takes hero to different islands
-if hero is blob, then secret blob islands become available (like blob home island)
-
-
-Training Center
-this is a place where you can train your hero or his team of gladiators
-can train against any enemy 1v1, including bosses that have been beaten
-this happens from a menu selection
-you can also spend gold to increase a gladiator's stats
-which you can then bet money on later in the colliseum
-
-
-Colliseum
-should have different kinds of tournaments
-some tournaments will be 'to the death', which always have higher payouts than normal
-gladiators that lose a battle, die in the game
-
-PROPERTY IDEA
-Complete a long and difficult side-quest to earn a property that generates income (gold).
-the player needs only to collect the gold regularly to purchase anything they want, eventually.
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-Idea for a Tool (much later) - Colorizer
-
-loads in all the textures for the levels in the game
-select a level to see an example of it in use in a window frame
-also has a color picker that allows you to set the color pallete used for the level
-this would map the tonal grayscale values used to a list
-then map the user's input colors to a list
-then display the user's input colors based on the grayscale colors, using comparison lists
-should also allow the user to save all the files as a set, named a specific way, to a folder
-this would allow user to have complete control over the grayscale to color transition for release.
-
-crazy awesome idea for a color scheme picker:
-a central slider selector, with additional unselectable sliders around it
-as you move the central slider, the other sliders move with it in parallel
-should have an offset value, which controls how far apart the sliders are from the central slider
-this would either spread the color scheme across the spectrum, or limit it, dynamically
-of course, the example room with the level's display colors should be updating each frame
-should be able to save the level's color values, or the game's level's color values
-this would allow for the keeping of the sprite sheets in grayscale
-and allow for the color mapping to occur independently of sprite development.
-
-
-Awesome Idea: a display color pallete, mapped from grayscale values.
-this means that all levels would be saved in grayscale.
-then when the level is loaded, the display values would be set based on level type
-the level's grayscale display value would then be interpreted into color
-simply based on a list of color values, which could easily be changed and shared.
-
--how would this work? we would need a texture instance for the current level.
-upon level load, levelsheet would be copied (bit by bit, not by reference) into the texture instance.
-then the colorizer algorithm would run with the grayscale as target and color list as input.
-it would change each grayscale color into the color equivalent based on the color list.
-the level would finish loading, then the display texture would be used for the roomObjects
-
-
-
-
-MOAR STUFFS TO DOs
-
-Make the AI system Behavior based, where a Behavior is an enumerator
-
-actor.behaviors = new List<Behaviors> { Behavior.Aggressive, Behavior.Curious, Behavior.Destructive }
-Behavior.Aggressive (actor will pursue hero without regard for safety)
-Behavior.Attacks (actor will attack hero, if hero is close enough)
-Behavior.Curious (actor will randomly explore the area around them)
-Behavior.Destructive (actor will attack any destructible object it comes across)
-Behavior.SpawnsMobs (actor can spawn other actors, based on actor.type)
-Behavior.ThrowsPots (actor will pickup and throw object it comes across at hero)
-
-an enumerator, and a list in the actor class.
-then we modify the AI method to work based on behaviors.
-if actor.behavior[i] == 
-- aggressive, move actor towards hero, if hero is visible
-- attacks, attack hero if hero is close enough
-- curious, randomly move actor
-- destructive, attack destructible objects nearby
-- spawnsMobs, randomly spawn mobs based on the actor.type
-- throwsPots, picks up nearby pots, carrys them, and throws them at hero if hero is visible
-	
-
-	
-title widget functionality ++
-	audio/input/video/game ctrls - creates appropriate screen
-
-audio ctrls screen
-	sfx volume
-	music volume
-	
-input ctrls screen
-	bvisual representation of button controls
-	
-video ctrls screen
-	full screen or windowed?
-	
-game ctrls screen
-	how camera moves - follow hero or center to current room? 
-	we only need to flip Flags.CameraTracksHero boolean
-	
-	
-if we make a PlayerData.loaded instance of SaveData,
-and then load the stream data from Functions_Backend
-into that Data.loaded instance, then we would have a restore point
-kind of system, plus we could simplify both Dx and UWP
-backend functions to simply load their streams into data.loaded.
-right now, they're setting the game data for each of the 3 files,
-which really shouldn't be a responsibility of the backend functions.
-	
-	
-	
-Handling corrupt game files & first run setup - part 2
-
-if a saved game file has correct XML headers, then game will load it
-any fields that match to saveData's fields will then be loaded
-theoretically, we could load an XML file that has no correct fields,
-and the game would never know.. 
-this makes it impossible to check if the loaded data is corrupt or accurate.
-only XML with malformed opening header tags will fail to load.
-
-we need a way to check that the loaded xml is actually a game file
-
-create a saveData instance, set all it's fields to null
-then load the saveFile into the null saveData
-then check each field of the saveData to see if it's not null
-if any field is null, then the loaded saveFile was corrupted
-however, we can probably extract some data from the corrupt file 
-so we could prompt the user with a dialog that asks 'load uncorrupted data?'
-'the file i loaded is corrupt. should i try to recover it?'	
-	
-	
-
-Zen Potion
-a potion that lets the hero use magic without cost a time period (255 frames)
-unlimited magic use, spam it all for 255 frames, for 99 gold.	
-	
-	
-	
-we could add a spear projectile for blob enemies
-
 we should include a soundFXinstance on actors that points to one of the soundFX in assets
 then we can set this instance in ActorFunctions.SetType()
 then later just call it generically, like Actor.AttackSound.Play().
 same with hit sound, death sound, use sound.
 
-implement additional weapons / items
-weapons : { staff, axe }
-items : { lightning, boomerang }
 
-	
-Look at how stardew valley engages players
-	theres so much to do and explore
-	we need more to do and explore
-	should be able to have a pet, like a dog
-	should be able to speak with more people/npcs
-	should be able to manage traders, adventurers, etc.. like assassins creed blackflag minigame
-	should be able to craft advanced items, using special parts + gold
-	just a ton of additional stuff layered on top of the dungeon running, that is supporting core gameplay
-	
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+v0.8 goals
+
+- implement enumFields for building rooms (big optimization)
+
+- fix picking up, carrying, throwing, dropping, dragging, pushing objects
+- can drag: light blocks, dungeon statues, barrels, torches on/off, chests
+- can pickup, carry, throw: pots
+- remove dropping pots from game, hero can only throw them
+
+- create 'boat' level, with boat captain, who has dialog with link
+- offers to take link to a variety of locations, using vendor screen
+- only available location is water temple, for low gold price (since link 'hires' crew)
+- this level is the boat obj + a dungeon entrance obj + a bunch of water tiles (maybe a small island)
+- links path is to/from the boat to the dungeon entrance
+
+- water temple / swamp dungeon: 
+	build crit path to hub, crit path to key, crit path to boss, 
+	*crit path to water switch (pullable lever)
+	*place water switch randomly in room/hub room
+	water pullable lever flips high/low water level boolean
+	when rooms are built they build high or low water levels, 
+	low water levels prevent hero from passing thru rooms 
+	there are low water levels in rooms along the key or boss crit path.
+	hero must flip switch to access key or boss rooms, or not.
+	boss is tentacles squid
 	
+- can swim, 'dive', dash, and reward / pickup stuff in water
+- dive: 
+	in shallow water, this picks up whatever is hidden using reward state.
+	in deep water, this allows hero to move 'under' some blocking objects
+	diving is timed / capped at 255 frames, after that link pops his head back up
+- dash:
+	works the same in shallow and deep water, but can't be done while diving
 	
-	
+- mountain dungeon (diff enemies, boss, dungeon sprites - but same rooms)
+
+- room keys - these only work for the room and only unlock 1 door, and
+these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
+
+
+
+
+
+
+
+
+v0.9 goals
+??? story, secrets
+
+
+
+v1.0 goals
+??? support, testing, videos, documentation, alt marketing
+
+
+
+
+
+
+
+
+
+
+
+
+
+

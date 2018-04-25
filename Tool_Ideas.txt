@@ -1,0 +1,36 @@
+
+
+
+Colorizer
+
+loads in all the textures for the levels in the game
+select a level to see an example of it in use in a window frame
+also has a color picker that allows you to set the color pallete used for the level
+this would map the tonal grayscale values used to a list
+then map the user's input colors to a list
+then display the user's input colors based on the grayscale colors, using comparison lists
+should also allow the user to save all the files as a set, named a specific way, to a folder
+this would allow user to have complete control over the grayscale to color transition for release.
+
+crazy awesome idea for a color scheme picker:
+a central slider selector, with additional unselectable sliders around it
+as you move the central slider, the other sliders move with it in parallel
+should have an offset value, which controls how far apart the sliders are from the central slider
+this would either spread the color scheme across the spectrum, or limit it, dynamically
+of course, the example room with the level's display colors should be updating each frame
+should be able to save the level's color values, or the game's level's color values
+this would allow for the keeping of the sprite sheets in grayscale
+and allow for the color mapping to occur independently of sprite development.
+
+
+Awesome Idea: a display color pallete, mapped from grayscale values.
+this means that all levels would be saved in grayscale.
+then when the level is loaded, the display values would be set based on level type
+the level's grayscale display value would then be interpreted into color
+simply based on a list of color values, which could easily be changed and shared.
+
+-how would this work? we would need a texture instance for the current level.
+upon level load, levelsheet would be copied (bit by bit, not by reference) into the texture instance.
+then the colorizer algorithm would run with the grayscale as target and color list as input.
+it would change each grayscale color into the color equivalent based on the color list.
+the level would finish loading, then the display texture would be used for the roomObjects
