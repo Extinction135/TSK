@@ -281,7 +281,8 @@ namespace DungeonRun
 
             if (Room.roomID == RoomID.Exit)
             {
-                FinishExitRoom(Room);
+                PlaceExit(Room);
+                AddCrackedWalls(Room);
                 ScatterDebris(Room);
             }
             else if (Room.roomID == RoomID.Secret)
@@ -358,7 +359,7 @@ namespace DungeonRun
             }
             else if(Room.roomID == RoomID.DEV_Exit)
             {
-                FinishExitRoom(Room);
+                PlaceExit(Room);
             }
             else if(Room.roomID == RoomID.DEV_Hub)
             {
@@ -420,22 +421,6 @@ namespace DungeonRun
 
         public static void PlaceExit(Room Room)
         {
-            //create the exit
-            Functions_GameObject.Spawn(ObjType.Dungeon_Exit,
-                (Room.size.X / 2) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
-                Direction.Down);
-
-            //set the room.spawnPos to pos above exit door obj
-            Room.spawnPos.X = (Room.size.X / 2) * 16 + Room.rec.X + 8;
-            Room.spawnPos.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
-
-            //place the exit light fx over exit obj
-            Functions_GameObject.Spawn(ObjType.Dungeon_ExitLight,
-                (Room.size.X / 2) * 16 + pos.X + 8,
-                Room.size.Y * 16 + pos.Y - 16 * 1,
-                Direction.Down);
-
             //create exit pillars
             Functions_GameObject.Spawn(ObjType.Dungeon_ExitPillarLeft,
                 (Room.size.X / 2) * 16 + pos.X + 8 - 16,
@@ -445,6 +430,22 @@ namespace DungeonRun
                 (Room.size.X / 2) * 16 + pos.X + 8 + 16,
                 Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
                 Direction.Down);
+            //create exit light fx
+            Functions_GameObject.Spawn(ObjType.Dungeon_ExitLight,
+                (Room.size.X / 2) * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y - 16 * 1,
+                Direction.Down);
+
+            //if we're developing an exit room, don't place real exit obj
+            if (Room.roomID == RoomID.DEV_Exit) { return; }
+            //create the actual dungeon exit
+            Functions_GameObject.Spawn(ObjType.Dungeon_Exit,
+                (Room.size.X / 2) * 16 + pos.X + 8,
+                Room.size.Y * 16 + pos.Y + 8 - 16 * 2,
+                Direction.Down);
+            //set the room.spawnPos to pos above exit door obj
+            Room.spawnPos.X = (Room.size.X / 2) * 16 + Room.rec.X + 8;
+            Room.spawnPos.Y = Room.rec.Y + (Room.size.Y - 1) * 16;
         }
 
         public static void AddWallStatues(Room Room)
@@ -506,26 +507,7 @@ namespace DungeonRun
             }
         }
 
-        //room specific procedural objects (like exit, for example) 
-
-        public static void FinishExitRoom(Room Room)
-        {
-            PlaceExit(Room);
-
-            //place decorative statues
-            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
-                3 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8, Direction.Down);
-            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
-                7 * 16 + pos.X + 8, 2 * 16 + pos.Y + 8, Direction.Down);
-            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
-                3 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8, Direction.Down);
-            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
-                7 * 16 + pos.X + 8, 4 * 16 + pos.Y + 8, Direction.Down);
-            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
-                3 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8, Direction.Down);
-            Functions_GameObject.Spawn(ObjType.Dungeon_Statue,
-                7 * 16 + pos.X + 8, 6 * 16 + pos.Y + 8, Direction.Down);
-        }
+        //room specific procedural objects 
 
         public static void FinishSecretRoom(Room Room)
         {

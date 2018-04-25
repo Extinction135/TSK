@@ -157,11 +157,16 @@ namespace DungeonRun
 
                             else if (buttons[i] == newRoomBtn)
                             {
-                                //assume we are developing a dungeon room
-                                Level.ID = LevelID.DEV_Room;
-                                //then check if we are developing a field room
-                                if (roomID == RoomID.DEV_Field) { Level.ID = LevelID.DEV_Field; }
-
+                                //based on state, set level id
+                                if (state == WidgetRoomToolsState.Room)
+                                {
+                                    Level.ID = LevelID.DEV_Room;
+                                }
+                                else
+                                {
+                                    Level.ID = LevelID.DEV_Field;
+                                    roomID = RoomID.DEV_Field;
+                                }
                                 //hack: stuff roomID into roomTool's roomData
                                 Widgets.RoomTools.roomData = new RoomXmlData();
                                 Widgets.RoomTools.roomData.type = roomID;
@@ -287,8 +292,24 @@ namespace DungeonRun
         public void BuildFromFile(RoomXmlData RoomXmlData)
         {   //called at end of functions_backend (directx or uwp) 
             //after it's deserialized xml into Widgets.RoomTools.roomData
+
             if (state == WidgetRoomToolsState.Room)
-            {   //build walled empty room with floors, add xml objs, etc...
+            {
+                Level.ID = LevelID.DEV_Room;
+                Level.rooms = new List<Room>();
+                Level.doors = new List<Door>();
+
+
+                Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
+                Level.rooms.Add(room);
+                Functions_Level.currentRoom = room;
+                Functions_Dungeon.AddDevDoors(room);
+
+                //set spawnPos outside TopLeft of new dev room
+                Functions_Level.currentRoom.spawnPos.X = Functions_Level.currentRoom.rec.X - 32;
+                Functions_Level.currentRoom.spawnPos.Y = Functions_Level.currentRoom.rec.Y;
+
+                //build walled empty room with floors, add xml objs, etc...
                 Functions_Dungeon.BuildRoomFrom(RoomXmlData);
             }
             else

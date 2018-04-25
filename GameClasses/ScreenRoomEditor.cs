@@ -48,7 +48,7 @@ namespace DungeonRun
         }
 
         public override void Update(GameTime GameTime)
-        {
+        {   
             base.Update(GameTime);
         }
 

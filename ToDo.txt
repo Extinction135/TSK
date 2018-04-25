@@ -66,43 +66,25 @@ TODAY:
 
 
 
+Editor++
 
+fixed a bug where loading an xml file didn't change the room, so
+instead of objects being placed into their expected room they were
+placed into whatever room was built last, which seemed wrong.
 
+ExitRooms++
 
+removed procedurally added statue objs from exit room.
+exit rooms will be handmade like other rooms in a future update.
+updated ProcedurallyFinish() to call PlaceExit() upon dev_exit
+and exit rooms, and updated PlaceExit() to check if the room
+is a dev_exit, and if so bails from the method prior to
+building the real dungeon exit, which prevents the hero from
+leaving the editor.
 
+Editor++
 
-
-
-
-
-
-
-Weapon and Item Use
-
-i like the idea of attack and use friction being separate.
-
-why? so using a weapon slows actors down more than items do, making
-their relative 'cost' higher, along with simulating a greater weight.
-the effect is using items slows the hero down less than using a weapon.
-weapons are also usually free, where items often have a cost.
-
-how was this done?
-different values for friction are applied to slow down actors
-when they use items or weapons (it's done this way so conveyor belts,
-and other objects that push() can affect the magnitude separately).
-so, friction to slow things down and push() to speed things up, both 
-affecting magnitude overtime, for actors & objects & entities.
-
-playtesting: weapons feel GREAT! it makes shooting arrows more
-precise, along with sword strikes having more weight. the net, it
-doesn't really matter or feel better. with the fireball however,
-the hero can really keep his momentum up.. so he can throw a 
-fireball while dashing pretty much, which turns into an explosion
-upon collision with pretty much anything, so fireball is becoming
-pretty powerful in the game's meta right now. it's only kept in
-check by it's magic cost and possibility of backfiring (shooting
-a fireball too close to an object creates an explosion that hits
-the hero within 1-2 frames, which isn't enough time to avoid it).
+fixed an issue where loading existing xml made editor unresponsive.
 
 
 
@@ -123,21 +105,8 @@ the hero within 1-2 frames, which isn't enough time to avoid it).
 
 
 
-
-*we are running into a problem where we load an xml file, which
-is room specific, and instead we build the objs onto whatever
-room was last built. essentially, the room isn't being updated when we
-load the room xml data. 
-
-
-
-
-
-
-
-
-
-
+when we save a room, we need to convert the DEV_Type to just Type.
+this is important, otherwise the rooms wont be sorted onto lists properly.
 
 
 
