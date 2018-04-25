@@ -195,8 +195,9 @@ namespace DungeonRun
 
             //translate level.type to current map location
             if (Level.ID == LevelID.Colliseum) { currentLocation = colliseum; }
-            else if(Level.ID == LevelID.Castle_Dungeon) { currentLocation = castle; }
-
+            else if (Level.ID == LevelID.Castle_Dungeon) { currentLocation = castle; }
+            //if we borked and didnt set level.id, default to colliseum
+            else { currentLocation = colliseum; }
 
             //set target to current (no initial target)
             targetLocation = currentLocation;

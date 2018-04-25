@@ -144,16 +144,21 @@ namespace DungeonRun
 
 
         public static void AddDevDoors(Room Room)
-        {   //add temporary doors to this room, so hero can enter/exit it
+        {
+            //add temporary doors to this room, so hero can enter/exit it
             int posX = Room.rec.X;
             int posY = Room.rec.Y;
             int middleX = (Room.size.X / 2) * 16;
             int middleY = (Room.size.Y / 2) * 16;
             int width = Room.size.X * 16;
             int height = Room.size.Y * 16;
-            //set NSEW door positions
+
+            //add and set NSEW door positions
             Level.doors.Add(new Door(new Point(posX + middleX, posY - 16))); //top
-            Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); //bottom
+
+            if (Room.roomID != RoomID.DEV_Exit) //exit rooms have exit objs on south wall, no door
+            { Level.doors.Add(new Door(new Point(posX + middleX, posY + height))); } //bottom
+
             Level.doors.Add(new Door(new Point(posX - 16, posY + middleY))); //left
             Level.doors.Add(new Door(new Point(posX + width, posY + middleY))); //right
         }

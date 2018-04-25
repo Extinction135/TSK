@@ -66,19 +66,13 @@ TODAY:
 
 
 
-Levels++
-
-fixed a minor bug with how dungeons + overworld
-levels handled their isField boolean in BuildRoom().
-playtested, working.
-
+modified AddDevDoors() to respect Exit Rooms, as they were
+adding a south door where exit objects already existed, which
+caused the hero to overlap two doors upon exit and crashed 
+the game. that's fixed now. editor bug anyway, the game's solid.
 
 
 
-
-moving from editor to game, there is a bug where the screen turns black
-and i think this is related to either the roomID or the level.ID
-i think we're trying to build
 
 
 
@@ -89,13 +83,6 @@ i think we're trying to build
 loads a boss in, plus we shouldn't be building temp doors for this
 room type. well, actually, we should be building trap doors for this
 room type.
-
-
-*for dev exit rooms, we shouldn't be building the south door,
-because it overlaps the exit objects. we *could* update CleanUpRoom()
-to remove any objects underneath exit door objects, since these are
-super important objects and must be presented a specific way everytime.
-
 
 *we are running into a problem where we load an xml file, which
 is room specific, and instead we build the objs onto whatever
