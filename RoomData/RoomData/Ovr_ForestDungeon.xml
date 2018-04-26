@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <type>DEV_Field</type>
+  <type>CastleEntrance</type>
   <objs>
     <ObjXmlData>
       <type>Wor_Entrance_ForestDungeon</type>
@@ -39,21 +39,21 @@
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bush</type>
+      <type>Wor_Bush_Stump</type>
       <direction>Down</direction>
       <posX>280</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bush</type>
+      <type>Dungeon_Pot</type>
       <direction>Down</direction>
       <posX>296</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bush</type>
+      <type>Dungeon_Pot</type>
       <direction>Down</direction>
-      <posX>312</posX>
+      <posX>328</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -117,22 +117,22 @@
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Bush</type>
-      <direction>Down</direction>
-      <posX>328</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Bush</type>
-      <direction>Down</direction>
-      <posX>344</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Bush</type>
+      <type>Wor_Bush_Stump</type>
       <direction>Down</direction>
       <posX>344</posX>
       <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush_Stump</type>
+      <direction>Down</direction>
+      <posX>344</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_2</type>
+      <direction>Down</direction>
+      <posX>312</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Bush</type>
@@ -231,16 +231,16 @@
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Grass_Tall</type>
+      <type>Wor_Grass_2</type>
       <direction>Down</direction>
       <posX>328</posX>
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Grass_Tall</type>
+      <type>Wor_Grass_2</type>
       <direction>Down</direction>
-      <posX>312</posX>
-      <posY>152</posY>
+      <posX>280</posX>
+      <posY>168</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Grass_Cut</type>
@@ -261,7 +261,7 @@
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Grass_1</type>
+      <type>Wor_Grass_Tall</type>
       <direction>Down</direction>
       <posX>248</posX>
       <posY>120</posY>
@@ -303,16 +303,16 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Grass_1</type>
+      <type>Wor_Grass_Tall</type>
       <direction>Down</direction>
-      <posX>360</posX>
-      <posY>120</posY>
+      <posX>248</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Grass_1</type>
+      <type>Wor_Grass_Tall</type>
       <direction>Down</direction>
-      <posX>360</posX>
-      <posY>104</posY>
+      <posX>232</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Grass_1</type>
@@ -481,6 +481,66 @@
       <direction>Down</direction>
       <posX>232</posX>
       <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Tall</type>
+      <direction>Down</direction>
+      <posX>360</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Tall</type>
+      <direction>Down</direction>
+      <posX>360</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Tall</type>
+      <direction>Down</direction>
+      <posX>376</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Tall</type>
+      <direction>Down</direction>
+      <posX>392</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Tall</type>
+      <direction>Down</direction>
+      <posX>392</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush_Stump</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush_Stump</type>
+      <direction>Down</direction>
+      <posX>376</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush_Stump</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>200</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush_Stump</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Bush_Stump</type>
+      <direction>Down</direction>
+      <posX>408</posX>
+      <posY>104</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

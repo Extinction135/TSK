@@ -45,9 +45,14 @@ namespace DungeonRun
     public enum ExitAction
     {
         Title,
+
+        //hero either dies/beats dungeon or exits
         Summary,
         ExitDungeon,
-        Overworld,
+
+        Overworld, //build map
+        Level, //build a level (dungeon or overworld)
+
         QuitGame,
         ExitScreen
     }

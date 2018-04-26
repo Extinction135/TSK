@@ -318,6 +318,19 @@ namespace DungeonRun
 
             #endregion
 
+
+            //dungeon entrance
+            else if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
+            {   //create a dungeon level
+
+                //set the level id based on the obj
+                Level.ID = LevelID.Castle_Dungeon;
+                //close the level screen, with the right exit action
+                Functions_Level.CloseLevel(ExitAction.Level);
+            }
+
+
+
         }
 
         public static void HandleDeath()

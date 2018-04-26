@@ -83,15 +83,19 @@ TODAY:
 
 
 
+Implement Castle Entrance Level
+
+linked up hero interaction with dungeon entrance object.
+hero must press A on dungeon entrance to enter, which also
+causes link to bow in a respectful manner.
+
+linked up castle entrance level to overworld map.
+tested game -> colliseum -> entrance -> dungeon.
+tested dungeon -> exit -> overworld. full loop working.
 
 
 
 
-
-
-Dungeon Entrance Obj++
-
-improved dungeon entrance obj sprite.
 
 
 
@@ -129,7 +133,20 @@ then add these to roomData and link to
 overworld map, via level type.
 
 
+we need to test colliseum -> entrance -> dungeon
+exiting the dungeon just returns hero to the overworld screen
 
+
+
+
+
+
+*if we separated dungeon and world levels in memory, then we could warp
+between a dungeon and an overworld level. plus, overworld levels are single rooms,
+while dungeons are a collection of rooms. this would also allow us to always
+have an overworld location in memory, as every dungeon is linked to by an
+overworld level. exiting a dungeon would have to translate the dungeon type
+to a location, while we *could* just use the overworld location in memory.
 
 
 

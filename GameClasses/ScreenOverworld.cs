@@ -189,13 +189,13 @@ namespace DungeonRun
             #region Setup Locations & Starting Location
 
             //set level types
-            castle.ID = LevelID.Castle_Dungeon;
+            castle.ID = LevelID.Castle_Entrance;
             colliseum.ID = LevelID.Colliseum;
 
 
             //translate level.type to current map location
             if (Level.ID == LevelID.Colliseum) { currentLocation = colliseum; }
-            else if (Level.ID == LevelID.Castle_Dungeon) { currentLocation = castle; }
+            else if (Level.ID == LevelID.Castle_Entrance) { currentLocation = castle; }
             //if we borked and didnt set level.id, default to colliseum
             else { currentLocation = colliseum; }
 

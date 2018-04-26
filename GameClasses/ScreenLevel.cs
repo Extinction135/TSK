@@ -104,6 +104,7 @@ namespace DungeonRun
                 else if (displayState == DisplayState.Closed)
                 {
                     DungeonRecord.timer.Stop();
+
                     //handle exit action
                     if (exitAction == ExitAction.Summary || exitAction == ExitAction.ExitDungeon)
                     { ScreenManager.ExitAndLoad(new ScreenSummary()); }
@@ -111,6 +112,8 @@ namespace DungeonRun
                     { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
                     else if(exitAction == ExitAction.Title)
                     { ScreenManager.ExitAndLoad(new ScreenTitle()); }
+                    else if(exitAction == ExitAction.Level)
+                    { ScreenManager.ExitAndLoad(new ScreenLevel()); }
 
                     Debug.WriteLine("exit action for level screen: " + exitAction);
                 }

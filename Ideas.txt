@@ -4,6 +4,24 @@
 
 
 
+there needs to be LESS trap rooms, as it's annoying to keep running into them.
+also, traps should be reserved for special rooms, like hub, key, or switch rooms.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Picking Up Objects++
 picking up a pot puts hero into a carry state, but leaves the roomObj drawing on the sreen, but nonblocking
 hero doesn't display anything over his head
