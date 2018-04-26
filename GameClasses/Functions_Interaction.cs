@@ -450,6 +450,11 @@ namespace DungeonRun
                                     RoomObj.compSprite.position.Y - 3);
                             }
 
+                            else if(RoomObj.type == ObjType.Wor_Tree)
+                            {
+                                Functions_GameObject_World.DestroyTree(RoomObj);
+                            }
+
                             //explosions also trigger common obj interactions
                             Functions_GameObject.HandleCommon(RoomObj,
                                 //get the direction towards the roomObj from the explosion

@@ -81,16 +81,21 @@ TODAY:
 
 
 
-
-
 Trees++
 
-added small tree and small tree stump into the game, 
-added to forest dungeon entrance for testing. sorting
-properly with correct collision recs.
+fixed a bug where widgets couldn't be unhid in editor.
+added objects to colliseum and forest entrance levels.
 
-fixed issue where tree stumps sorted on same layer as grass objs.
-they sort above them now, and stack properly.
+added tree interactions with explosions, 
+becomes tree stump + attention particle + ground fire.
+
+overworld levels look much better now.
+
+
+
+
+
+
 
 
 
@@ -105,36 +110,30 @@ they sort above them now, and stack properly.
 
 Polish++
 
-blow up tree with explosion - becomes tree stump + attention particle + ground fire
-
-
-i want lots of those trees around the dungeon entrance.
-
 add debris objs to env objs widget, scatter around dungeon entrance
 
 bush debris - hitting a bush should create leaves that travel in the direction of the hit
 leaves only last for a moment, then die
 
-blowing up a tree should create lots of leaves in random directions, and drop loot
-tree stumps still have collision recs and prevent hero from walking over them.
+blowing up a tree should create lots of leaves in random directions
 
 link walking on tall grass should create small grass at link's feet, partially hiding them.
 any grounded actor walking in tall grass should get "grassy feet".
 so this is a sprite that lives in the actor class, tracks to the actor's feet,
 and is only visible when actor is passively interacting with tall grass objs.
 
-
-
-
-
-
-
-
-
-
 when player presses A on dialog screen entering dungeon, play door opening sound.
 this sound should not play when the hero spawns in the dungeon, where i think it does
 it plays after the dungeon is built?
+
+fairies are spawning waaaay too much.
+
+
+
+
+
+
+
 
 
 

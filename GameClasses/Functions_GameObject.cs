@@ -711,11 +711,6 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
                 Obj.compCollision.rec.Width = 5; Obj.compCollision.rec.Height = 5;
             }
-
-
-
-
-
             else if (Type == ObjType.Wor_Tree)
             {
                 Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size

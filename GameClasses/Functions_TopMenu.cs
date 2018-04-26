@@ -75,7 +75,7 @@ namespace DungeonRun
 
         public static void HandleInput()
         {
-            if (TopDebugMenu.display == WidgetDisplaySet.None) { return; }
+            if (Flags.Release) { return; } //kill any dev input in release mode
 
 
             #region Set Cursor Sprite's AnimationFrame and Position

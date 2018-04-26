@@ -278,7 +278,6 @@ namespace DungeonRun
             {   //we may be saving a proper GAME room/level or field
                 roomData.type = Functions_Level.currentRoom.roomID;
             }
-
             //populate roomData with roomObjs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
             { SaveObject(Pool.roomObjPool[Pool.roomObjCounter], roomData); }

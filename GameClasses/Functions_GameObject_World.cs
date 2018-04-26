@@ -60,5 +60,24 @@ namespace DungeonRun
             { Functions_Loot.SpawnLoot(Bush.compSprite.position); }
         }
 
+        public static void DestroyTree(GameObject Tree)
+        {
+            //pop the bushy top part
+            Functions_Particle.Spawn(
+                ObjType.Particle_Attention,
+                Tree.compSprite.position.X,
+                Tree.compSprite.position.Y - 2);
+            //switch to tree stump
+            Functions_GameObject.SetType(Tree, ObjType.Wor_Tree_Stump);
+            //set a ground fire ON the stump sprite
+            Functions_Particle.Spawn(
+                ObjType.Particle_FireGround,
+                Tree.compSprite.position.X,
+                Tree.compSprite.position.Y + 5);
+            //rarely spawn loot
+            if (Functions_Random.Int(0, 101) > 90)
+            { Functions_Loot.SpawnLoot(Tree.compSprite.position); }
+        }
+
     }
 }
