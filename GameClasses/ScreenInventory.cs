@@ -126,9 +126,8 @@ namespace DungeonRun
                 #region Handle Opening the Dungeon Map
 
                 if (currentlySelected.type == MenuItemType.InventoryMap)
-                {
-                    //if player has found the level's map, create a new map screen
-                    if (Level.map) { ScreenManager.AddScreen(new ScreenLevelMap()); }
+                {   //create a new map screen
+                    ScreenManager.AddScreen(new ScreenLevelMap());
                 }
 
                 #endregion

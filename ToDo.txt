@@ -47,8 +47,8 @@ x - get all objects integrated into the new system / layout
 X - expand RoomBuilder to include the creation, placement, loading and saving of world levels.
 X - Outside Town Level, vendors
 
-- Dungeon Entrance Level, dungeon entrance object
-- obj linked to dungeon generation + extensive testing
+X - Dungeon Entrance Level, dungeon entrance object
+X - obj linked to dungeon generation + extensive testing
 
 - healers house, full death/respawn loop in game
 - this includes buildings, beds, interior objs
@@ -78,18 +78,14 @@ TODAY:
 
 
 
+Game Recordings ++
 
-
-
-Trees++
-
-fixed a bug where widgets couldn't be unhid in editor.
-added objects to colliseum and forest entrance levels.
-
-added tree interactions with explosions, 
-becomes tree stump + attention particle + ground fire.
-
-overworld levels look much better now.
+fixed a variety of chest related issues with hub and key rooms,
+while recording with obs studio, which i was able to pickup and learn
+in about 2 minutes because it's interface isn't hot garbage - thanks!
+now i'm able to record 60fps .mov from hardware and they look criisp.
+so, i'll post a playthrough of where the game is right now, along
+with a few select gifs coming up real soooon....
 
 
 
@@ -98,11 +94,18 @@ overworld levels look much better now.
 
 
 
+should be able to blow up tree stumps with explosions.
+but, we need to make sure we aren't blowing up stumps on the same frame as trees.
+so we need the explosion to interaction check on 1 frame only.
 
 
 
 
 
+
+
+record new gifs for readme, various recordings at 640x360
+can we hide the world ui shit?
 
 
 
@@ -110,11 +113,8 @@ overworld levels look much better now.
 
 Polish++
 
-add debris objs to env objs widget, scatter around dungeon entrance
-
 bush debris - hitting a bush should create leaves that travel in the direction of the hit
 leaves only last for a moment, then die
-
 blowing up a tree should create lots of leaves in random directions
 
 link walking on tall grass should create small grass at link's feet, partially hiding them.
@@ -126,7 +126,7 @@ when player presses A on dialog screen entering dungeon, play door opening sound
 this sound should not play when the hero spawns in the dungeon, where i think it does
 it plays after the dungeon is built?
 
-fairies are spawning waaaay too much.
+fairies are spawning waaaay too much as loot.
 
 
 
@@ -209,17 +209,6 @@ plus, this tree looks like it belongs in the dark world. rt.
 
 
 
-*** we could track the hero within a smaller area of the room's rec
-this would allow us to build larger outdoor levels, since we aren't using
-alot of objects on these levels. plus, it would make the camera & game feels more
-dynamic, with more things moving around. by limiting the camera's area,
-we can still have levels that are filled to the edge of the screen with objs.
-it's the best of both worlds, we just have to ensure a 'camera border' is maintained
-with field rooms, so the camera doesn't keep tracking hero while hero exits level..
-
-
-
-
 
 i want to put portals / entrances in their own widget, because they have
 various sizes, and we only need to display them occasionally, unlike shared objs
@@ -294,39 +283,6 @@ game, in the final dialogs.
 
 
 
-Create NEW WORLD GameObjects
-
-use the new 'wor_' naming convention prefix.
-
-make a BIG tree, 2 tiles tall.
-should be able to cut it down with several chops from the sword.
-the first chop should drop leaves randomly.
-the second chop should drop more leaves.
-the third chop should destroy the tree, revealing the stump
-drop a ton of leaves every where, and drop loot 50% of the time.
-explosions bring the tree down immediately.
-fireballs create ground fire on the tree stump.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Non-Repeating Rooms in Dungeon
@@ -349,27 +305,6 @@ we need more rows and column rooms, and their quality needs to be improved.
 
 
 we need a flying enemy - like a BAT
-
-
-
-
-
-
-Implement Light World and Dark World RIGHT NOW
-because we need to understand the architecture this is going to need,
-before we start tacking a bunch of levels onto the system.
-plus, we need to polish the transition between the dark world
-and the light world..
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -425,8 +360,61 @@ same with hit sound, death sound, use sound.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implement Light World and Dark World RIGHT NOW
+because we need to understand the architecture this is going to need,
+before we start tacking a bunch of levels onto the system.
+plus, we need to polish the transition between the dark world
+and the light world..
+
+
+
 v0.8 goals
 
+- LIGHT WORLD & DARK WORLD
 - implement enumFields for building rooms (big optimization)
 
 - fix picking up, carrying, throwing, dropping, dragging, pushing objects

@@ -3,7 +3,7 @@
   <type>Hub</type>
   <objs>
     <ObjXmlData>
-      <type>Dungeon_ChestEmpty</type>
+      <type>Dungeon_ChestMap</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>104</posY>

@@ -15,7 +15,7 @@
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_ChestEmpty</type>
+      <type>Dungeon_ChestKey</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>72</posY>
