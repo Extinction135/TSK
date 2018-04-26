@@ -369,7 +369,7 @@ namespace DungeonRun
             else if(Type == ObjType.Dungeon_PitBridge)
             {
                 Obj.compCollision.blocking = false;
-                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compSprite.zOffset = -64; //sort to floor
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitBridge;
             }

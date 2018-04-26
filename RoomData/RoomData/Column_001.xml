@@ -3,6 +3,30 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_TorchLit</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchLit</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchLit</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchLit</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>168</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_Pit</type>
       <direction>Down</direction>
       <posX>56</posX>
@@ -145,30 +169,6 @@
       <direction>Down</direction>
       <posX>104</posX>
       <posY>184</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>168</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>168</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pot</type>

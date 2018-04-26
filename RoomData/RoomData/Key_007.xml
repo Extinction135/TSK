@@ -3,15 +3,63 @@
   <type>Key</type>
   <objs>
     <ObjXmlData>
-      <type>Dungeon_ChestKey</type>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>264</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>264</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ChestEmpty</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ChestEmpty</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_PitTeethBottom</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_PitTeethBottom</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ChestEmpty</type>
       <direction>Down</direction>
       <posX>152</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_TorchLit</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
-      <posX>248</posX>
+      <posX>104</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -21,9 +69,9 @@
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_TorchLit</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
-      <posX>56</posX>
+      <posX>120</posX>
       <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -261,10 +309,10 @@
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_BlockDark</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
-      <posX>264</posX>
-      <posY>24</posY>
+      <posX>136</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockDark</type>
@@ -279,10 +327,10 @@
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_BlockDark</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>24</posY>
+      <posX>168</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockDark</type>
@@ -693,10 +741,10 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_BlockDark</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
-      <posX>264</posX>
-      <posY>152</posY>
+      <posX>184</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockDark</type>
@@ -759,10 +807,10 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_BlockDark</type>
+      <type>Dungeon_PitTeethBottom</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>152</posY>
+      <posX>200</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_BlockDark</type>
@@ -925,6 +973,18 @@
       <direction>Down</direction>
       <posX>232</posX>
       <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_PitTeethBottom</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_PitTeethBottom</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>104</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

@@ -207,12 +207,14 @@ namespace DungeonRun
                         if (currentObjRef.type == ObjType.Dungeon_Chest)
                         {   
                             //we convert the 'safe' chest into a key or hub chest here
-                            if (Functions_Level.currentRoom.roomID == RoomID.Key)
+                            if (Functions_Level.currentRoom.roomID == RoomID.Key ||
+                                Functions_Level.currentRoom.roomID == RoomID.DEV_Key)
                             {   //convert to key chest
                                 currentObjRef.type = ObjType.Dungeon_ChestKey;
 
                             }
-                            else if (Functions_Level.currentRoom.roomID == RoomID.Hub)
+                            else if (Functions_Level.currentRoom.roomID == RoomID.Hub ||
+                                Functions_Level.currentRoom.roomID == RoomID.DEV_Hub)
                             {   //convert to map chest
                                 currentObjRef.type = ObjType.Dungeon_ChestMap;
                             }
@@ -482,11 +484,7 @@ namespace DungeonRun
                 else { activeObj.direction = Direction.Down; }
             }
 
-            //set object's move component direction based on type
-            else if (activeObj.type == ObjType.Dungeon_BlockSpike)
-            {
-                activeObj.compMove.direction = activeObj.direction;
-            }
+            
             
 
             //these are objects that we allow rotation upon
@@ -499,6 +497,10 @@ namespace DungeonRun
                 else if (activeObj.direction == Direction.Left) { activeObj.direction = Direction.Down; }
                 else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
                 else { activeObj.direction = Direction.Up; }
+
+                //set object's move component direction based on type
+                if (activeObj.type == ObjType.Dungeon_BlockSpike)
+                { activeObj.compMove.direction = activeObj.direction; }
             }
 
             

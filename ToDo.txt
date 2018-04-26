@@ -79,22 +79,17 @@ TODAY:
 
 
 
+Dungeon++
 
+updated RoomData to be better, less puzzle rooms, more
+exciting and explosive too.
 
+fixed editor bug where chests couldnt be added to dev key or hub rooms.
+fixed editor bug where spike blocks couldn't be rotated.
+fixed sorting of pit bridges to match pits so pit teeth sort properly.
 
-
-Implement Castle Entrance Level
-
-linked up hero interaction with dungeon entrance object.
-hero must press A on dungeon entrance to enter, which also
-causes link to bow in a respectful manner.
-
-linked up castle entrance level to overworld map.
-tested game -> colliseum -> entrance -> dungeon.
-tested dungeon -> exit -> overworld. full loop working.
-
-
-
+improved hub rooms - created a new template for hub with areas for
+miniboss fight, map chest puzzle, and boss door.
 
 
 
@@ -109,35 +104,52 @@ tested dungeon -> exit -> overworld. full loop working.
 
 
 
+if an actor overlaps a spikeblock as it comes up, it should stay down.
 
-the dungeon entrance could be living, and ask the hero what
-business he has entering the dungeon.. this could have the
-yes/no dialog for entering the dungeon.
+
+
+
+dungeon entrance eyeball should follow link around.
+dripping/shiny particles randomly on the trunk.
+
+when hero interacts with the dungeon entrance, a mysterious stranger
+asks them if they choose to enter the dungeon *name*.. this is actually
+zelda, and she's tracking how many times link has entered this dungeon, 
+and how many times he's beaten it. this affects zelda's 'judgements' later on.
+
+
+
+
 
 create hero interacting with dungeon entrance obj routine:
-this should pop a dialog asking hero if he wants to enter *dungeon name*
-with yes or no menuItem options. 
+this should pop a dialog asking hero:
+"do you wish to enter the forest temple?"
 
-these yes/no menuItems lay the foundation for allowing the player to make
-choices, and thus branch the story or affect outcomes, which can be tracked
-with booleans or enums or whatever in saveData.
+with yes or no options, DENOTED BY A AND B BUTTON SPRITES. 
 
-
-
+these yes/no choices lay the foundation for allowing the player to branch 
+the story or affect outcomes, tracked with booleans or enums or whatever in saveData.
 
 
 
-Dungeon Entrance Level
-next, we need to create a dungeon entrance level. 
-then add these to roomData and link to 
-overworld map, via level type.
+
+*** we could have a massive tree trunk without a top for the entrance ***
+the trunk would just keep going all the way up to the top of the sprite sheet,
+and we'd place the dungeon entrance near the top of the level, always.
+this way, it appears like it's much bigger in game, and we can surround it
+with various smaller trees to increase it's relative size.
+plus, this tree looks like it belongs in the dark world. rt.
 
 
-we need to test colliseum -> entrance -> dungeon
-exiting the dungeon just returns hero to the overworld screen
 
 
-
+*** we could track the hero within a smaller area of the room's rec
+this would allow us to build larger outdoor levels, since we aren't using
+alot of objects on these levels. plus, it would make the camera & game feels more
+dynamic, with more things moving around. by limiting the camera's area,
+we can still have levels that are filled to the edge of the screen with objs.
+it's the best of both worlds, we just have to ensure a 'camera border' is maintained
+with field rooms, so the camera doesn't keep tracking hero while hero exits level..
 
 
 
@@ -147,10 +159,16 @@ while dungeons are a collection of rooms. this would also allow us to always
 have an overworld location in memory, as every dungeon is linked to by an
 overworld level. exiting a dungeon would have to translate the dungeon type
 to a location, while we *could* just use the overworld location in memory.
+this just means we have 2 levels in memory, the last overworld and last dungeon levels.
 
 
 
 
+
+i want to put portals / entrances in their own widget, because they have
+various sizes, and we only need to display them occasionally, unlike shared objs
+which we display more often, plus we're just wasting widget objs by covering
+them up with the dungeon entrance obj...
 
 
 

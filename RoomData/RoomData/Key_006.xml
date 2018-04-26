@@ -3,6 +3,30 @@
   <type>Key</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
       <posX>152</posX>
@@ -633,9 +657,9 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_ChestKey</type>
+      <type>Dungeon_ChestEmpty</type>
       <direction>Down</direction>
-      <posX>149</posX>
+      <posX>148</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -901,30 +925,6 @@
       <direction>Right</direction>
       <posX>24</posX>
       <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_BlockDark</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_BlockDark</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_BlockDark</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_BlockDark</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -1062,7 +1062,7 @@
       <type>Dungeon_Flamethrower</type>
       <direction>Down</direction>
       <posX>248</posX>
-      <posY>117</posY>
+      <posY>116</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Flamethrower</type>
