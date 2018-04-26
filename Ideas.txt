@@ -4,13 +4,6 @@
 
 
 
-there needs to be LESS trap rooms, as it's annoying to keep running into them.
-also, traps should be reserved for special rooms, like hub, key, or switch rooms.
-
-
-
-
-
 
 
 SPIKEBLOCK++
@@ -23,6 +16,21 @@ either right or left. thats it. hahahahahaa
 
 
 
+dripping/shiny particles randomly on the trunk.
+
+
+
+
+when hero interacts with the dungeon entrance, a mysterious stranger
+asks them if they choose to enter the dungeon *name*.. this is actually
+zelda, and she's tracking how many times link has entered this dungeon, 
+and how many times he's beaten it. this affects zelda's 'judgements' later on.
+
+
+
+
+
+freeze an enemy, sprinkle magic powder on them, smash with a hammer = full magic pot
 
 
 

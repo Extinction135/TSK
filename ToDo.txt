@@ -78,49 +78,17 @@ TODAY:
 
 
 
-Dungeon Secret Rooms ++
+SwitchBlocks++
 
-tripled the amount of secret rooms added to dungeons. because 
-they are awesome. and i kinda want to be able to navigate a dungeon
-entirely by secret rooms. playtesting confirms that more secret
-rooms are awesome, which led to an idea for the dungeon 'recipe'.
-
-(at the end of the dungeon algorithm, it adds additional rooms)
-altered the dungeon recipe to add 1 wave of additional rooms, THEN 
-add two waves of secret rooms, then do it again. this has the net 
-effect of spreading the dungeon out a bit more, while also connecting
-it more with secret rooms. this allows the player to explore the hidden
-side of the dungeon thru secret rooms, or take a more straight forward
-approach by traversing thru doors - since those critical paths are built
-first. it's a pretty amazing recipe and i'm super happy with it.
-
-updated AddSecretRooms() to not attach to HUB room, so as to prevent
-the case where a secret room could connect hub and key rooms, making
-the dungeon's critical path much too short to be challenging.
+fixed a minor bug where only the hero prevented switch blocks from
+popping up. now all actors prevent switch blocks from popping up underneath
+them. otherwise, the block would block the actor, and the actor would be
+stuck until the block went back down, which is not the intended behavior.
 
 
 
 
 
-
-
-
-
-
-
-
-if an actor overlaps a spikeblock as it comes up, it should stay down.
-
-
-
-
-dungeon entrance eyeball should follow link around.
-dripping/shiny particles randomly on the trunk.
-
-when hero interacts with the dungeon entrance, a mysterious stranger
-asks them if they choose to enter the dungeon *name*.. this is actually
-zelda, and she's tracking how many times link has entered this dungeon, 
-and how many times he's beaten it. this affects zelda's 'judgements' later on.
 
 
 
@@ -138,13 +106,92 @@ the story or affect outcomes, tracked with booleans or enums or whatever in save
 
 
 
+we need to have a location / overworld level in memory at all times,
+because this is what overworld screen uses to place hero on the map.
+so, we need to have two levels in the game: the last overworld level and the last dungeon.
+should be easy to implement.
+
+then, we always spawn the hero based on the overworld level, ignoring the dungeon completely.
+exiting the dungeon respawns the hero in the last overworld level, at the default spawn.
+or, we could label the dungeon entrances as objGroup dungeon entrance,
+then we can loop over all the roomObjs, find the entrance and place the hero just outside of it.
+
+hero should spawn facing up in dungeon.
+hero should spawn facing down after exiting dungeon.
+
+
+when hero exits dungeon, he shouldn't auto-cue the exit, 
+he should have to press A and interact with the exit, which pops a dialog.
+
+
+
+because we have separated dungeon and overworld levels in memory, we can
+implement an item that allows for the creation of warp points between a 
+dungeon and an overworld level.
+
+
+
+
+
+
+
+
+
+
+
+
+opening / closing of level screen
+this shouldn't be a fade in/out - thats easy and cheap.
+instead, we're going to ape LttP's circular black transition.
+but instead of a circle, we're going to use a square/rectangle.
+this will require 4 rectangles, each the size of the screen.
+these are left & right, which close or open horizontally based on the hero's X position.
+the same is done for the top and bottom, vertically, based on hero's Y pos.
+these can be programmed independently too, and should ease in.
+what we should see: the edges of the screen turn black and grows towards link eventually covering him up.
+then we can transition into a dungeon, to overworld map, etc...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 *** we could have a massive tree trunk without a top for the entrance ***
 the trunk would just keep going all the way up to the top of the sprite sheet,
 and we'd place the dungeon entrance near the top of the level, always.
 this way, it appears like it's much bigger in game, and we can surround it
 with various smaller trees to increase it's relative size.
 plus, this tree looks like it belongs in the dark world. rt.
-
 
 
 
@@ -155,16 +202,6 @@ dynamic, with more things moving around. by limiting the camera's area,
 we can still have levels that are filled to the edge of the screen with objs.
 it's the best of both worlds, we just have to ensure a 'camera border' is maintained
 with field rooms, so the camera doesn't keep tracking hero while hero exits level..
-
-
-
-*if we separated dungeon and world levels in memory, then we could warp
-between a dungeon and an overworld level. plus, overworld levels are single rooms,
-while dungeons are a collection of rooms. this would also allow us to always
-have an overworld location in memory, as every dungeon is linked to by an
-overworld level. exiting a dungeon would have to translate the dungeon type
-to a location, while we *could* just use the overworld location in memory.
-this just means we have 2 levels in memory, the last overworld and last dungeon levels.
 
 
 

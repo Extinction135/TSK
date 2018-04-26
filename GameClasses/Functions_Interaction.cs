@@ -150,16 +150,6 @@ namespace DungeonRun
                 #endregion
 
 
-                #region SwitchBlock UP
-
-                else if (Obj.type == ObjType.Dungeon_SwitchBlockUp)
-                {   //if hero isnt moving and is colliding with up block, convert up to down
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchBlockDown);
-                }
-
-                #endregion
-
-
                 #region FloorSwitch
 
                 else if (Obj.type == ObjType.Dungeon_Switch)
@@ -374,8 +364,18 @@ namespace DungeonRun
 
                 #endregion
 
+
+                #region SwitchBlock UP
+
+                else if (Obj.type == ObjType.Dungeon_SwitchBlockUp)
+                {   //if actor is colliding with up block, convert up to down
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchBlockDown);
+                }   //this is done because block just popped up and would block actor
+
+                #endregion
+
                 //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
-            }   
+            }
         }
 
         public static void InteractRoomObj(GameObject RoomObj, GameObject Object)
