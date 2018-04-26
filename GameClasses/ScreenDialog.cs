@@ -21,7 +21,29 @@ namespace DungeonRun
 
         ScreenRec background = new ScreenRec();
         ScreenRec foreground = new ScreenRec();
+
+
+        //there are a few different paths thru screen dialog
+        //1: loading/new game - speaker info about data, exit to overworld default location
+        //2: npc speaking - single or multiple dialogs with 1 or many speakers
+        //3: entering/exiting dungeons - single dialog with A confirm or B deny input
+        //4: link makes choice - just like 3, A & B input for yes or no
         Boolean exitToOverworld = false;
+        Boolean exitToDungeon = false;
+
+
+
+
+
+
+
+        public void ExitDialog()
+        {
+            Assets.Play(Assets.sfxWindowClose);
+            displayState = DisplayState.Closing;
+            Functions_MenuWindow.Close(Widgets.Dialog.window);
+        }
+        
 
 
 
@@ -50,22 +72,48 @@ namespace DungeonRun
         public override void HandleInput(GameTime GameTime)
         {   //force player to wait for the dialog to complete
             if (Widgets.Dialog.dialogDisplayed)
-            {   //exit this screen upon start or a/b button press
-                if (Functions_Input.IsNewButtonPress(Buttons.Start) ||
-                    Functions_Input.IsNewButtonPress(Buttons.B) ||
-                    Functions_Input.IsNewButtonPress(Buttons.A))
+            {
+
+
+                #region Dialogs with A/B Choices + Diff Outcomes
+
+                if(dialogs == Functions_Dialog.Enter_ForestDungeon)
                 {
-                    if (dialogIndex >= dialogs.Count)
-                    {   //no more dialogs, close dialog screen
-                        Assets.Play(Assets.sfxWindowClose);
-                        displayState = DisplayState.Closing;
-                        Functions_MenuWindow.Close(Widgets.Dialog.window);
+                    if (Functions_Input.IsNewButtonPress(Buttons.A))
+                    {
+                        ExitDialog(); //exit dialog, enter dungeon
+                        exitToOverworld = false; exitToDungeon = true;
+                        Level.ID = LevelID.Castle_Dungeon; //set level id based on dialog
                     }
-                    else
-                    {   //display the next dialog
-                        DisplayDialog(dialogs[dialogIndex]);
+                    else if(Functions_Input.IsNewButtonPress(Buttons.B))
+                    {
+                        ExitDialog(); //exit dialog, dont enter dungeon
+                        exitToOverworld = false; exitToDungeon = false;
                     }
                 }
+
+                #endregion
+
+
+                #region Iterative Dialogs (sequential)
+
+                else
+                {
+                    if (Functions_Input.IsNewButtonPress(Buttons.A))
+                    {
+                        if (dialogIndex >= dialogs.Count)
+                        {   //no more dialogs, close dialog screen
+                            ExitDialog();
+                        }
+                        else
+                        {   //display the next dialog
+                            DisplayDialog(dialogs[dialogIndex]);
+                        }
+                    }
+                }
+
+                #endregion
+
             }
         }
 
@@ -108,13 +156,20 @@ namespace DungeonRun
             else if (displayState == DisplayState.Closed)
             {   
                 if(exitToOverworld)
-                {   
-                    //load overworld map, starting at shop
-                    Level.ID = LevelID.Colliseum;
+                {   //get links last location from saveData, defaults to colliseum
+                    Level.ID = PlayerData.current.lastLocation;
                     ScreenManager.ExitAndLoad(new ScreenOverworld());
                 }
-                else //or simply exit this screen
-                { ScreenManager.RemoveScreen(this); }
+                else if(exitToDungeon)
+                {
+                    //close the level screen, exiting to dungeon level
+                    Functions_Level.CloseLevel(ExitAction.Level);
+                    ScreenManager.RemoveScreen(this);
+                }
+                else
+                {   //or simply exit this screen
+                    ScreenManager.RemoveScreen(this);
+                }
             }
 
             #endregion

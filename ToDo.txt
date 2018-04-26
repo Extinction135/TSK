@@ -78,43 +78,57 @@ TODAY:
 
 
 
-SwitchBlocks++
-
-fixed a minor bug where only the hero prevented switch blocks from
-popping up. now all actors prevent switch blocks from popping up underneath
-them. otherwise, the block would block the actor, and the actor would be
-stuck until the block went back down, which is not the intended behavior.
 
 
+Polish & Playtesting
 
+fixed a minor animation issue where hero didn't raise his hand at map screen.
+fixed an issue where the last location wasn't being tracked, so hero default
+spawned on the map at colliseum upon exit of dungeon.
 
+created paths in dialog screen to handle exiting to a dungeon level,
+based upon the dialog passed into the screen. first test is the enter
+forest dungeon dialog, where the player can choose A for yes or B for no.
 
-
-
-
-
-
-create hero interacting with dungeon entrance obj routine:
-this should pop a dialog asking hero:
-"do you wish to enter the forest temple?"
-
-with yes or no options, DENOTED BY A AND B BUTTON SPRITES. 
-
-these yes/no choices lay the foundation for allowing the player to branch 
-the story or affect outcomes, tracked with booleans or enums or whatever in saveData.
+fixed an issue where hero's interaction with exit looked bad.
+lots of playtesting, including to and from map, beating dungeon.
+it's starting to feel like a real game.
 
 
 
 
-we need to have a location / overworld level in memory at all times,
-because this is what overworld screen uses to place hero on the map.
-so, we need to have two levels in the game: the last overworld level and the last dungeon.
-should be easy to implement.
 
-then, we always spawn the hero based on the overworld level, ignoring the dungeon completely.
-exiting the dungeon respawns the hero in the last overworld level, at the default spawn.
-or, we could label the dungeon entrances as objGroup dungeon entrance,
-then we can loop over all the roomObjs, find the entrance and place the hero just outside of it.
+
+
+
+
+when player presses A on dialog screen entering dungeon, play door opening sound.
+this sound should not play when the hero spawns in the dungeon, where i think it does
+it plays after the dungeon is built?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+input polish
+when moving the joystick diagonally, the input *should* split evenly between up and say right.
+if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
+even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
+that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
+
+
+
+
+
 
 hero should spawn facing up in dungeon.
 hero should spawn facing down after exiting dungeon.

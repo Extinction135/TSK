@@ -106,13 +106,15 @@ namespace DungeonRun
                     DungeonRecord.timer.Stop();
 
                     //handle exit action
-                    if (exitAction == ExitAction.Summary || exitAction == ExitAction.ExitDungeon)
+                    if (exitAction == ExitAction.Summary)
                     { ScreenManager.ExitAndLoad(new ScreenSummary()); }
-                    else if(exitAction == ExitAction.Overworld)
+                    else if (exitAction == ExitAction.ExitDungeon)
                     { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
-                    else if(exitAction == ExitAction.Title)
+                    else if (exitAction == ExitAction.Overworld)
+                    { ScreenManager.ExitAndLoad(new ScreenOverworld()); }
+                    else if (exitAction == ExitAction.Title)
                     { ScreenManager.ExitAndLoad(new ScreenTitle()); }
-                    else if(exitAction == ExitAction.Level)
+                    else if (exitAction == ExitAction.Level)
                     { ScreenManager.ExitAndLoad(new ScreenLevel()); }
 
                     Debug.WriteLine("exit action for level screen: " + exitAction);

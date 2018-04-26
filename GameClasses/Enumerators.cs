@@ -47,10 +47,10 @@ namespace DungeonRun
         Title,
 
         //hero either dies/beats dungeon or exits
-        Summary,
-        ExitDungeon,
+        Summary, //died/beat boss, show summary
+        ExitDungeon, //left dungeon, goto overworld screen
 
-        Overworld, //build map
+        Overworld, //goto overworld screen
         Level, //build a level (dungeon or overworld)
 
         QuitGame,

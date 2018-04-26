@@ -192,12 +192,26 @@ namespace DungeonRun
             castle.ID = LevelID.Castle_Entrance;
             colliseum.ID = LevelID.Colliseum;
 
+            if (PlayerData.current.lastLocation == LevelID.Colliseum)
+            { currentLocation = colliseum; }
+            else if (PlayerData.current.lastLocation == LevelID.Castle_Entrance)
+            { currentLocation = castle; }
+            else
+            { currentLocation = colliseum; }
 
+
+            /*
             //translate level.type to current map location
             if (Level.ID == LevelID.Colliseum) { currentLocation = colliseum; }
             else if (Level.ID == LevelID.Castle_Entrance) { currentLocation = castle; }
             //if we borked and didnt set level.id, default to colliseum
             else { currentLocation = colliseum; }
+            */
+            
+
+
+
+
 
             //set target to current (no initial target)
             targetLocation = currentLocation;
@@ -309,6 +323,9 @@ namespace DungeonRun
                     {   //upon A button press, check to see if current location is a level
                         if (currentLocation.isLevel) //if so, close the scroll
                         {
+                            //save currentLocation into player data
+                            PlayerData.current.lastLocation = currentLocation.ID;
+                            //animate link into reward state
                             hero.state = ActorState.Reward;
                             hero.direction = Direction.Down;
                             scroll.displayState = DisplayState.Closing;
@@ -324,6 +341,13 @@ namespace DungeonRun
 
         public override void Update(GameTime GameTime)
         {
+            //always animate the hero
+            Functions_ActorAnimationList.SetAnimationGroup(hero);
+            Functions_ActorAnimationList.SetAnimationDirection(hero);
+            Functions_Animation.Animate(hero.compAnim, hero.compSprite);
+            scroll.title.text = "Overworld Map - " + currentLocation.ID;
+
+
             if (scroll.displayState == DisplayState.Opening)
             {   //fade overlay out
                 overlay.fadeState = FadeState.FadeOut;
@@ -377,12 +401,6 @@ namespace DungeonRun
                 #endregion
 
 
-                Functions_ActorAnimationList.SetAnimationGroup(hero);
-                Functions_ActorAnimationList.SetAnimationDirection(hero);
-                Functions_Animation.Animate(hero.compAnim, hero.compSprite);
-                scroll.title.text = "Overworld Map - " + currentLocation.ID;
-
-
                 #region Wave Generation Routine
 
                 if (Functions_Random.Int(0, 100) > 80)
@@ -396,8 +414,7 @@ namespace DungeonRun
                 #endregion
 
 
-                //update the particle list
-                //because we want the particle to animate and move (waves)
+                //update particle list - particle animate and move (waves)
                 for (i = 0; i < Pool.particleCount; i++)
                 {
                     if (Pool.particlePool[i].active)
@@ -409,7 +426,6 @@ namespace DungeonRun
                         Pool.particlePool[i].compMove.position.X = Pool.particlePool[i].compMove.newPosition.X;
                         Pool.particlePool[i].compMove.position.Y = Pool.particlePool[i].compMove.newPosition.Y;
                         Functions_Component.Align(Pool.particlePool[i]);
-
                         //we also need to be counting the life of the particles
                         Functions_Particle.Update(Pool.particlePool[i]);
                     }

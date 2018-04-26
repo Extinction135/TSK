@@ -750,9 +750,16 @@ namespace DungeonRun
         }
     }
 
+
+
+
+
+
+
+
     public class Dialog
     {
-        public ObjType speaker;
+        public ObjType speaker; //who is speaking
         public String title;
         public String text;
         
@@ -767,7 +774,7 @@ namespace DungeonRun
             String Text, 
             SoundEffectInstance Sfx, 
             Boolean FadeBkg, Boolean FadeFrg, 
-            Boolean OverworldExit)
+            Boolean ExitToOverworld)
         {
             speaker = Speaker;
             title = Title;
@@ -775,10 +782,17 @@ namespace DungeonRun
             sfx = Sfx;
             fadeBackgroundIn = FadeBkg;
             fadeForegroundIn = FadeFrg;
-            exitToOverworld = OverworldExit;
+            exitToOverworld = ExitToOverworld;
         }
     }
     
+
+
+
+
+
+
+
 
 
     //GameData Classes
@@ -897,6 +911,8 @@ namespace DungeonRun
         public int hours = 0;
         public int mins = 0;
         public int secs = 0;
+
+        public LevelID lastLocation = LevelID.Colliseum;
 
         public int enemiesKilled = 0;
         public int damageTaken = 0;

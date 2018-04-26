@@ -68,7 +68,24 @@ namespace DungeonRun
 
         #endregion
 
-        
+
+
+
+        #region Dungeon Entrance Dialogs
+
+        public static List<Dialog> Enter_ForestDungeon = new List<Dialog>
+        {
+            new Dialog(ObjType.Vendor_NPC_Story, "Hey!",
+                "Do you want to enter the Forest Dungeon?\n" +
+                "A) yes    B) no",
+                Assets.sfxTextLetter, false, false, false)
+        };
+
+        #endregion
+
+
+
+
         #region Dungeon dialogs
 
         public static List<Dialog> DoesNotHaveKey = new List<Dialog>
