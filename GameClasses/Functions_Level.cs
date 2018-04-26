@@ -178,9 +178,27 @@ namespace DungeonRun
                     AddRoom(Level.rooms[0], room, 20, true);
                 }
 
-                AddMoreRooms();
+
+
+                //this recipe spreads dungeon out a bit, connected with lots of secret rooms
                 AddMoreRooms();
                 AddSecretRooms();
+                AddSecretRooms();
+
+                AddMoreRooms();
+                AddSecretRooms();
+                AddSecretRooms();
+
+
+
+
+                //recipe2 - compact, with few secret paths
+                //AddMoreRooms();
+                //AddMoreRooms();
+                //AddSecretRooms();
+
+
+
 
                 #endregion
 
@@ -488,13 +506,14 @@ namespace DungeonRun
         }
 
         public static void AddSecretRooms()
-        {   //randomly add secret rooms to all rooms except exit/boss/secret
+        {   //randomly add secret rooms to all rooms except exit/boss/secret/hub
             int coreRoomCount = Level.rooms.Count;
             for (int i = 0; i < coreRoomCount; i++)
             {
                 if (Level.rooms[i].roomID == RoomID.Exit) { }
                 else if (Level.rooms[i].roomID == RoomID.Boss) { }
                 else if (Level.rooms[i].roomID == RoomID.Secret) { }
+                else if (Level.rooms[i].roomID == RoomID.Hub) { }
                 else
                 {
                     Room room = new Room(new Point(0, 0), RoomID.Secret);

@@ -78,20 +78,25 @@ TODAY:
 
 
 
+Dungeon Secret Rooms ++
 
-Dungeon++
+tripled the amount of secret rooms added to dungeons. because 
+they are awesome. and i kinda want to be able to navigate a dungeon
+entirely by secret rooms. playtesting confirms that more secret
+rooms are awesome, which led to an idea for the dungeon 'recipe'.
 
-updated RoomData to be better, less puzzle rooms, more
-exciting and explosive too.
+(at the end of the dungeon algorithm, it adds additional rooms)
+altered the dungeon recipe to add 1 wave of additional rooms, THEN 
+add two waves of secret rooms, then do it again. this has the net 
+effect of spreading the dungeon out a bit more, while also connecting
+it more with secret rooms. this allows the player to explore the hidden
+side of the dungeon thru secret rooms, or take a more straight forward
+approach by traversing thru doors - since those critical paths are built
+first. it's a pretty amazing recipe and i'm super happy with it.
 
-fixed editor bug where chests couldnt be added to dev key or hub rooms.
-fixed editor bug where spike blocks couldn't be rotated.
-fixed sorting of pit bridges to match pits so pit teeth sort properly.
-
-improved hub rooms - created a new template for hub with areas for
-miniboss fight, map chest puzzle, and boss door.
-
-
+updated AddSecretRooms() to not attach to HUB room, so as to prevent
+the case where a secret room could connect hub and key rooms, making
+the dungeon's critical path much too short to be challenging.
 
 
 
