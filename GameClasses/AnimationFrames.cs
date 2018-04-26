@@ -157,6 +157,8 @@ namespace DungeonRun
         //public static List<Byte4> World_TreeStump = new List<Byte4> { new Byte4(0, 0, 0, 0) };
         public static List<Byte4> World_Bush = new List<Byte4> { new Byte4(3, 2, 0, 0) };
         public static List<Byte4> World_BushStump = new List<Byte4> { new Byte4(4, 2, 0, 0) };
+        public static List<Byte4> World_Tree = new List<Byte4> { new Byte4(3, 0, 0, 0) };
+        public static List<Byte4> World_TreeStump = new List<Byte4> { new Byte4(4, 0, 0, 0) };
 
         //public static List<Byte4> World_Pit = new List<Byte4> { new Byte4(0, 0, 0, 0) };
         //public static List<Byte4> World_PitStairs = new List<Byte4> { new Byte4(0, 0, 0, 0) };

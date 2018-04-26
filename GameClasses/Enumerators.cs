@@ -268,7 +268,9 @@ namespace DungeonRun
         //foilage
         Wor_Bush,
         Wor_Bush_Stump,
-        
+        Wor_Tree,
+        Wor_Tree_Stump,
+
         //Dungeon Entrances
         Wor_Entrance_ForestDungeon,
 

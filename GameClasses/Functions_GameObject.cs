@@ -705,12 +705,39 @@ namespace DungeonRun
             else if (Type == ObjType.Wor_Bush_Stump)
             {
                 Obj.canBeSaved = true;
-                Obj.compSprite.zOffset = -32;
+                Obj.compSprite.zOffset = -24;
                 Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.World_BushStump;
                 Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
                 Obj.compCollision.rec.Width = 5; Obj.compCollision.rec.Height = 5;
             }
+
+
+
+
+
+            else if (Type == ObjType.Wor_Tree)
+            {
+                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = +10;
+                Obj.compCollision.blocking = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.World_Tree;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = 15;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 8;
+            }
+            else if (Type == ObjType.Wor_Tree_Stump)
+            {
+                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = +10;
+                Obj.compCollision.blocking = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.World_TreeStump;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = 15;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 8;
+            }
+
+
 
             #endregion
 

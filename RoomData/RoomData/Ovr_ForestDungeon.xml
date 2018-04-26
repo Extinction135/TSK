@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <type>CastleEntrance</type>
+  <type>DEV_Field</type>
   <objs>
     <ObjXmlData>
       <type>Wor_Entrance_ForestDungeon</type>
@@ -363,12 +363,6 @@
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Grass_1</type>
-      <direction>Down</direction>
-      <posX>376</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Wor_Bush</type>
       <direction>Down</direction>
       <posX>536</posX>
@@ -391,12 +385,6 @@
       <direction>Down</direction>
       <posX>216</posX>
       <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Grass_2</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Grass_2</type>
@@ -445,12 +433,6 @@
       <direction>Down</direction>
       <posX>360</posX>
       <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Grass_2</type>
-      <direction>Down</direction>
-      <posX>376</posX>
-      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Grass_2</type>
@@ -541,6 +523,48 @@
       <direction>Down</direction>
       <posX>408</posX>
       <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree</type>
+      <direction>Down</direction>
+      <posX>616</posX>
+      <posY>296</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>200</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree</type>
+      <direction>Down</direction>
+      <posX>264</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree_Stump</type>
+      <direction>Down</direction>
+      <posX>344</posX>
+      <posY>232</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree_Stump</type>
+      <direction>Down</direction>
+      <posX>328</posX>
+      <posY>248</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree_Stump</type>
+      <direction>Down</direction>
+      <posX>360</posX>
+      <posY>216</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Tree</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>200</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

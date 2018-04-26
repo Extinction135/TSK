@@ -80,19 +80,49 @@ TODAY:
 
 
 
-Polish & Playtesting
 
-fixed a minor animation issue where hero didn't raise his hand at map screen.
-fixed an issue where the last location wasn't being tracked, so hero default
-spawned on the map at colliseum upon exit of dungeon.
 
-created paths in dialog screen to handle exiting to a dungeon level,
-based upon the dialog passed into the screen. first test is the enter
-forest dungeon dialog, where the player can choose A for yes or B for no.
 
-fixed an issue where hero's interaction with exit looked bad.
-lots of playtesting, including to and from map, beating dungeon.
-it's starting to feel like a real game.
+Trees++
+
+added small tree and small tree stump into the game, 
+added to forest dungeon entrance for testing. sorting
+properly with correct collision recs.
+
+fixed issue where tree stumps sorted on same layer as grass objs.
+they sort above them now, and stack properly.
+
+
+
+
+
+
+
+
+
+
+
+
+Polish++
+
+blow up tree with explosion - becomes tree stump + attention particle + ground fire
+
+
+i want lots of those trees around the dungeon entrance.
+
+add debris objs to env objs widget, scatter around dungeon entrance
+
+bush debris - hitting a bush should create leaves that travel in the direction of the hit
+leaves only last for a moment, then die
+
+blowing up a tree should create lots of leaves in random directions, and drop loot
+tree stumps still have collision recs and prevent hero from walking over them.
+
+link walking on tall grass should create small grass at link's feet, partially hiding them.
+any grounded actor walking in tall grass should get "grassy feet".
+so this is a sprite that lives in the actor class, tracks to the actor's feet,
+and is only visible when actor is passively interacting with tall grass objs.
+
 
 
 
@@ -111,14 +141,6 @@ it plays after the dungeon is built?
 
 
 
-
-
-
-
-
-
-
-
 input polish
 when moving the joystick diagonally, the input *should* split evenly between up and say right.
 if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
@@ -128,29 +150,8 @@ that will increase the precision of sloppy diagonal weapon attacks, aiming their
 
 
 
-
-
 hero should spawn facing up in dungeon.
 hero should spawn facing down after exiting dungeon.
-
-
-when hero exits dungeon, he shouldn't auto-cue the exit, 
-he should have to press A and interact with the exit, which pops a dialog.
-
-
-
-because we have separated dungeon and overworld levels in memory, we can
-implement an item that allows for the creation of warp points between a 
-dungeon and an overworld level.
-
-
-
-
-
-
-
-
-
 
 
 

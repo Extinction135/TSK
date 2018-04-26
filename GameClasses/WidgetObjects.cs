@@ -222,11 +222,11 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
-            Functions_GameObject.SetType(objList[8], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[9], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[8], ObjType.Wor_Tree);
+            Functions_GameObject.SetType(objList[9], ObjType.Wor_Tree_Stump);
             Functions_GameObject.SetType(objList[10], ObjType.Unknown);
             Functions_GameObject.SetType(objList[11], ObjType.Unknown);
-
+            
             //row 4
             Functions_GameObject.SetType(objList[12], ObjType.Unknown);
             Functions_GameObject.SetType(objList[13], ObjType.Unknown);
@@ -283,6 +283,14 @@ namespace DungeonRun
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
+
+            //manually set tree recs
+            objList[8].compCollision.rec.Height = 16 * 2;
+            objList[9].compCollision.rec.Height = 16 * 2;
+
+            //hide objs that trees overlap
+            Functions_Widget.HideObj(objList[12]);
+            Functions_Widget.HideObj(objList[13]);
         }
     }
 
@@ -562,6 +570,10 @@ namespace DungeonRun
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);
 
+            //manually set the dungeon entrances collision rec
+            objList[0].compCollision.rec.Width = 16 * 3;
+            objList[0].compCollision.rec.Height = 16 * 4;
+
             //hide the dungeon objs covered by dungeon entrance
             Functions_Widget.HideObj(objList[1]);
             Functions_Widget.HideObj(objList[2]);
@@ -577,10 +589,6 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[12]);
             Functions_Widget.HideObj(objList[13]);
             Functions_Widget.HideObj(objList[14]);
-
-            //manually set the dungeon entrances collision rec
-            objList[0].compCollision.rec.Width = 16 * 3;
-            objList[0].compCollision.rec.Height = 16 * 4;
         }
     }
 
