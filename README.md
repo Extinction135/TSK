@@ -6,9 +6,11 @@ A 2D Zelda, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.
 
 
 
-## Version 0.7 Preview - 2018.04.12
+## Version 0.7 Preview - 2018.04.26
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7Preview2.gif)  
+0.7 Preview Playthrough without cheats:  
 [![X](http://img.youtube.com/vi/XwGxcmaVHlo/0.jpg)](http://www.youtube.com/watch?v=XwGxcmaVHlo)  
+0.7 Preview Playthrough with cheats:  
 [![X](http://img.youtube.com/vi/qO_nSm1wDn0/0.jpg)](http://www.youtube.com/watch?v=qO_nSm1wDn0)  
 
 
