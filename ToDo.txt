@@ -78,14 +78,67 @@ TODAY:
 
 
 
-Game Recordings ++
+Media++
 
-fixed a variety of chest related issues with hub and key rooms,
-while recording with obs studio, which i was able to pickup and learn
-in about 2 minutes because it's interface isn't hot garbage - thanks!
-now i'm able to record 60fps .mov from hardware and they look criisp.
-so, i'll post a playthrough of where the game is right now, along
-with a few select gifs coming up real soooon....
+recorded 2 videos, one with and without cheats.
+i couldn't beat the dungeon without cheats - it's hard.
+posted both to youtube channel as unlisted, then linked to 
+from the readme. recorded gifs from the videos, edited 
+those together into a 0.7 preview gif, to sit atop the 
+video recordings.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+IMPROVING THE GAME CAPTURING PROCESS
+- NEEDS A FOOTER WATERMARK (SO WE DONT HAVE TO ADD ONE LATER)
+- THIS IS GITHUB ADDRESS
+- NEEDS AN INPUT WIDGET, AS WE HAVE ALREADY DESIGNED
+- THIS ALLOWS VIEWERS TO MAP INPUT TO EFFECT
+
+CHEAT: SCREEN CAPTURE MODE - DISPLAYS WATERMARK, INPUT WIDGET, ETC..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

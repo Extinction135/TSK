@@ -7,12 +7,11 @@ A 2D Zelda, using Monogame 3.6 for XboxOne, Windows7, 8, & 10.
 
 
 ## Version 0.7 Preview - 2018.04.12
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7BombSliding.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7BushInteractions.gif)   
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/DungeonRun0p7preview1.gif)  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7KeyRooms.gif)  
- 
- 
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7Preview2.gif)  
+[![X](http://img.youtube.com/vi/XwGxcmaVHlo/0.jpg)](http://www.youtube.com/watch?v=XwGxcmaVHlo)  
+[![X](http://img.youtube.com/vi/qO_nSm1wDn0/0.jpg)](http://www.youtube.com/watch?v=qO_nSm1wDn0)  
+
+
 ## Overview  
 + Gameplay and Design is discussed in Design.md.
 + Daily tasks/commits are planned and organized in ToDo.txt.
