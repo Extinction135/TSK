@@ -77,69 +77,6 @@ TODAY:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-IMPROVING THE GAME CAPTURING PROCESS
-- NEEDS A FOOTER WATERMARK (SO WE DONT HAVE TO ADD ONE LATER)
-- THIS IS GITHUB ADDRESS
-- NEEDS AN INPUT WIDGET, AS WE HAVE ALREADY DESIGNED
-- THIS ALLOWS VIEWERS TO MAP INPUT TO EFFECT
-
-CHEAT: SCREEN CAPTURE MODE - DISPLAYS WATERMARK, INPUT WIDGET, ETC..
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 should be able to blow up tree stumps with explosions.
 but, we need to make sure we aren't blowing up stumps on the same frame as trees.
 so we need the explosion to interaction check on 1 frame only.

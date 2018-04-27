@@ -207,50 +207,8 @@ dq: '...goodbye, link.'
 
 link: 'don't make me do this, zelda...'
 
-link and the dark queen fight, but in the light world, so the dark queen 
-is a little weaker than she would be in the dark world. upon defeating her,
-zelda blows the fucking castle up, phoenix style, leaving nothing but rubble 
-where it once stood. so, in the light world, the castle gets destroyed.
-
-but the dark world castle is just fine.
-and that's where the dark queen zelda is waiting for link.
-link wakes up in the forest, badly hurt and missing items.
-
-however the player wants to do the next part is up to them, 
-but essentially there is a portal to the dark world castle
-in the rubble of the light world castle. stepping thru this
-portal takes link inside the dark world castle, which is 
-otherwise inaccessible from the dark world. 
-inside is princess zelda AND the dark queen.
-the feeling here is more ff7 than zelda.
-it's about 'atmosphere' now, not enemies or challenges.
-there are no mobs, only occasional minibosses, that
-really shouldn't be a challenge at this point.
-
-finally, link arrives at the throne room inside the dark world castle. 
-the dark queen and zelda appear in ghostly form at the front of the room. 
-this room looks PURE EVIL, with dark tentacles and blood and bodyparts strewn
-about - more diablo than zelda. 
-
-this is the final fight between the dark queen and link.
-the dark queen explains that zelda will die too if link kills her.
-she explains that these astral forms are the last pieces of zelda's soul.
-and as long as the dark queen lives, her dark power will continue to 
-create monsters, which will spew forth from the dark world rifts.
-but, zelda will continue to live on, here in the dark world.
-
-link must decide to kill zelda/dark queen or not.
-if not, there is a short closing dialog, then the dialog resets.
-if link decides to kill zelda, then the final boss fight commences.
-this is endgame Link vs. DarkWorld DarkQueen.
-the dark queen spawns minibosses while shooting fireballs and
-flying around, occasionally stopping on the ground as the physical
-form of zelda, which is the only time the dark queen can take damage.
-the dark queen MAKES LINK HURT ZELDA to damage her (the visual form).
-that's poetry in boss fight format.
-
-eventually, link strikes zelda (the sprite), and the final dialog
-happens, where zelda dies in link's arms.
+link and zelda fight an intense battle, with link mortally wounding her.
+they have their final dialog:
 
 link: '...zelda.. i'm here..'
 z: 'link? you saved me.. again..'
@@ -270,17 +228,34 @@ link: '...'
 link: '...i love you too...'
 link: '...goodbye.'
 
-there are various in-game consequences to her death:
-link becomes king. dialogs change.
-various dialogs change to morn zeldas passing.
+then you hear ganon's laugh, and he emerges from a shadow ball.
 
-? the colliseum is shut down, and turned into a food pantry / shelter for hyrule's citizens.
-? inside homeless, broken NPCs express tiny glimmers of hope while eating.
-
-
+he has been controlling zelda, building up his plans to exact revenge upon
+link for crippling him, stranded in the dark world. this has been ganon's plan
+all along - for link to kill zelda. he appears just long enough to let link
+know it was him behind it all, then he flees. link is understandably angry.
 
 
 
+ENDGAME: chase down ganon in the dark world.
+
+he resides in his palace atop shadow mountain.
+the palace is shielded by the legendary beasts.
+all legendary beasts must be defeated to gain access to ganon's palace.
+upon reaching ganon, they fight.
+
+ganon's dialog:
+'finally.. you've arrived.'
+'i was starting to worry you got lost.'
+'but then i remembered that you're the hero of hyrule, blah blah blah..'
+'well, you were the hero of hyrule..'
+'you're not much now.. just some strange face and a story.'
+'i've been here the whole time. watched the kids grow. tended the farm, link.'
+'and where were you? off on your adventures..'
+'while i was here. broken, tormented, i rebuilt myself.'
+'for years.. for years i waited and planned..'
+'and now i will savor every moment of your downfall, link..'
+'en garde!'
 
 
 
@@ -290,13 +265,13 @@ various dialogs change to morn zeldas passing.
 
 
 
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
 	
 Side Quests / ENDGAME activities: 
 
@@ -311,8 +286,6 @@ hidden simple dungeons / minibosses.
 sequential rooms, with special bosses in each room, beating the loot cave returns hero to overworld
 these entrances actually look like caves, and can be hidden behind cracked walls
 
-"the king's ghosts" - randomly a 'king's ghost' will spawn in a dungeon room
-this is the king boss battle, but the king is at 6 health and half opacity, and flying.
 
 	
 	
