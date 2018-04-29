@@ -39,7 +39,7 @@ namespace DungeonRun
         {
             this.name = "Cheats Screen";
 
-            /*
+            /* reference
             //unlock most/all items
             PlayerData.current = new SaveData();
             PlayerData.current.heartsTotal = 9;
@@ -76,18 +76,18 @@ namespace DungeonRun
             //create the bkg window
             window = new MenuWindow(
                 new Point(16 * 8 - 8, 16 * 4), 
-                new Point(16 * 18, 16 * 10), 
+                new Point(16 * 18, 16 * 14 + 8), 
                 "Cheats");
 
-            int columns = 5;
-            int rows = 2;
+            int columns = 8;
+            int rows = 5;
 
             //create menuitem labels
             labels = new List<ComponentText>();
             for (i = 0; i < columns * rows; i++)
             {
                 labels.Add(new ComponentText(Assets.font,
-                  "test\ntest", new Vector2(-100, -100),
+                  "...\n...", new Vector2(-100, -100),
                   Assets.colorScheme.textDark));
             }
 
@@ -100,97 +100,47 @@ namespace DungeonRun
 
             #region Set MenuItems & Labels
 
+            //position and set the neighbors
+            Functions_MenuItem.PlaceMenuItems(menuItems,
+                window.interior.rec.X + 8 + 5,
+                window.interior.rec.Y + 16 + 8 + 5,
+                (byte)rows, 16 * 3 + 8, 24);
+
             //CheatsInfiniteHP
             labels[0].text = "inf.\nhp"; 
             Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteHP, menuItems[0]);
-            menuItems[0].compSprite.position.X = window.interior.rec.X + 8 + 5;
-            menuItems[0].compSprite.position.Y = window.interior.rec.Y + 16 + 8 + 5;
 
             //CheatsInfiniteGold
             labels[1].text = "inf.\ngold"; 
             Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteGold, menuItems[1]);
-            menuItems[1].compSprite.position.X = menuItems[0].compSprite.position.X;
-            menuItems[1].compSprite.position.Y = menuItems[0].compSprite.position.Y + 24;
 
             //CheatsInfiniteMagic
             labels[2].text = "inf.\nmagic";
             Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteMagic, menuItems[2]);
-            menuItems[2].compSprite.position.X = menuItems[1].compSprite.position.X;
-            menuItems[2].compSprite.position.Y = menuItems[1].compSprite.position.Y + 24;
 
             //CheatsInfiniteArrows
             labels[3].text = "inf.\narrws";
             Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteArrows, menuItems[3]);
-            menuItems[3].compSprite.position.X = menuItems[2].compSprite.position.X;
-            menuItems[3].compSprite.position.Y = menuItems[2].compSprite.position.Y + 24;
 
             //CheatsInfiniteBombs
             labels[4].text = "inf.\nbombs";
             Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteBombs, menuItems[4]);
-            menuItems[4].compSprite.position.X = menuItems[3].compSprite.position.X;
-            menuItems[4].compSprite.position.Y = menuItems[3].compSprite.position.Y + 24;
 
-            //CheatsMap (column2)
+            //CheatsMap
             labels[5].text = "got\nmap";
             Functions_MenuItem.SetType(MenuItemType.CheatsMap, menuItems[5]);
-            menuItems[5].compSprite.position.X = menuItems[0].compSprite.position.X + 24 + 16;
-            menuItems[5].compSprite.position.Y = menuItems[0].compSprite.position.Y;
 
             //CheatsKey
             labels[6].text = "got\nkey";
             Functions_MenuItem.SetType(MenuItemType.CheatsKey, menuItems[6]);
-            menuItems[6].compSprite.position.X = menuItems[5].compSprite.position.X;
-            menuItems[6].compSprite.position.Y = menuItems[5].compSprite.position.Y + 24;
 
             //CheatsUnlockAll
             labels[7].text = "unlck\nall";
             Functions_MenuItem.SetType(MenuItemType.CheatsUnlockAll, menuItems[7]);
-            menuItems[7].compSprite.position.X = menuItems[6].compSprite.position.X;
-            menuItems[7].compSprite.position.Y = menuItems[6].compSprite.position.Y + 24;
 
             #endregion
 
-
-            #region Set Vertical Neighbors
-
-            //column1
-            menuItems[0].neighborDown = menuItems[1];
-            menuItems[1].neighborUp = menuItems[0];
-
-            menuItems[1].neighborDown = menuItems[2];
-            menuItems[2].neighborUp = menuItems[1];
-
-            menuItems[2].neighborDown = menuItems[3];
-            menuItems[3].neighborUp = menuItems[2];
-
-            menuItems[3].neighborDown = menuItems[4];
-            menuItems[4].neighborUp = menuItems[3];
-
-
-
-            //column2
-            menuItems[5].neighborDown = menuItems[6];
-            menuItems[6].neighborUp = menuItems[5];
-
-            menuItems[6].neighborDown = menuItems[7];
-            menuItems[7].neighborUp = menuItems[6];
-
-
-            #endregion
-
-
-            #region Set Horizontal Neighbors
-
-            menuItems[0].neighborRight = menuItems[5];
-            menuItems[5].neighborLeft = menuItems[0];
-
-            menuItems[1].neighborRight = menuItems[6];
-            menuItems[6].neighborLeft = menuItems[1];
-
-            menuItems[2].neighborRight = menuItems[7];
-            menuItems[7].neighborLeft = menuItems[2];
-
-            #endregion
+            
 
 
             #region Finish Up, prep for screen opening
@@ -286,6 +236,9 @@ namespace DungeonRun
                 //we will always have a menuItem selected
                 Assets.Play(Assets.sfxMenuItem);
                 SetCheatMenuItems();
+
+                if (Flags.PrintOutput)
+                { Debug.WriteLine("menuItem pressed: " + currentlySelected.type); }
             }
 
 
@@ -410,7 +363,7 @@ namespace DungeonRun
 
 
 
-        void SetCheatMenuItems()
+        void SetCheatMenuItems() //this sets the X next to the cheat
         {   //reset all menuItems to unknown state
             for (i = 0; i < menuItems.Count; i++)
             { menuItems[i].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOff[0]; }

@@ -16,10 +16,10 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = true; //puts game in release mode, overwrites other flags
+        public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
@@ -100,11 +100,6 @@ namespace DungeonRun
                     EnableTopMenu = true; //necessary
                     ShowEnemySpawns = true; //necessary for editing
                     CameraTracksHero = false; //center to room
-                }
-                else if(bootRoutine == BootRoutine.Game)
-                {
-                    //cheats for game mode, but not in release
-                    Invincibility = true; //hero cannot die
                 }
             }
         }

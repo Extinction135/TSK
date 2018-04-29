@@ -19,7 +19,8 @@ namespace DungeonRun
         static int itemCounter;
 
 
-        public static void PlaceMenuItems(List<MenuItem> MenuItems, int X, int Y, byte rowLength)
+        public static void PlaceMenuItems(List<MenuItem> MenuItems, int X, int Y, 
+            byte rowLength, int xOffset = 24, int yOffset = 24)
         {
             //for the 1st, place it at X, Y
             MenuItems[0].compSprite.position.X = X;
@@ -31,9 +32,9 @@ namespace DungeonRun
             //for the rest, place with 24 px offset, dividing list into rows based on divider value
             for (i = 0; i < MenuItems.Count; i++) //i=1 skips 0, the first menuItem we set above
             {   //place menuItems 24px apart horizontally
-                MenuItems[i].compSprite.position.X = MenuItems[0].compSprite.position.X + (24 * itemCounter);
+                MenuItems[i].compSprite.position.X = MenuItems[0].compSprite.position.X + (xOffset * itemCounter);
                 //each new vertical row gets the same 24 px offset
-                MenuItems[i].compSprite.position.Y = MenuItems[0].compSprite.position.Y + (24 * rowCounter);
+                MenuItems[i].compSprite.position.Y = MenuItems[0].compSprite.position.Y + (yOffset * rowCounter);
                 itemCounter++;
 
                 if (itemCounter == rowLength) { rowCounter++; itemCounter = 0; }
@@ -298,7 +299,6 @@ namespace DungeonRun
 
 
 
-
             #region Pets
 
             else if (Type == MenuItemType.PetStinkyDog)
@@ -452,13 +452,13 @@ namespace DungeonRun
             else if (Type == MenuItemType.CheatsInfiniteHP)
             {
                 MenuItem.name = "Infinite Hearts";
-                MenuItem.description = "You won't take any \ndamage, ever.";
+                MenuItem.description = "It's ok, you can't \nbe good at everything.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
             else if (Type == MenuItemType.CheatsInfiniteMagic)
             {
                 MenuItem.name = "Infinite Magic";
-                MenuItem.description = "Redefining OP.";
+                MenuItem.description = "spam y to win. \nyou're welcome.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOn;
             }
 

@@ -79,6 +79,62 @@ TODAY:
 
 
 
+CheatUI++
+
+improved cheat descriptions.
+created mockup to match current in game inventory menu.
+improved mockup with menu pathto input ctrls.
+
+improved cheat screen to cover the widgets underneath it,
+which just looks better in my opinion. 
+improved cheat screen mockup to match in game rep.
+
+added default menuItems across the cheat screen, using 
+the proper MenuItem_Functions, instead of rewriting the
+wheel for the 4th time...
+
+playtested, working as expected.
+
+
+
+
+
+
+Options++
+
+need to implement menuItem for input ctrls
+add inputCtrls to options widget
+
+we need an input ctrls screen, JUST like the cheat screen
+this should cover the inv and quest and item widgets, but
+should draw and update the info widget still.
+
+display the input widget from the input ctrls screen, via menuItem
+
+
+
+
+Controller Input Display Widget
+
+black bkg, with arrows and btn input, tied per frame to controller.
+this fits into screen manager, so we can see the input everywhere on all screens
+
+
+where does the input widget sit positionally?
+we need to update the mockups to match what we have in game
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,6 +145,20 @@ TODAY:
 - this fixes the capturing process, since we can now record + upload with obs
 
 - fix sounds (all sounds should 'sound' right, including the boomerang)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bush debris - hitting a bush should create leaves that travel in the direction of the hit
 leaves only last for a moment, then die
@@ -102,9 +172,6 @@ and is only visible when actor is passively interacting with tall grass objs.
 when player presses A on dialog screen entering dungeon, play door opening sound.
 this sound should not play when the hero spawns in the dungeon, where i think it does
 it plays after the dungeon is built?
-
-fairies are spawning waaaay too much as loot.
-
 
 
 
