@@ -489,6 +489,17 @@ namespace DungeonRun
             #endregion
 
 
+            #region Option menuItems
+
+            else if (Type == MenuItemType.OptionsOptionsMenu)
+            {
+                MenuItem.name = "Options Menu";
+                MenuItem.description = "setup various \ngame options.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Controller;
+            }
+
+            #endregion
+
 
             else
             {   //if the type was unhandled, default to unknown

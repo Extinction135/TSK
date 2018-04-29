@@ -79,21 +79,15 @@ TODAY:
 
 
 
-CheatUI++
+Options MenuItem
 
-improved cheat descriptions.
-created mockup to match current in game inventory menu.
-improved mockup with menu pathto input ctrls.
-
-improved cheat screen to cover the widgets underneath it,
-which just looks better in my opinion. 
-improved cheat screen mockup to match in game rep.
-
-added default menuItems across the cheat screen, using 
-the proper MenuItem_Functions, instead of rewriting the
-wheel for the 4th time...
-
+created screen options.
+created OptionsOptionsMenu, which is a naming convention failure OOF.
+added that to MenuItem.SetType(), which displays a controller.
 playtested, working as expected.
+
+
+
 
 
 
@@ -110,6 +104,10 @@ this should cover the inv and quest and item widgets, but
 should draw and update the info widget still.
 
 display the input widget from the input ctrls screen, via menuItem
+
+
+
+
 
 
 

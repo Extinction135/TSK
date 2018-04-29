@@ -197,6 +197,9 @@
     <Compile Include="..\..\GameClasses\ScreenManager.cs">
       <Link>Classes\ScreenManager.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\ScreenOptions.cs">
+      <Link>Classes\ScreenOptions.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
       <Link>Classes\ScreenOverworld.cs</Link>
     </Compile>

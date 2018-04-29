@@ -85,8 +85,8 @@ namespace DungeonRun
             labels[4].text = "";
             Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[4]);
 
-            labels[5].text = "";
-            Functions_MenuItem.SetType(MenuItemType.Unknown, menuItems[5]);
+            labels[5].text = "optns\nmenu";
+            Functions_MenuItem.SetType(MenuItemType.OptionsOptionsMenu, menuItems[5]);
 
             labels[6].text = "load\ngame";
             Functions_MenuItem.SetType(MenuItemType.OptionsLoadGame, menuItems[6]);
