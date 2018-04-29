@@ -24,30 +24,36 @@ namespace DungeonRun
             if (Pool.hero.equipment == MenuItemType.EquipmentRing) { dropRate = 70; }
             //create loot if random value is less than dropRate
             if (Functions_Random.Int(0, 100) < dropRate)
-            {
-                //randomly choose a type of loot to spawn
-                lootType = Functions_Random.Int(0, 101);
-
-                //common loot drops
-                if (lootType < 25) //25%
-                { Functions_Pickup.Spawn(ObjType.Pickup_Heart, Pos.X, Pos.Y); }
-                else if (lootType < 50) //25%
-                { Functions_Pickup.Spawn(ObjType.Pickup_Magic, Pos.X, Pos.Y); }
-                else if (lootType < 75) //25%
-                { Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Pos.X, Pos.Y); }
-
-                //uncommon loot drops
-                else if (lootType < 87) //12%
-                { Functions_Pickup.Spawn(ObjType.Pickup_Bomb, Pos.X, Pos.Y); }
-                else if (lootType < 97) //12%
-                { Functions_Pickup.Spawn(ObjType.Pickup_Arrow, Pos.X, Pos.Y); }
-
-                //rare loot drops
-                else if (lootType < 101) //1%
+            {   //randomly choose a type of loot to spawn
+                lootType = Functions_Random.Int(0, 1001);
+                //rare
+                if (lootType < 5) //0.5% chance
                 {   //spawn a fairy roomObj
                     GameObject Fairy = Functions_Pool.GetRoomObj();
                     Functions_GameObject.SetType(Fairy, ObjType.Dungeon_Fairy);
                     Functions_Movement.Teleport(Fairy.compMove, Pos.X, Pos.Y);
+                }
+                //uncommon
+                else if (lootType < 100) //10%
+                {
+                    Functions_Pickup.Spawn(ObjType.Pickup_Bomb, Pos.X, Pos.Y);
+                }
+                else if (lootType < 200) //10%
+                {
+                    Functions_Pickup.Spawn(ObjType.Pickup_Arrow, Pos.X, Pos.Y);
+                }
+                else if(lootType < 300) //10%
+                {
+                    Functions_Pickup.Spawn(ObjType.Pickup_Magic, Pos.X, Pos.Y);
+                }
+                //common
+                else if(lootType < 650)
+                {
+                    Functions_Pickup.Spawn(ObjType.Pickup_Heart, Pos.X, Pos.Y);
+                }
+                else
+                {
+                    Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Pos.X, Pos.Y);
                 }
             }
         }

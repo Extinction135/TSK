@@ -77,24 +77,18 @@ TODAY:
 
 
 
-should be able to blow up tree stumps with explosions.
-but, we need to make sure we aren't blowing up stumps on the same frame as trees.
-so we need the explosion to interaction check on 1 frame only.
 
 
 
 
 
+0.7 polish
 
+- need the input widget that shows controller input on screen
+- also need the github address burned into the bottom of the screen
+- this fixes the capturing process, since we can now record + upload with obs
 
-record new gifs for readme, various recordings at 640x360
-can we hide the world ui shit?
-
-
-
-
-
-Polish++
+- fix sounds (all sounds should 'sound' right, including the boomerang)
 
 bush debris - hitting a bush should create leaves that travel in the direction of the hit
 leaves only last for a moment, then die

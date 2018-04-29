@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
@@ -29,9 +29,9 @@ namespace DungeonRun
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
         public static Boolean PlayMusic = false; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
+
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
-
         public static Boolean CameraTracksHero = true; //camera tracks hero or centers to current room
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
