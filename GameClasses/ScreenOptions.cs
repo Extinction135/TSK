@@ -79,41 +79,10 @@ namespace DungeonRun
                 window.interior.rec.Y + 16 + 8 + 5,
                 (byte)rows, 16 * 3 + 8, 24);
 
+            //this is how to set the menuItems, once they're ready for options screen
             //CheatsInfiniteHP
             labels[0].text = "inf.\nhp"; 
             Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteHP, menuItems[0]);
-
-            /*
-
-            //CheatsInfiniteGold
-            labels[1].text = "inf.\ngold"; 
-            Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteGold, menuItems[1]);
-
-            //CheatsInfiniteMagic
-            labels[2].text = "inf.\nmagic";
-            Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteMagic, menuItems[2]);
-
-            //CheatsInfiniteArrows
-            labels[3].text = "inf.\narrws";
-            Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteArrows, menuItems[3]);
-
-            //CheatsInfiniteBombs
-            labels[4].text = "inf.\nbombs";
-            Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteBombs, menuItems[4]);
-
-            //CheatsMap
-            labels[5].text = "got\nmap";
-            Functions_MenuItem.SetType(MenuItemType.CheatsMap, menuItems[5]);
-
-            //CheatsKey
-            labels[6].text = "got\nkey";
-            Functions_MenuItem.SetType(MenuItemType.CheatsKey, menuItems[6]);
-
-            //CheatsUnlockAll
-            labels[7].text = "unlck\nall";
-            Functions_MenuItem.SetType(MenuItemType.CheatsUnlockAll, menuItems[7]);
-
-            */
 
             #endregion
 
@@ -156,54 +125,13 @@ namespace DungeonRun
             if (Functions_Input.IsNewButtonPress(Buttons.A))
             {
 
-                #region Handle Cheat Effects
+                #region Handle Effects
 
                 if (currentlySelected.type == MenuItemType.CheatsInfiniteHP)
                 {
                     if (Flags.Invincibility) { Flags.Invincibility = false; }
                     else { Flags.Invincibility = true; }
                 }
-                else if (currentlySelected.type == MenuItemType.CheatsInfiniteGold)
-                {
-                    if (Flags.InfiniteGold) { Flags.InfiniteGold = false; }
-                    else { Flags.InfiniteGold = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.CheatsInfiniteMagic)
-                {
-                    if (Flags.InfiniteMagic) { Flags.InfiniteMagic = false; }
-                    else { Flags.InfiniteMagic = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.CheatsInfiniteArrows)
-                {
-                    if (Flags.InfiniteArrows) { Flags.InfiniteArrows = false; }
-                    else { Flags.InfiniteArrows = true; }
-                }
-                else if (currentlySelected.type == MenuItemType.CheatsInfiniteBombs)
-                {
-                    if (Flags.InfiniteBombs) { Flags.InfiniteBombs = false; }
-                    else { Flags.InfiniteBombs = true; }
-                }
-                
-                else if (currentlySelected.type == MenuItemType.CheatsKey)
-                {
-                    if (Flags.KeyCheat) { Flags.KeyCheat = false; }
-                    else { Flags.KeyCheat = true; }
-                    Level.bigKey = Flags.KeyCheat;
-                }
-                else if (currentlySelected.type == MenuItemType.CheatsMap)
-                {
-                    if (Flags.MapCheat) { Flags.MapCheat = false; }
-                    else { Flags.MapCheat = true; }
-                    Level.map = Flags.MapCheat;
-                }
-                else if (currentlySelected.type == MenuItemType.CheatsUnlockAll)
-                {
-                    Flags.UnlockAll = true;
-                    Functions_Hero.UnlockAll();
-                }
-
-
-
 
                 #endregion
 
@@ -345,14 +273,6 @@ namespace DungeonRun
 
             //set menuItem based on boolean
             if (Flags.Invincibility) { menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            if (Flags.InfiniteGold) { menuItems[1].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            if (Flags.InfiniteMagic) { menuItems[2].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            if (Flags.InfiniteArrows) { menuItems[3].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            if (Flags.InfiniteBombs) { menuItems[4].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            //column2
-            if (Flags.MapCheat) { menuItems[5].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            if (Flags.KeyCheat) { menuItems[6].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            if (Flags.UnlockAll) { menuItems[7].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
             //expand this to include additional cheats
         }
 

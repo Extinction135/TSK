@@ -145,6 +145,10 @@ namespace DungeonRun
                 {
                     ScreenManager.AddScreen(new ScreenCheats());
                 }
+                else if (currentlySelected.type == MenuItemType.OptionsOptionsMenu)
+                {
+                    ScreenManager.AddScreen(new ScreenOptions());
+                }
                 else if (currentlySelected.type == MenuItemType.OptionsSaveGame)
                 {
                     ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.Save));
