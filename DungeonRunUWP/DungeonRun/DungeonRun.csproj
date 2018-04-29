@@ -154,6 +154,9 @@
     <Compile Include="..\..\GameClasses\Functions_Draw.cs">
       <Link>Classes\Functions_Draw.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Dungeon.cs">
+      <Link>Classes\Functions_Dungeon.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_GameObject.cs">
       <Link>Classes\Functions_GameObject.cs</Link>
     </Compile>
@@ -255,6 +258,9 @@
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenManager.cs">
       <Link>Classes\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\ScreenOptions.cs">
+      <Link>Classes\ScreenOptions.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\ScreenOverworld.cs">
       <Link>Classes\ScreenOverworld.cs</Link>

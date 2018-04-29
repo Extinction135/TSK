@@ -79,12 +79,13 @@ TODAY:
 
 
 
-Options MenuItem
 
-created screen options.
-created OptionsOptionsMenu, which is a naming convention failure OOF.
-added that to MenuItem.SetType(), which displays a controller.
-playtested, working as expected.
+UWP++
+
+linked options screen to uwp project.
+linked functions_dungeon to uwp project.
+which means the uwp project has been broke
+for how many days now? oops. sorry.
 
 
 
