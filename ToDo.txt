@@ -82,33 +82,12 @@ TODAY:
 
 
 
+TitleScreen--
 
+after more thought, decided to just remove options
+menuItem from title screen, for various reasons.
 
-TitleScreen++
-
-simplified title screen, plus mockup.
-title screen is now fully implemented, but
-needs a bit of polish regarding the options screen.
 playtested, working.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-the options screen isn't drawing the info widget.
-so we dont get info on options from the title screen
-
 
 
 

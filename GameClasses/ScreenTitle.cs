@@ -26,7 +26,6 @@ namespace DungeonRun
         MenuItem newGame = new MenuItem();
         MenuItem loadGame = new MenuItem();
         MenuItem quitGame = new MenuItem();
-        MenuItem optionsMenu = new MenuItem();
 
 
         //these point to a menuItem
@@ -47,8 +46,8 @@ namespace DungeonRun
             background = new ComponentSprite(Assets.titleBkgSheet,
                 new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(640, 360));
             window = new MenuWindow(
-                new Point(16 * 13 + 8 + 4, 16 * 15 + 8),
-                new Point(16 * 12 + 8, 16 * 4), 
+                new Point(16 * 15 + 8, 16 * 15 + 8),
+                new Point(16 * 9 + 8, 16 * 4), 
                 "Main Menu");
             title = new ComponentSprite(Assets.bigTextSheet, 
                 new Vector2(583 - 256, 200), //center
@@ -64,16 +63,14 @@ namespace DungeonRun
             Functions_MenuItem.SetType(MenuItemType.OptionsNewGame, newGame);
             Functions_MenuItem.SetType(MenuItemType.OptionsLoadGame, loadGame);
             Functions_MenuItem.SetType(MenuItemType.OptionsQuitGame, quitGame);
-            Functions_MenuItem.SetType(MenuItemType.OptionsOptionsMenu, optionsMenu);
             
             //add the menuItems to the menuItems list
             menuItems.Add(newGame);
             menuItems.Add(loadGame);
-            menuItems.Add(optionsMenu);
             menuItems.Add(quitGame);
             
             //set the menuItem's neighbors
-            Functions_MenuItem.SetNeighbors(menuItems, 4);
+            Functions_MenuItem.SetNeighbors(menuItems, 3);
 
             #endregion
 
@@ -84,8 +81,7 @@ namespace DungeonRun
             newGame.compSprite.position.X = window.background.rec.X + 16;
             newGame.compSprite.position.Y = window.background.rec.Y + 24 + 8;
             Functions_MenuItem.PlaceMenuItem(loadGame, newGame, 48);
-            Functions_MenuItem.PlaceMenuItem(optionsMenu, loadGame, 48);
-            Functions_MenuItem.PlaceMenuItem(quitGame, optionsMenu, 48);
+            Functions_MenuItem.PlaceMenuItem(quitGame, loadGame, 48);
 
             #endregion
 
@@ -99,9 +95,6 @@ namespace DungeonRun
                 Assets.colorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "load\ngame",
                 loadGame.compSprite.position + new Vector2(11, -12),
-                Assets.colorScheme.textDark));
-            labels.Add(new ComponentText(Assets.font, "optns\nmenu",
-                optionsMenu.compSprite.position + new Vector2(11, -12),
                 Assets.colorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "quit\ngame",
                 quitGame.compSprite.position + new Vector2(11, -12),
@@ -142,14 +135,6 @@ namespace DungeonRun
 
                     #region Handle MenuItem Selection
 
-
-                    /*
-                    if (currentlySelected.type == MenuItemType.OptionsContinue)
-                    {
-                        Functions_Backend.LoadGame(GameFile.AutoSave, true);
-                    }
-                    */
-
                     if (currentlySelected.type == MenuItemType.OptionsNewGame)
                     {
                         ScreenManager.AddScreen(new ScreenLoadSaveNew(LoadSaveNewState.New));
@@ -162,11 +147,6 @@ namespace DungeonRun
                     {
                         displayState = DisplayState.Closing; //fadeout, remove screen
                     } 
-                    else if (currentlySelected.type == MenuItemType.OptionsOptionsMenu)
-                    {
-                        ScreenManager.AddScreen(new ScreenOptions());
-                    }
-                    
 
                     #endregion
 
