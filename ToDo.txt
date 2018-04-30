@@ -82,24 +82,33 @@ TODAY:
 
 
 
-OptionsScreen
-
-created options screen, which matches cheat screen (for now).
-there's alot of stuff that is optional that will likely get 
-thrown in here as it's developed. playtested, working.
-
-
-
-
-
-
-
-
 
 
 TitleScreen++
-update the title screen to only display the top menu.
-shorten the window frame too.
+
+simplified title screen, plus mockup.
+title screen is now fully implemented, but
+needs a bit of polish regarding the options screen.
+playtested, working.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+the options screen isn't drawing the info widget.
+so we dont get info on options from the title screen
+
 
 
 
@@ -107,6 +116,8 @@ shorten the window frame too.
 
 
 Controller Input Display Widget
+
+this is link to from the options screen, which is available from title / inv screens
 
 black bkg, with arrows and btn input, tied per frame to controller.
 this fits into screen manager, so we can see the input everywhere on all screens
