@@ -80,9 +80,8 @@ namespace DungeonRun
                 (byte)rows, 16 * 3 + 8, 24);
 
             //this is how to set the menuItems, once they're ready for options screen
-            //CheatsInfiniteHP
-            labels[0].text = "inf.\nhp"; 
-            Functions_MenuItem.SetType(MenuItemType.CheatsInfiniteHP, menuItems[0]);
+            labels[0].text = "draw\ninput"; 
+            Functions_MenuItem.SetType(MenuItemType.Options_DrawInput, menuItems[0]);
 
             #endregion
 
@@ -127,10 +126,10 @@ namespace DungeonRun
 
                 #region Handle Effects
 
-                if (currentlySelected.type == MenuItemType.CheatsInfiniteHP)
+                if (currentlySelected.type == MenuItemType.Options_DrawInput)
                 {
-                    if (Flags.Invincibility) { Flags.Invincibility = false; }
-                    else { Flags.Invincibility = true; }
+                    if (Flags.DrawInput) { Flags.DrawInput = false; }
+                    else { Flags.DrawInput = true; }
                 }
 
                 #endregion
@@ -266,14 +265,14 @@ namespace DungeonRun
 
 
 
-        void SetCheatMenuItems() //this sets the X next to the cheat
+        void SetCheatMenuItems() //this sets the X next to the option
         {   //reset all menuItems to unknown state
             for (i = 0; i < menuItems.Count; i++)
             { menuItems[i].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOff[0]; }
 
             //set menuItem based on boolean
-            if (Flags.Invincibility) { menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            //expand this to include additional cheats
+            if (Flags.DrawInput) { menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+            //expand this to include additional options
         }
 
     }

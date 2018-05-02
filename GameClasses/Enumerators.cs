@@ -363,7 +363,13 @@ namespace DungeonRun
     {
         Unknown,
 
-        //options
+
+
+
+
+
+        //options menu
+        //OptionsMenu_Continue
         OptionsContinue,
 
         OptionsNewGame,
@@ -371,13 +377,18 @@ namespace DungeonRun
         OptionsQuitGame,
         OptionsSaveGame,
 
-        OptionsVideoCtrls,
-        OptionsInputCtrls,
-        OptionsAudioCtrls,
-        OptionsGameCtrls,
+        //OptionsVideoCtrls,
+        //OptionsInputCtrls,
+        //OptionsAudioCtrls,
+        //OptionsGameCtrls,
 
         OptionsCheatMenu,
         OptionsOptionsMenu,
+
+        Options_DrawInput,
+
+
+
 
 
 

@@ -25,7 +25,7 @@ namespace DungeonRun
         public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
         public static Boolean DrawDebugInfo = false; //draws the bottom debug info
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
-        public static Boolean DrawInput = true; //draw the input display
+        public static Boolean DrawInput = false; //draw the input display
 
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
         public static Boolean PlayMusic = false; //turns music on/off

@@ -346,7 +346,12 @@ namespace DungeonRun
             #endregion
 
 
-            #region Option menuItems
+
+
+
+
+            #region Option Widget menuItems
+
 
             else if (Type == MenuItemType.OptionsContinue)
             {
@@ -384,7 +389,7 @@ namespace DungeonRun
             }
 
 
-
+            /*
             else if (Type == MenuItemType.OptionsAudioCtrls)
             {
                 MenuItem.name = "Audio Controls";
@@ -409,7 +414,14 @@ namespace DungeonRun
                 MenuItem.description = "Changes game \ncontrols + settings.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Joystick;
             }
+            */
 
+            else if (Type == MenuItemType.OptionsOptionsMenu)
+            {
+                MenuItem.name = "Options Menu";
+                MenuItem.description = "setup various \ngame options.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Controller;
+            }
 
             else if (Type == MenuItemType.OptionsCheatMenu)
             {
@@ -417,14 +429,6 @@ namespace DungeonRun
                 MenuItem.description = "Flip cheats \non or off.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_QuestionMark;
             }
-
-
-
-
-
-
-
-
 
             #endregion
 
@@ -491,11 +495,11 @@ namespace DungeonRun
 
             #region Option menuItems
 
-            else if (Type == MenuItemType.OptionsOptionsMenu)
+            else if (Type == MenuItemType.Options_DrawInput)
             {
-                MenuItem.name = "Options Menu";
-                MenuItem.description = "setup various \ngame options.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Controller;
+                MenuItem.name = "Draw Input Display";
+                MenuItem.description = "draws controller \ninput on screen.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
 
             #endregion
