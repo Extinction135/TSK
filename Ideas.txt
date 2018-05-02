@@ -2,6 +2,40 @@
 
 
 
+- implement picking up, carrying, throwing bushes, pots, skulls
+hero throws obj upon leaving room, falling into pit, getting hit, etc..
+
+*** we could have a massive tree trunk without a top for the entrance ***
+the trunk would just keep going all the way up to the top of the sprite sheet,
+and we'd place the dungeon entrance near the top of the level, always.
+this way, it appears like it's much bigger in game, and we can surround it
+with various smaller trees to increase it's relative size.
+plus, this tree looks like it belongs in the dark world. rt.
+
+
+
+
+i want to put portals / entrances in their own widget, because they have
+various sizes, and we only need to display them occasionally, unlike shared objs
+which we display more often, plus we're just wasting widget objs by covering
+them up with the dungeon entrance obj...
+
+
+
+
+in editor, when we select an object, we are assuming that obj is 16x16
+instead we should be centering the obj to the cursor based on the sprites framesize
+
+
+
+
+add signpost obj that hero can read to dungeon entrance level discussing dungeon.
+
+
+
+
+
+
 HANDLE AUTOSAVE
 we *do* need to handle autoSave somehow, because it does contain 
 the last game - we can simply add it to the load screen as another option.

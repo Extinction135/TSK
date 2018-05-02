@@ -93,20 +93,13 @@ TODAY:
 
 
 
+Create Pot RoomObject
 
-
-
-
-Overworld++
-
-updated particle functions.update() to respect particles
-with a lifetime of 0 - they are treated as immortal and 
-are removed from the life counting routine, so they never
-get killed(), which solves a problem with the overworld
-screen: it spawned campfire and flag particles expecting 
-that they would live for the duration of the screen, but
-instead they were killed after only a few frames, leaving
-the overworld screen feeling lifeless.
+added world pot obj.
+completely commented out pickup / carrying routines.
+playtested pots, bushes, skulls, trees, and 'splosive barrels.
+updated colliseum level with various pots.
+fixed a bug where editor wasn't saving room id to xml.
 
 
 
@@ -118,16 +111,43 @@ the overworld screen feeling lifeless.
 
 
 
-campfire on the map isn't working
-flags aren't waving
-but waves show up....
+boomerangs shouldnt be able to destroy things.
+they can trigger levers, yes, and they can boop explosive barrels,
+but nothing else.
+
+boomerang sounds need to be revisited.
+in fact, sounds need to be revisited.
+obj should have obj.killSfx and obj.hitSfx.
+this way projectiles can hit or kill objs generically,
+and the obj handles the sfx on it's own.
+
+this could be tied into the obj.kill() method,
+which should probably be moved into gameobj functions roomObjs
+
+
+
+
+loot should spawn centered to the obj that was destroyed.
 
 
 
 
 
 
-move the net into the weapons section of inventory, because it maps to the X button, duh!
+
+
+link walking on tall grass should create small grass at link's feet, partially hiding them.
+any grounded actor walking in tall grass should get "grassy feet".
+so this is a sprite that lives in the actor class, tracks to the actor's feet,
+and is only visible when actor is passively interacting with tall grass objs.
+
+
+
+- can we 'reboot' in 1920x1080? can we have player input to set the size?
+on Dx, this is easy. on UWP, this is not so easy, but also doesn't matter terribly.
+
+
+
 
 
 
@@ -156,24 +176,11 @@ move the net into the weapons section of inventory, because it maps to the X but
 
 0.7 polish
 
-- also need the github address burned into screen
-- this fixes the capturing process, since we can now record + upload with obs
-
 - fix sounds (all sounds should 'sound' right, including the boomerang)
-
-- add world pot obj
-
-- implement picking up, carrying, throwing bushes, pots, skulls
-hero throws obj upon leaving room, falling into pit, getting hit, etc..
 
 bush debris - hitting a bush should create leaves that travel in the direction of the hit
 leaves only last for a moment, then die
 blowing up a tree should create lots of leaves in random directions
-
-link walking on tall grass should create small grass at link's feet, partially hiding them.
-any grounded actor walking in tall grass should get "grassy feet".
-so this is a sprite that lives in the actor class, tracks to the actor's feet,
-and is only visible when actor is passively interacting with tall grass objs.
 
 when player presses A on dialog screen entering dungeon, play door opening sound.
 this sound should not play when the hero spawns in the dungeon, where i think it does
@@ -188,86 +195,7 @@ that will increase the precision of sloppy diagonal weapon attacks, aiming their
 hero should spawn facing up in dungeon.
 hero should spawn facing down after exiting dungeon.
 
-opening / closing of level screen
-this shouldn't be a fade in/out - thats easy and cheap.
-instead, we're going to ape LttP's circular black transition.
-but instead of a circle, we're going to use a square/rectangle.
-this will require 4 rectangles, each the size of the screen.
-these are left & right, which close or open horizontally based on the hero's X position.
-the same is done for the top and bottom, vertically, based on hero's Y pos.
-these can be programmed independently too, and should ease in.
-what we should see: the edges of the screen turn black and grows towards link eventually covering him up.
-then we can transition into a dungeon, to overworld map, etc...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*** we could have a massive tree trunk without a top for the entrance ***
-the trunk would just keep going all the way up to the top of the sprite sheet,
-and we'd place the dungeon entrance near the top of the level, always.
-this way, it appears like it's much bigger in game, and we can surround it
-with various smaller trees to increase it's relative size.
-plus, this tree looks like it belongs in the dark world. rt.
-
-
-
-
-i want to put portals / entrances in their own widget, because they have
-various sizes, and we only need to display them occasionally, unlike shared objs
-which we display more often, plus we're just wasting widget objs by covering
-them up with the dungeon entrance obj...
-
-
-
-
-in editor, when we select an object, we are assuming that obj is 16x16
-instead we should be centering the obj to the cursor based on the sprites framesize
-
-
-
-
-add signpost obj that hero can read to dungeon entrance level discussing dungeon.
-
-
-
-
-
+the net should map to the Y button, after all, it IS an ITEM.
 
 
 

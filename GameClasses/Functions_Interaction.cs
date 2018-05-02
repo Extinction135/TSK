@@ -284,7 +284,7 @@ namespace DungeonRun
 
                         else if (Actor == Pool.hero)
                         {   //check to see if hero should drop carryingObj
-                            if (Functions_Hero.carrying) { Functions_Hero.DropCarryingObj(); }
+                            //if (Functions_Hero.carrying) { Functions_Hero.DropCarryingObj(); }
                             //hide hero's shadow upon pit collision
                             Functions_Hero.heroShadow.visible = false;
                         }
@@ -531,18 +531,6 @@ namespace DungeonRun
                             //swords trigger common obj interactions
                             Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                         }
-                    }
-
-                    #endregion
-
-
-                    #region Dropped Pot
-
-                    else if (Object.type == ObjType.Dungeon_Pot)
-                    {   //destroy the Pot object
-                        Functions_GameObject.DestroyObject(Object, true, true);
-                        //thrown / dropped pots trigger common obj interactions
-                        Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                     }
 
                     #endregion

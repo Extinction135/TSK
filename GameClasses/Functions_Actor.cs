@@ -76,7 +76,7 @@ namespace DungeonRun
                 //if hero is carrying, throw pot obj
                 if(Functions_Hero.carrying)
                 {
-                    Functions_Hero.DropCarryingObj();
+                    //Functions_Hero.DropCarryingObj();
                 }
             }
         }

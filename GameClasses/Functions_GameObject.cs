@@ -34,6 +34,10 @@ namespace DungeonRun
             {
                 DestroyObject(RoomObj, true, true);
             }
+            else if (RoomObj.type == ObjType.Wor_Pot)
+            {
+                DestroyObject(RoomObj, true, true);
+            }
             else if(RoomObj.type == ObjType.Wor_Bush)
             {
                 RoomObj.compMove.direction = HitDirection; //pass hitDirection
@@ -519,8 +523,8 @@ namespace DungeonRun
 
             else if (Type == ObjType.Dungeon_Pot)
             {
-                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -4;
-                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 12;
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 11;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
@@ -754,6 +758,24 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+            #region Objects
+
+            else if (Type == ObjType.Wor_Pot) //same as Dungeon_Pot
+            {
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -3;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 11;
+                Obj.compSprite.zOffset = -7;
+                Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Pot;
+            }
+
+            #endregion
+
+
 
 
             #region Interior Building Objects

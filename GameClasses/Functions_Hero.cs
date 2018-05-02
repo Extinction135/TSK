@@ -275,6 +275,9 @@ namespace DungeonRun
 
             #region Dungeon Objects
 
+
+
+            /*
             else if (Obj.type == ObjType.Dungeon_Pot)
             {
                 //put hero into pickup state
@@ -299,6 +302,9 @@ namespace DungeonRun
                     Obj.compSprite.position.Y);
                 Assets.Play(Assets.sfxHeartPickup); //OG LttP
             }
+            */
+
+
             else if (Obj.type == ObjType.Dungeon_TorchUnlit)
             {   //light any unlit torch  //git lit *
                 Functions_GameObject_Dungeon.LightTorch(Obj);
@@ -369,6 +375,15 @@ namespace DungeonRun
             SpawnPet();
         }
 
+
+
+
+
+
+
+
+
+        /*
         public static void DropCarryingObj()
         {   //if the hero isn't carrying anything, bail from method
             if (!carrying) { return; }
@@ -430,6 +445,12 @@ namespace DungeonRun
 
             carryingObj = null; //release obj ref
         }
+        */
+
+
+
+
+
 
         public static void HandleState()
         {
@@ -442,7 +463,11 @@ namespace DungeonRun
 
 
             if (carrying)
-            {   //place carryingObj over hero's head
+            {
+                carrying = false; //wip
+
+                /*
+                //place carryingObj over hero's head
                 carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
                 carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 9;
                 Functions_Component.Align(carryingObj);
@@ -452,7 +477,7 @@ namespace DungeonRun
 
                 if (Pool.hero.compInput.dash)
                 {   //if player pressed the B button, drop carryingObj
-                    DropCarryingObj();
+                    //DropCarryingObj();
                     //display a 'drop' animation for hero
                     Pool.hero.state = ActorState.Throw;
                     Pool.hero.stateLocked = true;
@@ -469,7 +494,7 @@ namespace DungeonRun
                 {   //if player pressed the A button, throw carryingObj
                     //ThrowPot();
                     //but for now, we'll just drop the object
-                    DropCarryingObj();
+                    //DropCarryingObj();
                     //display a 'throw' animation for hero
                     Pool.hero.state = ActorState.Throw;
                     Pool.hero.stateLocked = true;
@@ -477,7 +502,9 @@ namespace DungeonRun
                     Functions_Movement.StopMovement(Pool.hero.compMove);
                 }
                 #endregion
-                
+                */
+
+
             }
             else
             {

@@ -16,8 +16,6 @@ namespace DungeonRun
 
     public static class Functions_Widget
     {
-        //need a function to set the objList items relative to the window frame
-        //they will always sort to these positions, and we need a null check
         static int i = 0;
         static int row = 0;
         static int counter = 0;
@@ -218,7 +216,7 @@ namespace DungeonRun
             //row 2
             Functions_GameObject.SetType(objList[4], ObjType.Wor_Bush);
             Functions_GameObject.SetType(objList[5], ObjType.Wor_Bush_Stump);
-            Functions_GameObject.SetType(objList[6], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[6], ObjType.Wor_Pot);
             Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
@@ -591,15 +589,6 @@ namespace DungeonRun
             Functions_Widget.HideObj(objList[14]);
         }
     }
-
-
-
-
-    
-
-
-
-
 
 
 

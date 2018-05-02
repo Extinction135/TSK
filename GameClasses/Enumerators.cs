@@ -274,6 +274,9 @@ namespace DungeonRun
         //Dungeon Entrances
         Wor_Entrance_ForestDungeon,
 
+        //objects
+        Wor_Pot,
+
         #endregion
 
 

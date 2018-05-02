@@ -276,7 +276,7 @@ namespace DungeonRun
             else if (id == RoomID.DEV_Square) { roomData.type = RoomID.Square; }
             else
             {   //we may be saving a proper GAME room/level or field
-                roomData.type = Functions_Level.currentRoom.roomID;
+                roomData.type = id;
             }
             //populate roomData with roomObjs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
@@ -313,7 +313,6 @@ namespace DungeonRun
                 Level.rooms = new List<Room>();
                 Level.doors = new List<Door>();
 
-
                 Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
                 Level.rooms.Add(room);
                 Functions_Level.currentRoom = room;
@@ -330,6 +329,8 @@ namespace DungeonRun
             {   //clear all objs, add xml objs
                 Functions_Pool.Reset();
                 Functions_Room.BuildRoomXmlData(RoomXmlData);
+                //pass the room type into the built room
+                Functions_Level.currentRoom.roomID = RoomXmlData.type;
             }
             Functions_Pool.Update(); //update roomObjs once
             Functions_Hero.SpawnInCurrentRoom(); //spawn hero in room
