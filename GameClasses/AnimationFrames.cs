@@ -381,6 +381,9 @@ namespace DungeonRun
         public static List<Byte4> Ui_Hand_Press = new List<Byte4> { new Byte4(11, 3, 0, 0) };
 
         //game ui
+
+        public static List<Byte4> Ui_QuadBkg = new List<Byte4> { new Byte4(4, 1, 0, 0) };
+
         public static List<Byte4> Ui_MenuItem_InventoryGold = new List<Byte4>
         {
             new Byte4(10*2, 0, 0, 0), new Byte4(10*2+1, 0, 0, 0),
@@ -388,7 +391,6 @@ namespace DungeonRun
         };
 
         public static List<Byte4> Ui_MenuItem_ArrowToDisk = new List<Byte4> { new Byte4(14, 0, 0, 0) };
-
         public static List<Byte4> Ui_MenuItem_ArrowUp = new List<Byte4> { new Byte4(14, 1, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Monitor = new List<Byte4> { new Byte4(15, 1, 0, 0) };
         public static List<Byte4> Ui_MenuItem_QuestionMark = new List<Byte4> { new Byte4(14, 2, 0, 0) };
@@ -398,7 +400,7 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_Cross = new List<Byte4> { new Byte4(14, 4, 0, 0) };
         public static List<Byte4> Ui_MenuItem_ArrowRight = new List<Byte4> { new Byte4(15, 4, 0, 0) };
 
-        //this will become per cheat theme'd in the future
+        //cheat ui
         public static List<Byte4> Ui_MenuItem_CheatOn = new List<Byte4> { new Byte4(14, 4, 0, 0) };
         public static List<Byte4> Ui_MenuItem_CheatOff = new List<Byte4> { new Byte4(11, 1, 0, 0) };
 

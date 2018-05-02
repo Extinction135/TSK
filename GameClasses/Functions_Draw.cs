@@ -55,6 +55,14 @@ namespace DungeonRun
             }
         }
 
+
+
+
+        public static void Draw(List<ComponentSprite> Sprites)
+        {
+            for(i = 0; i < Sprites.Count; i++) { Draw(Sprites[i]); }
+        }
+
         public static void Draw(ComponentSprite Sprite)
         {
             if (Sprite.visible)

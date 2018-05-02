@@ -73,6 +73,18 @@ namespace DungeonRun
             //this allows screens to use camera matrices to draw world views
             foreach (Screen screen in screens) { screen.Draw(gameTime); }
 
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
+            //draw the input display
+            if (Flags.DrawInput)
+            {
+                Functions_Draw.Draw(InputDisplay.directionalBkg);
+                Functions_Draw.Draw(InputDisplay.buttonBkg);
+            }
+            //draw watermark/etc..
+            spriteBatch.End();
+
+
             //Draw the renderSurface to the window frame
             game.GraphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);

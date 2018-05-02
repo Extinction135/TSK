@@ -25,7 +25,8 @@ namespace DungeonRun
         public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
         public static Boolean DrawDebugInfo = false; //draws the bottom debug info
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
-        
+        public static Boolean DrawInput = true; //draw the input display
+
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
         public static Boolean PlayMusic = false; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
@@ -37,6 +38,7 @@ namespace DungeonRun
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean ShowDialogs = true; //turn dialogs on/off
 
+        
         //cheats
         public static Boolean Invincibility = true; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?
@@ -59,6 +61,7 @@ namespace DungeonRun
                 EnableTopMenu = false;
                 DrawDebugInfo = false;
                 DrawCollisions = false;
+                DrawInput = false;
                 Paused = false;
                 PlayMusic = true;
                 PlaySoundFX = true;
@@ -315,6 +318,37 @@ namespace DungeonRun
         }
     }
 
+
+
+    public static class InputDisplay
+    {
+        public static List<ComponentSprite> directionalBkg;
+        public static List<ComponentSprite> buttonBkg;
+
+        public static List<ComponentSprite> directions;
+        public static List<ComponentSprite> buttons;
+
+        static InputDisplay()
+        {
+            directionalBkg = new List<ComponentSprite>();
+            buttonBkg = new List<ComponentSprite>();
+            for (int i = 0; i < 4; i++)
+            {
+                directionalBkg.Add(new ComponentSprite(Assets.uiItemsSheet,
+                    new Vector2(0, 0),
+                    AnimationFrames.Ui_QuadBkg[0],
+                    new Point(16, 16)));
+                buttonBkg.Add(new ComponentSprite(Assets.uiItemsSheet,
+                    new Vector2(0, 0),
+                    AnimationFrames.Ui_QuadBkg[0],
+                    new Point(16, 16)));
+            }
+
+            Functions_WorldUI.MoveBkg(directionalBkg, 16 * 2 - 6, 16 * 2 - 6);
+            Functions_WorldUI.MoveBkg(buttonBkg, 16 * 4 - 6, 16 * 2 - 6);
+        }
+    }
+
     public static class WorldUI
     {
         public static int i;
@@ -377,12 +411,12 @@ namespace DungeonRun
             for (i = 0; i < 4; i++)
             {
                 weaponBkg.Add(new ComponentSprite(Assets.uiItemsSheet,
-                    new Vector2(0, 0), 
-                    new Byte4(4, 1, 0, 0),
+                    new Vector2(0, 0),
+                    AnimationFrames.Ui_QuadBkg[0],
                     new Point(16, 16)));
                 itemBkg.Add(new ComponentSprite(Assets.uiItemsSheet,
-                    new Vector2(0, 0), 
-                    new Byte4(4, 1, 0, 0),
+                    new Vector2(0, 0),
+                    AnimationFrames.Ui_QuadBkg[0],
                     new Point(16, 16)));
             }
 
@@ -409,6 +443,10 @@ namespace DungeonRun
             Functions_WorldUI.Move(50, 50);
         }
     }
+
+
+
+
 
     public static class DebugInfo
     {

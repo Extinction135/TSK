@@ -94,38 +94,31 @@ TODAY:
 
 
 
+Implement Input Display
 
-Design InputWidget
+created inputDisplay class in DataClasses.
+improved Functions_Draw.Draw() to handle sprite comp lists.
+added section to ScreenManager.Draw() to draw inputDisplay,
+based on the new Flags.DrawInput boolean.
 
-designed input widget. & visually aligned it with world ui.
-then, compared it against all screens that it would draw over,
-if it was drawn from screen manager as a final step. the widget
-looks good over all screens except the overworld screen, due 
-to the scroll background and title intersecting the widget.
-this led me to question why the background scroll existed at
-all, because it was limiting the available area the map could
-occupy. removing the overworld scroll solves two problems:
-1. the input widget draws nicely over it
-2. allows for more map area on screen
-
-and the mockups without the scroll background make the overworld
-map feel outside.. which we could add clouds too (animated) to
-really bring life to this map / screen.
-
-also removed the location name from the overworld screen
-mockup, because the names don't matter - the sprites will be
-the visual association + the locations relative position (thats
-all the player needs to build a mental model of what each location
-represents or contains). 
-
-created various mockups with new screen capture.
-added sprites for input widget to master.psd.
+migrated worldui and created inputdisplay to use animframe
+for the quad bkg sprite, instead of hardcoded values.
+playtested, inputDisplay drawing bkg correctly.
+spent sometime aligning them.
 
 
 
 
 
 
+
+need menu item for options screen that represents input display on/off.
+change the boolean
+
+draw the down state dirs + buttons
+link input to selected state
+
+*how many frames does this activation happen for? a single frame?
 
 
 

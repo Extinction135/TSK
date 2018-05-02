@@ -191,8 +191,20 @@ namespace DungeonRun
             }
         }
 
+        public static void DisplayAutosave()
+        {
+            WorldUI.autosaveCounter = 0;
+        }
 
 
+
+
+
+
+
+
+
+        //this is unnecessary and should be moved into constructor
         public static void Move(int X, int Y)
         {
             //move the weapon bkg & sprite & amount display
@@ -231,6 +243,9 @@ namespace DungeonRun
             WorldUI.message.position.Y = WorldUI.frametime.position.Y;
         }
 
+
+
+        //this doesn't fit into fun_worldui any longer, because it's used by inputDisplay
         public static void MoveBkg(List<ComponentSprite> bkgList, int Xpos, int Ypos)
         {
             bkgList[0].position.X = Xpos;
@@ -251,10 +266,12 @@ namespace DungeonRun
             bkgList[3].rotation = Rotation.Clockwise180;
         }
 
-        public static void DisplayAutosave()
-        {
-            WorldUI.autosaveCounter = 0;
-        }
+
+
+
+
+
+        
 
     }
 }
