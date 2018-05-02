@@ -35,6 +35,10 @@ add signpost obj that hero can read to dungeon entrance level discussing dungeon
 
 
 
+initially when the boomerang hits an obj, we could alter its lifetime
+to where it wouldn't collide with the immediate objs for a few frames,
+giving it a chance to escape and not create tons of collision/attention particles.
+
 
 HANDLE AUTOSAVE
 we *do* need to handle autoSave somehow, because it does contain 

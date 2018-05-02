@@ -217,7 +217,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[4], ObjType.Wor_Bush);
             Functions_GameObject.SetType(objList[5], ObjType.Wor_Bush_Stump);
             Functions_GameObject.SetType(objList[6], ObjType.Wor_Pot);
-            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[7], ObjType.Wor_Flowers);
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Wor_Tree);

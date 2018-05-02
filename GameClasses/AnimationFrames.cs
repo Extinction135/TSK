@@ -163,11 +163,14 @@ namespace DungeonRun
         //public static List<Byte4> World_Pit = new List<Byte4> { new Byte4(0, 0, 0, 0) };
         //public static List<Byte4> World_PitStairs = new List<Byte4> { new Byte4(0, 0, 0, 0) };
 
-
+        //foilage
         public static List<Byte4> World_Grass_Tall = new List<Byte4> { new Byte4(5, 0, 0, 0) };
         public static List<Byte4> World_Grass_Cut = new List<Byte4> { new Byte4(6, 0, 0, 0) };
         public static List<Byte4> World_Grass_1 = new List<Byte4> { new Byte4(5, 1, 0, 0) };
         public static List<Byte4> World_Grass_2 = new List<Byte4> { new Byte4(6, 1, 0, 0) };
+
+        public static List<Byte4> World_Flowers = new List<Byte4>
+        { new Byte4(4, 4, 0, 0), new Byte4(5, 4, 0, 0), new Byte4(6, 4, 0, 0), new Byte4(7, 4, 0, 0) };
 
         public static List<Byte4> World_TableStone = new List<Byte4> { new Byte4(5, 6, 0, 0) };
 

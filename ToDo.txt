@@ -92,34 +92,11 @@ TODAY:
 
 
 
-Sounds++
 
-updated ResetObject() to set hit&kill sounds to null.
-updated Obj.SetType() to set hit&kill sfx per objType,
-when needed, otherwise it defaults to null and no sfx plays.
+Animated Flowers
 
-updated sword vs blocking obj interactions to always 
-play obj's hit sound fx and place a sparkle on obj hit.
-updated various obj definitions to have hit and kill sfx.
-
-Boomerang++
-
-i nerfed the boomerang to where it can't destroy pots,
-skulls, or bushes, but it still can activate levers & barrels.
-this is to bring it more in line with it's purpose, 
-which is strategic and not offensive / overpowered.
-
-made tree stumps non-blocking, which means boomerangs
-fly 'over' them now, plus hero isn't blocked by something
-he could reasonably step over.
-
-improved boomerang to play metallic or hollow sounds
-based on collisions with walls/doors and bombable doors.
-
-Particles++
-
-fixed minor bug where ground fires weren't sorting properly
-over tree stumps, while hero vs tree stumps sorted perfectly.
+added animated flowers obj, 
+added these objects all over field levels.
 
 
 
@@ -129,42 +106,52 @@ over tree stumps, while hero vs tree stumps sorted perfectly.
 
 
 
-
-
-
-initially when the boomerang hits an obj, we could alter its lifetime
-to where it wouldn't collide with the immediate objs for a few frames,
-giving it a chance to escape and not create tons of collision/attention particles.
-
-
-
-
-
+add debris objects (stationary, persistent, from level sheet).
+objects that are exploded become debris objects.
 
 explosions should be able to destroy bookcases, tables, etc..
 we should probably model 'explodable' as a boolean on the gameObj.
 this way we can just do a single boolean check, and stuff that into setType.
 
-what if we made a 'burned mark' obj, that we could reduce
-any other gameobj to thru explosions? anything that is explodable
-then becomes a burn mark, once it explodes.
-
-
+anything that is explodable then becomes debris, once it explodes enough
+for example tree > stump > burn mark.
 
 
 loot should spawn centered to the obj that was destroyed.
-
-
-
-
-
-
 
 
 link walking on tall grass should create small grass at link's feet, partially hiding them.
 any grounded actor walking in tall grass should get "grassy feet".
 so this is a sprite that lives in the actor class, tracks to the actor's feet,
 and is only visible when actor is passively interacting with tall grass objs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -177,31 +164,7 @@ on Dx, this is easy. on UWP, this is not so easy, but also doesn't matter terrib
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 0.7 polish
-
-- fix sounds (all sounds should 'sound' right, including the boomerang)
 
 bush debris - hitting a bush should create leaves that travel in the direction of the hit
 leaves only last for a moment, then die

@@ -696,11 +696,14 @@ namespace DungeonRun
             #region Grass Objects
 
             else if (Type == ObjType.Wor_Grass_1 || Type == ObjType.Wor_Grass_2
-                || Type == ObjType.Wor_Grass_Cut || Type == ObjType.Wor_Grass_Tall)
+                || Type == ObjType.Wor_Grass_Cut || Type == ObjType.Wor_Grass_Tall
+                || Type == ObjType.Wor_Flowers)
             {
                 Obj.compSprite.zOffset = -32;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
+                Obj.compAnim.loop = true;
+
                 //set animation frame
                 if (Type == ObjType.Wor_Grass_1)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_1; }
@@ -710,6 +713,8 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Cut; }
                 else if (Type == ObjType.Wor_Grass_Tall)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall; }
+                else if (Type == ObjType.Wor_Flowers)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_Flowers; }
 
                 Obj.sfx.kill = Assets.sfxBushCut; //only tall grass can get killed()
             }

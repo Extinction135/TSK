@@ -264,6 +264,7 @@ namespace DungeonRun
         Wor_Grass_Cut,
         Wor_Grass_1,
         Wor_Grass_2,
+        Wor_Flowers,
 
         //foilage
         Wor_Bush,
