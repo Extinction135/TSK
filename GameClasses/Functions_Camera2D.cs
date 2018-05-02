@@ -74,7 +74,9 @@ namespace DungeonRun
                 { Camera2D.currentPosition.Y += Camera2D.distance.Y * Camera2D.speed; }
             }
             else //instantly follows target
-            { Camera2D.currentPosition = Camera2D.targetPosition; }
+            {
+                Camera2D.currentPosition = Camera2D.targetPosition;
+            }
 
             //discard sub-pixel values from position
             Camera2D.currentPosition.X = (int)Camera2D.currentPosition.X;

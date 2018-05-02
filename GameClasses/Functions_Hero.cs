@@ -365,19 +365,6 @@ namespace DungeonRun
             Pool.hero.compSprite.scale = 1.0f; //rescale hero to 100%
             Pool.hero.state = ActorState.Idle;
             Pool.hero.stateLocked = false;
-            //set camera's target to hero or room based on flag boolean
-            if (Flags.CameraTracksHero) //center camera to hero
-            { Camera2D.targetPosition = Pool.hero.compMove.newPosition; }
-            else
-            {   //center camera to current room
-                Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
-                Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y;
-            }
-            //teleport camera to targetPos, update camera view
-            Camera2D.currentPosition.X = Camera2D.targetPosition.X;
-            Camera2D.currentPosition.Y = Camera2D.targetPosition.Y;
-            Functions_Camera2D.Update();
-
             boomerangInPlay = false; //boomerang could of been lost in prev room
             SpawnPet();
         }

@@ -94,34 +94,53 @@ TODAY:
 
 
 
-Implement Input Display
-
-created animFrames for input arrow selected and unselected.
-positioned & rotated input arrows, with playtests.
-
-created animFrames for all input buttons.
-positioned & aligned buttons, with playtests.
-
-created method ReadController() in InputDisplay,
-called from ScreenManager.Draw(). this completes
-implementation of input display.
-playtested, looking / working great.
 
 
 
 
 
 
+Implement CameraTracking
+
+currently, the camera doesn't track the hero, altho
+in recent versions it has, and alot of work was put into
+making sure the game displayed pixel perfectly with a
+constantly moving camera. happy to say that camera tracking
+is now back in the game - but it's only limited to dungeons.
+overworld levels still require a stationary camera.
+
+camera tracking is available from the options menu.
+playtested, working great.
+
+removed unused code from Hero.SpawnInCurrentRoom().
+fixed minor visual bug where camera would 'fly in' after
+a level was loaded - which looked cool, but didn't really
+work because it would show bare parts of outdoor levels,
+and filling those areas so they would be seen once during
+'fly in' isn't a good use of those game resources.
 
 
-option to unlock/lock camera while in dungeon.
-this *only* applies while in the dungeon, overworld
-levels lock cam like normal.
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+option to display watermark / github address footer
+
+menuItem for 'capture mode', displaying input and watermark
 
 
 
@@ -134,8 +153,10 @@ move the net into the weapons section of inventory, because it maps to the X but
 
 
 
-we *do* need to handle autoSave somehow, because it does contain 
-the last game - we can simply add it to the load screen as another option.
+IMPROVING THE GAME CAPTURING PROCESS
+- NEEDS A FOOTER WATERMARK (SO WE DONT HAVE TO ADD ONE LATER)
+- THIS IS GITHUB ADDRESS
+
 
 
 
@@ -170,7 +191,6 @@ just like level screen
 
 0.7 polish
 
-- need the input widget that shows controller input on screen
 - also need the github address burned into the bottom of the screen
 - this fixes the capturing process, since we can now record + upload with obs
 

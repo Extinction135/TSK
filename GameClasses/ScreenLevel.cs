@@ -128,17 +128,20 @@ namespace DungeonRun
                 {   //update and move actors, objects, projectiles, and camera
                     Functions_Pool.Update();
                     Functions_WorldUI.Update();
-                    if (Flags.CameraTracksHero) //track camera to hero
+
+                    //lock cam to room, or track hero (only in dungeons)
+                    if(Level.isField == false & Flags.CameraTracksHero)
                     {
-                        Camera2D.tracks = false; //teleport follow hero
+                        Camera2D.tracks = false; //teleport to/follow hero
                         Camera2D.targetPosition = Pool.hero.compSprite.position;
                     }
                     else
                     {   //center camera to current room
                         Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
                         Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y + 8;
-                        Camera2D.tracks = true; //move follow room to room
+                        Camera2D.tracks = true; //wait until room change, then move
                     }
+                    
                     Functions_Camera2D.Update();
                 }
             }

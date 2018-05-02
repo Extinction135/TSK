@@ -386,6 +386,7 @@ namespace DungeonRun
         OptionsOptionsMenu,
 
         Options_DrawInput,
+        Options_TrackCamera,
 
 
 

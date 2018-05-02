@@ -33,7 +33,13 @@ namespace DungeonRun
 
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
-        public static Boolean CameraTracksHero = true; //camera tracks hero or centers to current room
+
+
+        public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
+
+
+
+
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean ShowDialogs = true; //turn dialogs on/off
@@ -102,7 +108,6 @@ namespace DungeonRun
                     //handle editor cheats
                     EnableTopMenu = true; //necessary
                     ShowEnemySpawns = true; //necessary for editing
-                    CameraTracksHero = false; //center to room
                 }
             }
         }

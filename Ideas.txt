@@ -2,15 +2,15 @@
 
 
 
+HANDLE AUTOSAVE
+we *do* need to handle autoSave somehow, because it does contain 
+the last game - we can simply add it to the load screen as another option.
 
 
-IMPROVING THE GAME CAPTURING PROCESS
-- NEEDS A FOOTER WATERMARK (SO WE DONT HAVE TO ADD ONE LATER)
-- THIS IS GITHUB ADDRESS
-- NEEDS AN INPUT WIDGET, AS WE HAVE ALREADY DESIGNED - on right
-- THIS ALLOWS VIEWERS TO MAP INPUT TO EFFECT
 
-CHEAT: SCREEN CAPTURE MODE - DISPLAYS WATERMARK, INPUT WIDGET, ETC..
+
+
+
 
 
 
@@ -24,6 +24,12 @@ add animated floating clouds to the overworld screen
 
 
 *we could also add a frame counter right next to button input, showing fps
+
+
+
+
+
+
 
 
 

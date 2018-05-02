@@ -501,6 +501,12 @@ namespace DungeonRun
                 MenuItem.description = "draws controller \ninput on screen.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
+            else if (Type == MenuItemType.Options_TrackCamera)
+            {
+                MenuItem.name = "Track Camera to Hero";
+                MenuItem.description = "centers camera to \ndungeon room or hero.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
+            }
 
             #endregion
 

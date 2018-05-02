@@ -83,6 +83,9 @@ namespace DungeonRun
             labels[0].text = "draw\ninput"; 
             Functions_MenuItem.SetType(MenuItemType.Options_DrawInput, menuItems[0]);
 
+            labels[1].text = "trak\ncam";
+            Functions_MenuItem.SetType(MenuItemType.Options_TrackCamera, menuItems[1]);
+
             #endregion
 
 
@@ -130,6 +133,11 @@ namespace DungeonRun
                 {
                     if (Flags.DrawInput) { Flags.DrawInput = false; }
                     else { Flags.DrawInput = true; }
+                }
+                else if (currentlySelected.type == MenuItemType.Options_TrackCamera)
+                {
+                    if (Flags.CameraTracksHero) { Flags.CameraTracksHero = false; }
+                    else { Flags.CameraTracksHero = true; }
                 }
 
                 #endregion
@@ -271,7 +279,12 @@ namespace DungeonRun
             { menuItems[i].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOff[0]; }
 
             //set menuItem based on boolean
-            if (Flags.DrawInput) { menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+            if (Flags.DrawInput)
+            { menuItems[0].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+
+            if (Flags.CameraTracksHero)
+            { menuItems[1].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+            
             //expand this to include additional options
         }
 

@@ -47,17 +47,12 @@ namespace DungeonRun
         {
             ResetLevel();
             Level.ID = levelID;
-            Flags.CameraTracksHero = false;
 
             //set dungeon booleans
             if (levelID == LevelID.Castle_Dungeon || levelID == LevelID.DEV_Room)
             {
                 Level.isField = false;
                 Level.lightWorld = false;
-
-                //so we CAN track the hero around the screen
-                //but we aren't doing it for now
-                //Flags.CameraTracksHero = true;
             }
 
             //set the background color
@@ -272,7 +267,14 @@ namespace DungeonRun
             Pool.hero.direction = Direction.Up;
             //give hero a minimum amount of health
             if (Pool.hero.health < 3) { Pool.hero.health = 3; }
-            
+
+            //teleport camera to center of room
+            Camera2D.targetPosition.X = currentRoom.center.X;
+            Camera2D.targetPosition.Y = currentRoom.center.Y;
+            Camera2D.currentPosition = Camera2D.targetPosition;
+            Functions_Camera2D.SetView();
+            //level screen will then decide where the camera should be per frame
+
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.dungeonTime = time.Ticks;
             if (Flags.PrintOutput)
