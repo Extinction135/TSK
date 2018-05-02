@@ -92,41 +92,34 @@ TODAY:
 
 
 
-Sounds ++
+Sounds++
 
-removed GameObj.DestroyObj(), moving it's functionality
-into GameObj.Kill(), where an obj is always released().
-various path fixing in interaction functions.
+updated ResetObject() to set hit&kill sounds to null.
+updated Obj.SetType() to set hit&kill sfx per objType,
+when needed, otherwise it defaults to null and no sfx plays.
 
-created ComponentSoundFX class, which conceptually represents
-an actor / object / entity's hit and kill sound effects.
-these are simply references that point to assets already
-loaded by Assets class.
+updated sword vs blocking obj interactions to always 
+play obj's hit sound fx and place a sparkle on obj hit.
+updated various obj definitions to have hit and kill sfx.
 
-added compSfx to gameObj and actor classes.
-lots of changes to get sounds sounding better.
+Boomerang++
 
+i nerfed the boomerang to where it can't destroy pots,
+skulls, or bushes, but it still can activate levers & barrels.
+this is to bring it more in line with it's purpose, 
+which is strategic and not offensive / overpowered.
 
+made tree stumps non-blocking, which means boomerangs
+fly 'over' them now, plus hero isn't blocked by something
+he could reasonably step over.
 
+improved boomerang to play metallic or hollow sounds
+based on collisions with walls/doors and bombable doors.
 
+Particles++
 
-
-
-
-
-
-torches should tink metallic.
-
-sword has no interaction with blocking torch obj?
-
-boomerangs shouldn't hit tree stumps.
-hitting a tree stump shouldnt make a sound.
-hitting dungeon entrances shouldn't make a sound.
-
-
-boomerangs shouldnt be able to destroy things.
-they can trigger levers, yes, and they can boop explosive barrels,
-but nothing else.
+fixed minor bug where ground fires weren't sorting properly
+over tree stumps, while hero vs tree stumps sorted perfectly.
 
 
 
@@ -139,17 +132,25 @@ but nothing else.
 
 
 
+initially when the boomerang hits an obj, we could alter its lifetime
+to where it wouldn't collide with the immediate objs for a few frames,
+giving it a chance to escape and not create tons of collision/attention particles.
 
 
 
 
 
 
+explosions should be able to destroy bookcases, tables, etc..
+we should probably model 'explodable' as a boolean on the gameObj.
+this way we can just do a single boolean check, and stuff that into setType.
+
+what if we made a 'burned mark' obj, that we could reduce
+any other gameobj to thru explosions? anything that is explodable
+then becomes a burn mark, once it explodes.
 
 
 
-
-what do we use the blocking hit for?
 
 loot should spawn centered to the obj that was destroyed.
 

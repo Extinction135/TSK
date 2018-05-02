@@ -487,17 +487,10 @@ namespace DungeonRun
                     {   //sword swipe causes soundfx to blocking objects
                         if (Object.lifeCounter == 1) //these events happen at start of sword swing
                         {
-                            if (RoomObj.group == ObjGroup.Door)
-                            {   //bail if sword is hitting open door, else sparkle + hit sfx
-                                if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; } 
-                                Assets.Play(RoomObj.sfx.hit);
-                                Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
-                            }
-                            else if(RoomObj.group == ObjGroup.Wall)
-                            {
-                                Assets.Play(RoomObj.sfx.hit);
-                                Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
-                            }
+                            //bail if sword is hitting open door, else sparkle + hit sfx
+                            if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; }
+                            Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
+                            Assets.Play(RoomObj.sfx.hit);
                         }
                         else if (Object.lifeCounter == 4)
                         {   //these interactions happen 'mid swing'
@@ -522,21 +515,55 @@ namespace DungeonRun
 
                     else if (Object.type == ObjType.ProjectileBoomerang)
                     {
-                        //handle common interactions
-                        Functions_GameObject.HandleCommon(RoomObj,
-                            Functions_Movement.GetMovingDirection(Object.compMove));
+
+                        #region Activate a limited set of RoomObjs
+
+                        //activate levers
+                        if (RoomObj.type == ObjType.Dungeon_LeverOff
+                            || RoomObj.type == ObjType.Dungeon_LeverOn)
+                        { Functions_GameObject_Dungeon.ActivateLeverObjects(); }
+                        //activate explosive barrels
+                        else if (RoomObj.type == ObjType.Dungeon_Barrel)
+                        {
+                            RoomObj.compMove.direction = Object.compMove.direction;
+                            Functions_GameObject_Dungeon.DestroyBarrel(RoomObj);
+                        }
+                        //activate switch block buttons
+                        else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
+                        {
+                            Functions_GameObject_Dungeon.FlipSwitchBlocks(RoomObj);
+                        }
+
+                        #endregion
+
                         //return the boomerang
+
+                        //here we could set the lifeCounter to 245, lifetime to 255
+                        //then ignore collisions for 10 frames to give boomerang head start home
                         Object.lifeCounter = 200; //return to caster
+
                         Functions_Movement.StopMovement(Object.compMove);
                         Functions_Movement.Push(Object.compMove, 
                             Functions_Direction.GetOppositeCardinal(
                                 Object.compSprite.position, 
                                 RoomObj.compSprite.position), 3.0f);
+                        
                         //pop a particle
                         Functions_Particle.Spawn(ObjType.Particle_Attention,
                             Object.compSprite.position.X + 4,
                             Object.compSprite.position.Y + 4);
-                        Assets.Play(RoomObj.sfx.hit);
+
+                        //determine what type of soundfx to play
+                        if (RoomObj.group == ObjGroup.Wall)
+                        { Assets.Play(Assets.sfxTapMetallic); }
+                        else if (RoomObj.type == ObjType.Dungeon_DoorBombable)
+                        { Assets.Play(Assets.sfxTapHollow); }
+                        else if (RoomObj.type == ObjType.Dungeon_DoorOpen)
+                        { } //literally nothing
+                        else if (RoomObj.group == ObjGroup.Door)
+                        { Assets.Play(Assets.sfxTapMetallic); }
+                        else //play default boomerang hit sfx
+                        { Assets.Play(Assets.sfxActorLand); }
                     }
 
                     #endregion

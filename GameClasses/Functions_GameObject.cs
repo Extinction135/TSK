@@ -137,8 +137,8 @@ namespace DungeonRun
             Obj.compMove.moveable = false; //most objects cant be moved
             Obj.compMove.grounded = true; //most objects exist on the ground
             //reset the sfx component
-            Obj.sfx.hit = Assets.sfxEnemyHit;
-            Obj.sfx.kill = Assets.sfxShatter;
+            Obj.sfx.hit = null;
+            Obj.sfx.kill = null;
         }
 
         public static void SetRotation(GameObject Obj)
@@ -220,6 +220,7 @@ namespace DungeonRun
                 if (Type == ObjType.Dungeon_ExitPillarLeft)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ExitPillarLeft; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ExitPillarRight; }
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
             else if (Type == ObjType.Dungeon_Exit)
             {
@@ -230,6 +231,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetY = 32 + 4;
                 Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Exit;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
             else if (Type == ObjType.Dungeon_ExitLight)
             {
@@ -250,8 +252,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = +32; //sort very high (over / in front of hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorOpen;
-                Obj.sfx.hit = null;
-                Obj.sfx.kill = null;
             }
             else if(Type == ObjType.Dungeon_DoorTrap)
             {
@@ -260,7 +260,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorShut;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.sfx.kill = null;
             }
             else if (Type == ObjType.Dungeon_DoorBombable)
             {
@@ -268,7 +267,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
                 Obj.sfx.hit = Assets.sfxTapHollow; //sounds hollow
-                Obj.sfx.kill = null;
             }
             else if(Type == ObjType.Dungeon_DoorBoss)
             {
@@ -284,7 +282,6 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorShut;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.sfx.kill = null;
             }
             else if (Type == ObjType.Dungeon_DoorFake)
             {
@@ -292,13 +289,14 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
-                Obj.sfx.kill = null;
             }
 
             #endregion
 
 
             #region Walls
+
+            //wall soundfx is set in a group check at end of method
 
             else if (Type == ObjType.Dungeon_WallStraight)
             {
@@ -447,6 +445,7 @@ namespace DungeonRun
                 Obj.group = ObjGroup.Chest;
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ChestClosed;
+                Obj.sfx.hit = Assets.sfxTapHollow;
             }
             else if (Type == ObjType.Dungeon_ChestEmpty)
             {
@@ -457,7 +456,9 @@ namespace DungeonRun
                 //Obj.group = ObjGroup.Chest; //not really a chest, just obj
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_ChestOpened;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
+
             #endregion
 
 
@@ -473,7 +474,7 @@ namespace DungeonRun
                     Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BlockLight;
                 }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BlockDark; }
-                
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
             else if (Type == ObjType.Dungeon_BlockSpike)
             {
@@ -488,6 +489,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.compMove.speed = 0.225f; //spike blocks move med
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BlockSpike;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             #endregion
@@ -541,6 +543,8 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Pot;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
+                Obj.sfx.kill = Assets.sfxShatter;
             }
             else if (Type == ObjType.Dungeon_Barrel)
             {
@@ -550,6 +554,7 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Barrel;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
             }
             else if (Type == ObjType.Dungeon_Bumper)
             {
@@ -592,7 +597,6 @@ namespace DungeonRun
                 if (Type == ObjType.Dungeon_Switch)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSwitchUp; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSwitchDown; }
-                
             }
 
             #endregion
@@ -608,6 +612,7 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_SwitchBlockBtn;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
             }
             else if (Type == ObjType.Dungeon_SwitchBlockDown)
             {
@@ -624,6 +629,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = true;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_SwitchBlockUp;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             #endregion
@@ -641,6 +647,7 @@ namespace DungeonRun
                 if (Type == ObjType.Dungeon_TorchUnlit)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_TorchUnlit; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_TorchLit; }
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             #endregion
@@ -660,6 +667,7 @@ namespace DungeonRun
                 Obj.compMove.friction = World.frictionAir;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Fairy;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
             }
 
             #endregion
@@ -703,7 +711,7 @@ namespace DungeonRun
                 else if (Type == ObjType.Wor_Grass_Tall)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall; }
 
-                Obj.sfx.kill = Assets.sfxBushCut; //only tall grass can be killed
+                Obj.sfx.kill = Assets.sfxBushCut; //only tall grass can get killed()
             }
 
             #endregion
@@ -739,6 +747,7 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.World_Tree;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = 15;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 8;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
                 Obj.sfx.kill = Assets.sfxBushCut;
             }
             else if (Type == ObjType.Wor_Tree_Stump)
@@ -746,10 +755,11 @@ namespace DungeonRun
                 Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = +10;
-                Obj.compCollision.blocking = true;
+                Obj.compCollision.blocking = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.World_TreeStump;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = 15;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 8;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
 
@@ -771,10 +781,10 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = +16*3 - 2;
                 Obj.canBeSaved = true;
                 Obj.compCollision.blocking = true;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
             }
 
             #endregion
-
 
 
             #region Objects
@@ -787,6 +797,8 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Wor_Pot;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
+                Obj.sfx.kill = Assets.sfxShatter;
             }
 
             #endregion
@@ -804,6 +816,8 @@ namespace DungeonRun
                 if (Type == ObjType.Wor_Bookcase)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Bookcase; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.World_Shelf; }
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = Assets.sfxShatter;
             }
             else if (Type == ObjType.Wor_TableStone)
             {
@@ -812,6 +826,8 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.World_TableStone;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = Assets.sfxShatter;
             }
 
             #endregion
@@ -890,7 +906,6 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bomb;
                 Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
             else if (Type == ObjType.ProjectileBoomerang)
             {
@@ -905,7 +920,6 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Boomerang;
                 Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
 
             #endregion
@@ -926,7 +940,6 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Fireball;
                 Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
 
             #endregion
@@ -966,7 +979,6 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword;
                 Obj.compSprite.texture = Assets.entitiesSheet;
-                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
             else if (Type == ObjType.ProjectileArrow)
             {
@@ -1061,7 +1073,6 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BarrelExploding;
                 Obj.compSprite.texture = Assets.forestLevelSheet;
                 Obj.sfx.hit = Assets.sfxEnemyHit;
-                Obj.sfx.kill = null;
             }
 
             #endregion
@@ -1169,7 +1180,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Particle_FireGround)
             {
-                Obj.compSprite.zOffset = -8; //to ground
+                Obj.compSprite.zOffset = 6;
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 100; //in frames
                 Obj.compAnim.speed = 7; //in frames
