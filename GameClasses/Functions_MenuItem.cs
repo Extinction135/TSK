@@ -507,6 +507,12 @@ namespace DungeonRun
                 MenuItem.description = "centers camera to \ndungeon room or hero.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
+            else if (Type == MenuItemType.Options_Watermark)
+            {
+                MenuItem.name = "Draw Watermark";
+                MenuItem.description = "draws game's repo \nlink in top right.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
+            }
 
             #endregion
 

@@ -95,23 +95,22 @@ TODAY:
 
 
 
-Mockups++
-
-designed mockups for watermark and better debug info.
 
 
 
+Create Github Watermark
+
+created watermark class + menuItem enum.
+watermark added to options menu.
+playtested, working as expected.
 
 
 
 
 
-option to display watermark / github address next to input display
 
-this is just text against a black background
-+ we should already have all this info
 
-menuItem for 'capture mode', displaying input and watermark
+
 
 
 

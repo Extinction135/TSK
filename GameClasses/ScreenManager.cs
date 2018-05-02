@@ -65,7 +65,7 @@ namespace DungeonRun
             game.GraphicsDevice.SetRenderTarget(renderSurface);
             //or target the viewport like normal
             //game.GraphicsDevice.SetRenderTarget(null);
-            
+
             //clear and set the background
             game.GraphicsDevice.Clear(Assets.colorScheme.background);
 
@@ -84,7 +84,12 @@ namespace DungeonRun
                 Functions_Draw.Draw(InputDisplay.directions);
                 Functions_Draw.Draw(InputDisplay.buttons);
             }
-            //draw watermark/etc..
+            if (Flags.DrawWatermark)
+            {
+                Functions_MenuRectangle.Update(WaterMark.bkg);
+                Functions_Draw.Draw(WaterMark.bkg);
+                Functions_Draw.Draw(WaterMark.textComp);
+            }
             spriteBatch.End();
 
 

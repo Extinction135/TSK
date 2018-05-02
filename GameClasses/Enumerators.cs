@@ -387,7 +387,7 @@ namespace DungeonRun
 
         Options_DrawInput,
         Options_TrackCamera,
-
+        Options_Watermark,
 
 
 

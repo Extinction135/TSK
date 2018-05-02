@@ -26,6 +26,8 @@ namespace DungeonRun
         public static Boolean DrawDebugInfo = false; //draws the bottom debug info
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean DrawInput = false; //draw the input display
+        public static Boolean DrawWatermark = false; //top right link (for capturing purposes)
+
 
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
         public static Boolean PlayMusic = false; //turns music on/off
@@ -323,6 +325,25 @@ namespace DungeonRun
         }
     }
 
+
+
+    public static class WaterMark
+    {
+        public static MenuRectangle bkg;
+        public static ComponentText textComp;
+
+        static WaterMark()
+        {
+            bkg = new MenuRectangle(
+                new Point(495, 20), 
+                new Point(120-2, 9), 
+                Assets.colorScheme.windowBkg);
+            textComp = new ComponentText(Assets.font,
+                "github.com/mrgrak/dungeonrun",
+                new Vector2(bkg.position.X + 2, bkg.position.Y - 3),
+                Assets.colorScheme.textLight);
+        }
+    }
 
 
     public static class InputDisplay

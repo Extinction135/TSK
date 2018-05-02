@@ -86,6 +86,9 @@ namespace DungeonRun
             labels[1].text = "trak\ncam";
             Functions_MenuItem.SetType(MenuItemType.Options_TrackCamera, menuItems[1]);
 
+            labels[2].text = "watr\nmark";
+            Functions_MenuItem.SetType(MenuItemType.Options_Watermark, menuItems[2]);
+
             #endregion
 
 
@@ -138,6 +141,11 @@ namespace DungeonRun
                 {
                     if (Flags.CameraTracksHero) { Flags.CameraTracksHero = false; }
                     else { Flags.CameraTracksHero = true; }
+                }
+                else if (currentlySelected.type == MenuItemType.Options_Watermark)
+                {
+                    if (Flags.DrawWatermark) { Flags.DrawWatermark = false; }
+                    else { Flags.DrawWatermark = true; }
                 }
 
                 #endregion
@@ -284,7 +292,10 @@ namespace DungeonRun
 
             if (Flags.CameraTracksHero)
             { menuItems[1].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
-            
+
+            if (Flags.DrawWatermark)
+            { menuItems[2].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+
             //expand this to include additional options
         }
 
