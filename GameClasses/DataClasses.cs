@@ -1040,6 +1040,7 @@ namespace DungeonRun
         public ComponentCollision compCollision = new ComponentCollision();
         public ComponentInteraction compInt = new ComponentInteraction();
         public ComponentInput compInput = new ComponentInput(); //actor specific
+        public ComponentSoundFX sfx = new ComponentSoundFX();
 
         //health points
         public byte health;
@@ -1050,10 +1051,8 @@ namespace DungeonRun
         public MenuItemType armor = MenuItemType.Unknown;
         public MenuItemType equipment = MenuItemType.Unknown;
 
-        //actor sound effects
+        //actor specific sfx
         public SoundEffectInstance sfxDash;
-        public SoundEffectInstance sfxHit;
-        public SoundEffectInstance sfxDeath;
 
         public int chaseRadius;
         public int attackRadius;
@@ -1078,6 +1077,7 @@ namespace DungeonRun
         public ComponentMovement compMove = new ComponentMovement();
         public ComponentCollision compCollision = new ComponentCollision();
         public ComponentInteraction compInt = new ComponentInteraction();
+        public ComponentSoundFX sfx = new ComponentSoundFX();
 
         public Direction direction = Direction.Down; //direction obj/sprite is facing
         public Boolean active = true; //does object draw, update?
@@ -1423,6 +1423,18 @@ namespace DungeonRun
             rotationValue = 0.0f;
         }
     }
+
+    public class ComponentSoundFX
+    {   //actors / objs / projectiles can both be hit and killed
+
+        //act/obj is hit, pro hits
+        public SoundEffectInstance hit = Assets.sfxEnemyHit;
+        //act/obj/pro/pick dies
+        public SoundEffectInstance kill = Assets.sfxEnemyKill; 
+    }   
+
+
+
 
 
 

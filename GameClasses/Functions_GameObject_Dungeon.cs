@@ -113,7 +113,11 @@ namespace DungeonRun
 
         public static void CollapseDungeonDoor(GameObject Door, GameObject Projectile)
         {   //blow up door, change to doorOpen
-            Functions_GameObject.DestroyObject(Door, false, false);
+            Functions_Particle.Spawn(
+                ObjType.Particle_Attention,
+                Door.compSprite.position.X,
+                Door.compSprite.position.Y);
+            Assets.Play(Assets.sfxShatter);
             Functions_GameObject.SetType(Door, ObjType.Dungeon_DoorOpen);
             //hide the sprite switch with a blast particle
             Functions_Particle.Spawn(ObjType.Particle_Blast,

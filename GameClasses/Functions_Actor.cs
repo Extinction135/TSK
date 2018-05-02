@@ -61,7 +61,7 @@ namespace DungeonRun
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 15;
-            Assets.Play(Actor.sfxHit);
+            Assets.Play(Actor.sfx.hit);
 
             if (Actor == Pool.hero)
             {   //hero should drop a gold piece
@@ -87,7 +87,8 @@ namespace DungeonRun
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 255;
-            Assets.Play(Actor.sfxDeath); //play actor death sound fx
+            Assets.Play(Actor.sfx.kill); //play actor death sound fx
+
             if (Actor.type == ActorType.Blob || Actor.type == ActorType.Boss)
             { DungeonRecord.enemyCount++; } //track enemy deaths
 
@@ -181,8 +182,8 @@ namespace DungeonRun
                 Actor.dashSpeed = 0.90f;
                 //set actor sound effects
                 Actor.sfxDash = Assets.sfxHeroDash;
-                Actor.sfxHit = Assets.sfxHeroHit;
-                Actor.sfxDeath = Assets.sfxHeroKill;
+                Actor.sfx.hit = Assets.sfxHeroHit;
+                Actor.sfx.kill = Assets.sfxHeroKill;
             }
             else if (Type == ActorType.Blob)
             {
@@ -196,8 +197,8 @@ namespace DungeonRun
                 Actor.dashSpeed = 0.30f;
                 //set actor sound effects
                 Actor.sfxDash = Assets.sfxBlobDash;
-                Actor.sfxHit = Assets.sfxEnemyHit;
-                Actor.sfxDeath = Assets.sfxEnemyKill;
+                Actor.sfx.hit = Assets.sfxEnemyHit;
+                Actor.sfx.kill = Assets.sfxEnemyKill;
             }
             else if (Type == ActorType.Boss)
             {
@@ -217,8 +218,8 @@ namespace DungeonRun
 
                 //set actor sound effects
                 Actor.sfxDash = Assets.sfxBlobDash;
-                Actor.sfxHit = Assets.sfxBossHit;
-                Actor.sfxDeath = Assets.sfxBossHitDeath;
+                Actor.sfx.hit = Assets.sfxBossHit;
+                Actor.sfx.kill = Assets.sfxBossHitDeath;
             }
 
             #endregion

@@ -92,40 +92,64 @@ TODAY:
 
 
 
+Sounds ++
 
-Create Pot RoomObject
+removed GameObj.DestroyObj(), moving it's functionality
+into GameObj.Kill(), where an obj is always released().
+various path fixing in interaction functions.
 
-added world pot obj.
-completely commented out pickup / carrying routines.
-playtested pots, bushes, skulls, trees, and 'splosive barrels.
-updated colliseum level with various pots.
-fixed a bug where editor wasn't saving room id to xml.
+created ComponentSoundFX class, which conceptually represents
+an actor / object / entity's hit and kill sound effects.
+these are simply references that point to assets already
+loaded by Assets class.
 
-
-
-
-
-
-
+added compSfx to gameObj and actor classes.
+lots of changes to get sounds sounding better.
 
 
+
+
+
+
+
+
+
+
+torches should tink metallic.
+
+sword has no interaction with blocking torch obj?
+
+boomerangs shouldn't hit tree stumps.
+hitting a tree stump shouldnt make a sound.
+hitting dungeon entrances shouldn't make a sound.
 
 
 boomerangs shouldnt be able to destroy things.
 they can trigger levers, yes, and they can boop explosive barrels,
 but nothing else.
 
-boomerang sounds need to be revisited.
-in fact, sounds need to be revisited.
-obj should have obj.killSfx and obj.hitSfx.
-this way projectiles can hit or kill objs generically,
-and the obj handles the sfx on it's own.
-
-this could be tied into the obj.kill() method,
-which should probably be moved into gameobj functions roomObjs
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+what do we use the blocking hit for?
 
 loot should spawn centered to the obj that was destroyed.
 

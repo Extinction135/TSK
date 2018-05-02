@@ -234,7 +234,6 @@ namespace DungeonRun
                     ObjType.Particle_Attention,
                     Obj.compSprite.position.X + 0,
                     Obj.compSprite.position.Y + 0);
-                Assets.Play(Assets.sfxArrowHit);
             }
             else if (Obj.type == ObjType.ProjectileBomb)
             {   //create explosion projectile
@@ -245,13 +244,6 @@ namespace DungeonRun
             {   //create explosion & ground fire
                 Spawn(ObjType.ProjectileExplosion,
                     Obj.compMove, Direction.None);
-
-                /*
-                Functions_Particle.Spawn(
-                    ObjType.Particle_FireGround,
-                    Obj.compSprite.position.X + 0,
-                    Obj.compSprite.position.Y + 0);
-                */
             }
             //sword - no death event
             //rock debris - no death event
@@ -274,6 +266,7 @@ namespace DungeonRun
             }
 
             //all objects are released upon death
+            if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
             Functions_Pool.Release(Obj);
         }
 
@@ -325,7 +318,7 @@ namespace DungeonRun
                     //boomerang has returned to hero
                     if (Pro.compCollision.rec.Intersects(Pool.hero.compCollision.rec))
                     {
-                        Functions_GameObject.Kill(Pro);
+                        Functions_Pool.Release(Pro);
                         Functions_Hero.boomerangInPlay = false;
                         //Assets.Play(Assets.sfxArrowHit);
                     }

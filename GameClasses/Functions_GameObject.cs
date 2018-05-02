@@ -28,24 +28,25 @@ namespace DungeonRun
         public static void HandleCommon(GameObject RoomObj, Direction HitDirection)
         {
             //hitDirection is used to push some objects in the direction they were hit
-
-            //dungeon objects
+            
             if (RoomObj.type == ObjType.Dungeon_Pot)
             {
-                DestroyObject(RoomObj, true, true);
+                RoomObj.compMove.direction = HitDirection;
+                Kill(RoomObj, true);
             }
             else if (RoomObj.type == ObjType.Wor_Pot)
             {
-                DestroyObject(RoomObj, true, true);
+                RoomObj.compMove.direction = HitDirection;
+                Kill(RoomObj, true);
             }
             else if(RoomObj.type == ObjType.Wor_Bush)
             {
-                RoomObj.compMove.direction = HitDirection; //pass hitDirection
+                RoomObj.compMove.direction = HitDirection; 
                 Functions_GameObject_World.DestroyBush(RoomObj);
             }
             else if (RoomObj.type == ObjType.Dungeon_Barrel)
             {
-                RoomObj.compMove.direction = HitDirection; //pass hitDirection
+                RoomObj.compMove.direction = HitDirection; 
                 Functions_GameObject_Dungeon.DestroyBarrel(RoomObj);
             }
             else if (RoomObj.type == ObjType.Dungeon_SwitchBlockBtn)
@@ -58,30 +59,23 @@ namespace DungeonRun
                 Functions_GameObject_Dungeon.ActivateLeverObjects();
             }
         }
-
-        public static void DestroyObject(GameObject Obj, Boolean killObj, Boolean spawnLoot)
-        {   //grab players attention, spawn rock debris, play shatter sound
+        
+        public static void Kill(GameObject Obj, Boolean spawnLoot)
+        {
+            //pop an attention particle
             Functions_Particle.Spawn(
                 ObjType.Particle_Attention,
                 Obj.compSprite.position.X,
                 Obj.compSprite.position.Y);
-            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
-            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
-            //Functions_Particle.ScatterDebris(RoomObj.compSprite.position);
-            Assets.Play(Assets.sfxShatter);
-            //handle parameter values
+
+            //pop loot, soundfx, release
             if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
-            if (killObj) { Kill(Obj); }
-        }
-
-        public static void Kill(GameObject Obj)
-        {
-            //contains death events for gameObjects
-
-            //but, here we can handle any death events for the roomObj, using a type check
-            //if (Obj.type == ObjType.Barrel) { } //for example
+            if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
             Functions_Pool.Release(Obj);
         }
+
+
+
 
 
 
@@ -142,6 +136,9 @@ namespace DungeonRun
             Obj.compMove.friction = 0.75f; //normal friction
             Obj.compMove.moveable = false; //most objects cant be moved
             Obj.compMove.grounded = true; //most objects exist on the ground
+            //reset the sfx component
+            Obj.sfx.hit = Assets.sfxEnemyHit;
+            Obj.sfx.kill = Assets.sfxShatter;
         }
 
         public static void SetRotation(GameObject Obj)
@@ -253,6 +250,8 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = +32; //sort very high (over / in front of hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorOpen;
+                Obj.sfx.hit = null;
+                Obj.sfx.kill = null;
             }
             else if(Type == ObjType.Dungeon_DoorTrap)
             {
@@ -260,30 +259,40 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorShut;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = null;
             }
             else if (Type == ObjType.Dungeon_DoorBombable)
             {
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
+                Obj.sfx.hit = Assets.sfxTapHollow; //sounds hollow
+                Obj.sfx.kill = null;
             }
             else if(Type == ObjType.Dungeon_DoorBoss)
             {
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorBoss;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = Assets.sfxShatter;
             }
             else if (Type == ObjType.Dungeon_DoorShut)
             {
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_DoorShut;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = null;
             }
             else if (Type == ObjType.Dungeon_DoorFake)
             {
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Door;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallStraightCracked;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = null;
             }
 
             #endregion
@@ -308,6 +317,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -32; //sort very low (behind hero)
                 Obj.group = ObjGroup.Wall;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_WallInteriorCorner;
+                
             }
             else if (Type == ObjType.Dungeon_WallExteriorCorner)
             {
@@ -417,6 +427,8 @@ namespace DungeonRun
                 Obj.canBeSaved = true;
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Statue;
+                Obj.sfx.hit = Assets.sfxTapHollow;
+                Obj.sfx.kill = Assets.sfxShatter;
             }
 
             #endregion
@@ -690,6 +702,8 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Cut; }
                 else if (Type == ObjType.Wor_Grass_Tall)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall; }
+
+                Obj.sfx.kill = Assets.sfxBushCut; //only tall grass can be killed
             }
 
             #endregion
@@ -705,6 +719,7 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.World_Bush;
                 Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 8;
+                Obj.sfx.kill = Assets.sfxBushCut;
             }
             else if (Type == ObjType.Wor_Bush_Stump)
             {
@@ -724,6 +739,7 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.World_Tree;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = 15;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 8;
+                Obj.sfx.kill = Assets.sfxBushCut;
             }
             else if (Type == ObjType.Wor_Tree_Stump)
             {
@@ -874,6 +890,7 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bomb;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
             else if (Type == ObjType.ProjectileBoomerang)
             {
@@ -888,6 +905,7 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Boomerang;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
 
             #endregion
@@ -908,6 +926,7 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Fireball;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
 
             #endregion
@@ -947,6 +966,7 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
             else if (Type == ObjType.ProjectileArrow)
             {
@@ -970,6 +990,8 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Arrow;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.kill = Assets.sfxArrowHit;
+                Obj.sfx.hit = Assets.sfxArrowHit;
             }
             else if (Type == ObjType.ProjectileNet)
             {
@@ -984,6 +1006,7 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Net;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
             else if (Type == ObjType.ProjectileBow)
             {
@@ -995,6 +1018,7 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Bow;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.hit = null; Obj.sfx.kill = null;
             }
 
             #endregion
@@ -1014,6 +1038,8 @@ namespace DungeonRun
                 Obj.compMove.grounded = false; //obj is airborne
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Explosion;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.sfx.kill = Assets.sfxExplosion;
+                Obj.sfx.hit = Assets.sfxExplosion;
             }
 
             #endregion
@@ -1034,6 +1060,8 @@ namespace DungeonRun
 
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BarrelExploding;
                 Obj.compSprite.texture = Assets.forestLevelSheet;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
+                Obj.sfx.kill = null;
             }
 
             #endregion
@@ -1284,7 +1312,25 @@ namespace DungeonRun
             if (Obj.group == ObjGroup.Pickup ||
                 Obj.group == ObjGroup.Particle || 
                 Obj.group == ObjGroup.Projectile)
-            { Obj.compCollision.blocking = false; } //entities never block
+            {   //entities never block
+                Obj.compCollision.blocking = false;
+            } 
+
+            if (Obj.group == ObjGroup.Wall)
+            {   //all wall objs have same sfx
+                Obj.sfx.hit = Assets.sfxTapMetallic;
+                Obj.sfx.kill = null; //cant kill wall
+            }
+
+            if (Obj.group == ObjGroup.Particle || 
+                Obj.group == ObjGroup.Pickup)
+            {   
+                Obj.sfx.hit = null;
+                Obj.sfx.kill = null; 
+            }
+
+
+
 
             SetRotation(Obj);
             Functions_Component.UpdateCellSize(Obj.compSprite);

@@ -340,7 +340,7 @@ namespace DungeonRun
                             }
                             else
                             {   //handle enemy pit death (no loot, insta-death)
-                                Assets.Play(Actor.sfxDeath); //play actor death sfx
+                                Assets.Play(Actor.sfx.kill); //play actor death sfx
                                 Functions_Pool.Release(Actor); //release this actor back to pool
                             }
                         }
@@ -425,7 +425,7 @@ namespace DungeonRun
                             }
                             else if (RoomObj.type == ObjType.Dungeon_Statue)
                             {   //explosions destroy statues
-                                Functions_GameObject.DestroyObject(RoomObj, true, true);
+                                Functions_GameObject.Kill(RoomObj, true);
                             }
                             else if(RoomObj.type == ObjType.Dungeon_WallStraight)
                             {   //explosions 'crack' normal walls
@@ -474,9 +474,8 @@ namespace DungeonRun
                     #region Fireball
 
                     else if (Object.type == ObjType.ProjectileFireball)
-                    {   //fireball hit something, play bonk sound as audio confirmation
-                        Assets.Play(Assets.sfxFireballDeath);
-                        Functions_Projectile.Kill(Object); //fireball becomes explosion upon death
+                    {   //fireball becomes explosion upon death
+                        Functions_Projectile.Kill(Object); 
                     }
 
                     #endregion
@@ -488,47 +487,20 @@ namespace DungeonRun
                     {   //sword swipe causes soundfx to blocking objects
                         if (Object.lifeCounter == 1) //these events happen at start of sword swing
                         {
-
                             if (RoomObj.group == ObjGroup.Door)
-                            {   //there are two soundfx that can play for a door
-                                //hollow or metallic
-                                if (RoomObj.type == ObjType.Dungeon_DoorBombable)
-                                {
-                                    Assets.Play(Assets.sfxTapHollow); //hollow
-                                    Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
-                                } 
-                                else if (RoomObj.type == ObjType.Dungeon_DoorOpen)
-                                {
-                                    //do nothing, there is no door
-                                }
-                                else
-                                {   //this is a blocking, nondestructible door
-                                    Assets.Play(Assets.sfxTapMetallic);
-                                    Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
-                                }
-                            }
-                            else if(RoomObj.group == ObjGroup.Wall)
-                            {   
-                                //all sword hits on walls are metallic for now
-                                Assets.Play(Assets.sfxTapMetallic);
+                            {   //bail if sword is hitting open door, else sparkle + hit sfx
+                                if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; } 
+                                Assets.Play(RoomObj.sfx.hit);
                                 Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
                             }
-
-                            //swords alter some objects
-                            if (RoomObj.type == ObjType.Wor_Bush)
-                            {   
-                                Assets.Play(Assets.sfxEnemyHit);
-                            }
-                            else
+                            else if(RoomObj.group == ObjGroup.Wall)
                             {
-                                //dont play any soundfx
-                                //or, play metallic tap
-                                Assets.Play(Assets.sfxTapMetallic);
+                                Assets.Play(RoomObj.sfx.hit);
+                                Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
                             }
                         }
                         else if (Object.lifeCounter == 4)
                         {   //these interactions happen 'mid swing'
-                            //swords trigger common obj interactions
                             Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
                         }
                     }
@@ -560,11 +532,11 @@ namespace DungeonRun
                             Functions_Direction.GetOppositeCardinal(
                                 Object.compSprite.position, 
                                 RoomObj.compSprite.position), 3.0f);
-                        //pop a sparkle particle
-                        Functions_Particle.Spawn(ObjType.Particle_Sparkle,
+                        //pop a particle
+                        Functions_Particle.Spawn(ObjType.Particle_Attention,
                             Object.compSprite.position.X + 4,
                             Object.compSprite.position.Y + 4);
-                        Assets.Play(Assets.sfxTapMetallic);
+                        Assets.Play(RoomObj.sfx.hit);
                     }
 
                     #endregion
@@ -638,7 +610,7 @@ namespace DungeonRun
                 {   
                     if(Object.type == ObjType.Dungeon_Statue)
                     {   //destroy boss statues and pop loot
-                        Functions_GameObject.DestroyObject(Object, true, true);
+                        Functions_GameObject.Kill(Object, true);
                     }
                     else
                     {   //push obj in opposite direction and destroy it
@@ -665,7 +637,7 @@ namespace DungeonRun
                 //kill specific projectiles / objects
                 if (Object.type == ObjType.ProjectileFireball
                     || Object.type == ObjType.ProjectileArrow)
-                { Functions_GameObject.Kill(Object); }
+                { Functions_Pool.Release(Object); }
             }
 
             #endregion
