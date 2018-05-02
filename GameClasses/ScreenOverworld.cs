@@ -14,9 +14,8 @@ namespace DungeonRun
 {
     public class ScreenOverworld : Screen
     {
-        ScreenRec background = new ScreenRec();
         ScreenRec overlay = new ScreenRec();
-        public Scroll scroll;
+
         public static ComponentSprite map;
         public List<MapLocation> locations;
         public int i;
@@ -39,13 +38,9 @@ namespace DungeonRun
 
         public override void LoadContent()
         {
-            background.alpha = 1.0f;
             overlay.alpha = 1.0f;
-            overlay.fadeInSpeed = 0.03f; //fade in slow
-
-            scroll = new Scroll(new Vector2(16 * 3 - 8, 16 * 2 + 4), 34, 19);
-            scroll.displayState = DisplayState.Opening;
-            Assets.Play(Assets.sfxMapOpen);
+            overlay.fadeInSpeed = 0.04f;
+            overlay.fadeOutSpeed = 0.04f;
 
             map = new ComponentSprite(Assets.overworldSheet,
                 new Vector2(640/2, 360/2), new Byte4(0, 0, 0, 0), new Point(1280, 720));
@@ -199,20 +194,6 @@ namespace DungeonRun
             else
             { currentLocation = colliseum; }
 
-
-            /*
-            //translate level.type to current map location
-            if (Level.ID == LevelID.Colliseum) { currentLocation = colliseum; }
-            else if (Level.ID == LevelID.Castle_Entrance) { currentLocation = castle; }
-            //if we borked and didnt set level.id, default to colliseum
-            else { currentLocation = colliseum; }
-            */
-            
-
-
-
-
-
             //set target to current (no initial target)
             targetLocation = currentLocation;
             hero = new Actor();
@@ -227,12 +208,10 @@ namespace DungeonRun
 
 
 
-
-
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
-            //fill hero's health up to max - prevents drum track from playing
-            Pool.hero.health = PlayerData.current.heartsTotal;
+            //prevent kick drum from playing during overworld map
+            if (Pool.hero.health < 3) { Pool.hero.health = 3; } 
             //grab the hero's current loadout
             Functions_Hero.SetLoadout();
             //reset the pool
@@ -283,13 +262,15 @@ namespace DungeonRun
             else if(PlayerData.current.actorType == ActorType.Hero)
             { hero.compSprite.texture = Assets.heroSheet; }
 
-            //autosave the current game
+            //autosave the current game, etc..
             Functions_Backend.SaveGame(GameFile.AutoSave);
+            Assets.Play(Assets.sfxMapOpen);
+            Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld;
         }
 
         public override void HandleInput(GameTime GameTime)
         {
-            if (scroll.displayState == DisplayState.Opened)
+            if (displayState == DisplayState.Opened)
             {   //only allow input if the screen has opened completely..
                 if(hero.compMove.position == hero.compMove.newPosition)
                 {   //only allow player input if hero currently occupies a map location
@@ -328,7 +309,9 @@ namespace DungeonRun
                             //animate link into reward state
                             hero.state = ActorState.Reward;
                             hero.direction = Direction.Down;
-                            scroll.displayState = DisplayState.Closing;
+                            displayState = DisplayState.Closing;
+                            //force an animation update
+                            Functions_Animation.Animate(hero.compAnim, hero.compSprite);
                             Assets.Play(Assets.sfxTextDone);
                             Assets.Play(Assets.sfxWindowClose);
                         }
@@ -345,16 +328,18 @@ namespace DungeonRun
             Functions_ActorAnimationList.SetAnimationGroup(hero);
             Functions_ActorAnimationList.SetAnimationDirection(hero);
             Functions_Animation.Animate(hero.compAnim, hero.compSprite);
-            scroll.title.text = "Overworld Map - " + currentLocation.ID;
 
+            //we used to display the location 'name' like this
+            //scroll.title.text = "Overworld Map - " + currentLocation.ID;
 
-            if (scroll.displayState == DisplayState.Opening)
+            if (displayState == DisplayState.Opening)
             {   //fade overlay out
                 overlay.fadeState = FadeState.FadeOut;
                 Functions_ScreenRec.Fade(overlay);
-                Functions_Scroll.AnimateOpen(scroll);
+                if (overlay.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Opened; }
             }
-            else if (scroll.displayState == DisplayState.Opened)
+            else if (displayState == DisplayState.Opened)
             {
 
                 #region Map Movement Routine
@@ -431,15 +416,15 @@ namespace DungeonRun
                     }
                 }
             }
-            else if (scroll.displayState == DisplayState.Closing)
+            else if (displayState == DisplayState.Closing)
             {   //fade overlay in
                 overlay.fadeState = FadeState.FadeIn;
                 Functions_ScreenRec.Fade(overlay);
-                Functions_Scroll.AnimateClosed(scroll);
+                if (overlay.fadeState == FadeState.FadeComplete)
+                { displayState = DisplayState.Closed; }
             }
-            else if (scroll.displayState == DisplayState.Closed)
-            {
-                //set the level id based on the current location
+            else if (displayState == DisplayState.Closed)
+            {   //set the level id based on the current location
                 Level.ID = currentLocation.ID;
                 //load the level, building the room(s)
                 ScreenManager.ExitAndLoad(new ScreenLevel());
@@ -449,17 +434,14 @@ namespace DungeonRun
         public override void Draw(GameTime GameTime)
         {
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-            Functions_Draw.Draw(background);
-            Functions_Scroll.Draw(scroll);
-            if (scroll.displayState == DisplayState.Opened)
-            {
-                Functions_Draw.Draw(map);
-                Functions_Pool.Draw();
-                for (i = 0; i < locations.Count; i++)
-                { Functions_Draw.Draw(locations[i].compSprite); }
-                Functions_Draw.Draw(hero.compSprite);
-            }
+            
+            Functions_Draw.Draw(map);
+            Functions_Pool.Draw();
+            for (i = 0; i < locations.Count; i++)
+            { Functions_Draw.Draw(locations[i].compSprite); }
+            Functions_Draw.Draw(hero.compSprite);
             Functions_Draw.Draw(overlay);
+
             ScreenManager.spriteBatch.End();
         }
 

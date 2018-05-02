@@ -94,38 +94,42 @@ TODAY:
 
 
 
+Overworld Screen ++
 
+removed scroll + animation from overworld screen.
+removed background rec, which defaulted to black.
+improved the clarity of how assets.colorScheme.background
+is used - it is only set to reference another color
+value in assets.colorScheme, and only by level 
+and overworld screens. overworld sets it's bkg color
+to light world bkg color upon load. migrated
+overworld screen to use overlay + displayState 
+instead of scroll.displayState to control screen 
+opening/closing.
 
+fixed a minor issue with hero not updating to reward state
+when player pressed A upon a level from overworld screen.
+now he raises his hands when the player selects a level.
 
-
-Create Github Watermark
-
-created watermark class + menuItem enum.
-watermark added to options menu.
-playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-
-the overworld screen
-is just a single texture, like normal
-but now it doesn't have a scroll background.
-instead the screen opens and closes using fade rec, just like level screen
+improved BuildLevel() to set background colors based on 
+level.isField boolean and level.type.
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+campfire on the map isn't working
+flags aren't waving
+but waves show up....
 
 
 

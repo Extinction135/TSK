@@ -56,9 +56,11 @@ namespace DungeonRun
             }
 
             //set the background color
-            if (Level.lightWorld)
-            { Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld; }
-            else { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
+            Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld; //assume light world
+            if (Level.lightWorld == false) //check for dark world
+            { Assets.colorScheme.background = Assets.colorScheme.bkg_darkWorld; }
+            if (levelID == LevelID.Castle_Dungeon) //check for dungeon
+            { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
 
             //setup the room (level), or series of rooms (dungeon)
             if (Flags.PrintOutput)

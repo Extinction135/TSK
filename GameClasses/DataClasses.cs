@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
@@ -28,24 +28,15 @@ namespace DungeonRun
         public static Boolean DrawInput = false; //draw the input display
         public static Boolean DrawWatermark = false; //top right link (for capturing purposes)
 
-
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
         public static Boolean PlayMusic = false; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
-
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors
-
-
         public static Boolean CameraTracksHero = false; //camera tracks hero or centers to dungeon room
-
-
-
-
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean ShowDialogs = true; //turn dialogs on/off
-
         
         //cheats
         public static Boolean Invincibility = true; //does hero ignore damage?
@@ -325,8 +316,6 @@ namespace DungeonRun
         }
     }
 
-
-
     public static class WaterMark
     {
         public static MenuRectangle bkg;
@@ -344,7 +333,6 @@ namespace DungeonRun
                 Assets.colorScheme.textLight);
         }
     }
-
 
     public static class InputDisplay
     {
@@ -657,10 +645,6 @@ namespace DungeonRun
         }
     }
 
-
-
-
-
     public static class DebugInfo
     {
         public static Rectangle background;
@@ -776,13 +760,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-
+    
     public static class Level
     {
         public static List<Room> rooms = new List<Room>();
@@ -827,11 +805,7 @@ namespace DungeonRun
 
 
     
-
-
-
-
-
+    
 
 
     public class RoomXmlData
@@ -918,7 +892,7 @@ namespace DungeonRun
         //game colors
 
         //points to a bkg_color based on the level loaded
-        public Color background = new Color(0, 0, 0, 255);
+        public Color background = new Color(0, 0, 0, 255); //refs one below
         public Color bkg_lightWorld = new Color(150, 150, 150, 255);
         public Color bkg_darkWorld = new Color(75, 75, 75, 255);
         public Color bkg_dungeon = new Color(0, 0, 0, 255);
@@ -999,10 +973,7 @@ namespace DungeonRun
     }
 
 
-
-
-
-
+    
 
 
     public class Dialog
@@ -1036,11 +1007,7 @@ namespace DungeonRun
     
 
 
-
-
-
-
-
+    
 
 
     //GameData Classes
