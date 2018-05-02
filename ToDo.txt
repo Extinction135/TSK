@@ -50,6 +50,20 @@ X - Outside Town Level, vendors
 X - Dungeon Entrance Level, dungeon entrance object
 X - obj linked to dungeon generation + extensive testing
 
+- picking up, carrying, throwing objs
+skull pots, pots, bushes - all deal 1 damage
+
+- the "shadow system"
+every actor has a shadow, based on the actor size and flying state.
+larger actor = large shadow, flying actor = smaller shadow (due to height off ground)
+every object has a shadow, based on the obj type, size, and state.
+these shadows maybe visible or not. these shadows should track to the
+objects/actors each frame, AFTER the compMove component has finished processing.
+these shadows are sprites that are added to actors and gameobj classes.
+this will likely be part of pool, possibly just prior to drawing to ensure
+they are always aligned to their obj/actor (altho this does pollute Draw)..
+
+
 - healers house, full death/respawn loop in game
 - this includes buildings, beds, interior objs
 
@@ -81,13 +95,38 @@ TODAY:
 
 
 
+Design InputWidget
 
-TitleScreen--
+designed input widget. & visually aligned it with world ui.
+then, compared it against all screens that it would draw over,
+if it was drawn from screen manager as a final step. the widget
+looks good over all screens except the overworld screen, due 
+to the scroll background and title intersecting the widget.
+this led me to question why the background scroll existed at
+all, because it was limiting the available area the map could
+occupy. removing the overworld scroll solves two problems:
+1. the input widget draws nicely over it
+2. allows for more map area on screen
 
-after more thought, decided to just remove options
-menuItem from title screen, for various reasons.
+and the mockups without the scroll background make the overworld
+map feel outside.. which we could add clouds too (animated) to
+really bring life to this map / screen.
 
-playtested, working.
+also removed the location name from the overworld screen
+mockup, because the names don't matter - the sprites will be
+the visual association + the locations relative position (thats
+all the player needs to build a mental model of what each location
+represents or contains). 
+
+created various mockups with new screen capture.
+added sprites for input widget to master.psd.
+
+
+
+
+
+
+
 
 
 
@@ -106,6 +145,36 @@ display the input widget from the input ctrls screen, via menuItem
 where does the input widget sit positionally?
 we need to update the mockups to match what we have in game
 
+
+
+
+
+option to unlock/lock camera while in dungeon.
+this *only* applies while in the dungeon, overworld
+levels lock cam like normal.
+
+
+
+
+
+
+
+
+
+
+quad black rectangle transitions
+4 black rectangles converge onto link, simulating Lttp's circular black transition
+between levels, etc.. 
+this will replace the level screen's overlay fading in/out
+
+
+
+
+the overworld
+is just a single texture, like normal
+but now it doesn't have a scroll background.
+instead the screen opens and closes using the quad black rectangle, 
+just like level screen
 
 
 
@@ -129,19 +198,10 @@ we need to update the mockups to match what we have in game
 
 - fix sounds (all sounds should 'sound' right, including the boomerang)
 
+- add world pot obj
 
-
-
-
-
-
-
-
-
-
-
-
-
+- implement picking up, carrying, throwing bushes, pots, skulls
+hero throws obj upon leaving room, falling into pit, getting hit, etc..
 
 bush debris - hitting a bush should create leaves that travel in the direction of the hit
 leaves only last for a moment, then die
@@ -156,30 +216,14 @@ when player presses A on dialog screen entering dungeon, play door opening sound
 this sound should not play when the hero spawns in the dungeon, where i think it does
 it plays after the dungeon is built?
 
-
-
-
-
-
-
-
-
-
-
-
 input polish
 when moving the joystick diagonally, the input *should* split evenly between up and say right.
 if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
 even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
 that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
 
-
-
-
 hero should spawn facing up in dungeon.
 hero should spawn facing down after exiting dungeon.
-
-
 
 opening / closing of level screen
 this shouldn't be a fade in/out - thats easy and cheap.
@@ -191,6 +235,10 @@ the same is done for the top and bottom, vertically, based on hero's Y pos.
 these can be programmed independently too, and should ease in.
 what we should see: the edges of the screen turn black and grows towards link eventually covering him up.
 then we can transition into a dungeon, to overworld map, etc...
+
+
+
+
 
 
 

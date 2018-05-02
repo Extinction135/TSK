@@ -15,6 +15,18 @@ CHEAT: SCREEN CAPTURE MODE - DISPLAYS WATERMARK, INPUT WIDGET, ETC..
 
 
 
+
+
+
+add animated floating clouds to the overworld screen
+
+
+
+
+
+
+
+
 SPIKEBLOCK++
 what about a spike block that rotate right or left every 100 frames?
 this would cause it to rotate around something, unlike any other spike block seen before... harumph!
