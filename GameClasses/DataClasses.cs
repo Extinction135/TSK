@@ -344,8 +344,8 @@ namespace DungeonRun
                     new Point(16, 16)));
             }
 
-            Functions_WorldUI.MoveBkg(directionalBkg, 16 * 2 - 6, 16 * 2 - 6);
-            Functions_WorldUI.MoveBkg(buttonBkg, 16 * 4 - 6, 16 * 2 - 6);
+            Functions_Component.MoveQuadBkg(directionalBkg, 16 * 2 - 6, 16 * 2 - 6);
+            Functions_Component.MoveQuadBkg(buttonBkg, 16 * 4 - 6, 16 * 2 - 6);
         }
     }
 
@@ -371,13 +371,18 @@ namespace DungeonRun
 
         public static ComponentText frametime;
         public static ComponentText autosaveText;
-        public static ComponentText message; //used for release debugging
 
         public static int autosaveCounter = 100;
         public static string autosaving = "autosaving...";
 
         static WorldUI()
         {
+            int xPos = 50;
+            int yPos = 50;
+
+
+            #region Hearts ui
+
             //create the heart sprites
             hearts = new List<ComponentSprite>();
             for (i = 0; i < 9; i++)
@@ -388,6 +393,17 @@ namespace DungeonRun
                     new Byte4(3, 1, 0, 0),
                     new Point(16, 16)));
             }
+            //move the hearts
+            for (i = 0; i < 9; i++)
+            {
+                hearts[i].position.X = xPos + (10 * i) + (16 * 2) + 8;
+                hearts[i].position.Y = yPos + 8;
+            }
+
+            #endregion
+
+
+            #region Magic ui
 
             //create the meter sprites
             meterPieces = new List<ComponentSprite>();
@@ -399,11 +415,21 @@ namespace DungeonRun
                     new Byte4(5*2, 0, 0, 0),
                     new Point(8, 16)));
             }
-
+            //move the magic meter sprites
+            for (i = 0; i < 11; i++)
+            {
+                meterPieces[i].position.X = xPos + (8 * i) + (16 * 2) + 8;
+                meterPieces[i].position.Y = yPos + 8 + 16;
+            }
             //set the head and tail meter frames
             meterPieces[0].currentFrame.X = 4*2;
             meterPieces[10].currentFrame.X = 4*2;
             meterPieces[10].flipHorizontally = true;
+
+            #endregion
+
+
+            #region Weapon and Item ui
 
             //create the weapon and item background sprites
             weaponBkg = new List<ComponentSprite>();
@@ -432,15 +458,32 @@ namespace DungeonRun
             Functions_MenuItem.SetType(heroWeapon, currentWeapon);
             Functions_MenuItem.SetType(heroItem, currentItem);
 
+            //move the weapon bkg & sprite & amount display
+            Functions_Component.MoveQuadBkg(weaponBkg, xPos + 8, yPos + 8);
+            currentWeapon.compSprite.position.X = xPos + 16;
+            currentWeapon.compSprite.position.Y = yPos + 16;
+            Functions_Component.Align(weaponAmount, currentWeapon.compSprite);
+
+            //move the item bkg & sprite & amount display
+            Functions_Component.MoveQuadBkg(itemBkg, xPos + 16 * 8 + 8, yPos + 8);
+            currentItem.compSprite.position.X = xPos + 16 * 8 + 16;
+            currentItem.compSprite.position.Y = yPos + 16;
+            Functions_Component.Align(itemAmount, currentItem.compSprite);
+
+            #endregion
+
+
             //create the frametime & autosave text components
             frametime = new ComponentText(Assets.font, "test",
                 new Vector2(0, 0), Assets.colorScheme.textLight);
             autosaveText = new ComponentText(Assets.font, "autosaving",
                 new Vector2(0, 0), Assets.colorScheme.textLight);
-            message = new ComponentText(Assets.font, "message",
-                new Vector2(0, 0), Assets.colorScheme.textLight);
-            //move the entire worldUI
-            Functions_WorldUI.Move(50, 50);
+
+            //place frametime & autosave texts
+            frametime.position.X = 4;
+            frametime.position.Y = 10;
+            autosaveText.position.X = 54;
+            autosaveText.position.Y = 81;
         }
     }
 

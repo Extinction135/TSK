@@ -187,7 +187,6 @@ namespace DungeonRun
                 WorldUI.frametime.text += "\nD:" + DebugInfo.drawAvg;
                 WorldUI.frametime.text += "\nT:" + Timing.totalTime.Milliseconds + " ms";
                 Functions_Draw.Draw(WorldUI.frametime);
-                Functions_Draw.Draw(WorldUI.message);
             }
         }
 
@@ -195,83 +194,6 @@ namespace DungeonRun
         {
             WorldUI.autosaveCounter = 0;
         }
-
-
-
-
-
-
-
-
-
-        //this is unnecessary and should be moved into constructor
-        public static void Move(int X, int Y)
-        {
-            //move the weapon bkg & sprite & amount display
-            MoveBkg(WorldUI.weaponBkg, X + 8, Y + 8);
-            WorldUI.currentWeapon.compSprite.position.X = X + 16;
-            WorldUI.currentWeapon.compSprite.position.Y = Y + 16;
-            Functions_Component.Align(WorldUI.weaponAmount, WorldUI.currentWeapon.compSprite);
-
-            //move the item bkg & sprite & amount display
-            MoveBkg(WorldUI.itemBkg, X + 16 * 8 + 8, Y + 8);
-            WorldUI.currentItem.compSprite.position.X = X + 16 * 8 + 16;
-            WorldUI.currentItem.compSprite.position.Y = Y + 16;
-            Functions_Component.Align(WorldUI.itemAmount, WorldUI.currentItem.compSprite);
-
-            //move the hearts
-            for (i = 0; i < 9; i++)
-            {
-                WorldUI.hearts[i].position.X = X + (10 * i) + (16 * 2) + 8;
-                WorldUI.hearts[i].position.Y = Y + 8;
-            }
-
-            //move the magic meter sprites
-            for (i = 0; i < 11; i++)
-            {
-                WorldUI.meterPieces[i].position.X = X + (8 * i) + (16 * 2) + 8;
-                WorldUI.meterPieces[i].position.Y = Y + 8 + 16;
-            }
-
-            //place frametime & autosave texts
-            WorldUI.frametime.position.X = 4;
-            WorldUI.frametime.position.Y = 10;
-            WorldUI.autosaveText.position.X = 54;
-            WorldUI.autosaveText.position.Y = 81;
-            //place various msg output text comp
-            WorldUI.message.position.X = 54;
-            WorldUI.message.position.Y = WorldUI.frametime.position.Y;
-        }
-
-
-
-        //this doesn't fit into fun_worldui any longer, because it's used by inputDisplay
-        public static void MoveBkg(List<ComponentSprite> bkgList, int Xpos, int Ypos)
-        {
-            bkgList[0].position.X = Xpos;
-            bkgList[0].position.Y = Ypos;
-
-            bkgList[1].position.X = Xpos + 16;
-            bkgList[1].position.Y = Ypos;
-            bkgList[1].flipHorizontally = true;
-
-            bkgList[2].position.X = Xpos;
-            bkgList[2].position.Y = Ypos + 16;
-            bkgList[2].flipHorizontally = true;
-
-            bkgList[3].position.X = Xpos + 16;
-            bkgList[3].position.Y = Ypos + 16;
-
-            bkgList[2].rotation = Rotation.Clockwise180;
-            bkgList[3].rotation = Rotation.Clockwise180;
-        }
-
-
-
-
-
-
-        
 
     }
 }

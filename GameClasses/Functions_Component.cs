@@ -86,5 +86,25 @@ namespace DungeonRun
             else { Sprite.rotation = Rotation.None; }
         }
 
+        public static void MoveQuadBkg(List<ComponentSprite> bkgList, int Xpos, int Ypos)
+        {
+            bkgList[0].position.X = Xpos;
+            bkgList[0].position.Y = Ypos;
+
+            bkgList[1].position.X = Xpos + 16;
+            bkgList[1].position.Y = Ypos;
+            bkgList[1].flipHorizontally = true;
+
+            bkgList[2].position.X = Xpos;
+            bkgList[2].position.Y = Ypos + 16;
+            bkgList[2].flipHorizontally = true;
+
+            bkgList[3].position.X = Xpos + 16;
+            bkgList[3].position.Y = Ypos + 16;
+
+            bkgList[2].rotation = Rotation.Clockwise180;
+            bkgList[3].rotation = Rotation.Clockwise180;
+        }
+
     }
 }

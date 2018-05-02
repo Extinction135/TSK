@@ -94,22 +94,30 @@ TODAY:
 
 
 
+Quick Refactor of WorldUI Functions
+
+due to the arrival of the input display,
+these functions needed to be reorganized.
+plus, the Move() method isn't going to be
+used anymore, so it became part of world
+ui's constructor as hardcoded values.
+
+removed message textComp from worldUI.
+
+
+
+
+
+
+
+move the net into the weapons section of inventory, because it maps to the X button, duh!
+
+
+
+
+
+
 Implement Input Display
-
-created inputDisplay class in DataClasses.
-improved Functions_Draw.Draw() to handle sprite comp lists.
-added section to ScreenManager.Draw() to draw inputDisplay,
-based on the new Flags.DrawInput boolean.
-
-migrated worldui and created inputdisplay to use animframe
-for the quad bkg sprite, instead of hardcoded values.
-playtested, inputDisplay drawing bkg correctly.
-spent sometime aligning them.
-
-
-
-
-
 
 
 need menu item for options screen that represents input display on/off.
@@ -119,6 +127,8 @@ draw the down state dirs + buttons
 link input to selected state
 
 *how many frames does this activation happen for? a single frame?
+
+*we could also add a frame counter right next to button input, showing fps
 
 
 
