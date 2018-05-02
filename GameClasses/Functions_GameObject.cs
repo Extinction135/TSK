@@ -1195,7 +1195,6 @@ namespace DungeonRun
             #region Particles - Overworld / Map
 
             //these particles only exist on the overworld map
-
             else if (Type == ObjType.Particle_Map_Flag)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 4; //nonstandard size
@@ -1203,6 +1202,7 @@ namespace DungeonRun
                 Obj.compAnim.speed = 10; //in frames
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Map_Flag;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.lifetime = 0; //lives forever
             }
             else if (Type == ObjType.Particle_Map_Wave)
             {
@@ -1221,6 +1221,7 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Map_Campfire;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.lifetime = 0; //lives forever
             }
 
             #endregion

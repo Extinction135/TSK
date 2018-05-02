@@ -169,9 +169,13 @@ namespace DungeonRun
         }
 
         public static void Update(GameObject Obj)
-        {   //particles do have lifetimes
-            Obj.lifeCounter++;
-            if (Obj.lifeCounter >= Obj.lifetime) { Kill(Obj); }
+        {
+            if (Obj.lifetime == 0) { } //some particles live forever
+            else
+            {   //these particles 'die' after a lifetime
+                Obj.lifeCounter++;
+                if (Obj.lifeCounter >= Obj.lifetime) { Kill(Obj); }
+            }
 
 
             #region Handle Particle Per Frame Behaviors
@@ -187,7 +191,6 @@ namespace DungeonRun
             }
 
             #endregion
-
 
         }
 

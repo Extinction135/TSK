@@ -94,28 +94,19 @@ TODAY:
 
 
 
-Overworld Screen ++
-
-removed scroll + animation from overworld screen.
-removed background rec, which defaulted to black.
-improved the clarity of how assets.colorScheme.background
-is used - it is only set to reference another color
-value in assets.colorScheme, and only by level 
-and overworld screens. overworld sets it's bkg color
-to light world bkg color upon load. migrated
-overworld screen to use overlay + displayState 
-instead of scroll.displayState to control screen 
-opening/closing.
-
-fixed a minor issue with hero not updating to reward state
-when player pressed A upon a level from overworld screen.
-now he raises his hands when the player selects a level.
-
-improved BuildLevel() to set background colors based on 
-level.isField boolean and level.type.
 
 
 
+Overworld++
+
+updated particle functions.update() to respect particles
+with a lifetime of 0 - they are treated as immortal and 
+are removed from the life counting routine, so they never
+get killed(), which solves a problem with the overworld
+screen: it spawned campfire and flag particles expecting 
+that they would live for the duration of the screen, but
+instead they were killed after only a few frames, leaving
+the overworld screen feeling lifeless.
 
 
 
