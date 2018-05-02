@@ -29,6 +29,12 @@ add animated floating clouds to the overworld screen
 
 
 
+quad black rectangle transitions
+4 black rectangles converge onto link, simulating Lttp's circular black transition
+between levels, etc.. 
+this will replace the level screen's overlay fading in/out
+
+
 
 
 

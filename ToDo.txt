@@ -95,29 +95,9 @@ TODAY:
 
 
 
+Mockups++
 
-
-
-
-
-Implement CameraTracking
-
-currently, the camera doesn't track the hero, altho
-in recent versions it has, and alot of work was put into
-making sure the game displayed pixel perfectly with a
-constantly moving camera. happy to say that camera tracking
-is now back in the game - but it's only limited to dungeons.
-overworld levels still require a stationary camera.
-
-camera tracking is available from the options menu.
-playtested, working great.
-
-removed unused code from Hero.SpawnInCurrentRoom().
-fixed minor visual bug where camera would 'fly in' after
-a level was loaded - which looked cool, but didn't really
-work because it would show bare parts of outdoor levels,
-and filling those areas so they would be seen once during
-'fly in' isn't a good use of those game resources.
+designed mockups for watermark and better debug info.
 
 
 
@@ -126,21 +106,29 @@ and filling those areas so they would be seen once during
 
 
 
+option to display watermark / github address next to input display
 
-
-
-
-
-
-
-
-
-
-
-
-option to display watermark / github address footer
+this is just text against a black background
++ we should already have all this info
 
 menuItem for 'capture mode', displaying input and watermark
+
+
+
+
+
+the overworld screen
+is just a single texture, like normal
+but now it doesn't have a scroll background.
+instead the screen opens and closes using fade rec, just like level screen
+
+
+
+
+
+
+
+
 
 
 
@@ -153,27 +141,10 @@ move the net into the weapons section of inventory, because it maps to the X but
 
 
 
-IMPROVING THE GAME CAPTURING PROCESS
-- NEEDS A FOOTER WATERMARK (SO WE DONT HAVE TO ADD ONE LATER)
-- THIS IS GITHUB ADDRESS
 
 
 
 
-
-quad black rectangle transitions
-4 black rectangles converge onto link, simulating Lttp's circular black transition
-between levels, etc.. 
-this will replace the level screen's overlay fading in/out
-
-
-
-
-the overworld
-is just a single texture, like normal
-but now it doesn't have a scroll background.
-instead the screen opens and closes using the quad black rectangle, 
-just like level screen
 
 
 
@@ -191,7 +162,7 @@ just like level screen
 
 0.7 polish
 
-- also need the github address burned into the bottom of the screen
+- also need the github address burned into screen
 - this fixes the capturing process, since we can now record + upload with obs
 
 - fix sounds (all sounds should 'sound' right, including the boomerang)
