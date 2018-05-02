@@ -330,6 +330,7 @@ namespace DungeonRun
 
         static InputDisplay()
         {
+            //bkgs
             directionalBkg = new List<ComponentSprite>();
             buttonBkg = new List<ComponentSprite>();
             for (int i = 0; i < 4; i++)
@@ -343,9 +344,152 @@ namespace DungeonRun
                     AnimationFrames.Ui_QuadBkg[0],
                     new Point(16, 16)));
             }
-
             Functions_Component.MoveQuadBkg(directionalBkg, 16 * 2 - 6, 16 * 2 - 6);
             Functions_Component.MoveQuadBkg(buttonBkg, 16 * 4 - 6, 16 * 2 - 6);
+
+
+            #region Directions
+
+            directions = new List<ComponentSprite>();
+            for (int i = 0; i < 4; i++)
+            {
+                directions.Add(new ComponentSprite(Assets.uiItemsSheet,
+                    new Vector2(0, 0),
+                    AnimationFrames.Input_Arrow_Unselected[0],
+                    new Point(8, 8)));
+            }
+
+            //up - position and rotate the sprites
+            directions[0].position.X = 16 * 2 + 1;
+            directions[0].position.Y = 16 * 2 - 6;
+            directions[0].rotation = Rotation.Clockwise270;
+            //right
+            directions[1].position.X = directions[0].position.X + 7 + 2;
+            directions[1].position.Y = directions[0].position.Y + 7 - 0;
+            //down
+            directions[2].position.X = directions[0].position.X + 0 + 2;
+            directions[2].position.Y = directions[0].position.Y + 14 + 2;
+            directions[2].rotation = Rotation.Clockwise90;
+            //left
+            directions[3].position.X = directions[0].position.X - 7;
+            directions[3].position.Y = directions[0].position.Y + 7 + 2;
+            directions[3].rotation = Rotation.Clockwise180;
+
+            #endregion
+
+
+            #region Buttons
+
+            buttons = new List<ComponentSprite>();
+            for (int i = 0; i < 5; i++)
+            {
+                buttons.Add(new ComponentSprite(Assets.uiItemsSheet,
+                    new Vector2(0, 0),
+                    AnimationFrames.Input_ButtonA_Unselected[0],
+                    new Point(8, 8)));
+            }
+
+            //setup A button
+            buttons[0].position.X = 16 * 4 + 2;
+            buttons[0].position.Y = 16 * 2 + 7;
+            buttons[0].currentFrame = AnimationFrames.Input_ButtonA_Unselected[0];
+
+            //setup X button
+            buttons[1].position.X = buttons[0].position.X - 6;
+            buttons[1].position.Y = buttons[0].position.Y - 6;
+            buttons[1].currentFrame = AnimationFrames.Input_ButtonX_Unselected[0];
+
+            //setup Y button
+            buttons[2].position.X = buttons[0].position.X - 0;
+            buttons[2].position.Y = buttons[0].position.Y - 12;
+            buttons[2].currentFrame = AnimationFrames.Input_ButtonY_Unselected[0];
+
+            //setup B button
+            buttons[3].position.X = buttons[0].position.X + 6;
+            buttons[3].position.Y = buttons[0].position.Y - 6;
+            buttons[3].currentFrame = AnimationFrames.Input_ButtonB_Unselected[0];
+
+            //setup start button
+            buttons[4].position.X = 16 * 2 + 2;
+            buttons[4].position.Y = 16 * 2 + 1;
+            buttons[4].currentFrame = AnimationFrames.Input_ButtonStart_Unselected[0];
+
+            #endregion
+
+        }
+
+        public static void ReadController()
+        {
+
+            #region Directions
+
+            //reset all to unselected
+            directions[0].currentFrame = AnimationFrames.Input_Arrow_Unselected[0];
+            directions[1].currentFrame = AnimationFrames.Input_Arrow_Unselected[0];
+            directions[2].currentFrame = AnimationFrames.Input_Arrow_Unselected[0];
+            directions[3].currentFrame = AnimationFrames.Input_Arrow_Unselected[0];
+
+            //directions = up, right, down, left
+
+            //handle cardinals
+            if (Input.gamePadDirection == Direction.Up)
+            { directions[0].currentFrame = AnimationFrames.Input_Arrow_Selected[0]; }
+            else if (Input.gamePadDirection == Direction.Right)
+            { directions[1].currentFrame = AnimationFrames.Input_Arrow_Selected[0]; }
+            else if (Input.gamePadDirection == Direction.Down)
+            { directions[2].currentFrame = AnimationFrames.Input_Arrow_Selected[0]; }
+            else if (Input.gamePadDirection == Direction.Left)
+            { directions[3].currentFrame = AnimationFrames.Input_Arrow_Selected[0]; }
+
+            //handle dialgonals
+            else if (Input.gamePadDirection == Direction.UpRight)
+            {
+                directions[0].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
+                directions[1].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
+            }
+            else if (Input.gamePadDirection == Direction.UpLeft)
+            {
+                directions[0].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
+                directions[3].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
+            }
+
+            else if (Input.gamePadDirection == Direction.DownRight)
+            {
+                directions[2].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
+                directions[1].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
+            }
+            else if (Input.gamePadDirection == Direction.DownLeft)
+            {
+                directions[2].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
+                directions[3].currentFrame = AnimationFrames.Input_Arrow_Selected[0];
+            }
+
+            #endregion
+
+
+            #region Buttons
+
+            //reset all to unselected
+            buttons[0].currentFrame = AnimationFrames.Input_ButtonA_Unselected[0];
+            buttons[1].currentFrame = AnimationFrames.Input_ButtonX_Unselected[0];
+            buttons[2].currentFrame = AnimationFrames.Input_ButtonY_Unselected[0];
+            buttons[3].currentFrame = AnimationFrames.Input_ButtonB_Unselected[0];
+            buttons[4].currentFrame = AnimationFrames.Input_ButtonStart_Unselected[0];
+
+            //buttons = A, X, Y, B, Start
+            if(Functions_Input.IsNewButtonPress(Buttons.A))
+            { buttons[0].currentFrame = AnimationFrames.Input_ButtonA_Selected[0]; }
+            if (Functions_Input.IsNewButtonPress(Buttons.X))
+            { buttons[1].currentFrame = AnimationFrames.Input_ButtonX_Selected[0]; }
+            if (Functions_Input.IsNewButtonPress(Buttons.Y))
+            { buttons[2].currentFrame = AnimationFrames.Input_ButtonY_Selected[0]; }
+            if (Functions_Input.IsNewButtonPress(Buttons.B))
+            { buttons[3].currentFrame = AnimationFrames.Input_ButtonB_Selected[0]; }
+            if (Functions_Input.IsNewButtonPress(Buttons.Start))
+            { buttons[4].currentFrame = AnimationFrames.Input_ButtonStart_Selected[0]; }
+
+            #endregion
+
         }
     }
 

@@ -380,8 +380,29 @@ namespace DungeonRun
         public static List<Byte4> Ui_Hand_Point = new List<Byte4> { new Byte4(10, 3, 0, 0) };
         public static List<Byte4> Ui_Hand_Press = new List<Byte4> { new Byte4(11, 3, 0, 0) };
 
-        //game ui
+        //input display
+        public static List<Byte4> Input_Arrow_Selected = new List<Byte4> { new Byte4(7 * 2, 0, 0, 0) };
+        public static List<Byte4> Input_Arrow_Unselected = new List<Byte4> { new Byte4(8 * 2 + 1, 0, 0, 0) };
 
+        public static List<Byte4> Input_ButtonA_Selected = new List<Byte4> { new Byte4(6 * 2, 0, 0, 0) };
+        public static List<Byte4> Input_ButtonA_Unselected = new List<Byte4> { new Byte4(7 * 2 + 1, 0, 0, 0) };
+
+        public static List<Byte4> Input_ButtonB_Selected = new List<Byte4> { new Byte4(6 * 2 + 1, 0, 0, 0) };
+        public static List<Byte4> Input_ButtonB_Unselected = new List<Byte4> { new Byte4(8 * 2, 0, 0, 0) };
+
+        public static List<Byte4> Input_ButtonX_Selected = new List<Byte4> { new Byte4(6 * 2, 1, 0, 0) };
+        public static List<Byte4> Input_ButtonX_Unselected = new List<Byte4> { new Byte4(7 * 2 + 1, 1, 0, 0) };
+
+        public static List<Byte4> Input_ButtonY_Selected = new List<Byte4> { new Byte4(6 * 2 + 1, 1, 0, 0) };
+        public static List<Byte4> Input_ButtonY_Unselected = new List<Byte4> { new Byte4(8 * 2, 1, 0, 0) };
+
+        public static List<Byte4> Input_ButtonStart_Selected = new List<Byte4> { new Byte4(7 * 2, 1, 0, 0) };
+        public static List<Byte4> Input_ButtonStart_Unselected = new List<Byte4> { new Byte4(8 * 2 + 1, 1, 0, 0) };
+
+
+
+
+        //game ui
         public static List<Byte4> Ui_QuadBkg = new List<Byte4> { new Byte4(4, 1, 0, 0) };
 
         public static List<Byte4> Ui_MenuItem_InventoryGold = new List<Byte4>

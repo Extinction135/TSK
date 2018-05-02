@@ -80,6 +80,9 @@ namespace DungeonRun
             {
                 Functions_Draw.Draw(InputDisplay.directionalBkg);
                 Functions_Draw.Draw(InputDisplay.buttonBkg);
+                InputDisplay.ReadController(); //set directions+buttons b4 draw
+                Functions_Draw.Draw(InputDisplay.directions);
+                Functions_Draw.Draw(InputDisplay.buttons);
             }
             //draw watermark/etc..
             spriteBatch.End();

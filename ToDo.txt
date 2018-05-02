@@ -96,62 +96,19 @@ TODAY:
 
 Implement Input Display
 
-removed unused code for menuItem options.
-linked options screen up to draw input menuItem.
-playtested, working as expected.
+created animFrames for input arrow selected and unselected.
+positioned & rotated input arrows, with playtests.
+
+created animFrames for all input buttons.
+positioned & aligned buttons, with playtests.
+
+created method ReadController() in InputDisplay,
+called from ScreenManager.Draw(). this completes
+implementation of input display.
+playtested, looking / working great.
 
 
 
-
-
-
-Implement Input Display
-
-draw the down state dirs + buttons
-link input to selected state
-
-*how many frames does this activation happen for? a single frame?
-
-
-
-
-
-
-
-
-
-
-*we could also add a frame counter right next to button input, showing fps
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Controller Input Display Widget
-
-this is link to from the options screen, which is available from title / inv screens
-
-black bkg, with arrows and btn input, tied per frame to controller.
-this fits into screen manager, so we can see the input everywhere on all screens
-
-display the input widget from the input ctrls screen, via menuItem
-
-where does the input widget sit positionally?
-we need to update the mockups to match what we have in game
 
 
 

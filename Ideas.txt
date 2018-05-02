@@ -23,7 +23,7 @@ add animated floating clouds to the overworld screen
 
 
 
-
+*we could also add a frame counter right next to button input, showing fps
 
 
 
