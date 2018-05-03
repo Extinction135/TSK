@@ -93,17 +93,6 @@ TODAY:
 
 
 
-Explosions ++
-
-added debris objects (stationary, persistent, from level sheet).
-updated obj.kill with boolean for releasing() or converting passed
-obj to world debris. world debris is randomly selected from 2 
-possible sprites. updated explosive barrels to become debris
-upon activation, while still creating the exploding barrel
-that i know and love.
-
-explosions now destroy bookcases, shelves, and tables.
-playtested, working great.
 
 
 
@@ -111,12 +100,25 @@ playtested, working great.
 
 
 
+Tree -> Stump SoundFx ++
+
+when we change trees to stumps, we should be playing 
+shatter and bush sfx. right now, nothing plays and 
+it's very underwhelming. fixed and tested.
 
 
-when we change trees to stumps, we should be playing shatter and bush sfx.
 
 
 
+
+
+
+
+
+
+explosions should push bomb projectiles.
+it would be so easy, and it would make bomb projectiles feel alive!
+placing bombs next to one another would be unpredictable past 2-3 interactions
 
 
 

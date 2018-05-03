@@ -77,6 +77,9 @@ namespace DungeonRun
             //rarely spawn loot
             if (Functions_Random.Int(0, 101) > 90)
             { Functions_Loot.SpawnLoot(Tree.compSprite.position); }
+            //play various sfx
+            Assets.Play(Assets.sfxShatter);
+            Assets.Play(Assets.sfxBushCut);
         }
 
     }
