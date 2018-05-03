@@ -160,7 +160,10 @@ namespace DungeonRun
                 ObjType.ProjectileExplodingBarrel,
                 Barrel.compMove,
                 Barrel.compMove.direction); //pushed based on this direction
-            Functions_Pool.Release(Barrel);
+
+            //we can release the barrel, or convert it to debris
+            //Functions_Pool.Release(Barrel);
+            Functions_GameObject.SetType(Barrel, ObjType.Wor_Debris);
         }
         
         public static void DragIntoPit(GameObject Object, GameObject Pit)

@@ -172,8 +172,13 @@ namespace DungeonRun
         public static List<Byte4> World_Flowers = new List<Byte4>
         { new Byte4(4, 4, 0, 0), new Byte4(5, 4, 0, 0), new Byte4(6, 4, 0, 0), new Byte4(7, 4, 0, 0) };
 
-        public static List<Byte4> World_TableStone = new List<Byte4> { new Byte4(5, 6, 0, 0) };
 
+        //debris
+        public static List<Byte4> World_Debris1 = new List<Byte4> { new Byte4(3, 3, 0, 0) };
+        public static List<Byte4> World_Debris2 = new List<Byte4> { new Byte4(4, 3, 0, 0) };
+
+        //interior building objs
+        public static List<Byte4> World_TableStone = new List<Byte4> { new Byte4(5, 6, 0, 0) };
         public static List<Byte4> World_Bookcase = new List<Byte4> { new Byte4(4, 7, 0, 0) };
         public static List<Byte4> World_Shelf = new List<Byte4> { new Byte4(5, 7, 0, 0) };
 

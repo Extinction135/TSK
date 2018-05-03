@@ -425,7 +425,7 @@ namespace DungeonRun
                             }
                             else if (RoomObj.type == ObjType.Dungeon_Statue)
                             {   //explosions destroy statues
-                                Functions_GameObject.Kill(RoomObj, true);
+                                Functions_GameObject.Kill(RoomObj, true, true);
                             }
                             else if(RoomObj.type == ObjType.Dungeon_WallStraight)
                             {   //explosions 'crack' normal walls
@@ -441,7 +441,6 @@ namespace DungeonRun
                             {   //explosions light torches on fire
                                 Functions_GameObject_Dungeon.LightTorch(RoomObj);
                             }
-
                             else if(RoomObj.type == ObjType.Wor_Bush)
                             {   //set a ground fire ON the stump sprite
                                 Functions_Particle.Spawn(
@@ -449,19 +448,39 @@ namespace DungeonRun
                                     RoomObj.compSprite.position.X,
                                     RoomObj.compSprite.position.Y - 3);
                             }
-
                             else if(RoomObj.type == ObjType.Wor_Tree)
                             {
                                 Functions_GameObject_World.DestroyTree(RoomObj);
                             }
+
+
+                            else if(RoomObj.type == ObjType.Wor_Bookcase
+                                || RoomObj.type == ObjType.Wor_Shelf
+                                || RoomObj.type == ObjType.Wor_TableStone)
+                            {
+                                //pop attention and ground fire
+                                Functions_Particle.Spawn(
+                                    ObjType.Particle_Attention,
+                                    RoomObj.compSprite.position.X,
+                                    RoomObj.compSprite.position.Y);
+                                Functions_Particle.Spawn(
+                                    ObjType.Particle_FireGround,
+                                    RoomObj.compSprite.position.X,
+                                    RoomObj.compSprite.position.Y + 3);
+                                //convert to debris
+                                Functions_GameObject.SetType(RoomObj, ObjType.Wor_Debris);
+                                Assets.Play(Assets.sfxShatter);
+                            }
+
+
+
 
                             //explosions also trigger common obj interactions
                             Functions_GameObject.HandleCommon(RoomObj,
                                 //get the direction towards the roomObj from the explosion
                                 Functions_Direction.GetOppositeCardinal(
                                     RoomObj.compSprite.position,
-                                    Object.compSprite.position)
-                            ); //this direction should be explosion pos vs. roomObj pos
+                                    Object.compSprite.position)); 
 
                             //leave a 'burn mark' particle, with life 255
                             //this is just a darker spot on the ground that looks like a blast mark
@@ -637,7 +656,7 @@ namespace DungeonRun
                 {   
                     if(Object.type == ObjType.Dungeon_Statue)
                     {   //destroy boss statues and pop loot
-                        Functions_GameObject.Kill(Object, true);
+                        Functions_GameObject.Kill(Object, true, true);
                     }
                     else
                     {   //push obj in opposite direction and destroy it

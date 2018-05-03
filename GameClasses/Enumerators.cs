@@ -272,6 +272,9 @@ namespace DungeonRun
         Wor_Tree,
         Wor_Tree_Stump,
 
+        //debris
+        Wor_Debris,
+
         //Dungeon Entrances
         Wor_Entrance_ForestDungeon,
 

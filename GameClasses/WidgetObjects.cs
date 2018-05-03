@@ -222,7 +222,7 @@ namespace DungeonRun
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Wor_Tree);
             Functions_GameObject.SetType(objList[9], ObjType.Wor_Tree_Stump);
-            Functions_GameObject.SetType(objList[10], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[10], ObjType.Wor_Debris);
             Functions_GameObject.SetType(objList[11], ObjType.Unknown);
             
             //row 4

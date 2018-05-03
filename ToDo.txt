@@ -93,10 +93,17 @@ TODAY:
 
 
 
-Animated Flowers
+Explosions ++
 
-added animated flowers obj, 
-added these objects all over field levels.
+added debris objects (stationary, persistent, from level sheet).
+updated obj.kill with boolean for releasing() or converting passed
+obj to world debris. world debris is randomly selected from 2 
+possible sprites. updated explosive barrels to become debris
+upon activation, while still creating the exploding barrel
+that i know and love.
+
+explosions now destroy bookcases, shelves, and tables.
+playtested, working great.
 
 
 
@@ -106,15 +113,14 @@ added these objects all over field levels.
 
 
 
-add debris objects (stationary, persistent, from level sheet).
-objects that are exploded become debris objects.
+when we change trees to stumps, we should be playing shatter and bush sfx.
 
-explosions should be able to destroy bookcases, tables, etc..
-we should probably model 'explodable' as a boolean on the gameObj.
-this way we can just do a single boolean check, and stuff that into setType.
 
-anything that is explodable then becomes debris, once it explodes enough
-for example tree > stump > burn mark.
+
+
+
+
+should be able to unlight lit torches.
 
 
 loot should spawn centered to the obj that was destroyed.

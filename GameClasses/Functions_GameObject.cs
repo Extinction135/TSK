@@ -32,12 +32,12 @@ namespace DungeonRun
             if (RoomObj.type == ObjType.Dungeon_Pot)
             {
                 RoomObj.compMove.direction = HitDirection;
-                Kill(RoomObj, true);
+                Kill(RoomObj, true, true);
             }
             else if (RoomObj.type == ObjType.Wor_Pot)
             {
                 RoomObj.compMove.direction = HitDirection;
-                Kill(RoomObj, true);
+                Kill(RoomObj, true, true);
             }
             else if(RoomObj.type == ObjType.Wor_Bush)
             {
@@ -60,7 +60,7 @@ namespace DungeonRun
             }
         }
         
-        public static void Kill(GameObject Obj, Boolean spawnLoot)
+        public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
         {
             //pop an attention particle
             Functions_Particle.Spawn(
@@ -68,10 +68,13 @@ namespace DungeonRun
                 Obj.compSprite.position.X,
                 Obj.compSprite.position.Y);
 
-            //pop loot, soundfx, release
+            //pop loot & soundfx
             if (spawnLoot) { Functions_Loot.SpawnLoot(Obj.compSprite.position); }
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
-            Functions_Pool.Release(Obj);
+
+            if (becomeDebris) //should obj become debris or get released?
+            { SetType(Obj, ObjType.Wor_Debris); }
+            else { Functions_Pool.Release(Obj); }
         }
 
 
@@ -768,6 +771,29 @@ namespace DungeonRun
             }
 
 
+
+            #endregion
+
+
+            #region Debris
+
+            else if (Type == ObjType.Wor_Debris)
+            {
+                Obj.canBeSaved = true;
+                Obj.compSprite.zOffset = -24;
+                Obj.compCollision.blocking = false;
+                Obj.compMove.moveable = true;
+                Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
+                Obj.compCollision.rec.Width = 5; Obj.compCollision.rec.Height = 5;
+                //randomly choose animFrame
+                if (Functions_Random.Int(0, 100) < 50)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_Debris1; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.World_Debris2; }
+                //randomly flip sprite horizontally
+                if (Functions_Random.Int(0, 100) < 50)
+                { Obj.compSprite.flipHorizontally = true; }
+                else { Obj.compSprite.flipHorizontally = false; }
+            }
 
             #endregion
 
