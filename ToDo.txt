@@ -95,43 +95,49 @@ TODAY:
 
 
 
-
-
-
-
-
-Tree -> Stump SoundFx ++
-
-when we change trees to stumps, we should be playing 
-shatter and bush sfx. right now, nothing plays and 
-it's very underwhelming. fixed and tested.
-
-
-
-
-
-
-
-
-
-
-
-explosions should push bomb projectiles.
-it would be so easy, and it would make bomb projectiles feel alive!
-placing bombs next to one another would be unpredictable past 2-3 interactions
-
-
-
-should be able to unlight lit torches.
-
+Loot++
 
 loot should spawn centered to the obj that was destroyed.
+the issue was simply that pickups = loot, and pickups are 
+8x16 pixels, where most objs that spawn loot are 16x16, and 
+of course i wasn't adding in an x axis offset, so all loot
+spawned biased to the left. added an offset in for the x axis,
+playtested, looking great now.
+
+
+
+
+
+
+
 
 
 link walking on tall grass should create small grass at link's feet, partially hiding them.
 any grounded actor walking in tall grass should get "grassy feet".
 so this is a sprite that lives in the actor class, tracks to the actor's feet,
 and is only visible when actor is passively interacting with tall grass objs.
+
+
+
+
+
+Arrows++
+arrows should stick into objects until they expire from age.
+when the arrow hits an obj, the obj becomes the arrows caster,
+and arrow then tracks to it's caster with it's offset from obj (that frame).
+this will cause arrows to stick into objs, even objs that move.
+we can even switch this arrow projectile for a stuck arrow projectile,
+that is simply decoration (we must keep arrow as projectile so it can track to caster)
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -165,6 +171,19 @@ and is only visible when actor is passively interacting with tall grass objs.
 
 - can we 'reboot' in 1920x1080? can we have player input to set the size?
 on Dx, this is easy. on UWP, this is not so easy, but also doesn't matter terribly.
+this could be modeled as an enum value in flags: if(Flags.platform == Platform.DirectX)
+then we could handle rebooting the game into 1920x1080, or:
+1. set window size to match monitor display resolution, enable fullscreen
+2. scale game up x2, x3, x4, etc.. based on height + width available
+3. center the game's renderFrame / target to the window
+4. draw the game frame centered with black bars around it
+
+- this should make the game display as large as possible while still pixel
+perfect on all monitors / tvs / displays. 
+***can we do this from an options menu?***
+
+
+
 
 
 

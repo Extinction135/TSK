@@ -19,6 +19,11 @@ namespace DungeonRun
 
         public static void SpawnLoot(Vector2 Pos)
         {
+            //loot objs are 8x16
+            //usually the obj that spawned the loot is 16x16
+            //so we add an offset to center the loot to the obj
+            int offsetX = 5;
+
             dropRate = 40; //default 40% chance to drop loot
             //if hero has ring equipped, increase the loot drop rate to 70%
             if (Pool.hero.equipment == MenuItemType.EquipmentRing) { dropRate = 70; }
@@ -28,7 +33,7 @@ namespace DungeonRun
                 lootType = Functions_Random.Int(0, 1001);
                 //rare
                 if (lootType < 5) //0.5% chance
-                {   //spawn a fairy roomObj
+                {   //spawn a fairy roomObj, which is 16x16
                     GameObject Fairy = Functions_Pool.GetRoomObj();
                     Functions_GameObject.SetType(Fairy, ObjType.Dungeon_Fairy);
                     Functions_Movement.Teleport(Fairy.compMove, Pos.X, Pos.Y);
@@ -36,25 +41,26 @@ namespace DungeonRun
                 //uncommon
                 else if (lootType < 100) //10%
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Bomb, Pos.X, Pos.Y);
+                    Functions_Pickup.Spawn(ObjType.Pickup_Bomb, Pos.X + offsetX, Pos.Y);
                 }
                 else if (lootType < 200) //10%
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Arrow, Pos.X, Pos.Y);
+                    Functions_Pickup.Spawn(ObjType.Pickup_Arrow, Pos.X + offsetX, Pos.Y);
                 }
                 else if(lootType < 300) //10%
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Magic, Pos.X, Pos.Y);
+                    Functions_Pickup.Spawn(ObjType.Pickup_Magic, Pos.X + offsetX, Pos.Y);
                 }
                 //common
                 else if(lootType < 650)
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Heart, Pos.X, Pos.Y);
+                    Functions_Pickup.Spawn(ObjType.Pickup_Heart, Pos.X + offsetX, Pos.Y);
                 }
                 else
                 {
-                    Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Pos.X, Pos.Y);
+                    Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Pos.X + offsetX, Pos.Y);
                 }
+                
             }
         }
 

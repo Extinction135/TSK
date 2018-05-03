@@ -1,5 +1,13 @@
 
 
+explosions should push bomb projectiles.
+it would be so easy, and it would make bomb projectiles feel alive!
+placing bombs next to one another would be unpredictable past 2-3 interactions
+
+
+
+should be able to unlight lit torches.
+
 
 
 - implement picking up, carrying, throwing bushes, pots, skulls
