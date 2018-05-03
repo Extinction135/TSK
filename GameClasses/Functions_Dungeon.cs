@@ -157,7 +157,7 @@ namespace DungeonRun
             Functions_Room.BuildRoomXmlData(RoomXmlData);
             //add decorative objs and check for torches/switches/etc..
             ProcedurallyFinish(Functions_Level.currentRoom);
-            CheckForPuzzles(Functions_Level.currentRoom);
+            SetupPuzzle(Functions_Level.currentRoom);
         }
 
 
@@ -372,9 +372,6 @@ namespace DungeonRun
             #endregion
 
 
-            //always check any built room for puzzles
-            CheckForPuzzles(Room);
-
             //align + remove overlapping objs
             Functions_GameObject.AlignRoomObjs();
             Functions_Room.Cleanup(Room);
@@ -390,7 +387,7 @@ namespace DungeonRun
             }
         }
 
-        public static void CheckForPuzzles(Room Room)
+        public static void SetupPuzzle(Room Room)
         {   //this is called at the end of a room build
             int torchCount = 0;
 
@@ -404,11 +401,12 @@ namespace DungeonRun
                         Functions_GameObject_Dungeon.CloseDoors(); //convert all openDoors to trapDoors
                         return;
                     }
-                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit)
-                    { torchCount++; } //count all the unlit torches
+                    else if (Pool.roomObjPool[i].type == ObjType.Dungeon_TorchUnlit
+                        || Pool.roomObjPool[i].type == ObjType.Dungeon_TorchLit)
+                    { torchCount++; } //count all the lightable torches
                 }
             }
-            //check for more than 3 torches
+            //check for more than 3 torches, if 4 or more, then 4 need to be lit
             if (torchCount > 3)
             {   //convert all openDoors to trapDoors
                 Room.puzzleType = PuzzleType.Torches;

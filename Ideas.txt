@@ -6,7 +6,29 @@ placing bombs next to one another would be unpredictable past 2-3 interactions
 
 
 
-should be able to unlight lit torches.
+
+
+
+
+
+
+
+- can we 'reboot' in 1920x1080? can we have player input to set the size?
+on Dx, this is easy. on UWP, this is not so easy, but also doesn't matter terribly.
+this could be modeled as an enum value in flags: if(Flags.platform == Platform.DirectX)
+then we could handle rebooting the game into 1920x1080, or:
+1. set window size to match monitor display resolution, enable fullscreen
+2. scale game up x2, x3, x4, etc.. based on height + width available
+3. center the game's renderFrame / target to the window
+4. draw the game frame centered with black bars around it
+
+- this should make the game display as large as possible while still pixel
+perfect on all monitors / tvs / displays. 
+***can we do this from an options menu?***
+
+
+
+
 
 
 

@@ -869,20 +869,14 @@
     <ObjXmlData>
       <type>Dungeon_TorchLit</type>
       <direction>Down</direction>
-      <posX>24</posX>
+      <posX>152</posX>
       <posY>24</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_TorchLit</type>
       <direction>Down</direction>
       <posX>280</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchLit</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>24</posY>
+      <posY>151</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_TorchLit</type>

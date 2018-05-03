@@ -92,17 +92,26 @@ TODAY:
 
 
 
+Torches++
+
+should be able to unlight lit torches by pressing A on lit torch.
+why? well, if we limit the torch puzzle to requiring 4 torches to
+be lit, then we can fill a room up with lit torches and the player
+has to unlight them down to 4 to get out. so we have lighting +
+unlighting torches to solve torch puzzles / rooms.
+
+created UnlightTorch(). updated CountTorches() to require exactly
+4 lit torches in the entire room to return true.
+
+renamed some checkForPuzzles() to SetupPuzzle(Room), which more
+accurately defines what that method *actually* does.
+
+updated all roomData to work with new *only* 4 torches idea.
+essentially this pass was to make sure all torches (lit or unlit)
+were reachable by the hero. playtested, working as expected.
 
 
 
-Loot++
-
-loot should spawn centered to the obj that was destroyed.
-the issue was simply that pickups = loot, and pickups are 
-8x16 pixels, where most objs that spawn loot are 16x16, and 
-of course i wasn't adding in an x axis offset, so all loot
-spawned biased to the left. added an offset in for the x axis,
-playtested, looking great now.
 
 
 
@@ -111,6 +120,27 @@ playtested, looking great now.
 
 
 
+
+
+
+
+
+
+
+DungeonRooms++
+
+we should be storing if a puzzle room has been solved or not,
+with the dungeon room data (not room data / xml), the dungeon room list.
+we may need to add a boolean here to room, in order to track if hero has
+solved it. if so, then upon a room build, the trap doors should be opened.
+this adds a sense of progression to the dungeon as well.
+
+
+
+
+
+
+TallGrass++
 
 link walking on tall grass should create small grass at link's feet, partially hiding them.
 any grounded actor walking in tall grass should get "grassy feet".
@@ -122,6 +152,7 @@ and is only visible when actor is passively interacting with tall grass objs.
 
 
 Arrows++
+
 arrows should stick into objects until they expire from age.
 when the arrow hits an obj, the obj becomes the arrows caster,
 and arrow then tracks to it's caster with it's offset from obj (that frame).
@@ -169,18 +200,7 @@ that is simply decoration (we must keep arrow as projectile so it can track to c
 
 
 
-- can we 'reboot' in 1920x1080? can we have player input to set the size?
-on Dx, this is easy. on UWP, this is not so easy, but also doesn't matter terribly.
-this could be modeled as an enum value in flags: if(Flags.platform == Platform.DirectX)
-then we could handle rebooting the game into 1920x1080, or:
-1. set window size to match monitor display resolution, enable fullscreen
-2. scale game up x2, x3, x4, etc.. based on height + width available
-3. center the game's renderFrame / target to the window
-4. draw the game frame centered with black bars around it
 
-- this should make the game display as large as possible while still pixel
-perfect on all monitors / tvs / displays. 
-***can we do this from an options menu?***
 
 
 

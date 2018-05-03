@@ -167,7 +167,8 @@ namespace DungeonRun
         }
 
         public static Boolean CheckInteractionRecCollisions()
-        {   //set the interaction rec to the hero's position + direction
+        {   
+            //note this method happens once, on the frame player presses A button
             SetInteractionRec();
             collision = false;
             //check to see if the interactionRec collides with any gameObjects
@@ -181,7 +182,7 @@ namespace DungeonRun
                         Pool.hero.stateLocked = true;
                         Pool.hero.lockTotal = 10; //required to show the pickup animation
                         collision = true;
-                        //handle the hero interaction, may overwrites hero.lockTotal
+                        //handle the hero interaction, may overwrite hero.lockTotal
                         InteractRecWith(Pool.roomObjPool[i]);
                     }
                 }
@@ -309,6 +310,11 @@ namespace DungeonRun
             {   //light any unlit torch  //git lit *
                 Functions_GameObject_Dungeon.LightTorch(Obj);
             }
+            else if (Obj.type == ObjType.Dungeon_TorchLit)
+            {   //unlight any lit torch
+                Functions_GameObject_Dungeon.UnlightTorch(Obj);
+            }
+
             else if (Obj.type == ObjType.Dungeon_LeverOff || Obj.type == ObjType.Dungeon_LeverOn)
             {   //activate all lever objects (including lever), call attention to change
                 Functions_GameObject_Dungeon.ActivateLeverObjects();

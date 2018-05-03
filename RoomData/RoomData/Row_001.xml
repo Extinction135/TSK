@@ -3,6 +3,30 @@
   <type>Row</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_Statue</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Statue</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Statue</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Statue</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_SwitchBlockBtn</type>
       <direction>Down</direction>
       <posX>152</posX>
@@ -37,30 +61,6 @@
       <direction>Down</direction>
       <posX>184</posX>
       <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchLit</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchLit</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchLit</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchLit</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>

@@ -53,7 +53,7 @@ namespace DungeonRun
                 ObjType.Particle_Attention,
                 Switch.compSprite.position.X,
                 Switch.compSprite.position.Y);
-            OpenTrapDoors(); //open all trap doors
+            CheckForPuzzles(true); //solved room
         }
         
         public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
@@ -150,8 +150,8 @@ namespace DungeonRun
                     { torchCount++; } //count all the lit torches
                 }
             }
-            //check for more than 3 torches
-            if (torchCount > 3) { return true; } else { return false; }
+            //check for exactly 4 lit torches
+            if (torchCount == 4) { return true; } else { return false; }
         }
 
         public static void DestroyBarrel(GameObject Barrel)
@@ -222,6 +222,10 @@ namespace DungeonRun
             }
         }
 
+
+
+
+
         public static void LightTorch(GameObject UnlitTorch)
         {   //light the unlit torch
             Functions_GameObject.SetType(UnlitTorch, ObjType.Dungeon_TorchLit);
@@ -230,18 +234,52 @@ namespace DungeonRun
                 UnlitTorch.compSprite.position.X + 0,
                 UnlitTorch.compSprite.position.Y - 7);
             Assets.Play(Assets.sfxLightFire);
+            CheckForPuzzles(false); //may of solved room
+        }
 
-            //check to see if lighting this torch can solve the room's puzzle
+        public static void UnlightTorch(GameObject LitTorch)
+        {   //light the unlit torch
+            Functions_GameObject.SetType(LitTorch, ObjType.Dungeon_TorchUnlit);
+            Functions_Particle.Spawn(
+                ObjType.Particle_Attention,
+                LitTorch.compSprite.position.X + 0,
+                LitTorch.compSprite.position.Y - 7);
+            Assets.Play(Assets.sfxActorLand);
+            CheckForPuzzles(false); //may of solved room
+        }
+
+
+
+
+        public static void CheckForPuzzles(Boolean solved)
+        {
+            //check to see if hero has solved room
             if (Functions_Level.currentRoom.puzzleType == PuzzleType.Torches)
             {   //if the current room's puzzle type is Torches, check to see how many have been lit
                 if (CountTorches())
                 {   //enough torches have been lit to unlock this room / solve puzzle
+
+                    //right now, this can be spammed, if hero lights/unlights torch to get 4
+                    //we need to track if room has been 'solved' - store this in dungeon room list
                     Assets.Play(Assets.sfxReward); //should be secret sfx!!!
-                    OpenTrapDoors(); //open all the trap doors in the room
+                    OpenTrapDoors(); //open all the trap doors
+                }
+            }
+            else if(Functions_Level.currentRoom.puzzleType == PuzzleType.Switch)
+            {
+                if (solved)
+                {
+                    Assets.Play(Assets.sfxReward); 
+                    OpenTrapDoors(); //open all trap doors
                 }
             }
         }
-        
+
+
+
+
+
+
         public static void OpenTrapDoors()
         {
             Assets.Play(Assets.sfxSwitch);
