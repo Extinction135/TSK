@@ -90,50 +90,25 @@ they are always aligned to their obj/actor (altho this does pollute Draw)..
 TODAY:
 
 
-
-
-Torches++
-
-should be able to unlight lit torches by pressing A on lit torch.
-why? well, if we limit the torch puzzle to requiring 4 torches to
-be lit, then we can fill a room up with lit torches and the player
-has to unlight them down to 4 to get out. so we have lighting +
-unlighting torches to solve torch puzzles / rooms.
-
-created UnlightTorch(). updated CountTorches() to require exactly
-4 lit torches in the entire room to return true.
-
-renamed some checkForPuzzles() to SetupPuzzle(Room), which more
-accurately defines what that method *actually* does.
-
-updated all roomData to work with new *only* 4 torches idea.
-essentially this pass was to make sure all torches (lit or unlit)
-were reachable by the hero. playtested, working as expected.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 DungeonRooms++
 
-we should be storing if a puzzle room has been solved or not,
-with the dungeon room data (not room data / xml), the dungeon room list.
+we should be storing if a puzzle room has been solved or not.
 we may need to add a boolean here to room, in order to track if hero has
 solved it. if so, then upon a room build, the trap doors should be opened.
 this adds a sense of progression to the dungeon as well.
+
+*smart* if we build a puzzle room thats been visited before, DONT setup
+any puzzles in the room. the player has already solved this puzzle room.
+we can enable this option by adding a boolean to flags, something like 'oneTimePuzzles'.
+if we disable the boolean, then we call SetupPuzzles() at the end of a room build.
+adding this oneTimePuzzles idea is conceptually the beginning of 'hard mode',
+where room puzzles reset upon build.
+
+this needs to be added to the options screen, oneTimePuzzles.
+
+
+
+
 
 
 
@@ -165,10 +140,44 @@ that is simply decoration (we must keep arrow as projectile so it can track to c
 
 
 
+bush debris - hitting a bush should create leaves that travel in the direction of the hit
+leaves only last for a moment, then die
+blowing up a tree should create lots of leaves in random directions
+
+when player presses A on dialog screen entering dungeon, play door opening sound.
+this sound should not play when the hero spawns in the dungeon, where i think it does
+it plays after the dungeon is built?
+
+input polish
+when moving the joystick diagonally, the input *should* split evenly between up and say right.
+if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
+even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
+that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
+
+hero should spawn facing up in dungeon.
+hero should spawn facing down after exiting dungeon.
+
+the net should map to the Y button, after all, it IS an ITEM.
 
 
 
 
+
+
+
+Then we need to create the healers house, with the spawn point being the bed.
+we need a bed obj, building objs, healer npc (with dialog)
+
+then the proper death loop needs to be implmented in-game...
+
+death loop:
+if the hero is in game, then hero respawns at healers house.
+if the hero dies while the game is in editor mode, then the hero comes back to life.
+healer tells link that 'a mysterious stranger brought you here'.
+the idea being that queen zelda can sense his suffering and disguises herself in
+order to silently save him, to keep him on his path to her, as her plans intend, 
+so she remains in control of everything. this should be revealed at the end of the
+game, in the final dialogs.
 
 
 
@@ -212,72 +221,6 @@ that is simply decoration (we must keep arrow as projectile so it can track to c
 
 
 0.7 polish
-
-bush debris - hitting a bush should create leaves that travel in the direction of the hit
-leaves only last for a moment, then die
-blowing up a tree should create lots of leaves in random directions
-
-when player presses A on dialog screen entering dungeon, play door opening sound.
-this sound should not play when the hero spawns in the dungeon, where i think it does
-it plays after the dungeon is built?
-
-input polish
-when moving the joystick diagonally, the input *should* split evenly between up and say right.
-if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
-even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
-that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
-
-hero should spawn facing up in dungeon.
-hero should spawn facing down after exiting dungeon.
-
-the net should map to the Y button, after all, it IS an ITEM.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Then we need to create the healers house, with the spawn point being the bed.
-we need a bed obj too!
-
-then the proper death loop needs to be implmented in-game...
-
-death loop:
-if the hero is in game, then hero respawns at healers house.
-if the hero dies while the game is in editor mode, then the hero comes back to life.
-healer tells link that 'a mysterious stranger brought you here'.
-the idea being that queen zelda can sense his suffering and disguises herself in
-order to silently save him, to keep him on his path to her, as her plans intend, 
-so she remains in control of everything. this should be revealed at the end of the
-game, in the final dialogs.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
