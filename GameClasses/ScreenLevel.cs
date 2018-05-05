@@ -133,12 +133,22 @@ namespace DungeonRun
                     if(Level.isField == false & Flags.CameraTracksHero)
                     {
                         Camera2D.tracks = false; //teleport to/follow hero
-                        Camera2D.targetPosition = Pool.hero.compSprite.position;
+                        Camera2D.targetPosition.X = Pool.hero.compSprite.position.X;
+                        Camera2D.targetPosition.Y = Pool.hero.compSprite.position.Y;
                     }
                     else
                     {   //center camera to current room
                         Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
-                        Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y + 8;
+                        Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y;
+                        //slightly track the hero (stay mostly centered on room)
+                        if (Flags.CameraTracksHero)
+                        {
+                            Camera2D.targetPosition.X -= 
+                                (Functions_Level.currentRoom.center.X - Pool.hero.compSprite.position.X) * 0.25f;
+                            Camera2D.targetPosition.Y -= 
+                                (Functions_Level.currentRoom.center.Y - Pool.hero.compSprite.position.Y) * 0.25f;
+                        }
+                        
                         Camera2D.tracks = true; //wait until room change, then move
                     }
                     

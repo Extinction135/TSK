@@ -90,21 +90,51 @@ they are always aligned to their obj/actor (altho this does pollute Draw)..
 TODAY:
 
 
-DungeonRooms++
 
-we should be storing if a puzzle room has been solved or not.
-we may need to add a boolean here to room, in order to track if hero has
-solved it. if so, then upon a room build, the trap doors should be opened.
-this adds a sense of progression to the dungeon as well.
 
-*smart* if we build a puzzle room thats been visited before, DONT setup
-any puzzles in the room. the player has already solved this puzzle room.
+
+
+
+
+
+CameraTracking++
+
+adding routine to Level Screen that allows for camera tracking
+on field / overworld levels, making them feel a little bigger,
+and making the camera feel more alive (than a still one).
+linked this routine up to check the Flags.CameraTracksHero boolean,
+which integrates this addition into the TrackCam menuItem from
+Options Screen. playtested, working as expected.
+
+
+
+
+
+
+
+
+
+when we change rooms, we reset the particle pool (hopefully)
+when we call that reset, we should be resetting ALL particles,
+even ones that are alive currently.
+
+
+
+Hardmode
+
+we need the option to re-enable puzzles for hard mode. this means progression
+thru the dungeon isn't tracked, and puzzle rooms reset upon entering them.
+
 we can enable this option by adding a boolean to flags, something like 'oneTimePuzzles'.
 if we disable the boolean, then we call SetupPuzzles() at the end of a room build.
 adding this oneTimePuzzles idea is conceptually the beginning of 'hard mode',
 where room puzzles reset upon build.
 
 this needs to be added to the options screen, oneTimePuzzles.
+
+
+
+
 
 
 
