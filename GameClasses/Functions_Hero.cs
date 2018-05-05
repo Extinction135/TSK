@@ -64,8 +64,8 @@ namespace DungeonRun
                         if (heroRec.Intersects(Level.rooms[i].rec))
                         {
                             Functions_Level.currentRoom = Level.rooms[i];
-                            Level.rooms[i].visited = true;
                             Functions_Room.BuildRoom(Level.rooms[i]);
+                            Level.rooms[i].visited = true;
                         }
                     }
                 }

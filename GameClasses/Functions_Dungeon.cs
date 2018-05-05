@@ -157,7 +157,11 @@ namespace DungeonRun
             Functions_Room.BuildRoomXmlData(RoomXmlData);
             //add decorative objs and check for torches/switches/etc..
             ProcedurallyFinish(Functions_Level.currentRoom);
-            SetupPuzzle(Functions_Level.currentRoom);
+
+            //if this room hasn't been visited, setup any puzzle it contains
+            if (!Functions_Level.currentRoom.visited)
+            { SetupPuzzle(Functions_Level.currentRoom); }
+            
         }
 
 

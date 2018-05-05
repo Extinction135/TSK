@@ -109,7 +109,8 @@ this needs to be added to the options screen, oneTimePuzzles.
 
 
 
-
+on field levels, the camera's target should be between the center of the room and the hero
+this will allow the camera to move around a little bit, but not too much
 
 
 
