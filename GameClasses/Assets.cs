@@ -190,7 +190,7 @@ namespace DungeonRun
             uiItemsSheet = content.Load<Texture2D>(@"UiItemsSheet");
 
             //load all roomData
-            Functions_Backend.LoadAllRoomData();
+            //Functions_Backend.LoadAllRoomData();
 
 
             #region Create Music instances

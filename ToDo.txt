@@ -93,18 +93,37 @@ TODAY:
 
 
 
+UWP Development++
+
+tested uwp project, working on pc + xbox one (via visual studio to dev mode).
+prepped two files for 3rd party testing, one with xml loading and one without.
+updated UWP project to use current sprites and sounds too.
+hopefully that gives the project prgasus dev something that works and we can 
+move forward with figuring all this sideloading game business out.
 
 
 
 
-CameraTracking++
 
-adding routine to Level Screen that allows for camera tracking
-on field / overworld levels, making them feel a little bigger,
-and making the camera feel more alive (than a still one).
-linked this routine up to check the Flags.CameraTracksHero boolean,
-which integrates this addition into the TrackCam menuItem from
-Options Screen. playtested, working as expected.
+
+
+
+
+XML TO CS converter
+convert xml to roomData stored in a .cs file, linked to from both projects.
+all roomData is then loaded from this .cs file, which will likely be thousands of lines long.
+this would be part of editor, a button to update the cs/roomData.
+we would still be developing rooms using xml data.
+but upon a build, the game would pull all roomData from the cs file, which
+should be a global class, like RoomData, that contains all the rooms.
+the rooms must have proper id and obj lists. and there will be many of them (eventually).
+this may actually be a better way to manage the rooms and levels, because we
+can debug trace the cs file in visual studio to ensure it's syntax - something
+we can't do with external xml (instead we just get: error at xml file 20,2).
+
+
+
+
 
 
 
@@ -117,6 +136,11 @@ Options Screen. playtested, working as expected.
 when we change rooms, we reset the particle pool (hopefully)
 when we call that reset, we should be resetting ALL particles,
 even ones that are alive currently.
+
+
+
+
+
 
 
 
@@ -133,14 +157,6 @@ where room puzzles reset upon build.
 this needs to be added to the options screen, oneTimePuzzles.
 
 
-
-
-
-
-
-
-on field levels, the camera's target should be between the center of the room and the hero
-this will allow the camera to move around a little bit, but not too much
 
 
 
