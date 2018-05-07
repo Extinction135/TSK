@@ -91,24 +91,6 @@ TODAY:
 
 
 
-
-
-UWP Development++
-
-tested uwp project, working on pc + xbox one (via visual studio to dev mode).
-prepped two files for 3rd party testing, one with xml loading and one without.
-updated UWP project to use current sprites and sounds too.
-hopefully that gives the project prgasus dev something that works and we can 
-move forward with figuring all this sideloading game business out.
-
-
-
-
-
-
-
-
-
 XML TO CS converter
 convert xml to roomData stored in a .cs file, linked to from both projects.
 all roomData is then loaded from this .cs file, which will likely be thousands of lines long.
