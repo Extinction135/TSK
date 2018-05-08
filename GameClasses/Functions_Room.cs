@@ -57,18 +57,6 @@ namespace DungeonRun
             Room.rec.Width = Room.size.X * 16;
             Room.rec.Height = Room.size.Y * 16;
         }
-        
-        public static void SetRoomXMLid(Room Room)
-        {   //based on the room type, set the xml value between 0 and relative xmlRoomData list count
-            int count = 1;
-            if (Room.roomID == RoomID.Boss) { count = Assets.roomDataBoss.Count; }
-            else if (Room.roomID == RoomID.Column) { count = Assets.roomDataColumn.Count; }
-            else if (Room.roomID == RoomID.Hub) { count = Assets.roomDataHub.Count; }
-            else if (Room.roomID == RoomID.Key) { count = Assets.roomDataKey.Count; }
-            else if (Room.roomID == RoomID.Row) { count = Assets.roomDataRow.Count; }
-            else if (Room.roomID == RoomID.Square) { count = Assets.roomDataSquare.Count; }
-            Room.XMLid = Functions_Random.Int(0, count);
-        }
 
         public static void MoveRoom(Room Room, int X, int Y)
         {
@@ -148,26 +136,42 @@ namespace DungeonRun
                 //assume level is dungeon level
                 Level.isField = false;
 
-                //set null roomData based on roomID
-                if (Room.roomID == RoomID.Key) { RoomXmlData = Assets.roomDataKey[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Hub) { RoomXmlData = Assets.roomDataHub[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Boss) { RoomXmlData = Assets.roomDataBoss[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Column) { RoomXmlData = Assets.roomDataColumn[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Row) { RoomXmlData = Assets.roomDataRow[Room.XMLid]; }
-                else if (Room.roomID == RoomID.Square) { RoomXmlData = Assets.roomDataSquare[Room.XMLid]; }
+                //setup overworld level data
+                if (Room.roomID == RoomID.Colliseum)
+                { RoomXmlData = LevelData.Colliseum; Level.isField = true; }
+                else if (Room.roomID == RoomID.CastleEntrance)
+                { RoomXmlData = LevelData.CastleEntrance; Level.isField = true; }
 
-                else
-                {   //locate any in game rooms by their roomID / roomXmlData.type
-                    for (int i = 0; i < Assets.overworldLevels.Count; i++)
-                    {
-                        if (Room.roomID == Assets.overworldLevels[i].type)
-                        {
-                            RoomXmlData = Assets.overworldLevels[i];
-                            Level.isField = true; //overworld levels are fields
-                        }
-                    }
-                }
+                //setup dungeon room data
+                else if (Room.roomID == RoomID.Boss)
+                { RoomXmlData = RoomData.bossRooms[Functions_Random.Int(0, RoomData.bossRooms.Count)]; }
+                else if (Room.roomID == RoomID.Column)
+                { RoomXmlData = RoomData.columnRooms[Functions_Random.Int(0, RoomData.columnRooms.Count)]; }
+                //else if (Room.roomID == RoomID.Exit)
+                //{ RoomXmlData = RoomData.exitRooms[Functions_Random.Int(0, RoomData.exitRooms.Count)]; }
+                else if (Room.roomID == RoomID.Hub)
+                { RoomXmlData = RoomData.hubRooms[Functions_Random.Int(0, RoomData.hubRooms.Count)]; }
+                else if (Room.roomID == RoomID.Key)
+                { RoomXmlData = RoomData.keyRooms[Functions_Random.Int(0, RoomData.keyRooms.Count)]; }
+                else if (Room.roomID == RoomID.Row)
+                { RoomXmlData = RoomData.rowRooms[Functions_Random.Int(0, RoomData.rowRooms.Count)]; }
+                //else if (Room.roomID == RoomID.Secret)
+                //{ RoomXmlData = RoomData.secretRooms[Functions_Random.Int(0, RoomData.secretRooms.Count)]; }
+                else if (Room.roomID == RoomID.Square)
+                { RoomXmlData = RoomData.squareRooms[Functions_Random.Int(0, RoomData.squareRooms.Count)]; }
             }
+
+
+
+
+
+
+
+
+
+
+
+
 
             if (Room.roomID == RoomID.DEV_Boss || Room.roomID == RoomID.DEV_Column ||
                 Room.roomID == RoomID.DEV_Exit || Room.roomID == RoomID.DEV_Hub ||

@@ -109,6 +109,12 @@
     <Compile Include="..\..\GameClasses\Assets.cs">
       <Link>Classes\Assets.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\AssetsLevelData.cs">
+      <Link>Classes\AssetsLevelData.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GameClasses\AssetsRoomData.cs">
+      <Link>Classes\AssetsRoomData.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\DataClasses.cs">
       <Link>Classes\DataClasses.cs</Link>
     </Compile>

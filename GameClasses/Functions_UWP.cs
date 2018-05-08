@@ -23,6 +23,14 @@ namespace DungeonRun
 
 
 
+        public static void ConvertXMLtoCS()
+        {
+            //this method is disabled for UWP
+            //because UWP is basically disabled
+        }
+
+
+
         public static string GetRam()
         {   //get the ram footprint in mb
 			return "" + (MemoryManager.AppMemoryUsage / 1024 / 1024);
@@ -168,40 +176,6 @@ namespace DungeonRun
                 //build the loaded roomData
                 Widgets.RoomTools.BuildFromFile(Widgets.RoomTools.roomData);
             }
-        }
-
-        public static async void LoadAllRoomData()
-        {
-            StorageFolder appInstalledFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-
-            //find the RoomData folder
-            //var tryRoomData = appInstalledFolder.TryGetItemAsync("RoomData");
-            //if (tryRoomData != null) { } //roomData folder exists
-
-            //we dont know if the roomData folder exists (UWP deployment task may of overwritten it)
-            StorageFolder RoomDataFolder = await appInstalledFolder.GetFolderAsync("RoomData");
-            var roomDataFiles = await RoomDataFolder.GetFilesAsync();
-
-            if (Flags.PrintOutput) { Debug.WriteLine("loading room data - total:" + roomDataFiles.Count); }
-            for (int i = 0; i < roomDataFiles.Count; i++)
-            {
-                //if (Flags.PrintOutput) { Debug.WriteLine("filepath: " + roomDataFiles[i].Path); }
-                RoomXmlData RoomData = new RoomXmlData();
-                Stream stream = await roomDataFiles[i].OpenStreamForReadAsync();
-                using (stream)
-                { RoomData = (RoomXmlData)serializer.Deserialize(stream); }
-				
-                //place the loaded roomData into the correct Assets list
-                if (RoomData.type == RoomID.Boss) { Assets.roomDataBoss.Add(RoomData); }
-                else if (RoomData.type == RoomID.Column) { Assets.roomDataColumn.Add(RoomData); }
-                else if (RoomData.type == RoomID.Hub) { Assets.roomDataHub.Add(RoomData); }
-                else if (RoomData.type == RoomID.Key) { Assets.roomDataKey.Add(RoomData); }
-                else if (RoomData.type == RoomID.Row) { Assets.roomDataRow.Add(RoomData); }
-                else if (RoomData.type == RoomID.Square) { Assets.roomDataSquare.Add(RoomData); }
-				//if roomData isn't dungeon, then it defaults to overworld level list
-                else { Assets.overworldLevels.Add(RoomData); };
-            }
-			if (Flags.PrintOutput) { Functions_Debug.InspectRoomData(); }
         }
 
     }

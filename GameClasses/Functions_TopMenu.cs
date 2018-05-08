@@ -10,6 +10,11 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 
+using System.IO;
+
+
+
+
 namespace DungeonRun
 {
     public static class Functions_TopMenu
@@ -177,10 +182,8 @@ namespace DungeonRun
             #region F4 - ???
 
             if (Functions_Input.IsNewKeyPress(Keys.F4))
-            {   //dump savedata
-                //Inspect(PlayerData.current);
-
-                //ScreenManager.ExitAndLoad(new ScreenLevelEditor());
+            {
+                Functions_Backend.ConvertXMLtoCS();
             }
 
             #endregion

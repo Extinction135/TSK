@@ -386,8 +386,7 @@ namespace DungeonRun
             if (Flags.PrintOutput)
             {
                 Debug.WriteLine("finished " + Room.roomID +
-                    " room (id:" + Room.XMLid +
-                    ") in " + time.Ticks + " ticks");
+                    " room in " + time.Ticks + " ticks");
             }
         }
 

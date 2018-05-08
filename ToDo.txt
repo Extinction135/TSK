@@ -91,17 +91,61 @@ TODAY:
 
 
 
-XML TO CS converter
-convert xml to roomData stored in a .cs file, linked to from both projects.
-all roomData is then loaded from this .cs file, which will likely be thousands of lines long.
-this would be part of editor, a button to update the cs/roomData.
-we would still be developing rooms using xml data.
-but upon a build, the game would pull all roomData from the cs file, which
-should be a global class, like RoomData, that contains all the rooms.
-the rooms must have proper id and obj lists. and there will be many of them (eventually).
-this may actually be a better way to manage the rooms and levels, because we
-can debug trace the cs file in visual studio to ensure it's syntax - something
-we can't do with external xml (instead we just get: error at xml file 20,2).
+
+
+
+
+
+Release Version 0.7
+
+so, in order to get the game working as a UWP appX sideloaded game,
+the external roomdata xml needs to become internal binary. and once 
+that's done, we might as well release an official UWP version, because
+we're releasing an unofficial version to PP - which means we should also
+release a Dx version, so all platforms are treated fairly. ok. go.
+
+created AssetsRoomData.cs, which will contain all the room data in a c# format.
+linked the new method ConvertXMLtoCS() to editor's F4 button (change this later).
+completed a round trip from XML to CS back to VisualStudio to EXE for all outdoor levels.
+converted AssetsRoomData file to AssetsLevelData.
+Updated conversion to ignore dungeon rooms.
+this essentially completes the level side of conversion, now the room side.
+
+created AssetsRoomData (again).
+copied & modified the existing level conversion routine to work with roomData,
+which is different because there are many rooms of the same type, but only 1 
+level of each type. so rooms are sorted onto lists, and randomly a room is 
+selected from the correct type list (for example, when hero enters the boss
+room, the objects inside that room are built from a random roomData on bossList).
+confusing, yeah i know. but it works.
+
+cleaned up and organized Functions_Backend.ConvertXMLtoCS().
+
+updated game to use internal RoomData and LevelData classes instead
+of loading external xml into Assets.overworldLevels and misc dungeon roomData
+lists.. removed SetupXMLid(), since this is no longer used. removed
+Room.XMLid field as well.
+
+playtested: broke upon loading exit dungeon room, of which there are none. fixed.
+playtested: Dx version working, and dropped room build/finish times by between 50-75%.
+however, finish times were already around 1-4 ms - not really noticeable.
+now they're almost sub 1 ms (10,000 ticks), so that that's naisu.
+likely faster on the xbone too, so improvement for complexity.
+
+updated UWP project to use RoomData and LevelData classes,
+wrote blank ConvertXMLtoCS() method for UWP backend functions.
+playtested UWP, noticed an issue with hub room not spawning proper chest..
+
+switched to Dx project, updated hub room data to not have any empty chests. 
+there was a problem were empty chests were being saved to the hub room, which
+meant in game the hero couldn't get the dungeon's map. now hub has
+dark blocks instead of empty chests, and only 1 full chest.
+double checked key rooms have proper chests too, reconverted
+xml to cs using newly developed pipeline, switched back to UWP,
+playtested in release mode - hub rooms working fine. ready for release.
+
+exported Dx and UWP versions for 0.7.
+uploaded to dropbox. updated readme with links for 0.7.
 
 
 
@@ -109,6 +153,56 @@ we can't do with external xml (instead we just get: error at xml file 20,2).
 
 
 
+
+post to forum, with both links (try posting gif too)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Display Rating
+this is a menuItem that the player can select from the inventory screen
+the info widget displays the current savedata's rating (k/d)
 
 
 

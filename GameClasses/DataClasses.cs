@@ -16,7 +16,7 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
@@ -71,6 +71,7 @@ namespace DungeonRun
                 ShowEnemySpawns = false;
                 PrintOutput = false;
                 ShowDialogs = true;
+                DrawWatermark = false;
                 //cheats
                 Invincibility = false;
                 InfiniteMagic = false;
@@ -778,7 +779,6 @@ namespace DungeonRun
         public Boolean visited = false;
         public Byte2 size = new Byte2(0, 0); //in 16 pixel tiles
         public Point center = new Point(0, 0);
-        public int XMLid = 0; //index of xmlRoomData list used to build/finish room
         public RoomID roomID;
         public Vector2 spawnPos; //where hero can spawn in room (last door passed thru/exit)
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
@@ -788,7 +788,6 @@ namespace DungeonRun
             roomID = ID;
             Functions_Room.SetType(this, ID);
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
-            Functions_Room.SetRoomXMLid(this); //get random xml id value
             //center spawnpos to room
             spawnPos = new Vector2(Pos.X + rec.Width / 2, Pos.Y + rec.Height / 2);
         }

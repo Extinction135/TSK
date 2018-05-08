@@ -217,17 +217,15 @@ namespace DungeonRun
 
         public static void InspectRoomData()
         {
+            int total = 0;
             String output = "";
-            output += "" + Assets.roomDataBoss.Count + "boss..";
-            output += "" + Assets.roomDataColumn.Count + "clmn..";
-            output += "" + Assets.roomDataHub.Count + "hub..";
-            output += "" + Assets.roomDataKey.Count + "key..";
-            output += "" + Assets.roomDataRow.Count + "row..";
-            output += "" + Assets.roomDataSquare.Count + "sqr..";
-            output += "total: " +
-                (Assets.roomDataBoss.Count + Assets.roomDataColumn.Count +
-                Assets.roomDataHub.Count + Assets.roomDataKey.Count +
-                Assets.roomDataRow.Count + Assets.roomDataSquare.Count);
+            output += "" + RoomData.bossRooms.Count + "boss.."; total += RoomData.bossRooms.Count;
+            output += "" + RoomData.columnRooms.Count + "clmn.."; total += RoomData.columnRooms.Count;
+            output += "" + RoomData.hubRooms.Count + "hub.."; total += RoomData.hubRooms.Count;
+            output += "" + RoomData.keyRooms.Count + "key.."; total += RoomData.keyRooms.Count;
+            output += "" + RoomData.rowRooms.Count + "row.."; total += RoomData.rowRooms.Count;
+            output += "" + RoomData.squareRooms.Count + "sqr.."; total += RoomData.squareRooms.Count;
+            output += "total: " + total;
             Debug.WriteLine(output);
         }
 

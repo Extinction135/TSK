@@ -117,18 +117,17 @@ namespace DungeonRun
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
 
-            //silently load autosave file
-            //Functions_Backend.LoadGame(GameFile.Game1, false);
-            //Functions_Backend.LoadGame(GameFile.Game2, false);
-            //Functions_Backend.LoadGame(GameFile.Game3, false);
-            //Functions_Backend.LoadGame(GameFile.AutoSave, false);
+            //silently load autosave file (saving enabled)
+            Functions_Backend.LoadGame(GameFile.Game1, false);
+            Functions_Backend.LoadGame(GameFile.Game2, false);
+            Functions_Backend.LoadGame(GameFile.Game3, false);
+            Functions_Backend.LoadGame(GameFile.AutoSave, false);
 
-            //we'll need player data to fake it
-            PlayerData.current = new SaveData();
-            PlayerData.game1 = new SaveData();
-            PlayerData.game2 = new SaveData();
-            PlayerData.game3 = new SaveData();
-
+            //we'll need player data to fake it (saving disabled)
+            //PlayerData.current = new SaveData();
+            //PlayerData.game1 = new SaveData();
+            //PlayerData.game2 = new SaveData();
+            //PlayerData.game3 = new SaveData();
         }
 
         public override void HandleInput(GameTime GameTime)
