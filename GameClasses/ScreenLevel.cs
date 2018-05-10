@@ -117,7 +117,8 @@ namespace DungeonRun
                     else if (exitAction == ExitAction.Level)
                     { ScreenManager.ExitAndLoad(new ScreenLevel()); }
 
-                    Debug.WriteLine("exit action for level screen: " + exitAction);
+                    if (Flags.PrintOutput)
+                    { Debug.WriteLine("exit action for level screen: " + exitAction); }
                 }
 
                 #endregion
@@ -130,8 +131,9 @@ namespace DungeonRun
                     Functions_WorldUI.Update();
 
 
+                    #region Track Hero in Fields and Dungeons
 
-                    if(Level.isField)
+                    if (Level.isField)
                     {
                         //center camera to field
                         Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
@@ -159,39 +161,8 @@ namespace DungeonRun
                         }
                     }
 
-
-
-
-                    /*
-                    //lock cam to room, or track hero (only in dungeons)
-                    if(Level.isField == false & Flags.CameraTracksHero)
-                    {
-                        Camera2D.tracks = false; //teleport to/follow hero
-                        Camera2D.targetPosition.X = Pool.hero.compSprite.position.X;
-                        Camera2D.targetPosition.Y = Pool.hero.compSprite.position.Y;
-                    }
-                    else
-                    {   //center camera to current room
-                        Camera2D.targetPosition.X = Functions_Level.currentRoom.center.X;
-                        Camera2D.targetPosition.Y = Functions_Level.currentRoom.center.Y;
-                        //slightly track the hero (stay mostly centered on room)
-                        if (Flags.CameraTracksHero)
-                        {
-                            Camera2D.targetPosition.X -= 
-                                (Functions_Level.currentRoom.center.X - Pool.hero.compSprite.position.X) * 0.5f;
-                            Camera2D.targetPosition.Y -= 
-                                (Functions_Level.currentRoom.center.Y - Pool.hero.compSprite.position.Y) * 0.5f;
-                        }
-                        
-                        Camera2D.tracks = true; //wait until room change, then move
-                    }
-                    */
-
-
-
-
-
-
+                    #endregion
+                    
 
                     Functions_Camera2D.Update();
                 }

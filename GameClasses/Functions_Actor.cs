@@ -291,13 +291,16 @@ namespace DungeonRun
 
         public static void Update(Actor Actor)
         {
-            //get the input for this frame, set actor.direction
-            //Functions_Input.SetInputState(Actor.compInput, Actor);
+
+
+
+
+
 
 
             #region Actor is not Statelocked
 
-            if (!Actor.stateLocked)
+            if (Actor.stateLocked == false)
             {
                 //set actor moving/facing direction
                 if (Actor.compInput.direction != Direction.None)
@@ -379,6 +382,13 @@ namespace DungeonRun
                 {   //when an actor uses something, they slow down for the duration
                     Actor.compMove.friction = World.frictionUse;
                 }
+                else if(Actor.state == ActorState.Hit)
+                {   //zero out the actor's speed
+                    Actor.compMove.speed = 0.0f;
+                    //this prevents actor from affecting the hit's push via directional input
+                    //this also gives hits ALOT more push
+                }
+
                 #endregion
 
             }
