@@ -291,7 +291,8 @@ namespace DungeonRun
 
 
 
-            //Handle User Clicking Editor Widget Objects
+            #region Handle User Clicking Editor Widget Objects
+
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
             {
                 //here is the thought process behind why we return; in the code below:
@@ -344,7 +345,8 @@ namespace DungeonRun
                 }
             }
 
-            
+            #endregion
+
 
             #region Pass Input to RoomTools, if it's being displayed
 
@@ -355,8 +357,6 @@ namespace DungeonRun
 
             #endregion
 
-
-            //always allow editor to continue using cursor in expected manner
 
             //editor should be able to use cursor in expected manner
             Widgets.ObjectTools.HandleInput();

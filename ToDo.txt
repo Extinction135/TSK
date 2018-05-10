@@ -98,37 +98,65 @@ TODAY:
 
 
 
-
-
-
-
-
-
-
-
-
 Editor++
 
-improve editor to handle larger field levels.
-we need to be able to hide every widget, but still 
-draw the cursor and manipulate objs.
+improved editor with keyboard shortcuts.
+now creating + editing levels is much faster.
+press 0 to select + move objs.
+press - to enter delete mode.
+press + to enter add mode.
+selecting an obj makes that obj the current
+"blueprint" too, so it's super easy to clone
+objs already on screen.
 
-upgraded topMenu functions.draw to always draw cursor.
-playtested, this adds the basic functionality required.
-
-added check to draw the toolTip as well.
-playtested, working as expected.
-
-
-
+playtested - very very happy with editor now.
 
 
 
 
 
-editor objTools keyboard shortcuts
-*need keyboard shortcuts for rotate, move, delete, add (9, 0, -, =).
-*these shortuts should display on screen in editor if widgets are hidden (where obj tools would be)
+
+
+Improvements
+
+*debris should have 16x16 hitbox. it's hard to pickup in editor.
+
+*flowers should have their starting frame randomly set.
+this will offset their animations, and make them look better.
+
+*should be able to cut flowers - they become light grass objs - no loot /sfx
+
+*randomly flip grass sprites horizontally - break up their repetitive patterns
+*fix the pixel on the tree sprite - we still have grey parts outside the black outline? lol
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

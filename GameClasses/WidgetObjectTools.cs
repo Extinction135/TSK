@@ -166,7 +166,6 @@ namespace DungeonRun
 
             //mouse button states
 
-
             #region Handle Left Button CLICK
 
             if (Functions_Input.IsNewMouseButtonPress(MouseButtons.LeftButton))
@@ -195,6 +194,7 @@ namespace DungeonRun
                 }
                 else if (Functions_Level.currentRoom.rec.Contains(worldPos))
                 {   //if mouse worldPos is within room, allow adding of active object
+
 
                     #region Handle Adding an Object To Room
 
@@ -390,6 +390,26 @@ namespace DungeonRun
             if (Functions_Input.IsNewMouseButtonRelease(MouseButtons.LeftButton))
             {
                 grabbedObj = null; //release grabbed obj
+            }
+
+            #endregion
+
+
+            //editor shortcuts
+
+            #region Editor Keyboard Shortcuts
+
+            if(Functions_Input.IsNewKeyPress(Keys.D0)) //0 right of 9
+            {
+                TopDebugMenu.objToolState = ObjToolState.MoveObj;
+            }
+            if (Functions_Input.IsNewKeyPress(Keys.OemMinus)) //right of 0
+            {
+                TopDebugMenu.objToolState = ObjToolState.DeleteObj;
+            }
+            if (Functions_Input.IsNewKeyPress(Keys.OemPlus)) //right of -
+            {
+                TopDebugMenu.objToolState = ObjToolState.AddObj;
             }
 
             #endregion
