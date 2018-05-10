@@ -875,15 +875,8 @@ namespace DungeonRun
 
         public AnimationGroup hit;
         public AnimationGroup death;
-        public AnimationGroup heroDeath;
-
         public AnimationGroup reward;
         public AnimationGroup pickupThrow;
-        //push
-
-        public AnimationGroup fairy;
-        public AnimationGroup petIdle;
-        public AnimationGroup petMove;
     }
 
     public class ColorScheme
@@ -1023,7 +1016,7 @@ namespace DungeonRun
         public byte lockTotal = 0; //how many frames the actor statelocks for, based on state
         public byte lockCounter = 0; //counts from 0 to lockTotal, then flips stateLocked false
 
-        public ActorAnimationList animList = Functions_ActorAnimationList.actorAnims;
+        public ActorAnimationList animList = AnimationFrames.Hero_Animations;
         public AnimationGroup animGroup;
         public Direction direction; //direction actor is facing
         public Boolean active; //does actor input/update/draw?

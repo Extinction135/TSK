@@ -64,8 +64,8 @@ namespace DungeonRun
 
             //display hero's current animation 
             //he may of been set into an animation just as dialog screen was created
-            Functions_ActorAnimationList.SetAnimationGroup(Pool.hero);
-            Functions_ActorAnimationList.SetAnimationDirection(Pool.hero);
+            Functions_Actor.SetAnimationGroup(Pool.hero);
+            Functions_Actor.SetAnimationDirection(Pool.hero);
             Functions_Animation.Animate(Pool.hero.compAnim, Pool.hero.compSprite);
         }
 

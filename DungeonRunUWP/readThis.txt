@@ -1,13 +1,13 @@
-the UWP project will build, but fail to run properly the first time.
-this is because the RoomData folder & contents don't exist in the Debug/AppX folder.
-the project WILL RUN properly upon a second build. why? read on...
 
-the deployment process for UWP app overwrites the AppX folder.
-this deployment happens after the BUILD process, so the RoomData in AppX is deleted.
-so it goes: Build -> RoomData copied to AppX. Deploy -> AppX dir overwritten completely.
-upon second run: Build -> RoomData copeid to AppX. Deploy -> No changes to AppX dir, RoomData preserved.
+the UWP project will (usually) build and run.
+if it doesn't it's because I haven't ported a change from the DirectX version
+to the UWP version yet - or because the UWP's content folder is missing something
+new that I added to the DirectX version.
 
-there is no way to copy RoomData AFTER DEPLOYMENT <- thats the ideal solution..
-so, the workaround is simply to debug/deploy the project TWICE.
-the second time the project/program runs, everything works as expected.
+in previous versions, the game used external XML files. due to the UWP deployment
+process, this approach was modified to use binary data instead. the 'pipeline' for
+converting the xml roomData to c# code is handled entirely by the DirectX project.
+the UWP method that is called is empty and will remain empty for the time being.
+
+
 

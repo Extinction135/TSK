@@ -1358,7 +1358,11 @@ namespace DungeonRun
 
             else if (Type == ObjType.Hero_Idle)
             {
-                Obj.compAnim.currentAnimation = AnimationFrames.Hero_Idle;
+                Obj.compAnim.currentAnimation = AnimationFrames.Hero_Animations.idle.down;
+                //determine which texture to use when representing hero speaking to himself
+                if (Pool.hero.type == ActorType.Blob)
+                { Obj.compSprite.texture = Assets.blobSheet; }
+                else { Obj.compSprite.texture = Assets.heroSheet; }
             }
 
 

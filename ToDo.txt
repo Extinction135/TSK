@@ -99,25 +99,49 @@ TODAY:
 
 
 
+Migrate Actors to using AnimationFrames
+
+this centralizes obj and actor animations / sprites in one place.
+
+reorganized hero sprites in hero sheet.
+created hero hit in water sprite, and hero drown
+sprite sequence. matched blob's required AI sprites
+to link's, so we can still hotswap to blob and test
+actions like use, attack, dash, move, pickup, carry,
+throw, drop, hit, die, cast, etc...
+made sure blob's basic move, attack, use, hit match heros.
+this allows the game to use the same animation frames for blob
+as it does for hero, just switches the sprite sheets.
+exported new hero + blobs sheets.
+
+refactored functions_actorAnimationList into Functions_actor.
+there wasn't much left after extracting the data it was wrapping.
+that data exists in animationFrames now: created hero 
+actorAnimationList in animationFrames class, along with proper
+animation frames for fairy, dog, and chicken.
+
+migrated blob boss sprites into master.psd (i never did this? lol)
+fixed variety of issues with animation frames / lists.
+updated hero and blob to use animFrame defs.
+updated blob boss to use anim defs too.
+playtested, animations working.
+
+fixed a bug where hero's dialog obj texture wasn't set properly.
+playtested on uwp, working.
 
 
 
 
 
-Dialog++
 
-added hero idle to ObjType enum.
 
-added hero idle sprite to forest level sheet (this shouldn't
-go here, it already exists on the hero sheet, but i haven't 
-migrated the actors to using the new sheet layout yet, oops).
 
-updated the dungeon entrance dialog to use link as the
-speaker sprite, then changed the text to read:
-"Should I enter this dungeon?
-A) yes  B) no" 
 
-playtested, working as expected.
+**there is a room with conveyor belts that isn't on, and it makes the room stupidly simple.
+
+***when the hero is hit, we can still input magnitude / force.
+this means we can offset the hit push, which I REALLY DONT WANT.
+we should disable magnitude input from controller if hero is in hit state.
 
 
 
@@ -129,8 +153,15 @@ playtested, working as expected.
 
 
 
-we need to migrate hero to using animation frames, 
-and we shouldn't have blob on the same sprite sheet as hero
+
+
+
+
+
+
+
+
+
 
 
 

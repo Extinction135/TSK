@@ -329,8 +329,8 @@ namespace DungeonRun
         public override void Update(GameTime GameTime)
         {
             //always animate the hero
-            Functions_ActorAnimationList.SetAnimationGroup(hero);
-            Functions_ActorAnimationList.SetAnimationDirection(hero);
+            Functions_Actor.SetAnimationGroup(hero);
+            Functions_Actor.SetAnimationDirection(hero);
             Functions_Animation.Animate(hero.compAnim, hero.compSprite);
 
             //we used to display the location 'name' like this

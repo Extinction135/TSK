@@ -18,12 +18,9 @@ namespace DungeonRun
         //and also floor animation frames
         //and in the future we'll define actor animation frames here too
 
-
-
         public static List<Byte4> Dungeon_FloorNormal = new List<Byte4> { new Byte4(15, 0, 0, 0) };
         public static List<Byte4> Dungeon_FloorSpecial = new List<Byte4> { new Byte4(15, 1, 0, 0) };
         public static List<Byte4> Dungeon_FloorBoss = new List<Byte4> { new Byte4(15, 2, 0, 0) };
-
 
 
         #region Dungeon Objects
@@ -189,8 +186,6 @@ namespace DungeonRun
         public static List<Byte4> Wor_Pot = new List<Byte4> { new Byte4(7, 6, 0, 0) };
 
         #endregion
-
-
 
 
 
@@ -467,9 +462,158 @@ namespace DungeonRun
         #endregion
 
 
+        
 
-        //used in dialog (temp)
-        public static List<Byte4> Hero_Idle = new List<Byte4> { new Byte4(0, 10, 0, 0) };
+
+        //actor animation frames
+        public static ActorAnimationList Hero_Animations;
+        public static ActorAnimationList Boss_Blob_Animations;
+
+        static AnimationFrames()
+        {
+
+
+            #region Hero Animations
+
+            Hero_Animations = new ActorAnimationList();
+
+            //movement
+            Hero_Animations.idle = new AnimationGroup();
+            Hero_Animations.idle.down = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+            Hero_Animations.idle.up = new List<Byte4> { new Byte4(0, 1, 0, 0) };
+            Hero_Animations.idle.right = new List<Byte4> { new Byte4(0, 2, 0, 0) };
+            Hero_Animations.idle.left = new List<Byte4> { new Byte4(0, 2, 1, 0) };
+
+            Hero_Animations.move = new AnimationGroup();
+            Hero_Animations.move.down = new List<Byte4> { new Byte4(1, 0, 0, 0), new Byte4(1, 0, 1, 0) };
+            Hero_Animations.move.up = new List<Byte4> { new Byte4(1, 1, 0, 0), new Byte4(1, 1, 1, 0) };
+            Hero_Animations.move.right = new List<Byte4> { new Byte4(0, 2, 0, 0), new Byte4(1, 2, 0, 0) };
+            Hero_Animations.move.left = new List<Byte4> { new Byte4(0, 2, 1, 0), new Byte4(1, 2, 1, 0) };
+
+            Hero_Animations.idleCarry = new AnimationGroup();
+            Hero_Animations.idleCarry.down = new List<Byte4> { new Byte4(5, 0, 0, 0) };
+            Hero_Animations.idleCarry.up = new List<Byte4> { new Byte4(5, 1, 0, 0) };
+            Hero_Animations.idleCarry.right = new List<Byte4> { new Byte4(5, 2, 0, 0) };
+            Hero_Animations.idleCarry.left = new List<Byte4> { new Byte4(5, 2, 1, 0) };
+
+            Hero_Animations.moveCarry = new AnimationGroup();
+            Hero_Animations.moveCarry.down = new List<Byte4> { new Byte4(6, 0, 0, 0), new Byte4(6, 0, 1, 0) };
+            Hero_Animations.moveCarry.up = new List<Byte4> { new Byte4(6, 1, 0, 0), new Byte4(6, 1, 1, 0) };
+            Hero_Animations.moveCarry.right = new List<Byte4> { new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0) };
+            Hero_Animations.moveCarry.left = new List<Byte4> { new Byte4(5, 2, 1, 0), new Byte4(6, 2, 1, 0) };
+
+            //actions
+            Hero_Animations.dash = new AnimationGroup();
+            Hero_Animations.dash.down = new List<Byte4> { new Byte4(2, 0, 0, 0) };
+            Hero_Animations.dash.up = new List<Byte4> { new Byte4(2, 1, 0, 0) };
+            Hero_Animations.dash.right = new List<Byte4> { new Byte4(2, 2, 0, 0) };
+            Hero_Animations.dash.left = new List<Byte4> { new Byte4(2, 2, 1, 0) };
+
+            Hero_Animations.interact = new AnimationGroup();
+            Hero_Animations.interact.down = new List<Byte4> { new Byte4(4, 0, 0, 0) };
+            Hero_Animations.interact.up = new List<Byte4> { new Byte4(4, 1, 0, 0) };
+            Hero_Animations.interact.right = new List<Byte4> { new Byte4(4, 2, 0, 0) };
+            Hero_Animations.interact.left = new List<Byte4> { new Byte4(4, 2, 1, 0) };
+
+            Hero_Animations.attack = new AnimationGroup();
+            Hero_Animations.attack.down = new List<Byte4> { new Byte4(3, 0, 0, 0) };
+            Hero_Animations.attack.up = new List<Byte4> { new Byte4(3, 1, 0, 0) };
+            Hero_Animations.attack.right = new List<Byte4> { new Byte4(3, 2, 0, 0) };
+            Hero_Animations.attack.left = new List<Byte4> { new Byte4(3, 2, 1, 0) };
+
+            Hero_Animations.pickupThrow = new AnimationGroup();
+            Hero_Animations.pickupThrow.down = new List<Byte4> { new Byte4(4, 0, 0, 0) };
+            Hero_Animations.pickupThrow.up = new List<Byte4> { new Byte4(4, 1, 0, 0) };
+            Hero_Animations.pickupThrow.right = new List<Byte4> { new Byte4(4, 2, 0, 0) };
+            Hero_Animations.pickupThrow.left = new List<Byte4> { new Byte4(4, 2, 1, 0) };
+
+
+            //reward list
+            Hero_Animations.reward = new AnimationGroup();
+            Hero_Animations.reward.down = new List<Byte4> { new Byte4(0, 3, 0, 0) };
+            Hero_Animations.reward.up = Hero_Animations.reward.down;
+            Hero_Animations.reward.right = Hero_Animations.reward.down;
+            Hero_Animations.reward.left = Hero_Animations.reward.down;
+
+            Hero_Animations.hit = new AnimationGroup();
+            Hero_Animations.hit.down = new List<Byte4> { new Byte4(1, 3, 0, 0) };
+            Hero_Animations.hit.up = Hero_Animations.hit.down;
+            Hero_Animations.hit.right = Hero_Animations.hit.down;
+            Hero_Animations.hit.left = Hero_Animations.hit.down;
+
+            Hero_Animations.death = new AnimationGroup();
+            Hero_Animations.death.down = new List<Byte4>
+            {
+                //spin clockwise twice, then fall
+                new Byte4(0, 0, 0, 0), new Byte4(0, 2, 1, 0), new Byte4(0, 1, 0, 0), new Byte4(0, 2, 0, 0),
+                new Byte4(0, 0, 0, 0), new Byte4(0, 2, 1, 0), new Byte4(0, 1, 0, 0), new Byte4(0, 2, 0, 0),
+                new Byte4(1, 3, 0, 0),
+                new Byte4(2, 3, 0, 0) //fell, dead
+            };
+            Hero_Animations.death.up = Hero_Animations.death.down;
+            Hero_Animations.death.right = Hero_Animations.death.down;
+            Hero_Animations.death.left = Hero_Animations.death.down;
+
+            #endregion
+
+
+            #region Boss Blob Animations
+
+            Boss_Blob_Animations = new ActorAnimationList();
+
+            //movement
+            Boss_Blob_Animations.idle = new AnimationGroup();
+            Boss_Blob_Animations.idle.down = new List<Byte4> { new Byte4(0, 0, 0, 0) };
+            Boss_Blob_Animations.idle.up = new List<Byte4> { new Byte4(0, 1, 0, 0) };
+            Boss_Blob_Animations.idle.right = new List<Byte4> { new Byte4(0, 2, 0, 0) };
+            Boss_Blob_Animations.idle.left = new List<Byte4> { new Byte4(0, 2, 1, 0) };
+
+            Boss_Blob_Animations.move = new AnimationGroup();
+            Boss_Blob_Animations.move.down = new List<Byte4> { new Byte4(1, 0, 0, 0), new Byte4(1, 0, 1, 0) };
+            Boss_Blob_Animations.move.up = new List<Byte4> { new Byte4(1, 1, 0, 0), new Byte4(1, 1, 1, 0) };
+            Boss_Blob_Animations.move.right = new List<Byte4> { new Byte4(0, 2, 0, 0), new Byte4(1, 2, 0, 0) };
+            Boss_Blob_Animations.move.left = new List<Byte4> { new Byte4(0, 2, 1, 0), new Byte4(1, 2, 1, 0) };
+
+            //actions
+            Boss_Blob_Animations.dash = new AnimationGroup();
+            Boss_Blob_Animations.dash.down = new List<Byte4> { new Byte4(2, 0, 0, 0) };
+            Boss_Blob_Animations.dash.up = new List<Byte4> { new Byte4(2, 1, 0, 0) };
+            Boss_Blob_Animations.dash.right = new List<Byte4> { new Byte4(2, 2, 0, 0) };
+            Boss_Blob_Animations.dash.left = new List<Byte4> { new Byte4(2, 2, 1, 0) };
+
+            Boss_Blob_Animations.attack = new AnimationGroup();
+            Boss_Blob_Animations.attack.down = new List<Byte4> { new Byte4(3, 0, 0, 0) };
+            Boss_Blob_Animations.attack.up = new List<Byte4> { new Byte4(3, 1, 0, 0) };
+            Boss_Blob_Animations.attack.right = new List<Byte4> { new Byte4(3, 2, 0, 0) };
+            Boss_Blob_Animations.attack.left = new List<Byte4> { new Byte4(3, 2, 1, 0) };
+
+
+            //reward (cast in this case) list
+            Boss_Blob_Animations.reward = new AnimationGroup();
+            Boss_Blob_Animations.reward.down = new List<Byte4> { new Byte4(0, 3, 0, 0) };
+            Boss_Blob_Animations.reward.up = Hero_Animations.reward.down;
+            Boss_Blob_Animations.reward.right = Hero_Animations.reward.down;
+            Boss_Blob_Animations.reward.left = Hero_Animations.reward.down;
+
+            Boss_Blob_Animations.hit = new AnimationGroup();
+            Boss_Blob_Animations.hit.down = new List<Byte4> { new Byte4(1, 3, 0, 0) };
+            Boss_Blob_Animations.hit.up = Hero_Animations.hit.down;
+            Boss_Blob_Animations.hit.right = Hero_Animations.hit.down;
+            Boss_Blob_Animations.hit.left = Hero_Animations.hit.down;
+
+            Boss_Blob_Animations.death = new AnimationGroup();
+            Boss_Blob_Animations.death.down = new List<Byte4> { new Byte4(2, 3, 0, 0) };
+            Boss_Blob_Animations.death.up = Hero_Animations.death.down;
+            Boss_Blob_Animations.death.right = Hero_Animations.death.down;
+            Boss_Blob_Animations.death.left = Hero_Animations.death.down;
+
+            #endregion
+
+
+        }
+
+
+
 
 
     }

@@ -164,6 +164,61 @@ namespace DungeonRun
         }
 
 
+        public static void SetAnimationGroup(Actor Actor)
+        {
+            //assume default animation speed and looping
+            Actor.compAnim.speed = 10;
+            Actor.compAnim.loop = true;
+
+            //movement
+            if (Actor.state == ActorState.Idle)
+            {
+                Actor.animGroup = Actor.animList.idle;
+                //if (Actor == Pool.hero & Functions_Hero.carrying)
+                //{ Actor.animGroup = Actor.animList.idleCarry; }
+            }
+            else if (Actor.state == ActorState.Move)
+            {
+                Actor.animGroup = Actor.animList.move;
+                //if (Actor == Pool.hero & Functions_Hero.carrying)
+                //{ Actor.animGroup = Actor.animList.moveCarry; }
+            }
+
+            //actions
+            else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.dash; }
+            else if (Actor.state == ActorState.Interact) { Actor.animGroup = Actor.animList.interact; }
+            else if (Actor.state == ActorState.Attack) { Actor.animGroup = Actor.animList.attack; }
+            else if (Actor.state == ActorState.Use) { Actor.animGroup = Actor.animList.attack; }
+            else if (Actor.state == ActorState.Pickup) { Actor.animGroup = Actor.animList.pickupThrow; }
+            else if (Actor.state == ActorState.Throw) { Actor.animGroup = Actor.animList.pickupThrow; }
+
+            //consequences
+            else if (Actor.state == ActorState.Hit) { Actor.animGroup = Actor.animList.hit; }
+            else if (Actor.state == ActorState.Dead)
+            {
+                Actor.compAnim.loop = false; //stop looping
+                Actor.animGroup = Actor.animList.death;
+                //speed up hero's death to taste
+                if (Actor.type == ActorType.Hero) { Actor.compAnim.speed = 6; }
+            }
+            else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
+        }
+
+        public static void SetAnimationDirection(Actor Actor)
+        {
+            //set cardinal directions
+            if (Actor.direction == Direction.Down) { Actor.compAnim.currentAnimation = Actor.animGroup.down; }
+            else if (Actor.direction == Direction.Up) { Actor.compAnim.currentAnimation = Actor.animGroup.up; }
+            else if (Actor.direction == Direction.Right) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.Left) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
+            //set diagonal directions
+            else if (Actor.direction == Direction.DownRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.DownLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
+            else if (Actor.direction == Direction.UpRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
+            else if (Actor.direction == Direction.UpLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
+        }
+
+
 
         public static void SetType(Actor Actor, ActorType Type)
         {
@@ -177,6 +232,7 @@ namespace DungeonRun
             {
                 Actor.enemy = false;
                 Actor.compSprite.texture = Assets.heroSheet;
+                Actor.animList = AnimationFrames.Hero_Animations; //actor is hero
                 //do not update/change the hero's weapon/item/armor/equipment
                 Actor.walkSpeed = 0.35f;
                 Actor.dashSpeed = 0.90f;
@@ -190,6 +246,7 @@ namespace DungeonRun
                 Actor.aiType = ActorAI.Basic;
                 Actor.enemy = true;
                 Actor.compSprite.texture = Assets.blobSheet;
+                Actor.animList = AnimationFrames.Hero_Animations; //actor is hero
                 Actor.health = 1;
                 ResetActorLoadout(Actor);
                 Actor.weapon = MenuItemType.WeaponSword;
@@ -205,6 +262,7 @@ namespace DungeonRun
                 Actor.aiType = ActorAI.Random;
                 Actor.enemy = true;
                 Actor.compSprite.texture = Assets.bossSheet;
+                Actor.animList = AnimationFrames.Boss_Blob_Animations;
                 Actor.health = 10;
                 ResetActorLoadout(Actor);
                 Actor.walkSpeed = 0.50f;
@@ -225,8 +283,8 @@ namespace DungeonRun
             #endregion
 
 
-            Functions_ActorAnimationList.SetAnimationGroup(Actor);
-            Functions_ActorAnimationList.SetAnimationDirection(Actor);
+            SetAnimationGroup(Actor);
+            SetAnimationDirection(Actor);
             Functions_Component.UpdateCellSize(Actor.compSprite);
             Functions_Component.CenterOrigin(Actor.compSprite);
         }
@@ -329,8 +387,8 @@ namespace DungeonRun
 
 
             //set actor animation and direction
-            Functions_ActorAnimationList.SetAnimationGroup(Actor);
-            Functions_ActorAnimationList.SetAnimationDirection(Actor);
+            SetAnimationGroup(Actor);
+            SetAnimationDirection(Actor);
 
             //alter actor's speed based on loadout
             //cape armor increases movement
