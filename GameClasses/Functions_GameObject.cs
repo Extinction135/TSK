@@ -1262,7 +1262,7 @@ namespace DungeonRun
                 Obj.lifetime = 40; //in frames
                 Obj.compMove.moveable = false;
                 //default assume this obj isn't a dungeon key or map
-                Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.compSprite.texture = Assets.uiItemsSheet;
                 //set anim frames
                 if (Type == ObjType.Particle_RewardKey)
                 {   //this obj is on the dungeon sheet

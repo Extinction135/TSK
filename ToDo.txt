@@ -99,32 +99,14 @@ TODAY:
 
 
 
-Items++
 
-moved net to ITEMS X category in inventory screen.
-this is actually where the net belongs, because it's modeled
-as a weapon internally. why it was placed in the items category
-is simply my mistake.
-
-changed quest items to MISC, because i have no idea what
-this is actually going to be named and quest items sounds corny af rn.
-playtested, working.
-
-
-
-
-
-
-
-
-
-
-
-
+Bottles++
 
 when hero uses a bottle, it does't appear over his head.
-is this a particle frame issue? do we have the proper anim frmaes?
-yep, wrong texture and/or frame
+this is because i decided to set every bottle's texture to the
+entity sheet, which doens't even contain bottles. so, yeah...
+updated that path to point to the ui items sheet and bottles work.
+oops.
 
 
 
