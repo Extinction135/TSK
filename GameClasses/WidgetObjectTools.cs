@@ -422,7 +422,6 @@ namespace DungeonRun
                 Functions_Draw.Draw(selectionBoxObj);
                 Functions_Draw.Draw(selectionBoxTool);
             }
-            if (TopDebugMenu.objToolState != ObjToolState.MoveObj) { Functions_Draw.Draw(toolTipSprite); }
         }
 
 

@@ -179,7 +179,7 @@ namespace DungeonRun
             #endregion
             
 
-            #region F4 - ???
+            #region F4 - Convert XML to CS
 
             if (Functions_Input.IsNewKeyPress(Keys.F4))
             {
@@ -367,41 +367,48 @@ namespace DungeonRun
 
         public static void Draw()
         {
-            if (TopDebugMenu.display == WidgetDisplaySet.None) { return; }
-
-            //draw the background rec with correct color
-            ScreenManager.spriteBatch.Draw(Assets.dummyTexture, TopDebugMenu.rec, Assets.colorScheme.debugBkg);
-            
-            //loop draw all the buttons
-            for (TopDebugMenu.counter = 0; TopDebugMenu.counter < TopDebugMenu.buttons.Count; TopDebugMenu.counter++)
-            { Functions_Draw.Draw(TopDebugMenu.buttons[TopDebugMenu.counter]); }
-
-            //draw all editor widgets that TopMenu is responsible for, if we are drawing widgets
-
-            //if dungeon mode, draw dungeon widgets
-            if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
+            if (TopDebugMenu.display != WidgetDisplaySet.None)
             {
-                Widgets.WidgetObjects_Dungeon.Draw();
-                Widgets.WidgetObjects_Enemy.Draw();
-            }
-            //if level mode, draw level widgets
-            else if (TopDebugMenu.display == WidgetDisplaySet.World)
-            {
-                Widgets.WidgetObjects_Environment.Draw();
-                Widgets.WidgetObjects_Building.Draw();
-            }
-            //shared objs widget too
-            if (TopDebugMenu.displaySharedObjsWidget)
-            { Widgets.WidgetObjects_Shared.Draw(); }
+                //draw the top bkgRec rec
+                ScreenManager.spriteBatch.Draw(
+                    Assets.dummyTexture,
+                    TopDebugMenu.rec,
+                    Assets.colorScheme.debugBkg);
+                //loop draw all the buttons
+                for (TopDebugMenu.counter = 0;
+                    TopDebugMenu.counter < TopDebugMenu.buttons.Count;
+                    TopDebugMenu.counter++)
+                { Functions_Draw.Draw(TopDebugMenu.buttons[TopDebugMenu.counter]); }
+                //if dungeon mode, draw dungeon widgets
+                if (TopDebugMenu.display == WidgetDisplaySet.Dungeon)
+                {
+                    Widgets.WidgetObjects_Dungeon.Draw();
+                    Widgets.WidgetObjects_Enemy.Draw();
+                }
+                //if level mode, draw level widgets
+                else if (TopDebugMenu.display == WidgetDisplaySet.World)
+                {
+                    Widgets.WidgetObjects_Environment.Draw();
+                    Widgets.WidgetObjects_Building.Draw();
+                }
+                //shared objs widget too
+                if (TopDebugMenu.displaySharedObjsWidget)
+                {
+                    Widgets.WidgetObjects_Shared.Draw();
+                }
 
-            //draw needed editor widgets
-            Widgets.RoomTools.Draw();
-            Widgets.ObjectTools.Draw();
-            
-            if (Flags.DrawDebugInfo) { Functions_Debug.Draw(); }
+                //draw needed editor widgets
+                Widgets.RoomTools.Draw();
+                Widgets.ObjectTools.Draw();
+
+                if (Flags.DrawDebugInfo) { Functions_Debug.Draw(); }
+            }
 
             //ALWAYS draw the cursor, and draw it last
             Functions_Draw.Draw(TopDebugMenu.cursor);
+            //ALWAYS draw the toolTip too
+            if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
+            { Functions_Draw.Draw(Widgets.ObjectTools.toolTipSprite); }
         }
 
 

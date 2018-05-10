@@ -98,19 +98,6 @@ TODAY:
 
 
 
-Levels++
-
-doubled the size of field levels, modified cam tracking routines to
-work with new field size - hero exits level just as he touches the
-edge of the screen. updated how camera is handled for field and
-dungeon levels in ScreenLevel.Update().
-
-changed castle to forest in codebase.
-updated forest dungeon overworld xml with correct type.
-
-remade colliseum level to work with larger field size.
-remade forest entrance as well.
-playtested, working perfectly.
 
 
 
@@ -120,11 +107,17 @@ playtested, working perfectly.
 
 
 
-
-
+Editor++
 
 improve editor to handle larger field levels.
-we need to be able to hide every widget, but still draw the cursor and manp. objs.
+we need to be able to hide every widget, but still 
+draw the cursor and manipulate objs.
+
+upgraded topMenu functions.draw to always draw cursor.
+playtested, this adds the basic functionality required.
+
+added check to draw the toolTip as well.
+playtested, working as expected.
 
 
 
@@ -132,15 +125,12 @@ we need to be able to hide every widget, but still draw the cursor and manp. obj
 
 
 
-remake forest entrance level. - has dungeon entrance.
-remake colliseum level. - has vendors.
+
+editor objTools keyboard shortcuts
+*need keyboard shortcuts for rotate, move, delete, add (9, 0, -, =).
+*these shortuts should display on screen in editor if widgets are hidden (where obj tools would be)
 
 
-
-
-
-lightworld forest entrance should be opening in trees
-dark world should be horrific tree trunk thing we have rn.
 
 
 
