@@ -538,6 +538,14 @@ this inspection then opens the dialog with the blob who explains the sidequest.
 
 
 
+we've also complicated the piss out of dialog screen with booleans, simply because we
+are forcing it into the post-title screen load dialog, where we transition from dialog
+to overworld. nowhere else do we do this. plus, we aren't planning to do anything else
+like that, so consider splitting that functionality out of dialog screen, and instead
+handling that at the end of LSN screen - since that's the only place it can be called from.
+we can handle it once here, and vastly simplify the dialog screen - so we can complicate
+it much later with story element stuff.
+
 
 
 

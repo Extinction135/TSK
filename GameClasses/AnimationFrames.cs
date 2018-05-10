@@ -468,8 +468,8 @@ namespace DungeonRun
 
 
 
-
-
+        //used in dialog (temp)
+        public static List<Byte4> Hero_Idle = new List<Byte4> { new Byte4(0, 10, 0, 0) };
 
 
     }

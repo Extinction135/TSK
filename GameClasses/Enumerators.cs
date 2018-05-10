@@ -364,6 +364,14 @@ namespace DungeonRun
 
         #endregion
 
+
+        #region Misc (Dialog)
+
+        Hero_Idle,
+
+        #endregion
+
+
     }
 
     public enum MenuItemType

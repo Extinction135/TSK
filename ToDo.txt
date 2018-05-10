@@ -104,23 +104,20 @@ TODAY:
 
 
 
+Dialog++
 
+added hero idle to ObjType enum.
 
-Improvements++
+added hero idle sprite to forest level sheet (this shouldn't
+go here, it already exists on the hero sheet, but i haven't 
+migrated the actors to using the new sheet layout yet, oops).
 
-debris should have 16x16 hitbox. it's hard to pickup in editor. fixed.
-randomly flip grass sprites horizontally - breaks up repetitive patterns. done.
-flowers should have their starting frame randomly set. done.
-this will offset their animations, and make them look better.
+updated the dungeon entrance dialog to use link as the
+speaker sprite, then changed the text to read:
+"Should I enter this dungeon?
+A) yes  B) no" 
 
-fix the pixel on the tree sprite - we still have grey parts outside the black outline.
-improved bottom shaded area of tree with dark gray, but not black.
-exported new sprite sheet for Dx project.
-
-improved the guide's dialog.
-he now says "press the a button to interact with objects, like torches and doors."
-playtested, working great.
-
+playtested, working as expected.
 
 
 
@@ -129,6 +126,11 @@ playtested, working great.
 
 
 
+
+
+
+we need to migrate hero to using animation frames, 
+and we shouldn't have blob on the same sprite sheet as hero
 
 
 
@@ -138,26 +140,15 @@ Dialog++
 
 functions_dialog should be AssetsDialog, because it doesn't contain any functions. lol.
 
-
-improve the dungeon entrance dialog.
-should be link sprite. *requires that we have an objType enum value for link sprite.
-he should say "should I enter this place?"
-**we want to be able to set dialog "faces" easier**
-we just need to pass a texture, and an animationList, and the widget should do the rest.
-this speaker sprite is ALWAYS 16x16 and placed in a specific position.
-
-we've also complicated the piss out of dialog screen with booleans, simply because we
-are forcing it into the post-title screen load dialog, where we transition from dialog
-to overworld. nowhere else do we do this. plus, we aren't planning to do anything else
-like that, so consider splitting that functionality out of dialog screen, and instead
-handling that at the end of LSN screen - since that's the only place it can be called from.
-we can handle it once here, and vastly simplify the dialog screen - so we can complicate
-it much later with story element stuff.
-
-
-
-
 *add a signpost outside the dungeon entrance that says "forest dungeon - caution!"
+we could stuff this into the interaction comp as a string.
+if obj's compInt string isn't null, pop dialog displaying obj as speaker.
+
+
+
+
+
+
 
 
 

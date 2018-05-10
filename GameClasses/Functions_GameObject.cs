@@ -1354,6 +1354,15 @@ namespace DungeonRun
 
 
 
+            //Dialog Hero Speaker
+
+            else if (Type == ObjType.Hero_Idle)
+            {
+                Obj.compAnim.currentAnimation = AnimationFrames.Hero_Idle;
+            }
+
+
+
 
 
 

@@ -75,8 +75,8 @@ namespace DungeonRun
 
         public static List<Dialog> Enter_ForestDungeon = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Hey!",
-                "Do you want to enter the Forest Dungeon?\n" +
+            new Dialog(ObjType.Hero_Idle, "Hmm..",
+                "Should I enter this dungeon?\n" +
                 "A) yes    B) no",
                 Assets.sfxTextLetter, false, false, false)
         };
