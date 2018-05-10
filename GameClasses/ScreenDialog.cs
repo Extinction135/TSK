@@ -83,7 +83,7 @@ namespace DungeonRun
                     {
                         ExitDialog(); //exit dialog, enter dungeon
                         exitToOverworld = false; exitToDungeon = true;
-                        Level.ID = LevelID.Castle_Dungeon; //set level id based on dialog
+                        Level.ID = LevelID.Forest_Dungeon; //set level id based on dialog
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))
                     {

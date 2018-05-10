@@ -62,7 +62,7 @@ namespace DungeonRun
             locations.Add(centerTown);
             MapLocation gate = new MapLocation(false, new Vector2(421, 160));
             locations.Add(gate);
-            MapLocation castle = new MapLocation(true, new Vector2(442, 135));
+            MapLocation castle = new MapLocation(false, new Vector2(442, 135));
             locations.Add(castle);
             MapLocation leftCastleTown = new MapLocation(false, new Vector2(431, 111));
             locations.Add(leftCastleTown);
@@ -75,7 +75,7 @@ namespace DungeonRun
             
             MapLocation colliseumLeft = new MapLocation(false, new Vector2(258, 178));
             locations.Add(colliseumLeft);
-            MapLocation forestDungeon = new MapLocation(false, new Vector2(265, 125));
+            MapLocation forestDungeon = new MapLocation(true, new Vector2(265, 125));
             locations.Add(forestDungeon);
             MapLocation caveDungeon = new MapLocation(false, new Vector2(166, 150));
             locations.Add(caveDungeon);
@@ -183,22 +183,26 @@ namespace DungeonRun
 
             #region Setup Locations & Starting Location
 
-            //set level types
-            castle.ID = LevelID.Castle_Entrance;
+            //setup accessible levels
+            colliseum.isLevel = true;
             colliseum.ID = LevelID.Colliseum;
+            forestDungeon.isLevel = true;
+            forestDungeon.ID = LevelID.Forest_Entrance;
+            
 
+            //hero may of exited a dungeon, setup current location based on level id
             if (PlayerData.current.lastLocation == LevelID.Colliseum)
             { currentLocation = colliseum; }
-            else if (PlayerData.current.lastLocation == LevelID.Castle_Entrance)
-            { currentLocation = castle; }
-            else
+            else if (PlayerData.current.lastLocation == LevelID.Forest_Entrance)
+            { currentLocation = forestDungeon; }
+            else //default to colliseum if unknown
             { currentLocation = colliseum; }
 
             //set target to current (no initial target)
             targetLocation = currentLocation;
             hero = new Actor();
 
-            //set hero at the current location
+            //teleport hero to current location
             Functions_Movement.Teleport(hero.compMove,
                 currentLocation.compSprite.position.X,
                 currentLocation.compSprite.position.Y - 8);

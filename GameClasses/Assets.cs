@@ -38,24 +38,9 @@ namespace DungeonRun
         public static Texture2D forestLevelSheet;
         public static Texture2D uiItemsSheet;
 
-
         public static Texture2D bigTextSheet;
         public static Texture2D overworldSheet;
         public static Texture2D titleBkgSheet;
-
-
-        //levelData list - handmade level data
-        //public static List<RoomXmlData> overworldLevels = new List<RoomXmlData>();
-
-        //roomData lists - handmade room data
-        //public static List<RoomXmlData> roomDataHub = new List<RoomXmlData>();
-        //public static List<RoomXmlData> roomDataBoss = new List<RoomXmlData>();
-        //public static List<RoomXmlData> roomDataKey = new List<RoomXmlData>();
-        //public static List<RoomXmlData> roomDataColumn = new List<RoomXmlData>();
-        //public static List<RoomXmlData> roomDataRow = new List<RoomXmlData>();
-        //public static List<RoomXmlData> roomDataSquare = new List<RoomXmlData>();
-
-
 
 
 

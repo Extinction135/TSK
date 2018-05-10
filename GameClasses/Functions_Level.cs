@@ -49,7 +49,7 @@ namespace DungeonRun
             Level.ID = levelID;
 
             //set dungeon booleans
-            if (levelID == LevelID.Castle_Dungeon || levelID == LevelID.DEV_Room)
+            if (levelID == LevelID.Forest_Dungeon || levelID == LevelID.DEV_Room)
             {
                 Level.isField = false;
                 Level.lightWorld = false;
@@ -59,7 +59,7 @@ namespace DungeonRun
             Assets.colorScheme.background = Assets.colorScheme.bkg_lightWorld; //assume light world
             if (Level.lightWorld == false) //check for dark world
             { Assets.colorScheme.background = Assets.colorScheme.bkg_darkWorld; }
-            if (levelID == LevelID.Castle_Dungeon) //check for dungeon
+            if (levelID == LevelID.Forest_Dungeon) //check for dungeon
             { Assets.colorScheme.background = Assets.colorScheme.bkg_dungeon; }
 
             //setup the room (level), or series of rooms (dungeon)
@@ -102,9 +102,9 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Colliseum);
                 Level.rooms.Add(field);
             }
-            else if (Level.ID == LevelID.Castle_Entrance)
+            else if (Level.ID == LevelID.Forest_Entrance)
             {
-                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.CastleEntrance);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestEntrance);
                 Level.rooms.Add(field);
             }
 
@@ -114,7 +114,7 @@ namespace DungeonRun
 
             #region Build Multi-Room Dungeon
 
-            else if (Level.ID == LevelID.Castle_Dungeon)
+            else if (Level.ID == LevelID.Forest_Dungeon)
             {
 
 
@@ -536,8 +536,8 @@ namespace DungeonRun
         {   //set the floor pool texture based on dungeon type
             Texture2D Texture = Assets.forestLevelSheet;
             //set level/dungeon texture based on level id
-            if (ID == LevelID.Castle_Dungeon) { Texture = Assets.forestLevelSheet; }
-            else if (ID == LevelID.Castle_Entrance) { Texture = Assets.forestLevelSheet; }
+            if (ID == LevelID.Forest_Dungeon) { Texture = Assets.forestLevelSheet; }
+            else if (ID == LevelID.Forest_Entrance) { Texture = Assets.forestLevelSheet; }
             else if (ID == LevelID.Colliseum) { Texture = Assets.forestLevelSheet; }
             else if (ID == LevelID.DEV_Field) { Texture = Assets.forestLevelSheet; }
             else if (ID == LevelID.DEV_Room) { Texture = Assets.forestLevelSheet; }

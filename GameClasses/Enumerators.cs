@@ -73,8 +73,8 @@ namespace DungeonRun
         Colliseum, //field with vendors
 
         //dungeon levels + entrance levels
-        Castle_Entrance, //field with dungeon entrance
-        Castle_Dungeon, //dungeon, procedurally generated series of rooms
+        Forest_Entrance, //field with dungeon entrance
+        Forest_Dungeon, //dungeon, procedurally generated series of rooms
 
         //locations that cannot be visited
         Road, //used for connecting levels on map
@@ -94,7 +94,7 @@ namespace DungeonRun
 
         //these OVERWORLD rooms are mostly non-procedural and handmade
         Colliseum,
-        CastleEntrance,
+        ForestEntrance,
 
         //these DEV rooms are used for testing
         DEV_Field, //represents any 'outdoor' / overworld level

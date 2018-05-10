@@ -1,5 +1,113 @@
 
 
+
+
+
+
+we should have multiple rooms, each representing a floor, with an obj that transfers
+hero between floors. this is  easiest, ad we can have as many floors as needed per room.
+plus these rooms form a set, so we can build puzzles across floors, using an int or byte to 
+track the room's floor level (basement, ground, 1st, etc...). plus pits can just drop hero to
+a lower floor/room, unless it's the lowest floor which the spawns hero back at last door.
+
+
+
+
+
+
+
+we can model height of objects with feet byte.
+then we can check feet byte to see if projectile can fly over it.
+smaller projectiles, like arrows, can fly over anything small. fireballs
+need more space, etc... switches become 0 feet tall. levers 4 feet.
+we move the interaction of objects into a realm that is familiar: height.
+walls are 10 feet. then it makes sense.
+
+
+
+
+
+use a shovel on ground, ground becomes trench obj.
+every 30 frames, water tiles check to see if they touch a trech obj.
+if they do, trench becomes water tile. this allows hero to dig trenches
+and fill them with water. cascade effect: low water, med water, deep water
+objs act the same way, high to med to low to trench. this causes the water
+to visually 'rise' up over a period of 2 seconds.
+
+
+
+
+item x - sword, hammer, shoverl, net (movement stops in use)
+item y - everything else (movement is slightly slowed upon use)
+
+
+
+
+what if enemies only fell into pits if they were in a hit state?
+this would prevent them from falling in unless hero had pushed them off.
+if enemy isn't in hit state, then push them the opposite direction.
+hero can still fall off as nomal tho.
+
+
+
+
+
+
+slow finish / build becuase we call cleanRoom() twice, which is dumb af
+
+
+
+
+
+
+
+
+
+
+Magic Mirror
+- returns link to dungeon entrance.
+- dark world field level, creates portal to light world.
+
+
+
+
+
+
+
+
+
+
+
+
+Darkworld hand enemy:
+this is the dungeon hand enemy from the dark world forest dungeon.
+drop randomly from the top of the screen, or burrows from underneath the ground.
+RAPIDLY runs around (not attacking player), then burrows / hides. Has super
+creepy sounds, only meant to creep out the player.
+
+
+
+
+
+
+Things that "spread" like water or fire
+this can be done by temporarily expanding the obj's collision rec, then doing
+the interaction check, then reverting the collision rec back to proper size.
+if water tile overlaps trench, trench becomes water tile.
+if ground fire overlaps grass, grass burns and becomes ground fire.
+this interaction spread needs to be limited to the middle or beginning
+of the object's or projectile's lifetime, so it doesn't spread too fast or slow.
+we can control how fast it spread by what frame this happens on.
+fire spreads slower, later interaction.
+water spreads faster, earlier interaction.
+*the ground around water tiles should be coastline tiles, so the transition
+can happen properly - coastline tiles create wet feet sprite*
+
+
+
+
+
+
 explosions should push bomb projectiles.
 it would be so easy, and it would make bomb projectiles feel alive!
 placing bombs next to one another would be unpredictable past 2-3 interactions
@@ -192,6 +300,18 @@ then we could store a shadow offset, which allows us to fake depth on the Z axis
 if we keep the shadow in one place, while raising the obj/act, then we get depth off the ground
 this also sets the stage for flying obj/actors, as they would have changing shadow positions.
 this also means we need to 'unbake' the shadows from ALL objects and actors.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

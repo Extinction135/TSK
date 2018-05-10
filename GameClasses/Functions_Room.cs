@@ -50,8 +50,12 @@ namespace DungeonRun
             else if (ID == RoomID.Secret)
             { Room.size.X = 3; Room.size.Y = 3; }
 
-            //field rooms fill the screen
-            else { Room.size.X = 40; Room.size.Y = 23; } 
+            //field rooms fill the screen - maintain 16:9 ratio
+            else
+            {
+                //Room.size.X = 40; Room.size.Y = 23; //640x360 / 16
+                Room.size.X = 40*2; Room.size.Y = 23*2; //double size
+            } 
 
             //set collision rec size
             Room.rec.Width = Room.size.X * 16;
@@ -139,8 +143,8 @@ namespace DungeonRun
                 //setup overworld level data
                 if (Room.roomID == RoomID.Colliseum)
                 { RoomXmlData = LevelData.Colliseum; Level.isField = true; }
-                else if (Room.roomID == RoomID.CastleEntrance)
-                { RoomXmlData = LevelData.CastleEntrance; Level.isField = true; }
+                else if (Room.roomID == RoomID.ForestEntrance)
+                { RoomXmlData = LevelData.ForestEntrance; Level.isField = true; }
 
                 //setup dungeon room data
                 else if (Room.roomID == RoomID.Boss)

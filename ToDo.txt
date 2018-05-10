@@ -30,9 +30,15 @@ Adding GameObjs:
 	playtest in field.	
 	
 	
-	
-	
-	
+Phase 1 - version 0.1 to 0.7 (complete)
+zelda with a procedural, randomly generated dungeon, and
+better movement / dashing / combat on xbox one + pc.
+
+Phase 2 - version 0.8 to 1.0
++ Miyamoto's original lttp ideas.
++ all desired functionality from lttp + other zeldas.
++ all desired functionality from other games.
++ mature, dark story + endgame content.	
 	
 	
 	
@@ -92,69 +98,19 @@ TODAY:
 
 
 
+Levels++
 
+doubled the size of field levels, modified cam tracking routines to
+work with new field size - hero exits level just as he touches the
+edge of the screen. updated how camera is handled for field and
+dungeon levels in ScreenLevel.Update().
 
+changed castle to forest in codebase.
+updated forest dungeon overworld xml with correct type.
 
-
-Release Version 0.7
-
-so, in order to get the game working as a UWP appX sideloaded game,
-the external roomdata xml needs to become internal binary. and once 
-that's done, we might as well release an official UWP version, because
-we're releasing an unofficial version to PP - which means we should also
-release a Dx version, so all platforms are treated fairly. ok. go.
-
-created AssetsRoomData.cs, which will contain all the room data in a c# format.
-linked the new method ConvertXMLtoCS() to editor's F4 button (change this later).
-completed a round trip from XML to CS back to VisualStudio to EXE for all outdoor levels.
-converted AssetsRoomData file to AssetsLevelData.
-Updated conversion to ignore dungeon rooms.
-this essentially completes the level side of conversion, now the room side.
-
-created AssetsRoomData (again).
-copied & modified the existing level conversion routine to work with roomData,
-which is different because there are many rooms of the same type, but only 1 
-level of each type. so rooms are sorted onto lists, and randomly a room is 
-selected from the correct type list (for example, when hero enters the boss
-room, the objects inside that room are built from a random roomData on bossList).
-confusing, yeah i know. but it works.
-
-cleaned up and organized Functions_Backend.ConvertXMLtoCS().
-
-updated game to use internal RoomData and LevelData classes instead
-of loading external xml into Assets.overworldLevels and misc dungeon roomData
-lists.. removed SetupXMLid(), since this is no longer used. removed
-Room.XMLid field as well.
-
-playtested: broke upon loading exit dungeon room, of which there are none. fixed.
-playtested: Dx version working, and dropped room build/finish times by between 50-75%.
-however, finish times were already around 1-4 ms - not really noticeable.
-now they're almost sub 1 ms (10,000 ticks), so that that's naisu.
-likely faster on the xbone too, so improvement for complexity.
-
-updated UWP project to use RoomData and LevelData classes,
-wrote blank ConvertXMLtoCS() method for UWP backend functions.
-playtested UWP, noticed an issue with hub room not spawning proper chest..
-
-switched to Dx project, updated hub room data to not have any empty chests. 
-there was a problem were empty chests were being saved to the hub room, which
-meant in game the hero couldn't get the dungeon's map. now hub has
-dark blocks instead of empty chests, and only 1 full chest.
-double checked key rooms have proper chests too, reconverted
-xml to cs using newly developed pipeline, switched back to UWP,
-playtested in release mode - hub rooms working fine. ready for release.
-
-exported Dx and UWP versions for 0.7.
-uploaded to dropbox. updated readme with links for 0.7.
-
-
-
-
-
-
-
-
-post to forum, with both links (try posting gif too)
+remade colliseum level to work with larger field size.
+remade forest entrance as well.
+playtested, working perfectly.
 
 
 
@@ -167,6 +123,8 @@ post to forum, with both links (try posting gif too)
 
 
 
+improve editor to handle larger field levels.
+we need to be able to hide every widget, but still draw the cursor and manp. objs.
 
 
 
@@ -174,6 +132,15 @@ post to forum, with both links (try posting gif too)
 
 
 
+remake forest entrance level. - has dungeon entrance.
+remake colliseum level. - has vendors.
+
+
+
+
+
+lightworld forest entrance should be opening in trees
+dark world should be horrific tree trunk thing we have rn.
 
 
 
@@ -181,19 +148,9 @@ post to forum, with both links (try posting gif too)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+also, we are building rooms randomly when hero enters them.
+this is true random, as when hero reenters them, they are different.
+we need to store an id with the room (xmlid, oops) and use that to get the same roomdata each build
 
 
 
@@ -207,11 +164,19 @@ the info widget displays the current savedata's rating (k/d)
 
 
 
-
-
 when we change rooms, we reset the particle pool (hopefully)
 when we call that reset, we should be resetting ALL particles,
 even ones that are alive currently.
+
+
+
+
+
+
+
+
+
+
 
 
 
