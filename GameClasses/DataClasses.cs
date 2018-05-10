@@ -37,6 +37,8 @@ namespace DungeonRun
         public static Boolean ShowEnemySpawns = false; //create & draw enemySpawn gameObjects?
         public static Boolean PrintOutput = true; //print output to the debugger
         public static Boolean ShowDialogs = true; //turn dialogs on/off
+
+        public static Boolean HardMode = false; //makes the game harder
         
         //cheats
         public static Boolean Invincibility = true; //does hero ignore damage?

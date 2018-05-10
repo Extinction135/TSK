@@ -158,10 +158,15 @@ namespace DungeonRun
             //add decorative objs and check for torches/switches/etc..
             ProcedurallyFinish(Functions_Level.currentRoom);
 
-            //if this room hasn't been visited, setup any puzzle it contains
-            if (!Functions_Level.currentRoom.visited)
-            { SetupPuzzle(Functions_Level.currentRoom); }
-            
+            if (Flags.HardMode)
+            {   //setup the rooms puzzle everytime hero enters it
+                SetupPuzzle(Functions_Level.currentRoom);
+            }
+            else//puzzle rooms on normal mode only require solving once
+            {   //if this room hasn't been visited, setup any puzzle it contains
+                if (Functions_Level.currentRoom.visited == false)
+                { SetupPuzzle(Functions_Level.currentRoom); }
+            }   
         }
 
 

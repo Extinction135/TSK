@@ -165,18 +165,6 @@ namespace DungeonRun
                 { RoomXmlData = RoomData.squareRooms[Functions_Random.Int(0, RoomData.squareRooms.Count)]; }
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
             if (Room.roomID == RoomID.DEV_Boss || Room.roomID == RoomID.DEV_Column ||
                 Room.roomID == RoomID.DEV_Exit || Room.roomID == RoomID.DEV_Hub ||
                 Room.roomID == RoomID.DEV_Key || Room.roomID == RoomID.DEV_Row ||

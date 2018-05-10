@@ -89,6 +89,9 @@ namespace DungeonRun
             labels[2].text = "watr\nmark";
             Functions_MenuItem.SetType(MenuItemType.Options_Watermark, menuItems[2]);
 
+            labels[2].text = "hard\nmode";
+            Functions_MenuItem.SetType(MenuItemType.Options_HardMode, menuItems[2]);
+
             #endregion
 
 
@@ -146,6 +149,11 @@ namespace DungeonRun
                 {
                     if (Flags.DrawWatermark) { Flags.DrawWatermark = false; }
                     else { Flags.DrawWatermark = true; }
+                }
+                else if (currentlySelected.type == MenuItemType.Options_HardMode)
+                {
+                    if (Flags.HardMode) { Flags.HardMode = false; }
+                    else { Flags.HardMode = true; }
                 }
 
                 #endregion
@@ -295,6 +303,9 @@ namespace DungeonRun
 
             if (Flags.DrawWatermark)
             { menuItems[2].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+
+            if (Flags.HardMode)
+            { menuItems[3].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
 
             //expand this to include additional options
         }

@@ -3,6 +3,26 @@
 
 
 
+
+Magic Mirror
+- returns link to dungeon entrance.
+- plays warp sound fx
+this should be done in conjunction with the upgraded level
+screen opening / closing animation:
+(4 black squares collapsing or opening on link)
+
+
+
+
+
+
+
+
+
+
+
+
+
 because the blob boss has a cast sprite, he should be able to cast
 revive upon his dead blob spawn randomly. this makes the boss fight
 that much harder.
@@ -109,9 +129,7 @@ slow finish / build becuase we call cleanRoom() twice, which is dumb af
 
 
 
-Magic Mirror
-- returns link to dungeon entrance.
-- dark world field level, creates portal to light world.
+
 
 
 

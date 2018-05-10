@@ -513,6 +513,12 @@ namespace DungeonRun
                 MenuItem.description = "draws game's repo \nlink in top right.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
+            else if (Type == MenuItemType.Options_HardMode)
+            {
+                MenuItem.name = "Hard Mode";
+                MenuItem.description = "rooms reset, etc.. \nalmost unfair.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
+            }
 
             #endregion
 

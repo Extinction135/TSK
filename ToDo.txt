@@ -100,28 +100,6 @@ TODAY:
 
 
 
-Bottles++
-
-when hero uses a bottle, it does't appear over his head.
-this is because i decided to set every bottle's texture to the
-entity sheet, which doens't even contain bottles. so, yeah...
-updated that path to point to the ui items sheet and bottles work.
-oops.
-
-
-
-
-
-
-also, we are building rooms randomly when hero enters them.
-this is true random, as when hero reenters them, they are different.
-we need to store an id with the room (xmlid, oops) and use that to get the same roomdata each build
-
-
-
-when we change rooms, we reset the particle pool (hopefully)
-when we call that reset, we should be resetting ALL particles,
-even ones that are alive currently.
 
 
 
@@ -129,15 +107,21 @@ even ones that are alive currently.
 
 Hardmode
 
-we need the option to re-enable puzzles for hard mode. this means progression
-thru the dungeon isn't tracked, and puzzle rooms reset upon entering them.
+the difference between normal and hard mode right now is that normal
+mode dungeon puzzles only require you to solve them once. hard mode
+dungeon room puzzles reset each time the hero enters the room, which
+can feel cheap if the hero was pushed out of a room he just entered,
+or if he was pushed back into a difficult puzzle room that he just
+spent some time and sweat solving - thus hard mode. the effect of
+resetting puzzle rooms greatly compounds the player's frustration,
+and greatly increases the difficulty of the dungeon.
 
-we can enable this option by adding a boolean to flags, something like 'oneTimePuzzles'.
-if we disable the boolean, then we call SetupPuzzles() at the end of a room build.
-adding this oneTimePuzzles idea is conceptually the beginning of 'hard mode',
-where room puzzles reset upon build.
 
-this needs to be added to the options screen, oneTimePuzzles.
+
+
+
+
+
 
 
 
@@ -216,6 +200,16 @@ game, in the final dialogs.
 
 
 
+
+
+ROOMS++
+also, we are building rooms randomly when hero enters them.
+this is true random, as when hero reenters them, they are different.
+we need to store an id with the room (xmlid, oops) and use that to get the same roomdata each build
+
+when we change rooms, we reset the particle pool (hopefully)
+when we call that reset, we should be resetting ALL particles,
+even ones that are alive currently.
 
 
 
