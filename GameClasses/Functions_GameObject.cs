@@ -717,9 +717,18 @@ namespace DungeonRun
                 else if (Type == ObjType.Wor_Grass_Tall)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall; }
                 else if (Type == ObjType.Wor_Flowers)
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_Flowers; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_Flowers;
+                    //randomly set the starting frame for flowers, so their animations dont sync up
+                    Obj.compAnim.index = (byte)Functions_Random.Int(0, Obj.compAnim.currentAnimation.Count);
+                }
 
                 Obj.sfx.kill = Assets.sfxBushCut; //only tall grass can get killed()
+
+                //randomly flip sprite horizontally
+                if (Functions_Random.Int(0, 100) < 50)
+                { Obj.compSprite.flipHorizontally = true; }
+                else { Obj.compSprite.flipHorizontally = false; }
             }
 
             #endregion
@@ -783,8 +792,6 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -24;
                 Obj.compCollision.blocking = false;
                 Obj.compMove.moveable = true;
-                Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
-                Obj.compCollision.rec.Width = 5; Obj.compCollision.rec.Height = 5;
                 //randomly choose animFrame
                 if (Functions_Random.Int(0, 100) < 50)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Debris1; }

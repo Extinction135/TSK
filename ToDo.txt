@@ -98,18 +98,6 @@ TODAY:
 
 
 
-Editor++
-
-improved editor with keyboard shortcuts.
-now creating + editing levels is much faster.
-press 0 to select + move objs.
-press - to enter delete mode.
-press + to enter add mode.
-selecting an obj makes that obj the current
-"blueprint" too, so it's super easy to clone
-objs already on screen.
-
-playtested - very very happy with editor now.
 
 
 
@@ -117,17 +105,92 @@ playtested - very very happy with editor now.
 
 
 
-Improvements
 
-*debris should have 16x16 hitbox. it's hard to pickup in editor.
+Improvements++
 
-*flowers should have their starting frame randomly set.
+debris should have 16x16 hitbox. it's hard to pickup in editor. fixed.
+randomly flip grass sprites horizontally - breaks up repetitive patterns. done.
+flowers should have their starting frame randomly set. done.
 this will offset their animations, and make them look better.
 
-*should be able to cut flowers - they become light grass objs - no loot /sfx
+fix the pixel on the tree sprite - we still have grey parts outside the black outline.
+improved bottom shaded area of tree with dark gray, but not black.
+exported new sprite sheet for Dx project.
 
-*randomly flip grass sprites horizontally - break up their repetitive patterns
-*fix the pixel on the tree sprite - we still have grey parts outside the black outline? lol
+improved the guide's dialog.
+he now says "press the a button to interact with objects, like torches and doors."
+playtested, working great.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Dialog++
+
+functions_dialog should be AssetsDialog, because it doesn't contain any functions. lol.
+
+
+improve the dungeon entrance dialog.
+should be link sprite. *requires that we have an objType enum value for link sprite.
+he should say "should I enter this place?"
+**we want to be able to set dialog "faces" easier**
+we just need to pass a texture, and an animationList, and the widget should do the rest.
+this speaker sprite is ALWAYS 16x16 and placed in a specific position.
+
+we've also complicated the piss out of dialog screen with booleans, simply because we
+are forcing it into the post-title screen load dialog, where we transition from dialog
+to overworld. nowhere else do we do this. plus, we aren't planning to do anything else
+like that, so consider splitting that functionality out of dialog screen, and instead
+handling that at the end of LSN screen - since that's the only place it can be called from.
+we can handle it once here, and vastly simplify the dialog screen - so we can complicate
+it much later with story element stuff.
+
+
+
+
+*add a signpost outside the dungeon entrance that says "forest dungeon - caution!"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Interactions++
+
+*should be able to sword cut flowers - they become light grass objs - no loot /sfx.
+
+*fireballs should burn any kind of grass obj that it touches.
+create ground fire at objs location, obj becomes light grass obj.
+
+
+
+
+
+
+
 
 
 

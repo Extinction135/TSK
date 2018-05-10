@@ -19,9 +19,9 @@ namespace DungeonRun
         public static List<Dialog> Guide = new List<Dialog>
         {
             new Dialog(ObjType.Vendor_NPC_Story, "Hello!",
-                "i'm the guide. i'll explain the story.\n" + 
-                "eventually.", 
-                Assets.sfxHeartPickup, false, false, false),
+                "Press the A button to interact with objects,\n" + 
+                "like signposts, torches, and doors.", 
+                Assets.sfxTextLetter, false, false, false),
         };
 
         
