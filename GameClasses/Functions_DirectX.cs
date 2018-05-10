@@ -253,7 +253,7 @@ namespace DungeonRun
         {
             SetFilename(Type);
             Boolean autoSave = false;
-            List<Dialog> dialog = Functions_Dialog.Guide;
+            List<Dialog> dialog = AssetsDialog.Guide;
 
             try
             {
@@ -290,8 +290,8 @@ namespace DungeonRun
                             }
                         }
                         if (autoSave) //let player know file has been loaded
-                        { dialog = Functions_Dialog.GameAutoSaved; }
-                        else { dialog = Functions_Dialog.GameLoaded; }
+                        { dialog = AssetsDialog.GameAutoSaved; }
+                        else { dialog = AssetsDialog.GameLoaded; }
                     }
                 }
 
@@ -310,7 +310,7 @@ namespace DungeonRun
                     else if (Type == GameFile.Game2) { SaveGame(GameFile.Game2); }
                     else if (Type == GameFile.Game3) { SaveGame(GameFile.Game3); }
                     //notify player of this event
-                    dialog = Functions_Dialog.GameLoadFailed;
+                    dialog = AssetsDialog.GameLoadFailed;
                 }
 
                 #endregion
@@ -319,7 +319,7 @@ namespace DungeonRun
             catch (Exception ex) //file does not exist, cannot be loaded, save the current data to file address
             {
                 if (Flags.PrintOutput) { Debug.WriteLine("file does not exist. error: " + ex.Message); }
-                SaveGame(Type); dialog = Functions_Dialog.GameNotFound;
+                SaveGame(Type); dialog = AssetsDialog.GameNotFound;
             }
             //if loaded data is current game, notify player of loading via dialog screen
             if (loadAsCurrentGame) { ScreenManager.AddScreen(new ScreenDialog(dialog)); }

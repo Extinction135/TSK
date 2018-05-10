@@ -208,14 +208,14 @@ namespace DungeonRun
                     Functions_Particle.Spawn(ObjType.Particle_RewardKey, Pool.hero);
                     Level.bigKey = true;
                     if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.HeroGotKey)); }
+                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotKey)); }
                 }
                 else if (Obj.type == ObjType.Dungeon_ChestMap)
                 {
                     Functions_Particle.Spawn(ObjType.Particle_RewardMap, Pool.hero);
                     Level.map = true;
                     if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.HeroGotMap)); }
+                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.HeroGotMap)); }
                 }
 
                 #endregion
@@ -242,7 +242,7 @@ namespace DungeonRun
             {   //some vendors do not sell items, so check vendor types
                 if (Obj.type == ObjType.Vendor_NPC_Story) //for now this is default dialog
                 {   //figure out what part of the story the hero is at, pass this dialog
-                    ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.Guide));
+                    ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Guide));
                 }
                 else { ScreenManager.AddScreen(new ScreenVendor(Obj)); }
                 //vendor ad objects are ignored, because they aren't of Group.Vendor
@@ -267,7 +267,7 @@ namespace DungeonRun
                 else
                 {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
                     if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.DoesNotHaveKey)); }
+                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.DoesNotHaveKey)); }
                 }
             }
 
@@ -335,7 +335,7 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
             {   //give player choice to enter dungeon
-                ScreenManager.AddScreen(new ScreenDialog(Functions_Dialog.Enter_ForestDungeon));
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
             }
 
             #endregion

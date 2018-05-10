@@ -77,7 +77,7 @@ namespace DungeonRun
 
                 #region Dialogs with A/B Choices + Diff Outcomes
 
-                if(dialogs == Functions_Dialog.Enter_ForestDungeon)
+                if(dialogs == AssetsDialog.Enter_ForestDungeon)
                 {
                     if (Functions_Input.IsNewButtonPress(Buttons.A))
                     {

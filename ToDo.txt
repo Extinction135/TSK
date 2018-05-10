@@ -107,22 +107,7 @@ TODAY:
 
 
 
-Improvements++
 
-there is a room with conveyor belts that isn't on, and it makes the room stupidly simple.
-fixed, and modified the room to be "better". recompiled roomData.
-fixed various small bugs encountered.
-
-flavored the hit routine to zero out any hit actor's movement speed.
-this has the effect of negating player input when hero is hit,
-which adds impact to the hit while also preventing an issue where
-hero could 'spike skate' over fields of spikes, because they had
-control over their direction while being hit. now that's not possible.
-
-playtested, hits feel sooo much better.
-now you really dont want to get hit, because the recovery time
-feels longer, even though it isn't - you just don't have control
-over the direction of the hit.
 
 
 
@@ -138,7 +123,17 @@ over the direction of the hit.
 
 Dialog++
 
-functions_dialog should be AssetsDialog, because it doesn't contain any functions. lol.
+functions_dialog should be AssetsDialog, because it doesn't contain any functions.
+migrated Dx and UWP projects to use AssetsDialog.cs instead of Functions_Dialog.cs.
+organization! 
+
+
+
+
+
+
+
+
 
 *add a signpost outside the dungeon entrance that says "forest dungeon - caution!"
 we could stuff this into the interaction comp as a string.
@@ -152,7 +147,9 @@ if obj's compInt string isn't null, pop dialog displaying obj as speaker.
 
 
 
+spread fire.
 
+then, water tiles + swimming + trenches + shovel + water movement + new level.
 
 
 

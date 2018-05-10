@@ -78,6 +78,9 @@
     <Compile Include="..\..\GameClasses\Assets.cs">
       <Link>Classes\Assets.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\AssetsDialog.cs">
+      <Link>Classes\AssetsDialog.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\AssetsLevelData.cs">
       <Link>Classes\AssetsLevelData.cs</Link>
     </Compile>
@@ -116,9 +119,6 @@
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Debug.cs">
       <Link>Classes\Functions_Debug.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GameClasses\Functions_Dialog.cs">
-      <Link>Classes\Functions_Dialog.cs</Link>
     </Compile>
     <Compile Include="..\..\GameClasses\Functions_Direction.cs">
       <Link>Classes\Functions_Direction.cs</Link>

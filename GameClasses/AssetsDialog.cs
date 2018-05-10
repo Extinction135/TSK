@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace DungeonRun
 {
-    public static class Functions_Dialog
+    public static class AssetsDialog
     {
         //create instances for all the dialog in the game
 
