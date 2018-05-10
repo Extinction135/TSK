@@ -131,11 +131,9 @@ namespace DungeonRun
             //3 - magic mirror
 
             //7 - hookshot
-            //8 - net
-            if (PlayerData.current.weaponNet)
-            { Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[8]); }
+            //8 - ?
             //9 - ?
-            //10 - ???
+            //10 - ?
 
             //14 - mirror shield
             //15 - cape
@@ -170,7 +168,9 @@ namespace DungeonRun
 
             //21 - sword
             Functions_MenuItem.SetType(MenuItemType.WeaponSword, menuItems[21]);
-            //22 - ???
+            //22 - net
+            if (PlayerData.current.weaponNet)
+            { Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[22]); }
             //23 - hammer
             //24 - axe
             //25 - push wand

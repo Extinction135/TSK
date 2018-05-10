@@ -20,7 +20,7 @@ namespace DungeonRun
         public WidgetQuestItems()
         {
             window = new MenuWindow(new Point(-100, -100),
-                new Point(100, 100), "Quest Items");
+                new Point(100, 100), "default");
 
             //create menuitems
             menuItems = new List<MenuItem>();
@@ -31,7 +31,7 @@ namespace DungeonRun
         public override void Reset(int X, int Y)
         {   //align this widgets component to Position + Size
             Functions_MenuWindow.ResetAndMove(window, X, Y, 
-                new Point(16 * 6 + 8, 16 * 8 + 8), "Quest Items");
+                new Point(16 * 6 + 8, 16 * 8 + 8), "misc");
             Functions_MenuItem.PlaceMenuItems(menuItems, 
                 window.background.position.X + 16, 
                 window.background.position.Y + 16 * 2, 

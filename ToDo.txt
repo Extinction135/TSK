@@ -99,27 +99,32 @@ TODAY:
 
 
 
+Items++
 
-updated inventory widget to display items as items X or Y.
+moved net to ITEMS X category in inventory screen.
+this is actually where the net belongs, because it's modeled
+as a weapon internally. why it was placed in the items category
+is simply my mistake.
 
-changed MenuItemType WeaponBow to ItemBow.
-moved bow to Items Y category in inventory.
-updated various classes to handle this change.
-
-
-
-
-
-
-item x - sword, hammer, shovel, net (movement stops in use)
-item y - everything else (movement is slightly slowed upon use)
+changed quest items to MISC, because i have no idea what
+this is actually going to be named and quest items sounds corny af rn.
+playtested, working.
 
 
-move arrows to be item.
-move net to be weapon.
-change weapon title to ITEM X
-change items title to ITEM Y
-change quest items to STORY ITEMS
+
+
+
+
+
+
+
+
+
+
+
+when hero uses a bottle, it does't appear over his head.
+is this a particle frame issue? do we have the proper anim frmaes?
+yep, wrong texture and/or frame
 
 
 
