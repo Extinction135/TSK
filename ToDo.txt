@@ -100,117 +100,26 @@ TODAY:
 
 
 
+updated inventory widget to display items as items X or Y.
 
+changed MenuItemType WeaponBow to ItemBow.
+moved bow to Items Y category in inventory.
+updated various classes to handle this change.
 
 
 
 
 
 
+item x - sword, hammer, shovel, net (movement stops in use)
+item y - everything else (movement is slightly slowed upon use)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Dialog++
-
-functions_dialog should be AssetsDialog, because it doesn't contain any functions.
-migrated Dx and UWP projects to use AssetsDialog.cs instead of Functions_Dialog.cs.
-organization! 
-
-
-
-
-
-
-
-
-
-*add a signpost outside the dungeon entrance that says "forest dungeon - caution!"
-we could stuff this into the interaction comp as a string.
-if obj's compInt string isn't null, pop dialog displaying obj as speaker.
-
-
-
-
-
-
-
-
-
-spread fire.
-
-then, water tiles + swimming + trenches + shovel + water movement + new level.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Interactions++
-
-*should be able to sword cut flowers - they become light grass objs - no loot /sfx.
-
-*fireballs should burn any kind of grass obj that it touches.
-create ground fire at objs location, obj becomes light grass obj.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+move arrows to be item.
+move net to be weapon.
+change weapon title to ITEM X
+change items title to ITEM Y
+change quest items to STORY ITEMS
 
 
 
@@ -223,32 +132,9 @@ we need to store an id with the room (xmlid, oops) and use that to get the same 
 
 
 
-
-
-
-Display Rating
-this is a menuItem that the player can select from the inventory screen
-the info widget displays the current savedata's rating (k/d)
-
-
-
-
 when we change rooms, we reset the particle pool (hopefully)
 when we call that reset, we should be resetting ALL particles,
 even ones that are alive currently.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

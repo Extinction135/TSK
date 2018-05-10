@@ -34,6 +34,13 @@ when hero dies in water, he sinks undewater..
 
 
 
+*add a signpost outside the dungeon entrance that says "forest dungeon - caution!"
+we could stuff this into the interaction comp as a string.
+if obj's compInt string isn't null, pop dialog displaying obj as speaker.
+
+
+
+
 we should have multiple rooms, each representing a floor, with an obj that transfers
 hero between floors. this is  easiest, ad we can have as many floors as needed per room.
 plus these rooms form a set, so we can build puzzles across floors, using an int or byte to 
@@ -67,8 +74,16 @@ to visually 'rise' up over a period of 2 seconds.
 
 
 
-item x - sword, hammer, shoverl, net (movement stops in use)
-item y - everything else (movement is slightly slowed upon use)
+Ratings Ticket
+this is a menuItem that the player can select from the inventory screen
+the info widget displays the current savedata's rating (k/d)
+this is first 'story item'.
+
+Create colliseum NPC vendor.
+this is where Link can get his rating item from.
+it's free, and displays his K/D from the info screen.
+in later colliseum quests, K/D may be a requirement to enter some tournaments.
+
 
 
 

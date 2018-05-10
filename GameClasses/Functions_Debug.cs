@@ -192,6 +192,7 @@ namespace DungeonRun
 
             output += "\n  -- Items --"; ;
             output += "\n  has boomerang: " + PlayerData.current.itemBoomerang;
+            output += "\n  has Bow: " + PlayerData.current.itemBow;
 
             output += "\n  -- Bottles --"; ;
             output += "bottleA: " + PlayerData.current.bottleA;
@@ -203,7 +204,6 @@ namespace DungeonRun
             output += "\n  has magicFireball: " + PlayerData.current.magicFireball;
 
             output += "\n  -- Weapons --"; ;
-            output += "\n  has Bow: " + PlayerData.current.weaponBow;
             output += "\n  has Net: " + PlayerData.current.weaponNet;
 
             output += "\n  -- Armor --"; ;

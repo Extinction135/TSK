@@ -170,6 +170,7 @@ namespace DungeonRun
                     if( //items
                         currentlySelected.type == MenuItemType.ItemBomb
                         || currentlySelected.type == MenuItemType.ItemBoomerang
+                        || currentlySelected.type == MenuItemType.ItemBow
                         //bottles
                         || currentlySelected.type == MenuItemType.BottleEmpty
                         || currentlySelected.type == MenuItemType.BottleBlob
@@ -192,8 +193,6 @@ namespace DungeonRun
 
                     else if (currentlySelected.type == MenuItemType.WeaponSword) //sword
                     { PlayerData.current.currentWeapon = 0; Pool.hero.weapon = currentlySelected.type; }
-                    else if (currentlySelected.type == MenuItemType.WeaponBow) //bow
-                    { PlayerData.current.currentWeapon = 1; Pool.hero.weapon = currentlySelected.type; }
                     else if (currentlySelected.type == MenuItemType.WeaponNet) //net
                     { PlayerData.current.currentWeapon = 2; Pool.hero.weapon = currentlySelected.type; }
 

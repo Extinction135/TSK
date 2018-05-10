@@ -145,6 +145,13 @@ namespace DungeonRun
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_ItemBoomerang;
                 MenuItem.price = 50;
             }
+            else if (Type == MenuItemType.ItemBow)
+            {
+                MenuItem.name = "Sturdy Bow";
+                MenuItem.description = "shoots arrows, which \ndeal 1 physical damage.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Bow;
+                MenuItem.price = 50;
+            }
 
             #endregion
 
@@ -217,13 +224,6 @@ namespace DungeonRun
                 MenuItem.name = "Hero's Sword";
                 MenuItem.description = "sharp and strong, \ndeals 1 physical damage.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Sword;
-                MenuItem.price = 50;
-            }
-            else if (Type == MenuItemType.WeaponBow)
-            {
-                MenuItem.name = "Sturdy Bow";
-                MenuItem.description = "shoots arrows, which \ndeal 1 physical damage.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Bow;
                 MenuItem.price = 50;
             }
             else if (Type == MenuItemType.WeaponNet)

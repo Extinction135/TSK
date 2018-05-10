@@ -25,16 +25,6 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ObjType.ProjectileSword, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
-            else if (Type == MenuItemType.WeaponBow)
-            {
-                if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
-                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
-                //actor shoots an arrow
-                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor.compMove, Actor.direction);
-                //actor displays a bow
-                Functions_Projectile.Spawn(ObjType.ProjectileBow, Actor.compMove, Actor.direction);
-                Functions_Actor.SetItemUseState(Actor);
-            }
             else if (Type == MenuItemType.WeaponNet)
             {
                 Functions_Projectile.Spawn(ObjType.ProjectileNet, Actor.compMove, Actor.direction);
@@ -54,7 +44,6 @@ namespace DungeonRun
                 Functions_Projectile.Spawn(ObjType.ProjectileBomb, Actor.compMove, Actor.direction);
                 Functions_Actor.SetItemUseState(Actor);
             }
-
             else if (Type == MenuItemType.ItemBoomerang)
             {
                 if (Functions_Hero.boomerangInPlay == false)
@@ -63,6 +52,16 @@ namespace DungeonRun
                     Functions_Actor.SetItemUseState(Actor);
                     Assets.Play(Assets.sfxArrowShoot);
                 }
+            }
+            else if (Type == MenuItemType.ItemBow)
+            {
+                if (Actor == Pool.hero & !CheckArrows()) //check if hero has enough
+                { Assets.Play(Assets.sfxError); Actor.lockTotal = 0; return; }
+                //actor shoots an arrow
+                Functions_Projectile.Spawn(ObjType.ProjectileArrow, Actor.compMove, Actor.direction);
+                //actor displays a bow
+                Functions_Projectile.Spawn(ObjType.ProjectileBow, Actor.compMove, Actor.direction);
+                Functions_Actor.SetItemUseState(Actor);
             }
 
             #endregion

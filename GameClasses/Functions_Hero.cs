@@ -596,8 +596,6 @@ namespace DungeonRun
             if (PlayerData.current.currentWeapon == 0)
             { Pool.hero.weapon = MenuItemType.WeaponSword; }
             else if (PlayerData.current.currentWeapon == 1)
-            { Pool.hero.weapon = MenuItemType.WeaponBow; }
-            else if (PlayerData.current.currentWeapon == 2)
             { Pool.hero.weapon = MenuItemType.WeaponNet; }
             else { Pool.hero.weapon = MenuItemType.Unknown; }
 
@@ -658,10 +656,10 @@ namespace DungeonRun
             PlayerData.current.bottleC = MenuItemType.BottleFairy;
             //set items
             PlayerData.current.itemBoomerang = true;
+            PlayerData.current.itemBow = true;
             //set magic
             PlayerData.current.magicFireball = true;
             //set weapons
-            PlayerData.current.weaponBow = true;
             PlayerData.current.weaponNet = true;
             //set armor
             PlayerData.current.armorCape = true;

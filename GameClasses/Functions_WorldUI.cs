@@ -114,21 +114,20 @@ namespace DungeonRun
                 Functions_MenuItem.SetType(WorldUI.heroItem, WorldUI.currentItem);
             }
 
-            //check weapon type to see if we should display the weapon's remaining ammo
-            if(WorldUI.heroWeapon == MenuItemType.WeaponBow)
-            {
-                Functions_Component.UpdateAmount(WorldUI.weaponAmount, PlayerData.current.arrowsCurrent);
-                WorldUI.weaponAmount.visible = true;
-            }
-            else { WorldUI.weaponAmount.visible = false; }
 
-            //check item type to see if we should display the item's remaining ammo
+            WorldUI.itemAmount.visible = false; //assume false
+            if (WorldUI.heroItem == MenuItemType.ItemBow)
+            {   //check to see if we should display arrow's remaining ammo
+                Functions_Component.UpdateAmount(WorldUI.itemAmount, PlayerData.current.arrowsCurrent);
+                WorldUI.itemAmount.visible = true;
+            }
             if (WorldUI.heroItem == MenuItemType.ItemBomb)
-            {
+            {   //check to see if we should display bombs's remaining ammo
                 Functions_Component.UpdateAmount(WorldUI.itemAmount, PlayerData.current.bombsCurrent);
                 WorldUI.itemAmount.visible = true;
             }
-            else { WorldUI.itemAmount.visible = false; }
+
+
 
             //if the hero has an item equipped, then draw it
             if (WorldUI.heroItem != MenuItemType.Unknown)
@@ -175,7 +174,6 @@ namespace DungeonRun
             }
             Functions_Draw.Draw(WorldUI.currentWeapon.compSprite);
             Functions_Draw.Draw(WorldUI.currentItem.compSprite);
-            if (WorldUI.weaponAmount.visible) { Functions_Draw.Draw(WorldUI.weaponAmount); }
             if (WorldUI.itemAmount.visible) { Functions_Draw.Draw(WorldUI.itemAmount); }
             Functions_Draw.Draw(WorldUI.autosaveText);
             if (Flags.DrawUDT)

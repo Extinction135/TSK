@@ -24,7 +24,7 @@ namespace DungeonRun
         public WidgetInventory()
         {
             window = new MenuWindow(new Point(-100, -100),
-                new Point(100, 100), "Info Window");
+                new Point(100, 100), "default");
             //create dividers
             for (i = 0; i < 4; i++)
             {
@@ -33,7 +33,7 @@ namespace DungeonRun
             }
             //create labels
             labels = new List<ComponentText>();
-            labels.Add(new ComponentText(Assets.font, "weapons", 
+            labels.Add(new ComponentText(Assets.font, "ITEMS (X)", 
                 new Vector2(0,0), Assets.colorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "equipment",
                 new Vector2(0, 0), Assets.colorScheme.textDark));
@@ -63,7 +63,7 @@ namespace DungeonRun
 
             //align this widgets component to Position + Size
             Functions_MenuWindow.ResetAndMove(window, X, Y, 
-                new Point(16 * 11, 16 * 14 + 8), "Items");
+                new Point(16 * 11, 16 * 14 + 8), "ITEMS (Y)");
             //place labels (X)
             labels[0].position.X = X + 8;
             labels[1].position.X = labels[0].position.X;
@@ -119,8 +119,16 @@ namespace DungeonRun
             Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[1]);
             Functions_Component.Align(bombsDisplay, menuItems[1].compSprite);
             Functions_Component.UpdateAmount(bombsDisplay, PlayerData.current.bombsCurrent);
-            //2 - magic mirror
-            //3 - ???
+            //2 - arrows
+            if (PlayerData.current.itemBow)
+            {   //if hero has arrows, display the number of arrows + draw display amount
+                Functions_MenuItem.SetType(MenuItemType.ItemBow, menuItems[2]);
+                Functions_Component.Align(arrowsDisplay, menuItems[2].compSprite);
+                Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
+                arrowsDisplay.visible = PlayerData.current.itemBow; //hero has a bow, show arrow count
+            }
+
+            //3 - magic mirror
 
             //7 - hookshot
             //8 - net
@@ -162,14 +170,7 @@ namespace DungeonRun
 
             //21 - sword
             Functions_MenuItem.SetType(MenuItemType.WeaponSword, menuItems[21]);
-            //22 - bow and arrow
-            if (PlayerData.current.weaponBow)
-            {   //if hero has arrows, display the number of arrows + draw display amount
-                Functions_MenuItem.SetType(MenuItemType.WeaponBow, menuItems[22]);
-                Functions_Component.Align(arrowsDisplay, menuItems[22].compSprite);
-                Functions_Component.UpdateAmount(arrowsDisplay, PlayerData.current.arrowsCurrent);
-                arrowsDisplay.visible = PlayerData.current.weaponBow; //hero has a bow, show arrow count
-            }
+            //22 - ???
             //23 - hammer
             //24 - axe
             //25 - push wand

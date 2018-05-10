@@ -244,7 +244,7 @@ namespace DungeonRun
                 }
                 else if (Item.type == MenuItemType.ItemArrowPack)
                 {   //check to see if hero has a bow weapon
-                    if (PlayerData.current.weaponBow)
+                    if (PlayerData.current.itemBow)
                     {   //check to see if hero is full on arrows
                         if (PlayerData.current.arrowsCurrent < PlayerData.current.arrowsMax)
                         {   //increment the arrows, complete the sale
@@ -299,11 +299,11 @@ namespace DungeonRun
 
                 #region Weapons
 
-                else if (Item.type == MenuItemType.WeaponBow)
+                else if (Item.type == MenuItemType.ItemBow)
                 {
-                    if (!PlayerData.current.weaponBow)
+                    if (!PlayerData.current.itemBow)
                     {
-                        PlayerData.current.weaponBow = true;
+                        PlayerData.current.itemBow = true;
                         Pool.hero.weapon = Item.type;
                         CompleteSale(Item);
                     }

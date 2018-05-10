@@ -447,7 +447,7 @@ namespace DungeonRun
         MagicFireball,
 
         WeaponSword,
-        WeaponBow,
+        ItemBow,
         WeaponNet, 
 
         ArmorCloth,

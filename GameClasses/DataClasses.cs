@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
@@ -525,7 +525,6 @@ namespace DungeonRun
         public static MenuItem currentItem;
         public static MenuItemType heroWeapon;
         public static MenuItemType heroItem;
-        public static ComponentAmountDisplay weaponAmount; //weapon ammo
         public static ComponentAmountDisplay itemAmount; //item ammo
 
         public static ComponentText frametime;
@@ -608,7 +607,6 @@ namespace DungeonRun
             //create the current weapon & item menuItems
             currentWeapon = new MenuItem();
             currentItem = new MenuItem();
-            weaponAmount = new ComponentAmountDisplay(99, -100, -100);
             itemAmount = new ComponentAmountDisplay(99, -100, -100);
 
             //get the hero's current weapon and item
@@ -621,7 +619,6 @@ namespace DungeonRun
             Functions_Component.MoveQuadBkg(weaponBkg, xPos + 8, yPos + 8);
             currentWeapon.compSprite.position.X = xPos + 16;
             currentWeapon.compSprite.position.Y = yPos + 16;
-            Functions_Component.Align(weaponAmount, currentWeapon.compSprite);
 
             //move the item bkg & sprite & amount display
             Functions_Component.MoveQuadBkg(itemBkg, xPos + 16 * 8 + 8, yPos + 8);
@@ -1147,6 +1144,7 @@ namespace DungeonRun
 
         //non-magical items
         public Boolean itemBoomerang = false;
+        public Boolean itemBow = false;
 
         //bottles
         public MenuItemType bottleA = MenuItemType.BottleEmpty;
@@ -1162,8 +1160,7 @@ namespace DungeonRun
         #region Weapon
 
         public byte currentWeapon = 0;
-        //0=sword, 1=bow, 2=net
-        public Boolean weaponBow = false;
+        //0=sword, 2=net
         public Boolean weaponNet = false;
 
         #endregion
