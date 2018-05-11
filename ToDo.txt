@@ -105,18 +105,12 @@ TODAY:
 
 
 
-TallGrass Interaction++
+GrassyFeet++
 
-created better grassy feet sprite.
-linked up to actor, added in actor class - all actors
-now have a feet fx sprite, if they walk in tall grass,
-water, etc.. this is what will display the fx.
+improved grassy feet fx sprite.
+fixed sorting (z offset) of grassy feet fx.
+lots more playtesting.
 
-added SoundGrassWalk to Dx & UWP content projects.
-added sfxBushWalk to Assets. linked up actor interacting
-with tall grass to play sfx. 
-
-lots of playtesting to ensure feetfx looks / sounds right.
 
 
 

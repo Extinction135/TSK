@@ -57,7 +57,7 @@ namespace DungeonRun
                 if(Actor.feetFX.visible)
                 {
                     Actor.feetFX.position.X = Actor.compSprite.position.X;
-                    Actor.feetFX.position.Y = Actor.compSprite.position.Y + 1;
+                    Actor.feetFX.position.Y = Actor.compSprite.position.Y;
                     Functions_Component.SetZdepth(Actor.feetFX);
                     Draw(Actor.feetFX);
                 }

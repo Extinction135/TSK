@@ -1064,7 +1064,7 @@ namespace DungeonRun
                 new Vector2(100, 100), 
                 AnimationFrames.ActorFX_GrassyFeet[0], 
                 new Point(16, 16));
-            feetFX.zOffset = 8;
+            feetFX.zOffset = 2;
         }
     }
 
