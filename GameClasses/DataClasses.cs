@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.7f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
@@ -1048,6 +1048,9 @@ namespace DungeonRun
         public int chaseRadius;
         public int attackRadius;
 
+        //actor fx sprites
+        public ComponentSprite feetFX;
+
         public Actor()
         {
             compSprite = new ComponentSprite(Assets.heroSheet, 
@@ -1055,6 +1058,13 @@ namespace DungeonRun
             Functions_Actor.SetType(this, ActorType.Hero); //defaults to hero actor
             Functions_Movement.Teleport(compMove, 
                 compSprite.position.X, compSprite.position.Y);
+            //setup actor fx sprites
+            feetFX = new ComponentSprite(
+                Assets.forestLevelSheet,
+                new Vector2(100, 100), 
+                AnimationFrames.ActorFX_GrassyFeet[0], 
+                new Point(16, 16));
+            feetFX.zOffset = 8;
         }
     }
 

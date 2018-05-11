@@ -479,3 +479,9 @@
 /processorParam:Quality=Best
 /build:SoundBushCut.wav
 
+#begin SoundGrassWalk.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundGrassWalk.wav
+

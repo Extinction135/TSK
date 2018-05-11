@@ -52,6 +52,17 @@ namespace DungeonRun
                 Draw(Actor.compSprite);
                 if (Flags.DrawCollisions)
                 { Draw(Actor.compCollision); }
+
+                //draw actor feet fx
+                if(Actor.feetFX.visible)
+                {
+                    Actor.feetFX.position.X = Actor.compSprite.position.X;
+                    Actor.feetFX.position.Y = Actor.compSprite.position.Y + 1;
+                    Functions_Component.SetZdepth(Actor.feetFX);
+                    Draw(Actor.feetFX);
+                }
+
+                //here we'll draw actor shadow too
             }
         }
 

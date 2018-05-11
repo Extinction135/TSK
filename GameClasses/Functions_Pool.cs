@@ -213,13 +213,6 @@ namespace DungeonRun
                     Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
 
                     Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
-
-                    //here we could reject dead actor interactions like this
-                    //if (Pool.actorPool[i].state != ActorState.Dead)
-                    {
-                        //Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
-                        //but it's more fun to see their corpses being moved around by belts
-                    }
                 }
             }
 
@@ -490,8 +483,6 @@ namespace DungeonRun
             //actor pool
             for (Pool.actorCounter = 0; Pool.actorCounter < Pool.actorCount; Pool.actorCounter++)
             { Functions_Draw.Draw(Pool.actorPool[Pool.actorCounter]); }
-            //hero's shadow
-            Functions_Draw.Draw(Functions_Hero.heroShadow);
         }
 
     }

@@ -291,11 +291,12 @@ namespace DungeonRun
 
         public static void Update(Actor Actor)
         {
+            //alter actor's speed based on loadout
+            //cape armor increases movement
+            if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
 
-
-
-
-
+            //assume feetFX should be hidden
+            Actor.feetFX.visible = false;
 
 
             #region Actor is not Statelocked
@@ -399,10 +400,6 @@ namespace DungeonRun
             //set actor animation and direction
             SetAnimationGroup(Actor);
             SetAnimationDirection(Actor);
-
-            //alter actor's speed based on loadout
-            //cape armor increases movement
-            if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
         }
 
     }

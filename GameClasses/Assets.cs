@@ -130,6 +130,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxNet;
         public static SoundEffectInstance sfxBoomerangFlying;
         public static SoundEffectInstance sfxBushCut;
+        public static SoundEffectInstance sfxGrassWalk;
 
         #endregion
 
@@ -322,6 +323,9 @@ namespace DungeonRun
             sfxBoomerangFlying = boomerangFlyingSrc.CreateInstance();
             SoundEffect bushCutSrc = content.Load<SoundEffect>(@"SoundBushCut");
             sfxBushCut = bushCutSrc.CreateInstance();
+            SoundEffect grassWalkSrc = content.Load<SoundEffect>(@"SoundGrassWalk");
+            sfxGrassWalk = grassWalkSrc.CreateInstance();
+            //
 
             #endregion
 

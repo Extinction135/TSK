@@ -105,20 +105,18 @@ TODAY:
 
 
 
-Hardmode
+TallGrass Interaction++
 
-the difference between normal and hard mode right now is that normal
-mode dungeon puzzles only require you to solve them once. hard mode
-dungeon room puzzles reset each time the hero enters the room, which
-can feel cheap if the hero was pushed out of a room he just entered,
-or if he was pushed back into a difficult puzzle room that he just
-spent some time and sweat solving - thus hard mode. the effect of
-resetting puzzle rooms greatly compounds the player's frustration,
-and greatly increases the difficulty of the dungeon.
+created better grassy feet sprite.
+linked up to actor, added in actor class - all actors
+now have a feet fx sprite, if they walk in tall grass,
+water, etc.. this is what will display the fx.
 
+added SoundGrassWalk to Dx & UWP content projects.
+added sfxBushWalk to Assets. linked up actor interacting
+with tall grass to play sfx. 
 
-
-
+lots of playtesting to ensure feetfx looks / sounds right.
 
 
 
@@ -127,14 +125,44 @@ and greatly increases the difficulty of the dungeon.
 
 
 
+Spreading GroundFires
+
+ground fires should 'spread' to tall grass in the middle of their lifecycle.
+this is done via projectile.update(), waiting until a specific frame to then
+call a 'spread' method for fire.
+
+record gif. add miyamoto quote with link & gif to github, so folks know whats up.
 
 
-TallGrass++
 
-link walking on tall grass should create small grass at link's feet, partially hiding them.
-any grounded actor walking in tall grass should get "grassy feet".
-so this is a sprite that lives in the actor class, tracks to the actor's feet,
-and is only visible when actor is passively interacting with tall grass objs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

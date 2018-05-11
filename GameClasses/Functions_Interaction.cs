@@ -53,6 +53,9 @@ namespace DungeonRun
 
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //Obj can be Entity or RoomObj, check for hero state first
+
+            
+
             //ensure the object is active - have we done this in the calling code?
             if (!Obj.active) { return; } //inactive objects are denied interaction
             Pool.interactionsCount++; //count interaction
@@ -372,8 +375,48 @@ namespace DungeonRun
 
                 #endregion
 
+
+
+                #region Tall grass
+
+                else if (Obj.type == ObjType.Wor_Grass_Tall)
+                {
+                    //unhide + place grassy feet at actor's feet
+                    Actor.feetFX.visible = true;
+                    
+                    if (Actor.state == ActorState.Move)
+                    {
+                        //play move thru tall grass sfx
+                        Assets.Play(Assets.sfxGrassWalk);
+                        //fake animation thru alpha counter
+                        Actor.feetFX.alpha -= 0.001f;
+                        if (Actor.feetFX.alpha <= 0.985) //15 frames
+                        {
+                            Actor.feetFX.alpha = 1.0f; //reset the timer 
+                            if (Actor.feetFX.flipHorizontally)
+                            { Actor.feetFX.flipHorizontally = false; }
+                            else { Actor.feetFX.flipHorizontally = true; }
+                        }
+                    }
+                }
+
+                #endregion
+
+
                 //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
             }
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
         public static void InteractRoomObj(GameObject RoomObj, GameObject Object)

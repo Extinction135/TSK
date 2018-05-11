@@ -469,6 +469,11 @@ namespace DungeonRun
         public static ActorAnimationList Hero_Animations;
         public static ActorAnimationList Boss_Blob_Animations;
 
+        //actor fx anim frames
+        public static List<Byte4> ActorFX_GrassyFeet = new List<Byte4> { new Byte4(7, 0, 0, 0) };
+
+
+
         static AnimationFrames()
         {
 
@@ -611,10 +616,5 @@ namespace DungeonRun
 
 
         }
-
-
-
-
-
     }
 }
