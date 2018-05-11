@@ -53,9 +53,6 @@ namespace DungeonRun
 
         public static void InteractActor(Actor Actor, GameObject Obj)
         {   //Obj can be Entity or RoomObj, check for hero state first
-
-            
-
             //ensure the object is active - have we done this in the calling code?
             if (!Obj.active) { return; } //inactive objects are denied interaction
             Pool.interactionsCount++; //count interaction
@@ -173,6 +170,7 @@ namespace DungeonRun
                 //some projectiles dont interact with actors in any way at all
                 if (Obj.type == ObjType.ProjectileBomb
                     || Obj.type == ObjType.ProjectileExplodingBarrel
+                    || Obj.type == ObjType.ProjectileGroundFire
                     )
                 { return; }
                 //check for boomerang interaction with hero
@@ -376,7 +374,6 @@ namespace DungeonRun
                 #endregion
 
 
-
                 #region Tall grass
 
                 else if (Obj.type == ObjType.Wor_Grass_Tall)
@@ -461,7 +458,7 @@ namespace DungeonRun
                     else if (Object.type == ObjType.ProjectileExplosion)
                     {   //explosions alter some roomObjects
                         if (Object.lifeCounter == 1) //perform these interactions only once
-                        {   
+                        {
                             if (RoomObj.type == ObjType.Dungeon_DoorBombable)
                             {   //explosions collapse doors
                                 Functions_GameObject_Dungeon.CollapseDungeonDoor(RoomObj, Object);
@@ -470,9 +467,9 @@ namespace DungeonRun
                             {   //explosions destroy statues
                                 Functions_GameObject.Kill(RoomObj, true, true);
                             }
-                            else if(RoomObj.type == ObjType.Dungeon_WallStraight)
+                            else if (RoomObj.type == ObjType.Dungeon_WallStraight)
                             {   //explosions 'crack' normal walls
-                                Functions_GameObject.SetType(RoomObj, 
+                                Functions_GameObject.SetType(RoomObj,
                                     ObjType.Dungeon_WallStraightCracked);
                                 Functions_Particle.Spawn(ObjType.Particle_Blast,
                                     RoomObj.compSprite.position.X,
@@ -484,20 +481,20 @@ namespace DungeonRun
                             {   //explosions light torches on fire
                                 Functions_GameObject_Dungeon.LightTorch(RoomObj);
                             }
-                            else if(RoomObj.type == ObjType.Wor_Bush)
+                            else if (RoomObj.type == ObjType.Wor_Bush)
                             {   //set a ground fire ON the stump sprite
-                                Functions_Particle.Spawn(
-                                    ObjType.Particle_FireGround,
+                                Functions_Projectile.Spawn(
+                                    ObjType.ProjectileGroundFire,
                                     RoomObj.compSprite.position.X,
                                     RoomObj.compSprite.position.Y - 3);
                             }
-                            else if(RoomObj.type == ObjType.Wor_Tree)
+                            else if (RoomObj.type == ObjType.Wor_Tree)
                             {
-                                Functions_GameObject_World.DestroyTree(RoomObj);
+                                Functions_GameObject_World.BurnTree(RoomObj);
+                                Assets.Play(Assets.sfxShatter);
                             }
 
-
-                            else if(RoomObj.type == ObjType.Wor_Bookcase
+                            else if (RoomObj.type == ObjType.Wor_Bookcase
                                 || RoomObj.type == ObjType.Wor_Shelf
                                 || RoomObj.type == ObjType.Wor_TableStone)
                             {
@@ -506,8 +503,8 @@ namespace DungeonRun
                                     ObjType.Particle_Attention,
                                     RoomObj.compSprite.position.X,
                                     RoomObj.compSprite.position.Y);
-                                Functions_Particle.Spawn(
-                                    ObjType.Particle_FireGround,
+                                Functions_Projectile.Spawn(
+                                    ObjType.ProjectileGroundFire,
                                     RoomObj.compSprite.position.X,
                                     RoomObj.compSprite.position.Y + 3);
                                 //convert to debris
@@ -516,14 +513,12 @@ namespace DungeonRun
                             }
 
 
-
-
                             //explosions also trigger common obj interactions
                             Functions_GameObject.HandleCommon(RoomObj,
                                 //get the direction towards the roomObj from the explosion
                                 Functions_Direction.GetOppositeCardinal(
                                     RoomObj.compSprite.position,
-                                    Object.compSprite.position)); 
+                                    Object.compSprite.position));
 
                             //leave a 'burn mark' particle, with life 255
                             //this is just a darker spot on the ground that looks like a blast mark
@@ -537,7 +532,7 @@ namespace DungeonRun
 
                     else if (Object.type == ObjType.ProjectileFireball)
                     {   //fireball becomes explosion upon death
-                        Functions_Projectile.Kill(Object); 
+                        Functions_Projectile.Kill(Object);
                     }
 
                     #endregion
@@ -605,11 +600,11 @@ namespace DungeonRun
                         Object.lifeCounter = 200; //return to caster
 
                         Functions_Movement.StopMovement(Object.compMove);
-                        Functions_Movement.Push(Object.compMove, 
+                        Functions_Movement.Push(Object.compMove,
                             Functions_Direction.GetOppositeCardinal(
-                                Object.compSprite.position, 
+                                Object.compSprite.position,
                                 RoomObj.compSprite.position), 3.0f);
-                        
+
                         //pop a particle
                         Functions_Particle.Spawn(ObjType.Particle_Attention,
                             Object.compSprite.position.X + 4,
@@ -626,6 +621,20 @@ namespace DungeonRun
                         { Assets.Play(Assets.sfxTapMetallic); }
                         else //play default boomerang hit sfx
                         { Assets.Play(Assets.sfxActorLand); }
+                    }
+
+                    #endregion
+
+
+
+                    #region GroundFires
+
+                    else if (Object.type == ObjType.ProjectileGroundFire)
+                    {   //can set trees on fire
+                        if (RoomObj.type == ObjType.Wor_Tree)
+                        {
+                            Functions_GameObject_World.BurnTree(RoomObj);
+                        }
                     }
 
                     #endregion
@@ -827,14 +836,15 @@ namespace DungeonRun
 
             else if (RoomObj.type == ObjType.Wor_Grass_Tall)
             {
-                if (Object.type == ObjType.ProjectileExplosion)
+                if (Object.type == ObjType.ProjectileExplosion
+                    || Object.type == ObjType.ProjectileGroundFire)
                 {   //cut the grass
                     Functions_GameObject_World.CutTallGrass(RoomObj);
-                    //leave some ground fire 
-                    Functions_Particle.Spawn(
-                        ObjType.Particle_FireGround,
+                    //add some ground fire 
+                    Functions_Projectile.Spawn(
+                        ObjType.ProjectileGroundFire,
                         RoomObj.compSprite.position.X,
-                        RoomObj.compSprite.position.Y);
+                        RoomObj.compSprite.position.Y + 3);
                 }
                 else if (Object.type == ObjType.ProjectileSword)
                 {   //cut the grass

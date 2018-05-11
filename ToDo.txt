@@ -98,46 +98,38 @@ TODAY:
 
 
 
+Implement Spreading GroundFires
 
+we have tall grass objects, and we have ground fire particles.
+they should interact, where ground fires burn nearby tall grass.
+first, we need to make ground fires projectiles, since projectiles
+actually interact() with roomObjs, like tall grass. particles don't.
 
+second, we need to expand the collision rec of ground fire on a 
+frame later than it's birth. then on the following frame, we contract
+the collision rec to it's normal size. this allows ground fire one 
+frame of interaction with objects neighboring it.
 
+third, we add an interaction check between ground fires and tall grass,
+if they touch, then tall grass gets cut() and burned(). this completes
+ground fire's ability to spread across grass objects. we can control
+how quickly ground fires spread by setting their interactive frame
+earlier or later. fires currently wait until frame 75 to spread, which
+is 60 frames (1 second), plus 15 frames. this is 'quick'.
 
+fixed an issue where hero was getting hit by ground fires.
+changed how ground fires spread, so they dont spread diagonally.
+this causes fires to spread in a round oval shape instead of square-like.
+this is purely an artistic choice.
 
+playtested, working great. idea! trees should burn too..
+updated interactions to burn trees, which explosions were already doing.
+so that was super easy.
 
-
-GrassyFeet++
-
-improved grassy feet fx sprite.
-fixed sorting (z offset) of grassy feet fx.
-lots more playtesting.
-
-
-
-
-
-
-
-
-
-Spreading GroundFires
-
-ground fires should 'spread' to tall grass in the middle of their lifecycle.
-this is done via projectile.update(), waiting until a specific frame to then
-call a 'spread' method for fire.
-
-record gif. add miyamoto quote with link & gif to github, so folks know whats up.
-
-
-
-
-
-
-
-
-
-
-
-
+fixed bug where water mark couldn't be displayed.
+recorded gif of fire burning grass and trees. 
+added miyamoto interview quote from 1992 talking about what i'm recording.
+maybe someone gets the idea of where this is going...
 
 
 
@@ -156,6 +148,31 @@ record gif. add miyamoto quote with link & gif to github, so folks know whats up
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add bush debris flying around to bushes getting cut, trees getting destroyed, grass getting cut.
+
+
+
+
+
+separate info from widgets drawing.
 
 
 

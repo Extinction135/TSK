@@ -89,8 +89,8 @@ namespace DungeonRun
             labels[2].text = "watr\nmark";
             Functions_MenuItem.SetType(MenuItemType.Options_Watermark, menuItems[2]);
 
-            labels[2].text = "hard\nmode";
-            Functions_MenuItem.SetType(MenuItemType.Options_HardMode, menuItems[2]);
+            labels[3].text = "hard\nmode";
+            Functions_MenuItem.SetType(MenuItemType.Options_HardMode, menuItems[3]);
 
             #endregion
 

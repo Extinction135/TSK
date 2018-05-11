@@ -1091,6 +1091,15 @@ namespace DungeonRun
                 Obj.sfx.kill = Assets.sfxExplosion;
                 Obj.sfx.hit = Assets.sfxExplosion;
             }
+            else if (Type == ObjType.ProjectileGroundFire)
+            {
+                Obj.compSprite.zOffset = 6;
+                Obj.group = ObjGroup.Projectile;
+                Obj.lifetime = 100; //in frames
+                Obj.compAnim.speed = 7; //in frames
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
+                Obj.compSprite.texture = Assets.entitiesSheet;
+            }
 
             #endregion
 
@@ -1114,6 +1123,12 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+
+            
+
+
 
 
 
@@ -1214,15 +1229,6 @@ namespace DungeonRun
                 Obj.compAnim.speed = 6; //in frames
                 Obj.compAnim.loop = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Attention;
-                Obj.compSprite.texture = Assets.entitiesSheet;
-            }
-            else if (Type == ObjType.Particle_FireGround)
-            {
-                Obj.compSprite.zOffset = 6;
-                Obj.group = ObjGroup.Particle;
-                Obj.lifetime = 100; //in frames
-                Obj.compAnim.speed = 7; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_FireGround;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
             else if (Type == ObjType.Particle_Splash)

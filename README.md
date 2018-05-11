@@ -5,10 +5,11 @@
 + OpenGL port coming soon.  
 
 
-## Version 0.7 - 2018.05.07
+## Version 0.7.1 - 2018.05.10  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7Preview2.gif)  
-[0.7 Preview Playthrough - without cheats](http://www.youtube.com/watch?v=XwGxcmaVHlo)  
-[0.7 Preview Playthrough - with cheats](http://www.youtube.com/watch?v=qO_nSm1wDn0)  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7groundfiresMiyamoto.gif)  
+[older 0.7 Preview Playthrough - without cheats](http://www.youtube.com/watch?v=XwGxcmaVHlo)  
+[older 0.7 Preview Playthrough - with cheats](http://www.youtube.com/watch?v=qO_nSm1wDn0)  
 
 
 ## Overview  

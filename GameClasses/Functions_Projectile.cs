@@ -20,6 +20,29 @@ namespace DungeonRun
         static Vector2 pushOffset = new Vector2();
 
 
+
+        
+        public static void Spawn(ObjType Type, float X, float Y)
+        {
+            //this method is used for projectiles that dont have casters, like groundfires
+            //get a projectile to spawn
+            pro = Functions_Pool.GetProjectile();
+            pro.caster = Pool.hero.compMove; //caster defaults to hero
+            
+            pro.direction = Direction.None;
+            pro.compMove.direction = pro.direction;
+
+            //teleport the object to the caster's location
+            Functions_Movement.Teleport(pro.compMove, X, Y);
+            pro.compMove.moving = true;
+            Functions_GameObject.SetType(pro, Type);
+            HandleBehavior(pro);
+        }
+        
+
+
+
+
         public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
         {
             pushLines = false; //assume this pro doesn't have push lines
@@ -63,15 +86,12 @@ namespace DungeonRun
             pro.compMove.moving = true;
             //finalize it: setType, rotation & align
             Functions_GameObject.SetType(pro, Type);
-            
-
-
 
 
             #region Set Initial Projectile Behaviors + SoundFX
 
             if (Type == ObjType.ProjectileArrow)
-            {   
+            {
                 //initially place the arrow outside of the caster
                 if (Dir == Direction.Down)
                 {
@@ -169,7 +189,7 @@ namespace DungeonRun
                 Functions_Movement.Push(pro.compMove, Dir, 6.0f);
                 Assets.Play(Assets.sfxEnemyHit);
             }
-            else if(Type == ObjType.ProjectileExplosion)
+            else if (Type == ObjType.ProjectileExplosion)
             {
                 Assets.Play(Assets.sfxExplosion);
                 //place smoke puff above explosion
@@ -179,7 +199,7 @@ namespace DungeonRun
                     pro.compSprite.position.Y - 8);
             }
             else if (Type == ObjType.ProjectileNet)
-            {   
+            {
                 Assets.Play(Assets.sfxNet);
             }
             else if (Type == ObjType.ProjectileSword)
@@ -190,9 +210,7 @@ namespace DungeonRun
             #endregion
 
 
-
             HandleBehavior(pro);
-
 
 
             #region Add Decorative 'push' lines
@@ -212,8 +230,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
 
         }
 
@@ -255,14 +271,10 @@ namespace DungeonRun
                 //create loot
                 Functions_Loot.SpawnLoot(Obj.compSprite.position);
                 //leave some fire behind
-                Functions_Particle.Spawn(
-                    ObjType.Particle_FireGround,
+                Functions_Projectile.Spawn(
+                    ObjType.ProjectileGroundFire,
                     Obj.compSprite.position.X,
                     Obj.compSprite.position.Y);
-                //throw some rocks around as decoration
-                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
-                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
-                //Functions_Particle.ScatterRockDebris(Obj.compSprite.position, true);
             }
 
             //all objects are released upon death
@@ -380,6 +392,36 @@ namespace DungeonRun
             #endregion
 
 
+            #region Ground Fire
+
+            if (Pro.type == ObjType.ProjectileGroundFire)
+            {
+                if (Functions_Random.Int(0, 101) > 86)
+                {   //randomly place randomly offset rising smoke
+                    Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
+                        Pro.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
+                        Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
+                }
+                if(Pro.lifeCounter == 50)
+                {   //spread horizontally
+                    Pro.compCollision.offsetX = -14; Pro.compCollision.rec.Width = 28;
+                    Pro.compCollision.offsetY = -4; Pro.compCollision.rec.Height = 8;
+                }
+                else if (Pro.lifeCounter == 51)
+                {   //spread vertically
+                    Pro.compCollision.offsetX = -4; Pro.compCollision.rec.Width = 8;
+                    Pro.compCollision.offsetY = -14; Pro.compCollision.rec.Height = 28;
+                }
+                else
+                {   //set collision rec to normal
+                    Pro.compCollision.offsetX = -4; Pro.compCollision.offsetY = -4;
+                    Pro.compCollision.rec.Width = 8; Pro.compCollision.rec.Height = 8;
+                }
+            }
+
+            #endregion
+
+
             //teleport the projectile to it's new position
             Functions_Movement.Teleport(Pro.compMove,
                 Pro.compMove.newPosition.X,
@@ -436,6 +478,7 @@ namespace DungeonRun
 
 
         }
+
 
     }
 }

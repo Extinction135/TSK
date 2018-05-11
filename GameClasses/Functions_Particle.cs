@@ -120,11 +120,7 @@ namespace DungeonRun
 
             #region Handle Particle Birth Events
 
-            if (Type == ObjType.Particle_FireGround)
-            {
-                Spawn(ObjType.Particle_RisingSmoke, X + 5, Y + 1);
-            }
-            else if (Type == ObjType.Particle_Push)
+            if (Type == ObjType.Particle_Push)
             {   //push the particle, usually less than whatever it's trailing
                 Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
             }
@@ -178,19 +174,7 @@ namespace DungeonRun
             }
 
 
-            #region Handle Particle Per Frame Behaviors
-
-            if(Obj.type == ObjType.Particle_FireGround)
-            {
-                if (Functions_Random.Int(0, 101) > 86)
-                {   //randomly place randomly offset rising smoke
-                    Spawn(ObjType.Particle_RisingSmoke,
-                        Obj.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
-                        Obj.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
-                }
-            }
-
-            #endregion
+            
 
         }
 

@@ -243,6 +243,12 @@ namespace DungeonRun
 
         public static List<Byte4> Projectile_Fireball = new List<Byte4> { new Byte4(5, 8, 0, 0) };
 
+        public static List<Byte4> Projectile_FireGround = new List<Byte4>
+        {
+            new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0),
+            new Byte4(7, 2, 0, 0)
+        };
+
         #endregion
 
 
@@ -311,11 +317,6 @@ namespace DungeonRun
             new Byte4(0, 2, 0, 0), new Byte4(1, 2, 0, 0),
             new Byte4(2, 2, 0, 0), new Byte4(3, 2, 0, 0),
             new Byte4(4, 2, 0, 0)
-        };
-        public static List<Byte4> Particle_FireGround = new List<Byte4>
-        {
-            new Byte4(5, 2, 0, 0), new Byte4(6, 2, 0, 0),
-            new Byte4(7, 2, 0, 0)
         };
 
         public static List<Byte4> Particle_Blast = new List<Byte4>

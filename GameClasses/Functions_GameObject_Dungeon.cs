@@ -229,8 +229,8 @@ namespace DungeonRun
         public static void LightTorch(GameObject UnlitTorch)
         {   //light the unlit torch
             Functions_GameObject.SetType(UnlitTorch, ObjType.Dungeon_TorchLit);
-            Functions_Particle.Spawn(
-                ObjType.Particle_FireGround,
+            Functions_Projectile.Spawn(
+                ObjType.ProjectileGroundFire,
                 UnlitTorch.compSprite.position.X + 0,
                 UnlitTorch.compSprite.position.Y - 7);
             Assets.Play(Assets.sfxLightFire);

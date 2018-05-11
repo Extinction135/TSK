@@ -323,6 +323,12 @@ namespace DungeonRun
         ProjectileExplosion,
         ProjectileExplodingBarrel, //acceptable
 
+
+        ProjectileGroundFire,
+
+
+
+
         //Particles - small
         Particle_RisingSmoke, 
         Particle_ImpactDust, 
@@ -336,7 +342,6 @@ namespace DungeonRun
 
         //Particles - normal size
         Particle_Attention,
-        Particle_FireGround, 
         Particle_Splash,
         Particle_Blast,
         Particle_Push,
