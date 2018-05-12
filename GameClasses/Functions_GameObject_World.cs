@@ -44,9 +44,10 @@ namespace DungeonRun
 
         public static void DestroyBush(GameObject Bush)
         {   //pop 2 leaf explosions
-            Functions_Particle.Spawn_LeafExplosion(
-                    Bush.compSprite.position.X,
-                    Bush.compSprite.position.Y);
+            Functions_Particle.Spawn_Explosion(
+                ObjType.Particle_Leaf,
+                Bush.compSprite.position.X,
+                Bush.compSprite.position.Y);
             //covert bush to stump, play sfx
             Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
             Assets.Play(Assets.sfxBushCut);
@@ -66,7 +67,8 @@ namespace DungeonRun
                 Tree.compSprite.position.X,
                 Tree.compSprite.position.Y - 2);
             //pop leaves in circular decorative pattern for tree top
-            Functions_Particle.Spawn_LeafExplosion(
+            Functions_Particle.Spawn_Explosion(
+                ObjType.Particle_Leaf,
                 Tree.compSprite.position.X + 2,
                 Tree.compSprite.position.Y - 4, true);
             //switch to tree stump

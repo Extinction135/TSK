@@ -128,6 +128,10 @@ namespace DungeonRun
             {   //gently push leafs
                 Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
             }
+            else if (Type == ObjType.Particle_Debris)
+            {   //gently push debris
+                Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
+            }
 
             #endregion
 
@@ -135,7 +139,7 @@ namespace DungeonRun
 
 
 
-            
+
 
         }
 
@@ -167,29 +171,29 @@ namespace DungeonRun
 
 
 
-        public static void Spawn_LeafExplosion(float X, float Y, Boolean circular = false)
+        public static void Spawn_Explosion(ObjType Type, float X, float Y, Boolean circular = false)
         {  
             if(circular == false)
-            {   //spawn 8 leafs in random directions
-                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
-                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
-                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
-                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
-                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
-                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
-                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
-                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+            {   //spawn 8 particles in random directions
+                Spawn(Type, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(Type, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(Type, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(Type, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(Type, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(Type, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(Type, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(Type, X, Y, Functions_Direction.GetRandomDirection());
             }
             else
-            {   //spawn a circular burst of leaves
-                Spawn(ObjType.Particle_Leaf, X, Y, Direction.Up);
-                Spawn(ObjType.Particle_Leaf, X, Y, Direction.UpRight);
-                Spawn(ObjType.Particle_Leaf, X, Y, Direction.Right);
-                Spawn(ObjType.Particle_Leaf, X, Y, Direction.DownRight);
-                Spawn(ObjType.Particle_Leaf, X, Y, Direction.Down);
-                Spawn(ObjType.Particle_Leaf, X, Y, Direction.DownLeft);
-                Spawn(ObjType.Particle_Leaf, X, Y, Direction.Left);
-                Spawn(ObjType.Particle_Leaf, X, Y, Direction.UpLeft);
+            {   //spawn a circular burst of particles
+                Spawn(Type, X, Y, Direction.Up);
+                Spawn(Type, X, Y, Direction.UpRight);
+                Spawn(Type, X, Y, Direction.Right);
+                Spawn(Type, X, Y, Direction.DownRight);
+                Spawn(Type, X, Y, Direction.Down);
+                Spawn(Type, X, Y, Direction.DownLeft);
+                Spawn(Type, X, Y, Direction.Left);
+                Spawn(Type, X, Y, Direction.UpLeft);
             }
         }
         

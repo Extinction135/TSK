@@ -136,61 +136,54 @@ TODAY:
 
 
 
-Bush & Tree Debris
-
-added bush and obj debris to level sheet.
-added particle leaf and debris values to objType enum.
-added leaf and debris animFrames.
-added obj.SetType() def for leaf particle obj.
-
-added leaf check into particle.spawn() method, allowing
-the leaf to be pushed a direction, exactly the way
-the push particle is being implemented rn.
-
-created Spawn_LeafExplosion() in ParticleFun class.
-this creates 4 leafs at the passed X, Y position,
-randomizes their direction, then calls Spawn().
-
-added call to LeadExplosion() from HandleCommon.bush
-subroutine, which is the end point for bush destruction.
-playtested, working and looking perfectly. wow.
-
-modified SpawnLeafExplosion() to create 3 leafs.
-upgraded tall grass to pop 3 leaves, when destroyed.
-upgraded bushes to pop 6 leaves, when destroyed.
-upgraded trees to pop 9 leaves, when destroyed.
-playtested, too many leaves on grass, bushes are good, trees need more.
-
-
-upgraded SpawnLeafExplosion() to spawn leaves in a circular
-pattern, specificially for use with destroying trees.
-changed tree to pop circular pattern of leaves.
-playtested, looks much better.
-
-added enemy hit sfx to bushes, to make the hit feel better.
-playtested, looking / sounding / feeling really good.
-
-fixed animFrame name for pit bubble - it wasn't following 
-naming convention required for particle. fixed name for
-pit bubble - it was named pit animation.
-
-
-
-
-
-
-
 
 
 Debris
 
-we also need to implement debris, just like leaves.
-in fact, we can abstract the leaves out of the method, and
-then rename it to SpawnExplosion(), then pass the leaf type into that method.
-then later we can just pass in the debris type, assuming we've setup the obj.type() to handle it.
+implement debris in a similar manner as leaves.
 
-destroying skulls + pots create debris.
-explosions create debris too.
+added debris particle to Obj.SetType().
+modified Spawn_LeafExplosion() to be Spawn_Explosion()..
+and it now takes an objType as a parameter, so calling code
+can specify what type of particle we want in the explosion.
+we *could* use any particles here, but for now we're just
+using leaves and debris.
+
+added call to Spawn_Explosion() from Obj.Kill().
+we base this off the Kill.becomesDebris boolean parameter,
+assuming an obj should become debris, we also spawn a
+circular debris explosion. updated particle.spawn() to 
+handle pushing debris particles (just like leaves).
+
+playtested, looking great.
+
+upgraded explosion interaction routines to be more organized,
+and to call Kill() on shelf, bookcase, and table. this brings
+them in line with dungeon statues, which can only be destroyed
+by explosions.
+
+
+
+
+
+
+
+
+Bushes ++
+
+ground fires should be able to spread to bushes as well.
+this means we can burn lines of bushes (should spread across bushes).
+
+ground fire needs to have a soundFX of fire burning (quietly tho).
+
+
+
+
+
+
+
+
+
 
 
 

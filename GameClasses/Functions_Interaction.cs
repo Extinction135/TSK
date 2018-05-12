@@ -459,13 +459,12 @@ namespace DungeonRun
                     {   //explosions alter some roomObjects
                         if (Object.lifeCounter == 1) //perform these interactions only once
                         {
+
+                            #region Objs that get altered
+
                             if (RoomObj.type == ObjType.Dungeon_DoorBombable)
                             {   //explosions collapse doors
                                 Functions_GameObject_Dungeon.CollapseDungeonDoor(RoomObj, Object);
-                            }
-                            else if (RoomObj.type == ObjType.Dungeon_Statue)
-                            {   //explosions destroy statues
-                                Functions_GameObject.Kill(RoomObj, true, true);
                             }
                             else if (RoomObj.type == ObjType.Dungeon_WallStraight)
                             {   //explosions 'crack' normal walls
@@ -481,8 +480,16 @@ namespace DungeonRun
                             {   //explosions light torches on fire
                                 Functions_GameObject_Dungeon.LightTorch(RoomObj);
                             }
+
+                            #endregion
+
+
+                            #region Objs that just get destroyed
+
                             else if (RoomObj.type == ObjType.Wor_Bush)
-                            {   //set a ground fire ON the stump sprite
+                            {   //destroy the bush
+                                Functions_GameObject_World.DestroyBush(RoomObj);
+                                //set a ground fire ON the stump sprite
                                 Functions_Projectile.Spawn(
                                     ObjType.ProjectileGroundFire,
                                     RoomObj.compSprite.position.X,
@@ -493,24 +500,15 @@ namespace DungeonRun
                                 Functions_GameObject_World.BurnTree(RoomObj);
                                 Assets.Play(Assets.sfxShatter);
                             }
-
-                            else if (RoomObj.type == ObjType.Wor_Bookcase
+                            else if (RoomObj.type == ObjType.Dungeon_Statue
+                                || RoomObj.type == ObjType.Wor_Bookcase
                                 || RoomObj.type == ObjType.Wor_Shelf
                                 || RoomObj.type == ObjType.Wor_TableStone)
-                            {
-                                //pop attention and ground fire
-                                Functions_Particle.Spawn(
-                                    ObjType.Particle_Attention,
-                                    RoomObj.compSprite.position.X,
-                                    RoomObj.compSprite.position.Y);
-                                Functions_Projectile.Spawn(
-                                    ObjType.ProjectileGroundFire,
-                                    RoomObj.compSprite.position.X,
-                                    RoomObj.compSprite.position.Y + 3);
-                                //convert to debris
-                                Functions_GameObject.SetType(RoomObj, ObjType.Wor_Debris);
-                                Assets.Play(Assets.sfxShatter);
+                            {   
+                                Functions_GameObject.Kill(RoomObj, true, true);
                             }
+
+                            #endregion
 
 
                             //explosions also trigger common obj interactions
@@ -522,6 +520,12 @@ namespace DungeonRun
 
                             //leave a 'burn mark' particle, with life 255
                             //this is just a darker spot on the ground that looks like a blast mark
+
+                            //explosions always leave behind ground fires
+                            Functions_Projectile.Spawn(
+                                ObjType.ProjectileGroundFire,
+                                RoomObj.compSprite.position.X,
+                                RoomObj.compSprite.position.Y + 3);
                         }
                     }
 

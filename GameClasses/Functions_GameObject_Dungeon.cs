@@ -162,8 +162,8 @@ namespace DungeonRun
                 Barrel.compMove.direction); //pushed based on this direction
 
             //we can release the barrel, or convert it to debris
-            //Functions_Pool.Release(Barrel);
-            Functions_GameObject.SetType(Barrel, ObjType.Wor_Debris);
+            Functions_Pool.Release(Barrel);
+            //Functions_GameObject.SetType(Barrel, ObjType.Wor_Debris);
         }
         
         public static void DragIntoPit(GameObject Object, GameObject Pit)
@@ -222,10 +222,6 @@ namespace DungeonRun
             }
         }
 
-
-
-
-
         public static void LightTorch(GameObject UnlitTorch)
         {   //light the unlit torch
             Functions_GameObject.SetType(UnlitTorch, ObjType.Dungeon_TorchLit);
@@ -247,9 +243,6 @@ namespace DungeonRun
             Assets.Play(Assets.sfxActorLand);
             CheckForPuzzles(false); //may of solved room
         }
-
-
-
 
         public static void CheckForPuzzles(Boolean solved)
         {
@@ -274,11 +267,6 @@ namespace DungeonRun
                 }
             }
         }
-
-
-
-
-
 
         public static void OpenTrapDoors()
         {

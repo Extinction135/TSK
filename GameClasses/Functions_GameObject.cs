@@ -61,8 +61,7 @@ namespace DungeonRun
         }
         
         public static void Kill(GameObject Obj, Boolean spawnLoot, Boolean becomeDebris)
-        {
-            //pop an attention particle
+        {   //pop an attention particle
             Functions_Particle.Spawn(
                 ObjType.Particle_Attention,
                 Obj.compSprite.position.X,
@@ -73,7 +72,15 @@ namespace DungeonRun
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }
 
             if (becomeDebris) //should obj become debris or get released?
-            { SetType(Obj, ObjType.Wor_Debris); }
+            {   //if obj becomes debris, explode debris
+                Functions_Particle.Spawn_Explosion(
+                    ObjType.Particle_Debris,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y, 
+                    true);
+                //become debris
+                SetType(Obj, ObjType.Wor_Debris);
+            }
             else { Functions_Pool.Release(Obj); }
         }
 
@@ -1222,7 +1229,7 @@ namespace DungeonRun
                 else //push particle can't be in diagonal state, hide it
                 { Obj.compSprite.visible = false; }
             }
-            else if (Type == ObjType.Particle_Leaf)
+            else if (Type == ObjType.Particle_Leaf || Type == ObjType.Particle_Debris)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = 16;
@@ -1230,7 +1237,10 @@ namespace DungeonRun
                 Obj.compAnim.loop = false;
                 Obj.lifetime = 15; //in frames
                 Obj.compAnim.speed = 6; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Leaf;
+                //setup animation frame properly
+                if (Type == ObjType.Particle_Debris)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Particle_Debris; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Particle_Leaf; }
                 //not on the entities sheet, on dungeon sheet
                 Obj.compSprite.texture = Assets.forestLevelSheet;
             }
