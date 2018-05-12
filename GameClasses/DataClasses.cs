@@ -1029,7 +1029,6 @@ namespace DungeonRun
         public ComponentAnimation compAnim = new ComponentAnimation();
         public ComponentMovement compMove = new ComponentMovement();
         public ComponentCollision compCollision = new ComponentCollision();
-        public ComponentInteraction compInt = new ComponentInteraction();
         public ComponentInput compInput = new ComponentInput(); //actor specific
         public ComponentSoundFX sfx = new ComponentSoundFX();
 
@@ -1070,23 +1069,24 @@ namespace DungeonRun
 
     public class GameObject
     {
-        public ObjGroup group = ObjGroup.Object;
-        public ObjType type = ObjType.Dungeon_WallStraight;
-
         public ComponentSprite compSprite;
         public ComponentAnimation compAnim = new ComponentAnimation();
         public ComponentMovement compMove = new ComponentMovement();
         public ComponentCollision compCollision = new ComponentCollision();
-        public ComponentInteraction compInt = new ComponentInteraction();
         public ComponentSoundFX sfx = new ComponentSoundFX();
 
+        public ObjGroup group = ObjGroup.Object;
+        public ObjType type = ObjType.Dungeon_WallStraight;
         public Direction direction = Direction.Down; //direction obj/sprite is facing
+
         public Boolean active = true; //does object draw, update?
         public Boolean getsAI = false; //does object get passed to Functions_AI.HandleObj()?
         public Boolean canBeSaved = false; //can this obj be saved to RoomXMLData?
-
         public Byte lifetime; //how many frames this object exists for, 0 = forever/ignore
         public Byte lifeCounter; //counts up to lifetime value
+        public int interactiveFrame = 0; //only for objs
+        //0 = always interactive
+        //>0 = just that one # frame of interaction
 
         public GameObject()
         {   //initialize to default value - data is changed later
@@ -1334,13 +1334,6 @@ namespace DungeonRun
 
 
     //Data Components
-
-    public class ComponentInteraction
-    {
-        public int interactiveFrame = 0; //only for objs
-        //0 = always interactive
-        //>0 = just that one # frame of interaction
-    }
 
     public class ComponentCollision
     {   //allows an object or actor to collide with other objects or actors

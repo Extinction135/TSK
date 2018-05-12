@@ -321,9 +321,7 @@ namespace DungeonRun
 
         //Projectiles - object
         ProjectileExplosion,
-        ProjectileExplodingBarrel, //acceptable
-
-
+        ProjectileExplodingBarrel, //creates explosion pro
         ProjectileGroundFire,
 
 
@@ -333,7 +331,20 @@ namespace DungeonRun
         Particle_RisingSmoke, 
         Particle_ImpactDust, 
         Particle_Sparkle, 
-        ParticlePitAnimation,
+
+        //Particles - obj specific
+        Particle_PitBubble,
+        Particle_Leaf,
+        Particle_Debris,
+
+
+
+
+
+
+
+
+
          
         //Particles - map
         Particle_Map_Flag,

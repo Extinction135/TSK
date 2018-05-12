@@ -121,7 +121,11 @@ namespace DungeonRun
             #region Handle Particle Birth Events
 
             if (Type == ObjType.Particle_Push)
-            {   //push the particle, usually less than whatever it's trailing
+            {   //push the particle, 4 is usually less than whatever it's trailing
+                Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
+            }
+            else if (Type == ObjType.Particle_Leaf)
+            {   //gently push leafs
                 Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
             }
 
@@ -131,36 +135,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
-
-
-
-
-            //we no longer have rock debris in this system, but we will in the future
-            //this is a useful reference for randomizing an object's animFrame upon Spawn
-            /*
-
-            #region Modify RockDebris Particles Animation Frame + Slide them
-
-            //some projectiles get their current frame randomly assigned (for variation)
-            if (Type == ObjType.Particle_Debris)
-            {   //is assigned 15,15 - randomize down to 14,14
-                List<Byte4> rockFrame = new List<Byte4> { new Byte4(15, 15, 0, 0) };
-                if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].X = 14; }
-                if (Functions_Random.Int(0, 100) > 50) { rockFrame[0].Y = 14; }
-                obj.compAnim.currentAnimation = rockFrame;
-                //push rock debris in a random direction
-                Functions_Movement.Push(obj.compMove, 
-                    Functions_Direction.GetRandomDirection(), 3.0f);
-            }
-
-            #endregion
             
-            */
 
         }
 
@@ -172,10 +147,6 @@ namespace DungeonRun
                 Obj.lifeCounter++;
                 if (Obj.lifeCounter >= Obj.lifetime) { Kill(Obj); }
             }
-
-
-            
-
         }
 
         public static void Kill(GameObject Obj)
@@ -185,6 +156,45 @@ namespace DungeonRun
             //all objects are released upon death
             Functions_Pool.Release(Obj);
         }
+
+
+
+
+
+
+
+
+
+
+
+        public static void Spawn_LeafExplosion(float X, float Y, Boolean circular = false)
+        {  
+            if(circular == false)
+            {   //spawn 8 leafs in random directions
+                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+                Spawn(ObjType.Particle_Leaf, X, Y, Functions_Direction.GetRandomDirection());
+            }
+            else
+            {   //spawn a circular burst of leaves
+                Spawn(ObjType.Particle_Leaf, X, Y, Direction.Up);
+                Spawn(ObjType.Particle_Leaf, X, Y, Direction.UpRight);
+                Spawn(ObjType.Particle_Leaf, X, Y, Direction.Right);
+                Spawn(ObjType.Particle_Leaf, X, Y, Direction.DownRight);
+                Spawn(ObjType.Particle_Leaf, X, Y, Direction.Down);
+                Spawn(ObjType.Particle_Leaf, X, Y, Direction.DownLeft);
+                Spawn(ObjType.Particle_Leaf, X, Y, Direction.Left);
+                Spawn(ObjType.Particle_Leaf, X, Y, Direction.UpLeft);
+            }
+        }
+        
+
+
 
 
 

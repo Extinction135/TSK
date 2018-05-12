@@ -403,12 +403,12 @@ namespace DungeonRun
                         Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
                 }
                 //on the fire's interactive frame, spread per axis (round spread - no diagonals)
-                if(Pro.lifeCounter == Pro.compInt.interactiveFrame)
+                if(Pro.lifeCounter == Pro.interactiveFrame)
                 {   //spread horizontally
                     Pro.compCollision.offsetX = -14; Pro.compCollision.rec.Width = 28;
                     Pro.compCollision.offsetY = -4; Pro.compCollision.rec.Height = 8;
                 }
-                else if(Pro.lifeCounter == Pro.compInt.interactiveFrame + 1)
+                else if(Pro.lifeCounter == Pro.interactiveFrame + 1)
                 {   //spread vertically
                     Pro.compCollision.offsetX = -4; Pro.compCollision.rec.Width = 8;
                     Pro.compCollision.offsetY = -14; Pro.compCollision.rec.Height = 28;

@@ -104,14 +104,17 @@ namespace DungeonRun
         public static void ResetObject(GameObject Obj)
         {
             //reset the obj
-            Obj.direction = Direction.Down;
-            Obj.type = ObjType.Dungeon_WallStraight; //reset the type
             Obj.group = ObjGroup.Object; //assume object is a generic object
-            Obj.lifetime = 0; //assume obj exists forever (not projectile)
-            Obj.lifeCounter = 0; //reset counter
+            Obj.type = ObjType.Dungeon_WallStraight; //reset the type
+            Obj.direction = Direction.Down;
+
             Obj.active = true; //assume this object should draw / animate
             Obj.getsAI = false; //most objects do not get any AI input
             Obj.canBeSaved = false; //most objects cannot be saved as XML data
+            Obj.lifetime = 0; //assume obj exists forever (not projectile)
+            Obj.lifeCounter = 0; //reset counter
+            Obj.interactiveFrame = 0;
+
             //reset the sprite component
             Obj.compSprite.cellSize.X = 16 * 1; //assume cell size is 16x16 (most are)
             Obj.compSprite.cellSize.Y = 16 * 1;
@@ -140,8 +143,7 @@ namespace DungeonRun
             //reset the sfx component
             Obj.sfx.hit = null;
             Obj.sfx.kill = null;
-            //reset interactive comp
-            Obj.compInt.interactiveFrame = 0;
+            
         }
 
         public static void SetRotation(GameObject Obj)
@@ -715,15 +717,16 @@ namespace DungeonRun
                 else if (Type == ObjType.Wor_Grass_Cut)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Cut; }
                 else if (Type == ObjType.Wor_Grass_Tall)
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall;
+                    Obj.sfx.kill = Assets.sfxBushCut; //only tall grass can get killed()
+                }
                 else if (Type == ObjType.Wor_Flowers)
                 {
                     Obj.compAnim.currentAnimation = AnimationFrames.World_Flowers;
                     //randomly set the starting frame for flowers, so their animations dont sync up
                     Obj.compAnim.index = (byte)Functions_Random.Int(0, Obj.compAnim.currentAnimation.Count);
                 }
-
-                Obj.sfx.kill = Assets.sfxBushCut; //only tall grass can get killed()
 
                 //randomly flip sprite horizontally
                 if (Functions_Random.Int(0, 100) < 50)
@@ -745,6 +748,7 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -6; Obj.compCollision.offsetY = -2;
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 8;
                 Obj.sfx.kill = Assets.sfxBushCut;
+                Obj.sfx.hit = Assets.sfxEnemyHit;
             }
             else if (Type == ObjType.Wor_Bush_Stump)
             {
@@ -1100,8 +1104,8 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
                 Obj.compSprite.texture = Assets.entitiesSheet;
                 //this controls how quick fire spreads:
-                Obj.compInt.interactiveFrame = 60; //early in life = quick spread
-                Obj.compInt.interactiveFrame += Functions_Random.Int(-15, 15); 
+                Obj.interactiveFrame = 60; //early in life = quick spread
+                Obj.interactiveFrame += Functions_Random.Int(-15, 15); 
                 //add a random -/+ offset to stagger the spread
             }
 
@@ -1143,14 +1147,14 @@ namespace DungeonRun
             //these particle's sprites live on a dungeon sheet,
             //whichever dungeon sheet is the current one
 
-            else if (Type == ObjType.ParticlePitAnimation)
+            else if (Type == ObjType.Particle_PitBubble)
             {
                 Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
                 Obj.compSprite.zOffset = -63; //sort over pits, under pit teeth
                 Obj.group = ObjGroup.Particle;
                 Obj.lifetime = 10 * 4 * 6; //speed * anim frames * loops
                 Obj.compAnim.speed = 10; //in frames
-                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_PitBubble;
+                Obj.compAnim.currentAnimation = AnimationFrames.Particle_PitBubble;
                 //not on the entities sheet, on dungeon sheet
                 Obj.compSprite.texture = Assets.forestLevelSheet;
             }
@@ -1218,6 +1222,20 @@ namespace DungeonRun
                 else //push particle can't be in diagonal state, hide it
                 { Obj.compSprite.visible = false; }
             }
+            else if (Type == ObjType.Particle_Leaf)
+            {
+                Obj.compSprite.cellSize.X = 8; Obj.compSprite.cellSize.Y = 8; //nonstandard size
+                Obj.compSprite.zOffset = 16;
+                Obj.group = ObjGroup.Particle;
+                Obj.compAnim.loop = false;
+                Obj.lifetime = 15; //in frames
+                Obj.compAnim.speed = 6; //in frames
+                Obj.compAnim.currentAnimation = AnimationFrames.Particle_Leaf;
+                //not on the entities sheet, on dungeon sheet
+                Obj.compSprite.texture = Assets.forestLevelSheet;
+            }
+
+
 
 
             #endregion
@@ -1363,7 +1381,6 @@ namespace DungeonRun
             #endregion
 
 
-
             //Dialog Hero Speaker
 
             else if (Type == ObjType.Hero_Idle)
@@ -1380,7 +1397,8 @@ namespace DungeonRun
 
 
 
-            //Handle Obj Group properties
+            #region Handle Obj Group properties
+
             if (Obj.group == ObjGroup.Pickup ||
                 Obj.group == ObjGroup.Particle || 
                 Obj.group == ObjGroup.Projectile)
@@ -1388,18 +1406,13 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
             } 
 
-            if (Obj.group == ObjGroup.Wall)
+            else if (Obj.group == ObjGroup.Wall)
             {   //all wall objs have same sfx
                 Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.sfx.kill = null; //cant kill wall
             }
 
-            if (Obj.group == ObjGroup.Particle || 
-                Obj.group == ObjGroup.Pickup)
-            {   
-                Obj.sfx.hit = null;
-                Obj.sfx.kill = null; 
-            }
+            #endregion
 
 
 

@@ -134,20 +134,45 @@ TODAY:
 
 
 
-FireSpread++
-
-improve the 'spread' effect of fire.
-
-using the interaction component, create an int that represents the fire's interactive
-frame. then upon creation of fire projectile, randomize this value to 60 +- 15 frames.
-this should stagger the fire spreading effect, so it's not as uniform and un-natural.
-implemented, playtested, looking and working great.
-
-improved positioning of ground fires on cut grass objs.
-improved positioning of ground fires on bushes as well.
-ground fires are now centered to grass and bush objs.
 
 
+Bush & Tree Debris
+
+added bush and obj debris to level sheet.
+added particle leaf and debris values to objType enum.
+added leaf and debris animFrames.
+added obj.SetType() def for leaf particle obj.
+
+added leaf check into particle.spawn() method, allowing
+the leaf to be pushed a direction, exactly the way
+the push particle is being implemented rn.
+
+created Spawn_LeafExplosion() in ParticleFun class.
+this creates 4 leafs at the passed X, Y position,
+randomizes their direction, then calls Spawn().
+
+added call to LeadExplosion() from HandleCommon.bush
+subroutine, which is the end point for bush destruction.
+playtested, working and looking perfectly. wow.
+
+modified SpawnLeafExplosion() to create 3 leafs.
+upgraded tall grass to pop 3 leaves, when destroyed.
+upgraded bushes to pop 6 leaves, when destroyed.
+upgraded trees to pop 9 leaves, when destroyed.
+playtested, too many leaves on grass, bushes are good, trees need more.
+
+
+upgraded SpawnLeafExplosion() to spawn leaves in a circular
+pattern, specificially for use with destroying trees.
+changed tree to pop circular pattern of leaves.
+playtested, looks much better.
+
+added enemy hit sfx to bushes, to make the hit feel better.
+playtested, looking / sounding / feeling really good.
+
+fixed animFrame name for pit bubble - it wasn't following 
+naming convention required for particle. fixed name for
+pit bubble - it was named pit animation.
 
 
 
@@ -157,21 +182,33 @@ ground fires are now centered to grass and bush objs.
 
 
 
+Debris
+
+we also need to implement debris, just like leaves.
+in fact, we can abstract the leaves out of the method, and
+then rename it to SpawnExplosion(), then pass the leaf type into that method.
+then later we can just pass in the debris type, assuming we've setup the obj.type() to handle it.
+
+destroying skulls + pots create debris.
+explosions create debris too.
 
 
 
-we should be modeling if an object is burnable using a burnable boolean.
-then we can just say if obj.burnable then burn(obj), instead of relying
-on obj.type checks with ground fire projectiles (or vice versa).
+
+Trees++
+
+blowing up a tree and burning a tree is different.
+blowing up shoots leaves everywhere, is instant, leaves groundfire..
+burning starts with ground fire at base of tree, then top part sets on fire,
+then the tree becomes the burnt version, not the tree stump.
+(we have burnt version in dev, add to level sheet)
 
 
 
 
-add bush debris flying around to bushes getting cut, trees getting destroyed, grass getting cut.
 
-bush debris - hitting a bush should create leaves that travel in the direction of the hit
-leaves only last for a moment, then die
-blowing up a tree should create lots of leaves in random directions
+
+
 
 
 

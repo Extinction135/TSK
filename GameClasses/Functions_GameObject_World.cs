@@ -19,15 +19,13 @@ namespace DungeonRun
 
 
         public static void CutTallGrass(GameObject TallGrass)
-        {   //convert tallgrass to cut grass + sfx
-            Functions_GameObject.SetType(TallGrass, ObjType.Wor_Grass_Cut);
-            Assets.Play(Assets.sfxBushCut);
-
-            //pop an attention particle on grass pos
+        {   //pop an attention particle on grass pos
             Functions_Particle.Spawn(ObjType.Particle_Attention,
                 TallGrass.compSprite.position.X,
                 TallGrass.compSprite.position.Y);
-
+            //convert tallgrass to cut grass + sfx
+            Functions_GameObject.SetType(TallGrass, ObjType.Wor_Grass_Cut);
+            Assets.Play(Assets.sfxBushCut);
             //rarely spawn loot
             if (Functions_Random.Int(0, 101) > 90) //cut that grass boi
             { Functions_Loot.SpawnLoot(TallGrass.compSprite.position); }
@@ -45,10 +43,10 @@ namespace DungeonRun
         }
 
         public static void DestroyBush(GameObject Bush)
-        {
-            //Bush.compMove.direction is the hit direction
-            //create bush leaves, push them in hit direction
-
+        {   //pop 2 leaf explosions
+            Functions_Particle.Spawn_LeafExplosion(
+                    Bush.compSprite.position.X,
+                    Bush.compSprite.position.Y);
             //covert bush to stump, play sfx
             Functions_GameObject.SetType(Bush, ObjType.Wor_Bush_Stump);
             Assets.Play(Assets.sfxBushCut);
@@ -67,6 +65,10 @@ namespace DungeonRun
                 ObjType.Particle_Attention,
                 Tree.compSprite.position.X,
                 Tree.compSprite.position.Y - 2);
+            //pop leaves in circular decorative pattern for tree top
+            Functions_Particle.Spawn_LeafExplosion(
+                Tree.compSprite.position.X + 2,
+                Tree.compSprite.position.Y - 4, true);
             //switch to tree stump
             Functions_GameObject.SetType(Tree, ObjType.Wor_Tree_Stump);
             //set a ground fire ON the stump sprite
@@ -74,6 +76,7 @@ namespace DungeonRun
                 ObjType.ProjectileGroundFire,
                 Tree.compSprite.position.X,
                 Tree.compSprite.position.Y + 5);
+
             //rarely spawn loot
             if (Functions_Random.Int(0, 101) > 90)
             { Functions_Loot.SpawnLoot(Tree.compSprite.position); }

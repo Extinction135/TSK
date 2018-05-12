@@ -147,7 +147,7 @@ namespace DungeonRun
             else if (Obj.type == ObjType.Dungeon_Pit)
             {
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
-                { Functions_Particle.Spawn(ObjType.ParticlePitAnimation, Obj); }
+                { Functions_Particle.Spawn(ObjType.Particle_PitBubble, Obj); }
             }
 
             #endregion

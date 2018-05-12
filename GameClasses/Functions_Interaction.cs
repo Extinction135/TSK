@@ -543,8 +543,7 @@ namespace DungeonRun
                     else if (Object.type == ObjType.ProjectileSword)
                     {   //sword swipe causes soundfx to blocking objects
                         if (Object.lifeCounter == 1) //these events happen at start of sword swing
-                        {
-                            //bail if sword is hitting open door, else sparkle + hit sfx
+                        {   //bail if sword is hitting open door, else sparkle + hit sfx
                             if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; }
                             Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
                             Assets.Play(RoomObj.sfx.hit);
@@ -830,14 +829,13 @@ namespace DungeonRun
             #endregion
 
 
-
             #region Tall Grass
 
             else if (RoomObj.type == ObjType.Wor_Grass_Tall)
             {
-                if (Object.type == ObjType.ProjectileExplosion
-                    || Object.type == ObjType.ProjectileGroundFire)
-                {   //cut the grass
+                if (Object.type == ObjType.ProjectileExplosion)
+                {   //pass the obj's direction into the grass (fake inertia)
+                    RoomObj.compMove.direction = Object.direction;
                     Functions_GameObject_World.CutTallGrass(RoomObj);
                     //add some ground fire 
                     Functions_Projectile.Spawn(
@@ -846,8 +844,18 @@ namespace DungeonRun
                         RoomObj.compSprite.position.Y - 3);
                 }
                 else if (Object.type == ObjType.ProjectileSword)
-                {   //cut the grass
+                {   //pass the obj's direction into the grass (fake inertia)
+                    RoomObj.compMove.direction = Object.direction;
                     Functions_GameObject_World.CutTallGrass(RoomObj);
+                }
+                else if (Object.type == ObjType.ProjectileGroundFire)
+                {   //'burn' the grass
+                    Functions_GameObject_World.CutTallGrass(RoomObj);
+                    //add some ground fire 
+                    Functions_Projectile.Spawn(
+                        ObjType.ProjectileGroundFire,
+                        RoomObj.compSprite.position.X,
+                        RoomObj.compSprite.position.Y - 3);
                 }
             }
 

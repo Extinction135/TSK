@@ -101,13 +101,6 @@ namespace DungeonRun
 
         public static List<Byte4> Dungeon_Pit = new List<Byte4> { new Byte4(8, 7, 0, 0) };
         public static List<Byte4> Dungeon_PitBridge = new List<Byte4> { new Byte4(9, 7, 0, 0) };
-        public static List<Byte4> Dungeon_PitBubble = new List<Byte4>
-        {   //these frames are 8x8
-            new Byte4(10*2, 7*2, 0, 0),
-            new Byte4(10*2+1, 7*2, 0, 0),
-            new Byte4(10*2, 7*2+1, 0, 0),
-            new Byte4(10*2+1, 7*2+1, 0, 0)
-        };
         public static List<Byte4> Dungeon_PitTeethTop = new List<Byte4> { new Byte4(11, 7, 0, 0) }; //16x8
         public static List<Byte4> Dungeon_PitTeethBottom = new List<Byte4> { new Byte4(12, 7, 0, 0) }; //16x8
         //
@@ -273,6 +266,27 @@ namespace DungeonRun
         {
             new Byte4(2*2, 1, 0, 0), new Byte4(2*2+1, 1, 0, 0)
         };
+        public static List<Byte4> Particle_PitBubble = new List<Byte4>
+        {   //these frames are 8x8
+            new Byte4(10*2, 7*2, 0, 0),
+            new Byte4(10*2+1, 7*2, 0, 0),
+            new Byte4(10*2, 7*2+1, 0, 0),
+            new Byte4(10*2+1, 7*2+1, 0, 0)
+        };
+
+
+
+        public static List<Byte4> Particle_Leaf = new List<Byte4>
+        {
+            new Byte4(10, 4, 0, 0), new Byte4(11, 4, 0, 0)
+        };
+        public static List<Byte4> Particle_Debris = new List<Byte4>
+        {
+            new Byte4(10, 5, 0, 0), new Byte4(11, 5, 0, 0)
+        };
+
+
+
 
 
         //8x4 - tiny
