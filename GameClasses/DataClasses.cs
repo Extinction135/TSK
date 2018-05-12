@@ -1337,10 +1337,9 @@ namespace DungeonRun
 
     public class ComponentInteraction
     {
-        //these flags aren't being used currently
-
-        //because we're not exactly sure how to fix the interaction systems problem
-        public Boolean active = true; //included in interaction system
+        public int interactiveFrame = 0; //only for objs
+        //0 = always interactive
+        //>0 = just that one # frame of interaction
     }
 
     public class ComponentCollision

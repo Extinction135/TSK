@@ -397,23 +397,24 @@ namespace DungeonRun
             if (Pro.type == ObjType.ProjectileGroundFire)
             {
                 if (Functions_Random.Int(0, 101) > 86)
-                {   //randomly place randomly offset rising smoke
+                {   //often place randomly offset rising smoke
                     Functions_Particle.Spawn(ObjType.Particle_RisingSmoke,
                         Pro.compSprite.position.X + 5 + Functions_Random.Int(-4, 4),
                         Pro.compSprite.position.Y + 1 + Functions_Random.Int(-8, 2));
                 }
-                if(Pro.lifeCounter == 50)
+                //on the fire's interactive frame, spread per axis (round spread - no diagonals)
+                if(Pro.lifeCounter == Pro.compInt.interactiveFrame)
                 {   //spread horizontally
                     Pro.compCollision.offsetX = -14; Pro.compCollision.rec.Width = 28;
                     Pro.compCollision.offsetY = -4; Pro.compCollision.rec.Height = 8;
                 }
-                else if (Pro.lifeCounter == 51)
+                else if(Pro.lifeCounter == Pro.compInt.interactiveFrame + 1)
                 {   //spread vertically
                     Pro.compCollision.offsetX = -4; Pro.compCollision.rec.Width = 8;
                     Pro.compCollision.offsetY = -14; Pro.compCollision.rec.Height = 28;
                 }
                 else
-                {   //set collision rec to normal
+                {   //set collision rec back to normal
                     Pro.compCollision.offsetX = -4; Pro.compCollision.offsetY = -4;
                     Pro.compCollision.rec.Width = 8; Pro.compCollision.rec.Height = 8;
                 }

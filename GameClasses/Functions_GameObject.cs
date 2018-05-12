@@ -130,8 +130,6 @@ namespace DungeonRun
             Obj.compCollision.rec.Height = 16; //(most are)
             Obj.compCollision.offsetX = -8; //assume collisionRec offset is -8x-8
             Obj.compCollision.offsetY = -8; //(most are)
-            //reset the interaction component
-            Obj.compInt.active = true;
             //reset the move component
             Obj.compMove.magnitude.X = 0; //discard any previous magnitude
             Obj.compMove.magnitude.Y = 0; //
@@ -142,6 +140,8 @@ namespace DungeonRun
             //reset the sfx component
             Obj.sfx.hit = null;
             Obj.sfx.kill = null;
+            //reset interactive comp
+            Obj.compInt.interactiveFrame = 0;
         }
 
         public static void SetRotation(GameObject Obj)
@@ -1099,6 +1099,10 @@ namespace DungeonRun
                 Obj.compAnim.speed = 7; //in frames
                 Obj.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+                //this controls how quick fire spreads:
+                Obj.compInt.interactiveFrame = 60; //early in life = quick spread
+                Obj.compInt.interactiveFrame += Functions_Random.Int(-15, 15); 
+                //add a random -/+ offset to stagger the spread
             }
 
             #endregion

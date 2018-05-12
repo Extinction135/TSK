@@ -47,17 +47,9 @@ Phase 2 - version 0.8 to 1.0
 	
 	
 	
-v0.7 goals
-x - divide spritesheets up so they can be expanded / modified easily
-x - get all objects integrated into the new system / layout
-X - expand RoomBuilder to include the creation, placement, loading and saving of world levels.
-X - Outside Town Level, vendors
-
-X - Dungeon Entrance Level, dungeon entrance object
-X - obj linked to dungeon generation + extensive testing
-
-- picking up, carrying, throwing objs
-skull pots, pots, bushes - all deal 1 damage
+	
+	
+v0.8 goals
 
 - the "shadow system"
 every actor has a shadow, based on the actor size and flying state.
@@ -68,7 +60,6 @@ objects/actors each frame, AFTER the compMove component has finished processing.
 these shadows are sprites that are added to actors and gameobj classes.
 this will likely be part of pool, possibly just prior to drawing to ensure
 they are always aligned to their obj/actor (altho this does pollute Draw)..
-
 
 - healers house, full death/respawn loop in game
 - this includes buildings, beds, interior objs
@@ -86,7 +77,51 @@ they are always aligned to their obj/actor (altho this does pollute Draw)..
 - npc outside endless forest dialog = "once you go in, there's no way out..."
 - later on implement magic mirror, which returns hero to overworld screen
 
-(2 'dungeons', 2 'locations' - colliseum + healers house)
+- LIGHT WORLD & DARK WORLD
+- implement enumFields for building rooms (big optimization)
+
+- fix picking up, carrying, throwing, dropping, dragging, pushing objects
+- can drag: light blocks, dungeon statues, barrels, torches on/off, chests
+- can pickup, carry, throw: pots
+- remove dropping pots from game, hero can only throw them
+
+- create 'boat' level, with boat captain, who has dialog with link
+- offers to take link to a variety of locations, using vendor screen
+- only available location is water temple, for low gold price (since link 'hires' crew)
+- this level is the boat obj + a dungeon entrance obj + a bunch of water tiles (maybe a small island)
+- links path is to/from the boat to the dungeon entrance
+
+- water temple / swamp dungeon: 
+	build crit path to hub, crit path to key, crit path to boss, 
+	*crit path to water switch (pullable lever)
+	*place water switch randomly in room/hub room
+	water pullable lever flips high/low water level boolean
+	when rooms are built they build high or low water levels, 
+	low water levels prevent hero from passing thru rooms 
+	there are low water levels in rooms along the key or boss crit path.
+	hero must flip switch to access key or boss rooms, or not.
+	boss is tentacles squid
+	
+- can swim, 'dive', dash, and reward / pickup stuff in water
+- dive: 
+	in shallow water, this picks up whatever is hidden using reward state.
+	in deep water, this allows hero to move 'under' some blocking objects
+	diving is timed / capped at 255 frames, after that link pops his head back up
+- dash:
+	works the same in shallow and deep water, but can't be done while diving
+	
+- mountain dungeon (diff enemies, boss, dungeon sprites - but same rooms)
+
+- room keys - these only work for the room and only unlock 1 door, and
+these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
+
+
+
+
+
+
+
+
 
 
 
@@ -98,38 +133,19 @@ TODAY:
 
 
 
-Implement Spreading GroundFires
 
-we have tall grass objects, and we have ground fire particles.
-they should interact, where ground fires burn nearby tall grass.
-first, we need to make ground fires projectiles, since projectiles
-actually interact() with roomObjs, like tall grass. particles don't.
+FireSpread++
 
-second, we need to expand the collision rec of ground fire on a 
-frame later than it's birth. then on the following frame, we contract
-the collision rec to it's normal size. this allows ground fire one 
-frame of interaction with objects neighboring it.
+improve the 'spread' effect of fire.
 
-third, we add an interaction check between ground fires and tall grass,
-if they touch, then tall grass gets cut() and burned(). this completes
-ground fire's ability to spread across grass objects. we can control
-how quickly ground fires spread by setting their interactive frame
-earlier or later. fires currently wait until frame 75 to spread, which
-is 60 frames (1 second), plus 15 frames. this is 'quick'.
+using the interaction component, create an int that represents the fire's interactive
+frame. then upon creation of fire projectile, randomize this value to 60 +- 15 frames.
+this should stagger the fire spreading effect, so it's not as uniform and un-natural.
+implemented, playtested, looking and working great.
 
-fixed an issue where hero was getting hit by ground fires.
-changed how ground fires spread, so they dont spread diagonally.
-this causes fires to spread in a round oval shape instead of square-like.
-this is purely an artistic choice.
-
-playtested, working great. idea! trees should burn too..
-updated interactions to burn trees, which explosions were already doing.
-so that was super easy.
-
-fixed bug where water mark couldn't be displayed.
-recorded gif of fire burning grass and trees. 
-added miyamoto interview quote from 1992 talking about what i'm recording.
-maybe someone gets the idea of where this is going...
+improved positioning of ground fires on cut grass objs.
+improved positioning of ground fires on bushes as well.
+ground fires are now centered to grass and bush objs.
 
 
 
@@ -144,58 +160,34 @@ maybe someone gets the idea of where this is going...
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+we should be modeling if an object is burnable using a burnable boolean.
+then we can just say if obj.burnable then burn(obj), instead of relying
+on obj.type checks with ground fire projectiles (or vice versa).
 
 
 
 
 add bush debris flying around to bushes getting cut, trees getting destroyed, grass getting cut.
 
+bush debris - hitting a bush should create leaves that travel in the direction of the hit
+leaves only last for a moment, then die
+blowing up a tree should create lots of leaves in random directions
+
 
 
 
 
 separate info from widgets drawing.
+we should be able to draw bottom info separate from widgets. why cant we?
 
 
 
 
 
 
-Arrows++
-
-arrows should stick into objects until they expire from age.
-when the arrow hits an obj, the obj becomes the arrows caster,
-and arrow then tracks to it's caster with it's offset from obj (that frame).
-this will cause arrows to stick into objs, even objs that move.
-we can even switch this arrow projectile for a stuck arrow projectile,
-that is simply decoration (we must keep arrow as projectile so it can track to caster)
 
 
 
-
-
-
-bush debris - hitting a bush should create leaves that travel in the direction of the hit
-leaves only last for a moment, then die
-blowing up a tree should create lots of leaves in random directions
 
 when player presses A on dialog screen entering dungeon, play door opening sound.
 this sound should not play when the hero spawns in the dungeon, where i think it does
@@ -210,7 +202,6 @@ that will increase the precision of sloppy diagonal weapon attacks, aiming their
 hero should spawn facing up in dungeon.
 hero should spawn facing down after exiting dungeon.
 
-the net should map to the Y button, after all, it IS an ITEM.
 
 
 
@@ -250,40 +241,6 @@ when we change rooms, we reset the particle pool (hopefully)
 when we call that reset, we should be resetting ALL particles,
 even ones that are alive currently.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-0.7 polish
 
 
 
@@ -341,125 +298,11 @@ same with hit sound, death sound, use sound.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Implement Light World and Dark World RIGHT NOW
 because we need to understand the architecture this is going to need,
 before we start tacking a bunch of levels onto the system.
 plus, we need to polish the transition between the dark world
 and the light world..
-
-
-
-v0.8 goals
-
-- LIGHT WORLD & DARK WORLD
-- implement enumFields for building rooms (big optimization)
-
-- fix picking up, carrying, throwing, dropping, dragging, pushing objects
-- can drag: light blocks, dungeon statues, barrels, torches on/off, chests
-- can pickup, carry, throw: pots
-- remove dropping pots from game, hero can only throw them
-
-- create 'boat' level, with boat captain, who has dialog with link
-- offers to take link to a variety of locations, using vendor screen
-- only available location is water temple, for low gold price (since link 'hires' crew)
-- this level is the boat obj + a dungeon entrance obj + a bunch of water tiles (maybe a small island)
-- links path is to/from the boat to the dungeon entrance
-
-- water temple / swamp dungeon: 
-	build crit path to hub, crit path to key, crit path to boss, 
-	*crit path to water switch (pullable lever)
-	*place water switch randomly in room/hub room
-	water pullable lever flips high/low water level boolean
-	when rooms are built they build high or low water levels, 
-	low water levels prevent hero from passing thru rooms 
-	there are low water levels in rooms along the key or boss crit path.
-	hero must flip switch to access key or boss rooms, or not.
-	boss is tentacles squid
-	
-- can swim, 'dive', dash, and reward / pickup stuff in water
-- dive: 
-	in shallow water, this picks up whatever is hidden using reward state.
-	in deep water, this allows hero to move 'under' some blocking objects
-	diving is timed / capped at 255 frames, after that link pops his head back up
-- dash:
-	works the same in shallow and deep water, but can't be done while diving
-	
-- mountain dungeon (diff enemies, boss, dungeon sprites - but same rooms)
-
-- room keys - these only work for the room and only unlock 1 door, and
-these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
-
-
 
 
 
@@ -473,17 +316,6 @@ v0.9 goals
 
 v1.0 goals
 ??? support, testing, videos, documentation, alt marketing
-
-
-
-
-
-
-
-
-
-
-
 
 
 

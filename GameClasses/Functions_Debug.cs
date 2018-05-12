@@ -90,13 +90,6 @@ namespace DungeonRun
             Inspect(Obj.compSprite);
         }
 
-        public static void Inspect(ComponentInteraction Interaction)
-        {
-            output = "Component Interaction\n";
-            output += "\tactive:" + Interaction.active;
-            Debug.WriteLine(output);
-        }
-
         public static void Inspect(ComponentCollision Coll)
         {
             output = "Component Collision\n";

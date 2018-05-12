@@ -15,7 +15,14 @@ screen opening / closing animation:
 
 
 
+Arrows++
 
+arrows should stick into objects until they expire from age.
+when the arrow hits an obj, the obj becomes the arrows caster,
+and arrow then tracks to it's caster with it's offset from obj (that frame).
+this will cause arrows to stick into objs, even objs that move.
+we can even switch this arrow projectile for a stuck arrow projectile,
+that is simply decoration (we must keep arrow as projectile so it can track to caster)
 
 
 

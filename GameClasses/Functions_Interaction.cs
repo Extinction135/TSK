@@ -486,7 +486,7 @@ namespace DungeonRun
                                 Functions_Projectile.Spawn(
                                     ObjType.ProjectileGroundFire,
                                     RoomObj.compSprite.position.X,
-                                    RoomObj.compSprite.position.Y - 3);
+                                    RoomObj.compSprite.position.Y - 4);
                             }
                             else if (RoomObj.type == ObjType.Wor_Tree)
                             {
@@ -624,7 +624,6 @@ namespace DungeonRun
                     }
 
                     #endregion
-
 
 
                     #region GroundFires
@@ -844,7 +843,7 @@ namespace DungeonRun
                     Functions_Projectile.Spawn(
                         ObjType.ProjectileGroundFire,
                         RoomObj.compSprite.position.X,
-                        RoomObj.compSprite.position.Y + 3);
+                        RoomObj.compSprite.position.Y - 3);
                 }
                 else if (Object.type == ObjType.ProjectileSword)
                 {   //cut the grass
