@@ -153,6 +153,28 @@ namespace DungeonRun
             #endregion
 
 
+            #region World Objects
+
+            else if (Obj.type == ObjType.Wor_Tree_Burnt)
+            {
+                //check to see if tree should still burn
+                if (Obj.lifetime < Obj.lifeCounter)
+                {   //often spawn fire on the tree trunk
+                    if (Functions_Random.Int(0, 100) > 95)
+                    {   //vary position of fire on tree trunk each time
+                        Functions_Projectile.Spawn(
+                            ObjType.ProjectileGroundFire,
+                          Obj.compSprite.position.X + Functions_Random.Int(-2, 2),
+                          Obj.compSprite.position.Y + Functions_Random.Int(-8, 8));
+                    }
+                }
+                //stop 'burning' phase of tree, remove from AI calculations
+                else { Obj.lifetime = 0; Obj.lifeCounter = 0; Obj.getsAI = false; }
+            }
+
+            #endregion
+
+
             #region Fairy
 
             else if (Obj.type == ObjType.Dungeon_Fairy)

@@ -59,8 +59,50 @@ namespace DungeonRun
             { Functions_Loot.SpawnLoot(Bush.compSprite.position); }
         }
 
+
+
+
         public static void BurnTree(GameObject Tree)
         {
+
+
+
+
+
+
+
+            /*
+            //pop the bushy top part
+            Functions_Particle.Spawn(
+                ObjType.Particle_Attention,
+                Tree.compSprite.position.X,
+                Tree.compSprite.position.Y - 2);
+
+            //pop leaf explosion
+            Functions_Particle.Spawn_Explosion(
+                ObjType.Particle_Leaf,
+                Tree.compSprite.position.X + 2,
+                Tree.compSprite.position.Y - 4);
+            */
+
+            //switch to burned tree
+            Functions_GameObject.SetType(Tree, ObjType.Wor_Tree_Burnt);
+
+            //set ground fires all over the tree
+            Functions_Projectile.Spawn(
+                ObjType.ProjectileGroundFire,
+                Tree.compSprite.position.X,
+                Tree.compSprite.position.Y + 5);
+            Functions_Projectile.Spawn(
+                ObjType.ProjectileGroundFire,
+                Tree.compSprite.position.X,
+                Tree.compSprite.position.Y -2);
+
+        }
+
+        public static void BlowUpTree(GameObject Tree)
+        {
+            Assets.Play(Assets.sfxShatter);
             //pop the bushy top part
             Functions_Particle.Spawn(
                 ObjType.Particle_Attention,
@@ -73,17 +115,17 @@ namespace DungeonRun
                 Tree.compSprite.position.Y - 4, true);
             //switch to tree stump
             Functions_GameObject.SetType(Tree, ObjType.Wor_Tree_Stump);
+            //rarely spawn loot
+            if (Functions_Random.Int(0, 101) > 90)
+            { Functions_Loot.SpawnLoot(Tree.compSprite.position); }
+
+            /*
             //set a ground fire ON the stump sprite
             Functions_Projectile.Spawn(
                 ObjType.ProjectileGroundFire,
                 Tree.compSprite.position.X,
                 Tree.compSprite.position.Y + 5);
-
-            //rarely spawn loot
-            if (Functions_Random.Int(0, 101) > 90)
-            { Functions_Loot.SpawnLoot(Tree.compSprite.position); }
-            //play various sfx
-            Assets.Play(Assets.sfxBushCut);
+            */
         }
 
     }

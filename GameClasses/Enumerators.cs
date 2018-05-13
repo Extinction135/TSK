@@ -271,6 +271,7 @@ namespace DungeonRun
         Wor_Bush_Stump,
         Wor_Tree,
         Wor_Tree_Stump,
+        Wor_Tree_Burnt,
 
         //debris
         Wor_Debris,

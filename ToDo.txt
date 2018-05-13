@@ -136,38 +136,6 @@ TODAY:
 
 
 
-Explosions++
-
-updated explosions to always leave ground fires behind.
-playtested, working but not quite right.
-
-groundfires from explosions should happen on the projectiles birth.
-they seem to 'lag' after the explosion too much. feels wrong.
-updated projectile functions.spawn to create ground fire for
-birth of explosion projectile. centered ground fire to explosion.
-
-
-
-Bushes ++
-
-ground fires should be able to spread to bushes as well.
-this means we can burn lines of bushes (should spread across bushes).
-
-this was implemented in interaction functions obj v obj,
-and i removed fire's ability to burn trees. why? because the 'burn trees'
-method looked more like it was blowing the trees up. so, i'll
-split this into BurnTree() and ExplodeTree(), where explosions blow
-trees up, and ground fires burn them.
-playtested, working great.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -182,11 +150,70 @@ playtested, working great.
 
 Trees++
 
-blowing up a tree and burning a tree is different.
-blowing up shoots leaves everywhere, is instant, leaves groundfire..
-burning starts with ground fire at base of tree, then top part sets on fire,
-then the tree becomes the burnt version, not the tree stump.
-(we have burnt version in dev, add to level sheet)
+explosions now call BlowUpTree().
+fires now call BurnTree().
+
+added burnt tree sprite.
+moved tree sprites in sprite sheet.
+added animFrame for burnt tree.
+updated animFrames for trees to new pack.
+playtested, working fine.
+
+added burnt tree enum value and type def.
+updated BurnTree() to use new burned tree obj.
+playtested, working but needs polish.
+
+removed groundfires from exploded trees.
+didn't make sense, conflicted visually with explosions
+ground fire too, cleaner to just see the tree go.
+
+Burning Trees
+
+we have a burned tree sprite, and we have fire objs.
+currently, the tree instantly switches from bushy
+to burned in a single frame of interaction which is way 
+to fast - we want to slow this down. we want fire to
+stay on the tree object for a while before the tree
+switches to the burned version.
+
+the way we do this is by setting the burnt tree's lifetime 
+to 255, giving us a timer to spawn fire objs inside of.
+once this timer runs out, we stop spawning fire objs, and
+only the burnt tree is left.
+
+playtested, looking better, but still not quite right.
+the bushy tree obj should 'burn' for a while, then change
+to the 'burnt' version. as is, we're only burning the 
+burnt version, and the sudden sprite switch is what feels wrong.
+did some planning to get this working properly.
+
+
+
+
+
+
+
+
+
+
+
+Burning Trees++
+
+so - we need to 'burn' the bushy tree. so this becomes
+the obj burning bushy tree, which 'finalizes' into burnt tree.
+
+in the future, we have another tree type, we use it's sprite
+for normal and burning versions, just add fire over obj.
+
+
+
+
+add lantern:
+free action to create a ground fire projectile at links facing location.
+doesn't take magic. can light torches too.
+
+
+
 
 ground fire needs to have a soundFX of fire burning (quietly tho).
 

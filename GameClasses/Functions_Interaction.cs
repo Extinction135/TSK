@@ -497,8 +497,7 @@ namespace DungeonRun
                             }
                             else if (RoomObj.type == ObjType.Wor_Tree)
                             {
-                                Functions_GameObject_World.BurnTree(RoomObj);
-                                Assets.Play(Assets.sfxShatter);
+                                Functions_GameObject_World.BlowUpTree(RoomObj);
                             }
                             else if (RoomObj.type == ObjType.Dungeon_Statue
                                 || RoomObj.type == ObjType.Wor_Bookcase
@@ -635,8 +634,8 @@ namespace DungeonRun
                     {   //blocking objs only here, btw
 
                         //groundfires can burn trees
-                        //if (RoomObj.type == ObjType.Wor_Tree)
-                        //{ Functions_GameObject_World.BurnTree(RoomObj); }
+                        if (RoomObj.type == ObjType.Wor_Tree)
+                        { Functions_GameObject_World.BurnTree(RoomObj); }
                         //groundfires can spread across bushes
                         if(RoomObj.type == ObjType.Wor_Bush)
                         {   //spread the fire 

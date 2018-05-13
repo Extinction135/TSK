@@ -17,6 +17,10 @@ or, we could just simply turn on invincibility.
 
 
 
+should be able to push + pull explosive barrels without triggering them.
+
+
+
 Magic Mirror
 - returns link to dungeon entrance.
 - plays warp sound fx

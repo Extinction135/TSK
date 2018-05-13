@@ -766,17 +766,26 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
                 Obj.compCollision.rec.Width = 5; Obj.compCollision.rec.Height = 5;
             }
-            else if (Type == ObjType.Wor_Tree)
+            else if (Type == ObjType.Wor_Tree || Type == ObjType.Wor_Tree_Burnt)
             {
                 Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = +10;
                 Obj.compCollision.blocking = true;
-                Obj.compAnim.currentAnimation = AnimationFrames.World_Tree;
                 Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = 15;
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 8;
                 Obj.sfx.hit = Assets.sfxEnemyHit;
                 Obj.sfx.kill = Assets.sfxBushCut;
+                //set correct animFrame based on type
+                if (Type == ObjType.Wor_Tree)
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_Tree; }
+                else
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_TreeBurnt;
+                    Obj.lifeCounter = 0;
+                    Obj.lifetime = 200; //"burn" for this long
+                    Obj.getsAI = true; //will spawn fire on tree
+                }
             }
             else if (Type == ObjType.Wor_Tree_Stump)
             {
@@ -789,8 +798,6 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 8;
                 Obj.sfx.hit = Assets.sfxTapMetallic;
             }
-
-
 
             #endregion
 
