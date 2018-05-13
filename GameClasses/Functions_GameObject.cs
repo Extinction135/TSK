@@ -766,7 +766,9 @@ namespace DungeonRun
                 Obj.compCollision.offsetX = -2; Obj.compCollision.offsetY = -2;
                 Obj.compCollision.rec.Width = 5; Obj.compCollision.rec.Height = 5;
             }
-            else if (Type == ObjType.Wor_Tree || Type == ObjType.Wor_Tree_Burnt)
+            else if (Type == ObjType.Wor_Tree 
+                || Type == ObjType.Wor_Tree_Burning 
+                || Type == ObjType.Wor_Tree_Burnt)
             {
                 Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
                 Obj.canBeSaved = true;
@@ -779,13 +781,15 @@ namespace DungeonRun
                 //set correct animFrame based on type
                 if (Type == ObjType.Wor_Tree)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Tree; }
-                else
-                {
-                    Obj.compAnim.currentAnimation = AnimationFrames.World_TreeBurnt;
+                else if (Type == ObjType.Wor_Tree_Burning)
+                {   //same as tree, just covered in fire objs
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_Tree;
                     Obj.lifeCounter = 0;
-                    Obj.lifetime = 200; //"burn" for this long
+                    Obj.lifetime = 150; //"burn" for this long
                     Obj.getsAI = true; //will spawn fire on tree
                 }
+                else //burning tree becomes burnt version eventually
+                { Obj.compAnim.currentAnimation = AnimationFrames.World_TreeBurnt; }
             }
             else if (Type == ObjType.Wor_Tree_Stump)
             {
@@ -1290,6 +1294,17 @@ namespace DungeonRun
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Blast;
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
+            else if (Type == ObjType.Particle_Fire)
+            {   //the non-interactive version of projectile ground fire
+                Obj.compSprite.zOffset = 32;
+                Obj.group = ObjGroup.Particle;
+                Obj.lifetime = 100; //in frames
+                Obj.compAnim.speed = 7; //in frames
+                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_FireGround;
+                Obj.compSprite.texture = Assets.entitiesSheet;
+            }
+
+
 
             //Particles - Rewards & Bottles
             else if (

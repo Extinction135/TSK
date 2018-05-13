@@ -45,19 +45,7 @@
       <posY>488</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Pet_Dog</type>
-      <direction>Down</direction>
-      <posX>440</posX>
-      <posY>328</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Flowers</type>
-      <direction>Down</direction>
-      <posX>536</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Pet_Chicken</type>
+      <type>Wor_Tree</type>
       <direction>Down</direction>
       <posX>440</posX>
       <posY>312</posY>
@@ -66,97 +54,37 @@
       <type>Wor_Flowers</type>
       <direction>Down</direction>
       <posX>536</posX>
-      <posY>312</posY>
+      <posY>296</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Pet_Chicken</type>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
       <posX>456</posX>
-      <posY>344</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>424</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>440</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>456</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>472</posX>
-      <posY>296</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>424</posX>
-      <posY>312</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>424</posX>
       <posY>328</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Pot</type>
+      <type>Wor_Flowers</type>
       <direction>Down</direction>
-      <posX>424</posX>
-      <posY>344</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>424</posX>
-      <posY>360</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>440</posX>
-      <posY>360</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>456</posX>
-      <posY>360</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>472</posX>
-      <posY>360</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Wor_Pot</type>
-      <direction>Down</direction>
-      <posX>472</posX>
+      <posX>536</posX>
       <posY>312</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Pot</type>
+      <type>Wor_Bush</type>
       <direction>Down</direction>
       <posX>472</posX>
       <posY>328</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Wor_Pot</type>
+      <type>Wor_Grass_Tall</type>
       <direction>Down</direction>
-      <posX>472</posX>
-      <posY>344</posY>
+      <posX>424</posX>
+      <posY>328</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Wor_Grass_Tall</type>
+      <direction>Down</direction>
+      <posX>408</posX>
+      <posY>328</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Wor_Flowers</type>

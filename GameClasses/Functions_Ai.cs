@@ -155,21 +155,45 @@ namespace DungeonRun
 
             #region World Objects
 
-            else if (Obj.type == ObjType.Wor_Tree_Burnt)
-            {
-                //check to see if tree should still burn
-                if (Obj.lifetime < Obj.lifeCounter)
-                {   //often spawn fire on the tree trunk
-                    if (Functions_Random.Int(0, 100) > 95)
-                    {   //vary position of fire on tree trunk each time
-                        Functions_Projectile.Spawn(
-                            ObjType.ProjectileGroundFire,
-                          Obj.compSprite.position.X + Functions_Random.Int(-2, 2),
-                          Obj.compSprite.position.Y + Functions_Random.Int(-8, 8));
+            else if (Obj.type == ObjType.Wor_Tree_Burning)
+            {   //check to see if tree should still burn
+                if (Obj.lifeCounter < Obj.lifetime)
+                {
+                    Obj.lifeCounter++;
+                    if (Obj.lifeCounter < 75) //place fires only at beginning
+                    {
+                        if (Functions_Random.Int(0, 100) > 93)
+                        {   //often spawn fires on the bushy top
+                            Functions_Particle.Spawn(ObjType.Particle_Fire,
+                                Obj.compSprite.position.X + Functions_Random.Int(-6, 6),
+                                Obj.compSprite.position.Y + Functions_Random.Int(-8, 4));
+                        }
+                        if (Functions_Random.Int(0, 100) > 93)
+                        {   //less often spawn fires along the tree trunk
+                            Functions_Particle.Spawn(ObjType.Particle_Fire,
+                                Obj.compSprite.position.X + 0,
+                                Obj.compSprite.position.Y + Functions_Random.Int(4, 16));
+                        }
                     }
                 }
                 //stop 'burning' phase of tree, remove from AI calculations
-                else { Obj.lifetime = 0; Obj.lifeCounter = 0; Obj.getsAI = false; }
+                else
+                {
+                    Assets.Play(Assets.sfxActorLand); //decent popping sound
+                    //pop the bushy top part
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y - 2);
+                    //pop leaves in circular decorative pattern for tree top
+                    Functions_Particle.Spawn_Explosion(
+                        ObjType.Particle_Leaf,
+                        Obj.compSprite.position.X + 2,
+                        Obj.compSprite.position.Y - 4, true);
+                    //switch to burned tree
+                    Functions_GameObject.ResetObject(Obj);
+                    Functions_GameObject.SetType(Obj, ObjType.Wor_Tree_Burnt);
+                }
             }
 
             #endregion

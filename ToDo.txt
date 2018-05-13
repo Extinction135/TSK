@@ -132,78 +132,32 @@ TODAY:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Trees++
-
-explosions now call BlowUpTree().
-fires now call BurnTree().
-
-added burnt tree sprite.
-moved tree sprites in sprite sheet.
-added animFrame for burnt tree.
-updated animFrames for trees to new pack.
-playtested, working fine.
-
-added burnt tree enum value and type def.
-updated BurnTree() to use new burned tree obj.
-playtested, working but needs polish.
-
-removed groundfires from exploded trees.
-didn't make sense, conflicted visually with explosions
-ground fire too, cleaner to just see the tree go.
-
-Burning Trees
-
-we have a burned tree sprite, and we have fire objs.
-currently, the tree instantly switches from bushy
-to burned in a single frame of interaction which is way 
-to fast - we want to slow this down. we want fire to
-stay on the tree object for a while before the tree
-switches to the burned version.
-
-the way we do this is by setting the burnt tree's lifetime 
-to 255, giving us a timer to spawn fire objs inside of.
-once this timer runs out, we stop spawning fire objs, and
-only the burnt tree is left.
-
-playtested, looking better, but still not quite right.
-the bushy tree obj should 'burn' for a while, then change
-to the 'burnt' version. as is, we're only burning the 
-burnt version, and the sudden sprite switch is what feels wrong.
-did some planning to get this working properly.
-
-
-
-
-
-
-
-
-
-
-
 Burning Trees++
 
 so - we need to 'burn' the bushy tree. so this becomes
 the obj burning bushy tree, which 'finalizes' into burnt tree.
 
-in the future, we have another tree type, we use it's sprite
-for normal and burning versions, just add fire over obj.
+on this we need to spawn a variety of fire particles.
+these simply decorate the burning tree, no interaction.
+
+lots of modification to get trees burning in a decent way.
+playtested, looking pretty good.
+
+improved odds of spawning loot from trees.
+added ability to blow up burnt trees using explosions.
+added soundfx for when burning tree transitions to burnt,
+syncs up with the pop particle for good feelz.
+
+fixed a minor issue where explosions were always leaving
+groundfires on objects they touched, which meant NPCs had
+groundfires all over them.. which was funny, but.. no.
+
+updated UWP project.
+
+
+
+
+
 
 
 
@@ -213,17 +167,11 @@ free action to create a ground fire projectile at links facing location.
 doesn't take magic. can light torches too.
 
 
-
-
 ground fire needs to have a soundFX of fire burning (quietly tho).
-
 
 
 the forest dungeon entrance should be blocked by trees, requiring link
 to blow them up with bombs to gain access to dungeon.
-
-
-
 
 
 

@@ -162,15 +162,6 @@ namespace DungeonRun
         }
 
 
-
-
-
-
-
-
-
-
-
         public static void Spawn_Explosion(ObjType Type, float X, float Y, Boolean circular = false)
         {  
             if(circular == false)
@@ -196,48 +187,6 @@ namespace DungeonRun
                 Spawn(Type, X, Y, Direction.UpLeft);
             }
         }
-        
-
-
-
-
-
-
-
-
-        /*
-        public static void ScatterDebris(Vector2 Pos)
-        {   //add up to 4 debris particles randomly around Pos
-            int spread = 5; //how far apart the debris spawns from Pos
-            //always add at least one rock
-            Spawn(ObjType.ParticleDebris, Pos.X, Pos.Y);
-            //sometimes add another rock
-            if (Functions_Random.Int(0, 100) > 20)
-            {   
-                Spawn(ObjType.ParticleDebris,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread));
-            }
-            //sometimes add another rock
-            if (Functions_Random.Int(0, 100) > 40)
-            { 
-                Spawn(ObjType.ParticleDebris,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread));
-            }
-            //sometimes add another rock
-            if (Functions_Random.Int(0, 100) > 60)
-            {  
-                Spawn(ObjType.ParticleDebris,
-                    Pos.X + Functions_Random.Int(-spread, spread),
-                    Pos.Y + Functions_Random.Int(-spread, spread));
-            }
-        }
-        */
-
-
-
-
 
     }
 }

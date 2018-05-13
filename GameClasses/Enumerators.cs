@@ -271,6 +271,7 @@ namespace DungeonRun
         Wor_Bush_Stump,
         Wor_Tree,
         Wor_Tree_Stump,
+        Wor_Tree_Burning,
         Wor_Tree_Burnt,
 
         //debris
@@ -333,7 +334,7 @@ namespace DungeonRun
         Particle_ImpactDust, 
         Particle_Sparkle, 
 
-        //Particles - obj specific
+        //Particles - small, obj specific
         Particle_PitBubble,
         Particle_Leaf,
         Particle_Debris,
@@ -357,6 +358,7 @@ namespace DungeonRun
         Particle_Splash,
         Particle_Blast,
         Particle_Push,
+        Particle_Fire,
 
         //Particle_Debris, //doesn't exist right now
         Particle_BottleEmpty,

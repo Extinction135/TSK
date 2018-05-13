@@ -496,8 +496,12 @@ namespace DungeonRun
                                     RoomObj.compSprite.position.Y - 4);
                             }
                             else if (RoomObj.type == ObjType.Wor_Tree)
-                            {
-                                Functions_GameObject_World.BlowUpTree(RoomObj);
+                            {   //blow up tree, showing leaf explosion
+                                Functions_GameObject_World.BlowUpTree(RoomObj, true);
+                            }
+                            else if (RoomObj.type == ObjType.Wor_Tree_Burnt)
+                            {   //blow up tree, no leaf explosion
+                                Functions_GameObject_World.BlowUpTree(RoomObj, false);
                             }
                             else if (RoomObj.type == ObjType.Dungeon_Statue
                                 || RoomObj.type == ObjType.Wor_Bookcase
@@ -509,22 +513,19 @@ namespace DungeonRun
 
                             #endregion
 
-
-                            //explosions also trigger common obj interactions
-                            Functions_GameObject.HandleCommon(RoomObj,
-                                //get the direction towards the roomObj from the explosion
-                                Functions_Direction.GetOppositeCardinal(
-                                    RoomObj.compSprite.position,
-                                    Object.compSprite.position));
+                            else
+                            {   //explosions trigger common obj interactions
+                                Functions_GameObject.HandleCommon(RoomObj,
+                                    //get the direction towards the roomObj from the explosion
+                                    Functions_Direction.GetOppositeCardinal(
+                                        RoomObj.compSprite.position,
+                                        Object.compSprite.position)
+                                );
+                            }
+                            
 
                             //leave a 'burn mark' particle, with life 255
                             //this is just a darker spot on the ground that looks like a blast mark
-
-                            //explosions always leave behind ground fires
-                            Functions_Projectile.Spawn(
-                                ObjType.ProjectileGroundFire,
-                                RoomObj.compSprite.position.X,
-                                RoomObj.compSprite.position.Y + 3);
                         }
                     }
 
@@ -635,15 +636,18 @@ namespace DungeonRun
 
                         //groundfires can burn trees
                         if (RoomObj.type == ObjType.Wor_Tree)
-                        { Functions_GameObject_World.BurnTree(RoomObj); }
+                        {
+                            Functions_GameObject_World.BurnTree(RoomObj);
+                        }
                         //groundfires can spread across bushes
-                        if(RoomObj.type == ObjType.Wor_Bush)
+                        else if(RoomObj.type == ObjType.Wor_Bush)
                         {   //spread the fire 
                             Functions_Projectile.Spawn(
                                 ObjType.ProjectileGroundFire,
                                 RoomObj.compSprite.position.X,
                                 RoomObj.compSprite.position.Y - 3);
                             Functions_GameObject_World.DestroyBush(RoomObj);
+                            Assets.Play(Assets.sfxLightFire);
                         }
                     }
 
@@ -866,6 +870,7 @@ namespace DungeonRun
                         ObjType.ProjectileGroundFire,
                         RoomObj.compSprite.position.X,
                         RoomObj.compSprite.position.Y - 3);
+                    //Assets.Play(Assets.sfxLightFire);
                 }
             }
 
