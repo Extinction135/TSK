@@ -92,6 +92,9 @@ namespace DungeonRun
             labels[3].text = "hard\nmode";
             Functions_MenuItem.SetType(MenuItemType.Options_HardMode, menuItems[3]);
 
+            labels[4].text = "draw\ntime";
+            Functions_MenuItem.SetType(MenuItemType.Options_DrawBuildTimes, menuItems[4]);
+
             #endregion
 
 
@@ -155,7 +158,11 @@ namespace DungeonRun
                     if (Flags.HardMode) { Flags.HardMode = false; }
                     else { Flags.HardMode = true; }
                 }
-
+                else if (currentlySelected.type == MenuItemType.Options_DrawBuildTimes)
+                {
+                    if (Flags.DrawUDT) { Flags.DrawUDT = false; }
+                    else { Flags.DrawUDT = true; }
+                }
                 #endregion
 
 
@@ -306,6 +313,9 @@ namespace DungeonRun
 
             if (Flags.HardMode)
             { menuItems[3].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+
+            if (Flags.DrawUDT)
+            { menuItems[4].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
 
             //expand this to include additional options
         }

@@ -519,6 +519,12 @@ namespace DungeonRun
                 MenuItem.description = "rooms reset, etc.. \nalmost unfair.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
+            else if (Type == MenuItemType.Options_DrawBuildTimes)
+            {
+                MenuItem.name = "Draw Build Times";
+                MenuItem.description = "displays ms time for \nframe, room, and level.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
+            }
 
             #endregion
 

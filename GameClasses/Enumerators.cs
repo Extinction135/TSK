@@ -326,9 +326,6 @@ namespace DungeonRun
         ProjectileExplodingBarrel, //creates explosion pro
         ProjectileGroundFire,
 
-
-
-
         //Particles - small
         Particle_RisingSmoke, 
         Particle_ImpactDust, 
@@ -338,14 +335,6 @@ namespace DungeonRun
         Particle_PitBubble,
         Particle_Leaf,
         Particle_Debris,
-
-
-
-
-
-
-
-
 
          
         //Particles - map
@@ -423,7 +412,7 @@ namespace DungeonRun
         Options_TrackCamera,
         Options_Watermark,
         Options_HardMode,
-
+        Options_DrawBuildTimes,
 
 
 

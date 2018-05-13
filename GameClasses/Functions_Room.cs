@@ -14,7 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_Room
     {
-
         public static Stopwatch stopWatch = new Stopwatch();
         public static TimeSpan time;
         public static int i;
@@ -132,6 +131,10 @@ namespace DungeonRun
 
         public static void BuildRoom(Room Room, RoomXmlData RoomXmlData = null)
         {
+            if (Flags.PrintOutput)
+            { Debug.WriteLine("-- building room: " + Room.roomID + " --"); }
+            stopWatch.Reset(); stopWatch.Start();
+
 
             #region Setup RoomData OR DevRooms
 
@@ -212,7 +215,9 @@ namespace DungeonRun
             #endregion
 
 
-            Debug.WriteLine("room built = " + Room.roomID);
+            stopWatch.Stop(); time = stopWatch.Elapsed;
+            if (Flags.PrintOutput)
+            { Debug.WriteLine("room " + Room.roomID + " built in " + time.Ticks + " ticks"); }
         }
 
 

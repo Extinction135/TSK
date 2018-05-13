@@ -71,6 +71,15 @@ that is simply decoration (we must keep arrow as projectile so it can track to c
 
 
 
+wind should occasionally blow thru overworld levels
+this is a global push() on all objs and actors.
+link would be pushed a bit.
+leaves would fly out from trees, etc..
+it's a very environmental thing, but adds life.
+
+
+
+
 fix how kick sountrack volume is handled
 the hero's health sets the volume of the kick soundtrack
 this check should be happening in the level class, not anywhere

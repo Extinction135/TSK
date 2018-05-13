@@ -22,10 +22,10 @@ namespace DungeonRun
         public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
-        public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
+        public static Boolean DrawUDT = true; //draw the UpdateDrawTotal timing text?
         public static Boolean DrawDebugInfo = false; //draws the bottom debug info
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
-        public static Boolean DrawInput = false; //draw the input display
+        public static Boolean DrawInput = true; //draw the input display
         public static Boolean DrawWatermark = false; //top right link (for capturing purposes)
 
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
@@ -638,8 +638,8 @@ namespace DungeonRun
                 new Vector2(0, 0), Assets.colorScheme.textLight);
 
             //place frametime & autosave texts
-            frametime.position.X = 4;
-            frametime.position.Y = 10;
+            frametime.position.X = 16+4+2;
+            frametime.position.Y = 32+10+6;
             autosaveText.position.X = 54;
             autosaveText.position.Y = 81;
         }

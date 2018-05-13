@@ -179,20 +179,18 @@ TODAY:
 
 
 
-SaveData++
 
-fixed a minor issue where magic and it's maximum value
-were bring handled in their 'own way' in save data, which 
-wasn't consistent with bombs and arrows.
+DebugDisplay++
 
+modified UDT text in world UI.
+this now displays the frametime, room build time, and
+level build times, in milliseconds.
 
-Debris--
+linked this up to a new menuItem on options screen, 'draw time'.
+this simply toggles Flags.drawUDT on/off, which worldUI checks.
+playtested, working as expected.
 
-removed dungeon debris from dungeon section of level sheet.
-we weren't using dungeon debris, instead we have fully
-working + looking good debris in the world section of the
-level sheet.
-
+added menuItem description.
 
 
 
@@ -205,14 +203,6 @@ level sheet.
 
 cleanup
 {
-
-	separate info from widgets drawing.
-	we should be able to draw bottom info separate from widgets. why cant we?
-	i'd like to know frametimes in world ui again, it was nice.
-	plus for testing on xbox, we need to know level build times, room build times, and total frametimes.
-	this should be displayable from the options menu.
-
-
 	when player presses A on dialog screen entering dungeon, play mario snes dungeon door opening sound.
 	this sound should not play when the hero spawns in the dungeon, where i think it does
 	it plays after the dungeon is built?
