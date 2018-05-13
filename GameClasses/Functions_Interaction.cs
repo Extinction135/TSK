@@ -171,6 +171,7 @@ namespace DungeonRun
                 if (Obj.type == ObjType.ProjectileBomb
                     || Obj.type == ObjType.ProjectileExplodingBarrel
                     || Obj.type == ObjType.ProjectileGroundFire
+                    || Obj.type == ObjType.ProjectileBow
                     )
                 { return; }
                 //check for boomerang interaction with hero
@@ -194,6 +195,13 @@ namespace DungeonRun
                 {
                     if (Obj.lifeCounter == 1)
                     { Functions_Particle.Spawn(ObjType.Particle_Sparkle, Obj); }
+                }
+
+                else if(Obj.type == ObjType.ProjectileBush
+                    || Obj.type == ObjType.ProjectilePot 
+                    || Obj.type == ObjType.ProjectilePotSkull)
+                {
+                    Obj.lifeCounter = Obj.lifetime; //kill projectile next frame
                 }
 
                 //all actors take damage from these projectiles
@@ -649,6 +657,27 @@ namespace DungeonRun
                     }
 
                     #endregion
+
+
+
+                    //what about projectile bushes, pots, skull pots?
+
+                    #region Thrown Objects (Bush, Pot)
+
+                    else if (Object.type == ObjType.ProjectileBush
+                        || Object.type == ObjType.ProjectilePot
+                        || Object.type == ObjType.ProjectilePotSkull)
+                    {
+                        //handle common interactions caused by thrown objs
+                        Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
+                        //thrown objs die upon blocking collision
+                        Functions_Projectile.Kill(Object);
+                    }
+                    
+                    #endregion
+
+
+
 
 
                     return; //projectile interactions complete

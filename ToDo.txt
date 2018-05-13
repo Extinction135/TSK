@@ -124,13 +124,6 @@ these rooms turn all their doors into locked doors upon close, similar to puzzle
 
 
 
-
-
-
-Sunday
-	- cleanup
-	
-
 Monday
 	- grab, push, pull (light blocks, barrels, dungeon statues)
 	- light block interactions with switches (switch must be held down, so we need a 2nd type of switch)
@@ -180,69 +173,37 @@ TODAY:
 
 
 
+Throwing Bushes and Pots
 
-Implement Pickup + Carry
+the easiest way to model a thrown object is actually as a projectile.
+we should have projectile versions of skull pot, pot, and bush.
+they have a lifetime, are flying, etc.. just like fireball.
+plus, their interactions/collisions reqs match those of projectiles.
+we can even re-use the roomObj's animFrames.
 
-hero, and eventually all actors, will be able to pickup
-and carry skull pots, world pots, and small bushes, just
-like LttP. i already implemented this in a previous 
-version, but that implementation broke so i ripped or
-commented out all that code. looking at it with a fresh
-perspective, pickup carrying and eventually throwing
-objects is something that all actors should be able to
-do, not just the hero. with that in mind, actor methods 
-were created to handle picking up and carrying objs.
-
-a temporary throw() method was created, but it just
-destroys the held obj. this feeds into the handle common()
-method, which then controls creating the proper explosion
-of leaves or debris for the destroyed object.
-
-playtested, working quite well.
-
-falling into pits with held obj: x
-getting hit with held obj: x
-exiting room with held obj: well, actually...
-
-the way the system works now, players can pickup one obj
-from RoomA and carry it to RoomB. theoretically, they could
-carry an obj through as many rooms as they want to, since
-the object is forced to remain active. this means it *should*
-live through Pool.Reset() when we change rooms, and it def
-wont be returned from Pool.GetRoomObj() because it's active.
-so it should be protected/safe to carry from room to room.
-
-playtested exiting dungeons / levels while carrying objs,
-the obj dissappears upon a level build, which is great.
-transitioning between rooms, the heldObj is untouched.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-throw obj
-we convert skull, pot, bush to it's 'thrown' version, when it's thrown.
-this thrown version is the same as the regular version, except it's on
-a timer to expire (which 'ends' the throw). once this timer expires,
-the obj explodes (either into leaves or debris). if obj collides with
-actor or obj while traveling, it explodes, and interacts with the obj/actor.
 we apply a strong push to the thrown obj to get it moving in the right direction.
 also, the thrown obj's friction is air friction, so it doesn't lose much speed overtime.
-it should be traveling near 100% push speed when it dies.
-also, overtime the obj should descend on it's Y axis, if thrown left or right.
-this simulates the effect of gravity on the obj in air.
+(it should be traveling near 100% push speed when it dies).
+implemented thrown obj projectiles, working quite well.
+
+implemented DASHING WHILE CARRYING OBJECTS, which is awesome.
+no really, it's awesome - because now theres no speed penalty
+for picking up an obj to throw. which makes throwing a legit strat,
+since it keeps link a good distance from enemies and the thrown
+obj's collision rec is MUCH bigger than an arrows (easier to hit).
+with enough pots / bushes, throwing is super effective.
+
+fixed a visual issue where thrown objs didn't align with their
+held counterparts when thrown left and right.
+
+fixed a bug with skull pot projectiles exploding at start of throw.
+
+updated Pickup() to create bush stumps when link picks up a bush.
+otherwise, the bush has no stump. a bush with no stump? nyeh.
+
+the thrown obj is kept in check by it's relatively short lifetime.
+that keeps it's effective distance small, compared to the arrows
+full 255 lifetime (lasts so long it can hit things off screen).
 
 
 
@@ -252,10 +213,8 @@ this simulates the effect of gravity on the obj in air.
 
 
 
-
-
-
-
+menu options for:
+turning music on/off
 
 
 
@@ -269,7 +228,8 @@ this simulates the effect of gravity on the obj in air.
 
 
 
-
+* should we be able to pickup and throw barrels?
+* upon a throw, these become exploding barrel projectiles... noice
 
 
 

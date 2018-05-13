@@ -22,10 +22,10 @@ namespace DungeonRun
         public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
-        public static Boolean DrawUDT = true; //draw the UpdateDrawTotal timing text?
+        public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
         public static Boolean DrawDebugInfo = false; //draws the bottom debug info
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
-        public static Boolean DrawInput = true; //draw the input display
+        public static Boolean DrawInput = false; //draw the input display
         public static Boolean DrawWatermark = false; //top right link (for capturing purposes)
 
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
@@ -1056,9 +1056,10 @@ namespace DungeonRun
         public ComponentSprite feetFX;
 
 
-
+        //fields used in pickup / carry / throw
         public Boolean carrying = false; //is actor carrying an obj?
-        public GameObject heldObj = null; //the obj actor might be carrying
+        public GameObject heldObj = null; //obj actor might be carrying
+
         //public static Boolean swimming = false; //is actor in water?
 
 

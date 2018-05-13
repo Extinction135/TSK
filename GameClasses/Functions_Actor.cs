@@ -231,31 +231,39 @@ namespace DungeonRun
 
         public static void Pickup(GameObject Obj, Actor Act)
         {
-            Act.carrying = true;
-            Act.heldObj = Obj;
-
-            //'hide' roomObject far away from level/room
-            Functions_Movement.Teleport(Obj.compMove, 4096, 4096);
-
-            //put actor into pickup state
-            Act.state = ActorState.Pickup;
-            Act.stateLocked = true;
-            Act.lockTotal = 10;
-            SetAnimationGroup(Act);
-
-            Act.heldObj.compSprite.zOffset = +16; //sort above actor
-            Act.heldObj.compCollision.blocking = false; //prevent act/obj overlaps
-
-            Assets.Play(Assets.sfxActorLand); //temp sfx
-
             //decorate pickup
             Functions_Particle.Spawn(
                 ObjType.Particle_Attention,
                 Obj.compSprite.position.X,
                 Obj.compSprite.position.Y);
+
+            //handle pickup effects
+            if (Obj.type == ObjType.Wor_Bush)
+            {   //spawn a stump obj at bush location
+                Functions_GameObject.Spawn(
+                    ObjType.Wor_Bush_Stump,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    Direction.Down);
+            }
+
+            //handle picking up obj
+            Act.carrying = true;
+            Act.heldObj = Obj;
+            //'hide' roomObject far away from level/room
+            Functions_Movement.Teleport(Obj.compMove, 4096, 4096);
+            //put actor into pickup state
+            Act.state = ActorState.Pickup;
+            Act.stateLocked = true;
+            Act.lockTotal = 10;
+            SetAnimationGroup(Act);
+            Act.heldObj.compSprite.zOffset = +16; //sort above actor
+            Act.heldObj.compCollision.blocking = false; //prevent act/obj overlaps
+            Assets.Play(Assets.sfxActorLand); //temp sfx
         }
 
 
+        static ObjType throwType;
         public static void Throw(Actor Act)
         {
             Functions_Movement.StopMovement(Act.compMove);
@@ -267,16 +275,24 @@ namespace DungeonRun
             Act.lockTotal = 10;
             SetAnimationGroup(Act);
 
-            //we want to keep a reference to the thrown roomObj using thrownObj
-            //then we use a timer to count 10 or 15 frames, then destroy() thrownObj.
-            //during this time, we can also check thrownObj's collisions/interactions
-            //and because held and thrown objs are different refs, 
-            //we can quickly pickup another obj after throwing one.
+            //for now, just destroy the obj
+            //Functions_GameObject.HandleCommon(Act.heldObj, Act.direction);
 
-            //for now, just destroy the obj (throw it later)
-            Functions_GameObject.HandleCommon(Act.heldObj, Act.direction);
+            //create a thrown version of heldObj
+            //assume we're throwing a bush
+            throwType = ObjType.ProjectileBush;
+            //if (Act.heldObj.type == ObjType.Wor_Bush)
+            //{ throwType = ObjType.ProjectileBush; }
 
-            Act.heldObj = null; //has to be last line otherwise we lose ref to Obj
+            //check for pot
+            if (Act.heldObj.type == ObjType.Dungeon_Pot)
+            { throwType = ObjType.ProjectilePotSkull; }
+            else if (Act.heldObj.type == ObjType.Wor_Pot)
+            { throwType = ObjType.ProjectilePot; }
+
+            Functions_Projectile.Spawn(throwType, Act.compMove, Act.direction);
+            Functions_Pool.Release(Act.heldObj);
+            Act.heldObj = null; //has to be last line, we lose ref to Obj
         }
 
 
@@ -380,13 +396,6 @@ namespace DungeonRun
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
-
-
-
-
-
-
-
                 if(Actor.carrying)
                 {
 
@@ -403,6 +412,11 @@ namespace DungeonRun
                     else if (Actor.state == ActorState.Dash)
                     {
                         //nothing
+                        Actor.lockTotal = 10;
+                        Actor.stateLocked = true;
+                        Actor.compMove.speed = Actor.dashSpeed;
+                        Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Actor);
+                        Assets.Play(Actor.sfxDash);
                     }
                     else if (Actor.state == ActorState.Attack)
                     {
@@ -451,12 +465,6 @@ namespace DungeonRun
                     #endregion
 
                 }
-
-
-                
-                
-
-
             }
 
             #endregion

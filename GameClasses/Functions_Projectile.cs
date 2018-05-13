@@ -84,7 +84,10 @@ namespace DungeonRun
             Functions_GameObject.SetType(pro, Type);
 
 
-            #region Set Initial Projectile Behaviors + SoundFX
+            //Set Initial Offset from Caster + PUSH + SoundFX
+
+
+            #region Arrows
 
             if (Type == ObjType.ProjectileArrow)
             {
@@ -118,6 +121,12 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxArrowShoot);
                 pushLines = true;
             }
+
+            #endregion
+
+
+            #region Fireball
+
             else if (Type == ObjType.ProjectileFireball)
             {
                 //initially place the arrow outside of the caster
@@ -150,6 +159,12 @@ namespace DungeonRun
                 Assets.Play(Assets.sfxFireballCast);
                 pushLines = true;
             }
+
+            #endregion
+
+
+            #region Boomerang
+
             else if (Type == ObjType.ProjectileBoomerang)
             {
                 Functions_Hero.boomerangInPlay = true;
@@ -165,6 +180,12 @@ namespace DungeonRun
                 { Functions_Movement.Push(pro.compMove, Dir, 2.5f); }
                 pushLines = true;
             }
+
+            #endregion
+
+
+            #region Bombs
+
             else if (Type == ObjType.ProjectileBomb)
             {
                 Assets.Play(Assets.sfxBombDrop);
@@ -180,11 +201,23 @@ namespace DungeonRun
                 { Functions_Movement.Push(pro.compMove, Dir, 4.0f); }
                 pushLines = true;
             }
+
+            #endregion
+
+
+            #region Exploding Barrels
+
             else if (Type == ObjType.ProjectileExplodingBarrel)
             {
                 Functions_Movement.Push(pro.compMove, Dir, 6.0f);
                 Assets.Play(Assets.sfxEnemyHit);
             }
+
+            #endregion
+
+
+            #region Explosions
+
             else if (Type == ObjType.ProjectileExplosion)
             {
                 Assets.Play(Assets.sfxExplosion);
@@ -198,16 +231,71 @@ namespace DungeonRun
                     pro.compSprite.position.X,
                     pro.compSprite.position.Y - 2);
             }
+
+            #endregion
+
+
+            #region Net
+
             else if (Type == ObjType.ProjectileNet)
             {
                 Assets.Play(Assets.sfxNet);
             }
+
+            #endregion
+
+
+            #region Sword
+
             else if (Type == ObjType.ProjectileSword)
             {
                 Assets.Play(Assets.sfxSwordSwipe);
             }
 
             #endregion
+
+
+            #region Thrown Objects (Bush, Pot, Skull Pot)
+
+            else if (Type == ObjType.ProjectileBush
+                || Type == ObjType.ProjectilePotSkull
+                || Type == ObjType.ProjectilePot)
+            {
+                //initially place the pot/bush outside of caster
+                if (Dir == Direction.Down)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 0,
+                        Caster.newPosition.Y + 16);
+                }
+                else if (Dir == Direction.Up)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 0,
+                        Caster.newPosition.Y - 14);
+                }
+                else if (Dir == Direction.Right)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X + 16,
+                        Caster.newPosition.Y - 9);
+                }
+                else if (Dir == Direction.Left)
+                {
+                    Functions_Movement.Teleport(pro.compMove,
+                        Caster.newPosition.X - 16,
+                        Caster.newPosition.Y - 9);
+                }
+                Functions_Component.Align(pro); //align the arrows comps
+                Functions_Movement.Push(pro.compMove, Dir, 5.0f);
+                Assets.Play(Assets.sfxActorFall); //throw sfx
+                pushLines = true;
+            }
+
+            #endregion
+
+
+
 
 
             HandleBehavior(pro);
@@ -268,6 +356,42 @@ namespace DungeonRun
                 //create loot
                 Functions_Loot.SpawnLoot(Obj.compSprite.position);
             }
+
+
+
+
+
+
+
+            else if(Obj.type == ObjType.ProjectileBush)
+            {
+                Functions_Loot.SpawnLoot(Obj.compSprite.position);
+                //pop leaves
+                Functions_Particle.Spawn_Explosion(
+                    ObjType.Particle_Leaf,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    true);
+            }
+            else if(Obj.type == ObjType.ProjectilePotSkull
+                || Obj.type == ObjType.ProjectilePot)
+            {
+                Functions_Loot.SpawnLoot(Obj.compSprite.position);
+                //pop debris
+                Functions_Particle.Spawn_Explosion(
+                    ObjType.Particle_Debris,
+                    Obj.compSprite.position.X,
+                    Obj.compSprite.position.Y,
+                    true);
+            }
+
+
+
+
+
+
+
+
 
             //all objects are released upon death
             if (Obj.sfx.kill != null) { Assets.Play(Obj.sfx.kill); }

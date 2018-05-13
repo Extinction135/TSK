@@ -303,7 +303,7 @@ namespace DungeonRun
         #endregion
 
 
-        #region Pickups, Projectiles, Particles
+        #region Pickups
 
         //Pickups - collide with hero
         Pickup_Rupee,
@@ -311,6 +311,11 @@ namespace DungeonRun
         Pickup_Magic,
         Pickup_Arrow,
         Pickup_Bomb,
+
+        #endregion
+
+
+        #region Projectiles
 
         //Projectiles - items
         ProjectileBomb,
@@ -327,6 +332,17 @@ namespace DungeonRun
         ProjectileExplosion,
         ProjectileExplodingBarrel, //creates explosion pro
         ProjectileGroundFire,
+
+        //Projectiles - thrown objs
+        ProjectileBush,
+        ProjectilePot,
+        ProjectilePotSkull,
+
+
+        #endregion
+
+
+        #region Particles
 
         //Particles - small
         Particle_RisingSmoke, 

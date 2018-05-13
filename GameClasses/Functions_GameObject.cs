@@ -84,11 +84,6 @@ namespace DungeonRun
             else { Functions_Pool.Release(Obj); }
         }
 
-
-
-
-
-
         public static void AlignRoomObjs()
         {   //align sprite + collision comps to move comp of all active objs
             for (Pool.roomObjCounter = 0; Pool.roomObjCounter < Pool.roomObjCount; Pool.roomObjCounter++)
@@ -167,7 +162,10 @@ namespace DungeonRun
                 { Obj.compSprite.flipHorizontally = true; }
             }
             else if (Obj.type == ObjType.ProjectileBomb
-                || Obj.type == ObjType.ProjectileExplodingBarrel)
+                || Obj.type == ObjType.ProjectileExplodingBarrel
+                || Obj.type == ObjType.ProjectilePot
+                || Obj.type == ObjType.ProjectilePotSkull
+                || Obj.type == ObjType.ProjectileBush)
             {   //some objects only face Direction.Down
                 Obj.direction = Direction.Down;
             }
@@ -1125,6 +1123,48 @@ namespace DungeonRun
                 Obj.interactiveFrame = 60; //early in life = quick spread
                 Obj.interactiveFrame += Functions_Random.Int(-15, 15); 
                 //add a random -/+ offset to stagger the spread
+            }
+
+            #endregion
+
+
+            #region Projectiles - World - Thrown
+
+            else if (Type == ObjType.ProjectileBush
+                || Type == ObjType.ProjectilePot
+                || Type == ObjType.ProjectilePotSkull)
+            {
+                Obj.group = ObjGroup.Projectile;
+                Obj.compSprite.zOffset = 32;
+
+                Obj.lifetime = 20; //in frames
+                Obj.compMove.grounded = false; //obj is airborne
+                Obj.compMove.friction = 0.984f; //some air friction
+                Obj.compSprite.texture = Assets.forestLevelSheet;
+
+                //refine this hitBox later
+                Obj.compCollision.offsetX = -5; Obj.compCollision.offsetY = -5;
+                Obj.compCollision.rec.Width = 10; Obj.compCollision.rec.Height = 10;
+
+                //set animFrame based on type
+                if (Type == ObjType.ProjectileBush)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_Bush;
+                    Obj.sfx.kill = Assets.sfxBushCut;
+                    Obj.sfx.hit = Assets.sfxEnemyHit;
+                }
+                else if (Type == ObjType.ProjectilePot)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Pot;
+                    Obj.sfx.hit = Assets.sfxEnemyHit;
+                    Obj.sfx.kill = Assets.sfxShatter;
+                }
+                else
+                {   //skull pot is default
+                    Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Pot;
+                    Obj.sfx.hit = Assets.sfxEnemyHit;
+                    Obj.sfx.kill = Assets.sfxShatter;
+                }
             }
 
             #endregion
