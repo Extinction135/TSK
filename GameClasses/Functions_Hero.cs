@@ -368,19 +368,22 @@ namespace DungeonRun
 
 
         public static void SpawnInCurrentRoom()
-        {   
-            //teleport hero to currentRoom's spawn position
+        {   //teleport hero to currentRoom's spawn position
             Functions_Movement.Teleport(Pool.hero.compMove,
                 Functions_Level.currentRoom.spawnPos.X,
                 Functions_Level.currentRoom.spawnPos.Y);
             Functions_Movement.StopMovement(Pool.hero.compMove);
+            ResetHero();
+        }
+
+        public static void ResetHero()
+        {
             Pool.hero.compSprite.scale = 1.0f; //rescale hero to 100%
-            Pool.hero.state = ActorState.Idle;
             Pool.hero.stateLocked = false;
+            Pool.hero.state = ActorState.Idle;
             boomerangInPlay = false; //boomerang could of been lost in prev room
             SpawnPet();
         }
-
 
 
 

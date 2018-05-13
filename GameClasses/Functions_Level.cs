@@ -26,7 +26,6 @@ namespace DungeonRun
         public static Point buildPosition = new Point(16 * 10, 16 * 200); 
 
 
-
         public static void ResetLevel()
         {   //level type is set by overworld & dialog screens
             Level.rooms = new List<Room>();
@@ -42,7 +41,6 @@ namespace DungeonRun
         }
 
 
-        
         public static void BuildLevel(LevelID levelID)
         {
             ResetLevel();
@@ -248,8 +246,6 @@ namespace DungeonRun
                 if (dungeonTrack > 2) { dungeonTrack = 0; }
 
 
-
-
                 #region Setup room's roomData index
 
                 for (i = 0; i < Level.rooms.Count; i++)
@@ -277,9 +273,6 @@ namespace DungeonRun
                 #endregion
 
 
-
-
-
                 //reset the dungeon screen's dungeon record, passing dungeonID
                 DungeonRecord.Reset();
                 DungeonRecord.dungeonID = 0; //ID = 0 for now
@@ -293,13 +286,11 @@ namespace DungeonRun
             Level.rooms[0].visited = true;
             currentRoom = Level.rooms[0];
             Functions_Room.BuildRoom(currentRoom);
-
             //set floor textures
             SetFloorTexture(levelID);
 
-            //spawn hero in 1st room, facing up
             Functions_Hero.SpawnInCurrentRoom();
-            Pool.hero.direction = Direction.Up;
+
             //give hero a minimum amount of health
             if (Pool.hero.health < 3) { Pool.hero.health = 3; }
 
@@ -321,12 +312,6 @@ namespace DungeonRun
             levelScreen.overlay.alpha = 1.0f;
             levelScreen.displayState = DisplayState.Opening;
         }
-
-
-
-
-        
-
 
 
         static Rectangle compRec = new Rectangle(0, 0, 0, 0);

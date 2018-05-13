@@ -178,12 +178,21 @@ TODAY:
 
 
 
-Rooms++
 
-fixed a bug where rooms were being randomly built upon hero's entry.
-instead, they store a dataIndex value, which is set when a dungeon 
-is built. then when a room is built, this dataIndex value is used to 
-select what roomData populate the room, so it's consistent.
+
+Spawn++
+
+improved placement of hero at start of overworld levels,
+placed near the bottom of level so player has something to explore.
+tried to get hero facing and moving up / north when spawned into
+overworld field levels, but the fadeIn state of the level screen
+prevents this fake input from processing and instead hero ends
+up facing south, without any movement. to fix this, we would
+have to enable input for hero while the level screen is fading in
+or out, which i dont want. so just can't spawn hero facing north
+and walking 'into' a level right now.
+
+
 
 
 
@@ -196,12 +205,6 @@ cleanup
 	when player presses A on dialog screen entering dungeon, play door opening sound.
 	this sound should not play when the hero spawns in the dungeon, where i think it does
 	it plays after the dungeon is built?
-
-
-	hero should spawn facing up in all levels.
-	hero should spawn near bottom of field levels, not the center...
-	this gives the player something to explore.
-	**in editor, player should not be able to leave the field level.
 
 
 	
