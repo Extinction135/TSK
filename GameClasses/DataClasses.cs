@@ -781,6 +781,7 @@ namespace DungeonRun
         public RoomID roomID;
         public Vector2 spawnPos; //where hero can spawn in room (last door passed thru/exit)
         public PuzzleType puzzleType = PuzzleType.None; //most rooms aren't puzzles
+        public int dataIndex; //if dungeon room, what roomData index is used to populate?
 
         public Room(Point Pos, RoomID ID)
         {
@@ -789,6 +790,7 @@ namespace DungeonRun
             Functions_Room.MoveRoom(this, Pos.X, Pos.Y);
             //center spawnpos to room
             spawnPos = new Vector2(Pos.X + rec.Width / 2, Pos.Y + rec.Height / 2);
+            dataIndex = 0; //0 means no index assigned
         }
     }
 

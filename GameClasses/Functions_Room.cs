@@ -136,6 +136,7 @@ namespace DungeonRun
             stopWatch.Reset(); stopWatch.Start();
 
 
+
             #region Setup RoomData OR DevRooms
 
             if (RoomXmlData == null)
@@ -145,27 +146,51 @@ namespace DungeonRun
 
                 //setup overworld level data
                 if (Room.roomID == RoomID.Colliseum)
-                { RoomXmlData = LevelData.Colliseum; Level.isField = true; }
+                {
+                    RoomXmlData = LevelData.Colliseum;
+                    Level.isField = true;
+                }
                 else if (Room.roomID == RoomID.ForestEntrance)
-                { RoomXmlData = LevelData.ForestEntrance; Level.isField = true; }
+                {
+                    RoomXmlData = LevelData.ForestEntrance;
+                    Level.isField = true;
+                }
 
                 //setup dungeon room data
                 else if (Room.roomID == RoomID.Boss)
-                { RoomXmlData = RoomData.bossRooms[Functions_Random.Int(0, RoomData.bossRooms.Count)]; }
+                {
+                    //RoomXmlData = RoomData.bossRooms[Functions_Random.Int(0, RoomData.bossRooms.Count)];
+                    RoomXmlData = RoomData.bossRooms[Room.dataIndex];
+                }
                 else if (Room.roomID == RoomID.Column)
-                { RoomXmlData = RoomData.columnRooms[Functions_Random.Int(0, RoomData.columnRooms.Count)]; }
-                //else if (Room.roomID == RoomID.Exit)
-                //{ RoomXmlData = RoomData.exitRooms[Functions_Random.Int(0, RoomData.exitRooms.Count)]; }
+                {
+                    //RoomXmlData = RoomData.columnRooms[Functions_Random.Int(0, RoomData.columnRooms.Count)];
+                    RoomXmlData = RoomData.columnRooms[Room.dataIndex];
+                }
+                else if (Room.roomID == RoomID.Exit)
+                { 
+                    //nothing yet
+                }
                 else if (Room.roomID == RoomID.Hub)
-                { RoomXmlData = RoomData.hubRooms[Functions_Random.Int(0, RoomData.hubRooms.Count)]; }
+                {
+                    //RoomXmlData = RoomData.hubRooms[Functions_Random.Int(0, RoomData.hubRooms.Count)];
+                    RoomXmlData = RoomData.hubRooms[Room.dataIndex];
+                }
                 else if (Room.roomID == RoomID.Key)
-                { RoomXmlData = RoomData.keyRooms[Functions_Random.Int(0, RoomData.keyRooms.Count)]; }
+                {
+                    //RoomXmlData = RoomData.keyRooms[Functions_Random.Int(0, RoomData.keyRooms.Count)];
+                    RoomXmlData = RoomData.keyRooms[Room.dataIndex];
+                }
                 else if (Room.roomID == RoomID.Row)
-                { RoomXmlData = RoomData.rowRooms[Functions_Random.Int(0, RoomData.rowRooms.Count)]; }
-                //else if (Room.roomID == RoomID.Secret)
-                //{ RoomXmlData = RoomData.secretRooms[Functions_Random.Int(0, RoomData.secretRooms.Count)]; }
+                {
+                    //RoomXmlData = RoomData.rowRooms[Functions_Random.Int(0, RoomData.rowRooms.Count)];
+                    RoomXmlData = RoomData.rowRooms[Room.dataIndex];
+                }
                 else if (Room.roomID == RoomID.Square)
-                { RoomXmlData = RoomData.squareRooms[Functions_Random.Int(0, RoomData.squareRooms.Count)]; }
+                {
+                    //RoomXmlData = RoomData.squareRooms[Functions_Random.Int(0, RoomData.squareRooms.Count)];
+                    RoomXmlData = RoomData.squareRooms[Room.dataIndex];
+                }
             }
 
             if (Room.roomID == RoomID.DEV_Boss || Room.roomID == RoomID.DEV_Column ||
@@ -213,6 +238,7 @@ namespace DungeonRun
             }
 
             #endregion
+
 
 
             stopWatch.Stop(); time = stopWatch.Elapsed;

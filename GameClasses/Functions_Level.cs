@@ -247,6 +247,39 @@ namespace DungeonRun
                 dungeonTrack++;
                 if (dungeonTrack > 2) { dungeonTrack = 0; }
 
+
+
+
+                #region Setup room's roomData index
+
+                for (i = 0; i < Level.rooms.Count; i++)
+                {
+                    //based on type, set room's data index to random roomData ref
+                    //this allows the room to build with the same roomData each time hero enters it
+                    //but this can also build the same room multiple times in a dungeon
+
+                    if (Level.rooms[i].roomID == RoomID.Boss)
+                    { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.bossRooms.Count); }
+                    else if (Level.rooms[i].roomID == RoomID.Column)
+                    { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.columnRooms.Count); }
+                    else if (Level.rooms[i].roomID == RoomID.Hub)
+                    { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.hubRooms.Count); }
+                    else if (Level.rooms[i].roomID == RoomID.Key)
+                    { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.keyRooms.Count); }
+                    else if (Level.rooms[i].roomID == RoomID.Row)
+                    { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.rowRooms.Count); }
+                    else if (Level.rooms[i].roomID == RoomID.Square)
+                    { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.squareRooms.Count); }
+
+                    //add exit rooms too
+                }
+
+                #endregion
+
+
+
+
+
                 //reset the dungeon screen's dungeon record, passing dungeonID
                 DungeonRecord.Reset();
                 DungeonRecord.dungeonID = 0; //ID = 0 for now

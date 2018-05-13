@@ -178,22 +178,12 @@ TODAY:
 
 
 
+Rooms++
 
-
-DebugDisplay++
-
-modified UDT text in world UI.
-this now displays the frametime, room build time, and
-level build times, in milliseconds.
-
-linked this up to a new menuItem on options screen, 'draw time'.
-this simply toggles Flags.drawUDT on/off, which worldUI checks.
-playtested, working as expected.
-
-added menuItem description.
-
-
-
+fixed a bug where rooms were being randomly built upon hero's entry.
+instead, they store a dataIndex value, which is set when a dungeon 
+is built. then when a room is built, this dataIndex value is used to 
+select what roomData populate the room, so it's consistent.
 
 
 
@@ -203,21 +193,18 @@ added menuItem description.
 
 cleanup
 {
-	when player presses A on dialog screen entering dungeon, play mario snes dungeon door opening sound.
+	when player presses A on dialog screen entering dungeon, play door opening sound.
 	this sound should not play when the hero spawns in the dungeon, where i think it does
 	it plays after the dungeon is built?
 
 
 	hero should spawn facing up in all levels.
-	hero should spawn at the bottom of field levels, not the center...
+	hero should spawn near bottom of field levels, not the center...
 	this gives the player something to explore.
 	**in editor, player should not be able to leave the field level.
 
 
-	ROOMS++
-	also, we are building rooms randomly when hero enters them.
-	this is true random, as when hero reenters them, they are different.
-	we need to store an id with the room (xmlid, oops) and use that to get the same roomdata each build
+	
 
 }
 
