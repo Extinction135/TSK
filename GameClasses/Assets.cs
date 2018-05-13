@@ -132,6 +132,8 @@ namespace DungeonRun
         public static SoundEffectInstance sfxBushCut;
         public static SoundEffectInstance sfxGrassWalk;
 
+        public static SoundEffectInstance sfxEnterDungeon;
+
         #endregion
 
 
@@ -326,6 +328,8 @@ namespace DungeonRun
             SoundEffect grassWalkSrc = content.Load<SoundEffect>(@"SoundGrassWalk");
             sfxGrassWalk = grassWalkSrc.CreateInstance();
             //
+            SoundEffect enterDungSrc = content.Load<SoundEffect>(@"SoundEnterDungeon");
+            sfxEnterDungeon = enterDungSrc.CreateInstance();
 
             #endregion
 

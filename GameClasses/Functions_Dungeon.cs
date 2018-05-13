@@ -166,7 +166,9 @@ namespace DungeonRun
             {   //if this room hasn't been visited, setup any puzzle it contains
                 if (Functions_Level.currentRoom.visited == false)
                 { SetupPuzzle(Functions_Level.currentRoom); }
-            }   
+            }
+
+            Assets.Play(Assets.sfxDoorOpen); //play door sfx
         }
 
 
@@ -384,7 +386,6 @@ namespace DungeonRun
             //align + remove overlapping objs
             Functions_GameObject.AlignRoomObjs();
             Functions_Room.Cleanup(Room);
-            Assets.Play(Assets.sfxDoorOpen); //play door sfx
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
             DebugInfo.roomTime += time.Ticks; //add finish time to roomTime

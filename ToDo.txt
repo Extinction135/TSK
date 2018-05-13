@@ -129,7 +129,7 @@ these rooms turn all their doors into locked doors upon close, similar to puzzle
 
 Sunday
 	- cleanup
-	- pickup, carry, throw (pots, skulls, bushes)
+	
 
 Monday
 	- grab, push, pull (light blocks, barrels, dungeon statues)
@@ -179,37 +179,24 @@ TODAY:
 
 
 
+DungeonEntrance++
 
-Spawn++
+added placeholder soundfx for when hero enters dungeon.
+later, this may become an evil laugh or something, but
+we need more than just a 'closed door' sound when hero
+first enters the dungeon. for now, this placeholder is
+the dungeon door opening sound from super mario world.
+just cause it's tasty.
 
-improved placement of hero at start of overworld levels,
-placed near the bottom of level so player has something to explore.
-tried to get hero facing and moving up / north when spawned into
-overworld field levels, but the fadeIn state of the level screen
-prevents this fake input from processing and instead hero ends
-up facing south, without any movement. to fix this, we would
-have to enable input for hero while the level screen is fading in
-or out, which i dont want. so just can't spawn hero facing north
-and walking 'into' a level right now.
+added SoundEnterDungeon to Dx and UWP projects.
+added sfxEnterDungeon to Assets.
+updated hero routines to play enter dungeon sfx when hero
+activate the dungeon entrance door + dialog.
+playtested, working well enough.
 
-
-
-
-
-
-
-
-
-cleanup
-{
-	when player presses A on dialog screen entering dungeon, play door opening sound.
-	this sound should not play when the hero spawns in the dungeon, where i think it does
-	it plays after the dungeon is built?
-
-
-	
-
-}
+fixed issue with stray pixel in bushy tree sprite.
+refined where hero is spawned in overworld levels.
+improve overworld levels. playtested, working.
 
 
 
@@ -218,8 +205,11 @@ cleanup
 
 
 
+* ground fires should trigger exploding barrels.
+* blowing up a tree (bushy or burnt) should create debris
 
 
 
+- pickup, carry, throw (pots, skulls, bushes)
 
 

@@ -276,8 +276,6 @@ namespace DungeonRun
 
             #region Dungeon Objects
 
-
-
             /*
             else if (Obj.type == ObjType.Dungeon_Pot)
             {

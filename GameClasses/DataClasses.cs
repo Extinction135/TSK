@@ -791,7 +791,7 @@ namespace DungeonRun
             //center spawnpos to room
             spawnPos = new Vector2(
                 Pos.X + rec.Width / 2, //centered horizontally
-                (Pos.Y + rec.Height / 2) + (rec.Height / 2) - 64 //at bottom
+                (Pos.Y + rec.Height / 2) + (rec.Height / 2) - 128 - 64 //at bottom
             );
             dataIndex = 0; //0 means no index assigned
         }

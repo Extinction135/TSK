@@ -84,6 +84,7 @@ namespace DungeonRun
                         ExitDialog(); //exit dialog, enter dungeon
                         exitToOverworld = false; exitToDungeon = true;
                         Level.ID = LevelID.Forest_Dungeon; //set level id based on dialog
+                        Assets.Play(Assets.sfxEnterDungeon);
                     }
                     else if(Functions_Input.IsNewButtonPress(Buttons.B))
                     {

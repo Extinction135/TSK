@@ -485,3 +485,9 @@
 /processorParam:Quality=Best
 /build:SoundGrassWalk.wav
 
+#begin SoundEnterDungeon.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEnterDungeon.wav
+
