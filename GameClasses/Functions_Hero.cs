@@ -15,13 +15,9 @@ namespace DungeonRun
     public static class Functions_Hero
     {
         static int i;
-        static Boolean collision = false;
 
         public static ComponentCollision interactionRec;
-        public static GameObject carryingObj; //the obj hero might be carrying
-        public static ComponentSprite heroShadow;
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
-        public static Boolean carrying = false; //is hero carrying an obj?
         public static Boolean boomerangInPlay = false; //only 1 boomerang on screen at once
 
 
@@ -29,10 +25,6 @@ namespace DungeonRun
         static Functions_Hero()
         {
             interactionRec = new ComponentCollision();
-            carryingObj = null;
-            //create the hero's shadow + rec
-            heroShadow = new ComponentSprite(Assets.entitiesSheet, new Vector2(0, 0), new Byte4(0, 1, 0, 0), new Point(16, 8));
-            heroShadow.zOffset = -16;
             heroRec = new Rectangle(0, 0, 16, 16);
         }
 
@@ -166,6 +158,9 @@ namespace DungeonRun
             }
         }
 
+
+
+        static Boolean collision = false;
         public static Boolean CheckInteractionRecCollisions()
         {   
             //note this method happens once, on the frame player presses A button
@@ -274,35 +269,19 @@ namespace DungeonRun
             #endregion
 
 
-            #region Dungeon Objects
+            #region Carry-able Objects
 
-            /*
-            else if (Obj.type == ObjType.Dungeon_Pot)
+            else if (Obj.type == ObjType.Dungeon_Pot
+                || Obj.type == ObjType.Wor_Pot
+                || Obj.type == ObjType.Wor_Bush)
             {
-                //put hero into pickup state
-                Pool.hero.state = ActorState.Pickup;
-                Pool.hero.stateLocked = true;
-                Pool.hero.lockTotal = 10;
-
-                carrying = true; //set carrying state
-                if (carryingObj != null)
-                {
-                    Functions_GameObject.ResetObject(carryingObj);
-                    Functions_GameObject.SetType(carryingObj, ObjType.Dungeon_Pot);
-                }
-                carryingObj = Obj; //set obj ref
-                Obj.compSprite.zOffset = +16; //sort above hero
-                Obj.compCollision.blocking = false; //prevent hero/obj collisions
-
-                //decorate pickup from ground
-                Functions_Particle.Spawn(
-                    ObjType.Particle_Attention,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y);
-                Assets.Play(Assets.sfxHeartPickup); //OG LttP
+                Functions_Actor.Pickup(Obj, Pool.hero); ////***entry <<<<
             }
-            */
 
+            #endregion
+
+
+            #region Dungeon Objects
 
             else if (Obj.type == ObjType.Dungeon_TorchUnlit)
             {   //light any unlit torch  //git lit *
@@ -361,10 +340,6 @@ namespace DungeonRun
             }
         }
 
-
-
-
-
         public static void SpawnInCurrentRoom()
         {   //teleport hero to currentRoom's spawn position
             Functions_Movement.Teleport(Pool.hero.compMove,
@@ -379,171 +354,9 @@ namespace DungeonRun
             Pool.hero.compSprite.scale = 1.0f; //rescale hero to 100%
             Pool.hero.stateLocked = false;
             Pool.hero.state = ActorState.Idle;
+            Pool.hero.carrying = false; //hero can't enter a room carrying room obj
             boomerangInPlay = false; //boomerang could of been lost in prev room
             SpawnPet();
-        }
-
-
-
-
-
-
-
-
-        /*
-        public static void DropCarryingObj()
-        {   //if the hero isn't carrying anything, bail from method
-            if (!carrying) { return; }
-            //else, the hero is carrying a pot obj, so drop it correctly
-            carrying = false; //release carrying state
-            //convert any diagonal to cardinal direction
-            Pool.hero.direction = Functions_Direction.GetCardinalDirection(Pool.hero.direction);
-
-            //based on hero's facing direction, calculate drop offset
-            Vector2 offset = new Vector2(0, 0);
-            if (Pool.hero.direction == Direction.Up) { offset.Y = -16; }
-            else if (Pool.hero.direction == Direction.Down) { offset.Y = +16; }
-            else if (Pool.hero.direction == Direction.Left) { offset.X = -16; }
-            else { offset.X = +16; } //defaults right
-
-            //apply drop offset to carryingObj
-            carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X + offset.X;
-            carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y + offset.Y;
-            //align to grid
-            carryingObj.compMove.newPosition = Functions_Movement.AlignToGrid(
-                (int)carryingObj.compMove.newPosition.X,
-                (int)carryingObj.compMove.newPosition.Y);
-            //simulate an impact with the ground
-            Assets.Play(Assets.sfxActorLand); //play land sound fx
-            Functions_Particle.Spawn(ObjType.Particle_Attention,
-                carryingObj.compMove.newPosition.X,
-                carryingObj.compMove.newPosition.Y);
-            Functions_GameObject.ResetObject(carryingObj); //reset Obj
-            Functions_GameObject.SetType(carryingObj, ObjType.Dungeon_Pot); //refresh Obj
-            Functions_Component.Align(carryingObj);
-
-
-            //this is basically a smaller version of CheckInteractions()
-            //but only targeting the roomObj list
-            //and it's likely in the future we'll need to loop the roomObjs
-            //for other interactions, so we should pull this out and make it
-            //into a method that takes an object and co
-            //check what roomObj pot collided with, handle interaction
-            for (i = 0; i < Pool.roomObjCount; i++)
-            {   //check all roomObjs against dropped Pot obj
-                if (Pool.roomObjPool[i].active)
-                {
-                    if (carryingObj == Pool.roomObjPool[i]) { continue; } //skip self
-                    //handle Pot vs RoomObj interactions
-                    if (Pool.roomObjPool[i].compCollision.rec.Intersects(carryingObj.compCollision.rec))
-                    {   
-                        //here we're shortening the pit animation for the dropped pot
-                        //otherwise it would hang out for a while, which feels laggy
-                        if (Pool.roomObjPool[i].type == ObjType.Dungeon_Pit)
-                        {   //immediately release the pot, play the pit splash fx
-                            Functions_Pool.Release(carryingObj);
-                            Functions_GameObject_Dungeon.PlayPitFx(Pool.roomObjPool[i]);
-                        }
-                        //finally, handle the interaction with the room object
-                        Functions_Interaction.InteractRoomObj(Pool.roomObjPool[i], carryingObj);
-                    }
-                }
-            }
-
-            carryingObj = null; //release obj ref
-        }
-        */
-
-
-
-
-
-
-        public static void HandleState()
-        {
-            //hero's state is split into multiple sections
-            //hero could be carrying an object
-            //hero could be pushing/pulling obj
-            //hero could be swimming
-            //hero could be 'normal' state
-
-
-
-            if (carrying)
-            {
-                carrying = false; //wip
-
-                /*
-                //place carryingObj over hero's head
-                carryingObj.compMove.newPosition.X = Pool.hero.compSprite.position.X;
-                carryingObj.compMove.newPosition.Y = Pool.hero.compSprite.position.Y - 9;
-                Functions_Component.Align(carryingObj);
-
-
-                #region Check Input for B button Press - Drop Obj
-
-                if (Pool.hero.compInput.dash)
-                {   //if player pressed the B button, drop carryingObj
-                    //DropCarryingObj();
-                    //display a 'drop' animation for hero
-                    Pool.hero.state = ActorState.Throw;
-                    Pool.hero.stateLocked = true;
-                    Pool.hero.lockTotal = 10;
-                    Functions_Movement.StopMovement(Pool.hero.compMove);
-                }
-
-                #endregion
-
-
-                #region Check Input for A button Press - Throw Obj (temp disabled)
-
-                else if (Pool.hero.compInput.interact)
-                {   //if player pressed the A button, throw carryingObj
-                    //ThrowPot();
-                    //but for now, we'll just drop the object
-                    //DropCarryingObj();
-                    //display a 'throw' animation for hero
-                    Pool.hero.state = ActorState.Throw;
-                    Pool.hero.stateLocked = true;
-                    Pool.hero.lockTotal = 10;
-                    Functions_Movement.StopMovement(Pool.hero.compMove);
-                }
-                #endregion
-                */
-
-
-            }
-            else
-            {
-
-                #region Handle Normal States (Interact, Dash, Attack, Use)
-
-                if (Pool.hero.state == ActorState.Interact)
-                {   //if there is an object to interact with, interact with it
-                    CheckInteractionRecCollisions();
-                }
-                else if (Pool.hero.state == ActorState.Dash)
-                {
-                    Pool.hero.lockTotal = 10;
-                    Pool.hero.stateLocked = true;
-                    Pool.hero.compMove.speed = Pool.hero.dashSpeed;
-                    Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Pool.hero);
-                    Assets.Play(Pool.hero.sfxDash);
-                }
-                else if (Pool.hero.state == ActorState.Attack)
-                {
-                    Functions_Item.UseItem(Pool.hero.weapon, Pool.hero);
-                    WorldUI.currentWeapon.compSprite.scale = 2.0f; //scale up worldUI weapon 
-                }
-                else if (Pool.hero.state == ActorState.Use)
-                {
-                    Functions_Item.UseItem(Pool.hero.item, Pool.hero);
-                    WorldUI.currentItem.compSprite.scale = 2.0f; //scale up worldUI item 
-                }
-
-                #endregion
-
-            }
         }
 
         public static void Update()
@@ -552,9 +365,9 @@ namespace DungeonRun
             heroRec.X = (int)Pool.hero.compSprite.position.X - 8;
             heroRec.Y = (int)Pool.hero.compSprite.position.Y - 8;
             //match hero's shadow to hero's sprite
-            heroShadow.position.X = Pool.hero.compSprite.position.X;
-            heroShadow.position.Y = Pool.hero.compSprite.position.Y + 5;
-            Functions_Component.SetZdepth(heroShadow);
+            //heroShadow.position.X = Pool.hero.compSprite.position.X;
+            //heroShadow.position.Y = Pool.hero.compSprite.position.Y + 5;
+            //Functions_Component.SetZdepth(heroShadow);
             //check the heroRec's collisions with Level rooms
             CheckRoomCollision();
 
@@ -619,8 +432,6 @@ namespace DungeonRun
             else { Pool.hero.equipment = MenuItemType.Unknown; }
         }
 
-
-
         public static void SpawnPet()
         {   //spawn the hero's pet based on type
             if (PlayerData.current.petType == MenuItemType.PetStinkyDog)
@@ -634,9 +445,6 @@ namespace DungeonRun
                     Pool.hero.compMove.position.Y);
             }
         }
-
-
-
 
         public static void UnlockAll()
         {   //this method unlocks all available items, weapons, equipment, armor

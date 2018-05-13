@@ -1055,6 +1055,15 @@ namespace DungeonRun
         //actor fx sprites
         public ComponentSprite feetFX;
 
+
+
+        public Boolean carrying = false; //is actor carrying an obj?
+        public GameObject heldObj = null; //the obj actor might be carrying
+        //public static Boolean swimming = false; //is actor in water?
+
+
+
+
         public Actor()
         {
             compSprite = new ComponentSprite(Assets.heroSheet, 

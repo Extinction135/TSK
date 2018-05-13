@@ -146,6 +146,8 @@ namespace DungeonRun
         Idle, Move, Dash, //movement
         Interact, Attack, Use, //action
         Hit, Dead, Reward, //consequence
+
+
         Pickup, Throw //actions++
     }
 

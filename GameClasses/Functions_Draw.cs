@@ -62,6 +62,22 @@ namespace DungeonRun
                     Draw(Actor.feetFX);
                 }
 
+                //place and draw any heldObj
+                if(Actor.carrying)
+                {
+                    if(Actor.heldObj != null)
+                    {   //force this object to stay active
+                        Actor.heldObj.active = true;
+                        //place carryingObj over hero's head
+                        Actor.heldObj.compMove.newPosition.X = Actor.compSprite.position.X;
+                        Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 9;
+                        Functions_Component.Align(Actor.heldObj);
+                        Draw(Actor.heldObj.compSprite);
+                        //draw held obj's collisions too
+                        if (Flags.DrawCollisions) { Draw(Actor.heldObj.compCollision); }
+                    }
+                }
+
                 //here we'll draw actor shadow too
             }
         }

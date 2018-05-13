@@ -281,13 +281,11 @@ namespace DungeonRun
                         }
 
 
-                        #region Drop any Obj Hero is carrying, hide Hero's shadow
+                        #region Drop any held obj
 
-                        else if (Actor == Pool.hero)
-                        {   //check to see if hero should drop carryingObj
-                            //if (Functions_Hero.carrying) { Functions_Hero.DropCarryingObj(); }
-                            //hide hero's shadow upon pit collision
-                            Functions_Hero.heroShadow.visible = false;
+                        if(Actor.carrying)
+                        {   //toss whatever actor might be carrying
+                            Functions_Actor.Throw(Actor);
                         }
 
                         #endregion
@@ -332,7 +330,6 @@ namespace DungeonRun
                             {   //send hero back to last door he passed thru
                                 Assets.Play(Assets.sfxActorLand); //play actor land sfx
                                 Functions_Hero.SpawnInCurrentRoom();
-                                Functions_Hero.heroShadow.visible = true;
                                 //direct player's attention to hero's respawn pos
                                 Functions_Particle.Spawn(
                                     ObjType.Particle_Attention,

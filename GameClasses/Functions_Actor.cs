@@ -61,6 +61,9 @@ namespace DungeonRun
             Actor.lockTotal = 15;
             Assets.Play(Actor.sfx.hit);
 
+            //throw any held object
+            if (Actor.carrying) { Throw(Actor); }
+
             if (Actor == Pool.hero)
             {   //hero should drop a gold piece
                 if (!Flags.InfiniteGold) 
@@ -70,11 +73,6 @@ namespace DungeonRun
                         Functions_Pickup.Spawn(ObjType.Pickup_Rupee, Actor);
                         PlayerData.current.gold--;
                     }
-                }
-                //if hero is carrying, throw pot obj
-                if(Functions_Hero.carrying)
-                {
-                    //Functions_Hero.DropCarryingObj();
                 }
             }
         }
@@ -162,6 +160,8 @@ namespace DungeonRun
         }
 
 
+
+
         public static void SetAnimationGroup(Actor Actor)
         {
             //assume default animation speed and looping
@@ -171,15 +171,15 @@ namespace DungeonRun
             //movement
             if (Actor.state == ActorState.Idle)
             {
-                Actor.animGroup = Actor.animList.idle;
-                //if (Actor == Pool.hero & Functions_Hero.carrying)
-                //{ Actor.animGroup = Actor.animList.idleCarry; }
+                if (Actor.carrying)
+                { Actor.animGroup = Actor.animList.idleCarry; }
+                else { Actor.animGroup = Actor.animList.idle; }
             }
             else if (Actor.state == ActorState.Move)
             {
-                Actor.animGroup = Actor.animList.move;
-                //if (Actor == Pool.hero & Functions_Hero.carrying)
-                //{ Actor.animGroup = Actor.animList.moveCarry; }
+                if (Actor.carrying)
+                { Actor.animGroup = Actor.animList.moveCarry; }
+                else { Actor.animGroup = Actor.animList.move; }
             }
 
             //actions
@@ -198,6 +198,10 @@ namespace DungeonRun
                 Actor.animGroup = Actor.animList.death;
                 //speed up hero's death to taste
                 if (Actor.type == ActorType.Hero) { Actor.compAnim.speed = 6; }
+                else
+                {   //skip spinning death animation if actor isn't link hero
+                    Actor.compAnim.index = (byte)(Actor.compAnim.currentAnimation.Count - 1);
+                }
             }
             else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
         }
@@ -215,6 +219,73 @@ namespace DungeonRun
             else if (Actor.direction == Direction.UpRight) { Actor.compAnim.currentAnimation = Actor.animGroup.right; }
             else if (Actor.direction == Direction.UpLeft) { Actor.compAnim.currentAnimation = Actor.animGroup.left; }
         }
+
+
+
+
+
+
+
+
+
+
+        public static void Pickup(GameObject Obj, Actor Act)
+        {
+            Act.carrying = true;
+            Act.heldObj = Obj;
+
+            //'hide' roomObject far away from level/room
+            Functions_Movement.Teleport(Obj.compMove, 4096, 4096);
+
+            //put actor into pickup state
+            Act.state = ActorState.Pickup;
+            Act.stateLocked = true;
+            Act.lockTotal = 10;
+            SetAnimationGroup(Act);
+
+            Act.heldObj.compSprite.zOffset = +16; //sort above actor
+            Act.heldObj.compCollision.blocking = false; //prevent act/obj overlaps
+
+            Assets.Play(Assets.sfxActorLand); //temp sfx
+
+            //decorate pickup
+            Functions_Particle.Spawn(
+                ObjType.Particle_Attention,
+                Obj.compSprite.position.X,
+                Obj.compSprite.position.Y);
+        }
+
+
+        public static void Throw(Actor Act)
+        {
+            Functions_Movement.StopMovement(Act.compMove);
+            Act.carrying = false;
+            
+            //put actor into throw state
+            Act.state = ActorState.Throw;
+            Act.stateLocked = true;
+            Act.lockTotal = 10;
+            SetAnimationGroup(Act);
+
+            //we want to keep a reference to the thrown roomObj using thrownObj
+            //then we use a timer to count 10 or 15 frames, then destroy() thrownObj.
+            //during this time, we can also check thrownObj's collisions/interactions
+            //and because held and thrown objs are different refs, 
+            //we can quickly pickup another obj after throwing one.
+
+            //for now, just destroy the obj (throw it later)
+            Functions_GameObject.HandleCommon(Act.heldObj, Act.direction);
+
+            Act.heldObj = null; //has to be last line otherwise we lose ref to Obj
+        }
+
+
+
+
+
+
+
+
 
 
 
@@ -309,14 +380,53 @@ namespace DungeonRun
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
-                //Handle States
-                if (Actor == Pool.hero)
+
+
+
+
+
+
+
+                if(Actor.carrying)
                 {
-                    Functions_Hero.HandleState();
-                } 
+
+                    #region Carrying state
+
+                    //cant attack, dash, or use
+                    //interact throws held obj
+                    //for now, just destroy the obj in actor's hands
+
+                    if (Actor.state == ActorState.Interact)
+                    {
+                        if(Actor.heldObj != null) { Throw(Actor); }
+                    }
+                    else if (Actor.state == ActorState.Dash)
+                    {
+                        //nothing
+                    }
+                    else if (Actor.state == ActorState.Attack)
+                    {
+                        //nothing
+                    }
+                    else if (Actor.state == ActorState.Use)
+                    {
+                        //nothing
+                    }
+
+                    #endregion
+
+                }
                 else
-                {   //all actors other than hero are processed as follows
-                    if (Actor.state == ActorState.Interact) { } //only hero
+                {
+
+                    #region Non-carrying state
+
+                    //all actors other than hero are processed as follows
+                    if (Actor.state == ActorState.Interact)
+                    {
+                        if (Actor == Pool.hero) //only hero can interact with room objs
+                        { Functions_Hero.CheckInteractionRecCollisions(); }
+                    }
                     else if (Actor.state == ActorState.Dash)
                     {
                         Actor.lockTotal = 10;
@@ -328,12 +438,25 @@ namespace DungeonRun
                     else if (Actor.state == ActorState.Attack)
                     {
                         Functions_Item.UseItem(Actor.weapon, Actor);
+                        if (Actor == Pool.hero) //scale up worldUI weapon 
+                        { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
                     }
                     else if (Actor.state == ActorState.Use)
                     {
                         Functions_Item.UseItem(Actor.item, Actor);
+                        if (Actor == Pool.hero) //scale up worldUI item 
+                        { WorldUI.currentItem.compSprite.scale = 2.0f; }
                     }
+
+                    #endregion
+
                 }
+
+
+                
+                
+
+
             }
 
             #endregion
