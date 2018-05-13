@@ -424,7 +424,7 @@ namespace DungeonRun
             Pool.interactionsCount++; //count interaction
 
 
-            #region Projectile v Blocking RoomObj Interactions
+            // *** Projectile vs Blocking RoomObj Interactions *** \\
 
             if (RoomObj.compCollision.blocking)
             {   //Handle Projectile vs Blocking RoomObj 
@@ -632,10 +632,19 @@ namespace DungeonRun
                     #region GroundFires
 
                     else if (Object.type == ObjType.ProjectileGroundFire)
-                    {   //can set trees on fire
-                        if (RoomObj.type == ObjType.Wor_Tree)
-                        {
-                            Functions_GameObject_World.BurnTree(RoomObj);
+                    {   //blocking objs only here, btw
+
+                        //groundfires can burn trees
+                        //if (RoomObj.type == ObjType.Wor_Tree)
+                        //{ Functions_GameObject_World.BurnTree(RoomObj); }
+                        //groundfires can spread across bushes
+                        if(RoomObj.type == ObjType.Wor_Bush)
+                        {   //spread the fire 
+                            Functions_Projectile.Spawn(
+                                ObjType.ProjectileGroundFire,
+                                RoomObj.compSprite.position.X,
+                                RoomObj.compSprite.position.Y - 3);
+                            Functions_GameObject_World.DestroyBush(RoomObj);
                         }
                     }
 
@@ -645,15 +654,13 @@ namespace DungeonRun
                     return; //projectile interactions complete
                 }
 
-                //there are no blocking obj vs obj interactions
                 //an interaction is an overlap not handled by collision system
+                //there are no blocking obj vs obj interactions
                 //two blocking objs could never overlap or interact
             }
 
-            #endregion
 
-
-            //Handle Object vs NonBlocking RoomObj
+            // *** Handle Obj vs Obj *** \\
 
 
             //object.type checks
@@ -855,7 +862,7 @@ namespace DungeonRun
                 else if (Object.type == ObjType.ProjectileGroundFire)
                 {   //'burn' the grass
                     Functions_GameObject_World.CutTallGrass(RoomObj);
-                    //add some ground fire 
+                    //spread the fire 
                     Functions_Projectile.Spawn(
                         ObjType.ProjectileGroundFire,
                         RoomObj.compSprite.position.X,
@@ -864,6 +871,10 @@ namespace DungeonRun
             }
 
             #endregion
+
+
+            
+
 
 
         }

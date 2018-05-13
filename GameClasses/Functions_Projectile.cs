@@ -32,17 +32,13 @@ namespace DungeonRun
             pro.direction = Direction.None;
             pro.compMove.direction = pro.direction;
 
-            //teleport the object to the caster's location
+            //teleport projectile to X, Y
             Functions_Movement.Teleport(pro.compMove, X, Y);
             pro.compMove.moving = true;
             Functions_GameObject.SetType(pro, Type);
             HandleBehavior(pro);
         }
-        
-
-
-
-
+ 
         public static void Spawn(ObjType Type, ComponentMovement Caster, Direction Dir)
         {
             pushLines = false; //assume this pro doesn't have push lines
@@ -197,6 +193,10 @@ namespace DungeonRun
                     ObjType.Particle_ImpactDust,
                     pro.compSprite.position.X + 4,
                     pro.compSprite.position.Y - 8);
+                //create groundfire
+                Spawn(ObjType.ProjectileGroundFire,
+                    pro.compSprite.position.X,
+                    pro.compSprite.position.Y - 2);
             }
             else if (Type == ObjType.ProjectileNet)
             {
@@ -243,7 +243,6 @@ namespace DungeonRun
         public static void Kill(GameObject Obj)
         {
             //contains death events for projectiles
-
             if (Obj.type == ObjType.ProjectileArrow)
             {
                 Functions_Particle.Spawn(
@@ -257,12 +256,10 @@ namespace DungeonRun
                     Obj.compMove, Direction.None);
             }
             else if (Obj.type == ObjType.ProjectileFireball)
-            {   //create explosion & ground fire
+            {   //create explosion
                 Spawn(ObjType.ProjectileExplosion,
                     Obj.compMove, Direction.None);
             }
-            //sword - no death event
-            //rock debris - no death event
             else if (Obj.type == ObjType.ProjectileExplodingBarrel)
             {
                 //create explosion projectile
@@ -270,11 +267,6 @@ namespace DungeonRun
                     Obj.compMove, Direction.None);
                 //create loot
                 Functions_Loot.SpawnLoot(Obj.compSprite.position);
-                //leave some fire behind
-                Functions_Projectile.Spawn(
-                    ObjType.ProjectileGroundFire,
-                    Obj.compSprite.position.X,
-                    Obj.compSprite.position.Y);
             }
 
             //all objects are released upon death

@@ -43,7 +43,7 @@ namespace DungeonRun
         }
 
         public static void DestroyBush(GameObject Bush)
-        {   //pop 2 leaf explosions
+        {   //pop leaf explosion
             Functions_Particle.Spawn_Explosion(
                 ObjType.Particle_Leaf,
                 Bush.compSprite.position.X,

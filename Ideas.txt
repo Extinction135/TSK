@@ -2,6 +2,19 @@
 
 
 
+player AI
+
+assuming the player can 'see' everything on screen, this is just an AI
+looping over the obj/actors/entity lists, considering active objs in it's strategy.
+then once a strategy is decided upon, the proper gamepad input is setup and passed
+into the game. this ai could consider player state and retreat if weak, but instead
+i think the AI should just cheat and refill it's health if it gets to 0 or dies.
+in other words, there's an infinite bottle of fairies in link's backpack when AI is on.
+or, we could just simply turn on invincibility.
+
+
+
+
 
 
 Magic Mirror

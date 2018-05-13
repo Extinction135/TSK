@@ -136,36 +136,15 @@ TODAY:
 
 
 
+Explosions++
 
+updated explosions to always leave ground fires behind.
+playtested, working but not quite right.
 
-Debris
-
-implement debris in a similar manner as leaves.
-
-added debris particle to Obj.SetType().
-modified Spawn_LeafExplosion() to be Spawn_Explosion()..
-and it now takes an objType as a parameter, so calling code
-can specify what type of particle we want in the explosion.
-we *could* use any particles here, but for now we're just
-using leaves and debris.
-
-added call to Spawn_Explosion() from Obj.Kill().
-we base this off the Kill.becomesDebris boolean parameter,
-assuming an obj should become debris, we also spawn a
-circular debris explosion. updated particle.spawn() to 
-handle pushing debris particles (just like leaves).
-
-playtested, looking great.
-
-upgraded explosion interaction routines to be more organized,
-and to call Kill() on shelf, bookcase, and table. this brings
-them in line with dungeon statues, which can only be destroyed
-by explosions.
-
-
-
-
-
+groundfires from explosions should happen on the projectiles birth.
+they seem to 'lag' after the explosion too much. feels wrong.
+updated projectile functions.spawn to create ground fire for
+birth of explosion projectile. centered ground fire to explosion.
 
 
 
@@ -174,7 +153,20 @@ Bushes ++
 ground fires should be able to spread to bushes as well.
 this means we can burn lines of bushes (should spread across bushes).
 
-ground fire needs to have a soundFX of fire burning (quietly tho).
+this was implemented in interaction functions obj v obj,
+and i removed fire's ability to burn trees. why? because the 'burn trees'
+method looked more like it was blowing the trees up. so, i'll
+split this into BurnTree() and ExplodeTree(), where explosions blow
+trees up, and ground fires burn them.
+playtested, working great.
+
+
+
+
+
+
+
+
 
 
 
@@ -196,11 +188,25 @@ burning starts with ground fire at base of tree, then top part sets on fire,
 then the tree becomes the burnt version, not the tree stump.
 (we have burnt version in dev, add to level sheet)
 
+ground fire needs to have a soundFX of fire burning (quietly tho).
+
+
+
+the forest dungeon entrance should be blocked by trees, requiring link
+to blow them up with bombs to gain access to dungeon.
 
 
 
 
 
+
+
+
+
+
+
+we should be using the light world
+version of the dungeon entrance.
 
 
 
