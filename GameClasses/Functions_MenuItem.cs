@@ -525,6 +525,12 @@ namespace DungeonRun
                 MenuItem.description = "displays ms time for \nframe, room, and level.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
+            else if (Type == MenuItemType.Options_PlayMusic)
+            {
+                MenuItem.name = "Play or Mute Music";
+                MenuItem.description = "play or mute the game \nmusic.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
+            }
 
             #endregion
 

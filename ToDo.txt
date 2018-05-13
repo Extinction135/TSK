@@ -170,40 +170,26 @@ TODAY:
 
 
 
+Option: Music On/Off
+
+added menuitem for turning music on/off to options screen.
+the booleans for controlling this have long been on the game,
+i just finally got around to linking them up.
+
+implemented the 'off' state for Flags.PlayMusic.
+playtested / abused the mute audio menuItem. it works.
+
+bug: options screen window reads 'cheats' when it should read 'options'. fixed.
 
 
 
-Throwing Bushes and Pots
 
-the easiest way to model a thrown object is actually as a projectile.
-we should have projectile versions of skull pot, pot, and bush.
-they have a lifetime, are flying, etc.. just like fireball.
-plus, their interactions/collisions reqs match those of projectiles.
-we can even re-use the roomObj's animFrames.
 
-we apply a strong push to the thrown obj to get it moving in the right direction.
-also, the thrown obj's friction is air friction, so it doesn't lose much speed overtime.
-(it should be traveling near 100% push speed when it dies).
-implemented thrown obj projectiles, working quite well.
 
-implemented DASHING WHILE CARRYING OBJECTS, which is awesome.
-no really, it's awesome - because now theres no speed penalty
-for picking up an obj to throw. which makes throwing a legit strat,
-since it keeps link a good distance from enemies and the thrown
-obj's collision rec is MUCH bigger than an arrows (easier to hit).
-with enough pots / bushes, throwing is super effective.
 
-fixed a visual issue where thrown objs didn't align with their
-held counterparts when thrown left and right.
 
-fixed a bug with skull pot projectiles exploding at start of throw.
-
-updated Pickup() to create bush stumps when link picks up a bush.
-otherwise, the bush has no stump. a bush with no stump? nyeh.
-
-the thrown obj is kept in check by it's relatively short lifetime.
-that keeps it's effective distance small, compared to the arrows
-full 255 lifetime (lasts so long it can hit things off screen).
+* ground fires should trigger barrels.
+* blowing up a tree (bushy or burnt) should create debris.
 
 
 
@@ -213,8 +199,6 @@ full 255 lifetime (lasts so long it can hit things off screen).
 
 
 
-menu options for:
-turning music on/off
 
 
 
@@ -223,13 +207,17 @@ turning music on/off
 
 
 
-* ground fires should trigger exploding barrels.
-* blowing up a tree (bushy or burnt) should create debris
 
 
 
-* should we be able to pickup and throw barrels?
-* upon a throw, these become exploding barrel projectiles... noice
+
+
+
+
+
+
+
+
 
 
 

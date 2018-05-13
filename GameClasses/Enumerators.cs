@@ -431,7 +431,7 @@ namespace DungeonRun
         Options_Watermark,
         Options_HardMode,
         Options_DrawBuildTimes,
-
+        Options_PlayMusic,
 
 
 

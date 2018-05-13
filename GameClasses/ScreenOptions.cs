@@ -50,7 +50,7 @@ namespace DungeonRun
             window = new MenuWindow(
                 new Point(16 * 8 - 8, 16 * 4), 
                 new Point(16 * 18, 16 * 14 + 8), 
-                "Cheats");
+                "Options");
 
             int columns = 8;
             int rows = 5;
@@ -94,6 +94,9 @@ namespace DungeonRun
 
             labels[4].text = "draw\ntime";
             Functions_MenuItem.SetType(MenuItemType.Options_DrawBuildTimes, menuItems[4]);
+
+            labels[5].text = "play\nmusc";
+            Functions_MenuItem.SetType(MenuItemType.Options_PlayMusic, menuItems[5]);
 
             #endregion
 
@@ -163,6 +166,12 @@ namespace DungeonRun
                     if (Flags.DrawUDT) { Flags.DrawUDT = false; }
                     else { Flags.DrawUDT = true; }
                 }
+                else if (currentlySelected.type == MenuItemType.Options_PlayMusic)
+                {
+                    if (Flags.PlayMusic) { Flags.PlayMusic = false; }
+                    else { Flags.PlayMusic = true; }
+                }
+
                 #endregion
 
 
@@ -316,6 +325,9 @@ namespace DungeonRun
 
             if (Flags.DrawUDT)
             { menuItems[4].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+
+            if (Flags.PlayMusic)
+            { menuItems[5].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
 
             //expand this to include additional options
         }

@@ -121,6 +121,19 @@ namespace DungeonRun
                 #endregion
 
             }
+            else
+            {   //fade music out
+                if (fadeState == FadeState.Silent) { }
+                else
+                {   //music volume CANNOT be negative, else program error
+                    if (currentMusic.Volume - fadeOutSpeed <= 0.0f)
+                    { currentMusic.Volume = 0.0f; }
+                    else { currentMusic.Volume -= fadeOutSpeed; }
+                    //check to see if music has reached 0
+                    if (currentMusic.Volume == 0.0f)
+                    { fadeState = FadeState.Silent; }
+                }
+            }
         }
 
     }
