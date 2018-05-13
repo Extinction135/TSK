@@ -179,7 +179,7 @@ namespace DungeonRun
             output = "\n\n---- SAVE DATA DUMP ----";
             output += "\n  gold: " + PlayerData.current.gold;
             output += "\n  hearts: " + PlayerData.current.heartsTotal;
-            output += "\n  magic: " + PlayerData.current.magicCurrent + " / " + PlayerData.current.magicTotal;
+            output += "\n  magic: " + PlayerData.current.magicCurrent + " / " + PlayerData.current.magicMax;
             output += "\n  bombs: " + PlayerData.current.bombsCurrent + " / " + PlayerData.current.bombsMax;
             output += "\n  arrows: " + PlayerData.current.arrowsCurrent + " / " + PlayerData.current.arrowsMax;
 

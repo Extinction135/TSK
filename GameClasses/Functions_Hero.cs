@@ -645,7 +645,7 @@ namespace DungeonRun
             //max hearts and magic
             PlayerData.current.heartsTotal = 9;
             Pool.hero.health = 9;
-            PlayerData.current.magicUnlocked = 9;
+            PlayerData.current.magicMax = 9;
             PlayerData.current.magicCurrent = 9;
             //max arrows and bombs
             PlayerData.current.bombsCurrent = 99;

@@ -1138,8 +1138,7 @@ namespace DungeonRun
         public byte heartsTotal = 3; //sets max health
 
         public byte magicCurrent = 3;
-        public byte magicUnlocked = 3;
-        public byte magicTotal; //magicUnlocked + any modifiers
+        public byte magicMax = 9;
 
         public byte bombsCurrent = 3;
         public byte bombsMax = 99;

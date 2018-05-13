@@ -61,23 +61,19 @@ namespace DungeonRun
 
             #region Update & Limit Hero's Magic
 
-            //get the number of unlocked magic meter pieces
-            PlayerData.current.magicTotal = PlayerData.current.magicUnlocked;
-
             //limit the magicTotal amount to 9
-            if (PlayerData.current.magicTotal > 9)
-            { PlayerData.current.magicTotal = 9; }
+            if (PlayerData.current.magicMax > 9) { PlayerData.current.magicMax = 9; }
 
             //limit the current magic amount to the max magic amount
-            if (PlayerData.current.magicCurrent > PlayerData.current.magicTotal)
-            { PlayerData.current.magicCurrent = PlayerData.current.magicTotal; }
+            if (PlayerData.current.magicCurrent > PlayerData.current.magicMax)
+            { PlayerData.current.magicCurrent = PlayerData.current.magicMax; }
 
             //loop thru the magic meter sprites, setting their frame
             for (i = 0; i < 9; i++)
             {   //reset sprite to locked
                 WorldUI.meterPieces[i + 1].currentFrame.X = 5*2+1;
                 //set available bars
-                if (i < PlayerData.current.magicTotal)
+                if (i < PlayerData.current.magicMax)
                 { WorldUI.meterPieces[i + 1].currentFrame.X = 5*2; }
                 //set filled bars
                 if (i < PlayerData.current.magicCurrent)

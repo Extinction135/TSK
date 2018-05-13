@@ -49,6 +49,23 @@ Phase 2 - version 0.8 to 1.0
 	
 	
 	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 v0.8 goals
 
 - the "shadow system"
@@ -80,11 +97,6 @@ they are always aligned to their obj/actor (altho this does pollute Draw)..
 - LIGHT WORLD & DARK WORLD
 - implement enumFields for building rooms (big optimization)
 
-- fix picking up, carrying, throwing, dropping, dragging, pushing objects
-- can drag: light blocks, dungeon statues, barrels, torches on/off, chests
-- can pickup, carry, throw: pots
-- remove dropping pots from game, hero can only throw them
-
 - create 'boat' level, with boat captain, who has dialog with link
 - offers to take link to a variety of locations, using vendor screen
 - only available location is water temple, for low gold price (since link 'hires' crew)
@@ -102,14 +114,6 @@ they are always aligned to their obj/actor (altho this does pollute Draw)..
 	hero must flip switch to access key or boss rooms, or not.
 	boss is tentacles squid
 	
-- can swim, 'dive', dash, and reward / pickup stuff in water
-- dive: 
-	in shallow water, this picks up whatever is hidden using reward state.
-	in deep water, this allows hero to move 'under' some blocking objects
-	diving is timed / capped at 255 frames, after that link pops his head back up
-- dash:
-	works the same in shallow and deep water, but can't be done while diving
-	
 - mountain dungeon (diff enemies, boss, dungeon sprites - but same rooms)
 
 - room keys - these only work for the room and only unlock 1 door, and
@@ -123,7 +127,48 @@ these rooms turn all their doors into locked doors upon close, similar to puzzle
 
 
 
+Sunday
+	- cleanup
+	- pickup, carry, throw (pots, skulls, bushes)
 
+Monday
+	- grab, push, pull (light blocks, barrels, dungeon statues)
+	- light block interactions with switches (switch must be held down, so we need a 2nd type of switch)
+
+Tuesday
+	- water tiles + swimming + transitions to/from.
+	- add a half water half land level for testing. map++.
+	- should have feetFX for coastline transition tiles.
+
+Wednesday
+	- swim reward, use items while swimming: bottles, any reward item
+	- swim dash, swim drown, swim dive
+	- blocking water objects
+	- swim hit, we can use a flamethrower for water enemy test
+
+Thursday
+	- implement shovel weapon
+	- create ditch sprite, ground can become ditch (any objs are removed, like grass)
+	- shovel interaction with non-blocking obj removes obj and creates ditch obj.
+	- ditch objs have 16x16 collrec, and look like 'deep dirt', a layer under ground.
+	- the same way fire spreads (using interactive frame), we can spread water tiles
+	- water tiles expand for one frame and make ditch tiles water tiles if they touch
+	- then we need to implement cascading effect: low, med, high water tiles.
+	- high > med > low > ditch is the spreading routine.
+	- at this point link should be able to construct water channels
+
+Friday
+	- implement water temple (big lever to change water level outside).
+	- this makes the temple accessible by lowering the water to reveal the entrance.
+	- water temple contains additional critical path to big lever inside.
+	- pulling big lever inside lowers the water level, so big key can be accessed.
+	- this is done by boolean in dungeon/level, waterLevelHigh.
+	- rooms on the key path are filled with high water if waterLevelHigh is true.
+	- else they are filled with low level water, which simply creates the feetFX.
+	*important that player knows how big levers work prior to entering water temple.
+	- for now, the water temple boss and enemies are same as forest dungeon.
+	
+	
 
 
 
@@ -132,27 +177,21 @@ TODAY:
 
 
 
-Burning Trees++
 
-so - we need to 'burn' the bushy tree. so this becomes
-the obj burning bushy tree, which 'finalizes' into burnt tree.
 
-on this we need to spawn a variety of fire particles.
-these simply decorate the burning tree, no interaction.
+SaveData++
 
-lots of modification to get trees burning in a decent way.
-playtested, looking pretty good.
+fixed a minor issue where magic and it's maximum value
+were bring handled in their 'own way' in save data, which 
+wasn't consistent with bombs and arrows.
 
-improved odds of spawning loot from trees.
-added ability to blow up burnt trees using explosions.
-added soundfx for when burning tree transitions to burnt,
-syncs up with the pop particle for good feelz.
 
-fixed a minor issue where explosions were always leaving
-groundfires on objects they touched, which meant NPCs had
-groundfires all over them.. which was funny, but.. no.
+Debris--
 
-updated UWP project.
+removed dungeon debris from dungeon section of level sheet.
+we weren't using dungeon debris, instead we have fully
+working + looking good debris in the world section of the
+level sheet.
 
 
 
@@ -162,171 +201,45 @@ updated UWP project.
 
 
 
-add lantern:
-free action to create a ground fire projectile at links facing location.
-doesn't take magic. can light torches too.
 
 
-ground fire needs to have a soundFX of fire burning (quietly tho).
+cleanup
+{
 
+	separate info from widgets drawing.
+	we should be able to draw bottom info separate from widgets. why cant we?
+	i'd like to know frametimes in world ui again, it was nice.
+	plus for testing on xbox, we need to know level build times, room build times, and total frametimes.
+	this should be displayable from the options menu.
 
-the forest dungeon entrance should be blocked by trees, requiring link
-to blow them up with bombs to gain access to dungeon.
 
+	when player presses A on dialog screen entering dungeon, play mario snes dungeon door opening sound.
+	this sound should not play when the hero spawns in the dungeon, where i think it does
+	it plays after the dungeon is built?
 
 
+	hero should spawn facing up in all levels.
+	hero should spawn at the bottom of field levels, not the center...
+	this gives the player something to explore.
+	**in editor, player should not be able to leave the field level.
 
 
+	ROOMS++
+	also, we are building rooms randomly when hero enters them.
+	this is true random, as when hero reenters them, they are different.
+	we need to store an id with the room (xmlid, oops) and use that to get the same roomdata each build
 
+}
 
 
-we should be using the light world
-version of the dungeon entrance.
 
 
 
 
 
 
-separate info from widgets drawing.
-we should be able to draw bottom info separate from widgets. why cant we?
 
 
-
-
-
-
-
-
-
-
-when player presses A on dialog screen entering dungeon, play door opening sound.
-this sound should not play when the hero spawns in the dungeon, where i think it does
-it plays after the dungeon is built?
-
-input polish
-when moving the joystick diagonally, the input *should* split evenly between up and say right.
-if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
-even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
-that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
-
-hero should spawn facing up in dungeon.
-hero should spawn facing down after exiting dungeon.
-
-
-
-
-
-
-
-
-Then we need to create the healers house, with the spawn point being the bed.
-we need a bed obj, building objs, healer npc (with dialog)
-
-then the proper death loop needs to be implmented in-game...
-
-death loop:
-if the hero is in game, then hero respawns at healers house.
-if the hero dies while the game is in editor mode, then the hero comes back to life.
-healer tells link that 'a mysterious stranger brought you here'.
-the idea being that queen zelda can sense his suffering and disguises herself in
-order to silently save him, to keep him on his path to her, as her plans intend, 
-so she remains in control of everything. this should be revealed at the end of the
-game, in the final dialogs.
-
-
-
-
-
-
-
-
-
-
-ROOMS++
-also, we are building rooms randomly when hero enters them.
-this is true random, as when hero reenters them, they are different.
-we need to store an id with the room (xmlid, oops) and use that to get the same roomdata each build
-
-when we change rooms, we reset the particle pool (hopefully)
-when we call that reset, we should be resetting ALL particles,
-even ones that are alive currently.
-
-
-
-
-
-
-
-
-
-Non-Repeating Rooms in Dungeon
-
-we need to make rooms non-repeating in the dungeon.
-it's cheap to come across the same room over and over again.
-
-so when the dungeon is being built, we need a list of rooms (based on loaded room data)
-then when we place a square room, we ID it, and strip that room off the roomsList
-and if we run out of square rooms, then we just try columns, or rows.
-this way the dungeon algorithm can never reach a point where there are no more rooms to use
-which would be game breaking. also, we need ALOT of rooms to build from.
-
-
-row rooms need to be redesigned to be MUCH better
-we need more rows and column rooms, and their quality needs to be improved.
-
-
-
-
-
-we need a flying enemy - like a BAT
-
-
-
-
-
-
-in save data, we should have the fields named:
-heartsMax, magicMax, bombsMax, arrowsMax.
-we don't need magicTotal anymore.
-
-do we actually use actor.compInt (this is the interaction component) ??? wtf
-
-fix how kick sountrack volume is handled
-the hero's health sets the volume of the kick soundtrack
-this check should be happening in the level class, not anywhere
-in the assets or music classes, because the kick volume is only
-changed during the level screen's life. when the screen closes,
-it should ensure the kick volume is 0. this prevents issues we've
-had before where the kick volume was above 0 while player was on
-different screen.
-
-we should include a soundFXinstance on actors that points to one of the soundFX in assets
-then we can set this instance in ActorFunctions.SetType()
-then later just call it generically, like Actor.AttackSound.Play().
-same with hit sound, death sound, use sound.
-
-
-
-
-Implement Light World and Dark World RIGHT NOW
-because we need to understand the architecture this is going to need,
-before we start tacking a bunch of levels onto the system.
-plus, we need to polish the transition between the dark world
-and the light world..
-
-
-
-
-
-
-v0.9 goals
-??? story, secrets
-
-
-
-v1.0 goals
-??? support, testing, videos, documentation, alt marketing
 
 
 

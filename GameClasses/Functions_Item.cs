@@ -97,14 +97,14 @@ namespace DungeonRun
             }
             else if (Type == MenuItemType.BottleMagic)
             {   //use magic potion
-                PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
+                PlayerData.current.magicCurrent = PlayerData.current.magicMax;
                 Functions_Particle.Spawn(ObjType.Particle_BottleMagic, Pool.hero);
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleCombo)
             {   //use combo potion
                 Pool.hero.health = PlayerData.current.heartsTotal;
-                PlayerData.current.magicCurrent = PlayerData.current.magicTotal;
+                PlayerData.current.magicCurrent = PlayerData.current.magicMax;
                 Functions_Particle.Spawn(ObjType.Particle_BottleCombo, Pool.hero);
                 Functions_Bottle.EmptyBottle(Type);
             }

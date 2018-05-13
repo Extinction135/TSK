@@ -1,6 +1,26 @@
 
 
 
+Non-Repeating Rooms in Dungeon
+
+we need to make rooms non-repeating in the dungeon.
+it's cheap to come across the same room over and over again.
+
+so when the dungeon is being built, we need a list of rooms (based on loaded room data)
+then when we place a square room, we ID it, and strip that room off the roomsList
+and if we run out of square rooms, then we just try columns, or rows.
+this way the dungeon algorithm can never reach a point where there are no more rooms to use
+which would be game breaking. also, we need atleast 10 fo each row, square, column rooms.
+
+
+
+
+
+when we change rooms, we reset the particle pool (hopefully)
+when we call that reset, we should be resetting ALL particles,
+even ones that are alive currently.
+
+
 
 player AI
 
@@ -30,6 +50,11 @@ screen opening / closing animation:
 
 
 
+add lantern:
+free action to create a ground fire projectile at links facing location.
+doesn't take magic. can light torches too.
+
+
 
 
 Arrows++
@@ -40,6 +65,36 @@ and arrow then tracks to it's caster with it's offset from obj (that frame).
 this will cause arrows to stick into objs, even objs that move.
 we can even switch this arrow projectile for a stuck arrow projectile,
 that is simply decoration (we must keep arrow as projectile so it can track to caster)
+
+
+
+
+
+
+fix how kick sountrack volume is handled
+the hero's health sets the volume of the kick soundtrack
+this check should be happening in the level class, not anywhere
+in the assets or music classes, because the kick volume is only
+changed during the level screen's life. when the screen closes,
+it should ensure the kick volume is 0. this prevents issues we've
+had before where the kick volume was above 0 while player was on
+different screen.
+
+we should include a soundFXinstance on actors that points to one of the soundFX in assets
+then we can set this instance in ActorFunctions.SetType()
+then later just call it generically, like Actor.AttackSound.Play().
+same with hit sound, death sound, use sound.
+
+
+
+
+input polish
+when moving the joystick diagonally, the input *should* split evenly between up and say right.
+if i'm 60% up and 40% right, it should be up. right now, that diagonal just sets to right.
+even if it's 90% up and 10% right, it's set to right. it should be a 50/50 split.
+that will increase the precision of sloppy diagonal weapon attacks, aiming their intended direction.
+**this is not related to input direction, but rather it's related to how we resolve the player's
+facing direction to the cardinal casting direction of the arrow projectile, for example.
 
 
 

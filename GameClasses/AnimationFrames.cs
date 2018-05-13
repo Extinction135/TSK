@@ -134,7 +134,8 @@ namespace DungeonRun
 
         public static List<Byte4> Dungeon_SpawnMob = new List<Byte4> { new Byte4(13, 9, 0, 0) };
         public static List<Byte4> Dungeon_SpawnMiniBoss = new List<Byte4> { new Byte4(14, 9, 0, 0) };
-        public static List<Byte4> Dungeon_DebrisSmall = new List<Byte4> { new Byte4(15*2, 9*2, 0, 0) }; //modified later
+
+        //public static List<Byte4> Dungeon_DebrisSmall = new List<Byte4> { new Byte4(15*2, 9*2, 0, 0) }; //modified later
 
 
         #endregion
