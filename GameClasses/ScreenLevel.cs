@@ -217,7 +217,7 @@ namespace DungeonRun
             {
                 Functions_Draw.Draw(Input.cursorColl);
                 Functions_Draw.DrawLevel();
-                Functions_Draw.Draw(Functions_Hero.interactionRec);
+                //Functions_Draw.Draw(Functions_Hero.interactionPoint);
             }
 
             ScreenManager.spriteBatch.End();

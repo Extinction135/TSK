@@ -176,53 +176,41 @@ TODAY:
 
 
 
-Implement Push & Pull
-
-this was done similar to carrying, and for hero only.
-draggable objs are: light blocks, dungeon statues, and barrels.
-
-Grab Routine:
-grab state: this is A button press on grab-able obj.
-if hero is in grab state, holding A down keeps him in grab state.
-releasing A releases hero from grab state.
-
-^ we have to directly check controller input here, unfortunately.
-it would be better to model this thru the component input,
-with some field to represent the A button being held down.
-then we could do push and pull for all actors using the
-actor.compInput instead of directly checking the 1st controller's
-A button state (this won't work for enemies).
-
-Push / Pull Routine:
-while in grab state, with a grabbed obj, moving hero will push() 
-obj in hero's moving direction, a very small amount, each frame.
-this push is handled by the collision system perfectly, so hero
-cant push or pull blocks into overlapping positions.
-
-playtested, working VERY WELL, missing polish with a few bugs.
 
 
 
 
+Push / Pull ++
+
+now hero can drag tables, bookcases, and shelves.
+
+made interaction rec a point instead of a rectangle, making
+it MUCH more accurate when checking against roomObjs. this also
+reduces the chances of interacting with two objects at once. 
+this fixes a problem where hero could pickup two objects at once.
+
+added SoundDragObject to projects.
+linked up to the dragging routine, we now have drag
+sound fx working in game.
+
+added animFrames for pushing and pulling.
+pushing works perfectly. dont really like pulling tho.
+we'll use pulling for big levers and special objs exclusively.
+pushing will be the action that can be used on normal objs.
+
+improved push routines to check that pushed object is nearby
+hero - otherwise hero continues to push obj after he's blocked.
+which looks like he's using the force to push the object. lul.
+lots of playtesting. working very well.
 
 
 
 
-** should be able to drag tables, bookcases, shelves around too
-
-
-* make interaction rec a point, so we can only hit one obj at a time.
-
-* bail from interaction rec routines upon first obj collision. can't interact
-with multiple objs on the same frame!
-
-* make sure that interaction rec / point touches the object we're pushing / pulling.
-otherwise, we can push objects far away from us by blocking the hero's movement.
-
-* need push/pull sfx
 
 
 
+
+stone tables hitBox needs to go down 2 pixels, then shorten 2 pixels.
 
 
 
@@ -231,12 +219,6 @@ otherwise, we can push objects far away from us by blocking the hero's movement.
 MONDAY
 - light block interactions with switches (switch must be held down, this changes nature of switch)
 * every room with a switch needs a light block to trigger it.
-
-
-
-
-
-
 
 
 

@@ -881,6 +881,11 @@ namespace DungeonRun
         public AnimationGroup death;
         public AnimationGroup reward;
         public AnimationGroup pickupThrow;
+
+        public AnimationGroup grab; //idle
+        public AnimationGroup push; //move
+
+        //public AnimationGroup pull; //special pull
     }
 
     public class ColorScheme

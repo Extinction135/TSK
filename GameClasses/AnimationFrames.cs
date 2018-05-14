@@ -571,6 +571,25 @@ namespace DungeonRun
             Hero_Animations.death.right = Hero_Animations.death.down;
             Hero_Animations.death.left = Hero_Animations.death.down;
 
+            //grab, push, pull
+            Hero_Animations.grab = new AnimationGroup();
+            Hero_Animations.grab.down = new List<Byte4> { new Byte4(7, 0, 0, 0) };
+            Hero_Animations.grab.up = new List<Byte4> { new Byte4(7, 1, 0, 0) };
+            Hero_Animations.grab.right = new List<Byte4> { new Byte4(7, 2, 0, 0) };
+            Hero_Animations.grab.left = new List<Byte4> { new Byte4(7, 2, 1, 0) };
+
+            Hero_Animations.push = new AnimationGroup();
+            Hero_Animations.push.down = new List<Byte4> { new Byte4(7, 0, 0, 0), new Byte4(8, 0, 0, 0) };
+            Hero_Animations.push.up = new List<Byte4> { new Byte4(7, 1, 0, 0), new Byte4(8, 1, 0, 0) };
+            Hero_Animations.push.right = new List<Byte4> { new Byte4(7, 2, 0, 0), new Byte4(8, 2, 0, 0) };
+            Hero_Animations.push.left = new List<Byte4> { new Byte4(7, 2, 1, 0), new Byte4(8, 2, 1, 0) };
+
+            //Hero_Animations.pull = new AnimationGroup();
+            //Hero_Animations.pull.down = new List<Byte4> { new Byte4(9, 0, 0, 0), new Byte4(10, 0, 0, 0) };
+            //Hero_Animations.pull.up = new List<Byte4> { new Byte4(9, 1, 0, 0), new Byte4(10, 1, 0, 0) };
+            //Hero_Animations.pull.right = new List<Byte4> { new Byte4(9, 2, 0, 0), new Byte4(10, 2, 0, 0) };
+            //Hero_Animations.pull.left = new List<Byte4> { new Byte4(9, 2, 1, 0), new Byte4(10, 2, 1, 0) };
+
             #endregion
 
 

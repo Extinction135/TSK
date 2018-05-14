@@ -173,12 +173,16 @@ namespace DungeonRun
             {
                 if (Actor.carrying)
                 { Actor.animGroup = Actor.animList.idleCarry; }
+                else if (Actor.grabbing)
+                { Actor.animGroup = Actor.animList.grab; }
                 else { Actor.animGroup = Actor.animList.idle; }
             }
             else if (Actor.state == ActorState.Move)
             {
                 if (Actor.carrying)
                 { Actor.animGroup = Actor.animList.moveCarry; }
+                else if (Actor.grabbing)
+                { Actor.animGroup = Actor.animList.push; }
                 else { Actor.animGroup = Actor.animList.move; }
             }
 
@@ -296,23 +300,10 @@ namespace DungeonRun
         }
 
 
-
-
-
-
-
-
         public static void Grab(GameObject Obj, Actor Act)
         {
             Act.grabbing = true;
             Act.grabbedObj = Obj;
-            //Assets.Play(Assets.sfxActorLand); //temp sfx
-
-            //put actor into grab state
-            //Act.state = ActorState.Pickup;
-            //Act.stateLocked = true;
-            //Act.lockTotal = 10;
-            //SetAnimationGroup(Act);
         }
         
 
@@ -449,20 +440,13 @@ namespace DungeonRun
 
                     #region Grabbing State
 
-                    //right now, only hero can grab / push / pull objects
-
                     if(Actor == Pool.hero)
                     {   //make sure A button is down and hero is in grab state
                         if (Functions_Input.IsButtonDown(Buttons.A))
-                        {   
-                            //alter hero's friction - slow
+                        {   //alter hero's friction - slow
                             Actor.compMove.friction = World.frictionUse;
-
-                            //push grabbed obj in hero's move direction
-                            Functions_Movement.Push(
-                                Actor.grabbedObj.compMove,
-                                Actor.compMove.direction,
-                                0.08f);
+                            //push obj hero has grabbed
+                            Functions_Hero.PushGrabbedObj();
                         }
                         else
                         {   //release the grabbed object
@@ -470,8 +454,6 @@ namespace DungeonRun
                             Actor.grabbedObj = null;
                         }
                     }
-
-
 
                     #endregion
 

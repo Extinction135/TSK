@@ -16,7 +16,7 @@ namespace DungeonRun
     {
         static int i;
 
-        public static ComponentCollision interactionRec;
+        public static Point interactionPoint;
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
         public static Boolean boomerangInPlay = false; //only 1 boomerang on screen at once
 
@@ -24,7 +24,8 @@ namespace DungeonRun
 
         static Functions_Hero()
         {
-            interactionRec = new ComponentCollision();
+            //interactionRec = new ComponentCollision();
+            interactionPoint = new Point(0, 0);
             heroRec = new Rectangle(0, 0, 16, 16);
         }
 
@@ -119,43 +120,80 @@ namespace DungeonRun
         }
 
         public static void ClearInteractionRec()
-        {   //move the interaction rec offscreen
-            interactionRec.rec.X = -1000;
-            interactionRec.rec.Y = -1000;
+        {   //move the interaction point offscreen
+            interactionPoint.X = -1000;
+            interactionPoint.Y = -1000;
         }
 
         public static void SetInteractionRec()
         {
-            //set the interaction rec to the hero's position
-            interactionRec.rec.X = (int)Pool.hero.compSprite.position.X - 4;
-            interactionRec.rec.Y = (int)Pool.hero.compSprite.position.Y - 4;
-            //offset the rec based on the direction hero is facing
+            //center interaction point to hero's collision rec
+            interactionPoint.X = Pool.hero.compCollision.rec.X;
+            interactionPoint.Y = Pool.hero.compCollision.rec.Y;
+            interactionPoint.X += Pool.hero.compCollision.rec.Width / 2;
+            interactionPoint.Y += Pool.hero.compCollision.rec.Height / 2;
+
+            //offset the intPoint based on the direction hero is facing
             if (Pool.hero.direction == Direction.Up)
             {
-                interactionRec.rec.Width = 8; interactionRec.rec.Height = 4;
-                interactionRec.rec.Y -= 1;
+                interactionPoint.Y -= 8;
             }
             else if (Pool.hero.direction == Direction.Down)
             {
-                interactionRec.rec.Width = 8; interactionRec.rec.Height = 4;
-                interactionRec.rec.Y += 14;
+                interactionPoint.Y += 8;
             }
             else if (
                 Pool.hero.direction == Direction.Left ||
                 Pool.hero.direction == Direction.UpLeft ||
                 Pool.hero.direction == Direction.DownLeft)
             {
-                interactionRec.rec.Width = 4; interactionRec.rec.Height = 8;
-                interactionRec.rec.Y += 4; interactionRec.rec.X -= 7;
+                interactionPoint.X -= 8;
             }
             else if (
                 Pool.hero.direction == Direction.Right ||
                 Pool.hero.direction == Direction.UpRight ||
                 Pool.hero.direction == Direction.DownRight)
             {
-                interactionRec.rec.Width = 4; interactionRec.rec.Height = 8;
-                interactionRec.rec.Y += 4; interactionRec.rec.X += 11;
+                interactionPoint.X += 8;
             }
+        }
+
+
+        public static void PushGrabbedObj()
+        {
+
+            if (Pool.hero.state == ActorState.Move)
+            {
+
+
+                //place interaction rec, check that it still touches grabbedObj
+                SetInteractionRec();
+
+                //else, hero has moved too far away to push/pull obj
+                if (Pool.hero.grabbedObj.compCollision.rec.Contains(interactionPoint))
+                {
+                    //push grabbed obj in hero's move direction
+                    Functions_Movement.Push(
+                        Pool.hero.grabbedObj.compMove,
+                        Pool.hero.compMove.direction,
+                        0.08f);
+                    //spam play drag sfx here
+                    Assets.Play(Assets.sfxDragObj);
+                }
+                else
+                {   //release the grabbed object
+                    Pool.hero.grabbing = false;
+                    Pool.hero.grabbedObj = null;
+                }
+
+                ClearInteractionRec();
+
+                //the grabbedObj shoudn't be null rn
+                //unless it's been destroyed while dragged
+                //that could cause a big problem, lol
+                //if (Actor.grabbedObj != null) { }
+            }
+
         }
 
 
@@ -171,7 +209,7 @@ namespace DungeonRun
             {
                 if (Pool.roomObjPool[i].active)
                 {
-                    if (interactionRec.rec.Intersects(Pool.roomObjPool[i].compCollision.rec))
+                    if (Pool.roomObjPool[i].compCollision.rec.Contains(interactionPoint))
                     {
                         Functions_Movement.StopMovement(Pool.hero.compMove);
                         Pool.hero.stateLocked = true;
@@ -179,6 +217,8 @@ namespace DungeonRun
                         collision = true;
                         //handle the hero interaction, may overwrite hero.lockTotal
                         InteractRecWith(Pool.roomObjPool[i]);
+                        //we could bail here if we wanted only 1 interaction per frame
+                        //but we allow overlapping obj interactions cause we cray'
                     }
                 }
             }
@@ -285,9 +325,12 @@ namespace DungeonRun
 
             else if (Obj.type == ObjType.Dungeon_BlockLight
                 || Obj.type == ObjType.Dungeon_Barrel
-                || Obj.type == ObjType.Dungeon_Statue)
+                || Obj.type == ObjType.Dungeon_Statue
+                || Obj.type == ObjType.Wor_TableStone
+                || Obj.type == ObjType.Wor_Bookcase
+                || Obj.type == ObjType.Wor_Shelf)
             {
-                Functions_Actor.Grab(Obj, Pool.hero); ///<<<<<<<<
+                Functions_Actor.Grab(Obj, Pool.hero);
             }
 
             #endregion
