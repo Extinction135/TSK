@@ -131,11 +131,6 @@ these rooms turn all their doors into locked doors upon close, similar to puzzle
 
 
 
-Tuesday
-	- water tiles + swimming + transitions to/from.
-	- add a half water half land level for testing. map++.
-	- should have feetFX for coastline transition tiles.
-
 Wednesday
 	- swim reward, use items while swimming: bottles, any reward item
 	- swim dash, swim drown, swim dive
@@ -174,25 +169,22 @@ TODAY:
 
 
 
-Switches ++
+Carrying Objs Between Rooms
 
-floor switches in dungeons should only act one way: they require
-a weighted object or actor to activate them. if they don't have
-something resting on them, then the switch should pop back up
-to it's up state and all the doors should shut. only when something
-sits on the switch, activating it, do the trap doors open.
+currently, hero can pickup and carry some objects, like pots and bushes.
+also, hero can carry these objects from one room to another.
+however, the roomObjs change between rooms, and the heldObj is just a
+reference, so it gets changed as well. this leads to a state where
+link can walk into a new room, and the pot he's carrying can become
+any object in that new room, like a blocking black block, for example.
+this is buggy and unwanted behavior.
 
-refactored how switches work to meet above requirements.
+now when hero transitions between rooms, the heldObj is destroyed,
+via a call to HandleCommon(). so, hero will get whatever loot the
+object might spawn upon destruction, prior to it becoming 'corrupted'
+by the changed roomObj pool. hero is also released from carry state.
 
-updated roomData to work with new switches.
-added sweet new column room that will bend peoples
-minds about how to use switches + objs + belts.
-
-what happens when we push an obj into a pit?
-the obj falls into the pit as expected. yay!
-
-sped up splash animation a little bit.
-LOTS of playtesting, trying to break switches + push.
+playtested, working as expected.
 
 
 
@@ -204,18 +196,13 @@ LOTS of playtesting, trying to break switches + push.
 
 
 
-** lol bug: moving between rooms with an object causes the held obj to change to random 
-roomObj - meaning link can wind up carrying dark blocks, etc.. its hilarious...
+need more row + column room designs, using everything we have so far.
 
 
 
-
-
-
-
-
-
-
+- water tiles + swimming + transitions to/from.
+- add a half water half land level for testing. map++.
+- should have feetFX for coastline transition tiles.
 
 
 

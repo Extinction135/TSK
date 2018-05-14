@@ -269,11 +269,8 @@ namespace DungeonRun
 
         static ObjType throwType;
         public static void Throw(Actor Act)
-        {
-            Functions_Movement.StopMovement(Act.compMove);
+        {   //put actor into throw state
             Act.carrying = false;
-            
-            //put actor into throw state
             Act.state = ActorState.Throw;
             Act.stateLocked = true;
             Act.lockTotal = 10;
@@ -412,7 +409,11 @@ namespace DungeonRun
 
                     if (Actor.state == ActorState.Interact)
                     {
-                        if(Actor.heldObj != null) { Throw(Actor); }
+                        if(Actor.heldObj != null)
+                        {
+                            Functions_Movement.StopMovement(Actor.compMove);
+                            Throw(Actor);
+                        }
                     }
                     else if (Actor.state == ActorState.Dash)
                     {

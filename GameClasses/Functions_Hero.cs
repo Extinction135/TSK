@@ -56,6 +56,16 @@ namespace DungeonRun
                     {   //if heroRec collides with room rec, set it as currentRoom, build room
                         if (heroRec.Intersects(Level.rooms[i].rec))
                         {
+
+                            if (Pool.hero.carrying) //destroy anything hero is carrying
+                            {
+                                Pool.hero.carrying = false;
+                                Functions_GameObject.HandleCommon(Pool.hero.heldObj, Direction.None);
+                                Functions_Pool.Release(Pool.hero.heldObj);
+                            }
+
+
+                            //transitions between rooms, build
                             Functions_Level.currentRoom = Level.rooms[i];
                             Functions_Room.BuildRoom(Level.rooms[i]);
                             Level.rooms[i].visited = true;
@@ -93,23 +103,12 @@ namespace DungeonRun
                         if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
                         {   //set open/bombed doors to blocking or non-blocking
                             Pool.roomObjPool[i].compCollision.blocking = true; //set door blocking
-
                             //compare hero to door positions, unblock door if hero is close enough
                             if (Math.Abs(Pool.hero.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
                             {   //compare hero to door sprite positions, unblock door if hero is close enough
                                 if (Math.Abs(Pool.hero.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
                                 { Pool.roomObjPool[i].compCollision.blocking = false; }
                             }
-
-                            /*
-                            //do this for hero's pet as well
-                            if (Math.Abs(Pool.herosPet.compSprite.position.X - Pool.roomObjPool[i].compSprite.position.X) < 18)
-                            {
-                                if (Math.Abs(Pool.herosPet.compSprite.position.Y - Pool.roomObjPool[i].compSprite.position.Y) < 18)
-                                { Pool.roomObjPool[i].compCollision.blocking = false; }
-                            }
-                            */
-
                         }
                     }
                 }
