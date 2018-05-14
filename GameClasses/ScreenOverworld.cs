@@ -376,11 +376,13 @@ namespace DungeonRun
                         hero.state = ActorState.Idle;
                         hero.direction = Direction.Down;
                         currentLocation = targetLocation;
-                        Assets.Play(Assets.sfxTextLetter);
+                        
                         //spawn attention particle at hero's feet
                         Functions_Particle.Spawn(ObjType.Particle_Attention,
                             hero.compSprite.position.X,
                             hero.compSprite.position.Y + 6);
+                        //play arrival sound fx
+                        Assets.Play(Assets.sfxMapLocation);
                     }
                 }
 

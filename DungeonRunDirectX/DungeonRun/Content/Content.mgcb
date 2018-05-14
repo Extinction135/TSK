@@ -491,3 +491,9 @@
 /processorParam:Quality=Best
 /build:SoundEnterDungeon.wav
 
+#begin SoundMapLocation.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundMapLocation.wav
+

@@ -133,6 +133,7 @@ namespace DungeonRun
         public static SoundEffectInstance sfxGrassWalk;
 
         public static SoundEffectInstance sfxEnterDungeon;
+        public static SoundEffectInstance sfxMapLocation;
 
         #endregion
 
@@ -330,6 +331,9 @@ namespace DungeonRun
             //
             SoundEffect enterDungSrc = content.Load<SoundEffect>(@"SoundEnterDungeon");
             sfxEnterDungeon = enterDungSrc.CreateInstance();
+            SoundEffect mapLocationSrc = content.Load<SoundEffect>(@"SoundMapLocation");
+            sfxMapLocation = mapLocationSrc.CreateInstance();
+            //
 
             #endregion
 

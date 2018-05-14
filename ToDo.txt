@@ -174,11 +174,16 @@ TODAY:
 
 
 
-
 Overworld++
 
-fixed overworld screen bug where hero was duplicated 
-and drawn (without input) at 0,0.
+added SoundMapLocation to project, which is the location sound 
+from SNES supa mario world's overworld, which is what partially
+inspired DungeonRun's overworld (the other inspiration being
+Chrono Trigger). implemented in overworld screen and playtested,
+sounds 'better', but it's still not quite right. it may be the
+combination of the harsh dash sound against the cute location boink.
+we may need to use a softer dash here, which would help to 
+audibly separate the ingame world from the overworld.
 
 
 
@@ -187,9 +192,6 @@ and drawn (without input) at 0,0.
 
 
 
-
-
-* instead of current location arrival sound, use the super mario world location sound
 
 
 * when we first open the inventory screen, the bombs & arrows amount display is created at 0,0
