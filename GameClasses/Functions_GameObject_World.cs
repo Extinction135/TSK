@@ -90,6 +90,13 @@ namespace DungeonRun
                     Tree.compSprite.position.X + 2,
                     Tree.compSprite.position.Y - 4, true);
             }
+            else
+            {   //pop debris
+                Functions_Particle.Spawn_Explosion(
+                    ObjType.Particle_Debris,
+                    Tree.compSprite.position.X + 2,
+                    Tree.compSprite.position.Y + 4, true);
+            }
         }
 
     }

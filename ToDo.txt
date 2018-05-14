@@ -173,25 +173,17 @@ TODAY:
 
 
 
-Interactions++
 
-upgraded ground fire interactions to trigger barrels.
-fires can now spread to and from barrels, since barrels
-create explosions which create ground fires.
+Burnt Tree ++
 
-
-
+improved BlowUpTree() to create debris for burnt trees that
+are exploded. the visual result VASTLY improves blowing up
+burnt trees, as before they just switched without any decoration.
 
 
 
 
 
-
-* blowing up a tree (bushy or burnt) should create debris.
-
-
-
-stuffing building objects into editor + levels would be really easy to do.
 
 
 
