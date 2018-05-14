@@ -585,6 +585,8 @@ namespace DungeonRun
             meterPieces[0].currentFrame.X = 4*2;
             meterPieces[10].currentFrame.X = 4*2;
             meterPieces[10].flipHorizontally = true;
+            //fix the 1 pixel offset
+            meterPieces[10].position.X -= 1;
 
             #endregion
 

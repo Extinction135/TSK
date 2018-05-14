@@ -170,39 +170,17 @@ TODAY:
 
 
 
+Visual Improvements
 
-
-
-
-
-
-LightWorld / Field Music
-
-upgraded all music to be either 22k or 44k stereo.
-added music MusicLightWorld to projects.
-updated assets to load light world music.
-updated music functions to play light world music.
-updated level functions to play light world music
-for all field levels. later on, this will check a 
-level.lightWorld boolean, and play the correct
-dark world music (which we have ready).
-
-
-
-
-
-
-
-
-
-
-
-
-the magic meter tail sprite needs to go 1 pixel left
+the magic meter tail sprite needs to go 1 pixel left. done.
 
 the scroll background for the map needs to have 1 additional
 height in size, so it aligns with the inventory screen behind it.
 this will also center the map rooms to the bkg scroll.
+
+
+
+
 
 
 ran into a bug where the boomerang wasn't able to throw.

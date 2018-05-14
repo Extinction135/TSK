@@ -42,11 +42,13 @@ namespace DungeonRun
             Assets.Play(Assets.sfxMapOpen);
 
             //create scroll instance
-            scroll = new Scroll(new Vector2(16 * 12, 16 * 4), 15, 14);
+            scroll = new Scroll(
+                new Vector2(16 * 12, 16 * 4 - 8), 
+                15, 16);
             scroll.displayState = DisplayState.Opening;
             scroll.title.text = "Dungeon Map";
 
-            int verticalOffset = 16; //how far map is pushed up/down from screen center
+            int verticalOffset = 16; //how far map is pushed down from screen center
 
             //create rooms and doors lists
             rooms = new List<Room>();
