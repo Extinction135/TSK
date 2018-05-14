@@ -34,7 +34,7 @@ namespace DungeonRun
             //create labels
             labels = new List<ComponentText>();
             labels.Add(new ComponentText(Assets.font, "ITEMS (X)", 
-                new Vector2(0,0), Assets.colorScheme.textDark));
+                new Vector2(0, 0), Assets.colorScheme.textDark));
             labels.Add(new ComponentText(Assets.font, "equipment",
                 new Vector2(0, 0), Assets.colorScheme.textDark));
             //create menuitems
@@ -46,8 +46,8 @@ namespace DungeonRun
                 menuItems.Add(mi);
             }
             //create amount displays
-            bombsDisplay = new ComponentAmountDisplay(0, 0, 0);
-            arrowsDisplay = new ComponentAmountDisplay(0, 0, 0);
+            bombsDisplay = new ComponentAmountDisplay(0, 4096, 4096);
+            arrowsDisplay = new ComponentAmountDisplay(0, 4096, 4096);
         }
 
         public override void Reset(int X, int Y)

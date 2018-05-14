@@ -174,16 +174,13 @@ TODAY:
 
 
 
-Overworld++
+Inventory Screen ++
 
-added SoundMapLocation to project, which is the location sound 
-from SNES supa mario world's overworld, which is what partially
-inspired DungeonRun's overworld (the other inspiration being
-Chrono Trigger). implemented in overworld screen and playtested,
-sounds 'better', but it's still not quite right. it may be the
-combination of the harsh dash sound against the cute location boink.
-we may need to use a softer dash here, which would help to 
-audibly separate the ingame world from the overworld.
+when we first open the inventory screen, the bombs & arrows 
+amount display is created at 0,0. and if hero doesn't have
+the bow, this amount display just sits at 0,0. so upon creation
+we simply set both amount displays (arrows and bombs) to 4096, 4096.
+create them way off screen, then place them on screen when needed.
 
 
 
@@ -191,11 +188,6 @@ audibly separate the ingame world from the overworld.
 
 
 
-
-
-
-* when we first open the inventory screen, the bombs & arrows amount display is created at 0,0
-- move it to 4096, 4096
 
 
 
