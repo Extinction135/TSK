@@ -503,3 +503,9 @@
 /processorParam:Quality=Best
 /build:SoundDragObject.wav
 
+#begin MusicLightWorld.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:MusicLightWorld.ogg
+

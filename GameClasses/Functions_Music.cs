@@ -81,6 +81,8 @@ namespace DungeonRun
                         //
                         else if (trackToLoad == Music.Title)
                         { currentMusic = Assets.musicTitle; Assets.musicDrums.Stop(); }
+                        else if (trackToLoad == Music.LightWorld)
+                        { currentMusic = Assets.musicLightWorld; Assets.musicDrums.Play(); }
                         else if (trackToLoad == Music.Boss) 
                         { currentMusic = Assets.musicBoss; } //drums already playing
 
@@ -89,6 +91,7 @@ namespace DungeonRun
                         if (currentMusic != Assets.musicDungeonB) { Assets.musicDungeonB.Stop(); }
                         if (currentMusic != Assets.musicDungeonC) { Assets.musicDungeonC.Stop(); }
                         if (currentMusic != Assets.musicTitle) { Assets.musicTitle.Stop(); }
+                        if (currentMusic != Assets.musicLightWorld) { Assets.musicLightWorld.Stop(); }
                         if (currentMusic != Assets.musicBoss) { Assets.musicBoss.Stop(); }
 
                         //play the music

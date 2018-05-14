@@ -14,6 +14,7 @@ Gif Capture process:
 	test in browser to ensure proper fps
 adding music:
 	files are saved as .ogg and added to content pipeline, built on high quality.
+	keep these files stereo, but at 22k.
 adding sound effects:
 	sound effects should be compressed down to 22K sample rate, mono, 16bit
 VS shortcuts
@@ -174,29 +175,17 @@ TODAY:
 
 
 
-Rooms++
 
-issue with key room: the ice conveyor belt room.
-the wall statues can shoot arrows that trigger the lever,
-rendering the room super easy to beat. fixed.
-various room improvements and tweaks.
-some code cleanup.
+LightWorld / Field Music
 
-Editor++ 
-
-fixed a super annoying issue with editor: we set hero
-to have everything while in dev mode, meaning he has the
-dungeon map, while in editor mode. when we load a room,
-the room building routine checks to see if hero has the
-map, and if he does the room builds an empty chest instead
-of a key chest (assuming it's living in a dungeon, when
-it isn't). this means the key room loads into editor with
-an empty chest, instead of a key chest. it's easy to not
-notice it, and then save the roomData xml, which means in
-game that room has an empty chest and the player can't get
-the key, which means they can't beat the boss / dungeon.
-fixing this was super easy: when room editor loads up,
-we just set Level.map to false. that's it.
+upgraded all music to be either 22k or 44k stereo.
+added music MusicLightWorld to projects.
+updated assets to load light world music.
+updated music functions to play light world music.
+updated level functions to play light world music
+for all field levels. later on, this will check a 
+level.lightWorld boolean, and play the correct
+dark world music (which we have ready).
 
 
 
@@ -205,7 +194,9 @@ we just set Level.map to false. that's it.
 
 
 
-add lightworld field level music.
+
+
+
 
 the magic meter tail sprite needs to go 1 pixel left
 

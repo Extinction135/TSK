@@ -97,11 +97,13 @@ namespace DungeonRun
 
             else if (Level.ID == LevelID.Colliseum)
             {
+                Functions_Music.PlayMusic(Music.LightWorld);
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Colliseum);
                 Level.rooms.Add(field);
             }
             else if (Level.ID == LevelID.Forest_Entrance)
             {
+                Functions_Music.PlayMusic(Music.LightWorld);
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestEntrance);
                 Level.rooms.Add(field);
             }
