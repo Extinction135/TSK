@@ -29,7 +29,7 @@ namespace DungeonRun
         public static Boolean DrawWatermark = false; //top right link (for capturing purposes)
 
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
-        public static Boolean PlayMusic = false; //turns music on/off
+        public static Boolean PlayMusic = true; //turns music on/off
         public static Boolean PlaySoundFX = true; //turns soundfx on/off
         public static Boolean SpawnMobs = true; //toggles the spawning of lesser enemies (not bosses)
         public static Boolean ProcessAI = true; //apply AI input to enemies / actors

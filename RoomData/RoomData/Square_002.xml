@@ -3,52 +3,52 @@
   <type>Square</type>
   <objs>
     <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
+      <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
-      <posX>24</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>152</posX>
+      <posX>56</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pot</type>
+      <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>152</posY>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pot</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_Pot</type>
       <direction>Down</direction>
       <posX>24</posX>
-      <posY>88</posY>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>

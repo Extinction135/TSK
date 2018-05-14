@@ -169,25 +169,57 @@ TODAY:
 
 
 
-Carrying Objs Between Rooms
+DungeonRooms++
 
-currently, hero can pickup and carry some objects, like pots and bushes.
-also, hero can carry these objects from one room to another.
-however, the roomObjs change between rooms, and the heldObj is just a
-reference, so it gets changed as well. this leads to a state where
-link can walk into a new room, and the pot he's carrying can become
-any object in that new room, like a blocking black block, for example.
-this is buggy and unwanted behavior.
+created Row006, which combines switches with blocks with switchBlocks.
+my naming conventions are failing me. but the rooms fun.
 
-now when hero transitions between rooms, the heldObj is destroyed,
-via a call to HandleCommon(). so, hero will get whatever loot the
-object might spawn upon destruction, prior to it becoming 'corrupted'
-by the changed roomObj pool. hero is also released from carry state.
+created Column006, which teaches player they can use dungeon
+statues (or barrels) to activate the switch in the middle of the room.
+what's cool about this room is that the conveyor belts both
+point to the switch, and will move the dungeon statues onto
+the switch, opening the doors - so they're super useful.
 
-playtested, working as expected.
+created Row007, which resembles an engine - moving parts
+in a stuttered rhythm going around blocks that alternate
+up and down, like cylinder heads. this is a switch with
+moveable block puzzle, just decorated to be distracting.
+
+created Column007, which requires the player to move
+one of two light blocks to the switch in the center
+of the room. however, this is done on 'platforms',
+which are areas of walkable ground surrounded by pits.
+so the hero can fall in, the blocks can fall in, etc..
+*this room can be put into a state that is unbeatable,
+if hero pushes all the light blocks into the pits.
+later on, when we have the cane, we could create a block
+on the switch to solve the puzzle.. and we'd have 
+the magic mirror to warp us to the dungeon exit.
+so it's fine.
+
+fixed a minor problem with Square002.
+improved the visuals on Square009.
+recompiled roomData. playtested game. fun as hell.
+oh btw, you can push blocks diagonally. i found that
+out by trying it, and it just works.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+enemies should not fall into pits unless they are in a hit state.
 
 
 
