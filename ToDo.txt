@@ -169,58 +169,39 @@ TODAY:
 
 
 
-DungeonRooms++
-
-created Row006, which combines switches with blocks with switchBlocks.
-my naming conventions are failing me. but the rooms fun.
-
-created Column006, which teaches player they can use dungeon
-statues (or barrels) to activate the switch in the middle of the room.
-what's cool about this room is that the conveyor belts both
-point to the switch, and will move the dungeon statues onto
-the switch, opening the doors - so they're super useful.
-
-created Row007, which resembles an engine - moving parts
-in a stuttered rhythm going around blocks that alternate
-up and down, like cylinder heads. this is a switch with
-moveable block puzzle, just decorated to be distracting.
-
-created Column007, which requires the player to move
-one of two light blocks to the switch in the center
-of the room. however, this is done on 'platforms',
-which are areas of walkable ground surrounded by pits.
-so the hero can fall in, the blocks can fall in, etc..
-*this room can be put into a state that is unbeatable,
-if hero pushes all the light blocks into the pits.
-later on, when we have the cane, we could create a block
-on the switch to solve the puzzle.. and we'd have 
-the magic mirror to warp us to the dungeon exit.
-so it's fine.
-
-fixed a minor problem with Square002.
-improved the visuals on Square009.
-recompiled roomData. playtested game. fun as hell.
-oh btw, you can push blocks diagonally. i found that
-out by trying it, and it just works.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+Enemies & Pits ++
 
 enemies should not fall into pits unless they are in a hit state.
 
+test that enemies cant walk into pits. passed.
+test that striking enemies pushes them into pits. oh yeah.
+test that hero can easily walk into pits. yup.
+test that hero isn't pulled into pitTraps if he's on the edge. eh..
+there were some complications here..
+
+we were setting the pit's lifetime to 100 as a secret
+signal to the following code that the pit was created
+this frame by an interaction with the pit trap obj.
+this was clever clever, but not necessary, as the 
+better solution is simply to return from the method
+after hero interacts with pit trap, instead of continuing
+to evaluate the proceeding code, which incorrectly
+represents the pit obj with the pitTrap obj's hitBox.
+this causes the known issue where the hero can't escape
+being pulled into a pit trap, which feels cheap.
+
+lots of playtesting.
+
+if link dies in the dungeon, he shows up on the overworld
+screen still in his sitting / dead animation. but as soon
+as the player presses a direction or A, link stands back
+up and everything's back to business. awesome.
+that happens because we're using Pool.hero on overworld
+screen, instead of creating an instance like we were
+before. it's simply the last state the hero was in.
 
 
 
@@ -228,7 +209,41 @@ enemies should not fall into pits unless they are in a hit state.
 
 
 
-need more row + column room designs, using everything we have so far.
+
+
+
+issue with key room: the ice conveyor belt room.
+the wall statues can shoot arrows that trigger the lever,
+rendering the level super easy to beat.
+
+add lightworld field level music.
+
+the magic meter tail sprite needs to go 1 pixel left
+
+the scroll background for the map needs to have 1 additional
+height in size, so it aligns with the inventory screen behind it.
+this will also center the map rooms to the bkg scroll.
+
+
+ran into a bug where the boomerang wasn't able to throw.
+something turned the boomerang in play boolean true,
+and the false state was never hit. check that code out closer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

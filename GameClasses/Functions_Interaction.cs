@@ -125,7 +125,11 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.Dungeon_PitTrap)
                 {   //if hero collides with a PitTrapReady, it starts to open
                     Functions_GameObject.SetType(Obj, ObjType.Dungeon_Pit);
+
+
+                    //clever clever
                     Obj.lifetime = 100; //signals that this is a new Trap
+
                     Assets.Play(Assets.sfxShatter); //play collapse sound
                     Functions_Particle.Spawn(ObjType.Particle_Attention,
                         Obj.compSprite.position.X,
@@ -143,6 +147,9 @@ namespace DungeonRun
                         Obj.compSprite.position.X,
                         Obj.compSprite.position.Y,
                         Direction.Down);
+                    return; //required
+                    //otherwise code below will evaluate this obj as a pitTrap
+                    //and will lock hero into being pulled into pit, no recourse
                 }
 
                 #endregion
@@ -273,78 +280,88 @@ namespace DungeonRun
                 {   //actors (on ground) fall into pits
                     if (Actor.compMove.grounded)
                     {
-                        if(Obj.lifetime == 100)
-                        {   //Pit was created THIS frame, earlier from an interaction with hero
-                            //so for this frame, ignore this interaction with what is likely the hero
+
+                        /*
+                        if (Obj.lifetime == 100) //this is a special case exit state
+                        {   //Pit was created THIS frame, from a PitTrap obj..
+                            //
+                            //so for this 1st frame, ignore all interaction
                             Obj.lifetime = 0;
                             return;
                         }
+                        */
 
-
-                        #region Drop any held obj
-
-                        if(Actor.carrying)
-                        {   //toss whatever actor might be carrying
-                            Functions_Actor.Throw(Actor);
-                        }
-
-                        #endregion
-
-
-                        //set actor's state
-                        //dead actors simply stay dead as they fall into a pit
-                        //else actors are set into a hit state as they fall
-                        // **we actually only need to do this once, instead of every frame**
-                        if (Actor.state != ActorState.Dead) { Actor.state = ActorState.Hit; }
-                        Actor.stateLocked = true;
-                        Actor.lockCounter = 0;
-                        Actor.lockTotal = 45;
-                        Actor.compMove.speed = 0.0f;
-
-
-                        #region Continuous collision (each frame) - ALL ACTORS
-
-                        //gradually pull actor into pit's center, manually update the actor's position
-                        Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
-
-                        //if actor is near to pit center, begin/continue falling state
-                        if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
+                        //if an actor wasn't hit into the pit, push the actor away
+                        if (Actor != Pool.hero & Actor.state != ActorState.Hit)
                         {
-                            if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
-                            {   //begin actor falling state
-                                if (Actor.compSprite.scale == 1.0f) { Assets.Play(Assets.sfxActorFall); }
-                                //continue falling state, scaling actor down
-                                Actor.compSprite.scale -= 0.03f;
-                            }
+                            //push actor away from pit
+                            Functions_Movement.Push(Actor.compMove,
+                                Functions_Direction.GetOppositeCardinal(
+                                    Actor.compMove.position,
+                                    Obj.compSprite.position), 
+                                3.0f);
+
                         }
+                        else//pull actor into pit
+                        {   //this is hero, or any enemy in hit state
+                            if (Actor.carrying) //toss whatever actor might be carrying
+                            { Functions_Actor.Throw(Actor); }
 
-                        #endregion
+                            //set actor's state
+                            //dead actors simply stay dead as they fall into a pit
+                            //else actors are set into a hit state as they fall
+                            // **we actually only need to do this once, instead of every frame**
+                            if (Actor.state != ActorState.Dead) { Actor.state = ActorState.Hit; }
+                            Actor.stateLocked = true;
+                            Actor.lockCounter = 0;
+                            Actor.lockTotal = 45;
+                            Actor.compMove.speed = 0.0f;
 
 
-                        #region End State of actor -> pit collision - ALL ACTORS
+                            #region Continuous collision (each frame) - ALL ACTORS
 
-                        if (Actor.compSprite.scale < 0.8f)
-                        {   //actor has reached scale, fallen into pit completely
-                            Functions_GameObject_Dungeon.PlayPitFx(Obj);
-                            if (Actor == Pool.hero)
-                            {   //send hero back to last door he passed thru
-                                Assets.Play(Assets.sfxActorLand); //play actor land sfx
-                                Functions_Hero.SpawnInCurrentRoom();
-                                //direct player's attention to hero's respawn pos
-                                Functions_Particle.Spawn(
-                                    ObjType.Particle_Attention,
-                                    Functions_Level.currentRoom.spawnPos.X,
-                                    Functions_Level.currentRoom.spawnPos.Y);
+                            //gradually pull actor into pit's center, manually update the actor's position
+                            Actor.compMove.magnitude = (Obj.compSprite.position - Actor.compSprite.position) * 0.25f;
+
+                            //if actor is near to pit center, begin/continue falling state
+                            if (Math.Abs(Actor.compSprite.position.X - Obj.compSprite.position.X) < 2)
+                            {
+                                if (Math.Abs(Actor.compSprite.position.Y - Obj.compSprite.position.Y) < 2)
+                                {   //begin actor falling state
+                                    if (Actor.compSprite.scale == 1.0f) { Assets.Play(Assets.sfxActorFall); }
+                                    //continue falling state, scaling actor down
+                                    Actor.compSprite.scale -= 0.03f;
+                                }
                             }
-                            else
-                            {   //handle enemy pit death (no loot, insta-death)
-                                Assets.Play(Actor.sfx.kill); //play actor death sfx
-                                Functions_Pool.Release(Actor); //release this actor back to pool
+
+                            #endregion
+
+
+                            #region End State of actor -> pit collision - ALL ACTORS
+
+                            if (Actor.compSprite.scale < 0.8f)
+                            {   //actor has reached scale, fallen into pit completely
+                                Functions_GameObject_Dungeon.PlayPitFx(Obj);
+                                if (Actor == Pool.hero)
+                                {   //send hero back to last door he passed thru
+                                    Assets.Play(Assets.sfxActorLand); //play actor land sfx
+                                    Functions_Hero.SpawnInCurrentRoom();
+                                    //direct player's attention to hero's respawn pos
+                                    Functions_Particle.Spawn(
+                                        ObjType.Particle_Attention,
+                                        Functions_Level.currentRoom.spawnPos.X,
+                                        Functions_Level.currentRoom.spawnPos.Y);
+                                }
+                                else
+                                {   //handle enemy pit death (no loot, insta-death)
+                                    Assets.Play(Actor.sfx.kill); //play actor death sfx
+                                    Functions_Pool.Release(Actor); //release this actor back to pool
+                                }
                             }
+
+                            #endregion
+
                         }
-
-                        #endregion
-
                     }
                 }
 
@@ -786,17 +803,7 @@ namespace DungeonRun
             #region Pits
 
             else if (RoomObj.type == ObjType.Dungeon_Pit)
-            {
-                /*
-                //check to see if we should ground any thrown pot projectile
-                if (Object.type == ObjType.ProjectilePot)
-                {   //if this is the last frame of the projectile pot, ground it
-                    if (Object.lifeCounter > Object.lifetime - 5) //dont let it die
-                    { Object.compMove.grounded = true; Object.lifeCounter = 3; }
-                }
-                */
-
-                //drag any object into the pit
+            {   //drag any object into the pit
                 Functions_GameObject_Dungeon.DragIntoPit(Object, RoomObj);
             }
 
