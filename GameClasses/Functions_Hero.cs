@@ -161,11 +161,8 @@ namespace DungeonRun
 
         public static void PushGrabbedObj()
         {
-
             if (Pool.hero.state == ActorState.Move)
             {
-
-
                 //place interaction rec, check that it still touches grabbedObj
                 SetInteractionRec();
 
@@ -193,7 +190,6 @@ namespace DungeonRun
                 //that could cause a big problem, lol
                 //if (Actor.grabbedObj != null) { }
             }
-
         }
 
 

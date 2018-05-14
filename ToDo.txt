@@ -175,42 +175,11 @@ TODAY:
 
 
 
+Tables++
+
+improved stone tables hitBox to make pushing it look better.
 
 
-
-
-
-Push / Pull ++
-
-now hero can drag tables, bookcases, and shelves.
-
-made interaction rec a point instead of a rectangle, making
-it MUCH more accurate when checking against roomObjs. this also
-reduces the chances of interacting with two objects at once. 
-this fixes a problem where hero could pickup two objects at once.
-
-added SoundDragObject to projects.
-linked up to the dragging routine, we now have drag
-sound fx working in game.
-
-added animFrames for pushing and pulling.
-pushing works perfectly. dont really like pulling tho.
-we'll use pulling for big levers and special objs exclusively.
-pushing will be the action that can be used on normal objs.
-
-improved push routines to check that pushed object is nearby
-hero - otherwise hero continues to push obj after he's blocked.
-which looks like he's using the force to push the object. lul.
-lots of playtesting. working very well.
-
-
-
-
-
-
-
-
-stone tables hitBox needs to go down 2 pixels, then shorten 2 pixels.
 
 
 

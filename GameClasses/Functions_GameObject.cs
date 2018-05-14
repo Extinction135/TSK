@@ -879,8 +879,8 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Wor_TableStone)
             {
-                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -7;
-                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 14;
+                Obj.compCollision.offsetX = -7; Obj.compCollision.offsetY = -6;
+                Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.World_TableStone;
