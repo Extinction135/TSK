@@ -1060,6 +1060,10 @@ namespace DungeonRun
         public Boolean carrying = false; //is actor carrying an obj?
         public GameObject heldObj = null; //obj actor might be carrying
 
+        //fields used in grab / push / pull
+        public Boolean grabbing = false;
+        public GameObject grabbedObj = null;
+
         //public static Boolean swimming = false; //is actor in water?
 
 

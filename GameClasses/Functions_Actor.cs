@@ -302,6 +302,20 @@ namespace DungeonRun
 
 
 
+        public static void Grab(GameObject Obj, Actor Act)
+        {
+            Act.grabbing = true;
+            Act.grabbedObj = Obj;
+            //Assets.Play(Assets.sfxActorLand); //temp sfx
+
+            //put actor into grab state
+            //Act.state = ActorState.Pickup;
+            //Act.stateLocked = true;
+            //Act.lockTotal = 10;
+            //SetAnimationGroup(Act);
+        }
+        
+
 
 
 
@@ -426,6 +440,38 @@ namespace DungeonRun
                     {
                         //nothing
                     }
+
+                    #endregion
+
+                }
+                else if(Actor.grabbing)
+                {
+
+                    #region Grabbing State
+
+                    //right now, only hero can grab / push / pull objects
+
+                    if(Actor == Pool.hero)
+                    {   //make sure A button is down and hero is in grab state
+                        if (Functions_Input.IsButtonDown(Buttons.A))
+                        {   
+                            //alter hero's friction - slow
+                            Actor.compMove.friction = World.frictionUse;
+
+                            //push grabbed obj in hero's move direction
+                            Functions_Movement.Push(
+                                Actor.grabbedObj.compMove,
+                                Actor.compMove.direction,
+                                0.08f);
+                        }
+                        else
+                        {   //release the grabbed object
+                            Actor.grabbing = false;
+                            Actor.grabbedObj = null;
+                        }
+                    }
+
+
 
                     #endregion
 

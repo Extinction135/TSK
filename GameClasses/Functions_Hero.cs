@@ -275,7 +275,19 @@ namespace DungeonRun
                 || Obj.type == ObjType.Wor_Pot
                 || Obj.type == ObjType.Wor_Bush)
             {
-                Functions_Actor.Pickup(Obj, Pool.hero); ////***entry <<<<
+                Functions_Actor.Pickup(Obj, Pool.hero);
+            }
+
+            #endregion
+
+
+            #region Push-able and Pull-able Objects
+
+            else if (Obj.type == ObjType.Dungeon_BlockLight
+                || Obj.type == ObjType.Dungeon_Barrel
+                || Obj.type == ObjType.Dungeon_Statue)
+            {
+                Functions_Actor.Grab(Obj, Pool.hero); ///<<<<<<<<
             }
 
             #endregion
@@ -368,6 +380,7 @@ namespace DungeonRun
             //heroShadow.position.X = Pool.hero.compSprite.position.X;
             //heroShadow.position.Y = Pool.hero.compSprite.position.Y + 5;
             //Functions_Component.SetZdepth(heroShadow);
+
             //check the heroRec's collisions with Level rooms
             CheckRoomCollision();
 
