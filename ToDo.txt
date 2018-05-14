@@ -172,49 +172,38 @@ TODAY:
 
 
 
-Enemies & Pits ++
-
-enemies should not fall into pits unless they are in a hit state.
-
-test that enemies cant walk into pits. passed.
-test that striking enemies pushes them into pits. oh yeah.
-test that hero can easily walk into pits. yup.
-test that hero isn't pulled into pitTraps if he's on the edge. eh..
-there were some complications here..
-
-we were setting the pit's lifetime to 100 as a secret
-signal to the following code that the pit was created
-this frame by an interaction with the pit trap obj.
-this was clever clever, but not necessary, as the 
-better solution is simply to return from the method
-after hero interacts with pit trap, instead of continuing
-to evaluate the proceeding code, which incorrectly
-represents the pit obj with the pitTrap obj's hitBox.
-this causes the known issue where the hero can't escape
-being pulled into a pit trap, which feels cheap.
-
-lots of playtesting.
-
-if link dies in the dungeon, he shows up on the overworld
-screen still in his sitting / dead animation. but as soon
-as the player presses a direction or A, link stands back
-up and everything's back to business. awesome.
-that happens because we're using Pool.hero on overworld
-screen, instead of creating an instance like we were
-before. it's simply the last state the hero was in.
 
 
-
-
-
-
-
-
-
+Rooms++
 
 issue with key room: the ice conveyor belt room.
 the wall statues can shoot arrows that trigger the lever,
-rendering the level super easy to beat.
+rendering the room super easy to beat. fixed.
+various room improvements and tweaks.
+some code cleanup.
+
+Editor++ 
+
+fixed a super annoying issue with editor: we set hero
+to have everything while in dev mode, meaning he has the
+dungeon map, while in editor mode. when we load a room,
+the room building routine checks to see if hero has the
+map, and if he does the room builds an empty chest instead
+of a key chest (assuming it's living in a dungeon, when
+it isn't). this means the key room loads into editor with
+an empty chest, instead of a key chest. it's easy to not
+notice it, and then save the roomData xml, which means in
+game that room has an empty chest and the player can't get
+the key, which means they can't beat the boss / dungeon.
+fixing this was super easy: when room editor loads up,
+we just set Level.map to false. that's it.
+
+
+
+
+
+
+
 
 add lightworld field level music.
 
@@ -233,7 +222,11 @@ and the false state was never hit. check that code out closer.
 
 
 
+new level, with water tiles - so we have a good stage set for
+implementing swimming tmrw.
 
+writing the animFrames for hero swimming is easy to do too.
+so knock it out today.
 
 
 

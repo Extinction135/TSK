@@ -3,280 +3,10 @@
   <type>Key</type>
   <objs>
     <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_TorchUnlit</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>24</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>264</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>280</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
+      <type>Dungeon_ChestKey</type>
       <direction>Down</direction>
       <posX>88</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>248</posX>
       <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>56</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>184</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>120</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SpikesFloorOn</type>
-      <direction>Down</direction>
-      <posX>120</posX>
-      <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_LeverOff</type>
@@ -285,6 +15,324 @@
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>232</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>216</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>200</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>184</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>168</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>72</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_TorchUnlit</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>24</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>24</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>264</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>280</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>56</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>72</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>72</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>248</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>184</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>232</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>200</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>184</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>120</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SpikesFloorOn</type>
+      <direction>Down</direction>
+      <posX>120</posX>
+      <posY>56</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>88</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_SpikesFloorOn</type>
       <direction>Down</direction>
       <posX>280</posX>
@@ -411,10 +459,10 @@
       <posY>152</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_ChestKey</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>88</posY>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>104</posX>
+      <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpikesFloorOn</type>
@@ -525,16 +573,16 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
+      <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
-      <posX>168</posX>
-      <posY>136</posY>
+      <posX>120</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_PitTrap</type>
-      <direction>Left</direction>
-      <posX>72</posX>
-      <posY>72</posY>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>40</posX>
+      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -549,20 +597,20 @@
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Up</direction>
       <posX>264</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Up</direction>
       <posX>264</posX>
       <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Up</direction>
       <posX>264</posX>
       <posY>104</posY>
     </ObjXmlData>
@@ -585,16 +633,16 @@
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>40</posY>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>40</posX>
+      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>40</posY>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Up</direction>
+      <posX>40</posX>
+      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -603,10 +651,10 @@
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>40</posY>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>56</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -621,46 +669,34 @@
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Left</direction>
+      <posX>72</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>232</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_ConveyorBeltOn</type>
+      <direction>Right</direction>
+      <posX>248</posX>
+      <posY>136</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
       <direction>Down</direction>
       <posX>184</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>168</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>40</posX>
       <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_IceTile</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>88</posY>
+      <posX>168</posX>
+      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -672,12 +708,6 @@
       <type>Dungeon_ConveyorBeltOn</type>
       <direction>Down</direction>
       <posX>136</posX>
-      <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_ConveyorBeltOn</type>
-      <direction>Down</direction>
-      <posX>136</posX>
       <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -705,34 +735,10 @@
       <posY>40</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>40</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>248</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
       <direction>Right</direction>
       <posX>120</posX>
       <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>56</posX>
-      <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -751,18 +757,6 @@
       <direction>Right</direction>
       <posX>216</posX>
       <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>72</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_ConveyorBeltOn</type>
@@ -805,114 +799,6 @@
       <direction>Left</direction>
       <posX>88</posX>
       <posY>136</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_ConveyorBeltOn</type>
-      <direction>Left</direction>
-      <posX>120</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_ConveyorBeltOn</type>
-      <direction>Right</direction>
-      <posX>184</posX>
-      <posY>72</posY>
     </ObjXmlData>
   </objs>
 </RoomXmlData>

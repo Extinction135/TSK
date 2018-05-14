@@ -3,6 +3,12 @@
   <type>Key</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_ChestKey</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_TorchUnlit</type>
       <direction>Down</direction>
       <posX>136</posX>
@@ -13,12 +19,6 @@
       <direction>Down</direction>
       <posX>168</posX>
       <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_ChestEmpty</type>
-      <direction>Down</direction>
-      <posX>152</posX>
-      <posY>88</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_Pit</type>

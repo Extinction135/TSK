@@ -125,11 +125,6 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.Dungeon_PitTrap)
                 {   //if hero collides with a PitTrapReady, it starts to open
                     Functions_GameObject.SetType(Obj, ObjType.Dungeon_Pit);
-
-
-                    //clever clever
-                    Obj.lifetime = 100; //signals that this is a new Trap
-
                     Assets.Play(Assets.sfxShatter); //play collapse sound
                     Functions_Particle.Spawn(ObjType.Particle_Attention,
                         Obj.compSprite.position.X,
@@ -280,17 +275,6 @@ namespace DungeonRun
                 {   //actors (on ground) fall into pits
                     if (Actor.compMove.grounded)
                     {
-
-                        /*
-                        if (Obj.lifetime == 100) //this is a special case exit state
-                        {   //Pit was created THIS frame, from a PitTrap obj..
-                            //
-                            //so for this 1st frame, ignore all interaction
-                            Obj.lifetime = 0;
-                            return;
-                        }
-                        */
-
                         //if an actor wasn't hit into the pit, push the actor away
                         if (Actor != Pool.hero & Actor.state != ActorState.Hit)
                         {
