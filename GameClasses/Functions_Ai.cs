@@ -18,7 +18,8 @@ namespace DungeonRun
         static Vector2 actorPos;
         static int xDistance;
         static int yDistance;
-
+        static int i;
+        static Boolean overlap;
 
 
         public static void SetActorInput()
@@ -148,6 +149,54 @@ namespace DungeonRun
             {
                 if (Functions_Random.Int(0, 2000) > 1997) //occasionally bubbles
                 { Functions_Particle.Spawn(ObjType.Particle_PitBubble, Obj); }
+            }
+
+            else if(Obj.type == ObjType.Dungeon_Switch || Obj.type == ObjType.Dungeon_SwitchDown)
+            {
+                overlap = false; //assume no hit
+
+                //loop over all active actors
+                for (i = 0; i < Pool.actorCount; i++)
+                {   //allow dead actor corpses to activate switches
+                    if (Pool.actorPool[i].active & 
+                        Pool.actorPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                    { overlap = true; }
+                }
+
+                //loop over all active block roomObjs
+                for (i = 0; i < Pool.roomObjCount; i++)
+                {   //only blocking objs can activate switches
+                    if (Pool.roomObjPool[i].active & Pool.roomObjPool[i].compCollision.blocking &
+                        Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                    { overlap = true; }
+                }
+
+                //if any actors/objs overlap switch, openTrap doors
+                if (overlap)
+                {   
+                    Functions_GameObject_Dungeon.OpenTrapDoors();
+                    //bail if we already did this
+                    if (Obj.type == ObjType.Dungeon_SwitchDown) { return; }
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_SwitchDown);
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Assets.Play(Assets.sfxSwitch);
+                }
+                //else close all open doors to trap doors
+                else
+                {   
+                    Functions_GameObject_Dungeon.CloseTrapDoors();
+                    //bail if we already did this
+                    if (Obj.type == ObjType.Dungeon_Switch) { return; }
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_Switch);
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                    Assets.Play(Assets.sfxSwitch);
+                }
             }
 
             #endregion
@@ -302,7 +351,7 @@ namespace DungeonRun
 
             #endregion
 
-
+            
 
         }
 

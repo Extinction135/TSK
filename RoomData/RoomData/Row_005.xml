@@ -3,6 +3,18 @@
   <type>Row</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_Switch</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_BlockLight</type>
+      <direction>Down</direction>
+      <posX>216</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_ConveyorBeltOff</type>
       <direction>Down</direction>
       <posX>296</posX>
@@ -835,114 +847,6 @@
       <direction>Down</direction>
       <posX>120</posX>
       <posY>8</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>72</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>88</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>104</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>72</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>88</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>200</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>216</posX>
-      <posY>104</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_IceTile</type>
-      <direction>Down</direction>
-      <posX>232</posX>
-      <posY>104</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_SpawnMob</type>

@@ -174,10 +174,25 @@ TODAY:
 
 
 
+Switches ++
 
-Tables++
+floor switches in dungeons should only act one way: they require
+a weighted object or actor to activate them. if they don't have
+something resting on them, then the switch should pop back up
+to it's up state and all the doors should shut. only when something
+sits on the switch, activating it, do the trap doors open.
 
-improved stone tables hitBox to make pushing it look better.
+refactored how switches work to meet above requirements.
+
+updated roomData to work with new switches.
+added sweet new column room that will bend peoples
+minds about how to use switches + objs + belts.
+
+what happens when we push an obj into a pit?
+the obj falls into the pit as expected. yay!
+
+sped up splash animation a little bit.
+LOTS of playtesting, trying to break switches + push.
 
 
 
@@ -185,9 +200,7 @@ improved stone tables hitBox to make pushing it look better.
 
 
 
-MONDAY
-- light block interactions with switches (switch must be held down, this changes nature of switch)
-* every room with a switch needs a light block to trigger it.
+
 
 
 

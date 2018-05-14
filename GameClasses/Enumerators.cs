@@ -236,8 +236,10 @@ namespace DungeonRun
         Dungeon_Bumper,
         Dungeon_Flamethrower,
         Dungeon_IceTile,
+
         Dungeon_Switch,
-        Dungeon_SwitchOff,
+        Dungeon_SwitchDown,
+
         Dungeon_SwitchBlockBtn,
         Dungeon_SwitchBlockDown,
         Dungeon_SwitchBlockUp,

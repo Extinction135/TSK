@@ -147,14 +147,6 @@ namespace DungeonRun
 
                 #endregion
 
-
-                #region FloorSwitch
-
-                else if (Obj.type == ObjType.Dungeon_Switch)
-                { Functions_GameObject_Dungeon.ActivateSwitchObject(Obj); }
-
-                #endregion
-
             }
 
             //these objects interact with ALL ACTORS
@@ -407,18 +399,6 @@ namespace DungeonRun
 
                 //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
             }
-
-
-
-
-
-
-
-
-
-
-
-
         }
 
         public static void InteractRoomObj(GameObject RoomObj, GameObject Object)
@@ -663,9 +643,6 @@ namespace DungeonRun
                     #endregion
 
 
-
-                    //what about projectile bushes, pots, skull pots?
-
                     #region Thrown Objects (Bush, Pot)
 
                     else if (Object.type == ObjType.ProjectileBush
@@ -679,9 +656,6 @@ namespace DungeonRun
                     }
                     
                     #endregion
-
-
-
 
 
                     return; //projectile interactions complete
@@ -701,10 +675,8 @@ namespace DungeonRun
             #region Pet / Animals
 
             if (Object.type == ObjType.Pet_Chicken || Object.type == ObjType.Pet_Dog)
-            {   //trigger switches, bounce off bumpers
-                if (RoomObj.type == ObjType.Dungeon_Switch)
-                { Functions_GameObject_Dungeon.ActivateSwitchObject(RoomObj); }
-                else if (RoomObj.type == ObjType.Dungeon_Bumper)
+            {   //bounce off bumpers
+                if (RoomObj.type == ObjType.Dungeon_Bumper)
                 { Functions_GameObject_Dungeon.BounceOffBumper(Object.compMove, RoomObj); }
             }
 
@@ -908,7 +880,6 @@ namespace DungeonRun
 
 
             
-
 
 
         }

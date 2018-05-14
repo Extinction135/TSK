@@ -45,17 +45,6 @@ namespace DungeonRun
             }
         }
 
-        public static void ActivateSwitchObject(GameObject Switch)
-        {   //convert switch off, play switch soundFx
-            Functions_GameObject.SetType(Switch, ObjType.Dungeon_SwitchOff);
-            //grab the player's attention
-            Functions_Particle.Spawn(
-                ObjType.Particle_Attention,
-                Switch.compSprite.position.X,
-                Switch.compSprite.position.Y);
-            CheckForPuzzles(true); //solved room
-        }
-        
         public static void BounceOffBumper(ComponentMovement compMove, GameObject Bumper)
         {
             //handle the bumper animation
@@ -258,19 +247,10 @@ namespace DungeonRun
                     OpenTrapDoors(); //open all the trap doors
                 }
             }
-            else if(Functions_Level.currentRoom.puzzleType == PuzzleType.Switch)
-            {
-                if (solved)
-                {
-                    Assets.Play(Assets.sfxReward); 
-                    OpenTrapDoors(); //open all trap doors
-                }
-            }
         }
 
         public static void OpenTrapDoors()
         {
-            Assets.Play(Assets.sfxSwitch);
             for (i = 0; i < Pool.roomObjCount; i++)
             {   //loop thru all active roomObjects
                 if (Pool.roomObjPool[i].active)
@@ -278,6 +258,24 @@ namespace DungeonRun
                     if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorTrap)
                     {   //display an attention particle where the conversion happened
                         Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorOpen);
+                        Functions_Particle.Spawn(
+                            ObjType.Particle_Attention,
+                            Pool.roomObjPool[i].compSprite.position.X,
+                            Pool.roomObjPool[i].compSprite.position.Y);
+                    }
+                }
+            }
+        }
+
+        public static void CloseTrapDoors()
+        {
+            for (i = 0; i < Pool.roomObjCount; i++)
+            {   //loop thru all active roomObjects
+                if (Pool.roomObjPool[i].active)
+                {   //convert open doors to trap doors
+                    if (Pool.roomObjPool[i].type == ObjType.Dungeon_DoorOpen)
+                    {   //display an attention particle where the conversion happened
+                        Functions_GameObject.SetType(Pool.roomObjPool[i], ObjType.Dungeon_DoorTrap);
                         Functions_Particle.Spawn(
                             ObjType.Particle_Attention,
                             Pool.roomObjPool[i].compSprite.position.X,

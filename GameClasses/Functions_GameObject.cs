@@ -596,7 +596,7 @@ namespace DungeonRun
 
             #region Floor Switches
 
-            else if (Type == ObjType.Dungeon_Switch || Type == ObjType.Dungeon_SwitchOff)
+            else if (Type == ObjType.Dungeon_Switch || Type == ObjType.Dungeon_SwitchDown)
             {
                 Obj.compCollision.offsetX = -4; Obj.compCollision.offsetY = -3;
                 Obj.compCollision.rec.Width = 8; Obj.compCollision.rec.Height = 8;
@@ -607,6 +607,8 @@ namespace DungeonRun
                 if (Type == ObjType.Dungeon_Switch)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSwitchUp; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSwitchDown; }
+                //this makes the switch work
+                Obj.getsAI = true;
             }
 
             #endregion
@@ -1318,8 +1320,8 @@ namespace DungeonRun
             {
                 Obj.compSprite.zOffset = 1024;
                 Obj.group = ObjGroup.Particle;
-                Obj.compAnim.speed = 10; //in frames
-                Obj.lifetime = 10 * 5; //speed * animFrames
+                Obj.compAnim.speed = 7; //in frames
+                Obj.lifetime = 7 * 5; //speed * animFrames
                 Obj.compAnim.loop = false;
                 Obj.compAnim.currentAnimation = AnimationFrames.Particle_Splash;
                 Obj.compSprite.texture = Assets.entitiesSheet;

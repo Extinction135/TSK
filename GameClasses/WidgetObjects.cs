@@ -138,7 +138,7 @@ namespace DungeonRun
             //row 4
             Functions_GameObject.SetType(objList[12], ObjType.Dungeon_Bumper);
             Functions_GameObject.SetType(objList[13], ObjType.Dungeon_Switch);
-            Functions_GameObject.SetType(objList[14], ObjType.Dungeon_SwitchOff);
+            Functions_GameObject.SetType(objList[14], ObjType.Dungeon_SwitchDown);
             Functions_GameObject.SetType(objList[15], ObjType.Dungeon_Flamethrower);
 
             //row 5

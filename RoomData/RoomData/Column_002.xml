@@ -100,7 +100,7 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Down</direction>
+      <direction>Left</direction>
       <posX>104</posX>
       <posY>232</posY>
     </ObjXmlData>
@@ -232,7 +232,7 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Down</direction>
+      <direction>Up</direction>
       <posX>40</posX>
       <posY>56</posY>
     </ObjXmlData>
@@ -241,12 +241,6 @@
       <direction>Down</direction>
       <posX>168</posX>
       <posY>40</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_PitTrap</type>
-      <direction>Left</direction>
-      <posX>8</posX>
-      <posY>248</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_IceTile</type>
@@ -469,12 +463,6 @@
       <direction>Down</direction>
       <posX>168</posX>
       <posY>24</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_PitTrap</type>
-      <direction>Right</direction>
-      <posX>168</posX>
-      <posY>56</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_TorchLit</type>
