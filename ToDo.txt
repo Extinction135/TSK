@@ -174,21 +174,19 @@ TODAY:
 
 
 
-Burnt Tree ++
 
-improved BlowUpTree() to create debris for burnt trees that
-are exploded. the visual result VASTLY improves blowing up
-burnt trees, as before they just switched without any decoration.
+Overworld++
 
-
+fixed overworld screen bug where hero was duplicated 
+and drawn (without input) at 0,0.
 
 
 
 
 
 
-* little bug: when we first show the overworld map, actors all exist at 0,0.
-we should loop over all the actors (except hero), placing them at 4096, 4096 - far off screen.
+
+
 
 
 * instead of current location arrival sound, use the super mario world location sound

@@ -184,11 +184,8 @@ namespace DungeonRun
             #region Setup Locations & Starting Location
 
             //setup accessible levels
-            colliseum.isLevel = true;
             colliseum.ID = LevelID.Colliseum;
-            forestDungeon.isLevel = true;
             forestDungeon.ID = LevelID.Forest_Entrance;
-            
 
             //hero may of exited a dungeon, setup current location based on level id
             if (PlayerData.current.lastLocation == LevelID.Colliseum)
@@ -200,17 +197,17 @@ namespace DungeonRun
 
             //set target to current (no initial target)
             targetLocation = currentLocation;
-            hero = new Actor();
+
+            #endregion
+
+            //setup hero overworld actor
+            hero = Pool.hero;
 
             //teleport hero to current location
             Functions_Movement.Teleport(hero.compMove,
                 currentLocation.compSprite.position.X,
                 currentLocation.compSprite.position.Y - 8);
-            Functions_Component.Align(hero.compMove, hero.compSprite, hero.compCollision);
-
-            #endregion
-
-
+            Functions_Component.Align(hero);
 
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
