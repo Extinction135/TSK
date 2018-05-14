@@ -124,9 +124,12 @@ these rooms turn all their doors into locked doors upon close, similar to puzzle
 
 
 
-Monday
-	- grab, push, pull (light blocks, barrels, dungeon statues)
-	- light block interactions with switches (switch must be held down, so we need a 2nd type of switch)
+
+
+
+
+
+
 
 Tuesday
 	- water tiles + swimming + transitions to/from.
@@ -170,16 +173,11 @@ TODAY:
 
 
 
-Option: Music On/Off
+Interactions++
 
-added menuitem for turning music on/off to options screen.
-the booleans for controlling this have long been on the game,
-i just finally got around to linking them up.
-
-implemented the 'off' state for Flags.PlayMusic.
-playtested / abused the mute audio menuItem. it works.
-
-bug: options screen window reads 'cheats' when it should read 'options'. fixed.
+upgraded ground fire interactions to trigger barrels.
+fires can now spread to and from barrels, since barrels
+create explosions which create ground fires.
 
 
 
@@ -188,11 +186,36 @@ bug: options screen window reads 'cheats' when it should read 'options'. fixed.
 
 
 
-* ground fires should trigger barrels.
+
 * blowing up a tree (bushy or burnt) should create debris.
 
 
 
+stuffing building objects into editor + levels would be really easy to do.
+
+
+
+* little bug: when we first show the overworld map, actors all exist at 0,0.
+we should loop over all the actors (except hero), placing them at 4096, 4096 - far off screen.
+
+
+* instead of current location arrival sound, use the super mario world location sound
+
+
+* when we first open the inventory screen, the bombs & arrows amount display is created at 0,0
+- move it to 4096, 4096
+
+
+
+** lol bug: moving between rooms with an object causes the held obj to change to random 
+roomObj - meaning link can wind up carrying dark blocks, etc.. its hilarious...
+
+
+
+MONDAY
+- grab, push, pull (light blocks, barrels, dungeon statues)
+- light block interactions with switches (switch must be held down, this changes nature of switch)
+* every room with a switch needs a light block to trigger it.
 
 
 

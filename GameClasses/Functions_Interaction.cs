@@ -654,6 +654,10 @@ namespace DungeonRun
                             Functions_GameObject_World.DestroyBush(RoomObj);
                             Assets.Play(Assets.sfxLightFire);
                         }
+                        else if(RoomObj.type == ObjType.Dungeon_Barrel)
+                        {
+                            Functions_GameObject_Dungeon.DestroyBarrel(RoomObj);
+                        }
                     }
 
                     #endregion
