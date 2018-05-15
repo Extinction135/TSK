@@ -170,13 +170,6 @@ TODAY:
 
 
 
-SwimDash++
-
-added wave particle behind actor dashing in water.
-improved dashing in water to push further if actor is
-facing a cardinal direction. a diagonal direction only
-gets a half push, and no wave particle. so in this context,
-the wave particle acts as a confirmation of a cardinal dash.
 
 
 
@@ -184,12 +177,25 @@ the wave particle acts as a confirmation of a cardinal dash.
 
 
 
+Splash and Water Transition ++
 
-when a splash is created, kill actor's movement.
-this will add weight to the splash, plus prevent dashing into water to save distance.
-that feels cheap.
+when a splash is created, stop the actor's movement.
+this will add weight to the splash, 
+plus prevent dashing into water.
+playtested, feels much better.
 
 
+
+
+
+
+need swim death really badly.
+this is the drown anim, with the cycling bob at the end.
+
+
+
+*** improve colliseum level to include water areas
+**** create new dungeon rooms with water tiles added
 
 
 
@@ -207,7 +213,6 @@ x	dash (forward B)
 x	hit
 	dive swim (forward X)
 	dive (no direction X)
-	*interact does nothing*
 	reward
 
 ...

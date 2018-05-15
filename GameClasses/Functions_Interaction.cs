@@ -410,7 +410,11 @@ namespace DungeonRun
                         Functions_Particle.Spawn(ObjType.Particle_Splash,
                             Actor.compSprite.position.X,
                             Actor.compSprite.position.Y);
-                        Actor.createSplash = true; //only create 1 splash
+                        //"1 splash only" - Marko Ramius
+                        Actor.createSplash = true;
+                        //kill the actor's momentum, adding weight to splash
+                        Functions_Movement.StopMovement(Actor.compMove);
+
                     }
                     Actor.swimming = true;
                     Actor.compMove.friction = World.frictionWater;
