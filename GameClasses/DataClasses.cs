@@ -19,7 +19,7 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.71f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
         public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
@@ -1061,7 +1061,7 @@ namespace DungeonRun
 
         //actor fx sprites
         public ComponentSprite feetFX;
-
+        public ComponentAnimation feetAnim;
 
         //fields used in pickup / carry / throw
         public Boolean carrying = false; //is actor carrying an obj?
@@ -1084,12 +1084,13 @@ namespace DungeonRun
             Functions_Movement.Teleport(compMove, 
                 compSprite.position.X, compSprite.position.Y);
             //setup actor fx sprites
+            feetAnim = new ComponentAnimation();
+            feetAnim.currentAnimation = AnimationFrames.ActorFX_GrassyFeet;
             feetFX = new ComponentSprite(
                 Assets.forestLevelSheet,
-                new Vector2(100, 100), 
-                AnimationFrames.ActorFX_GrassyFeet[0], 
-                new Point(16, 16));
-            feetFX.zOffset = 2;
+                new Vector2(100, 100),
+                feetAnim.currentAnimation[0], 
+                new Point(16, 8));
         }
     }
 

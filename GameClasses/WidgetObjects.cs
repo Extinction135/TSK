@@ -161,8 +161,8 @@ namespace DungeonRun
 
             //row 8
             Functions_GameObject.SetType(objList[28], ObjType.Dungeon_PitTrap);
-            Functions_GameObject.SetType(objList[29], ObjType.Dungeon_SwitchBlockUp);
-            Functions_GameObject.SetType(objList[30], ObjType.Dungeon_SwitchBlockDown);
+            Functions_GameObject.SetType(objList[29], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[30], ObjType.Unknown);
             Functions_GameObject.SetType(objList[31], ObjType.Dungeon_LeverOff);
 
             //row 9
@@ -226,16 +226,16 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[11], ObjType.Unknown);
             
             //row 4
-            Functions_GameObject.SetType(objList[12], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[13], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[14], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[15], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[12], ObjType.Unknown); //covered
+            Functions_GameObject.SetType(objList[13], ObjType.Unknown); //covered
+            Functions_GameObject.SetType(objList[14], ObjType.Unknown); //covered
+            Functions_GameObject.SetType(objList[15], ObjType.Wor_Debris);
 
             //row 5
-            Functions_GameObject.SetType(objList[16], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[17], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[18], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[19], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[16], ObjType.Wor_Water);
+            Functions_GameObject.SetType(objList[17], ObjType.Wor_Coastline_Straight);
+            Functions_GameObject.SetType(objList[18], ObjType.Wor_Coastline_Corner_Exterior);
+            Functions_GameObject.SetType(objList[19], ObjType.Wor_Coastline_Corner_Interior);
 
             //row 6
             Functions_GameObject.SetType(objList[20], ObjType.Unknown);

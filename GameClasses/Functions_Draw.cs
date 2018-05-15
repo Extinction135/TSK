@@ -56,8 +56,9 @@ namespace DungeonRun
                 //draw actor feet fx
                 if(Actor.feetFX.visible)
                 {
+                    Functions_Animation.Animate(Actor.feetAnim, Actor.feetFX);
                     Actor.feetFX.position.X = Actor.compSprite.position.X;
-                    Actor.feetFX.position.Y = Actor.compSprite.position.Y;
+                    Actor.feetFX.position.Y = Actor.compSprite.position.Y + 6;
                     Functions_Component.SetZdepth(Actor.feetFX);
                     Draw(Actor.feetFX);
                 }

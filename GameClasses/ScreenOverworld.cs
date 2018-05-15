@@ -227,6 +227,7 @@ namespace DungeonRun
 
             //setup hero overworld actor
             hero = Pool.hero;
+            hero.feetFX.visible = false;
 
             //teleport hero to current location
             Functions_Movement.Teleport(hero.compMove,

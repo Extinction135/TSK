@@ -143,37 +143,45 @@ namespace DungeonRun
 
         #region World Objects
 
-        public static List<Byte4> World_Bush = new List<Byte4> { new Byte4(3, 2, 0, 0) };
-        public static List<Byte4> World_BushStump = new List<Byte4> { new Byte4(4, 2, 0, 0) };
+        public static List<Byte4> World_Bush = new List<Byte4> { new Byte4(3, 5, 0, 0) };
+        public static List<Byte4> World_BushStump = new List<Byte4> { new Byte4(4, 5, 0, 0) };
 
         public static List<Byte4> World_Tree = new List<Byte4> { new Byte4(0, 2, 0, 0) };
         public static List<Byte4> World_TreeStump = new List<Byte4> { new Byte4(1, 2, 0, 0) };
         public static List<Byte4> World_TreeBurnt = new List<Byte4> { new Byte4(2, 2, 0, 0) };
 
         //foilage
-        public static List<Byte4> World_Grass_Tall = new List<Byte4> { new Byte4(5, 0, 0, 0) };
-        public static List<Byte4> World_Grass_Cut = new List<Byte4> { new Byte4(6, 0, 0, 0) };
-        public static List<Byte4> World_Grass_1 = new List<Byte4> { new Byte4(5, 1, 0, 0) };
-        public static List<Byte4> World_Grass_2 = new List<Byte4> { new Byte4(6, 1, 0, 0) };
+        public static List<Byte4> World_Grass_Tall = new List<Byte4> { new Byte4(3, 0, 0, 0) };
+        public static List<Byte4> World_Grass_Short = new List<Byte4> { new Byte4(3, 1, 0, 0) };
+        public static List<Byte4> World_Grass_Minimum = new List<Byte4> { new Byte4(4, 1, 0, 0) };
 
         public static List<Byte4> World_Flowers = new List<Byte4>
         { new Byte4(4, 4, 0, 0), new Byte4(5, 4, 0, 0), new Byte4(6, 4, 0, 0), new Byte4(7, 4, 0, 0) };
 
-
         //debris
-        public static List<Byte4> World_Debris1 = new List<Byte4> { new Byte4(3, 3, 0, 0) };
-        public static List<Byte4> World_Debris2 = new List<Byte4> { new Byte4(4, 3, 0, 0) };
+        public static List<Byte4> World_Debris1 = new List<Byte4> { new Byte4(6, 5, 0, 0) };
+        public static List<Byte4> World_Debris2 = new List<Byte4> { new Byte4(7, 5, 0, 0) };
 
         //interior building objs
-        public static List<Byte4> World_TableStone = new List<Byte4> { new Byte4(5, 6, 0, 0) };
-        public static List<Byte4> World_Bookcase = new List<Byte4> { new Byte4(4, 7, 0, 0) };
-        public static List<Byte4> World_Shelf = new List<Byte4> { new Byte4(5, 7, 0, 0) };
+        public static List<Byte4> World_Bookcase = new List<Byte4> { new Byte4(0, 15, 0, 0) };
+        public static List<Byte4> World_Shelf = new List<Byte4> { new Byte4(1, 15, 0, 0) };
+        public static List<Byte4> World_TableWood = new List<Byte4> { new Byte4(2, 15, 0, 0) };
+        public static List<Byte4> World_TableStone = new List<Byte4> { new Byte4(3, 15, 0, 0) };
 
         //dungeon entrances
         public static List<Byte4> Wor_Entrance_ForestDungeon = new List<Byte4> { new Byte4(0, 0, 0, 0) };
 
         //objects
         public static List<Byte4> Wor_Pot = new List<Byte4> { new Byte4(7, 6, 0, 0) };
+
+        //water tiles
+        public static List<Byte4> Wor_Water = new List<Byte4> { new Byte4(3, 2, 0, 0) };
+        public static List<Byte4> Wor_Coastline_Straight_A = new List<Byte4> { new Byte4(4, 2, 0, 0) };
+        public static List<Byte4> Wor_Coastline_Straight_B = new List<Byte4> { new Byte4(4, 3, 0, 0) };
+        public static List<Byte4> Wor_Coastline_Corner_Exterior = new List<Byte4> { new Byte4(5, 2, 0, 0) };
+        public static List<Byte4> Wor_Coastline_Corner_Interior = new List<Byte4> { new Byte4(5, 3, 0, 0) };
+
+
 
         #endregion
 
@@ -275,11 +283,11 @@ namespace DungeonRun
 
         public static List<Byte4> Particle_Leaf = new List<Byte4>
         {
-            new Byte4(10, 4, 0, 0), new Byte4(11, 4, 0, 0)
+            new Byte4(10, 10, 0, 0), new Byte4(11, 10, 0, 0)
         };
         public static List<Byte4> Particle_Debris = new List<Byte4>
         {
-            new Byte4(10, 5, 0, 0), new Byte4(11, 5, 0, 0)
+            new Byte4(10, 11, 0, 0), new Byte4(11, 11, 0, 0)
         };
 
 
@@ -352,15 +360,15 @@ namespace DungeonRun
 
         #region Vendors
 
-        public static List<Byte4> Vendor_Items = new List<Byte4> { new Byte4(0, 9, 0, 0), new Byte4(0, 9, 1, 0) };
-        public static List<Byte4> Vendor_Potions = new List<Byte4> { new Byte4(1, 9, 0, 0), new Byte4(1, 9, 1, 0) };
-        public static List<Byte4> Vendor_Magic = new List<Byte4> { new Byte4(2, 9, 0, 0), new Byte4(2, 9, 1, 0) };
-        public static List<Byte4> Vendor_Weapons = new List<Byte4> { new Byte4(3, 9, 0, 0), new Byte4(3, 9, 1, 0) };
+        public static List<Byte4> Vendor_Items = new List<Byte4> { new Byte4(0, 14, 0, 0), new Byte4(0, 14, 1, 0) };
+        public static List<Byte4> Vendor_Potions = new List<Byte4> { new Byte4(1, 14, 0, 0), new Byte4(1, 14, 1, 0) };
+        public static List<Byte4> Vendor_Magic = new List<Byte4> { new Byte4(2, 14, 0, 0), new Byte4(2, 14, 1, 0) };
+        public static List<Byte4> Vendor_Weapons = new List<Byte4> { new Byte4(3, 14, 0, 0), new Byte4(3, 14, 1, 0) };
 
-        public static List<Byte4> Vendor_Armor = new List<Byte4> { new Byte4(4, 9, 0, 0), new Byte4(4, 9, 1, 0) };
-        public static List<Byte4> Vendor_Equipment = new List<Byte4> { new Byte4(5, 9, 0, 0), new Byte4(5, 9, 1, 0) };
-        public static List<Byte4> Vendor_Pets = new List<Byte4> { new Byte4(6, 9, 0, 0), new Byte4(6, 9, 1, 0) };
-        public static List<Byte4> Vendor_Story = new List<Byte4> { new Byte4(7, 9, 0, 0), new Byte4(7, 9, 1, 0) };
+        public static List<Byte4> Vendor_Armor = new List<Byte4> { new Byte4(4, 14, 0, 0), new Byte4(4, 14, 1, 0) };
+        public static List<Byte4> Vendor_Equipment = new List<Byte4> { new Byte4(5, 14, 0, 0), new Byte4(5, 14, 1, 0) };
+        public static List<Byte4> Vendor_Pets = new List<Byte4> { new Byte4(6, 14, 0, 0), new Byte4(6, 14, 1, 0) };
+        public static List<Byte4> Vendor_Story = new List<Byte4> { new Byte4(7, 14, 0, 0), new Byte4(7, 14, 1, 0) };
 
         #endregion
 
@@ -376,8 +384,6 @@ namespace DungeonRun
         public static List<Byte4> Pet_Chicken_Move = new List<Byte4> { new Byte4(1, 2, 0, 0), new Byte4(2, 2, 0, 0) };
 
         #endregion
-
-
 
 
         #region Ui Items
@@ -482,8 +488,10 @@ namespace DungeonRun
         public static ActorAnimationList Boss_Blob_Animations;
 
         //actor fx anim frames
-        public static List<Byte4> ActorFX_GrassyFeet = new List<Byte4> { new Byte4(7, 0, 0, 0) };
-
+        public static List<Byte4> ActorFX_GrassyFeet = new List<Byte4>
+        { new Byte4(4, 1, 0, 0), new Byte4(4, 1, 1, 0) };
+        public static List<Byte4> ActorFX_WetFeet = new List<Byte4> //16x8
+        { new Byte4(3, 6, 0, 0), new Byte4(3, 7, 0, 0) };
 
 
         static AnimationFrames()

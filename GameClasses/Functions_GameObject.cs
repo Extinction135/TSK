@@ -531,7 +531,7 @@ namespace DungeonRun
             }
             else if (Type == ObjType.Dungeon_ConveyorBeltOn || Type == ObjType.Dungeon_ConveyorBeltOff)
             {
-                Obj.compSprite.zOffset = -32; //sort to floor
+                Obj.compSprite.zOffset = -31; //sort just above floor
                 Obj.compAnim.speed = 10; //in frames
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
@@ -717,12 +717,14 @@ namespace DungeonRun
                 Obj.compAnim.loop = true;
 
                 //set animation frame
-                if (Type == ObjType.Wor_Grass_1)
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_1; }
+                if (Type == ObjType.Wor_Grass_1 || Type == ObjType.Wor_Grass_Cut)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Short;
+                }
                 else if (Type == ObjType.Wor_Grass_2)
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_2; }
-                else if (Type == ObjType.Wor_Grass_Cut)
-                { Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Cut; }
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Minimum;
+                }
                 else if (Type == ObjType.Wor_Grass_Tall)
                 {
                     Obj.compAnim.currentAnimation = AnimationFrames.World_Grass_Tall;
@@ -864,8 +866,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
             #region Interior Building Objects
 
             else if (Type == ObjType.Wor_Bookcase || Type == ObjType.Wor_Shelf)
@@ -917,6 +917,43 @@ namespace DungeonRun
                 else if (Type == ObjType.Vendor_NPC_Pets) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Pets; }
                 else if (Type == ObjType.Vendor_NPC_Story) { Obj.compAnim.currentAnimation = AnimationFrames.Vendor_Story; }
             }
+
+            #endregion
+
+
+            #region Water Objects
+
+
+            else if (Type == ObjType.Wor_Water
+                || Type == ObjType.Wor_Coastline_Straight
+                || Type == ObjType.Wor_Coastline_Corner_Exterior
+                || Type == ObjType.Wor_Coastline_Corner_Interior)
+            {
+                Obj.compSprite.zOffset = -32;
+                Obj.compCollision.blocking = false;
+                Obj.canBeSaved = true;
+                Obj.compAnim.loop = true; //no anim, but we should for coastline in the future
+
+                if (Type == ObjType.Wor_Water)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Water;
+                }
+                else if (Type == ObjType.Wor_Coastline_Straight)
+                {
+                    if (Functions_Random.Int(0, 100) > 50) //randomly choose coastline
+                    { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Straight_A; }
+                    else { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Straight_B; }
+                }
+                else if (Type == ObjType.Wor_Coastline_Corner_Exterior)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Corner_Exterior;
+                }
+                else if (Type == ObjType.Wor_Coastline_Corner_Interior)
+                {
+                    Obj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Corner_Interior;
+                }
+            }
+            
 
             #endregion
 

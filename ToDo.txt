@@ -171,14 +171,49 @@ TODAY:
 
 
 
-Levels+
 
-added the coastline building location to overworld map.
-added levelType and RoomID for 'church'.
-created some basic roomData for church.
-integrated church level and room into systems.
-playtested, working as expected.
-fairly painless and easy to add a level.
+
+Water
+
+repacked spritesheet, added water tiles.
+improved world debris sprites.
+removed cut grass animFrame, using short grass sprite now instead.
+playtested, working great.
+
+added animFrames for water tiles + wet feet fx.
+added ObjTypes for water objs.
+added defs to obj.settype() for water objs.
+
+updated church level with a large-ish pond for testing water objs.
+updated interactions to check for actor vs coastline.
+this interaction displays the feetfx sprite for that actor.
+the feetfx are switched to the wet feet animation.
+updated feetfx sprite to be 16x8.
+added SoundWaterWalk to projects + assets.
+
+playtest, working but needs polish and alignment.
+
+fixed a bug where feetfx were visible on the overworld map.
+polished the alignment of feetfx to hero.
+improved church level.
+
+changed the sorting of conveyor belts to sort above floors by 1 layer.
+
+updated how feet fx are handled via interaction.
+we needed to add an animComponent for feetFX to actor.
+that's the proper way to handle animation, not faking it
+thru decrementing the alpha value - lol. removed the hacky
+quick fix, implemented animComp right, and now we have
+always animating feet fx that properly display.
+
+shallow water completely implemented. yay.
+updated UWP project.
+
+
+
+
+
+
 
 
 
@@ -186,18 +221,16 @@ fairly painless and easy to add a level.
 
 water tiles
 
-
-
-
-
-new level, with water tiles - so we have a good stage set for
-implementing swimming.
+water obj - causes hero to swim
 
 writing the animFrames for hero swimming is easy to do too.
 
 - water tiles + swimming + transitions to/from.
 - add a half water half land level for testing. map++.
 - should have feetFX for coastline transition tiles.
+
+
+
 
 
 
@@ -224,6 +257,7 @@ a random dance once.
 
 
 
+*add in wooden table, should be easily destructable (handle common obj)
 
 
 
@@ -231,8 +265,18 @@ a random dance once.
 
 
 
+TRENCH SYSTEM (OMG I DID IT)
 
-
+how to make trench system work:
+the initial trench obj placed is a temp obj with a 20x20 collision rec.
+on it's first frame, it checks to see what trench objs overlap it.
+using the list of overlapping trenches nearby, sort to a NSEW boolean list.
+(this is done by comparing new trench sprite pos to neighbor sprite pos.)
+then we can switch the type of the trench just placed to 'fit' into
+it's neighboring trenches. N+S = vertical. E+W = horizontal.
+N+(E/W) etc = corner trench. N+S+E+W = quad trench. we only need 3 trench sprites. lol.
+this makes it easy to propagate water thru them too, as we would then
+have low, med, filled sprite versions of the trench.
 
 
 

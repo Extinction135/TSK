@@ -59,13 +59,7 @@ namespace DungeonRun
 
 
 
-
-
-
-
-
     
-
 
     public enum LevelID
     {
@@ -107,28 +101,7 @@ namespace DungeonRun
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
     public enum Music
@@ -298,6 +271,12 @@ namespace DungeonRun
 
         //objects
         Wor_Pot,
+
+        //water objs
+        Wor_Water,
+        Wor_Coastline_Straight,
+        Wor_Coastline_Corner_Exterior,
+        Wor_Coastline_Corner_Interior,
 
         #endregion
 

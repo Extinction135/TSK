@@ -378,24 +378,101 @@ namespace DungeonRun
                 {
                     //unhide + place grassy feet at actor's feet
                     Actor.feetFX.visible = true;
-                    
+                    Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_GrassyFeet;
+
+
+
+                    //Actor.feetFX.currentFrame = AnimationFrames.ActorFX_GrassyFeet[0];
+
                     if (Actor.state == ActorState.Move)
-                    {
-                        //play move thru tall grass sfx
+                    {   //play moving sfx
                         Assets.Play(Assets.sfxGrassWalk);
-                        //fake animation thru alpha counter
-                        Actor.feetFX.alpha -= 0.001f;
-                        if (Actor.feetFX.alpha <= 0.985) //15 frames
+
+
+
+                        /*
+                        Actor.feetFX.alpha -= 0.001f; //fake animation thru alpha counter
+                        if (Actor.feetFX.alpha <= 0.985f) //15 frames
                         {
                             Actor.feetFX.alpha = 1.0f; //reset the timer 
                             if (Actor.feetFX.flipHorizontally)
                             { Actor.feetFX.flipHorizontally = false; }
                             else { Actor.feetFX.flipHorizontally = true; }
                         }
+                        */
+
+
                     }
                 }
 
                 #endregion
+
+
+                #region Coastlines
+
+                else if (Obj.type == ObjType.Wor_Coastline_Corner_Exterior
+                    || Obj.type == ObjType.Wor_Coastline_Corner_Interior
+                    || Obj.type == ObjType.Wor_Coastline_Straight
+                    || Obj.type == ObjType.Wor_Water)
+                {
+
+
+                    Actor.feetFX.visible = true;
+                    Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_WetFeet;
+                    //Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[0];
+
+                    if (Actor.state == ActorState.Move)
+                    {   //play moving sfx
+                        Assets.Play(Assets.sfxWaterWalk);
+
+                        /*
+                        Actor.feetFX.alpha -= 0.001f; //fake animation thru alpha counter
+                        if (Actor.feetFX.alpha <= 0.985f) //15 frames
+                        {
+                            Actor.feetFX.alpha = 1.0f; //reset the timer 
+
+                            //animate + set the sprite frame
+                            if (Actor.feetFX.currentFrame == AnimationFrames.ActorFX_WetFeet[0])
+                            { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[1]; }
+                            else { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[0]; }
+                        }
+                        */
+
+                    }
+
+
+
+
+
+                    /*
+
+                    if (Actor.feetFX.visible == false) //set initial animFrame
+                    { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[0]; }
+
+                    Actor.feetFX.visible = true;
+                    if (Actor.state == ActorState.Move)
+                    {   //play moving sfx
+                        Assets.Play(Assets.sfxWaterWalk);
+                    }
+                    //always play the water ripple animation
+                    Actor.feetFX.alpha -= 0.001f; //fake animation thru alpha counter
+                    if (Actor.feetFX.alpha <= 0.985f) //15 frames
+                    {
+                        Actor.feetFX.alpha = 1.0f; //reset the timer 
+                        //animate + set the sprite frame
+                        if (Actor.feetFX.currentFrame == AnimationFrames.ActorFX_WetFeet[0])
+                        { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[1]; }
+                        else { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[0]; }
+                    }
+
+                    */
+
+
+                }
+
+                #endregion
+
+
 
 
                 //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
