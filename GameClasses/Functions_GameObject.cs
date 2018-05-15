@@ -1383,7 +1383,17 @@ namespace DungeonRun
                 Obj.compSprite.texture = Assets.entitiesSheet;
             }
 
-
+            else if (Type == ObjType.Particle_WaterKick)
+            {
+                Obj.compSprite.zOffset = 0;
+                Obj.group = ObjGroup.Particle;
+                Obj.compAnim.speed = 7; //in frames
+                Obj.lifetime = 7 * 4 + 5; //speed * animTotal + holdFrame
+                Obj.compMove.friction = World.frictionWater;
+                Obj.compAnim.currentAnimation = AnimationFrames.Particle_WaterKick;
+                Obj.compSprite.texture = Assets.entitiesSheet;
+                Obj.compAnim.loop = false;
+            }
 
             //Particles - Rewards & Bottles
             else if (

@@ -99,22 +99,26 @@ namespace DungeonRun
         {   //get a particle to spawn
             GameObject obj = Functions_Pool.GetParticle();
             obj.compMove.moving = true;
+            
             //set particles direction to passed direction
             obj.direction = Dir;
             obj.compMove.direction = Dir;
+
+            //properly rotate water kick particles
+            if (Type == ObjType.Particle_WaterKick)
+            {
+                //obj.direction = Direction.Down;
+                obj.direction = Functions_Direction.GetOppositeDirection(Dir);
+            }
+
+
             //teleport the object to the proper location
             Functions_Movement.Teleport(obj.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment
             Functions_GameObject.SetType(obj, Type);
             Functions_Component.Align(obj); //align upon birth
-                                            //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
-
-
-
-
-
-
-
+                                            
+  
             #region Handle Particle Birth Events
 
             //handle soundfx for specific particles
@@ -132,26 +136,26 @@ namespace DungeonRun
             }
 
             else if (Type == ObjType.Particle_Push)
-            {   //push the particle, 4 is usually less than whatever it's trailing
+            {   //trails behind item used in cardinal direction
                 Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
             }
             else if (Type == ObjType.Particle_Leaf)
-            {   //gently push leafs
+            {   
                 Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
             }
             else if (Type == ObjType.Particle_Debris)
-            {   //gently push debris
+            {   
                 Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
+            }
+            else if(Type == ObjType.Particle_WaterKick)
+            {   
+                Functions_Movement.Push(obj.compMove, obj.compMove.direction, 1.0f);
             }
 
             #endregion
 
 
-
-
-
-
-
+            //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
         }
 
         public static void Update(GameObject Obj)

@@ -271,6 +271,13 @@ namespace DungeonRun
         {
             new Byte4(2*2, 1, 0, 0), new Byte4(2*2+1, 1, 0, 0)
         };
+        public static List<Byte4> Particle_WaterKick = new List<Byte4>
+        {
+            new Byte4(0, 3, 0, 0), new Byte4(0, 4, 0, 0),
+            new Byte4(0, 5, 0, 0), new Byte4(0, 6, 0, 0)
+        };
+
+
         public static List<Byte4> Particle_PitBubble = new List<Byte4>
         {   //these frames are 8x8
             new Byte4(10*2, 7*2, 0, 0),

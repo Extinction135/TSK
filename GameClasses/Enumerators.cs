@@ -359,6 +359,7 @@ namespace DungeonRun
         Particle_Blast,
         Particle_Push,
         Particle_Fire,
+        Particle_WaterKick,
 
         //Particle_Debris, //doesn't exist right now
         Particle_BottleEmpty,

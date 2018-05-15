@@ -170,19 +170,13 @@ TODAY:
 
 
 
+SwimDash++
 
-
-
-
-
-Swimg Dash + Hit
-
-added swim dash ipnut.
-added SoundWaterSwim to projects.
-implemented dashing while swimming. 
-implemented getting hit while swimming.
-playtested, working very well.
-
+added wave particle behind actor dashing in water.
+improved dashing in water to push further if actor is
+facing a cardinal direction. a diagonal direction only
+gets a half push, and no wave particle. so in this context,
+the wave particle acts as a confirmation of a cardinal dash.
 
 
 
@@ -191,9 +185,14 @@ playtested, working very well.
 
 
 
+when a splash is created, kill actor's movement.
+this will add weight to the splash, plus prevent dashing into water to save distance.
+that feels cheap.
 
 
-*need a wave particle to put behind actor when they dash in water.
+
+
+
 
 
 

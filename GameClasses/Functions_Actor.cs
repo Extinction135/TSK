@@ -451,16 +451,32 @@ namespace DungeonRun
                     }
                     else if (Actor.state == ActorState.Dash)
                     {
-                        
                         Actor.lockTotal = 15;
                         Actor.stateLocked = true;
-                        Functions_Movement.Push(Actor.compMove, 
-                            Actor.compInput.direction, 2.0f);
-                        Assets.Play(Assets.sfxWaterSwim);
 
-                        //need a wave particle to visually show hero's dash
-                        //Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Actor);
-
+                        if(Actor.compInput.direction == Direction.Down
+                            || Actor.compInput.direction == Direction.Up
+                            || Actor.compInput.direction == Direction.Left
+                            || Actor.compInput.direction == Direction.Right)
+                        {   //cardinal swim dash - full power push + confirmation particle
+                            Functions_Movement.Push(
+                                Actor.compMove,
+                                Actor.compInput.direction, 2.0f);
+                            Assets.Play(Assets.sfxWaterSwim);
+                            //place water kick fx behind actor
+                            Functions_Particle.Spawn(
+                                ObjType.Particle_WaterKick,
+                                Actor.compSprite.position.X,
+                                Actor.compSprite.position.Y,
+                                Functions_Direction.GetOppositeDirection(Actor.direction));
+                        }
+                        else
+                        {   //diagonal swim dash - half power push
+                            Functions_Movement.Push(
+                                Actor.compMove,
+                                Actor.compInput.direction, 1.0f);
+                            Assets.Play(Assets.sfxWaterSwim);
+                        }
                     }
                     else if (Actor.state == ActorState.Attack)
                     {
