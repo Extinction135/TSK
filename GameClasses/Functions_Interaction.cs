@@ -379,30 +379,8 @@ namespace DungeonRun
                     //unhide + place grassy feet at actor's feet
                     Actor.feetFX.visible = true;
                     Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_GrassyFeet;
-
-
-
-                    //Actor.feetFX.currentFrame = AnimationFrames.ActorFX_GrassyFeet[0];
-
-                    if (Actor.state == ActorState.Move)
-                    {   //play moving sfx
-                        Assets.Play(Assets.sfxGrassWalk);
-
-
-
-                        /*
-                        Actor.feetFX.alpha -= 0.001f; //fake animation thru alpha counter
-                        if (Actor.feetFX.alpha <= 0.985f) //15 frames
-                        {
-                            Actor.feetFX.alpha = 1.0f; //reset the timer 
-                            if (Actor.feetFX.flipHorizontally)
-                            { Actor.feetFX.flipHorizontally = false; }
-                            else { Actor.feetFX.flipHorizontally = true; }
-                        }
-                        */
-
-
-                    }
+                    if (Actor.state == ActorState.Move) //play moving sfx
+                    { Assets.Play(Assets.sfxGrassWalk); }
                 }
 
                 #endregion
@@ -412,62 +390,30 @@ namespace DungeonRun
 
                 else if (Obj.type == ObjType.Wor_Coastline_Corner_Exterior
                     || Obj.type == ObjType.Wor_Coastline_Corner_Interior
-                    || Obj.type == ObjType.Wor_Coastline_Straight
-                    || Obj.type == ObjType.Wor_Water)
+                    || Obj.type == ObjType.Wor_Coastline_Straight)
                 {
-
-
                     Actor.feetFX.visible = true;
                     Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_WetFeet;
-                    //Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[0];
+                    if (Actor.state == ActorState.Move) //play moving sfx
+                    { Assets.Play(Assets.sfxWaterWalk); }
+                }
 
-                    if (Actor.state == ActorState.Move)
-                    {   //play moving sfx
-                        Assets.Play(Assets.sfxWaterWalk);
+                #endregion
 
-                        /*
-                        Actor.feetFX.alpha -= 0.001f; //fake animation thru alpha counter
-                        if (Actor.feetFX.alpha <= 0.985f) //15 frames
-                        {
-                            Actor.feetFX.alpha = 1.0f; //reset the timer 
 
-                            //animate + set the sprite frame
-                            if (Actor.feetFX.currentFrame == AnimationFrames.ActorFX_WetFeet[0])
-                            { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[1]; }
-                            else { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[0]; }
-                        }
-                        */
+                #region Water
 
+                else if(Obj.type == ObjType.Wor_Water)
+                {
+                    if(Actor.createSplash == false)
+                    {   //actor is transitioning into water this frame
+                        Functions_Particle.Spawn(ObjType.Particle_Splash,
+                            Actor.compSprite.position.X,
+                            Actor.compSprite.position.Y);
+                        Actor.createSplash = true; //only create 1 splash
                     }
-
-
-
-
-
-                    /*
-
-                    if (Actor.feetFX.visible == false) //set initial animFrame
-                    { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[0]; }
-
-                    Actor.feetFX.visible = true;
-                    if (Actor.state == ActorState.Move)
-                    {   //play moving sfx
-                        Assets.Play(Assets.sfxWaterWalk);
-                    }
-                    //always play the water ripple animation
-                    Actor.feetFX.alpha -= 0.001f; //fake animation thru alpha counter
-                    if (Actor.feetFX.alpha <= 0.985f) //15 frames
-                    {
-                        Actor.feetFX.alpha = 1.0f; //reset the timer 
-                        //animate + set the sprite frame
-                        if (Actor.feetFX.currentFrame == AnimationFrames.ActorFX_WetFeet[0])
-                        { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[1]; }
-                        else { Actor.feetFX.currentFrame = AnimationFrames.ActorFX_WetFeet[0]; }
-                    }
-
-                    */
-
-
+                    Actor.swimming = true;
+                    Actor.compMove.friction = World.frictionUse;
                 }
 
                 #endregion

@@ -286,8 +286,7 @@ namespace DungeonRun
         }
         
         public static void PlayPitFx(GameObject Pit)
-        {   //play splash particle effect
-            Assets.Play(Assets.sfxSplash);
+        {   //place splash 'centered' to pit
             Functions_Particle.Spawn(
                 ObjType.Particle_Splash,
                 Pit.compSprite.position.X,

@@ -107,12 +107,9 @@ namespace DungeonRun
             //set the type, rotation, cellsize, & alignment
             Functions_GameObject.SetType(obj, Type);
             Functions_Component.Align(obj); //align upon birth
-            //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
+                                            //Debug.WriteLine("particle made: " + Type + " - location: " + X + ", " + Y);
 
-            //handle soundfx for specific particles
-            if (Type == ObjType.Particle_RewardMap) { Assets.Play(Assets.sfxReward); }
-            else if (Type == ObjType.Particle_RewardKey) { Assets.Play(Assets.sfxKeyPickup); }
-            else if (Type == ObjType.Particle_Splash) { Assets.Play(Assets.sfxSplash); }
+
 
 
 
@@ -120,7 +117,21 @@ namespace DungeonRun
 
             #region Handle Particle Birth Events
 
-            if (Type == ObjType.Particle_Push)
+            //handle soundfx for specific particles
+            if (Type == ObjType.Particle_RewardMap)
+            {
+                Assets.Play(Assets.sfxReward);
+            }
+            else if (Type == ObjType.Particle_RewardKey)
+            {
+                Assets.Play(Assets.sfxKeyPickup);
+            }
+            else if (Type == ObjType.Particle_Splash)
+            {
+                Assets.Play(Assets.sfxSplash);
+            }
+
+            else if (Type == ObjType.Particle_Push)
             {   //push the particle, 4 is usually less than whatever it's trailing
                 Functions_Movement.Push(obj.compMove, obj.direction, 4.0f);
             }

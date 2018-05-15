@@ -171,43 +171,15 @@ TODAY:
 
 
 
+Swimming
 
+implemented swimming. essentially, it's:
+interaction with water tile causes actor.swimming to be true.
+this is top level check, before carrying or grab.
+playtested, working very well. very happy rn.
 
-Water
-
-repacked spritesheet, added water tiles.
-improved world debris sprites.
-removed cut grass animFrame, using short grass sprite now instead.
-playtested, working great.
-
-added animFrames for water tiles + wet feet fx.
-added ObjTypes for water objs.
-added defs to obj.settype() for water objs.
-
-updated church level with a large-ish pond for testing water objs.
-updated interactions to check for actor vs coastline.
-this interaction displays the feetfx sprite for that actor.
-the feetfx are switched to the wet feet animation.
-updated feetfx sprite to be 16x8.
-added SoundWaterWalk to projects + assets.
-
-playtest, working but needs polish and alignment.
-
-fixed a bug where feetfx were visible on the overworld map.
-polished the alignment of feetfx to hero.
-improved church level.
-
-changed the sorting of conveyor belts to sort above floors by 1 layer.
-
-updated how feet fx are handled via interaction.
-we needed to add an animComponent for feetFX to actor.
-that's the proper way to handle animation, not faking it
-thru decrementing the alpha value - lol. removed the hacky
-quick fix, implemented animComp right, and now we have
-always animating feet fx that properly display.
-
-shallow water completely implemented. yay.
-updated UWP project.
+removed cape speed effects from the game. cape 
+is cosmetic loadout item only right now.
 
 
 
@@ -219,17 +191,22 @@ updated UWP project.
 
 
 
-water tiles
-
-water obj - causes hero to swim
-
-writing the animFrames for hero swimming is easy to do too.
-
-- water tiles + swimming + transitions to/from.
-- add a half water half land level for testing. map++.
-- should have feetFX for coastline transition tiles.
 
 
+Swimming ++
+
+actor states in water:
+	idle
+	move
+	dash (forward B)
+	raise hand (no direction B)
+	hit
+	dive swim (forward X)
+	dive (no direction X)
+	*interact does nothing*
+	reward
+
+hmmm....
 
 
 
@@ -278,11 +255,19 @@ N+(E/W) etc = corner trench. N+S+E+W = quad trench. we only need 3 trench sprite
 this makes it easy to propagate water thru them too, as we would then
 have low, med, filled sprite versions of the trench.
 
+we will also need 'end caps' that connect to straight pieces.
+and trenches that are just single holes in the ground.
 
 
 
+mirage effect from snes:
 
-
+for a set of pixels, copy the top left pixel into the rest.
+then simply animate the size of the pixel set over time
+4 pixels, then 8, then 16, etc.. this causes the 'warp' effect
+on screen (pixelization). 
+this is likely something we'd have to do as a shader effect,
+or possibly as a final step over the 640x360 render surface.
 
 
 

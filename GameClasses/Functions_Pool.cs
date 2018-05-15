@@ -205,14 +205,19 @@ namespace DungeonRun
                 if (Pool.actorPool[i].active)
                 {
                     Functions_Input.SetInputState(Pool.actorPool[i].compInput, Pool.actorPool[i]);
-                    //reset the actor's friction for this frame
-                    Pool.actorPool[i].compMove.friction = World.friction;
+                    
+                    Pool.actorPool[i].compMove.friction = World.friction; //reset friction
+                    Pool.actorPool[i].feetFX.visible = false; //reset feetFX
+                    Pool.actorPool[i].swimming = false; //reset swimming
 
+                    Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
                     Functions_Actor.Update(Pool.actorPool[i]);
                     Functions_Animation.Animate(Pool.actorPool[i].compAnim, Pool.actorPool[i].compSprite);
                     Functions_Animation.ScaleSpriteDown(Pool.actorPool[i].compSprite);
 
-                    Functions_Interaction.CheckInteractions(Pool.actorPool[i], true, true);
+                    //if actor is no longer swimming, then actor can create splash upon water entry
+                    if (Pool.actorPool[i].swimming == false)
+                    { Pool.actorPool[i].createSplash = false; }
                 }
             }
 

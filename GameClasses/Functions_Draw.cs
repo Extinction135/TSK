@@ -54,8 +54,8 @@ namespace DungeonRun
                 { Draw(Actor.compCollision); }
 
                 //draw actor feet fx
-                if(Actor.feetFX.visible)
-                {
+                if(Actor.feetFX.visible & Actor.swimming == false)
+                {   //cant see actors feet if in water
                     Functions_Animation.Animate(Actor.feetAnim, Actor.feetFX);
                     Actor.feetFX.position.X = Actor.compSprite.position.X;
                     Actor.feetFX.position.Y = Actor.compSprite.position.Y + 6;

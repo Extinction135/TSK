@@ -592,11 +592,18 @@ namespace DungeonRun
             Hero_Animations.push.right = new List<Byte4> { new Byte4(7, 2, 0, 0), new Byte4(8, 2, 0, 0) };
             Hero_Animations.push.left = new List<Byte4> { new Byte4(7, 2, 1, 0), new Byte4(8, 2, 1, 0) };
 
-            //Hero_Animations.pull = new AnimationGroup();
-            //Hero_Animations.pull.down = new List<Byte4> { new Byte4(9, 0, 0, 0), new Byte4(10, 0, 0, 0) };
-            //Hero_Animations.pull.up = new List<Byte4> { new Byte4(9, 1, 0, 0), new Byte4(10, 1, 0, 0) };
-            //Hero_Animations.pull.right = new List<Byte4> { new Byte4(9, 2, 0, 0), new Byte4(10, 2, 0, 0) };
-            //Hero_Animations.pull.left = new List<Byte4> { new Byte4(9, 2, 1, 0), new Byte4(10, 2, 1, 0) };
+            //swim idle and move
+            Hero_Animations.swim_idle = new AnimationGroup();
+            Hero_Animations.swim_idle.down = new List<Byte4> { new Byte4(0, 5, 0, 0), new Byte4(1, 5, 0, 0) };
+            Hero_Animations.swim_idle.up = new List<Byte4> { new Byte4(0, 6, 0, 0), new Byte4(1, 6, 0, 0) };
+            Hero_Animations.swim_idle.right = new List<Byte4> { new Byte4(0, 7, 0, 0), new Byte4(1, 7, 0, 0) };
+            Hero_Animations.swim_idle.left = new List<Byte4> { new Byte4(0, 7, 1, 0), new Byte4(1, 7, 1, 0) };
+
+            Hero_Animations.swim_move = new AnimationGroup();
+            Hero_Animations.swim_move.down = new List<Byte4> { new Byte4(1, 5, 0, 0), new Byte4(1, 5, 1, 0) };
+            Hero_Animations.swim_move.up = new List<Byte4> { new Byte4(1, 6, 0, 0), new Byte4(1, 6, 1, 0) };
+            Hero_Animations.swim_move.right = new List<Byte4> { new Byte4(0, 7, 0, 0), new Byte4(1, 7, 0, 0) };
+            Hero_Animations.swim_move.left = new List<Byte4> { new Byte4(0, 7, 1, 0), new Byte4(1, 7, 1, 0) };
 
             #endregion
 

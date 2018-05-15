@@ -887,7 +887,8 @@ namespace DungeonRun
         public AnimationGroup grab; //idle
         public AnimationGroup push; //move
 
-        //public AnimationGroup pull; //special pull
+        public AnimationGroup swim_idle;
+        public AnimationGroup swim_move;
     }
 
     public class ColorScheme
@@ -1071,8 +1072,8 @@ namespace DungeonRun
         public Boolean grabbing = false;
         public GameObject grabbedObj = null;
 
-        //public static Boolean swimming = false; //is actor in water?
-
+        public Boolean swimming = false; //is actor in water?
+        public Boolean createSplash = false; //handles splash entering water
 
 
 

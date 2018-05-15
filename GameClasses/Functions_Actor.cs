@@ -171,7 +171,9 @@ namespace DungeonRun
             //movement
             if (Actor.state == ActorState.Idle)
             {
-                if (Actor.carrying)
+                if(Actor.swimming)
+                { Actor.animGroup = Actor.animList.swim_idle; }
+                else if (Actor.carrying)
                 { Actor.animGroup = Actor.animList.idleCarry; }
                 else if (Actor.grabbing)
                 { Actor.animGroup = Actor.animList.grab; }
@@ -179,7 +181,9 @@ namespace DungeonRun
             }
             else if (Actor.state == ActorState.Move)
             {
-                if (Actor.carrying)
+                if (Actor.swimming)
+                { Actor.animGroup = Actor.animList.swim_move; }
+                else if (Actor.carrying)
                 { Actor.animGroup = Actor.animList.moveCarry; }
                 else if (Actor.grabbing)
                 { Actor.animGroup = Actor.animList.push; }
@@ -187,27 +191,50 @@ namespace DungeonRun
             }
 
             //actions
-            else if (Actor.state == ActorState.Dash) { Actor.animGroup = Actor.animList.dash; }
-            else if (Actor.state == ActorState.Interact) { Actor.animGroup = Actor.animList.interact; }
-            else if (Actor.state == ActorState.Attack) { Actor.animGroup = Actor.animList.attack; }
-            else if (Actor.state == ActorState.Use) { Actor.animGroup = Actor.animList.attack; }
-            else if (Actor.state == ActorState.Pickup) { Actor.animGroup = Actor.animList.pickupThrow; }
-            else if (Actor.state == ActorState.Throw) { Actor.animGroup = Actor.animList.pickupThrow; }
+            else if (Actor.state == ActorState.Dash)
+            {
+                Actor.animGroup = Actor.animList.dash;
+            }
+            else if (Actor.state == ActorState.Interact)
+            {
+                Actor.animGroup = Actor.animList.interact;
+            }
+            else if (Actor.state == ActorState.Attack)
+            {
+                Actor.animGroup = Actor.animList.attack;
+            }
+            else if (Actor.state == ActorState.Use)
+            {
+                Actor.animGroup = Actor.animList.attack;
+            }
+            else if (Actor.state == ActorState.Pickup)
+            {
+                Actor.animGroup = Actor.animList.pickupThrow;
+            }
+            else if (Actor.state == ActorState.Throw)
+            {
+                Actor.animGroup = Actor.animList.pickupThrow;
+            }
 
             //consequences
-            else if (Actor.state == ActorState.Hit) { Actor.animGroup = Actor.animList.hit; }
+            else if (Actor.state == ActorState.Hit)
+            {
+                Actor.animGroup = Actor.animList.hit;
+            }
             else if (Actor.state == ActorState.Dead)
             {
                 Actor.compAnim.loop = false; //stop looping
                 Actor.animGroup = Actor.animList.death;
-                //speed up hero's death to taste
+
+                //speed up hero's death
                 if (Actor.type == ActorType.Hero) { Actor.compAnim.speed = 6; }
-                else
-                {   //skip spinning death animation if actor isn't link hero
-                    Actor.compAnim.index = (byte)(Actor.compAnim.currentAnimation.Count - 1);
-                }
+                else//skip spinning death animation if actor isn't link hero
+                { Actor.compAnim.index = (byte)(Actor.compAnim.currentAnimation.Count - 1); }
             }
-            else if (Actor.state == ActorState.Reward) { Actor.animGroup = Actor.animList.reward; }
+            else if (Actor.state == ActorState.Reward)
+            {
+                Actor.animGroup = Actor.animList.reward;
+            }
         }
 
         public static void SetAnimationDirection(Actor Actor)
@@ -378,13 +405,6 @@ namespace DungeonRun
 
         public static void Update(Actor Actor)
         {
-            //alter actor's speed based on loadout
-            //cape armor increases movement
-            if (Actor.armor == MenuItemType.ArmorCape) { Actor.compMove.speed *= 1.06f; }
-
-            //assume feetFX should be hidden
-            Actor.feetFX.visible = false;
-
 
             #region Actor is not Statelocked
 
@@ -398,7 +418,41 @@ namespace DungeonRun
                 Actor.lockTotal = 0; //reset lock total
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
-                if(Actor.carrying)
+
+
+
+                if(Actor.swimming)
+                {
+
+                    #region Swimming State
+
+                    if (Actor.state == ActorState.Interact)
+                    {
+                        
+                    }
+                    else if (Actor.state == ActorState.Dash)
+                    {
+                        /*
+                        Actor.lockTotal = 10;
+                        Actor.stateLocked = true;
+                        Actor.compMove.speed = Actor.dashSpeed;
+                        Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Actor);
+                        Assets.Play(Actor.sfxDash);
+                        */
+                    }
+                    else if (Actor.state == ActorState.Attack)
+                    {
+                        //nothing
+                    }
+                    else if (Actor.state == ActorState.Use)
+                    {
+                        //nothing
+                    }
+
+                    #endregion
+
+                }
+                else if(Actor.carrying)
                 {
 
                     #region Carrying state
