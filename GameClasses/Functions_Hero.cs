@@ -226,9 +226,71 @@ namespace DungeonRun
         {   //this is the hero's interactionRec colliding with Obj
             //we know this is hero, and hero is in ActorState.Interact
 
+
+            //Objects that can be interacted with from Land & Water
+
+            #region Dungeon Entrances
+
+            if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
+            {   //give player choice to enter dungeon
+                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
+            }
+
+            #endregion
+
+
+            #region Dungeon Objects
+
+            else if (Obj.type == ObjType.Dungeon_TorchUnlit)
+            {   //light any unlit torch  //git lit *
+                Functions_GameObject_Dungeon.LightTorch(Obj);
+            }
+            else if (Obj.type == ObjType.Dungeon_TorchLit)
+            {   //unlight any lit torch
+                Functions_GameObject_Dungeon.UnlightTorch(Obj);
+            }
+            else if (Obj.type == ObjType.Dungeon_LeverOff || Obj.type == ObjType.Dungeon_LeverOn)
+            {   //activate all lever objects (including lever), call attention to change
+                Functions_GameObject_Dungeon.ActivateLeverObjects();
+                Functions_Particle.Spawn(
+                        ObjType.Particle_Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+            }
+            else if (Obj.type == ObjType.Dungeon_SwitchBlockBtn)
+            {
+                Functions_GameObject_Dungeon.FlipSwitchBlocks(Obj);
+            }
+
+            #endregion
+
+
+            #region Boss Door
+
+            else if (Obj.type == ObjType.Dungeon_DoorBoss)
+            {
+                if (Level.bigKey)
+                {   //hero must have dungeon key to open boss door
+                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_DoorOpen);
+                    Assets.Play(Assets.sfxDoorOpen);
+                    Functions_Particle.Spawn(
+                        ObjType.Particle_Attention,
+                        Obj.compSprite.position.X,
+                        Obj.compSprite.position.Y);
+                }
+                else
+                {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
+                    if (Flags.ShowDialogs)
+                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.DoesNotHaveKey)); }
+                }
+            }
+
+            #endregion
+
+
             #region Chests
 
-            if (Obj.group == ObjGroup.Chest)
+            else if (Obj.group == ObjGroup.Chest)
             {
 
                 #region Reward the hero with chest contents
@@ -281,28 +343,10 @@ namespace DungeonRun
             #endregion
 
 
-            #region Boss Door
+            if (Pool.hero.swimming) { return; }
 
-            else if (Obj.type == ObjType.Dungeon_DoorBoss)
-            {
-                if (Level.bigKey)
-                {   //hero must have dungeon key to open boss door
-                    Functions_GameObject.SetType(Obj, ObjType.Dungeon_DoorOpen);
-                    Assets.Play(Assets.sfxDoorOpen);
-                    Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-                }
-                else
-                {   //if hero doesn't have the bigKey, throw a dialog screen telling player this
-                    if (Flags.ShowDialogs)
-                    { ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.DoesNotHaveKey)); }
-                }
-            }
 
-            #endregion
-
+            //Objects that can only be interacted with from Land
 
             #region Carry-able Objects
 
@@ -326,43 +370,6 @@ namespace DungeonRun
                 || Obj.type == ObjType.Wor_Shelf)
             {
                 Functions_Actor.Grab(Obj, Pool.hero);
-            }
-
-            #endregion
-
-
-            #region Dungeon Objects
-
-            else if (Obj.type == ObjType.Dungeon_TorchUnlit)
-            {   //light any unlit torch  //git lit *
-                Functions_GameObject_Dungeon.LightTorch(Obj);
-            }
-            else if (Obj.type == ObjType.Dungeon_TorchLit)
-            {   //unlight any lit torch
-                Functions_GameObject_Dungeon.UnlightTorch(Obj);
-            }
-
-            else if (Obj.type == ObjType.Dungeon_LeverOff || Obj.type == ObjType.Dungeon_LeverOn)
-            {   //activate all lever objects (including lever), call attention to change
-                Functions_GameObject_Dungeon.ActivateLeverObjects();
-                Functions_Particle.Spawn(
-                        ObjType.Particle_Attention,
-                        Obj.compSprite.position.X,
-                        Obj.compSprite.position.Y);
-            }
-            else if (Obj.type == ObjType.Dungeon_SwitchBlockBtn)
-            {
-                Functions_GameObject_Dungeon.FlipSwitchBlocks(Obj);
-            }
-
-            #endregion
-
-
-            #region Dungeon Entrances
-
-            else if (Obj.type == ObjType.Wor_Entrance_ForestDungeon)
-            {   //give player choice to enter dungeon
-                ScreenManager.AddScreen(new ScreenDialog(AssetsDialog.Enter_ForestDungeon));
             }
 
             #endregion

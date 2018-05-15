@@ -172,17 +172,22 @@ TODAY:
 
 
 
+Swim Interactions
+
+updated hero interactions to allow for most interactions 
+while in the water, including: activating torches, levers,
+switch block buttons, chests, and the boss door. so, we
+*could* fill the hub room with water tiles and have a miniboss
+battle on platforms - if that seems fun. lol.
+
+the reason this was done was so that hero can interact 
+with objs in dungeon rooms while swimming, so water tiles
+can become a part of dungeon rooms, expanding the room variety.
 
 
 
 
 
-Splash and Water Transition ++
-
-when a splash is created, stop the actor's movement.
-this will add weight to the splash, 
-plus prevent dashing into water.
-playtested, feels much better.
 
 
 
@@ -193,9 +198,46 @@ need swim death really badly.
 this is the drown anim, with the cycling bob at the end.
 
 
+*we need swim reward state for hero.
+
+
+
+objects should be able to 'fall' into water tiles upo collision.
+this is a splash and a obj release()
+
+
+
 
 *** improve colliseum level to include water areas
 **** create new dungeon rooms with water tiles added
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

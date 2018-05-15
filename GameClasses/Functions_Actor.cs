@@ -110,7 +110,7 @@ namespace DungeonRun
         }
 
         public static void SetRewardState(Actor Actor)
-        {   
+        {
             Actor.state = ActorState.Reward;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
@@ -447,7 +447,14 @@ namespace DungeonRun
 
                     if (Actor.state == ActorState.Interact)
                     {
-                        
+
+                        //the issue here is that hero could pickup / etc while swimming..
+                        //do not want that
+
+                        if (Actor == Pool.hero) //only hero can interact with room objs
+                        { Functions_Hero.CheckInteractionRecCollisions(); }
+
+
                     }
                     else if (Actor.state == ActorState.Dash)
                     {
