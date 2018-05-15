@@ -171,24 +171,29 @@ TODAY:
 
 
 
-Swimming
-
-implemented swimming. essentially, it's:
-interaction with water tile causes actor.swimming to be true.
-this is top level check, before carrying or grab.
-playtested, working very well. very happy rn.
-
-removed cape speed effects from the game. cape 
-is cosmetic loadout item only right now.
 
 
 
 
+Swimg Dash + Hit
+
+added swim dash ipnut.
+added SoundWaterSwim to projects.
+implemented dashing while swimming. 
+implemented getting hit while swimming.
+playtested, working very well.
 
 
 
 
 
+
+
+
+
+
+
+*need a wave particle to put behind actor when they dash in water.
 
 
 
@@ -196,17 +201,17 @@ is cosmetic loadout item only right now.
 Swimming ++
 
 actor states in water:
-	idle
-	move
-	dash (forward B)
+x	idle
+x	move
+x	dash (forward B)
 	raise hand (no direction B)
-	hit
+x	hit
 	dive swim (forward X)
 	dive (no direction X)
 	*interact does nothing*
 	reward
 
-hmmm....
+...
 
 
 

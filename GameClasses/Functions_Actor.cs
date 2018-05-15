@@ -193,43 +193,60 @@ namespace DungeonRun
             //actions
             else if (Actor.state == ActorState.Dash)
             {
-                Actor.animGroup = Actor.animList.dash;
+                if (Actor.swimming)
+                { Actor.animGroup = Actor.animList.swim_dash; }
+                else { Actor.animGroup = Actor.animList.dash; }
             }
             else if (Actor.state == ActorState.Interact)
             {
-                Actor.animGroup = Actor.animList.interact;
+                if (Actor.swimming)
+                { }
+                else { Actor.animGroup = Actor.animList.interact; }
             }
             else if (Actor.state == ActorState.Attack)
             {
-                Actor.animGroup = Actor.animList.attack;
+                if (Actor.swimming)
+                { }
+                else { Actor.animGroup = Actor.animList.attack; }
             }
             else if (Actor.state == ActorState.Use)
             {
-                Actor.animGroup = Actor.animList.attack;
+                if (Actor.swimming)
+                { }
+                else { Actor.animGroup = Actor.animList.attack; }
             }
             else if (Actor.state == ActorState.Pickup)
             {
-                Actor.animGroup = Actor.animList.pickupThrow;
+                Actor.animGroup = Actor.animList.pickupThrow; 
             }
             else if (Actor.state == ActorState.Throw)
             {
-                Actor.animGroup = Actor.animList.pickupThrow;
+                Actor.animGroup = Actor.animList.pickupThrow; 
             }
 
             //consequences
             else if (Actor.state == ActorState.Hit)
             {
-                Actor.animGroup = Actor.animList.hit;
+                if (Actor.swimming)
+                { Actor.animGroup = Actor.animList.swim_hit; }
+                else { Actor.animGroup = Actor.animList.hit; }
             }
             else if (Actor.state == ActorState.Dead)
             {
                 Actor.compAnim.loop = false; //stop looping
-                Actor.animGroup = Actor.animList.death;
 
-                //speed up hero's death
-                if (Actor.type == ActorType.Hero) { Actor.compAnim.speed = 6; }
-                else//skip spinning death animation if actor isn't link hero
-                { Actor.compAnim.index = (byte)(Actor.compAnim.currentAnimation.Count - 1); }
+                if (Actor.swimming)
+                {
+                    //drown anim
+                }
+                else
+                {
+                    Actor.animGroup = Actor.animList.death;
+                    //speed up hero's death
+                    if (Actor.type == ActorType.Hero) { Actor.compAnim.speed = 6; }
+                    else//skip spinning death animation if actor isn't link hero
+                    { Actor.compAnim.index = (byte)(Actor.compAnim.currentAnimation.Count - 1); }
+                }
             }
             else if (Actor.state == ActorState.Reward)
             {
@@ -424,6 +441,8 @@ namespace DungeonRun
                 if(Actor.swimming)
                 {
 
+                    Actor.compMove.speed = Actor.swimSpeed;
+
                     #region Swimming State
 
                     if (Actor.state == ActorState.Interact)
@@ -432,13 +451,16 @@ namespace DungeonRun
                     }
                     else if (Actor.state == ActorState.Dash)
                     {
-                        /*
-                        Actor.lockTotal = 10;
+                        
+                        Actor.lockTotal = 15;
                         Actor.stateLocked = true;
-                        Actor.compMove.speed = Actor.dashSpeed;
-                        Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Actor);
-                        Assets.Play(Actor.sfxDash);
-                        */
+                        Functions_Movement.Push(Actor.compMove, 
+                            Actor.compInput.direction, 2.0f);
+                        Assets.Play(Assets.sfxWaterSwim);
+
+                        //need a wave particle to visually show hero's dash
+                        //Functions_Particle.Spawn(ObjType.Particle_RisingSmoke, Actor);
+
                     }
                     else if (Actor.state == ActorState.Attack)
                     {

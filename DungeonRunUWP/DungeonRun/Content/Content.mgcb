@@ -515,3 +515,9 @@
 /processorParam:Quality=Best
 /build:SoundWaterWalk.wav
 
+#begin SoundWaterSwim.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundWaterSwim.wav
+

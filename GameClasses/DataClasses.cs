@@ -116,8 +116,10 @@ namespace DungeonRun
 
         public static float friction = 0.75f; //standard friction
 
+        public static float frictionWater = 0.85f; //some slowdown
         public static float frictionAir = 0.9f; //some slowdown
         public static float frictionIce = 0.99f; //no slowdown
+
     }
 
 
@@ -889,6 +891,8 @@ namespace DungeonRun
 
         public AnimationGroup swim_idle;
         public AnimationGroup swim_move;
+        public AnimationGroup swim_dash;
+        public AnimationGroup swim_hit;
     }
 
     public class ColorScheme
@@ -1036,6 +1040,7 @@ namespace DungeonRun
         //type specific fields, set by Functions_Actor.SetType()
         public float dashSpeed;
         public float walkSpeed;
+        public float swimSpeed = 0.10f; //unchanged
 
         //the components that actor requires to function
         public ComponentSprite compSprite;
@@ -1072,6 +1077,7 @@ namespace DungeonRun
         public Boolean grabbing = false;
         public GameObject grabbedObj = null;
 
+        //fields used in swimming
         public Boolean swimming = false; //is actor in water?
         public Boolean createSplash = false; //handles splash entering water
 

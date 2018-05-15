@@ -413,7 +413,7 @@ namespace DungeonRun
                         Actor.createSplash = true; //only create 1 splash
                     }
                     Actor.swimming = true;
-                    Actor.compMove.friction = World.frictionUse;
+                    Actor.compMove.friction = World.frictionWater;
                 }
 
                 #endregion

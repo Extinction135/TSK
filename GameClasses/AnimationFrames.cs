@@ -605,6 +605,18 @@ namespace DungeonRun
             Hero_Animations.swim_move.right = new List<Byte4> { new Byte4(0, 7, 0, 0), new Byte4(1, 7, 0, 0) };
             Hero_Animations.swim_move.left = new List<Byte4> { new Byte4(0, 7, 1, 0), new Byte4(1, 7, 1, 0) };
 
+            Hero_Animations.swim_dash = new AnimationGroup();
+            Hero_Animations.swim_dash.down = new List<Byte4> { new Byte4(2, 5, 0, 0) };
+            Hero_Animations.swim_dash.up = new List<Byte4> { new Byte4(2, 6, 0, 0) };
+            Hero_Animations.swim_dash.right = new List<Byte4> { new Byte4(2, 7, 0, 0) };
+            Hero_Animations.swim_dash.left = new List<Byte4> { new Byte4(2, 7, 1, 0) };
+
+            Hero_Animations.swim_hit = new AnimationGroup();
+            Hero_Animations.swim_hit.down = new List<Byte4> { new Byte4(1, 8, 0, 0) };
+            Hero_Animations.swim_hit.up = Hero_Animations.swim_hit.down;
+            Hero_Animations.swim_hit.right = Hero_Animations.swim_hit.down;
+            Hero_Animations.swim_hit.left = Hero_Animations.swim_hit.down;
+
             #endregion
 
 
