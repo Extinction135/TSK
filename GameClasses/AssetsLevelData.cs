@@ -5,12 +5,38 @@ namespace DungeonRun
 	public static class LevelData
 	{
 		//all levels in game
+		public static RoomXmlData Church = new RoomXmlData();
 		public static RoomXmlData Colliseum = new RoomXmlData();
 		public static RoomXmlData ForestEntrance = new RoomXmlData();
 
 		//level data
 		static LevelData()
 		{
+
+			#region Church
+
+			Church.type = RoomID.Church;
+			Church.objs = new List<ObjXmlData>();
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 408; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 408; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 408; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 408; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 424; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 440; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 456; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 472; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 488; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 488; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 488; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 488; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 456; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 456; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 456; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 472; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 488; Church.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 408; Church.objs.Add(obj);}
+			#endregion
+
 
 			#region Colliseum
 

@@ -137,14 +137,15 @@ namespace DungeonRun
 
 
 
-            #region Setup RoomData OR DevRooms
+            //Setup RoomData OR DevRooms
 
             if (RoomXmlData == null)
-            {
-                //assume level is dungeon level
+            {   //assume level is dungeon level
                 Level.isField = false;
 
-                //setup overworld level data
+
+                #region Setup overworld level data
+
                 if (Room.roomID == RoomID.Colliseum)
                 {
                     RoomXmlData = LevelData.Colliseum;
@@ -155,8 +156,17 @@ namespace DungeonRun
                     RoomXmlData = LevelData.ForestEntrance;
                     Level.isField = true;
                 }
+                else if (Room.roomID == RoomID.Church)
+                {
+                    RoomXmlData = LevelData.Church;
+                    Level.isField = true;
+                }
 
-                //setup dungeon room data
+                #endregion
+
+
+                #region Setup dungeon room data
+
                 else if (Room.roomID == RoomID.Boss)
                 {
                     //RoomXmlData = RoomData.bossRooms[Functions_Random.Int(0, RoomData.bossRooms.Count)];
@@ -191,7 +201,13 @@ namespace DungeonRun
                     //RoomXmlData = RoomData.squareRooms[Functions_Random.Int(0, RoomData.squareRooms.Count)];
                     RoomXmlData = RoomData.squareRooms[Room.dataIndex];
                 }
+
+                #endregion
+
             }
+
+
+            #region Setup DEV ROOMS
 
             if (Room.roomID == RoomID.DEV_Boss || Room.roomID == RoomID.DEV_Column ||
                 Room.roomID == RoomID.DEV_Exit || Room.roomID == RoomID.DEV_Hub ||
@@ -212,6 +228,8 @@ namespace DungeonRun
             }
 
             #endregion
+            
+
 
 
             #region Build the room + roomData

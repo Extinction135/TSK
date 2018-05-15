@@ -56,6 +56,8 @@ namespace DungeonRun
             locations.Add(colliseum);
             MapLocation ship = new MapLocation(false, new Vector2(281, 234));
             locations.Add(ship);
+
+            //right side of top map
             MapLocation colliseumRight = new MapLocation(false, new Vector2(365, 175));
             locations.Add(colliseumRight);
             MapLocation centerTown = new MapLocation(false, new Vector2(339, 141));
@@ -77,21 +79,28 @@ namespace DungeonRun
             locations.Add(colliseumLeft);
             MapLocation forestDungeon = new MapLocation(true, new Vector2(265, 125));
             locations.Add(forestDungeon);
-            MapLocation caveDungeon = new MapLocation(false, new Vector2(166, 150));
-            locations.Add(caveDungeon);
+
+            //town south of cave entrance
             MapLocation leftTown3 = new MapLocation(false, new Vector2(182, 179));
             locations.Add(leftTown3);
+            MapLocation caveDungeon = new MapLocation(false, new Vector2(166, 150));
+            locations.Add(caveDungeon);
+
+            //top left town and town south of it
             MapLocation leftTown2 = new MapLocation(false, new Vector2(126, 182));
             locations.Add(leftTown2);
             MapLocation leftTown1 = new MapLocation(false, new Vector2(115, 219));
             locations.Add(leftTown1);
-            MapLocation leftTownChurch = new MapLocation(false, new Vector2(174, 255));
+
+            //bottom left building (church)
+            MapLocation leftTownChurch = new MapLocation(true, new Vector2(174, 255));
             locations.Add(leftTownChurch);
             MapLocation leftIslandConnector = new MapLocation(false, new Vector2(175, 296));
             locations.Add(leftIslandConnector);
             MapLocation castleRuins = new MapLocation(false, new Vector2(117, 275));
             locations.Add(castleRuins);
 
+            //bottom right part of map
             MapLocation tentTown = new MapLocation(false, new Vector2(483, 256));
             locations.Add(tentTown);
             MapLocation tentTownLeft = new MapLocation(false, new Vector2(447, 228));
@@ -181,19 +190,35 @@ namespace DungeonRun
             #endregion
 
 
-            #region Setup Locations & Starting Location
+            #region SETUP ACCESSIBLE LOCATIONS
+
+            //requires that the 'true' boolean is passed into the MapLocation
+            //constructor for the location created above. else, ignored.
 
             //setup accessible levels
             colliseum.ID = LevelID.Colliseum;
             forestDungeon.ID = LevelID.Forest_Entrance;
+            leftTownChurch.ID = LevelID.Church;
+
+
+
 
             //hero may of exited a dungeon, setup current location based on level id
             if (PlayerData.current.lastLocation == LevelID.Colliseum)
             { currentLocation = colliseum; }
             else if (PlayerData.current.lastLocation == LevelID.Forest_Entrance)
             { currentLocation = forestDungeon; }
+            else if (PlayerData.current.lastLocation == LevelID.Church)
+            { currentLocation = leftTownChurch; }
+
+
             else //default to colliseum if unknown
             { currentLocation = colliseum; }
+
+
+
+
+
 
             //set target to current (no initial target)
             targetLocation = currentLocation;

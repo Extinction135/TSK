@@ -107,6 +107,12 @@ namespace DungeonRun
                 Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.ForestEntrance);
                 Level.rooms.Add(field);
             }
+            else if (Level.ID == LevelID.Church)
+            {
+                Functions_Music.PlayMusic(Music.LightWorld);
+                Room field = new Room(new Point(buildPosition.X, buildPosition.Y), RoomID.Church);
+                Level.rooms.Add(field);
+            }
 
             #endregion
 
@@ -556,12 +562,19 @@ namespace DungeonRun
         {   //set the floor pool texture based on dungeon type
             Texture2D Texture = Assets.forestLevelSheet;
             //set level/dungeon texture based on level id
+
+            //dungeon levels
             if (ID == LevelID.Forest_Dungeon) { Texture = Assets.forestLevelSheet; }
+
+            //overworld levels
             else if (ID == LevelID.Forest_Entrance) { Texture = Assets.forestLevelSheet; }
             else if (ID == LevelID.Colliseum) { Texture = Assets.forestLevelSheet; }
-            else if (ID == LevelID.DEV_Field) { Texture = Assets.forestLevelSheet; }
-            else if (ID == LevelID.DEV_Room) { Texture = Assets.forestLevelSheet; }
-            //set default
+            else if (ID == LevelID.Church) { Texture = Assets.forestLevelSheet; }
+
+            //dev levels
+            //else if (ID == LevelID.DEV_Field) { Texture = Assets.forestLevelSheet; }
+            //else if (ID == LevelID.DEV_Room) { Texture = Assets.forestLevelSheet; }
+            //default
             else { Texture = Assets.forestLevelSheet; }
 
             //set the floor texture

@@ -170,48 +170,64 @@ TODAY:
 
 
 
-Visual Improvements
 
-the magic meter tail sprite needs to go 1 pixel left. done.
+Levels+
 
-the scroll background for the map needs to have 1 additional
-height in size, so it aligns with the inventory screen behind it.
-this will also center the map rooms to the bkg scroll.
-
-
-
-
+added the coastline building location to overworld map.
+added levelType and RoomID for 'church'.
+created some basic roomData for church.
+integrated church level and room into systems.
+playtested, working as expected.
+fairly painless and easy to add a level.
 
 
-ran into a bug where the boomerang wasn't able to throw.
-something turned the boomerang in play boolean true,
-and the false state was never hit. check that code out closer.
+
+
+
+water tiles
 
 
 
 
 
 new level, with water tiles - so we have a good stage set for
-implementing swimming tmrw.
+implementing swimming.
 
 writing the animFrames for hero swimming is easy to do too.
-so knock it out today.
-
-
-
-
-
-
-
-
-
-
-
-
 
 - water tiles + swimming + transitions to/from.
 - add a half water half land level for testing. map++.
 - should have feetFX for coastline transition tiles.
+
+
+
+
+
+
+
+
+Editor++
+prior to loading a room, set the key and map to false in editor.
+this will ensure the level is loaded in properly, and the cheats
+can be modified before or after at will without breaking anything.
+
+
+
+
+
+Dancing
+standing still, press B to make link randomly dance
+animFrames, input check, dance state, randomly choose animFrame.
+dance ends with any input, because no statelock, but animLoops.
+or does it? maybe hold down B to loop. press it once to play
+a random dance once.
+
+
+
+
+
+
+
 
 
 
