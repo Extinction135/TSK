@@ -172,7 +172,11 @@ namespace DungeonRun
             if (Actor.state == ActorState.Idle)
             {
                 if(Actor.swimming)
-                { Actor.animGroup = Actor.animList.swim_idle; }
+                {
+                    if (Actor.underwater)
+                    { Actor.animGroup = Actor.animList.underwater_idle; }
+                    else { Actor.animGroup = Actor.animList.swim_idle; }
+                }
                 else if (Actor.carrying)
                 { Actor.animGroup = Actor.animList.idleCarry; }
                 else if (Actor.grabbing)
@@ -182,7 +186,11 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Move)
             {
                 if (Actor.swimming)
-                { Actor.animGroup = Actor.animList.swim_move; }
+                {
+                    if (Actor.underwater)
+                    { Actor.animGroup = Actor.animList.underwater_move; }
+                    else { Actor.animGroup = Actor.animList.swim_move; }
+                }
                 else if (Actor.carrying)
                 { Actor.animGroup = Actor.animList.moveCarry; }
                 else if (Actor.grabbing)
@@ -194,7 +202,10 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Dash)
             {
                 if (Actor.swimming)
-                { Actor.animGroup = Actor.animList.swim_dash; }
+                {
+                    if (Actor.underwater) { } //do nothing
+                    else { Actor.animGroup = Actor.animList.swim_dash; }
+                }
                 else { Actor.animGroup = Actor.animList.dash; }
             }
             else if (Actor.state == ActorState.Interact)
@@ -272,7 +283,19 @@ namespace DungeonRun
 
 
 
-
+        public static void Breathe(Actor Actor)
+        {
+            if (Actor.underwater)
+            {   //if actor has been underwater for awhile, force them to come up for air
+                Actor.breathCounter++;
+                if (Actor.breathCounter > 60 * 4) //4 seconds
+                {
+                    Actor.underwater = false;
+                    Functions_Particle.Spawn(ObjType.Particle_Splash, Actor);
+                    Actor.breathCounter = 0;
+                }
+            }
+        }
 
 
 
@@ -436,69 +459,87 @@ namespace DungeonRun
                 Actor.compMove.speed = Actor.walkSpeed; //default to walk speed
 
 
-
-
                 if(Actor.swimming)
-                {
-
+                {   //SWIM STATES
                     Actor.compMove.speed = Actor.swimSpeed;
-
-                    #region Swimming State
-
                     if (Actor.state == ActorState.Interact)
-                    {
-
-                        //the issue here is that hero could pickup / etc while swimming..
-                        //do not want that
-
+                    {   //swim interact
                         if (Actor == Pool.hero) //only hero can interact with room objs
                         { Functions_Hero.CheckInteractionRecCollisions(); }
-
-
                     }
                     else if (Actor.state == ActorState.Dash)
                     {
-                        Actor.lockTotal = 15;
-                        Actor.stateLocked = true;
 
-                        if(Actor.compInput.direction == Direction.Down
-                            || Actor.compInput.direction == Direction.Up
-                            || Actor.compInput.direction == Direction.Left
-                            || Actor.compInput.direction == Direction.Right)
-                        {   //cardinal swim dash - full power push + confirmation particle
-                            Functions_Movement.Push(
-                                Actor.compMove,
-                                Actor.compInput.direction, 2.0f);
-                            Assets.Play(Assets.sfxWaterSwim);
-                            //place water kick fx behind actor
-                            Functions_Particle.Spawn(
-                                ObjType.Particle_WaterKick,
-                                Actor.compSprite.position.X,
-                                Actor.compSprite.position.Y,
-                                Functions_Direction.GetOppositeDirection(Actor.direction));
+                        #region  Swim dash (but can't dash underwater)
+
+                        if (Actor.underwater == false)
+                        {
+                            Actor.lockTotal = 15;
+                            Actor.stateLocked = true;
+
+                            if (Actor.compInput.direction == Direction.Down
+                                || Actor.compInput.direction == Direction.Up
+                                || Actor.compInput.direction == Direction.Left
+                                || Actor.compInput.direction == Direction.Right)
+                            {   //cardinal swim dash - full power push + confirmation particle
+                                Functions_Movement.Push(
+                                    Actor.compMove,
+                                    Actor.compInput.direction, 2.0f);
+                                Assets.Play(Assets.sfxWaterSwim);
+                                //place water kick fx behind actor
+                                Functions_Particle.Spawn(
+                                    ObjType.Particle_WaterKick,
+                                    Actor.compSprite.position.X,
+                                    Actor.compSprite.position.Y,
+                                    Functions_Direction.GetOppositeDirection(Actor.direction));
+                            }
+                            else
+                            {   //diagonal swim dash - half power push
+                                Functions_Movement.Push(
+                                    Actor.compMove,
+                                    Actor.compInput.direction, 1.0f);
+                                Assets.Play(Assets.sfxWaterSwim);
+                            }
                         }
                         else
-                        {   //diagonal swim dash - half power push
-                            Functions_Movement.Push(
-                                Actor.compMove,
-                                Actor.compInput.direction, 1.0f);
-                            Assets.Play(Assets.sfxWaterSwim);
+                        {   //return actor to normal move state, they can't dash underwater
+                            Actor.state = ActorState.Move; //nah breh
                         }
+
+                        #endregion
+
                     }
                     else if (Actor.state == ActorState.Attack)
                     {
-                        //nothing
+
+                        #region Swim Dive (toggled, only for Hero)
+
+                        if(Actor == Pool.hero)
+                        {   //only hero has sweet diving action rn
+                            if(Functions_Input.IsNewButtonPress(Buttons.X))
+                            {   //toggle dive state only on new button press
+                                if (Actor.underwater == false) //setup new dive
+                                { Actor.underwater = true; Actor.breathCounter = 0; }
+                                else { Actor.underwater = false; }
+                                //make a splash
+                                Functions_Particle.Spawn(
+                                    ObjType.Particle_Splash,
+                                    Actor.compSprite.position.X,
+                                    Actor.compSprite.position.Y);
+                            }
+                        }
+
+                        #endregion
+
                     }
                     else if (Actor.state == ActorState.Use)
                     {
                         //nothing
+                        //but in future we can use magic items, etc.. in water
                     }
-
-                    #endregion
-
                 }
                 else if(Actor.carrying)
-                {
+                {   //this is on land
 
                     #region Carrying state
 
@@ -536,11 +577,11 @@ namespace DungeonRun
 
                 }
                 else if(Actor.grabbing)
-                {
+                {   //this is on land
 
                     #region Grabbing State
 
-                    if(Actor == Pool.hero)
+                    if (Actor == Pool.hero)
                     {   //make sure A button is down and hero is in grab state
                         if (Functions_Input.IsButtonDown(Buttons.A))
                         {   //alter hero's friction - slow
@@ -559,7 +600,7 @@ namespace DungeonRun
 
                 }
                 else
-                {
+                {   //this is on land
 
                     #region Non-carrying state
 

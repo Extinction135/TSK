@@ -172,17 +172,6 @@ TODAY:
 
 
 
-Swim Interactions
-
-updated hero interactions to allow for most interactions 
-while in the water, including: activating torches, levers,
-switch block buttons, chests, and the boss door. so, we
-*could* fill the hub room with water tiles and have a miniboss
-battle on platforms - if that seems fun. lol.
-
-the reason this was done was so that hero can interact 
-with objs in dungeon rooms while swimming, so water tiles
-can become a part of dungeon rooms, expanding the room variety.
 
 
 
@@ -190,12 +179,81 @@ can become a part of dungeon rooms, expanding the room variety.
 
 
 
+Dive
+
+link jumps in the water, so now he's swimming.
+when the player presses the X button, this causes
+link to 'dive' underwater. link can still move around
+while underwater, but he can't dash. while underwater
+enemies can't see link (!) and wont chase him. after
+4 counts of 60 frames, link is forced out of the
+underwater state with a splash (he returns to swimming).
+
+fixed a minor bug where actor.breathCounter wasn't getting
+reset upon a fresh dive, which cut some dives short.
+
+lots of play testing... working amazingly well.
 
 
 
+
+play test that enemies actually ignore hero while he's underwater.
+the code only works one way...
+
+
+
+
+interact rec hits water tile, kills hero's movement.
+why? why should bail from interaction with a water tile, and coastline tiles,
+altogether...
+
+
+
+
+
+*add enemies to forest entrance level (enemy spawns)
+*add water ponds to forest entrance level too (test hiding from enemies)
+
+
+
+
+dive idle and move. this is triggered by pressing X button.
+X button puts links into dive state under water.
+pressing X while in dive state brings link to above water state.
+after 4 counts of 60 frames, actor is forced back to swimming
+state, with a splash.
+
+
+while in dive state, enemies can't see link.
+
+
+
+
+
+
+
+
+
+
+
+
+Swim Death
 
 need swim death really badly.
 this is the drown anim, with the cycling bob at the end.
+
+hero should spin around twice in water,
+then go into dive idle anim.
+
+
+
+
+
+
+
+
+
+
 
 
 *we need swim reward state for hero.

@@ -893,6 +893,9 @@ namespace DungeonRun
         public AnimationGroup swim_move;
         public AnimationGroup swim_dash;
         public AnimationGroup swim_hit;
+
+        public AnimationGroup underwater_idle;
+        public AnimationGroup underwater_move;
     }
 
     public class ColorScheme
@@ -1080,8 +1083,8 @@ namespace DungeonRun
         //fields used in swimming
         public Boolean swimming = false; //is actor in water?
         public Boolean createSplash = false; //handles splash entering water
-
-
+        public Boolean underwater = false; //is actor's head underwater or above water?
+        public int breathCounter = 0; //counts frames while actor is underwater, forces surface
 
         public Actor()
         {

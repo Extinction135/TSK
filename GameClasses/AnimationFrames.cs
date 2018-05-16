@@ -624,6 +624,23 @@ namespace DungeonRun
             Hero_Animations.swim_hit.right = Hero_Animations.swim_hit.down;
             Hero_Animations.swim_hit.left = Hero_Animations.swim_hit.down;
 
+            //underwater
+            Hero_Animations.underwater_idle = new AnimationGroup();
+            Hero_Animations.underwater_idle.down = new List<Byte4> { new Byte4(4, 5, 0, 0), new Byte4(5, 5, 0, 0) };
+            Hero_Animations.underwater_idle.up = new List<Byte4> { new Byte4(4, 6, 0, 0), new Byte4(5, 6, 0, 0) };
+            Hero_Animations.underwater_idle.right = new List<Byte4> { new Byte4(4, 7, 0, 0), new Byte4(5, 7, 0, 0) };
+            Hero_Animations.underwater_idle.left = new List<Byte4> { new Byte4(4, 7, 1, 0), new Byte4(5, 7, 1, 0) };
+
+            Hero_Animations.underwater_move = new AnimationGroup();
+            Hero_Animations.underwater_move.down = new List<Byte4>
+            { new Byte4(3, 5, 0, 0), new Byte4(4, 5, 0, 0), new Byte4(5, 5, 0, 0) };
+            Hero_Animations.underwater_move.up = new List<Byte4>
+            { new Byte4(3, 6, 0, 0), new Byte4(4, 6, 0, 0), new Byte4(5, 6, 0, 0) };
+            Hero_Animations.underwater_move.right = new List<Byte4>
+            { new Byte4(3, 7, 0, 0), new Byte4(4, 7, 0, 0), new Byte4(5, 7, 0, 0) };
+            Hero_Animations.underwater_move.left = new List<Byte4>
+            { new Byte4(3, 7, 1, 0), new Byte4(4, 7, 1, 0), new Byte4(5, 7, 1, 0) };
+
             #endregion
 
 

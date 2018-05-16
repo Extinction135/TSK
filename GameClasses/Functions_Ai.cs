@@ -66,6 +66,10 @@ namespace DungeonRun
             {   //by default, choose a random direction to move in & randomly dash
                 Actor.compInput.direction = (Direction)Functions_Random.Int(0, 8);
                 if (Functions_Random.Int(0, 100) > 90) { Actor.compInput.dash = true; }
+
+                //if the hero's underwater (hidden), just bail from rest of method
+                if (Pool.hero.underwater) { return; }
+                
                 //if the hero's alive, determine if actor should chase/attack hero
                 if (Pool.hero.state != ActorState.Dead)
                 {   //if the actor is an enemy, and the hero is on other team (ally)
