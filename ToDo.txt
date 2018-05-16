@@ -205,12 +205,21 @@ TODAY:
 
 
 
+Improvements++
+
+improved row rooms that were looking bland.
+improved editor to reset level key and map booleans
+to false just prior to building a room from xml file.
+this ensures that the room will be built properly,
+even if we have key and map cheats enabled. those cheats
+are checked when a level  or dungeon is built, 
+not when a room is built.
+
+improved hub rooms. now they are setup to handle a
+miniboss, which will come very soon.
+recompiled roomData.
 
 
-row rooms with lots of enemies in them should have shallow water bits,
-just to break up the ground 'nothing-ness' that is what i call my level design.
-theres so many things we can put in these rooms to make them look interesting,
-why do they look boring? cause they were designed a year ago?
 
 
 
@@ -220,21 +229,7 @@ why do they look boring? cause they were designed a year ago?
 
 
 
-Switches++
 
-actors compCollision must be blocking in order to trigger
-a floor switch. otherwise, a dead enemy like a blob can trigger
-the floor switch, which wasn't a problem when we were displaying
-their little dead bodies on screen - but now when a blob dies,
-they disappear from the room visually, which means their
-invisible dead bodies shouldn't be able to trigger floor switches,
-because the player couldn't see them, and this would appear
-as buggy behavior in-game. whew.
-
-updated functions_ai.handleObj() to ensure switches activate
-only from actors that have blocking collision components.
-
-i'm also improving row rooms while polishing / fixing bugs.
 
 
 
@@ -306,12 +301,6 @@ we need new hub rooms, that are actually interesting.
 
 
 
-interact rec hits water tile, kills hero's movement.
-why? why should bail from interaction with a water tile, and coastline tiles,
-altogether...
-
-
-
 
 
 
@@ -378,19 +367,6 @@ a random dance once.
 
 
 
-
-
-
-
-
-mirage effect from snes:
-
-for a set of pixels, copy the top left pixel into the rest.
-then simply animate the size of the pixel set over time
-4 pixels, then 8, then 16, etc.. this causes the 'warp' effect
-on screen (pixelization). 
-this is likely something we'd have to do as a shader effect,
-or possibly as a final step over the 640x360 render surface.
 
 
 

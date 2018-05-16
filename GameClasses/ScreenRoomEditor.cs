@@ -40,8 +40,6 @@ namespace DungeonRun
             displayState = DisplayState.Opened; //open the screen
             Flags.Paused = false; //unpause editor initially
             Functions_Hero.UnlockAll(); //unlock all items
-            Level.map = false; //we want to be able to open / spawn chests
-            Level.bigKey = false; //if we dont set these false, chests spawn empty
         }
 
         public override void HandleInput(GameTime GameTime)

@@ -313,6 +313,10 @@ namespace DungeonRun
                 Level.rooms = new List<Room>();
                 Level.doors = new List<Door>();
 
+                //reset the level flags
+                Level.bigKey = false;
+                Level.map = false;
+
                 Room room = new Room(Functions_Level.buildPosition, RoomXmlData.type);
                 Level.rooms.Add(room);
                 Functions_Level.currentRoom = room;

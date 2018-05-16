@@ -3,6 +3,26 @@
 
 
 
+
+
+mirage effect from snes:
+
+for a set of pixels, copy the top left pixel into the rest.
+then simply animate the size of the pixel set over time
+4 pixels, then 8, then 16, etc.. this causes the 'warp' effect
+on screen (pixelization). 
+this is likely something we'd have to do as a shader effect,
+or possibly as a final step over the 640x360 render surface.
+
+
+
+
+
+
+
+
+
+
 Battle Instructor NPC
 
 we need a battle instructor NPC that stands in front of an object
