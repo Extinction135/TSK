@@ -3,6 +3,24 @@
   <type>Column</type>
   <objs>
     <ObjXmlData>
+      <type>Dungeon_SwitchBlockUp</type>
+      <direction>Down</direction>
+      <posX>152</posX>
+      <posY>280</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SwitchBlockUp</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>152</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SwitchBlockDown</type>
+      <direction>Down</direction>
+      <posX>104</posX>
+      <posY>184</posY>
+    </ObjXmlData>
+    <ObjXmlData>
       <type>Dungeon_SwitchBlockBtn</type>
       <direction>Down</direction>
       <posX>88</posX>
@@ -527,12 +545,6 @@
     <ObjXmlData>
       <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
-      <posX>40</posX>
-      <posY>152</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SwitchBlockUp</type>
-      <direction>Down</direction>
       <posX>24</posX>
       <posY>152</posY>
     </ObjXmlData>
@@ -561,7 +573,7 @@
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>56</posX>
       <posY>136</posY>
@@ -579,19 +591,19 @@
       <posY>120</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>72</posX>
       <posY>136</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>104</posX>
       <posY>168</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>120</posX>
       <posY>168</posY>
@@ -633,15 +645,9 @@
       <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
-      <type>Dungeon_SwitchBlockUp</type>
+      <type>Dungeon_SwitchBlockDown</type>
       <direction>Down</direction>
       <posX>120</posX>
-      <posY>184</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SwitchBlockUp</type>
-      <direction>Down</direction>
-      <posX>104</posX>
       <posY>184</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -738,12 +744,6 @@
       <type>Dungeon_SwitchBlockUp</type>
       <direction>Down</direction>
       <posX>136</posX>
-      <posY>280</posY>
-    </ObjXmlData>
-    <ObjXmlData>
-      <type>Dungeon_SwitchBlockUp</type>
-      <direction>Down</direction>
-      <posX>152</posX>
       <posY>280</posY>
     </ObjXmlData>
     <ObjXmlData>
@@ -862,7 +862,7 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Left</direction>
+      <direction>Up</direction>
       <posX>8</posX>
       <posY>8</posY>
     </ObjXmlData>
@@ -874,13 +874,13 @@
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Up</direction>
+      <direction>Right</direction>
       <posX>168</posX>
       <posY>296</posY>
     </ObjXmlData>
     <ObjXmlData>
       <type>Dungeon_PitTrap</type>
-      <direction>Left</direction>
+      <direction>Down</direction>
       <posX>8</posX>
       <posY>296</posY>
     </ObjXmlData>

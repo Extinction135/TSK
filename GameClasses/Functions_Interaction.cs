@@ -152,6 +152,7 @@ namespace DungeonRun
             }
 
             //these objects interact with ALL ACTORS
+            //note that some objs, like floor switches. are handled by Functions_Ai.HandleObj()
 
 
             #region Projectiles

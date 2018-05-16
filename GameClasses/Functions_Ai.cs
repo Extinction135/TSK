@@ -162,7 +162,8 @@ namespace DungeonRun
                 //loop over all active actors
                 for (i = 0; i < Pool.actorCount; i++)
                 {   //allow dead actor corpses to activate switches
-                    if (Pool.actorPool[i].active & 
+                    if (Pool.actorPool[i].active &
+                        Pool.actorPool[i].compCollision.blocking &
                         Pool.actorPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
                     { overlap = true; }
                 }
@@ -170,7 +171,8 @@ namespace DungeonRun
                 //loop over all active block roomObjs
                 for (i = 0; i < Pool.roomObjCount; i++)
                 {   //only blocking objs can activate switches
-                    if (Pool.roomObjPool[i].active & Pool.roomObjPool[i].compCollision.blocking &
+                    if (Pool.roomObjPool[i].active & 
+                        Pool.roomObjPool[i].compCollision.blocking &
                         Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
                     { overlap = true; }
                 }

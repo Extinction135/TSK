@@ -204,30 +204,6 @@ TODAY:
 
 
 
-Hero Death++
-
-fixed a major bug where hero couldn't die in game.
-this was due to SetDeathState() setting Actor.stateLocked true,
-then calling Transform(), which called SetType(), which called
-ResetActor(), which set statelocked to false. this caused the hero
-to be able to accept input while in a death state, which
-led to the buggy mess of being alive and dead at the same time.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -235,6 +211,42 @@ row rooms with lots of enemies in them should have shallow water bits,
 just to break up the ground 'nothing-ness' that is what i call my level design.
 theres so many things we can put in these rooms to make them look interesting,
 why do they look boring? cause they were designed a year ago?
+
+
+
+
+
+
+
+
+
+Switches++
+
+actors compCollision must be blocking in order to trigger
+a floor switch. otherwise, a dead enemy like a blob can trigger
+the floor switch, which wasn't a problem when we were displaying
+their little dead bodies on screen - but now when a blob dies,
+they disappear from the room visually, which means their
+invisible dead bodies shouldn't be able to trigger floor switches,
+because the player couldn't see them, and this would appear
+as buggy behavior in-game. whew.
+
+updated functions_ai.handleObj() to ensure switches activate
+only from actors that have blocking collision components.
+
+i'm also improving row rooms while polishing / fixing bugs.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
