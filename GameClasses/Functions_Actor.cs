@@ -79,22 +79,21 @@ namespace DungeonRun
 
         public static void SetDeathState(Actor Actor)
         {
+            //prior to hero dying, he must return to being link/hero
+            if (Actor == Pool.hero)
+            { Transform(Pool.hero, ActorType.Hero); }
+            //link is only actor with correct death animation for gameover
+            
+            //and switching hero back also makes it easy to track enemy deaths
+            else { DungeonRecord.enemyCount++; }
+
+            //lock actor into dead state
             Actor.state = ActorState.Dead;
             Actor.stateLocked = true;
             Actor.lockCounter = 0;
             Actor.lockTotal = 255;
             Assets.Play(Actor.sfx.kill); //play actor death sound fx
-
-            //prior to hero dying, he must return to being link/hero
-            if(Actor == Pool.hero)
-            { Transform(Pool.hero, ActorType.Hero); }
-            //link is only actor with correct death animation for gameover
-
-            //and switching hero back also makes it easy to track enemy deaths
-            else { DungeonRecord.enemyCount++; } 
-
-            //make dead actor's corpse passable
-            Actor.compCollision.blocking = false;
+            Actor.compCollision.blocking = false; //make dead actor's corpse passable
 
             //Enemy Specific Death Effects
             if (Actor.type == ActorType.Blob)
@@ -700,7 +699,10 @@ namespace DungeonRun
                     Actor.health = 0; //lock actor's health at 0
 
                     //Death Effects
-                    if (Actor == Pool.hero) { Functions_Hero.HandleDeath(); }
+                    if (Actor == Pool.hero)
+                    {
+                        Functions_Hero.HandleDeath();
+                    }
                     else if (Actor.type == ActorType.Boss)
                     {   //dead bosses perpetually explode
                         if (Functions_Random.Int(0, 100) > 75) //randomly create explosions

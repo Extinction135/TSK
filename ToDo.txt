@@ -134,9 +134,8 @@ these rooms turn all their doors into locked doors upon close, similar to puzzle
 
 Wednesday
 	- swim reward, use items while swimming: bottles, any reward item
-	- swim dash, swim drown, swim dive
-	- blocking water objects
-	- swim hit, we can use a flamethrower for water enemy test
+	- full screen magic (bombos, explosions all over screen).
+	- blocking and interactive water objects (press a to do something)
 
 Thursday
 	- implement shovel weapon
@@ -148,6 +147,31 @@ Thursday
 	- then we need to implement cascading effect: low, med, high water tiles.
 	- high > med > low > ditch is the spreading routine.
 	- at this point link should be able to construct water channels
+	
+TRENCH SYSTEM (OMG I DID IT)
+
+how to make trench system work:
+the initial trench obj placed is a temp obj with a 20x20 collision rec.
+on it's first frame, it checks to see what trench objs overlap it.
+using the list of overlapping trenches nearby, sort to a NSEW boolean list.
+(this is done by comparing new trench sprite pos to neighbor sprite pos.)
+then we can switch the type of the trench just placed to 'fit' into
+it's neighboring trenches. N+S = vertical. E+W = horizontal.
+N+(E/W) etc = corner trench. N+S+E+W = quad trench. we only need 3 trench sprites. lol.
+this makes it easy to propagate water thru them too, as we would then
+have low, med, filled sprite versions of the trench.
+
+we will also need 'end caps' that connect to straight pieces.
+and trenches that are just single holes in the ground.
+
+
+* add windmill obj that animates if a filled trench obj touches it
+in the right neighboring tile.
+
+
+
+
+
 
 Friday
 	- implement water temple (big lever to change water level outside).
@@ -162,6 +186,15 @@ Friday
 	
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
@@ -171,42 +204,14 @@ TODAY:
 
 
 
+Hero Death++
 
-
-
-Improvements++
-
-add burnt tree to world widget
-updated forest entrance + colliseum levels.
-improved sorting of water tiles.
-added two dungeon rooms with water tiles.
-improved blob death animation to be blank.
-
-updated interaction routines to only play water walking
-sound if the hero is walking on coastlines. it was
-super annoying to hear that sound spammed when the room
-was full of enemies. though accurate, not desired.
-
-fixed a bug where pressing A while in the water caused hero
-to interact with the water tile, completely stopping his
-inertia, due to a StopMovement() call. now we're just
-ignoring the water obj in CheckInteractionRec().
-
-renamed CheckInteractionRecCollisions() to CheckInteractionRec().
-adding 'collisions' to the end of that makes no sense.
-lots of playtesting in editor + game modes.
-
-yass: so... you can pickup some objects. and you
-can jump in the water while carrying this obj, and
-it will stay above your head, and you can't throw it. yet.
-and you can swim, exit the water, and throw the obj.
-glorious. i didn't even consider that state of the
-game until i tested it, and it passed.
-
-fixed a bug where hero couldn't die in game.
-upon death, his health was reset to 3. oops.
-that fixed one problem, but there are more.
-i sleep now. more tmrw.
+fixed a major bug where hero couldn't die in game.
+this was due to SetDeathState() setting Actor.stateLocked true,
+then calling Transform(), which called SetType(), which called
+ResetActor(), which set statelocked to false. this caused the hero
+to be able to accept input while in a death state, which
+led to the buggy mess of being alive and dead at the same time.
 
 
 
@@ -223,9 +228,6 @@ i sleep now. more tmrw.
 
 
 
-
-hero still can't die in game. he doesn't get statelocked into
-the death state. lol.
 
 
 
@@ -252,7 +254,9 @@ this is hero death in water.
 
 
 
-
+attacking while carrying should do nothing
+using while carrying should do nothing
+currently it draws a frame of use anim.
 
 
 
@@ -363,21 +367,7 @@ a random dance once.
 
 
 
-TRENCH SYSTEM (OMG I DID IT)
 
-how to make trench system work:
-the initial trench obj placed is a temp obj with a 20x20 collision rec.
-on it's first frame, it checks to see what trench objs overlap it.
-using the list of overlapping trenches nearby, sort to a NSEW boolean list.
-(this is done by comparing new trench sprite pos to neighbor sprite pos.)
-then we can switch the type of the trench just placed to 'fit' into
-it's neighboring trenches. N+S = vertical. E+W = horizontal.
-N+(E/W) etc = corner trench. N+S+E+W = quad trench. we only need 3 trench sprites. lol.
-this makes it easy to propagate water thru them too, as we would then
-have low, med, filled sprite versions of the trench.
-
-we will also need 'end caps' that connect to straight pieces.
-and trenches that are just single holes in the ground.
 
 
 
