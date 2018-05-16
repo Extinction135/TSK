@@ -173,22 +173,11 @@ namespace DungeonRun
             if (WorldUI.itemAmount.visible) { Functions_Draw.Draw(WorldUI.itemAmount); }
             Functions_Draw.Draw(WorldUI.autosaveText);
 
-            if (Flags.DrawUDT)
+            if (Flags.DrawUItime)
             {
-
                 WorldUI.frametime.text = "FT:" + Timing.totalTime.Milliseconds + "MS";
                 WorldUI.frametime.text += "\nRB:" + Functions_Room.time.Milliseconds + "MS";
                 WorldUI.frametime.text += "\nLB:" + Functions_Level.time.Milliseconds + "MS";
-
-                /*
-                WorldUI.frametime.text = "C:" + Pool.collisionsCount;
-                WorldUI.frametime.text += "\nI:" + Pool.interactionsCount;
-                WorldUI.frametime.text += "\n";
-                WorldUI.frametime.text += "\nU:" + DebugInfo.updateAvg;
-                WorldUI.frametime.text += "\nD:" + DebugInfo.drawAvg;
-                WorldUI.frametime.text += "\nT:" + Timing.totalTime.Milliseconds + " ms";
-                */
-
                 Functions_Draw.Draw(WorldUI.frametime);
             }
         }

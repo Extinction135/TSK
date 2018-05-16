@@ -426,7 +426,7 @@ namespace DungeonRun
         Options_HardMode,
         Options_DrawBuildTimes,
         Options_PlayMusic,
-
+        Options_DrawDebug,
 
 
         //cheats

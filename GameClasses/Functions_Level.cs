@@ -310,7 +310,6 @@ namespace DungeonRun
             //level screen will then decide where the camera should be per frame
 
             stopWatch.Stop(); time = stopWatch.Elapsed;
-            DebugInfo.dungeonTime = time.Ticks;
             if (Flags.PrintOutput)
             {
                 Debug.WriteLine("level " + Level.ID + " built in " + time.Ticks + " ticks");

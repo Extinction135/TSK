@@ -84,12 +84,7 @@ namespace DungeonRun
                 Functions_Draw.Draw(InputDisplay.directions);
                 Functions_Draw.Draw(InputDisplay.buttons);
             }
-            if (Flags.DrawWatermark)
-            {
-                Functions_MenuRectangle.Update(WaterMark.bkg);
-                Functions_Draw.Draw(WaterMark.bkg);
-                Functions_Draw.Draw(WaterMark.textComp);
-            }
+            if (Flags.DrawWatermark) { Functions_Draw.Draw(WaterMark.display); }
             spriteBatch.End();
 
 

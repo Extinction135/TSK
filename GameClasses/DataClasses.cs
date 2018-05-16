@@ -16,17 +16,17 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.72f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
-        public static Boolean DrawUDT = false; //draw the UpdateDrawTotal timing text?
-        public static Boolean DrawDebugInfo = false; //draws the bottom debug info
+        public static Boolean EnableDebugInfo = true; //rightside debug info
+        public static Boolean DrawUItime = false; //draw build times next to world ui?
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean DrawInput = false; //draw the input display
-        public static Boolean DrawWatermark = false; //top right link (for capturing purposes)
+        public static Boolean DrawWatermark = true; //top right link (for capturing purposes)
 
         public static Boolean Paused = false; //controlled by topMenu 'play/pause' button
         public static Boolean PlayMusic = false; //turns music on/off
@@ -39,7 +39,6 @@ namespace DungeonRun
         public static Boolean ShowDialogs = true; //turn dialogs on/off
 
         public static Boolean HardMode = false; //makes the game harder
-        
         //cheats
         public static Boolean Invincibility = true; //does hero ignore damage?
         public static Boolean InfiniteMagic = true; //does hero ignore magic costs?
@@ -60,20 +59,24 @@ namespace DungeonRun
                 bootRoutine = BootRoutine.Game;
                 //set flags for release mode
                 EnableTopMenu = false;
-                DrawDebugInfo = false;
+                EnableDebugInfo = false;
+                DrawUItime = false;
                 DrawCollisions = false;
                 DrawInput = false;
+                DrawWatermark = true;
+
                 Paused = false;
                 PlayMusic = true;
                 PlaySoundFX = true;
                 SpawnMobs = true;
                 ProcessAI = true;
-                DrawUDT = false;
                 CameraTracksHero = false;
                 ShowEnemySpawns = false;
                 PrintOutput = false;
                 ShowDialogs = true;
-                DrawWatermark = false;
+
+                HardMode = false;
+
                 //cheats
                 Invincibility = false;
                 InfiniteMagic = false;
@@ -284,16 +287,6 @@ namespace DungeonRun
 
     }
 
-    public static class Timing
-    {
-        public static Stopwatch stopWatch = new Stopwatch();
-        public static Stopwatch total = new Stopwatch();
-        public static TimeSpan updateTime = new TimeSpan();
-        public static TimeSpan drawTime = new TimeSpan();
-        public static TimeSpan totalTime = new TimeSpan();
-        public static void Reset() { stopWatch.Reset(); stopWatch.Start(); }
-    }
-
     public static class Input
     {
         public static KeyboardState currentKeyboardState = new KeyboardState();
@@ -323,19 +316,18 @@ namespace DungeonRun
 
     public static class WaterMark
     {
-        public static MenuRectangle bkg;
-        public static ComponentText textComp;
-
+        public static DebugDisplay display;
         static WaterMark()
-        {
-            bkg = new MenuRectangle(
-                new Point(495, 20), 
-                new Point(120-2, 9), 
-                Assets.colorScheme.windowBkg);
-            textComp = new ComponentText(Assets.font,
-                "github.com/mrgrak/dungeonrun",
-                new Vector2(bkg.position.X + 2, bkg.position.Y - 3),
-                Assets.colorScheme.textLight);
+        {   //remodel debugDisplay to be a single line
+            display = new DebugDisplay(495, 20);
+            display.bkg.size.X = 118;
+            display.bkg.size.Y = 9;
+
+            display.textComp.text = "github.com/mrgrak/dungeonrun";
+            display.textComp.position.X = display.bkg.position.X + 2;
+            display.textComp.position.Y = display.bkg.position.Y - 3;
+
+            Functions_MenuRectangle.Reset(display.bkg);
         }
     }
 
@@ -649,70 +641,14 @@ namespace DungeonRun
         }
     }
 
-    public static class DebugInfo
+    public static class Timing
     {
-        public static Rectangle background;
-        public static List<ComponentText> textFields;
-        public static int counter = 0;
-        public static int size = 0;
-
-        public static ComponentText timingText;
-        public static ComponentText actorText;
-        public static ComponentText moveText;
-        public static ComponentText poolText;
-        public static ComponentText creationText;
-        public static ComponentText recordText;
-        public static ComponentText musicText;
-        //public static ComponentText saveDataText;
-
-        public static long roomTime = 0;
-        public static long dungeonTime = 0;
-        public static byte framesTotal = 30; //how many frames to average over
-        public static byte frameCounter = 0; //increments thru frames 0-framesTotal
-        public static long updateTicks; //update tick times are added to this
-        public static long drawTicks; //draw tick times are added to this
-        public static long updateAvg; //stores the average update ticks
-        public static long drawAvg; //stores the average draw ticks
-
-        static DebugInfo()
-        {
-            textFields = new List<ComponentText>();
-
-            background = new Rectangle(0, 322 - 8, 640, 50);
-            int yPos = background.Y - 2;
-
-            timingText = new ComponentText(Assets.font, "",
-                new Vector2(2, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(timingText);
-
-            actorText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 3, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(actorText);
-
-            moveText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 7, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(moveText);
-
-            poolText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 12, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(poolText);
-
-            creationText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 17, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(creationText);
-
-            recordText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 21, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(recordText);
-
-            musicText = new ComponentText(Assets.font, "",
-                new Vector2(16 * 26 - 8, yPos + 00), Assets.colorScheme.textLight);
-            textFields.Add(musicText);
-
-            //saveDataText = new ComponentText(Assets.font, "",
-            //    new Vector2(16 * 30, yPos + 00), Assets.colorScheme.textLight);
-            //textFields.Add(saveDataText);
-        }
+        public static Stopwatch stopWatch = new Stopwatch();
+        public static Stopwatch total = new Stopwatch();
+        public static TimeSpan updateTime = new TimeSpan();
+        public static TimeSpan drawTime = new TimeSpan();
+        public static TimeSpan totalTime = new TimeSpan();
+        public static void Reset() { stopWatch.Reset(); stopWatch.Start(); }
     }
 
     public static class TopDebugMenu
@@ -726,6 +662,14 @@ namespace DungeonRun
         public static Rectangle rec; //background rec
         public static List<ComponentButton> buttons;
         public static int counter;
+
+        public static DebugDisplay DebugDisplay_Ram;
+        public static DebugDisplay DebugDisplay_HeroState;
+        public static DebugDisplay DebugDisplay_Movement;
+        public static DebugDisplay DebugDisplay_PoolCounter;
+        public static DebugDisplay DebugDisplay_BuildTimes;
+        public static DebugDisplay DebugDisplay_Collisions;
+
         static TopDebugMenu()
         {
             cursor = new ComponentSprite(Assets.uiItemsSheet,
@@ -757,6 +701,21 @@ namespace DungeonRun
                 "level editor", new Point(buttons[8].rec.X + buttons[8].rec.Width + 2, 2)));
 
             display = WidgetDisplaySet.World; //will be overwritten by editor screen
+
+
+            #region Setup Debug Displays
+
+            int Xpos = 565;
+
+            DebugDisplay_Ram = new DebugDisplay(Xpos, 16*3 - 16);
+            DebugDisplay_HeroState = new DebugDisplay(Xpos, DebugDisplay_Ram.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_Movement = new DebugDisplay(Xpos, DebugDisplay_HeroState.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_PoolCounter = new DebugDisplay(Xpos, DebugDisplay_Movement.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_BuildTimes = new DebugDisplay(Xpos, DebugDisplay_PoolCounter.bkg.position.Y + 16 * 3 + 4);
+            DebugDisplay_Collisions = new DebugDisplay(Xpos, DebugDisplay_BuildTimes.bkg.position.Y + 16 * 3 + 4);
+
+            #endregion
+
         }
     }
 
@@ -812,6 +771,24 @@ namespace DungeonRun
 
 
     
+    public class DebugDisplay
+    {
+        public MenuRectangle bkg;
+        public ComponentText textComp;
+
+        public DebugDisplay(int X, int Y)
+        {
+            bkg = new MenuRectangle(
+                new Point(X, Y),
+                new Point(16 * 3, 16 * 3),
+                Assets.colorScheme.windowBkg);
+            textComp = new ComponentText(Assets.font,
+                "test\ntest\ntest\ntest\ntest",
+                new Vector2(bkg.position.X + 2, bkg.position.Y - 2),
+                Assets.colorScheme.textLight);
+        }
+    }
+
     
 
 

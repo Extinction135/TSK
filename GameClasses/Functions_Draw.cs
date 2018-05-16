@@ -209,5 +209,14 @@ namespace DungeonRun
             Draw(Display.lastStoryItem.compSprite);
         }
 
+        public static void Draw(DebugDisplay Display)
+        {
+            Functions_MenuRectangle.Update(Display.bkg);
+            Draw(Display.bkg);
+            Draw(Display.textComp);
+        }
+
+
+
     }
 }

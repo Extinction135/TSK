@@ -98,6 +98,9 @@ namespace DungeonRun
             labels[5].text = "play\nmusc";
             Functions_MenuItem.SetType(MenuItemType.Options_PlayMusic, menuItems[5]);
 
+            labels[6].text = "draw\ndbug";
+            Functions_MenuItem.SetType(MenuItemType.Options_DrawDebug, menuItems[6]);
+
             #endregion
 
 
@@ -163,13 +166,18 @@ namespace DungeonRun
                 }
                 else if (currentlySelected.type == MenuItemType.Options_DrawBuildTimes)
                 {
-                    if (Flags.DrawUDT) { Flags.DrawUDT = false; }
-                    else { Flags.DrawUDT = true; }
+                    if (Flags.DrawUItime) { Flags.DrawUItime = false; }
+                    else { Flags.DrawUItime = true; }
                 }
                 else if (currentlySelected.type == MenuItemType.Options_PlayMusic)
                 {
                     if (Flags.PlayMusic) { Flags.PlayMusic = false; }
                     else { Flags.PlayMusic = true; }
+                }
+                else if (currentlySelected.type == MenuItemType.Options_DrawDebug)
+                {
+                    if (Flags.EnableDebugInfo) { Flags.EnableDebugInfo = false; }
+                    else { Flags.EnableDebugInfo = true; }
                 }
 
                 #endregion
@@ -323,11 +331,14 @@ namespace DungeonRun
             if (Flags.HardMode)
             { menuItems[3].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
 
-            if (Flags.DrawUDT)
+            if (Flags.DrawUItime)
             { menuItems[4].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
 
             if (Flags.PlayMusic)
             { menuItems[5].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
+
+            if (Flags.EnableDebugInfo)
+            { menuItems[6].compSprite.currentFrame = AnimationFrames.Ui_MenuItem_CheatOn[0]; }
 
             //expand this to include additional options
         }

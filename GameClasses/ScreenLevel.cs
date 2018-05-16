@@ -17,6 +17,18 @@ namespace DungeonRun
         public ScreenRec overlay = new ScreenRec();
         public ExitAction exitAction;
 
+        public long roomTime = 0;
+        public long dungeonTime = 0;
+        byte framesTotal = 30; //how many frames to average over
+        byte frameCounter = 0; //increments thru frames 0-framesTotal
+        long updateTicks; //update tick times are added to this
+        long drawTicks; //draw tick times are added to this
+        long updateAvg; //stores the average update ticks
+        long drawAvg; //stores the average draw ticks
+        int counter; //counts roomObjs, pros, parts
+        int i;
+
+
 
 
         public ScreenLevel() { this.name = "LevelScreen"; }
@@ -170,32 +182,6 @@ namespace DungeonRun
 
             Timing.stopWatch.Stop();
             Timing.updateTime = Timing.stopWatch.Elapsed;
-
-
-            #region Calculate Average Update and Draw Times
-
-            if(Flags.DrawUDT)
-            {
-                DebugInfo.frameCounter++;
-                if (DebugInfo.frameCounter > DebugInfo.framesTotal)
-                {   //reset the counter + total ticks
-                    DebugInfo.frameCounter = 0;
-                    DebugInfo.updateTicks = 0;
-                    DebugInfo.drawTicks = 0;
-                }
-                else if (DebugInfo.frameCounter == DebugInfo.framesTotal)
-                {   //calculate the average ticks
-                    DebugInfo.updateAvg = DebugInfo.updateTicks / DebugInfo.framesTotal;
-                    DebugInfo.drawAvg = DebugInfo.drawTicks / DebugInfo.framesTotal;
-                }
-                //collect tick times
-                DebugInfo.updateTicks += Timing.updateTime.Ticks;
-                DebugInfo.drawTicks += Timing.drawTime.Ticks;
-            }
-
-            #endregion
-
-
         }
 
         public override void Draw(GameTime GameTime)
@@ -225,18 +211,109 @@ namespace DungeonRun
             #endregion
 
 
-            #region Draw UI, top menu, & screen fading in/out overlay
-
+            //Draw UI, top menu, debug, & screen fading in/out overlay
             ScreenManager.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-
             Functions_WorldUI.Draw();
             if (Flags.EnableTopMenu) { Functions_TopMenu.Draw(); } //draw top menu, etc..
-            Functions_Draw.Draw(overlay); //draw the overlay rec last
 
-            ScreenManager.spriteBatch.End();
+
+            #region Debug Info
+
+            if(Flags.EnableDebugInfo)
+            {
+
+                #region Setup update, draw, total times, gametime and total ram
+
+                frameCounter++;
+                if (frameCounter > framesTotal)
+                {   //reset the counter + total ticks
+                    frameCounter = 0;
+                    updateTicks = 0;
+                    drawTicks = 0;
+                }
+                else if (frameCounter == framesTotal)
+                {   //calculate the average ticks
+                    updateAvg = updateTicks / framesTotal;
+                    drawAvg = drawTicks / framesTotal;
+                }
+                //collect tick times
+                updateTicks += Timing.updateTime.Ticks;
+                drawTicks += Timing.drawTime.Ticks;
+
+                TopDebugMenu.DebugDisplay_Ram.textComp.text = "U: " + updateAvg;
+                TopDebugMenu.DebugDisplay_Ram.textComp.text += "\nD: " + drawAvg;
+                TopDebugMenu.DebugDisplay_Ram.textComp.text += "\nT: " + Timing.totalTime.Milliseconds + " ms";
+                TopDebugMenu.DebugDisplay_Ram.textComp.text += "\n" + ScreenManager.gameTime.TotalGameTime.ToString(@"hh\:mm\:ss");
+                TopDebugMenu.DebugDisplay_Ram.textComp.text += "\n" + Functions_Backend.GetRam() + " mb";
+
+                #endregion
+
+
+                TopDebugMenu.DebugDisplay_HeroState.textComp.text = "IN: " + Pool.hero.inputState;
+                TopDebugMenu.DebugDisplay_HeroState.textComp.text += "\nST: " + Pool.hero.state;
+                TopDebugMenu.DebugDisplay_HeroState.textComp.text += "\nLCK: " + Pool.hero.stateLocked;
+                TopDebugMenu.DebugDisplay_HeroState.textComp.text += "\nMDIR: " + Pool.hero.compMove.direction;
+                TopDebugMenu.DebugDisplay_HeroState.textComp.text += "\nFDIR: " + Pool.hero.direction;
+
+                TopDebugMenu.DebugDisplay_Movement.textComp.text = "PX: " + Pool.hero.compSprite.position.X;
+                TopDebugMenu.DebugDisplay_Movement.textComp.text += "\nPY: " + Pool.hero.compSprite.position.Y;
+                TopDebugMenu.DebugDisplay_Movement.textComp.text += "\nFRIC: " + Pool.hero.compMove.friction;
+                TopDebugMenu.DebugDisplay_Movement.textComp.text += "\nMX:" + Pool.hero.compMove.magnitude.X.ToString("0.####");
+                TopDebugMenu.DebugDisplay_Movement.textComp.text += "\nMY:" + Pool.hero.compMove.magnitude.Y.ToString("0.####");
+
+
+
+                #region Setup counts for roomObjs, projectils, particles, actors, and floors
+
+                counter = 0;
+                for (i = 0; i < Pool.roomObjCount; i++) { if (Pool.roomObjPool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text = "OBJ: " + counter + "/" + Pool.roomObjCount;
+
+                counter = 0;
+                for (i = 0; i < Pool.projectileCount; i++) { if (Pool.projectilePool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text += "\nPRO: " + counter + "/" + Pool.projectileCount;
+
+                counter = 0;
+                for (i = 0; i < Pool.particleCount; i++) { if (Pool.particlePool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text += "\nPAR: " + counter + "/" + Pool.particleCount;
+
+                counter = 0;
+                for (i = 0; i < Pool.actorCount; i++) { if (Pool.actorPool[i].active) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text += "\nACT: " + counter + "/" + Pool.actorCount;
+
+                counter = 0;
+                for (i = 0; i < Pool.floorCount; i++) { if (Pool.floorPool[i].visible) { counter++; } }
+                TopDebugMenu.DebugDisplay_PoolCounter.textComp.text += "\nFLR: " + counter + "/" + Pool.floorCount;
+
+                #endregion
+
+
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text = "LVL: " + Functions_Level.time.Ticks;
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nRM: " + Functions_Room.time.Ticks;
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nT: " + DungeonRecord.timer.Elapsed.ToString(@"hh\:mm\:ss");
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nENMY: " + DungeonRecord.enemyCount;
+                TopDebugMenu.DebugDisplay_BuildTimes.textComp.text += "\nDMG: " + DungeonRecord.totalDamage;
+
+                TopDebugMenu.DebugDisplay_Collisions.textComp.text = "COL: " + Pool.collisionsCount;
+                TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\nINT: " + Pool.interactionsCount;
+                TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\n-";
+                TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\n-";
+                TopDebugMenu.DebugDisplay_Collisions.textComp.text += "\n-";
+
+                //draw all our debug info like this from now on:
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Ram);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_HeroState);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Movement);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_PoolCounter);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_BuildTimes);
+                Functions_Draw.Draw(TopDebugMenu.DebugDisplay_Collisions);
+            }
 
             #endregion
 
+
+            Functions_Draw.Draw(overlay); //draw the overlay rec last
+            ScreenManager.spriteBatch.End();
 
             Timing.stopWatch.Stop();
             Timing.drawTime = Timing.stopWatch.Elapsed;

@@ -139,14 +139,14 @@ namespace DungeonRun
 
             if (Functions_Input.IsNewKeyPress(Keys.F2))
             {
-                if (Flags.DrawDebugInfo)
+                if (Flags.EnableDebugInfo)
                 {
-                    Flags.DrawDebugInfo = false;
+                    Flags.EnableDebugInfo = false;
                     TopDebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonUp;
                 }
                 else
                 {
-                    Flags.DrawDebugInfo = true;
+                    Flags.EnableDebugInfo = true;
                     TopDebugMenu.buttons[1].currentColor = Assets.colorScheme.buttonDown;
                 }
             }
@@ -363,8 +363,6 @@ namespace DungeonRun
         }
 
 
-
-
         public static void Draw()
         {
             if (TopDebugMenu.display != WidgetDisplaySet.None)
@@ -400,8 +398,6 @@ namespace DungeonRun
                 //draw needed editor widgets
                 Widgets.RoomTools.Draw();
                 Widgets.ObjectTools.Draw();
-
-                if (Flags.DrawDebugInfo) { Functions_Debug.Draw(); }
             }
 
             //ALWAYS draw the cursor, and draw it last
@@ -410,7 +406,6 @@ namespace DungeonRun
             if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
             { Functions_Draw.Draw(Widgets.ObjectTools.toolTipSprite); }
         }
-
 
     }
 }

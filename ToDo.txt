@@ -213,17 +213,15 @@ TODAY:
 
 
 
+Debug++
 
-Swim Reward Animation
+migrated debug info to new display format for easier use.
+added collision and interaction counts to new debug system.
+improved debug to be display-able from options menu, so
+we can attempt to debug a problem even if game is in release.
 
-if an actor is in the water, and is placed into a reward
-state, we should display the in water reward sprite.
-updated code to do this. playtested.
-hero looks correct when opening a chest from water.
-
-
-
-
+now i know actually how many roomObjs, and projectiles there
+are on screen, along with particles. 
 
 
 
@@ -231,29 +229,6 @@ hero looks correct when opening a chest from water.
 
 
 
-
-
-
-
-- blocking water objects (destructible via explosions, become debris)
-*we can use blocking objs to block off the water dungeon entrance
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-*we really need accurate roomObj counts
-*we really need accurate collision and interaction counts too
-*and these should be displayed in their own little widget, available from options menu
 
 
 

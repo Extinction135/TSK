@@ -531,7 +531,12 @@ namespace DungeonRun
                 MenuItem.description = "play or mute the game \nmusic.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
             }
-
+            else if (Type == MenuItemType.Options_DrawDebug)
+            {
+                MenuItem.name = "Draw Debug Info";
+                MenuItem.description = "displays debug info. \nmay slow game down.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_CheatOff;
+            }
             #endregion
 
 

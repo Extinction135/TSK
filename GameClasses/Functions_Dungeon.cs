@@ -14,9 +14,6 @@ namespace DungeonRun
 {
     public static class Functions_Dungeon
     {
-
-        public static Stopwatch stopWatch = new Stopwatch();
-        public static TimeSpan time;
         public static int i;
         public static int j;
         
@@ -29,7 +26,6 @@ namespace DungeonRun
 
         public static void BuildEmptyRoom(Room Room)
         {
-            stopWatch.Reset(); stopWatch.Start();
             Functions_Pool.Reset(); //reset the pools + counter
             pos = Room.rec.Location; //shorten room's position reference
 
@@ -137,11 +133,6 @@ namespace DungeonRun
             //update all roomObjs, then remove overlapping objs
             Functions_GameObject.AlignRoomObjs();
             Functions_Room.Cleanup(Room); //remove overlapping objs
-
-            stopWatch.Stop(); time = stopWatch.Elapsed;
-            DebugInfo.roomTime = time.Ticks;
-            if (Flags.PrintOutput)
-            { Debug.WriteLine("built " + Room.roomID + " room in " + time.Ticks + " ticks"); }
         }
 
 
@@ -284,7 +275,6 @@ namespace DungeonRun
 
         public static void ProcedurallyFinish(Room Room)
         {   //Pass the room to the appropriate method for completion
-            stopWatch.Reset(); stopWatch.Start();
 
 
             #region Special Rooms
@@ -386,14 +376,6 @@ namespace DungeonRun
             //align + remove overlapping objs
             Functions_GameObject.AlignRoomObjs();
             Functions_Room.Cleanup(Room);
-
-            stopWatch.Stop(); time = stopWatch.Elapsed;
-            DebugInfo.roomTime += time.Ticks; //add finish time to roomTime
-            if (Flags.PrintOutput)
-            {
-                Debug.WriteLine("finished " + Room.roomID +
-                    " room in " + time.Ticks + " ticks");
-            }
         }
 
         public static void SetupPuzzle(Room Room)

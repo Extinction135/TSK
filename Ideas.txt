@@ -27,6 +27,8 @@ a random dance once.
 
 
 
+- blocking water objects (destructible via explosions, become debris)
+*we can use blocking objs to block off the water dungeon entrance
 
 
 

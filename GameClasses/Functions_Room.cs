@@ -119,13 +119,6 @@ namespace DungeonRun
 
                 }
             }
-
-            if (Flags.DrawDebugInfo)
-            {   //get the count of active roomObjs, if debug info is visible
-                Pool.roomObjIndex = 0;
-                for (i = 0; i < Pool.roomObjCount; i++)
-                { if (Pool.roomObjPool[i].active) { Pool.roomObjIndex++; } }
-            }
         }
         
 
@@ -229,8 +222,6 @@ namespace DungeonRun
 
             #endregion
             
-
-
 
             #region Build the room + roomData
 
