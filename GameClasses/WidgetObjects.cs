@@ -221,15 +221,15 @@ namespace DungeonRun
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Wor_Tree);
-            Functions_GameObject.SetType(objList[9], ObjType.Wor_Tree_Stump);
-            Functions_GameObject.SetType(objList[10], ObjType.Wor_Debris);
-            Functions_GameObject.SetType(objList[11], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[9], ObjType.Wor_Tree_Burning);
+            Functions_GameObject.SetType(objList[10], ObjType.Wor_Tree_Burnt);
+            Functions_GameObject.SetType(objList[11], ObjType.Wor_Tree_Stump);
             
             //row 4
             Functions_GameObject.SetType(objList[12], ObjType.Unknown); //covered
             Functions_GameObject.SetType(objList[13], ObjType.Unknown); //covered
             Functions_GameObject.SetType(objList[14], ObjType.Unknown); //covered
-            Functions_GameObject.SetType(objList[15], ObjType.Wor_Debris);
+            Functions_GameObject.SetType(objList[15], ObjType.Unknown); //covered
 
             //row 5
             Functions_GameObject.SetType(objList[16], ObjType.Wor_Water);
@@ -238,7 +238,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[19], ObjType.Wor_Coastline_Corner_Interior);
 
             //row 6
-            Functions_GameObject.SetType(objList[20], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[20], ObjType.Wor_Debris);
             Functions_GameObject.SetType(objList[21], ObjType.Unknown);
             Functions_GameObject.SetType(objList[22], ObjType.Unknown);
             Functions_GameObject.SetType(objList[23], ObjType.Unknown);
@@ -289,6 +289,8 @@ namespace DungeonRun
             //hide objs that trees overlap
             Functions_Widget.HideObj(objList[12]);
             Functions_Widget.HideObj(objList[13]);
+            Functions_Widget.HideObj(objList[14]);
+            Functions_Widget.HideObj(objList[15]);
         }
     }
 

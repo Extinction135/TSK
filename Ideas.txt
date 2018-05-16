@@ -26,6 +26,14 @@ the quicker you are, the less likely to be killed.
 
 
 
+*grounded non-basic enemies need full sheets (can swim)*
+*basic grounded enemies will just be released() with a splash (no swim)*
+*most mini-bosses / bosses are flying, so they dont have a swimming state*
+
+
+
+
+
 Non-Repeating Rooms in Dungeon
 
 we need to make rooms non-repeating in the dungeon.

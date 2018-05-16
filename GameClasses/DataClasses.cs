@@ -16,9 +16,9 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
-        public static float Version = 0.71f; //the version of the game
+        public static float Version = 0.72f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)

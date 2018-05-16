@@ -86,7 +86,8 @@ namespace DungeonRun
             Assets.Play(Actor.sfx.kill); //play actor death sound fx
 
             //prior to hero dying, he must return to being link/hero
-            if(Actor == Pool.hero) { Transform(Pool.hero, ActorType.Hero); }
+            if(Actor == Pool.hero)
+            { Transform(Pool.hero, ActorType.Hero); }
             //link is only actor with correct death animation for gameover
 
             //and switching hero back also makes it easy to track enemy deaths
@@ -387,7 +388,6 @@ namespace DungeonRun
                 Functions_Hero.SetLoadout();
                 PlayerData.current.actorType = Actor.type;
             }
-            Actor.health = 3; //transforms kinda hurt
             Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
         }
 
@@ -491,7 +491,7 @@ namespace DungeonRun
                     if (Actor.state == ActorState.Interact)
                     {   //swim interact
                         if (Actor == Pool.hero) //only hero can interact with room objs
-                        { Functions_Hero.CheckInteractionRecCollisions(); }
+                        { Functions_Hero.CheckInteractionRec(); }
                     }
                     else if (Actor.state == ActorState.Dash)
                     {
@@ -634,7 +634,7 @@ namespace DungeonRun
                     if (Actor.state == ActorState.Interact)
                     {
                         if (Actor == Pool.hero) //only hero can interact with room objs
-                        { Functions_Hero.CheckInteractionRecCollisions(); }
+                        { Functions_Hero.CheckInteractionRec(); }
                     }
                     else if (Actor.state == ActorState.Dash)
                     {
@@ -679,9 +679,22 @@ namespace DungeonRun
                 }
 
 
-                #region State Checks
+                if (Actor.state == ActorState.Attack)
+                {   //when an actor attacks, they slow down for the duration
+                    Actor.compMove.friction = World.frictionAttack;
+                }
+                else if (Actor.state == ActorState.Use)
+                {   //when an actor uses something, they slow down for the duration
+                    Actor.compMove.friction = World.frictionUse;
+                }
+                else if (Actor.state == ActorState.Hit)
+                {   //zero out the actor's speed
+                    Actor.compMove.speed = 0.0f;
+                    //this prevents actor from affecting the hit's push via directional input
+                    //this also gives hits ALOT more push
+                }
 
-                if (Actor.state == ActorState.Dead)
+                else if (Actor.state == ActorState.Dead)
                 {   //check death state
                     Actor.lockCounter = 0; //lock actor into dead state
                     Actor.health = 0; //lock actor's health at 0
@@ -699,23 +712,6 @@ namespace DungeonRun
                         }
                     }
                 }
-                else if (Actor.state == ActorState.Attack)
-                {   //when an actor attacks, they slow down for the duration
-                    Actor.compMove.friction = World.frictionAttack;
-                }
-                else if(Actor.state == ActorState.Use)
-                {   //when an actor uses something, they slow down for the duration
-                    Actor.compMove.friction = World.frictionUse;
-                }
-                else if(Actor.state == ActorState.Hit)
-                {   //zero out the actor's speed
-                    Actor.compMove.speed = 0.0f;
-                    //this prevents actor from affecting the hit's push via directional input
-                    //this also gives hits ALOT more push
-                }
-
-                #endregion
-
             }
 
             #endregion

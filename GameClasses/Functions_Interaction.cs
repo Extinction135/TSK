@@ -396,8 +396,11 @@ namespace DungeonRun
                     if (Actor.state == ActorState.Dead) { return; }
                     Actor.feetFX.visible = true;
                     Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_WetFeet;
-                    if (Actor.state == ActorState.Move) //play moving sfx
-                    { Assets.Play(Assets.sfxWaterWalk); }
+                    if (Actor == Pool.hero & Actor.underwater == false)
+                    {   //actor must be hero, above water or on land, and moving
+                        if (Actor.state == ActorState.Move)
+                        { Assets.Play(Assets.sfxWaterWalk); }
+                    }
                 }
 
                 #endregion
@@ -416,7 +419,6 @@ namespace DungeonRun
                         Actor.createSplash = true;
                         //kill the actor's momentum, adding weight to splash
                         Functions_Movement.StopMovement(Actor.compMove);
-
                     }
                     Actor.swimming = true;
                     Actor.compMove.friction = World.frictionWater;

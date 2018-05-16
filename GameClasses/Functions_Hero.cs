@@ -194,7 +194,7 @@ namespace DungeonRun
 
 
         static Boolean collision = false;
-        public static Boolean CheckInteractionRecCollisions()
+        public static Boolean CheckInteractionRec()
         {   
             //note this method happens once, on the frame player presses A button
             SetInteractionRec();
@@ -206,14 +206,20 @@ namespace DungeonRun
                 {
                     if (Pool.roomObjPool[i].compCollision.rec.Contains(interactionPoint))
                     {
-                        Functions_Movement.StopMovement(Pool.hero.compMove);
-                        Pool.hero.stateLocked = true;
-                        Pool.hero.lockTotal = 10; //required to show the pickup animation
-                        collision = true;
-                        //handle the hero interaction, may overwrite hero.lockTotal
-                        InteractRecWith(Pool.roomObjPool[i]);
-                        //we could bail here if we wanted only 1 interaction per frame
-                        //but we allow overlapping obj interactions cause we cray'
+                        if (Pool.roomObjPool[i].type == ObjType.Wor_Water)
+                        { } //ignore these objects for hero rec interaction
+                        else
+                        {   //all other objects are tested for interaction
+
+                            Functions_Movement.StopMovement(Pool.hero.compMove);
+                            Pool.hero.stateLocked = true;
+                            Pool.hero.lockTotal = 10; //required to show the pickup animation
+                            collision = true;
+                            //handle the hero interaction, may overwrite hero.lockTotal
+                            InteractRecWith(Pool.roomObjPool[i]);
+                            //we could bail here if we wanted only 1 interaction per frame
+                            //but we allow overlapping obj interactions cause we cray'
+                        }
                     }
                 }
             }
@@ -221,6 +227,8 @@ namespace DungeonRun
             ClearInteractionRec();
             return collision;
         }
+
+
 
         public static void InteractRecWith(GameObject Obj)
         {   //this is the hero's interactionRec colliding with Obj

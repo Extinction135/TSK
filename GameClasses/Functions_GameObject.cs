@@ -929,7 +929,7 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Coastline_Corner_Exterior
                 || Type == ObjType.Wor_Coastline_Corner_Interior)
             {
-                Obj.compSprite.zOffset = -32;
+                Obj.compSprite.zOffset = -40;
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compAnim.loop = true; //no anim, but we should for coastline in the future
