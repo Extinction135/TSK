@@ -431,8 +431,6 @@ namespace DungeonRun
                 #endregion
 
 
-
-
                 //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
             }
         }
@@ -527,7 +525,8 @@ namespace DungeonRun
                             else if (RoomObj.type == ObjType.Dungeon_Statue
                                 || RoomObj.type == ObjType.Wor_Bookcase
                                 || RoomObj.type == ObjType.Wor_Shelf
-                                || RoomObj.type == ObjType.Wor_TableStone)
+                                || RoomObj.type == ObjType.Wor_TableStone
+                                || RoomObj.type == ObjType.Wor_TableWood)
                             {   
                                 Functions_GameObject.Kill(RoomObj, true, true);
                             }
@@ -575,7 +574,14 @@ namespace DungeonRun
                         }
                         else if (Object.lifeCounter == 4)
                         {   //these interactions happen 'mid swing'
-                            Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
+                            if (RoomObj.type == ObjType.Wor_TableWood)
+                            {
+                                Functions_GameObject.Kill(RoomObj, true, true);
+                            }
+                            else
+                            {
+                                Functions_GameObject.HandleCommon(RoomObj, Object.compMove.direction);
+                            }
                         }
                     }
 

@@ -204,21 +204,17 @@ TODAY:
 
 
 
+WoodTable
 
-SoundFX++
+added woodTable to game + editor.
+can be destroyed by sword or explosion.
+playtested, working.
 
-only the hero should make 'movement' sounds.
-enemies shouldn't. it's annoying after a few minutes.
-and it seems buggy, if link is standing on land not moving,
-while the water/grass walk sound fx spam plays, 
-because theres an enemy off screen playing around.
-
-
-
+wood table should be draggable too. ok.
+fixed the sprite to have correct right pixels.
+playtested, working.
 
 
-*add in wooden table, should be easily destructable (handle common obj)
-**we have a glass table too, right? git rid of it. we have no glass sfx and it has no point.
 
 
 

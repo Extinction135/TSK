@@ -381,7 +381,7 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[44], ObjType.Wor_Bookcase);
             Functions_GameObject.SetType(objList[45], ObjType.Wor_Shelf);
             Functions_GameObject.SetType(objList[46], ObjType.Wor_TableStone);
-            Functions_GameObject.SetType(objList[47], ObjType.Unknown);
+            Functions_GameObject.SetType(objList[47], ObjType.Wor_TableWood);
 
             //position the objs relative to the window frame
             Functions_Widget.PositionObjs(this);

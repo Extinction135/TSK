@@ -244,9 +244,10 @@ namespace DungeonRun
         #region World Objects
 
         //interior building objects
-        Wor_Bookcase, //Bookcase1
-        Wor_Shelf, //Bookcase2
+        Wor_Bookcase, 
+        Wor_Shelf, 
         Wor_TableStone,
+        Wor_TableWood,
 
         //grass objects
         Wor_Grass_Tall,
