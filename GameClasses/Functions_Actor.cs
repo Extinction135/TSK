@@ -222,11 +222,15 @@ namespace DungeonRun
             {
                 if (Actor.swimming)
                 { }
+                else if (Actor.carrying)
+                { }
                 else { Actor.animGroup = Actor.animList.attack; }
             }
             else if (Actor.state == ActorState.Use)
             {
                 if (Actor.swimming)
+                { }
+                else if (Actor.carrying)
                 { }
                 else { Actor.animGroup = Actor.animList.attack; }
             }
