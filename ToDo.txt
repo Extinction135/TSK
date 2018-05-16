@@ -79,8 +79,7 @@ these shadows are sprites that are added to actors and gameobj classes.
 this will likely be part of pool, possibly just prior to drawing to ensure
 they are always aligned to their obj/actor (altho this does pollute Draw)..
 
-- healers house, full death/respawn loop in game
-- this includes buildings, beds, interior objs
+- houses, includes buildings, beds, interior objs
 
 - Non-room repeating Dungeon, additional rooms
 - Flying Dungeon Enemy, Minor Overworld Enemies
@@ -119,6 +118,10 @@ they are always aligned to their obj/actor (altho this does pollute Draw)..
 
 - room keys - these only work for the room and only unlock 1 door, and
 these rooms turn all their doors into locked doors upon close, similar to puzzled rooms
+link doesn't put them into inventory, he literally picks them up and takes
+them to the door to unlock it. this is super mario style key gameplay.
+if link's heldObj == small key, then link's interaction with locked door makes it open.
+and heldObj is released().
 
 
 
@@ -132,10 +135,10 @@ these rooms turn all their doors into locked doors upon close, similar to puzzle
 
 
 
-Wednesday
-	- swim reward, use items while swimming: bottles, any reward item
-	- full screen magic (bombos, explosions all over screen).
-	- blocking and interactive water objects (press a to do something)
+
+
+
+
 
 Thursday
 	- implement shovel weapon
@@ -169,23 +172,30 @@ and trenches that are just single holes in the ground.
 in the right neighboring tile.
 
 
-
+**** playtest as much as you can thursday ****
 
 
 
 Friday
-	- implement water temple (big lever to change water level outside).
-	- this makes the temple accessible by lowering the water to reveal the entrance.
-	- water temple contains additional critical path to big lever inside.
-	- pulling big lever inside lowers the water level, so big key can be accessed.
-	- this is done by boolean in dungeon/level, waterLevelHigh.
-	- rooms on the key path are filled with high water if waterLevelHigh is true.
-	- else they are filled with low level water, which simply creates the feetFX.
-	*important that player knows how big levers work prior to entering water temple.
-	- for now, the water temple boss and enemies are same as forest dungeon.
+	- record playthrus and examples of gameplay, post. 
+	- release v0.72.
+	- update readme.
+
+	- create archive releases for v0.1 - v0.7. (fork, revert, release, delete.)
+	- later, we can compare gameplay across versions.
+	- note this is only for Dx version. UWP version tracking should start with v0.7.
+	- these version archives should remain local, outside of repo folder.
+	- *we should be able to record via the a20s just fine, via obs.
 	
 	
 
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -204,32 +214,12 @@ TODAY:
 
 
 
-Carrying while Swimming and Diving
+Swim Reward Animation
 
-this is awesome. really awesome.
-so hero can pickup pots and bushes. and hero can then
-jump in the water and be put into a swimming state.
-i could force hero to throw any heldObj he picked up,
-BUT instead I FORGOT to check for that state and hero
-can carry bushes and pots over his head into the water.
-which is cool, but not the coolest part. read on.
-
-once hero is in the water carrying a bush or pot,
-he can't throw it, he can only hold onto it until
-he exits the water, at which point he can throw it.
-BUT, and here's the cool part - hero can DIVE while
-carrying, which makes the hero invisible to enemies,
-except he's got a bush or pot or skull pot over
-his head, and it reminds me of metal gear so bad.
-link can literally hide under a bush, while underwater,
-to sneak up on some enemies. that's some tom clancy
-s#!t right there, lol.
-
-oh yeah, i just improved the placement of the heldObj
-over the hero's head while swimming and underwater
-so the above state visually looks good.
-
-lots of playtesting, looks great.
+if an actor is in the water, and is placed into a reward
+state, we should display the in water reward sprite.
+updated code to do this. playtested.
+hero looks correct when opening a chest from water.
 
 
 
@@ -245,11 +235,21 @@ lots of playtesting, looks great.
 
 
 
+- blocking water objects (destructible via explosions, become debris)
+*we can use blocking objs to block off the water dungeon entrance
 
 
 
-MOAR++
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 *we really need accurate roomObj counts
 *we really need accurate collision and interaction counts too
@@ -261,7 +261,7 @@ MOAR++
 
 
 
-Swim Instructor NPC (or signpost!)
+Swim Instructor NPC
 
 we need a swim instructor NPC that stands in front of a large pond,
 on the colliseum level. has dialog like:
@@ -273,7 +273,13 @@ press B while moving to swim faster.
 press X to dive underwater for a bit.
 
 while underwater, enemies can't see you,
-but you swim slower. have fun!
+but you swim slower. 
+
+try picking up objects and carrying them
+into the water as well. have fun!
+
+*this should be at the colliseum level.
+make the pond there bigger.
 
 
 
@@ -285,13 +291,9 @@ but you swim slower. have fun!
 
 
 
-*we need swim reward state for hero.
-this is the raised hand sprite.
-
-
-
-objects should be able to 'fall' into water tiles upo collision.
-this is a splash and a obj release()
+Objs in Water
+objects that are pushed into water should be released() and
+spawn a splash particle. this sims the objs falling into water.
 
 
 
@@ -299,30 +301,26 @@ this is a splash and a obj release()
 
 
 
-Editor++
-prior to loading a room, set the key and map to false in editor.
-this will ensure the level is loaded in properly, and the cheats
-can be modified before or after at will without breaking anything.
-
-
-
-
-
-Dancing
-standing still, press B to make link randomly dance
-animFrames, input check, dance state, randomly choose animFrame.
-dance ends with any input, because no statelock, but animLoops.
-or does it? maybe hold down B to loop. press it once to play
-a random dance once.
-
-
-
-*add in wooden table, should be easily destructable (handle common obj)
 
 
 
 
 
+*add in wooden table, should be easily destructable (handle common obj)
+**we have a glass table too, right? git rid of it. we have no glass sfx and it has no point.
+
+
+
+
+
+Bosses / Enemies ++
+*we have big eye boss, with hit state and idle blink,
+so we *could* make him the boss of the dungeon, and move big blob
+into the hub as a miniBoss, which would be awesome.
+
+phase1: the boss floats around, running away from hero.
+after a certain amount of damage, the boss pops a dialog (freezing action)
+this dialog talks about how the dev needs to add in the boss attack and phases.
 
 
 

@@ -646,6 +646,11 @@ namespace DungeonRun
             Hero_Animations.swim_hit.right = Hero_Animations.swim_hit.down;
             Hero_Animations.swim_hit.left = Hero_Animations.swim_hit.down;
 
+            Hero_Animations.swim_reward = new AnimationGroup();
+            Hero_Animations.swim_reward.down = new List<Byte4> { new Byte4(0, 8, 0, 0) };
+            Hero_Animations.swim_reward.up = Hero_Animations.swim_reward.down;
+            Hero_Animations.swim_reward.right = Hero_Animations.swim_reward.down;
+            Hero_Animations.swim_reward.left = Hero_Animations.swim_reward.down;
 
             //underwater
             Hero_Animations.underwater_idle = new AnimationGroup();

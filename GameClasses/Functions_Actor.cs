@@ -173,6 +173,9 @@ namespace DungeonRun
             Actor.compAnim.loop = true;
 
             //movement
+
+            #region Idle
+
             if (Actor.state == ActorState.Idle)
             {
                 if(Actor.swimming)
@@ -187,6 +190,12 @@ namespace DungeonRun
                 { Actor.animGroup = Actor.animList.grab; }
                 else { Actor.animGroup = Actor.animList.idle; }
             }
+
+            #endregion
+
+
+            #region Move
+
             else if (Actor.state == ActorState.Move)
             {
                 if (Actor.swimming)
@@ -202,7 +211,13 @@ namespace DungeonRun
                 else { Actor.animGroup = Actor.animList.move; }
             }
 
+            #endregion
+
+
             //actions
+
+            #region Dash
+
             else if (Actor.state == ActorState.Dash)
             {
                 if (Actor.swimming)
@@ -212,12 +227,24 @@ namespace DungeonRun
                 }
                 else { Actor.animGroup = Actor.animList.dash; }
             }
+
+            #endregion
+
+
+            #region Interact
+
             else if (Actor.state == ActorState.Interact)
             {
                 if (Actor.swimming)
                 { }
                 else { Actor.animGroup = Actor.animList.interact; }
             }
+
+            #endregion
+
+
+            #region Attack
+
             else if (Actor.state == ActorState.Attack)
             {
                 if (Actor.swimming)
@@ -226,6 +253,12 @@ namespace DungeonRun
                 { }
                 else { Actor.animGroup = Actor.animList.attack; }
             }
+
+            #endregion
+
+
+            #region Use
+
             else if (Actor.state == ActorState.Use)
             {
                 if (Actor.swimming)
@@ -234,6 +267,12 @@ namespace DungeonRun
                 { }
                 else { Actor.animGroup = Actor.animList.attack; }
             }
+
+            #endregion
+
+
+            #region Pickup and Throw
+
             else if (Actor.state == ActorState.Pickup)
             {
                 Actor.animGroup = Actor.animList.pickupThrow; 
@@ -243,7 +282,13 @@ namespace DungeonRun
                 Actor.animGroup = Actor.animList.pickupThrow; 
             }
 
+            #endregion
+
+
             //consequences
+
+            #region Hit & Death
+
             else if (Actor.state == ActorState.Hit)
             {
                 if (Actor.swimming)
@@ -265,10 +310,24 @@ namespace DungeonRun
                     Actor.animGroup = Actor.animList.death_blank;
                 }
             }
+
+            #endregion
+
+
+            #region Reward
+
             else if (Actor.state == ActorState.Reward)
             {
-                Actor.animGroup = Actor.animList.reward;
+
+                if (Actor.swimming)
+                { Actor.animGroup = Actor.animList.swim_reward; }
+                else { Actor.animGroup = Actor.animList.reward; }
+
+                
             }
+
+            #endregion
+
         }
 
         public static void SetAnimationDirection(Actor Actor)

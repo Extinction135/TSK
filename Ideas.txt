@@ -2,6 +2,31 @@
 
 
 
+Water Temple
+	- implement water temple (big lever to change water level outside).
+	- this makes the temple accessible by lowering the water to reveal the entrance.
+	- water temple contains additional critical path to big lever inside.
+	- pulling big lever inside lowers the water level, so big key can be accessed.
+	- this is done by boolean in dungeon/level, waterLevelHigh.
+	- rooms on the key path are filled with high water if waterLevelHigh is true.
+	- else they are filled with low level water, which simply creates the feetFX.
+	*important that player knows how big levers work prior to entering water temple.
+	- for now, the water temple boss and enemies are same as forest dungeon.
+	
+	
+	
+	
+	
+Dancing
+standing still, press B to make link randomly dance
+animFrames, input check, dance state, randomly choose animFrame.
+dance ends with any input, because no statelock, but animLoops.
+or does it? maybe hold down B to loop. press it once to play
+a random dance once.
+
+
+
+
 
 
 
