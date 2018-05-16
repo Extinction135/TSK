@@ -893,6 +893,7 @@ namespace DungeonRun
         public AnimationGroup swim_move;
         public AnimationGroup swim_dash;
         public AnimationGroup swim_hit;
+        public AnimationGroup swim_death;
 
         public AnimationGroup underwater_idle;
         public AnimationGroup underwater_move;

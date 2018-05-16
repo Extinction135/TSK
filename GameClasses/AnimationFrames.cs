@@ -624,6 +624,20 @@ namespace DungeonRun
             Hero_Animations.swim_hit.right = Hero_Animations.swim_hit.down;
             Hero_Animations.swim_hit.left = Hero_Animations.swim_hit.down;
 
+            Hero_Animations.swim_death = new AnimationGroup();
+            Hero_Animations.swim_death.down = new List<Byte4>
+            {
+                new Byte4(0, 5, 0, 0), new Byte4(0, 7, 0, 0), new Byte4(0, 6, 0, 0), new Byte4(0, 7, 1, 0), //spin
+                new Byte4(0, 5, 0, 0), new Byte4(0, 7, 0, 0), new Byte4(0, 6, 0, 0), new Byte4(0, 7, 1, 0), //spin
+
+                new Byte4(1, 8, 0, 0), new Byte4(1, 8, 0, 0), new Byte4(1, 8, 0, 0), //hold on swim hit frame
+                new Byte4(4, 5, 1, 0), //final frame = still, underwater
+            };
+            Hero_Animations.swim_death.up = Hero_Animations.swim_death.down;
+            Hero_Animations.swim_death.right = Hero_Animations.swim_death.down;
+            Hero_Animations.swim_death.left = Hero_Animations.swim_death.down;
+
+
             //underwater
             Hero_Animations.underwater_idle = new AnimationGroup();
             Hero_Animations.underwater_idle.down = new List<Byte4> { new Byte4(4, 5, 0, 0), new Byte4(5, 5, 0, 0) };

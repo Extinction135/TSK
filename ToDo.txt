@@ -174,25 +174,41 @@ TODAY:
 
 
 
+Swim Death
+
+created swim death animation: spins around twice in water,
+holds both hands up for a moment, then goes underwater without
+movement, which i hope looks like the hero drown.
+can't playtest this yet.. but i know it works because swim death
+is purely cosmetic (only affects sprite displayed).
+death routines will continue to run 
+with or without a sprite to draw. lel.
 
 
 
 
 
-Dive
 
-link jumps in the water, so now he's swimming.
-when the player presses the X button, this causes
-link to 'dive' underwater. link can still move around
-while underwater, but he can't dash. while underwater
-enemies can't see link (!) and wont chase him. after
-4 counts of 60 frames, link is forced out of the
-underwater state with a splash (he returns to swimming).
 
-fixed a minor bug where actor.breathCounter wasn't getting
-reset upon a fresh dive, which cut some dives short.
 
-lots of play testing... working amazingly well.
+
+
+we need to test swim hit, swim dive, and swim death..
+which means we need enemies on an overworld level with ponds.
+the forest level is the first that comes to mind.
+we should completely redesign this level.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -201,14 +217,9 @@ play test that enemies actually ignore hero while he's underwater.
 the code only works one way...
 
 
-
-
 interact rec hits water tile, kills hero's movement.
 why? why should bail from interaction with a water tile, and coastline tiles,
 altogether...
-
-
-
 
 
 *add enemies to forest entrance level (enemy spawns)
@@ -217,14 +228,6 @@ altogether...
 
 
 
-dive idle and move. this is triggered by pressing X button.
-X button puts links into dive state under water.
-pressing X while in dive state brings link to above water state.
-after 4 counts of 60 frames, actor is forced back to swimming
-state, with a splash.
-
-
-while in dive state, enemies can't see link.
 
 
 
@@ -237,14 +240,20 @@ while in dive state, enemies can't see link.
 
 
 
-Swim Death
 
-need swim death really badly.
-this is the drown anim, with the cycling bob at the end.
+Swim Instructor NPC
 
-hero should spin around twice in water,
-then go into dive idle anim.
+we need a swim instructor NPC that stands in front of a large pond,
+on the colliseum level. has dialog like:
 
+do you know how to swim? i'm sure you do.
+just hop in the water.
+
+press B while moving to swim faster.
+press X to dive underwater for a bit.
+
+while underwater, enemies can't see you,
+but you swim slower. have fun!
 
 
 
@@ -257,6 +266,7 @@ then go into dive idle anim.
 
 
 *we need swim reward state for hero.
+this is the raised hand sprite.
 
 
 
@@ -265,9 +275,10 @@ this is a splash and a obj release()
 
 
 
-
 *** improve colliseum level to include water areas
 **** create new dungeon rooms with water tiles added
+
+
 
 
 

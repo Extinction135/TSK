@@ -1,6 +1,31 @@
 
 
 
+
+
+Battle Instructor NPC
+
+we need a battle instructor NPC that stands in front of an object
+that spawns blob actors on a regular cycle.
+
+NPC has dialog like:
+wanna learn how to fight? A/B
+
+to attack, equip a weapon from your inventory and press X.
+to use or cast, equip an item from your inventory and press Y.
+
+while moving, press B to dash.
+it's important to master this dashing skill.
+
+try dashing into an attack, then dashing out.
+the quicker you are, the less likely to be killed.
+
+
+
+
+
+
+
 Non-Repeating Rooms in Dungeon
 
 we need to make rooms non-repeating in the dungeon.

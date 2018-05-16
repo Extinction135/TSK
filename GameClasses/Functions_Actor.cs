@@ -247,8 +247,8 @@ namespace DungeonRun
                 Actor.compAnim.loop = false; //stop looping
 
                 if (Actor.swimming)
-                {
-                    //drown anim
+                {   //play actors's drown anim
+                    Actor.animGroup = Actor.animList.swim_death;
                 }
                 else
                 {
