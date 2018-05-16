@@ -115,17 +115,16 @@ namespace DungeonRun
                 Functions_Bottle.EmptyBottle(Type);
             }
             else if (Type == MenuItemType.BottleBlob)
-            {   //display the bottled blob over hero's head
+            {
+                Functions_Bottle.EmptyBottle(Type);
+                //display the bottled blob over hero's head
                 Functions_Particle.Spawn(ObjType.Particle_BottleBlob, Pool.hero);
+
                 //use blob in a bottle (transform hero into blob and vice versa)
                 if (Pool.hero.type == ActorType.Hero)
-                { Functions_Actor.SetType(Pool.hero, ActorType.Blob); }
-                else { Functions_Actor.SetType(Pool.hero, ActorType.Hero); }
-                //reload hero's loadout from player.current data
-                Functions_Hero.SetLoadout();
-                Pool.hero.health = PlayerData.current.heartsTotal; //refill the hero's health
-                PlayerData.current.actorType = Pool.hero.type; //save the hero's actorType
-                Functions_Bottle.EmptyBottle(Type);
+                { Functions_Actor.Transform(Pool.hero, ActorType.Blob); }
+                else
+                { Functions_Actor.Transform(Pool.hero, ActorType.Hero); }
             }
             
             #endregion

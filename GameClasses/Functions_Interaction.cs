@@ -392,6 +392,8 @@ namespace DungeonRun
                     || Obj.type == ObjType.Wor_Coastline_Corner_Interior
                     || Obj.type == ObjType.Wor_Coastline_Straight)
                 {
+                    //bail if actor is dead, most dead actors dont display anything
+                    if (Actor.state == ActorState.Dead) { return; }
                     Actor.feetFX.visible = true;
                     Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_WetFeet;
                     if (Actor.state == ActorState.Move) //play moving sfx

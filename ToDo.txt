@@ -171,56 +171,10 @@ TODAY:
 
 
 
-
-
-
-Swim Death
-
-created swim death animation: spins around twice in water,
-holds both hands up for a moment, then goes underwater without
-movement, which i hope looks like the hero drown.
-can't playtest this yet.. but i know it works because swim death
-is purely cosmetic (only affects sprite displayed).
-death routines will continue to run 
-with or without a sprite to draw. lel.
-
-
-
-
-
-
-
-
-
-
 we need to test swim hit, swim dive, and swim death..
 which means we need enemies on an overworld level with ponds.
 the forest level is the first that comes to mind.
 we should completely redesign this level.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-play test that enemies actually ignore hero while he's underwater.
-the code only works one way...
-
-
-interact rec hits water tile, kills hero's movement.
-why? why should bail from interaction with a water tile, and coastline tiles,
-altogether...
-
 
 *add enemies to forest entrance level (enemy spawns)
 *add water ponds to forest entrance level too (test hiding from enemies)
@@ -232,9 +186,106 @@ altogether...
 
 
 
+Editor++
+
+upgraded editor with shortcut for setting rotate (9).
+fixed a minor bug with editor where the active tool
+didn't get set when using a keyboard shortcut.
+
+
+Blobs++
+added all swimming sprites for blob, so blob can now do
+everything hero can do: pickup, throw, carry, push, swim,
+dive, dash, etc.. blob is only limited by his movement speed.
+
+
+Limits++
+raised roomObjs limit to 750 objs.
+raised particles limit to 250.
+raised pickups limit to 25.
+
+
+Death++
+upgraded death routines to check to see if actor dying is 
+hero, and if so transforms hero back into the link actor.
+this is because blobs have an empty frame when they die now.
+this would cause the hero to 'dissappear' from the screen
+upon death, and instead i want the same death animation
+for the hero - no matter the hero's actor type. 
+
+
+Playtesting
+playtested - blob enemies can now swim, swim dash, and swim die.
+plus their transitions on/off land are as expected.
+
+
+Dead Actors on Coastlines
+if an actor is dead, dont draw their feet fx anymore.
+this was handled by updating coastline interactions to
+check actor state. if actor is dead, the method just returns.
+this prevents the feetfx from becoming visible.
 
 
 
+
+
+
+
+
+
+
+
+
+(building forest dungeon entrance level)
+(make church level more interesting)
+(improve colliseum level too)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*grounded non-basic enemies need full sheets (can swim)*
+*basic grounded enemies will just be released() with a splash (no swim)*
+*most mini-bosses / bosses are flying, so they dont have a swimming state*
+
+
+
+
+interact rec hits water tile, kills hero's movement.
+why? why should bail from interaction with a water tile, and coastline tiles,
+altogether...
 
 
 

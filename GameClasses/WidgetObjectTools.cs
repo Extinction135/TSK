@@ -177,16 +177,28 @@ namespace DungeonRun
 
                     //check cursorPos contains with individual tool objs
                     if (moveObj.compCollision.rec.Contains(Input.cursorPos))
-                    { SetActiveTool(moveObj); TopDebugMenu.objToolState = ObjToolState.MoveObj; }
+                    {
+                        SetActiveTool(moveObj);
+                        TopDebugMenu.objToolState = ObjToolState.MoveObj;
+                    }
 
                     else if (rotateObj.compCollision.rec.Contains(Input.cursorPos))
-                    { SetActiveTool(rotateObj); TopDebugMenu.objToolState = ObjToolState.RotateObj; }
+                    {
+                        SetActiveTool(rotateObj);
+                        TopDebugMenu.objToolState = ObjToolState.RotateObj;
+                    }
 
                     else if (addObj.compCollision.rec.Contains(Input.cursorPos))
-                    { SetActiveTool(addObj); TopDebugMenu.objToolState = ObjToolState.AddObj; }
+                    {
+                        SetActiveTool(addObj);
+                        TopDebugMenu.objToolState = ObjToolState.AddObj;
+                    }
 
                     else if (deleteObj.compCollision.rec.Contains(Input.cursorPos))
-                    { SetActiveTool(deleteObj); TopDebugMenu.objToolState = ObjToolState.DeleteObj; }
+                    {
+                        SetActiveTool(deleteObj);
+                        TopDebugMenu.objToolState = ObjToolState.DeleteObj;
+                    }
 
                     #endregion
 
@@ -200,7 +212,6 @@ namespace DungeonRun
 
                     if (TopDebugMenu.objToolState == ObjToolState.AddObj)
                     {
-
 
                         #region Check to see if we can add this type of Obj to this type of Room
 
@@ -275,13 +286,8 @@ namespace DungeonRun
                         if (currentObjRef.group == ObjGroup.Chest)
                         {
                             Functions_GameObject.SetType(currentObjRef, ObjType.Dungeon_ChestEmpty);
-                            window.title.text = "Obj: " + currentObjRef.type;
-                            currentObjDirectionText.text = "dir: " + currentObjRef.direction;
                             //set the tool to be empty chest
                             activeObj = Widgets.WidgetObjects_Dungeon.objList[19];
-                            selectionBoxObj.position = activeObj.compSprite.position;
-                            selectionBoxObj.scale = 2.0f;
-                            GetActiveObjInfo();
                         }
 
                         #endregion
@@ -300,6 +306,7 @@ namespace DungeonRun
                     }
 
                     #endregion
+
 
                     //dont return; here, continue to objToolState check below on purpose
                 }
@@ -401,15 +408,23 @@ namespace DungeonRun
 
             if(Functions_Input.IsNewKeyPress(Keys.D0)) //0 right of 9
             {
+                SetActiveTool(moveObj);
                 TopDebugMenu.objToolState = ObjToolState.MoveObj;
             }
             if (Functions_Input.IsNewKeyPress(Keys.OemMinus)) //right of 0
             {
+                SetActiveTool(deleteObj);
                 TopDebugMenu.objToolState = ObjToolState.DeleteObj;
             }
             if (Functions_Input.IsNewKeyPress(Keys.OemPlus)) //right of -
             {
+                SetActiveTool(addObj);
                 TopDebugMenu.objToolState = ObjToolState.AddObj;
+            }
+            if (Functions_Input.IsNewKeyPress(Keys.D9)) //left of 0
+            {
+                SetActiveTool(rotateObj);
+                TopDebugMenu.objToolState = ObjToolState.RotateObj;
             }
 
             #endregion
@@ -479,11 +494,8 @@ namespace DungeonRun
                 if (Pool.roomObjPool[Pool.roomObjCounter].active)
                 {   //check collisions between worldPos and obj, grab any colliding obj
                     if (Pool.roomObjPool[Pool.roomObjCounter].compCollision.rec.Contains(worldPos))
-                    {   //set both grabbedObj and activeObj
-                        grabbedObj = Pool.roomObjPool[Pool.roomObjCounter];
-                        activeObj = Pool.roomObjPool[Pool.roomObjCounter];
-                        GetActiveObjInfo();
-                        selectionBoxObj.scale = 2.0f;
+                    {   
+                        SelectObject(Pool.roomObjPool[Pool.roomObjCounter]);
                         return true;
                     }
                 }
@@ -491,10 +503,24 @@ namespace DungeonRun
             return false; //no collision with roomObj
         }
 
+
+
+        public void SelectObject(GameObject Obj)
+        {
+            grabbedObj = Obj;
+            activeObj = Obj;
+            GetActiveObjInfo();
+            selectionBoxObj.position = Obj.compSprite.position;
+            selectionBoxObj.scale = 2.0f;
+            window.title.text = "Obj: " + Obj.type;
+            currentObjDirectionText.text = "dir: " + Obj.direction;
+        }
+
+
+
+
         public void RotateActiveObj()
         {   
-
-            
             //set activeObj's obj.direction based on type
             if (activeObj.type == ObjType.Dungeon_PitBridge)
             {   //flip between horizontal and vertical directions
@@ -503,8 +529,6 @@ namespace DungeonRun
                 else { activeObj.direction = Direction.Down; }
             }
 
-            
-            
 
             //these are objects that we allow rotation upon
             else if (activeObj.type == ObjType.Dungeon_ConveyorBeltOn
@@ -522,9 +546,8 @@ namespace DungeonRun
                 { activeObj.compMove.direction = activeObj.direction; }
             }
 
-            
-            //rotate doors and walls
-            else if(activeObj.group == ObjGroup.Door || activeObj.group == ObjGroup.Wall)
+            //rotate all other objects thru clockwise rotation
+            else
             {
                 //flip thru cardinal directions
                 activeObj.direction = Functions_Direction.GetCardinalDirection(activeObj.direction);
@@ -533,7 +556,7 @@ namespace DungeonRun
                 else if (activeObj.direction == Direction.Down) { activeObj.direction = Direction.Right; }
                 else { activeObj.direction = Direction.Up; }
             }
-            
+
 
             //set the rotation of the sprite based on obj.direction                                             
             Functions_GameObject.SetRotation(activeObj);

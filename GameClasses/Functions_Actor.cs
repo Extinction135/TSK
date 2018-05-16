@@ -85,8 +85,12 @@ namespace DungeonRun
             Actor.lockTotal = 255;
             Assets.Play(Actor.sfx.kill); //play actor death sound fx
 
-            if (Actor.type == ActorType.Blob || Actor.type == ActorType.Boss)
-            { DungeonRecord.enemyCount++; } //track enemy deaths
+            //prior to hero dying, he must return to being link/hero
+            if(Actor == Pool.hero) { Transform(Pool.hero, ActorType.Hero); }
+            //link is only actor with correct death animation for gameover
+
+            //and switching hero back also makes it easy to track enemy deaths
+            else { DungeonRecord.enemyCount++; } 
 
             //make dead actor's corpse passable
             Actor.compCollision.blocking = false;
@@ -370,6 +374,28 @@ namespace DungeonRun
             Act.grabbedObj = Obj;
         }
         
+
+
+
+
+        public static void Transform(Actor Actor, ActorType Type)
+        {
+            SetType(Actor, Type);
+            //update hero's loadout
+            if (Actor == Pool.hero)
+            {   //get hero's loadout, store actor type
+                Functions_Hero.SetLoadout();
+                PlayerData.current.actorType = Actor.type;
+            }
+            Actor.health = 3; //transforms kinda hurt
+            Functions_Particle.Spawn(ObjType.Particle_Attention, Actor);
+        }
+
+
+
+
+
+
 
 
 

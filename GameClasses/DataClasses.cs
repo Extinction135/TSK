@@ -222,10 +222,10 @@ namespace DungeonRun
             //set pool sizes
             actorCount = 30;
             floorCount = 500;
-            roomObjCount = 500;
-            particleCount = 200;
+            roomObjCount = 750;
+            particleCount = 250;
             projectileCount = 40;
-            pickupCount = 20;
+            pickupCount = 25;
 
             //actor pool
             actorPool = new List<Actor>();
