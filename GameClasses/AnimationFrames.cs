@@ -573,8 +573,9 @@ namespace DungeonRun
             Hero_Animations.hit.right = Hero_Animations.hit.down;
             Hero_Animations.hit.left = Hero_Animations.hit.down;
 
-            Hero_Animations.death = new AnimationGroup();
-            Hero_Animations.death.down = new List<Byte4>
+            //heroic death on land
+            Hero_Animations.death_heroic = new AnimationGroup();
+            Hero_Animations.death_heroic.down = new List<Byte4>
             {
                 //spin clockwise twice, then fall
                 new Byte4(0, 0, 0, 0), new Byte4(0, 2, 1, 0), new Byte4(0, 1, 0, 0), new Byte4(0, 2, 0, 0),
@@ -582,9 +583,30 @@ namespace DungeonRun
                 new Byte4(1, 3, 0, 0),
                 new Byte4(2, 3, 0, 0) //fell, dead
             };
-            Hero_Animations.death.up = Hero_Animations.death.down;
-            Hero_Animations.death.right = Hero_Animations.death.down;
-            Hero_Animations.death.left = Hero_Animations.death.down;
+            Hero_Animations.death_heroic.up = Hero_Animations.death_heroic.down;
+            Hero_Animations.death_heroic.right = Hero_Animations.death_heroic.down;
+            Hero_Animations.death_heroic.left = Hero_Animations.death_heroic.down;
+
+            //heroic death in water
+            Hero_Animations.death_heroic_water = new AnimationGroup();
+            Hero_Animations.death_heroic_water.down = new List<Byte4>
+            {
+                new Byte4(0, 5, 0, 0), new Byte4(0, 7, 0, 0), new Byte4(0, 6, 0, 0), new Byte4(0, 7, 1, 0), //spin
+                new Byte4(0, 5, 0, 0), new Byte4(0, 7, 0, 0), new Byte4(0, 6, 0, 0), new Byte4(0, 7, 1, 0), //spin
+
+                new Byte4(1, 8, 0, 0), new Byte4(1, 8, 0, 0), new Byte4(1, 8, 0, 0), //hold on swim hit frame
+                new Byte4(4, 5, 1, 0), //final frame = still, underwater
+            };
+            Hero_Animations.death_heroic_water.up = Hero_Animations.death_heroic_water.down;
+            Hero_Animations.death_heroic_water.right = Hero_Animations.death_heroic_water.down;
+            Hero_Animations.death_heroic_water.left = Hero_Animations.death_heroic_water.down;
+
+            //points to the blank frame reserved in the actor's sprite sheet, right of death / sitting
+            Hero_Animations.death_blank = new AnimationGroup();
+            Hero_Animations.death_blank.down = new List<Byte4> { new Byte4(3, 3, 0, 0) };
+            Hero_Animations.death_blank.up = Hero_Animations.death_blank.down;
+            Hero_Animations.death_blank.right = Hero_Animations.death_blank.down;
+            Hero_Animations.death_blank.left = Hero_Animations.death_blank.down;
 
             //grab, push, pull
             Hero_Animations.grab = new AnimationGroup();
@@ -623,19 +645,6 @@ namespace DungeonRun
             Hero_Animations.swim_hit.up = Hero_Animations.swim_hit.down;
             Hero_Animations.swim_hit.right = Hero_Animations.swim_hit.down;
             Hero_Animations.swim_hit.left = Hero_Animations.swim_hit.down;
-
-            Hero_Animations.swim_death = new AnimationGroup();
-            Hero_Animations.swim_death.down = new List<Byte4>
-            {
-                new Byte4(0, 5, 0, 0), new Byte4(0, 7, 0, 0), new Byte4(0, 6, 0, 0), new Byte4(0, 7, 1, 0), //spin
-                new Byte4(0, 5, 0, 0), new Byte4(0, 7, 0, 0), new Byte4(0, 6, 0, 0), new Byte4(0, 7, 1, 0), //spin
-
-                new Byte4(1, 8, 0, 0), new Byte4(1, 8, 0, 0), new Byte4(1, 8, 0, 0), //hold on swim hit frame
-                new Byte4(4, 5, 1, 0), //final frame = still, underwater
-            };
-            Hero_Animations.swim_death.up = Hero_Animations.swim_death.down;
-            Hero_Animations.swim_death.right = Hero_Animations.swim_death.down;
-            Hero_Animations.swim_death.left = Hero_Animations.swim_death.down;
 
 
             //underwater
@@ -702,11 +711,11 @@ namespace DungeonRun
             Boss_Blob_Animations.hit.right = Hero_Animations.hit.down;
             Boss_Blob_Animations.hit.left = Hero_Animations.hit.down;
 
-            Boss_Blob_Animations.death = new AnimationGroup();
-            Boss_Blob_Animations.death.down = new List<Byte4> { new Byte4(2, 3, 0, 0) };
-            Boss_Blob_Animations.death.up = Hero_Animations.death.down;
-            Boss_Blob_Animations.death.right = Hero_Animations.death.down;
-            Boss_Blob_Animations.death.left = Hero_Animations.death.down;
+            Boss_Blob_Animations.death_blank = new AnimationGroup();
+            Boss_Blob_Animations.death_blank.down = new List<Byte4> { new Byte4(3, 3, 0, 0) };
+            Boss_Blob_Animations.death_blank.up = Hero_Animations.death_blank.down;
+            Boss_Blob_Animations.death_blank.right = Hero_Animations.death_blank.down;
+            Boss_Blob_Animations.death_blank.left = Hero_Animations.death_blank.down;
 
             #endregion
 

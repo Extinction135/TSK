@@ -204,59 +204,51 @@ TODAY:
 
 
 
+Death Animations
 
-Improvements++
+the problem: actors can die on land or in water.
+if the actor is the hero, then he should play a special
+death animation (spin around, fall down). if the actor
+is an enemy, the enemy should disappear, but we don't
+want to alter the systems in place too much.
 
-improved row rooms that were looking bland.
-improved editor to reset level key and map booleans
-to false just prior to building a room from xml file.
-this ensures that the room will be built properly,
-even if we have key and map cheats enabled. those cheats
-are checked when a level  or dungeon is built, 
-not when a room is built.
+the solution: create 3 animFrames for death.
+1. heroic death on land.
+2. heroic death in water.
+3. death that points to a blank sprite frame.
 
-improved hub rooms. now they are setup to handle a
-miniboss, which will come very soon.
-recompiled roomData.
+then, we can check if the actor is the hero and set
+the animFrame properly, same with enemies. this
+doesn't affect any systems currently setup and working,
+because it's simply a visual change.
 
+DeathTesting
+test that hero dies properly in water and on land. yep
+bug: when hero appears on overworld map, if he drown,
+he shows up as the drown frame, when he should show up
+as the sitting frame. this is because the underwater 
+flag isn't set to false in actor, so the game still
+displays the hero as underwater. the fix is simply
+to set the underwater boolean back to false.
+blobs die as expected.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Overworld++
+improved overworld map - now link will look in the
+input direction, unless he can travel to a location
+in that direction. this has the overall effect of
+allowing the player the ability to make link 'look
+around' the overworld map, which is pretty cool.
 
 
 
 
 
 
-Death animations++
-create a death anim called death_blank.
-then set blob's death anim to death_blank.
-if blobs die in water, they stay as sunk sprite, and no want that.
-plus, land and water deaths can lead to blank death, for enemies.
 
-create a death anim called death_hero.
-this contains the spin and fall.
 
-create a death anim called death_hero_water.
-this is hero death in water.
+
+
+
 
 
 

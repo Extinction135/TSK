@@ -235,6 +235,10 @@ namespace DungeonRun
                 currentLocation.compSprite.position.Y - 8);
             Functions_Component.Align(hero);
 
+            //prevents drown sprite from appearing, if hero died in water
+            hero.underwater = false; hero.swimming = false;
+            Functions_Actor.Update(hero);
+
             //play the title music
             Functions_Music.PlayMusic(Music.Title);
             //prevent kick drum from playing during overworld map
@@ -325,6 +329,15 @@ namespace DungeonRun
                                 hero.compSprite.position.X,
                                 hero.compSprite.position.Y + 4);
                         }
+                        else//if hero dies, he appears on map sitting
+                        {   //pressing a direction will make him stand back up
+                            hero.state = ActorState.Idle;
+                            //hero.direction = Direction.Down;
+
+                            //face hero in the direction of the input
+                            hero.direction = cardinal;
+                        }
+                        
                     }
                     //check to see if player wants to load a level
                     if(Functions_Input.IsNewButtonPress(Buttons.A))
@@ -402,7 +415,6 @@ namespace DungeonRun
                         hero.state = ActorState.Idle;
                         hero.direction = Direction.Down;
                         currentLocation = targetLocation;
-                        
                         //spawn attention particle at hero's feet
                         Functions_Particle.Spawn(ObjType.Particle_Attention,
                             hero.compSprite.position.X,

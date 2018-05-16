@@ -249,18 +249,16 @@ namespace DungeonRun
             else if (Actor.state == ActorState.Dead)
             {
                 Actor.compAnim.loop = false; //stop looping
-
-                if (Actor.swimming)
-                {   //play actors's drown anim
-                    Actor.animGroup = Actor.animList.swim_death;
+                if(Actor == Pool.hero)
+                {   //play the hero's death in water or on land
+                    if (Actor.swimming)
+                    { Actor.animGroup = Actor.animList.death_heroic_water; }
+                    else { Actor.animGroup = Actor.animList.death_heroic; }
+                    Actor.compAnim.speed = 6; //speed up hero's death 
                 }
                 else
-                {
-                    Actor.animGroup = Actor.animList.death;
-                    //speed up hero's death
-                    if (Actor.type == ActorType.Hero) { Actor.compAnim.speed = 6; }
-                    else//skip spinning death animation if actor isn't link hero
-                    { Actor.compAnim.index = (byte)(Actor.compAnim.currentAnimation.Count - 1); }
+                {   //non-hero actors disappear upon death
+                    Actor.animGroup = Actor.animList.death_blank;
                 }
             }
             else if (Actor.state == ActorState.Reward)

@@ -16,7 +16,7 @@ namespace DungeonRun
     
     public static class Flags
     {   // **********************************************************************************************************
-        public static Boolean Release = false; //puts game in release mode, overwrites other flags
+        public static Boolean Release = true; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.72f; //the version of the game
         public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
@@ -882,9 +882,12 @@ namespace DungeonRun
         public AnimationGroup attack;
 
         public AnimationGroup hit;
-        public AnimationGroup death;
         public AnimationGroup reward;
         public AnimationGroup pickupThrow;
+
+        public AnimationGroup death_heroic; //spin twice, fall (on land)
+        public AnimationGroup death_heroic_water; //spin twice, (drown in water)
+        public AnimationGroup death_blank; //literally empty, 'disappear' from screen
 
         public AnimationGroup grab; //idle
         public AnimationGroup push; //move
@@ -893,7 +896,6 @@ namespace DungeonRun
         public AnimationGroup swim_move;
         public AnimationGroup swim_dash;
         public AnimationGroup swim_hit;
-        public AnimationGroup swim_death;
 
         public AnimationGroup underwater_idle;
         public AnimationGroup underwater_move;
