@@ -69,9 +69,20 @@ namespace DungeonRun
                     if(Actor.heldObj != null)
                     {   //force this object to stay active
                         Actor.heldObj.active = true;
-                        //place carryingObj over hero's head
+
+                        //where we place this heldObj depends on actor's state
+                        if(Actor.swimming)
+                        {
+                            if (Actor.underwater) //place heldObj in water
+                            { Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 1; }
+                            else //place heldObj just over hero's head in water
+                            { Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 7; }
+                        }
+                        else//align on land, over actor's head
+                        { Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 9; }
+
+                        //always align heldObj horizontally to actor
                         Actor.heldObj.compMove.newPosition.X = Actor.compSprite.position.X;
-                        Actor.heldObj.compMove.newPosition.Y = Actor.compSprite.position.Y - 9;
                         Functions_Component.Align(Actor.heldObj);
                         Draw(Actor.heldObj.compSprite);
                         //draw held obj's collisions too

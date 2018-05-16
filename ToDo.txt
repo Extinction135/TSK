@@ -204,13 +204,32 @@ TODAY:
 
 
 
+Carrying while Swimming and Diving
 
-Attacking / Using while Carrying
+this is awesome. really awesome.
+so hero can pickup pots and bushes. and hero can then
+jump in the water and be put into a swimming state.
+i could force hero to throw any heldObj he picked up,
+BUT instead I FORGOT to check for that state and hero
+can carry bushes and pots over his head into the water.
+which is cool, but not the coolest part. read on.
 
-attacking while carrying should do nothing.
-using while carrying should do nothing.
-currently it draws a frame of use anim.
-added code to handle this. tested & fixed.
+once hero is in the water carrying a bush or pot,
+he can't throw it, he can only hold onto it until
+he exits the water, at which point he can throw it.
+BUT, and here's the cool part - hero can DIVE while
+carrying, which makes the hero invisible to enemies,
+except he's got a bush or pot or skull pot over
+his head, and it reminds me of metal gear so bad.
+link can literally hide under a bush, while underwater,
+to sneak up on some enemies. that's some tom clancy
+s#!t right there, lol.
+
+oh yeah, i just improved the placement of the heldObj
+over the hero's head while swimming and underwater
+so the above state visually looks good.
+
+lots of playtesting, looks great.
 
 
 
@@ -221,13 +240,8 @@ added code to handle this. tested & fixed.
 
 
 
-picking up objects, then swimming...
-this *works kinda*, but there are some issues.
-- can dive while holding obj, looks wrong
-hedl obj should track closer to hero's head if in water.
-if underwater, the held obj should track right over him
-it should look like he's hiding under the obj.
-this adds an element of sneakiness and sneak customization (sneak as pot or bush)..
+
+
 
 
 
@@ -246,14 +260,8 @@ MOAR++
 
 
 
-we need new hub rooms, that are actually interesting.
 
-
-
-
-
-
-Swim Instructor NPC
+Swim Instructor NPC (or signpost!)
 
 we need a swim instructor NPC that stands in front of a large pond,
 on the colliseum level. has dialog like:
