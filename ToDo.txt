@@ -196,15 +196,6 @@ Friday
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 
 
@@ -214,36 +205,13 @@ TODAY:
 
 
 
-Objects Sinking into Water
-
-Certain objects should sink into water when they contact a
-water tile. These are draggable objects, since hero can
-push them to a position where they look like they're floating
-over water, while hero falls in. This breaks immersion.
-Now, if hero pushes these objects into water, they will
-be released() and a splash particle will be created.
-
-so, it's working, but i think the object that's being
-pushed falls into the water too early. instead we should
-check the center of object for interaction collisions
-with the water tile. updated and playtested, working 
-perfectly now. objs being pushed fall into water
-at the same time link does, so the game concept of 
-water tiles having 'depth' is maintained. whew.
-
-
-
-
-
-
-
-
 SoundFX++
+
 only the hero should make 'movement' sounds.
 enemies shouldn't. it's annoying after a few minutes.
 and it seems buggy, if link is standing on land not moving,
-while the water walk sound fx spam plays, because theres an
-enemy off screen playing around on the coastlines.
+while the water/grass walk sound fx spam plays, 
+because theres an enemy off screen playing around.
 
 
 

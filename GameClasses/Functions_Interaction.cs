@@ -380,8 +380,11 @@ namespace DungeonRun
                     //unhide + place grassy feet at actor's feet
                     Actor.feetFX.visible = true;
                     Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_GrassyFeet;
-                    if (Actor.state == ActorState.Move) //play moving sfx
-                    { Assets.Play(Assets.sfxGrassWalk); }
+                    if (Actor == Pool.hero)
+                    {   //actor must be hero, and moving
+                        if (Actor.state == ActorState.Move)
+                        { Assets.Play(Assets.sfxGrassWalk); }
+                    }
                 }
 
                 #endregion
@@ -902,9 +905,6 @@ namespace DungeonRun
             #endregion
 
 
-
-
-
             #region Water (objects that 'fall' into water - draggable objs)
 
             else if(RoomObj.type == ObjType.Wor_Water)
@@ -929,8 +929,6 @@ namespace DungeonRun
             }
 
             #endregion
-
-
 
 
         }

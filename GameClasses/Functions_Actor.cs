@@ -318,12 +318,9 @@ namespace DungeonRun
 
             else if (Actor.state == ActorState.Reward)
             {
-
                 if (Actor.swimming)
                 { Actor.animGroup = Actor.animList.swim_reward; }
                 else { Actor.animGroup = Actor.animList.reward; }
-
-                
             }
 
             #endregion
