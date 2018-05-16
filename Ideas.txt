@@ -1,5 +1,29 @@
 
 
+Swim Instructor NPC
+
+we need a swim instructor NPC that stands in front of a large pond,
+on the colliseum level. has dialog like:
+
+do you know how to swim? i'm sure you do.
+just hop in the water.
+
+press B while moving to swim faster.
+press X to dive underwater for a bit.
+
+while underwater, enemies can't see you,
+but you swim slower. 
+
+try picking up objects and carrying them
+into the water as well. have fun!
+
+*this should be at the colliseum level.
+make the pond there bigger.
+
+
+
+
+
 
 
 Water Temple

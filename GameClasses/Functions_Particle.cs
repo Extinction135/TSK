@@ -111,7 +111,6 @@ namespace DungeonRun
                 obj.direction = Functions_Direction.GetOppositeDirection(Dir);
             }
 
-
             //teleport the object to the proper location
             Functions_Movement.Teleport(obj.compMove, X, Y);
             //set the type, rotation, cellsize, & alignment
