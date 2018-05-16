@@ -399,12 +399,6 @@ namespace DungeonRun
                 Widgets.RoomTools.Draw();
                 Widgets.ObjectTools.Draw();
             }
-
-            //ALWAYS draw the cursor, and draw it last
-            Functions_Draw.Draw(TopDebugMenu.cursor);
-            //ALWAYS draw the toolTip too
-            if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
-            { Functions_Draw.Draw(Widgets.ObjectTools.toolTipSprite); }
         }
 
     }

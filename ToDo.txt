@@ -213,18 +213,11 @@ TODAY:
 
 
 
-Debug++
 
-migrated debug info to new display format for easier use.
-added collision and interaction counts to new debug system.
-improved debug to be display-able from options menu, so
-we can attempt to debug a problem even if game is in release.
+Release Mode ++
 
-now i know actually how many roomObjs, and projectiles there
-are on screen, along with particles. 
-
-
-
+fixed a bug where cursor could be drawn during game.
+now cursor will not draw if game is in release mode.
 
 
 
@@ -266,6 +259,7 @@ make the pond there bigger.
 
 
 
+
 Objs in Water
 objects that are pushed into water should be released() and
 spawn a splash particle. this sims the objs falling into water.
@@ -278,11 +272,10 @@ spawn a splash particle. this sims the objs falling into water.
 
 
 
-
-
-
 *add in wooden table, should be easily destructable (handle common obj)
 **we have a glass table too, right? git rid of it. we have no glass sfx and it has no point.
+
+
 
 
 

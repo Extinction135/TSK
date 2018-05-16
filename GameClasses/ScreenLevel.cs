@@ -312,7 +312,16 @@ namespace DungeonRun
             #endregion
 
 
-            Functions_Draw.Draw(overlay); //draw the overlay rec last
+            Functions_Draw.Draw(overlay); //draw the overlay rec
+
+            if(Flags.Release == false)
+            {   //ALWAYS draw the cursor, and draw it last
+                Functions_Draw.Draw(TopDebugMenu.cursor);
+                //ALWAYS draw the toolTip too
+                if (TopDebugMenu.objToolState != ObjToolState.MoveObj)
+                { Functions_Draw.Draw(Widgets.ObjectTools.toolTipSprite); }
+            }
+
             ScreenManager.spriteBatch.End();
 
             Timing.stopWatch.Stop();
