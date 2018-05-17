@@ -456,47 +456,12 @@ namespace DungeonRun
 
         public static void SetLoadout()
         {   //set the hero's loadout based on playerdata.current
-
-            //reset hero's loadout to unknown
-            Pool.hero.weapon = MenuItemType.Unknown;
-            Pool.hero.item = MenuItemType.Unknown;
-            Pool.hero.armor = MenuItemType.Unknown;
-            Pool.hero.equipment = MenuItemType.Unknown;
-
-            //sanitize playerdata.current to within expected values
-            if (PlayerData.current.currentWeapon > 4) { PlayerData.current.currentWeapon = 0; }
-            if (PlayerData.current.currentArmor > 4) { PlayerData.current.currentArmor = 0; }
-            if (PlayerData.current.currentEquipment > 4) { PlayerData.current.currentEquipment = 0; }
-
-
             //Set Hero's Item
             Pool.hero.item = PlayerData.current.currentItem;
+            Pool.hero.weapon = PlayerData.current.currentWeapon;
+            Pool.hero.armor = PlayerData.current.currentArmor;
+            
 
-
-            //set hero's weapon
-            if (PlayerData.current.currentWeapon == 0)
-            { Pool.hero.weapon = MenuItemType.WeaponSword; }
-            else if (PlayerData.current.currentWeapon == 1)
-            { Pool.hero.weapon = MenuItemType.WeaponNet; }
-            else { Pool.hero.weapon = MenuItemType.Unknown; }
-
-            //set hero's armor
-            if (PlayerData.current.currentArmor == 1)
-            { Pool.hero.armor = MenuItemType.ArmorCape; }
-            else { Pool.hero.armor = MenuItemType.ArmorCloth; }
-
-            //set hero's equipment
-            if (PlayerData.current.currentEquipment == 0)
-            { Pool.hero.equipment = MenuItemType.EquipmentRing; }
-            else if (PlayerData.current.currentEquipment == 1)
-            { Pool.hero.equipment = MenuItemType.EquipmentPearl; }
-            else if (PlayerData.current.currentEquipment == 2)
-            { Pool.hero.equipment = MenuItemType.EquipmentNecklace; }
-            else if (PlayerData.current.currentEquipment == 3)
-            { Pool.hero.equipment = MenuItemType.EquipmentGlove; }
-            else if (PlayerData.current.currentEquipment == 4)
-            { Pool.hero.equipment = MenuItemType.EquipmentPin; }
-            else { Pool.hero.equipment = MenuItemType.Unknown; }
         }
 
         public static void SpawnPet()

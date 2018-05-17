@@ -1165,61 +1165,39 @@ namespace DungeonRun
         public byte arrowsMax = 99;
 
 
-        #region Items
-
+        //Items
         //the hero's last selected / current item
-        public MenuItemType currentItem = MenuItemType.Unknown;
+        public MenuItemType currentItem = MenuItemType.ItemBoomerang;
         public int lastItemSelected = 0; //index of Widgets.Inventory.menuItems[?]
 
-        //non-magical items
         public Boolean itemBoomerang = false;
         public Boolean itemBow = false;
+        public Boolean magicFireball = false;
 
-        //bottles
+        //bottles - hero just always has 3 bottles
         public MenuItemType bottleA = MenuItemType.BottleEmpty;
         public MenuItemType bottleB = MenuItemType.BottleEmpty;
         public MenuItemType bottleC = MenuItemType.BottleEmpty;
 
-        //magical items
-        public Boolean magicFireball = false;
-
-        #endregion
-
-
-        #region Weapon
-
-        public byte currentWeapon = 0;
-        //0=sword, 2=net
-
+        //Weapon
+        public MenuItemType currentWeapon = MenuItemType.WeaponSword;
         //public Boolean weaponSword = false; //not used rn
         public Boolean weaponNet = false;
         public Boolean weaponShovel = false;
 
+        //Armor
+        public MenuItemType currentArmor = MenuItemType.ArmorCloth;
+        //public Boolean armorCloth = false; //not used rn
+        public Boolean armorCape = false; //cosmetic only rn, no effect
 
 
-
-        #endregion
-
-
-        #region Armor
-
-        public byte currentArmor = 0; //0=tunic, 1=cape
-        public Boolean armorCape = false;
-
-        #endregion
-
-
-        #region Equipment
-
-        public byte currentEquipment = 0;
-        //0=ring, 1=pearl, 2=necklace, 3=glove, 4=pin
+        //Equipment
+        public MenuItemType currentEquipment = MenuItemType.Unknown;
         public Boolean equipmentRing = true;
-        public Boolean equipmentPearl = false;
-        public Boolean equipmentNecklace = false;
-        public Boolean equipmentGlove = false;
-        public Boolean equipmentPin = false;
-
-        #endregion
+        //public Boolean equipmentPearl = false;
+        //public Boolean equipmentNecklace = false;
+        //public Boolean equipmentGlove = false;
+        //public Boolean equipmentPin = false;
 
 
         //player's pet

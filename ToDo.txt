@@ -161,47 +161,54 @@ TODAY:
 
 
 
+SaveData++
 
-Shovel MenuItem + Data
-
-created shovel sprite, to match the diagonal orientation
-of the other items and weapons used in the game. my theory
-on why the shovel was vertical and not diagonal in LttP
-is likely because it was a transitory item, meant to be
-used for a short period of time, replaced by the flute,
-after link digs in the top left area in the circle of trees.
-so, either the visual designers were cue-ing the player
-that this item is different (disposabe), or they were
-just being lazy or re-using an old sprite. 
-
-added MenuItemType WeaponShovel.
-added animFrame and menuItem.type() def.
-
-added saveData.weaponShovel boolean.
-updated unlock all cheat to unlock shovel.
-
-updated inventory widget to display shovel, next to net.
-updated ui item sprite sheet.
-playtested, shovel menuItem is in game and looking good.
-
-
-
-
-
-
-
-
-Shovel Weapon
-
-
-
-**fix how we store and track the hero's current weapon in savedata.
-somewhere we load this, probably in fun_hero. and thats where we
-need to convert weapons, armor, and equipment to using the system
+we need to convert weapons, armor, and equipment to using the system
 that items uses, because it scales much better and doesn't abstract
 the item to an int value, but rather an enum string representation,
-so that's nice.
+so it's easier to save, load, and work with. however, this means
+savedata prior to this commit wont load. *soft violins play*
 
+fixed how weapons, armor and equipment were stored in savedata.
+removed all equipment booleans other than ring from the game 
+(since they weren't being implemented anyway).
+
+updated equip routines to work with new system.
+
+removed Fun_Debug.Inspect(SaveData). we can just save the
+game and open the xml data. not needed.
+
+playtested, working very well:
+the game handled the corrupt savedata fine, overwriting it
+with the current savedata in memory so the game doesn't crash, 
+and the player can still save their progress. current savedata
+in memory is created fresh when the game loads, so it's just
+a new game essentially. this means the old savedata file is
+lost forever tho, which sucks, but also is kinda to be expected
+since this game is in development and free.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fix menuitem old tunic info
+should read 'a familiar old tunic.'
+
+
+
+
+
+where do we get the shovel from? who sells it? weapons vendor obvs.
 
 
 
@@ -210,6 +217,30 @@ so that's nice.
 
 need shovel projectile (tracks to actor, acting like sword)
 shovel projectile can deal damage to objs & actors just like sword.
+however, the shovel projectile DOESNT create trenches.
+that is a separate method, the Dig() method, that is called
+only when the actor first uses the shovel. no debris is created by shovel pro!
+*consider that actors may need interaction points*
+*needed if actors want to pickup or dig, and it would be nice to see that
+with more advanced enemies later on*
+
+
+
+migrate hero's interaction rec and interaction rec functions into actor class.
+
+
+
+
+*we could also consolidate gameobj_dungeon and gameobj_world into gameobj class.
+while the compartmentalization is organized, its easier to just
+recall the methods exist under the fun_gameObj class than split them between 3.
+
+
+
+
+
+
+DIGGING
 
 Dig(Actor Actor) method: place a trench obj aligned to 16x16 px grid in room.
 the trench obj's position is based on the actor's pos and facing direction.
@@ -217,41 +248,11 @@ we apply a slight offset to the center of the sprite pos to get a good dig pos,
 then align that to a 16x16 grid, so all trenches will line up.
 
 certain objects reject the Dig method tho, objects that we don't want
-the hero to be able to destroy, like walls.
+the hero to be able to destroy, like walls. if we can DIG successfully,
+then create a debris explosion and place the META trench obj in the room.
 
+TRENCH SYSTEM
 
-
-
-
-destroying a coastline is the first step to creating a water channel.
-
-
-
-
-
-
-then do an interaction check between shovel pro and
-
-
-
-
-
-
-
-Miyamoto Wishes Part 2
-	- implement shovel weapon
-	- create ditch sprite, ground can become ditch (any objs are removed, like grass)
-	- shovel interaction with non-blocking obj removes obj and creates ditch obj.
-	- ditch objs have 16x16 collrec, and look like 'deep dirt', a layer under ground.
-	- the same way fire spreads (using interactive frame), we can spread water tiles
-	- water tiles expand for one frame and make ditch tiles water tiles if they touch
-	- then we need to implement cascading effect: low, med, high water tiles.
-	- high > med > low > ditch is the spreading routine.
-	- at this point link should be able to construct water channels
-	
-TRENCH SYSTEM (OMG I DID IT)
-
-how to make trench system work:
 the initial trench obj placed is a temp obj with a 20x20 collision rec.
 on it's first frame, it checks to see what trench objs overlap it.
 using the list of overlapping trenches nearby, sort to a NSEW boolean list.
@@ -266,11 +267,43 @@ we will also need 'end caps' that connect to straight pieces.
 and trenches that are just single holes in the ground.
 
 
+
+
+
+
+
+destroying a coastline is the first step to creating a water channel.
+
+	- ditch objs have 16x16 collrec, and look like 'deep dirt', a layer under ground.
+	- the same way fire spreads (using interactive frame), we can spread water tiles
+	- water tiles expand for one frame and make ditch tiles water tiles if they touch
+	- then we need to implement cascading effect: low, med, high water tiles.
+	- high > med > low > ditch is the spreading routine.
+	- at this point link should be able to construct water channels
+	
+
+
+
 * add windmill obj that animates if a filled trench obj touches it
 in the right neighboring tile.
 
 
 **** playtest as much as you can thursday ****
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

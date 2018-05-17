@@ -191,29 +191,42 @@ namespace DungeonRun
 
                     #region Weapons
 
-                    else if (currentlySelected.type == MenuItemType.WeaponSword) //sword
-                    { PlayerData.current.currentWeapon = 0; Pool.hero.weapon = currentlySelected.type; }
-                    else if (currentlySelected.type == MenuItemType.WeaponNet) //net
-                    { PlayerData.current.currentWeapon = 2; Pool.hero.weapon = currentlySelected.type; }
+                    else if (
+                        currentlySelected.type == MenuItemType.WeaponSword
+                        || currentlySelected.type == MenuItemType.WeaponNet
+                        ) 
+                    {
+                        PlayerData.current.currentWeapon = currentlySelected.type;
+                        Pool.hero.weapon = currentlySelected.type;
+                    }
 
                     #endregion
 
 
                     #region Armor
 
-                    else if (currentlySelected.type == MenuItemType.ArmorCloth) //tunic
-                    { PlayerData.current.currentArmor = 0; Pool.hero.armor = currentlySelected.type; }
-                    else if (currentlySelected.type == MenuItemType.ArmorCape) //cape
-                    { PlayerData.current.currentArmor = 2; Pool.hero.armor = currentlySelected.type; }
-                    
+                    else if (
+                        currentlySelected.type == MenuItemType.ArmorCloth
+                        || currentlySelected.type == MenuItemType.ArmorCape
+                        )
+                    {
+                        PlayerData.current.currentArmor = currentlySelected.type;
+                        Pool.hero.armor = currentlySelected.type;
+                    }
 
                     #endregion
 
 
                     #region Equipment
 
-                    else if (currentlySelected.type == MenuItemType.EquipmentRing) //ring
-                    { PlayerData.current.currentEquipment = 0; Pool.hero.equipment = currentlySelected.type; }
+                    else if (
+                        currentlySelected.type == MenuItemType.EquipmentRing
+                        //|| currentlySelected.type == MenuItemType.ArmorCape
+                        )
+                    {
+                        PlayerData.current.currentEquipment = currentlySelected.type;
+                        Pool.hero.equipment = currentlySelected.type;
+                    }
 
                     #endregion
 

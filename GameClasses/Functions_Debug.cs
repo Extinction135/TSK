@@ -174,40 +174,6 @@ namespace DungeonRun
             else if (value == 4) { output += "fairy"; }
         }
 
-        public static void Inspect(SaveData SaveData)
-        {
-            output = "\n\n---- SAVE DATA DUMP ----";
-            output += "\n  gold: " + PlayerData.current.gold;
-            output += "\n  hearts: " + PlayerData.current.heartsTotal;
-            output += "\n  magic: " + PlayerData.current.magicCurrent + " / " + PlayerData.current.magicMax;
-            output += "\n  bombs: " + PlayerData.current.bombsCurrent + " / " + PlayerData.current.bombsMax;
-            output += "\n  arrows: " + PlayerData.current.arrowsCurrent + " / " + PlayerData.current.arrowsMax;
-
-            output += "\n  -- Items --"; ;
-            output += "\n  has boomerang: " + PlayerData.current.itemBoomerang;
-            output += "\n  has Bow: " + PlayerData.current.itemBow;
-
-            output += "\n  -- Bottles --"; ;
-            output += "bottleA: " + PlayerData.current.bottleA;
-            output += "bottleB: " + PlayerData.current.bottleB;
-            output += "bottleC: " + PlayerData.current.bottleC;
-
-
-            output += "\n  -- Magic Items --"; ;
-            output += "\n  has magicFireball: " + PlayerData.current.magicFireball;
-
-            output += "\n  -- Weapons --"; ;
-            output += "\n  has Net: " + PlayerData.current.weaponNet;
-
-            output += "\n  -- Armor --"; ;
-            output += "\n  has armorCape: " + PlayerData.current.armorCape;
-
-            output += "\n  -- Equipment --"; ;
-            output += "\n  has equipmentRing: " + PlayerData.current.equipmentRing;
-
-            Debug.WriteLine(output);
-        }
-
         public static void InspectRoomData()
         {
             int total = 0;
