@@ -249,7 +249,7 @@ namespace DungeonRun
             else if (Type == MenuItemType.ArmorCloth)
             {
                 MenuItem.name = "Old Tunic";
-                MenuItem.description = "A familiar tunic \nworn from years of wear.";
+                MenuItem.description = "A familiar old tunic.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Armor_Cloth;
                 MenuItem.price = 0;
             }

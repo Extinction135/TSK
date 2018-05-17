@@ -161,31 +161,6 @@ TODAY:
 
 
 
-SaveData++
-
-we need to convert weapons, armor, and equipment to using the system
-that items uses, because it scales much better and doesn't abstract
-the item to an int value, but rather an enum string representation,
-so it's easier to save, load, and work with. however, this means
-savedata prior to this commit wont load. *soft violins play*
-
-fixed how weapons, armor and equipment were stored in savedata.
-removed all equipment booleans other than ring from the game 
-(since they weren't being implemented anyway).
-
-updated equip routines to work with new system.
-
-removed Fun_Debug.Inspect(SaveData). we can just save the
-game and open the xml data. not needed.
-
-playtested, working very well:
-the game handled the corrupt savedata fine, overwriting it
-with the current savedata in memory so the game doesn't crash, 
-and the player can still save their progress. current savedata
-in memory is created fresh when the game loads, so it's just
-a new game essentially. this means the old savedata file is
-lost forever tho, which sucks, but also is kinda to be expected
-since this game is in development and free.
 
 
 
@@ -200,18 +175,35 @@ since this game is in development and free.
 
 
 
+Vendors++
 
-fix menuitem old tunic info
-should read 'a familiar old tunic.'
+fixed menuitem old tunic info.
+fixed a small bug where game didn't set the hero's equipment
+based on the current savedata. just forgot a line of code.
+
+updated weapons vendor to sell shovel, but he no longer sells
+the bow. now the item vendor sells the bow, alongside the arrows
+the hero also needs to FIRE it. how useful.
+
+tested vendors, working well, small bugs.
+
+removed auto-equip for all items, weapons, armor, and equipment
+from vendor screen. if player wants to equip it, they can do so
+from the inventory screen as they normally would.
+
+updated purchase routines to allow purchasing of shovel, 
+which also flips the saveData.shovel boolean to true.
 
 
 
 
 
-where do we get the shovel from? who sells it? weapons vendor obvs.
 
 
 
+
+hero cannot equip the shovel.
+it doesn't show up in worldUI either.
 
 
 

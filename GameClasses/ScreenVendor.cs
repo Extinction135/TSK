@@ -237,10 +237,19 @@ namespace DungeonRun
                         if (Item.type == MenuItemType.ItemBomb)
                         { PlayerData.current.bombsCurrent++; }
                         else { PlayerData.current.bombsCurrent += 3; }
-                        Pool.hero.item = MenuItemType.ItemBomb;
                         CompleteSale(Item);
                     }
                     else { DialogCarryingMaxAmount(); }
+                }
+                //bow and arrows
+                else if (Item.type == MenuItemType.ItemBow)
+                {
+                    if (!PlayerData.current.itemBow)
+                    {
+                        PlayerData.current.itemBow = true;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
                 }
                 else if (Item.type == MenuItemType.ItemArrowPack)
                 {   //check to see if hero has a bow weapon
@@ -288,7 +297,6 @@ namespace DungeonRun
                     if (!PlayerData.current.magicFireball)
                     {
                         PlayerData.current.magicFireball = true;
-                        Pool.hero.item = Item.type;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
@@ -299,22 +307,20 @@ namespace DungeonRun
 
                 #region Weapons
 
-                else if (Item.type == MenuItemType.ItemBow)
-                {
-                    if (!PlayerData.current.itemBow)
-                    {
-                        PlayerData.current.itemBow = true;
-                        Pool.hero.weapon = Item.type;
-                        CompleteSale(Item);
-                    }
-                    else { DialogAlreadyPurchased(); }
-                }
                 else if (Item.type == MenuItemType.WeaponNet)
                 {
                     if (!PlayerData.current.weaponNet)
                     {
                         PlayerData.current.weaponNet = true;
-                        Pool.hero.weapon = Item.type;
+                        CompleteSale(Item);
+                    }
+                    else { DialogAlreadyPurchased(); }
+                }
+                else if (Item.type == MenuItemType.WeaponShovel)
+                {
+                    if (!PlayerData.current.weaponShovel)
+                    {
+                        PlayerData.current.weaponShovel = true;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
@@ -330,7 +336,6 @@ namespace DungeonRun
                     if (!PlayerData.current.armorCape)
                     {
                         PlayerData.current.armorCape = true;
-                        Pool.hero.armor = Item.type;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }
@@ -346,7 +351,6 @@ namespace DungeonRun
                     if (!PlayerData.current.equipmentRing)
                     {
                         PlayerData.current.equipmentRing = true;
-                        Pool.hero.equipment = Item.type;
                         CompleteSale(Item);
                     }
                     else { DialogAlreadyPurchased(); }

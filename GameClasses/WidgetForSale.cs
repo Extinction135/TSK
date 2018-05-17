@@ -141,9 +141,13 @@ namespace DungeonRun
             if (VendorType == ObjType.Vendor_NPC_Items)
             {
                 Functions_MenuItem.SetType(MenuItemType.ItemHeart, menuItems[0]);
-                Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[1]);
-                Functions_MenuItem.SetType(MenuItemType.ItemBomb3Pack, menuItems[2]);
-                Functions_MenuItem.SetType(MenuItemType.ItemArrowPack, menuItems[3]);
+                //skip menuItems[1]
+                //skip menuItems[2]
+                Functions_MenuItem.SetType(MenuItemType.ItemBomb, menuItems[3]);
+                Functions_MenuItem.SetType(MenuItemType.ItemBomb3Pack, menuItems[4]);
+                //row 2
+                Functions_MenuItem.SetType(MenuItemType.ItemBow, menuItems[5]);
+                Functions_MenuItem.SetType(MenuItemType.ItemArrowPack, menuItems[6]);
             }
             else if (VendorType == ObjType.Vendor_NPC_Potions)
             {
@@ -157,8 +161,8 @@ namespace DungeonRun
             }
             else if (VendorType == ObjType.Vendor_NPC_Weapons)
             {
-                Functions_MenuItem.SetType(MenuItemType.ItemBow, menuItems[0]);
-                Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[1]);
+                Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[0]);
+                Functions_MenuItem.SetType(MenuItemType.WeaponShovel, menuItems[1]);
             }
             else if (VendorType == ObjType.Vendor_NPC_Armor)
             {

@@ -456,12 +456,10 @@ namespace DungeonRun
 
         public static void SetLoadout()
         {   //set the hero's loadout based on playerdata.current
-            //Set Hero's Item
             Pool.hero.item = PlayerData.current.currentItem;
             Pool.hero.weapon = PlayerData.current.currentWeapon;
             Pool.hero.armor = PlayerData.current.currentArmor;
-            
-
+            Pool.hero.equipment = PlayerData.current.currentEquipment;
         }
 
         public static void SpawnPet()
