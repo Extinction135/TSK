@@ -171,10 +171,12 @@ namespace DungeonRun
             //22 - net
             if (PlayerData.current.weaponNet)
             { Functions_MenuItem.SetType(MenuItemType.WeaponNet, menuItems[22]); }
-            //23 - hammer
-            //24 - axe
-            //25 - push wand
-            //26 - deku stick
+            //23 - shovel
+            if (PlayerData.current.weaponShovel)
+            { Functions_MenuItem.SetType(MenuItemType.WeaponShovel, menuItems[23]); }
+            //24 - 
+            //25 - 
+            //26 - 
 
             #endregion
 

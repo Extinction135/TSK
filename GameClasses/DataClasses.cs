@@ -1190,7 +1190,13 @@ namespace DungeonRun
 
         public byte currentWeapon = 0;
         //0=sword, 2=net
+
+        //public Boolean weaponSword = false; //not used rn
         public Boolean weaponNet = false;
+        public Boolean weaponShovel = false;
+
+
+
 
         #endregion
 

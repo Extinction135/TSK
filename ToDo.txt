@@ -133,6 +133,56 @@ and heldObj is released().
 
 
 
+Friday
+	- record playthrus and examples of gameplay, post. 
+	- release v0.72.
+	- update readme.
+
+	- create archive releases for v0.1 - v0.7. (fork, revert, release, delete.)
+	- later, we can compare gameplay across versions.
+	- note this is only for Dx version. UWP version tracking should start with v0.7.
+	- these version archives should remain local, outside of repo folder.
+	- *we should be able to record via the a20s just fine, via obs.
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+TODAY:
+
+
+
+
+
+Shovel MenuItem + Data
+
+created shovel sprite, to match the diagonal orientation
+of the other items and weapons used in the game. my theory
+on why the shovel was vertical and not diagonal in LttP
+is likely because it was a transitory item, meant to be
+used for a short period of time, replaced by the flute,
+after link digs in the top left area in the circle of trees.
+so, either the visual designers were cue-ing the player
+that this item is different (disposabe), or they were
+just being lazy or re-using an old sprite. 
+
+added MenuItemType WeaponShovel.
+added animFrame and menuItem.type() def.
+
+added saveData.weaponShovel boolean.
+updated unlock all cheat to unlock shovel.
+
+updated inventory widget to display shovel, next to net.
+updated ui item sprite sheet.
+playtested, shovel menuItem is in game and looking good.
 
 
 
@@ -140,7 +190,55 @@ and heldObj is released().
 
 
 
-Thursday
+
+Shovel Weapon
+
+
+
+**fix how we store and track the hero's current weapon in savedata.
+somewhere we load this, probably in fun_hero. and thats where we
+need to convert weapons, armor, and equipment to using the system
+that items uses, because it scales much better and doesn't abstract
+the item to an int value, but rather an enum string representation,
+so that's nice.
+
+
+
+
+
+
+
+need shovel projectile (tracks to actor, acting like sword)
+shovel projectile can deal damage to objs & actors just like sword.
+
+Dig(Actor Actor) method: place a trench obj aligned to 16x16 px grid in room.
+the trench obj's position is based on the actor's pos and facing direction.
+we apply a slight offset to the center of the sprite pos to get a good dig pos,
+then align that to a 16x16 grid, so all trenches will line up.
+
+certain objects reject the Dig method tho, objects that we don't want
+the hero to be able to destroy, like walls.
+
+
+
+
+
+destroying a coastline is the first step to creating a water channel.
+
+
+
+
+
+
+then do an interaction check between shovel pro and
+
+
+
+
+
+
+
+Miyamoto Wishes Part 2
 	- implement shovel weapon
 	- create ditch sprite, ground can become ditch (any objs are removed, like grass)
 	- shovel interaction with non-blocking obj removes obj and creates ditch obj.
@@ -176,43 +274,6 @@ in the right neighboring tile.
 
 
 
-Friday
-	- record playthrus and examples of gameplay, post. 
-	- release v0.72.
-	- update readme.
-
-	- create archive releases for v0.1 - v0.7. (fork, revert, release, delete.)
-	- later, we can compare gameplay across versions.
-	- note this is only for Dx version. UWP version tracking should start with v0.7.
-	- these version archives should remain local, outside of repo folder.
-	- *we should be able to record via the a20s just fine, via obs.
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-
-
-
-TODAY:
-
-
-
-
-WoodTable
-
-added woodTable to game + editor.
-can be destroyed by sword or explosion.
-playtested, working.
-
-wood table should be draggable too. ok.
-fixed the sprite to have correct right pixels.
-playtested, working.
 
 
 
@@ -222,16 +283,18 @@ playtested, working.
 
 
 
-Bosses / Enemies ++
+
+
+Boss & Miniboss
+
 *we have big eye boss, with hit state and idle blink,
 so we *could* make him the boss of the dungeon, and move big blob
 into the hub as a miniBoss, which would be awesome.
 
-phase1: the boss floats around, running away from hero.
-after a certain amount of damage, the boss pops a dialog (freezing action)
-this dialog talks about how the dev needs to add in the boss attack and phases.
-
-
+the eye boss should spawn throw bombs towards hero with great force.
+while also defensively moving away from hero. also, boss should be
+invincible to bombs, because that's his main weapon, and we wouldn't 
+want him killing himself. he should also have alot of health.
 
 
 

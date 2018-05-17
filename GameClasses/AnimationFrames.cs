@@ -461,6 +461,7 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_ItemBomb3Pack = new List<Byte4> { new Byte4(0, 7, 0, 0) };
         public static List<Byte4> Ui_MenuItem_ItemArrowPack = new List<Byte4> { new Byte4(0, 8, 0, 0) };
         public static List<Byte4> Ui_MenuItem_ItemBoomerang = new List<Byte4> { new Byte4(0, 9, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Item_Bow = new List<Byte4> { new Byte4(3, 6, 0, 0) };
 
         public static List<Byte4> Ui_MenuItem_Bottle_Empty = new List<Byte4> { new Byte4(1, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Bottle_Health = new List<Byte4> { new Byte4(1, 6, 0, 0) };
@@ -472,8 +473,8 @@ namespace DungeonRun
         public static List<Byte4> Ui_MenuItem_Magic_Fireball = new List<Byte4> { new Byte4(2, 5, 0, 0) };
 
         public static List<Byte4> Ui_MenuItem_Weapon_Sword = new List<Byte4> { new Byte4(3, 5, 0, 0) };
-        public static List<Byte4> Ui_MenuItem_Weapon_Bow = new List<Byte4> { new Byte4(3, 6, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Weapon_Net = new List<Byte4> { new Byte4(3, 7, 0, 0) };
+        public static List<Byte4> Ui_MenuItem_Weapon_Shovel = new List<Byte4> { new Byte4(3, 8, 0, 0) };
 
         public static List<Byte4> Ui_MenuItem_Armor_Cloth = new List<Byte4> { new Byte4(4, 5, 0, 0) };
         public static List<Byte4> Ui_MenuItem_Armor_Cape = new List<Byte4> { new Byte4(4, 6, 0, 0) };

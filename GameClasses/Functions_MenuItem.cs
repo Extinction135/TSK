@@ -149,7 +149,7 @@ namespace DungeonRun
             {
                 MenuItem.name = "Sturdy Bow";
                 MenuItem.description = "shoots arrows, which \ndeal 1 physical damage.";
-                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Bow;
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Item_Bow;
                 MenuItem.price = 50;
             }
 
@@ -231,6 +231,13 @@ namespace DungeonRun
                 MenuItem.name = "Old Net";
                 MenuItem.description = "can capture small \ncreatures in a bottle.";
                 MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Net;
+                MenuItem.price = 50;
+            }
+            else if (Type == MenuItemType.WeaponShovel)
+            {
+                MenuItem.name = "Shovel";
+                MenuItem.description = "useful for digging \nand breaking armor.";
+                MenuItem.compAnim.currentAnimation = AnimationFrames.Ui_MenuItem_Weapon_Shovel;
                 MenuItem.price = 50;
             }
 

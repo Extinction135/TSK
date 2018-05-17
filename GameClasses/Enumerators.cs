@@ -458,6 +458,7 @@ namespace DungeonRun
         //inventory menuItems
         ItemBoomerang,
         ItemBomb,
+        ItemBow,
 
         BottleEmpty,
         BottleHealth,
@@ -469,8 +470,8 @@ namespace DungeonRun
         MagicFireball,
 
         WeaponSword,
-        ItemBow,
         WeaponNet, 
+        WeaponShovel,
 
         ArmorCloth,
         ArmorCape,

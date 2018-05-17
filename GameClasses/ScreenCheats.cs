@@ -30,36 +30,9 @@ namespace DungeonRun
         //simply visually tracks which menuItem is selected
         public ComponentSprite selectionBox;
 
-        
-
-        
 
 
-        public ScreenCheats()
-        {
-            this.name = "Cheats Screen";
-
-            /* reference
-            //unlock most/all items
-            PlayerData.current = new SaveData();
-            PlayerData.current.heartsTotal = 9;
-            Pool.hero.health = 3;
-            PlayerData.current.bombsCurrent = 99;
-            PlayerData.current.arrowsCurrent = 99;
-            //set items
-            PlayerData.current.bottleA = MenuItemType.BottleHealth;
-            PlayerData.current.bottleB = MenuItemType.BottleMagic;
-            PlayerData.current.bottleC = MenuItemType.BottleFairy;
-            PlayerData.current.magicFireball = true;
-            //set weapons
-            PlayerData.current.weaponBow = true;
-            PlayerData.current.weaponNet = true;
-            //set armor
-            PlayerData.current.armorCape = true;
-            //set equipment
-            PlayerData.current.equipmentRing = true;
-            */
-        }
+        public ScreenCheats() { this.name = "Cheats Screen"; }
 
         public override void LoadContent()
         {
