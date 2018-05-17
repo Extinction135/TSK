@@ -156,7 +156,9 @@ namespace DungeonRun
 
             
             //handle object/projectile specific cases
-            if (Obj.type == ObjType.ProjectileSword || Obj.type == ObjType.ProjectileNet)
+            if (Obj.type == ObjType.ProjectileSword 
+                || Obj.type == ObjType.ProjectileNet
+                || Obj.type == ObjType.ProjectileShovel)
             {   //some projectiles flip based on their direction
                 if (Obj.direction == Direction.Down || Obj.direction == Direction.Left)
                 { Obj.compSprite.flipHorizontally = true; }
@@ -1056,7 +1058,8 @@ namespace DungeonRun
 
             #region Projectiles - Weapons
 
-            else if (Type == ObjType.ProjectileSword)
+            else if (Type == ObjType.ProjectileSword
+                || Type == ObjType.ProjectileShovel)
             {
                 Obj.compSprite.zOffset = 16;
                 //set collision rec based on direction
@@ -1086,8 +1089,12 @@ namespace DungeonRun
                 Obj.compAnim.loop = false;
                 Obj.compMove.moveable = true;
                 Obj.compMove.grounded = false; //obj is airborne
-                Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword;
                 Obj.compSprite.texture = Assets.entitiesSheet;
+
+                //set the animFrames based on type
+                if (Type == ObjType.ProjectileSword)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Sword; }
+                else { Obj.compAnim.currentAnimation = AnimationFrames.Projectile_Shovel; }
             }
             else if (Type == ObjType.ProjectileArrow)
             {

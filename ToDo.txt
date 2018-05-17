@@ -162,6 +162,40 @@ TODAY:
 
 
 
+Shovel Projectile 
+
+fixed a bug where hero coudldn't equip the shovel.
+added ObjType ProjectileShovel.
+added sprite for shovel projectile.
+added animFrame, gameObj.type def.
+
+added path for shovel pro into pro functions,
+handling behavior just like sword.
+added shovel pro into battle.damage(), causing
+1 damage (like sword) but only pushing with
+a force of 3 (instead of sword's 6), so
+there is a cost to using the shovel instead of 
+the sword - the enemies get pushed far less.
+
+in the future, we'll also add in the swords 
+special attack and a full health projectile
+just like LttP, so there will be much more
+value to using the sword for combat vs shovel.
+but right now, the shovel is a A/B tier weapon.
+with fireballs + arrows being S tier, obvs.
+
+appended shovel into sword's interaction
+routines, so shovel can destroy everything 
+sword can, as well as create sparkles upon hit.
+
+updated sword and shovel hits on blocking objs to
+center the sparkle particle to the hit obj.
+added shovel into SetRotation(), which properly
+flips the sprite to align to the actor's hand.
+lots of playtesting, working very well.
+
+this completes the implementation of the
+battle / interactive side of shovel.
 
 
 
@@ -174,42 +208,10 @@ TODAY:
 
 
 
-
-Vendors++
-
-fixed menuitem old tunic info.
-fixed a small bug where game didn't set the hero's equipment
-based on the current savedata. just forgot a line of code.
-
-updated weapons vendor to sell shovel, but he no longer sells
-the bow. now the item vendor sells the bow, alongside the arrows
-the hero also needs to FIRE it. how useful.
-
-tested vendors, working well, small bugs.
-
-removed auto-equip for all items, weapons, armor, and equipment
-from vendor screen. if player wants to equip it, they can do so
-from the inventory screen as they normally would.
-
-updated purchase routines to allow purchasing of shovel, 
-which also flips the saveData.shovel boolean to true.
+Ditches and The Ditch System
 
 
-
-
-
-
-
-
-
-hero cannot equip the shovel.
-it doesn't show up in worldUI either.
-
-
-
-need shovel projectile (tracks to actor, acting like sword)
-shovel projectile can deal damage to objs & actors just like sword.
-however, the shovel projectile DOESNT create trenches.
+the shovel projectile DOESNT create trenches. only hero creates trenches.
 that is a separate method, the Dig() method, that is called
 only when the actor first uses the shovel. no debris is created by shovel pro!
 *consider that actors may need interaction points*
@@ -289,6 +291,22 @@ in the right neighboring tile.
 
 
 
+Swimming++
+while in the water, pressing X should Push() things infront of you.
+pressing Y should Dive(). this gives hero some non lethal attack
+to get enemies in the water away from him.
+
+
+
+
+
+
+Boomerang++
+*boomerang should only create attention particles upon hit if
+it's traveling away from hero. if it's returning to hero (it's lifecounter)
+then it shouldn't create ANY attention particles. this fixes
+the visual bug where it can create a ton of pops when hitting
+objs from certain angles / directions.
 
 
 
@@ -300,6 +318,20 @@ in the right neighboring tile.
 
 
 
+
+
+Metal Gear ++
+
+if you're carrying an obj and press B while not moving, link
+should squat down and the heldObj should sort mostly over his head,
+and he should flip the actor.hidden boolean. then update functions_AI
+to check the actor.hidden boolean instead of the actor.underwater
+boolean. then update the underwater rountines to set the actor.hidden
+boolean to true when actor dives underwater. the net effect of these
+changes is that the hero will be able to hide underwater, underwater
+while carrying an obj, or on land while carrying an obj. 
+being able to hide on land while carrying an obj is more metal gear
+than being able to dive while holding an obj. lol.
 
 
 

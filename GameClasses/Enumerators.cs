@@ -321,6 +321,8 @@ namespace DungeonRun
         ProjectileArrow,
         ProjectileNet,
         ProjectileBow,
+        ProjectileShovel,
+
 
         //Projectiles - object
         ProjectileExplosion,

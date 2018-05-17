@@ -562,18 +562,23 @@ namespace DungeonRun
                     #endregion
 
 
-                    #region Sword
+                    #region Sword & Shovel
 
-                    else if (Object.type == ObjType.ProjectileSword)
-                    {   //sword swipe causes soundfx to blocking objects
-                        if (Object.lifeCounter == 1) //these events happen at start of sword swing
-                        {   //bail if sword is hitting open door, else sparkle + hit sfx
+                    else if (Object.type == ObjType.ProjectileSword
+                        || Object.type == ObjType.ProjectileShovel)
+                    {   
+                        //swords and shovels cause soundfx to blocking objects
+                        if (Object.lifeCounter == 1) //these events happen only at start
+                        {   //bail if pro is hitting open door, else sparkle + hit sfx
                             if (RoomObj.type == ObjType.Dungeon_DoorOpen) { return; }
-                            Functions_Particle.Spawn(ObjType.Particle_Sparkle, Object);
+                            //center sparkle to hit obj
+                            Functions_Particle.Spawn(ObjType.Particle_Sparkle, 
+                                RoomObj.compSprite.position.X + 4,
+                                RoomObj.compSprite.position.Y + 4);
                             Assets.Play(RoomObj.sfx.hit);
                         }
                         else if (Object.lifeCounter == 4)
-                        {   //these interactions happen 'mid swing'
+                        {   //these interactions happen early-mid animation
                             if (RoomObj.type == ObjType.Wor_TableWood)
                             {
                                 Functions_GameObject.Kill(RoomObj, true, true);

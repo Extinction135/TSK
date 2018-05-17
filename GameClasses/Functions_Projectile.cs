@@ -255,6 +255,16 @@ namespace DungeonRun
             #endregion
 
 
+            #region Shovel
+
+            else if (Type == ObjType.ProjectileShovel)
+            {
+                Assets.Play(Assets.sfxActorLand); //generic use sound
+            }
+
+            #endregion
+
+
             #region Thrown Objects (Bush, Pot, Skull Pot)
 
             else if (Type == ObjType.ProjectileBush
@@ -407,7 +417,8 @@ namespace DungeonRun
             #region Sword & Net
 
             if (Pro.type == ObjType.ProjectileSword
-                || Pro.type == ObjType.ProjectileNet)
+                || Pro.type == ObjType.ProjectileNet
+                || Pro.type == ObjType.ProjectileShovel)
             {   //track the projectile to it's caster
                 //set offset to make projectile appear in actors hand, based on direction
                 if (Pro.direction == Direction.Down) { offset.X = -1; offset.Y = +16; }

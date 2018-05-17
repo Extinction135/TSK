@@ -19,10 +19,10 @@ namespace DungeonRun
         public static Boolean Release = false; //puts game in release mode, overwrites other flags
         // **********************************************************************************************************
         public static float Version = 0.72f; //the version of the game
-        public static BootRoutine bootRoutine = BootRoutine.Game; //boot to game or editor?
+        public static BootRoutine bootRoutine = BootRoutine.Editor; //boot to game or editor?
         //game flags
         public static Boolean EnableTopMenu = true; //enables the top debug menu (draw + input)
-        public static Boolean EnableDebugInfo = true; //rightside debug info
+        public static Boolean EnableDebugInfo = false; //rightside debug info
         public static Boolean DrawUItime = false; //draw build times next to world ui?
         public static Boolean DrawCollisions = false; //draw/hide collision rec components
         public static Boolean DrawInput = false; //draw the input display

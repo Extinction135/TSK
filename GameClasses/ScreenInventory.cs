@@ -194,6 +194,7 @@ namespace DungeonRun
                     else if (
                         currentlySelected.type == MenuItemType.WeaponSword
                         || currentlySelected.type == MenuItemType.WeaponNet
+                        || currentlySelected.type == MenuItemType.WeaponShovel
                         ) 
                     {
                         PlayerData.current.currentWeapon = currentlySelected.type;

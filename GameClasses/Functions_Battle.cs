@@ -63,6 +63,11 @@ namespace DungeonRun
             {   //net deals 0 damage, push 6
                 damage = 0; force = 6.0f; direction = Obj.direction;
             }
+            else if (Obj.type == ObjType.ProjectileShovel)
+            {   //matches swords damage, less push
+                damage = 1; force = 3.0f; direction = Obj.direction;
+            }
+
             else if (Obj.type == ObjType.ProjectileBush
                 || Obj.type == ObjType.ProjectilePot
                 || Obj.type == ObjType.ProjectilePotSkull)
