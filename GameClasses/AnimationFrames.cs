@@ -181,7 +181,10 @@ namespace DungeonRun
         public static List<Byte4> Wor_Coastline_Corner_Exterior = new List<Byte4> { new Byte4(5, 2, 0, 0) };
         public static List<Byte4> Wor_Coastline_Corner_Interior = new List<Byte4> { new Byte4(5, 3, 0, 0) };
 
+        //ditches
+        //Wor_Ditch_META
 
+        public static List<Byte4> Wor_Ditch_Single = new List<Byte4> { new Byte4(3, 7, 0, 0) };
 
         #endregion
 

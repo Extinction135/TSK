@@ -162,23 +162,64 @@ TODAY:
 
 
 
-Dig()
-
-created Functions_Hero.Dig(), called from Actor functions Update(),
-when actor is on land, non-carrying, using an item, and the item
-equipped currently is the shovel. i've essentially 'layered' this
-into the UseItem() system currently in place - the shovel projectile
-programmed previously will still function as before, destroying objects
-and hurting enemies - but now we have a call to Dig() just before it.
-
-implemented Dig() for testing purposes, it currently
-creates and places a tall grass object aligned to the game
-grid, so it's 80% working. wow. we just need to bolt on a 
-few checks and add some ditches. very close now.
 
 
 
 
+Ditches++
+
+created Wor_Ditch_META objType. added animFrame.
+added Obj def type. added Ditch objGroup value.
+
+updated Dig() to place meta ditch obj, check to
+see if meta ditch overlaps with any objects that
+it shouldn't (like walls, doors) and gets released()
+if meta ditch does. if it doesn't, then meta ditch
+removes any other roomObj who's sprite center
+overlaps meta ditch's hitBox. this means it deletes 
+other objs that touch it. the net effect is link
+can now shovel as he did in LttP, happily creating
+little holes in the ground everywhere he goes.
+checking the roomObj counter, which is now accurate,
+we can see that link cannot create more than 1 ditch
+at a single tile location, which is very important.
+
+changed Ring's effects to increase ovreall loot drop rate
+by 25 points, on 100 point scale (by 25% percent).
+
+changed the loot chances for digging to be -20.
+why? well, i dont want players to be able to just
+dig and find loot, that's cheap to me. so with
+a lootChance of -20, they will never get loot.
+BUT if hero equips the lucky ring, his lootChance
+raises by 25 points in SpawnLoot(), which Dig()
+passes -20 into.. so hero ends up with a net
+lootChance of +5 - meaning the hero can dig loot
+out of the ground if he uses the shovel, with the
+lucky ring equipped. that's interesting gameplay!
+
+at this point, we've matched LttP's shoveling
+functionality, and improved it a little bit with
+the addition of the lucky ring. now, water++.
+
+added call to create debris explosion at dig site.
+lots of playtesting, looking & working very well.
+
+Dig++
+upgraded dig to work well with trees, which really required
+that the ditch obj check it's hitBox against the center point
+of the hitBox of the overlapping roomObj. 
+
+Draw++
+updated Draw() to not draw particle hitBoxes, ever.
+they just fill up the screen with green rectangles and
+you can't see anything. gross.
+
+Notes:
+link cant dig up full trees, but he can dig up tree
+stumps - so he just needs to cut down the tree prior
+to shoveling it. for coastlines, link can dig thru
+them - but he can't dig into water tiles.
 
 
 
@@ -190,11 +231,47 @@ few checks and add some ditches. very close now.
 
 
 
-Ditches and The Ditch System
 
-shovels dont create ditches. only the hero can create ditches.
-he can only call the Dig() method if he has shovel equipped,
-and only at the start of Use().
+
+
+
+
+
+
+
+
+
+
+
+
+*next step is linking up the ditch system
+
+*then we can get water tiles interacting with ditches.
+*then we can have filled and unfilled ditches.
+
+
+
+
+
+
+
+
+
+
+
+then we need to update Dig().
+build neighbor list, update the initial metaditch obj
+
+
+Ditch Sprites / Types
+
+single hole, with sides
+straight piece
+2 corner
+3 corner / T piece
+4 piece 
+
+
 
 
 
@@ -274,29 +351,10 @@ update the ditch created.
 
 
 
-- change meta-ditch obj into proper type
-- change neighbor ditches into proper type
-how do we do this? 
-
-using a method that takes a ditch + a boolean
-field of neighbors.
-
-
-
-Ditch Sprites / Types
-
-single hole, with sides
-straight piece
-2 corner
-3 corner / T piece
-4 piece 
 
 
 
 
-certain objects reject the Dig method tho, objects that we don't want
-the hero to be able to destroy, like walls. if we can DIG successfully,
-then create a debris explosion and place the META trench obj in the room.
 
 
 
@@ -456,6 +514,36 @@ want him killing himself. he should also have alot of health.
 
 in hard mode, pits should deal 1 damage.
 in normal mode, pits deal no damage.
+
+
+
+
+
+
+
+
+
+
+
+
+easy underground dungeon idea:
+we have an overworld pit with stairs sprite.
+hide this randomly under an object that can be destroyed,
+like a bush on a level. for now, this object will
+create a new type of dungeon, an underground dungeon.
+this is just a single critical path from hub room to exit room.
+just a hub room, then an exit room south of it.
+in the hub room, a miniboss will spawn, with a chest.
+the chest will have the dungeon map, in case we decide to expand
+this dugneon algorithm to be more than 2 rooms in the future.
+but, this reverses the dungeon - leading to the exit.
+upon exit, we simply return hero to his last overworld location,
+which should be stored in save data.
+*these dungeons should be blob enemy only, because this is story*
+
+
+
+
 
 
 

@@ -41,7 +41,15 @@ namespace DungeonRun
             {
                 Draw(Obj.compSprite);
                 if (Flags.DrawCollisions)
-                { Draw(Obj.compCollision); }
+                {
+                    //ignore certain groups for drawing collisions
+                    if (Obj.group == ObjGroup.Particle) { }
+                    else
+                    {
+                        Draw(Obj.compCollision);
+                    }
+                    
+                }
             }
         }
 

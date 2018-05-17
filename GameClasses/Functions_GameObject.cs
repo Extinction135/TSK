@@ -145,7 +145,6 @@ namespace DungeonRun
             //reset the sfx component
             Obj.sfx.hit = null;
             Obj.sfx.kill = null;
-            
         }
 
         public static void SetRotation(GameObject Obj)
@@ -967,9 +966,43 @@ namespace DungeonRun
                     Obj.compAnim.currentAnimation = AnimationFrames.Wor_Coastline_Corner_Interior;
                 }
             }
-            
 
             #endregion
+
+
+            #region Ditches
+
+            else if (Type == ObjType.Wor_Ditch_META)
+            {
+                ResetObject(Obj);
+                Obj.canBeSaved = true;
+                Obj.direction = Direction.Down;
+                Obj.compSprite.zOffset = -64; //sort under everything
+                Obj.compCollision.blocking = false;
+
+                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Single;
+
+                /*
+                if (Type == ObjType.Wor_Ditch_META)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Single; }
+                else
+                { }
+                */
+
+                
+                
+                //idea
+                
+                //Obj.interactiveFrame //random value between 0-60
+                //Obj.getsAI = true; //now AI functions can update ditch obj on it's interactive
+                //frame, passing it to the SetDitch() method, checking it's overlapping neighbors
+                //here is where we could spread water to ditches, in any way
+                //plus spread water from ditch to ditch, and *soak the nearby landtiles* with tall grass
+                //because we could add grass tiles or change any overlapping grass objs to tall grass
+            }
+
+            #endregion
+
 
 
 

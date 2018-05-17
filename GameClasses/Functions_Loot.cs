@@ -17,16 +17,22 @@ namespace DungeonRun
         static int dropRate;
         static int lootType;
 
-        public static void SpawnLoot(Vector2 Pos)
+        public static void SpawnLoot(Vector2 Pos, int lootChance = 40)
         {
             //loot objs are 8x16
             //usually the obj that spawned the loot is 16x16
             //so we add an offset to center the loot to the obj
             int offsetX = 5;
 
-            dropRate = 40; //default 40% chance to drop loot
-            //if hero has ring equipped, increase the loot drop rate to 70%
-            if (Pool.hero.equipment == MenuItemType.EquipmentRing) { dropRate = 70; }
+            dropRate = lootChance; //default 40% chance to drop loot
+            //if hero has ring equipped, increase the loot drop rate
+            if (Pool.hero.equipment == MenuItemType.EquipmentRing)
+            {
+                dropRate +=25;
+                if (dropRate > 100) { dropRate = 100; }
+            }
+
+
             //create loot if random value is less than dropRate
             if (Functions_Random.Int(0, 100) < dropRate)
             {   //randomly choose a type of loot to spawn

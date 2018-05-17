@@ -15,6 +15,8 @@ namespace DungeonRun
     public static class Functions_Hero
     {
         static int i;
+        static int d; //used in Dig()
+
 
         public static Point interactionPoint;
         public static Rectangle heroRec; //16x16 px rec that matches hero's sprite
@@ -511,37 +513,123 @@ namespace DungeonRun
 
         public static void Dig()
         {
-            Debug.WriteLine("Dig() called.");
+            //Debug.WriteLine("Dig() called.");
 
             //set hero's interaction rec
             SetInteractionRec();
-
             //place obj aligned to 16x16 grid
             GameObject objRef;
             objRef = Functions_Pool.GetRoomObj();
-
-            //place currently selected obj in room, aligned to 16px grid
+            //setup move position based on interaction point, aligned to 16px grid
             objRef.compMove.newPosition = Functions_Movement.AlignToGrid(
                 interactionPoint.X,
                 interactionPoint.Y);
+            ClearInteractionRec(); //done with intRec
+            //move obj to aligned position
             Functions_Movement.Teleport(
                 objRef.compMove,
                 objRef.compMove.newPosition.X, 
                 objRef.compMove.newPosition.Y);
+            //switch to meta ditch obj
+            objRef.compMove.direction = Direction.Down;
+            Functions_GameObject.SetType(objRef, ObjType.Wor_Ditch_META);
 
-            //could pass in direction like so
-            //objRef.direction = Pool.hero.direction;
-            //objRef.compMove.direction = Pool.hero.direction;
 
-            //just set to down
-            objRef.direction = Direction.Down;
-            objRef.compMove.direction = objRef.direction;
-            Functions_GameObject.SetType(objRef, ObjType.Wor_Grass_Tall);
+            #region Check to see if ditch can be dug at this location
+
+            for(d = 0; d < Pool.roomObjCount; d++)
+            {
+                if(Pool.roomObjPool[d].active & //check overlap for active roomObjs
+                    Pool.roomObjPool[d].compCollision.rec.Intersects(objRef.compCollision.rec))
+                {
+                    if (Pool.roomObjPool[d] == objRef) { } //self-check, do nothing
+
+                    //if ditch touches any of these objs, release ditch & bail
+
+                    if (Pool.roomObjPool[d].compCollision.blocking)
+                    {
+                        objRef.active = false;
+                    }
+
+                    //group checks
+                    if (Pool.roomObjPool[d].group == ObjGroup.Wall
+                        || Pool.roomObjPool[d].group == ObjGroup.Door
+                        )
+                    {
+                        objRef.active = false;
+                    }
+
+                    //type checks
+                    if (
+                        //world objs
+                        Pool.roomObjPool[d].type == ObjType.Wor_Entrance_ForestDungeon
+                        || Pool.roomObjPool[d].type == ObjType.Wor_Bookcase
+
+                        //water objs
+                        || Pool.roomObjPool[d].type == ObjType.Wor_Water
+                        //|| Pool.roomObjPool[d].type == ObjType.Wor_Coastline_Corner_Exterior
+                        //|| Pool.roomObjPool[d].type == ObjType.Wor_Coastline_Corner_Interior
+                        //|| Pool.roomObjPool[d].type == ObjType.Wor_Coastline_Straight
+
+                        //dungeon objs
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_Pit
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_PitBridge
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_PitTeethBottom
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_PitTeethTop
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_PitTrap
+                        )
+                    {
+                        objRef.active = false;
+                    }
+                }
+            }
+
+            #endregion
+
+
+            //if we released the obj, bail from method
+            if (objRef.active == false) { return; }
+
+
+            #region Good to dig, remove any overlapping objects, spawn loot
+
+            for (d = 0; d < Pool.roomObjCount; d++)
+            {   //if this ditch contains the center of any active object's hitBox, release obj
+                if (Pool.roomObjPool[d].active &
+                    objRef.compCollision.rec.Contains(Pool.roomObjPool[d].compCollision.rec.Location))
+                {
+                    if (Pool.roomObjPool[d] == objRef) { } //self-check, do nothing
+                    else
+                    {   //spawn loot with negative rate - why?
+                        //if hero has ring equipped, his loot chances increase 25 points
+                        //which means he could literally spam dig loot out of the ground
+                        //we set this to -20 to curb the effects of this state..
+                        //but hero can *still* dig loot right out of the ground if he wants to
+                        Functions_Loot.SpawnLoot(Pool.roomObjPool[d].compSprite.position, -20);
+                        //release any obj that makes it here
+                        Functions_Pool.Release(Pool.roomObjPool[d]);
+                    }
+                }
+            }
+
+            #endregion
+
+            //we have placed a ditch obj that can't group up on one tile. yay.
+
+            //now we need to expand the meta ditch to determine what it should become
+            //this involves getting the obj's neighbors and placing them into a bitField
+
+
+
+
+
+            //Functions_GameObject.SetType(objRef, ObjType.Wor_Ditch_META);
             Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
 
+            Functions_Particle.Spawn_Explosion(ObjType.Particle_Debris,
+                objRef.compSprite.position.X, objRef.compSprite.position.Y, false);
 
-            //reset hero's interaction rec
-            ClearInteractionRec();
+            
         }
 
 

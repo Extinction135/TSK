@@ -279,6 +279,10 @@ namespace DungeonRun
         Wor_Coastline_Corner_Exterior,
         Wor_Coastline_Corner_Interior,
 
+        //ditch objs
+        Wor_Ditch_META,
+
+
         #endregion
 
 
