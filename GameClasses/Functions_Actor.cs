@@ -703,15 +703,23 @@ namespace DungeonRun
                     }
                     else if (Actor.state == ActorState.Attack)
                     {
+                        if (Actor == Pool.hero)
+                        {   //scale up worldUI weapon 
+                            WorldUI.currentWeapon.compSprite.scale = 2.0f;
+                            //hero has special skills based on equipped weapons
+                            if (Pool.hero.weapon == MenuItemType.WeaponShovel) { Functions_Hero.Dig(); }
+                        }
                         Functions_Item.UseItem(Actor.weapon, Actor);
-                        if (Actor == Pool.hero) //scale up worldUI weapon 
-                        { WorldUI.currentWeapon.compSprite.scale = 2.0f; }
                     }
                     else if (Actor.state == ActorState.Use)
                     {
+                        if(Actor == Pool.hero)
+                        {   //scale up the worldUI item
+                            WorldUI.currentItem.compSprite.scale = 2.0f;
+                            //hero has special skills based on equipped items
+                            //if (Pool.hero.weapon == MenuItemType.WeaponShovel) { Functions_Hero.Dig(); }
+                        }
                         Functions_Item.UseItem(Actor.item, Actor);
-                        if (Actor == Pool.hero) //scale up worldUI item 
-                        { WorldUI.currentItem.compSprite.scale = 2.0f; }
                     }
 
                     #endregion

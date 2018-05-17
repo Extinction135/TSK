@@ -157,7 +157,6 @@ namespace DungeonRun
             }
         }
 
-
         public static void PushGrabbedObj()
         {
             if (Pool.hero.state == ActorState.Move)
@@ -190,8 +189,6 @@ namespace DungeonRun
                 //if (Actor.grabbedObj != null) { }
             }
         }
-
-
 
         static Boolean collision = false;
         public static Boolean CheckInteractionRec()
@@ -227,8 +224,6 @@ namespace DungeonRun
             ClearInteractionRec();
             return collision;
         }
-
-
 
         public static void InteractRecWith(GameObject Obj)
         {   //this is the hero's interactionRec colliding with Obj
@@ -510,6 +505,51 @@ namespace DungeonRun
             PlayerData.current.petType = MenuItemType.Unknown;
             //PlayerData.current.petType = MenuItemType.PetStinkyDog;
         }
+
+
+
+
+        public static void Dig()
+        {
+            Debug.WriteLine("Dig() called.");
+
+            //set hero's interaction rec
+            SetInteractionRec();
+
+            //place obj aligned to 16x16 grid
+            GameObject objRef;
+            objRef = Functions_Pool.GetRoomObj();
+
+            //place currently selected obj in room, aligned to 16px grid
+            objRef.compMove.newPosition = Functions_Movement.AlignToGrid(
+                interactionPoint.X,
+                interactionPoint.Y);
+            Functions_Movement.Teleport(
+                objRef.compMove,
+                objRef.compMove.newPosition.X, 
+                objRef.compMove.newPosition.Y);
+
+            //could pass in direction like so
+            //objRef.direction = Pool.hero.direction;
+            //objRef.compMove.direction = Pool.hero.direction;
+
+            //just set to down
+            objRef.direction = Direction.Down;
+            objRef.compMove.direction = objRef.direction;
+            Functions_GameObject.SetType(objRef, ObjType.Wor_Grass_Tall);
+            Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
+
+
+            //reset hero's interaction rec
+            ClearInteractionRec();
+        }
+
+
+
+
+
+
+
 
     }
 }

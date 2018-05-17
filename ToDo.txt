@@ -162,40 +162,22 @@ TODAY:
 
 
 
-Shovel Projectile 
+Dig()
 
-fixed a bug where hero coudldn't equip the shovel.
-added ObjType ProjectileShovel.
-added sprite for shovel projectile.
-added animFrame, gameObj.type def.
+created Functions_Hero.Dig(), called from Actor functions Update(),
+when actor is on land, non-carrying, using an item, and the item
+equipped currently is the shovel. i've essentially 'layered' this
+into the UseItem() system currently in place - the shovel projectile
+programmed previously will still function as before, destroying objects
+and hurting enemies - but now we have a call to Dig() just before it.
 
-added path for shovel pro into pro functions,
-handling behavior just like sword.
-added shovel pro into battle.damage(), causing
-1 damage (like sword) but only pushing with
-a force of 3 (instead of sword's 6), so
-there is a cost to using the shovel instead of 
-the sword - the enemies get pushed far less.
+implemented Dig() for testing purposes, it currently
+creates and places a tall grass object aligned to the game
+grid, so it's 80% working. wow. we just need to bolt on a 
+few checks and add some ditches. very close now.
 
-in the future, we'll also add in the swords 
-special attack and a full health projectile
-just like LttP, so there will be much more
-value to using the sword for combat vs shovel.
-but right now, the shovel is a A/B tier weapon.
-with fireballs + arrows being S tier, obvs.
 
-appended shovel into sword's interaction
-routines, so shovel can destroy everything 
-sword can, as well as create sparkles upon hit.
 
-updated sword and shovel hits on blocking objs to
-center the sparkle particle to the hit obj.
-added shovel into SetRotation(), which properly
-flips the sprite to align to the actor's hand.
-lots of playtesting, working very well.
-
-this completes the implementation of the
-battle / interactive side of shovel.
 
 
 
@@ -210,8 +192,129 @@ battle / interactive side of shovel.
 
 Ditches and The Ditch System
 
+shovels dont create ditches. only the hero can create ditches.
+he can only call the Dig() method if he has shovel equipped,
+and only at the start of Use().
 
-the shovel projectile DOESNT create trenches. only hero creates trenches.
+
+
+Dig()
+
+(this is done using hero's interaction point)
+
+place meta-ditch obj based on interaction point pos.
+interaction point pos already has hero's facing directional offset.
+align meta-ditch to 16x16 grid.
+meta-ditch has 32x32 hitBox initially (to collect neighbors)
+
+meta-ditch initial frame (32x32 hitbox)
+check interactions with ditch objects in room already.
+create boolean fields based on neighbors occupied (NSEW + DIAG neigihbors)
+store this boolean field inside of Dig().
+
+meta-ditch's hitBox becomes 16x16, aligned to the sprite,
+which should be aligned to 16x16 grid from the interaction point earlier.
+
+now we check meta-ditch against the roomObj list..
+if meta-ditch touches certain objs (like walls for example),
+then meta-ditch is released() and the Dig() method returns;.
+this will prevent ditches from being placed under specific objs
+other objs that overlap with meta-ditch are destroyed or killed,
+like tree trunks, flowers, grass objs, etc.. because we're going
+to replace those objs with a ditch.
+
+overlapping objs have been released.
+
+
+now we set the type of the meta ditch object, 
+based on neighbor boolean field accessible to Dig().
+
+we can do it based on what the meta-ditch just overlaps.
+it means that players will have to build ditches in order tho.
+*but*, if they rebuild a ditch, it should update to work
+properly, because digging only updates that single ditch.
+
+
+SetDitch(metaDitch);
+
+-neighbors is top to bottom, 8 neighboring directions.
+SetDitch(GameObject Ditch, List<Boolean> Neighbors)
+{
+
+	if neigh.allFalse, Ditch = single hole
+
+	if neigh.N & neigh.S & othersFalse, Ditch = vertical straight
+	if neigh.E & neigh.W & othersFalse, Ditch = horizontal straight
+
+	if neigh.E & neigh.N & othersFalse, Ditch = corner
+	if neigh.E & neigh.S & othersFalse, Ditch = corner
+	if neigh.W & neigh.N & othersFalse, Ditch = corner
+	if neigh.W & neigh.S & othersFalse, Ditch = corner
+
+	if neigh.W & neigh.N & neigh.E & othersFalse, Ditch = T connector
+	if neigh.W & neigh.S & neigh.E & othersFalse, Ditch = T connector
+	if neigh.W & neigh.S & neigh.N & othersFalse, Ditch = T connector
+	if neigh.E & neigh.S & neigh.N & othersFalse, Ditch = T connector
+
+	if neigh.N & neigh.S & neigh.E & neigh.W, Ditch = 4 connector
+
+}
+
+
+
+effects:
+players have to build ditches sequentially for them to function
+properly at first. if ditches have been dug randomly, then connected,
+'trouble' spots will simply have to be re-dug. that will properly
+update the ditch created.
+
+
+
+
+
+
+
+- change meta-ditch obj into proper type
+- change neighbor ditches into proper type
+how do we do this? 
+
+using a method that takes a ditch + a boolean
+field of neighbors.
+
+
+
+Ditch Sprites / Types
+
+single hole, with sides
+straight piece
+2 corner
+3 corner / T piece
+4 piece 
+
+
+
+
+certain objects reject the Dig method tho, objects that we don't want
+the hero to be able to destroy, like walls. if we can DIG successfully,
+then create a debris explosion and place the META trench obj in the room.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+the shovel projectile DOESNT create trenches. only hero can create trenches.
 that is a separate method, the Dig() method, that is called
 only when the actor first uses the shovel. no debris is created by shovel pro!
 *consider that actors may need interaction points*
@@ -236,14 +339,9 @@ recall the methods exist under the fun_gameObj class than split them between 3.
 
 DIGGING
 
-Dig(Actor Actor) method: place a trench obj aligned to 16x16 px grid in room.
-the trench obj's position is based on the actor's pos and facing direction.
-we apply a slight offset to the center of the sprite pos to get a good dig pos,
-then align that to a 16x16 grid, so all trenches will line up.
+Dig(Actor Actor) method: 
 
-certain objects reject the Dig method tho, objects that we don't want
-the hero to be able to destroy, like walls. if we can DIG successfully,
-then create a debris explosion and place the META trench obj in the room.
+
 
 TRENCH SYSTEM
 
@@ -356,7 +454,8 @@ want him killing himself. he should also have alot of health.
 
 
 
-
+in hard mode, pits should deal 1 damage.
+in normal mode, pits deal no damage.
 
 
 
