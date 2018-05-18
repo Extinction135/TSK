@@ -161,56 +161,6 @@ TODAY:
 
 
 
-Ditch System++
-
-created sprites for ditch system, with empty and filled
-versions, so we can fill ditches up with water.
-
-created ObjTypes for empty and filled ditches (16 new objs).
-created obj.Defs + animFrames for empty and filled ditches.
-upon writing the ditches system, i realized i needed
-more ditch sprites: endcaps N, S, and horizontal, plus
-a 3 connector that was vertical.
-
-add those objTypes, animFrames, and typeDefs.
-completed working basic version of ditch system,
-where two ditches can be connected as endcaps.
-added in corners, 3 connections, and 3 connections.
-lots of playtesting here. lots.
-
-created Functions_Dig to contain the increasingly 
-complex code managing ditches. happy to say it's
-working very well.
-
-added a final step to digging routine that updates
-the surrounding ditches, so the ditch system
-dynamically adapts itself to whatever tile the
-player Dug() last. which is AWESOME. you know what
-else is awesome? if hero digs on a tile with an obj
-that shovel can destroy, then adding the ditch doesn't
-increase the roomObj count - because we released the
-destroyed object. so adding ditches doesn't incur
-that much roomObj overhead.
-
-added functions_dig to uwp project. built and
-playtested uwp project. shoveling working well
-on all platforms. it's a little expensive for my
-tastes (the dig algorithm in total), but it gets 
-the job done right and the rest of the systems
-are extremely low cost-wise, so it's ok.
-
-digging is fun af and i did it for like 15 mins
-after the system was completed, testing it.
-it's beautiful.
-
-
-
-
-
-
-
-
-
 
 
 
@@ -221,10 +171,55 @@ pixels. currently we're using 100% opaque pixels, and they're clashing
 with the water tiles. if we switch to using black with an alpha, then
 they'll blend nicely with water tiles and look good.
 
+once these are looking good, migrate those ground 
+changes to the filled ditch sprites.
+
+- so this was done, and the idea behind it is solid,
+however, water tiles are a darker shade than the grass color,
+which is the default background color. when we add a 
+ditch obj, we remove the coastline obj, removing the
+darker background revealing the lighter background,
+and the semi-transparent pixels 'blend' over the bkg
+color just fine - but it's the grass color, not the
+surrounding water tiles color. the net effect being,
+there is no visual change between previous sprites
+and new sprites. lol. had to try.
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+Water + Ditches
+
+in the birth routine of ditch (Dubg()),
+we need to check and see if the ditch touches a water tile.
+if it does, it needs to become the filled version of itself.
+
+
+filled water tiles getAI.
+on their interactive frame, each filled ditch obj expands horizontally.
+then it spread checks itself against empty ditches, then resets hitBox.
+
+on the next frame, the filled ditch expands vertically.
+then it spread checks itself against empty ditches, then resets hitBox.
+
+any empty ditch obj it touches becomes the filled ditch counterpart, via FillDitch().
+need a method to fill ditches, which translates the empty version 
+to the filled version, then updates the type.
+
+
+updated gameobj.settype to set interactive frames for filled ditch objs.
+and make sure they getAI too. then update AI to handle this, like
+we do with spreading fire.
 
 
 
