@@ -151,6 +151,9 @@
     <Compile Include="..\..\GameClasses\Functions_Debug.cs">
       <Link>Classes\Functions_Debug.cs</Link>
     </Compile>
+    <Compile Include="..\..\GameClasses\Functions_Dig.cs">
+      <Link>Classes\Functions_Dig.cs</Link>
+    </Compile>
     <Compile Include="..\..\GameClasses\Functions_Direction.cs">
       <Link>Classes\Functions_Direction.cs</Link>
     </Compile>

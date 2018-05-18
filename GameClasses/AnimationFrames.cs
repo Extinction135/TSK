@@ -182,9 +182,37 @@ namespace DungeonRun
         public static List<Byte4> Wor_Coastline_Corner_Interior = new List<Byte4> { new Byte4(5, 3, 0, 0) };
 
         //ditches
-        //Wor_Ditch_META
+        //empty
+        public static List<Byte4> Wor_Ditch_Empty_Single = new List<Byte4> { new Byte4(0, 8, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_4UP = new List<Byte4> { new Byte4(0, 9, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_Vertical = new List<Byte4> { new Byte4(1, 8, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_Horizontal = new List<Byte4> { new Byte4(1, 9, 0, 0) };
 
-        public static List<Byte4> Wor_Ditch_Single = new List<Byte4> { new Byte4(3, 7, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_Corner_North = new List<Byte4> { new Byte4(2, 8, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_Corner_South = new List<Byte4> { new Byte4(2, 9, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_3UP_North = new List<Byte4> { new Byte4(3, 8, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_3UP_South = new List<Byte4> { new Byte4(3, 9, 0, 0) };
+
+        public static List<Byte4> Wor_Ditch_Empty_3UP_Horizontal = new List<Byte4> { new Byte4(4, 8, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_Endcap_South = new List<Byte4> { new Byte4(4, 9, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_Endcap_Horizontal = new List<Byte4> { new Byte4(5, 8, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Empty_Endcap_North = new List<Byte4> { new Byte4(5, 9, 0, 0) };
+
+        //filled
+        public static List<Byte4> Wor_Ditch_Filled_Single = new List<Byte4> { new Byte4(0, 10, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_4UP = new List<Byte4> { new Byte4(0, 11, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_Vertical = new List<Byte4> { new Byte4(1, 10, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_Horizontal = new List<Byte4> { new Byte4(1, 11, 0, 0) };
+
+        public static List<Byte4> Wor_Ditch_Filled_Corner_North = new List<Byte4> { new Byte4(2, 10, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_Corner_South = new List<Byte4> { new Byte4(2, 11, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_3UP_North = new List<Byte4> { new Byte4(3, 10, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_3UP_South = new List<Byte4> { new Byte4(3, 11, 0, 0) };
+
+        public static List<Byte4> Wor_Ditch_Filled_3UP_Horizontal = new List<Byte4> { new Byte4(4, 10, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_Endcap_South = new List<Byte4> { new Byte4(4, 11, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_Endcap_Horizontal = new List<Byte4> { new Byte4(5, 10, 0, 0) };
+        public static List<Byte4> Wor_Ditch_Filled_Endcap_North = new List<Byte4> { new Byte4(5, 11, 0, 0) };
 
         #endregion
 

@@ -972,33 +972,110 @@ namespace DungeonRun
 
             #region Ditches
 
-            else if (Type == ObjType.Wor_Ditch_META)
-            {
-                ResetObject(Obj);
+            else if (
+                Type == ObjType.Wor_Ditch_META
+                //empty
+                || Type == ObjType.Wor_Ditch_Empty_Single
+                || Type == ObjType.Wor_Ditch_Empty_4UP
+                || Type == ObjType.Wor_Ditch_Empty_Vertical
+                || Type == ObjType.Wor_Ditch_Empty_Horizontal
+
+                || Type == ObjType.Wor_Ditch_Empty_Corner_North
+                || Type == ObjType.Wor_Ditch_Empty_Corner_South
+                || Type == ObjType.Wor_Ditch_Empty_3UP_North
+                || Type == ObjType.Wor_Ditch_Empty_3UP_South
+
+                || Type == ObjType.Wor_Ditch_Empty_3UP_Horizontal
+                || Type == ObjType.Wor_Ditch_Empty_Endcap_South
+                || Type == ObjType.Wor_Ditch_Empty_Endcap_Horizontal
+                || Type == ObjType.Wor_Ditch_Empty_Endcap_North
+                //filled
+                || Type == ObjType.Wor_Ditch_Filled_Single
+                || Type == ObjType.Wor_Ditch_Filled_4UP
+                || Type == ObjType.Wor_Ditch_Filled_Vertical
+                || Type == ObjType.Wor_Ditch_Filled_Horizontal
+
+                || Type == ObjType.Wor_Ditch_Filled_Corner_North
+                || Type == ObjType.Wor_Ditch_Filled_Corner_South
+                || Type == ObjType.Wor_Ditch_Filled_3UP_North
+                || Type == ObjType.Wor_Ditch_Filled_3UP_South
+
+                || Type == ObjType.Wor_Ditch_Filled_3UP_Horizontal
+                || Type == ObjType.Wor_Ditch_Filled_Endcap_South
+                || Type == ObjType.Wor_Ditch_Filled_Endcap_Horizontal
+                || Type == ObjType.Wor_Ditch_Filled_Endcap_North
+                )
+            {   //^ well that's efficient
+                Obj.compCollision.rec.Width = 16;
+                Obj.compCollision.rec.Height = 16;
+                Obj.compCollision.offsetX = -8;
+                Obj.compCollision.offsetY = -8;
+
                 Obj.canBeSaved = true;
                 Obj.direction = Direction.Down;
-                Obj.compSprite.zOffset = -64; //sort under everything
                 Obj.compCollision.blocking = false;
+                Obj.compSprite.zOffset = -64; //sort under everything
 
-                Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Single;
+                Obj.group = ObjGroup.Ditch;
 
-                /*
                 if (Type == ObjType.Wor_Ditch_META)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Single; }
-                else
-                { }
-                */
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Single; }
+                
+                //empty ditch animFrames
+                else if (Type == ObjType.Wor_Ditch_Empty_Single)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Single; }
+                else if (Type == ObjType.Wor_Ditch_Empty_4UP)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_4UP; }
+                else if (Type == ObjType.Wor_Ditch_Empty_Vertical)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Vertical; }
+                else if (Type == ObjType.Wor_Ditch_Empty_Horizontal)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Horizontal; }
 
-                
-                
-                //idea
-                
-                //Obj.interactiveFrame //random value between 0-60
-                //Obj.getsAI = true; //now AI functions can update ditch obj on it's interactive
-                //frame, passing it to the SetDitch() method, checking it's overlapping neighbors
-                //here is where we could spread water to ditches, in any way
-                //plus spread water from ditch to ditch, and *soak the nearby landtiles* with tall grass
-                //because we could add grass tiles or change any overlapping grass objs to tall grass
+                else if (Type == ObjType.Wor_Ditch_Empty_Corner_North)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Corner_North; }
+                else if (Type == ObjType.Wor_Ditch_Empty_Corner_South)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Corner_South; }
+                else if (Type == ObjType.Wor_Ditch_Empty_3UP_North)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_3UP_North; }
+                else if (Type == ObjType.Wor_Ditch_Empty_3UP_South)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_3UP_South; }
+
+                else if (Type == ObjType.Wor_Ditch_Empty_3UP_Horizontal)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_3UP_Horizontal; }
+                else if (Type == ObjType.Wor_Ditch_Empty_Endcap_South)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Endcap_South; }
+                else if (Type == ObjType.Wor_Ditch_Empty_Endcap_Horizontal)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Endcap_Horizontal; }
+                else if (Type == ObjType.Wor_Ditch_Empty_Endcap_North)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Endcap_North; }
+
+                //filled ditch animFrames
+                else if (Type == ObjType.Wor_Ditch_Filled_Single)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Single; }
+                else if (Type == ObjType.Wor_Ditch_Filled_4UP)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_4UP; }
+                else if (Type == ObjType.Wor_Ditch_Filled_Vertical)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Vertical; }
+                else if (Type == ObjType.Wor_Ditch_Filled_Horizontal)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Horizontal; }
+
+                else if (Type == ObjType.Wor_Ditch_Filled_Corner_North)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Corner_North; }
+                else if (Type == ObjType.Wor_Ditch_Filled_Corner_South)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Corner_South; }
+                else if (Type == ObjType.Wor_Ditch_Filled_3UP_North)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_North; }
+                else if (Type == ObjType.Wor_Ditch_Filled_3UP_South)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_South; }
+
+                else if (Type == ObjType.Wor_Ditch_Filled_3UP_Horizontal)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_Horizontal; }
+                else if (Type == ObjType.Wor_Ditch_Filled_Endcap_South)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_South; }
+                else if (Type == ObjType.Wor_Ditch_Filled_Endcap_Horizontal)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_Horizontal; }
+                else if (Type == ObjType.Wor_Ditch_Filled_Endcap_North)
+                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_North; }
             }
 
             #endregion

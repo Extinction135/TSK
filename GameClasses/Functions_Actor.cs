@@ -707,7 +707,7 @@ namespace DungeonRun
                         {   //scale up worldUI weapon 
                             WorldUI.currentWeapon.compSprite.scale = 2.0f;
                             //hero has special skills based on equipped weapons
-                            if (Pool.hero.weapon == MenuItemType.WeaponShovel) { Functions_Hero.Dig(); }
+                            if (Pool.hero.weapon == MenuItemType.WeaponShovel) { Functions_Dig.Dig(); }
                         }
                         Functions_Item.UseItem(Actor.weapon, Actor);
                     }

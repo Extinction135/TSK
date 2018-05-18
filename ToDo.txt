@@ -161,71 +161,65 @@ TODAY:
 
 
 
+Ditch System++
 
+created sprites for ditch system, with empty and filled
+versions, so we can fill ditches up with water.
 
+created ObjTypes for empty and filled ditches (16 new objs).
+created obj.Defs + animFrames for empty and filled ditches.
+upon writing the ditches system, i realized i needed
+more ditch sprites: endcaps N, S, and horizontal, plus
+a 3 connector that was vertical.
 
+add those objTypes, animFrames, and typeDefs.
+completed working basic version of ditch system,
+where two ditches can be connected as endcaps.
+added in corners, 3 connections, and 3 connections.
+lots of playtesting here. lots.
 
+created Functions_Dig to contain the increasingly 
+complex code managing ditches. happy to say it's
+working very well.
 
-Ditches++
+added a final step to digging routine that updates
+the surrounding ditches, so the ditch system
+dynamically adapts itself to whatever tile the
+player Dug() last. which is AWESOME. you know what
+else is awesome? if hero digs on a tile with an obj
+that shovel can destroy, then adding the ditch doesn't
+increase the roomObj count - because we released the
+destroyed object. so adding ditches doesn't incur
+that much roomObj overhead.
 
-created Wor_Ditch_META objType. added animFrame.
-added Obj def type. added Ditch objGroup value.
+added functions_dig to uwp project. built and
+playtested uwp project. shoveling working well
+on all platforms. it's a little expensive for my
+tastes (the dig algorithm in total), but it gets 
+the job done right and the rest of the systems
+are extremely low cost-wise, so it's ok.
 
-updated Dig() to place meta ditch obj, check to
-see if meta ditch overlaps with any objects that
-it shouldn't (like walls, doors) and gets released()
-if meta ditch does. if it doesn't, then meta ditch
-removes any other roomObj who's sprite center
-overlaps meta ditch's hitBox. this means it deletes 
-other objs that touch it. the net effect is link
-can now shovel as he did in LttP, happily creating
-little holes in the ground everywhere he goes.
-checking the roomObj counter, which is now accurate,
-we can see that link cannot create more than 1 ditch
-at a single tile location, which is very important.
-
-changed Ring's effects to increase ovreall loot drop rate
-by 25 points, on 100 point scale (by 25% percent).
-
-changed the loot chances for digging to be -20.
-why? well, i dont want players to be able to just
-dig and find loot, that's cheap to me. so with
-a lootChance of -20, they will never get loot.
-BUT if hero equips the lucky ring, his lootChance
-raises by 25 points in SpawnLoot(), which Dig()
-passes -20 into.. so hero ends up with a net
-lootChance of +5 - meaning the hero can dig loot
-out of the ground if he uses the shovel, with the
-lucky ring equipped. that's interesting gameplay!
-
-at this point, we've matched LttP's shoveling
-functionality, and improved it a little bit with
-the addition of the lucky ring. now, water++.
-
-added call to create debris explosion at dig site.
-lots of playtesting, looking & working very well.
-
-Dig++
-upgraded dig to work well with trees, which really required
-that the ditch obj check it's hitBox against the center point
-of the hitBox of the overlapping roomObj. 
-
-Draw++
-updated Draw() to not draw particle hitBoxes, ever.
-they just fill up the screen with green rectangles and
-you can't see anything. gross.
-
-Notes:
-link cant dig up full trees, but he can dig up tree
-stumps - so he just needs to cut down the tree prior
-to shoveling it. for coastlines, link can dig thru
-them - but he can't dig into water tiles.
+digging is fun af and i did it for like 15 mins
+after the system was completed, testing it.
+it's beautiful.
 
 
 
 
 
 
+
+
+
+
+
+
+Ditch Sprites++
+
+on the edges of the ditches, we should be using transparent black
+pixels. currently we're using 100% opaque pixels, and they're clashing
+with the water tiles. if we switch to using black with an alpha, then
+they'll blend nicely with water tiles and look good.
 
 
 
@@ -244,10 +238,48 @@ them - but he can't dig into water tiles.
 
 
 
-*next step is linking up the ditch system
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 *then we can get water tiles interacting with ditches.
-*then we can have filled and unfilled ditches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -261,15 +293,6 @@ them - but he can't dig into water tiles.
 
 then we need to update Dig().
 build neighbor list, update the initial metaditch obj
-
-
-Ditch Sprites / Types
-
-single hole, with sides
-straight piece
-2 corner
-3 corner / T piece
-4 piece 
 
 
 

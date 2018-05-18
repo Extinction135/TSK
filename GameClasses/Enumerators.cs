@@ -148,6 +148,7 @@ namespace DungeonRun
         Object,
         Vendor,
         EnemySpawn,
+        Ditch,
         //entities
         Pickup,
         Projectile,
@@ -281,6 +282,39 @@ namespace DungeonRun
 
         //ditch objs
         Wor_Ditch_META,
+
+        //empty
+        Wor_Ditch_Empty_Single,
+        Wor_Ditch_Empty_4UP,
+        Wor_Ditch_Empty_Vertical,
+        Wor_Ditch_Empty_Horizontal,
+
+        Wor_Ditch_Empty_Corner_North,
+        Wor_Ditch_Empty_Corner_South,
+        Wor_Ditch_Empty_3UP_North,
+        Wor_Ditch_Empty_3UP_South,
+
+        Wor_Ditch_Empty_3UP_Horizontal,
+        Wor_Ditch_Empty_Endcap_South,
+        Wor_Ditch_Empty_Endcap_Horizontal,
+        Wor_Ditch_Empty_Endcap_North,
+
+        //filled
+        Wor_Ditch_Filled_Single,
+        Wor_Ditch_Filled_4UP,
+        Wor_Ditch_Filled_Vertical,
+        Wor_Ditch_Filled_Horizontal,
+
+        Wor_Ditch_Filled_Corner_North,
+        Wor_Ditch_Filled_Corner_South,
+        Wor_Ditch_Filled_3UP_North,
+        Wor_Ditch_Filled_3UP_South,
+
+        Wor_Ditch_Filled_3UP_Horizontal,
+        Wor_Ditch_Filled_Endcap_South,
+        Wor_Ditch_Filled_Endcap_Horizontal,
+        Wor_Ditch_Filled_Endcap_North,
+
 
 
         #endregion
