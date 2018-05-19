@@ -5,11 +5,9 @@
 + OpenGL port coming soon.  
 
 
-## Version 0.7.1 - 2018.05.10  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7Preview2.gif)  
-![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p7groundfiresMiyamoto.gif)  
-[older 0.7 Preview Playthrough - without cheats](http://www.youtube.com/watch?v=XwGxcmaVHlo)  
-[older 0.7 Preview Playthrough - with cheats](http://www.youtube.com/watch?v=qO_nSm1wDn0)  
+## Version 0.7.1 - 2018.05.18  
+![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p72miyamoto.gif)  
+more gifs coming soon..  
 
 
 ## Overview  
@@ -51,6 +49,12 @@
 
 
 ## Contributing 
-+ Development is very active and messy right now, so DON'T.  
-+ No seriously, until version 1.0, pulls/requests will be ignored.  
-+ You noticed a bug? Cool, send me an email or comment. Or DON'T.  
++ Development is very active and messy right now.  
++ PLEASE do not contribute to or discuss this project.
++ Nintendo has a habit of sending Cease & Desist letters.
++ So Rule #1 is Dont Discuss DungeonRun. Or this will go private.
++ For Real: https://gamingreinvented.com/nintendoarticles/top-ten-nintendo-fanworks-cancelled-due-legal-complaints/  
+
+
+
+

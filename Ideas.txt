@@ -161,6 +161,23 @@ doesn't take magic. can light torches too.
 
 
 
+
+Improve Filled Ditch Visuals
+
+we also need a better way of handling how filled ditches visually
+transition into water tiles. the system works fine, but the visuals
+could be improved. essentially, the ditch touching the water tile 
+needs to have the water tile's sprite undeath it, so it's bkg matches
+the bkg of the water tile. we *could* create a floor sprite at ditches
+position, then set the floor tile's texture and animFrame (to water tiles).
+this is likely the best approach to getting ditches looking 100%.
+
+
+
+
+
+
+
 Arrows++
 
 arrows should stick into objects until they expire from age.

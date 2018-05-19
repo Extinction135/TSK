@@ -161,50 +161,14 @@ TODAY:
 
 
 
+SoftRelease v0.72
 
+updated UWP content from Dx content.
+playtested UWP - working great. spike of 212mb.
+both projects working with latest changes, 0.72 done.
 
-
-Filled Ditches ++
-
-if hero interacts with a ditch that hasAI, then that ditch
-is filled, and this obj should be treated the same way we treat
-coastlines, so it can be included in the coastlines check..
-
-during the process of implementing this, the routine 
-necessary to show the actor's feet in the animated ripple
-state was duplicated, leading to the creation of 
-Functions_Actor.DisplayWetFeet(). this is called from
-an actor's interaction with coastlines (current sys),
-and now it's being called from actor interactions 
-with filled ditches - since they display water.
-tested, working great.
-
-
-
-
-
-
-
-
-
-Improve Root Filled Ditch Visuals
-
-we also need a better way of handling how filled ditches visually
-transition into water tiles. the system works fine, but the visuals
-could be improved. essentially, the ditch touching the water tile 
-needs to have the water tile's sprite undeath it, so it's bkg matches
-the bkg of the water tile. we *could* create a floor sprite at ditches
-position, then set the floor tile's texture and animFrame (to water tiles).
-this is likely the best approach to getting ditches looking 100%.
-
-
-
-
-
-
-
-
-record gifs
+recorded new gif. edited. looking great.
+updated readme with new gif & stuff.
 
 
 
@@ -226,17 +190,46 @@ record gifs
 
 
 
-*consider that actors may need interaction points*
-*needed if actors want to pickup or dig, and it would be nice to see that
-with more advanced enemies later on*
-migrate hero's interaction rec and interaction rec functions into actor class.
 
-*we could also consolidate gameobj_dungeon and gameobj_world into gameobj class.
-while the compartmentalization is organized, its easier to just
-recall the methods exist under the fun_gameObj class than split them between 3.
+Objs that check for Filled Ditches
 
-* add windmill obj that animates if a filled trench obj touches it
-in the right neighboring tile.
+whatever these objs are, they will getAI, with an interactive
+frame defined in obj.settype(). they will expand on that intFrame,
+checking roomObjs, doing what they need to do, just like filled
+ditches already do. copy their implementation.
+
+
+
+
+record a new play through video with developer commentary (via obs + astro a20s).
+create a new video channel just for dungeonRun / loz:tsk.
+post video to this channel, link back to repo.readme.
+
+
+record gifs:
+digging ditches and filling
+
+
+
+
+
+
+we can handle plot/level changes like this:
+we have a boolean that represents this levels state.
+false loads xml data A. true loads xml data B.
+the differece between A and B represents something
+that happened in the story, or something the player did.
+-perhaps the player killed an NPC.
+-perhaps the player irrigated a farmers crops (B would have filled ditches, A wouldn't).
+-theres alot we can do here.
+
+
+
+
+
+
+
+
 
 
 
@@ -336,7 +329,14 @@ which should be stored in save data.
 
 
 
+*consider that actors may need interaction points*
+*needed if actors want to pickup or dig, and it would be nice to see that
+with more advanced enemies later on*
+migrate hero's interaction rec and interaction rec functions into actor class.
 
+*we could also consolidate gameobj_dungeon and gameobj_world into gameobj class.
+while the compartmentalization is organized, its easier to just
+recall the methods exist under the fun_gameObj class than split them between 3.
 
 
 
