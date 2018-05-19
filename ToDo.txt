@@ -160,69 +160,68 @@ TODAY:
 
 
 
-
-
-
-
-Ditch Sprites++
-
-on the edges of the ditches, we should be using transparent black
-pixels. currently we're using 100% opaque pixels, and they're clashing
-with the water tiles. if we switch to using black with an alpha, then
-they'll blend nicely with water tiles and look good.
-
-once these are looking good, migrate those ground 
-changes to the filled ditch sprites.
-
-- so this was done, and the idea behind it is solid,
-however, water tiles are a darker shade than the grass color,
-which is the default background color. when we add a 
-ditch obj, we remove the coastline obj, removing the
-darker background revealing the lighter background,
-and the semi-transparent pixels 'blend' over the bkg
-color just fine - but it's the grass color, not the
-surrounding water tiles color. the net effect being,
-there is no visual change between previous sprites
-and new sprites. lol. had to try.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Water + Ditches
 
-in the birth routine of ditch (Dubg()),
+in the birth routine of ditch (Dug()),
 we need to check and see if the ditch touches a water tile.
 if it does, it needs to become the filled version of itself.
+and it creates a splash particle. implemented, tested, working.
+thats step 1.
 
+Pivot
 
-filled water tiles getAI.
-on their interactive frame, each filled ditch obj expands horizontally.
-then it spread checks itself against empty ditches, then resets hitBox.
+i think we're modeling filled ditches wrong.
+it would be much easier to layer water ontop of the current
+ditch system. instead of changing obj types, we should just 
+change the sprite frame, and store the filled concept
+as a boolean in the gameObj or somewhere.
+we can then spread water by checking the boolean, 
+instead of comparing multiple gameObj types, which
+is error prone, takes more time, and has no special
+attributes that make it a better solution than a boolean.
+okgo.
 
-on the next frame, the filled ditch expands vertically.
-then it spread checks itself against empty ditches, then resets hitBox.
+rewrote FillDitch() to only alter the current animation
+of the ditch's animation component, setting it to the filled
+version defined in animation frames. playtested, working,
+but only for the initial ditch that touches water tile.
 
-any empty ditch obj it touches becomes the filled ditch counterpart, via FillDitch().
-need a method to fill ditches, which translates the empty version 
-to the filled version, then updates the type.
+removed filled ditch objects.
+decision: filling ditches is a one way operation
+right now - draining a ditch isn't planned for.
 
+Plan++
+we can model if a ditch is filled or empty by using
+the getsAI boolean in gameObject. if a ditch is filled
+with water, then it gets AI, which spreads the water.
+by checking ditch.getsAI, we know if the ditch is filled
+or not - instead of tediously checking the animation frames,
+which is just a different flavor of the previous 
+many to many problem we had with ObjTypes in Pivot above.
 
-updated gameobj.settype to set interactive frames for filled ditch objs.
-and make sure they getAI too. then update AI to handle this, like
-we do with spreading fire.
+converted empty ditch obj defs to set getsAI false.
+updated FillDitch() to set the Ditch.getsAI boolean true.
+updated SetDitch() to check for filled neighbors. if there
+is a filled neighbor, then the ditch being added is Filled().
+this means that digging from a water tile 'out' works in-game.
+playtested, working as expected.
 
+added call to spawn splash particle to FillDitch().
+this seems an appropriate place to do this, because we'd
+want water to spread in a torrential water-like way,
+via a series of splashes. 
 
+playtested. i did it. it works. i'm so happy.
+now lets make it better.
 
+Water Spreading ++
+lessened the interactive frame value for ditches,
+which in turn sped up the spread time of water.
+the random spread of water isn't bad, but perhaps
+i can time it to spam the water splash sound fx
+for maximum 'torrential effect'. lol.
+tested, frame 15 is a fast spread that looks good. 
+super happy. gifs coming soon. needs moar polish.
 
 
 
@@ -233,10 +232,21 @@ we do with spreading fire.
 
 
 
+Filled Ditches ++
 
+if hero interacts with a ditch that hasAI, then that ditch
+is filled, and this obj should be treated the same way we treat
+coastlines, so it can be included in the coastlines check..
 
 
 
+we also need a better way of handling how filled ditches visually
+transition into water tiles. the system works fine, but the visuals
+could be improved. essentially, the ditch touching the water tile 
+needs to have the water tile's sprite undeath it, so it's bkg matches
+the bkg of the water tile. we *could* create a floor sprite at ditches
+position, then set the floor tile's texture and animFrame (to water tiles).
+this is likely the best approach to getting ditches looking 100%.
 
 
 
@@ -257,7 +267,6 @@ we do with spreading fire.
 
 
 
-*then we can get water tiles interacting with ditches.
 
 
 
@@ -268,198 +277,17 @@ we do with spreading fire.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-then we need to update Dig().
-build neighbor list, update the initial metaditch obj
-
-
-
-
-
-Dig()
-
-(this is done using hero's interaction point)
-
-place meta-ditch obj based on interaction point pos.
-interaction point pos already has hero's facing directional offset.
-align meta-ditch to 16x16 grid.
-meta-ditch has 32x32 hitBox initially (to collect neighbors)
-
-meta-ditch initial frame (32x32 hitbox)
-check interactions with ditch objects in room already.
-create boolean fields based on neighbors occupied (NSEW + DIAG neigihbors)
-store this boolean field inside of Dig().
-
-meta-ditch's hitBox becomes 16x16, aligned to the sprite,
-which should be aligned to 16x16 grid from the interaction point earlier.
-
-now we check meta-ditch against the roomObj list..
-if meta-ditch touches certain objs (like walls for example),
-then meta-ditch is released() and the Dig() method returns;.
-this will prevent ditches from being placed under specific objs
-other objs that overlap with meta-ditch are destroyed or killed,
-like tree trunks, flowers, grass objs, etc.. because we're going
-to replace those objs with a ditch.
-
-overlapping objs have been released.
-
-
-now we set the type of the meta ditch object, 
-based on neighbor boolean field accessible to Dig().
-
-we can do it based on what the meta-ditch just overlaps.
-it means that players will have to build ditches in order tho.
-*but*, if they rebuild a ditch, it should update to work
-properly, because digging only updates that single ditch.
-
-
-SetDitch(metaDitch);
-
--neighbors is top to bottom, 8 neighboring directions.
-SetDitch(GameObject Ditch, List<Boolean> Neighbors)
-{
-
-	if neigh.allFalse, Ditch = single hole
-
-	if neigh.N & neigh.S & othersFalse, Ditch = vertical straight
-	if neigh.E & neigh.W & othersFalse, Ditch = horizontal straight
-
-	if neigh.E & neigh.N & othersFalse, Ditch = corner
-	if neigh.E & neigh.S & othersFalse, Ditch = corner
-	if neigh.W & neigh.N & othersFalse, Ditch = corner
-	if neigh.W & neigh.S & othersFalse, Ditch = corner
-
-	if neigh.W & neigh.N & neigh.E & othersFalse, Ditch = T connector
-	if neigh.W & neigh.S & neigh.E & othersFalse, Ditch = T connector
-	if neigh.W & neigh.S & neigh.N & othersFalse, Ditch = T connector
-	if neigh.E & neigh.S & neigh.N & othersFalse, Ditch = T connector
-
-	if neigh.N & neigh.S & neigh.E & neigh.W, Ditch = 4 connector
-
-}
-
-
-
-effects:
-players have to build ditches sequentially for them to function
-properly at first. if ditches have been dug randomly, then connected,
-'trouble' spots will simply have to be re-dug. that will properly
-update the ditch created.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-the shovel projectile DOESNT create trenches. only hero can create trenches.
-that is a separate method, the Dig() method, that is called
-only when the actor first uses the shovel. no debris is created by shovel pro!
 *consider that actors may need interaction points*
 *needed if actors want to pickup or dig, and it would be nice to see that
 with more advanced enemies later on*
-
-
-
 migrate hero's interaction rec and interaction rec functions into actor class.
-
-
-
 
 *we could also consolidate gameobj_dungeon and gameobj_world into gameobj class.
 while the compartmentalization is organized, its easier to just
 recall the methods exist under the fun_gameObj class than split them between 3.
 
-
-
-
-
-
-DIGGING
-
-Dig(Actor Actor) method: 
-
-
-
-TRENCH SYSTEM
-
-the initial trench obj placed is a temp obj with a 20x20 collision rec.
-on it's first frame, it checks to see what trench objs overlap it.
-using the list of overlapping trenches nearby, sort to a NSEW boolean list.
-(this is done by comparing new trench sprite pos to neighbor sprite pos.)
-then we can switch the type of the trench just placed to 'fit' into
-it's neighboring trenches. N+S = vertical. E+W = horizontal.
-N+(E/W) etc = corner trench. N+S+E+W = quad trench. we only need 3 trench sprites. lol.
-this makes it easy to propagate water thru them too, as we would then
-have low, med, filled sprite versions of the trench.
-
-we will also need 'end caps' that connect to straight pieces.
-and trenches that are just single holes in the ground.
-
-
-
-
-
-
-
-destroying a coastline is the first step to creating a water channel.
-
-	- ditch objs have 16x16 collrec, and look like 'deep dirt', a layer under ground.
-	- the same way fire spreads (using interactive frame), we can spread water tiles
-	- water tiles expand for one frame and make ditch tiles water tiles if they touch
-	- then we need to implement cascading effect: low, med, high water tiles.
-	- high > med > low > ditch is the spreading routine.
-	- at this point link should be able to construct water channels
-	
-
-
-
 * add windmill obj that animates if a filled trench obj touches it
 in the right neighboring tile.
-
-
-**** playtest as much as you can thursday ****
-
-
-
 
 
 
@@ -469,9 +297,6 @@ Swimming++
 while in the water, pressing X should Push() things infront of you.
 pressing Y should Dive(). this gives hero some non lethal attack
 to get enemies in the water away from him.
-
-
-
 
 
 

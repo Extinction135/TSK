@@ -19,16 +19,53 @@ namespace DungeonRun
         {   //N     //R     //S     //L
             false, false, false, false
         };
+        static Boolean filledNeighbor = false;
 
         static int d;
         static int n;
-
 
         static int i;
         static List<GameObject> ditchesToUpdate;
 
 
 
+        public static void FillDitch(GameObject Ditch)
+        {
+            Ditch.getsAI = true; //ditch is in filled state
+
+            //convert empty to filled
+            if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_3UP_Horizontal)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_Horizontal; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_3UP_North)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_North; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_3UP_South)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_South; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_4UP)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_4UP; }
+
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Corner_North)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Corner_North; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Corner_South)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Corner_South; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Endcap_Horizontal)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_Horizontal; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Endcap_North)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_North; }
+
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Endcap_South)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_South; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Horizontal)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Horizontal; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Single)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Single; }
+            else if (Ditch.compAnim.currentAnimation == AnimationFrames.Wor_Ditch_Empty_Vertical)
+            { Ditch.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Vertical; }
+
+            Functions_Particle.Spawn(ObjType.Particle_Splash,
+                Ditch.compSprite.position.X,
+                Ditch.compSprite.position.Y);
+        }
+ 
 
         public static void SetDitch(GameObject Ditch)
         {
@@ -37,6 +74,7 @@ namespace DungeonRun
             //reset ditch meta
             Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_META);
             Ditch.active = false; //set inactive for check below
+            filledNeighbor = false; //assume no ditch neighbors are filled
 
 
             #region Set Neighbors
@@ -57,6 +95,9 @@ namespace DungeonRun
                         else if (Pool.roomObjPool[n].compSprite.position.X == Ditch.compSprite.position.X)
                         { } //nothing
                         else { nei[1] = true; } //set R
+
+                        //check neighbor for filled state
+                        if (Pool.roomObjPool[n].getsAI) { filledNeighbor = true; }
                     }
                     //retract
                     Ditch.compCollision.rec.Width = 16;
@@ -73,6 +114,9 @@ namespace DungeonRun
                         else if (Pool.roomObjPool[n].compSprite.position.Y == Ditch.compSprite.position.Y)
                         { } //nothing
                         else { nei[2] = true; } //set S
+
+                        //check neighbor for filled state
+                        if (Pool.roomObjPool[n].getsAI) { filledNeighbor = true; }
                     }
                     //retract
                     Ditch.compCollision.rec.Height = 16;
@@ -204,6 +248,9 @@ namespace DungeonRun
                 Functions_GameObject.SetType(Ditch, ObjType.Wor_Ditch_Empty_4UP);
                 Ditch.compSprite.flipHorizontally = false;
             }
+
+            //if the ditch touched any filled neighbor, then fill this ditch with water
+            if (filledNeighbor) { FillDitch(Ditch); }
         }
 
 
@@ -316,9 +363,12 @@ namespace DungeonRun
             SetDitch(objRef);
             
 
+            
+
 
             //now we need to update the surrounding ditch objects,
             //because it's likely that the new ditch alters them
+            //also, we need to check if new ditch touches a water tile and fill it
 
 
             #region Update Ditch Neighbors
@@ -330,14 +380,24 @@ namespace DungeonRun
             objRef.compCollision.offsetY = -20;
             Functions_Component.Align(objRef);
 
-            ditchesToUpdate = new List<GameObject>(); //reset the list
+            
+
+
+            ditchesToUpdate = new List<GameObject>(); //clear the list
             objRef.active = false; //remove objRef from check below
             for (d = 0; d < Pool.roomObjCount; d++)
-            {   //if ditch touches any other ditches, update them
-                if (Pool.roomObjPool[d].active & Pool.roomObjPool[d].group == ObjGroup.Ditch)
+            {   
+                if (Pool.roomObjPool[d].active & 
+                    objRef.compCollision.rec.Intersects(Pool.roomObjPool[d].compCollision.rec))
                 {
-                    if (objRef.compCollision.rec.Intersects(Pool.roomObjPool[d].compCollision.rec))
-                    {
+                    //check to see if the new ditch touches a water tile
+                    //in which case we need to fill the ditch with water
+                    if (Pool.roomObjPool[d].type == ObjType.Wor_Water)
+                    {   //ditch becomes filled version
+                        FillDitch(objRef);
+                    }
+                    else if(Pool.roomObjPool[d].group == ObjGroup.Ditch)
+                    {   //if ditch touches any other ditches, update them
                         ditchesToUpdate.Add(Pool.roomObjPool[d]);
                     }
                 }
@@ -353,33 +413,13 @@ namespace DungeonRun
             //set sprite frame prior to this loop's draw call
             Functions_Animation.Animate(objRef.compAnim, objRef.compSprite);
 
-
-
-            
-
-            //there is a bug here...
-
             //update the surrounding ditches
             for (i = 0; i < ditchesToUpdate.Count; i++)
             { SetDitch(ditchesToUpdate[i]); }
 
-
-            /*
-            //update the surrounding ditches in reverse
-            for (i = ditchesToUpdate.Count-1; i > 0; i--)
-            { SetDitch(ditchesToUpdate[i]); }
-
-            //update the surrounding ditches, again
-            for (i = 0; i < ditchesToUpdate.Count; i++)
-            { SetDitch(ditchesToUpdate[i]); }
-            */
-
-
             //push a frame of animation
             for (i = 0; i < ditchesToUpdate.Count; i++)
             { Functions_Animation.Animate(ditchesToUpdate[i].compAnim, ditchesToUpdate[i].compSprite); }
-
-            
 
             #endregion
 

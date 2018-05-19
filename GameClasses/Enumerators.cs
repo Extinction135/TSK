@@ -299,24 +299,6 @@ namespace DungeonRun
         Wor_Ditch_Empty_Endcap_Horizontal,
         Wor_Ditch_Empty_Endcap_North,
 
-        //filled
-        Wor_Ditch_Filled_Single,
-        Wor_Ditch_Filled_4UP,
-        Wor_Ditch_Filled_Vertical,
-        Wor_Ditch_Filled_Horizontal,
-
-        Wor_Ditch_Filled_Corner_North,
-        Wor_Ditch_Filled_Corner_South,
-        Wor_Ditch_Filled_3UP_North,
-        Wor_Ditch_Filled_3UP_South,
-
-        Wor_Ditch_Filled_3UP_Horizontal,
-        Wor_Ditch_Filled_Endcap_South,
-        Wor_Ditch_Filled_Endcap_Horizontal,
-        Wor_Ditch_Filled_Endcap_North,
-
-
-
         #endregion
 
 

@@ -974,7 +974,7 @@ namespace DungeonRun
 
             else if (
                 Type == ObjType.Wor_Ditch_META
-                //empty
+
                 || Type == ObjType.Wor_Ditch_Empty_Single
                 || Type == ObjType.Wor_Ditch_Empty_4UP
                 || Type == ObjType.Wor_Ditch_Empty_Vertical
@@ -989,23 +989,22 @@ namespace DungeonRun
                 || Type == ObjType.Wor_Ditch_Empty_Endcap_South
                 || Type == ObjType.Wor_Ditch_Empty_Endcap_Horizontal
                 || Type == ObjType.Wor_Ditch_Empty_Endcap_North
-                //filled
-                || Type == ObjType.Wor_Ditch_Filled_Single
-                || Type == ObjType.Wor_Ditch_Filled_4UP
-                || Type == ObjType.Wor_Ditch_Filled_Vertical
-                || Type == ObjType.Wor_Ditch_Filled_Horizontal
-
-                || Type == ObjType.Wor_Ditch_Filled_Corner_North
-                || Type == ObjType.Wor_Ditch_Filled_Corner_South
-                || Type == ObjType.Wor_Ditch_Filled_3UP_North
-                || Type == ObjType.Wor_Ditch_Filled_3UP_South
-
-                || Type == ObjType.Wor_Ditch_Filled_3UP_Horizontal
-                || Type == ObjType.Wor_Ditch_Filled_Endcap_South
-                || Type == ObjType.Wor_Ditch_Filled_Endcap_Horizontal
-                || Type == ObjType.Wor_Ditch_Filled_Endcap_North
                 )
             {   //^ well that's efficient
+
+                //ditches use the getsAI boolean for two purposes:
+                //1. to model the empty and filled states of ditches
+                //2. to spread water from filled to empty ditches via Ai.HandleObj()
+                //so the empty state of a ditch is getsAI = false
+                Obj.getsAI = false;
+
+                //this sets how often filled ditches spread to empty ditches
+                Obj.interactiveFrame = 15;
+                //Obj.interactiveFrame += Functions_Random.Int(-10, 10); //vary spread times
+
+                Obj.lifeCounter = 0; //used by AI.handleObj to count to interactive frame
+                Obj.lifetime = 255; //not used in this case, but set to max value for safety
+
                 Obj.compCollision.rec.Width = 16;
                 Obj.compCollision.rec.Height = 16;
                 Obj.compCollision.offsetX = -8;
@@ -1048,34 +1047,6 @@ namespace DungeonRun
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Endcap_Horizontal; }
                 else if (Type == ObjType.Wor_Ditch_Empty_Endcap_North)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Empty_Endcap_North; }
-
-                //filled ditch animFrames
-                else if (Type == ObjType.Wor_Ditch_Filled_Single)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Single; }
-                else if (Type == ObjType.Wor_Ditch_Filled_4UP)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_4UP; }
-                else if (Type == ObjType.Wor_Ditch_Filled_Vertical)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Vertical; }
-                else if (Type == ObjType.Wor_Ditch_Filled_Horizontal)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Horizontal; }
-
-                else if (Type == ObjType.Wor_Ditch_Filled_Corner_North)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Corner_North; }
-                else if (Type == ObjType.Wor_Ditch_Filled_Corner_South)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Corner_South; }
-                else if (Type == ObjType.Wor_Ditch_Filled_3UP_North)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_North; }
-                else if (Type == ObjType.Wor_Ditch_Filled_3UP_South)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_South; }
-
-                else if (Type == ObjType.Wor_Ditch_Filled_3UP_Horizontal)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_3UP_Horizontal; }
-                else if (Type == ObjType.Wor_Ditch_Filled_Endcap_South)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_South; }
-                else if (Type == ObjType.Wor_Ditch_Filled_Endcap_Horizontal)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_Horizontal; }
-                else if (Type == ObjType.Wor_Ditch_Filled_Endcap_North)
-                { Obj.compAnim.currentAnimation = AnimationFrames.Wor_Ditch_Filled_Endcap_North; }
             }
 
             #endregion

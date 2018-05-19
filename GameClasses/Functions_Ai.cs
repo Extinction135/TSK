@@ -133,6 +133,64 @@ namespace DungeonRun
         {   //keep in mind this method is called every frame
 
 
+            //Obj.group checks
+
+            #region Spreading water thru ditches
+
+            if(Obj.group == ObjGroup.Ditch)
+            {
+                //this ditch is 'filled' (hasAI), so it spreads to nearby unfilled ditches
+                Obj.lifeCounter++; //this isn't being used on roomObjs, so we steal it
+                if (Obj.lifeCounter == Obj.interactiveFrame)
+                {   //reset timer
+                    Obj.lifeCounter = 0; //only 'spread' water to empty ditches on their interactive frame
+
+                    //loop over all active roomObjs, //locating an unfilled ditches
+                    for (i = 0; i < Pool.roomObjCount; i++)
+                    {   
+                        if (Pool.roomObjPool[i].active &
+                            Pool.roomObjPool[i].group == ObjGroup.Ditch &
+                            Pool.roomObjPool[i].getsAI == false) //unfilled
+                        {
+                            //expand horizontally
+                            Obj.compCollision.rec.Width = 22;
+                            Obj.compCollision.rec.X -= 4;
+                            //check collisions
+                            if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                            {   //fill empty ditch obj (will create splash)
+                                Functions_Dig.FillDitch(Pool.roomObjPool[i]);
+                            }
+                            //contract
+                            Obj.compCollision.rec.Width = 16;
+                            Obj.compCollision.rec.X += 4;
+
+                            //expand vertically
+                            Obj.compCollision.rec.Height = 22;
+                            Obj.compCollision.rec.Y -= 4;
+                            //check collisions
+                            if (Pool.roomObjPool[i].compCollision.rec.Intersects(Obj.compCollision.rec))
+                            {   //fill empty ditch obj (will create splash)
+                                Functions_Dig.FillDitch(Pool.roomObjPool[i]);
+                            }
+                            //retract
+                            Obj.compCollision.rec.Height = 16;
+                            Obj.compCollision.rec.Y += 4;
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
+
+
+
+
+
+
+
+            //Obj.type checks
+
             #region Dungeon Objects
 
             if (Obj.type == ObjType.Dungeon_Flamethrower)
@@ -168,7 +226,7 @@ namespace DungeonRun
                     { overlap = true; }
                 }
 
-                //loop over all active block roomObjs
+                //loop over all active blocking roomObjs
                 for (i = 0; i < Pool.roomObjCount; i++)
                 {   //only blocking objs can activate switches
                     if (Pool.roomObjPool[i].active & 
