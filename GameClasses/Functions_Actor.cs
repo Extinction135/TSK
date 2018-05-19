@@ -343,6 +343,22 @@ namespace DungeonRun
 
 
 
+        public static void DisplayWetFeet(Actor Actor)
+        {
+            //bail if actor is dead, most dead actors dont display anything
+            if (Actor.state == ActorState.Dead) { return; }
+            Actor.feetFX.visible = true;
+            Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_WetFeet;
+            if (Actor == Pool.hero & Actor.underwater == false)
+            {   //actor must be hero, above water or on land, and moving
+                if (Actor.state == ActorState.Move) //to play water walk sfx
+                { Assets.Play(Assets.sfxWaterWalk); }
+            }
+        }
+
+
+
+
 
 
         public static void Breathe(Actor Actor)

@@ -395,16 +395,8 @@ namespace DungeonRun
                 else if (Obj.type == ObjType.Wor_Coastline_Corner_Exterior
                     || Obj.type == ObjType.Wor_Coastline_Corner_Interior
                     || Obj.type == ObjType.Wor_Coastline_Straight)
-                {
-                    //bail if actor is dead, most dead actors dont display anything
-                    if (Actor.state == ActorState.Dead) { return; }
-                    Actor.feetFX.visible = true;
-                    Actor.feetAnim.currentAnimation = AnimationFrames.ActorFX_WetFeet;
-                    if (Actor == Pool.hero & Actor.underwater == false)
-                    {   //actor must be hero, above water or on land, and moving
-                        if (Actor.state == ActorState.Move)
-                        { Assets.Play(Assets.sfxWaterWalk); }
-                    }
+                {   //display animated ripple at actor's feet
+                    Functions_Actor.DisplayWetFeet(Actor);
                 }
 
                 #endregion
@@ -432,6 +424,14 @@ namespace DungeonRun
 
 
                 //bridge doesn't really do anything, it just doesn't cause actor to fall into a pit
+            }
+
+            else if(Obj.group == ObjGroup.Ditch)
+            {   //if ditch getsAI, then ditch is in it's filled state
+                if(Obj.getsAI)
+                {   //display animated ripple at actor's feet
+                    Functions_Actor.DisplayWetFeet(Actor);
+                }
             }
         }
 

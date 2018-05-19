@@ -160,74 +160,6 @@ TODAY:
 
 
 
-Water + Ditches
-
-in the birth routine of ditch (Dug()),
-we need to check and see if the ditch touches a water tile.
-if it does, it needs to become the filled version of itself.
-and it creates a splash particle. implemented, tested, working.
-thats step 1.
-
-Pivot
-
-i think we're modeling filled ditches wrong.
-it would be much easier to layer water ontop of the current
-ditch system. instead of changing obj types, we should just 
-change the sprite frame, and store the filled concept
-as a boolean in the gameObj or somewhere.
-we can then spread water by checking the boolean, 
-instead of comparing multiple gameObj types, which
-is error prone, takes more time, and has no special
-attributes that make it a better solution than a boolean.
-okgo.
-
-rewrote FillDitch() to only alter the current animation
-of the ditch's animation component, setting it to the filled
-version defined in animation frames. playtested, working,
-but only for the initial ditch that touches water tile.
-
-removed filled ditch objects.
-decision: filling ditches is a one way operation
-right now - draining a ditch isn't planned for.
-
-Plan++
-we can model if a ditch is filled or empty by using
-the getsAI boolean in gameObject. if a ditch is filled
-with water, then it gets AI, which spreads the water.
-by checking ditch.getsAI, we know if the ditch is filled
-or not - instead of tediously checking the animation frames,
-which is just a different flavor of the previous 
-many to many problem we had with ObjTypes in Pivot above.
-
-converted empty ditch obj defs to set getsAI false.
-updated FillDitch() to set the Ditch.getsAI boolean true.
-updated SetDitch() to check for filled neighbors. if there
-is a filled neighbor, then the ditch being added is Filled().
-this means that digging from a water tile 'out' works in-game.
-playtested, working as expected.
-
-added call to spawn splash particle to FillDitch().
-this seems an appropriate place to do this, because we'd
-want water to spread in a torrential water-like way,
-via a series of splashes. 
-
-playtested. i did it. it works. i'm so happy.
-now lets make it better.
-
-Water Spreading ++
-lessened the interactive frame value for ditches,
-which in turn sped up the spread time of water.
-the random spread of water isn't bad, but perhaps
-i can time it to spam the water splash sound fx
-for maximum 'torrential effect'. lol.
-tested, frame 15 is a fast spread that looks good. 
-super happy. gifs coming soon. needs moar polish.
-
-
-
-
-
-
 
 
 
@@ -238,7 +170,24 @@ if hero interacts with a ditch that hasAI, then that ditch
 is filled, and this obj should be treated the same way we treat
 coastlines, so it can be included in the coastlines check..
 
+during the process of implementing this, the routine 
+necessary to show the actor's feet in the animated ripple
+state was duplicated, leading to the creation of 
+Functions_Actor.DisplayWetFeet(). this is called from
+an actor's interaction with coastlines (current sys),
+and now it's being called from actor interactions 
+with filled ditches - since they display water.
+tested, working great.
 
+
+
+
+
+
+
+
+
+Improve Root Filled Ditch Visuals
 
 we also need a better way of handling how filled ditches visually
 transition into water tiles. the system works fine, but the visuals
@@ -255,7 +204,7 @@ this is likely the best approach to getting ditches looking 100%.
 
 
 
-
+record gifs
 
 
 
