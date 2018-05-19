@@ -5,7 +5,7 @@
 + OpenGL port coming soon.  
 
 
-## Version 0.7.1 - 2018.05.18  
+## Version 0.7.2 - 2018.05.18  
 ![](https://github.com/MrGrak/DungeonRun/blob/master/Gifs/0p72miyamoto.gif)  
 more gifs coming soon..  
 
