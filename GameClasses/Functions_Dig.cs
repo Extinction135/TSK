@@ -27,6 +27,7 @@ namespace DungeonRun
         static int i;
         static List<GameObject> ditchesToUpdate;
 
+        static ComponentSprite floorSprite;
 
 
         public static void FillDitch(GameObject Ditch)
@@ -278,7 +279,6 @@ namespace DungeonRun
             Functions_GameObject.SetType(objRef, ObjType.Wor_Ditch_META);
 
             //for purposes of the following checks, objRef.active is set to false
-            //this is to remove it from and kind of self-intersection
             objRef.active = false;
             //we'll use .visible to act as a temp flag to cue release()
             objRef.compSprite.visible = true;
@@ -380,9 +380,6 @@ namespace DungeonRun
             objRef.compCollision.offsetY = -20;
             Functions_Component.Align(objRef);
 
-            
-
-
             ditchesToUpdate = new List<GameObject>(); //clear the list
             objRef.active = false; //remove objRef from check below
             for (d = 0; d < Pool.roomObjCount; d++)
@@ -395,6 +392,18 @@ namespace DungeonRun
                     if (Pool.roomObjPool[d].type == ObjType.Wor_Water)
                     {   //ditch becomes filled version
                         FillDitch(objRef);
+
+                        //we need to blend this ditch tile with the nearby water tile
+                        //so we get a floor sprite and place it at this location
+                        floorSprite = Functions_Pool.GetFloor();
+                        //set the texture and animation frame to water tile
+                        floorSprite.texture = Assets.forestLevelSheet;
+                        floorSprite.currentFrame = AnimationFrames.Wor_Water[0];
+                        //place the water tile
+                        floorSprite.position.X = objRef.compSprite.position.X;
+                        floorSprite.position.Y = objRef.compSprite.position.Y;
+                        //set zDepth above other floor tiles
+                        floorSprite.zDepth = World.waterLayer;
                     }
                     else if(Pool.roomObjPool[d].group == ObjGroup.Ditch)
                     {   //if ditch touches any other ditches, update them

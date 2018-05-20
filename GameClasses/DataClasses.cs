@@ -123,6 +123,11 @@ namespace DungeonRun
         public static float frictionAir = 0.9f; //some slowdown
         public static float frictionIce = 0.99f; //no slowdown
 
+
+        //floors are placed on the last layer, all others draw above this
+        public static float floorLayer = 0.999990f;
+        public static float waterLayer = 0.999989f;
+
     }
 
 

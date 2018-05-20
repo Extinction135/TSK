@@ -160,18 +160,23 @@ TODAY:
 
 
 
+Improve Filled Ditch Visuals
 
-SoftRelease v0.72
+we also need a better way of handling how filled ditches visually
+transition into water tiles. the system works fine, but the visuals
+could be improved. essentially, the ditch touching the water tile 
+needs to have the water tile's sprite undeath it, so it's bkg matches
+the bkg of the water tile. we *could* create a floor sprite at ditches
+position, then set the floor tile's texture and animFrame (to water tiles).
+this is likely the best approach to getting ditches looking 100%.
 
-updated UWP content from Dx content.
-playtested UWP - working great. spike of 212mb.
-both projects working with latest changes, 0.72 done.
-
-recorded new gif. edited. looking great.
-updated readme with new gif & stuff.
-
-
-
+improved Dig() to get a floor tile and place it at the ditches 
+position, if the ditch touches a water tile. this means the ditch
+is a root ditch for spreading water to other empty ditches. by
+adding the water background, the root ditch blends much better
+with the water tile. playtesting this outside went great. 
+when I took it to the dungeon for break-testing, I found 
+a ton of bugs, some hilarious, some game-breaking. So I feex.
 
 
 
@@ -179,6 +184,36 @@ updated readme with new gif & stuff.
 
 
 
+
+
+
+
+Dig Testing
+
+ok, so there are some edge cases here that I really didn't think about.
+for example, link can dig out switch blocks that are down, because they
+aren't blocking. along with conveyor belts. and switches. trap doors.
+dungeon pits. pit traps. spike block. floor spikes. bumper.
+flamethrower? icetile < should be able to dig out ice tiles.
+
+
+
+
+
+
+We still need a stationary spike block obj.
+this is super easy to do, btw.
+
+
+
+
+
+
+Digging and Ice Tiles
+
+we allow link to dig out ice tiles, because this seems plausible in the world,
+and those ice tiles can be a real pain. now, we have a logical way of 
+'defeating' them - which I absolutely LOVE and I'm keeping it.
 
 
 

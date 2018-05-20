@@ -162,7 +162,7 @@ namespace DungeonRun
             for (Pool.floorCounter = 0; Pool.floorCounter < Pool.floorCount; Pool.floorCounter++)
             {
                 Pool.floorPool[Pool.floorCounter].visible = false;
-                Pool.floorPool[Pool.floorCounter].zDepth = 0.999990f; //sort to lowest level
+                Pool.floorPool[Pool.floorCounter].zDepth = World.floorLayer;
             }
             Pool.floorIndex = 0; //reset total count
         }
