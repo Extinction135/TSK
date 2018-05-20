@@ -322,6 +322,27 @@ namespace DungeonRun
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_PitTeethBottom
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_PitTeethTop
                         || Pool.roomObjPool[d].type == ObjType.Dungeon_PitTrap
+
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SwitchBlockDown
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_ConveyorBeltOff
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_ConveyorBeltOn
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_Switch
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SwitchDown
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_BlockSpike
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SpikesFloorOff
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SpikesFloorOn
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_Bumper
+
+                        //ice tiles are allowed to be 'dug' out - on all modes (normal/hard)
+                        //|| Pool.roomObjPool[d].type == ObjType.Dungeon_IceTile
+
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_Fairy
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SpawnMob
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SpawnMiniBoss
+
+                        //pets too
+                        || Pool.roomObjPool[d].type == ObjType.Pet_Dog
+                        || Pool.roomObjPool[d].type == ObjType.Pet_Chicken
                         )
                     {
                         objRef.compSprite.visible = false;

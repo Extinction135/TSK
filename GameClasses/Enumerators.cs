@@ -281,7 +281,7 @@ namespace DungeonRun
         Wor_Coastline_Corner_Interior,
 
         //ditch objs
-        Wor_Ditch_META,
+        Wor_Ditch_META, //becomes one of the ditch objs below upon placement
 
         //empty
         Wor_Ditch_Empty_Single,
