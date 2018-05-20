@@ -1,5 +1,31 @@
 
 
+
+
+
+
+
+
+
+
+
+
+
+We still need a stationary spike block obj.
+this is super easy to do, btw.
+
+
+
+
+
+
+
+
+
+
+
+
+
 Swim Instructor NPC
 
 we need a swim instructor NPC that stands in front of a large pond,
@@ -18,7 +44,7 @@ try picking up objects and carrying them
 into the water as well. have fun!
 
 *this should be at the colliseum level.
-make the pond there bigger.
+make the pond an actual pool-like arrangement.
 
 
 
@@ -309,10 +335,80 @@ in later colliseum quests, K/D may be a requirement to enter some tournaments.
 
 
 
-what if enemies only fell into pits if they were in a hit state?
-this would prevent them from falling in unless hero had pushed them off.
-if enemy isn't in hit state, then push them the opposite direction.
-hero can still fall off as nomal tho.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Final Fight With Ganon
+should take place in a destructible field overworld level, 
+in the dark world. and part of ganon's attacks should Push()
+the hero - which means Ganon can win simply by pushing Link
+out of the level, adding another layer to this boss fight.
+this means the strategy changes to stay more in the center
+of the level, closer to ganon, who is the largest actor in
+the game. two additional reasons why this was done: 
+1. ganon is a massive actor (basically 3x3, but really 4x4),
+so fighting him in a traditional boss room just isn't fair.
+we need a larger room, so let's use the largest room for
+the largest and (hopefully) hardest boss.
+2. this allows the player to leave the level at will,
+if they are getting overwhelmed and dont want to die.
+this could lead to some funny moments where people
+bail from the fight due to stuff ganon could do/say.
+bonus 3. it throws something new at the player at the
+endgame, as if to say - "hey, we ain't done with suprises"
+because this transforms an overworld level into a shortcut
+straight into a boss fight (after some dialog). before
+this, we should never use an overworld level for a boss fight.
+
+phase 1 - just ganon, with slides + magic + summons (1 beast head)
+phase 2 - ganon alternates between beast form (phase1)
+and black fire form (phase2), where he creates 6 beast
+heads that link must defeat before ganon toggles back
+to beast form.
+phase 3 - ganon "explodes" and his head flys around,
+shooting fireballs very similar to "blind" from Lttp's
+darkworld bosses. these fireballs leave groundfires.
+phase 4 - ganon transforms into his black fire form
+and has his final dialog with Link.
+
+when ganon's level is built after the final fight,
+we check the ganon battle boolean and if true,
+then ganon is replaced with a roomObj called Ganon's Soul,
+which Link can interact with. this is ganon essentially
+trapped and powerless in the dark world, begging link
+to set him free. if link sets him free, then we flip
+the ganon battle boolean false, kick link out of the
+level, and start all over again. lol.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

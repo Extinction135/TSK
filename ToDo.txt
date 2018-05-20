@@ -161,30 +161,15 @@ TODAY:
 
 
 
-Dig Testing
 
-ok, so there are some edge cases here that I really didn't think about.
-for example, link can dig out switch blocks that are down, because they
-aren't blocking. along with conveyor belts. and switches.
-probably spike blocks. floor spikes. bumpers. pets? yikes.
-and icetiles... wait a second.. no..
+Levels++
 
-Digging and Ice Tiles
-we allow link to dig out ice tiles, because this seems plausible in the world,
-and those ice tiles can be a real pain. now, we have a logical way of 
-'defeating' them - which I absolutely LOVE and I'm keeping it.
-
-..continuing on, updated Dig()'s obj type check with
-section for switch blocks, conveyor belts, switches,
-spike blocks, spipke floors, bumpers, fairies, and pets.
-
-added a commented out section of code explaining that
-ice tiles are allowed to be dug out. in the future,
-this may change if the game is put into hard mode.
-however, this may be a bad idea - because I don't 
-want the player's interaction with the world to change
-in hard mode, only the 'systems' that have been built
-to help them are (mostly) turned off.
+when hero exits an overworld level, make sure to stop his
+movement - otherwise he can continue to travel beyond the level
+bounds for a short while, which could lead to all kinds of exploits.
+updated CheckRoomCollision() to do just that.
+playtested - bees flew out of the usb drive!
+nah just kidding - working as expected.
 
 
 
@@ -200,14 +185,6 @@ to help them are (mostly) turned off.
 
 
 
-
-
-
-
-
-
-We still need a stationary spike block obj.
-this is super easy to do, btw.
 
 
 
@@ -220,6 +197,86 @@ whatever these objs are, they will getAI, with an interactive
 frame defined in obj.settype(). they will expand on that intFrame,
 checking roomObjs, doing what they need to do, just like filled
 ditches already do. copy their implementation.
+
+the watermill idea is the only one I have right now, and it
+only makes sense that it 'power' something - which is a much
+more ripe field for development than ditches I think.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Exits++
+
+We need to have custom exit roomData - they are bare and bad looking.
+we've *kinda* built the xml to cs system to handle this.
+but we've removed exit rooms from the room build method..
+we need at least one exit room xml def, with skull pillars
+and a signpost. this should "spruce" up the exit room.
+
+Add skull on pillar object.
+this obj should exist inside of a dungeon's exit room, to indicate
+it's overall difficulty. there should be 2-3 skulls in a lightworld dungeon.
+
+Add signpost (inside) object.
+this generic signpost sprite will be used to 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Editor++
+Update editor to allow for development of complete field rooms.
+when we hold down an arrow key, offset the camera by 64 pixels in
+that direction. this allows us to 'peek' beyond a levels bounds.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

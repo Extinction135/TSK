@@ -40,6 +40,8 @@ namespace DungeonRun
                 if(heroRec.Intersects(Functions_Level.currentRoom.rec) == false)
                 {
                     Functions_Level.CloseLevel(ExitAction.Overworld);
+                    //stop hero's movement
+                    Functions_Movement.StopMovement(Pool.hero.compMove);
                 }
 
                 #endregion
