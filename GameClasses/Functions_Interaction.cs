@@ -919,15 +919,15 @@ namespace DungeonRun
             #region Water (objects that 'fall' into water - draggable objs)
 
             else if(RoomObj.type == ObjType.Wor_Water)
-            {   //types of objects 'sink' into water
-                if (Object.type == ObjType.Dungeon_BlockLight
-                    || Object.type == ObjType.Dungeon_Statue
-                    || Object.type == ObjType.Dungeon_Barrel
-                    || Object.type == ObjType.Wor_Bookcase
-                    || Object.type == ObjType.Wor_Shelf
-                    || Object.type == ObjType.Wor_TableStone
-                    )
-                {   //if the object's sprite center touches the water tile, sink it
+            {
+                //if object is not of the general object group, bail
+                //otherwise projecctiles (+ others) splash into water upon contact
+                if (Object.group != ObjGroup.Object) { return; }
+
+                //if an obj is moveable, then hero can push it, then it should sink in water
+                if (Object.compMove.moveable)
+                {   
+                    //if the object's sprite center touches the water tile, sink it
                     if (RoomObj.compCollision.rec.Contains(Object.compSprite.position))
                     {
                         //release the obj, create a splash particle centered to object
@@ -935,7 +935,7 @@ namespace DungeonRun
                         Functions_Pool.Release(Object);
                     }
                     //otherwise the obj sinks as soon as it touches a water tile,
-                    //which looks early. and bad. cause we tried it. not good.
+                    //which looks early. and bad. cause we tried it. no good.
                 }
             }
 

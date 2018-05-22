@@ -525,7 +525,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 12; Obj.compCollision.rec.Height = 5;
                 Obj.compSprite.zOffset = -3;
                 Obj.canBeSaved = true;
-                Obj.compMove.moveable = true;
+                //Obj.compMove.moveable = true;
                 if (Type == ObjType.Dungeon_LeverOn)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_LeverOn; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_LeverOff; }
@@ -615,7 +615,7 @@ namespace DungeonRun
                 Obj.compCollision.blocking = false;
                 Obj.canBeSaved = true;
                 Obj.compSprite.zOffset = -32; //sort to floor
-                Obj.compMove.moveable = true;
+                //Obj.compMove.moveable = true;
                 if (Type == ObjType.Dungeon_Switch)
                 { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSwitchUp; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_FloorSwitchDown; }

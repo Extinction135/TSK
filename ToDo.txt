@@ -161,25 +161,32 @@ TODAY:
 
 
 
-Dig++
-
-allow digging of enemy spawn objs - these dont matter.
-the level data wont be affected by shoveling post-load.
-if we don't allow digging of enemy spawn objs in Dig(),
-then in game link can't dig random tiles, because enemy
-spawns exist there but they aren't drawn. so it makes 
-the game seem buggy, plus the roomData will load fine.
-
-
-
-
-
-
+Improvements
 
 bug: not all pushable objs fall into water.
 if an obj is pushable and collides with a water tile,
 then that obj splashes is released().
+ok, but that causes some unwanted behavior:
 
+projectiles splash into water upon collision.
+this means link can throw his boomerang into water.
+and it's gone until a new room / level load. lol.
+fixed a bug where all kinds of moveable objects were 
+sinking into water, like projectiles.
+
+Push++
+updated switches & levers to not be moveable. 
+otherwise they can be pushed into water, breaking
+puzzels - plus they dont visually look like they
+should be able to be pushed.
+
+however, this caused some room puzzels to be updated.
+also, improved exit rooms again.
+
+Spikeblock++
+fixed spike block to not have shadows on sprite.
+it gets rotated to the direction it's moving and
+looks dumb when the shadows are completely wrong.
 
 
 
