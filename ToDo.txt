@@ -161,25 +161,14 @@ TODAY:
 
 
 
+Dig++
 
-
-
-
-
-
-
-Levels++
-
-we should place skull pillars outside of dungeons, 
-for decoration. then replace exit room pushable objects 
-with random pushable objects to teach player about 
-all the different ways to solve switch puzzles 
-and what's pushable. done, also changed how forest
-entrance level looks a little bit to be more evil.
-updated & playtested uwp project.
-
-
-
+allow digging of enemy spawn objs - these dont matter.
+the level data wont be affected by shoveling post-load.
+if we don't allow digging of enemy spawn objs in Dig(),
+then in game link can't dig random tiles, because enemy
+spawns exist there but they aren't drawn. so it makes 
+the game seem buggy, plus the roomData will load fine.
 
 
 
@@ -193,8 +182,13 @@ then that obj splashes is released().
 
 
 
-allow digging of enemy spawn objs - these dont matter.
-the level data wont be affected by shoveling post-load.
+
+
+
+
+
+
+
 
 
 

@@ -336,11 +336,12 @@ namespace DungeonRun
                         //ice tiles are allowed to be 'dug' out - on all modes (normal/hard)
                         //|| Pool.roomObjPool[d].type == ObjType.Dungeon_IceTile
 
-                        || Pool.roomObjPool[d].type == ObjType.Dungeon_Fairy
-                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SpawnMob
-                        || Pool.roomObjPool[d].type == ObjType.Dungeon_SpawnMiniBoss
+                        //allow digging of hidden enemy spawn objs - dig doesn't affect roomData
+                        //|| Pool.roomObjPool[d].type == ObjType.Dungeon_SpawnMob
+                        //|| Pool.roomObjPool[d].type == ObjType.Dungeon_SpawnMiniBoss
 
                         //pets too
+                        || Pool.roomObjPool[d].type == ObjType.Dungeon_Fairy
                         || Pool.roomObjPool[d].type == ObjType.Pet_Dog
                         || Pool.roomObjPool[d].type == ObjType.Pet_Chicken
                         )
