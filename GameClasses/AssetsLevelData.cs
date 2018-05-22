@@ -585,15 +585,15 @@ namespace DungeonRun
 			ForestEntrance.objs = new List<ObjXmlData>();
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Entrance_ForestDungeon; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 200; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 280; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 280; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 664; obj.posY = 296; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 296; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 664; obj.posY = 312; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 664; obj.posY = 328; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 664; obj.posY = 344; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 312; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 328; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 344; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 296; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 360; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 360; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 360; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 344; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 344; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 344; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 280; ForestEntrance.objs.Add(obj);}
@@ -618,9 +618,9 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 312; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 328; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 344; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 360; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 360; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 360; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 328; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 328; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 328; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 360; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 360; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 376; ForestEntrance.objs.Add(obj);}
@@ -653,7 +653,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 456; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 456; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Exterior; obj.direction = Direction.Up; obj.posX = 696; obj.posY = 456; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 296; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 344; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 408; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 440; ForestEntrance.objs.Add(obj);}
@@ -663,7 +663,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 344; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 600; obj.posY = 424; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 312; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 312; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 360; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 808; obj.posY = 216; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 840; obj.posY = 280; ForestEntrance.objs.Add(obj);}
@@ -681,7 +681,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 504; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 600; obj.posY = 392; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 536; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 360; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 392; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 488; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 536; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 472; ForestEntrance.objs.Add(obj);}
@@ -720,7 +720,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 472; obj.posY = 360; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 328; obj.posY = 424; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 376; obj.posY = 216; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 184; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 600; obj.posY = 328; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 424; obj.posY = 328; ForestEntrance.objs.Add(obj);}
@@ -957,22 +957,22 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Straight; obj.direction = Direction.Right; obj.posX = 552; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Right; obj.posX = 568; obj.posY = 296; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Up; obj.posX = 728; obj.posY = 296; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 248; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 184; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 376; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 136; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 120; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 136; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 136; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 168; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 136; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 168; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 792; obj.posY = 152; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 104; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 104; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 104; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 120; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 216; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 216; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 136; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 136; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 264; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 376; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 312; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 152; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 200; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 216; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 232; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 248; ForestEntrance.objs.Add(obj);}
@@ -980,60 +980,59 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 184; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 168; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 152; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 152; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 152; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 152; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 168; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 184; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 200; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 152; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 152; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 152; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 152; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 152; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 152; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 152; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 232; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 168; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 168; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 184; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 184; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 216; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 200; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 216; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 216; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 184; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 200; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 264; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 232; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 152; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 248; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 248; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 280; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 248; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 296; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 312; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 280; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 232; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 296; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 296; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 312; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 232; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 248; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 232; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 376; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 248; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 264; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 216; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 200; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 216; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 216; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 216; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 248; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 232; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 248; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 232; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 264; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 264; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 264; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 280; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 296; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 312; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 328; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 344; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 248; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 296; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Coastline_Corner_Interior; obj.direction = Direction.Left; obj.posX = 632; obj.posY = 296; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 312; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 312; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Water; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 312; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 504; obj.posY = 248; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 312; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 552; obj.posY = 328; ForestEntrance.objs.Add(obj);}
@@ -1042,7 +1041,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 168; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_2; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 200; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 344; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 712; obj.posY = 328; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 248; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 328; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 760; obj.posY = 312; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_1; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 264; ForestEntrance.objs.Add(obj);}
@@ -1074,19 +1073,9 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 872; obj.posY = 360; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 264; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 264; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 216; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 216; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 632; obj.posY = 216; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_Pot; obj.direction = Direction.Down; obj.posX = 664; obj.posY = 216; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 296; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 312; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 344; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 328; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 648; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 520; obj.posY = 216; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 280; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 536; obj.posY = 328; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 568; obj.posY = 344; ForestEntrance.objs.Add(obj);}
@@ -1102,13 +1091,10 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 744; obj.posY = 184; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 152; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Bush; obj.direction = Direction.Down; obj.posX = 456; obj.posY = 136; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Stump; obj.direction = Direction.Down; obj.posX = 584; obj.posY = 328; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Stump; obj.direction = Direction.Down; obj.posX = 488; obj.posY = 312; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Stump; obj.direction = Direction.Down; obj.posX = 440; obj.posY = 232; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Stump; obj.direction = Direction.Down; obj.posX = 824; obj.posY = 264; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Stump; obj.direction = Direction.Down; obj.posX = 776; obj.posY = 120; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 232; ForestEntrance.objs.Add(obj);}
-			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Tree_Burnt; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 232; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 920; obj.posY = 456; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 472; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Grass_Tall; obj.direction = Direction.Down; obj.posX = 616; obj.posY = 488; ForestEntrance.objs.Add(obj);}
@@ -1137,6 +1123,7 @@ namespace DungeonRun
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 728; obj.posY = 488; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 696; obj.posY = 552; ForestEntrance.objs.Add(obj);}
 			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Wor_Flowers; obj.direction = Direction.Down; obj.posX = 600; obj.posY = 520; ForestEntrance.objs.Add(obj);}
+			{ObjXmlData obj = new ObjXmlData(); obj.type = ObjType.Dungeon_SkullPillar; obj.direction = Direction.Down; obj.posX = 680; obj.posY = 200; ForestEntrance.objs.Add(obj);}
 			#endregion
 
 		}

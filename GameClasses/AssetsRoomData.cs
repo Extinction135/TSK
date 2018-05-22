@@ -1831,11 +1831,11 @@ namespace DungeonRun
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Exit;
 				room.objs = new List<ObjXmlData>();
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SkullPillar; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 40; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SkullPillar; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 40; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SkullPillar; Obj.direction = Direction.Down; Obj.posX = 40; Obj.posY = 104; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SkullPillar; Obj.direction = Direction.Down; Obj.posX = 136; Obj.posY = 104; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Switch; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 88; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 40; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 56; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 120; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 120; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Switch; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 56; room.objs.Add(Obj);}
 				 exitRooms.Add(room);
 			}
 			#endregion
@@ -1847,15 +1847,11 @@ namespace DungeonRun
 				RoomXmlData room = new RoomXmlData();
 				room.type = RoomID.Exit;
 				room.objs = new List<ObjXmlData>();
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_SkullPillar; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 72; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 88; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 88; Obj.posY = 56; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 88; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 40; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 56; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 120; room.objs.Add(Obj);}
+				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_TorchLit; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 120; room.objs.Add(Obj);}
 				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Switch; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 56; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 40; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 56; Obj.posY = 120; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 56; room.objs.Add(Obj);}
-				{ObjXmlData Obj = new ObjXmlData(); Obj.type = ObjType.Dungeon_Statue; Obj.direction = Direction.Down; Obj.posX = 120; Obj.posY = 120; room.objs.Add(Obj);}
 				 exitRooms.Add(room);
 			}
 			#endregion

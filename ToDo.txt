@@ -158,38 +158,6 @@ Friday
 
 TODAY:
 
-Exits++
-
-Created exit roomdata 1 and 2, containing very basic
-and easy switch puzzles. Its an easy early victory.
-Updated level systems to handle exit roomdata loading.
-
-Added skull pillar object
-this obj exists inside of a dungeon's exit room, to spruce
-it up and give the player a sense that this is a different
-place than the outside they just left. also, exit rooms
-contain simple switch puzzles for the player to complete,
-so skull pillars were updated to be pushable / moveable,
-and then integrated into the existing exit room puzzels.
-since this room is the only place where these skull pillars
-exist in game now, this adds some salt to the otherwise
-pretty bland exit room.
-
-various comment cleanups too.
-
-changed how hero's grab() check looks for a grab-able
-object: we were doing type checks, which made sense,
-but now we're doing obj.compMove.moveable checks,
-which make even more sense - if the player sees an
-object that can be moved by a conveyor belt, then
-it makes sense that the object is moveable, and the
-player should be able to move it by pushing it.
-the issue is that i'm not sure exactly which objs
-are moveable, and if i want all those objs pushable
-too. this also reduces the complexity of grab routine.
-
-updated tables + shelves to be moveable.
-playtested, woroking as expected.
 
 
 
@@ -200,17 +168,38 @@ playtested, woroking as expected.
 
 
 
-we should place skull pillars outside of dungeons, for decoration.
-then replace exit room pushable objects with random pushable
-objects to teach player about all the different ways to solve
-switch puzzles and what's pushable.
+Levels++
+
+we should place skull pillars outside of dungeons, 
+for decoration. then replace exit room pushable objects 
+with random pushable objects to teach player about 
+all the different ways to solve switch puzzles 
+and what's pushable. done, also changed how forest
+entrance level looks a little bit to be more evil.
+updated & playtested uwp project.
 
 
 
 
 
 
-add world signpost and dungeon signpost.
+
+
+
+
+bug: not all pushable objs fall into water.
+if an obj is pushable and collides with a water tile,
+then that obj splashes is released().
+
+
+
+allow digging of enemy spawn objs - these dont matter.
+the level data wont be affected by shoveling post-load.
+
+
+
+
+add dungeon signpost.
 dungeon signposts should only exist inside
 the exit room of the current dungeon. interacting
 with this obj should tell hero about the dungeon
@@ -219,6 +208,47 @@ world signposts exist outside of dungeons on overworld
 levels, usually right next to where hero spawns,
 so he knows where he is. again, this just pops
 info about the level, like it's name.
+
+
+
+
+
+
+
+
+
+
+
+Boss & Miniboss
+
+*we have big eye boss, with hit state and idle blink,
+so we *could* make him the boss of the dungeon, and move big blob
+into the hub as a miniBoss, which would be awesome.
+
+the eye boss should spawn throw bombs towards hero with great force.
+while also defensively moving away from hero. also, boss should be
+invincible to bombs, because that's his main weapon, and we wouldn't 
+want him killing himself. he should also have alot of health.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -350,16 +380,7 @@ than being able to dive while holding an obj. lol.
 
 
 
-Boss & Miniboss
 
-*we have big eye boss, with hit state and idle blink,
-so we *could* make him the boss of the dungeon, and move big blob
-into the hub as a miniBoss, which would be awesome.
-
-the eye boss should spawn throw bombs towards hero with great force.
-while also defensively moving away from hero. also, boss should be
-invincible to bombs, because that's his main weapon, and we wouldn't 
-want him killing himself. he should also have alot of health.
 
 
 
