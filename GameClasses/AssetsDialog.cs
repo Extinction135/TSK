@@ -29,38 +29,38 @@ namespace DungeonRun
 
         public static List<Dialog> GameSaved = new List<Dialog>
         {   //returns to inventory screen upon close
-            new Dialog(ObjType.Vendor_NPC_Story, "Success!",
-                "I have successfully saved the current game.",
+            new Dialog(ObjType.Hero_Idle, "Success!",
+                "I saved the current game.",
                 Assets.sfxGoldPickup, true, false, false)
         };
         public static List<Dialog> GameLoaded = new List<Dialog>
         {   //returns to previous screen (inventory or title) upon close
-            new Dialog(ObjType.Vendor_NPC_Story, "Ready!",
-                "I have loaded the selected game file.",
+            new Dialog(ObjType.Hero_Idle, "Ready!",
+                "I loaded the selected game file.",
                 Assets.sfxChestOpen, true, true, true)
         };
         public static List<Dialog> GameAutoSaved = new List<Dialog>
         {   //goes to overworld screen upon close
-            new Dialog(ObjType.Vendor_NPC_Story, "Complete!",
-                "I've successfully loaded your last autosaved game.",
+            new Dialog(ObjType.Hero_Idle, "Complete!",
+                "I  successfully loaded the last autosaved game.",
                 Assets.sfxChestOpen, true, true, true)
         };
         public static List<Dialog> GameCreated = new List<Dialog>
         {   //goes to overworld screen upon close
-            new Dialog(ObjType.Vendor_NPC_Story, "Welcome...",
-                "I have created a new game for you.",
+            new Dialog(ObjType.Hero_Idle, "Welcome...",
+                "I created a new game for you.",
                 Assets.sfxChestOpen, true, true, true)
         };
         public static List<Dialog> GameNotFound = new List<Dialog>
         {   //goes to overworld screen upon close
-            new Dialog(ObjType.Vendor_NPC_Story, "UhOh!",
+            new Dialog(ObjType.Hero_Idle, "Uh Oh!",
                 "the selected game file was not found. I have saved your current game to the\n" +
                 "selected game slot instead.",
                 Assets.sfxError, true, true, true)
         };
         public static List<Dialog> GameLoadFailed = new List<Dialog>
         {   //goes to overworld screen upon close
-            new Dialog(ObjType.Vendor_NPC_Story, "OhNo!",
+            new Dialog(ObjType.Hero_Idle, "Oh No!",
                 "Oh no! I'm terribly sorry, but there was a problem loading this game file...\n" +
                 "The data is corrupted... I've overwritten the file with your current game.",
                 Assets.sfxError, true, false, true)
@@ -107,21 +107,21 @@ namespace DungeonRun
 
         public static List<Dialog> DoesNotHaveKey = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Uh...!",
-                "This door is locked. You'll need a key to open it.",
+            new Dialog(ObjType.Hero_Idle, "Hmm..",
+                "This door is locked.",
                 Assets.sfxError, false, false, false)
         };
         public static List<Dialog> HeroGotKey = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Hey!",
-                "You found the big key. It can open all doors.",
+            new Dialog(ObjType.Hero_Idle, "Hey!",
+                "I found a key.",
                 Assets.sfxReward, false, false, false)
         };
         public static List<Dialog> HeroGotMap = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Hey!",
-                "You found the map!\n" + 
-                "You can look at it by selecting it from the Inventory screen.\n",
+            new Dialog(ObjType.Hero_Idle, "Hey!",
+                "I found a map!\n" + 
+                "I can look at it by selecting it from Inventory.\n",
                 Assets.sfxReward, false, false, false)
         };
 
@@ -132,22 +132,22 @@ namespace DungeonRun
 
         public static List<Dialog> BottleCant = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Gotcha!",
-                "I caught a creature in the net!\n" +
+            new Dialog(ObjType.Hero_Idle, "Gotcha!",
+                "I caught a creature in my net!\n" +
                 "Unfortunately, I can't fit this creature in a bottle.",
                 Assets.sfxError, false, false, false)
         };
         public static List<Dialog> BottleFull = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Gotcha!",
-                "I caught a creature in the net!\n" +
+            new Dialog(ObjType.Hero_Idle, "Gotcha!",
+                "I caught a creature in my net!\n" +
                 "Unfortunately, I don't have any empty bottles to put this creature in.",
                 Assets.sfxError, false, false, false)
         };
         public static List<Dialog> BottleSuccess = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Gotcha!",
-                "I caught a creature in the net!\n" +
+            new Dialog(ObjType.Hero_Idle, "Gotcha!",
+                "I caught a creature in my net!\n" +
                 "I put the creature in an empty bottle.",
                 Assets.sfxReward, false, false, false)
         };
@@ -159,14 +159,14 @@ namespace DungeonRun
 
         public static List<Dialog> CantAddChests = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Nope!",
-                "You cannot add more chests to this room!",
+            new Dialog(ObjType.Hero_Idle, "Nope!",
+                "You cant add more chests to this room!",
                 Assets.sfxError, true, false, false)
         };
         public static List<Dialog> CantAddMoreSwitches = new List<Dialog>
         {
-            new Dialog(ObjType.Vendor_NPC_Story, "Nope!",
-                "You cannot add more than 1 switch to a room!",
+            new Dialog(ObjType.Hero_Idle, "Nope!",
+                "You cant add more than 1 switch to a room!",
                 Assets.sfxError, true, false, false)
         };
 

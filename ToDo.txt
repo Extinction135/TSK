@@ -161,15 +161,13 @@ TODAY:
 
 
 
-Signposts
 
-created generic signpost object for hero to 
-interact with. upon interaction, a standard dialog
-is popped for player to read saying signpost is
-empty - because I dont know what to put here
-right now. placed signposts in exit rooms.
-exit rooms are looking more interesting now,
-even tho there is only two of them.
+Dialogs++
+
+updated most dialogs to use Link as the speaker,
+either speaking to himself or to the player. this
+makes more sense in the context of the story, since
+everyone else eventually will die. playtested.
 
 
 
@@ -178,10 +176,17 @@ even tho there is only two of them.
 
 
 
+dont add wall statues to HUB room, because the arrows they
+shoot would damage the miniboss that will be spawning there
+in the future.
 
 
 
-should be link speaker in dialog for map or key.
+
+
+
+
+
 
 
 
