@@ -163,18 +163,16 @@ TODAY:
 
 
 
+Sprites ++
+
+added forest enemies to forest sheet, causing 
+a repack and a resizing. migrated sprite sheets
+to new formats. added sprites for eye boss, eye
+miniboss, eye mob1, eye mob2, bigger eye mob,
+rats, eye statues, floating small eye mob, turtles,
+and crabs.
 
 
-
-
-
-
-HubRoom++
-
-dont add wall statues to HUB room, because the arrows they
-shoot would damage the miniboss that will be spawning there
-in the future. updated dungeon functions.procedurallyFinish()
-to not add wall statues to hub rooms.
 
 
 
@@ -197,27 +195,105 @@ to not add wall statues to hub rooms.
 Tuesday
 
 
-Boss & Miniboss
-
-*we have big eye boss, with hit state and idle blink,
-so we *could* make him the boss of the dungeon, and move big blob
-into the hub as a miniBoss, which would be awesome.
-
-the eye boss should spawn throw bombs towards hero with great force.
-while also defensively moving away from hero. also, boss should be
-invincible to bombs, because that's his main weapon, and we wouldn't 
-want him killing himself. he should also have alot of health, 
-and spawn his own kind of mob.
 
 
-later on, we should update the forest dungeon to use the boss's mobs
-instead of blobs. blobs should only exist in the underground dungeon.
-which means we need a forest dungeon miniboss, which should be
-eye-themed.
+Forest Dungeon Enemy Rework
 
 
-easy underground dungeon idea:
-we have an overworld pit with stairs sprite.
+
+
+
+BigBoss - BigEye
+
+has 4 states:
+1. idle / move : this is tentacles moving around
+2. attack : this is the blink 2 frame anim
+3. hit : this is bloodshot eye frame
+4. death : eye shut + bloodshot frames, looped
+
+idle, move, attack, hit, death
+this boss has 10 hp, not much health, because his attacks
+are so deadly. it's also a 1v1 fight.
+
+the boss has two attacks:
+standard: spawn 4 bombs at boss pos with random directions with 10 force push.
+special: spawn 8 bombs in cardinal + diagonal directions at boss pos with 10 force push.
+*while moving, there is a 1% chance each frame to spawn a bomb
+at boss pos - this means boss 'leaves' bombs behind as he moves.
+these orphans dont have a direction and aren't pushed with any force.
+
+when boss is low on health (<5), he switches to using special attacks,
+and his movement speed increases slightly (* 1.06).
+otherwise, he uses standard attacks, and tries to avoid the hero (moves away).
+this boss is invincible to explosions.
+
+
+
+Miniboss - Blackeye
+
+has 4 states:
+1. idle/move - this is floating, or chomping on ground
+2. attack - this is bloodshot eye anim
+3. hit - this is bloodshot eye anim
+4. death - this is bloodshot eye anim
+???
+
+
+
+
+
+
+MOB+
+primary mob - spawns bombs as it's attack and it's hit
+is immue to explosions too. this means they spawn bombs
+when near hero and when they are hit. these smaller mobs
+have 4 hp.
+
+
+
+
+
+MOB
+1 hit mob - the floating eye thing. if it gets close enough to hero
+it just explodes (kills itself creating an explosion) after it completes
+a warning / tension animation telling player to kill it or gtfo.
+
+
+
+
+
+
+we'll need to change the enemy spawn 2, or miniboss spawn to be
+Enemy_Spawn_Weak, Enemy_Spawn_Strong. later on, it's likely this 
+will expand to also include Enemy_Spawn_Ranged, Enemy_Spawn_Healer,
+etc...
+
+
+
+
+
+
+
+
+
+Map++
+*if you defeat the miniboss, he drops the map as loot.
+this is the only way to get the map. remove chests from
+hub rooms, remove map chest from game. update loot routine
+with method to spawn a map gameObj pickup, create map pickup
+obj, add to hero's interaction routine. this also helps
+to separate map vs key rewards - key is earned by completing
+a puzzle, while map is earned by defeating a miniboss.
+
+
+
+
+
+
+
+
+Underground Blob Dungeon:
+we have an overworld pit sprite.
 hide this randomly under an object that can be destroyed,
 like a bush on a level. for now, this object will
 create a new type of dungeon, an underground dungeon.
@@ -238,7 +314,11 @@ which should be stored in save data.
 
 
 
-
+Blobs need to have more weapons & items to attack and use.
+Plus, we need to expand the AI to use more items.
+this also means we need to change some of the use checks for pool.hero
+into checks for actors with those animFrames, by actor type,
+like this: actor.type == ActorType.Hero or ActorType.Blob.
 
 
 

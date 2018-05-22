@@ -623,6 +623,7 @@ namespace DungeonRun
             Hero_Animations.death_heroic.right = Hero_Animations.death_heroic.down;
             Hero_Animations.death_heroic.left = Hero_Animations.death_heroic.down;
 
+
             //heroic death in water
             Hero_Animations.death_heroic_water = new AnimationGroup();
             Hero_Animations.death_heroic_water.down = new List<Byte4>
