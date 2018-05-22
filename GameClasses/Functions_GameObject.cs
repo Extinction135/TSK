@@ -427,7 +427,7 @@ namespace DungeonRun
             #endregion
 
 
-            #region BossStatue
+            #region BossStatue & Skull Pillar
 
             else if (Type == ObjType.Dungeon_Statue)
             {
@@ -437,6 +437,17 @@ namespace DungeonRun
                 Obj.compMove.moveable = true;
                 Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_Statue;
                 Obj.sfx.hit = Assets.sfxTapHollow;
+                Obj.sfx.kill = Assets.sfxShatter;
+            }
+            else if (Type == ObjType.Dungeon_SkullPillar)
+            {
+                Obj.compSprite.cellSize.Y = 16 * 2; //nonstandard size
+                Obj.compSprite.zOffset = +10;
+                Obj.compCollision.offsetY = +8;
+                Obj.compMove.moveable = true;
+                Obj.canBeSaved = true;
+                Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_SkullPillar;
+                Obj.sfx.hit = Assets.sfxTapMetallic;
                 Obj.sfx.kill = Assets.sfxShatter;
             }
 
@@ -480,7 +491,7 @@ namespace DungeonRun
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
                 if (Type == ObjType.Dungeon_BlockLight)
-                {   //lighter blocks are moveable by belts
+                {   //lighter blocks are moveable
                     Obj.compMove.moveable = true;
                     Obj.compAnim.currentAnimation = AnimationFrames.Dungeon_BlockLight;
                 }
@@ -874,6 +885,8 @@ namespace DungeonRun
                 Obj.compCollision.offsetY = 0; Obj.compCollision.rec.Height = 8;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
+
                 if (Type == ObjType.Wor_Bookcase)
                 { Obj.compAnim.currentAnimation = AnimationFrames.World_Bookcase; }
                 else { Obj.compAnim.currentAnimation = AnimationFrames.World_Shelf; }
@@ -886,6 +899,7 @@ namespace DungeonRun
                 Obj.compCollision.rec.Width = 14; Obj.compCollision.rec.Height = 12;
                 Obj.compSprite.zOffset = -7;
                 Obj.canBeSaved = true;
+                Obj.compMove.moveable = true;
 
                 if (Type == ObjType.Wor_TableStone)
                 {

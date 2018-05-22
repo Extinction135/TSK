@@ -274,8 +274,8 @@ namespace DungeonRun
                     { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.rowRooms.Count); }
                     else if (Level.rooms[i].roomID == RoomID.Square)
                     { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.squareRooms.Count); }
-
-                    //add exit rooms too
+                    else if (Level.rooms[i].roomID == RoomID.Exit)
+                    { Level.rooms[i].dataIndex = Functions_Random.Int(0, RoomData.exitRooms.Count); }
                 }
 
                 #endregion

@@ -162,36 +162,30 @@ namespace DungeonRun
 
                 else if (Room.roomID == RoomID.Boss)
                 {
-                    //RoomXmlData = RoomData.bossRooms[Functions_Random.Int(0, RoomData.bossRooms.Count)];
                     RoomXmlData = RoomData.bossRooms[Room.dataIndex];
                 }
                 else if (Room.roomID == RoomID.Column)
                 {
-                    //RoomXmlData = RoomData.columnRooms[Functions_Random.Int(0, RoomData.columnRooms.Count)];
                     RoomXmlData = RoomData.columnRooms[Room.dataIndex];
                 }
                 else if (Room.roomID == RoomID.Exit)
-                { 
-                    //nothing yet
+                {
+                    RoomXmlData = RoomData.exitRooms[Room.dataIndex];
                 }
                 else if (Room.roomID == RoomID.Hub)
                 {
-                    //RoomXmlData = RoomData.hubRooms[Functions_Random.Int(0, RoomData.hubRooms.Count)];
                     RoomXmlData = RoomData.hubRooms[Room.dataIndex];
                 }
                 else if (Room.roomID == RoomID.Key)
                 {
-                    //RoomXmlData = RoomData.keyRooms[Functions_Random.Int(0, RoomData.keyRooms.Count)];
                     RoomXmlData = RoomData.keyRooms[Room.dataIndex];
                 }
                 else if (Room.roomID == RoomID.Row)
                 {
-                    //RoomXmlData = RoomData.rowRooms[Functions_Random.Int(0, RoomData.rowRooms.Count)];
                     RoomXmlData = RoomData.rowRooms[Room.dataIndex];
                 }
                 else if (Room.roomID == RoomID.Square)
                 {
-                    //RoomXmlData = RoomData.squareRooms[Functions_Random.Int(0, RoomData.squareRooms.Count)];
                     RoomXmlData = RoomData.squareRooms[Room.dataIndex];
                 }
 

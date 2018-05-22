@@ -49,7 +49,6 @@ namespace DungeonRun
                        RoomData.type == RoomID.Hub ||
                        RoomData.type == RoomID.Key ||
                        RoomData.type == RoomID.Row ||
-                       RoomData.type == RoomID.Secret ||
                        RoomData.type == RoomID.Square)
                     { roomData.Add(RoomData); }
                     else { levelData.Add(RoomData); }
@@ -180,22 +179,20 @@ namespace DungeonRun
                 }
 
                 if (roomData[i].type == RoomID.Boss)
-                { csOutput += "\t\t\t\t\t bossRooms.Add(room);\n"; }
+                { csOutput += "\t\t\t\t bossRooms.Add(room);\n"; }
                 else if (roomData[i].type == RoomID.Column)
-                { csOutput += "\t\t\t\t\t columnRooms.Add(room);\n"; }
+                { csOutput += "\t\t\t\t columnRooms.Add(room);\n"; }
                 else if (roomData[i].type == RoomID.Exit)
-                { csOutput += "\t\t\t\t\t exitRooms.Add(room);\n"; }
+                { csOutput += "\t\t\t\t exitRooms.Add(room);\n"; }
                 else if (roomData[i].type == RoomID.Hub)
-                { csOutput += "\t\t\t\t\t hubRooms.Add(room);\n"; }
+                { csOutput += "\t\t\t\t hubRooms.Add(room);\n"; }
 
                 else if (roomData[i].type == RoomID.Key)
-                { csOutput += "\t\t\t\t\t keyRooms.Add(room);\n"; }
+                { csOutput += "\t\t\t\t keyRooms.Add(room);\n"; }
                 else if (roomData[i].type == RoomID.Row)
-                { csOutput += "\t\t\t\t\t rowRooms.Add(room);\n"; }
-                else if (roomData[i].type == RoomID.Secret)
-                { csOutput += "\t\t\t\t\t secretRooms.Add(room);\n"; }
+                { csOutput += "\t\t\t\t rowRooms.Add(room);\n"; }
                 else if (roomData[i].type == RoomID.Square)
-                { csOutput += "\t\t\t\t\t squareRooms.Add(room);\n"; }
+                { csOutput += "\t\t\t\t squareRooms.Add(room);\n"; }
 
                 csOutput += "\t\t\t}\n";
                 csOutput += "\t\t\t#endregion\n\n";

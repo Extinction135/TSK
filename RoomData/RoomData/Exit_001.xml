@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RoomXmlData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <type>Exit</type>
+  <objs>
+    <ObjXmlData>
+      <type>Dungeon_SkullPillar</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SkullPillar</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>40</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SkullPillar</type>
+      <direction>Down</direction>
+      <posX>40</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_SkullPillar</type>
+      <direction>Down</direction>
+      <posX>136</posX>
+      <posY>104</posY>
+    </ObjXmlData>
+    <ObjXmlData>
+      <type>Dungeon_Switch</type>
+      <direction>Down</direction>
+      <posX>88</posX>
+      <posY>88</posY>
+    </ObjXmlData>
+  </objs>
+</RoomXmlData>

@@ -368,6 +368,7 @@ namespace DungeonRun
 
             #region Push-able Objects
 
+            /*
             else if (Obj.type == ObjType.Dungeon_BlockLight
                 || Obj.type == ObjType.Dungeon_Barrel
                 || Obj.type == ObjType.Dungeon_Statue
@@ -375,6 +376,13 @@ namespace DungeonRun
                 || Obj.type == ObjType.Wor_TableWood
                 || Obj.type == ObjType.Wor_Bookcase
                 || Obj.type == ObjType.Wor_Shelf)
+            {
+                Functions_Actor.Grab(Obj, Pool.hero);
+            }
+            */
+
+
+            if(Obj.compMove.moveable)
             {
                 Functions_Actor.Grab(Obj, Pool.hero);
             }

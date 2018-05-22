@@ -354,7 +354,7 @@ namespace DungeonRun
             }
             else if(Room.roomID == RoomID.DEV_Boss)
             {
-                //FinishBossRoom(Room); //this just spawns the boss
+                FinishBossRoom(Room); //this just spawns the boss
                 ShutDoors(Room); //we do want to shut the doors tho
             }
             else if(Room.roomID == RoomID.DEV_Exit)

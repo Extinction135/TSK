@@ -164,17 +164,17 @@ namespace DungeonRun
         #region Dungeon Objects
 
         //PROCEDURALLY PLACED
-        Dungeon_ExitPillarLeft, //ExitPillarLeft
-        Dungeon_ExitPillarRight, //ExitPillarRight
-        Dungeon_Exit, //Exit
-        Dungeon_ExitLight, //ExitLightFX
+        Dungeon_ExitPillarLeft,
+        Dungeon_ExitPillarRight,
+        Dungeon_Exit, 
+        Dungeon_ExitLight, 
 
-        Dungeon_DoorOpen, //DoorOpen,
-        Dungeon_DoorBombable, //DoorBombable,
-        Dungeon_DoorBoss, //DoorBoss,
-        Dungeon_DoorTrap, //DoorTrap,
-        Dungeon_DoorShut, //DoorShut,
-        Dungeon_DoorFake, //DoorFake,
+        Dungeon_DoorOpen,
+        Dungeon_DoorBombable, 
+        Dungeon_DoorBoss,
+        Dungeon_DoorTrap,
+        Dungeon_DoorShut, 
+        Dungeon_DoorFake, 
 
         Dungeon_WallStraight,
         Dungeon_WallStraightCracked, 
@@ -184,19 +184,19 @@ namespace DungeonRun
         Dungeon_WallStatue,
         Dungeon_WallTorch,
 
-        Dungeon_FloorDecal, //BossDecal
-        Dungeon_FloorBlood, //FloorDebrisBlood
+        Dungeon_FloorDecal,
+        Dungeon_FloorBlood, 
 
 
         //HAND PLACED
-        Dungeon_Pit, //PitAnimated,
-        Dungeon_PitBridge, //Bridge,
-        Dungeon_PitTeethTop, //PitTop,
-        Dungeon_PitTeethBottom, //PitBottom,
-        Dungeon_PitTrap, //PitTrap
+        Dungeon_Pit, 
+        Dungeon_PitBridge,
+        Dungeon_PitTeethTop,
+        Dungeon_PitTeethBottom,
+        Dungeon_PitTrap, 
 
-        Dungeon_Statue, //BossStatue,
-
+        Dungeon_Statue, 
+        Dungeon_SkullPillar,
 
         Dungeon_Chest, //placeable in editor, becomes key or map chest
         Dungeon_ChestKey, //not placeable, procedurally set

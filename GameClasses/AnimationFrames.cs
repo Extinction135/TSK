@@ -49,6 +49,8 @@ namespace DungeonRun
 
 
         public static List<Byte4> Dungeon_Statue = new List<Byte4> { new Byte4(8, 3, 0, 0) };
+        public static List<Byte4> Dungeon_SkullPillar = new List<Byte4> { new Byte4(0, 3, 0, 0) };
+
         public static List<Byte4> Dungeon_Fairy = new List<Byte4> { new Byte4(9, 3, 0, 0), new Byte4(10, 3, 0, 0) };
         public static List<Byte4> Dungeon_BossKey = new List<Byte4> { new Byte4(12, 3, 0, 0) };
         public static List<Byte4> Dungeon_Map = new List<Byte4> { new Byte4(11, 3, 0, 0) };

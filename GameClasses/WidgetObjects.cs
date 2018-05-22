@@ -499,13 +499,13 @@ namespace DungeonRun
             Functions_GameObject.SetType(objList[0], ObjType.Wor_Entrance_ForestDungeon);
             Functions_GameObject.SetType(objList[1], ObjType.Unknown);
             Functions_GameObject.SetType(objList[2], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_Fairy);
+            Functions_GameObject.SetType(objList[3], ObjType.Dungeon_SkullPillar);
 
             //row 2
             Functions_GameObject.SetType(objList[4], ObjType.Unknown);
             Functions_GameObject.SetType(objList[5], ObjType.Unknown);
             Functions_GameObject.SetType(objList[6], ObjType.Unknown);
-            Functions_GameObject.SetType(objList[7], ObjType.Dungeon_Fairy);
+            Functions_GameObject.SetType(objList[7], ObjType.Unknown);
 
             //row 3
             Functions_GameObject.SetType(objList[8], ObjType.Unknown);
@@ -574,13 +574,15 @@ namespace DungeonRun
             objList[0].compCollision.rec.Width = 16 * 3;
             objList[0].compCollision.rec.Height = 16 * 4;
 
-            //hide the dungeon objs covered by dungeon entrance
+            //hide the dungeon objs covered by dungeon entrance, skullpillar
             Functions_Widget.HideObj(objList[1]);
             Functions_Widget.HideObj(objList[2]);
 
             Functions_Widget.HideObj(objList[4]);
             Functions_Widget.HideObj(objList[5]);
             Functions_Widget.HideObj(objList[6]);
+
+            Functions_Widget.HideObj(objList[7]);
 
             Functions_Widget.HideObj(objList[8]);
             Functions_Widget.HideObj(objList[9]);
